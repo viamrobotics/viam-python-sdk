@@ -4,5 +4,5 @@ This example server demonstrates how to use the Viam python SDK to run and conne
 
 ## Run
 
-1. `make run_server`
-2. `make run_client`
+1. `make_server`
+2. `make_client`
