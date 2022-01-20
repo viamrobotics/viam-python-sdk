@@ -1,5 +1,10 @@
 {
     "python.linting.flake8Enabled": true,
     "editor.formatOnSave": true,
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "python.linting.ignorePatterns": [
+        "**/site-packages/**/*.py",
+        ".vscode/*.py",
+        "gen/**/*.py"
+    ]
 }
