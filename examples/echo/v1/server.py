@@ -3,12 +3,12 @@ import asyncio
 from grpclib.utils import graceful_exit
 from grpclib.server import Server, Stream
 
-from viam.gen.proto.rpc.examples.echo.v1.echo_pb2 import (
+from gen.proto.rpc.examples.echo.v1.echo_pb2 import (
     EchoRequest, EchoResponse,
     EchoMultipleRequest, EchoMultipleResponse,
     EchoBiDiRequest, EchoBiDiResponse
 )
-from viam.gen.proto.rpc.examples.echo.v1.echo_grpc import EchoServiceBase
+from gen.proto.rpc.examples.echo.v1.echo_grpc import EchoServiceBase
 
 
 class EchoServer(EchoServiceBase):
