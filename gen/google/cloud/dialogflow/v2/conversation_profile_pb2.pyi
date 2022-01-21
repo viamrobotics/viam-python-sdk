@@ -321,6 +321,7 @@ class HumanAgentAssistantConfig(google.protobuf.message.Message):
         SUGGESTION_TRIGGER_SETTINGS_FIELD_NUMBER: builtins.int
         QUERY_CONFIG_FIELD_NUMBER: builtins.int
         CONVERSATION_MODEL_CONFIG_FIELD_NUMBER: builtins.int
+        CONVERSATION_PROCESS_CONFIG_FIELD_NUMBER: builtins.int
         @property
         def suggestion_feature(self) -> global___SuggestionFeature:
             """The suggestion feature."""
@@ -347,6 +348,10 @@ class HumanAgentAssistantConfig(google.protobuf.message.Message):
         def conversation_model_config(self) -> global___HumanAgentAssistantConfig.ConversationModelConfig:
             """Configs of custom conversation model."""
             pass
+        @property
+        def conversation_process_config(self) -> global___HumanAgentAssistantConfig.ConversationProcessConfig:
+            """Configs for processing conversation."""
+            pass
         def __init__(self,
             *,
             suggestion_feature : typing.Optional[global___SuggestionFeature] = ...,
@@ -354,9 +359,10 @@ class HumanAgentAssistantConfig(google.protobuf.message.Message):
             suggestion_trigger_settings : typing.Optional[global___HumanAgentAssistantConfig.SuggestionTriggerSettings] = ...,
             query_config : typing.Optional[global___HumanAgentAssistantConfig.SuggestionQueryConfig] = ...,
             conversation_model_config : typing.Optional[global___HumanAgentAssistantConfig.ConversationModelConfig] = ...,
+            conversation_process_config : typing.Optional[global___HumanAgentAssistantConfig.ConversationProcessConfig] = ...,
             ) -> None: ...
-        def HasField(self, field_name: typing_extensions.Literal["conversation_model_config",b"conversation_model_config","query_config",b"query_config","suggestion_feature",b"suggestion_feature","suggestion_trigger_settings",b"suggestion_trigger_settings"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing_extensions.Literal["conversation_model_config",b"conversation_model_config","enable_event_based_suggestion",b"enable_event_based_suggestion","query_config",b"query_config","suggestion_feature",b"suggestion_feature","suggestion_trigger_settings",b"suggestion_trigger_settings"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["conversation_model_config",b"conversation_model_config","conversation_process_config",b"conversation_process_config","query_config",b"query_config","suggestion_feature",b"suggestion_feature","suggestion_trigger_settings",b"suggestion_trigger_settings"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["conversation_model_config",b"conversation_model_config","conversation_process_config",b"conversation_process_config","enable_event_based_suggestion",b"enable_event_based_suggestion","query_config",b"query_config","suggestion_feature",b"suggestion_feature","suggestion_trigger_settings",b"suggestion_trigger_settings"]) -> None: ...
 
     class SuggestionConfig(google.protobuf.message.Message):
         """Detail human agent assistant config."""
@@ -566,6 +572,21 @@ class HumanAgentAssistantConfig(google.protobuf.message.Message):
             model : typing.Text = ...,
             ) -> None: ...
         def ClearField(self, field_name: typing_extensions.Literal["model",b"model"]) -> None: ...
+
+    class ConversationProcessConfig(google.protobuf.message.Message):
+        """Config to process conversation."""
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+        RECENT_SENTENCES_COUNT_FIELD_NUMBER: builtins.int
+        recent_sentences_count: builtins.int = ...
+        """Number of recent non-small-talk sentences to use as context for article
+        and FAQ suggestion
+        """
+
+        def __init__(self,
+            *,
+            recent_sentences_count : builtins.int = ...,
+            ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["recent_sentences_count",b"recent_sentences_count"]) -> None: ...
 
     class MessageAnalysisConfig(google.protobuf.message.Message):
         """Configuration for analyses to run on each conversation message."""

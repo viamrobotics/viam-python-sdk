@@ -27,6 +27,9 @@ class Hash(google.protobuf.message.Message):
         SHA256: Hash.HashType.ValueType = ...  # 1
         """SHA256 hash."""
 
+        MD5: Hash.HashType.ValueType = ...  # 2
+        """MD5 hash."""
+
     class HashType(_HashType, metaclass=_HashTypeEnumTypeWrapper):
         """The algorithm used to compute the hash."""
         pass
@@ -36,6 +39,9 @@ class Hash(google.protobuf.message.Message):
 
     SHA256: Hash.HashType.ValueType = ...  # 1
     """SHA256 hash."""
+
+    MD5: Hash.HashType.ValueType = ...  # 2
+    """MD5 hash."""
 
 
     TYPE_FIELD_NUMBER: builtins.int
@@ -65,7 +71,8 @@ class File(google.protobuf.message.Message):
     OWNER_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """The name of the file, for example:
-    "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+    "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+    If the file ID part contains slashes, they are escaped.
     """
 
     size_bytes: builtins.int = ...

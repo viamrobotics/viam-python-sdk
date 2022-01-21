@@ -132,9 +132,11 @@ class Message(google.protobuf.message.Message):
     PARTICIPANT_FIELD_NUMBER: builtins.int
     PARTICIPANT_ROLE_FIELD_NUMBER: builtins.int
     CREATE_TIME_FIELD_NUMBER: builtins.int
+    SEND_TIME_FIELD_NUMBER: builtins.int
     MESSAGE_ANNOTATION_FIELD_NUMBER: builtins.int
+    SENTIMENT_ANALYSIS_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
-    """The unique identifier of the message.
+    """Optional. The unique identifier of the message.
     Format: `projects/<Project ID>/locations/<Location
     ID>/conversations/<Conversation ID>/messages/<Message ID>`.
     """
@@ -156,11 +158,19 @@ class Message(google.protobuf.message.Message):
 
     @property
     def create_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        """Output only. The time when the message was created."""
+        """Output only. The time when the message was created in Contact Center AI."""
+        pass
+    @property
+    def send_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """Optional. The time when the message was sent."""
         pass
     @property
     def message_annotation(self) -> global___MessageAnnotation:
         """Output only. The annotation for the message."""
+        pass
+    @property
+    def sentiment_analysis(self) -> google.cloud.dialogflow.v2.session_pb2.SentimentAnalysisResult:
+        """Output only. The sentiment analysis result for the message."""
         pass
     def __init__(self,
         *,
@@ -170,10 +180,12 @@ class Message(google.protobuf.message.Message):
         participant : typing.Text = ...,
         participant_role : global___Participant.Role.ValueType = ...,
         create_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
+        send_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         message_annotation : typing.Optional[global___MessageAnnotation] = ...,
+        sentiment_analysis : typing.Optional[google.cloud.dialogflow.v2.session_pb2.SentimentAnalysisResult] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","message_annotation",b"message_annotation"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["content",b"content","create_time",b"create_time","language_code",b"language_code","message_annotation",b"message_annotation","name",b"name","participant",b"participant","participant_role",b"participant_role"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","message_annotation",b"message_annotation","send_time",b"send_time","sentiment_analysis",b"sentiment_analysis"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["content",b"content","create_time",b"create_time","language_code",b"language_code","message_annotation",b"message_annotation","name",b"name","participant",b"participant","participant_role",b"participant_role","send_time",b"send_time","sentiment_analysis",b"sentiment_analysis"]) -> None: ...
 global___Message = Message
 
 class CreateParticipantRequest(google.protobuf.message.Message):
@@ -457,7 +469,7 @@ class SuggestArticlesRequest(google.protobuf.message.Message):
     """
 
     latest_message: typing.Text = ...
-    """The name of the latest conversation message to compile suggestion
+    """Optional. The name of the latest conversation message to compile suggestion
     for. If empty, it will be the latest message of the conversation.
 
     Format: `projects/<Project ID>/locations/<Location
@@ -465,7 +477,7 @@ class SuggestArticlesRequest(google.protobuf.message.Message):
     """
 
     context_size: builtins.int = ...
-    """Max number of messages prior to and including
+    """Optional. Max number of messages prior to and including
     [latest_message][google.cloud.dialogflow.v2.SuggestArticlesRequest.latest_message] to use as context
     when compiling the suggestion. By default 20 and at most 50.
     """
@@ -534,7 +546,7 @@ class SuggestFaqAnswersRequest(google.protobuf.message.Message):
     """
 
     latest_message: typing.Text = ...
-    """The name of the latest conversation message to compile suggestion
+    """Optional. The name of the latest conversation message to compile suggestion
     for. If empty, it will be the latest message of the conversation.
 
     Format: `projects/<Project ID>/locations/<Location
@@ -542,7 +554,7 @@ class SuggestFaqAnswersRequest(google.protobuf.message.Message):
     """
 
     context_size: builtins.int = ...
-    """Max number of messages prior to and including
+    """Optional. Max number of messages prior to and including
     [latest_message] to use as context when compiling the
     suggestion. By default 20 and at most 50.
     """
@@ -596,6 +608,89 @@ class SuggestFaqAnswersResponse(google.protobuf.message.Message):
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["context_size",b"context_size","faq_answers",b"faq_answers","latest_message",b"latest_message"]) -> None: ...
 global___SuggestFaqAnswersResponse = SuggestFaqAnswersResponse
+
+class SuggestSmartRepliesRequest(google.protobuf.message.Message):
+    """The request message for [Participants.SuggestSmartReplies][google.cloud.dialogflow.v2.Participants.SuggestSmartReplies]."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    PARENT_FIELD_NUMBER: builtins.int
+    CURRENT_TEXT_INPUT_FIELD_NUMBER: builtins.int
+    LATEST_MESSAGE_FIELD_NUMBER: builtins.int
+    CONTEXT_SIZE_FIELD_NUMBER: builtins.int
+    parent: typing.Text = ...
+    """Required. The name of the participant to fetch suggestion for.
+    Format: `projects/<Project ID>/locations/<Location
+    ID>/conversations/<Conversation ID>/participants/<Participant ID>`.
+    """
+
+    @property
+    def current_text_input(self) -> google.cloud.dialogflow.v2.session_pb2.TextInput:
+        """The current natural language text segment to compile suggestion
+        for. This provides a way for user to get follow up smart reply suggestion
+        after a smart reply selection, without sending a text message.
+        """
+        pass
+    latest_message: typing.Text = ...
+    """The name of the latest conversation message to compile suggestion
+    for. If empty, it will be the latest message of the conversation.
+
+    Format: `projects/<Project ID>/locations/<Location
+    ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+    """
+
+    context_size: builtins.int = ...
+    """Max number of messages prior to and including
+    [latest_message] to use as context when compiling the
+    suggestion. By default 20 and at most 50.
+    """
+
+    def __init__(self,
+        *,
+        parent : typing.Text = ...,
+        current_text_input : typing.Optional[google.cloud.dialogflow.v2.session_pb2.TextInput] = ...,
+        latest_message : typing.Text = ...,
+        context_size : builtins.int = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["current_text_input",b"current_text_input"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["context_size",b"context_size","current_text_input",b"current_text_input","latest_message",b"latest_message","parent",b"parent"]) -> None: ...
+global___SuggestSmartRepliesRequest = SuggestSmartRepliesRequest
+
+class SuggestSmartRepliesResponse(google.protobuf.message.Message):
+    """The response message for [Participants.SuggestSmartReplies][google.cloud.dialogflow.v2.Participants.SuggestSmartReplies]."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    SMART_REPLY_ANSWERS_FIELD_NUMBER: builtins.int
+    LATEST_MESSAGE_FIELD_NUMBER: builtins.int
+    CONTEXT_SIZE_FIELD_NUMBER: builtins.int
+    @property
+    def smart_reply_answers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SmartReplyAnswer]:
+        """Output only. Multiple reply options provided by smart reply service. The
+        order is based on the rank of the model prediction.
+        The maximum number of the returned replies is set in SmartReplyConfig.
+        """
+        pass
+    latest_message: typing.Text = ...
+    """The name of the latest conversation message used to compile
+    suggestion for.
+
+    Format: `projects/<Project ID>/locations/<Location
+    ID>/conversations/<Conversation ID>/messages/<Message ID>`.
+    """
+
+    context_size: builtins.int = ...
+    """Number of messages prior to and including
+    [latest_message][google.cloud.dialogflow.v2.SuggestSmartRepliesResponse.latest_message] to compile the
+    suggestion. It may be smaller than the
+    [SuggestSmartRepliesRequest.context_size][google.cloud.dialogflow.v2.SuggestSmartRepliesRequest.context_size] field in the request if there
+    aren't that many messages in the conversation.
+    """
+
+    def __init__(self,
+        *,
+        smart_reply_answers : typing.Optional[typing.Iterable[global___SmartReplyAnswer]] = ...,
+        latest_message : typing.Text = ...,
+        context_size : builtins.int = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["context_size",b"context_size","latest_message",b"latest_message","smart_reply_answers",b"smart_reply_answers"]) -> None: ...
+global___SuggestSmartRepliesResponse = SuggestSmartRepliesResponse
 
 class OutputAudio(google.protobuf.message.Message):
     """Represents the natural language speech audio to be played to the end user."""
@@ -811,6 +906,37 @@ class FaqAnswer(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["answer",b"answer","answer_record",b"answer_record","confidence",b"confidence","metadata",b"metadata","question",b"question","source",b"source"]) -> None: ...
 global___FaqAnswer = FaqAnswer
 
+class SmartReplyAnswer(google.protobuf.message.Message):
+    """Represents a smart reply answer."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    REPLY_FIELD_NUMBER: builtins.int
+    CONFIDENCE_FIELD_NUMBER: builtins.int
+    ANSWER_RECORD_FIELD_NUMBER: builtins.int
+    reply: typing.Text = ...
+    """The content of the reply."""
+
+    confidence: builtins.float = ...
+    """Smart reply confidence.
+    The system's confidence score that this reply is a good match for
+    this conversation, as a value from 0.0 (completely uncertain) to 1.0
+    (completely certain).
+    """
+
+    answer_record: typing.Text = ...
+    """The name of answer record, in the format of
+    "projects/<Project ID>/locations/<Location ID>/answerRecords/<Answer Record
+    ID>"
+    """
+
+    def __init__(self,
+        *,
+        reply : typing.Text = ...,
+        confidence : builtins.float = ...,
+        answer_record : typing.Text = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["answer_record",b"answer_record","confidence",b"confidence","reply",b"reply"]) -> None: ...
+global___SmartReplyAnswer = SmartReplyAnswer
+
 class SuggestionResult(google.protobuf.message.Message):
     """One response of different type of suggestion response which is used in
     the response of [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
@@ -820,6 +946,7 @@ class SuggestionResult(google.protobuf.message.Message):
     ERROR_FIELD_NUMBER: builtins.int
     SUGGEST_ARTICLES_RESPONSE_FIELD_NUMBER: builtins.int
     SUGGEST_FAQ_ANSWERS_RESPONSE_FIELD_NUMBER: builtins.int
+    SUGGEST_SMART_REPLIES_RESPONSE_FIELD_NUMBER: builtins.int
     @property
     def error(self) -> google.rpc.status_pb2.Status:
         """Error status if the request failed."""
@@ -832,15 +959,20 @@ class SuggestionResult(google.protobuf.message.Message):
     def suggest_faq_answers_response(self) -> global___SuggestFaqAnswersResponse:
         """SuggestFaqAnswersResponse if request is for FAQ_ANSWER."""
         pass
+    @property
+    def suggest_smart_replies_response(self) -> global___SuggestSmartRepliesResponse:
+        """SuggestSmartRepliesResponse if request is for SMART_REPLY."""
+        pass
     def __init__(self,
         *,
         error : typing.Optional[google.rpc.status_pb2.Status] = ...,
         suggest_articles_response : typing.Optional[global___SuggestArticlesResponse] = ...,
         suggest_faq_answers_response : typing.Optional[global___SuggestFaqAnswersResponse] = ...,
+        suggest_smart_replies_response : typing.Optional[global___SuggestSmartRepliesResponse] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["error",b"error","suggest_articles_response",b"suggest_articles_response","suggest_faq_answers_response",b"suggest_faq_answers_response","suggestion_response",b"suggestion_response"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["error",b"error","suggest_articles_response",b"suggest_articles_response","suggest_faq_answers_response",b"suggest_faq_answers_response","suggestion_response",b"suggestion_response"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing_extensions.Literal["suggestion_response",b"suggestion_response"]) -> typing.Optional[typing_extensions.Literal["error","suggest_articles_response","suggest_faq_answers_response"]]: ...
+    def HasField(self, field_name: typing_extensions.Literal["error",b"error","suggest_articles_response",b"suggest_articles_response","suggest_faq_answers_response",b"suggest_faq_answers_response","suggest_smart_replies_response",b"suggest_smart_replies_response","suggestion_response",b"suggestion_response"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["error",b"error","suggest_articles_response",b"suggest_articles_response","suggest_faq_answers_response",b"suggest_faq_answers_response","suggest_smart_replies_response",b"suggest_smart_replies_response","suggestion_response",b"suggestion_response"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["suggestion_response",b"suggestion_response"]) -> typing.Optional[typing_extensions.Literal["error","suggest_articles_response","suggest_faq_answers_response","suggest_smart_replies_response"]]: ...
 global___SuggestionResult = SuggestionResult
 
 class AnnotatedMessagePart(google.protobuf.message.Message):

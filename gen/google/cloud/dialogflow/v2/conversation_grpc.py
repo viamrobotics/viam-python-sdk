@@ -13,6 +13,8 @@ import google.api.annotations_pb2
 import google.api.client_pb2
 import google.api.field_behavior_pb2
 import google.api.resource_pb2
+import google.cloud.dialogflow.v2.audio_config_pb2
+import google.cloud.dialogflow.v2.conversation_profile_pb2
 import google.cloud.dialogflow.v2.participant_pb2
 import google.protobuf.empty_pb2
 import google.protobuf.timestamp_pb2

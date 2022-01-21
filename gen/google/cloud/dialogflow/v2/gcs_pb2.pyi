@@ -4,11 +4,30 @@ isort:skip_file
 """
 import builtins
 import google.protobuf.descriptor
+import google.protobuf.internal.containers
 import google.protobuf.message
 import typing
 import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
+
+class GcsSources(google.protobuf.message.Message):
+    """Google Cloud Storage location for the inputs."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    URIS_FIELD_NUMBER: builtins.int
+    @property
+    def uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """Required. Google Cloud Storage URIs for the inputs. A URI is of the form:
+          gs://bucket/object-prefix-or-name
+        Whether a prefix or name is used depends on the use case.
+        """
+        pass
+    def __init__(self,
+        *,
+        uris : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["uris",b"uris"]) -> None: ...
+global___GcsSources = GcsSources
 
 class GcsDestination(google.protobuf.message.Message):
     """Google Cloud Storage location for the output."""

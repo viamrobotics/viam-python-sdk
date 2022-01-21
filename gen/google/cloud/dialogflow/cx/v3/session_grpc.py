@@ -10,6 +10,7 @@ if typing.TYPE_CHECKING:
     import grpclib.server
 
 import google.api.annotations_pb2
+import google.api.client_pb2
 import google.api.field_behavior_pb2
 import google.api.resource_pb2
 import google.cloud.dialogflow.cx.v3.advanced_settings_pb2
@@ -23,7 +24,6 @@ import google.protobuf.duration_pb2
 import google.protobuf.struct_pb2
 import google.rpc.status_pb2
 import google.type.latlng_pb2
-import google.api.client_pb2
 import google.cloud.dialogflow.cx.v3.session_pb2
 
 

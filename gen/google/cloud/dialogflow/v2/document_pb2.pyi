@@ -333,6 +333,108 @@ class CreateDocumentRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["document",b"document","parent",b"parent"]) -> None: ...
 global___CreateDocumentRequest = CreateDocumentRequest
 
+class ImportDocumentsRequest(google.protobuf.message.Message):
+    """Request message for [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments]."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    PARENT_FIELD_NUMBER: builtins.int
+    GCS_SOURCE_FIELD_NUMBER: builtins.int
+    DOCUMENT_TEMPLATE_FIELD_NUMBER: builtins.int
+    IMPORT_GCS_CUSTOM_METADATA_FIELD_NUMBER: builtins.int
+    parent: typing.Text = ...
+    """Required. The knowledge base to import documents into.
+    Format: `projects/<Project ID>/locations/<Location
+    ID>/knowledgeBases/<Knowledge Base ID>`.
+    """
+
+    @property
+    def gcs_source(self) -> google.cloud.dialogflow.v2.gcs_pb2.GcsSources:
+        """The Google Cloud Storage location for the documents.
+        The path can include a wildcard.
+
+        These URIs may have the forms
+        `gs://<bucket-name>/<object-name>`.
+        `gs://<bucket-name>/<object-path>/*.<extension>`.
+        """
+        pass
+    @property
+    def document_template(self) -> global___ImportDocumentTemplate:
+        """Required. Document template used for importing all the documents."""
+        pass
+    import_gcs_custom_metadata: builtins.bool = ...
+    """Whether to import custom metadata from Google Cloud Storage.
+    Only valid when the document source is Google Cloud Storage URI.
+    """
+
+    def __init__(self,
+        *,
+        parent : typing.Text = ...,
+        gcs_source : typing.Optional[google.cloud.dialogflow.v2.gcs_pb2.GcsSources] = ...,
+        document_template : typing.Optional[global___ImportDocumentTemplate] = ...,
+        import_gcs_custom_metadata : builtins.bool = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["document_template",b"document_template","gcs_source",b"gcs_source","source",b"source"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["document_template",b"document_template","gcs_source",b"gcs_source","import_gcs_custom_metadata",b"import_gcs_custom_metadata","parent",b"parent","source",b"source"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["source",b"source"]) -> typing.Optional[typing_extensions.Literal["gcs_source"]]: ...
+global___ImportDocumentsRequest = ImportDocumentsRequest
+
+class ImportDocumentTemplate(google.protobuf.message.Message):
+    """The template used for importing documents."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    class MetadataEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: typing.Text = ...
+        value: typing.Text = ...
+        def __init__(self,
+            *,
+            key : typing.Text = ...,
+            value : typing.Text = ...,
+            ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["key",b"key","value",b"value"]) -> None: ...
+
+    MIME_TYPE_FIELD_NUMBER: builtins.int
+    KNOWLEDGE_TYPES_FIELD_NUMBER: builtins.int
+    METADATA_FIELD_NUMBER: builtins.int
+    mime_type: typing.Text = ...
+    """Required. The MIME type of the document."""
+
+    @property
+    def knowledge_types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___Document.KnowledgeType.ValueType]:
+        """Required. The knowledge type of document content."""
+        pass
+    @property
+    def metadata(self) -> google.protobuf.internal.containers.ScalarMap[typing.Text, typing.Text]:
+        """Metadata for the document. The metadata supports arbitrary
+        key-value pairs. Suggested use cases include storing a document's title,
+        an external URL distinct from the document's content_uri, etc.
+        The max size of a `key` or a `value` of the metadata is 1024 bytes.
+        """
+        pass
+    def __init__(self,
+        *,
+        mime_type : typing.Text = ...,
+        knowledge_types : typing.Optional[typing.Iterable[global___Document.KnowledgeType.ValueType]] = ...,
+        metadata : typing.Optional[typing.Mapping[typing.Text, typing.Text]] = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["knowledge_types",b"knowledge_types","metadata",b"metadata","mime_type",b"mime_type"]) -> None: ...
+global___ImportDocumentTemplate = ImportDocumentTemplate
+
+class ImportDocumentsResponse(google.protobuf.message.Message):
+    """Response message for [Documents.ImportDocuments][google.cloud.dialogflow.v2.Documents.ImportDocuments]."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    WARNINGS_FIELD_NUMBER: builtins.int
+    @property
+    def warnings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.rpc.status_pb2.Status]:
+        """Includes details about skipped documents or any other warnings."""
+        pass
+    def __init__(self,
+        *,
+        warnings : typing.Optional[typing.Iterable[google.rpc.status_pb2.Status]] = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["warnings",b"warnings"]) -> None: ...
+global___ImportDocumentsResponse = ImportDocumentsResponse
+
 class DeleteDocumentRequest(google.protobuf.message.Message):
     """Request message for [Documents.DeleteDocument][google.cloud.dialogflow.v2.Documents.DeleteDocument]."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -495,12 +597,17 @@ class KnowledgeOperationMetadata(google.protobuf.message.Message):
 
 
     STATE_FIELD_NUMBER: builtins.int
+    KNOWLEDGE_BASE_FIELD_NUMBER: builtins.int
     state: global___KnowledgeOperationMetadata.State.ValueType = ...
     """Output only. The current state of this operation."""
+
+    knowledge_base: typing.Text = ...
+    """The name of the knowledge base interacted with during the operation."""
 
     def __init__(self,
         *,
         state : global___KnowledgeOperationMetadata.State.ValueType = ...,
+        knowledge_base : typing.Text = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["state",b"state"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["knowledge_base",b"knowledge_base","state",b"state"]) -> None: ...
 global___KnowledgeOperationMetadata = KnowledgeOperationMetadata

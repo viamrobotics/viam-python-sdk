@@ -12,12 +12,12 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
-from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n3google/devtools/artifactregistry/v1beta2/file.proto\x12(google.devtools.artifactregistry.v1beta2\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\x9c\x01\n\x04Hash\x12K\n\x04type\x18\x01 \x01(\x0e\x32\x37.google.devtools.artifactregistry.v1beta2.Hash.HashTypeR\x04type\x12\x14\n\x05value\x18\x02 \x01(\x0cR\x05value\"1\n\x08HashType\x12\x19\n\x15HASH_TYPE_UNSPECIFIED\x10\x00\x12\n\n\x06SHA256\x10\x01\"\x8c\x03\n\x04\x46ile\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1d\n\nsize_bytes\x18\x03 \x01(\x03R\tsizeBytes\x12\x46\n\x06hashes\x18\x04 \x03(\x0b\x32..google.devtools.artifactregistry.v1beta2.HashR\x06hashes\x12;\n\x0b\x63reate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12;\n\x0bupdate_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nupdateTime\x12\x14\n\x05owner\x18\x07 \x01(\tR\x05owner:y\xea\x41v\n$artifactregistry.googleapis.com/File\x12Nprojects/{project}/locations/{location}/repositories/{repository}/files/{file}\"~\n\x10ListFilesRequest\x12\x16\n\x06parent\x18\x01 \x01(\tR\x06parent\x12\x16\n\x06\x66ilter\x18\x04 \x01(\tR\x06\x66ilter\x12\x1b\n\tpage_size\x18\x02 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x03 \x01(\tR\tpageToken\"\x81\x01\n\x11ListFilesResponse\x12\x44\n\x05\x66iles\x18\x01 \x03(\x0b\x32..google.devtools.artifactregistry.v1beta2.FileR\x05\x66iles\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"$\n\x0eGetFileRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04nameB\x90\x02\n,com.google.devtools.artifactregistry.v1beta2B\tFileProtoP\x01ZXgoogle.golang.org/genproto/googleapis/devtools/artifactregistry/v1beta2;artifactregistry\xaa\x02%Google.Cloud.ArtifactRegistry.V1Beta2\xca\x02%Google\\Cloud\\ArtifactRegistry\\V1beta2\xea\x02(Google::Cloud::ArtifactRegistry::V1beta2b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n3google/devtools/artifactregistry/v1beta2/file.proto\x12(google.devtools.artifactregistry.v1beta2\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/api/resource.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa5\x01\n\x04Hash\x12K\n\x04type\x18\x01 \x01(\x0e\x32\x37.google.devtools.artifactregistry.v1beta2.Hash.HashTypeR\x04type\x12\x14\n\x05value\x18\x02 \x01(\x0cR\x05value\":\n\x08HashType\x12\x19\n\x15HASH_TYPE_UNSPECIFIED\x10\x00\x12\n\n\x06SHA256\x10\x01\x12\x07\n\x03MD5\x10\x02\"\x8c\x03\n\x04\x46ile\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1d\n\nsize_bytes\x18\x03 \x01(\x03R\tsizeBytes\x12\x46\n\x06hashes\x18\x04 \x03(\x0b\x32..google.devtools.artifactregistry.v1beta2.HashR\x06hashes\x12;\n\x0b\x63reate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12;\n\x0bupdate_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nupdateTime\x12\x14\n\x05owner\x18\x07 \x01(\tR\x05owner:y\xea\x41v\n$artifactregistry.googleapis.com/File\x12Nprojects/{project}/locations/{location}/repositories/{repository}/files/{file}\"~\n\x10ListFilesRequest\x12\x16\n\x06parent\x18\x01 \x01(\tR\x06parent\x12\x16\n\x06\x66ilter\x18\x04 \x01(\tR\x06\x66ilter\x12\x1b\n\tpage_size\x18\x02 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x03 \x01(\tR\tpageToken\"\x81\x01\n\x11ListFilesResponse\x12\x44\n\x05\x66iles\x18\x01 \x03(\x0b\x32..google.devtools.artifactregistry.v1beta2.FileR\x05\x66iles\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"$\n\x0eGetFileRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04nameB\x90\x02\n,com.google.devtools.artifactregistry.v1beta2B\tFileProtoP\x01ZXgoogle.golang.org/genproto/googleapis/devtools/artifactregistry/v1beta2;artifactregistry\xaa\x02%Google.Cloud.ArtifactRegistry.V1Beta2\xca\x02%Google\\Cloud\\ArtifactRegistry\\V1beta2\xea\x02(Google::Cloud::ArtifactRegistry::V1beta2b\x06proto3')
 
 
 
@@ -69,15 +69,15 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _FILE._options = None
   _FILE._serialized_options = b'\352Av\n$artifactregistry.googleapis.com/File\022Nprojects/{project}/locations/{location}/repositories/{repository}/files/{file}'
   _HASH._serialized_start=188
-  _HASH._serialized_end=344
+  _HASH._serialized_end=353
   _HASH_HASHTYPE._serialized_start=295
-  _HASH_HASHTYPE._serialized_end=344
-  _FILE._serialized_start=347
-  _FILE._serialized_end=743
-  _LISTFILESREQUEST._serialized_start=745
-  _LISTFILESREQUEST._serialized_end=871
-  _LISTFILESRESPONSE._serialized_start=874
-  _LISTFILESRESPONSE._serialized_end=1003
-  _GETFILEREQUEST._serialized_start=1005
-  _GETFILEREQUEST._serialized_end=1041
+  _HASH_HASHTYPE._serialized_end=353
+  _FILE._serialized_start=356
+  _FILE._serialized_end=752
+  _LISTFILESREQUEST._serialized_start=754
+  _LISTFILESREQUEST._serialized_end=880
+  _LISTFILESRESPONSE._serialized_start=883
+  _LISTFILESRESPONSE._serialized_end=1012
+  _GETFILEREQUEST._serialized_start=1014
+  _GETFILEREQUEST._serialized_end=1050
 # @@protoc_insertion_point(module_scope)

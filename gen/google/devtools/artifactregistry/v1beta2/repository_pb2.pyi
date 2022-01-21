@@ -28,6 +28,21 @@ class Repository(google.protobuf.message.Message):
         DOCKER: Repository.Format.ValueType = ...  # 1
         """Docker package format."""
 
+        MAVEN: Repository.Format.ValueType = ...  # 2
+        """Maven package format."""
+
+        NPM: Repository.Format.ValueType = ...  # 3
+        """NPM package format."""
+
+        APT: Repository.Format.ValueType = ...  # 5
+        """APT package format."""
+
+        YUM: Repository.Format.ValueType = ...  # 6
+        """YUM package format."""
+
+        PYTHON: Repository.Format.ValueType = ...  # 8
+        """Python package format."""
+
     class Format(_Format, metaclass=_FormatEnumTypeWrapper):
         """A package format."""
         pass
@@ -38,6 +53,78 @@ class Repository(google.protobuf.message.Message):
     DOCKER: Repository.Format.ValueType = ...  # 1
     """Docker package format."""
 
+    MAVEN: Repository.Format.ValueType = ...  # 2
+    """Maven package format."""
+
+    NPM: Repository.Format.ValueType = ...  # 3
+    """NPM package format."""
+
+    APT: Repository.Format.ValueType = ...  # 5
+    """APT package format."""
+
+    YUM: Repository.Format.ValueType = ...  # 6
+    """YUM package format."""
+
+    PYTHON: Repository.Format.ValueType = ...  # 8
+    """Python package format."""
+
+
+    class MavenRepositoryConfig(google.protobuf.message.Message):
+        """MavenRepositoryConfig is maven related repository details.
+        Provides additional configuration details for repositories of the maven
+        format type.
+        """
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+        class _VersionPolicy:
+            ValueType = typing.NewType('ValueType', builtins.int)
+            V: typing_extensions.TypeAlias = ValueType
+        class _VersionPolicyEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_VersionPolicy.ValueType], builtins.type):
+            DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+            VERSION_POLICY_UNSPECIFIED: Repository.MavenRepositoryConfig.VersionPolicy.ValueType = ...  # 0
+            """VERSION_POLICY_UNSPECIFIED - the version policy is not defined.
+            When the version policy is not defined, no validation is performed
+            for the versions.
+            """
+
+            RELEASE: Repository.MavenRepositoryConfig.VersionPolicy.ValueType = ...  # 1
+            """RELEASE - repository will accept only Release versions."""
+
+            SNAPSHOT: Repository.MavenRepositoryConfig.VersionPolicy.ValueType = ...  # 2
+            """SNAPSHOT - repository will accept only Snapshot versions."""
+
+        class VersionPolicy(_VersionPolicy, metaclass=_VersionPolicyEnumTypeWrapper):
+            """VersionPolicy is the version policy for the repository."""
+            pass
+
+        VERSION_POLICY_UNSPECIFIED: Repository.MavenRepositoryConfig.VersionPolicy.ValueType = ...  # 0
+        """VERSION_POLICY_UNSPECIFIED - the version policy is not defined.
+        When the version policy is not defined, no validation is performed
+        for the versions.
+        """
+
+        RELEASE: Repository.MavenRepositoryConfig.VersionPolicy.ValueType = ...  # 1
+        """RELEASE - repository will accept only Release versions."""
+
+        SNAPSHOT: Repository.MavenRepositoryConfig.VersionPolicy.ValueType = ...  # 2
+        """SNAPSHOT - repository will accept only Snapshot versions."""
+
+
+        ALLOW_SNAPSHOT_OVERWRITES_FIELD_NUMBER: builtins.int
+        VERSION_POLICY_FIELD_NUMBER: builtins.int
+        allow_snapshot_overwrites: builtins.bool = ...
+        """The repository with this flag will allow publishing
+        the same snapshot versions.
+        """
+
+        version_policy: global___Repository.MavenRepositoryConfig.VersionPolicy.ValueType = ...
+        """Version policy defines the versions that the registry will accept."""
+
+        def __init__(self,
+            *,
+            allow_snapshot_overwrites : builtins.bool = ...,
+            version_policy : global___Repository.MavenRepositoryConfig.VersionPolicy.ValueType = ...,
+            ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["allow_snapshot_overwrites",b"allow_snapshot_overwrites","version_policy",b"version_policy"]) -> None: ...
 
     class LabelsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -52,6 +139,7 @@ class Repository(google.protobuf.message.Message):
             ) -> None: ...
         def ClearField(self, field_name: typing_extensions.Literal["key",b"key","value",b"value"]) -> None: ...
 
+    MAVEN_CONFIG_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     FORMAT_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
@@ -59,6 +147,12 @@ class Repository(google.protobuf.message.Message):
     CREATE_TIME_FIELD_NUMBER: builtins.int
     UPDATE_TIME_FIELD_NUMBER: builtins.int
     KMS_KEY_NAME_FIELD_NUMBER: builtins.int
+    @property
+    def maven_config(self) -> global___Repository.MavenRepositoryConfig:
+        """Maven repository config contains repository level configuration
+        for the repositories of maven type.
+        """
+        pass
     name: typing.Text = ...
     """The name of the repository, for example:
     "projects/p1/locations/us-central1/repositories/repo1".
@@ -96,6 +190,7 @@ class Repository(google.protobuf.message.Message):
 
     def __init__(self,
         *,
+        maven_config : typing.Optional[global___Repository.MavenRepositoryConfig] = ...,
         name : typing.Text = ...,
         format : global___Repository.Format.ValueType = ...,
         description : typing.Text = ...,
@@ -104,8 +199,9 @@ class Repository(google.protobuf.message.Message):
         update_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         kms_key_name : typing.Text = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","update_time",b"update_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","description",b"description","format",b"format","kms_key_name",b"kms_key_name","labels",b"labels","name",b"name","update_time",b"update_time"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","format_config",b"format_config","maven_config",b"maven_config","update_time",b"update_time"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","description",b"description","format",b"format","format_config",b"format_config","kms_key_name",b"kms_key_name","labels",b"labels","maven_config",b"maven_config","name",b"name","update_time",b"update_time"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["format_config",b"format_config"]) -> typing.Optional[typing_extensions.Literal["maven_config"]]: ...
 global___Repository = Repository
 
 class ListRepositoriesRequest(google.protobuf.message.Message):
@@ -115,12 +211,10 @@ class ListRepositoriesRequest(google.protobuf.message.Message):
     PAGE_SIZE_FIELD_NUMBER: builtins.int
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
     parent: typing.Text = ...
-    """The name of the parent resource whose repositories will be listed."""
+    """Required. The name of the parent resource whose repositories will be listed."""
 
     page_size: builtins.int = ...
-    """The maximum number of repositories to return.
-    Maximum page size is 10,000.
-    """
+    """The maximum number of repositories to return. Maximum page size is 1,000."""
 
     page_token: typing.Text = ...
     """The next_page_token value returned from a previous list request, if any."""
@@ -161,7 +255,7 @@ class GetRepositoryRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
-    """The name of the repository to retrieve."""
+    """Required. The name of the repository to retrieve."""
 
     def __init__(self,
         *,
@@ -177,7 +271,7 @@ class CreateRepositoryRequest(google.protobuf.message.Message):
     REPOSITORY_ID_FIELD_NUMBER: builtins.int
     REPOSITORY_FIELD_NUMBER: builtins.int
     parent: typing.Text = ...
-    """The name of the parent resource where the repository will be created."""
+    """Required. The name of the parent resource where the repository will be created."""
 
     repository_id: typing.Text = ...
     """The repository id to use for this repository."""
@@ -226,7 +320,7 @@ class DeleteRepositoryRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
-    """The name of the repository to delete."""
+    """Required. The name of the repository to delete."""
 
     def __init__(self,
         *,

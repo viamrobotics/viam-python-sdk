@@ -2,7 +2,7 @@ import asyncio
 import sys
 
 import gen  # noqa: F401
-from viam.dial import dial_direct
+from viam.dial import Credentials, DialOptions, dial_direct
 from gen.proto.rpc.examples.echo.v1.echo_grpc import EchoServiceStub
 from gen.proto.rpc.examples.echo.v1.echo_pb2 import (
     EchoRequest,
@@ -12,7 +12,9 @@ from gen.proto.rpc.examples.echo.v1.echo_pb2 import (
 
 
 async def echo(msg: str):
-    async with dial_direct("localhost:8080") as channel:
+    opts = DialOptions(credentials=Credentials(
+        type="api-key", payload="supersecretkeyohmy"))
+    async with await dial_direct("localhost:8080", opts) as channel:
         service = EchoServiceStub(channel)
 
         # Simple Echo

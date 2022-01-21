@@ -8,6 +8,7 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
+import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 import typing
 import typing_extensions
@@ -61,9 +62,12 @@ class Version(google.protobuf.message.Message):
     CREATE_TIME_FIELD_NUMBER: builtins.int
     UPDATE_TIME_FIELD_NUMBER: builtins.int
     RELATED_TAGS_FIELD_NUMBER: builtins.int
+    METADATA_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """The name of the version, for example:
     "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+    If the package or version ID parts contain slashes, the slashes are
+    escaped.
     """
 
     description: typing.Text = ...
@@ -83,6 +87,14 @@ class Version(google.protobuf.message.Message):
         reference this version.
         """
         pass
+    @property
+    def metadata(self) -> google.protobuf.struct_pb2.Struct:
+        """Output only. Repository-specific Metadata stored against this version.
+        The fields returned are defined by the underlying repository-specific
+        resource. Currently, the only resource in use is
+        [DockerImage][google.devtools.artifactregistry.v1.DockerImage]
+        """
+        pass
     def __init__(self,
         *,
         name : typing.Text = ...,
@@ -90,9 +102,10 @@ class Version(google.protobuf.message.Message):
         create_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         update_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         related_tags : typing.Optional[typing.Iterable[google.devtools.artifactregistry.v1beta2.tag_pb2.Tag]] = ...,
+        metadata : typing.Optional[google.protobuf.struct_pb2.Struct] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","update_time",b"update_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","description",b"description","name",b"name","related_tags",b"related_tags","update_time",b"update_time"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","metadata",b"metadata","update_time",b"update_time"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","description",b"description","metadata",b"metadata","name",b"name","related_tags",b"related_tags","update_time",b"update_time"]) -> None: ...
 global___Version = Version
 
 class ListVersionsRequest(google.protobuf.message.Message):
@@ -102,13 +115,12 @@ class ListVersionsRequest(google.protobuf.message.Message):
     PAGE_SIZE_FIELD_NUMBER: builtins.int
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
     VIEW_FIELD_NUMBER: builtins.int
+    ORDER_BY_FIELD_NUMBER: builtins.int
     parent: typing.Text = ...
     """The name of the parent resource whose versions will be listed."""
 
     page_size: builtins.int = ...
-    """The maximum number of versions to return.
-    Maximum page size is 10,000.
-    """
+    """The maximum number of versions to return. Maximum page size is 1,000."""
 
     page_token: typing.Text = ...
     """The next_page_token value returned from a previous list request, if any."""
@@ -116,14 +128,18 @@ class ListVersionsRequest(google.protobuf.message.Message):
     view: global___VersionView.ValueType = ...
     """The view that should be returned in the response."""
 
+    order_by: typing.Text = ...
+    """Optional. The field to order the results by."""
+
     def __init__(self,
         *,
         parent : typing.Text = ...,
         page_size : builtins.int = ...,
         page_token : typing.Text = ...,
         view : global___VersionView.ValueType = ...,
+        order_by : typing.Text = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["page_size",b"page_size","page_token",b"page_token","parent",b"parent","view",b"view"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["order_by",b"order_by","page_size",b"page_size","page_token",b"page_token","parent",b"parent","view",b"view"]) -> None: ...
 global___ListVersionsRequest = ListVersionsRequest
 
 class ListVersionsResponse(google.protobuf.message.Message):

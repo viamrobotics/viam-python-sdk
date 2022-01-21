@@ -665,6 +665,99 @@ class ListInstancesResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["instances",b"instances","next_page_token",b"next_page_token","unreachable",b"unreachable"]) -> None: ...
 global___ListInstancesResponse = ListInstancesResponse
 
+class Snapshot(google.protobuf.message.Message):
+    """A Cloud Filestore snapshot."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    class _State:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+    class _StateEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_State.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+        STATE_UNSPECIFIED: Snapshot.State.ValueType = ...  # 0
+        """State not set."""
+
+        CREATING: Snapshot.State.ValueType = ...  # 1
+        """Snapshot is being created."""
+
+        READY: Snapshot.State.ValueType = ...  # 3
+        """Snapshot is available for use."""
+
+        DELETING: Snapshot.State.ValueType = ...  # 4
+        """Snapshot is being deleted."""
+
+    class State(_State, metaclass=_StateEnumTypeWrapper):
+        """The snapshot state."""
+        pass
+
+    STATE_UNSPECIFIED: Snapshot.State.ValueType = ...  # 0
+    """State not set."""
+
+    CREATING: Snapshot.State.ValueType = ...  # 1
+    """Snapshot is being created."""
+
+    READY: Snapshot.State.ValueType = ...  # 3
+    """Snapshot is available for use."""
+
+    DELETING: Snapshot.State.ValueType = ...  # 4
+    """Snapshot is being deleted."""
+
+
+    class LabelsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: typing.Text = ...
+        value: typing.Text = ...
+        def __init__(self,
+            *,
+            key : typing.Text = ...,
+            value : typing.Text = ...,
+            ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["key",b"key","value",b"value"]) -> None: ...
+
+    NAME_FIELD_NUMBER: builtins.int
+    DESCRIPTION_FIELD_NUMBER: builtins.int
+    STATE_FIELD_NUMBER: builtins.int
+    CREATE_TIME_FIELD_NUMBER: builtins.int
+    LABELS_FIELD_NUMBER: builtins.int
+    FILESYSTEM_USED_BYTES_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    """Output only. The resource name of the snapshot, in the format
+    `projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}`.
+    """
+
+    description: typing.Text = ...
+    """A description of the snapshot with 2048 characters or less.
+    Requests with longer descriptions will be rejected.
+    """
+
+    state: global___Snapshot.State.ValueType = ...
+    """Output only. The snapshot state."""
+
+    @property
+    def create_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """Output only. The time when the snapshot was created."""
+        pass
+    @property
+    def labels(self) -> google.protobuf.internal.containers.ScalarMap[typing.Text, typing.Text]:
+        """Resource labels to represent user provided metadata."""
+        pass
+    filesystem_used_bytes: builtins.int = ...
+    """Output only. The amount of bytes needed to allocate a full copy of the snapshot content"""
+
+    def __init__(self,
+        *,
+        name : typing.Text = ...,
+        description : typing.Text = ...,
+        state : global___Snapshot.State.ValueType = ...,
+        create_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
+        labels : typing.Optional[typing.Mapping[typing.Text, typing.Text]] = ...,
+        filesystem_used_bytes : builtins.int = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","description",b"description","filesystem_used_bytes",b"filesystem_used_bytes","labels",b"labels","name",b"name","state",b"state"]) -> None: ...
+global___Snapshot = Snapshot
+
 class Backup(google.protobuf.message.Message):
     """A Cloud Filestore backup."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...

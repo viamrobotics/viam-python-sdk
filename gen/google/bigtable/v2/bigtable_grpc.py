@@ -13,6 +13,7 @@ import google.api.annotations_pb2
 import google.api.client_pb2
 import google.api.field_behavior_pb2
 import google.api.resource_pb2
+import google.api.routing_pb2
 import google.bigtable.v2.data_pb2
 import google.protobuf.wrappers_pb2
 import google.rpc.status_pb2

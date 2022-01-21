@@ -22,11 +22,16 @@ class Tag(google.protobuf.message.Message):
     name: typing.Text = ...
     """The name of the tag, for example:
     "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
+    If the package part contains slashes, the slashes are escaped.
+    The tag part can only have characters in [a-zA-Z0-9\\-._~:@], anything else
+    must be URL encoded.
     """
 
     version: typing.Text = ...
     """The name of the version the tag refers to, for example:
     "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811"
+    If the package or version ID parts contain slashes, the slashes are
+    escaped.
     """
 
     def __init__(self,
@@ -60,9 +65,7 @@ class ListTagsRequest(google.protobuf.message.Message):
     """
 
     page_size: builtins.int = ...
-    """The maximum number of tags to return.
-    Maximum page size is 10,000.
-    """
+    """The maximum number of tags to return. Maximum page size is 10,000."""
 
     page_token: typing.Text = ...
     """The next_page_token value returned from a previous list request, if any."""
