@@ -36,6 +36,10 @@ class DocumentsBase(abc.ABC):
         pass
 
     @abc.abstractmethod
+    async def ImportDocuments(self, stream: 'grpclib.server.Stream[google.cloud.dialogflow.v2.document_pb2.ImportDocumentsRequest, google.longrunning.operations_pb2.Operation]') -> None:
+        pass
+
+    @abc.abstractmethod
     async def DeleteDocument(self, stream: 'grpclib.server.Stream[google.cloud.dialogflow.v2.document_pb2.DeleteDocumentRequest, google.longrunning.operations_pb2.Operation]') -> None:
         pass
 
@@ -69,6 +73,12 @@ class DocumentsBase(abc.ABC):
                 self.CreateDocument,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 google.cloud.dialogflow.v2.document_pb2.CreateDocumentRequest,
+                google.longrunning.operations_pb2.Operation,
+            ),
+            '/google.cloud.dialogflow.v2.Documents/ImportDocuments': grpclib.const.Handler(
+                self.ImportDocuments,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.cloud.dialogflow.v2.document_pb2.ImportDocumentsRequest,
                 google.longrunning.operations_pb2.Operation,
             ),
             '/google.cloud.dialogflow.v2.Documents/DeleteDocument': grpclib.const.Handler(
@@ -117,6 +127,12 @@ class DocumentsStub:
             channel,
             '/google.cloud.dialogflow.v2.Documents/CreateDocument',
             google.cloud.dialogflow.v2.document_pb2.CreateDocumentRequest,
+            google.longrunning.operations_pb2.Operation,
+        )
+        self.ImportDocuments = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.cloud.dialogflow.v2.Documents/ImportDocuments',
+            google.cloud.dialogflow.v2.document_pb2.ImportDocumentsRequest,
             google.longrunning.operations_pb2.Operation,
         )
         self.DeleteDocument = grpclib.client.UnaryUnaryMethod(

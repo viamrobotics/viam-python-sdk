@@ -12,11 +12,11 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.cloud.dialogflow.v2beta1 import participant_pb2 as google_dot_cloud_dot_dialogflow_dot_v2beta1_dot_participant__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from google.cloud.dialogflow.v2beta1 import participant_pb2 as google_dot_cloud_dot_dialogflow_dot_v2beta1_dot_participant__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nAgoogle/cloud/dialogflow/v2beta1/human_agent_assistant_event.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x31google/cloud/dialogflow/v2beta1/participant.proto\x1a\x1cgoogle/api/annotations.proto\"\xc2\x01\n\x18HumanAgentAssistantEvent\x12\"\n\x0c\x63onversation\x18\x01 \x01(\tR\x0c\x63onversation\x12 \n\x0bparticipant\x18\x03 \x01(\tR\x0bparticipant\x12`\n\x12suggestion_results\x18\x05 \x03(\x0b\x32\x31.google.cloud.dialogflow.v2beta1.SuggestionResultR\x11suggestionResultsB\xbb\x01\n#com.google.cloud.dialogflow.v2beta1B\x1dHumanAgentAssistantEventProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nAgoogle/cloud/dialogflow/v2beta1/human_agent_assistant_event.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x31google/cloud/dialogflow/v2beta1/participant.proto\"\xc2\x01\n\x18HumanAgentAssistantEvent\x12\"\n\x0c\x63onversation\x18\x01 \x01(\tR\x0c\x63onversation\x12 \n\x0bparticipant\x18\x03 \x01(\tR\x0bparticipant\x12`\n\x12suggestion_results\x18\x05 \x03(\x0b\x32\x31.google.cloud.dialogflow.v2beta1.SuggestionResultR\x11suggestionResultsB\xbb\x01\n#com.google.cloud.dialogflow.v2beta1B\x1dHumanAgentAssistantEventProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
 
 
 

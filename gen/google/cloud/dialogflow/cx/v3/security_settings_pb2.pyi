@@ -230,7 +230,7 @@ class SecuritySettings(google.protobuf.message.Message):
 
     class InsightsExportSettings(google.protobuf.message.Message):
         """Settings for exporting conversations to
-        [Insights](https://cloud.google.com/dialogflow/priv/docs/insights).
+        [Insights](https://cloud.google.com/contact-center/insights/docs).
         """
         DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
         ENABLE_INSIGHTS_EXPORT_FIELD_NUMBER: builtins.int

@@ -11,11 +11,14 @@ if typing.TYPE_CHECKING:
 
 import google.api.annotations_pb2
 import google.api.client_pb2
+import google.devtools.artifactregistry.v1beta2.apt_artifact_pb2
 import google.devtools.artifactregistry.v1beta2.file_pb2
 import google.devtools.artifactregistry.v1beta2.package_pb2
 import google.devtools.artifactregistry.v1beta2.repository_pb2
+import google.devtools.artifactregistry.v1beta2.settings_pb2
 import google.devtools.artifactregistry.v1beta2.tag_pb2
 import google.devtools.artifactregistry.v1beta2.version_pb2
+import google.devtools.artifactregistry.v1beta2.yum_artifact_pb2
 import google.iam.v1.iam_policy_pb2
 import google.iam.v1.policy_pb2
 import google.longrunning.operations_pb2
@@ -24,6 +27,14 @@ import google.devtools.artifactregistry.v1beta2.service_pb2
 
 
 class ArtifactRegistryBase(abc.ABC):
+
+    @abc.abstractmethod
+    async def ImportAptArtifacts(self, stream: 'grpclib.server.Stream[google.devtools.artifactregistry.v1beta2.apt_artifact_pb2.ImportAptArtifactsRequest, google.longrunning.operations_pb2.Operation]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def ImportYumArtifacts(self, stream: 'grpclib.server.Stream[google.devtools.artifactregistry.v1beta2.yum_artifact_pb2.ImportYumArtifactsRequest, google.longrunning.operations_pb2.Operation]') -> None:
+        pass
 
     @abc.abstractmethod
     async def ListRepositories(self, stream: 'grpclib.server.Stream[google.devtools.artifactregistry.v1beta2.repository_pb2.ListRepositoriesRequest, google.devtools.artifactregistry.v1beta2.repository_pb2.ListRepositoriesResponse]') -> None:
@@ -109,8 +120,28 @@ class ArtifactRegistryBase(abc.ABC):
     async def TestIamPermissions(self, stream: 'grpclib.server.Stream[google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest, google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def GetProjectSettings(self, stream: 'grpclib.server.Stream[google.devtools.artifactregistry.v1beta2.settings_pb2.GetProjectSettingsRequest, google.devtools.artifactregistry.v1beta2.settings_pb2.ProjectSettings]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def UpdateProjectSettings(self, stream: 'grpclib.server.Stream[google.devtools.artifactregistry.v1beta2.settings_pb2.UpdateProjectSettingsRequest, google.devtools.artifactregistry.v1beta2.settings_pb2.ProjectSettings]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
+            '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ImportAptArtifacts': grpclib.const.Handler(
+                self.ImportAptArtifacts,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.devtools.artifactregistry.v1beta2.apt_artifact_pb2.ImportAptArtifactsRequest,
+                google.longrunning.operations_pb2.Operation,
+            ),
+            '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ImportYumArtifacts': grpclib.const.Handler(
+                self.ImportYumArtifacts,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.devtools.artifactregistry.v1beta2.yum_artifact_pb2.ImportYumArtifactsRequest,
+                google.longrunning.operations_pb2.Operation,
+            ),
             '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ListRepositories': grpclib.const.Handler(
                 self.ListRepositories,
                 grpclib.const.Cardinality.UNARY_UNARY,
@@ -237,12 +268,36 @@ class ArtifactRegistryBase(abc.ABC):
                 google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest,
                 google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse,
             ),
+            '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetProjectSettings': grpclib.const.Handler(
+                self.GetProjectSettings,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.devtools.artifactregistry.v1beta2.settings_pb2.GetProjectSettingsRequest,
+                google.devtools.artifactregistry.v1beta2.settings_pb2.ProjectSettings,
+            ),
+            '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/UpdateProjectSettings': grpclib.const.Handler(
+                self.UpdateProjectSettings,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.devtools.artifactregistry.v1beta2.settings_pb2.UpdateProjectSettingsRequest,
+                google.devtools.artifactregistry.v1beta2.settings_pb2.ProjectSettings,
+            ),
         }
 
 
 class ArtifactRegistryStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
+        self.ImportAptArtifacts = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ImportAptArtifacts',
+            google.devtools.artifactregistry.v1beta2.apt_artifact_pb2.ImportAptArtifactsRequest,
+            google.longrunning.operations_pb2.Operation,
+        )
+        self.ImportYumArtifacts = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ImportYumArtifacts',
+            google.devtools.artifactregistry.v1beta2.yum_artifact_pb2.ImportYumArtifactsRequest,
+            google.longrunning.operations_pb2.Operation,
+        )
         self.ListRepositories = grpclib.client.UnaryUnaryMethod(
             channel,
             '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/ListRepositories',
@@ -368,4 +423,16 @@ class ArtifactRegistryStub:
             '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/TestIamPermissions',
             google.iam.v1.iam_policy_pb2.TestIamPermissionsRequest,
             google.iam.v1.iam_policy_pb2.TestIamPermissionsResponse,
+        )
+        self.GetProjectSettings = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/GetProjectSettings',
+            google.devtools.artifactregistry.v1beta2.settings_pb2.GetProjectSettingsRequest,
+            google.devtools.artifactregistry.v1beta2.settings_pb2.ProjectSettings,
+        )
+        self.UpdateProjectSettings = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.devtools.artifactregistry.v1beta2.ArtifactRegistry/UpdateProjectSettings',
+            google.devtools.artifactregistry.v1beta2.settings_pb2.UpdateProjectSettingsRequest,
+            google.devtools.artifactregistry.v1beta2.settings_pb2.ProjectSettings,
         )

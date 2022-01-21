@@ -12,11 +12,11 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)google/cloud/dialogflow/v2beta1/gcs.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1cgoogle/api/annotations.proto\"&\n\nGcsSources\x12\x18\n\x04uris\x18\x02 \x03(\tB\x04\xe2\x41\x01\x02R\x04uris\"\x1d\n\tGcsSource\x12\x10\n\x03uri\x18\x01 \x01(\tR\x03uriB\xa6\x01\n#com.google.cloud.dialogflow.v2beta1B\x08GcsProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)google/cloud/dialogflow/v2beta1/gcs.proto\x12\x1fgoogle.cloud.dialogflow.v2beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\"&\n\nGcsSources\x12\x18\n\x04uris\x18\x02 \x03(\tB\x04\xe2\x41\x01\x02R\x04uris\"\x1d\n\tGcsSource\x12\x10\n\x03uri\x18\x01 \x01(\tR\x03uriB\xa6\x01\n#com.google.cloud.dialogflow.v2beta1B\x08GcsProtoP\x01ZIgoogle.golang.org/genproto/googleapis/cloud/dialogflow/v2beta1;dialogflow\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\x1fGoogle.Cloud.Dialogflow.V2beta1b\x06proto3')
 
 
 

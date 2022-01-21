@@ -35,7 +35,9 @@ class ReadRowsRequest(google.protobuf.message.Message):
 
     @property
     def rows(self) -> google.bigtable.v2.data_pb2.RowSet:
-        """The row keys and/or ranges to read. If not specified, reads from all rows."""
+        """The row keys and/or ranges to read sequentially. If not specified, reads
+        from all rows.
+        """
         pass
     @property
     def filter(self) -> google.bigtable.v2.data_pb2.RowFilter:
@@ -44,7 +46,7 @@ class ReadRowsRequest(google.protobuf.message.Message):
         """
         pass
     rows_limit: builtins.int = ...
-    """The read will terminate after committing to N rows' worth of results. The
+    """The read will stop after committing to N rows' worth of results. The
     default (zero) is to return all results.
     """
 

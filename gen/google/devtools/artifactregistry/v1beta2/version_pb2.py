@@ -13,12 +13,15 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.devtools.artifactregistry.v1beta2 import tag_pb2 as google_dot_devtools_dot_artifactregistry_dot_v1beta2_dot_tag__pb2
-from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
+from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
+from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
+from google.devtools.artifactregistry.v1beta2 import tag_pb2 as google_dot_devtools_dot_artifactregistry_dot_v1beta2_dot_tag__pb2
+from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n6google/devtools/artifactregistry/v1beta2/version.proto\x12(google.devtools.artifactregistry.v1beta2\x1a\x32google/devtools/artifactregistry/v1beta2/tag.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\x8b\x02\n\x07Version\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\x12;\n\x0b\x63reate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12;\n\x0bupdate_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nupdateTime\x12P\n\x0crelated_tags\x18\x07 \x03(\x0b\x32-.google.devtools.artifactregistry.v1beta2.TagR\x0brelatedTags\"\xb4\x01\n\x13ListVersionsRequest\x12\x16\n\x06parent\x18\x01 \x01(\tR\x06parent\x12\x1b\n\tpage_size\x18\x02 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x03 \x01(\tR\tpageToken\x12I\n\x04view\x18\x04 \x01(\x0e\x32\x35.google.devtools.artifactregistry.v1beta2.VersionViewR\x04view\"\x8d\x01\n\x14ListVersionsResponse\x12M\n\x08versions\x18\x01 \x03(\x0b\x32\x31.google.devtools.artifactregistry.v1beta2.VersionR\x08versions\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"r\n\x11GetVersionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12I\n\x04view\x18\x02 \x01(\x0e\x32\x35.google.devtools.artifactregistry.v1beta2.VersionViewR\x04view\"@\n\x14\x44\x65leteVersionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n\x05\x66orce\x18\x02 \x01(\x08R\x05\x66orce*@\n\x0bVersionView\x12\x1c\n\x18VERSION_VIEW_UNSPECIFIED\x10\x00\x12\t\n\x05\x42\x41SIC\x10\x01\x12\x08\n\x04\x46ULL\x10\x02\x42\x93\x02\n,com.google.devtools.artifactregistry.v1beta2B\x0cVersionProtoP\x01ZXgoogle.golang.org/genproto/googleapis/devtools/artifactregistry/v1beta2;artifactregistry\xaa\x02%Google.Cloud.ArtifactRegistry.V1Beta2\xca\x02%Google\\Cloud\\ArtifactRegistry\\V1beta2\xea\x02(Google::Cloud::ArtifactRegistry::V1beta2b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n6google/devtools/artifactregistry/v1beta2/version.proto\x12(google.devtools.artifactregistry.v1beta2\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x32google/devtools/artifactregistry/v1beta2/tag.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdf\x03\n\x07Version\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x03 \x01(\tR\x0b\x64\x65scription\x12;\n\x0b\x63reate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12;\n\x0bupdate_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nupdateTime\x12P\n\x0crelated_tags\x18\x07 \x03(\x0b\x32-.google.devtools.artifactregistry.v1beta2.TagR\x0brelatedTags\x12\x39\n\x08metadata\x18\x08 \x01(\x0b\x32\x17.google.protobuf.StructB\x04\xe2\x41\x01\x03R\x08metadata:\x96\x01\xea\x41\x92\x01\n\'artifactregistry.googleapis.com/Version\x12gprojects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}\"\xd5\x01\n\x13ListVersionsRequest\x12\x16\n\x06parent\x18\x01 \x01(\tR\x06parent\x12\x1b\n\tpage_size\x18\x02 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x03 \x01(\tR\tpageToken\x12I\n\x04view\x18\x04 \x01(\x0e\x32\x35.google.devtools.artifactregistry.v1beta2.VersionViewR\x04view\x12\x1f\n\x08order_by\x18\x05 \x01(\tB\x04\xe2\x41\x01\x01R\x07orderBy\"\x8d\x01\n\x14ListVersionsResponse\x12M\n\x08versions\x18\x01 \x03(\x0b\x32\x31.google.devtools.artifactregistry.v1beta2.VersionR\x08versions\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"r\n\x11GetVersionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12I\n\x04view\x18\x02 \x01(\x0e\x32\x35.google.devtools.artifactregistry.v1beta2.VersionViewR\x04view\"@\n\x14\x44\x65leteVersionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n\x05\x66orce\x18\x02 \x01(\x08R\x05\x66orce*@\n\x0bVersionView\x12\x1c\n\x18VERSION_VIEW_UNSPECIFIED\x10\x00\x12\t\n\x05\x42\x41SIC\x10\x01\x12\x08\n\x04\x46ULL\x10\x02\x42\x93\x02\n,com.google.devtools.artifactregistry.v1beta2B\x0cVersionProtoP\x01ZXgoogle.golang.org/genproto/googleapis/devtools/artifactregistry/v1beta2;artifactregistry\xaa\x02%Google.Cloud.ArtifactRegistry.V1Beta2\xca\x02%Google\\Cloud\\ArtifactRegistry\\V1beta2\xea\x02(Google::Cloud::ArtifactRegistry::V1beta2b\x06proto3')
 
 _VERSIONVIEW = DESCRIPTOR.enum_types_by_name['VersionView']
 VersionView = enum_type_wrapper.EnumTypeWrapper(_VERSIONVIEW)
@@ -71,16 +74,22 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n,com.google.devtools.artifactregistry.v1beta2B\014VersionProtoP\001ZXgoogle.golang.org/genproto/googleapis/devtools/artifactregistry/v1beta2;artifactregistry\252\002%Google.Cloud.ArtifactRegistry.V1Beta2\312\002%Google\\Cloud\\ArtifactRegistry\\V1beta2\352\002(Google::Cloud::ArtifactRegistry::V1beta2'
-  _VERSIONVIEW._serialized_start=994
-  _VERSIONVIEW._serialized_end=1058
-  _VERSION._serialized_start=216
-  _VERSION._serialized_end=483
-  _LISTVERSIONSREQUEST._serialized_start=486
-  _LISTVERSIONSREQUEST._serialized_end=666
-  _LISTVERSIONSRESPONSE._serialized_start=669
-  _LISTVERSIONSRESPONSE._serialized_end=810
-  _GETVERSIONREQUEST._serialized_start=812
-  _GETVERSIONREQUEST._serialized_end=926
-  _DELETEVERSIONREQUEST._serialized_start=928
-  _DELETEVERSIONREQUEST._serialized_end=992
+  _VERSION.fields_by_name['metadata']._options = None
+  _VERSION.fields_by_name['metadata']._serialized_options = b'\342A\001\003'
+  _VERSION._options = None
+  _VERSION._serialized_options = b'\352A\222\001\n\'artifactregistry.googleapis.com/Version\022gprojects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}'
+  _LISTVERSIONSREQUEST.fields_by_name['order_by']._options = None
+  _LISTVERSIONSREQUEST.fields_by_name['order_by']._serialized_options = b'\342A\001\001'
+  _VERSIONVIEW._serialized_start=1329
+  _VERSIONVIEW._serialized_end=1393
+  _VERSION._serialized_start=306
+  _VERSION._serialized_end=785
+  _LISTVERSIONSREQUEST._serialized_start=788
+  _LISTVERSIONSREQUEST._serialized_end=1001
+  _LISTVERSIONSRESPONSE._serialized_start=1004
+  _LISTVERSIONSRESPONSE._serialized_end=1145
+  _GETVERSIONREQUEST._serialized_start=1147
+  _GETVERSIONREQUEST._serialized_end=1261
+  _DELETEVERSIONREQUEST._serialized_start=1263
+  _DELETEVERSIONREQUEST._serialized_end=1327
 # @@protoc_insertion_point(module_scope)

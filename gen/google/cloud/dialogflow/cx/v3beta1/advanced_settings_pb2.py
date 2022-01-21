@@ -12,12 +12,12 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
-from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n:google/cloud/dialogflow/cx/v3beta1/advanced_settings.proto\x12\"google.cloud.dialogflow.cx.v3beta1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/api/annotations.proto\"\x93\x02\n\x10\x41\x64vancedSettings\x12o\n\x10logging_settings\x18\x06 \x01(\x0b\x32\x44.google.cloud.dialogflow.cx.v3beta1.AdvancedSettings.LoggingSettingsR\x0floggingSettings\x1a\x8d\x01\n\x0fLoggingSettings\x12<\n\x1a\x65nable_stackdriver_logging\x18\x02 \x01(\x08R\x18\x65nableStackdriverLogging\x12<\n\x1a\x65nable_interaction_logging\x18\x03 \x01(\x08R\x18\x65nableInteractionLoggingB\xdd\x01\n&com.google.cloud.dialogflow.cx.v3beta1B\x15\x41\x64vancedSettingsProtoP\x01ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/cx/v3beta1;cx\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\"Google.Cloud.Dialogflow.Cx.V3Beta1\xea\x02&Google::Cloud::Dialogflow::CX::V3beta1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n:google/cloud/dialogflow/cx/v3beta1/advanced_settings.proto\x12\"google.cloud.dialogflow.cx.v3beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1egoogle/protobuf/duration.proto\"\x93\x02\n\x10\x41\x64vancedSettings\x12o\n\x10logging_settings\x18\x06 \x01(\x0b\x32\x44.google.cloud.dialogflow.cx.v3beta1.AdvancedSettings.LoggingSettingsR\x0floggingSettings\x1a\x8d\x01\n\x0fLoggingSettings\x12<\n\x1a\x65nable_stackdriver_logging\x18\x02 \x01(\x08R\x18\x65nableStackdriverLogging\x12<\n\x1a\x65nable_interaction_logging\x18\x03 \x01(\x08R\x18\x65nableInteractionLoggingB\xdd\x01\n&com.google.cloud.dialogflow.cx.v3beta1B\x15\x41\x64vancedSettingsProtoP\x01ZDgoogle.golang.org/genproto/googleapis/cloud/dialogflow/cx/v3beta1;cx\xf8\x01\x01\xa2\x02\x02\x44\x46\xaa\x02\"Google.Cloud.Dialogflow.Cx.V3Beta1\xea\x02&Google::Cloud::Dialogflow::CX::V3beta1b\x06proto3')
 
 
 

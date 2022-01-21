@@ -56,7 +56,7 @@ class Environment(google.protobuf.message.Message):
             pass
         enable_continuous_run: builtins.bool = ...
         """Whether to run test cases in [TestCasesConfig.test_cases][google.cloud.dialogflow.cx.v3.Environment.TestCasesConfig.test_cases] periodically.
-        Default false. If set to ture, run once a day.
+        Default false. If set to true, run once a day.
         """
 
         enable_predeployment_run: builtins.bool = ...

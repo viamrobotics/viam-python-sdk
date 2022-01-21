@@ -14,6 +14,7 @@ import google.api.client_pb2
 import google.api.field_behavior_pb2
 import google.api.resource_pb2
 import google.cloud.dialogflow.v2beta1.audio_config_pb2
+import google.cloud.dialogflow.v2beta1.conversation_profile_pb2
 import google.cloud.dialogflow.v2beta1.gcs_pb2
 import google.cloud.dialogflow.v2beta1.participant_pb2
 import google.cloud.dialogflow.v2beta1.session_pb2

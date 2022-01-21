@@ -989,8 +989,9 @@ class Match(google.protobuf.message.Message):
         """
         pass
     event: typing.Text = ...
-    """The event that matched the query. Only filled for
-    [`EVENT`][google.cloud.dialogflow.cx.v3.Match.MatchType] match type.
+    """The event that matched the query. Filled for
+    [`EVENT`][google.cloud.dialogflow.cx.v3.Match.MatchType], [`NO_MATCH`][google.cloud.dialogflow.cx.v3.Match.MatchType] and
+    [`NO_INPUT`][google.cloud.dialogflow.cx.v3.Match.MatchType] match types.
     """
 
     @property

@@ -55,6 +55,10 @@ class ParticipantsBase(abc.ABC):
     async def SuggestFaqAnswers(self, stream: 'grpclib.server.Stream[google.cloud.dialogflow.v2.participant_pb2.SuggestFaqAnswersRequest, google.cloud.dialogflow.v2.participant_pb2.SuggestFaqAnswersResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def SuggestSmartReplies(self, stream: 'grpclib.server.Stream[google.cloud.dialogflow.v2.participant_pb2.SuggestSmartRepliesRequest, google.cloud.dialogflow.v2.participant_pb2.SuggestSmartRepliesResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
             '/google.cloud.dialogflow.v2.Participants/CreateParticipant': grpclib.const.Handler(
@@ -98,6 +102,12 @@ class ParticipantsBase(abc.ABC):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 google.cloud.dialogflow.v2.participant_pb2.SuggestFaqAnswersRequest,
                 google.cloud.dialogflow.v2.participant_pb2.SuggestFaqAnswersResponse,
+            ),
+            '/google.cloud.dialogflow.v2.Participants/SuggestSmartReplies': grpclib.const.Handler(
+                self.SuggestSmartReplies,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.cloud.dialogflow.v2.participant_pb2.SuggestSmartRepliesRequest,
+                google.cloud.dialogflow.v2.participant_pb2.SuggestSmartRepliesResponse,
             ),
         }
 
@@ -146,4 +156,10 @@ class ParticipantsStub:
             '/google.cloud.dialogflow.v2.Participants/SuggestFaqAnswers',
             google.cloud.dialogflow.v2.participant_pb2.SuggestFaqAnswersRequest,
             google.cloud.dialogflow.v2.participant_pb2.SuggestFaqAnswersResponse,
+        )
+        self.SuggestSmartReplies = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.cloud.dialogflow.v2.Participants/SuggestSmartReplies',
+            google.cloud.dialogflow.v2.participant_pb2.SuggestSmartRepliesRequest,
+            google.cloud.dialogflow.v2.participant_pb2.SuggestSmartRepliesResponse,
         )
