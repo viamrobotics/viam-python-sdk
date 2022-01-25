@@ -12,8 +12,9 @@ from gen.proto.rpc.examples.echo.v1.echo_pb2 import (
 
 
 async def echo(msg: str):
-    opts = DialOptions(credentials=Credentials(
-        type="api-key", payload="supersecretkeyohmy"))
+    creds = Credentials(type="api-key", payload="supersecretkeyohmy")
+    opts = DialOptions(credentials=creds,
+                       allow_insecure_with_creds_downgrade=True)
     async with await dial_direct("localhost:8080", opts) as channel:
         service = EchoServiceStub(channel)
 

@@ -12,8 +12,12 @@ if typing.TYPE_CHECKING:
 import google.api.annotations_pb2
 import google.api.client_pb2
 import google.api.field_behavior_pb2
+import google.api.resource_pb2
 import google.protobuf.empty_pb2
 import google.protobuf.timestamp_pb2
+import google.protobuf.wrappers_pb2
+import google.rpc.code_pb2
+import google.rpc.status_pb2
 import google.container.v1.cluster_service_pb2
 
 

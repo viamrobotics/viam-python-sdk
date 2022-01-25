@@ -17,6 +17,7 @@ import google.iam.v1.iam_policy_pb2
 import google.iam.v1.policy_pb2
 import google.longrunning.operations_pb2
 import google.protobuf.empty_pb2
+import google.protobuf.field_mask_pb2
 import google.protobuf.timestamp_pb2
 import google.spanner.admin.database.v1.backup_pb2
 import google.spanner.admin.database.v1.common_pb2

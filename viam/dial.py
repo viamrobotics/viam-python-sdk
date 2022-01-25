@@ -1,6 +1,7 @@
 import re
-from ssl import SSLContext
+import socket
 import ssl
+from turtle import down
 from typing import Optional, Tuple, Type
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
@@ -36,13 +37,33 @@ class DialOptions:
     webrtc_options: DialWebRTCOptions | None
     external_auth_address: str | None
 
+    #: Determine if the RPC connection is TLS based. Must be provided to
+    #: establish an insecure connection. Otherwise, a TLS based connection
+    #: will be assumed.
+    insecure: bool
+
+    #: Allow the RPC connection to be downgraded to an insecure connection
+    #: if detected. This is only used when credentials are not present.
+    allow_insecure_downgrade: bool
+
+    #: Allow the RPC connection to be downgraded to an insecure connection
+    #: if detected, even with credentials present. This is generally
+    #: unsafe to use, but can be requested.
+    allow_insecure_with_creds_downgrade: bool
+
     def __init__(
         self,
         auth_entity: str | None = None,
-        credentials: Credentials | None = None
+        credentials: Credentials | None = None,
+        insecure: bool = False,
+        allow_insecure_downgrade: bool = False,
+        allow_insecure_with_creds_downgrade=False
     ) -> None:
         self.auth_entity = auth_entity
         self.credentials = credentials
+        self.insecure = insecure
+        self.allow_insecure_downgrade = allow_insecure_downgrade
+        self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade  # noqa: E501
 
 
 def _host_port_from_url(url) -> Tuple[str | None, int | None]:
@@ -95,7 +116,7 @@ class AuthenticatedChannel(Channel):
         deadline: Optional[Deadline] = None,
         metadata: Optional[_MetadataLike] = None
     ) -> Stream[_SendType, _RecvType]:
-        if not metadata:
+        if not metadata and hasattr(self, '_metadata'):
             metadata = self._metadata
         return super().request(
             name,
@@ -113,17 +134,48 @@ async def dial_direct(
     options: DialOptions = None
 ) -> Channel:
 
-    host, port = _host_port_from_url(address)
+    insecure = options.insecure if options else False
 
-    if not options or not options.credentials:
+    host, port = _host_port_from_url(address)
+    if not port:
+        port = 80 if insecure else 443
+
+    if insecure:
         return Channel(host, port)
 
-    ctx = SSLContext(ssl.PROTOCOL_TLSv1_2)
-    channel = Channel(host, port, ssl=ctx)
-    access_token = await _get_access_token(channel, address, options)
-    channel.close()
-    metadata = {"authorization": f'Bearer {access_token}'}
-    channel = AuthenticatedChannel(host, port, ssl=ctx)
-    channel._metadata = metadata
+    downgrade = False
+    ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+    if (
+        options
+        and (
+            options.allow_insecure_downgrade
+            or options.allow_insecure_with_creds_downgrade
+        )
+    ):
+        # Test if downgrade is required.
+        # Only needed if downgrade is available in options
+        with socket.create_connection((host, port)) as sock:
+            try:
+                with ctx.wrap_socket(sock, server_hostname=host) as ssock:
+                    _ = ssock.version()
+            except ssl.SSLError as e:
+                if e.reason != 'WRONG_VERSION_NUMBER':
+                    raise e
+                if options.credentials:
+                    if options.allow_insecure_with_creds_downgrade:
+                        downgrade = True
+                elif options.allow_insecure_downgrade:
+                    downgrade = True
+
+    if downgrade:
+        ctx = None
+
+    if options and options.credentials:
+        channel = AuthenticatedChannel(host, port, ssl=ctx)
+        access_token = await _get_access_token(channel, address, options)
+        metadata = {"authorization": f'Bearer {access_token}'}
+        channel._metadata = metadata
+    else:
+        channel = Channel(host, port, ssl=ctx)
 
     return channel

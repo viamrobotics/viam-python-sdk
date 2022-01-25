@@ -13,6 +13,40 @@ import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
+class _DatabaseDialect:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+class _DatabaseDialectEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_DatabaseDialect.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+    DATABASE_DIALECT_UNSPECIFIED: DatabaseDialect.ValueType = ...  # 0
+    """Default value. This value will create a database with the
+    GOOGLE_STANDARD_SQL dialect.
+    """
+
+    GOOGLE_STANDARD_SQL: DatabaseDialect.ValueType = ...  # 1
+    """Google standard SQL."""
+
+    POSTGRESQL: DatabaseDialect.ValueType = ...  # 2
+    """PostgreSQL supported SQL."""
+
+class DatabaseDialect(_DatabaseDialect, metaclass=_DatabaseDialectEnumTypeWrapper):
+    """Indicates the dialect type of a database."""
+    pass
+
+DATABASE_DIALECT_UNSPECIFIED: DatabaseDialect.ValueType = ...  # 0
+"""Default value. This value will create a database with the
+GOOGLE_STANDARD_SQL dialect.
+"""
+
+GOOGLE_STANDARD_SQL: DatabaseDialect.ValueType = ...  # 1
+"""Google standard SQL."""
+
+POSTGRESQL: DatabaseDialect.ValueType = ...  # 2
+"""PostgreSQL supported SQL."""
+
+global___DatabaseDialect = DatabaseDialect
+
+
 class OperationProgress(google.protobuf.message.Message):
     """Encapsulates progress related information for a Cloud Spanner long
     running operation.

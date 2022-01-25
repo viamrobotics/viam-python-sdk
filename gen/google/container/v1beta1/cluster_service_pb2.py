@@ -25,7 +25,7 @@ from google.rpc import status_pb2 as google_dot_rpc_dot_status__pb2
 from google.type import date_pb2 as google_dot_type_dot_date__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n.google/container/v1beta1/cluster_service.proto\x12\x18google.container.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x15google/rpc/code.proto\x1a\x17google/rpc/status.proto\x1a\x16google/type/date.proto\"\x9f\x01\n\x0fLinuxNodeConfig\x12P\n\x07sysctls\x18\x01 \x03(\x0b\x32\x36.google.container.v1beta1.LinuxNodeConfig.SysctlsEntryR\x07sysctls\x1a:\n\x0cSysctlsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xb2\x01\n\x11NodeKubeletConfig\x12,\n\x12\x63pu_manager_policy\x18\x01 \x01(\tR\x10\x63puManagerPolicy\x12>\n\rcpu_cfs_quota\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x0b\x63puCfsQuota\x12/\n\x14\x63pu_cfs_quota_period\x18\x03 \x01(\tR\x11\x63puCfsQuotaPeriod\"\xa8\x0c\n\nNodeConfig\x12!\n\x0cmachine_type\x18\x01 \x01(\tR\x0bmachineType\x12 \n\x0c\x64isk_size_gb\x18\x02 \x01(\x05R\ndiskSizeGb\x12!\n\x0coauth_scopes\x18\x03 \x03(\tR\x0boauthScopes\x12\'\n\x0fservice_account\x18\t \x01(\tR\x0eserviceAccount\x12N\n\x08metadata\x18\x04 \x03(\x0b\x32\x32.google.container.v1beta1.NodeConfig.MetadataEntryR\x08metadata\x12\x1d\n\nimage_type\x18\x05 \x01(\tR\timageType\x12H\n\x06labels\x18\x06 \x03(\x0b\x32\x30.google.container.v1beta1.NodeConfig.LabelsEntryR\x06labels\x12&\n\x0flocal_ssd_count\x18\x07 \x01(\x05R\rlocalSsdCount\x12\x12\n\x04tags\x18\x08 \x03(\tR\x04tags\x12 \n\x0bpreemptible\x18\n \x01(\x08R\x0bpreemptible\x12O\n\x0c\x61\x63\x63\x65lerators\x18\x0b \x03(\x0b\x32+.google.container.v1beta1.AcceleratorConfigR\x0c\x61\x63\x63\x65lerators\x12N\n\x0esandbox_config\x18\x11 \x01(\x0b\x32\'.google.container.v1beta1.SandboxConfigR\rsandboxConfig\x12\x1d\n\nnode_group\x18\x12 \x01(\tR\tnodeGroup\x12`\n\x14reservation_affinity\x18\x13 \x01(\x0b\x32-.google.container.v1beta1.ReservationAffinityR\x13reservationAffinity\x12\x1b\n\tdisk_type\x18\x0c \x01(\tR\x08\x64iskType\x12(\n\x10min_cpu_platform\x18\r \x01(\tR\x0eminCpuPlatform\x12j\n\x18workload_metadata_config\x18\x0e \x01(\x0b\x32\x30.google.container.v1beta1.WorkloadMetadataConfigR\x16workloadMetadataConfig\x12;\n\x06taints\x18\x0f \x03(\x0b\x32#.google.container.v1beta1.NodeTaintR\x06taints\x12)\n\x11\x62oot_disk_kms_key\x18\x17 \x01(\tR\x0e\x62ootDiskKmsKey\x12j\n\x18shielded_instance_config\x18\x14 \x01(\x0b\x32\x30.google.container.v1beta1.ShieldedInstanceConfigR\x16shieldedInstanceConfig\x12U\n\x11linux_node_config\x18\x15 \x01(\x0b\x32).google.container.v1beta1.LinuxNodeConfigR\x0flinuxNodeConfig\x12R\n\x0ekubelet_config\x18\x16 \x01(\x0b\x32+.google.container.v1beta1.NodeKubeletConfigR\rkubeletConfig\x12j\n\x18\x65phemeral_storage_config\x18\x18 \x01(\x0b\x32\x30.google.container.v1beta1.EphemeralStorageConfigR\x16\x65phemeralStorageConfig\x12:\n\x05gvnic\x18\x1d \x01(\x0b\x32$.google.container.v1beta1.VirtualNICR\x05gvnic\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\x8f\x01\n\x11NodeNetworkConfig\x12.\n\x10\x63reate_pod_range\x18\x04 \x01(\x08\x42\x04\xe2\x41\x01\x04R\x0e\x63reatePodRange\x12\x1b\n\tpod_range\x18\x05 \x01(\tR\x08podRange\x12-\n\x13pod_ipv4_cidr_block\x18\x06 \x01(\tR\x10podIpv4CidrBlock\"\x86\x01\n\x16ShieldedInstanceConfig\x12,\n\x12\x65nable_secure_boot\x18\x01 \x01(\x08R\x10\x65nableSecureBoot\x12>\n\x1b\x65nable_integrity_monitoring\x18\x02 \x01(\x08R\x19\x65nableIntegrityMonitoring\"\x9d\x01\n\rSandboxConfig\x12%\n\x0csandbox_type\x18\x01 \x01(\tB\x02\x18\x01R\x0bsandboxType\x12@\n\x04type\x18\x02 \x01(\x0e\x32,.google.container.v1beta1.SandboxConfig.TypeR\x04type\"#\n\x04Type\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06GVISOR\x10\x01\"@\n\x16\x45phemeralStorageConfig\x12&\n\x0flocal_ssd_count\x18\x01 \x01(\x05R\rlocalSsdCount\"\x89\x02\n\x13ReservationAffinity\x12l\n\x18\x63onsume_reservation_type\x18\x01 \x01(\x0e\x32\x32.google.container.v1beta1.ReservationAffinity.TypeR\x16\x63onsumeReservationType\x12\x10\n\x03key\x18\x02 \x01(\tR\x03key\x12\x16\n\x06values\x18\x03 \x03(\tR\x06values\"Z\n\x04Type\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x12\n\x0eNO_RESERVATION\x10\x01\x12\x13\n\x0f\x41NY_RESERVATION\x10\x02\x12\x18\n\x14SPECIFIC_RESERVATION\x10\x03\"\xd2\x01\n\tNodeTaint\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\x12\x42\n\x06\x65\x66\x66\x65\x63t\x18\x03 \x01(\x0e\x32*.google.container.v1beta1.NodeTaint.EffectR\x06\x65\x66\x66\x65\x63t\"Y\n\x06\x45\x66\x66\x65\x63t\x12\x16\n\x12\x45\x46\x46\x45\x43T_UNSPECIFIED\x10\x00\x12\x0f\n\x0bNO_SCHEDULE\x10\x01\x12\x16\n\x12PREFER_NO_SCHEDULE\x10\x02\x12\x0e\n\nNO_EXECUTE\x10\x03\"I\n\nNodeTaints\x12;\n\x06taints\x18\x01 \x03(\x0b\x32#.google.container.v1beta1.NodeTaintR\x06taints\"\x91\x01\n\nNodeLabels\x12H\n\x06labels\x18\x01 \x03(\x0b\x32\x30.google.container.v1beta1.NodeLabels.LabelsEntryR\x06labels\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"!\n\x0bNetworkTags\x12\x12\n\x04tags\x18\x01 \x03(\tR\x04tags\"\xbf\x02\n\nMasterAuth\x12\x1e\n\x08username\x18\x01 \x01(\tB\x02\x18\x01R\x08username\x12\x1e\n\x08password\x18\x02 \x01(\tB\x02\x18\x01R\x08password\x12m\n\x19\x63lient_certificate_config\x18\x03 \x01(\x0b\x32\x31.google.container.v1beta1.ClientCertificateConfigR\x17\x63lientCertificateConfig\x12\x34\n\x16\x63luster_ca_certificate\x18\x64 \x01(\tR\x14\x63lusterCaCertificate\x12-\n\x12\x63lient_certificate\x18\x65 \x01(\tR\x11\x63lientCertificate\x12\x1d\n\nclient_key\x18\x66 \x01(\tR\tclientKey\"S\n\x17\x43lientCertificateConfig\x12\x38\n\x18issue_client_certificate\x18\x01 \x01(\x08R\x16issueClientCertificate\"\xda\x07\n\x0c\x41\x64\x64onsConfig\x12[\n\x13http_load_balancing\x18\x01 \x01(\x0b\x32+.google.container.v1beta1.HttpLoadBalancingR\x11httpLoadBalancing\x12p\n\x1ahorizontal_pod_autoscaling\x18\x02 \x01(\x0b\x32\x32.google.container.v1beta1.HorizontalPodAutoscalingR\x18horizontalPodAutoscaling\x12\x64\n\x14kubernetes_dashboard\x18\x03 \x01(\x0b\x32-.google.container.v1beta1.KubernetesDashboardB\x02\x18\x01R\x13kubernetesDashboard\x12\x61\n\x15network_policy_config\x18\x04 \x01(\x0b\x32-.google.container.v1beta1.NetworkPolicyConfigR\x13networkPolicyConfig\x12H\n\x0cistio_config\x18\x05 \x01(\x0b\x32%.google.container.v1beta1.IstioConfigR\x0bistioConfig\x12R\n\x10\x63loud_run_config\x18\x07 \x01(\x0b\x32(.google.container.v1beta1.CloudRunConfigR\x0e\x63loudRunConfig\x12R\n\x10\x64ns_cache_config\x18\x08 \x01(\x0b\x32(.google.container.v1beta1.DnsCacheConfigR\x0e\x64nsCacheConfig\x12g\n\x17\x63onfig_connector_config\x18\n \x01(\x0b\x32/.google.container.v1beta1.ConfigConnectorConfigR\x15\x63onfigConnectorConfig\x12\x8b\x01\n%gce_persistent_disk_csi_driver_config\x18\x0b \x01(\x0b\x32:.google.container.v1beta1.GcePersistentDiskCsiDriverConfigR gcePersistentDiskCsiDriverConfig\x12I\n\x0bkalm_config\x18\x0c \x01(\x0b\x32$.google.container.v1beta1.KalmConfigB\x02\x18\x01R\nkalmConfig\"/\n\x11HttpLoadBalancing\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"6\n\x18HorizontalPodAutoscaling\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"1\n\x13KubernetesDashboard\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"1\n\x13NetworkPolicyConfig\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"*\n\x0e\x44nsCacheConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"*\n\nKalmConfig\x12\x1c\n\x07\x65nabled\x18\x01 \x01(\x08\x42\x02\x18\x01R\x07\x65nabled\"1\n\x15\x43onfigConnectorConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"<\n GcePersistentDiskCsiDriverConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"B\n&PrivateClusterMasterGlobalAccessConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xad\x03\n\x14PrivateClusterConfig\x12\x30\n\x14\x65nable_private_nodes\x18\x01 \x01(\x08R\x12\x65nablePrivateNodes\x12\x36\n\x17\x65nable_private_endpoint\x18\x02 \x01(\x08R\x15\x65nablePrivateEndpoint\x12\x33\n\x16master_ipv4_cidr_block\x18\x03 \x01(\tR\x13masterIpv4CidrBlock\x12)\n\x10private_endpoint\x18\x04 \x01(\tR\x0fprivateEndpoint\x12\'\n\x0fpublic_endpoint\x18\x05 \x01(\tR\x0epublicEndpoint\x12!\n\x0cpeering_name\x18\x07 \x01(\tR\x0bpeeringName\x12\x7f\n\x1bmaster_global_access_config\x18\x08 \x01(\x0b\x32@.google.container.v1beta1.PrivateClusterMasterGlobalAccessConfigR\x18masterGlobalAccessConfig\"\xa7\x01\n\x0bIstioConfig\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\x12G\n\x04\x61uth\x18\x02 \x01(\x0e\x32\x33.google.container.v1beta1.IstioConfig.IstioAuthModeR\x04\x61uth\"3\n\rIstioAuthMode\x12\r\n\tAUTH_NONE\x10\x00\x12\x13\n\x0f\x41UTH_MUTUAL_TLS\x10\x01\"\x8f\x02\n\x0e\x43loudRunConfig\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\x12g\n\x12load_balancer_type\x18\x03 \x01(\x0e\x32\x39.google.container.v1beta1.CloudRunConfig.LoadBalancerTypeR\x10loadBalancerType\"x\n\x10LoadBalancerType\x12\"\n\x1eLOAD_BALANCER_TYPE_UNSPECIFIED\x10\x00\x12\x1f\n\x1bLOAD_BALANCER_TYPE_EXTERNAL\x10\x01\x12\x1f\n\x1bLOAD_BALANCER_TYPE_INTERNAL\x10\x02\"\xee\x01\n\x1eMasterAuthorizedNetworksConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12\x63\n\x0b\x63idr_blocks\x18\x02 \x03(\x0b\x32\x42.google.container.v1beta1.MasterAuthorizedNetworksConfig.CidrBlockR\ncidrBlocks\x1aM\n\tCidrBlock\x12!\n\x0c\x64isplay_name\x18\x01 \x01(\tR\x0b\x64isplayName\x12\x1d\n\ncidr_block\x18\x02 \x01(\tR\tcidrBlock\"&\n\nLegacyAbac\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xa9\x01\n\rNetworkPolicy\x12L\n\x08provider\x18\x01 \x01(\x0e\x32\x30.google.container.v1beta1.NetworkPolicy.ProviderR\x08provider\x12\x18\n\x07\x65nabled\x18\x02 \x01(\x08R\x07\x65nabled\"0\n\x08Provider\x12\x18\n\x14PROVIDER_UNSPECIFIED\x10\x00\x12\n\n\x06\x43\x41LICO\x10\x01\"\xbf\x05\n\x12IPAllocationPolicy\x12$\n\x0euse_ip_aliases\x18\x01 \x01(\x08R\x0cuseIpAliases\x12+\n\x11\x63reate_subnetwork\x18\x02 \x01(\x08R\x10\x63reateSubnetwork\x12\'\n\x0fsubnetwork_name\x18\x03 \x01(\tR\x0esubnetworkName\x12.\n\x11\x63luster_ipv4_cidr\x18\x04 \x01(\tB\x02\x18\x01R\x0f\x63lusterIpv4Cidr\x12(\n\x0enode_ipv4_cidr\x18\x05 \x01(\tB\x02\x18\x01R\x0cnodeIpv4Cidr\x12\x30\n\x12services_ipv4_cidr\x18\x06 \x01(\tB\x02\x18\x01R\x10servicesIpv4Cidr\x12?\n\x1c\x63luster_secondary_range_name\x18\x07 \x01(\tR\x19\x63lusterSecondaryRangeName\x12\x41\n\x1dservices_secondary_range_name\x18\x08 \x01(\tR\x1aservicesSecondaryRangeName\x12\x35\n\x17\x63luster_ipv4_cidr_block\x18\t \x01(\tR\x14\x63lusterIpv4CidrBlock\x12/\n\x14node_ipv4_cidr_block\x18\n \x01(\tR\x11nodeIpv4CidrBlock\x12\x37\n\x18services_ipv4_cidr_block\x18\x0b \x01(\tR\x15servicesIpv4CidrBlock\x12.\n\x13\x61llow_route_overlap\x18\x0c \x01(\x08R\x11\x61llowRouteOverlap\x12-\n\x13tpu_ipv4_cidr_block\x18\r \x01(\tR\x10tpuIpv4CidrBlock\x12\x1d\n\nuse_routes\x18\x0f \x01(\x08R\tuseRoutes\"/\n\x13\x42inaryAuthorization\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"3\n\x17PodSecurityPolicyConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\\\n\x19\x41uthenticatorGroupsConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12%\n\x0esecurity_group\x18\x02 \x01(\tR\rsecurityGroup\"\x9c\x01\n\x10\x43lusterTelemetry\x12\x43\n\x04type\x18\x01 \x01(\x0e\x32/.google.container.v1beta1.ClusterTelemetry.TypeR\x04type\"C\n\x04Type\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x0c\n\x08\x44ISABLED\x10\x01\x12\x0b\n\x07\x45NABLED\x10\x02\x12\x0f\n\x0bSYSTEM_ONLY\x10\x03\"\xb1$\n\x07\x43luster\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\x12\x30\n\x12initial_node_count\x18\x03 \x01(\x05\x42\x02\x18\x01R\x10initialNodeCount\x12I\n\x0bnode_config\x18\x04 \x01(\x0b\x32$.google.container.v1beta1.NodeConfigB\x02\x18\x01R\nnodeConfig\x12\x45\n\x0bmaster_auth\x18\x05 \x01(\x0b\x32$.google.container.v1beta1.MasterAuthR\nmasterAuth\x12\'\n\x0flogging_service\x18\x06 \x01(\tR\x0eloggingService\x12-\n\x12monitoring_service\x18\x07 \x01(\tR\x11monitoringService\x12\x18\n\x07network\x18\x08 \x01(\tR\x07network\x12*\n\x11\x63luster_ipv4_cidr\x18\t \x01(\tR\x0f\x63lusterIpv4Cidr\x12K\n\raddons_config\x18\n \x01(\x0b\x32&.google.container.v1beta1.AddonsConfigR\x0c\x61\x64\x64onsConfig\x12\x1e\n\nsubnetwork\x18\x0b \x01(\tR\nsubnetwork\x12\x41\n\nnode_pools\x18\x0c \x03(\x0b\x32\".google.container.v1beta1.NodePoolR\tnodePools\x12\x1c\n\tlocations\x18\r \x03(\tR\tlocations\x12\x36\n\x17\x65nable_kubernetes_alpha\x18\x0e \x01(\x08R\x15\x65nableKubernetesAlpha\x12^\n\x0fresource_labels\x18\x0f \x03(\x0b\x32\x35.google.container.v1beta1.Cluster.ResourceLabelsEntryR\x0eresourceLabels\x12+\n\x11label_fingerprint\x18\x10 \x01(\tR\x10labelFingerprint\x12\x45\n\x0blegacy_abac\x18\x12 \x01(\x0b\x32$.google.container.v1beta1.LegacyAbacR\nlegacyAbac\x12N\n\x0enetwork_policy\x18\x13 \x01(\x0b\x32\'.google.container.v1beta1.NetworkPolicyR\rnetworkPolicy\x12^\n\x14ip_allocation_policy\x18\x14 \x01(\x0b\x32,.google.container.v1beta1.IPAllocationPolicyR\x12ipAllocationPolicy\x12\x83\x01\n!master_authorized_networks_config\x18\x16 \x01(\x0b\x32\x38.google.container.v1beta1.MasterAuthorizedNetworksConfigR\x1emasterAuthorizedNetworksConfig\x12Z\n\x12maintenance_policy\x18\x17 \x01(\x0b\x32+.google.container.v1beta1.MaintenancePolicyR\x11maintenancePolicy\x12`\n\x14\x62inary_authorization\x18\x18 \x01(\x0b\x32-.google.container.v1beta1.BinaryAuthorizationR\x13\x62inaryAuthorization\x12n\n\x1apod_security_policy_config\x18\x19 \x01(\x0b\x32\x31.google.container.v1beta1.PodSecurityPolicyConfigR\x17podSecurityPolicyConfig\x12N\n\x0b\x61utoscaling\x18\x1a \x01(\x0b\x32,.google.container.v1beta1.ClusterAutoscalingR\x0b\x61utoscaling\x12N\n\x0enetwork_config\x18\x1b \x01(\x0b\x32\'.google.container.v1beta1.NetworkConfigR\rnetworkConfig\x12+\n\x0fprivate_cluster\x18\x1c \x01(\x08\x42\x02\x18\x01R\x0eprivateCluster\x12\x37\n\x16master_ipv4_cidr_block\x18\x1d \x01(\tB\x02\x18\x01R\x13masterIpv4CidrBlock\x12j\n\x1b\x64\x65\x66\x61ult_max_pods_constraint\x18\x1e \x01(\x0b\x32+.google.container.v1beta1.MaxPodsConstraintR\x18\x64\x65\x66\x61ultMaxPodsConstraint\x12t\n\x1cresource_usage_export_config\x18! \x01(\x0b\x32\x33.google.container.v1beta1.ResourceUsageExportConfigR\x19resourceUsageExportConfig\x12s\n\x1b\x61uthenticator_groups_config\x18\" \x01(\x0b\x32\x33.google.container.v1beta1.AuthenticatorGroupsConfigR\x19\x61uthenticatorGroupsConfig\x12\x64\n\x16private_cluster_config\x18% \x01(\x0b\x32..google.container.v1beta1.PrivateClusterConfigR\x14privateClusterConfig\x12j\n\x18vertical_pod_autoscaling\x18\' \x01(\x0b\x32\x30.google.container.v1beta1.VerticalPodAutoscalingR\x16verticalPodAutoscaling\x12N\n\x0eshielded_nodes\x18( \x01(\x0b\x32\'.google.container.v1beta1.ShieldedNodesR\rshieldedNodes\x12Q\n\x0frelease_channel\x18) \x01(\x0b\x32(.google.container.v1beta1.ReleaseChannelR\x0ereleaseChannel\x12j\n\x18workload_identity_config\x18+ \x01(\x0b\x32\x30.google.container.v1beta1.WorkloadIdentityConfigR\x16workloadIdentityConfig\x12\x63\n\x15workload_certificates\x18\x34 \x01(\x0b\x32..google.container.v1beta1.WorkloadCertificatesR\x14workloadCertificates\x12W\n\x11\x63luster_telemetry\x18. \x01(\x0b\x32*.google.container.v1beta1.ClusterTelemetryR\x10\x63lusterTelemetry\x12\x42\n\ntpu_config\x18/ \x01(\x0b\x32#.google.container.v1beta1.TpuConfigR\ttpuConfig\x12]\n\x13notification_config\x18\x31 \x01(\x0b\x32,.google.container.v1beta1.NotificationConfigR\x12notificationConfig\x12Z\n\x12\x63onfidential_nodes\x18\x32 \x01(\x0b\x32+.google.container.v1beta1.ConfidentialNodesR\x11\x63onfidentialNodes\x12g\n\x17identity_service_config\x18\x36 \x01(\x0b\x32/.google.container.v1beta1.IdentityServiceConfigR\x15identityServiceConfig\x12\x1b\n\tself_link\x18\x64 \x01(\tR\x08selfLink\x12\x16\n\x04zone\x18\x65 \x01(\tB\x02\x18\x01R\x04zone\x12\x1a\n\x08\x65ndpoint\x18\x66 \x01(\tR\x08\x65ndpoint\x12\x36\n\x17initial_cluster_version\x18g \x01(\tR\x15initialClusterVersion\x12\x34\n\x16\x63urrent_master_version\x18h \x01(\tR\x14\x63urrentMasterVersion\x12\x34\n\x14\x63urrent_node_version\x18i \x01(\tB\x02\x18\x01R\x12\x63urrentNodeVersion\x12\x1f\n\x0b\x63reate_time\x18j \x01(\tR\ncreateTime\x12@\n\x06status\x18k \x01(\x0e\x32(.google.container.v1beta1.Cluster.StatusR\x06status\x12)\n\x0estatus_message\x18l \x01(\tB\x02\x18\x01R\rstatusMessage\x12-\n\x13node_ipv4_cidr_size\x18m \x01(\x05R\x10nodeIpv4CidrSize\x12,\n\x12services_ipv4_cidr\x18n \x01(\tR\x10servicesIpv4Cidr\x12\x32\n\x13instance_group_urls\x18o \x03(\tB\x02\x18\x01R\x11instanceGroupUrls\x12\x30\n\x12\x63urrent_node_count\x18p \x01(\x05\x42\x02\x18\x01R\x10\x63urrentNodeCount\x12\x1f\n\x0b\x65xpire_time\x18q \x01(\tR\nexpireTime\x12\x1a\n\x08location\x18r \x01(\tR\x08location\x12\x1d\n\nenable_tpu\x18s \x01(\x08R\tenableTpu\x12-\n\x13tpu_ipv4_cidr_block\x18t \x01(\tR\x10tpuIpv4CidrBlock\x12]\n\x13\x64\x61tabase_encryption\x18& \x01(\x0b\x32,.google.container.v1beta1.DatabaseEncryptionR\x12\x64\x61tabaseEncryption\x12I\n\nconditions\x18v \x03(\x0b\x32).google.container.v1beta1.StatusConditionR\nconditions\x12\x38\n\x06master\x18| \x01(\x0b\x32 .google.container.v1beta1.MasterR\x06master\x12\x42\n\tautopilot\x18\x80\x01 \x01(\x0b\x32#.google.container.v1beta1.AutopilotR\tautopilot\x12\x15\n\x02id\x18\x81\x01 \x01(\tB\x04\xe2\x41\x01\x03R\x02id\x12^\n\x12node_pool_defaults\x18\x83\x01 \x01(\x0b\x32*.google.container.v1beta1.NodePoolDefaultsH\x00R\x10nodePoolDefaults\x88\x01\x01\x12O\n\x0elogging_config\x18\x84\x01 \x01(\x0b\x32\'.google.container.v1beta1.LoggingConfigR\rloggingConfig\x12X\n\x11monitoring_config\x18\x85\x01 \x01(\x0b\x32*.google.container.v1beta1.MonitoringConfigR\x10monitoringConfig\x1a\x41\n\x13ResourceLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"w\n\x06Status\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\x10\n\x0cPROVISIONING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x0f\n\x0bRECONCILING\x10\x03\x12\x0c\n\x08STOPPING\x10\x04\x12\t\n\x05\x45RROR\x10\x05\x12\x0c\n\x08\x44\x45GRADED\x10\x06\x42\x15\n\x13_node_pool_defaults\"r\n\x10NodePoolDefaults\x12^\n\x14node_config_defaults\x18\x01 \x01(\x0b\x32,.google.container.v1beta1.NodeConfigDefaultsR\x12nodeConfigDefaults\"\x14\n\x12NodeConfigDefaults\"\xa9\x1c\n\rClusterUpdate\x12\x30\n\x14\x64\x65sired_node_version\x18\x04 \x01(\tR\x12\x64\x65siredNodeVersion\x12<\n\x1a\x64\x65sired_monitoring_service\x18\x05 \x01(\tR\x18\x64\x65siredMonitoringService\x12Z\n\x15\x64\x65sired_addons_config\x18\x06 \x01(\x0b\x32&.google.container.v1beta1.AddonsConfigR\x13\x64\x65siredAddonsConfig\x12/\n\x14\x64\x65sired_node_pool_id\x18\x07 \x01(\tR\x11\x64\x65siredNodePoolId\x12,\n\x12\x64\x65sired_image_type\x18\x08 \x01(\tR\x10\x64\x65siredImageType\x12p\n\x1d\x64\x65sired_node_pool_autoscaling\x18\t \x01(\x0b\x32-.google.container.v1beta1.NodePoolAutoscalingR\x1a\x64\x65siredNodePoolAutoscaling\x12+\n\x11\x64\x65sired_locations\x18\n \x03(\tR\x10\x64\x65siredLocations\x12\x92\x01\n)desired_master_authorized_networks_config\x18\x0c \x01(\x0b\x32\x38.google.container.v1beta1.MasterAuthorizedNetworksConfigR%desiredMasterAuthorizedNetworksConfig\x12}\n\"desired_pod_security_policy_config\x18\x0e \x01(\x0b\x32\x31.google.container.v1beta1.PodSecurityPolicyConfigR\x1e\x64\x65siredPodSecurityPolicyConfig\x12l\n\x1b\x64\x65sired_cluster_autoscaling\x18\x0f \x01(\x0b\x32,.google.container.v1beta1.ClusterAutoscalingR\x19\x64\x65siredClusterAutoscaling\x12o\n\x1c\x64\x65sired_binary_authorization\x18\x10 \x01(\x0b\x32-.google.container.v1beta1.BinaryAuthorizationR\x1a\x64\x65siredBinaryAuthorization\x12\x36\n\x17\x64\x65sired_logging_service\x18\x13 \x01(\tR\x15\x64\x65siredLoggingService\x12\x83\x01\n$desired_resource_usage_export_config\x18\x15 \x01(\x0b\x32\x33.google.container.v1beta1.ResourceUsageExportConfigR desiredResourceUsageExportConfig\x12y\n desired_vertical_pod_autoscaling\x18\x16 \x01(\x0b\x32\x30.google.container.v1beta1.VerticalPodAutoscalingR\x1d\x64\x65siredVerticalPodAutoscaling\x12s\n\x1e\x64\x65sired_private_cluster_config\x18\x19 \x01(\x0b\x32..google.container.v1beta1.PrivateClusterConfigR\x1b\x64\x65siredPrivateClusterConfig\x12\x83\x01\n$desired_intra_node_visibility_config\x18\x1a \x01(\x0b\x32\x33.google.container.v1beta1.IntraNodeVisibilityConfigR desiredIntraNodeVisibilityConfig\x12j\n\x1b\x64\x65sired_default_snat_status\x18\x1c \x01(\x0b\x32+.google.container.v1beta1.DefaultSnatStatusR\x18\x64\x65siredDefaultSnatStatus\x12\x66\n\x19\x64\x65sired_cluster_telemetry\x18\x1e \x01(\x0b\x32*.google.container.v1beta1.ClusterTelemetryR\x17\x64\x65siredClusterTelemetry\x12`\n\x17\x64\x65sired_release_channel\x18\x1f \x01(\x0b\x32(.google.container.v1beta1.ReleaseChannelR\x15\x64\x65siredReleaseChannel\x12Q\n\x12\x64\x65sired_tpu_config\x18& \x01(\x0b\x32#.google.container.v1beta1.TpuConfigR\x10\x64\x65siredTpuConfig\x12t\n\x1f\x64\x65sired_l4ilb_subsetting_config\x18\' \x01(\x0b\x32-.google.container.v1beta1.ILBSubsettingConfigR\x1c\x64\x65siredL4ilbSubsettingConfig\x12\x66\n\x19\x64\x65sired_datapath_provider\x18\x32 \x01(\x0e\x32*.google.container.v1beta1.DatapathProviderR\x17\x64\x65siredDatapathProvider\x12}\n\"desired_private_ipv6_google_access\x18\x33 \x01(\x0e\x32\x31.google.container.v1beta1.PrivateIPv6GoogleAccessR\x1e\x64\x65siredPrivateIpv6GoogleAccess\x12l\n\x1b\x64\x65sired_notification_config\x18\x37 \x01(\x0b\x32,.google.container.v1beta1.NotificationConfigR\x19\x64\x65siredNotificationConfig\x12\x34\n\x16\x64\x65sired_master_version\x18\x64 \x01(\tR\x14\x64\x65siredMasterVersion\x12l\n\x1b\x64\x65sired_database_encryption\x18. \x01(\x0b\x32,.google.container.v1beta1.DatabaseEncryptionR\x19\x64\x65siredDatabaseEncryption\x12y\n desired_workload_identity_config\x18/ \x01(\x0b\x32\x30.google.container.v1beta1.WorkloadIdentityConfigR\x1d\x64\x65siredWorkloadIdentityConfig\x12r\n\x1d\x64\x65sired_workload_certificates\x18= \x01(\x0b\x32..google.container.v1beta1.WorkloadCertificatesR\x1b\x64\x65siredWorkloadCertificates\x12]\n\x16\x64\x65sired_shielded_nodes\x18\x30 \x01(\x0b\x32\'.google.container.v1beta1.ShieldedNodesR\x14\x64\x65siredShieldedNodes\x12G\n\x0e\x64\x65sired_master\x18\x34 \x01(\x0b\x32 .google.container.v1beta1.MasterR\rdesiredMaster\x12Q\n\x12\x64\x65sired_dns_config\x18\x35 \x01(\x0b\x32#.google.container.v1beta1.DNSConfigR\x10\x64\x65siredDnsConfig\x12\x80\x01\n#desired_service_external_ips_config\x18< \x01(\x0b\x32\x32.google.container.v1beta1.ServiceExternalIPsConfigR\x1f\x64\x65siredServiceExternalIpsConfig\x12\x82\x01\n#desired_authenticator_groups_config\x18? \x01(\x0b\x32\x33.google.container.v1beta1.AuthenticatorGroupsConfigR desiredAuthenticatorGroupsConfig\x12]\n\x16\x64\x65sired_logging_config\x18@ \x01(\x0b\x32\'.google.container.v1beta1.LoggingConfigR\x14\x64\x65siredLoggingConfig\x12\x66\n\x19\x64\x65sired_monitoring_config\x18\x41 \x01(\x0b\x32*.google.container.v1beta1.MonitoringConfigR\x17\x64\x65siredMonitoringConfig\x12v\n\x1f\x64\x65sired_identity_service_config\x18\x42 \x01(\x0b\x32/.google.container.v1beta1.IdentityServiceConfigR\x1c\x64\x65siredIdentityServiceConfig\"\xb2\t\n\tOperation\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n\x04zone\x18\x02 \x01(\tB\x02\x18\x01R\x04zone\x12O\n\x0eoperation_type\x18\x03 \x01(\x0e\x32(.google.container.v1beta1.Operation.TypeR\roperationType\x12\x42\n\x06status\x18\x04 \x01(\x0e\x32*.google.container.v1beta1.Operation.StatusR\x06status\x12\x16\n\x06\x64\x65tail\x18\x08 \x01(\tR\x06\x64\x65tail\x12-\n\x0estatus_message\x18\x05 \x01(\tB\x06\x18\x01\xe2\x41\x01\x03R\rstatusMessage\x12\x1b\n\tself_link\x18\x06 \x01(\tR\x08selfLink\x12\x1f\n\x0btarget_link\x18\x07 \x01(\tR\ntargetLink\x12\x1a\n\x08location\x18\t \x01(\tR\x08location\x12\x1d\n\nstart_time\x18\n \x01(\tR\tstartTime\x12\x19\n\x08\x65nd_time\x18\x0b \x01(\tR\x07\x65ndTime\x12M\n\x08progress\x18\x0c \x01(\x0b\x32+.google.container.v1beta1.OperationProgressB\x04\xe2\x41\x01\x03R\x08progress\x12\\\n\x12\x63luster_conditions\x18\r \x03(\x0b\x32).google.container.v1beta1.StatusConditionB\x02\x18\x01R\x11\x63lusterConditions\x12^\n\x13nodepool_conditions\x18\x0e \x03(\x0b\x32).google.container.v1beta1.StatusConditionB\x02\x18\x01R\x12nodepoolConditions\x12(\n\x05\x65rror\x18\x0f \x01(\x0b\x32\x12.google.rpc.StatusR\x05\x65rror\"R\n\x06Status\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x08\n\x04\x44ONE\x10\x03\x12\x0c\n\x08\x41\x42ORTING\x10\x04\"\xfd\x02\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x12\n\x0e\x43REATE_CLUSTER\x10\x01\x12\x12\n\x0e\x44\x45LETE_CLUSTER\x10\x02\x12\x12\n\x0eUPGRADE_MASTER\x10\x03\x12\x11\n\rUPGRADE_NODES\x10\x04\x12\x12\n\x0eREPAIR_CLUSTER\x10\x05\x12\x12\n\x0eUPDATE_CLUSTER\x10\x06\x12\x14\n\x10\x43REATE_NODE_POOL\x10\x07\x12\x14\n\x10\x44\x45LETE_NODE_POOL\x10\x08\x12\x1c\n\x18SET_NODE_POOL_MANAGEMENT\x10\t\x12\x15\n\x11\x41UTO_REPAIR_NODES\x10\n\x12\x16\n\x12\x41UTO_UPGRADE_NODES\x10\x0b\x12\x0e\n\nSET_LABELS\x10\x0c\x12\x13\n\x0fSET_MASTER_AUTH\x10\r\x12\x16\n\x12SET_NODE_POOL_SIZE\x10\x0e\x12\x16\n\x12SET_NETWORK_POLICY\x10\x0f\x12\x1a\n\x16SET_MAINTENANCE_POLICY\x10\x10\"\x95\x03\n\x11OperationProgress\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x42\n\x06status\x18\x02 \x01(\x0e\x32*.google.container.v1beta1.Operation.StatusR\x06status\x12L\n\x07metrics\x18\x03 \x03(\x0b\x32\x32.google.container.v1beta1.OperationProgress.MetricR\x07metrics\x12\x43\n\x06stages\x18\x04 \x03(\x0b\x32+.google.container.v1beta1.OperationProgressR\x06stages\x1a\x94\x01\n\x06Metric\x12\x18\n\x04name\x18\x01 \x01(\tB\x04\xe2\x41\x01\x02R\x04name\x12\x1d\n\tint_value\x18\x02 \x01(\x03H\x00R\x08intValue\x12#\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00R\x0b\x64oubleValue\x12#\n\x0cstring_value\x18\x04 \x01(\tH\x00R\x0bstringValueB\x07\n\x05value\"\xb4\x01\n\x14\x43reateClusterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12\x41\n\x07\x63luster\x18\x03 \x01(\x0b\x32!.google.container.v1beta1.ClusterB\x04\xe2\x41\x01\x02R\x07\x63luster\x12\x16\n\x06parent\x18\x05 \x01(\tR\x06parent\"\x91\x01\n\x11GetClusterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"\xdb\x01\n\x14UpdateClusterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x45\n\x06update\x18\x04 \x01(\x0b\x32\'.google.container.v1beta1.ClusterUpdateB\x04\xe2\x41\x01\x02R\x06update\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"\x94\x07\n\x15UpdateNodePoolRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12\'\n\x0cnode_version\x18\x05 \x01(\tB\x04\xe2\x41\x01\x02R\x0bnodeVersion\x12#\n\nimage_type\x18\x06 \x01(\tB\x04\xe2\x41\x01\x02R\timageType\x12\x1c\n\tlocations\x18\r \x03(\tR\tlocations\x12j\n\x18workload_metadata_config\x18\x0e \x01(\x0b\x32\x30.google.container.v1beta1.WorkloadMetadataConfigR\x16workloadMetadataConfig\x12\x12\n\x04name\x18\x08 \x01(\tR\x04name\x12]\n\x10upgrade_settings\x18\x0f \x01(\x0b\x32\x32.google.container.v1beta1.NodePool.UpgradeSettingsR\x0fupgradeSettings\x12\x39\n\x04tags\x18\x10 \x01(\x0b\x32%.google.container.v1beta1.NetworkTagsR\x04tags\x12<\n\x06taints\x18\x11 \x01(\x0b\x32$.google.container.v1beta1.NodeTaintsR\x06taints\x12<\n\x06labels\x18\x12 \x01(\x0b\x32$.google.container.v1beta1.NodeLabelsR\x06labels\x12U\n\x11linux_node_config\x18\x13 \x01(\x0b\x32).google.container.v1beta1.LinuxNodeConfigR\x0flinuxNodeConfig\x12R\n\x0ekubelet_config\x18\x14 \x01(\x0b\x32+.google.container.v1beta1.NodeKubeletConfigR\rkubeletConfig\x12:\n\x05gvnic\x18\x1d \x01(\x0b\x32$.google.container.v1beta1.VirtualNICR\x05gvnic\"\x9e\x02\n\x1dSetNodePoolAutoscalingRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12U\n\x0b\x61utoscaling\x18\x05 \x01(\x0b\x32-.google.container.v1beta1.NodePoolAutoscalingB\x04\xe2\x41\x01\x02R\x0b\x61utoscaling\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xc7\x01\n\x18SetLoggingServiceRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12-\n\x0flogging_service\x18\x04 \x01(\tB\x04\xe2\x41\x01\x02R\x0eloggingService\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"\xd0\x01\n\x1bSetMonitoringServiceRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x33\n\x12monitoring_service\x18\x04 \x01(\tB\x04\xe2\x41\x01\x02R\x11monitoringService\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xe9\x01\n\x16SetAddonsConfigRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12Q\n\raddons_config\x18\x04 \x01(\x0b\x32&.google.container.v1beta1.AddonsConfigB\x04\xe2\x41\x01\x02R\x0c\x61\x64\x64onsConfig\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xb7\x01\n\x13SetLocationsRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\"\n\tlocations\x18\x04 \x03(\tB\x04\xe2\x41\x01\x02R\tlocations\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xc0\x01\n\x13UpdateMasterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12+\n\x0emaster_version\x18\x04 \x01(\tB\x04\xe2\x41\x01\x02R\rmasterVersion\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"\xff\x02\n\x14SetMasterAuthRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12S\n\x06\x61\x63tion\x18\x04 \x01(\x0e\x32\x35.google.container.v1beta1.SetMasterAuthRequest.ActionB\x04\xe2\x41\x01\x02R\x06\x61\x63tion\x12\x42\n\x06update\x18\x05 \x01(\x0b\x32$.google.container.v1beta1.MasterAuthB\x04\xe2\x41\x01\x02R\x06update\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"P\n\x06\x41\x63tion\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x10\n\x0cSET_PASSWORD\x10\x01\x12\x15\n\x11GENERATE_PASSWORD\x10\x02\x12\x10\n\x0cSET_USERNAME\x10\x03\"\x94\x01\n\x14\x44\x65leteClusterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x12\n\x04name\x18\x04 \x01(\tR\x04name\"p\n\x13ListClustersRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12\x16\n\x06parent\x18\x04 \x01(\tR\x06parent\"z\n\x14ListClustersResponse\x12=\n\x08\x63lusters\x18\x01 \x03(\x0b\x32!.google.container.v1beta1.ClusterR\x08\x63lusters\x12#\n\rmissing_zones\x18\x02 \x03(\tR\x0cmissingZones\"\x97\x01\n\x13GetOperationRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12)\n\x0coperation_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x0boperationId\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"r\n\x15ListOperationsRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12\x16\n\x06parent\x18\x04 \x01(\tR\x06parent\"\x9a\x01\n\x16\x43\x61ncelOperationRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12)\n\x0coperation_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x0boperationId\x12\x12\n\x04name\x18\x04 \x01(\tR\x04name\"\x82\x01\n\x16ListOperationsResponse\x12\x43\n\noperations\x18\x01 \x03(\x0b\x32#.google.container.v1beta1.OperationR\noperations\x12#\n\rmissing_zones\x18\x02 \x03(\tR\x0cmissingZones\"o\n\x16GetServerConfigRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12\x12\n\x04name\x18\x04 \x01(\tR\x04name\"\xc1\x07\n\x0cServerConfig\x12\x36\n\x17\x64\x65\x66\x61ult_cluster_version\x18\x01 \x01(\tR\x15\x64\x65\x66\x61ultClusterVersion\x12.\n\x13valid_node_versions\x18\x03 \x03(\tR\x11validNodeVersions\x12,\n\x12\x64\x65\x66\x61ult_image_type\x18\x04 \x01(\tR\x10\x64\x65\x66\x61ultImageType\x12*\n\x11valid_image_types\x18\x05 \x03(\tR\x0fvalidImageTypes\x12\x32\n\x15valid_master_versions\x18\x06 \x03(\tR\x13validMasterVersions\x12W\n\x08\x63hannels\x18\t \x03(\x0b\x32;.google.container.v1beta1.ServerConfig.ReleaseChannelConfigR\x08\x63hannels\x12p\n\x14windows_version_maps\x18\n \x03(\x0b\x32>.google.container.v1beta1.ServerConfig.WindowsVersionMapsEntryR\x12windowsVersionMaps\x1a\xfd\x02\n\x14ReleaseChannelConfig\x12J\n\x07\x63hannel\x18\x01 \x01(\x0e\x32\x30.google.container.v1beta1.ReleaseChannel.ChannelR\x07\x63hannel\x12\'\n\x0f\x64\x65\x66\x61ult_version\x18\x02 \x01(\tR\x0e\x64\x65\x66\x61ultVersion\x12\x7f\n\x12\x61vailable_versions\x18\x03 \x03(\x0b\x32L.google.container.v1beta1.ServerConfig.ReleaseChannelConfig.AvailableVersionB\x02\x18\x01R\x11\x61vailableVersions\x12%\n\x0evalid_versions\x18\x04 \x03(\tR\rvalidVersions\x1aH\n\x10\x41vailableVersion\x12\x18\n\x07version\x18\x01 \x01(\tR\x07version\x12\x16\n\x06reason\x18\x02 \x01(\tR\x06reason:\x02\x18\x01\x1ap\n\x17WindowsVersionMapsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).google.container.v1beta1.WindowsVersionsR\x05value:\x02\x38\x01\"\x84\x02\n\x0fWindowsVersions\x12\x63\n\x10windows_versions\x18\x01 \x03(\x0b\x32\x38.google.container.v1beta1.WindowsVersions.WindowsVersionR\x0fwindowsVersions\x1a\x8b\x01\n\x0eWindowsVersion\x12\x1d\n\nimage_type\x18\x01 \x01(\tR\timageType\x12\x1d\n\nos_version\x18\x02 \x01(\tR\tosVersion\x12;\n\x10support_end_date\x18\x03 \x01(\x0b\x32\x11.google.type.DateR\x0esupportEndDate\"\xe0\x01\n\x15\x43reateNodePoolRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x45\n\tnode_pool\x18\x04 \x01(\x0b\x32\".google.container.v1beta1.NodePoolB\x04\xe2\x41\x01\x02R\x08nodePool\x12\x16\n\x06parent\x18\x06 \x01(\tR\x06parent\"\xbf\x01\n\x15\x44\x65leteNodePoolRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\x98\x01\n\x14ListNodePoolsRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x16\n\x06parent\x18\x05 \x01(\tR\x06parent\"\xbc\x01\n\x12GetNodePoolRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xfd\x08\n\x08NodePool\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12<\n\x06\x63onfig\x18\x02 \x01(\x0b\x32$.google.container.v1beta1.NodeConfigR\x06\x63onfig\x12,\n\x12initial_node_count\x18\x03 \x01(\x05R\x10initialNodeCount\x12\x1c\n\tlocations\x18\r \x03(\tR\tlocations\x12R\n\x0enetwork_config\x18\x0e \x01(\x0b\x32+.google.container.v1beta1.NodeNetworkConfigR\rnetworkConfig\x12\x1b\n\tself_link\x18\x64 \x01(\tR\x08selfLink\x12\x18\n\x07version\x18\x65 \x01(\tR\x07version\x12.\n\x13instance_group_urls\x18\x66 \x03(\tR\x11instanceGroupUrls\x12\x41\n\x06status\x18g \x01(\x0e\x32).google.container.v1beta1.NodePool.StatusR\x06status\x12)\n\x0estatus_message\x18h \x01(\tB\x02\x18\x01R\rstatusMessage\x12O\n\x0b\x61utoscaling\x18\x04 \x01(\x0b\x32-.google.container.v1beta1.NodePoolAutoscalingR\x0b\x61utoscaling\x12H\n\nmanagement\x18\x05 \x01(\x0b\x32(.google.container.v1beta1.NodeManagementR\nmanagement\x12[\n\x13max_pods_constraint\x18\x06 \x01(\x0b\x32+.google.container.v1beta1.MaxPodsConstraintR\x11maxPodsConstraint\x12I\n\nconditions\x18i \x03(\x0b\x32).google.container.v1beta1.StatusConditionR\nconditions\x12+\n\x12pod_ipv4_cidr_size\x18\x07 \x01(\x05R\x0fpodIpv4CidrSize\x12]\n\x10upgrade_settings\x18k \x01(\x0b\x32\x32.google.container.v1beta1.NodePool.UpgradeSettingsR\x0fupgradeSettings\x1aW\n\x0fUpgradeSettings\x12\x1b\n\tmax_surge\x18\x01 \x01(\x05R\x08maxSurge\x12\'\n\x0fmax_unavailable\x18\x02 \x01(\x05R\x0emaxUnavailable\"\x81\x01\n\x06Status\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\x10\n\x0cPROVISIONING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x16\n\x12RUNNING_WITH_ERROR\x10\x03\x12\x0f\n\x0bRECONCILING\x10\x04\x12\x0c\n\x08STOPPING\x10\x05\x12\t\n\x05\x45RROR\x10\x06\"\xab\x01\n\x0eNodeManagement\x12!\n\x0c\x61uto_upgrade\x18\x01 \x01(\x08R\x0b\x61utoUpgrade\x12\x1f\n\x0b\x61uto_repair\x18\x02 \x01(\x08R\nautoRepair\x12U\n\x0fupgrade_options\x18\n \x01(\x0b\x32,.google.container.v1beta1.AutoUpgradeOptionsR\x0eupgradeOptions\"m\n\x12\x41utoUpgradeOptions\x12\x35\n\x17\x61uto_upgrade_start_time\x18\x01 \x01(\tR\x14\x61utoUpgradeStartTime\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\"\x83\x01\n\x11MaintenancePolicy\x12\x43\n\x06window\x18\x01 \x01(\x0b\x32+.google.container.v1beta1.MaintenanceWindowR\x06window\x12)\n\x10resource_version\x18\x03 \x01(\tR\x0fresourceVersion\"\xd6\x03\n\x11MaintenanceWindow\x12l\n\x18\x64\x61ily_maintenance_window\x18\x02 \x01(\x0b\x32\x30.google.container.v1beta1.DailyMaintenanceWindowH\x00R\x16\x64\x61ilyMaintenanceWindow\x12Z\n\x10recurring_window\x18\x03 \x01(\x0b\x32-.google.container.v1beta1.RecurringTimeWindowH\x00R\x0frecurringWindow\x12}\n\x16maintenance_exclusions\x18\x04 \x03(\x0b\x32\x46.google.container.v1beta1.MaintenanceWindow.MaintenanceExclusionsEntryR\x15maintenanceExclusions\x1an\n\x1aMaintenanceExclusionsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12:\n\x05value\x18\x02 \x01(\x0b\x32$.google.container.v1beta1.TimeWindowR\x05value:\x02\x38\x01\x42\x08\n\x06policy\"~\n\nTimeWindow\x12\x39\n\nstart_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tstartTime\x12\x35\n\x08\x65nd_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x07\x65ndTime\"s\n\x13RecurringTimeWindow\x12<\n\x06window\x18\x01 \x01(\x0b\x32$.google.container.v1beta1.TimeWindowR\x06window\x12\x1e\n\nrecurrence\x18\x02 \x01(\tR\nrecurrence\"S\n\x16\x44\x61ilyMaintenanceWindow\x12\x1d\n\nstart_time\x18\x02 \x01(\tR\tstartTime\x12\x1a\n\x08\x64uration\x18\x03 \x01(\tR\x08\x64uration\"\x96\x02\n\x1cSetNodePoolManagementRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12N\n\nmanagement\x18\x05 \x01(\x0b\x32(.google.container.v1beta1.NodeManagementB\x04\xe2\x41\x01\x02R\nmanagement\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"\xe5\x01\n\x16SetNodePoolSizeRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12#\n\nnode_count\x18\x05 \x01(\x05\x42\x04\xe2\x41\x01\x02R\tnodeCount\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"\xc8\x01\n\x1eRollbackNodePoolUpgradeRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"Z\n\x15ListNodePoolsResponse\x12\x41\n\nnode_pools\x18\x01 \x03(\x0b\x32\".google.container.v1beta1.NodePoolR\tnodePools\"\xbc\x04\n\x12\x43lusterAutoscaling\x12@\n\x1c\x65nable_node_autoprovisioning\x18\x01 \x01(\x08R\x1a\x65nableNodeAutoprovisioning\x12P\n\x0fresource_limits\x18\x02 \x03(\x0b\x32\'.google.container.v1beta1.ResourceLimitR\x0eresourceLimits\x12p\n\x13\x61utoscaling_profile\x18\x03 \x01(\x0e\x32?.google.container.v1beta1.ClusterAutoscaling.AutoscalingProfileR\x12\x61utoscalingProfile\x12\x89\x01\n#autoprovisioning_node_pool_defaults\x18\x04 \x01(\x0b\x32:.google.container.v1beta1.AutoprovisioningNodePoolDefaultsR autoprovisioningNodePoolDefaults\x12=\n\x1a\x61utoprovisioning_locations\x18\x05 \x03(\tR\x19\x61utoprovisioningLocations\"U\n\x12\x41utoscalingProfile\x12\x17\n\x13PROFILE_UNSPECIFIED\x10\x00\x12\x18\n\x14OPTIMIZE_UTILIZATION\x10\x01\x12\x0c\n\x08\x42\x41LANCED\x10\x02\"\xb6\x04\n AutoprovisioningNodePoolDefaults\x12!\n\x0coauth_scopes\x18\x01 \x03(\tR\x0boauthScopes\x12\'\n\x0fservice_account\x18\x02 \x01(\tR\x0eserviceAccount\x12]\n\x10upgrade_settings\x18\x03 \x01(\x0b\x32\x32.google.container.v1beta1.NodePool.UpgradeSettingsR\x0fupgradeSettings\x12H\n\nmanagement\x18\x04 \x01(\x0b\x32(.google.container.v1beta1.NodeManagementR\nmanagement\x12(\n\x10min_cpu_platform\x18\x05 \x01(\tR\x0eminCpuPlatform\x12 \n\x0c\x64isk_size_gb\x18\x06 \x01(\x05R\ndiskSizeGb\x12\x1b\n\tdisk_type\x18\x07 \x01(\tR\x08\x64iskType\x12j\n\x18shielded_instance_config\x18\x08 \x01(\x0b\x32\x30.google.container.v1beta1.ShieldedInstanceConfigR\x16shieldedInstanceConfig\x12)\n\x11\x62oot_disk_kms_key\x18\t \x01(\tR\x0e\x62ootDiskKmsKey\x12\x1d\n\nimage_type\x18\n \x01(\tR\timageType\"h\n\rResourceLimit\x12#\n\rresource_type\x18\x01 \x01(\tR\x0cresourceType\x12\x18\n\x07minimum\x18\x02 \x01(\x03R\x07minimum\x12\x18\n\x07maximum\x18\x03 \x01(\x03R\x07maximum\"\xa5\x01\n\x13NodePoolAutoscaling\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12$\n\x0emin_node_count\x18\x02 \x01(\x05R\x0cminNodeCount\x12$\n\x0emax_node_count\x18\x03 \x01(\x05R\x0cmaxNodeCount\x12(\n\x0f\x61utoprovisioned\x18\x04 \x01(\x08R\x0f\x61utoprovisioned\"\xf5\x02\n\x10SetLabelsRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12m\n\x0fresource_labels\x18\x04 \x03(\x0b\x32>.google.container.v1beta1.SetLabelsRequest.ResourceLabelsEntryB\x04\xe2\x41\x01\x02R\x0eresourceLabels\x12\x31\n\x11label_fingerprint\x18\x05 \x01(\tB\x04\xe2\x41\x01\x02R\x10labelFingerprint\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\x1a\x41\n\x13ResourceLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xb4\x01\n\x14SetLegacyAbacRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x1e\n\x07\x65nabled\x18\x04 \x01(\x08\x42\x04\xe2\x41\x01\x02R\x07\x65nabled\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xc5\x01\n\x16StartIPRotationRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\x12-\n\x12rotate_credentials\x18\x07 \x01(\x08R\x11rotateCredentials\"\x99\x01\n\x19\x43ompleteIPRotationRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"\x99\x01\n\x11\x41\x63\x63\x65leratorConfig\x12+\n\x11\x61\x63\x63\x65lerator_count\x18\x01 \x01(\x03R\x10\x61\x63\x63\x65leratorCount\x12)\n\x10\x61\x63\x63\x65lerator_type\x18\x02 \x01(\tR\x0f\x61\x63\x63\x65leratorType\x12,\n\x12gpu_partition_size\x18\x03 \x01(\tR\x10gpuPartitionSize\"\xdf\x02\n\x16WorkloadMetadataConfig\x12\x66\n\rnode_metadata\x18\x01 \x01(\x0e\x32=.google.container.v1beta1.WorkloadMetadataConfig.NodeMetadataB\x02\x18\x01R\x0cnodeMetadata\x12I\n\x04mode\x18\x02 \x01(\x0e\x32\x35.google.container.v1beta1.WorkloadMetadataConfig.ModeR\x04mode\"P\n\x0cNodeMetadata\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06SECURE\x10\x01\x12\n\n\x06\x45XPOSE\x10\x02\x12\x17\n\x13GKE_METADATA_SERVER\x10\x03\"@\n\x04Mode\x12\x14\n\x10MODE_UNSPECIFIED\x10\x00\x12\x10\n\x0cGCE_METADATA\x10\x01\x12\x10\n\x0cGKE_METADATA\x10\x02\"\xed\x01\n\x17SetNetworkPolicyRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12T\n\x0enetwork_policy\x18\x04 \x01(\x0b\x32\'.google.container.v1beta1.NetworkPolicyB\x04\xe2\x41\x01\x02R\rnetworkPolicy\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xf7\x01\n\x1bSetMaintenancePolicyRequest\x12#\n\nproject_id\x18\x01 \x01(\tB\x04\xe2\x41\x01\x02R\tprojectId\x12\x18\n\x04zone\x18\x02 \x01(\tB\x04\xe2\x41\x01\x02R\x04zone\x12#\n\ncluster_id\x18\x03 \x01(\tB\x04\xe2\x41\x01\x02R\tclusterId\x12`\n\x12maintenance_policy\x18\x04 \x01(\x0b\x32+.google.container.v1beta1.MaintenancePolicyB\x04\xe2\x41\x01\x02R\x11maintenancePolicy\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"4\n\x14ListLocationsRequest\x12\x1c\n\x06parent\x18\x01 \x01(\tB\x04\xe2\x41\x01\x02R\x06parent\"\x81\x01\n\x15ListLocationsResponse\x12@\n\tlocations\x18\x01 \x03(\x0b\x32\".google.container.v1beta1.LocationR\tlocations\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xca\x01\n\x08Location\x12\x43\n\x04type\x18\x01 \x01(\x0e\x32/.google.container.v1beta1.Location.LocationTypeR\x04type\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12 \n\x0brecommended\x18\x03 \x01(\x08R\x0brecommended\"C\n\x0cLocationType\x12\x1d\n\x19LOCATION_TYPE_UNSPECIFIED\x10\x00\x12\x08\n\x04ZONE\x10\x01\x12\n\n\x06REGION\x10\x02\"\xd0\x02\n\x0fStatusCondition\x12\x46\n\x04\x63ode\x18\x01 \x01(\x0e\x32..google.container.v1beta1.StatusCondition.CodeB\x02\x18\x01R\x04\x63ode\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\x12\x37\n\x0e\x63\x61nonical_code\x18\x03 \x01(\x0e\x32\x10.google.rpc.CodeR\rcanonicalCode\"\xa1\x01\n\x04\x43ode\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x10\n\x0cGCE_STOCKOUT\x10\x01\x12\x1f\n\x1bGKE_SERVICE_ACCOUNT_DELETED\x10\x02\x12\x16\n\x12GCE_QUOTA_EXCEEDED\x10\x03\x12\x13\n\x0fSET_BY_OPERATOR\x10\x04\x12\x17\n\x13\x43LOUD_KMS_KEY_ERROR\x10\x07\x12\x0f\n\x0b\x43\x41_EXPIRING\x10\t\x1a\x02\x18\x01\"\x9f\x05\n\rNetworkConfig\x12\x18\n\x07network\x18\x01 \x01(\tR\x07network\x12\x1e\n\nsubnetwork\x18\x02 \x01(\tR\nsubnetwork\x12?\n\x1c\x65nable_intra_node_visibility\x18\x05 \x01(\x08R\x19\x65nableIntraNodeVisibility\x12[\n\x13\x64\x65\x66\x61ult_snat_status\x18\x07 \x01(\x0b\x32+.google.container.v1beta1.DefaultSnatStatusR\x11\x64\x65\x66\x61ultSnatStatus\x12\x36\n\x17\x65nable_l4ilb_subsetting\x18\n \x01(\x08R\x15\x65nableL4ilbSubsetting\x12W\n\x11\x64\x61tapath_provider\x18\x0b \x01(\x0e\x32*.google.container.v1beta1.DatapathProviderR\x10\x64\x61tapathProvider\x12n\n\x1aprivate_ipv6_google_access\x18\x0c \x01(\x0e\x32\x31.google.container.v1beta1.PrivateIPv6GoogleAccessR\x17privateIpv6GoogleAccess\x12\x42\n\ndns_config\x18\r \x01(\x0b\x32#.google.container.v1beta1.DNSConfigR\tdnsConfig\x12q\n\x1bservice_external_ips_config\x18\x0f \x01(\x0b\x32\x32.google.container.v1beta1.ServiceExternalIPsConfigR\x18serviceExternalIpsConfig\"4\n\x18ServiceExternalIPsConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\x90\x01\n\x1cListUsableSubnetworksRequest\x12\x1c\n\x06parent\x18\x01 \x01(\tB\x04\xe2\x41\x01\x02R\x06parent\x12\x16\n\x06\x66ilter\x18\x02 \x01(\tR\x06\x66ilter\x12\x1b\n\tpage_size\x18\x03 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x04 \x01(\tR\tpageToken\"\x95\x01\n\x1dListUsableSubnetworksResponse\x12L\n\x0bsubnetworks\x18\x01 \x03(\x0b\x32*.google.container.v1beta1.UsableSubnetworkR\x0bsubnetworks\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xa5\x02\n\x1eUsableSubnetworkSecondaryRange\x12\x1d\n\nrange_name\x18\x01 \x01(\tR\trangeName\x12\"\n\rip_cidr_range\x18\x02 \x01(\tR\x0bipCidrRange\x12W\n\x06status\x18\x03 \x01(\x0e\x32?.google.container.v1beta1.UsableSubnetworkSecondaryRange.StatusR\x06status\"g\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06UNUSED\x10\x01\x12\x12\n\x0eIN_USE_SERVICE\x10\x02\x12\x18\n\x14IN_USE_SHAREABLE_POD\x10\x03\x12\x16\n\x12IN_USE_MANAGED_POD\x10\x04\"\x81\x02\n\x10UsableSubnetwork\x12\x1e\n\nsubnetwork\x18\x01 \x01(\tR\nsubnetwork\x12\x18\n\x07network\x18\x02 \x01(\tR\x07network\x12\"\n\rip_cidr_range\x18\x03 \x01(\tR\x0bipCidrRange\x12h\n\x13secondary_ip_ranges\x18\x04 \x03(\x0b\x32\x38.google.container.v1beta1.UsableSubnetworkSecondaryRangeR\x11secondaryIpRanges\x12%\n\x0estatus_message\x18\x05 \x01(\tR\rstatusMessage\"2\n\x16VerticalPodAutoscaling\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"/\n\x11\x44\x65\x66\x61ultSnatStatus\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"5\n\x19IntraNodeVisibilityConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"/\n\x13ILBSubsettingConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xf6\x02\n\tDNSConfig\x12M\n\x0b\x63luster_dns\x18\x01 \x01(\x0e\x32,.google.container.v1beta1.DNSConfig.ProviderR\nclusterDns\x12X\n\x11\x63luster_dns_scope\x18\x02 \x01(\x0e\x32,.google.container.v1beta1.DNSConfig.DNSScopeR\x0f\x63lusterDnsScope\x12,\n\x12\x63luster_dns_domain\x18\x03 \x01(\tR\x10\x63lusterDnsDomain\"I\n\x08Provider\x12\x18\n\x14PROVIDER_UNSPECIFIED\x10\x00\x12\x14\n\x10PLATFORM_DEFAULT\x10\x01\x12\r\n\tCLOUD_DNS\x10\x02\"G\n\x08\x44NSScope\x12\x19\n\x15\x44NS_SCOPE_UNSPECIFIED\x10\x00\x12\x11\n\rCLUSTER_SCOPE\x10\x01\x12\r\n\tVPC_SCOPE\x10\x02\">\n\x11MaxPodsConstraint\x12)\n\x11max_pods_per_node\x18\x01 \x01(\x03R\x0emaxPodsPerNode\"\x9d\x01\n\x16WorkloadIdentityConfig\x12\x31\n\x12identity_namespace\x18\x01 \x01(\tB\x02\x18\x01R\x11identityNamespace\x12#\n\rworkload_pool\x18\x02 \x01(\tR\x0cworkloadPool\x12+\n\x11identity_provider\x18\x03 \x01(\tR\x10identityProvider\"c\n\x14WorkloadCertificates\x12K\n\x13\x65nable_certificates\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x12\x65nableCertificates\"\xad\x01\n\x12\x44\x61tabaseEncryption\x12H\n\x05state\x18\x02 \x01(\x0e\x32\x32.google.container.v1beta1.DatabaseEncryption.StateR\x05state\x12\x19\n\x08key_name\x18\x01 \x01(\tR\x07keyName\"2\n\x05State\x12\x0b\n\x07UNKNOWN\x10\x00\x12\r\n\tENCRYPTED\x10\x01\x12\r\n\tDECRYPTED\x10\x02\"\xd9\x03\n\x19ResourceUsageExportConfig\x12z\n\x14\x62igquery_destination\x18\x01 \x01(\x0b\x32G.google.container.v1beta1.ResourceUsageExportConfig.BigQueryDestinationR\x13\x62igqueryDestination\x12\x43\n\x1e\x65nable_network_egress_metering\x18\x02 \x01(\x08R\x1b\x65nableNetworkEgressMetering\x12\x8d\x01\n\x1b\x63onsumption_metering_config\x18\x03 \x01(\x0b\x32M.google.container.v1beta1.ResourceUsageExportConfig.ConsumptionMeteringConfigR\x19\x63onsumptionMeteringConfig\x1a\x34\n\x13\x42igQueryDestination\x12\x1d\n\ndataset_id\x18\x01 \x01(\tR\tdatasetId\x1a\x35\n\x19\x43onsumptionMeteringConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\")\n\rShieldedNodes\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"&\n\nVirtualNIC\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"0\n\x16GetOpenIDConfigRequest\x12\x16\n\x06parent\x18\x01 \x01(\tR\x06parent\"\xdb\x02\n\x17GetOpenIDConfigResponse\x12\x16\n\x06issuer\x18\x01 \x01(\tR\x06issuer\x12\x19\n\x08jwks_uri\x18\x02 \x01(\tR\x07jwksUri\x12\x38\n\x18response_types_supported\x18\x03 \x03(\tR\x16responseTypesSupported\x12\x36\n\x17subject_types_supported\x18\x04 \x03(\tR\x15subjectTypesSupported\x12O\n%id_token_signing_alg_values_supported\x18\x05 \x03(\tR idTokenSigningAlgValuesSupported\x12)\n\x10\x63laims_supported\x18\x06 \x03(\tR\x0f\x63laimsSupported\x12\x1f\n\x0bgrant_types\x18\x07 \x03(\tR\ngrantTypes\"/\n\x15GetJSONWebKeysRequest\x12\x16\n\x06parent\x18\x01 \x01(\tR\x06parent\"\x97\x01\n\x03Jwk\x12\x10\n\x03kty\x18\x01 \x01(\tR\x03kty\x12\x10\n\x03\x61lg\x18\x02 \x01(\tR\x03\x61lg\x12\x10\n\x03use\x18\x03 \x01(\tR\x03use\x12\x10\n\x03kid\x18\x04 \x01(\tR\x03kid\x12\x0c\n\x01n\x18\x05 \x01(\tR\x01n\x12\x0c\n\x01\x65\x18\x06 \x01(\tR\x01\x65\x12\x0c\n\x01x\x18\x07 \x01(\tR\x01x\x12\x0c\n\x01y\x18\x08 \x01(\tR\x01y\x12\x10\n\x03\x63rv\x18\t \x01(\tR\x03\x63rv\"K\n\x16GetJSONWebKeysResponse\x12\x31\n\x04keys\x18\x01 \x03(\x0b\x32\x1d.google.container.v1beta1.JwkR\x04keys\"\x9c\x01\n\x0eReleaseChannel\x12J\n\x07\x63hannel\x18\x01 \x01(\x0e\x32\x30.google.container.v1beta1.ReleaseChannel.ChannelR\x07\x63hannel\">\n\x07\x43hannel\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\t\n\x05RAPID\x10\x01\x12\x0b\n\x07REGULAR\x10\x02\x12\n\n\x06STABLE\x10\x03\"\x83\x01\n\tTpuConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12\x34\n\x16use_service_networking\x18\x02 \x01(\x08R\x14useServiceNetworking\x12&\n\x0fipv4_cidr_block\x18\x03 \x01(\tR\ripv4CidrBlock\"\x08\n\x06Master\"%\n\tAutopilot\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xbd\x01\n\x12NotificationConfig\x12K\n\x06pubsub\x18\x01 \x01(\x0b\x32\x33.google.container.v1beta1.NotificationConfig.PubSubR\x06pubsub\x1aZ\n\x06PubSub\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12\x36\n\x05topic\x18\x02 \x01(\tB \xfa\x41\x1d\n\x1bpubsub.googleapis.com/TopicR\x05topic\"-\n\x11\x43onfidentialNodes\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xba\x02\n\x0cUpgradeEvent\x12R\n\rresource_type\x18\x01 \x01(\x0e\x32-.google.container.v1beta1.UpgradeResourceTypeR\x0cresourceType\x12\x1c\n\toperation\x18\x02 \x01(\tR\toperation\x12L\n\x14operation_start_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x12operationStartTime\x12\'\n\x0f\x63urrent_version\x18\x04 \x01(\tR\x0e\x63urrentVersion\x12%\n\x0etarget_version\x18\x05 \x01(\tR\rtargetVersion\x12\x1a\n\x08resource\x18\x06 \x01(\tR\x08resource\"\xca\x02\n\x15UpgradeAvailableEvent\x12\x18\n\x07version\x18\x01 \x01(\tR\x07version\x12R\n\rresource_type\x18\x02 \x01(\x0e\x32-.google.container.v1beta1.UpgradeResourceTypeR\x0cresourceType\x12Q\n\x0frelease_channel\x18\x03 \x01(\x0b\x32(.google.container.v1beta1.ReleaseChannelR\x0ereleaseChannel\x12\x1a\n\x08resource\x18\x04 \x01(\tR\x08resource\x12T\n\x10windows_versions\x18\x05 \x01(\x0b\x32).google.container.v1beta1.WindowsVersionsR\x0fwindowsVersions\"1\n\x15IdentityServiceConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"l\n\rLoggingConfig\x12[\n\x10\x63omponent_config\x18\x01 \x01(\x0b\x32\x30.google.container.v1beta1.LoggingComponentConfigR\x0f\x63omponentConfig\"\xcf\x01\n\x16LoggingComponentConfig\x12g\n\x11\x65nable_components\x18\x01 \x03(\x0e\x32:.google.container.v1beta1.LoggingComponentConfig.ComponentR\x10\x65nableComponents\"L\n\tComponent\x12\x19\n\x15\x43OMPONENT_UNSPECIFIED\x10\x00\x12\x15\n\x11SYSTEM_COMPONENTS\x10\x01\x12\r\n\tWORKLOADS\x10\x02\"r\n\x10MonitoringConfig\x12^\n\x10\x63omponent_config\x18\x01 \x01(\x0b\x32\x33.google.container.v1beta1.MonitoringComponentConfigR\x0f\x63omponentConfig\"\xd5\x01\n\x19MonitoringComponentConfig\x12j\n\x11\x65nable_components\x18\x01 \x03(\x0e\x32=.google.container.v1beta1.MonitoringComponentConfig.ComponentR\x10\x65nableComponents\"L\n\tComponent\x12\x19\n\x15\x43OMPONENT_UNSPECIFIED\x10\x00\x12\x15\n\x11SYSTEM_COMPONENTS\x10\x01\x12\r\n\tWORKLOADS\x10\x02*\xc6\x01\n\x17PrivateIPv6GoogleAccess\x12*\n&PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED\x10\x00\x12\'\n#PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED\x10\x01\x12(\n$PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE\x10\x02\x12,\n(PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL\x10\x03*a\n\x10\x44\x61tapathProvider\x12!\n\x1d\x44\x41TAPATH_PROVIDER_UNSPECIFIED\x10\x00\x12\x13\n\x0fLEGACY_DATAPATH\x10\x01\x12\x15\n\x11\x41\x44VANCED_DATAPATH\x10\x02*W\n\x13UpgradeResourceType\x12%\n!UPGRADE_RESOURCE_TYPE_UNSPECIFIED\x10\x00\x12\n\n\x06MASTER\x10\x01\x12\r\n\tNODE_POOL\x10\x02\x32\xeaJ\n\x0e\x43lusterManager\x12\xf3\x01\n\x0cListClusters\x12-.google.container.v1beta1.ListClustersRequest\x1a..google.container.v1beta1.ListClustersResponse\"\x83\x01\xda\x41\x0fproject_id,zone\x82\xd3\xe4\x93\x02k\x12\x31/v1beta1/{parent=projects/*/locations/*}/clustersZ6\x12\x34/v1beta1/projects/{project_id}/zones/{zone}/clusters\x12\xfa\x01\n\nGetCluster\x12+.google.container.v1beta1.GetClusterRequest\x1a!.google.container.v1beta1.Cluster\"\x9b\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02x\x12\x31/v1beta1/{name=projects/*/locations/*/clusters/*}ZC\x12\x41/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}\x12\xf8\x01\n\rCreateCluster\x12..google.container.v1beta1.CreateClusterRequest\x1a#.google.container.v1beta1.Operation\"\x91\x01\xda\x41\x17project_id,zone,cluster\x82\xd3\xe4\x93\x02q\"1/v1beta1/{parent=projects/*/locations/*}/clusters:\x01*Z9\"4/v1beta1/projects/{project_id}/zones/{zone}/clusters:\x01*\x12\x8f\x02\n\rUpdateCluster\x12..google.container.v1beta1.UpdateClusterRequest\x1a#.google.container.v1beta1.Operation\"\xa8\x01\xda\x41!project_id,zone,cluster_id,update\x82\xd3\xe4\x93\x02~\x1a\x31/v1beta1/{name=projects/*/locations/*/clusters/*}:\x01*ZF\x1a\x41/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:\x01*\x12\x9a\x02\n\x0eUpdateNodePool\x12/.google.container.v1beta1.UpdateNodePoolRequest\x1a#.google.container.v1beta1.Operation\"\xb1\x01\x82\xd3\xe4\x93\x02\xaa\x01\x1a=/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:\x01*Zf\"a/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/update:\x01*\x12\xbe\x02\n\x16SetNodePoolAutoscaling\x12\x37.google.container.v1beta1.SetNodePoolAutoscalingRequest\x1a#.google.container.v1beta1.Operation\"\xc5\x01\x82\xd3\xe4\x93\x02\xbe\x01\"L/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setAutoscaling:\x01*Zk\"f/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/autoscaling:\x01*\x12\xb4\x02\n\x11SetLoggingService\x12\x32.google.container.v1beta1.SetLoggingServiceRequest\x1a#.google.container.v1beta1.Operation\"\xc5\x01\xda\x41*project_id,zone,cluster_id,logging_service\x82\xd3\xe4\x93\x02\x91\x01\"</v1beta1/{name=projects/*/locations/*/clusters/*}:setLogging:\x01*ZN\"I/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/logging:\x01*\x12\xc3\x02\n\x14SetMonitoringService\x12\x35.google.container.v1beta1.SetMonitoringServiceRequest\x1a#.google.container.v1beta1.Operation\"\xce\x01\xda\x41-project_id,zone,cluster_id,monitoring_service\x82\xd3\xe4\x93\x02\x97\x01\"?/v1beta1/{name=projects/*/locations/*/clusters/*}:setMonitoring:\x01*ZQ\"L/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/monitoring:\x01*\x12\xac\x02\n\x0fSetAddonsConfig\x12\x30.google.container.v1beta1.SetAddonsConfigRequest\x1a#.google.container.v1beta1.Operation\"\xc1\x01\xda\x41(project_id,zone,cluster_id,addons_config\x82\xd3\xe4\x93\x02\x8f\x01\";/v1beta1/{name=projects/*/locations/*/clusters/*}:setAddons:\x01*ZM\"H/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/addons:\x01*\x12\xab\x02\n\x0cSetLocations\x12-.google.container.v1beta1.SetLocationsRequest\x1a#.google.container.v1beta1.Operation\"\xc6\x01\x88\x02\x01\xda\x41$project_id,zone,cluster_id,locations\x82\xd3\xe4\x93\x02\x95\x01\">/v1beta1/{name=projects/*/locations/*/clusters/*}:setLocations:\x01*ZP\"K/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/locations:\x01*\x12\xaa\x02\n\x0cUpdateMaster\x12-.google.container.v1beta1.UpdateMasterRequest\x1a#.google.container.v1beta1.Operation\"\xc5\x01\xda\x41)project_id,zone,cluster_id,master_version\x82\xd3\xe4\x93\x02\x92\x01\">/v1beta1/{name=projects/*/locations/*/clusters/*}:updateMaster:\x01*ZM\"H/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/master:\x01*\x12\x88\x02\n\rSetMasterAuth\x12..google.container.v1beta1.SetMasterAuthRequest\x1a#.google.container.v1beta1.Operation\"\xa1\x01\x82\xd3\xe4\x93\x02\x9a\x01\"?/v1beta1/{name=projects/*/locations/*/clusters/*}:setMasterAuth:\x01*ZT\"O/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setMasterAuth:\x01*\x12\x82\x02\n\rDeleteCluster\x12..google.container.v1beta1.DeleteClusterRequest\x1a#.google.container.v1beta1.Operation\"\x9b\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02x*1/v1beta1/{name=projects/*/locations/*/clusters/*}ZC*A/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}\x12\xfd\x01\n\x0eListOperations\x12/.google.container.v1beta1.ListOperationsRequest\x1a\x30.google.container.v1beta1.ListOperationsResponse\"\x87\x01\xda\x41\x0fproject_id,zone\x82\xd3\xe4\x93\x02o\x12\x33/v1beta1/{parent=projects/*/locations/*}/operationsZ8\x12\x36/v1beta1/projects/{project_id}/zones/{zone}/operations\x12\x88\x02\n\x0cGetOperation\x12-.google.container.v1beta1.GetOperationRequest\x1a#.google.container.v1beta1.Operation\"\xa3\x01\xda\x41\x1cproject_id,zone,operation_id\x82\xd3\xe4\x93\x02~\x12\x33/v1beta1/{name=projects/*/locations/*/operations/*}ZG\x12\x45/v1beta1/projects/{project_id}/zones/{zone}/operations/{operation_id}\x12\x96\x02\n\x0f\x43\x61ncelOperation\x12\x30.google.container.v1beta1.CancelOperationRequest\x1a\x16.google.protobuf.Empty\"\xb8\x01\xda\x41\x1cproject_id,zone,operation_id\x82\xd3\xe4\x93\x02\x92\x01\":/v1beta1/{name=projects/*/locations/*/operations/*}:cancel:\x01*ZQ\"L/v1beta1/projects/{project_id}/zones/{zone}/operations/{operation_id}:cancel:\x01*\x12\xf7\x01\n\x0fGetServerConfig\x12\x30.google.container.v1beta1.GetServerConfigRequest\x1a&.google.container.v1beta1.ServerConfig\"\x89\x01\xda\x41\x0fproject_id,zone\x82\xd3\xe4\x93\x02q\x12\x33/v1beta1/{name=projects/*/locations/*}/serverConfigZ:\x12\x38/v1beta1/projects/{project_id}/zones/{zone}/serverconfig\x12\xa5\x02\n\rListNodePools\x12..google.container.v1beta1.ListNodePoolsRequest\x1a/.google.container.v1beta1.ListNodePoolsResponse\"\xb2\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02\x8e\x01\x12=/v1beta1/{parent=projects/*/locations/*/clusters/*}/nodePoolsZM\x12K/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools\x12\xb5\x01\n\x0eGetJSONWebKeys\x12/.google.container.v1beta1.GetJSONWebKeysRequest\x1a\x30.google.container.v1beta1.GetJSONWebKeysResponse\"@\x82\xd3\xe4\x93\x02:\x12\x38/v1beta1/{parent=projects/*/locations/*/clusters/*}/jwks\x12\xb0\x02\n\x0bGetNodePool\x12,.google.container.v1beta1.GetNodePoolRequest\x1a\".google.container.v1beta1.NodePool\"\xce\x01\xda\x41\'project_id,zone,cluster_id,node_pool_id\x82\xd3\xe4\x93\x02\x9d\x01\x12=/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}Z\\\x12Z/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}\x12\xab\x02\n\x0e\x43reateNodePool\x12/.google.container.v1beta1.CreateNodePoolRequest\x1a#.google.container.v1beta1.Operation\"\xc2\x01\xda\x41$project_id,zone,cluster_id,node_pool\x82\xd3\xe4\x93\x02\x94\x01\"=/v1beta1/{parent=projects/*/locations/*/clusters/*}/nodePools:\x01*ZP\"K/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools:\x01*\x12\xb7\x02\n\x0e\x44\x65leteNodePool\x12/.google.container.v1beta1.DeleteNodePoolRequest\x1a#.google.container.v1beta1.Operation\"\xce\x01\xda\x41\'project_id,zone,cluster_id,node_pool_id\x82\xd3\xe4\x93\x02\x9d\x01*=/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}Z\\*Z/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}\x12\xe1\x02\n\x17RollbackNodePoolUpgrade\x12\x38.google.container.v1beta1.RollbackNodePoolUpgradeRequest\x1a#.google.container.v1beta1.Operation\"\xe6\x01\xda\x41\'project_id,zone,cluster_id,node_pool_id\x82\xd3\xe4\x93\x02\xb5\x01\"F/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:rollback:\x01*Zh\"c/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}:rollback:\x01*\x12\xf2\x02\n\x15SetNodePoolManagement\x12\x36.google.container.v1beta1.SetNodePoolManagementRequest\x1a#.google.container.v1beta1.Operation\"\xfb\x01\xda\x41\x32project_id,zone,cluster_id,node_pool_id,management\x82\xd3\xe4\x93\x02\xbf\x01\"K/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setManagement:\x01*Zm\"h/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/setManagement:\x01*\x12\xc4\x02\n\tSetLabels\x12*.google.container.v1beta1.SetLabelsRequest\x1a#.google.container.v1beta1.Operation\"\xe5\x01\xda\x41<project_id,zone,cluster_id,resource_labels,label_fingerprint\x82\xd3\xe4\x93\x02\x9f\x01\"C/v1beta1/{name=projects/*/locations/*/clusters/*}:setResourceLabels:\x01*ZU\"P/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/resourceLabels:\x01*\x12\xaa\x02\n\rSetLegacyAbac\x12..google.container.v1beta1.SetLegacyAbacRequest\x1a#.google.container.v1beta1.Operation\"\xc3\x01\xda\x41\"project_id,zone,cluster_id,enabled\x82\xd3\xe4\x93\x02\x97\x01\"?/v1beta1/{name=projects/*/locations/*/clusters/*}:setLegacyAbac:\x01*ZQ\"L/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/legacyAbac:\x01*\x12\xad\x02\n\x0fStartIPRotation\x12\x30.google.container.v1beta1.StartIPRotationRequest\x1a#.google.container.v1beta1.Operation\"\xc2\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02\x9e\x01\"A/v1beta1/{name=projects/*/locations/*/clusters/*}:startIpRotation:\x01*ZV\"Q/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:startIpRotation:\x01*\x12\xb9\x02\n\x12\x43ompleteIPRotation\x12\x33.google.container.v1beta1.CompleteIPRotationRequest\x1a#.google.container.v1beta1.Operation\"\xc8\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02\xa4\x01\"D/v1beta1/{name=projects/*/locations/*/clusters/*}:completeIpRotation:\x01*ZY\"T/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:completeIpRotation:\x01*\x12\xa5\x02\n\x0fSetNodePoolSize\x12\x30.google.container.v1beta1.SetNodePoolSizeRequest\x1a#.google.container.v1beta1.Operation\"\xba\x01\x82\xd3\xe4\x93\x02\xb3\x01\"E/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setSize:\x01*Zg\"b/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/setSize:\x01*\x12\xc0\x02\n\x10SetNetworkPolicy\x12\x31.google.container.v1beta1.SetNetworkPolicyRequest\x1a#.google.container.v1beta1.Operation\"\xd3\x01\xda\x41)project_id,zone,cluster_id,network_policy\x82\xd3\xe4\x93\x02\xa0\x01\"B/v1beta1/{name=projects/*/locations/*/clusters/*}:setNetworkPolicy:\x01*ZW\"R/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setNetworkPolicy:\x01*\x12\xd4\x02\n\x14SetMaintenancePolicy\x12\x35.google.container.v1beta1.SetMaintenancePolicyRequest\x1a#.google.container.v1beta1.Operation\"\xdf\x01\xda\x41-project_id,zone,cluster_id,maintenance_policy\x82\xd3\xe4\x93\x02\xa8\x01\"F/v1beta1/{name=projects/*/locations/*/clusters/*}:setMaintenancePolicy:\x01*Z[\"V/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setMaintenancePolicy:\x01*\x12\xd4\x01\n\x15ListUsableSubnetworks\x12\x36.google.container.v1beta1.ListUsableSubnetworksRequest\x1a\x37.google.container.v1beta1.ListUsableSubnetworksResponse\"J\xda\x41\x06parent\x82\xd3\xe4\x93\x02;\x12\x39/v1beta1/{parent=projects/*}/aggregated/usableSubnetworks\x12\xa9\x01\n\rListLocations\x12..google.container.v1beta1.ListLocationsRequest\x1a/.google.container.v1beta1.ListLocationsResponse\"7\xda\x41\x06parent\x82\xd3\xe4\x93\x02(\x12&/v1beta1/{parent=projects/*}/locations\x1aL\xca\x41\x18\x63ontainer.googleapis.com\xd2\x41.https://www.googleapis.com/auth/cloud-platformB\xa1\x02\n\x1c\x63om.google.container.v1beta1B\x13\x43lusterServiceProtoP\x01ZAgoogle.golang.org/genproto/googleapis/container/v1beta1;container\xaa\x02\x1eGoogle.Cloud.Container.V1Beta1\xca\x02\x1eGoogle\\Cloud\\Container\\V1beta1\xea\x02!Google::Cloud::Container::V1beta1\xea\x41@\n\x1bpubsub.googleapis.com/Topic\x12!projects/{project}/topics/{topic}b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n.google/container/v1beta1/cluster_service.proto\x12\x18google.container.v1beta1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x15google/rpc/code.proto\x1a\x17google/rpc/status.proto\x1a\x16google/type/date.proto\"\x9f\x01\n\x0fLinuxNodeConfig\x12P\n\x07sysctls\x18\x01 \x03(\x0b\x32\x36.google.container.v1beta1.LinuxNodeConfig.SysctlsEntryR\x07sysctls\x1a:\n\x0cSysctlsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xb2\x01\n\x11NodeKubeletConfig\x12,\n\x12\x63pu_manager_policy\x18\x01 \x01(\tR\x10\x63puManagerPolicy\x12>\n\rcpu_cfs_quota\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x0b\x63puCfsQuota\x12/\n\x14\x63pu_cfs_quota_period\x18\x03 \x01(\tR\x11\x63puCfsQuotaPeriod\"\xf2\r\n\nNodeConfig\x12!\n\x0cmachine_type\x18\x01 \x01(\tR\x0bmachineType\x12 \n\x0c\x64isk_size_gb\x18\x02 \x01(\x05R\ndiskSizeGb\x12!\n\x0coauth_scopes\x18\x03 \x03(\tR\x0boauthScopes\x12\'\n\x0fservice_account\x18\t \x01(\tR\x0eserviceAccount\x12N\n\x08metadata\x18\x04 \x03(\x0b\x32\x32.google.container.v1beta1.NodeConfig.MetadataEntryR\x08metadata\x12\x1d\n\nimage_type\x18\x05 \x01(\tR\timageType\x12H\n\x06labels\x18\x06 \x03(\x0b\x32\x30.google.container.v1beta1.NodeConfig.LabelsEntryR\x06labels\x12&\n\x0flocal_ssd_count\x18\x07 \x01(\x05R\rlocalSsdCount\x12\x12\n\x04tags\x18\x08 \x03(\tR\x04tags\x12 \n\x0bpreemptible\x18\n \x01(\x08R\x0bpreemptible\x12O\n\x0c\x61\x63\x63\x65lerators\x18\x0b \x03(\x0b\x32+.google.container.v1beta1.AcceleratorConfigR\x0c\x61\x63\x63\x65lerators\x12N\n\x0esandbox_config\x18\x11 \x01(\x0b\x32\'.google.container.v1beta1.SandboxConfigR\rsandboxConfig\x12\x1d\n\nnode_group\x18\x12 \x01(\tR\tnodeGroup\x12`\n\x14reservation_affinity\x18\x13 \x01(\x0b\x32-.google.container.v1beta1.ReservationAffinityR\x13reservationAffinity\x12\x1b\n\tdisk_type\x18\x0c \x01(\tR\x08\x64iskType\x12(\n\x10min_cpu_platform\x18\r \x01(\tR\x0eminCpuPlatform\x12j\n\x18workload_metadata_config\x18\x0e \x01(\x0b\x32\x30.google.container.v1beta1.WorkloadMetadataConfigR\x16workloadMetadataConfig\x12;\n\x06taints\x18\x0f \x03(\x0b\x32#.google.container.v1beta1.NodeTaintR\x06taints\x12)\n\x11\x62oot_disk_kms_key\x18\x17 \x01(\tR\x0e\x62ootDiskKmsKey\x12j\n\x18shielded_instance_config\x18\x14 \x01(\x0b\x32\x30.google.container.v1beta1.ShieldedInstanceConfigR\x16shieldedInstanceConfig\x12U\n\x11linux_node_config\x18\x15 \x01(\x0b\x32).google.container.v1beta1.LinuxNodeConfigR\x0flinuxNodeConfig\x12R\n\x0ekubelet_config\x18\x16 \x01(\x0b\x32+.google.container.v1beta1.NodeKubeletConfigR\rkubeletConfig\x12j\n\x18\x65phemeral_storage_config\x18\x18 \x01(\x0b\x32\x30.google.container.v1beta1.EphemeralStorageConfigR\x16\x65phemeralStorageConfig\x12\x45\n\x0bgcfs_config\x18\x19 \x01(\x0b\x32$.google.container.v1beta1.GcfsConfigR\ngcfsConfig\x12m\n\x19\x61\x64vanced_machine_features\x18\x1a \x01(\x0b\x32\x31.google.container.v1beta1.AdvancedMachineFeaturesR\x17\x61\x64vancedMachineFeatures\x12:\n\x05gvnic\x18\x1d \x01(\x0b\x32$.google.container.v1beta1.VirtualNICR\x05gvnic\x12\x12\n\x04spot\x18  \x01(\x08R\x04spot\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"]\n\x17\x41\x64vancedMachineFeatures\x12-\n\x10threads_per_core\x18\x01 \x01(\x03H\x00R\x0ethreadsPerCore\x88\x01\x01\x42\x13\n\x11_threads_per_core\"\x8f\x01\n\x11NodeNetworkConfig\x12.\n\x10\x63reate_pod_range\x18\x04 \x01(\x08\x42\x04\xe2\x41\x01\x04R\x0e\x63reatePodRange\x12\x1b\n\tpod_range\x18\x05 \x01(\tR\x08podRange\x12-\n\x13pod_ipv4_cidr_block\x18\x06 \x01(\tR\x10podIpv4CidrBlock\"\x86\x01\n\x16ShieldedInstanceConfig\x12,\n\x12\x65nable_secure_boot\x18\x01 \x01(\x08R\x10\x65nableSecureBoot\x12>\n\x1b\x65nable_integrity_monitoring\x18\x02 \x01(\x08R\x19\x65nableIntegrityMonitoring\"\x9d\x01\n\rSandboxConfig\x12%\n\x0csandbox_type\x18\x01 \x01(\tB\x02\x18\x01R\x0bsandboxType\x12@\n\x04type\x18\x02 \x01(\x0e\x32,.google.container.v1beta1.SandboxConfig.TypeR\x04type\"#\n\x04Type\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06GVISOR\x10\x01\"@\n\x16\x45phemeralStorageConfig\x12&\n\x0flocal_ssd_count\x18\x01 \x01(\x05R\rlocalSsdCount\"&\n\nGcfsConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\x89\x02\n\x13ReservationAffinity\x12l\n\x18\x63onsume_reservation_type\x18\x01 \x01(\x0e\x32\x32.google.container.v1beta1.ReservationAffinity.TypeR\x16\x63onsumeReservationType\x12\x10\n\x03key\x18\x02 \x01(\tR\x03key\x12\x16\n\x06values\x18\x03 \x03(\tR\x06values\"Z\n\x04Type\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x12\n\x0eNO_RESERVATION\x10\x01\x12\x13\n\x0f\x41NY_RESERVATION\x10\x02\x12\x18\n\x14SPECIFIC_RESERVATION\x10\x03\"\xd2\x01\n\tNodeTaint\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value\x12\x42\n\x06\x65\x66\x66\x65\x63t\x18\x03 \x01(\x0e\x32*.google.container.v1beta1.NodeTaint.EffectR\x06\x65\x66\x66\x65\x63t\"Y\n\x06\x45\x66\x66\x65\x63t\x12\x16\n\x12\x45\x46\x46\x45\x43T_UNSPECIFIED\x10\x00\x12\x0f\n\x0bNO_SCHEDULE\x10\x01\x12\x16\n\x12PREFER_NO_SCHEDULE\x10\x02\x12\x0e\n\nNO_EXECUTE\x10\x03\"I\n\nNodeTaints\x12;\n\x06taints\x18\x01 \x03(\x0b\x32#.google.container.v1beta1.NodeTaintR\x06taints\"\x91\x01\n\nNodeLabels\x12H\n\x06labels\x18\x01 \x03(\x0b\x32\x30.google.container.v1beta1.NodeLabels.LabelsEntryR\x06labels\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"!\n\x0bNetworkTags\x12\x12\n\x04tags\x18\x01 \x03(\tR\x04tags\"\xbf\x02\n\nMasterAuth\x12\x1e\n\x08username\x18\x01 \x01(\tB\x02\x18\x01R\x08username\x12\x1e\n\x08password\x18\x02 \x01(\tB\x02\x18\x01R\x08password\x12m\n\x19\x63lient_certificate_config\x18\x03 \x01(\x0b\x32\x31.google.container.v1beta1.ClientCertificateConfigR\x17\x63lientCertificateConfig\x12\x34\n\x16\x63luster_ca_certificate\x18\x64 \x01(\tR\x14\x63lusterCaCertificate\x12-\n\x12\x63lient_certificate\x18\x65 \x01(\tR\x11\x63lientCertificate\x12\x1d\n\nclient_key\x18\x66 \x01(\tR\tclientKey\"S\n\x17\x43lientCertificateConfig\x12\x38\n\x18issue_client_certificate\x18\x01 \x01(\x08R\x16issueClientCertificate\"\xc2\t\n\x0c\x41\x64\x64onsConfig\x12[\n\x13http_load_balancing\x18\x01 \x01(\x0b\x32+.google.container.v1beta1.HttpLoadBalancingR\x11httpLoadBalancing\x12p\n\x1ahorizontal_pod_autoscaling\x18\x02 \x01(\x0b\x32\x32.google.container.v1beta1.HorizontalPodAutoscalingR\x18horizontalPodAutoscaling\x12\x64\n\x14kubernetes_dashboard\x18\x03 \x01(\x0b\x32-.google.container.v1beta1.KubernetesDashboardB\x02\x18\x01R\x13kubernetesDashboard\x12\x61\n\x15network_policy_config\x18\x04 \x01(\x0b\x32-.google.container.v1beta1.NetworkPolicyConfigR\x13networkPolicyConfig\x12L\n\x0cistio_config\x18\x05 \x01(\x0b\x32%.google.container.v1beta1.IstioConfigB\x02\x18\x01R\x0bistioConfig\x12R\n\x10\x63loud_run_config\x18\x07 \x01(\x0b\x32(.google.container.v1beta1.CloudRunConfigR\x0e\x63loudRunConfig\x12R\n\x10\x64ns_cache_config\x18\x08 \x01(\x0b\x32(.google.container.v1beta1.DnsCacheConfigR\x0e\x64nsCacheConfig\x12g\n\x17\x63onfig_connector_config\x18\n \x01(\x0b\x32/.google.container.v1beta1.ConfigConnectorConfigR\x15\x63onfigConnectorConfig\x12\x8b\x01\n%gce_persistent_disk_csi_driver_config\x18\x0b \x01(\x0b\x32:.google.container.v1beta1.GcePersistentDiskCsiDriverConfigR gcePersistentDiskCsiDriverConfig\x12I\n\x0bkalm_config\x18\x0c \x01(\x0b\x32$.google.container.v1beta1.KalmConfigB\x02\x18\x01R\nkalmConfig\x12{\n\x1fgcp_filestore_csi_driver_config\x18\x0e \x01(\x0b\x32\x35.google.container.v1beta1.GcpFilestoreCsiDriverConfigR\x1bgcpFilestoreCsiDriverConfig\x12\x65\n\x17gke_backup_agent_config\x18\x10 \x01(\x0b\x32..google.container.v1beta1.GkeBackupAgentConfigR\x14gkeBackupAgentConfig\"/\n\x11HttpLoadBalancing\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"6\n\x18HorizontalPodAutoscaling\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"1\n\x13KubernetesDashboard\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"1\n\x13NetworkPolicyConfig\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"*\n\x0e\x44nsCacheConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"*\n\nKalmConfig\x12\x1c\n\x07\x65nabled\x18\x01 \x01(\x08\x42\x02\x18\x01R\x07\x65nabled\"0\n\x14GkeBackupAgentConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"1\n\x15\x43onfigConnectorConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"<\n GcePersistentDiskCsiDriverConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"7\n\x1bGcpFilestoreCsiDriverConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"B\n&PrivateClusterMasterGlobalAccessConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xad\x03\n\x14PrivateClusterConfig\x12\x30\n\x14\x65nable_private_nodes\x18\x01 \x01(\x08R\x12\x65nablePrivateNodes\x12\x36\n\x17\x65nable_private_endpoint\x18\x02 \x01(\x08R\x15\x65nablePrivateEndpoint\x12\x33\n\x16master_ipv4_cidr_block\x18\x03 \x01(\tR\x13masterIpv4CidrBlock\x12)\n\x10private_endpoint\x18\x04 \x01(\tR\x0fprivateEndpoint\x12\'\n\x0fpublic_endpoint\x18\x05 \x01(\tR\x0epublicEndpoint\x12!\n\x0cpeering_name\x18\x07 \x01(\tR\x0bpeeringName\x12\x7f\n\x1bmaster_global_access_config\x18\x08 \x01(\x0b\x32@.google.container.v1beta1.PrivateClusterMasterGlobalAccessConfigR\x18masterGlobalAccessConfig\"\xaf\x01\n\x0bIstioConfig\x12\x1e\n\x08\x64isabled\x18\x01 \x01(\x08\x42\x02\x18\x01R\x08\x64isabled\x12K\n\x04\x61uth\x18\x02 \x01(\x0e\x32\x33.google.container.v1beta1.IstioConfig.IstioAuthModeB\x02\x18\x01R\x04\x61uth\"3\n\rIstioAuthMode\x12\r\n\tAUTH_NONE\x10\x00\x12\x13\n\x0f\x41UTH_MUTUAL_TLS\x10\x01\"\x8f\x02\n\x0e\x43loudRunConfig\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\x12g\n\x12load_balancer_type\x18\x03 \x01(\x0e\x32\x39.google.container.v1beta1.CloudRunConfig.LoadBalancerTypeR\x10loadBalancerType\"x\n\x10LoadBalancerType\x12\"\n\x1eLOAD_BALANCER_TYPE_UNSPECIFIED\x10\x00\x12\x1f\n\x1bLOAD_BALANCER_TYPE_EXTERNAL\x10\x01\x12\x1f\n\x1bLOAD_BALANCER_TYPE_INTERNAL\x10\x02\"\xee\x01\n\x1eMasterAuthorizedNetworksConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12\x63\n\x0b\x63idr_blocks\x18\x02 \x03(\x0b\x32\x42.google.container.v1beta1.MasterAuthorizedNetworksConfig.CidrBlockR\ncidrBlocks\x1aM\n\tCidrBlock\x12!\n\x0c\x64isplay_name\x18\x01 \x01(\tR\x0b\x64isplayName\x12\x1d\n\ncidr_block\x18\x02 \x01(\tR\tcidrBlock\"&\n\nLegacyAbac\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xa9\x01\n\rNetworkPolicy\x12L\n\x08provider\x18\x01 \x01(\x0e\x32\x30.google.container.v1beta1.NetworkPolicy.ProviderR\x08provider\x12\x18\n\x07\x65nabled\x18\x02 \x01(\x08R\x07\x65nabled\"0\n\x08Provider\x12\x18\n\x14PROVIDER_UNSPECIFIED\x10\x00\x12\n\n\x06\x43\x41LICO\x10\x01\"\xbf\x05\n\x12IPAllocationPolicy\x12$\n\x0euse_ip_aliases\x18\x01 \x01(\x08R\x0cuseIpAliases\x12+\n\x11\x63reate_subnetwork\x18\x02 \x01(\x08R\x10\x63reateSubnetwork\x12\'\n\x0fsubnetwork_name\x18\x03 \x01(\tR\x0esubnetworkName\x12.\n\x11\x63luster_ipv4_cidr\x18\x04 \x01(\tB\x02\x18\x01R\x0f\x63lusterIpv4Cidr\x12(\n\x0enode_ipv4_cidr\x18\x05 \x01(\tB\x02\x18\x01R\x0cnodeIpv4Cidr\x12\x30\n\x12services_ipv4_cidr\x18\x06 \x01(\tB\x02\x18\x01R\x10servicesIpv4Cidr\x12?\n\x1c\x63luster_secondary_range_name\x18\x07 \x01(\tR\x19\x63lusterSecondaryRangeName\x12\x41\n\x1dservices_secondary_range_name\x18\x08 \x01(\tR\x1aservicesSecondaryRangeName\x12\x35\n\x17\x63luster_ipv4_cidr_block\x18\t \x01(\tR\x14\x63lusterIpv4CidrBlock\x12/\n\x14node_ipv4_cidr_block\x18\n \x01(\tR\x11nodeIpv4CidrBlock\x12\x37\n\x18services_ipv4_cidr_block\x18\x0b \x01(\tR\x15servicesIpv4CidrBlock\x12.\n\x13\x61llow_route_overlap\x18\x0c \x01(\x08R\x11\x61llowRouteOverlap\x12-\n\x13tpu_ipv4_cidr_block\x18\r \x01(\tR\x10tpuIpv4CidrBlock\x12\x1d\n\nuse_routes\x18\x0f \x01(\x08R\tuseRoutes\"/\n\x13\x42inaryAuthorization\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"3\n\x17PodSecurityPolicyConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\\\n\x19\x41uthenticatorGroupsConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12%\n\x0esecurity_group\x18\x02 \x01(\tR\rsecurityGroup\"\x9c\x01\n\x10\x43lusterTelemetry\x12\x43\n\x04type\x18\x01 \x01(\x0e\x32/.google.container.v1beta1.ClusterTelemetry.TypeR\x04type\"C\n\x04Type\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x0c\n\x08\x44ISABLED\x10\x01\x12\x0b\n\x07\x45NABLED\x10\x02\x12\x0f\n\x0bSYSTEM_ONLY\x10\x03\"\x8a%\n\x07\x43luster\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\x12\x30\n\x12initial_node_count\x18\x03 \x01(\x05\x42\x02\x18\x01R\x10initialNodeCount\x12I\n\x0bnode_config\x18\x04 \x01(\x0b\x32$.google.container.v1beta1.NodeConfigB\x02\x18\x01R\nnodeConfig\x12\x45\n\x0bmaster_auth\x18\x05 \x01(\x0b\x32$.google.container.v1beta1.MasterAuthR\nmasterAuth\x12\'\n\x0flogging_service\x18\x06 \x01(\tR\x0eloggingService\x12-\n\x12monitoring_service\x18\x07 \x01(\tR\x11monitoringService\x12\x18\n\x07network\x18\x08 \x01(\tR\x07network\x12*\n\x11\x63luster_ipv4_cidr\x18\t \x01(\tR\x0f\x63lusterIpv4Cidr\x12K\n\raddons_config\x18\n \x01(\x0b\x32&.google.container.v1beta1.AddonsConfigR\x0c\x61\x64\x64onsConfig\x12\x1e\n\nsubnetwork\x18\x0b \x01(\tR\nsubnetwork\x12\x41\n\nnode_pools\x18\x0c \x03(\x0b\x32\".google.container.v1beta1.NodePoolR\tnodePools\x12\x1c\n\tlocations\x18\r \x03(\tR\tlocations\x12\x36\n\x17\x65nable_kubernetes_alpha\x18\x0e \x01(\x08R\x15\x65nableKubernetesAlpha\x12^\n\x0fresource_labels\x18\x0f \x03(\x0b\x32\x35.google.container.v1beta1.Cluster.ResourceLabelsEntryR\x0eresourceLabels\x12+\n\x11label_fingerprint\x18\x10 \x01(\tR\x10labelFingerprint\x12\x45\n\x0blegacy_abac\x18\x12 \x01(\x0b\x32$.google.container.v1beta1.LegacyAbacR\nlegacyAbac\x12N\n\x0enetwork_policy\x18\x13 \x01(\x0b\x32\'.google.container.v1beta1.NetworkPolicyR\rnetworkPolicy\x12^\n\x14ip_allocation_policy\x18\x14 \x01(\x0b\x32,.google.container.v1beta1.IPAllocationPolicyR\x12ipAllocationPolicy\x12\x83\x01\n!master_authorized_networks_config\x18\x16 \x01(\x0b\x32\x38.google.container.v1beta1.MasterAuthorizedNetworksConfigR\x1emasterAuthorizedNetworksConfig\x12Z\n\x12maintenance_policy\x18\x17 \x01(\x0b\x32+.google.container.v1beta1.MaintenancePolicyR\x11maintenancePolicy\x12`\n\x14\x62inary_authorization\x18\x18 \x01(\x0b\x32-.google.container.v1beta1.BinaryAuthorizationR\x13\x62inaryAuthorization\x12n\n\x1apod_security_policy_config\x18\x19 \x01(\x0b\x32\x31.google.container.v1beta1.PodSecurityPolicyConfigR\x17podSecurityPolicyConfig\x12N\n\x0b\x61utoscaling\x18\x1a \x01(\x0b\x32,.google.container.v1beta1.ClusterAutoscalingR\x0b\x61utoscaling\x12N\n\x0enetwork_config\x18\x1b \x01(\x0b\x32\'.google.container.v1beta1.NetworkConfigR\rnetworkConfig\x12+\n\x0fprivate_cluster\x18\x1c \x01(\x08\x42\x02\x18\x01R\x0eprivateCluster\x12\x37\n\x16master_ipv4_cidr_block\x18\x1d \x01(\tB\x02\x18\x01R\x13masterIpv4CidrBlock\x12j\n\x1b\x64\x65\x66\x61ult_max_pods_constraint\x18\x1e \x01(\x0b\x32+.google.container.v1beta1.MaxPodsConstraintR\x18\x64\x65\x66\x61ultMaxPodsConstraint\x12t\n\x1cresource_usage_export_config\x18! \x01(\x0b\x32\x33.google.container.v1beta1.ResourceUsageExportConfigR\x19resourceUsageExportConfig\x12s\n\x1b\x61uthenticator_groups_config\x18\" \x01(\x0b\x32\x33.google.container.v1beta1.AuthenticatorGroupsConfigR\x19\x61uthenticatorGroupsConfig\x12\x64\n\x16private_cluster_config\x18% \x01(\x0b\x32..google.container.v1beta1.PrivateClusterConfigR\x14privateClusterConfig\x12j\n\x18vertical_pod_autoscaling\x18\' \x01(\x0b\x32\x30.google.container.v1beta1.VerticalPodAutoscalingR\x16verticalPodAutoscaling\x12N\n\x0eshielded_nodes\x18( \x01(\x0b\x32\'.google.container.v1beta1.ShieldedNodesR\rshieldedNodes\x12Q\n\x0frelease_channel\x18) \x01(\x0b\x32(.google.container.v1beta1.ReleaseChannelR\x0ereleaseChannel\x12j\n\x18workload_identity_config\x18+ \x01(\x0b\x32\x30.google.container.v1beta1.WorkloadIdentityConfigR\x16workloadIdentityConfig\x12\x63\n\x15workload_certificates\x18\x34 \x01(\x0b\x32..google.container.v1beta1.WorkloadCertificatesR\x14workloadCertificates\x12W\n\x11mesh_certificates\x18\x43 \x01(\x0b\x32*.google.container.v1beta1.MeshCertificatesR\x10meshCertificates\x12W\n\x11\x63luster_telemetry\x18. \x01(\x0b\x32*.google.container.v1beta1.ClusterTelemetryR\x10\x63lusterTelemetry\x12\x42\n\ntpu_config\x18/ \x01(\x0b\x32#.google.container.v1beta1.TpuConfigR\ttpuConfig\x12]\n\x13notification_config\x18\x31 \x01(\x0b\x32,.google.container.v1beta1.NotificationConfigR\x12notificationConfig\x12Z\n\x12\x63onfidential_nodes\x18\x32 \x01(\x0b\x32+.google.container.v1beta1.ConfidentialNodesR\x11\x63onfidentialNodes\x12g\n\x17identity_service_config\x18\x36 \x01(\x0b\x32/.google.container.v1beta1.IdentityServiceConfigR\x15identityServiceConfig\x12\x1b\n\tself_link\x18\x64 \x01(\tR\x08selfLink\x12\x16\n\x04zone\x18\x65 \x01(\tB\x02\x18\x01R\x04zone\x12\x1a\n\x08\x65ndpoint\x18\x66 \x01(\tR\x08\x65ndpoint\x12\x36\n\x17initial_cluster_version\x18g \x01(\tR\x15initialClusterVersion\x12\x34\n\x16\x63urrent_master_version\x18h \x01(\tR\x14\x63urrentMasterVersion\x12\x34\n\x14\x63urrent_node_version\x18i \x01(\tB\x02\x18\x01R\x12\x63urrentNodeVersion\x12\x1f\n\x0b\x63reate_time\x18j \x01(\tR\ncreateTime\x12@\n\x06status\x18k \x01(\x0e\x32(.google.container.v1beta1.Cluster.StatusR\x06status\x12)\n\x0estatus_message\x18l \x01(\tB\x02\x18\x01R\rstatusMessage\x12-\n\x13node_ipv4_cidr_size\x18m \x01(\x05R\x10nodeIpv4CidrSize\x12,\n\x12services_ipv4_cidr\x18n \x01(\tR\x10servicesIpv4Cidr\x12\x32\n\x13instance_group_urls\x18o \x03(\tB\x02\x18\x01R\x11instanceGroupUrls\x12\x30\n\x12\x63urrent_node_count\x18p \x01(\x05\x42\x02\x18\x01R\x10\x63urrentNodeCount\x12\x1f\n\x0b\x65xpire_time\x18q \x01(\tR\nexpireTime\x12\x1a\n\x08location\x18r \x01(\tR\x08location\x12\x1d\n\nenable_tpu\x18s \x01(\x08R\tenableTpu\x12-\n\x13tpu_ipv4_cidr_block\x18t \x01(\tR\x10tpuIpv4CidrBlock\x12]\n\x13\x64\x61tabase_encryption\x18& \x01(\x0b\x32,.google.container.v1beta1.DatabaseEncryptionR\x12\x64\x61tabaseEncryption\x12I\n\nconditions\x18v \x03(\x0b\x32).google.container.v1beta1.StatusConditionR\nconditions\x12\x38\n\x06master\x18| \x01(\x0b\x32 .google.container.v1beta1.MasterR\x06master\x12\x42\n\tautopilot\x18\x80\x01 \x01(\x0b\x32#.google.container.v1beta1.AutopilotR\tautopilot\x12\x15\n\x02id\x18\x81\x01 \x01(\tB\x04\xe2\x41\x01\x03R\x02id\x12^\n\x12node_pool_defaults\x18\x83\x01 \x01(\x0b\x32*.google.container.v1beta1.NodePoolDefaultsH\x00R\x10nodePoolDefaults\x88\x01\x01\x12O\n\x0elogging_config\x18\x84\x01 \x01(\x0b\x32\'.google.container.v1beta1.LoggingConfigR\rloggingConfig\x12X\n\x11monitoring_config\x18\x85\x01 \x01(\x0b\x32*.google.container.v1beta1.MonitoringConfigR\x10monitoringConfig\x1a\x41\n\x13ResourceLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"w\n\x06Status\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\x10\n\x0cPROVISIONING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x0f\n\x0bRECONCILING\x10\x03\x12\x0c\n\x08STOPPING\x10\x04\x12\t\n\x05\x45RROR\x10\x05\x12\x0c\n\x08\x44\x45GRADED\x10\x06\x42\x15\n\x13_node_pool_defaults\"r\n\x10NodePoolDefaults\x12^\n\x14node_config_defaults\x18\x01 \x01(\x0b\x32,.google.container.v1beta1.NodeConfigDefaultsR\x12nodeConfigDefaults\"[\n\x12NodeConfigDefaults\x12\x45\n\x0bgcfs_config\x18\x01 \x01(\x0b\x32$.google.container.v1beta1.GcfsConfigR\ngcfsConfig\"\xe7\x1d\n\rClusterUpdate\x12\x30\n\x14\x64\x65sired_node_version\x18\x04 \x01(\tR\x12\x64\x65siredNodeVersion\x12<\n\x1a\x64\x65sired_monitoring_service\x18\x05 \x01(\tR\x18\x64\x65siredMonitoringService\x12Z\n\x15\x64\x65sired_addons_config\x18\x06 \x01(\x0b\x32&.google.container.v1beta1.AddonsConfigR\x13\x64\x65siredAddonsConfig\x12/\n\x14\x64\x65sired_node_pool_id\x18\x07 \x01(\tR\x11\x64\x65siredNodePoolId\x12,\n\x12\x64\x65sired_image_type\x18\x08 \x01(\tR\x10\x64\x65siredImageType\x12p\n\x1d\x64\x65sired_node_pool_autoscaling\x18\t \x01(\x0b\x32-.google.container.v1beta1.NodePoolAutoscalingR\x1a\x64\x65siredNodePoolAutoscaling\x12+\n\x11\x64\x65sired_locations\x18\n \x03(\tR\x10\x64\x65siredLocations\x12\x92\x01\n)desired_master_authorized_networks_config\x18\x0c \x01(\x0b\x32\x38.google.container.v1beta1.MasterAuthorizedNetworksConfigR%desiredMasterAuthorizedNetworksConfig\x12}\n\"desired_pod_security_policy_config\x18\x0e \x01(\x0b\x32\x31.google.container.v1beta1.PodSecurityPolicyConfigR\x1e\x64\x65siredPodSecurityPolicyConfig\x12l\n\x1b\x64\x65sired_cluster_autoscaling\x18\x0f \x01(\x0b\x32,.google.container.v1beta1.ClusterAutoscalingR\x19\x64\x65siredClusterAutoscaling\x12o\n\x1c\x64\x65sired_binary_authorization\x18\x10 \x01(\x0b\x32-.google.container.v1beta1.BinaryAuthorizationR\x1a\x64\x65siredBinaryAuthorization\x12\x36\n\x17\x64\x65sired_logging_service\x18\x13 \x01(\tR\x15\x64\x65siredLoggingService\x12\x83\x01\n$desired_resource_usage_export_config\x18\x15 \x01(\x0b\x32\x33.google.container.v1beta1.ResourceUsageExportConfigR desiredResourceUsageExportConfig\x12y\n desired_vertical_pod_autoscaling\x18\x16 \x01(\x0b\x32\x30.google.container.v1beta1.VerticalPodAutoscalingR\x1d\x64\x65siredVerticalPodAutoscaling\x12s\n\x1e\x64\x65sired_private_cluster_config\x18\x19 \x01(\x0b\x32..google.container.v1beta1.PrivateClusterConfigR\x1b\x64\x65siredPrivateClusterConfig\x12\x83\x01\n$desired_intra_node_visibility_config\x18\x1a \x01(\x0b\x32\x33.google.container.v1beta1.IntraNodeVisibilityConfigR desiredIntraNodeVisibilityConfig\x12j\n\x1b\x64\x65sired_default_snat_status\x18\x1c \x01(\x0b\x32+.google.container.v1beta1.DefaultSnatStatusR\x18\x64\x65siredDefaultSnatStatus\x12\x66\n\x19\x64\x65sired_cluster_telemetry\x18\x1e \x01(\x0b\x32*.google.container.v1beta1.ClusterTelemetryR\x17\x64\x65siredClusterTelemetry\x12`\n\x17\x64\x65sired_release_channel\x18\x1f \x01(\x0b\x32(.google.container.v1beta1.ReleaseChannelR\x15\x64\x65siredReleaseChannel\x12Q\n\x12\x64\x65sired_tpu_config\x18& \x01(\x0b\x32#.google.container.v1beta1.TpuConfigR\x10\x64\x65siredTpuConfig\x12t\n\x1f\x64\x65sired_l4ilb_subsetting_config\x18\' \x01(\x0b\x32-.google.container.v1beta1.ILBSubsettingConfigR\x1c\x64\x65siredL4ilbSubsettingConfig\x12\x66\n\x19\x64\x65sired_datapath_provider\x18\x32 \x01(\x0e\x32*.google.container.v1beta1.DatapathProviderR\x17\x64\x65siredDatapathProvider\x12}\n\"desired_private_ipv6_google_access\x18\x33 \x01(\x0e\x32\x31.google.container.v1beta1.PrivateIPv6GoogleAccessR\x1e\x64\x65siredPrivateIpv6GoogleAccess\x12l\n\x1b\x64\x65sired_notification_config\x18\x37 \x01(\x0b\x32,.google.container.v1beta1.NotificationConfigR\x19\x64\x65siredNotificationConfig\x12\x34\n\x16\x64\x65sired_master_version\x18\x64 \x01(\tR\x14\x64\x65siredMasterVersion\x12T\n\x13\x64\x65sired_gcfs_config\x18m \x01(\x0b\x32$.google.container.v1beta1.GcfsConfigR\x11\x64\x65siredGcfsConfig\x12l\n\x1b\x64\x65sired_database_encryption\x18. \x01(\x0b\x32,.google.container.v1beta1.DatabaseEncryptionR\x19\x64\x65siredDatabaseEncryption\x12y\n desired_workload_identity_config\x18/ \x01(\x0b\x32\x30.google.container.v1beta1.WorkloadIdentityConfigR\x1d\x64\x65siredWorkloadIdentityConfig\x12r\n\x1d\x64\x65sired_workload_certificates\x18= \x01(\x0b\x32..google.container.v1beta1.WorkloadCertificatesR\x1b\x64\x65siredWorkloadCertificates\x12\x66\n\x19\x64\x65sired_mesh_certificates\x18\x43 \x01(\x0b\x32*.google.container.v1beta1.MeshCertificatesR\x17\x64\x65siredMeshCertificates\x12]\n\x16\x64\x65sired_shielded_nodes\x18\x30 \x01(\x0b\x32\'.google.container.v1beta1.ShieldedNodesR\x14\x64\x65siredShieldedNodes\x12G\n\x0e\x64\x65sired_master\x18\x34 \x01(\x0b\x32 .google.container.v1beta1.MasterR\rdesiredMaster\x12Q\n\x12\x64\x65sired_dns_config\x18\x35 \x01(\x0b\x32#.google.container.v1beta1.DNSConfigR\x10\x64\x65siredDnsConfig\x12\x80\x01\n#desired_service_external_ips_config\x18< \x01(\x0b\x32\x32.google.container.v1beta1.ServiceExternalIPsConfigR\x1f\x64\x65siredServiceExternalIpsConfig\x12\x82\x01\n#desired_authenticator_groups_config\x18? \x01(\x0b\x32\x33.google.container.v1beta1.AuthenticatorGroupsConfigR desiredAuthenticatorGroupsConfig\x12]\n\x16\x64\x65sired_logging_config\x18@ \x01(\x0b\x32\'.google.container.v1beta1.LoggingConfigR\x14\x64\x65siredLoggingConfig\x12\x66\n\x19\x64\x65sired_monitoring_config\x18\x41 \x01(\x0b\x32*.google.container.v1beta1.MonitoringConfigR\x17\x64\x65siredMonitoringConfig\x12v\n\x1f\x64\x65sired_identity_service_config\x18\x42 \x01(\x0b\x32/.google.container.v1beta1.IdentityServiceConfigR\x1c\x64\x65siredIdentityServiceConfig\"\xb2\t\n\tOperation\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n\x04zone\x18\x02 \x01(\tB\x02\x18\x01R\x04zone\x12O\n\x0eoperation_type\x18\x03 \x01(\x0e\x32(.google.container.v1beta1.Operation.TypeR\roperationType\x12\x42\n\x06status\x18\x04 \x01(\x0e\x32*.google.container.v1beta1.Operation.StatusR\x06status\x12\x16\n\x06\x64\x65tail\x18\x08 \x01(\tR\x06\x64\x65tail\x12-\n\x0estatus_message\x18\x05 \x01(\tB\x06\x18\x01\xe2\x41\x01\x03R\rstatusMessage\x12\x1b\n\tself_link\x18\x06 \x01(\tR\x08selfLink\x12\x1f\n\x0btarget_link\x18\x07 \x01(\tR\ntargetLink\x12\x1a\n\x08location\x18\t \x01(\tR\x08location\x12\x1d\n\nstart_time\x18\n \x01(\tR\tstartTime\x12\x19\n\x08\x65nd_time\x18\x0b \x01(\tR\x07\x65ndTime\x12M\n\x08progress\x18\x0c \x01(\x0b\x32+.google.container.v1beta1.OperationProgressB\x04\xe2\x41\x01\x03R\x08progress\x12\\\n\x12\x63luster_conditions\x18\r \x03(\x0b\x32).google.container.v1beta1.StatusConditionB\x02\x18\x01R\x11\x63lusterConditions\x12^\n\x13nodepool_conditions\x18\x0e \x03(\x0b\x32).google.container.v1beta1.StatusConditionB\x02\x18\x01R\x12nodepoolConditions\x12(\n\x05\x65rror\x18\x0f \x01(\x0b\x32\x12.google.rpc.StatusR\x05\x65rror\"R\n\x06Status\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x08\n\x04\x44ONE\x10\x03\x12\x0c\n\x08\x41\x42ORTING\x10\x04\"\xfd\x02\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x12\n\x0e\x43REATE_CLUSTER\x10\x01\x12\x12\n\x0e\x44\x45LETE_CLUSTER\x10\x02\x12\x12\n\x0eUPGRADE_MASTER\x10\x03\x12\x11\n\rUPGRADE_NODES\x10\x04\x12\x12\n\x0eREPAIR_CLUSTER\x10\x05\x12\x12\n\x0eUPDATE_CLUSTER\x10\x06\x12\x14\n\x10\x43REATE_NODE_POOL\x10\x07\x12\x14\n\x10\x44\x45LETE_NODE_POOL\x10\x08\x12\x1c\n\x18SET_NODE_POOL_MANAGEMENT\x10\t\x12\x15\n\x11\x41UTO_REPAIR_NODES\x10\n\x12\x16\n\x12\x41UTO_UPGRADE_NODES\x10\x0b\x12\x0e\n\nSET_LABELS\x10\x0c\x12\x13\n\x0fSET_MASTER_AUTH\x10\r\x12\x16\n\x12SET_NODE_POOL_SIZE\x10\x0e\x12\x16\n\x12SET_NETWORK_POLICY\x10\x0f\x12\x1a\n\x16SET_MAINTENANCE_POLICY\x10\x10\"\x95\x03\n\x11OperationProgress\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x42\n\x06status\x18\x02 \x01(\x0e\x32*.google.container.v1beta1.Operation.StatusR\x06status\x12L\n\x07metrics\x18\x03 \x03(\x0b\x32\x32.google.container.v1beta1.OperationProgress.MetricR\x07metrics\x12\x43\n\x06stages\x18\x04 \x03(\x0b\x32+.google.container.v1beta1.OperationProgressR\x06stages\x1a\x94\x01\n\x06Metric\x12\x18\n\x04name\x18\x01 \x01(\tB\x04\xe2\x41\x01\x02R\x04name\x12\x1d\n\tint_value\x18\x02 \x01(\x03H\x00R\x08intValue\x12#\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00R\x0b\x64oubleValue\x12#\n\x0cstring_value\x18\x04 \x01(\tH\x00R\x0bstringValueB\x07\n\x05value\"\xb4\x01\n\x14\x43reateClusterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12\x41\n\x07\x63luster\x18\x03 \x01(\x0b\x32!.google.container.v1beta1.ClusterB\x04\xe2\x41\x01\x02R\x07\x63luster\x12\x16\n\x06parent\x18\x05 \x01(\tR\x06parent\"\x91\x01\n\x11GetClusterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"\xdb\x01\n\x14UpdateClusterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x45\n\x06update\x18\x04 \x01(\x0b\x32\'.google.container.v1beta1.ClusterUpdateB\x04\xe2\x41\x01\x02R\x06update\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"\xdb\x07\n\x15UpdateNodePoolRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12\'\n\x0cnode_version\x18\x05 \x01(\tB\x04\xe2\x41\x01\x02R\x0bnodeVersion\x12#\n\nimage_type\x18\x06 \x01(\tB\x04\xe2\x41\x01\x02R\timageType\x12\x1c\n\tlocations\x18\r \x03(\tR\tlocations\x12j\n\x18workload_metadata_config\x18\x0e \x01(\x0b\x32\x30.google.container.v1beta1.WorkloadMetadataConfigR\x16workloadMetadataConfig\x12\x12\n\x04name\x18\x08 \x01(\tR\x04name\x12]\n\x10upgrade_settings\x18\x0f \x01(\x0b\x32\x32.google.container.v1beta1.NodePool.UpgradeSettingsR\x0fupgradeSettings\x12\x39\n\x04tags\x18\x10 \x01(\x0b\x32%.google.container.v1beta1.NetworkTagsR\x04tags\x12<\n\x06taints\x18\x11 \x01(\x0b\x32$.google.container.v1beta1.NodeTaintsR\x06taints\x12<\n\x06labels\x18\x12 \x01(\x0b\x32$.google.container.v1beta1.NodeLabelsR\x06labels\x12U\n\x11linux_node_config\x18\x13 \x01(\x0b\x32).google.container.v1beta1.LinuxNodeConfigR\x0flinuxNodeConfig\x12R\n\x0ekubelet_config\x18\x14 \x01(\x0b\x32+.google.container.v1beta1.NodeKubeletConfigR\rkubeletConfig\x12\x45\n\x0bgcfs_config\x18\x16 \x01(\x0b\x32$.google.container.v1beta1.GcfsConfigR\ngcfsConfig\x12:\n\x05gvnic\x18\x1d \x01(\x0b\x32$.google.container.v1beta1.VirtualNICR\x05gvnic\"\x9e\x02\n\x1dSetNodePoolAutoscalingRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12U\n\x0b\x61utoscaling\x18\x05 \x01(\x0b\x32-.google.container.v1beta1.NodePoolAutoscalingB\x04\xe2\x41\x01\x02R\x0b\x61utoscaling\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xc7\x01\n\x18SetLoggingServiceRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12-\n\x0flogging_service\x18\x04 \x01(\tB\x04\xe2\x41\x01\x02R\x0eloggingService\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"\xd0\x01\n\x1bSetMonitoringServiceRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x33\n\x12monitoring_service\x18\x04 \x01(\tB\x04\xe2\x41\x01\x02R\x11monitoringService\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xe9\x01\n\x16SetAddonsConfigRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12Q\n\raddons_config\x18\x04 \x01(\x0b\x32&.google.container.v1beta1.AddonsConfigB\x04\xe2\x41\x01\x02R\x0c\x61\x64\x64onsConfig\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xb7\x01\n\x13SetLocationsRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\"\n\tlocations\x18\x04 \x03(\tB\x04\xe2\x41\x01\x02R\tlocations\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xc0\x01\n\x13UpdateMasterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12+\n\x0emaster_version\x18\x04 \x01(\tB\x04\xe2\x41\x01\x02R\rmasterVersion\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"\xff\x02\n\x14SetMasterAuthRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12S\n\x06\x61\x63tion\x18\x04 \x01(\x0e\x32\x35.google.container.v1beta1.SetMasterAuthRequest.ActionB\x04\xe2\x41\x01\x02R\x06\x61\x63tion\x12\x42\n\x06update\x18\x05 \x01(\x0b\x32$.google.container.v1beta1.MasterAuthB\x04\xe2\x41\x01\x02R\x06update\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"P\n\x06\x41\x63tion\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x10\n\x0cSET_PASSWORD\x10\x01\x12\x15\n\x11GENERATE_PASSWORD\x10\x02\x12\x10\n\x0cSET_USERNAME\x10\x03\"\x94\x01\n\x14\x44\x65leteClusterRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x12\n\x04name\x18\x04 \x01(\tR\x04name\"p\n\x13ListClustersRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12\x16\n\x06parent\x18\x04 \x01(\tR\x06parent\"z\n\x14ListClustersResponse\x12=\n\x08\x63lusters\x18\x01 \x03(\x0b\x32!.google.container.v1beta1.ClusterR\x08\x63lusters\x12#\n\rmissing_zones\x18\x02 \x03(\tR\x0cmissingZones\"\x97\x01\n\x13GetOperationRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12)\n\x0coperation_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x0boperationId\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"r\n\x15ListOperationsRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12\x16\n\x06parent\x18\x04 \x01(\tR\x06parent\"\x9a\x01\n\x16\x43\x61ncelOperationRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12)\n\x0coperation_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x0boperationId\x12\x12\n\x04name\x18\x04 \x01(\tR\x04name\"\x82\x01\n\x16ListOperationsResponse\x12\x43\n\noperations\x18\x01 \x03(\x0b\x32#.google.container.v1beta1.OperationR\noperations\x12#\n\rmissing_zones\x18\x02 \x03(\tR\x0cmissingZones\"o\n\x16GetServerConfigRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12\x12\n\x04name\x18\x04 \x01(\tR\x04name\"\xc1\x07\n\x0cServerConfig\x12\x36\n\x17\x64\x65\x66\x61ult_cluster_version\x18\x01 \x01(\tR\x15\x64\x65\x66\x61ultClusterVersion\x12.\n\x13valid_node_versions\x18\x03 \x03(\tR\x11validNodeVersions\x12,\n\x12\x64\x65\x66\x61ult_image_type\x18\x04 \x01(\tR\x10\x64\x65\x66\x61ultImageType\x12*\n\x11valid_image_types\x18\x05 \x03(\tR\x0fvalidImageTypes\x12\x32\n\x15valid_master_versions\x18\x06 \x03(\tR\x13validMasterVersions\x12W\n\x08\x63hannels\x18\t \x03(\x0b\x32;.google.container.v1beta1.ServerConfig.ReleaseChannelConfigR\x08\x63hannels\x12p\n\x14windows_version_maps\x18\n \x03(\x0b\x32>.google.container.v1beta1.ServerConfig.WindowsVersionMapsEntryR\x12windowsVersionMaps\x1a\xfd\x02\n\x14ReleaseChannelConfig\x12J\n\x07\x63hannel\x18\x01 \x01(\x0e\x32\x30.google.container.v1beta1.ReleaseChannel.ChannelR\x07\x63hannel\x12\'\n\x0f\x64\x65\x66\x61ult_version\x18\x02 \x01(\tR\x0e\x64\x65\x66\x61ultVersion\x12\x7f\n\x12\x61vailable_versions\x18\x03 \x03(\x0b\x32L.google.container.v1beta1.ServerConfig.ReleaseChannelConfig.AvailableVersionB\x02\x18\x01R\x11\x61vailableVersions\x12%\n\x0evalid_versions\x18\x04 \x03(\tR\rvalidVersions\x1aH\n\x10\x41vailableVersion\x12\x18\n\x07version\x18\x01 \x01(\tR\x07version\x12\x16\n\x06reason\x18\x02 \x01(\tR\x06reason:\x02\x18\x01\x1ap\n\x17WindowsVersionMapsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12?\n\x05value\x18\x02 \x01(\x0b\x32).google.container.v1beta1.WindowsVersionsR\x05value:\x02\x38\x01\"\x84\x02\n\x0fWindowsVersions\x12\x63\n\x10windows_versions\x18\x01 \x03(\x0b\x32\x38.google.container.v1beta1.WindowsVersions.WindowsVersionR\x0fwindowsVersions\x1a\x8b\x01\n\x0eWindowsVersion\x12\x1d\n\nimage_type\x18\x01 \x01(\tR\timageType\x12\x1d\n\nos_version\x18\x02 \x01(\tR\tosVersion\x12;\n\x10support_end_date\x18\x03 \x01(\x0b\x32\x11.google.type.DateR\x0esupportEndDate\"\xe0\x01\n\x15\x43reateNodePoolRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x45\n\tnode_pool\x18\x04 \x01(\x0b\x32\".google.container.v1beta1.NodePoolB\x04\xe2\x41\x01\x02R\x08nodePool\x12\x16\n\x06parent\x18\x06 \x01(\tR\x06parent\"\xbf\x01\n\x15\x44\x65leteNodePoolRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\x98\x01\n\x14ListNodePoolsRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x16\n\x06parent\x18\x05 \x01(\tR\x06parent\"\xbc\x01\n\x12GetNodePoolRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xe8\n\n\x08NodePool\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12<\n\x06\x63onfig\x18\x02 \x01(\x0b\x32$.google.container.v1beta1.NodeConfigR\x06\x63onfig\x12,\n\x12initial_node_count\x18\x03 \x01(\x05R\x10initialNodeCount\x12\x1c\n\tlocations\x18\r \x03(\tR\tlocations\x12R\n\x0enetwork_config\x18\x0e \x01(\x0b\x32+.google.container.v1beta1.NodeNetworkConfigR\rnetworkConfig\x12\x1b\n\tself_link\x18\x64 \x01(\tR\x08selfLink\x12\x18\n\x07version\x18\x65 \x01(\tR\x07version\x12.\n\x13instance_group_urls\x18\x66 \x03(\tR\x11instanceGroupUrls\x12\x41\n\x06status\x18g \x01(\x0e\x32).google.container.v1beta1.NodePool.StatusR\x06status\x12)\n\x0estatus_message\x18h \x01(\tB\x02\x18\x01R\rstatusMessage\x12O\n\x0b\x61utoscaling\x18\x04 \x01(\x0b\x32-.google.container.v1beta1.NodePoolAutoscalingR\x0b\x61utoscaling\x12H\n\nmanagement\x18\x05 \x01(\x0b\x32(.google.container.v1beta1.NodeManagementR\nmanagement\x12[\n\x13max_pods_constraint\x18\x06 \x01(\x0b\x32+.google.container.v1beta1.MaxPodsConstraintR\x11maxPodsConstraint\x12I\n\nconditions\x18i \x03(\x0b\x32).google.container.v1beta1.StatusConditionR\nconditions\x12+\n\x12pod_ipv4_cidr_size\x18\x07 \x01(\x05R\x0fpodIpv4CidrSize\x12]\n\x10upgrade_settings\x18k \x01(\x0b\x32\x32.google.container.v1beta1.NodePool.UpgradeSettingsR\x0fupgradeSettings\x12]\n\x10placement_policy\x18l \x01(\x0b\x32\x32.google.container.v1beta1.NodePool.PlacementPolicyR\x0fplacementPolicy\x1aW\n\x0fUpgradeSettings\x12\x1b\n\tmax_surge\x18\x01 \x01(\x05R\x08maxSurge\x12\'\n\x0fmax_unavailable\x18\x02 \x01(\x05R\x0emaxUnavailable\x1a\x89\x01\n\x0fPlacementPolicy\x12K\n\x04type\x18\x01 \x01(\x0e\x32\x37.google.container.v1beta1.NodePool.PlacementPolicy.TypeR\x04type\")\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\x0b\n\x07\x43OMPACT\x10\x01\"\x81\x01\n\x06Status\x12\x16\n\x12STATUS_UNSPECIFIED\x10\x00\x12\x10\n\x0cPROVISIONING\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\x16\n\x12RUNNING_WITH_ERROR\x10\x03\x12\x0f\n\x0bRECONCILING\x10\x04\x12\x0c\n\x08STOPPING\x10\x05\x12\t\n\x05\x45RROR\x10\x06\"\xab\x01\n\x0eNodeManagement\x12!\n\x0c\x61uto_upgrade\x18\x01 \x01(\x08R\x0b\x61utoUpgrade\x12\x1f\n\x0b\x61uto_repair\x18\x02 \x01(\x08R\nautoRepair\x12U\n\x0fupgrade_options\x18\n \x01(\x0b\x32,.google.container.v1beta1.AutoUpgradeOptionsR\x0eupgradeOptions\"m\n\x12\x41utoUpgradeOptions\x12\x35\n\x17\x61uto_upgrade_start_time\x18\x01 \x01(\tR\x14\x61utoUpgradeStartTime\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\"\x83\x01\n\x11MaintenancePolicy\x12\x43\n\x06window\x18\x01 \x01(\x0b\x32+.google.container.v1beta1.MaintenanceWindowR\x06window\x12)\n\x10resource_version\x18\x03 \x01(\tR\x0fresourceVersion\"\xd6\x03\n\x11MaintenanceWindow\x12l\n\x18\x64\x61ily_maintenance_window\x18\x02 \x01(\x0b\x32\x30.google.container.v1beta1.DailyMaintenanceWindowH\x00R\x16\x64\x61ilyMaintenanceWindow\x12Z\n\x10recurring_window\x18\x03 \x01(\x0b\x32-.google.container.v1beta1.RecurringTimeWindowH\x00R\x0frecurringWindow\x12}\n\x16maintenance_exclusions\x18\x04 \x03(\x0b\x32\x46.google.container.v1beta1.MaintenanceWindow.MaintenanceExclusionsEntryR\x15maintenanceExclusions\x1an\n\x1aMaintenanceExclusionsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12:\n\x05value\x18\x02 \x01(\x0b\x32$.google.container.v1beta1.TimeWindowR\x05value:\x02\x38\x01\x42\x08\n\x06policy\"\x86\x02\n\nTimeWindow\x12{\n\x1dmaintenance_exclusion_options\x18\x03 \x01(\x0b\x32\x35.google.container.v1beta1.MaintenanceExclusionOptionsH\x00R\x1bmaintenanceExclusionOptions\x12\x39\n\nstart_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tstartTime\x12\x35\n\x08\x65nd_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x07\x65ndTimeB\t\n\x07options\"\xc0\x01\n\x1bMaintenanceExclusionOptions\x12Q\n\x05scope\x18\x01 \x01(\x0e\x32;.google.container.v1beta1.MaintenanceExclusionOptions.ScopeR\x05scope\"N\n\x05Scope\x12\x0f\n\x0bNO_UPGRADES\x10\x00\x12\x15\n\x11NO_MINOR_UPGRADES\x10\x01\x12\x1d\n\x19NO_MINOR_OR_NODE_UPGRADES\x10\x02\"s\n\x13RecurringTimeWindow\x12<\n\x06window\x18\x01 \x01(\x0b\x32$.google.container.v1beta1.TimeWindowR\x06window\x12\x1e\n\nrecurrence\x18\x02 \x01(\tR\nrecurrence\"S\n\x16\x44\x61ilyMaintenanceWindow\x12\x1d\n\nstart_time\x18\x02 \x01(\tR\tstartTime\x12\x1a\n\x08\x64uration\x18\x03 \x01(\tR\x08\x64uration\"\x96\x02\n\x1cSetNodePoolManagementRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12N\n\nmanagement\x18\x05 \x01(\x0b\x32(.google.container.v1beta1.NodeManagementB\x04\xe2\x41\x01\x02R\nmanagement\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"\xe5\x01\n\x16SetNodePoolSizeRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12#\n\nnode_count\x18\x05 \x01(\x05\x42\x04\xe2\x41\x01\x02R\tnodeCount\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"\xc8\x01\n\x1eRollbackNodePoolUpgradeRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12(\n\x0cnode_pool_id\x18\x04 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\nnodePoolId\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"Z\n\x15ListNodePoolsResponse\x12\x41\n\nnode_pools\x18\x01 \x03(\x0b\x32\".google.container.v1beta1.NodePoolR\tnodePools\"\xbc\x04\n\x12\x43lusterAutoscaling\x12@\n\x1c\x65nable_node_autoprovisioning\x18\x01 \x01(\x08R\x1a\x65nableNodeAutoprovisioning\x12P\n\x0fresource_limits\x18\x02 \x03(\x0b\x32\'.google.container.v1beta1.ResourceLimitR\x0eresourceLimits\x12p\n\x13\x61utoscaling_profile\x18\x03 \x01(\x0e\x32?.google.container.v1beta1.ClusterAutoscaling.AutoscalingProfileR\x12\x61utoscalingProfile\x12\x89\x01\n#autoprovisioning_node_pool_defaults\x18\x04 \x01(\x0b\x32:.google.container.v1beta1.AutoprovisioningNodePoolDefaultsR autoprovisioningNodePoolDefaults\x12=\n\x1a\x61utoprovisioning_locations\x18\x05 \x03(\tR\x19\x61utoprovisioningLocations\"U\n\x12\x41utoscalingProfile\x12\x17\n\x13PROFILE_UNSPECIFIED\x10\x00\x12\x18\n\x14OPTIMIZE_UTILIZATION\x10\x01\x12\x0c\n\x08\x42\x41LANCED\x10\x02\"\xb6\x04\n AutoprovisioningNodePoolDefaults\x12!\n\x0coauth_scopes\x18\x01 \x03(\tR\x0boauthScopes\x12\'\n\x0fservice_account\x18\x02 \x01(\tR\x0eserviceAccount\x12]\n\x10upgrade_settings\x18\x03 \x01(\x0b\x32\x32.google.container.v1beta1.NodePool.UpgradeSettingsR\x0fupgradeSettings\x12H\n\nmanagement\x18\x04 \x01(\x0b\x32(.google.container.v1beta1.NodeManagementR\nmanagement\x12(\n\x10min_cpu_platform\x18\x05 \x01(\tR\x0eminCpuPlatform\x12 \n\x0c\x64isk_size_gb\x18\x06 \x01(\x05R\ndiskSizeGb\x12\x1b\n\tdisk_type\x18\x07 \x01(\tR\x08\x64iskType\x12j\n\x18shielded_instance_config\x18\x08 \x01(\x0b\x32\x30.google.container.v1beta1.ShieldedInstanceConfigR\x16shieldedInstanceConfig\x12)\n\x11\x62oot_disk_kms_key\x18\t \x01(\tR\x0e\x62ootDiskKmsKey\x12\x1d\n\nimage_type\x18\n \x01(\tR\timageType\"h\n\rResourceLimit\x12#\n\rresource_type\x18\x01 \x01(\tR\x0cresourceType\x12\x18\n\x07minimum\x18\x02 \x01(\x03R\x07minimum\x12\x18\n\x07maximum\x18\x03 \x01(\x03R\x07maximum\"\xa5\x01\n\x13NodePoolAutoscaling\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12$\n\x0emin_node_count\x18\x02 \x01(\x05R\x0cminNodeCount\x12$\n\x0emax_node_count\x18\x03 \x01(\x05R\x0cmaxNodeCount\x12(\n\x0f\x61utoprovisioned\x18\x04 \x01(\x08R\x0f\x61utoprovisioned\"\xf5\x02\n\x10SetLabelsRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12m\n\x0fresource_labels\x18\x04 \x03(\x0b\x32>.google.container.v1beta1.SetLabelsRequest.ResourceLabelsEntryB\x04\xe2\x41\x01\x02R\x0eresourceLabels\x12\x31\n\x11label_fingerprint\x18\x05 \x01(\tB\x04\xe2\x41\x01\x02R\x10labelFingerprint\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\x1a\x41\n\x13ResourceLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xb4\x01\n\x14SetLegacyAbacRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x1e\n\x07\x65nabled\x18\x04 \x01(\x08\x42\x04\xe2\x41\x01\x02R\x07\x65nabled\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xc5\x01\n\x16StartIPRotationRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\x12-\n\x12rotate_credentials\x18\x07 \x01(\x08R\x11rotateCredentials\"\x99\x01\n\x19\x43ompleteIPRotationRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12\x12\n\x04name\x18\x07 \x01(\tR\x04name\"\x99\x01\n\x11\x41\x63\x63\x65leratorConfig\x12+\n\x11\x61\x63\x63\x65lerator_count\x18\x01 \x01(\x03R\x10\x61\x63\x63\x65leratorCount\x12)\n\x10\x61\x63\x63\x65lerator_type\x18\x02 \x01(\tR\x0f\x61\x63\x63\x65leratorType\x12,\n\x12gpu_partition_size\x18\x03 \x01(\tR\x10gpuPartitionSize\"3\n\x17ManagedPrometheusConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xdf\x02\n\x16WorkloadMetadataConfig\x12\x66\n\rnode_metadata\x18\x01 \x01(\x0e\x32=.google.container.v1beta1.WorkloadMetadataConfig.NodeMetadataB\x02\x18\x01R\x0cnodeMetadata\x12I\n\x04mode\x18\x02 \x01(\x0e\x32\x35.google.container.v1beta1.WorkloadMetadataConfig.ModeR\x04mode\"P\n\x0cNodeMetadata\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06SECURE\x10\x01\x12\n\n\x06\x45XPOSE\x10\x02\x12\x17\n\x13GKE_METADATA_SERVER\x10\x03\"@\n\x04Mode\x12\x14\n\x10MODE_UNSPECIFIED\x10\x00\x12\x10\n\x0cGCE_METADATA\x10\x01\x12\x10\n\x0cGKE_METADATA\x10\x02\"\xed\x01\n\x17SetNetworkPolicyRequest\x12%\n\nproject_id\x18\x01 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tprojectId\x12\x1a\n\x04zone\x18\x02 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\x04zone\x12%\n\ncluster_id\x18\x03 \x01(\tB\x06\x18\x01\xe2\x41\x01\x02R\tclusterId\x12T\n\x0enetwork_policy\x18\x04 \x01(\x0b\x32\'.google.container.v1beta1.NetworkPolicyB\x04\xe2\x41\x01\x02R\rnetworkPolicy\x12\x12\n\x04name\x18\x06 \x01(\tR\x04name\"\xf7\x01\n\x1bSetMaintenancePolicyRequest\x12#\n\nproject_id\x18\x01 \x01(\tB\x04\xe2\x41\x01\x02R\tprojectId\x12\x18\n\x04zone\x18\x02 \x01(\tB\x04\xe2\x41\x01\x02R\x04zone\x12#\n\ncluster_id\x18\x03 \x01(\tB\x04\xe2\x41\x01\x02R\tclusterId\x12`\n\x12maintenance_policy\x18\x04 \x01(\x0b\x32+.google.container.v1beta1.MaintenancePolicyB\x04\xe2\x41\x01\x02R\x11maintenancePolicy\x12\x12\n\x04name\x18\x05 \x01(\tR\x04name\"4\n\x14ListLocationsRequest\x12\x1c\n\x06parent\x18\x01 \x01(\tB\x04\xe2\x41\x01\x02R\x06parent\"\x81\x01\n\x15ListLocationsResponse\x12@\n\tlocations\x18\x01 \x03(\x0b\x32\".google.container.v1beta1.LocationR\tlocations\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xca\x01\n\x08Location\x12\x43\n\x04type\x18\x01 \x01(\x0e\x32/.google.container.v1beta1.Location.LocationTypeR\x04type\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12 \n\x0brecommended\x18\x03 \x01(\x08R\x0brecommended\"C\n\x0cLocationType\x12\x1d\n\x19LOCATION_TYPE_UNSPECIFIED\x10\x00\x12\x08\n\x04ZONE\x10\x01\x12\n\n\x06REGION\x10\x02\"\xd0\x02\n\x0fStatusCondition\x12\x46\n\x04\x63ode\x18\x01 \x01(\x0e\x32..google.container.v1beta1.StatusCondition.CodeB\x02\x18\x01R\x04\x63ode\x12\x18\n\x07message\x18\x02 \x01(\tR\x07message\x12\x37\n\x0e\x63\x61nonical_code\x18\x03 \x01(\x0e\x32\x10.google.rpc.CodeR\rcanonicalCode\"\xa1\x01\n\x04\x43ode\x12\x0b\n\x07UNKNOWN\x10\x00\x12\x10\n\x0cGCE_STOCKOUT\x10\x01\x12\x1f\n\x1bGKE_SERVICE_ACCOUNT_DELETED\x10\x02\x12\x16\n\x12GCE_QUOTA_EXCEEDED\x10\x03\x12\x13\n\x0fSET_BY_OPERATOR\x10\x04\x12\x17\n\x13\x43LOUD_KMS_KEY_ERROR\x10\x07\x12\x0f\n\x0b\x43\x41_EXPIRING\x10\t\x1a\x02\x18\x01\"\x9f\x05\n\rNetworkConfig\x12\x18\n\x07network\x18\x01 \x01(\tR\x07network\x12\x1e\n\nsubnetwork\x18\x02 \x01(\tR\nsubnetwork\x12?\n\x1c\x65nable_intra_node_visibility\x18\x05 \x01(\x08R\x19\x65nableIntraNodeVisibility\x12[\n\x13\x64\x65\x66\x61ult_snat_status\x18\x07 \x01(\x0b\x32+.google.container.v1beta1.DefaultSnatStatusR\x11\x64\x65\x66\x61ultSnatStatus\x12\x36\n\x17\x65nable_l4ilb_subsetting\x18\n \x01(\x08R\x15\x65nableL4ilbSubsetting\x12W\n\x11\x64\x61tapath_provider\x18\x0b \x01(\x0e\x32*.google.container.v1beta1.DatapathProviderR\x10\x64\x61tapathProvider\x12n\n\x1aprivate_ipv6_google_access\x18\x0c \x01(\x0e\x32\x31.google.container.v1beta1.PrivateIPv6GoogleAccessR\x17privateIpv6GoogleAccess\x12\x42\n\ndns_config\x18\r \x01(\x0b\x32#.google.container.v1beta1.DNSConfigR\tdnsConfig\x12q\n\x1bservice_external_ips_config\x18\x0f \x01(\x0b\x32\x32.google.container.v1beta1.ServiceExternalIPsConfigR\x18serviceExternalIpsConfig\"4\n\x18ServiceExternalIPsConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\x90\x01\n\x1cListUsableSubnetworksRequest\x12\x1c\n\x06parent\x18\x01 \x01(\tB\x04\xe2\x41\x01\x02R\x06parent\x12\x16\n\x06\x66ilter\x18\x02 \x01(\tR\x06\x66ilter\x12\x1b\n\tpage_size\x18\x03 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x04 \x01(\tR\tpageToken\"\x95\x01\n\x1dListUsableSubnetworksResponse\x12L\n\x0bsubnetworks\x18\x01 \x03(\x0b\x32*.google.container.v1beta1.UsableSubnetworkR\x0bsubnetworks\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xa5\x02\n\x1eUsableSubnetworkSecondaryRange\x12\x1d\n\nrange_name\x18\x01 \x01(\tR\trangeName\x12\"\n\rip_cidr_range\x18\x02 \x01(\tR\x0bipCidrRange\x12W\n\x06status\x18\x03 \x01(\x0e\x32?.google.container.v1beta1.UsableSubnetworkSecondaryRange.StatusR\x06status\"g\n\x06Status\x12\x0b\n\x07UNKNOWN\x10\x00\x12\n\n\x06UNUSED\x10\x01\x12\x12\n\x0eIN_USE_SERVICE\x10\x02\x12\x18\n\x14IN_USE_SHAREABLE_POD\x10\x03\x12\x16\n\x12IN_USE_MANAGED_POD\x10\x04\"\x81\x02\n\x10UsableSubnetwork\x12\x1e\n\nsubnetwork\x18\x01 \x01(\tR\nsubnetwork\x12\x18\n\x07network\x18\x02 \x01(\tR\x07network\x12\"\n\rip_cidr_range\x18\x03 \x01(\tR\x0bipCidrRange\x12h\n\x13secondary_ip_ranges\x18\x04 \x03(\x0b\x32\x38.google.container.v1beta1.UsableSubnetworkSecondaryRangeR\x11secondaryIpRanges\x12%\n\x0estatus_message\x18\x05 \x01(\tR\rstatusMessage\"2\n\x16VerticalPodAutoscaling\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"/\n\x11\x44\x65\x66\x61ultSnatStatus\x12\x1a\n\x08\x64isabled\x18\x01 \x01(\x08R\x08\x64isabled\"5\n\x19IntraNodeVisibilityConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"/\n\x13ILBSubsettingConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xf6\x02\n\tDNSConfig\x12M\n\x0b\x63luster_dns\x18\x01 \x01(\x0e\x32,.google.container.v1beta1.DNSConfig.ProviderR\nclusterDns\x12X\n\x11\x63luster_dns_scope\x18\x02 \x01(\x0e\x32,.google.container.v1beta1.DNSConfig.DNSScopeR\x0f\x63lusterDnsScope\x12,\n\x12\x63luster_dns_domain\x18\x03 \x01(\tR\x10\x63lusterDnsDomain\"I\n\x08Provider\x12\x18\n\x14PROVIDER_UNSPECIFIED\x10\x00\x12\x14\n\x10PLATFORM_DEFAULT\x10\x01\x12\r\n\tCLOUD_DNS\x10\x02\"G\n\x08\x44NSScope\x12\x19\n\x15\x44NS_SCOPE_UNSPECIFIED\x10\x00\x12\x11\n\rCLUSTER_SCOPE\x10\x01\x12\r\n\tVPC_SCOPE\x10\x02\">\n\x11MaxPodsConstraint\x12)\n\x11max_pods_per_node\x18\x01 \x01(\x03R\x0emaxPodsPerNode\"\x9d\x01\n\x16WorkloadIdentityConfig\x12\x31\n\x12identity_namespace\x18\x01 \x01(\tB\x02\x18\x01R\x11identityNamespace\x12#\n\rworkload_pool\x18\x02 \x01(\tR\x0cworkloadPool\x12+\n\x11identity_provider\x18\x03 \x01(\tR\x10identityProvider\"c\n\x14WorkloadCertificates\x12K\n\x13\x65nable_certificates\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x12\x65nableCertificates\"_\n\x10MeshCertificates\x12K\n\x13\x65nable_certificates\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x12\x65nableCertificates\"\xad\x01\n\x12\x44\x61tabaseEncryption\x12H\n\x05state\x18\x02 \x01(\x0e\x32\x32.google.container.v1beta1.DatabaseEncryption.StateR\x05state\x12\x19\n\x08key_name\x18\x01 \x01(\tR\x07keyName\"2\n\x05State\x12\x0b\n\x07UNKNOWN\x10\x00\x12\r\n\tENCRYPTED\x10\x01\x12\r\n\tDECRYPTED\x10\x02\"\xd9\x03\n\x19ResourceUsageExportConfig\x12z\n\x14\x62igquery_destination\x18\x01 \x01(\x0b\x32G.google.container.v1beta1.ResourceUsageExportConfig.BigQueryDestinationR\x13\x62igqueryDestination\x12\x43\n\x1e\x65nable_network_egress_metering\x18\x02 \x01(\x08R\x1b\x65nableNetworkEgressMetering\x12\x8d\x01\n\x1b\x63onsumption_metering_config\x18\x03 \x01(\x0b\x32M.google.container.v1beta1.ResourceUsageExportConfig.ConsumptionMeteringConfigR\x19\x63onsumptionMeteringConfig\x1a\x34\n\x13\x42igQueryDestination\x12\x1d\n\ndataset_id\x18\x01 \x01(\tR\tdatasetId\x1a\x35\n\x19\x43onsumptionMeteringConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\")\n\rShieldedNodes\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"&\n\nVirtualNIC\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"/\n\x15GetJSONWebKeysRequest\x12\x16\n\x06parent\x18\x01 \x01(\tR\x06parent\"\x97\x01\n\x03Jwk\x12\x10\n\x03kty\x18\x01 \x01(\tR\x03kty\x12\x10\n\x03\x61lg\x18\x02 \x01(\tR\x03\x61lg\x12\x10\n\x03use\x18\x03 \x01(\tR\x03use\x12\x10\n\x03kid\x18\x04 \x01(\tR\x03kid\x12\x0c\n\x01n\x18\x05 \x01(\tR\x01n\x12\x0c\n\x01\x65\x18\x06 \x01(\tR\x01\x65\x12\x0c\n\x01x\x18\x07 \x01(\tR\x01x\x12\x0c\n\x01y\x18\x08 \x01(\tR\x01y\x12\x10\n\x03\x63rv\x18\t \x01(\tR\x03\x63rv\"K\n\x16GetJSONWebKeysResponse\x12\x31\n\x04keys\x18\x01 \x03(\x0b\x32\x1d.google.container.v1beta1.JwkR\x04keys\"\x9c\x01\n\x0eReleaseChannel\x12J\n\x07\x63hannel\x18\x01 \x01(\x0e\x32\x30.google.container.v1beta1.ReleaseChannel.ChannelR\x07\x63hannel\">\n\x07\x43hannel\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\t\n\x05RAPID\x10\x01\x12\x0b\n\x07REGULAR\x10\x02\x12\n\n\x06STABLE\x10\x03\"\x83\x01\n\tTpuConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12\x34\n\x16use_service_networking\x18\x02 \x01(\x08R\x14useServiceNetworking\x12&\n\x0fipv4_cidr_block\x18\x03 \x01(\tR\ripv4CidrBlock\"\x08\n\x06Master\"%\n\tAutopilot\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xe2\x03\n\x12NotificationConfig\x12K\n\x06pubsub\x18\x01 \x01(\x0b\x32\x33.google.container.v1beta1.NotificationConfig.PubSubR\x06pubsub\x1a\xa7\x01\n\x06PubSub\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\x12\x36\n\x05topic\x18\x02 \x01(\tB \xfa\x41\x1d\n\x1bpubsub.googleapis.com/TopicR\x05topic\x12K\n\x06\x66ilter\x18\x03 \x01(\x0b\x32\x33.google.container.v1beta1.NotificationConfig.FilterR\x06\x66ilter\x1a_\n\x06\x46ilter\x12U\n\nevent_type\x18\x01 \x03(\x0e\x32\x36.google.container.v1beta1.NotificationConfig.EventTypeR\teventType\"t\n\tEventType\x12\x1a\n\x16\x45VENT_TYPE_UNSPECIFIED\x10\x00\x12\x1b\n\x17UPGRADE_AVAILABLE_EVENT\x10\x01\x12\x11\n\rUPGRADE_EVENT\x10\x02\x12\x1b\n\x17SECURITY_BULLETIN_EVENT\x10\x03\"-\n\x11\x43onfidentialNodes\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"\xba\x02\n\x0cUpgradeEvent\x12R\n\rresource_type\x18\x01 \x01(\x0e\x32-.google.container.v1beta1.UpgradeResourceTypeR\x0cresourceType\x12\x1c\n\toperation\x18\x02 \x01(\tR\toperation\x12L\n\x14operation_start_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x12operationStartTime\x12\'\n\x0f\x63urrent_version\x18\x04 \x01(\tR\x0e\x63urrentVersion\x12%\n\x0etarget_version\x18\x05 \x01(\tR\rtargetVersion\x12\x1a\n\x08resource\x18\x06 \x01(\tR\x08resource\"\xca\x02\n\x15UpgradeAvailableEvent\x12\x18\n\x07version\x18\x01 \x01(\tR\x07version\x12R\n\rresource_type\x18\x02 \x01(\x0e\x32-.google.container.v1beta1.UpgradeResourceTypeR\x0cresourceType\x12Q\n\x0frelease_channel\x18\x03 \x01(\x0b\x32(.google.container.v1beta1.ReleaseChannelR\x0ereleaseChannel\x12\x1a\n\x08resource\x18\x04 \x01(\tR\x08resource\x12T\n\x10windows_versions\x18\x05 \x01(\x0b\x32).google.container.v1beta1.WindowsVersionsR\x0fwindowsVersions\"\xc8\x03\n\x15SecurityBulletinEvent\x12\x34\n\x16resource_type_affected\x18\x01 \x01(\tR\x14resourceTypeAffected\x12\x1f\n\x0b\x62ulletin_id\x18\x02 \x01(\tR\nbulletinId\x12\x17\n\x07\x63ve_ids\x18\x03 \x03(\tR\x06\x63veIds\x12\x1a\n\x08severity\x18\x04 \x01(\tR\x08severity\x12!\n\x0c\x62ulletin_uri\x18\x05 \x01(\tR\x0b\x62ulletinUri\x12+\n\x11\x62rief_description\x18\x06 \x01(\tR\x10\x62riefDescription\x12:\n\x19\x61\x66\x66\x65\x63ted_supported_minors\x18\x07 \x03(\tR\x17\x61\x66\x66\x65\x63tedSupportedMinors\x12)\n\x10patched_versions\x18\x08 \x03(\tR\x0fpatchedVersions\x12\x38\n\x18suggested_upgrade_target\x18\t \x01(\tR\x16suggestedUpgradeTarget\x12\x32\n\x15manual_steps_required\x18\n \x01(\x08R\x13manualStepsRequired\"1\n\x15IdentityServiceConfig\x12\x18\n\x07\x65nabled\x18\x01 \x01(\x08R\x07\x65nabled\"l\n\rLoggingConfig\x12[\n\x10\x63omponent_config\x18\x01 \x01(\x0b\x32\x30.google.container.v1beta1.LoggingComponentConfigR\x0f\x63omponentConfig\"\xcf\x01\n\x16LoggingComponentConfig\x12g\n\x11\x65nable_components\x18\x01 \x03(\x0e\x32:.google.container.v1beta1.LoggingComponentConfig.ComponentR\x10\x65nableComponents\"L\n\tComponent\x12\x19\n\x15\x43OMPONENT_UNSPECIFIED\x10\x00\x12\x15\n\x11SYSTEM_COMPONENTS\x10\x01\x12\r\n\tWORKLOADS\x10\x02\"\xe1\x01\n\x10MonitoringConfig\x12^\n\x10\x63omponent_config\x18\x01 \x01(\x0b\x32\x33.google.container.v1beta1.MonitoringComponentConfigR\x0f\x63omponentConfig\x12m\n\x19managed_prometheus_config\x18\x02 \x01(\x0b\x32\x31.google.container.v1beta1.ManagedPrometheusConfigR\x17managedPrometheusConfig\"\xd5\x01\n\x19MonitoringComponentConfig\x12j\n\x11\x65nable_components\x18\x01 \x03(\x0e\x32=.google.container.v1beta1.MonitoringComponentConfig.ComponentR\x10\x65nableComponents\"L\n\tComponent\x12\x19\n\x15\x43OMPONENT_UNSPECIFIED\x10\x00\x12\x15\n\x11SYSTEM_COMPONENTS\x10\x01\x12\r\n\tWORKLOADS\x10\x02*\xc6\x01\n\x17PrivateIPv6GoogleAccess\x12*\n&PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED\x10\x00\x12\'\n#PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED\x10\x01\x12(\n$PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE\x10\x02\x12,\n(PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL\x10\x03*a\n\x10\x44\x61tapathProvider\x12!\n\x1d\x44\x41TAPATH_PROVIDER_UNSPECIFIED\x10\x00\x12\x13\n\x0fLEGACY_DATAPATH\x10\x01\x12\x15\n\x11\x41\x44VANCED_DATAPATH\x10\x02*W\n\x13UpgradeResourceType\x12%\n!UPGRADE_RESOURCE_TYPE_UNSPECIFIED\x10\x00\x12\n\n\x06MASTER\x10\x01\x12\r\n\tNODE_POOL\x10\x02\x32\xeaJ\n\x0e\x43lusterManager\x12\xf3\x01\n\x0cListClusters\x12-.google.container.v1beta1.ListClustersRequest\x1a..google.container.v1beta1.ListClustersResponse\"\x83\x01\xda\x41\x0fproject_id,zone\x82\xd3\xe4\x93\x02k\x12\x31/v1beta1/{parent=projects/*/locations/*}/clustersZ6\x12\x34/v1beta1/projects/{project_id}/zones/{zone}/clusters\x12\xfa\x01\n\nGetCluster\x12+.google.container.v1beta1.GetClusterRequest\x1a!.google.container.v1beta1.Cluster\"\x9b\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02x\x12\x31/v1beta1/{name=projects/*/locations/*/clusters/*}ZC\x12\x41/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}\x12\xf8\x01\n\rCreateCluster\x12..google.container.v1beta1.CreateClusterRequest\x1a#.google.container.v1beta1.Operation\"\x91\x01\xda\x41\x17project_id,zone,cluster\x82\xd3\xe4\x93\x02q\"1/v1beta1/{parent=projects/*/locations/*}/clusters:\x01*Z9\"4/v1beta1/projects/{project_id}/zones/{zone}/clusters:\x01*\x12\x8f\x02\n\rUpdateCluster\x12..google.container.v1beta1.UpdateClusterRequest\x1a#.google.container.v1beta1.Operation\"\xa8\x01\xda\x41!project_id,zone,cluster_id,update\x82\xd3\xe4\x93\x02~\x1a\x31/v1beta1/{name=projects/*/locations/*/clusters/*}:\x01*ZF\x1a\x41/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:\x01*\x12\x9a\x02\n\x0eUpdateNodePool\x12/.google.container.v1beta1.UpdateNodePoolRequest\x1a#.google.container.v1beta1.Operation\"\xb1\x01\x82\xd3\xe4\x93\x02\xaa\x01\x1a=/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:\x01*Zf\"a/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/update:\x01*\x12\xbe\x02\n\x16SetNodePoolAutoscaling\x12\x37.google.container.v1beta1.SetNodePoolAutoscalingRequest\x1a#.google.container.v1beta1.Operation\"\xc5\x01\x82\xd3\xe4\x93\x02\xbe\x01\"L/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setAutoscaling:\x01*Zk\"f/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/autoscaling:\x01*\x12\xb4\x02\n\x11SetLoggingService\x12\x32.google.container.v1beta1.SetLoggingServiceRequest\x1a#.google.container.v1beta1.Operation\"\xc5\x01\xda\x41*project_id,zone,cluster_id,logging_service\x82\xd3\xe4\x93\x02\x91\x01\"</v1beta1/{name=projects/*/locations/*/clusters/*}:setLogging:\x01*ZN\"I/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/logging:\x01*\x12\xc3\x02\n\x14SetMonitoringService\x12\x35.google.container.v1beta1.SetMonitoringServiceRequest\x1a#.google.container.v1beta1.Operation\"\xce\x01\xda\x41-project_id,zone,cluster_id,monitoring_service\x82\xd3\xe4\x93\x02\x97\x01\"?/v1beta1/{name=projects/*/locations/*/clusters/*}:setMonitoring:\x01*ZQ\"L/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/monitoring:\x01*\x12\xac\x02\n\x0fSetAddonsConfig\x12\x30.google.container.v1beta1.SetAddonsConfigRequest\x1a#.google.container.v1beta1.Operation\"\xc1\x01\xda\x41(project_id,zone,cluster_id,addons_config\x82\xd3\xe4\x93\x02\x8f\x01\";/v1beta1/{name=projects/*/locations/*/clusters/*}:setAddons:\x01*ZM\"H/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/addons:\x01*\x12\xab\x02\n\x0cSetLocations\x12-.google.container.v1beta1.SetLocationsRequest\x1a#.google.container.v1beta1.Operation\"\xc6\x01\x88\x02\x01\xda\x41$project_id,zone,cluster_id,locations\x82\xd3\xe4\x93\x02\x95\x01\">/v1beta1/{name=projects/*/locations/*/clusters/*}:setLocations:\x01*ZP\"K/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/locations:\x01*\x12\xaa\x02\n\x0cUpdateMaster\x12-.google.container.v1beta1.UpdateMasterRequest\x1a#.google.container.v1beta1.Operation\"\xc5\x01\xda\x41)project_id,zone,cluster_id,master_version\x82\xd3\xe4\x93\x02\x92\x01\">/v1beta1/{name=projects/*/locations/*/clusters/*}:updateMaster:\x01*ZM\"H/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/master:\x01*\x12\x88\x02\n\rSetMasterAuth\x12..google.container.v1beta1.SetMasterAuthRequest\x1a#.google.container.v1beta1.Operation\"\xa1\x01\x82\xd3\xe4\x93\x02\x9a\x01\"?/v1beta1/{name=projects/*/locations/*/clusters/*}:setMasterAuth:\x01*ZT\"O/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setMasterAuth:\x01*\x12\x82\x02\n\rDeleteCluster\x12..google.container.v1beta1.DeleteClusterRequest\x1a#.google.container.v1beta1.Operation\"\x9b\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02x*1/v1beta1/{name=projects/*/locations/*/clusters/*}ZC*A/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}\x12\xfd\x01\n\x0eListOperations\x12/.google.container.v1beta1.ListOperationsRequest\x1a\x30.google.container.v1beta1.ListOperationsResponse\"\x87\x01\xda\x41\x0fproject_id,zone\x82\xd3\xe4\x93\x02o\x12\x33/v1beta1/{parent=projects/*/locations/*}/operationsZ8\x12\x36/v1beta1/projects/{project_id}/zones/{zone}/operations\x12\x88\x02\n\x0cGetOperation\x12-.google.container.v1beta1.GetOperationRequest\x1a#.google.container.v1beta1.Operation\"\xa3\x01\xda\x41\x1cproject_id,zone,operation_id\x82\xd3\xe4\x93\x02~\x12\x33/v1beta1/{name=projects/*/locations/*/operations/*}ZG\x12\x45/v1beta1/projects/{project_id}/zones/{zone}/operations/{operation_id}\x12\x96\x02\n\x0f\x43\x61ncelOperation\x12\x30.google.container.v1beta1.CancelOperationRequest\x1a\x16.google.protobuf.Empty\"\xb8\x01\xda\x41\x1cproject_id,zone,operation_id\x82\xd3\xe4\x93\x02\x92\x01\":/v1beta1/{name=projects/*/locations/*/operations/*}:cancel:\x01*ZQ\"L/v1beta1/projects/{project_id}/zones/{zone}/operations/{operation_id}:cancel:\x01*\x12\xf7\x01\n\x0fGetServerConfig\x12\x30.google.container.v1beta1.GetServerConfigRequest\x1a&.google.container.v1beta1.ServerConfig\"\x89\x01\xda\x41\x0fproject_id,zone\x82\xd3\xe4\x93\x02q\x12\x33/v1beta1/{name=projects/*/locations/*}/serverConfigZ:\x12\x38/v1beta1/projects/{project_id}/zones/{zone}/serverconfig\x12\xa5\x02\n\rListNodePools\x12..google.container.v1beta1.ListNodePoolsRequest\x1a/.google.container.v1beta1.ListNodePoolsResponse\"\xb2\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02\x8e\x01\x12=/v1beta1/{parent=projects/*/locations/*/clusters/*}/nodePoolsZM\x12K/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools\x12\xb5\x01\n\x0eGetJSONWebKeys\x12/.google.container.v1beta1.GetJSONWebKeysRequest\x1a\x30.google.container.v1beta1.GetJSONWebKeysResponse\"@\x82\xd3\xe4\x93\x02:\x12\x38/v1beta1/{parent=projects/*/locations/*/clusters/*}/jwks\x12\xb0\x02\n\x0bGetNodePool\x12,.google.container.v1beta1.GetNodePoolRequest\x1a\".google.container.v1beta1.NodePool\"\xce\x01\xda\x41\'project_id,zone,cluster_id,node_pool_id\x82\xd3\xe4\x93\x02\x9d\x01\x12=/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}Z\\\x12Z/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}\x12\xab\x02\n\x0e\x43reateNodePool\x12/.google.container.v1beta1.CreateNodePoolRequest\x1a#.google.container.v1beta1.Operation\"\xc2\x01\xda\x41$project_id,zone,cluster_id,node_pool\x82\xd3\xe4\x93\x02\x94\x01\"=/v1beta1/{parent=projects/*/locations/*/clusters/*}/nodePools:\x01*ZP\"K/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools:\x01*\x12\xb7\x02\n\x0e\x44\x65leteNodePool\x12/.google.container.v1beta1.DeleteNodePoolRequest\x1a#.google.container.v1beta1.Operation\"\xce\x01\xda\x41\'project_id,zone,cluster_id,node_pool_id\x82\xd3\xe4\x93\x02\x9d\x01*=/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}Z\\*Z/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}\x12\xe1\x02\n\x17RollbackNodePoolUpgrade\x12\x38.google.container.v1beta1.RollbackNodePoolUpgradeRequest\x1a#.google.container.v1beta1.Operation\"\xe6\x01\xda\x41\'project_id,zone,cluster_id,node_pool_id\x82\xd3\xe4\x93\x02\xb5\x01\"F/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:rollback:\x01*Zh\"c/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}:rollback:\x01*\x12\xf2\x02\n\x15SetNodePoolManagement\x12\x36.google.container.v1beta1.SetNodePoolManagementRequest\x1a#.google.container.v1beta1.Operation\"\xfb\x01\xda\x41\x32project_id,zone,cluster_id,node_pool_id,management\x82\xd3\xe4\x93\x02\xbf\x01\"K/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setManagement:\x01*Zm\"h/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/setManagement:\x01*\x12\xc4\x02\n\tSetLabels\x12*.google.container.v1beta1.SetLabelsRequest\x1a#.google.container.v1beta1.Operation\"\xe5\x01\xda\x41<project_id,zone,cluster_id,resource_labels,label_fingerprint\x82\xd3\xe4\x93\x02\x9f\x01\"C/v1beta1/{name=projects/*/locations/*/clusters/*}:setResourceLabels:\x01*ZU\"P/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/resourceLabels:\x01*\x12\xaa\x02\n\rSetLegacyAbac\x12..google.container.v1beta1.SetLegacyAbacRequest\x1a#.google.container.v1beta1.Operation\"\xc3\x01\xda\x41\"project_id,zone,cluster_id,enabled\x82\xd3\xe4\x93\x02\x97\x01\"?/v1beta1/{name=projects/*/locations/*/clusters/*}:setLegacyAbac:\x01*ZQ\"L/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/legacyAbac:\x01*\x12\xad\x02\n\x0fStartIPRotation\x12\x30.google.container.v1beta1.StartIPRotationRequest\x1a#.google.container.v1beta1.Operation\"\xc2\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02\x9e\x01\"A/v1beta1/{name=projects/*/locations/*/clusters/*}:startIpRotation:\x01*ZV\"Q/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:startIpRotation:\x01*\x12\xb9\x02\n\x12\x43ompleteIPRotation\x12\x33.google.container.v1beta1.CompleteIPRotationRequest\x1a#.google.container.v1beta1.Operation\"\xc8\x01\xda\x41\x1aproject_id,zone,cluster_id\x82\xd3\xe4\x93\x02\xa4\x01\"D/v1beta1/{name=projects/*/locations/*/clusters/*}:completeIpRotation:\x01*ZY\"T/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:completeIpRotation:\x01*\x12\xa5\x02\n\x0fSetNodePoolSize\x12\x30.google.container.v1beta1.SetNodePoolSizeRequest\x1a#.google.container.v1beta1.Operation\"\xba\x01\x82\xd3\xe4\x93\x02\xb3\x01\"E/v1beta1/{name=projects/*/locations/*/clusters/*/nodePools/*}:setSize:\x01*Zg\"b/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}/nodePools/{node_pool_id}/setSize:\x01*\x12\xc0\x02\n\x10SetNetworkPolicy\x12\x31.google.container.v1beta1.SetNetworkPolicyRequest\x1a#.google.container.v1beta1.Operation\"\xd3\x01\xda\x41)project_id,zone,cluster_id,network_policy\x82\xd3\xe4\x93\x02\xa0\x01\"B/v1beta1/{name=projects/*/locations/*/clusters/*}:setNetworkPolicy:\x01*ZW\"R/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setNetworkPolicy:\x01*\x12\xd4\x02\n\x14SetMaintenancePolicy\x12\x35.google.container.v1beta1.SetMaintenancePolicyRequest\x1a#.google.container.v1beta1.Operation\"\xdf\x01\xda\x41-project_id,zone,cluster_id,maintenance_policy\x82\xd3\xe4\x93\x02\xa8\x01\"F/v1beta1/{name=projects/*/locations/*/clusters/*}:setMaintenancePolicy:\x01*Z[\"V/v1beta1/projects/{project_id}/zones/{zone}/clusters/{cluster_id}:setMaintenancePolicy:\x01*\x12\xd4\x01\n\x15ListUsableSubnetworks\x12\x36.google.container.v1beta1.ListUsableSubnetworksRequest\x1a\x37.google.container.v1beta1.ListUsableSubnetworksResponse\"J\xda\x41\x06parent\x82\xd3\xe4\x93\x02;\x12\x39/v1beta1/{parent=projects/*}/aggregated/usableSubnetworks\x12\xa9\x01\n\rListLocations\x12..google.container.v1beta1.ListLocationsRequest\x1a/.google.container.v1beta1.ListLocationsResponse\"7\xda\x41\x06parent\x82\xd3\xe4\x93\x02(\x12&/v1beta1/{parent=projects/*}/locations\x1aL\xca\x41\x18\x63ontainer.googleapis.com\xd2\x41.https://www.googleapis.com/auth/cloud-platformB\xa1\x02\n\x1c\x63om.google.container.v1beta1B\x13\x43lusterServiceProtoP\x01ZAgoogle.golang.org/genproto/googleapis/container/v1beta1;container\xaa\x02\x1eGoogle.Cloud.Container.V1Beta1\xca\x02\x1eGoogle\\Cloud\\Container\\V1beta1\xea\x02!Google::Cloud::Container::V1beta1\xea\x41@\n\x1bpubsub.googleapis.com/Topic\x12!projects/{project}/topics/{topic}b\x06proto3')
 
 _PRIVATEIPV6GOOGLEACCESS = DESCRIPTOR.enum_types_by_name['PrivateIPv6GoogleAccess']
 PrivateIPv6GoogleAccess = enum_type_wrapper.EnumTypeWrapper(_PRIVATEIPV6GOOGLEACCESS)
@@ -51,10 +51,12 @@ _NODEKUBELETCONFIG = DESCRIPTOR.message_types_by_name['NodeKubeletConfig']
 _NODECONFIG = DESCRIPTOR.message_types_by_name['NodeConfig']
 _NODECONFIG_METADATAENTRY = _NODECONFIG.nested_types_by_name['MetadataEntry']
 _NODECONFIG_LABELSENTRY = _NODECONFIG.nested_types_by_name['LabelsEntry']
+_ADVANCEDMACHINEFEATURES = DESCRIPTOR.message_types_by_name['AdvancedMachineFeatures']
 _NODENETWORKCONFIG = DESCRIPTOR.message_types_by_name['NodeNetworkConfig']
 _SHIELDEDINSTANCECONFIG = DESCRIPTOR.message_types_by_name['ShieldedInstanceConfig']
 _SANDBOXCONFIG = DESCRIPTOR.message_types_by_name['SandboxConfig']
 _EPHEMERALSTORAGECONFIG = DESCRIPTOR.message_types_by_name['EphemeralStorageConfig']
+_GCFSCONFIG = DESCRIPTOR.message_types_by_name['GcfsConfig']
 _RESERVATIONAFFINITY = DESCRIPTOR.message_types_by_name['ReservationAffinity']
 _NODETAINT = DESCRIPTOR.message_types_by_name['NodeTaint']
 _NODETAINTS = DESCRIPTOR.message_types_by_name['NodeTaints']
@@ -70,8 +72,10 @@ _KUBERNETESDASHBOARD = DESCRIPTOR.message_types_by_name['KubernetesDashboard']
 _NETWORKPOLICYCONFIG = DESCRIPTOR.message_types_by_name['NetworkPolicyConfig']
 _DNSCACHECONFIG = DESCRIPTOR.message_types_by_name['DnsCacheConfig']
 _KALMCONFIG = DESCRIPTOR.message_types_by_name['KalmConfig']
+_GKEBACKUPAGENTCONFIG = DESCRIPTOR.message_types_by_name['GkeBackupAgentConfig']
 _CONFIGCONNECTORCONFIG = DESCRIPTOR.message_types_by_name['ConfigConnectorConfig']
 _GCEPERSISTENTDISKCSIDRIVERCONFIG = DESCRIPTOR.message_types_by_name['GcePersistentDiskCsiDriverConfig']
+_GCPFILESTORECSIDRIVERCONFIG = DESCRIPTOR.message_types_by_name['GcpFilestoreCsiDriverConfig']
 _PRIVATECLUSTERMASTERGLOBALACCESSCONFIG = DESCRIPTOR.message_types_by_name['PrivateClusterMasterGlobalAccessConfig']
 _PRIVATECLUSTERCONFIG = DESCRIPTOR.message_types_by_name['PrivateClusterConfig']
 _ISTIOCONFIG = DESCRIPTOR.message_types_by_name['IstioConfig']
@@ -124,12 +128,14 @@ _LISTNODEPOOLSREQUEST = DESCRIPTOR.message_types_by_name['ListNodePoolsRequest']
 _GETNODEPOOLREQUEST = DESCRIPTOR.message_types_by_name['GetNodePoolRequest']
 _NODEPOOL = DESCRIPTOR.message_types_by_name['NodePool']
 _NODEPOOL_UPGRADESETTINGS = _NODEPOOL.nested_types_by_name['UpgradeSettings']
+_NODEPOOL_PLACEMENTPOLICY = _NODEPOOL.nested_types_by_name['PlacementPolicy']
 _NODEMANAGEMENT = DESCRIPTOR.message_types_by_name['NodeManagement']
 _AUTOUPGRADEOPTIONS = DESCRIPTOR.message_types_by_name['AutoUpgradeOptions']
 _MAINTENANCEPOLICY = DESCRIPTOR.message_types_by_name['MaintenancePolicy']
 _MAINTENANCEWINDOW = DESCRIPTOR.message_types_by_name['MaintenanceWindow']
 _MAINTENANCEWINDOW_MAINTENANCEEXCLUSIONSENTRY = _MAINTENANCEWINDOW.nested_types_by_name['MaintenanceExclusionsEntry']
 _TIMEWINDOW = DESCRIPTOR.message_types_by_name['TimeWindow']
+_MAINTENANCEEXCLUSIONOPTIONS = DESCRIPTOR.message_types_by_name['MaintenanceExclusionOptions']
 _RECURRINGTIMEWINDOW = DESCRIPTOR.message_types_by_name['RecurringTimeWindow']
 _DAILYMAINTENANCEWINDOW = DESCRIPTOR.message_types_by_name['DailyMaintenanceWindow']
 _SETNODEPOOLMANAGEMENTREQUEST = DESCRIPTOR.message_types_by_name['SetNodePoolManagementRequest']
@@ -146,6 +152,7 @@ _SETLEGACYABACREQUEST = DESCRIPTOR.message_types_by_name['SetLegacyAbacRequest']
 _STARTIPROTATIONREQUEST = DESCRIPTOR.message_types_by_name['StartIPRotationRequest']
 _COMPLETEIPROTATIONREQUEST = DESCRIPTOR.message_types_by_name['CompleteIPRotationRequest']
 _ACCELERATORCONFIG = DESCRIPTOR.message_types_by_name['AcceleratorConfig']
+_MANAGEDPROMETHEUSCONFIG = DESCRIPTOR.message_types_by_name['ManagedPrometheusConfig']
 _WORKLOADMETADATACONFIG = DESCRIPTOR.message_types_by_name['WorkloadMetadataConfig']
 _SETNETWORKPOLICYREQUEST = DESCRIPTOR.message_types_by_name['SetNetworkPolicyRequest']
 _SETMAINTENANCEPOLICYREQUEST = DESCRIPTOR.message_types_by_name['SetMaintenancePolicyRequest']
@@ -167,14 +174,13 @@ _DNSCONFIG = DESCRIPTOR.message_types_by_name['DNSConfig']
 _MAXPODSCONSTRAINT = DESCRIPTOR.message_types_by_name['MaxPodsConstraint']
 _WORKLOADIDENTITYCONFIG = DESCRIPTOR.message_types_by_name['WorkloadIdentityConfig']
 _WORKLOADCERTIFICATES = DESCRIPTOR.message_types_by_name['WorkloadCertificates']
+_MESHCERTIFICATES = DESCRIPTOR.message_types_by_name['MeshCertificates']
 _DATABASEENCRYPTION = DESCRIPTOR.message_types_by_name['DatabaseEncryption']
 _RESOURCEUSAGEEXPORTCONFIG = DESCRIPTOR.message_types_by_name['ResourceUsageExportConfig']
 _RESOURCEUSAGEEXPORTCONFIG_BIGQUERYDESTINATION = _RESOURCEUSAGEEXPORTCONFIG.nested_types_by_name['BigQueryDestination']
 _RESOURCEUSAGEEXPORTCONFIG_CONSUMPTIONMETERINGCONFIG = _RESOURCEUSAGEEXPORTCONFIG.nested_types_by_name['ConsumptionMeteringConfig']
 _SHIELDEDNODES = DESCRIPTOR.message_types_by_name['ShieldedNodes']
 _VIRTUALNIC = DESCRIPTOR.message_types_by_name['VirtualNIC']
-_GETOPENIDCONFIGREQUEST = DESCRIPTOR.message_types_by_name['GetOpenIDConfigRequest']
-_GETOPENIDCONFIGRESPONSE = DESCRIPTOR.message_types_by_name['GetOpenIDConfigResponse']
 _GETJSONWEBKEYSREQUEST = DESCRIPTOR.message_types_by_name['GetJSONWebKeysRequest']
 _JWK = DESCRIPTOR.message_types_by_name['Jwk']
 _GETJSONWEBKEYSRESPONSE = DESCRIPTOR.message_types_by_name['GetJSONWebKeysResponse']
@@ -184,9 +190,11 @@ _MASTER = DESCRIPTOR.message_types_by_name['Master']
 _AUTOPILOT = DESCRIPTOR.message_types_by_name['Autopilot']
 _NOTIFICATIONCONFIG = DESCRIPTOR.message_types_by_name['NotificationConfig']
 _NOTIFICATIONCONFIG_PUBSUB = _NOTIFICATIONCONFIG.nested_types_by_name['PubSub']
+_NOTIFICATIONCONFIG_FILTER = _NOTIFICATIONCONFIG.nested_types_by_name['Filter']
 _CONFIDENTIALNODES = DESCRIPTOR.message_types_by_name['ConfidentialNodes']
 _UPGRADEEVENT = DESCRIPTOR.message_types_by_name['UpgradeEvent']
 _UPGRADEAVAILABLEEVENT = DESCRIPTOR.message_types_by_name['UpgradeAvailableEvent']
+_SECURITYBULLETINEVENT = DESCRIPTOR.message_types_by_name['SecurityBulletinEvent']
 _IDENTITYSERVICECONFIG = DESCRIPTOR.message_types_by_name['IdentityServiceConfig']
 _LOGGINGCONFIG = DESCRIPTOR.message_types_by_name['LoggingConfig']
 _LOGGINGCOMPONENTCONFIG = DESCRIPTOR.message_types_by_name['LoggingComponentConfig']
@@ -203,7 +211,9 @@ _CLUSTER_STATUS = _CLUSTER.enum_types_by_name['Status']
 _OPERATION_STATUS = _OPERATION.enum_types_by_name['Status']
 _OPERATION_TYPE = _OPERATION.enum_types_by_name['Type']
 _SETMASTERAUTHREQUEST_ACTION = _SETMASTERAUTHREQUEST.enum_types_by_name['Action']
+_NODEPOOL_PLACEMENTPOLICY_TYPE = _NODEPOOL_PLACEMENTPOLICY.enum_types_by_name['Type']
 _NODEPOOL_STATUS = _NODEPOOL.enum_types_by_name['Status']
+_MAINTENANCEEXCLUSIONOPTIONS_SCOPE = _MAINTENANCEEXCLUSIONOPTIONS.enum_types_by_name['Scope']
 _CLUSTERAUTOSCALING_AUTOSCALINGPROFILE = _CLUSTERAUTOSCALING.enum_types_by_name['AutoscalingProfile']
 _WORKLOADMETADATACONFIG_NODEMETADATA = _WORKLOADMETADATACONFIG.enum_types_by_name['NodeMetadata']
 _WORKLOADMETADATACONFIG_MODE = _WORKLOADMETADATACONFIG.enum_types_by_name['Mode']
@@ -214,6 +224,7 @@ _DNSCONFIG_PROVIDER = _DNSCONFIG.enum_types_by_name['Provider']
 _DNSCONFIG_DNSSCOPE = _DNSCONFIG.enum_types_by_name['DNSScope']
 _DATABASEENCRYPTION_STATE = _DATABASEENCRYPTION.enum_types_by_name['State']
 _RELEASECHANNEL_CHANNEL = _RELEASECHANNEL.enum_types_by_name['Channel']
+_NOTIFICATIONCONFIG_EVENTTYPE = _NOTIFICATIONCONFIG.enum_types_by_name['EventType']
 _LOGGINGCOMPONENTCONFIG_COMPONENT = _LOGGINGCOMPONENTCONFIG.enum_types_by_name['Component']
 _MONITORINGCOMPONENTCONFIG_COMPONENT = _MONITORINGCOMPONENTCONFIG.enum_types_by_name['Component']
 LinuxNodeConfig = _reflection.GeneratedProtocolMessageType('LinuxNodeConfig', (_message.Message,), {
@@ -261,6 +272,13 @@ _sym_db.RegisterMessage(NodeConfig)
 _sym_db.RegisterMessage(NodeConfig.MetadataEntry)
 _sym_db.RegisterMessage(NodeConfig.LabelsEntry)
 
+AdvancedMachineFeatures = _reflection.GeneratedProtocolMessageType('AdvancedMachineFeatures', (_message.Message,), {
+  'DESCRIPTOR' : _ADVANCEDMACHINEFEATURES,
+  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+  # @@protoc_insertion_point(class_scope:google.container.v1beta1.AdvancedMachineFeatures)
+  })
+_sym_db.RegisterMessage(AdvancedMachineFeatures)
+
 NodeNetworkConfig = _reflection.GeneratedProtocolMessageType('NodeNetworkConfig', (_message.Message,), {
   'DESCRIPTOR' : _NODENETWORKCONFIG,
   '__module__' : 'google.container.v1beta1.cluster_service_pb2'
@@ -288,6 +306,13 @@ EphemeralStorageConfig = _reflection.GeneratedProtocolMessageType('EphemeralStor
   # @@protoc_insertion_point(class_scope:google.container.v1beta1.EphemeralStorageConfig)
   })
 _sym_db.RegisterMessage(EphemeralStorageConfig)
+
+GcfsConfig = _reflection.GeneratedProtocolMessageType('GcfsConfig', (_message.Message,), {
+  'DESCRIPTOR' : _GCFSCONFIG,
+  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+  # @@protoc_insertion_point(class_scope:google.container.v1beta1.GcfsConfig)
+  })
+_sym_db.RegisterMessage(GcfsConfig)
 
 ReservationAffinity = _reflection.GeneratedProtocolMessageType('ReservationAffinity', (_message.Message,), {
   'DESCRIPTOR' : _RESERVATIONAFFINITY,
@@ -395,6 +420,13 @@ KalmConfig = _reflection.GeneratedProtocolMessageType('KalmConfig', (_message.Me
   })
 _sym_db.RegisterMessage(KalmConfig)
 
+GkeBackupAgentConfig = _reflection.GeneratedProtocolMessageType('GkeBackupAgentConfig', (_message.Message,), {
+  'DESCRIPTOR' : _GKEBACKUPAGENTCONFIG,
+  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+  # @@protoc_insertion_point(class_scope:google.container.v1beta1.GkeBackupAgentConfig)
+  })
+_sym_db.RegisterMessage(GkeBackupAgentConfig)
+
 ConfigConnectorConfig = _reflection.GeneratedProtocolMessageType('ConfigConnectorConfig', (_message.Message,), {
   'DESCRIPTOR' : _CONFIGCONNECTORCONFIG,
   '__module__' : 'google.container.v1beta1.cluster_service_pb2'
@@ -408,6 +440,13 @@ GcePersistentDiskCsiDriverConfig = _reflection.GeneratedProtocolMessageType('Gce
   # @@protoc_insertion_point(class_scope:google.container.v1beta1.GcePersistentDiskCsiDriverConfig)
   })
 _sym_db.RegisterMessage(GcePersistentDiskCsiDriverConfig)
+
+GcpFilestoreCsiDriverConfig = _reflection.GeneratedProtocolMessageType('GcpFilestoreCsiDriverConfig', (_message.Message,), {
+  'DESCRIPTOR' : _GCPFILESTORECSIDRIVERCONFIG,
+  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+  # @@protoc_insertion_point(class_scope:google.container.v1beta1.GcpFilestoreCsiDriverConfig)
+  })
+_sym_db.RegisterMessage(GcpFilestoreCsiDriverConfig)
 
 PrivateClusterMasterGlobalAccessConfig = _reflection.GeneratedProtocolMessageType('PrivateClusterMasterGlobalAccessConfig', (_message.Message,), {
   'DESCRIPTOR' : _PRIVATECLUSTERMASTERGLOBALACCESSCONFIG,
@@ -774,12 +813,20 @@ NodePool = _reflection.GeneratedProtocolMessageType('NodePool', (_message.Messag
     # @@protoc_insertion_point(class_scope:google.container.v1beta1.NodePool.UpgradeSettings)
     })
   ,
+
+  'PlacementPolicy' : _reflection.GeneratedProtocolMessageType('PlacementPolicy', (_message.Message,), {
+    'DESCRIPTOR' : _NODEPOOL_PLACEMENTPOLICY,
+    '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+    # @@protoc_insertion_point(class_scope:google.container.v1beta1.NodePool.PlacementPolicy)
+    })
+  ,
   'DESCRIPTOR' : _NODEPOOL,
   '__module__' : 'google.container.v1beta1.cluster_service_pb2'
   # @@protoc_insertion_point(class_scope:google.container.v1beta1.NodePool)
   })
 _sym_db.RegisterMessage(NodePool)
 _sym_db.RegisterMessage(NodePool.UpgradeSettings)
+_sym_db.RegisterMessage(NodePool.PlacementPolicy)
 
 NodeManagement = _reflection.GeneratedProtocolMessageType('NodeManagement', (_message.Message,), {
   'DESCRIPTOR' : _NODEMANAGEMENT,
@@ -823,6 +870,13 @@ TimeWindow = _reflection.GeneratedProtocolMessageType('TimeWindow', (_message.Me
   # @@protoc_insertion_point(class_scope:google.container.v1beta1.TimeWindow)
   })
 _sym_db.RegisterMessage(TimeWindow)
+
+MaintenanceExclusionOptions = _reflection.GeneratedProtocolMessageType('MaintenanceExclusionOptions', (_message.Message,), {
+  'DESCRIPTOR' : _MAINTENANCEEXCLUSIONOPTIONS,
+  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+  # @@protoc_insertion_point(class_scope:google.container.v1beta1.MaintenanceExclusionOptions)
+  })
+_sym_db.RegisterMessage(MaintenanceExclusionOptions)
 
 RecurringTimeWindow = _reflection.GeneratedProtocolMessageType('RecurringTimeWindow', (_message.Message,), {
   'DESCRIPTOR' : _RECURRINGTIMEWINDOW,
@@ -936,6 +990,13 @@ AcceleratorConfig = _reflection.GeneratedProtocolMessageType('AcceleratorConfig'
   # @@protoc_insertion_point(class_scope:google.container.v1beta1.AcceleratorConfig)
   })
 _sym_db.RegisterMessage(AcceleratorConfig)
+
+ManagedPrometheusConfig = _reflection.GeneratedProtocolMessageType('ManagedPrometheusConfig', (_message.Message,), {
+  'DESCRIPTOR' : _MANAGEDPROMETHEUSCONFIG,
+  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+  # @@protoc_insertion_point(class_scope:google.container.v1beta1.ManagedPrometheusConfig)
+  })
+_sym_db.RegisterMessage(ManagedPrometheusConfig)
 
 WorkloadMetadataConfig = _reflection.GeneratedProtocolMessageType('WorkloadMetadataConfig', (_message.Message,), {
   'DESCRIPTOR' : _WORKLOADMETADATACONFIG,
@@ -1084,6 +1145,13 @@ WorkloadCertificates = _reflection.GeneratedProtocolMessageType('WorkloadCertifi
   })
 _sym_db.RegisterMessage(WorkloadCertificates)
 
+MeshCertificates = _reflection.GeneratedProtocolMessageType('MeshCertificates', (_message.Message,), {
+  'DESCRIPTOR' : _MESHCERTIFICATES,
+  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+  # @@protoc_insertion_point(class_scope:google.container.v1beta1.MeshCertificates)
+  })
+_sym_db.RegisterMessage(MeshCertificates)
+
 DatabaseEncryption = _reflection.GeneratedProtocolMessageType('DatabaseEncryption', (_message.Message,), {
   'DESCRIPTOR' : _DATABASEENCRYPTION,
   '__module__' : 'google.container.v1beta1.cluster_service_pb2'
@@ -1127,20 +1195,6 @@ VirtualNIC = _reflection.GeneratedProtocolMessageType('VirtualNIC', (_message.Me
   # @@protoc_insertion_point(class_scope:google.container.v1beta1.VirtualNIC)
   })
 _sym_db.RegisterMessage(VirtualNIC)
-
-GetOpenIDConfigRequest = _reflection.GeneratedProtocolMessageType('GetOpenIDConfigRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETOPENIDCONFIGREQUEST,
-  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
-  # @@protoc_insertion_point(class_scope:google.container.v1beta1.GetOpenIDConfigRequest)
-  })
-_sym_db.RegisterMessage(GetOpenIDConfigRequest)
-
-GetOpenIDConfigResponse = _reflection.GeneratedProtocolMessageType('GetOpenIDConfigResponse', (_message.Message,), {
-  'DESCRIPTOR' : _GETOPENIDCONFIGRESPONSE,
-  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
-  # @@protoc_insertion_point(class_scope:google.container.v1beta1.GetOpenIDConfigResponse)
-  })
-_sym_db.RegisterMessage(GetOpenIDConfigResponse)
 
 GetJSONWebKeysRequest = _reflection.GeneratedProtocolMessageType('GetJSONWebKeysRequest', (_message.Message,), {
   'DESCRIPTOR' : _GETJSONWEBKEYSREQUEST,
@@ -1199,12 +1253,20 @@ NotificationConfig = _reflection.GeneratedProtocolMessageType('NotificationConfi
     # @@protoc_insertion_point(class_scope:google.container.v1beta1.NotificationConfig.PubSub)
     })
   ,
+
+  'Filter' : _reflection.GeneratedProtocolMessageType('Filter', (_message.Message,), {
+    'DESCRIPTOR' : _NOTIFICATIONCONFIG_FILTER,
+    '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+    # @@protoc_insertion_point(class_scope:google.container.v1beta1.NotificationConfig.Filter)
+    })
+  ,
   'DESCRIPTOR' : _NOTIFICATIONCONFIG,
   '__module__' : 'google.container.v1beta1.cluster_service_pb2'
   # @@protoc_insertion_point(class_scope:google.container.v1beta1.NotificationConfig)
   })
 _sym_db.RegisterMessage(NotificationConfig)
 _sym_db.RegisterMessage(NotificationConfig.PubSub)
+_sym_db.RegisterMessage(NotificationConfig.Filter)
 
 ConfidentialNodes = _reflection.GeneratedProtocolMessageType('ConfidentialNodes', (_message.Message,), {
   'DESCRIPTOR' : _CONFIDENTIALNODES,
@@ -1226,6 +1288,13 @@ UpgradeAvailableEvent = _reflection.GeneratedProtocolMessageType('UpgradeAvailab
   # @@protoc_insertion_point(class_scope:google.container.v1beta1.UpgradeAvailableEvent)
   })
 _sym_db.RegisterMessage(UpgradeAvailableEvent)
+
+SecurityBulletinEvent = _reflection.GeneratedProtocolMessageType('SecurityBulletinEvent', (_message.Message,), {
+  'DESCRIPTOR' : _SECURITYBULLETINEVENT,
+  '__module__' : 'google.container.v1beta1.cluster_service_pb2'
+  # @@protoc_insertion_point(class_scope:google.container.v1beta1.SecurityBulletinEvent)
+  })
+_sym_db.RegisterMessage(SecurityBulletinEvent)
 
 IdentityServiceConfig = _reflection.GeneratedProtocolMessageType('IdentityServiceConfig', (_message.Message,), {
   'DESCRIPTOR' : _IDENTITYSERVICECONFIG,
@@ -1285,10 +1354,16 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _MASTERAUTH.fields_by_name['password']._serialized_options = b'\030\001'
   _ADDONSCONFIG.fields_by_name['kubernetes_dashboard']._options = None
   _ADDONSCONFIG.fields_by_name['kubernetes_dashboard']._serialized_options = b'\030\001'
+  _ADDONSCONFIG.fields_by_name['istio_config']._options = None
+  _ADDONSCONFIG.fields_by_name['istio_config']._serialized_options = b'\030\001'
   _ADDONSCONFIG.fields_by_name['kalm_config']._options = None
   _ADDONSCONFIG.fields_by_name['kalm_config']._serialized_options = b'\030\001'
   _KALMCONFIG.fields_by_name['enabled']._options = None
   _KALMCONFIG.fields_by_name['enabled']._serialized_options = b'\030\001'
+  _ISTIOCONFIG.fields_by_name['disabled']._options = None
+  _ISTIOCONFIG.fields_by_name['disabled']._serialized_options = b'\030\001'
+  _ISTIOCONFIG.fields_by_name['auth']._options = None
+  _ISTIOCONFIG.fields_by_name['auth']._serialized_options = b'\030\001'
   _IPALLOCATIONPOLICY.fields_by_name['cluster_ipv4_cidr']._options = None
   _IPALLOCATIONPOLICY.fields_by_name['cluster_ipv4_cidr']._serialized_options = b'\030\001'
   _IPALLOCATIONPOLICY.fields_by_name['node_ipv4_cidr']._options = None
@@ -1649,12 +1724,12 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CLUSTERMANAGER.methods_by_name['ListUsableSubnetworks']._serialized_options = b'\332A\006parent\202\323\344\223\002;\0229/v1beta1/{parent=projects/*}/aggregated/usableSubnetworks'
   _CLUSTERMANAGER.methods_by_name['ListLocations']._options = None
   _CLUSTERMANAGER.methods_by_name['ListLocations']._serialized_options = b'\332A\006parent\202\323\344\223\002(\022&/v1beta1/{parent=projects/*}/locations'
-  _PRIVATEIPV6GOOGLEACCESS._serialized_start=37146
-  _PRIVATEIPV6GOOGLEACCESS._serialized_end=37344
-  _DATAPATHPROVIDER._serialized_start=37346
-  _DATAPATHPROVIDER._serialized_end=37443
-  _UPGRADERESOURCETYPE._serialized_start=37445
-  _UPGRADERESOURCETYPE._serialized_end=37532
+  _PRIVATEIPV6GOOGLEACCESS._serialized_start=39432
+  _PRIVATEIPV6GOOGLEACCESS._serialized_end=39630
+  _DATAPATHPROVIDER._serialized_start=39632
+  _DATAPATHPROVIDER._serialized_end=39729
+  _UPGRADERESOURCETYPE._serialized_start=39731
+  _UPGRADERESOURCETYPE._serialized_end=39818
   _LINUXNODECONFIG._serialized_start=358
   _LINUXNODECONFIG._serialized_end=517
   _LINUXNODECONFIG_SYSCTLSENTRY._serialized_start=459
@@ -1662,341 +1737,363 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _NODEKUBELETCONFIG._serialized_start=520
   _NODEKUBELETCONFIG._serialized_end=698
   _NODECONFIG._serialized_start=701
-  _NODECONFIG._serialized_end=2277
-  _NODECONFIG_METADATAENTRY._serialized_start=2159
-  _NODECONFIG_METADATAENTRY._serialized_end=2218
-  _NODECONFIG_LABELSENTRY._serialized_start=2220
-  _NODECONFIG_LABELSENTRY._serialized_end=2277
-  _NODENETWORKCONFIG._serialized_start=2280
-  _NODENETWORKCONFIG._serialized_end=2423
-  _SHIELDEDINSTANCECONFIG._serialized_start=2426
-  _SHIELDEDINSTANCECONFIG._serialized_end=2560
-  _SANDBOXCONFIG._serialized_start=2563
-  _SANDBOXCONFIG._serialized_end=2720
-  _SANDBOXCONFIG_TYPE._serialized_start=2685
-  _SANDBOXCONFIG_TYPE._serialized_end=2720
-  _EPHEMERALSTORAGECONFIG._serialized_start=2722
-  _EPHEMERALSTORAGECONFIG._serialized_end=2786
-  _RESERVATIONAFFINITY._serialized_start=2789
-  _RESERVATIONAFFINITY._serialized_end=3054
-  _RESERVATIONAFFINITY_TYPE._serialized_start=2964
-  _RESERVATIONAFFINITY_TYPE._serialized_end=3054
-  _NODETAINT._serialized_start=3057
-  _NODETAINT._serialized_end=3267
-  _NODETAINT_EFFECT._serialized_start=3178
-  _NODETAINT_EFFECT._serialized_end=3267
-  _NODETAINTS._serialized_start=3269
-  _NODETAINTS._serialized_end=3342
-  _NODELABELS._serialized_start=3345
-  _NODELABELS._serialized_end=3490
-  _NODELABELS_LABELSENTRY._serialized_start=2220
-  _NODELABELS_LABELSENTRY._serialized_end=2277
-  _NETWORKTAGS._serialized_start=3492
-  _NETWORKTAGS._serialized_end=3525
-  _MASTERAUTH._serialized_start=3528
-  _MASTERAUTH._serialized_end=3847
-  _CLIENTCERTIFICATECONFIG._serialized_start=3849
-  _CLIENTCERTIFICATECONFIG._serialized_end=3932
-  _ADDONSCONFIG._serialized_start=3935
-  _ADDONSCONFIG._serialized_end=4921
-  _HTTPLOADBALANCING._serialized_start=4923
-  _HTTPLOADBALANCING._serialized_end=4970
-  _HORIZONTALPODAUTOSCALING._serialized_start=4972
-  _HORIZONTALPODAUTOSCALING._serialized_end=5026
-  _KUBERNETESDASHBOARD._serialized_start=5028
-  _KUBERNETESDASHBOARD._serialized_end=5077
-  _NETWORKPOLICYCONFIG._serialized_start=5079
-  _NETWORKPOLICYCONFIG._serialized_end=5128
-  _DNSCACHECONFIG._serialized_start=5130
-  _DNSCACHECONFIG._serialized_end=5172
-  _KALMCONFIG._serialized_start=5174
-  _KALMCONFIG._serialized_end=5216
-  _CONFIGCONNECTORCONFIG._serialized_start=5218
-  _CONFIGCONNECTORCONFIG._serialized_end=5267
-  _GCEPERSISTENTDISKCSIDRIVERCONFIG._serialized_start=5269
-  _GCEPERSISTENTDISKCSIDRIVERCONFIG._serialized_end=5329
-  _PRIVATECLUSTERMASTERGLOBALACCESSCONFIG._serialized_start=5331
-  _PRIVATECLUSTERMASTERGLOBALACCESSCONFIG._serialized_end=5397
-  _PRIVATECLUSTERCONFIG._serialized_start=5400
-  _PRIVATECLUSTERCONFIG._serialized_end=5829
-  _ISTIOCONFIG._serialized_start=5832
-  _ISTIOCONFIG._serialized_end=5999
-  _ISTIOCONFIG_ISTIOAUTHMODE._serialized_start=5948
-  _ISTIOCONFIG_ISTIOAUTHMODE._serialized_end=5999
-  _CLOUDRUNCONFIG._serialized_start=6002
-  _CLOUDRUNCONFIG._serialized_end=6273
-  _CLOUDRUNCONFIG_LOADBALANCERTYPE._serialized_start=6153
-  _CLOUDRUNCONFIG_LOADBALANCERTYPE._serialized_end=6273
-  _MASTERAUTHORIZEDNETWORKSCONFIG._serialized_start=6276
-  _MASTERAUTHORIZEDNETWORKSCONFIG._serialized_end=6514
-  _MASTERAUTHORIZEDNETWORKSCONFIG_CIDRBLOCK._serialized_start=6437
-  _MASTERAUTHORIZEDNETWORKSCONFIG_CIDRBLOCK._serialized_end=6514
-  _LEGACYABAC._serialized_start=6516
-  _LEGACYABAC._serialized_end=6554
-  _NETWORKPOLICY._serialized_start=6557
-  _NETWORKPOLICY._serialized_end=6726
-  _NETWORKPOLICY_PROVIDER._serialized_start=6678
-  _NETWORKPOLICY_PROVIDER._serialized_end=6726
-  _IPALLOCATIONPOLICY._serialized_start=6729
-  _IPALLOCATIONPOLICY._serialized_end=7432
-  _BINARYAUTHORIZATION._serialized_start=7434
-  _BINARYAUTHORIZATION._serialized_end=7481
-  _PODSECURITYPOLICYCONFIG._serialized_start=7483
-  _PODSECURITYPOLICYCONFIG._serialized_end=7534
-  _AUTHENTICATORGROUPSCONFIG._serialized_start=7536
-  _AUTHENTICATORGROUPSCONFIG._serialized_end=7628
-  _CLUSTERTELEMETRY._serialized_start=7631
-  _CLUSTERTELEMETRY._serialized_end=7787
-  _CLUSTERTELEMETRY_TYPE._serialized_start=7720
-  _CLUSTERTELEMETRY_TYPE._serialized_end=7787
-  _CLUSTER._serialized_start=7790
-  _CLUSTER._serialized_end=12447
-  _CLUSTER_RESOURCELABELSENTRY._serialized_start=12238
-  _CLUSTER_RESOURCELABELSENTRY._serialized_end=12303
-  _CLUSTER_STATUS._serialized_start=12305
-  _CLUSTER_STATUS._serialized_end=12424
-  _NODEPOOLDEFAULTS._serialized_start=12449
-  _NODEPOOLDEFAULTS._serialized_end=12563
-  _NODECONFIGDEFAULTS._serialized_start=12565
-  _NODECONFIGDEFAULTS._serialized_end=12585
-  _CLUSTERUPDATE._serialized_start=12588
-  _CLUSTERUPDATE._serialized_end=16213
-  _OPERATION._serialized_start=16216
-  _OPERATION._serialized_end=17418
-  _OPERATION_STATUS._serialized_start=16952
-  _OPERATION_STATUS._serialized_end=17034
-  _OPERATION_TYPE._serialized_start=17037
-  _OPERATION_TYPE._serialized_end=17418
-  _OPERATIONPROGRESS._serialized_start=17421
-  _OPERATIONPROGRESS._serialized_end=17826
-  _OPERATIONPROGRESS_METRIC._serialized_start=17678
-  _OPERATIONPROGRESS_METRIC._serialized_end=17826
-  _CREATECLUSTERREQUEST._serialized_start=17829
-  _CREATECLUSTERREQUEST._serialized_end=18009
-  _GETCLUSTERREQUEST._serialized_start=18012
-  _GETCLUSTERREQUEST._serialized_end=18157
-  _UPDATECLUSTERREQUEST._serialized_start=18160
-  _UPDATECLUSTERREQUEST._serialized_end=18379
-  _UPDATENODEPOOLREQUEST._serialized_start=18382
-  _UPDATENODEPOOLREQUEST._serialized_end=19298
-  _SETNODEPOOLAUTOSCALINGREQUEST._serialized_start=19301
-  _SETNODEPOOLAUTOSCALINGREQUEST._serialized_end=19587
-  _SETLOGGINGSERVICEREQUEST._serialized_start=19590
-  _SETLOGGINGSERVICEREQUEST._serialized_end=19789
-  _SETMONITORINGSERVICEREQUEST._serialized_start=19792
-  _SETMONITORINGSERVICEREQUEST._serialized_end=20000
-  _SETADDONSCONFIGREQUEST._serialized_start=20003
-  _SETADDONSCONFIGREQUEST._serialized_end=20236
-  _SETLOCATIONSREQUEST._serialized_start=20239
-  _SETLOCATIONSREQUEST._serialized_end=20422
-  _UPDATEMASTERREQUEST._serialized_start=20425
-  _UPDATEMASTERREQUEST._serialized_end=20617
-  _SETMASTERAUTHREQUEST._serialized_start=20620
-  _SETMASTERAUTHREQUEST._serialized_end=21003
-  _SETMASTERAUTHREQUEST_ACTION._serialized_start=20923
-  _SETMASTERAUTHREQUEST_ACTION._serialized_end=21003
-  _DELETECLUSTERREQUEST._serialized_start=21006
-  _DELETECLUSTERREQUEST._serialized_end=21154
-  _LISTCLUSTERSREQUEST._serialized_start=21156
-  _LISTCLUSTERSREQUEST._serialized_end=21268
-  _LISTCLUSTERSRESPONSE._serialized_start=21270
-  _LISTCLUSTERSRESPONSE._serialized_end=21392
-  _GETOPERATIONREQUEST._serialized_start=21395
-  _GETOPERATIONREQUEST._serialized_end=21546
-  _LISTOPERATIONSREQUEST._serialized_start=21548
-  _LISTOPERATIONSREQUEST._serialized_end=21662
-  _CANCELOPERATIONREQUEST._serialized_start=21665
-  _CANCELOPERATIONREQUEST._serialized_end=21819
-  _LISTOPERATIONSRESPONSE._serialized_start=21822
-  _LISTOPERATIONSRESPONSE._serialized_end=21952
-  _GETSERVERCONFIGREQUEST._serialized_start=21954
-  _GETSERVERCONFIGREQUEST._serialized_end=22065
-  _SERVERCONFIG._serialized_start=22068
-  _SERVERCONFIG._serialized_end=23029
-  _SERVERCONFIG_RELEASECHANNELCONFIG._serialized_start=22534
-  _SERVERCONFIG_RELEASECHANNELCONFIG._serialized_end=22915
-  _SERVERCONFIG_RELEASECHANNELCONFIG_AVAILABLEVERSION._serialized_start=22843
-  _SERVERCONFIG_RELEASECHANNELCONFIG_AVAILABLEVERSION._serialized_end=22915
-  _SERVERCONFIG_WINDOWSVERSIONMAPSENTRY._serialized_start=22917
-  _SERVERCONFIG_WINDOWSVERSIONMAPSENTRY._serialized_end=23029
-  _WINDOWSVERSIONS._serialized_start=23032
-  _WINDOWSVERSIONS._serialized_end=23292
-  _WINDOWSVERSIONS_WINDOWSVERSION._serialized_start=23153
-  _WINDOWSVERSIONS_WINDOWSVERSION._serialized_end=23292
-  _CREATENODEPOOLREQUEST._serialized_start=23295
-  _CREATENODEPOOLREQUEST._serialized_end=23519
-  _DELETENODEPOOLREQUEST._serialized_start=23522
-  _DELETENODEPOOLREQUEST._serialized_end=23713
-  _LISTNODEPOOLSREQUEST._serialized_start=23716
-  _LISTNODEPOOLSREQUEST._serialized_end=23868
-  _GETNODEPOOLREQUEST._serialized_start=23871
-  _GETNODEPOOLREQUEST._serialized_end=24059
-  _NODEPOOL._serialized_start=24062
-  _NODEPOOL._serialized_end=25211
-  _NODEPOOL_UPGRADESETTINGS._serialized_start=24992
-  _NODEPOOL_UPGRADESETTINGS._serialized_end=25079
-  _NODEPOOL_STATUS._serialized_start=25082
-  _NODEPOOL_STATUS._serialized_end=25211
-  _NODEMANAGEMENT._serialized_start=25214
-  _NODEMANAGEMENT._serialized_end=25385
-  _AUTOUPGRADEOPTIONS._serialized_start=25387
-  _AUTOUPGRADEOPTIONS._serialized_end=25496
-  _MAINTENANCEPOLICY._serialized_start=25499
-  _MAINTENANCEPOLICY._serialized_end=25630
-  _MAINTENANCEWINDOW._serialized_start=25633
-  _MAINTENANCEWINDOW._serialized_end=26103
-  _MAINTENANCEWINDOW_MAINTENANCEEXCLUSIONSENTRY._serialized_start=25983
-  _MAINTENANCEWINDOW_MAINTENANCEEXCLUSIONSENTRY._serialized_end=26093
-  _TIMEWINDOW._serialized_start=26105
-  _TIMEWINDOW._serialized_end=26231
-  _RECURRINGTIMEWINDOW._serialized_start=26233
-  _RECURRINGTIMEWINDOW._serialized_end=26348
-  _DAILYMAINTENANCEWINDOW._serialized_start=26350
-  _DAILYMAINTENANCEWINDOW._serialized_end=26433
-  _SETNODEPOOLMANAGEMENTREQUEST._serialized_start=26436
-  _SETNODEPOOLMANAGEMENTREQUEST._serialized_end=26714
-  _SETNODEPOOLSIZEREQUEST._serialized_start=26717
-  _SETNODEPOOLSIZEREQUEST._serialized_end=26946
-  _ROLLBACKNODEPOOLUPGRADEREQUEST._serialized_start=26949
-  _ROLLBACKNODEPOOLUPGRADEREQUEST._serialized_end=27149
-  _LISTNODEPOOLSRESPONSE._serialized_start=27151
-  _LISTNODEPOOLSRESPONSE._serialized_end=27241
-  _CLUSTERAUTOSCALING._serialized_start=27244
-  _CLUSTERAUTOSCALING._serialized_end=27816
-  _CLUSTERAUTOSCALING_AUTOSCALINGPROFILE._serialized_start=27731
-  _CLUSTERAUTOSCALING_AUTOSCALINGPROFILE._serialized_end=27816
-  _AUTOPROVISIONINGNODEPOOLDEFAULTS._serialized_start=27819
-  _AUTOPROVISIONINGNODEPOOLDEFAULTS._serialized_end=28385
-  _RESOURCELIMIT._serialized_start=28387
-  _RESOURCELIMIT._serialized_end=28491
-  _NODEPOOLAUTOSCALING._serialized_start=28494
-  _NODEPOOLAUTOSCALING._serialized_end=28659
-  _SETLABELSREQUEST._serialized_start=28662
-  _SETLABELSREQUEST._serialized_end=29035
-  _SETLABELSREQUEST_RESOURCELABELSENTRY._serialized_start=12238
-  _SETLABELSREQUEST_RESOURCELABELSENTRY._serialized_end=12303
-  _SETLEGACYABACREQUEST._serialized_start=29038
-  _SETLEGACYABACREQUEST._serialized_end=29218
-  _STARTIPROTATIONREQUEST._serialized_start=29221
-  _STARTIPROTATIONREQUEST._serialized_end=29418
-  _COMPLETEIPROTATIONREQUEST._serialized_start=29421
-  _COMPLETEIPROTATIONREQUEST._serialized_end=29574
-  _ACCELERATORCONFIG._serialized_start=29577
-  _ACCELERATORCONFIG._serialized_end=29730
-  _WORKLOADMETADATACONFIG._serialized_start=29733
-  _WORKLOADMETADATACONFIG._serialized_end=30084
-  _WORKLOADMETADATACONFIG_NODEMETADATA._serialized_start=29938
-  _WORKLOADMETADATACONFIG_NODEMETADATA._serialized_end=30018
-  _WORKLOADMETADATACONFIG_MODE._serialized_start=30020
-  _WORKLOADMETADATACONFIG_MODE._serialized_end=30084
-  _SETNETWORKPOLICYREQUEST._serialized_start=30087
-  _SETNETWORKPOLICYREQUEST._serialized_end=30324
-  _SETMAINTENANCEPOLICYREQUEST._serialized_start=30327
-  _SETMAINTENANCEPOLICYREQUEST._serialized_end=30574
-  _LISTLOCATIONSREQUEST._serialized_start=30576
-  _LISTLOCATIONSREQUEST._serialized_end=30628
-  _LISTLOCATIONSRESPONSE._serialized_start=30631
-  _LISTLOCATIONSRESPONSE._serialized_end=30760
-  _LOCATION._serialized_start=30763
-  _LOCATION._serialized_end=30965
-  _LOCATION_LOCATIONTYPE._serialized_start=30898
-  _LOCATION_LOCATIONTYPE._serialized_end=30965
-  _STATUSCONDITION._serialized_start=30968
-  _STATUSCONDITION._serialized_end=31304
-  _STATUSCONDITION_CODE._serialized_start=31143
-  _STATUSCONDITION_CODE._serialized_end=31304
-  _NETWORKCONFIG._serialized_start=31307
-  _NETWORKCONFIG._serialized_end=31978
-  _SERVICEEXTERNALIPSCONFIG._serialized_start=31980
-  _SERVICEEXTERNALIPSCONFIG._serialized_end=32032
-  _LISTUSABLESUBNETWORKSREQUEST._serialized_start=32035
-  _LISTUSABLESUBNETWORKSREQUEST._serialized_end=32179
-  _LISTUSABLESUBNETWORKSRESPONSE._serialized_start=32182
-  _LISTUSABLESUBNETWORKSRESPONSE._serialized_end=32331
-  _USABLESUBNETWORKSECONDARYRANGE._serialized_start=32334
-  _USABLESUBNETWORKSECONDARYRANGE._serialized_end=32627
-  _USABLESUBNETWORKSECONDARYRANGE_STATUS._serialized_start=32524
-  _USABLESUBNETWORKSECONDARYRANGE_STATUS._serialized_end=32627
-  _USABLESUBNETWORK._serialized_start=32630
-  _USABLESUBNETWORK._serialized_end=32887
-  _VERTICALPODAUTOSCALING._serialized_start=32889
-  _VERTICALPODAUTOSCALING._serialized_end=32939
-  _DEFAULTSNATSTATUS._serialized_start=32941
-  _DEFAULTSNATSTATUS._serialized_end=32988
-  _INTRANODEVISIBILITYCONFIG._serialized_start=32990
-  _INTRANODEVISIBILITYCONFIG._serialized_end=33043
-  _ILBSUBSETTINGCONFIG._serialized_start=33045
-  _ILBSUBSETTINGCONFIG._serialized_end=33092
-  _DNSCONFIG._serialized_start=33095
-  _DNSCONFIG._serialized_end=33469
-  _DNSCONFIG_PROVIDER._serialized_start=33323
-  _DNSCONFIG_PROVIDER._serialized_end=33396
-  _DNSCONFIG_DNSSCOPE._serialized_start=33398
-  _DNSCONFIG_DNSSCOPE._serialized_end=33469
-  _MAXPODSCONSTRAINT._serialized_start=33471
-  _MAXPODSCONSTRAINT._serialized_end=33533
-  _WORKLOADIDENTITYCONFIG._serialized_start=33536
-  _WORKLOADIDENTITYCONFIG._serialized_end=33693
-  _WORKLOADCERTIFICATES._serialized_start=33695
-  _WORKLOADCERTIFICATES._serialized_end=33794
-  _DATABASEENCRYPTION._serialized_start=33797
-  _DATABASEENCRYPTION._serialized_end=33970
-  _DATABASEENCRYPTION_STATE._serialized_start=33920
-  _DATABASEENCRYPTION_STATE._serialized_end=33970
-  _RESOURCEUSAGEEXPORTCONFIG._serialized_start=33973
-  _RESOURCEUSAGEEXPORTCONFIG._serialized_end=34446
-  _RESOURCEUSAGEEXPORTCONFIG_BIGQUERYDESTINATION._serialized_start=34339
-  _RESOURCEUSAGEEXPORTCONFIG_BIGQUERYDESTINATION._serialized_end=34391
-  _RESOURCEUSAGEEXPORTCONFIG_CONSUMPTIONMETERINGCONFIG._serialized_start=34393
-  _RESOURCEUSAGEEXPORTCONFIG_CONSUMPTIONMETERINGCONFIG._serialized_end=34446
-  _SHIELDEDNODES._serialized_start=34448
-  _SHIELDEDNODES._serialized_end=34489
-  _VIRTUALNIC._serialized_start=34491
-  _VIRTUALNIC._serialized_end=34529
-  _GETOPENIDCONFIGREQUEST._serialized_start=34531
-  _GETOPENIDCONFIGREQUEST._serialized_end=34579
-  _GETOPENIDCONFIGRESPONSE._serialized_start=34582
-  _GETOPENIDCONFIGRESPONSE._serialized_end=34929
-  _GETJSONWEBKEYSREQUEST._serialized_start=34931
-  _GETJSONWEBKEYSREQUEST._serialized_end=34978
-  _JWK._serialized_start=34981
-  _JWK._serialized_end=35132
-  _GETJSONWEBKEYSRESPONSE._serialized_start=35134
-  _GETJSONWEBKEYSRESPONSE._serialized_end=35209
-  _RELEASECHANNEL._serialized_start=35212
-  _RELEASECHANNEL._serialized_end=35368
-  _RELEASECHANNEL_CHANNEL._serialized_start=35306
-  _RELEASECHANNEL_CHANNEL._serialized_end=35368
-  _TPUCONFIG._serialized_start=35371
-  _TPUCONFIG._serialized_end=35502
-  _MASTER._serialized_start=35504
-  _MASTER._serialized_end=35512
-  _AUTOPILOT._serialized_start=35514
-  _AUTOPILOT._serialized_end=35551
-  _NOTIFICATIONCONFIG._serialized_start=35554
-  _NOTIFICATIONCONFIG._serialized_end=35743
-  _NOTIFICATIONCONFIG_PUBSUB._serialized_start=35653
-  _NOTIFICATIONCONFIG_PUBSUB._serialized_end=35743
-  _CONFIDENTIALNODES._serialized_start=35745
-  _CONFIDENTIALNODES._serialized_end=35790
-  _UPGRADEEVENT._serialized_start=35793
-  _UPGRADEEVENT._serialized_end=36107
-  _UPGRADEAVAILABLEEVENT._serialized_start=36110
-  _UPGRADEAVAILABLEEVENT._serialized_end=36440
-  _IDENTITYSERVICECONFIG._serialized_start=36442
-  _IDENTITYSERVICECONFIG._serialized_end=36491
-  _LOGGINGCONFIG._serialized_start=36493
-  _LOGGINGCONFIG._serialized_end=36601
-  _LOGGINGCOMPONENTCONFIG._serialized_start=36604
-  _LOGGINGCOMPONENTCONFIG._serialized_end=36811
-  _LOGGINGCOMPONENTCONFIG_COMPONENT._serialized_start=36735
-  _LOGGINGCOMPONENTCONFIG_COMPONENT._serialized_end=36811
-  _MONITORINGCONFIG._serialized_start=36813
-  _MONITORINGCONFIG._serialized_end=36927
-  _MONITORINGCOMPONENTCONFIG._serialized_start=36930
-  _MONITORINGCOMPONENTCONFIG._serialized_end=37143
-  _MONITORINGCOMPONENTCONFIG_COMPONENT._serialized_start=36735
-  _MONITORINGCOMPONENTCONFIG_COMPONENT._serialized_end=36811
-  _CLUSTERMANAGER._serialized_start=37535
-  _CLUSTERMANAGER._serialized_end=47113
+  _NODECONFIG._serialized_end=2479
+  _NODECONFIG_METADATAENTRY._serialized_start=2361
+  _NODECONFIG_METADATAENTRY._serialized_end=2420
+  _NODECONFIG_LABELSENTRY._serialized_start=2422
+  _NODECONFIG_LABELSENTRY._serialized_end=2479
+  _ADVANCEDMACHINEFEATURES._serialized_start=2481
+  _ADVANCEDMACHINEFEATURES._serialized_end=2574
+  _NODENETWORKCONFIG._serialized_start=2577
+  _NODENETWORKCONFIG._serialized_end=2720
+  _SHIELDEDINSTANCECONFIG._serialized_start=2723
+  _SHIELDEDINSTANCECONFIG._serialized_end=2857
+  _SANDBOXCONFIG._serialized_start=2860
+  _SANDBOXCONFIG._serialized_end=3017
+  _SANDBOXCONFIG_TYPE._serialized_start=2982
+  _SANDBOXCONFIG_TYPE._serialized_end=3017
+  _EPHEMERALSTORAGECONFIG._serialized_start=3019
+  _EPHEMERALSTORAGECONFIG._serialized_end=3083
+  _GCFSCONFIG._serialized_start=3085
+  _GCFSCONFIG._serialized_end=3123
+  _RESERVATIONAFFINITY._serialized_start=3126
+  _RESERVATIONAFFINITY._serialized_end=3391
+  _RESERVATIONAFFINITY_TYPE._serialized_start=3301
+  _RESERVATIONAFFINITY_TYPE._serialized_end=3391
+  _NODETAINT._serialized_start=3394
+  _NODETAINT._serialized_end=3604
+  _NODETAINT_EFFECT._serialized_start=3515
+  _NODETAINT_EFFECT._serialized_end=3604
+  _NODETAINTS._serialized_start=3606
+  _NODETAINTS._serialized_end=3679
+  _NODELABELS._serialized_start=3682
+  _NODELABELS._serialized_end=3827
+  _NODELABELS_LABELSENTRY._serialized_start=2422
+  _NODELABELS_LABELSENTRY._serialized_end=2479
+  _NETWORKTAGS._serialized_start=3829
+  _NETWORKTAGS._serialized_end=3862
+  _MASTERAUTH._serialized_start=3865
+  _MASTERAUTH._serialized_end=4184
+  _CLIENTCERTIFICATECONFIG._serialized_start=4186
+  _CLIENTCERTIFICATECONFIG._serialized_end=4269
+  _ADDONSCONFIG._serialized_start=4272
+  _ADDONSCONFIG._serialized_end=5490
+  _HTTPLOADBALANCING._serialized_start=5492
+  _HTTPLOADBALANCING._serialized_end=5539
+  _HORIZONTALPODAUTOSCALING._serialized_start=5541
+  _HORIZONTALPODAUTOSCALING._serialized_end=5595
+  _KUBERNETESDASHBOARD._serialized_start=5597
+  _KUBERNETESDASHBOARD._serialized_end=5646
+  _NETWORKPOLICYCONFIG._serialized_start=5648
+  _NETWORKPOLICYCONFIG._serialized_end=5697
+  _DNSCACHECONFIG._serialized_start=5699
+  _DNSCACHECONFIG._serialized_end=5741
+  _KALMCONFIG._serialized_start=5743
+  _KALMCONFIG._serialized_end=5785
+  _GKEBACKUPAGENTCONFIG._serialized_start=5787
+  _GKEBACKUPAGENTCONFIG._serialized_end=5835
+  _CONFIGCONNECTORCONFIG._serialized_start=5837
+  _CONFIGCONNECTORCONFIG._serialized_end=5886
+  _GCEPERSISTENTDISKCSIDRIVERCONFIG._serialized_start=5888
+  _GCEPERSISTENTDISKCSIDRIVERCONFIG._serialized_end=5948
+  _GCPFILESTORECSIDRIVERCONFIG._serialized_start=5950
+  _GCPFILESTORECSIDRIVERCONFIG._serialized_end=6005
+  _PRIVATECLUSTERMASTERGLOBALACCESSCONFIG._serialized_start=6007
+  _PRIVATECLUSTERMASTERGLOBALACCESSCONFIG._serialized_end=6073
+  _PRIVATECLUSTERCONFIG._serialized_start=6076
+  _PRIVATECLUSTERCONFIG._serialized_end=6505
+  _ISTIOCONFIG._serialized_start=6508
+  _ISTIOCONFIG._serialized_end=6683
+  _ISTIOCONFIG_ISTIOAUTHMODE._serialized_start=6632
+  _ISTIOCONFIG_ISTIOAUTHMODE._serialized_end=6683
+  _CLOUDRUNCONFIG._serialized_start=6686
+  _CLOUDRUNCONFIG._serialized_end=6957
+  _CLOUDRUNCONFIG_LOADBALANCERTYPE._serialized_start=6837
+  _CLOUDRUNCONFIG_LOADBALANCERTYPE._serialized_end=6957
+  _MASTERAUTHORIZEDNETWORKSCONFIG._serialized_start=6960
+  _MASTERAUTHORIZEDNETWORKSCONFIG._serialized_end=7198
+  _MASTERAUTHORIZEDNETWORKSCONFIG_CIDRBLOCK._serialized_start=7121
+  _MASTERAUTHORIZEDNETWORKSCONFIG_CIDRBLOCK._serialized_end=7198
+  _LEGACYABAC._serialized_start=7200
+  _LEGACYABAC._serialized_end=7238
+  _NETWORKPOLICY._serialized_start=7241
+  _NETWORKPOLICY._serialized_end=7410
+  _NETWORKPOLICY_PROVIDER._serialized_start=7362
+  _NETWORKPOLICY_PROVIDER._serialized_end=7410
+  _IPALLOCATIONPOLICY._serialized_start=7413
+  _IPALLOCATIONPOLICY._serialized_end=8116
+  _BINARYAUTHORIZATION._serialized_start=8118
+  _BINARYAUTHORIZATION._serialized_end=8165
+  _PODSECURITYPOLICYCONFIG._serialized_start=8167
+  _PODSECURITYPOLICYCONFIG._serialized_end=8218
+  _AUTHENTICATORGROUPSCONFIG._serialized_start=8220
+  _AUTHENTICATORGROUPSCONFIG._serialized_end=8312
+  _CLUSTERTELEMETRY._serialized_start=8315
+  _CLUSTERTELEMETRY._serialized_end=8471
+  _CLUSTERTELEMETRY_TYPE._serialized_start=8404
+  _CLUSTERTELEMETRY_TYPE._serialized_end=8471
+  _CLUSTER._serialized_start=8474
+  _CLUSTER._serialized_end=13220
+  _CLUSTER_RESOURCELABELSENTRY._serialized_start=13011
+  _CLUSTER_RESOURCELABELSENTRY._serialized_end=13076
+  _CLUSTER_STATUS._serialized_start=13078
+  _CLUSTER_STATUS._serialized_end=13197
+  _NODEPOOLDEFAULTS._serialized_start=13222
+  _NODEPOOLDEFAULTS._serialized_end=13336
+  _NODECONFIGDEFAULTS._serialized_start=13338
+  _NODECONFIGDEFAULTS._serialized_end=13429
+  _CLUSTERUPDATE._serialized_start=13432
+  _CLUSTERUPDATE._serialized_end=17247
+  _OPERATION._serialized_start=17250
+  _OPERATION._serialized_end=18452
+  _OPERATION_STATUS._serialized_start=17986
+  _OPERATION_STATUS._serialized_end=18068
+  _OPERATION_TYPE._serialized_start=18071
+  _OPERATION_TYPE._serialized_end=18452
+  _OPERATIONPROGRESS._serialized_start=18455
+  _OPERATIONPROGRESS._serialized_end=18860
+  _OPERATIONPROGRESS_METRIC._serialized_start=18712
+  _OPERATIONPROGRESS_METRIC._serialized_end=18860
+  _CREATECLUSTERREQUEST._serialized_start=18863
+  _CREATECLUSTERREQUEST._serialized_end=19043
+  _GETCLUSTERREQUEST._serialized_start=19046
+  _GETCLUSTERREQUEST._serialized_end=19191
+  _UPDATECLUSTERREQUEST._serialized_start=19194
+  _UPDATECLUSTERREQUEST._serialized_end=19413
+  _UPDATENODEPOOLREQUEST._serialized_start=19416
+  _UPDATENODEPOOLREQUEST._serialized_end=20403
+  _SETNODEPOOLAUTOSCALINGREQUEST._serialized_start=20406
+  _SETNODEPOOLAUTOSCALINGREQUEST._serialized_end=20692
+  _SETLOGGINGSERVICEREQUEST._serialized_start=20695
+  _SETLOGGINGSERVICEREQUEST._serialized_end=20894
+  _SETMONITORINGSERVICEREQUEST._serialized_start=20897
+  _SETMONITORINGSERVICEREQUEST._serialized_end=21105
+  _SETADDONSCONFIGREQUEST._serialized_start=21108
+  _SETADDONSCONFIGREQUEST._serialized_end=21341
+  _SETLOCATIONSREQUEST._serialized_start=21344
+  _SETLOCATIONSREQUEST._serialized_end=21527
+  _UPDATEMASTERREQUEST._serialized_start=21530
+  _UPDATEMASTERREQUEST._serialized_end=21722
+  _SETMASTERAUTHREQUEST._serialized_start=21725
+  _SETMASTERAUTHREQUEST._serialized_end=22108
+  _SETMASTERAUTHREQUEST_ACTION._serialized_start=22028
+  _SETMASTERAUTHREQUEST_ACTION._serialized_end=22108
+  _DELETECLUSTERREQUEST._serialized_start=22111
+  _DELETECLUSTERREQUEST._serialized_end=22259
+  _LISTCLUSTERSREQUEST._serialized_start=22261
+  _LISTCLUSTERSREQUEST._serialized_end=22373
+  _LISTCLUSTERSRESPONSE._serialized_start=22375
+  _LISTCLUSTERSRESPONSE._serialized_end=22497
+  _GETOPERATIONREQUEST._serialized_start=22500
+  _GETOPERATIONREQUEST._serialized_end=22651
+  _LISTOPERATIONSREQUEST._serialized_start=22653
+  _LISTOPERATIONSREQUEST._serialized_end=22767
+  _CANCELOPERATIONREQUEST._serialized_start=22770
+  _CANCELOPERATIONREQUEST._serialized_end=22924
+  _LISTOPERATIONSRESPONSE._serialized_start=22927
+  _LISTOPERATIONSRESPONSE._serialized_end=23057
+  _GETSERVERCONFIGREQUEST._serialized_start=23059
+  _GETSERVERCONFIGREQUEST._serialized_end=23170
+  _SERVERCONFIG._serialized_start=23173
+  _SERVERCONFIG._serialized_end=24134
+  _SERVERCONFIG_RELEASECHANNELCONFIG._serialized_start=23639
+  _SERVERCONFIG_RELEASECHANNELCONFIG._serialized_end=24020
+  _SERVERCONFIG_RELEASECHANNELCONFIG_AVAILABLEVERSION._serialized_start=23948
+  _SERVERCONFIG_RELEASECHANNELCONFIG_AVAILABLEVERSION._serialized_end=24020
+  _SERVERCONFIG_WINDOWSVERSIONMAPSENTRY._serialized_start=24022
+  _SERVERCONFIG_WINDOWSVERSIONMAPSENTRY._serialized_end=24134
+  _WINDOWSVERSIONS._serialized_start=24137
+  _WINDOWSVERSIONS._serialized_end=24397
+  _WINDOWSVERSIONS_WINDOWSVERSION._serialized_start=24258
+  _WINDOWSVERSIONS_WINDOWSVERSION._serialized_end=24397
+  _CREATENODEPOOLREQUEST._serialized_start=24400
+  _CREATENODEPOOLREQUEST._serialized_end=24624
+  _DELETENODEPOOLREQUEST._serialized_start=24627
+  _DELETENODEPOOLREQUEST._serialized_end=24818
+  _LISTNODEPOOLSREQUEST._serialized_start=24821
+  _LISTNODEPOOLSREQUEST._serialized_end=24973
+  _GETNODEPOOLREQUEST._serialized_start=24976
+  _GETNODEPOOLREQUEST._serialized_end=25164
+  _NODEPOOL._serialized_start=25167
+  _NODEPOOL._serialized_end=26551
+  _NODEPOOL_UPGRADESETTINGS._serialized_start=26192
+  _NODEPOOL_UPGRADESETTINGS._serialized_end=26279
+  _NODEPOOL_PLACEMENTPOLICY._serialized_start=26282
+  _NODEPOOL_PLACEMENTPOLICY._serialized_end=26419
+  _NODEPOOL_PLACEMENTPOLICY_TYPE._serialized_start=26378
+  _NODEPOOL_PLACEMENTPOLICY_TYPE._serialized_end=26419
+  _NODEPOOL_STATUS._serialized_start=26422
+  _NODEPOOL_STATUS._serialized_end=26551
+  _NODEMANAGEMENT._serialized_start=26554
+  _NODEMANAGEMENT._serialized_end=26725
+  _AUTOUPGRADEOPTIONS._serialized_start=26727
+  _AUTOUPGRADEOPTIONS._serialized_end=26836
+  _MAINTENANCEPOLICY._serialized_start=26839
+  _MAINTENANCEPOLICY._serialized_end=26970
+  _MAINTENANCEWINDOW._serialized_start=26973
+  _MAINTENANCEWINDOW._serialized_end=27443
+  _MAINTENANCEWINDOW_MAINTENANCEEXCLUSIONSENTRY._serialized_start=27323
+  _MAINTENANCEWINDOW_MAINTENANCEEXCLUSIONSENTRY._serialized_end=27433
+  _TIMEWINDOW._serialized_start=27446
+  _TIMEWINDOW._serialized_end=27708
+  _MAINTENANCEEXCLUSIONOPTIONS._serialized_start=27711
+  _MAINTENANCEEXCLUSIONOPTIONS._serialized_end=27903
+  _MAINTENANCEEXCLUSIONOPTIONS_SCOPE._serialized_start=27825
+  _MAINTENANCEEXCLUSIONOPTIONS_SCOPE._serialized_end=27903
+  _RECURRINGTIMEWINDOW._serialized_start=27905
+  _RECURRINGTIMEWINDOW._serialized_end=28020
+  _DAILYMAINTENANCEWINDOW._serialized_start=28022
+  _DAILYMAINTENANCEWINDOW._serialized_end=28105
+  _SETNODEPOOLMANAGEMENTREQUEST._serialized_start=28108
+  _SETNODEPOOLMANAGEMENTREQUEST._serialized_end=28386
+  _SETNODEPOOLSIZEREQUEST._serialized_start=28389
+  _SETNODEPOOLSIZEREQUEST._serialized_end=28618
+  _ROLLBACKNODEPOOLUPGRADEREQUEST._serialized_start=28621
+  _ROLLBACKNODEPOOLUPGRADEREQUEST._serialized_end=28821
+  _LISTNODEPOOLSRESPONSE._serialized_start=28823
+  _LISTNODEPOOLSRESPONSE._serialized_end=28913
+  _CLUSTERAUTOSCALING._serialized_start=28916
+  _CLUSTERAUTOSCALING._serialized_end=29488
+  _CLUSTERAUTOSCALING_AUTOSCALINGPROFILE._serialized_start=29403
+  _CLUSTERAUTOSCALING_AUTOSCALINGPROFILE._serialized_end=29488
+  _AUTOPROVISIONINGNODEPOOLDEFAULTS._serialized_start=29491
+  _AUTOPROVISIONINGNODEPOOLDEFAULTS._serialized_end=30057
+  _RESOURCELIMIT._serialized_start=30059
+  _RESOURCELIMIT._serialized_end=30163
+  _NODEPOOLAUTOSCALING._serialized_start=30166
+  _NODEPOOLAUTOSCALING._serialized_end=30331
+  _SETLABELSREQUEST._serialized_start=30334
+  _SETLABELSREQUEST._serialized_end=30707
+  _SETLABELSREQUEST_RESOURCELABELSENTRY._serialized_start=13011
+  _SETLABELSREQUEST_RESOURCELABELSENTRY._serialized_end=13076
+  _SETLEGACYABACREQUEST._serialized_start=30710
+  _SETLEGACYABACREQUEST._serialized_end=30890
+  _STARTIPROTATIONREQUEST._serialized_start=30893
+  _STARTIPROTATIONREQUEST._serialized_end=31090
+  _COMPLETEIPROTATIONREQUEST._serialized_start=31093
+  _COMPLETEIPROTATIONREQUEST._serialized_end=31246
+  _ACCELERATORCONFIG._serialized_start=31249
+  _ACCELERATORCONFIG._serialized_end=31402
+  _MANAGEDPROMETHEUSCONFIG._serialized_start=31404
+  _MANAGEDPROMETHEUSCONFIG._serialized_end=31455
+  _WORKLOADMETADATACONFIG._serialized_start=31458
+  _WORKLOADMETADATACONFIG._serialized_end=31809
+  _WORKLOADMETADATACONFIG_NODEMETADATA._serialized_start=31663
+  _WORKLOADMETADATACONFIG_NODEMETADATA._serialized_end=31743
+  _WORKLOADMETADATACONFIG_MODE._serialized_start=31745
+  _WORKLOADMETADATACONFIG_MODE._serialized_end=31809
+  _SETNETWORKPOLICYREQUEST._serialized_start=31812
+  _SETNETWORKPOLICYREQUEST._serialized_end=32049
+  _SETMAINTENANCEPOLICYREQUEST._serialized_start=32052
+  _SETMAINTENANCEPOLICYREQUEST._serialized_end=32299
+  _LISTLOCATIONSREQUEST._serialized_start=32301
+  _LISTLOCATIONSREQUEST._serialized_end=32353
+  _LISTLOCATIONSRESPONSE._serialized_start=32356
+  _LISTLOCATIONSRESPONSE._serialized_end=32485
+  _LOCATION._serialized_start=32488
+  _LOCATION._serialized_end=32690
+  _LOCATION_LOCATIONTYPE._serialized_start=32623
+  _LOCATION_LOCATIONTYPE._serialized_end=32690
+  _STATUSCONDITION._serialized_start=32693
+  _STATUSCONDITION._serialized_end=33029
+  _STATUSCONDITION_CODE._serialized_start=32868
+  _STATUSCONDITION_CODE._serialized_end=33029
+  _NETWORKCONFIG._serialized_start=33032
+  _NETWORKCONFIG._serialized_end=33703
+  _SERVICEEXTERNALIPSCONFIG._serialized_start=33705
+  _SERVICEEXTERNALIPSCONFIG._serialized_end=33757
+  _LISTUSABLESUBNETWORKSREQUEST._serialized_start=33760
+  _LISTUSABLESUBNETWORKSREQUEST._serialized_end=33904
+  _LISTUSABLESUBNETWORKSRESPONSE._serialized_start=33907
+  _LISTUSABLESUBNETWORKSRESPONSE._serialized_end=34056
+  _USABLESUBNETWORKSECONDARYRANGE._serialized_start=34059
+  _USABLESUBNETWORKSECONDARYRANGE._serialized_end=34352
+  _USABLESUBNETWORKSECONDARYRANGE_STATUS._serialized_start=34249
+  _USABLESUBNETWORKSECONDARYRANGE_STATUS._serialized_end=34352
+  _USABLESUBNETWORK._serialized_start=34355
+  _USABLESUBNETWORK._serialized_end=34612
+  _VERTICALPODAUTOSCALING._serialized_start=34614
+  _VERTICALPODAUTOSCALING._serialized_end=34664
+  _DEFAULTSNATSTATUS._serialized_start=34666
+  _DEFAULTSNATSTATUS._serialized_end=34713
+  _INTRANODEVISIBILITYCONFIG._serialized_start=34715
+  _INTRANODEVISIBILITYCONFIG._serialized_end=34768
+  _ILBSUBSETTINGCONFIG._serialized_start=34770
+  _ILBSUBSETTINGCONFIG._serialized_end=34817
+  _DNSCONFIG._serialized_start=34820
+  _DNSCONFIG._serialized_end=35194
+  _DNSCONFIG_PROVIDER._serialized_start=35048
+  _DNSCONFIG_PROVIDER._serialized_end=35121
+  _DNSCONFIG_DNSSCOPE._serialized_start=35123
+  _DNSCONFIG_DNSSCOPE._serialized_end=35194
+  _MAXPODSCONSTRAINT._serialized_start=35196
+  _MAXPODSCONSTRAINT._serialized_end=35258
+  _WORKLOADIDENTITYCONFIG._serialized_start=35261
+  _WORKLOADIDENTITYCONFIG._serialized_end=35418
+  _WORKLOADCERTIFICATES._serialized_start=35420
+  _WORKLOADCERTIFICATES._serialized_end=35519
+  _MESHCERTIFICATES._serialized_start=35521
+  _MESHCERTIFICATES._serialized_end=35616
+  _DATABASEENCRYPTION._serialized_start=35619
+  _DATABASEENCRYPTION._serialized_end=35792
+  _DATABASEENCRYPTION_STATE._serialized_start=35742
+  _DATABASEENCRYPTION_STATE._serialized_end=35792
+  _RESOURCEUSAGEEXPORTCONFIG._serialized_start=35795
+  _RESOURCEUSAGEEXPORTCONFIG._serialized_end=36268
+  _RESOURCEUSAGEEXPORTCONFIG_BIGQUERYDESTINATION._serialized_start=36161
+  _RESOURCEUSAGEEXPORTCONFIG_BIGQUERYDESTINATION._serialized_end=36213
+  _RESOURCEUSAGEEXPORTCONFIG_CONSUMPTIONMETERINGCONFIG._serialized_start=36215
+  _RESOURCEUSAGEEXPORTCONFIG_CONSUMPTIONMETERINGCONFIG._serialized_end=36268
+  _SHIELDEDNODES._serialized_start=36270
+  _SHIELDEDNODES._serialized_end=36311
+  _VIRTUALNIC._serialized_start=36313
+  _VIRTUALNIC._serialized_end=36351
+  _GETJSONWEBKEYSREQUEST._serialized_start=36353
+  _GETJSONWEBKEYSREQUEST._serialized_end=36400
+  _JWK._serialized_start=36403
+  _JWK._serialized_end=36554
+  _GETJSONWEBKEYSRESPONSE._serialized_start=36556
+  _GETJSONWEBKEYSRESPONSE._serialized_end=36631
+  _RELEASECHANNEL._serialized_start=36634
+  _RELEASECHANNEL._serialized_end=36790
+  _RELEASECHANNEL_CHANNEL._serialized_start=36728
+  _RELEASECHANNEL_CHANNEL._serialized_end=36790
+  _TPUCONFIG._serialized_start=36793
+  _TPUCONFIG._serialized_end=36924
+  _MASTER._serialized_start=36926
+  _MASTER._serialized_end=36934
+  _AUTOPILOT._serialized_start=36936
+  _AUTOPILOT._serialized_end=36973
+  _NOTIFICATIONCONFIG._serialized_start=36976
+  _NOTIFICATIONCONFIG._serialized_end=37458
+  _NOTIFICATIONCONFIG_PUBSUB._serialized_start=37076
+  _NOTIFICATIONCONFIG_PUBSUB._serialized_end=37243
+  _NOTIFICATIONCONFIG_FILTER._serialized_start=37245
+  _NOTIFICATIONCONFIG_FILTER._serialized_end=37340
+  _NOTIFICATIONCONFIG_EVENTTYPE._serialized_start=37342
+  _NOTIFICATIONCONFIG_EVENTTYPE._serialized_end=37458
+  _CONFIDENTIALNODES._serialized_start=37460
+  _CONFIDENTIALNODES._serialized_end=37505
+  _UPGRADEEVENT._serialized_start=37508
+  _UPGRADEEVENT._serialized_end=37822
+  _UPGRADEAVAILABLEEVENT._serialized_start=37825
+  _UPGRADEAVAILABLEEVENT._serialized_end=38155
+  _SECURITYBULLETINEVENT._serialized_start=38158
+  _SECURITYBULLETINEVENT._serialized_end=38614
+  _IDENTITYSERVICECONFIG._serialized_start=38616
+  _IDENTITYSERVICECONFIG._serialized_end=38665
+  _LOGGINGCONFIG._serialized_start=38667
+  _LOGGINGCONFIG._serialized_end=38775
+  _LOGGINGCOMPONENTCONFIG._serialized_start=38778
+  _LOGGINGCOMPONENTCONFIG._serialized_end=38985
+  _LOGGINGCOMPONENTCONFIG_COMPONENT._serialized_start=38909
+  _LOGGINGCOMPONENTCONFIG_COMPONENT._serialized_end=38985
+  _MONITORINGCONFIG._serialized_start=38988
+  _MONITORINGCONFIG._serialized_end=39213
+  _MONITORINGCOMPONENTCONFIG._serialized_start=39216
+  _MONITORINGCOMPONENTCONFIG._serialized_end=39429
+  _MONITORINGCOMPONENTCONFIG_COMPONENT._serialized_start=38909
+  _MONITORINGCOMPONENTCONFIG_COMPONENT._serialized_end=38985
+  _CLUSTERMANAGER._serialized_start=39821
+  _CLUSTERMANAGER._serialized_end=49399
 # @@protoc_insertion_point(module_scope)

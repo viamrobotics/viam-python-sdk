@@ -77,13 +77,14 @@ class _TypeCodeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumT
     """
 
     JSON: TypeCode.ValueType = ...  # 11
-    """Encoded as a JSON-formatted 'string' as described in RFC 7159. The
-    following rules will be applied when parsing JSON input:
-    - Whitespace will be stripped from the document.
-    - If a JSON object has duplicate keys, only the first key will be
-      preserved.
+    """Encoded as a JSON-formatted `string` as described in RFC 7159. The
+    following rules are applied when parsing JSON input:
+
+    - Whitespace characters are not preserved.
+    - If a JSON object has duplicate keys, only the first key is preserved.
     - Members of a JSON object are not guaranteed to have their order
-      preserved. JSON array elements will have their order preserved.
+      preserved.
+    - JSON array elements will have their order preserved.
     """
 
 class TypeCode(_TypeCode, metaclass=_TypeCodeEnumTypeWrapper):
@@ -157,16 +158,58 @@ Scientific notation:
 """
 
 JSON: TypeCode.ValueType = ...  # 11
-"""Encoded as a JSON-formatted 'string' as described in RFC 7159. The
-following rules will be applied when parsing JSON input:
-- Whitespace will be stripped from the document.
-- If a JSON object has duplicate keys, only the first key will be
-  preserved.
+"""Encoded as a JSON-formatted `string` as described in RFC 7159. The
+following rules are applied when parsing JSON input:
+
+- Whitespace characters are not preserved.
+- If a JSON object has duplicate keys, only the first key is preserved.
 - Members of a JSON object are not guaranteed to have their order
-  preserved. JSON array elements will have their order preserved.
+  preserved.
+- JSON array elements will have their order preserved.
 """
 
 global___TypeCode = TypeCode
+
+
+class _TypeAnnotationCode:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+class _TypeAnnotationCodeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_TypeAnnotationCode.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+    TYPE_ANNOTATION_CODE_UNSPECIFIED: TypeAnnotationCode.ValueType = ...  # 0
+    """Not specified."""
+
+    PG_NUMERIC: TypeAnnotationCode.ValueType = ...  # 2
+    """PostgreSQL compatible NUMERIC type. This annotation needs to be applied to
+    [Type][google.spanner.v1.Type] instances having [NUMERIC][google.spanner.v1.TypeCode.NUMERIC]
+    type code to specify that values of this type should be treated as
+    PostgreSQL NUMERIC values. Currently this annotation is always needed for
+    [NUMERIC][google.spanner.v1.TypeCode.NUMERIC] when a client interacts with PostgreSQL-enabled
+    Spanner databases.
+    """
+
+class TypeAnnotationCode(_TypeAnnotationCode, metaclass=_TypeAnnotationCodeEnumTypeWrapper):
+    """`TypeAnnotationCode` is used as a part of [Type][google.spanner.v1.Type] to
+    disambiguate SQL types that should be used for a given Cloud Spanner value.
+    Disambiguation is needed because the same Cloud Spanner type can be mapped to
+    different SQL types depending on SQL dialect. TypeAnnotationCode doesn't
+    affect the way value is serialized.
+    """
+    pass
+
+TYPE_ANNOTATION_CODE_UNSPECIFIED: TypeAnnotationCode.ValueType = ...  # 0
+"""Not specified."""
+
+PG_NUMERIC: TypeAnnotationCode.ValueType = ...  # 2
+"""PostgreSQL compatible NUMERIC type. This annotation needs to be applied to
+[Type][google.spanner.v1.Type] instances having [NUMERIC][google.spanner.v1.TypeCode.NUMERIC]
+type code to specify that values of this type should be treated as
+PostgreSQL NUMERIC values. Currently this annotation is always needed for
+[NUMERIC][google.spanner.v1.TypeCode.NUMERIC] when a client interacts with PostgreSQL-enabled
+Spanner databases.
+"""
+
+global___TypeAnnotationCode = TypeAnnotationCode
 
 
 class Type(google.protobuf.message.Message):
@@ -177,6 +220,7 @@ class Type(google.protobuf.message.Message):
     CODE_FIELD_NUMBER: builtins.int
     ARRAY_ELEMENT_TYPE_FIELD_NUMBER: builtins.int
     STRUCT_TYPE_FIELD_NUMBER: builtins.int
+    TYPE_ANNOTATION_FIELD_NUMBER: builtins.int
     code: global___TypeCode.ValueType = ...
     """Required. The [TypeCode][google.spanner.v1.TypeCode] for this type."""
 
@@ -192,14 +236,24 @@ class Type(google.protobuf.message.Message):
         provides type information for the struct's fields.
         """
         pass
+    type_annotation: global___TypeAnnotationCode.ValueType = ...
+    """The [TypeAnnotationCode][google.spanner.v1.TypeAnnotationCode] that disambiguates SQL type that Spanner will
+    use to represent values of this type during query processing. This is
+    necessary for some type codes because a single [TypeCode][google.spanner.v1.TypeCode] can be mapped
+    to different SQL types depending on the SQL dialect. [type_annotation][google.spanner.v1.Type.type_annotation]
+    typically is not needed to process the content of a value (it doesn't
+    affect serialization) and clients can ignore it on the read path.
+    """
+
     def __init__(self,
         *,
         code : global___TypeCode.ValueType = ...,
         array_element_type : typing.Optional[global___Type] = ...,
         struct_type : typing.Optional[global___StructType] = ...,
+        type_annotation : global___TypeAnnotationCode.ValueType = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["array_element_type",b"array_element_type","struct_type",b"struct_type"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["array_element_type",b"array_element_type","code",b"code","struct_type",b"struct_type"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["array_element_type",b"array_element_type","code",b"code","struct_type",b"struct_type","type_annotation",b"type_annotation"]) -> None: ...
 global___Type = Type
 
 class StructType(google.protobuf.message.Message):
