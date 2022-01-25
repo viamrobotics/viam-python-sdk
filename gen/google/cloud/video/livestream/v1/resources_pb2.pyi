@@ -58,13 +58,13 @@ class Input(google.protobuf.message.Message):
         """Tier is not specified."""
 
         SD: Input.Tier.ValueType = ...  # 1
-        """Resolution less than 1280x720."""
+        """Resolution < 1280x720. Bitrate <= 6 Mbps. FPS <= 60."""
 
         HD: Input.Tier.ValueType = ...  # 2
-        """Resolution from 1280x720 to 1920x1080."""
+        """Resolution <= 1920x1080. Bitrate <= 25 Mbps. FPS <= 60."""
 
         UHD: Input.Tier.ValueType = ...  # 3
-        """Resolution more than 1920x1080 to 4096x2160."""
+        """Resolution <= 4096x2160. Not supported yet."""
 
     class Tier(_Tier, metaclass=_TierEnumTypeWrapper):
         """Tier of the input specification."""
@@ -74,13 +74,13 @@ class Input(google.protobuf.message.Message):
     """Tier is not specified."""
 
     SD: Input.Tier.ValueType = ...  # 1
-    """Resolution less than 1280x720."""
+    """Resolution < 1280x720. Bitrate <= 6 Mbps. FPS <= 60."""
 
     HD: Input.Tier.ValueType = ...  # 2
-    """Resolution from 1280x720 to 1920x1080."""
+    """Resolution <= 1920x1080. Bitrate <= 25 Mbps. FPS <= 60."""
 
     UHD: Input.Tier.ValueType = ...  # 3
-    """Resolution more than 1920x1080 to 4096x2160."""
+    """Resolution <= 4096x2160. Not supported yet."""
 
 
     class SecurityRule(google.protobuf.message.Message):
@@ -147,8 +147,10 @@ class Input(google.protobuf.message.Message):
     """Source type."""
 
     tier: global___Input.Tier.ValueType = ...
-    """Tier defines the maximum input specification (for example, resolution)
-    that will be accepted by the video pipeline. The default is `HD`.
+    """Tier defines the maximum input specification that is accepted by the
+    video pipeline. The billing is charged based on the tier specified here.
+    See [Pricing](https://cloud.google.com/livestream/pricing) for more detail.
+    The default is `HD`.
     """
 
     uri: typing.Text = ...
@@ -313,6 +315,7 @@ class Channel(google.protobuf.message.Message):
     SPRITE_SHEETS_FIELD_NUMBER: builtins.int
     STREAMING_STATE_FIELD_NUMBER: builtins.int
     STREAMING_ERROR_FIELD_NUMBER: builtins.int
+    LOG_CONFIG_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """The resource name of the channel, in the form of:
     `projects/{project}/locations/{location}/channels/{channelId}`.
@@ -374,6 +377,10 @@ class Channel(google.protobuf.message.Message):
         [STREAMING_ERROR][google.cloud.video.livestream.v1.Channel.StreamingState.STREAMING_ERROR].
         """
         pass
+    @property
+    def log_config(self) -> global___LogConfig:
+        """Configuration of platform logs for this channel."""
+        pass
     def __init__(self,
         *,
         name : typing.Text = ...,
@@ -389,10 +396,83 @@ class Channel(google.protobuf.message.Message):
         sprite_sheets : typing.Optional[typing.Iterable[google.cloud.video.livestream.v1.outputs_pb2.SpriteSheet]] = ...,
         streaming_state : global___Channel.StreamingState.ValueType = ...,
         streaming_error : typing.Optional[google.rpc.status_pb2.Status] = ...,
+        log_config : typing.Optional[global___LogConfig] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","output",b"output","streaming_error",b"streaming_error","update_time",b"update_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["active_input",b"active_input","create_time",b"create_time","elementary_streams",b"elementary_streams","input_attachments",b"input_attachments","labels",b"labels","manifests",b"manifests","mux_streams",b"mux_streams","name",b"name","output",b"output","sprite_sheets",b"sprite_sheets","streaming_error",b"streaming_error","streaming_state",b"streaming_state","update_time",b"update_time"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","log_config",b"log_config","output",b"output","streaming_error",b"streaming_error","update_time",b"update_time"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["active_input",b"active_input","create_time",b"create_time","elementary_streams",b"elementary_streams","input_attachments",b"input_attachments","labels",b"labels","log_config",b"log_config","manifests",b"manifests","mux_streams",b"mux_streams","name",b"name","output",b"output","sprite_sheets",b"sprite_sheets","streaming_error",b"streaming_error","streaming_state",b"streaming_state","update_time",b"update_time"]) -> None: ...
 global___Channel = Channel
+
+class LogConfig(google.protobuf.message.Message):
+    """Configuration of platform logs.
+    See [Using and managing platform
+    logs](https://cloud.google.com/logging/docs/api/platform-logs#managing-logs)
+    for more information about how to view platform logs through Cloud Logging.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    class _LogSeverity:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+    class _LogSeverityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_LogSeverity.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+        LOG_SEVERITY_UNSPECIFIED: LogConfig.LogSeverity.ValueType = ...  # 0
+        """Log severity is not specified. This is the same as log severity is OFF."""
+
+        OFF: LogConfig.LogSeverity.ValueType = ...  # 1
+        """Log is turned off."""
+
+        DEBUG: LogConfig.LogSeverity.ValueType = ...  # 100
+        """Log with severity higher than or equal to DEBUG are logged."""
+
+        INFO: LogConfig.LogSeverity.ValueType = ...  # 200
+        """Logs with severity higher than or equal to INFO are logged."""
+
+        WARNING: LogConfig.LogSeverity.ValueType = ...  # 400
+        """Logs with severity higher than or equal to WARNING are logged."""
+
+        ERROR: LogConfig.LogSeverity.ValueType = ...  # 500
+        """Logs with severity higher than or equal to ERROR are logged."""
+
+    class LogSeverity(_LogSeverity, metaclass=_LogSeverityEnumTypeWrapper):
+        """The severity level of platform logging for this channel. Logs with a
+        severity level higher than or equal to the chosen severity level will be
+        logged and can be viewed through Cloud Logging.
+        The severity level of a log is ranked as followed from low to high: DEBUG <
+        INFO < NOTICE < WARNING < ERROR < CRITICAL < ALERT < EMERGENCY.
+        See
+        [LogSeverity](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#logseverity)
+        for more information.
+        """
+        pass
+
+    LOG_SEVERITY_UNSPECIFIED: LogConfig.LogSeverity.ValueType = ...  # 0
+    """Log severity is not specified. This is the same as log severity is OFF."""
+
+    OFF: LogConfig.LogSeverity.ValueType = ...  # 1
+    """Log is turned off."""
+
+    DEBUG: LogConfig.LogSeverity.ValueType = ...  # 100
+    """Log with severity higher than or equal to DEBUG are logged."""
+
+    INFO: LogConfig.LogSeverity.ValueType = ...  # 200
+    """Logs with severity higher than or equal to INFO are logged."""
+
+    WARNING: LogConfig.LogSeverity.ValueType = ...  # 400
+    """Logs with severity higher than or equal to WARNING are logged."""
+
+    ERROR: LogConfig.LogSeverity.ValueType = ...  # 500
+    """Logs with severity higher than or equal to ERROR are logged."""
+
+
+    LOG_SEVERITY_FIELD_NUMBER: builtins.int
+    log_severity: global___LogConfig.LogSeverity.ValueType = ...
+    """The severity level of platform logging for this resource."""
+
+    def __init__(self,
+        *,
+        log_severity : global___LogConfig.LogSeverity.ValueType = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["log_severity",b"log_severity"]) -> None: ...
+global___LogConfig = LogConfig
 
 class InputStreamProperty(google.protobuf.message.Message):
     """Properties of the input stream."""

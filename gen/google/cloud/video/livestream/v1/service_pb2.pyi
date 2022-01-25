@@ -155,6 +155,7 @@ class DeleteChannelRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     REQUEST_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """Required. The name of the channel resource, in the form of:
     `projects/{project}/locations/{location}/channels/{channelId}`.
@@ -176,12 +177,20 @@ class DeleteChannelRequest(google.protobuf.message.Message):
     not supported `(00000000-0000-0000-0000-000000000000)`.
     """
 
+    force: builtins.bool = ...
+    """If the `force` field is set to the default value of `false`, you must
+    delete all of a channel's events before you can delete the channel itself.
+    If the field is set to `true`, requests to delete a channel also delete
+    associated channel events.
+    """
+
     def __init__(self,
         *,
         name : typing.Text = ...,
         request_id : typing.Text = ...,
+        force : builtins.bool = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["name",b"name","request_id",b"request_id"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["force",b"force","name",b"name","request_id",b"request_id"]) -> None: ...
 global___DeleteChannelRequest = DeleteChannelRequest
 
 class UpdateChannelRequest(google.protobuf.message.Message):

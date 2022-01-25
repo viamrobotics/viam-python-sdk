@@ -18,7 +18,7 @@ from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior_
 from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nAgoogle/cloud/bigquery/migration/v2alpha/translation_service.proto\x12\'google.cloud.bigquery.migration.v2alpha\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\"\xde\x02\n\x15TranslateQueryRequest\x12\x42\n\x06parent\x18\x01 \x01(\tB*\xe2\x41\x01\x02\xfa\x41#\n!locations.googleapis.com/LocationR\x06parent\x12\x87\x01\n\x0esource_dialect\x18\x02 \x01(\x0e\x32Z.google.cloud.bigquery.migration.v2alpha.TranslateQueryRequest.SqlTranslationSourceDialectB\x04\xe2\x41\x01\x02R\rsourceDialect\x12\x1a\n\x05query\x18\x03 \x01(\tB\x04\xe2\x41\x01\x02R\x05query\"[\n\x1bSqlTranslationSourceDialect\x12.\n*SQL_TRANSLATION_SOURCE_DIALECT_UNSPECIFIED\x10\x00\x12\x0c\n\x08TERADATA\x10\x01\"\xf5\x01\n\x16TranslateQueryResponse\x12)\n\x10translated_query\x18\x01 \x01(\tR\x0ftranslatedQuery\x12T\n\x06\x65rrors\x18\x02 \x03(\x0b\x32<.google.cloud.bigquery.migration.v2alpha.SqlTranslationErrorR\x06\x65rrors\x12Z\n\x08warnings\x18\x03 \x03(\x0b\x32>.google.cloud.bigquery.migration.v2alpha.SqlTranslationWarningR\x08warnings\"_\n\x19SqlTranslationErrorDetail\x12\x10\n\x03row\x18\x01 \x01(\x03R\x03row\x12\x16\n\x06\x63olumn\x18\x02 \x01(\x03R\x06\x63olumn\x12\x18\n\x07message\x18\x03 \x01(\tR\x07message\"\xeb\x02\n\x13SqlTranslationError\x12s\n\nerror_type\x18\x01 \x01(\x0e\x32T.google.cloud.bigquery.migration.v2alpha.SqlTranslationError.SqlTranslationErrorTypeR\terrorType\x12\x65\n\x0c\x65rror_detail\x18\x02 \x01(\x0b\x32\x42.google.cloud.bigquery.migration.v2alpha.SqlTranslationErrorDetailR\x0b\x65rrorDetail\"x\n\x17SqlTranslationErrorType\x12*\n&SQL_TRANSLATION_ERROR_TYPE_UNSPECIFIED\x10\x00\x12\x13\n\x0fSQL_PARSE_ERROR\x10\x01\x12\x1c\n\x18UNSUPPORTED_SQL_FUNCTION\x10\x02\"\x82\x01\n\x15SqlTranslationWarning\x12i\n\x0ewarning_detail\x18\x01 \x01(\x0b\x32\x42.google.cloud.bigquery.migration.v2alpha.SqlTranslationErrorDetailR\rwarningDetail2\xe3\x02\n\x15SqlTranslationService\x12\xf3\x01\n\x0eTranslateQuery\x12>.google.cloud.bigquery.migration.v2alpha.TranslateQueryRequest\x1a?.google.cloud.bigquery.migration.v2alpha.TranslateQueryResponse\"`\xda\x41\x1bparent,source_dialect,query\x82\xd3\xe4\x93\x02<\"7/v2alpha/{parent=projects/*/locations/*}:translateQuery:\x01*\x1aT\xca\x41 bigquerymigration.googleapis.com\xd2\x41.https://www.googleapis.com/auth/cloud-platformB\xee\x01\n+com.google.cloud.bigquery.migration.v2alphaB\x17TranslationServiceProtoP\x01ZPgoogle.golang.org/genproto/googleapis/cloud/bigquery/migration/v2alpha;migration\xaa\x02\'Google.Cloud.BigQuery.Migration.V2Alpha\xca\x02\'Google\\Cloud\\BigQuery\\Migration\\V2alphab\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\nAgoogle/cloud/bigquery/migration/v2alpha/translation_service.proto\x12\'google.cloud.bigquery.migration.v2alpha\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\"\xde\x02\n\x15TranslateQueryRequest\x12\x42\n\x06parent\x18\x01 \x01(\tB*\xe2\x41\x01\x02\xfa\x41#\n!locations.googleapis.com/LocationR\x06parent\x12\x87\x01\n\x0esource_dialect\x18\x02 \x01(\x0e\x32Z.google.cloud.bigquery.migration.v2alpha.TranslateQueryRequest.SqlTranslationSourceDialectB\x04\xe2\x41\x01\x02R\rsourceDialect\x12\x1a\n\x05query\x18\x03 \x01(\tB\x04\xe2\x41\x01\x02R\x05query\"[\n\x1bSqlTranslationSourceDialect\x12.\n*SQL_TRANSLATION_SOURCE_DIALECT_UNSPECIFIED\x10\x00\x12\x0c\n\x08TERADATA\x10\x01\"\xa5\x02\n\x16TranslateQueryResponse\x12.\n\x0ftranslation_job\x18\x04 \x01(\tB\x05\xe2\x41\x02\x03\x05R\x0etranslationJob\x12)\n\x10translated_query\x18\x01 \x01(\tR\x0ftranslatedQuery\x12T\n\x06\x65rrors\x18\x02 \x03(\x0b\x32<.google.cloud.bigquery.migration.v2alpha.SqlTranslationErrorR\x06\x65rrors\x12Z\n\x08warnings\x18\x03 \x03(\x0b\x32>.google.cloud.bigquery.migration.v2alpha.SqlTranslationWarningR\x08warnings\"_\n\x19SqlTranslationErrorDetail\x12\x10\n\x03row\x18\x01 \x01(\x03R\x03row\x12\x16\n\x06\x63olumn\x18\x02 \x01(\x03R\x06\x63olumn\x12\x18\n\x07message\x18\x03 \x01(\tR\x07message\"\xeb\x02\n\x13SqlTranslationError\x12s\n\nerror_type\x18\x01 \x01(\x0e\x32T.google.cloud.bigquery.migration.v2alpha.SqlTranslationError.SqlTranslationErrorTypeR\terrorType\x12\x65\n\x0c\x65rror_detail\x18\x02 \x01(\x0b\x32\x42.google.cloud.bigquery.migration.v2alpha.SqlTranslationErrorDetailR\x0b\x65rrorDetail\"x\n\x17SqlTranslationErrorType\x12*\n&SQL_TRANSLATION_ERROR_TYPE_UNSPECIFIED\x10\x00\x12\x13\n\x0fSQL_PARSE_ERROR\x10\x01\x12\x1c\n\x18UNSUPPORTED_SQL_FUNCTION\x10\x02\"\x82\x01\n\x15SqlTranslationWarning\x12i\n\x0ewarning_detail\x18\x01 \x01(\x0b\x32\x42.google.cloud.bigquery.migration.v2alpha.SqlTranslationErrorDetailR\rwarningDetail2\xe3\x02\n\x15SqlTranslationService\x12\xf3\x01\n\x0eTranslateQuery\x12>.google.cloud.bigquery.migration.v2alpha.TranslateQueryRequest\x1a?.google.cloud.bigquery.migration.v2alpha.TranslateQueryResponse\"`\xda\x41\x1bparent,source_dialect,query\x82\xd3\xe4\x93\x02<\"7/v2alpha/{parent=projects/*/locations/*}:translateQuery:\x01*\x1aT\xca\x41 bigquerymigration.googleapis.com\xd2\x41.https://www.googleapis.com/auth/cloud-platformB\xee\x01\n+com.google.cloud.bigquery.migration.v2alphaB\x17TranslationServiceProtoP\x01ZPgoogle.golang.org/genproto/googleapis/cloud/bigquery/migration/v2alpha;migration\xaa\x02\'Google.Cloud.BigQuery.Migration.V2Alpha\xca\x02\'Google\\Cloud\\BigQuery\\Migration\\V2alphab\x06proto3')
 
 
 
@@ -75,6 +75,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _TRANSLATEQUERYREQUEST.fields_by_name['source_dialect']._serialized_options = b'\342A\001\002'
   _TRANSLATEQUERYREQUEST.fields_by_name['query']._options = None
   _TRANSLATEQUERYREQUEST.fields_by_name['query']._serialized_options = b'\342A\001\002'
+  _TRANSLATEQUERYRESPONSE.fields_by_name['translation_job']._options = None
+  _TRANSLATEQUERYRESPONSE.fields_by_name['translation_job']._serialized_options = b'\342A\002\003\005'
   _SQLTRANSLATIONSERVICE._options = None
   _SQLTRANSLATIONSERVICE._serialized_options = b'\312A bigquerymigration.googleapis.com\322A.https://www.googleapis.com/auth/cloud-platform'
   _SQLTRANSLATIONSERVICE.methods_by_name['TranslateQuery']._options = None
@@ -84,15 +86,15 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _TRANSLATEQUERYREQUEST_SQLTRANSLATIONSOURCEDIALECT._serialized_start=485
   _TRANSLATEQUERYREQUEST_SQLTRANSLATIONSOURCEDIALECT._serialized_end=576
   _TRANSLATEQUERYRESPONSE._serialized_start=579
-  _TRANSLATEQUERYRESPONSE._serialized_end=824
-  _SQLTRANSLATIONERRORDETAIL._serialized_start=826
-  _SQLTRANSLATIONERRORDETAIL._serialized_end=921
-  _SQLTRANSLATIONERROR._serialized_start=924
-  _SQLTRANSLATIONERROR._serialized_end=1287
-  _SQLTRANSLATIONERROR_SQLTRANSLATIONERRORTYPE._serialized_start=1167
-  _SQLTRANSLATIONERROR_SQLTRANSLATIONERRORTYPE._serialized_end=1287
-  _SQLTRANSLATIONWARNING._serialized_start=1290
-  _SQLTRANSLATIONWARNING._serialized_end=1420
-  _SQLTRANSLATIONSERVICE._serialized_start=1423
-  _SQLTRANSLATIONSERVICE._serialized_end=1778
+  _TRANSLATEQUERYRESPONSE._serialized_end=872
+  _SQLTRANSLATIONERRORDETAIL._serialized_start=874
+  _SQLTRANSLATIONERRORDETAIL._serialized_end=969
+  _SQLTRANSLATIONERROR._serialized_start=972
+  _SQLTRANSLATIONERROR._serialized_end=1335
+  _SQLTRANSLATIONERROR_SQLTRANSLATIONERRORTYPE._serialized_start=1215
+  _SQLTRANSLATIONERROR_SQLTRANSLATIONERRORTYPE._serialized_end=1335
+  _SQLTRANSLATIONWARNING._serialized_start=1338
+  _SQLTRANSLATIONWARNING._serialized_end=1468
+  _SQLTRANSLATIONSERVICE._serialized_start=1471
+  _SQLTRANSLATIONSERVICE._serialized_end=1826
 # @@protoc_insertion_point(module_scope)

@@ -41,7 +41,9 @@ class TranslateQueryRequest(google.protobuf.message.Message):
     SOURCE_DIALECT_FIELD_NUMBER: builtins.int
     QUERY_FIELD_NUMBER: builtins.int
     parent: typing.Text = ...
-    """Required. Project ID of the project that will be charged for the quota."""
+    """Required. The name of the project to which this translation request belongs.
+    Example: `projects/foo/locations/bar`
+    """
 
     source_dialect: global___TranslateQueryRequest.SqlTranslationSourceDialect.ValueType = ...
     """Required. The source SQL dialect of `queries`."""
@@ -61,9 +63,15 @@ global___TranslateQueryRequest = TranslateQueryRequest
 class TranslateQueryResponse(google.protobuf.message.Message):
     """The response of translating a SQL query to Standard SQL."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    TRANSLATION_JOB_FIELD_NUMBER: builtins.int
     TRANSLATED_QUERY_FIELD_NUMBER: builtins.int
     ERRORS_FIELD_NUMBER: builtins.int
     WARNINGS_FIELD_NUMBER: builtins.int
+    translation_job: typing.Text = ...
+    """Output only. Immutable. The unique identifier for the SQL translation job.
+    Example: `projects/123/locations/us/translation/1234`
+    """
+
     translated_query: typing.Text = ...
     """The translated result. This will be empty if the translation fails."""
 
@@ -79,11 +87,12 @@ class TranslateQueryResponse(google.protobuf.message.Message):
         pass
     def __init__(self,
         *,
+        translation_job : typing.Text = ...,
         translated_query : typing.Text = ...,
         errors : typing.Optional[typing.Iterable[global___SqlTranslationError]] = ...,
         warnings : typing.Optional[typing.Iterable[global___SqlTranslationWarning]] = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["errors",b"errors","translated_query",b"translated_query","warnings",b"warnings"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["errors",b"errors","translated_query",b"translated_query","translation_job",b"translation_job","warnings",b"warnings"]) -> None: ...
 global___TranslateQueryResponse = TranslateQueryResponse
 
 class SqlTranslationErrorDetail(google.protobuf.message.Message):
