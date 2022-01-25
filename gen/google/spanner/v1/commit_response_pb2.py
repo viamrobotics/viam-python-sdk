@@ -12,12 +12,12 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
-from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'google/spanner/v1/commit_response.proto\x12\x11google.spanner.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\xdf\x01\n\x0e\x43ommitResponse\x12\x45\n\x10\x63ommit_timestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0f\x63ommitTimestamp\x12P\n\x0c\x63ommit_stats\x18\x02 \x01(\x0b\x32-.google.spanner.v1.CommitResponse.CommitStatsR\x0b\x63ommitStats\x1a\x34\n\x0b\x43ommitStats\x12%\n\x0emutation_count\x18\x01 \x01(\x03R\rmutationCountB\xb9\x01\n\x15\x63om.google.spanner.v1B\x13\x43ommitResponseProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\xaa\x02\x17Google.Cloud.Spanner.V1\xca\x02\x17Google\\Cloud\\Spanner\\V1\xea\x02\x1aGoogle::Cloud::Spanner::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'google/spanner/v1/commit_response.proto\x12\x11google.spanner.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdf\x01\n\x0e\x43ommitResponse\x12\x45\n\x10\x63ommit_timestamp\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0f\x63ommitTimestamp\x12P\n\x0c\x63ommit_stats\x18\x02 \x01(\x0b\x32-.google.spanner.v1.CommitResponse.CommitStatsR\x0b\x63ommitStats\x1a\x34\n\x0b\x43ommitStats\x12%\n\x0emutation_count\x18\x01 \x01(\x03R\rmutationCountB\xb9\x01\n\x15\x63om.google.spanner.v1B\x13\x43ommitResponseProtoP\x01Z8google.golang.org/genproto/googleapis/spanner/v1;spanner\xaa\x02\x17Google.Cloud.Spanner.V1\xca\x02\x17Google\\Cloud\\Spanner\\V1\xea\x02\x1aGoogle::Cloud::Spanner::V1b\x06proto3')
 
 
 

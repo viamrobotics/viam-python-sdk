@@ -312,6 +312,7 @@ class RequestOptions(google.protobuf.message.Message):
     Legal characters for `request_tag` values are all printable characters
     (ASCII 32 - 126) and the length of a request_tag is limited to 50
     characters. Values that exceed this limit are truncated.
+    Any leading underscore (_) characters will be removed from the string.
     """
 
     transaction_tag: typing.Text = ...
@@ -320,11 +321,12 @@ class RequestOptions(google.protobuf.message.Message):
     that belongs to a transaction.
     The value of transaction_tag should be the same for all requests belonging
     to the same transaction.
-    If this request doesn’t belong to any transaction, transaction_tag will be
+    If this request doesn't belong to any transaction, transaction_tag will be
     ignored.
     Legal characters for `transaction_tag` values are all printable characters
     (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
     characters. Values that exceed this limit are truncated.
+    Any leading underscore (_) characters will be removed from the string.
     """
 
     def __init__(self,

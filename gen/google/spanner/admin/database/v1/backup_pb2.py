@@ -12,16 +12,16 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 from google.longrunning import operations_pb2 as google_dot_longrunning_dot_operations__pb2
 from google.protobuf import field_mask_pb2 as google_dot_protobuf_dot_field__mask__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.spanner.admin.database.v1 import common_pb2 as google_dot_spanner_dot_admin_dot_database_dot_v1_dot_common__pb2
-from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n-google/spanner/admin/database/v1/backup.proto\x12 google.spanner.admin.database.v1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a#google/longrunning/operations.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a-google/spanner/admin/database/v1/common.proto\x1a\x1cgoogle/api/annotations.proto\"\xe5\x05\n\x06\x42\x61\x63kup\x12@\n\x08\x64\x61tabase\x18\x02 \x01(\tB$\xfa\x41!\n\x1fspanner.googleapis.com/DatabaseR\x08\x64\x61tabase\x12=\n\x0cversion_time\x18\t \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0bversionTime\x12;\n\x0b\x65xpire_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nexpireTime\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x41\n\x0b\x63reate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\ncreateTime\x12#\n\nsize_bytes\x18\x05 \x01(\x03\x42\x04\xe2\x41\x01\x03R\tsizeBytes\x12J\n\x05state\x18\x06 \x01(\x0e\x32..google.spanner.admin.database.v1.Backup.StateB\x04\xe2\x41\x01\x03R\x05state\x12]\n\x15referencing_databases\x18\x07 \x03(\tB(\xe2\x41\x01\x03\xfa\x41!\n\x1fspanner.googleapis.com/DatabaseR\x14referencingDatabases\x12_\n\x0f\x65ncryption_info\x18\x08 \x01(\x0b\x32\x30.google.spanner.admin.database.v1.EncryptionInfoB\x04\xe2\x41\x01\x03R\x0e\x65ncryptionInfo\"7\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x43REATING\x10\x01\x12\t\n\x05READY\x10\x02:\\\xea\x41Y\n\x1dspanner.googleapis.com/Backup\x12\x38projects/{project}/instances/{instance}/backups/{backup}\"\xb5\x02\n\x13\x43reateBackupRequest\x12@\n\x06parent\x18\x01 \x01(\tB(\xe2\x41\x01\x02\xfa\x41!\n\x1fspanner.googleapis.com/InstanceR\x06parent\x12!\n\tbackup_id\x18\x02 \x01(\tB\x04\xe2\x41\x01\x02R\x08\x62\x61\x63kupId\x12\x46\n\x06\x62\x61\x63kup\x18\x03 \x01(\x0b\x32(.google.spanner.admin.database.v1.BackupB\x04\xe2\x41\x01\x02R\x06\x62\x61\x63kup\x12q\n\x11\x65ncryption_config\x18\x04 \x01(\x0b\x32>.google.spanner.admin.database.v1.CreateBackupEncryptionConfigB\x04\xe2\x41\x01\x01R\x10\x65ncryptionConfig\"\x9e\x02\n\x14\x43reateBackupMetadata\x12\x36\n\x04name\x18\x01 \x01(\tB\"\xfa\x41\x1f\n\x1dspanner.googleapis.com/BackupR\x04name\x12@\n\x08\x64\x61tabase\x18\x02 \x01(\tB$\xfa\x41!\n\x1fspanner.googleapis.com/DatabaseR\x08\x64\x61tabase\x12O\n\x08progress\x18\x03 \x01(\x0b\x32\x33.google.spanner.admin.database.v1.OperationProgressR\x08progress\x12;\n\x0b\x63\x61ncel_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncancelTime\"\xa0\x01\n\x13UpdateBackupRequest\x12\x46\n\x06\x62\x61\x63kup\x18\x01 \x01(\x0b\x32(.google.spanner.admin.database.v1.BackupB\x04\xe2\x41\x01\x02R\x06\x62\x61\x63kup\x12\x41\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x04\xe2\x41\x01\x02R\nupdateMask\"N\n\x10GetBackupRequest\x12:\n\x04name\x18\x01 \x01(\tB&\xe2\x41\x01\x02\xfa\x41\x1f\n\x1dspanner.googleapis.com/BackupR\x04name\"Q\n\x13\x44\x65leteBackupRequest\x12:\n\x04name\x18\x01 \x01(\tB&\xe2\x41\x01\x02\xfa\x41\x1f\n\x1dspanner.googleapis.com/BackupR\x04name\"\xaa\x01\n\x12ListBackupsRequest\x12@\n\x06parent\x18\x01 \x01(\tB(\xe2\x41\x01\x02\xfa\x41!\n\x1fspanner.googleapis.com/InstanceR\x06parent\x12\x16\n\x06\x66ilter\x18\x02 \x01(\tR\x06\x66ilter\x12\x1b\n\tpage_size\x18\x03 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x04 \x01(\tR\tpageToken\"\x81\x01\n\x13ListBackupsResponse\x12\x42\n\x07\x62\x61\x63kups\x18\x01 \x03(\x0b\x32(.google.spanner.admin.database.v1.BackupR\x07\x62\x61\x63kups\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xb3\x01\n\x1bListBackupOperationsRequest\x12@\n\x06parent\x18\x01 \x01(\tB(\xe2\x41\x01\x02\xfa\x41!\n\x1fspanner.googleapis.com/InstanceR\x06parent\x12\x16\n\x06\x66ilter\x18\x02 \x01(\tR\x06\x66ilter\x12\x1b\n\tpage_size\x18\x03 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x04 \x01(\tR\tpageToken\"\x85\x01\n\x1cListBackupOperationsResponse\x12=\n\noperations\x18\x01 \x03(\x0b\x32\x1d.google.longrunning.OperationR\noperations\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\x93\x02\n\nBackupInfo\x12:\n\x06\x62\x61\x63kup\x18\x01 \x01(\tB\"\xfa\x41\x1f\n\x1dspanner.googleapis.com/BackupR\x06\x62\x61\x63kup\x12=\n\x0cversion_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0bversionTime\x12;\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12M\n\x0fsource_database\x18\x03 \x01(\tB$\xfa\x41!\n\x1fspanner.googleapis.com/DatabaseR\x0esourceDatabase\"\xfb\x02\n\x1c\x43reateBackupEncryptionConfig\x12|\n\x0f\x65ncryption_type\x18\x01 \x01(\x0e\x32M.google.spanner.admin.database.v1.CreateBackupEncryptionConfig.EncryptionTypeB\x04\xe2\x41\x01\x02R\x0e\x65ncryptionType\x12L\n\x0ckms_key_name\x18\x02 \x01(\tB*\xe2\x41\x01\x01\xfa\x41#\n!cloudkms.googleapis.com/CryptoKeyR\nkmsKeyName\"\x8e\x01\n\x0e\x45ncryptionType\x12\x1f\n\x1b\x45NCRYPTION_TYPE_UNSPECIFIED\x10\x00\x12\x1b\n\x17USE_DATABASE_ENCRYPTION\x10\x01\x12\x1d\n\x19GOOGLE_DEFAULT_ENCRYPTION\x10\x02\x12\x1f\n\x1b\x43USTOMER_MANAGED_ENCRYPTION\x10\x03\x42\xff\x01\n$com.google.spanner.admin.database.v1B\x0b\x42\x61\x63kupProtoP\x01ZHgoogle.golang.org/genproto/googleapis/spanner/admin/database/v1;database\xaa\x02&Google.Cloud.Spanner.Admin.Database.V1\xca\x02&Google\\Cloud\\Spanner\\Admin\\Database\\V1\xea\x02+Google::Cloud::Spanner::Admin::Database::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n-google/spanner/admin/database/v1/backup.proto\x12 google.spanner.admin.database.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a#google/longrunning/operations.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a-google/spanner/admin/database/v1/common.proto\"\xc9\x06\n\x06\x42\x61\x63kup\x12@\n\x08\x64\x61tabase\x18\x02 \x01(\tB$\xfa\x41!\n\x1fspanner.googleapis.com/DatabaseR\x08\x64\x61tabase\x12=\n\x0cversion_time\x18\t \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0bversionTime\x12;\n\x0b\x65xpire_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nexpireTime\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x41\n\x0b\x63reate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\ncreateTime\x12#\n\nsize_bytes\x18\x05 \x01(\x03\x42\x04\xe2\x41\x01\x03R\tsizeBytes\x12J\n\x05state\x18\x06 \x01(\x0e\x32..google.spanner.admin.database.v1.Backup.StateB\x04\xe2\x41\x01\x03R\x05state\x12]\n\x15referencing_databases\x18\x07 \x03(\tB(\xe2\x41\x01\x03\xfa\x41!\n\x1fspanner.googleapis.com/DatabaseR\x14referencingDatabases\x12_\n\x0f\x65ncryption_info\x18\x08 \x01(\x0b\x32\x30.google.spanner.admin.database.v1.EncryptionInfoB\x04\xe2\x41\x01\x03R\x0e\x65ncryptionInfo\x12\x62\n\x10\x64\x61tabase_dialect\x18\n \x01(\x0e\x32\x31.google.spanner.admin.database.v1.DatabaseDialectB\x04\xe2\x41\x01\x03R\x0f\x64\x61tabaseDialect\"7\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\x0c\n\x08\x43REATING\x10\x01\x12\t\n\x05READY\x10\x02:\\\xea\x41Y\n\x1dspanner.googleapis.com/Backup\x12\x38projects/{project}/instances/{instance}/backups/{backup}\"\xb5\x02\n\x13\x43reateBackupRequest\x12@\n\x06parent\x18\x01 \x01(\tB(\xe2\x41\x01\x02\xfa\x41!\n\x1fspanner.googleapis.com/InstanceR\x06parent\x12!\n\tbackup_id\x18\x02 \x01(\tB\x04\xe2\x41\x01\x02R\x08\x62\x61\x63kupId\x12\x46\n\x06\x62\x61\x63kup\x18\x03 \x01(\x0b\x32(.google.spanner.admin.database.v1.BackupB\x04\xe2\x41\x01\x02R\x06\x62\x61\x63kup\x12q\n\x11\x65ncryption_config\x18\x04 \x01(\x0b\x32>.google.spanner.admin.database.v1.CreateBackupEncryptionConfigB\x04\xe2\x41\x01\x01R\x10\x65ncryptionConfig\"\x9e\x02\n\x14\x43reateBackupMetadata\x12\x36\n\x04name\x18\x01 \x01(\tB\"\xfa\x41\x1f\n\x1dspanner.googleapis.com/BackupR\x04name\x12@\n\x08\x64\x61tabase\x18\x02 \x01(\tB$\xfa\x41!\n\x1fspanner.googleapis.com/DatabaseR\x08\x64\x61tabase\x12O\n\x08progress\x18\x03 \x01(\x0b\x32\x33.google.spanner.admin.database.v1.OperationProgressR\x08progress\x12;\n\x0b\x63\x61ncel_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncancelTime\"\xa0\x01\n\x13UpdateBackupRequest\x12\x46\n\x06\x62\x61\x63kup\x18\x01 \x01(\x0b\x32(.google.spanner.admin.database.v1.BackupB\x04\xe2\x41\x01\x02R\x06\x62\x61\x63kup\x12\x41\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x04\xe2\x41\x01\x02R\nupdateMask\"N\n\x10GetBackupRequest\x12:\n\x04name\x18\x01 \x01(\tB&\xe2\x41\x01\x02\xfa\x41\x1f\n\x1dspanner.googleapis.com/BackupR\x04name\"Q\n\x13\x44\x65leteBackupRequest\x12:\n\x04name\x18\x01 \x01(\tB&\xe2\x41\x01\x02\xfa\x41\x1f\n\x1dspanner.googleapis.com/BackupR\x04name\"\xaa\x01\n\x12ListBackupsRequest\x12@\n\x06parent\x18\x01 \x01(\tB(\xe2\x41\x01\x02\xfa\x41!\n\x1fspanner.googleapis.com/InstanceR\x06parent\x12\x16\n\x06\x66ilter\x18\x02 \x01(\tR\x06\x66ilter\x12\x1b\n\tpage_size\x18\x03 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x04 \x01(\tR\tpageToken\"\x81\x01\n\x13ListBackupsResponse\x12\x42\n\x07\x62\x61\x63kups\x18\x01 \x03(\x0b\x32(.google.spanner.admin.database.v1.BackupR\x07\x62\x61\x63kups\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\xb3\x01\n\x1bListBackupOperationsRequest\x12@\n\x06parent\x18\x01 \x01(\tB(\xe2\x41\x01\x02\xfa\x41!\n\x1fspanner.googleapis.com/InstanceR\x06parent\x12\x16\n\x06\x66ilter\x18\x02 \x01(\tR\x06\x66ilter\x12\x1b\n\tpage_size\x18\x03 \x01(\x05R\x08pageSize\x12\x1d\n\npage_token\x18\x04 \x01(\tR\tpageToken\"\x85\x01\n\x1cListBackupOperationsResponse\x12=\n\noperations\x18\x01 \x03(\x0b\x32\x1d.google.longrunning.OperationR\noperations\x12&\n\x0fnext_page_token\x18\x02 \x01(\tR\rnextPageToken\"\x93\x02\n\nBackupInfo\x12:\n\x06\x62\x61\x63kup\x18\x01 \x01(\tB\"\xfa\x41\x1f\n\x1dspanner.googleapis.com/BackupR\x06\x62\x61\x63kup\x12=\n\x0cversion_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0bversionTime\x12;\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12M\n\x0fsource_database\x18\x03 \x01(\tB$\xfa\x41!\n\x1fspanner.googleapis.com/DatabaseR\x0esourceDatabase\"\xfb\x02\n\x1c\x43reateBackupEncryptionConfig\x12|\n\x0f\x65ncryption_type\x18\x01 \x01(\x0e\x32M.google.spanner.admin.database.v1.CreateBackupEncryptionConfig.EncryptionTypeB\x04\xe2\x41\x01\x02R\x0e\x65ncryptionType\x12L\n\x0ckms_key_name\x18\x02 \x01(\tB*\xe2\x41\x01\x01\xfa\x41#\n!cloudkms.googleapis.com/CryptoKeyR\nkmsKeyName\"\x8e\x01\n\x0e\x45ncryptionType\x12\x1f\n\x1b\x45NCRYPTION_TYPE_UNSPECIFIED\x10\x00\x12\x1b\n\x17USE_DATABASE_ENCRYPTION\x10\x01\x12\x1d\n\x19GOOGLE_DEFAULT_ENCRYPTION\x10\x02\x12\x1f\n\x1b\x43USTOMER_MANAGED_ENCRYPTION\x10\x03\x42\xff\x01\n$com.google.spanner.admin.database.v1B\x0b\x42\x61\x63kupProtoP\x01ZHgoogle.golang.org/genproto/googleapis/spanner/admin/database/v1;database\xaa\x02&Google.Cloud.Spanner.Admin.Database.V1\xca\x02&Google\\Cloud\\Spanner\\Admin\\Database\\V1\xea\x02+Google::Cloud::Spanner::Admin::Database::V1b\x06proto3')
 
 
 
@@ -139,6 +139,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _BACKUP.fields_by_name['referencing_databases']._serialized_options = b'\342A\001\003\372A!\n\037spanner.googleapis.com/Database'
   _BACKUP.fields_by_name['encryption_info']._options = None
   _BACKUP.fields_by_name['encryption_info']._serialized_options = b'\342A\001\003'
+  _BACKUP.fields_by_name['database_dialect']._options = None
+  _BACKUP.fields_by_name['database_dialect']._serialized_options = b'\342A\001\003'
   _BACKUP._options = None
   _BACKUP._serialized_options = b'\352AY\n\035spanner.googleapis.com/Backup\0228projects/{project}/instances/{instance}/backups/{backup}'
   _CREATEBACKUPREQUEST.fields_by_name['parent']._options = None
@@ -174,31 +176,31 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CREATEBACKUPENCRYPTIONCONFIG.fields_by_name['kms_key_name']._options = None
   _CREATEBACKUPENCRYPTIONCONFIG.fields_by_name['kms_key_name']._serialized_options = b'\342A\001\001\372A#\n!cloudkms.googleapis.com/CryptoKey'
   _BACKUP._serialized_start=325
-  _BACKUP._serialized_end=1066
-  _BACKUP_STATE._serialized_start=917
-  _BACKUP_STATE._serialized_end=972
-  _CREATEBACKUPREQUEST._serialized_start=1069
-  _CREATEBACKUPREQUEST._serialized_end=1378
-  _CREATEBACKUPMETADATA._serialized_start=1381
-  _CREATEBACKUPMETADATA._serialized_end=1667
-  _UPDATEBACKUPREQUEST._serialized_start=1670
-  _UPDATEBACKUPREQUEST._serialized_end=1830
-  _GETBACKUPREQUEST._serialized_start=1832
-  _GETBACKUPREQUEST._serialized_end=1910
-  _DELETEBACKUPREQUEST._serialized_start=1912
-  _DELETEBACKUPREQUEST._serialized_end=1993
-  _LISTBACKUPSREQUEST._serialized_start=1996
-  _LISTBACKUPSREQUEST._serialized_end=2166
-  _LISTBACKUPSRESPONSE._serialized_start=2169
-  _LISTBACKUPSRESPONSE._serialized_end=2298
-  _LISTBACKUPOPERATIONSREQUEST._serialized_start=2301
-  _LISTBACKUPOPERATIONSREQUEST._serialized_end=2480
-  _LISTBACKUPOPERATIONSRESPONSE._serialized_start=2483
-  _LISTBACKUPOPERATIONSRESPONSE._serialized_end=2616
-  _BACKUPINFO._serialized_start=2619
-  _BACKUPINFO._serialized_end=2894
-  _CREATEBACKUPENCRYPTIONCONFIG._serialized_start=2897
-  _CREATEBACKUPENCRYPTIONCONFIG._serialized_end=3276
-  _CREATEBACKUPENCRYPTIONCONFIG_ENCRYPTIONTYPE._serialized_start=3134
-  _CREATEBACKUPENCRYPTIONCONFIG_ENCRYPTIONTYPE._serialized_end=3276
+  _BACKUP._serialized_end=1166
+  _BACKUP_STATE._serialized_start=1017
+  _BACKUP_STATE._serialized_end=1072
+  _CREATEBACKUPREQUEST._serialized_start=1169
+  _CREATEBACKUPREQUEST._serialized_end=1478
+  _CREATEBACKUPMETADATA._serialized_start=1481
+  _CREATEBACKUPMETADATA._serialized_end=1767
+  _UPDATEBACKUPREQUEST._serialized_start=1770
+  _UPDATEBACKUPREQUEST._serialized_end=1930
+  _GETBACKUPREQUEST._serialized_start=1932
+  _GETBACKUPREQUEST._serialized_end=2010
+  _DELETEBACKUPREQUEST._serialized_start=2012
+  _DELETEBACKUPREQUEST._serialized_end=2093
+  _LISTBACKUPSREQUEST._serialized_start=2096
+  _LISTBACKUPSREQUEST._serialized_end=2266
+  _LISTBACKUPSRESPONSE._serialized_start=2269
+  _LISTBACKUPSRESPONSE._serialized_end=2398
+  _LISTBACKUPOPERATIONSREQUEST._serialized_start=2401
+  _LISTBACKUPOPERATIONSREQUEST._serialized_end=2580
+  _LISTBACKUPOPERATIONSRESPONSE._serialized_start=2583
+  _LISTBACKUPOPERATIONSRESPONSE._serialized_end=2716
+  _BACKUPINFO._serialized_start=2719
+  _BACKUPINFO._serialized_end=2994
+  _CREATEBACKUPENCRYPTIONCONFIG._serialized_start=2997
+  _CREATEBACKUPENCRYPTIONCONFIG._serialized_end=3376
+  _CREATEBACKUPENCRYPTIONCONFIG_ENCRYPTIONTYPE._serialized_start=3234
+  _CREATEBACKUPENCRYPTIONCONFIG_ENCRYPTIONTYPE._serialized_end=3376
 # @@protoc_insertion_point(module_scope)

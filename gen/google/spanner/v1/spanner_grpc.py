@@ -9,7 +9,6 @@ import grpclib.client
 if typing.TYPE_CHECKING:
     import grpclib.server
 
-import google.spanner.v1.commit_response_pb2
 import google.api.annotations_pb2
 import google.api.client_pb2
 import google.api.field_behavior_pb2
@@ -18,6 +17,7 @@ import google.protobuf.empty_pb2
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 import google.rpc.status_pb2
+import google.spanner.v1.commit_response_pb2
 import google.spanner.v1.keys_pb2
 import google.spanner.v1.mutation_pb2
 import google.spanner.v1.result_set_pb2

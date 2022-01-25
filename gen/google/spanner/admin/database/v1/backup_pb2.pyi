@@ -60,6 +60,7 @@ class Backup(google.protobuf.message.Message):
     STATE_FIELD_NUMBER: builtins.int
     REFERENCING_DATABASES_FIELD_NUMBER: builtins.int
     ENCRYPTION_INFO_FIELD_NUMBER: builtins.int
+    DATABASE_DIALECT_FIELD_NUMBER: builtins.int
     database: typing.Text = ...
     """Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
     Name of the database from which this backup was
@@ -130,6 +131,9 @@ class Backup(google.protobuf.message.Message):
     def encryption_info(self) -> google.spanner.admin.database.v1.common_pb2.EncryptionInfo:
         """Output only. The encryption information for the backup."""
         pass
+    database_dialect: google.spanner.admin.database.v1.common_pb2.DatabaseDialect.ValueType = ...
+    """Output only. The database dialect information for the backup."""
+
     def __init__(self,
         *,
         database : typing.Text = ...,
@@ -141,9 +145,10 @@ class Backup(google.protobuf.message.Message):
         state : global___Backup.State.ValueType = ...,
         referencing_databases : typing.Optional[typing.Iterable[typing.Text]] = ...,
         encryption_info : typing.Optional[google.spanner.admin.database.v1.common_pb2.EncryptionInfo] = ...,
+        database_dialect : google.spanner.admin.database.v1.common_pb2.DatabaseDialect.ValueType = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","encryption_info",b"encryption_info","expire_time",b"expire_time","version_time",b"version_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","database",b"database","encryption_info",b"encryption_info","expire_time",b"expire_time","name",b"name","referencing_databases",b"referencing_databases","size_bytes",b"size_bytes","state",b"state","version_time",b"version_time"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","database",b"database","database_dialect",b"database_dialect","encryption_info",b"encryption_info","expire_time",b"expire_time","name",b"name","referencing_databases",b"referencing_databases","size_bytes",b"size_bytes","state",b"state","version_time",b"version_time"]) -> None: ...
 global___Backup = Backup
 
 class CreateBackupRequest(google.protobuf.message.Message):

@@ -273,7 +273,10 @@ class NodeConfig(google.protobuf.message.Message):
     LINUX_NODE_CONFIG_FIELD_NUMBER: builtins.int
     KUBELET_CONFIG_FIELD_NUMBER: builtins.int
     EPHEMERAL_STORAGE_CONFIG_FIELD_NUMBER: builtins.int
+    GCFS_CONFIG_FIELD_NUMBER: builtins.int
+    ADVANCED_MACHINE_FEATURES_FIELD_NUMBER: builtins.int
     GVNIC_FIELD_NUMBER: builtins.int
+    SPOT_FIELD_NUMBER: builtins.int
     machine_type: typing.Text = ...
     """The name of a Google Compute Engine [machine
     type](https://cloud.google.com/compute/docs/machine-types).
@@ -473,9 +476,22 @@ class NodeConfig(google.protobuf.message.Message):
         """
         pass
     @property
+    def gcfs_config(self) -> global___GcfsConfig:
+        """GCFS (Google Container File System) configs."""
+        pass
+    @property
+    def advanced_machine_features(self) -> global___AdvancedMachineFeatures:
+        """Advanced features for the Compute Engine VM."""
+        pass
+    @property
     def gvnic(self) -> global___VirtualNIC:
         """Enable or disable gvnic on the node pool."""
         pass
+    spot: builtins.bool = ...
+    """Spot flag for enabling Spot VM, which is a rebrand of
+    the existing preemptible flag.
+    """
+
     def __init__(self,
         *,
         machine_type : typing.Text = ...,
@@ -501,11 +517,33 @@ class NodeConfig(google.protobuf.message.Message):
         linux_node_config : typing.Optional[global___LinuxNodeConfig] = ...,
         kubelet_config : typing.Optional[global___NodeKubeletConfig] = ...,
         ephemeral_storage_config : typing.Optional[global___EphemeralStorageConfig] = ...,
+        gcfs_config : typing.Optional[global___GcfsConfig] = ...,
+        advanced_machine_features : typing.Optional[global___AdvancedMachineFeatures] = ...,
         gvnic : typing.Optional[global___VirtualNIC] = ...,
+        spot : builtins.bool = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["ephemeral_storage_config",b"ephemeral_storage_config","gvnic",b"gvnic","kubelet_config",b"kubelet_config","linux_node_config",b"linux_node_config","reservation_affinity",b"reservation_affinity","sandbox_config",b"sandbox_config","shielded_instance_config",b"shielded_instance_config","workload_metadata_config",b"workload_metadata_config"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["accelerators",b"accelerators","boot_disk_kms_key",b"boot_disk_kms_key","disk_size_gb",b"disk_size_gb","disk_type",b"disk_type","ephemeral_storage_config",b"ephemeral_storage_config","gvnic",b"gvnic","image_type",b"image_type","kubelet_config",b"kubelet_config","labels",b"labels","linux_node_config",b"linux_node_config","local_ssd_count",b"local_ssd_count","machine_type",b"machine_type","metadata",b"metadata","min_cpu_platform",b"min_cpu_platform","node_group",b"node_group","oauth_scopes",b"oauth_scopes","preemptible",b"preemptible","reservation_affinity",b"reservation_affinity","sandbox_config",b"sandbox_config","service_account",b"service_account","shielded_instance_config",b"shielded_instance_config","tags",b"tags","taints",b"taints","workload_metadata_config",b"workload_metadata_config"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["advanced_machine_features",b"advanced_machine_features","ephemeral_storage_config",b"ephemeral_storage_config","gcfs_config",b"gcfs_config","gvnic",b"gvnic","kubelet_config",b"kubelet_config","linux_node_config",b"linux_node_config","reservation_affinity",b"reservation_affinity","sandbox_config",b"sandbox_config","shielded_instance_config",b"shielded_instance_config","workload_metadata_config",b"workload_metadata_config"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["accelerators",b"accelerators","advanced_machine_features",b"advanced_machine_features","boot_disk_kms_key",b"boot_disk_kms_key","disk_size_gb",b"disk_size_gb","disk_type",b"disk_type","ephemeral_storage_config",b"ephemeral_storage_config","gcfs_config",b"gcfs_config","gvnic",b"gvnic","image_type",b"image_type","kubelet_config",b"kubelet_config","labels",b"labels","linux_node_config",b"linux_node_config","local_ssd_count",b"local_ssd_count","machine_type",b"machine_type","metadata",b"metadata","min_cpu_platform",b"min_cpu_platform","node_group",b"node_group","oauth_scopes",b"oauth_scopes","preemptible",b"preemptible","reservation_affinity",b"reservation_affinity","sandbox_config",b"sandbox_config","service_account",b"service_account","shielded_instance_config",b"shielded_instance_config","spot",b"spot","tags",b"tags","taints",b"taints","workload_metadata_config",b"workload_metadata_config"]) -> None: ...
 global___NodeConfig = NodeConfig
+
+class AdvancedMachineFeatures(google.protobuf.message.Message):
+    """Specifies options for controlling advanced machine features."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    THREADS_PER_CORE_FIELD_NUMBER: builtins.int
+    threads_per_core: builtins.int = ...
+    """The number of threads per physical core. To disable simultaneous
+    multithreading (SMT) set this to 1. If unset, the maximum number of threads
+    supported per core by the underlying processor is assumed.
+    """
+
+    def __init__(self,
+        *,
+        threads_per_core : typing.Optional[builtins.int] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["_threads_per_core",b"_threads_per_core","threads_per_core",b"threads_per_core"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["_threads_per_core",b"_threads_per_core","threads_per_core",b"threads_per_core"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["_threads_per_core",b"_threads_per_core"]) -> typing.Optional[typing_extensions.Literal["threads_per_core"]]: ...
+global___AdvancedMachineFeatures = AdvancedMachineFeatures
 
 class NodeNetworkConfig(google.protobuf.message.Message):
     """Parameters for node pool-level network config."""
@@ -655,6 +693,20 @@ class EphemeralStorageConfig(google.protobuf.message.Message):
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["local_ssd_count",b"local_ssd_count"]) -> None: ...
 global___EphemeralStorageConfig = EphemeralStorageConfig
+
+class GcfsConfig(google.protobuf.message.Message):
+    """GcfsConfig contains configurations of Google Container File System."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    ENABLED_FIELD_NUMBER: builtins.int
+    enabled: builtins.bool = ...
+    """Whether to use GCFS."""
+
+    def __init__(self,
+        *,
+        enabled : builtins.bool = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled"]) -> None: ...
+global___GcfsConfig = GcfsConfig
 
 class ReservationAffinity(google.protobuf.message.Message):
     """[ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
@@ -949,6 +1001,8 @@ class AddonsConfig(google.protobuf.message.Message):
     CONFIG_CONNECTOR_CONFIG_FIELD_NUMBER: builtins.int
     GCE_PERSISTENT_DISK_CSI_DRIVER_CONFIG_FIELD_NUMBER: builtins.int
     KALM_CONFIG_FIELD_NUMBER: builtins.int
+    GCP_FILESTORE_CSI_DRIVER_CONFIG_FIELD_NUMBER: builtins.int
+    GKE_BACKUP_AGENT_CONFIG_FIELD_NUMBER: builtins.int
     @property
     def http_load_balancing(self) -> global___HttpLoadBalancing:
         """Configuration for the HTTP (L7) load balancing controller addon, which
@@ -1011,6 +1065,14 @@ class AddonsConfig(google.protobuf.message.Message):
         applications.
         """
         pass
+    @property
+    def gcp_filestore_csi_driver_config(self) -> global___GcpFilestoreCsiDriverConfig:
+        """Configuration for the GCP Filestore CSI driver."""
+        pass
+    @property
+    def gke_backup_agent_config(self) -> global___GkeBackupAgentConfig:
+        """Configuration for the Backup for GKE agent addon."""
+        pass
     def __init__(self,
         *,
         http_load_balancing : typing.Optional[global___HttpLoadBalancing] = ...,
@@ -1023,9 +1085,11 @@ class AddonsConfig(google.protobuf.message.Message):
         config_connector_config : typing.Optional[global___ConfigConnectorConfig] = ...,
         gce_persistent_disk_csi_driver_config : typing.Optional[global___GcePersistentDiskCsiDriverConfig] = ...,
         kalm_config : typing.Optional[global___KalmConfig] = ...,
+        gcp_filestore_csi_driver_config : typing.Optional[global___GcpFilestoreCsiDriverConfig] = ...,
+        gke_backup_agent_config : typing.Optional[global___GkeBackupAgentConfig] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["cloud_run_config",b"cloud_run_config","config_connector_config",b"config_connector_config","dns_cache_config",b"dns_cache_config","gce_persistent_disk_csi_driver_config",b"gce_persistent_disk_csi_driver_config","horizontal_pod_autoscaling",b"horizontal_pod_autoscaling","http_load_balancing",b"http_load_balancing","istio_config",b"istio_config","kalm_config",b"kalm_config","kubernetes_dashboard",b"kubernetes_dashboard","network_policy_config",b"network_policy_config"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["cloud_run_config",b"cloud_run_config","config_connector_config",b"config_connector_config","dns_cache_config",b"dns_cache_config","gce_persistent_disk_csi_driver_config",b"gce_persistent_disk_csi_driver_config","horizontal_pod_autoscaling",b"horizontal_pod_autoscaling","http_load_balancing",b"http_load_balancing","istio_config",b"istio_config","kalm_config",b"kalm_config","kubernetes_dashboard",b"kubernetes_dashboard","network_policy_config",b"network_policy_config"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["cloud_run_config",b"cloud_run_config","config_connector_config",b"config_connector_config","dns_cache_config",b"dns_cache_config","gce_persistent_disk_csi_driver_config",b"gce_persistent_disk_csi_driver_config","gcp_filestore_csi_driver_config",b"gcp_filestore_csi_driver_config","gke_backup_agent_config",b"gke_backup_agent_config","horizontal_pod_autoscaling",b"horizontal_pod_autoscaling","http_load_balancing",b"http_load_balancing","istio_config",b"istio_config","kalm_config",b"kalm_config","kubernetes_dashboard",b"kubernetes_dashboard","network_policy_config",b"network_policy_config"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["cloud_run_config",b"cloud_run_config","config_connector_config",b"config_connector_config","dns_cache_config",b"dns_cache_config","gce_persistent_disk_csi_driver_config",b"gce_persistent_disk_csi_driver_config","gcp_filestore_csi_driver_config",b"gcp_filestore_csi_driver_config","gke_backup_agent_config",b"gke_backup_agent_config","horizontal_pod_autoscaling",b"horizontal_pod_autoscaling","http_load_balancing",b"http_load_balancing","istio_config",b"istio_config","kalm_config",b"kalm_config","kubernetes_dashboard",b"kubernetes_dashboard","network_policy_config",b"network_policy_config"]) -> None: ...
 global___AddonsConfig = AddonsConfig
 
 class HttpLoadBalancing(google.protobuf.message.Message):
@@ -1126,6 +1190,20 @@ class KalmConfig(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled"]) -> None: ...
 global___KalmConfig = KalmConfig
 
+class GkeBackupAgentConfig(google.protobuf.message.Message):
+    """Configuration for the Backup for GKE Agent."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    ENABLED_FIELD_NUMBER: builtins.int
+    enabled: builtins.bool = ...
+    """Whether the Backup for GKE agent is enabled for this cluster."""
+
+    def __init__(self,
+        *,
+        enabled : builtins.bool = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled"]) -> None: ...
+global___GkeBackupAgentConfig = GkeBackupAgentConfig
+
 class ConfigConnectorConfig(google.protobuf.message.Message):
     """Configuration options for the Config Connector add-on."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -1153,6 +1231,20 @@ class GcePersistentDiskCsiDriverConfig(google.protobuf.message.Message):
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled"]) -> None: ...
 global___GcePersistentDiskCsiDriverConfig = GcePersistentDiskCsiDriverConfig
+
+class GcpFilestoreCsiDriverConfig(google.protobuf.message.Message):
+    """Configuration for the GCP Filestore CSI driver."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    ENABLED_FIELD_NUMBER: builtins.int
+    enabled: builtins.bool = ...
+    """Whether the GCP Filestore CSI driver is enabled for this cluster."""
+
+    def __init__(self,
+        *,
+        enabled : builtins.bool = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled"]) -> None: ...
+global___GcpFilestoreCsiDriverConfig = GcpFilestoreCsiDriverConfig
 
 class PrivateClusterMasterGlobalAccessConfig(google.protobuf.message.Message):
     """Configuration for controlling master global access settings."""
@@ -1820,6 +1912,7 @@ class Cluster(google.protobuf.message.Message):
     RELEASE_CHANNEL_FIELD_NUMBER: builtins.int
     WORKLOAD_IDENTITY_CONFIG_FIELD_NUMBER: builtins.int
     WORKLOAD_CERTIFICATES_FIELD_NUMBER: builtins.int
+    MESH_CERTIFICATES_FIELD_NUMBER: builtins.int
     CLUSTER_TELEMETRY_FIELD_NUMBER: builtins.int
     TPU_CONFIG_FIELD_NUMBER: builtins.int
     NOTIFICATION_CONFIG_FIELD_NUMBER: builtins.int
@@ -2092,6 +2185,12 @@ class Cluster(google.protobuf.message.Message):
         """
         pass
     @property
+    def mesh_certificates(self) -> global___MeshCertificates:
+        """Configuration for issuance of mTLS keys and certificates to Kubernetes
+        pods.
+        """
+        pass
+    @property
     def cluster_telemetry(self) -> global___ClusterTelemetry:
         """Telemetry integration for the cluster."""
         pass
@@ -2289,6 +2388,7 @@ class Cluster(google.protobuf.message.Message):
         release_channel : typing.Optional[global___ReleaseChannel] = ...,
         workload_identity_config : typing.Optional[global___WorkloadIdentityConfig] = ...,
         workload_certificates : typing.Optional[global___WorkloadCertificates] = ...,
+        mesh_certificates : typing.Optional[global___MeshCertificates] = ...,
         cluster_telemetry : typing.Optional[global___ClusterTelemetry] = ...,
         tpu_config : typing.Optional[global___TpuConfig] = ...,
         notification_config : typing.Optional[global___NotificationConfig] = ...,
@@ -2320,8 +2420,8 @@ class Cluster(google.protobuf.message.Message):
         logging_config : typing.Optional[global___LoggingConfig] = ...,
         monitoring_config : typing.Optional[global___MonitoringConfig] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["_node_pool_defaults",b"_node_pool_defaults","addons_config",b"addons_config","authenticator_groups_config",b"authenticator_groups_config","autopilot",b"autopilot","autoscaling",b"autoscaling","binary_authorization",b"binary_authorization","cluster_telemetry",b"cluster_telemetry","confidential_nodes",b"confidential_nodes","database_encryption",b"database_encryption","default_max_pods_constraint",b"default_max_pods_constraint","identity_service_config",b"identity_service_config","ip_allocation_policy",b"ip_allocation_policy","legacy_abac",b"legacy_abac","logging_config",b"logging_config","maintenance_policy",b"maintenance_policy","master",b"master","master_auth",b"master_auth","master_authorized_networks_config",b"master_authorized_networks_config","monitoring_config",b"monitoring_config","network_config",b"network_config","network_policy",b"network_policy","node_config",b"node_config","node_pool_defaults",b"node_pool_defaults","notification_config",b"notification_config","pod_security_policy_config",b"pod_security_policy_config","private_cluster_config",b"private_cluster_config","release_channel",b"release_channel","resource_usage_export_config",b"resource_usage_export_config","shielded_nodes",b"shielded_nodes","tpu_config",b"tpu_config","vertical_pod_autoscaling",b"vertical_pod_autoscaling","workload_certificates",b"workload_certificates","workload_identity_config",b"workload_identity_config"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["_node_pool_defaults",b"_node_pool_defaults","addons_config",b"addons_config","authenticator_groups_config",b"authenticator_groups_config","autopilot",b"autopilot","autoscaling",b"autoscaling","binary_authorization",b"binary_authorization","cluster_ipv4_cidr",b"cluster_ipv4_cidr","cluster_telemetry",b"cluster_telemetry","conditions",b"conditions","confidential_nodes",b"confidential_nodes","create_time",b"create_time","current_master_version",b"current_master_version","current_node_count",b"current_node_count","current_node_version",b"current_node_version","database_encryption",b"database_encryption","default_max_pods_constraint",b"default_max_pods_constraint","description",b"description","enable_kubernetes_alpha",b"enable_kubernetes_alpha","enable_tpu",b"enable_tpu","endpoint",b"endpoint","expire_time",b"expire_time","id",b"id","identity_service_config",b"identity_service_config","initial_cluster_version",b"initial_cluster_version","initial_node_count",b"initial_node_count","instance_group_urls",b"instance_group_urls","ip_allocation_policy",b"ip_allocation_policy","label_fingerprint",b"label_fingerprint","legacy_abac",b"legacy_abac","location",b"location","locations",b"locations","logging_config",b"logging_config","logging_service",b"logging_service","maintenance_policy",b"maintenance_policy","master",b"master","master_auth",b"master_auth","master_authorized_networks_config",b"master_authorized_networks_config","master_ipv4_cidr_block",b"master_ipv4_cidr_block","monitoring_config",b"monitoring_config","monitoring_service",b"monitoring_service","name",b"name","network",b"network","network_config",b"network_config","network_policy",b"network_policy","node_config",b"node_config","node_ipv4_cidr_size",b"node_ipv4_cidr_size","node_pool_defaults",b"node_pool_defaults","node_pools",b"node_pools","notification_config",b"notification_config","pod_security_policy_config",b"pod_security_policy_config","private_cluster",b"private_cluster","private_cluster_config",b"private_cluster_config","release_channel",b"release_channel","resource_labels",b"resource_labels","resource_usage_export_config",b"resource_usage_export_config","self_link",b"self_link","services_ipv4_cidr",b"services_ipv4_cidr","shielded_nodes",b"shielded_nodes","status",b"status","status_message",b"status_message","subnetwork",b"subnetwork","tpu_config",b"tpu_config","tpu_ipv4_cidr_block",b"tpu_ipv4_cidr_block","vertical_pod_autoscaling",b"vertical_pod_autoscaling","workload_certificates",b"workload_certificates","workload_identity_config",b"workload_identity_config","zone",b"zone"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["_node_pool_defaults",b"_node_pool_defaults","addons_config",b"addons_config","authenticator_groups_config",b"authenticator_groups_config","autopilot",b"autopilot","autoscaling",b"autoscaling","binary_authorization",b"binary_authorization","cluster_telemetry",b"cluster_telemetry","confidential_nodes",b"confidential_nodes","database_encryption",b"database_encryption","default_max_pods_constraint",b"default_max_pods_constraint","identity_service_config",b"identity_service_config","ip_allocation_policy",b"ip_allocation_policy","legacy_abac",b"legacy_abac","logging_config",b"logging_config","maintenance_policy",b"maintenance_policy","master",b"master","master_auth",b"master_auth","master_authorized_networks_config",b"master_authorized_networks_config","mesh_certificates",b"mesh_certificates","monitoring_config",b"monitoring_config","network_config",b"network_config","network_policy",b"network_policy","node_config",b"node_config","node_pool_defaults",b"node_pool_defaults","notification_config",b"notification_config","pod_security_policy_config",b"pod_security_policy_config","private_cluster_config",b"private_cluster_config","release_channel",b"release_channel","resource_usage_export_config",b"resource_usage_export_config","shielded_nodes",b"shielded_nodes","tpu_config",b"tpu_config","vertical_pod_autoscaling",b"vertical_pod_autoscaling","workload_certificates",b"workload_certificates","workload_identity_config",b"workload_identity_config"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["_node_pool_defaults",b"_node_pool_defaults","addons_config",b"addons_config","authenticator_groups_config",b"authenticator_groups_config","autopilot",b"autopilot","autoscaling",b"autoscaling","binary_authorization",b"binary_authorization","cluster_ipv4_cidr",b"cluster_ipv4_cidr","cluster_telemetry",b"cluster_telemetry","conditions",b"conditions","confidential_nodes",b"confidential_nodes","create_time",b"create_time","current_master_version",b"current_master_version","current_node_count",b"current_node_count","current_node_version",b"current_node_version","database_encryption",b"database_encryption","default_max_pods_constraint",b"default_max_pods_constraint","description",b"description","enable_kubernetes_alpha",b"enable_kubernetes_alpha","enable_tpu",b"enable_tpu","endpoint",b"endpoint","expire_time",b"expire_time","id",b"id","identity_service_config",b"identity_service_config","initial_cluster_version",b"initial_cluster_version","initial_node_count",b"initial_node_count","instance_group_urls",b"instance_group_urls","ip_allocation_policy",b"ip_allocation_policy","label_fingerprint",b"label_fingerprint","legacy_abac",b"legacy_abac","location",b"location","locations",b"locations","logging_config",b"logging_config","logging_service",b"logging_service","maintenance_policy",b"maintenance_policy","master",b"master","master_auth",b"master_auth","master_authorized_networks_config",b"master_authorized_networks_config","master_ipv4_cidr_block",b"master_ipv4_cidr_block","mesh_certificates",b"mesh_certificates","monitoring_config",b"monitoring_config","monitoring_service",b"monitoring_service","name",b"name","network",b"network","network_config",b"network_config","network_policy",b"network_policy","node_config",b"node_config","node_ipv4_cidr_size",b"node_ipv4_cidr_size","node_pool_defaults",b"node_pool_defaults","node_pools",b"node_pools","notification_config",b"notification_config","pod_security_policy_config",b"pod_security_policy_config","private_cluster",b"private_cluster","private_cluster_config",b"private_cluster_config","release_channel",b"release_channel","resource_labels",b"resource_labels","resource_usage_export_config",b"resource_usage_export_config","self_link",b"self_link","services_ipv4_cidr",b"services_ipv4_cidr","shielded_nodes",b"shielded_nodes","status",b"status","status_message",b"status_message","subnetwork",b"subnetwork","tpu_config",b"tpu_config","tpu_ipv4_cidr_block",b"tpu_ipv4_cidr_block","vertical_pod_autoscaling",b"vertical_pod_autoscaling","workload_certificates",b"workload_certificates","workload_identity_config",b"workload_identity_config","zone",b"zone"]) -> None: ...
     def WhichOneof(self, oneof_group: typing_extensions.Literal["_node_pool_defaults",b"_node_pool_defaults"]) -> typing.Optional[typing_extensions.Literal["node_pool_defaults"]]: ...
 global___Cluster = Cluster
 
@@ -2344,8 +2444,17 @@ global___NodePoolDefaults = NodePoolDefaults
 class NodeConfigDefaults(google.protobuf.message.Message):
     """Subset of NodeConfig message that has defaults."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    GCFS_CONFIG_FIELD_NUMBER: builtins.int
+    @property
+    def gcfs_config(self) -> global___GcfsConfig:
+        """GCFS (Google Container File System, a.k.a Riptide) options."""
+        pass
     def __init__(self,
+        *,
+        gcfs_config : typing.Optional[global___GcfsConfig] = ...,
         ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["gcfs_config",b"gcfs_config"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["gcfs_config",b"gcfs_config"]) -> None: ...
 global___NodeConfigDefaults = NodeConfigDefaults
 
 class ClusterUpdate(google.protobuf.message.Message):
@@ -2379,9 +2488,11 @@ class ClusterUpdate(google.protobuf.message.Message):
     DESIRED_PRIVATE_IPV6_GOOGLE_ACCESS_FIELD_NUMBER: builtins.int
     DESIRED_NOTIFICATION_CONFIG_FIELD_NUMBER: builtins.int
     DESIRED_MASTER_VERSION_FIELD_NUMBER: builtins.int
+    DESIRED_GCFS_CONFIG_FIELD_NUMBER: builtins.int
     DESIRED_DATABASE_ENCRYPTION_FIELD_NUMBER: builtins.int
     DESIRED_WORKLOAD_IDENTITY_CONFIG_FIELD_NUMBER: builtins.int
     DESIRED_WORKLOAD_CERTIFICATES_FIELD_NUMBER: builtins.int
+    DESIRED_MESH_CERTIFICATES_FIELD_NUMBER: builtins.int
     DESIRED_SHIELDED_NODES_FIELD_NUMBER: builtins.int
     DESIRED_MASTER_FIELD_NUMBER: builtins.int
     DESIRED_DNS_CONFIG_FIELD_NUMBER: builtins.int
@@ -2545,6 +2656,10 @@ class ClusterUpdate(google.protobuf.message.Message):
     """
 
     @property
+    def desired_gcfs_config(self) -> global___GcfsConfig:
+        """The desired GCFS config for the cluster."""
+        pass
+    @property
     def desired_database_encryption(self) -> global___DatabaseEncryption:
         """Configuration of etcd encryption."""
         pass
@@ -2554,6 +2669,12 @@ class ClusterUpdate(google.protobuf.message.Message):
         pass
     @property
     def desired_workload_certificates(self) -> global___WorkloadCertificates:
+        """Configuration for issuance of mTLS keys and certificates to Kubernetes
+        pods.
+        """
+        pass
+    @property
+    def desired_mesh_certificates(self) -> global___MeshCertificates:
         """Configuration for issuance of mTLS keys and certificates to Kubernetes
         pods.
         """
@@ -2621,9 +2742,11 @@ class ClusterUpdate(google.protobuf.message.Message):
         desired_private_ipv6_google_access : global___PrivateIPv6GoogleAccess.ValueType = ...,
         desired_notification_config : typing.Optional[global___NotificationConfig] = ...,
         desired_master_version : typing.Text = ...,
+        desired_gcfs_config : typing.Optional[global___GcfsConfig] = ...,
         desired_database_encryption : typing.Optional[global___DatabaseEncryption] = ...,
         desired_workload_identity_config : typing.Optional[global___WorkloadIdentityConfig] = ...,
         desired_workload_certificates : typing.Optional[global___WorkloadCertificates] = ...,
+        desired_mesh_certificates : typing.Optional[global___MeshCertificates] = ...,
         desired_shielded_nodes : typing.Optional[global___ShieldedNodes] = ...,
         desired_master : typing.Optional[global___Master] = ...,
         desired_dns_config : typing.Optional[global___DNSConfig] = ...,
@@ -2633,8 +2756,8 @@ class ClusterUpdate(google.protobuf.message.Message):
         desired_monitoring_config : typing.Optional[global___MonitoringConfig] = ...,
         desired_identity_service_config : typing.Optional[global___IdentityServiceConfig] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["desired_addons_config",b"desired_addons_config","desired_authenticator_groups_config",b"desired_authenticator_groups_config","desired_binary_authorization",b"desired_binary_authorization","desired_cluster_autoscaling",b"desired_cluster_autoscaling","desired_cluster_telemetry",b"desired_cluster_telemetry","desired_database_encryption",b"desired_database_encryption","desired_default_snat_status",b"desired_default_snat_status","desired_dns_config",b"desired_dns_config","desired_identity_service_config",b"desired_identity_service_config","desired_intra_node_visibility_config",b"desired_intra_node_visibility_config","desired_l4ilb_subsetting_config",b"desired_l4ilb_subsetting_config","desired_logging_config",b"desired_logging_config","desired_master",b"desired_master","desired_master_authorized_networks_config",b"desired_master_authorized_networks_config","desired_monitoring_config",b"desired_monitoring_config","desired_node_pool_autoscaling",b"desired_node_pool_autoscaling","desired_notification_config",b"desired_notification_config","desired_pod_security_policy_config",b"desired_pod_security_policy_config","desired_private_cluster_config",b"desired_private_cluster_config","desired_release_channel",b"desired_release_channel","desired_resource_usage_export_config",b"desired_resource_usage_export_config","desired_service_external_ips_config",b"desired_service_external_ips_config","desired_shielded_nodes",b"desired_shielded_nodes","desired_tpu_config",b"desired_tpu_config","desired_vertical_pod_autoscaling",b"desired_vertical_pod_autoscaling","desired_workload_certificates",b"desired_workload_certificates","desired_workload_identity_config",b"desired_workload_identity_config"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["desired_addons_config",b"desired_addons_config","desired_authenticator_groups_config",b"desired_authenticator_groups_config","desired_binary_authorization",b"desired_binary_authorization","desired_cluster_autoscaling",b"desired_cluster_autoscaling","desired_cluster_telemetry",b"desired_cluster_telemetry","desired_database_encryption",b"desired_database_encryption","desired_datapath_provider",b"desired_datapath_provider","desired_default_snat_status",b"desired_default_snat_status","desired_dns_config",b"desired_dns_config","desired_identity_service_config",b"desired_identity_service_config","desired_image_type",b"desired_image_type","desired_intra_node_visibility_config",b"desired_intra_node_visibility_config","desired_l4ilb_subsetting_config",b"desired_l4ilb_subsetting_config","desired_locations",b"desired_locations","desired_logging_config",b"desired_logging_config","desired_logging_service",b"desired_logging_service","desired_master",b"desired_master","desired_master_authorized_networks_config",b"desired_master_authorized_networks_config","desired_master_version",b"desired_master_version","desired_monitoring_config",b"desired_monitoring_config","desired_monitoring_service",b"desired_monitoring_service","desired_node_pool_autoscaling",b"desired_node_pool_autoscaling","desired_node_pool_id",b"desired_node_pool_id","desired_node_version",b"desired_node_version","desired_notification_config",b"desired_notification_config","desired_pod_security_policy_config",b"desired_pod_security_policy_config","desired_private_cluster_config",b"desired_private_cluster_config","desired_private_ipv6_google_access",b"desired_private_ipv6_google_access","desired_release_channel",b"desired_release_channel","desired_resource_usage_export_config",b"desired_resource_usage_export_config","desired_service_external_ips_config",b"desired_service_external_ips_config","desired_shielded_nodes",b"desired_shielded_nodes","desired_tpu_config",b"desired_tpu_config","desired_vertical_pod_autoscaling",b"desired_vertical_pod_autoscaling","desired_workload_certificates",b"desired_workload_certificates","desired_workload_identity_config",b"desired_workload_identity_config"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["desired_addons_config",b"desired_addons_config","desired_authenticator_groups_config",b"desired_authenticator_groups_config","desired_binary_authorization",b"desired_binary_authorization","desired_cluster_autoscaling",b"desired_cluster_autoscaling","desired_cluster_telemetry",b"desired_cluster_telemetry","desired_database_encryption",b"desired_database_encryption","desired_default_snat_status",b"desired_default_snat_status","desired_dns_config",b"desired_dns_config","desired_gcfs_config",b"desired_gcfs_config","desired_identity_service_config",b"desired_identity_service_config","desired_intra_node_visibility_config",b"desired_intra_node_visibility_config","desired_l4ilb_subsetting_config",b"desired_l4ilb_subsetting_config","desired_logging_config",b"desired_logging_config","desired_master",b"desired_master","desired_master_authorized_networks_config",b"desired_master_authorized_networks_config","desired_mesh_certificates",b"desired_mesh_certificates","desired_monitoring_config",b"desired_monitoring_config","desired_node_pool_autoscaling",b"desired_node_pool_autoscaling","desired_notification_config",b"desired_notification_config","desired_pod_security_policy_config",b"desired_pod_security_policy_config","desired_private_cluster_config",b"desired_private_cluster_config","desired_release_channel",b"desired_release_channel","desired_resource_usage_export_config",b"desired_resource_usage_export_config","desired_service_external_ips_config",b"desired_service_external_ips_config","desired_shielded_nodes",b"desired_shielded_nodes","desired_tpu_config",b"desired_tpu_config","desired_vertical_pod_autoscaling",b"desired_vertical_pod_autoscaling","desired_workload_certificates",b"desired_workload_certificates","desired_workload_identity_config",b"desired_workload_identity_config"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["desired_addons_config",b"desired_addons_config","desired_authenticator_groups_config",b"desired_authenticator_groups_config","desired_binary_authorization",b"desired_binary_authorization","desired_cluster_autoscaling",b"desired_cluster_autoscaling","desired_cluster_telemetry",b"desired_cluster_telemetry","desired_database_encryption",b"desired_database_encryption","desired_datapath_provider",b"desired_datapath_provider","desired_default_snat_status",b"desired_default_snat_status","desired_dns_config",b"desired_dns_config","desired_gcfs_config",b"desired_gcfs_config","desired_identity_service_config",b"desired_identity_service_config","desired_image_type",b"desired_image_type","desired_intra_node_visibility_config",b"desired_intra_node_visibility_config","desired_l4ilb_subsetting_config",b"desired_l4ilb_subsetting_config","desired_locations",b"desired_locations","desired_logging_config",b"desired_logging_config","desired_logging_service",b"desired_logging_service","desired_master",b"desired_master","desired_master_authorized_networks_config",b"desired_master_authorized_networks_config","desired_master_version",b"desired_master_version","desired_mesh_certificates",b"desired_mesh_certificates","desired_monitoring_config",b"desired_monitoring_config","desired_monitoring_service",b"desired_monitoring_service","desired_node_pool_autoscaling",b"desired_node_pool_autoscaling","desired_node_pool_id",b"desired_node_pool_id","desired_node_version",b"desired_node_version","desired_notification_config",b"desired_notification_config","desired_pod_security_policy_config",b"desired_pod_security_policy_config","desired_private_cluster_config",b"desired_private_cluster_config","desired_private_ipv6_google_access",b"desired_private_ipv6_google_access","desired_release_channel",b"desired_release_channel","desired_resource_usage_export_config",b"desired_resource_usage_export_config","desired_service_external_ips_config",b"desired_service_external_ips_config","desired_shielded_nodes",b"desired_shielded_nodes","desired_tpu_config",b"desired_tpu_config","desired_vertical_pod_autoscaling",b"desired_vertical_pod_autoscaling","desired_workload_certificates",b"desired_workload_certificates","desired_workload_identity_config",b"desired_workload_identity_config"]) -> None: ...
 global___ClusterUpdate = ClusterUpdate
 
 class Operation(google.protobuf.message.Message):
@@ -3116,6 +3239,7 @@ class UpdateNodePoolRequest(google.protobuf.message.Message):
     LABELS_FIELD_NUMBER: builtins.int
     LINUX_NODE_CONFIG_FIELD_NUMBER: builtins.int
     KUBELET_CONFIG_FIELD_NUMBER: builtins.int
+    GCFS_CONFIG_FIELD_NUMBER: builtins.int
     GVNIC_FIELD_NUMBER: builtins.int
     project_id: typing.Text = ...
     """Required. Deprecated. The Google Developers Console [project ID or project
@@ -3210,6 +3334,10 @@ class UpdateNodePoolRequest(google.protobuf.message.Message):
         """Node kubelet configs."""
         pass
     @property
+    def gcfs_config(self) -> global___GcfsConfig:
+        """GCFS config."""
+        pass
+    @property
     def gvnic(self) -> global___VirtualNIC:
         """Enable or disable gvnic on the node pool."""
         pass
@@ -3230,10 +3358,11 @@ class UpdateNodePoolRequest(google.protobuf.message.Message):
         labels : typing.Optional[global___NodeLabels] = ...,
         linux_node_config : typing.Optional[global___LinuxNodeConfig] = ...,
         kubelet_config : typing.Optional[global___NodeKubeletConfig] = ...,
+        gcfs_config : typing.Optional[global___GcfsConfig] = ...,
         gvnic : typing.Optional[global___VirtualNIC] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["gvnic",b"gvnic","kubelet_config",b"kubelet_config","labels",b"labels","linux_node_config",b"linux_node_config","tags",b"tags","taints",b"taints","upgrade_settings",b"upgrade_settings","workload_metadata_config",b"workload_metadata_config"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["cluster_id",b"cluster_id","gvnic",b"gvnic","image_type",b"image_type","kubelet_config",b"kubelet_config","labels",b"labels","linux_node_config",b"linux_node_config","locations",b"locations","name",b"name","node_pool_id",b"node_pool_id","node_version",b"node_version","project_id",b"project_id","tags",b"tags","taints",b"taints","upgrade_settings",b"upgrade_settings","workload_metadata_config",b"workload_metadata_config","zone",b"zone"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["gcfs_config",b"gcfs_config","gvnic",b"gvnic","kubelet_config",b"kubelet_config","labels",b"labels","linux_node_config",b"linux_node_config","tags",b"tags","taints",b"taints","upgrade_settings",b"upgrade_settings","workload_metadata_config",b"workload_metadata_config"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["cluster_id",b"cluster_id","gcfs_config",b"gcfs_config","gvnic",b"gvnic","image_type",b"image_type","kubelet_config",b"kubelet_config","labels",b"labels","linux_node_config",b"linux_node_config","locations",b"locations","name",b"name","node_pool_id",b"node_pool_id","node_version",b"node_version","project_id",b"project_id","tags",b"tags","taints",b"taints","upgrade_settings",b"upgrade_settings","workload_metadata_config",b"workload_metadata_config","zone",b"zone"]) -> None: ...
 global___UpdateNodePoolRequest = UpdateNodePoolRequest
 
 class SetNodePoolAutoscalingRequest(google.protobuf.message.Message):
@@ -3431,8 +3560,8 @@ class SetAddonsConfigRequest(google.protobuf.message.Message):
 
     @property
     def addons_config(self) -> global___AddonsConfig:
-        """Required. The desired configurations for the various addons available to
-        run in the cluster.
+        """Required. The desired configurations for the various addons available to run in the
+        cluster.
         """
         pass
     name: typing.Text = ...
@@ -4390,6 +4519,49 @@ class NodePool(google.protobuf.message.Message):
             ) -> None: ...
         def ClearField(self, field_name: typing_extensions.Literal["max_surge",b"max_surge","max_unavailable",b"max_unavailable"]) -> None: ...
 
+    class PlacementPolicy(google.protobuf.message.Message):
+        """PlacementPolicy defines the placement policy used by the node pool."""
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+        class _Type:
+            ValueType = typing.NewType('ValueType', builtins.int)
+            V: typing_extensions.TypeAlias = ValueType
+        class _TypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Type.ValueType], builtins.type):
+            DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+            TYPE_UNSPECIFIED: NodePool.PlacementPolicy.Type.ValueType = ...  # 0
+            """TYPE_UNSPECIFIED specifies no requirements on nodes
+            placement.
+            """
+
+            COMPACT: NodePool.PlacementPolicy.Type.ValueType = ...  # 1
+            """COMPACT specifies node placement in the same availability domain to
+            ensure low communication latency.
+            """
+
+        class Type(_Type, metaclass=_TypeEnumTypeWrapper):
+            """Type defines the type of placement policy."""
+            pass
+
+        TYPE_UNSPECIFIED: NodePool.PlacementPolicy.Type.ValueType = ...  # 0
+        """TYPE_UNSPECIFIED specifies no requirements on nodes
+        placement.
+        """
+
+        COMPACT: NodePool.PlacementPolicy.Type.ValueType = ...  # 1
+        """COMPACT specifies node placement in the same availability domain to
+        ensure low communication latency.
+        """
+
+
+        TYPE_FIELD_NUMBER: builtins.int
+        type: global___NodePool.PlacementPolicy.Type.ValueType = ...
+        """The type of placement."""
+
+        def __init__(self,
+            *,
+            type : global___NodePool.PlacementPolicy.Type.ValueType = ...,
+            ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["type",b"type"]) -> None: ...
+
     NAME_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
     INITIAL_NODE_COUNT_FIELD_NUMBER: builtins.int
@@ -4406,6 +4578,7 @@ class NodePool(google.protobuf.message.Message):
     CONDITIONS_FIELD_NUMBER: builtins.int
     POD_IPV4_CIDR_SIZE_FIELD_NUMBER: builtins.int
     UPGRADE_SETTINGS_FIELD_NUMBER: builtins.int
+    PLACEMENT_POLICY_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """The name of the node pool."""
 
@@ -4489,6 +4662,10 @@ class NodePool(google.protobuf.message.Message):
     def upgrade_settings(self) -> global___NodePool.UpgradeSettings:
         """Upgrade settings control disruption and speed of the upgrade."""
         pass
+    @property
+    def placement_policy(self) -> global___NodePool.PlacementPolicy:
+        """Specifies the node placement policy."""
+        pass
     def __init__(self,
         *,
         name : typing.Text = ...,
@@ -4507,9 +4684,10 @@ class NodePool(google.protobuf.message.Message):
         conditions : typing.Optional[typing.Iterable[global___StatusCondition]] = ...,
         pod_ipv4_cidr_size : builtins.int = ...,
         upgrade_settings : typing.Optional[global___NodePool.UpgradeSettings] = ...,
+        placement_policy : typing.Optional[global___NodePool.PlacementPolicy] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["autoscaling",b"autoscaling","config",b"config","management",b"management","max_pods_constraint",b"max_pods_constraint","network_config",b"network_config","upgrade_settings",b"upgrade_settings"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["autoscaling",b"autoscaling","conditions",b"conditions","config",b"config","initial_node_count",b"initial_node_count","instance_group_urls",b"instance_group_urls","locations",b"locations","management",b"management","max_pods_constraint",b"max_pods_constraint","name",b"name","network_config",b"network_config","pod_ipv4_cidr_size",b"pod_ipv4_cidr_size","self_link",b"self_link","status",b"status","status_message",b"status_message","upgrade_settings",b"upgrade_settings","version",b"version"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["autoscaling",b"autoscaling","config",b"config","management",b"management","max_pods_constraint",b"max_pods_constraint","network_config",b"network_config","placement_policy",b"placement_policy","upgrade_settings",b"upgrade_settings"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["autoscaling",b"autoscaling","conditions",b"conditions","config",b"config","initial_node_count",b"initial_node_count","instance_group_urls",b"instance_group_urls","locations",b"locations","management",b"management","max_pods_constraint",b"max_pods_constraint","name",b"name","network_config",b"network_config","placement_policy",b"placement_policy","pod_ipv4_cidr_size",b"pod_ipv4_cidr_size","self_link",b"self_link","status",b"status","status_message",b"status_message","upgrade_settings",b"upgrade_settings","version",b"version"]) -> None: ...
 global___NodePool = NodePool
 
 class NodeManagement(google.protobuf.message.Message):
@@ -4644,8 +4822,15 @@ global___MaintenanceWindow = MaintenanceWindow
 class TimeWindow(google.protobuf.message.Message):
     """Represents an arbitrary window of time."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    MAINTENANCE_EXCLUSION_OPTIONS_FIELD_NUMBER: builtins.int
     START_TIME_FIELD_NUMBER: builtins.int
     END_TIME_FIELD_NUMBER: builtins.int
+    @property
+    def maintenance_exclusion_options(self) -> global___MaintenanceExclusionOptions:
+        """MaintenanceExclusionOptions provides maintenance exclusion related
+        options.
+        """
+        pass
     @property
     def start_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time that the window first starts."""
@@ -4658,12 +4843,74 @@ class TimeWindow(google.protobuf.message.Message):
         pass
     def __init__(self,
         *,
+        maintenance_exclusion_options : typing.Optional[global___MaintenanceExclusionOptions] = ...,
         start_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         end_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["end_time",b"end_time","start_time",b"start_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["end_time",b"end_time","start_time",b"start_time"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["end_time",b"end_time","maintenance_exclusion_options",b"maintenance_exclusion_options","options",b"options","start_time",b"start_time"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["end_time",b"end_time","maintenance_exclusion_options",b"maintenance_exclusion_options","options",b"options","start_time",b"start_time"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["options",b"options"]) -> typing.Optional[typing_extensions.Literal["maintenance_exclusion_options"]]: ...
 global___TimeWindow = TimeWindow
+
+class MaintenanceExclusionOptions(google.protobuf.message.Message):
+    """Represents the Maintenance exclusion option."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    class _Scope:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+    class _ScopeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Scope.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+        NO_UPGRADES: MaintenanceExclusionOptions.Scope.ValueType = ...  # 0
+        """NO_UPGRADES excludes all upgrades, including patch upgrades and minor
+        upgrades across control planes and nodes. This is the default exclusion
+        behavior.
+        """
+
+        NO_MINOR_UPGRADES: MaintenanceExclusionOptions.Scope.ValueType = ...  # 1
+        """NO_MINOR_UPGRADES excludes all minor upgrades for the cluster, only
+        patches are allowed.
+        """
+
+        NO_MINOR_OR_NODE_UPGRADES: MaintenanceExclusionOptions.Scope.ValueType = ...  # 2
+        """NO_MINOR_OR_NODE_UPGRADES excludes all minor upgrades for the cluster,
+        and also exclude all node pool upgrades. Only control
+        plane patches are allowed.
+        """
+
+    class Scope(_Scope, metaclass=_ScopeEnumTypeWrapper):
+        """Scope of exclusion."""
+        pass
+
+    NO_UPGRADES: MaintenanceExclusionOptions.Scope.ValueType = ...  # 0
+    """NO_UPGRADES excludes all upgrades, including patch upgrades and minor
+    upgrades across control planes and nodes. This is the default exclusion
+    behavior.
+    """
+
+    NO_MINOR_UPGRADES: MaintenanceExclusionOptions.Scope.ValueType = ...  # 1
+    """NO_MINOR_UPGRADES excludes all minor upgrades for the cluster, only
+    patches are allowed.
+    """
+
+    NO_MINOR_OR_NODE_UPGRADES: MaintenanceExclusionOptions.Scope.ValueType = ...  # 2
+    """NO_MINOR_OR_NODE_UPGRADES excludes all minor upgrades for the cluster,
+    and also exclude all node pool upgrades. Only control
+    plane patches are allowed.
+    """
+
+
+    SCOPE_FIELD_NUMBER: builtins.int
+    scope: global___MaintenanceExclusionOptions.Scope.ValueType = ...
+    """Scope specifies the upgrade scope which upgrades are blocked by the
+    exclusion.
+    """
+
+    def __init__(self,
+        *,
+        scope : global___MaintenanceExclusionOptions.Scope.ValueType = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["scope",b"scope"]) -> None: ...
+global___MaintenanceExclusionOptions = MaintenanceExclusionOptions
 
 class RecurringTimeWindow(google.protobuf.message.Message):
     """Represents an arbitrary window of time that recurs."""
@@ -5141,13 +5388,13 @@ class NodePoolAutoscaling(google.protobuf.message.Message):
     """Is autoscaling enabled for this node pool."""
 
     min_node_count: builtins.int = ...
-    """Minimum number of nodes in the NodePool. Must be >= 1 and <=
-    max_node_count.
+    """Minimum number of nodes for one location in the NodePool. Must be >= 1 and
+    <= max_node_count.
     """
 
     max_node_count: builtins.int = ...
-    """Maximum number of nodes in the NodePool. Must be >= min_node_count. There
-    has to be enough quota to scale up the cluster.
+    """Maximum number of nodes for one location in the NodePool. Must be >=
+    min_node_count. There has to be enough quota to scale up the cluster.
     """
 
     autoprovisioned: builtins.bool = ...
@@ -5398,6 +5645,22 @@ class AcceleratorConfig(google.protobuf.message.Message):
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["accelerator_count",b"accelerator_count","accelerator_type",b"accelerator_type","gpu_partition_size",b"gpu_partition_size"]) -> None: ...
 global___AcceleratorConfig = AcceleratorConfig
+
+class ManagedPrometheusConfig(google.protobuf.message.Message):
+    """ManagedPrometheusConfig defines the configuration for
+    Google Cloud Managed Service for Prometheus.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    ENABLED_FIELD_NUMBER: builtins.int
+    enabled: builtins.bool = ...
+    """Enable Managed Collection."""
+
+    def __init__(self,
+        *,
+        enabled : builtins.bool = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled"]) -> None: ...
+global___ManagedPrometheusConfig = ManagedPrometheusConfig
 
 class WorkloadMetadataConfig(google.protobuf.message.Message):
     """WorkloadMetadataConfig defines the metadata configuration to expose to
@@ -6312,6 +6575,31 @@ class WorkloadCertificates(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["enable_certificates",b"enable_certificates"]) -> None: ...
 global___WorkloadCertificates = WorkloadCertificates
 
+class MeshCertificates(google.protobuf.message.Message):
+    """Configuration for issuance of mTLS keys and certificates to Kubernetes pods."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    ENABLE_CERTIFICATES_FIELD_NUMBER: builtins.int
+    @property
+    def enable_certificates(self) -> google.protobuf.wrappers_pb2.BoolValue:
+        """enable_certificates controls issuance of workload mTLS certificates.
+
+        If set, the GKE Workload Identity Certificates controller and node agent
+        will be deployed in the cluster, which can then be configured by creating a
+        WorkloadCertificateConfig Custom Resource.
+
+        Requires Workload Identity
+        ([workload_pool][google.container.v1alpha1.WorkloadIdentityConfig.workload_pool]
+        must be non-empty).
+        """
+        pass
+    def __init__(self,
+        *,
+        enable_certificates : typing.Optional[google.protobuf.wrappers_pb2.BoolValue] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["enable_certificates",b"enable_certificates"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["enable_certificates",b"enable_certificates"]) -> None: ...
+global___MeshCertificates = MeshCertificates
+
 class DatabaseEncryption(google.protobuf.message.Message):
     """Configuration of etcd encryption."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -6450,75 +6738,6 @@ class VirtualNIC(google.protobuf.message.Message):
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled"]) -> None: ...
 global___VirtualNIC = VirtualNIC
-
-class GetOpenIDConfigRequest(google.protobuf.message.Message):
-    """GetOpenIDConfigRequest gets the OIDC discovery document for the
-    cluster. See the OpenID Connect Discovery 1.0 specification for details.
-    """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    PARENT_FIELD_NUMBER: builtins.int
-    parent: typing.Text = ...
-    """The cluster (project, location, cluster id) to get the discovery document
-    for. Specified in the format `projects/*/locations/*/clusters/*`.
-    """
-
-    def __init__(self,
-        *,
-        parent : typing.Text = ...,
-        ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["parent",b"parent"]) -> None: ...
-global___GetOpenIDConfigRequest = GetOpenIDConfigRequest
-
-class GetOpenIDConfigResponse(google.protobuf.message.Message):
-    """GetOpenIDConfigResponse is an OIDC discovery document for the cluster.
-    See the OpenID Connect Discovery 1.0 specification for details.
-    """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    ISSUER_FIELD_NUMBER: builtins.int
-    JWKS_URI_FIELD_NUMBER: builtins.int
-    RESPONSE_TYPES_SUPPORTED_FIELD_NUMBER: builtins.int
-    SUBJECT_TYPES_SUPPORTED_FIELD_NUMBER: builtins.int
-    ID_TOKEN_SIGNING_ALG_VALUES_SUPPORTED_FIELD_NUMBER: builtins.int
-    CLAIMS_SUPPORTED_FIELD_NUMBER: builtins.int
-    GRANT_TYPES_FIELD_NUMBER: builtins.int
-    issuer: typing.Text = ...
-    """OIDC Issuer."""
-
-    jwks_uri: typing.Text = ...
-    """JSON Web Key uri."""
-
-    @property
-    def response_types_supported(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
-        """Supported response types."""
-        pass
-    @property
-    def subject_types_supported(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
-        """Supported subject types."""
-        pass
-    @property
-    def id_token_signing_alg_values_supported(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
-        """supported ID Token signing Algorithms."""
-        pass
-    @property
-    def claims_supported(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
-        """Supported claims."""
-        pass
-    @property
-    def grant_types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
-        """Supported grant types."""
-        pass
-    def __init__(self,
-        *,
-        issuer : typing.Text = ...,
-        jwks_uri : typing.Text = ...,
-        response_types_supported : typing.Optional[typing.Iterable[typing.Text]] = ...,
-        subject_types_supported : typing.Optional[typing.Iterable[typing.Text]] = ...,
-        id_token_signing_alg_values_supported : typing.Optional[typing.Iterable[typing.Text]] = ...,
-        claims_supported : typing.Optional[typing.Iterable[typing.Text]] = ...,
-        grant_types : typing.Optional[typing.Iterable[typing.Text]] = ...,
-        ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["claims_supported",b"claims_supported","grant_types",b"grant_types","id_token_signing_alg_values_supported",b"id_token_signing_alg_values_supported","issuer",b"issuer","jwks_uri",b"jwks_uri","response_types_supported",b"response_types_supported","subject_types_supported",b"subject_types_supported"]) -> None: ...
-global___GetOpenIDConfigResponse = GetOpenIDConfigResponse
 
 class GetJSONWebKeysRequest(google.protobuf.message.Message):
     """GetJSONWebKeysRequest gets the public component of the keys used by the
@@ -6735,11 +6954,48 @@ global___Autopilot = Autopilot
 class NotificationConfig(google.protobuf.message.Message):
     """NotificationConfig is the configuration of notifications."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    class _EventType:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+    class _EventTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_EventType.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+        EVENT_TYPE_UNSPECIFIED: NotificationConfig.EventType.ValueType = ...  # 0
+        """Not set, will be ignored."""
+
+        UPGRADE_AVAILABLE_EVENT: NotificationConfig.EventType.ValueType = ...  # 1
+        """Corresponds with UpgradeAvailableEvent."""
+
+        UPGRADE_EVENT: NotificationConfig.EventType.ValueType = ...  # 2
+        """Corresponds with UpgradeEvent."""
+
+        SECURITY_BULLETIN_EVENT: NotificationConfig.EventType.ValueType = ...  # 3
+        """Corresponds with SecurityBulletinEvent."""
+
+    class EventType(_EventType, metaclass=_EventTypeEnumTypeWrapper):
+        """Types of notifications currently supported. Can be used to filter what
+        notifications are sent.
+        """
+        pass
+
+    EVENT_TYPE_UNSPECIFIED: NotificationConfig.EventType.ValueType = ...  # 0
+    """Not set, will be ignored."""
+
+    UPGRADE_AVAILABLE_EVENT: NotificationConfig.EventType.ValueType = ...  # 1
+    """Corresponds with UpgradeAvailableEvent."""
+
+    UPGRADE_EVENT: NotificationConfig.EventType.ValueType = ...  # 2
+    """Corresponds with UpgradeEvent."""
+
+    SECURITY_BULLETIN_EVENT: NotificationConfig.EventType.ValueType = ...  # 3
+    """Corresponds with SecurityBulletinEvent."""
+
+
     class PubSub(google.protobuf.message.Message):
         """Pub/Sub specific notification config."""
         DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
         ENABLED_FIELD_NUMBER: builtins.int
         TOPIC_FIELD_NUMBER: builtins.int
+        FILTER_FIELD_NUMBER: builtins.int
         enabled: builtins.bool = ...
         """Enable notifications for Pub/Sub."""
 
@@ -6748,12 +7004,39 @@ class NotificationConfig(google.protobuf.message.Message):
         sent by GKE. Format is `projects/{project}/topics/{topic}`.
         """
 
+        @property
+        def filter(self) -> global___NotificationConfig.Filter:
+            """Allows filtering to one or more specific event types. If no filter is
+            specified, or if a filter is specified with no event types, all event
+            types will be sent
+            """
+            pass
         def __init__(self,
             *,
             enabled : builtins.bool = ...,
             topic : typing.Text = ...,
+            filter : typing.Optional[global___NotificationConfig.Filter] = ...,
             ) -> None: ...
-        def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled","topic",b"topic"]) -> None: ...
+        def HasField(self, field_name: typing_extensions.Literal["filter",b"filter"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled","filter",b"filter","topic",b"topic"]) -> None: ...
+
+    class Filter(google.protobuf.message.Message):
+        """Allows filtering to one or more specific event types. If event types are
+        present, those and only those event types will be transmitted to the
+        cluster. Other types will be skipped. If no filter is specified, or no
+        event types are present, all event types will be sent
+        """
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+        EVENT_TYPE_FIELD_NUMBER: builtins.int
+        @property
+        def event_type(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___NotificationConfig.EventType.ValueType]:
+            """Event types to allowlist."""
+            pass
+        def __init__(self,
+            *,
+            event_type : typing.Optional[typing.Iterable[global___NotificationConfig.EventType.ValueType]] = ...,
+            ) -> None: ...
+        def ClearField(self, field_name: typing_extensions.Literal["event_type",b"event_type"]) -> None: ...
 
     PUBSUB_FIELD_NUMBER: builtins.int
     @property
@@ -6874,6 +7157,82 @@ class UpgradeAvailableEvent(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["release_channel",b"release_channel","resource",b"resource","resource_type",b"resource_type","version",b"version","windows_versions",b"windows_versions"]) -> None: ...
 global___UpgradeAvailableEvent = UpgradeAvailableEvent
 
+class SecurityBulletinEvent(google.protobuf.message.Message):
+    """SecurityBulletinEvent is a notification sent to customers when a security
+    bulletin has been posted that they are vulnerable to.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    RESOURCE_TYPE_AFFECTED_FIELD_NUMBER: builtins.int
+    BULLETIN_ID_FIELD_NUMBER: builtins.int
+    CVE_IDS_FIELD_NUMBER: builtins.int
+    SEVERITY_FIELD_NUMBER: builtins.int
+    BULLETIN_URI_FIELD_NUMBER: builtins.int
+    BRIEF_DESCRIPTION_FIELD_NUMBER: builtins.int
+    AFFECTED_SUPPORTED_MINORS_FIELD_NUMBER: builtins.int
+    PATCHED_VERSIONS_FIELD_NUMBER: builtins.int
+    SUGGESTED_UPGRADE_TARGET_FIELD_NUMBER: builtins.int
+    MANUAL_STEPS_REQUIRED_FIELD_NUMBER: builtins.int
+    resource_type_affected: typing.Text = ...
+    """The resource type (node/control plane) that has the vulnerability. Multiple
+    notifications (1 notification per resource type) will be sent for a
+    vulnerability that affects > 1 resource type.
+    """
+
+    bulletin_id: typing.Text = ...
+    """The ID of the bulletin corresponding to the vulnerability."""
+
+    @property
+    def cve_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """The CVEs associated with this bulletin."""
+        pass
+    severity: typing.Text = ...
+    """The severity of this bulletin as it relates to GKE."""
+
+    bulletin_uri: typing.Text = ...
+    """The URI link to the bulletin on the website for more information."""
+
+    brief_description: typing.Text = ...
+    """A brief description of the bulletin. See the bulletin pointed to by the
+    bulletin_uri field for an expanded description.
+    """
+
+    @property
+    def affected_supported_minors(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """The GKE minor versions affected by this vulnerability."""
+        pass
+    @property
+    def patched_versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """The GKE versions where this vulnerability is patched."""
+        pass
+    suggested_upgrade_target: typing.Text = ...
+    """This represents a version selected from the patched_versions field that
+    the cluster receiving this notification should most likely want to upgrade
+    to based on its current version. Note that if this notification is being
+    received by a given cluster, it means that this version is currently
+    available as an upgrade target in that cluster's location.
+    """
+
+    manual_steps_required: builtins.bool = ...
+    """If this field is specified, it means there are manual steps that the user
+    must take to make their clusters safe.
+    """
+
+    def __init__(self,
+        *,
+        resource_type_affected : typing.Text = ...,
+        bulletin_id : typing.Text = ...,
+        cve_ids : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        severity : typing.Text = ...,
+        bulletin_uri : typing.Text = ...,
+        brief_description : typing.Text = ...,
+        affected_supported_minors : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        patched_versions : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        suggested_upgrade_target : typing.Text = ...,
+        manual_steps_required : builtins.bool = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["affected_supported_minors",b"affected_supported_minors","brief_description",b"brief_description","bulletin_id",b"bulletin_id","bulletin_uri",b"bulletin_uri","cve_ids",b"cve_ids","manual_steps_required",b"manual_steps_required","patched_versions",b"patched_versions","resource_type_affected",b"resource_type_affected","severity",b"severity","suggested_upgrade_target",b"suggested_upgrade_target"]) -> None: ...
+global___SecurityBulletinEvent = SecurityBulletinEvent
+
 class IdentityServiceConfig(google.protobuf.message.Message):
     """IdentityServiceConfig is configuration for Identity Service which allows
     customers to use external identity providers with the K8S API
@@ -6953,16 +7312,24 @@ class MonitoringConfig(google.protobuf.message.Message):
     """MonitoringConfig is cluster monitoring configuration."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     COMPONENT_CONFIG_FIELD_NUMBER: builtins.int
+    MANAGED_PROMETHEUS_CONFIG_FIELD_NUMBER: builtins.int
     @property
     def component_config(self) -> global___MonitoringComponentConfig:
         """Monitoring components configuration"""
         pass
+    @property
+    def managed_prometheus_config(self) -> global___ManagedPrometheusConfig:
+        """Enable Google Cloud Managed Service for Prometheus
+        in the cluster.
+        """
+        pass
     def __init__(self,
         *,
         component_config : typing.Optional[global___MonitoringComponentConfig] = ...,
+        managed_prometheus_config : typing.Optional[global___ManagedPrometheusConfig] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["component_config",b"component_config"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["component_config",b"component_config"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["component_config",b"component_config","managed_prometheus_config",b"managed_prometheus_config"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["component_config",b"component_config","managed_prometheus_config",b"managed_prometheus_config"]) -> None: ...
 global___MonitoringConfig = MonitoringConfig
 
 class MonitoringComponentConfig(google.protobuf.message.Message):

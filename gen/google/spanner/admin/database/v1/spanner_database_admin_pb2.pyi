@@ -130,6 +130,7 @@ class Database(google.protobuf.message.Message):
     VERSION_RETENTION_PERIOD_FIELD_NUMBER: builtins.int
     EARLIEST_VERSION_TIME_FIELD_NUMBER: builtins.int
     DEFAULT_LEADER_FIELD_NUMBER: builtins.int
+    DATABASE_DIALECT_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """Required. The name of the database. Values are of the form
     `projects/<project>/instances/<instance>/databases/<database>`,
@@ -198,6 +199,9 @@ class Database(google.protobuf.message.Message):
     DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
     """
 
+    database_dialect: google.spanner.admin.database.v1.common_pb2.DatabaseDialect.ValueType = ...
+    """Output only. The dialect of the Cloud Spanner Database."""
+
     def __init__(self,
         *,
         name : typing.Text = ...,
@@ -209,9 +213,10 @@ class Database(google.protobuf.message.Message):
         version_retention_period : typing.Text = ...,
         earliest_version_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         default_leader : typing.Text = ...,
+        database_dialect : google.spanner.admin.database.v1.common_pb2.DatabaseDialect.ValueType = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","earliest_version_time",b"earliest_version_time","encryption_config",b"encryption_config","restore_info",b"restore_info"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","default_leader",b"default_leader","earliest_version_time",b"earliest_version_time","encryption_config",b"encryption_config","encryption_info",b"encryption_info","name",b"name","restore_info",b"restore_info","state",b"state","version_retention_period",b"version_retention_period"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","database_dialect",b"database_dialect","default_leader",b"default_leader","earliest_version_time",b"earliest_version_time","encryption_config",b"encryption_config","encryption_info",b"encryption_info","name",b"name","restore_info",b"restore_info","state",b"state","version_retention_period",b"version_retention_period"]) -> None: ...
 global___Database = Database
 
 class ListDatabasesRequest(google.protobuf.message.Message):
@@ -275,6 +280,7 @@ class CreateDatabaseRequest(google.protobuf.message.Message):
     CREATE_STATEMENT_FIELD_NUMBER: builtins.int
     EXTRA_STATEMENTS_FIELD_NUMBER: builtins.int
     ENCRYPTION_CONFIG_FIELD_NUMBER: builtins.int
+    DATABASE_DIALECT_FIELD_NUMBER: builtins.int
     parent: typing.Text = ...
     """Required. The name of the instance that will serve the new database.
     Values are of the form `projects/<project>/instances/<instance>`.
@@ -303,15 +309,19 @@ class CreateDatabaseRequest(google.protobuf.message.Message):
         Google default encryption.
         """
         pass
+    database_dialect: google.spanner.admin.database.v1.common_pb2.DatabaseDialect.ValueType = ...
+    """Optional. The dialect of the Cloud Spanner Database."""
+
     def __init__(self,
         *,
         parent : typing.Text = ...,
         create_statement : typing.Text = ...,
         extra_statements : typing.Optional[typing.Iterable[typing.Text]] = ...,
         encryption_config : typing.Optional[google.spanner.admin.database.v1.common_pb2.EncryptionConfig] = ...,
+        database_dialect : google.spanner.admin.database.v1.common_pb2.DatabaseDialect.ValueType = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["encryption_config",b"encryption_config"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["create_statement",b"create_statement","encryption_config",b"encryption_config","extra_statements",b"extra_statements","parent",b"parent"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["create_statement",b"create_statement","database_dialect",b"database_dialect","encryption_config",b"encryption_config","extra_statements",b"extra_statements","parent",b"parent"]) -> None: ...
 global___CreateDatabaseRequest = CreateDatabaseRequest
 
 class CreateDatabaseMetadata(google.protobuf.message.Message):
