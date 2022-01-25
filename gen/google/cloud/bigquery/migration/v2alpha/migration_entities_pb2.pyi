@@ -3,8 +3,10 @@
 isort:skip_file
 """
 import builtins
+import google.cloud.bigquery.migration.v2alpha.assessment_task_pb2
 import google.cloud.bigquery.migration.v2alpha.migration_error_details_pb2
 import google.cloud.bigquery.migration.v2alpha.migration_metrics_pb2
+import google.cloud.bigquery.migration.v2alpha.translation_task_pb2
 import google.protobuf.any_pb2
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
@@ -201,6 +203,8 @@ class MigrationTask(google.protobuf.message.Message):
     """The task finished unsuccessfully."""
 
 
+    ASSESSMENT_TASK_DETAILS_FIELD_NUMBER: builtins.int
+    TRANSLATION_TASK_DETAILS_FIELD_NUMBER: builtins.int
     ID_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
     DETAILS_FIELD_NUMBER: builtins.int
@@ -208,6 +212,15 @@ class MigrationTask(google.protobuf.message.Message):
     PROCESSING_ERROR_FIELD_NUMBER: builtins.int
     CREATE_TIME_FIELD_NUMBER: builtins.int
     LAST_UPDATE_TIME_FIELD_NUMBER: builtins.int
+    ORCHESTRATION_RESULT_FIELD_NUMBER: builtins.int
+    @property
+    def assessment_task_details(self) -> google.cloud.bigquery.migration.v2alpha.assessment_task_pb2.AssessmentTaskDetails:
+        """Task configuration for Assessment."""
+        pass
+    @property
+    def translation_task_details(self) -> google.cloud.bigquery.migration.v2alpha.translation_task_pb2.TranslationTaskDetails:
+        """Task configuration for Batch/Offline SQL Translation."""
+        pass
     id: typing.Text = ...
     """Output only. Immutable. The unique identifier for the migration task. The ID is server-generated."""
 
@@ -216,7 +229,8 @@ class MigrationTask(google.protobuf.message.Message):
 
     @property
     def details(self) -> google.protobuf.any_pb2.Any:
-        """The details of the task. The type URL must be one of the supported task
+        """DEPRECATED! Use one of the task_details below.
+        The details of the task. The type URL must be one of the supported task
         details messages and correspond to the Task's type.
         """
         pass
@@ -235,8 +249,14 @@ class MigrationTask(google.protobuf.message.Message):
     def last_update_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Time when the task was last updated."""
         pass
+    @property
+    def orchestration_result(self) -> global___MigrationTaskOrchestrationResult:
+        """Output only. Additional information about the orchestration."""
+        pass
     def __init__(self,
         *,
+        assessment_task_details : typing.Optional[google.cloud.bigquery.migration.v2alpha.assessment_task_pb2.AssessmentTaskDetails] = ...,
+        translation_task_details : typing.Optional[google.cloud.bigquery.migration.v2alpha.translation_task_pb2.TranslationTaskDetails] = ...,
         id : typing.Text = ...,
         type : typing.Text = ...,
         details : typing.Optional[google.protobuf.any_pb2.Any] = ...,
@@ -244,9 +264,11 @@ class MigrationTask(google.protobuf.message.Message):
         processing_error : typing.Optional[google.rpc.error_details_pb2.ErrorInfo] = ...,
         create_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         last_update_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
+        orchestration_result : typing.Optional[global___MigrationTaskOrchestrationResult] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","details",b"details","last_update_time",b"last_update_time","processing_error",b"processing_error"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","details",b"details","id",b"id","last_update_time",b"last_update_time","processing_error",b"processing_error","state",b"state","type",b"type"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["assessment_task_details",b"assessment_task_details","create_time",b"create_time","details",b"details","last_update_time",b"last_update_time","orchestration_result",b"orchestration_result","processing_error",b"processing_error","task_details",b"task_details","translation_task_details",b"translation_task_details"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["assessment_task_details",b"assessment_task_details","create_time",b"create_time","details",b"details","id",b"id","last_update_time",b"last_update_time","orchestration_result",b"orchestration_result","processing_error",b"processing_error","state",b"state","task_details",b"task_details","translation_task_details",b"translation_task_details","type",b"type"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["task_details",b"task_details"]) -> typing.Optional[typing_extensions.Literal["assessment_task_details","translation_task_details"]]: ...
 global___MigrationTask = MigrationTask
 
 class MigrationSubtask(google.protobuf.message.Message):
@@ -380,3 +402,22 @@ class MigrationSubtask(google.protobuf.message.Message):
     def HasField(self, field_name: typing_extensions.Literal["create_time",b"create_time","last_update_time",b"last_update_time","processing_error",b"processing_error"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing_extensions.Literal["create_time",b"create_time","last_update_time",b"last_update_time","metrics",b"metrics","name",b"name","processing_error",b"processing_error","resource_error_count",b"resource_error_count","resource_error_details",b"resource_error_details","state",b"state","task_id",b"task_id","type",b"type"]) -> None: ...
 global___MigrationSubtask = MigrationSubtask
+
+class MigrationTaskOrchestrationResult(google.protobuf.message.Message):
+    """Additional information from the orchestrator when it is done with the
+    task orchestration.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    ASSESSMENT_DETAILS_FIELD_NUMBER: builtins.int
+    @property
+    def assessment_details(self) -> google.cloud.bigquery.migration.v2alpha.assessment_task_pb2.AssessmentOrchestrationResultDetails:
+        """Details specific to assessment task types."""
+        pass
+    def __init__(self,
+        *,
+        assessment_details : typing.Optional[google.cloud.bigquery.migration.v2alpha.assessment_task_pb2.AssessmentOrchestrationResultDetails] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["assessment_details",b"assessment_details","details",b"details"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["assessment_details",b"assessment_details","details",b"details"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["details",b"details"]) -> typing.Optional[typing_extensions.Literal["assessment_details"]]: ...
+global___MigrationTaskOrchestrationResult = MigrationTaskOrchestrationResult

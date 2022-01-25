@@ -66,13 +66,17 @@ class MuxStream(google.protobuf.message.Message):
     Supported container formats:
 
     - `fmp4` - the corresponding file extension is `.m4s`
-    - `ts`
+    - `ts` - the corresponding file extension is `.ts`
     """
 
     @property
     def elementary_streams(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
         """List of `ElementaryStream` [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed in this
         stream.
+
+        - For `fmp4` container, must contain either one video or one audio stream.
+        - For `ts` container, must contain exactly one audio stream and up to one
+        video stream.
         """
         pass
     @property
@@ -139,6 +143,10 @@ class Manifest(google.protobuf.message.Message):
     def mux_streams(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
         """Required. List of `MuxStream` [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear in this
         manifest.
+
+        - For HLS, either `fmp4` or `ts` mux streams can be specified but not
+        mixed.
+        - For DASH, only `fmp4` mux streams can be specified.
         """
         pass
     max_segment_count: builtins.int = ...
@@ -357,7 +365,7 @@ class VideoStream(google.protobuf.message.Message):
 
         frame_rate: builtins.float = ...
         """Required. The target video frame rate in frames per second (FPS). Must be less
-        than or equal to 120. Will default to the input frame rate if larger
+        than or equal to 60. Will default to the input frame rate if larger
         than the input frame rate. The API will generate an output FPS that is
         divisible by the input FPS, and smaller or equal to the target FPS. See
         [Calculating frame
@@ -366,8 +374,10 @@ class VideoStream(google.protobuf.message.Message):
         """
 
         bitrate_bps: builtins.int = ...
-        """Required. The video bitrate in bits per second. Must be between 10,000 and
-        80,000,000.
+        """Required. The video bitrate in bits per second. Minimum value is 10,000.
+
+        - For SD resolution (< 720p), must be <= 3,000,000 (3 Mbps).
+        - For HD resolution (<= 1080p), must be <= 15,000,000 (15 Mbps).
         """
 
         allow_open_gop: builtins.bool = ...

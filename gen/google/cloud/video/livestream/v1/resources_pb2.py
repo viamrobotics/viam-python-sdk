@@ -12,16 +12,16 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
 from google.cloud.video.livestream.v1 import outputs_pb2 as google_dot_cloud_dot_video_dot_livestream_dot_v1_dot_outputs__pb2
 from google.protobuf import duration_pb2 as google_dot_protobuf_dot_duration__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.rpc import status_pb2 as google_dot_rpc_dot_status__pb2
-from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n0google/cloud/video/livestream/v1/resources.proto\x12 google.cloud.video.livestream.v1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a.google/cloud/video/livestream/v1/outputs.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\x1a\x1cgoogle/api/annotations.proto\"\xfa\x07\n\x05Input\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x41\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\ncreateTime\x12\x41\n\x0bupdate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\nupdateTime\x12K\n\x06labels\x18\x04 \x03(\x0b\x32\x33.google.cloud.video.livestream.v1.Input.LabelsEntryR\x06labels\x12@\n\x04type\x18\x05 \x01(\x0e\x32,.google.cloud.video.livestream.v1.Input.TypeR\x04type\x12@\n\x04tier\x18\x0e \x01(\x0e\x32,.google.cloud.video.livestream.v1.Input.TierR\x04tier\x12\x16\n\x03uri\x18\x06 \x01(\tB\x04\xe2\x41\x01\x03R\x03uri\x12h\n\x14preprocessing_config\x18\t \x01(\x0b\x32\x35.google.cloud.video.livestream.v1.PreprocessingConfigR\x13preprocessingConfig\x12[\n\x0esecurity_rules\x18\x0c \x01(\x0b\x32\x34.google.cloud.video.livestream.v1.Input.SecurityRuleR\rsecurityRules\x12o\n\x15input_stream_property\x18\x0f \x01(\x0b\x32\x35.google.cloud.video.livestream.v1.InputStreamPropertyB\x04\xe2\x41\x01\x03R\x13inputStreamProperty\x1a+\n\x0cSecurityRule\x12\x1b\n\tip_ranges\x18\x01 \x03(\tR\x08ipRanges\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"9\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\r\n\tRTMP_PUSH\x10\x01\x12\x0c\n\x08SRT_PUSH\x10\x02\"5\n\x04Tier\x12\x14\n\x10TIER_UNSPECIFIED\x10\x00\x12\x06\n\x02SD\x10\x01\x12\x06\n\x02HD\x10\x02\x12\x07\n\x03UHD\x10\x03:\\\xea\x41Y\n\x1flivestream.googleapis.com/Input\x12\x36projects/{project}/locations/{location}/inputs/{input}\"\xae\n\n\x07\x43hannel\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x41\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\ncreateTime\x12\x41\n\x0bupdate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\nupdateTime\x12M\n\x06labels\x18\x04 \x03(\x0b\x32\x35.google.cloud.video.livestream.v1.Channel.LabelsEntryR\x06labels\x12^\n\x11input_attachments\x18\x10 \x03(\x0b\x32\x31.google.cloud.video.livestream.v1.InputAttachmentR\x10inputAttachments\x12\'\n\x0c\x61\x63tive_input\x18\x06 \x01(\tB\x04\xe2\x41\x01\x03R\x0b\x61\x63tiveInput\x12N\n\x06output\x18\t \x01(\x0b\x32\x30.google.cloud.video.livestream.v1.Channel.OutputB\x04\xe2\x41\x01\x02R\x06output\x12\x61\n\x12\x65lementary_streams\x18\n \x03(\x0b\x32\x32.google.cloud.video.livestream.v1.ElementaryStreamR\x11\x65lementaryStreams\x12L\n\x0bmux_streams\x18\x0b \x03(\x0b\x32+.google.cloud.video.livestream.v1.MuxStreamR\nmuxStreams\x12H\n\tmanifests\x18\x0c \x03(\x0b\x32*.google.cloud.video.livestream.v1.ManifestR\tmanifests\x12R\n\rsprite_sheets\x18\r \x03(\x0b\x32-.google.cloud.video.livestream.v1.SpriteSheetR\x0cspriteSheets\x12g\n\x0fstreaming_state\x18\x0e \x01(\x0e\x32\x38.google.cloud.video.livestream.v1.Channel.StreamingStateB\x04\xe2\x41\x01\x03R\x0estreamingState\x12\x41\n\x0fstreaming_error\x18\x12 \x01(\x0b\x32\x12.google.rpc.StatusB\x04\xe2\x41\x01\x03R\x0estreamingError\x1a\x1a\n\x06Output\x12\x10\n\x03uri\x18\x01 \x01(\tR\x03uri\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xaa\x01\n\x0eStreamingState\x12\x1f\n\x1bSTREAMING_STATE_UNSPECIFIED\x10\x00\x12\r\n\tSTREAMING\x10\x01\x12\x12\n\x0e\x41WAITING_INPUT\x10\x02\x12\x13\n\x0fSTREAMING_ERROR\x10\x04\x12\x16\n\x12STREAMING_NO_INPUT\x10\x05\x12\x0b\n\x07STOPPED\x10\x06\x12\x0c\n\x08STARTING\x10\x07\x12\x0c\n\x08STOPPING\x10\x08:b\xea\x41_\n!livestream.googleapis.com/Channel\x12:projects/{project}/locations/{location}/channels/{channel}\"\x99\x02\n\x13InputStreamProperty\x12J\n\x13last_establish_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x11lastEstablishTime\x12Z\n\rvideo_streams\x18\x02 \x03(\x0b\x32\x35.google.cloud.video.livestream.v1.VideoStreamPropertyR\x0cvideoStreams\x12Z\n\raudio_streams\x18\x03 \x03(\x0b\x32\x35.google.cloud.video.livestream.v1.AudioStreamPropertyR\x0c\x61udioStreams\"}\n\x13VideoStreamProperty\x12\x14\n\x05index\x18\x01 \x01(\x05R\x05index\x12P\n\x0cvideo_format\x18\x02 \x01(\x0b\x32-.google.cloud.video.livestream.v1.VideoFormatR\x0bvideoFormat\"\x8a\x01\n\x0bVideoFormat\x12\x14\n\x05\x63odec\x18\x01 \x01(\tR\x05\x63odec\x12!\n\x0cwidth_pixels\x18\x02 \x01(\x05R\x0bwidthPixels\x12#\n\rheight_pixels\x18\x03 \x01(\x05R\x0cheightPixels\x12\x1d\n\nframe_rate\x18\x04 \x01(\x01R\tframeRate\"}\n\x13\x41udioStreamProperty\x12\x14\n\x05index\x18\x01 \x01(\x05R\x05index\x12P\n\x0c\x61udio_format\x18\x02 \x01(\x0b\x32-.google.cloud.video.livestream.v1.AudioFormatR\x0b\x61udioFormat\"o\n\x0b\x41udioFormat\x12\x14\n\x05\x63odec\x18\x01 \x01(\tR\x05\x63odec\x12#\n\rchannel_count\x18\x02 \x01(\x05R\x0c\x63hannelCount\x12%\n\x0e\x63hannel_layout\x18\x03 \x03(\tR\rchannelLayout\"\x87\x02\n\x0fInputAttachment\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12:\n\x05input\x18\x02 \x01(\tB$\xfa\x41!\n\x1flivestream.googleapis.com/InputR\x05input\x12r\n\x12\x61utomatic_failover\x18\x03 \x01(\x0b\x32\x43.google.cloud.video.livestream.v1.InputAttachment.AutomaticFailoverR\x11\x61utomaticFailover\x1a\x32\n\x11\x41utomaticFailover\x12\x1d\n\ninput_keys\x18\x01 \x03(\tR\tinputKeys\"\x83\x07\n\x05\x45vent\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x41\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\ncreateTime\x12\x41\n\x0bupdate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\nupdateTime\x12K\n\x06labels\x18\x04 \x03(\x0b\x32\x33.google.cloud.video.livestream.v1.Event.LabelsEntryR\x06labels\x12V\n\x08\x61\x64_break\x18\x06 \x01(\x0b\x32\x33.google.cloud.video.livestream.v1.Event.AdBreakTaskB\x04\xe2\x41\x01\x02H\x00R\x07\x61\x64\x42reak\x12\x1f\n\x0b\x65xecute_now\x18\t \x01(\x08R\nexecuteNow\x12\x41\n\x0e\x65xecution_time\x18\n \x01(\x0b\x32\x1a.google.protobuf.TimestampR\rexecutionTime\x12I\n\x05state\x18\x0b \x01(\x0e\x32-.google.cloud.video.livestream.v1.Event.StateB\x04\xe2\x41\x01\x03R\x05state\x12.\n\x05\x65rror\x18\x0c \x01(\x0b\x32\x12.google.rpc.StatusB\x04\xe2\x41\x01\x03R\x05\x65rror\x1a\x44\n\x0b\x41\x64\x42reakTask\x12\x35\n\x08\x64uration\x18\x01 \x01(\x0b\x32\x19.google.protobuf.DurationR\x08\x64uration\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"b\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\r\n\tSCHEDULED\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\r\n\tSUCCEEDED\x10\x03\x12\n\n\x06\x46\x41ILED\x10\x04\x12\x0b\n\x07PENDING\x10\x05:o\xea\x41l\n\x1flivestream.googleapis.com/Event\x12Iprojects/{project}/locations/{location}/channels/{channel}/events/{event}B\x06\n\x04taskB\x84\x01\n$com.google.cloud.video.livestream.v1B\x0eResourcesProtoP\x01ZJgoogle.golang.org/genproto/googleapis/cloud/video/livestream/v1;livestreamb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n0google/cloud/video/livestream/v1/resources.proto\x12 google.cloud.video.livestream.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a.google/cloud/video/livestream/v1/outputs.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/rpc/status.proto\"\xfa\x07\n\x05Input\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x41\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\ncreateTime\x12\x41\n\x0bupdate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\nupdateTime\x12K\n\x06labels\x18\x04 \x03(\x0b\x32\x33.google.cloud.video.livestream.v1.Input.LabelsEntryR\x06labels\x12@\n\x04type\x18\x05 \x01(\x0e\x32,.google.cloud.video.livestream.v1.Input.TypeR\x04type\x12@\n\x04tier\x18\x0e \x01(\x0e\x32,.google.cloud.video.livestream.v1.Input.TierR\x04tier\x12\x16\n\x03uri\x18\x06 \x01(\tB\x04\xe2\x41\x01\x03R\x03uri\x12h\n\x14preprocessing_config\x18\t \x01(\x0b\x32\x35.google.cloud.video.livestream.v1.PreprocessingConfigR\x13preprocessingConfig\x12[\n\x0esecurity_rules\x18\x0c \x01(\x0b\x32\x34.google.cloud.video.livestream.v1.Input.SecurityRuleR\rsecurityRules\x12o\n\x15input_stream_property\x18\x0f \x01(\x0b\x32\x35.google.cloud.video.livestream.v1.InputStreamPropertyB\x04\xe2\x41\x01\x03R\x13inputStreamProperty\x1a+\n\x0cSecurityRule\x12\x1b\n\tip_ranges\x18\x01 \x03(\tR\x08ipRanges\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"9\n\x04Type\x12\x14\n\x10TYPE_UNSPECIFIED\x10\x00\x12\r\n\tRTMP_PUSH\x10\x01\x12\x0c\n\x08SRT_PUSH\x10\x02\"5\n\x04Tier\x12\x14\n\x10TIER_UNSPECIFIED\x10\x00\x12\x06\n\x02SD\x10\x01\x12\x06\n\x02HD\x10\x02\x12\x07\n\x03UHD\x10\x03:\\\xea\x41Y\n\x1flivestream.googleapis.com/Input\x12\x36projects/{project}/locations/{location}/inputs/{input}\"\xfa\n\n\x07\x43hannel\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x41\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\ncreateTime\x12\x41\n\x0bupdate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\nupdateTime\x12M\n\x06labels\x18\x04 \x03(\x0b\x32\x35.google.cloud.video.livestream.v1.Channel.LabelsEntryR\x06labels\x12^\n\x11input_attachments\x18\x10 \x03(\x0b\x32\x31.google.cloud.video.livestream.v1.InputAttachmentR\x10inputAttachments\x12\'\n\x0c\x61\x63tive_input\x18\x06 \x01(\tB\x04\xe2\x41\x01\x03R\x0b\x61\x63tiveInput\x12N\n\x06output\x18\t \x01(\x0b\x32\x30.google.cloud.video.livestream.v1.Channel.OutputB\x04\xe2\x41\x01\x02R\x06output\x12\x61\n\x12\x65lementary_streams\x18\n \x03(\x0b\x32\x32.google.cloud.video.livestream.v1.ElementaryStreamR\x11\x65lementaryStreams\x12L\n\x0bmux_streams\x18\x0b \x03(\x0b\x32+.google.cloud.video.livestream.v1.MuxStreamR\nmuxStreams\x12H\n\tmanifests\x18\x0c \x03(\x0b\x32*.google.cloud.video.livestream.v1.ManifestR\tmanifests\x12R\n\rsprite_sheets\x18\r \x03(\x0b\x32-.google.cloud.video.livestream.v1.SpriteSheetR\x0cspriteSheets\x12g\n\x0fstreaming_state\x18\x0e \x01(\x0e\x32\x38.google.cloud.video.livestream.v1.Channel.StreamingStateB\x04\xe2\x41\x01\x03R\x0estreamingState\x12\x41\n\x0fstreaming_error\x18\x12 \x01(\x0b\x32\x12.google.rpc.StatusB\x04\xe2\x41\x01\x03R\x0estreamingError\x12J\n\nlog_config\x18\x13 \x01(\x0b\x32+.google.cloud.video.livestream.v1.LogConfigR\tlogConfig\x1a\x1a\n\x06Output\x12\x10\n\x03uri\x18\x01 \x01(\tR\x03uri\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\xaa\x01\n\x0eStreamingState\x12\x1f\n\x1bSTREAMING_STATE_UNSPECIFIED\x10\x00\x12\r\n\tSTREAMING\x10\x01\x12\x12\n\x0e\x41WAITING_INPUT\x10\x02\x12\x13\n\x0fSTREAMING_ERROR\x10\x04\x12\x16\n\x12STREAMING_NO_INPUT\x10\x05\x12\x0b\n\x07STOPPED\x10\x06\x12\x0c\n\x08STARTING\x10\x07\x12\x0c\n\x08STOPPING\x10\x08:b\xea\x41_\n!livestream.googleapis.com/Channel\x12:projects/{project}/locations/{location}/channels/{channel}\"\xcd\x01\n\tLogConfig\x12Z\n\x0clog_severity\x18\x01 \x01(\x0e\x32\x37.google.cloud.video.livestream.v1.LogConfig.LogSeverityR\x0blogSeverity\"d\n\x0bLogSeverity\x12\x1c\n\x18LOG_SEVERITY_UNSPECIFIED\x10\x00\x12\x07\n\x03OFF\x10\x01\x12\t\n\x05\x44\x45\x42UG\x10\x64\x12\t\n\x04INFO\x10\xc8\x01\x12\x0c\n\x07WARNING\x10\x90\x03\x12\n\n\x05\x45RROR\x10\xf4\x03\"\x99\x02\n\x13InputStreamProperty\x12J\n\x13last_establish_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x11lastEstablishTime\x12Z\n\rvideo_streams\x18\x02 \x03(\x0b\x32\x35.google.cloud.video.livestream.v1.VideoStreamPropertyR\x0cvideoStreams\x12Z\n\raudio_streams\x18\x03 \x03(\x0b\x32\x35.google.cloud.video.livestream.v1.AudioStreamPropertyR\x0c\x61udioStreams\"}\n\x13VideoStreamProperty\x12\x14\n\x05index\x18\x01 \x01(\x05R\x05index\x12P\n\x0cvideo_format\x18\x02 \x01(\x0b\x32-.google.cloud.video.livestream.v1.VideoFormatR\x0bvideoFormat\"\x8a\x01\n\x0bVideoFormat\x12\x14\n\x05\x63odec\x18\x01 \x01(\tR\x05\x63odec\x12!\n\x0cwidth_pixels\x18\x02 \x01(\x05R\x0bwidthPixels\x12#\n\rheight_pixels\x18\x03 \x01(\x05R\x0cheightPixels\x12\x1d\n\nframe_rate\x18\x04 \x01(\x01R\tframeRate\"}\n\x13\x41udioStreamProperty\x12\x14\n\x05index\x18\x01 \x01(\x05R\x05index\x12P\n\x0c\x61udio_format\x18\x02 \x01(\x0b\x32-.google.cloud.video.livestream.v1.AudioFormatR\x0b\x61udioFormat\"o\n\x0b\x41udioFormat\x12\x14\n\x05\x63odec\x18\x01 \x01(\tR\x05\x63odec\x12#\n\rchannel_count\x18\x02 \x01(\x05R\x0c\x63hannelCount\x12%\n\x0e\x63hannel_layout\x18\x03 \x03(\tR\rchannelLayout\"\x87\x02\n\x0fInputAttachment\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12:\n\x05input\x18\x02 \x01(\tB$\xfa\x41!\n\x1flivestream.googleapis.com/InputR\x05input\x12r\n\x12\x61utomatic_failover\x18\x03 \x01(\x0b\x32\x43.google.cloud.video.livestream.v1.InputAttachment.AutomaticFailoverR\x11\x61utomaticFailover\x1a\x32\n\x11\x41utomaticFailover\x12\x1d\n\ninput_keys\x18\x01 \x03(\tR\tinputKeys\"\x83\x07\n\x05\x45vent\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x41\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\ncreateTime\x12\x41\n\x0bupdate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x04\xe2\x41\x01\x03R\nupdateTime\x12K\n\x06labels\x18\x04 \x03(\x0b\x32\x33.google.cloud.video.livestream.v1.Event.LabelsEntryR\x06labels\x12V\n\x08\x61\x64_break\x18\x06 \x01(\x0b\x32\x33.google.cloud.video.livestream.v1.Event.AdBreakTaskB\x04\xe2\x41\x01\x02H\x00R\x07\x61\x64\x42reak\x12\x1f\n\x0b\x65xecute_now\x18\t \x01(\x08R\nexecuteNow\x12\x41\n\x0e\x65xecution_time\x18\n \x01(\x0b\x32\x1a.google.protobuf.TimestampR\rexecutionTime\x12I\n\x05state\x18\x0b \x01(\x0e\x32-.google.cloud.video.livestream.v1.Event.StateB\x04\xe2\x41\x01\x03R\x05state\x12.\n\x05\x65rror\x18\x0c \x01(\x0b\x32\x12.google.rpc.StatusB\x04\xe2\x41\x01\x03R\x05\x65rror\x1a\x44\n\x0b\x41\x64\x42reakTask\x12\x35\n\x08\x64uration\x18\x01 \x01(\x0b\x32\x19.google.protobuf.DurationR\x08\x64uration\x1a\x39\n\x0bLabelsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"b\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\r\n\tSCHEDULED\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\r\n\tSUCCEEDED\x10\x03\x12\n\n\x06\x46\x41ILED\x10\x04\x12\x0b\n\x07PENDING\x10\x05:o\xea\x41l\n\x1flivestream.googleapis.com/Event\x12Iprojects/{project}/locations/{location}/channels/{channel}/events/{event}B\x06\n\x04taskB\xf1\x01\n$com.google.cloud.video.livestream.v1B\x0eResourcesProtoP\x01ZJgoogle.golang.org/genproto/googleapis/cloud/video/livestream/v1;livestream\xaa\x02 Google.Cloud.Video.LiveStream.V1\xca\x02 Google\\Cloud\\Video\\LiveStream\\V1\xea\x02$Google::Cloud::Video::LiveStream::V1b\x06proto3')
 
 
 
@@ -31,6 +31,7 @@ _INPUT_LABELSENTRY = _INPUT.nested_types_by_name['LabelsEntry']
 _CHANNEL = DESCRIPTOR.message_types_by_name['Channel']
 _CHANNEL_OUTPUT = _CHANNEL.nested_types_by_name['Output']
 _CHANNEL_LABELSENTRY = _CHANNEL.nested_types_by_name['LabelsEntry']
+_LOGCONFIG = DESCRIPTOR.message_types_by_name['LogConfig']
 _INPUTSTREAMPROPERTY = DESCRIPTOR.message_types_by_name['InputStreamProperty']
 _VIDEOSTREAMPROPERTY = DESCRIPTOR.message_types_by_name['VideoStreamProperty']
 _VIDEOFORMAT = DESCRIPTOR.message_types_by_name['VideoFormat']
@@ -44,6 +45,7 @@ _EVENT_LABELSENTRY = _EVENT.nested_types_by_name['LabelsEntry']
 _INPUT_TYPE = _INPUT.enum_types_by_name['Type']
 _INPUT_TIER = _INPUT.enum_types_by_name['Tier']
 _CHANNEL_STREAMINGSTATE = _CHANNEL.enum_types_by_name['StreamingState']
+_LOGCONFIG_LOGSEVERITY = _LOGCONFIG.enum_types_by_name['LogSeverity']
 _EVENT_STATE = _EVENT.enum_types_by_name['State']
 Input = _reflection.GeneratedProtocolMessageType('Input', (_message.Message,), {
 
@@ -90,6 +92,13 @@ Channel = _reflection.GeneratedProtocolMessageType('Channel', (_message.Message,
 _sym_db.RegisterMessage(Channel)
 _sym_db.RegisterMessage(Channel.Output)
 _sym_db.RegisterMessage(Channel.LabelsEntry)
+
+LogConfig = _reflection.GeneratedProtocolMessageType('LogConfig', (_message.Message,), {
+  'DESCRIPTOR' : _LOGCONFIG,
+  '__module__' : 'google.cloud.video.livestream.v1.resources_pb2'
+  # @@protoc_insertion_point(class_scope:google.cloud.video.livestream.v1.LogConfig)
+  })
+_sym_db.RegisterMessage(LogConfig)
 
 InputStreamProperty = _reflection.GeneratedProtocolMessageType('InputStreamProperty', (_message.Message,), {
   'DESCRIPTOR' : _INPUTSTREAMPROPERTY,
@@ -167,7 +176,7 @@ _sym_db.RegisterMessage(Event.LabelsEntry)
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  DESCRIPTOR._serialized_options = b'\n$com.google.cloud.video.livestream.v1B\016ResourcesProtoP\001ZJgoogle.golang.org/genproto/googleapis/cloud/video/livestream/v1;livestream'
+  DESCRIPTOR._serialized_options = b'\n$com.google.cloud.video.livestream.v1B\016ResourcesProtoP\001ZJgoogle.golang.org/genproto/googleapis/cloud/video/livestream/v1;livestream\252\002 Google.Cloud.Video.LiveStream.V1\312\002 Google\\Cloud\\Video\\LiveStream\\V1\352\002$Google::Cloud::Video::LiveStream::V1'
   _INPUT_LABELSENTRY._options = None
   _INPUT_LABELSENTRY._serialized_options = b'8\001'
   _INPUT.fields_by_name['create_time']._options = None
@@ -223,33 +232,37 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _INPUT_TIER._serialized_start=1186
   _INPUT_TIER._serialized_end=1239
   _CHANNEL._serialized_start=1336
-  _CHANNEL._serialized_end=2662
-  _CHANNEL_OUTPUT._serialized_start=2304
-  _CHANNEL_OUTPUT._serialized_end=2330
+  _CHANNEL._serialized_end=2738
+  _CHANNEL_OUTPUT._serialized_start=2380
+  _CHANNEL_OUTPUT._serialized_end=2406
   _CHANNEL_LABELSENTRY._serialized_start=1068
   _CHANNEL_LABELSENTRY._serialized_end=1125
-  _CHANNEL_STREAMINGSTATE._serialized_start=2392
-  _CHANNEL_STREAMINGSTATE._serialized_end=2562
-  _INPUTSTREAMPROPERTY._serialized_start=2665
-  _INPUTSTREAMPROPERTY._serialized_end=2946
-  _VIDEOSTREAMPROPERTY._serialized_start=2948
-  _VIDEOSTREAMPROPERTY._serialized_end=3073
-  _VIDEOFORMAT._serialized_start=3076
-  _VIDEOFORMAT._serialized_end=3214
-  _AUDIOSTREAMPROPERTY._serialized_start=3216
-  _AUDIOSTREAMPROPERTY._serialized_end=3341
-  _AUDIOFORMAT._serialized_start=3343
-  _AUDIOFORMAT._serialized_end=3454
-  _INPUTATTACHMENT._serialized_start=3457
-  _INPUTATTACHMENT._serialized_end=3720
-  _INPUTATTACHMENT_AUTOMATICFAILOVER._serialized_start=3670
-  _INPUTATTACHMENT_AUTOMATICFAILOVER._serialized_end=3720
-  _EVENT._serialized_start=3723
-  _EVENT._serialized_end=4622
-  _EVENT_ADBREAKTASK._serialized_start=4274
-  _EVENT_ADBREAKTASK._serialized_end=4342
+  _CHANNEL_STREAMINGSTATE._serialized_start=2468
+  _CHANNEL_STREAMINGSTATE._serialized_end=2638
+  _LOGCONFIG._serialized_start=2741
+  _LOGCONFIG._serialized_end=2946
+  _LOGCONFIG_LOGSEVERITY._serialized_start=2846
+  _LOGCONFIG_LOGSEVERITY._serialized_end=2946
+  _INPUTSTREAMPROPERTY._serialized_start=2949
+  _INPUTSTREAMPROPERTY._serialized_end=3230
+  _VIDEOSTREAMPROPERTY._serialized_start=3232
+  _VIDEOSTREAMPROPERTY._serialized_end=3357
+  _VIDEOFORMAT._serialized_start=3360
+  _VIDEOFORMAT._serialized_end=3498
+  _AUDIOSTREAMPROPERTY._serialized_start=3500
+  _AUDIOSTREAMPROPERTY._serialized_end=3625
+  _AUDIOFORMAT._serialized_start=3627
+  _AUDIOFORMAT._serialized_end=3738
+  _INPUTATTACHMENT._serialized_start=3741
+  _INPUTATTACHMENT._serialized_end=4004
+  _INPUTATTACHMENT_AUTOMATICFAILOVER._serialized_start=3954
+  _INPUTATTACHMENT_AUTOMATICFAILOVER._serialized_end=4004
+  _EVENT._serialized_start=4007
+  _EVENT._serialized_end=4906
+  _EVENT_ADBREAKTASK._serialized_start=4558
+  _EVENT_ADBREAKTASK._serialized_end=4626
   _EVENT_LABELSENTRY._serialized_start=1068
   _EVENT_LABELSENTRY._serialized_end=1125
-  _EVENT_STATE._serialized_start=4403
-  _EVENT_STATE._serialized_end=4501
+  _EVENT_STATE._serialized_start=4687
+  _EVENT_STATE._serialized_end=4785
 # @@protoc_insertion_point(module_scope)

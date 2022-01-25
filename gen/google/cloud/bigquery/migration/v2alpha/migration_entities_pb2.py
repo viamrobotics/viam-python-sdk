@@ -14,14 +14,16 @@ _sym_db = _symbol_database.Default()
 
 from google.api import field_behavior_pb2 as google_dot_api_dot_field__behavior__pb2
 from google.api import resource_pb2 as google_dot_api_dot_resource__pb2
+from google.cloud.bigquery.migration.v2alpha import assessment_task_pb2 as google_dot_cloud_dot_bigquery_dot_migration_dot_v2alpha_dot_assessment__task__pb2
 from google.cloud.bigquery.migration.v2alpha import migration_error_details_pb2 as google_dot_cloud_dot_bigquery_dot_migration_dot_v2alpha_dot_migration__error__details__pb2
 from google.cloud.bigquery.migration.v2alpha import migration_metrics_pb2 as google_dot_cloud_dot_bigquery_dot_migration_dot_v2alpha_dot_migration__metrics__pb2
+from google.cloud.bigquery.migration.v2alpha import translation_task_pb2 as google_dot_cloud_dot_bigquery_dot_migration_dot_v2alpha_dot_translation__task__pb2
 from google.protobuf import any_pb2 as google_dot_protobuf_dot_any__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 from google.rpc import error_details_pb2 as google_dot_rpc_dot_error__details__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n@google/cloud/bigquery/migration/v2alpha/migration_entities.proto\x12\'google.cloud.bigquery.migration.v2alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x45google/cloud/bigquery/migration/v2alpha/migration_error_details.proto\x1a?google/cloud/bigquery/migration/v2alpha/migration_metrics.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/rpc/error_details.proto\"\xcb\x05\n\x11MigrationWorkflow\x12\x19\n\x04name\x18\x01 \x01(\tB\x05\xe2\x41\x02\x03\x05R\x04name\x12!\n\x0c\x64isplay_name\x18\x06 \x01(\tR\x0b\x64isplayName\x12[\n\x05tasks\x18\x02 \x03(\x0b\x32\x45.google.cloud.bigquery.migration.v2alpha.MigrationWorkflow.TasksEntryR\x05tasks\x12\\\n\x05state\x18\x03 \x01(\x0e\x32@.google.cloud.bigquery.migration.v2alpha.MigrationWorkflow.StateB\x04\xe2\x41\x01\x03R\x05state\x12;\n\x0b\x63reate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12\x44\n\x10last_update_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0elastUpdateTime\x1ap\n\nTasksEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12L\n\x05value\x18\x02 \x01(\x0b\x32\x36.google.cloud.bigquery.migration.v2alpha.MigrationTaskR\x05value:\x02\x38\x01\"Q\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\t\n\x05\x44RAFT\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\n\n\x06PAUSED\x10\x03\x12\r\n\tCOMPLETED\x10\x04:u\xea\x41r\n2bigquerymigration.googleapis.com/MigrationWorkflow\x12<projects/{project}/locations/{location}/workflows/{workflow}\"\x83\x04\n\rMigrationTask\x12\x15\n\x02id\x18\x01 \x01(\tB\x05\xe2\x41\x02\x03\x05R\x02id\x12\x12\n\x04type\x18\x02 \x01(\tR\x04type\x12.\n\x07\x64\x65tails\x18\x03 \x01(\x0b\x32\x14.google.protobuf.AnyR\x07\x64\x65tails\x12X\n\x05state\x18\x04 \x01(\x0e\x32<.google.cloud.bigquery.migration.v2alpha.MigrationTask.StateB\x04\xe2\x41\x01\x03R\x05state\x12\x46\n\x10processing_error\x18\x05 \x01(\x0b\x32\x15.google.rpc.ErrorInfoB\x04\xe2\x41\x01\x03R\x0fprocessingError\x12;\n\x0b\x63reate_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12\x44\n\x10last_update_time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0elastUpdateTime\"r\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x11\n\rORCHESTRATING\x10\x02\x12\x0b\n\x07RUNNING\x10\x03\x12\n\n\x06PAUSED\x10\x04\x12\r\n\tSUCCEEDED\x10\x05\x12\n\n\x06\x46\x41ILED\x10\x06\"\xe8\x06\n\x10MigrationSubtask\x12\x19\n\x04name\x18\x01 \x01(\tB\x05\xe2\x41\x02\x03\x05R\x04name\x12\x17\n\x07task_id\x18\x02 \x01(\tR\x06taskId\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12[\n\x05state\x18\x05 \x01(\x0e\x32?.google.cloud.bigquery.migration.v2alpha.MigrationSubtask.StateB\x04\xe2\x41\x01\x03R\x05state\x12\x46\n\x10processing_error\x18\x06 \x01(\x0b\x32\x15.google.rpc.ErrorInfoB\x04\xe2\x41\x01\x03R\x0fprocessingError\x12x\n\x16resource_error_details\x18\x0c \x03(\x0b\x32<.google.cloud.bigquery.migration.v2alpha.ResourceErrorDetailB\x04\xe2\x41\x01\x03R\x14resourceErrorDetails\x12\x30\n\x14resource_error_count\x18\r \x01(\x05R\x12resourceErrorCount\x12;\n\x0b\x63reate_time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12\x44\n\x10last_update_time\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0elastUpdateTime\x12M\n\x07metrics\x18\x0b \x03(\x0b\x32\x33.google.cloud.bigquery.migration.v2alpha.TimeSeriesR\x07metrics\"^\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\r\n\tSUCCEEDED\x10\x03\x12\n\n\x06\x46\x41ILED\x10\x04\x12\n\n\x06PAUSED\x10\x05:\x88\x01\xea\x41\x84\x01\n1bigquerymigration.googleapis.com/MigrationSubtask\x12Oprojects/{project}/locations/{location}/workflows/{workflow}/subtasks/{subtask}B\xed\x01\n+com.google.cloud.bigquery.migration.v2alphaB\x16MigrationEntitiesProtoP\x01ZPgoogle.golang.org/genproto/googleapis/cloud/bigquery/migration/v2alpha;migration\xaa\x02\'Google.Cloud.BigQuery.Migration.V2Alpha\xca\x02\'Google\\Cloud\\BigQuery\\Migration\\V2alphab\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n@google/cloud/bigquery/migration/v2alpha/migration_entities.proto\x12\'google.cloud.bigquery.migration.v2alpha\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a=google/cloud/bigquery/migration/v2alpha/assessment_task.proto\x1a\x45google/cloud/bigquery/migration/v2alpha/migration_error_details.proto\x1a?google/cloud/bigquery/migration/v2alpha/migration_metrics.proto\x1a>google/cloud/bigquery/migration/v2alpha/translation_task.proto\x1a\x19google/protobuf/any.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/rpc/error_details.proto\"\xcb\x05\n\x11MigrationWorkflow\x12\x19\n\x04name\x18\x01 \x01(\tB\x05\xe2\x41\x02\x03\x05R\x04name\x12!\n\x0c\x64isplay_name\x18\x06 \x01(\tR\x0b\x64isplayName\x12[\n\x05tasks\x18\x02 \x03(\x0b\x32\x45.google.cloud.bigquery.migration.v2alpha.MigrationWorkflow.TasksEntryR\x05tasks\x12\\\n\x05state\x18\x03 \x01(\x0e\x32@.google.cloud.bigquery.migration.v2alpha.MigrationWorkflow.StateB\x04\xe2\x41\x01\x03R\x05state\x12;\n\x0b\x63reate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12\x44\n\x10last_update_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0elastUpdateTime\x1ap\n\nTasksEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12L\n\x05value\x18\x02 \x01(\x0b\x32\x36.google.cloud.bigquery.migration.v2alpha.MigrationTaskR\x05value:\x02\x38\x01\"Q\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\t\n\x05\x44RAFT\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\n\n\x06PAUSED\x10\x03\x12\r\n\tCOMPLETED\x10\x04:u\xea\x41r\n2bigquerymigration.googleapis.com/MigrationWorkflow\x12<projects/{project}/locations/{location}/workflows/{workflow}\"\x8f\x07\n\rMigrationTask\x12x\n\x17\x61ssessment_task_details\x18\x0c \x01(\x0b\x32>.google.cloud.bigquery.migration.v2alpha.AssessmentTaskDetailsH\x00R\x15\x61ssessmentTaskDetails\x12{\n\x18translation_task_details\x18\r \x01(\x0b\x32?.google.cloud.bigquery.migration.v2alpha.TranslationTaskDetailsH\x00R\x16translationTaskDetails\x12\x15\n\x02id\x18\x01 \x01(\tB\x05\xe2\x41\x02\x03\x05R\x02id\x12\x12\n\x04type\x18\x02 \x01(\tR\x04type\x12.\n\x07\x64\x65tails\x18\x03 \x01(\x0b\x32\x14.google.protobuf.AnyR\x07\x64\x65tails\x12X\n\x05state\x18\x04 \x01(\x0e\x32<.google.cloud.bigquery.migration.v2alpha.MigrationTask.StateB\x04\xe2\x41\x01\x03R\x05state\x12\x46\n\x10processing_error\x18\x05 \x01(\x0b\x32\x15.google.rpc.ErrorInfoB\x04\xe2\x41\x01\x03R\x0fprocessingError\x12;\n\x0b\x63reate_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12\x44\n\x10last_update_time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0elastUpdateTime\x12\x82\x01\n\x14orchestration_result\x18\n \x01(\x0b\x32I.google.cloud.bigquery.migration.v2alpha.MigrationTaskOrchestrationResultB\x04\xe2\x41\x01\x03R\x13orchestrationResult\"r\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x11\n\rORCHESTRATING\x10\x02\x12\x0b\n\x07RUNNING\x10\x03\x12\n\n\x06PAUSED\x10\x04\x12\r\n\tSUCCEEDED\x10\x05\x12\n\n\x06\x46\x41ILED\x10\x06\x42\x0e\n\x0ctask_details\"\xe8\x06\n\x10MigrationSubtask\x12\x19\n\x04name\x18\x01 \x01(\tB\x05\xe2\x41\x02\x03\x05R\x04name\x12\x17\n\x07task_id\x18\x02 \x01(\tR\x06taskId\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12[\n\x05state\x18\x05 \x01(\x0e\x32?.google.cloud.bigquery.migration.v2alpha.MigrationSubtask.StateB\x04\xe2\x41\x01\x03R\x05state\x12\x46\n\x10processing_error\x18\x06 \x01(\x0b\x32\x15.google.rpc.ErrorInfoB\x04\xe2\x41\x01\x03R\x0fprocessingError\x12x\n\x16resource_error_details\x18\x0c \x03(\x0b\x32<.google.cloud.bigquery.migration.v2alpha.ResourceErrorDetailB\x04\xe2\x41\x01\x03R\x14resourceErrorDetails\x12\x30\n\x14resource_error_count\x18\r \x01(\x05R\x12resourceErrorCount\x12;\n\x0b\x63reate_time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\ncreateTime\x12\x44\n\x10last_update_time\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0elastUpdateTime\x12M\n\x07metrics\x18\x0b \x03(\x0b\x32\x33.google.cloud.bigquery.migration.v2alpha.TimeSeriesR\x07metrics\"^\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0b\n\x07RUNNING\x10\x02\x12\r\n\tSUCCEEDED\x10\x03\x12\n\n\x06\x46\x41ILED\x10\x04\x12\n\n\x06PAUSED\x10\x05:\x88\x01\xea\x41\x84\x01\n1bigquerymigration.googleapis.com/MigrationSubtask\x12Oprojects/{project}/locations/{location}/workflows/{workflow}/subtasks/{subtask}\"\xad\x01\n MigrationTaskOrchestrationResult\x12~\n\x12\x61ssessment_details\x18\x01 \x01(\x0b\x32M.google.cloud.bigquery.migration.v2alpha.AssessmentOrchestrationResultDetailsH\x00R\x11\x61ssessmentDetailsB\t\n\x07\x64\x65tailsB\xed\x01\n+com.google.cloud.bigquery.migration.v2alphaB\x16MigrationEntitiesProtoP\x01ZPgoogle.golang.org/genproto/googleapis/cloud/bigquery/migration/v2alpha;migration\xaa\x02\'Google.Cloud.BigQuery.Migration.V2Alpha\xca\x02\'Google\\Cloud\\BigQuery\\Migration\\V2alphab\x06proto3')
 
 
 
@@ -29,6 +31,7 @@ _MIGRATIONWORKFLOW = DESCRIPTOR.message_types_by_name['MigrationWorkflow']
 _MIGRATIONWORKFLOW_TASKSENTRY = _MIGRATIONWORKFLOW.nested_types_by_name['TasksEntry']
 _MIGRATIONTASK = DESCRIPTOR.message_types_by_name['MigrationTask']
 _MIGRATIONSUBTASK = DESCRIPTOR.message_types_by_name['MigrationSubtask']
+_MIGRATIONTASKORCHESTRATIONRESULT = DESCRIPTOR.message_types_by_name['MigrationTaskOrchestrationResult']
 _MIGRATIONWORKFLOW_STATE = _MIGRATIONWORKFLOW.enum_types_by_name['State']
 _MIGRATIONTASK_STATE = _MIGRATIONTASK.enum_types_by_name['State']
 _MIGRATIONSUBTASK_STATE = _MIGRATIONSUBTASK.enum_types_by_name['State']
@@ -61,6 +64,13 @@ MigrationSubtask = _reflection.GeneratedProtocolMessageType('MigrationSubtask', 
   })
 _sym_db.RegisterMessage(MigrationSubtask)
 
+MigrationTaskOrchestrationResult = _reflection.GeneratedProtocolMessageType('MigrationTaskOrchestrationResult', (_message.Message,), {
+  'DESCRIPTOR' : _MIGRATIONTASKORCHESTRATIONRESULT,
+  '__module__' : 'google.cloud.bigquery.migration.v2alpha.migration_entities_pb2'
+  # @@protoc_insertion_point(class_scope:google.cloud.bigquery.migration.v2alpha.MigrationTaskOrchestrationResult)
+  })
+_sym_db.RegisterMessage(MigrationTaskOrchestrationResult)
+
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
@@ -79,6 +89,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _MIGRATIONTASK.fields_by_name['state']._serialized_options = b'\342A\001\003'
   _MIGRATIONTASK.fields_by_name['processing_error']._options = None
   _MIGRATIONTASK.fields_by_name['processing_error']._serialized_options = b'\342A\001\003'
+  _MIGRATIONTASK.fields_by_name['orchestration_result']._options = None
+  _MIGRATIONTASK.fields_by_name['orchestration_result']._serialized_options = b'\342A\001\003'
   _MIGRATIONSUBTASK.fields_by_name['name']._options = None
   _MIGRATIONSUBTASK.fields_by_name['name']._serialized_options = b'\342A\002\003\005'
   _MIGRATIONSUBTASK.fields_by_name['state']._options = None
@@ -89,18 +101,20 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _MIGRATIONSUBTASK.fields_by_name['resource_error_details']._serialized_options = b'\342A\001\003'
   _MIGRATIONSUBTASK._options = None
   _MIGRATIONSUBTASK._serialized_options = b'\352A\204\001\n1bigquerymigration.googleapis.com/MigrationSubtask\022Oprojects/{project}/locations/{location}/workflows/{workflow}/subtasks/{subtask}'
-  _MIGRATIONWORKFLOW._serialized_start=398
-  _MIGRATIONWORKFLOW._serialized_end=1113
-  _MIGRATIONWORKFLOW_TASKSENTRY._serialized_start=799
-  _MIGRATIONWORKFLOW_TASKSENTRY._serialized_end=911
-  _MIGRATIONWORKFLOW_STATE._serialized_start=913
-  _MIGRATIONWORKFLOW_STATE._serialized_end=994
-  _MIGRATIONTASK._serialized_start=1116
-  _MIGRATIONTASK._serialized_end=1631
-  _MIGRATIONTASK_STATE._serialized_start=1517
-  _MIGRATIONTASK_STATE._serialized_end=1631
-  _MIGRATIONSUBTASK._serialized_start=1634
-  _MIGRATIONSUBTASK._serialized_end=2506
-  _MIGRATIONSUBTASK_STATE._serialized_start=2273
-  _MIGRATIONSUBTASK_STATE._serialized_end=2367
+  _MIGRATIONWORKFLOW._serialized_start=525
+  _MIGRATIONWORKFLOW._serialized_end=1240
+  _MIGRATIONWORKFLOW_TASKSENTRY._serialized_start=926
+  _MIGRATIONWORKFLOW_TASKSENTRY._serialized_end=1038
+  _MIGRATIONWORKFLOW_STATE._serialized_start=1040
+  _MIGRATIONWORKFLOW_STATE._serialized_end=1121
+  _MIGRATIONTASK._serialized_start=1243
+  _MIGRATIONTASK._serialized_end=2154
+  _MIGRATIONTASK_STATE._serialized_start=2024
+  _MIGRATIONTASK_STATE._serialized_end=2138
+  _MIGRATIONSUBTASK._serialized_start=2157
+  _MIGRATIONSUBTASK._serialized_end=3029
+  _MIGRATIONSUBTASK_STATE._serialized_start=2796
+  _MIGRATIONSUBTASK_STATE._serialized_end=2890
+  _MIGRATIONTASKORCHESTRATIONRESULT._serialized_start=3032
+  _MIGRATIONTASKORCHESTRATIONRESULT._serialized_end=3205
 # @@protoc_insertion_point(module_scope)
