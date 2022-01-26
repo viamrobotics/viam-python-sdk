@@ -1,3 +1,4 @@
+from gettext import find
 from setuptools import setup, find_packages
 import pathlib
 
@@ -32,7 +33,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages=['viam'],
+    packages=find_packages(),
     python_requires='>=3.6, <4',
     install_requires=['grpclib'],
 )
