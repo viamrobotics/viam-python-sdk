@@ -1,10 +1,10 @@
 import asyncio
 import sys
 
-import gen  # noqa: F401
-from viam.dial import Credentials, DialOptions, dial_direct
-from gen.proto.rpc.examples.echo.v1.echo_grpc import EchoServiceStub
-from gen.proto.rpc.examples.echo.v1.echo_pb2 import (
+# from viam import gen  # noqa: F401
+from viam.rpc.dial import Credentials, DialOptions, dial_direct
+from viam.gen.proto.rpc.examples.echo.v1.echo_grpc import EchoServiceStub
+from viam.gen.proto.rpc.examples.echo.v1.echo_pb2 import (
     EchoRequest,
     EchoMultipleRequest,
     EchoBiDiRequest
@@ -15,6 +15,7 @@ async def echo(msg: str):
     creds = Credentials(type="api-key", payload="supersecretkeyohmy")
     opts = DialOptions(credentials=creds,
                        allow_insecure_with_creds_downgrade=True)
+    opts = DialOptions(insecure=True)
     async with await dial_direct("localhost:8080", opts) as channel:
         service = EchoServiceStub(channel)
 
