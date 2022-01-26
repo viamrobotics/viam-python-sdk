@@ -30,7 +30,7 @@ class TiersListResponse(google.protobuf.message.Message):
     KIND_FIELD_NUMBER: builtins.int
     ITEMS_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always <b>sql#tiersList</b>."""
+    """This is always `sql#tiersList`."""
 
     @property
     def items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Tier]:
@@ -53,7 +53,7 @@ class Tier(google.protobuf.message.Message):
     DISK_QUOTA_FIELD_NUMBER: builtins.int
     REGION_FIELD_NUMBER: builtins.int
     tier: typing.Text = ...
-    """An identifier for the machine type, for example, db-custom-1-3840. For
+    """An identifier for the machine type, for example, `db-custom-1-3840`. For
     related information, see [Pricing](/sql/pricing).
     """
 
@@ -61,7 +61,7 @@ class Tier(google.protobuf.message.Message):
     """The maximum RAM usage of this tier in bytes."""
 
     kind: typing.Text = ...
-    """This is always <b>sql#tier</b>."""
+    """This is always `sql#tier`."""
 
     Disk_Quota: builtins.int = ...
     """The maximum disk size of this tier in bytes."""

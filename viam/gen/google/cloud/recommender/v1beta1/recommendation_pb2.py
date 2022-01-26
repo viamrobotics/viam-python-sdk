@@ -19,7 +19,7 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 from google.type import money_pb2 as google_dot_type_dot_money__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n5google/cloud/recommender/v1beta1/recommendation.proto\x12 google.cloud.recommender.v1beta1\x1a\x19google/api/resource.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/type/money.proto\"\xa7\t\n\x0eRecommendation\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\x12/\n\x13recommender_subtype\x18\x0c \x01(\tR\x12recommenderSubtype\x12\x46\n\x11last_refresh_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0flastRefreshTime\x12O\n\x0eprimary_impact\x18\x05 \x01(\x0b\x32(.google.cloud.recommender.v1beta1.ImpactR\rprimaryImpact\x12U\n\x11\x61\x64\x64itional_impact\x18\x06 \x03(\x0b\x32(.google.cloud.recommender.v1beta1.ImpactR\x10\x61\x64\x64itionalImpact\x12Q\n\x07\x63ontent\x18\x07 \x01(\x0b\x32\x37.google.cloud.recommender.v1beta1.RecommendationContentR\x07\x63ontent\x12X\n\nstate_info\x18\n \x01(\x0b\x32\x39.google.cloud.recommender.v1beta1.RecommendationStateInfoR\tstateInfo\x12\x12\n\x04\x65tag\x18\x0b \x01(\tR\x04\x65tag\x12r\n\x13\x61ssociated_insights\x18\x0e \x03(\x0b\x32\x41.google.cloud.recommender.v1beta1.Recommendation.InsightReferenceR\x12\x61ssociatedInsights\x1a,\n\x10InsightReference\x12\x18\n\x07insight\x18\x01 \x01(\tR\x07insight:\xda\x03\xea\x41\xd6\x03\n)recommender.googleapis.com/Recommendation\x12\x63projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}\x12rbillingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}\x12\x61\x66olders/{folder}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}\x12morganizations/{organization}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}\"t\n\x15RecommendationContent\x12[\n\x10operation_groups\x18\x02 \x03(\x0b\x32\x30.google.cloud.recommender.v1beta1.OperationGroupR\x0foperationGroups\"]\n\x0eOperationGroup\x12K\n\noperations\x18\x01 \x03(\x0b\x32+.google.cloud.recommender.v1beta1.OperationR\noperations\"\xfa\x05\n\tOperation\x12\x16\n\x06\x61\x63tion\x18\x01 \x01(\tR\x06\x61\x63tion\x12#\n\rresource_type\x18\x02 \x01(\tR\x0cresourceType\x12\x1a\n\x08resource\x18\x03 \x01(\tR\x08resource\x12\x12\n\x04path\x18\x04 \x01(\tR\x04path\x12\'\n\x0fsource_resource\x18\x05 \x01(\tR\x0esourceResource\x12\x1f\n\x0bsource_path\x18\x06 \x01(\tR\nsourcePath\x12.\n\x05value\x18\x07 \x01(\x0b\x32\x16.google.protobuf.ValueH\x00R\x05value\x12U\n\rvalue_matcher\x18\n \x01(\x0b\x32..google.cloud.recommender.v1beta1.ValueMatcherH\x00R\x0cvalueMatcher\x12_\n\x0cpath_filters\x18\x08 \x03(\x0b\x32<.google.cloud.recommender.v1beta1.Operation.PathFiltersEntryR\x0bpathFilters\x12r\n\x13path_value_matchers\x18\x0b \x03(\x0b\x32\x42.google.cloud.recommender.v1beta1.Operation.PathValueMatchersEntryR\x11pathValueMatchers\x1aV\n\x10PathFiltersEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12,\n\x05value\x18\x02 \x01(\x0b\x32\x16.google.protobuf.ValueR\x05value:\x02\x38\x01\x1at\n\x16PathValueMatchersEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x44\n\x05value\x18\x02 \x01(\x0b\x32..google.cloud.recommender.v1beta1.ValueMatcherR\x05value:\x02\x38\x01\x42\x0c\n\npath_value\"J\n\x0cValueMatcher\x12)\n\x0fmatches_pattern\x18\x01 \x01(\tH\x00R\x0ematchesPatternB\x0f\n\rmatch_variant\"o\n\x0e\x43ostProjection\x12&\n\x04\x63ost\x18\x01 \x01(\x0b\x32\x12.google.type.MoneyR\x04\x63ost\x12\x35\n\x08\x64uration\x18\x02 \x01(\x0b\x32\x19.google.protobuf.DurationR\x08\x64uration\"\xa4\x02\n\x06Impact\x12M\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32\x31.google.cloud.recommender.v1beta1.Impact.CategoryR\x08\x63\x61tegory\x12[\n\x0f\x63ost_projection\x18\x64 \x01(\x0b\x32\x30.google.cloud.recommender.v1beta1.CostProjectionH\x00R\x0e\x63ostProjection\"`\n\x08\x43\x61tegory\x12\x18\n\x14\x43\x41TEGORY_UNSPECIFIED\x10\x00\x12\x08\n\x04\x43OST\x10\x01\x12\x0c\n\x08SECURITY\x10\x02\x12\x0f\n\x0bPERFORMANCE\x10\x03\x12\x11\n\rMANAGEABILITY\x10\x04\x42\x0c\n\nprojection\"\x8a\x03\n\x17RecommendationStateInfo\x12U\n\x05state\x18\x01 \x01(\x0e\x32?.google.cloud.recommender.v1beta1.RecommendationStateInfo.StateR\x05state\x12s\n\x0estate_metadata\x18\x02 \x03(\x0b\x32L.google.cloud.recommender.v1beta1.RecommendationStateInfo.StateMetadataEntryR\rstateMetadata\x1a@\n\x12StateMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"a\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0b\n\x07\x43LAIMED\x10\x06\x12\r\n\tSUCCEEDED\x10\x03\x12\n\n\x06\x46\x41ILED\x10\x04\x12\r\n\tDISMISSED\x10\x05\x42\xf2\x03\n$com.google.cloud.recommender.v1beta1P\x01ZKgoogle.golang.org/genproto/googleapis/cloud/recommender/v1beta1;recommender\xa2\x02\x04\x43REC\xaa\x02 Google.Cloud.Recommender.V1Beta1\xea\x41\xcf\x02\n&recommender.googleapis.com/Recommender\x12\x42projects/{project}/locations/{location}/recommenders/{recommender}\x12QbillingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}\x12@folders/{folder}/locations/{location}/recommenders/{recommender}\x12Lorganizations/{organization}/locations/{location}/recommenders/{recommender}b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n5google/cloud/recommender/v1beta1/recommendation.proto\x12 google.cloud.recommender.v1beta1\x1a\x19google/api/resource.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17google/type/money.proto\"\xe6\n\n\x0eRecommendation\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12 \n\x0b\x64\x65scription\x18\x02 \x01(\tR\x0b\x64\x65scription\x12/\n\x13recommender_subtype\x18\x0c \x01(\tR\x12recommenderSubtype\x12\x46\n\x11last_refresh_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0flastRefreshTime\x12O\n\x0eprimary_impact\x18\x05 \x01(\x0b\x32(.google.cloud.recommender.v1beta1.ImpactR\rprimaryImpact\x12U\n\x11\x61\x64\x64itional_impact\x18\x06 \x03(\x0b\x32(.google.cloud.recommender.v1beta1.ImpactR\x10\x61\x64\x64itionalImpact\x12U\n\x08priority\x18\x11 \x01(\x0e\x32\x39.google.cloud.recommender.v1beta1.Recommendation.PriorityR\x08priority\x12Q\n\x07\x63ontent\x18\x07 \x01(\x0b\x32\x37.google.cloud.recommender.v1beta1.RecommendationContentR\x07\x63ontent\x12X\n\nstate_info\x18\n \x01(\x0b\x32\x39.google.cloud.recommender.v1beta1.RecommendationStateInfoR\tstateInfo\x12\x12\n\x04\x65tag\x18\x0b \x01(\tR\x04\x65tag\x12r\n\x13\x61ssociated_insights\x18\x0e \x03(\x0b\x32\x41.google.cloud.recommender.v1beta1.Recommendation.InsightReferenceR\x12\x61ssociatedInsights\x12 \n\x0cxor_group_id\x18\x12 \x01(\tR\nxorGroupId\x1a,\n\x10InsightReference\x12\x18\n\x07insight\x18\x01 \x01(\tR\x07insight\"D\n\x08Priority\x12\x18\n\x14PRIORITY_UNSPECIFIED\x10\x00\x12\x06\n\x02P4\x10\x01\x12\x06\n\x02P3\x10\x02\x12\x06\n\x02P2\x10\x03\x12\x06\n\x02P1\x10\x04:\xda\x03\xea\x41\xd6\x03\n)recommender.googleapis.com/Recommendation\x12\x63projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}\x12rbillingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}\x12\x61\x66olders/{folder}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}\x12morganizations/{organization}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}\"\xa9\x01\n\x15RecommendationContent\x12[\n\x10operation_groups\x18\x02 \x03(\x0b\x32\x30.google.cloud.recommender.v1beta1.OperationGroupR\x0foperationGroups\x12\x33\n\x08overview\x18\x03 \x01(\x0b\x32\x17.google.protobuf.StructR\x08overview\"]\n\x0eOperationGroup\x12K\n\noperations\x18\x01 \x03(\x0b\x32+.google.cloud.recommender.v1beta1.OperationR\noperations\"\xfa\x05\n\tOperation\x12\x16\n\x06\x61\x63tion\x18\x01 \x01(\tR\x06\x61\x63tion\x12#\n\rresource_type\x18\x02 \x01(\tR\x0cresourceType\x12\x1a\n\x08resource\x18\x03 \x01(\tR\x08resource\x12\x12\n\x04path\x18\x04 \x01(\tR\x04path\x12\'\n\x0fsource_resource\x18\x05 \x01(\tR\x0esourceResource\x12\x1f\n\x0bsource_path\x18\x06 \x01(\tR\nsourcePath\x12.\n\x05value\x18\x07 \x01(\x0b\x32\x16.google.protobuf.ValueH\x00R\x05value\x12U\n\rvalue_matcher\x18\n \x01(\x0b\x32..google.cloud.recommender.v1beta1.ValueMatcherH\x00R\x0cvalueMatcher\x12_\n\x0cpath_filters\x18\x08 \x03(\x0b\x32<.google.cloud.recommender.v1beta1.Operation.PathFiltersEntryR\x0bpathFilters\x12r\n\x13path_value_matchers\x18\x0b \x03(\x0b\x32\x42.google.cloud.recommender.v1beta1.Operation.PathValueMatchersEntryR\x11pathValueMatchers\x1aV\n\x10PathFiltersEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12,\n\x05value\x18\x02 \x01(\x0b\x32\x16.google.protobuf.ValueR\x05value:\x02\x38\x01\x1at\n\x16PathValueMatchersEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x44\n\x05value\x18\x02 \x01(\x0b\x32..google.cloud.recommender.v1beta1.ValueMatcherR\x05value:\x02\x38\x01\x42\x0c\n\npath_value\"J\n\x0cValueMatcher\x12)\n\x0fmatches_pattern\x18\x01 \x01(\tH\x00R\x0ematchesPatternB\x0f\n\rmatch_variant\"o\n\x0e\x43ostProjection\x12&\n\x04\x63ost\x18\x01 \x01(\x0b\x32\x12.google.type.MoneyR\x04\x63ost\x12\x35\n\x08\x64uration\x18\x02 \x01(\x0b\x32\x19.google.protobuf.DurationR\x08\x64uration\"G\n\x12SecurityProjection\x12\x31\n\x07\x64\x65tails\x18\x02 \x01(\x0b\x32\x17.google.protobuf.StructR\x07\x64\x65tails\"\xa1\x03\n\x06Impact\x12M\n\x08\x63\x61tegory\x18\x01 \x01(\x0e\x32\x31.google.cloud.recommender.v1beta1.Impact.CategoryR\x08\x63\x61tegory\x12[\n\x0f\x63ost_projection\x18\x64 \x01(\x0b\x32\x30.google.cloud.recommender.v1beta1.CostProjectionH\x00R\x0e\x63ostProjection\x12g\n\x13security_projection\x18\x65 \x01(\x0b\x32\x34.google.cloud.recommender.v1beta1.SecurityProjectionH\x00R\x12securityProjection\"t\n\x08\x43\x61tegory\x12\x18\n\x14\x43\x41TEGORY_UNSPECIFIED\x10\x00\x12\x08\n\x04\x43OST\x10\x01\x12\x0c\n\x08SECURITY\x10\x02\x12\x0f\n\x0bPERFORMANCE\x10\x03\x12\x11\n\rMANAGEABILITY\x10\x04\x12\x12\n\x0eSUSTAINABILITY\x10\x05\x42\x0c\n\nprojection\"\x8a\x03\n\x17RecommendationStateInfo\x12U\n\x05state\x18\x01 \x01(\x0e\x32?.google.cloud.recommender.v1beta1.RecommendationStateInfo.StateR\x05state\x12s\n\x0estate_metadata\x18\x02 \x03(\x0b\x32L.google.cloud.recommender.v1beta1.RecommendationStateInfo.StateMetadataEntryR\rstateMetadata\x1a@\n\x12StateMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"a\n\x05State\x12\x15\n\x11STATE_UNSPECIFIED\x10\x00\x12\n\n\x06\x41\x43TIVE\x10\x01\x12\x0b\n\x07\x43LAIMED\x10\x06\x12\r\n\tSUCCEEDED\x10\x03\x12\n\n\x06\x46\x41ILED\x10\x04\x12\r\n\tDISMISSED\x10\x05\x42\xf2\x03\n$com.google.cloud.recommender.v1beta1P\x01ZKgoogle.golang.org/genproto/googleapis/cloud/recommender/v1beta1;recommender\xa2\x02\x04\x43REC\xaa\x02 Google.Cloud.Recommender.V1Beta1\xea\x41\xcf\x02\n&recommender.googleapis.com/Recommender\x12\x42projects/{project}/locations/{location}/recommenders/{recommender}\x12QbillingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}\x12@folders/{folder}/locations/{location}/recommenders/{recommender}\x12Lorganizations/{organization}/locations/{location}/recommenders/{recommender}b\x06proto3')
 
 
 
@@ -32,9 +32,11 @@ _OPERATION_PATHFILTERSENTRY = _OPERATION.nested_types_by_name['PathFiltersEntry'
 _OPERATION_PATHVALUEMATCHERSENTRY = _OPERATION.nested_types_by_name['PathValueMatchersEntry']
 _VALUEMATCHER = DESCRIPTOR.message_types_by_name['ValueMatcher']
 _COSTPROJECTION = DESCRIPTOR.message_types_by_name['CostProjection']
+_SECURITYPROJECTION = DESCRIPTOR.message_types_by_name['SecurityProjection']
 _IMPACT = DESCRIPTOR.message_types_by_name['Impact']
 _RECOMMENDATIONSTATEINFO = DESCRIPTOR.message_types_by_name['RecommendationStateInfo']
 _RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY = _RECOMMENDATIONSTATEINFO.nested_types_by_name['StateMetadataEntry']
+_RECOMMENDATION_PRIORITY = _RECOMMENDATION.enum_types_by_name['Priority']
 _IMPACT_CATEGORY = _IMPACT.enum_types_by_name['Category']
 _RECOMMENDATIONSTATEINFO_STATE = _RECOMMENDATIONSTATEINFO.enum_types_by_name['State']
 Recommendation = _reflection.GeneratedProtocolMessageType('Recommendation', (_message.Message,), {
@@ -103,6 +105,13 @@ CostProjection = _reflection.GeneratedProtocolMessageType('CostProjection', (_me
   })
 _sym_db.RegisterMessage(CostProjection)
 
+SecurityProjection = _reflection.GeneratedProtocolMessageType('SecurityProjection', (_message.Message,), {
+  'DESCRIPTOR' : _SECURITYPROJECTION,
+  '__module__' : 'google.cloud.recommender.v1beta1.recommendation_pb2'
+  # @@protoc_insertion_point(class_scope:google.cloud.recommender.v1beta1.SecurityProjection)
+  })
+_sym_db.RegisterMessage(SecurityProjection)
+
 Impact = _reflection.GeneratedProtocolMessageType('Impact', (_message.Message,), {
   'DESCRIPTOR' : _IMPACT,
   '__module__' : 'google.cloud.recommender.v1beta1.recommendation_pb2'
@@ -138,31 +147,35 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY._options = None
   _RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY._serialized_options = b'8\001'
   _RECOMMENDATION._serialized_start=239
-  _RECOMMENDATION._serialized_end=1430
-  _RECOMMENDATION_INSIGHTREFERENCE._serialized_start=909
-  _RECOMMENDATION_INSIGHTREFERENCE._serialized_end=953
-  _RECOMMENDATIONCONTENT._serialized_start=1432
-  _RECOMMENDATIONCONTENT._serialized_end=1548
-  _OPERATIONGROUP._serialized_start=1550
-  _OPERATIONGROUP._serialized_end=1643
-  _OPERATION._serialized_start=1646
-  _OPERATION._serialized_end=2408
-  _OPERATION_PATHFILTERSENTRY._serialized_start=2190
-  _OPERATION_PATHFILTERSENTRY._serialized_end=2276
-  _OPERATION_PATHVALUEMATCHERSENTRY._serialized_start=2278
-  _OPERATION_PATHVALUEMATCHERSENTRY._serialized_end=2394
-  _VALUEMATCHER._serialized_start=2410
-  _VALUEMATCHER._serialized_end=2484
-  _COSTPROJECTION._serialized_start=2486
-  _COSTPROJECTION._serialized_end=2597
-  _IMPACT._serialized_start=2600
-  _IMPACT._serialized_end=2892
-  _IMPACT_CATEGORY._serialized_start=2782
-  _IMPACT_CATEGORY._serialized_end=2878
-  _RECOMMENDATIONSTATEINFO._serialized_start=2895
-  _RECOMMENDATIONSTATEINFO._serialized_end=3289
-  _RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY._serialized_start=3126
-  _RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY._serialized_end=3190
-  _RECOMMENDATIONSTATEINFO_STATE._serialized_start=3192
-  _RECOMMENDATIONSTATEINFO_STATE._serialized_end=3289
+  _RECOMMENDATION._serialized_end=1621
+  _RECOMMENDATION_INSIGHTREFERENCE._serialized_start=1030
+  _RECOMMENDATION_INSIGHTREFERENCE._serialized_end=1074
+  _RECOMMENDATION_PRIORITY._serialized_start=1076
+  _RECOMMENDATION_PRIORITY._serialized_end=1144
+  _RECOMMENDATIONCONTENT._serialized_start=1624
+  _RECOMMENDATIONCONTENT._serialized_end=1793
+  _OPERATIONGROUP._serialized_start=1795
+  _OPERATIONGROUP._serialized_end=1888
+  _OPERATION._serialized_start=1891
+  _OPERATION._serialized_end=2653
+  _OPERATION_PATHFILTERSENTRY._serialized_start=2435
+  _OPERATION_PATHFILTERSENTRY._serialized_end=2521
+  _OPERATION_PATHVALUEMATCHERSENTRY._serialized_start=2523
+  _OPERATION_PATHVALUEMATCHERSENTRY._serialized_end=2639
+  _VALUEMATCHER._serialized_start=2655
+  _VALUEMATCHER._serialized_end=2729
+  _COSTPROJECTION._serialized_start=2731
+  _COSTPROJECTION._serialized_end=2842
+  _SECURITYPROJECTION._serialized_start=2844
+  _SECURITYPROJECTION._serialized_end=2915
+  _IMPACT._serialized_start=2918
+  _IMPACT._serialized_end=3335
+  _IMPACT_CATEGORY._serialized_start=3205
+  _IMPACT_CATEGORY._serialized_end=3321
+  _RECOMMENDATIONSTATEINFO._serialized_start=3338
+  _RECOMMENDATIONSTATEINFO._serialized_end=3732
+  _RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY._serialized_start=3569
+  _RECOMMENDATIONSTATEINFO_STATEMETADATAENTRY._serialized_end=3633
+  _RECOMMENDATIONSTATEINFO_STATE._serialized_start=3635
+  _RECOMMENDATIONSTATEINFO_STATE._serialized_end=3732
 # @@protoc_insertion_point(module_scope)

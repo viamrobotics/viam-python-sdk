@@ -211,7 +211,7 @@ class User(google.protobuf.message.Message):
     SQLSERVER_USER_DETAILS_FIELD_NUMBER: builtins.int
     PASSWORD_POLICY_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always <b>sql#user</b>."""
+    """This is always `sql#user`."""
 
     password: typing.Text = ...
     """The password for the user."""
@@ -223,12 +223,12 @@ class User(google.protobuf.message.Message):
 
     name: typing.Text = ...
     """The name of the user in the Cloud SQL instance. Can be omitted for
-    **update** since it is already specified in the URL.
+    `update` because it is already specified in the URL.
     """
 
     host: typing.Text = ...
-    """Optional. The host name from which the user can connect. For **insert**
-    operations, host defaults to an empty string. For **update**
+    """Optional. The host from which the user can connect. For `insert`
+    operations, host defaults to an empty string. For `update`
     operations, host is specified as part of the request URL. The host name
     cannot be updated after insertion.  For a MySQL instance, it's required;
     for a PostgreSQL or SQL Server instance, it's optional.
@@ -236,14 +236,14 @@ class User(google.protobuf.message.Message):
 
     instance: typing.Text = ...
     """The name of the Cloud SQL instance. This does not include the project ID.
-    Can be omitted for <b>update</b> since it is already specified on the
+    Can be omitted for <b>update</b> because it is already specified on the
     URL.
     """
 
     project: typing.Text = ...
     """The project ID of the project containing the Cloud SQL database. The Google
     apps domain is prefixed if applicable. Can be omitted for
-    <b>update</b> since it is already specified on the URL.
+    <b>update</b> because it is already specified on the URL.
     """
 
     type: global___User.SqlUserType.ValueType = ...

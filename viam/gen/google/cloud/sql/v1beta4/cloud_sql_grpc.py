@@ -10,9 +10,9 @@ if typing.TYPE_CHECKING:
     import grpclib.server
 
 import google.api.annotations_pb2
+import google.api.client_pb2
 import google.api.field_behavior_pb2
 import google.cloud.sql.v1beta4.cloud_sql_resources_pb2
-import google.api.client_pb2
 import google.cloud.sql.v1beta4.cloud_sql_pb2
 
 

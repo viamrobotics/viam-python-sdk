@@ -781,14 +781,14 @@ class AclEntry(google.protobuf.message.Message):
     def expiration_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time when this access control entry expires in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     name: typing.Text = ...
     """Optional. A label to identify this entry."""
 
     kind: typing.Text = ...
-    """This is always **sql#aclEntry**."""
+    """This is always `sql#aclEntry`."""
 
     def __init__(self,
         *,
@@ -912,7 +912,7 @@ class BackupConfiguration(google.protobuf.message.Message):
     BACKUP_RETENTION_SETTINGS_FIELD_NUMBER: builtins.int
     start_time: typing.Text = ...
     """Start time for the daily backup configuration in UTC timezone in the 24
-    hour format - **HH:MM**.
+    hour format - `HH:MM`.
     """
 
     @property
@@ -920,7 +920,7 @@ class BackupConfiguration(google.protobuf.message.Message):
         """Whether this configuration is enabled."""
         pass
     kind: typing.Text = ...
-    """This is always **sql#backupConfiguration**."""
+    """This is always `sql#backupConfiguration`."""
 
     @property
     def binary_log_enabled(self) -> google.protobuf.wrappers_pb2.BoolValue:
@@ -985,7 +985,7 @@ class BackupRun(google.protobuf.message.Message):
     DISK_ENCRYPTION_STATUS_FIELD_NUMBER: builtins.int
     BACKUP_KIND_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#backupRun**."""
+    """This is always `sql#backupRun`."""
 
     status: global___SqlBackupRunStatus.ValueType = ...
     """The status of this run."""
@@ -994,7 +994,7 @@ class BackupRun(google.protobuf.message.Message):
     def enqueued_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time the run was enqueued in UTC timezone in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     id: builtins.int = ...
@@ -1006,14 +1006,14 @@ class BackupRun(google.protobuf.message.Message):
     def start_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time the backup operation actually started in UTC timezone in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     @property
     def end_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time the backup operation completed in UTC timezone in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     @property
@@ -1034,7 +1034,7 @@ class BackupRun(google.protobuf.message.Message):
     def window_start_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The start time of the backup window during which this the backup was
         attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
-        example **2012-11-15T16:19:00.094Z**.
+        example `2012-11-15T16:19:00.094Z`.
         """
         pass
     instance: typing.Text = ...
@@ -1087,7 +1087,7 @@ class BackupRunsListResponse(google.protobuf.message.Message):
     ITEMS_FIELD_NUMBER: builtins.int
     NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#backupRunsList**."""
+    """This is always `sql#backupRunsList`."""
 
     @property
     def items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BackupRun]:
@@ -1120,7 +1120,7 @@ class BinLogCoordinates(google.protobuf.message.Message):
     """Position (offset) within the binary log file."""
 
     kind: typing.Text = ...
-    """This is always **sql#binLogCoordinates**."""
+    """This is always `sql#binLogCoordinates`."""
 
     def __init__(self,
         *,
@@ -1140,7 +1140,7 @@ class BackupContext(google.protobuf.message.Message):
     """The identifier of the backup."""
 
     kind: typing.Text = ...
-    """This is always **sql#backupContext**."""
+    """This is always `sql#backupContext`."""
 
     def __init__(self,
         *,
@@ -1158,8 +1158,9 @@ class CloneContext(google.protobuf.message.Message):
     DESTINATION_INSTANCE_NAME_FIELD_NUMBER: builtins.int
     BIN_LOG_COORDINATES_FIELD_NUMBER: builtins.int
     POINT_IN_TIME_FIELD_NUMBER: builtins.int
+    ALLOCATED_IP_RANGE_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#cloneContext**."""
+    """This is always `sql#cloneContext`."""
 
     pitr_timestamp_ms: builtins.int = ...
     """Reserved for future use."""
@@ -1180,6 +1181,16 @@ class CloneContext(google.protobuf.message.Message):
         is cloned.
         """
         pass
+    allocated_ip_range: typing.Text = ...
+    """The name of the allocated ip range for the private ip CloudSQL instance.
+    For example: "google-managed-services-default". If set, the cloned instance
+    ip will be created in the allocated range. The range name must comply with
+    [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name
+    must be 1-63 characters long and match the regular expression
+    [a-z]([-a-z0-9]*[a-z0-9])?.
+    Reserved for future use.
+    """
+
     def __init__(self,
         *,
         kind : typing.Text = ...,
@@ -1187,9 +1198,10 @@ class CloneContext(google.protobuf.message.Message):
         destination_instance_name : typing.Text = ...,
         bin_log_coordinates : typing.Optional[global___BinLogCoordinates] = ...,
         point_in_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
+        allocated_ip_range : typing.Text = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["bin_log_coordinates",b"bin_log_coordinates","point_in_time",b"point_in_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["bin_log_coordinates",b"bin_log_coordinates","destination_instance_name",b"destination_instance_name","kind",b"kind","pitr_timestamp_ms",b"pitr_timestamp_ms","point_in_time",b"point_in_time"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["allocated_ip_range",b"allocated_ip_range","bin_log_coordinates",b"bin_log_coordinates","destination_instance_name",b"destination_instance_name","kind",b"kind","pitr_timestamp_ms",b"pitr_timestamp_ms","point_in_time",b"point_in_time"]) -> None: ...
 global___CloneContext = CloneContext
 
 class Database(google.protobuf.message.Message):
@@ -1205,7 +1217,7 @@ class Database(google.protobuf.message.Message):
     PROJECT_FIELD_NUMBER: builtins.int
     SQLSERVER_DATABASE_DETAILS_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#database**."""
+    """This is always `sql#database`."""
 
     charset: typing.Text = ...
     """The Cloud SQL charset value."""
@@ -1286,8 +1298,8 @@ class DatabaseFlags(google.protobuf.message.Message):
     """
 
     value: typing.Text = ...
-    """The value of the flag. Booleans are set to **on** for true
-    and **off** for false. This field must be omitted if the flag
+    """The value of the flag. Boolean flags are set to `on` for true
+    and `off` for false. This field must be omitted if the flag
     doesn't take a value.
     """
 
@@ -1570,14 +1582,16 @@ class DatabaseInstance(google.protobuf.message.Message):
     DATABASE_INSTALLED_VERSION_FIELD_NUMBER: builtins.int
     OUT_OF_DISK_REPORT_FIELD_NUMBER: builtins.int
     CREATE_TIME_FIELD_NUMBER: builtins.int
+    AVAILABLE_MAINTENANCE_VERSIONS_FIELD_NUMBER: builtins.int
+    MAINTENANCE_VERSION_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#instance**."""
+    """This is always `sql#instance`."""
 
     state: global___DatabaseInstance.SqlInstanceState.ValueType = ...
     """The current serving state of the Cloud SQL instance."""
 
     database_version: global___SqlDatabaseVersion.ValueType = ...
-    """The database engine type and version. The **databaseVersion** field cannot
+    """The database engine type and version. The `databaseVersion` field cannot
     be changed after instance creation.
     """
 
@@ -1587,7 +1601,7 @@ class DatabaseInstance(google.protobuf.message.Message):
         pass
     etag: typing.Text = ...
     """This field is deprecated and will be removed from a future version of the
-    API. Use the **settings.settingsVersion** field instead.
+    API. Use the `settings.settingsVersion` field instead.
     """
 
     @property
@@ -1640,7 +1654,7 @@ class DatabaseInstance(google.protobuf.message.Message):
     """
 
     service_account_email_address: typing.Text = ...
-    """The service account email address assigned to the instance. <br>This
+    """The service account email address assigned to the instance. \\This
     property is read-only.
     """
 
@@ -1654,10 +1668,10 @@ class DatabaseInstance(google.protobuf.message.Message):
         pass
     backend_type: global___SqlBackendType.ValueType = ...
     """The backend type.
-    **SECOND_GEN**: Cloud SQL database instance.
-    **EXTERNAL**: A database server that is not managed by Google.
+    `SECOND_GEN`: Cloud SQL database instance.
+    `EXTERNAL`: A database server that is not managed by Google.
 
-    This property is read-only; use the **tier** property in the **settings**
+    This property is read-only; use the `tier` property in the `settings`
     object to determine the database type.
     """
 
@@ -1676,11 +1690,11 @@ class DatabaseInstance(google.protobuf.message.Message):
 
     region: typing.Text = ...
     """The geographical region. Can be:
-    *  **us-central** (**FIRST_GEN** instances only)
-    *  **us-central1** (**SECOND_GEN** instances only)
-    *  **asia-east1** or **europe-west1**.
+    *  `us-central` (`FIRST_GEN` instances only)
+    *  `us-central1` (`SECOND_GEN` instances only)
+    *  `asia-east1` or `europe-west1`.
 
-    Defaults to **us-central** or **us-central1** depending on the instance
+    Defaults to `us-central` or `us-central1` depending on the instance
     type. The region cannot be changed after instance creation.
     """
 
@@ -1722,7 +1736,7 @@ class DatabaseInstance(google.protobuf.message.Message):
         pass
     database_installed_version: typing.Text = ...
     """Output only. Stores the current database version running on the instance including
-    minor version such as **MYSQL_8_0_18**.
+    minor version such as `MYSQL_8_0_18`.
     """
 
     @property
@@ -1739,9 +1753,16 @@ class DatabaseInstance(google.protobuf.message.Message):
     def create_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Output only. The time when the instance was created in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
+    @property
+    def available_maintenance_versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """List all maintenance versions applicable on the instance"""
+        pass
+    maintenance_version: typing.Text = ...
+    """The current software version on the instance."""
+
     def __init__(self,
         *,
         kind : typing.Text = ...,
@@ -1778,9 +1799,11 @@ class DatabaseInstance(google.protobuf.message.Message):
         database_installed_version : typing.Text = ...,
         out_of_disk_report : typing.Optional[global___DatabaseInstance.SqlOutOfDiskReport] = ...,
         create_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
+        available_maintenance_versions : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        maintenance_version : typing.Text = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["_out_of_disk_report",b"_out_of_disk_report","create_time",b"create_time","current_disk_size",b"current_disk_size","disk_encryption_configuration",b"disk_encryption_configuration","disk_encryption_status",b"disk_encryption_status","failover_replica",b"failover_replica","max_disk_size",b"max_disk_size","on_premises_configuration",b"on_premises_configuration","out_of_disk_report",b"out_of_disk_report","replica_configuration",b"replica_configuration","satisfies_pzs",b"satisfies_pzs","scheduled_maintenance",b"scheduled_maintenance","server_ca_cert",b"server_ca_cert","settings",b"settings"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["_out_of_disk_report",b"_out_of_disk_report","backend_type",b"backend_type","connection_name",b"connection_name","create_time",b"create_time","current_disk_size",b"current_disk_size","database_installed_version",b"database_installed_version","database_version",b"database_version","disk_encryption_configuration",b"disk_encryption_configuration","disk_encryption_status",b"disk_encryption_status","etag",b"etag","failover_replica",b"failover_replica","gce_zone",b"gce_zone","instance_type",b"instance_type","ip_addresses",b"ip_addresses","ipv6_address",b"ipv6_address","kind",b"kind","master_instance_name",b"master_instance_name","max_disk_size",b"max_disk_size","name",b"name","on_premises_configuration",b"on_premises_configuration","out_of_disk_report",b"out_of_disk_report","project",b"project","region",b"region","replica_configuration",b"replica_configuration","replica_names",b"replica_names","root_password",b"root_password","satisfies_pzs",b"satisfies_pzs","scheduled_maintenance",b"scheduled_maintenance","secondary_gce_zone",b"secondary_gce_zone","self_link",b"self_link","server_ca_cert",b"server_ca_cert","service_account_email_address",b"service_account_email_address","settings",b"settings","state",b"state","suspension_reason",b"suspension_reason"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["_out_of_disk_report",b"_out_of_disk_report","available_maintenance_versions",b"available_maintenance_versions","backend_type",b"backend_type","connection_name",b"connection_name","create_time",b"create_time","current_disk_size",b"current_disk_size","database_installed_version",b"database_installed_version","database_version",b"database_version","disk_encryption_configuration",b"disk_encryption_configuration","disk_encryption_status",b"disk_encryption_status","etag",b"etag","failover_replica",b"failover_replica","gce_zone",b"gce_zone","instance_type",b"instance_type","ip_addresses",b"ip_addresses","ipv6_address",b"ipv6_address","kind",b"kind","maintenance_version",b"maintenance_version","master_instance_name",b"master_instance_name","max_disk_size",b"max_disk_size","name",b"name","on_premises_configuration",b"on_premises_configuration","out_of_disk_report",b"out_of_disk_report","project",b"project","region",b"region","replica_configuration",b"replica_configuration","replica_names",b"replica_names","root_password",b"root_password","satisfies_pzs",b"satisfies_pzs","scheduled_maintenance",b"scheduled_maintenance","secondary_gce_zone",b"secondary_gce_zone","self_link",b"self_link","server_ca_cert",b"server_ca_cert","service_account_email_address",b"service_account_email_address","settings",b"settings","state",b"state","suspension_reason",b"suspension_reason"]) -> None: ...
     def WhichOneof(self, oneof_group: typing_extensions.Literal["_out_of_disk_report",b"_out_of_disk_report"]) -> typing.Optional[typing_extensions.Literal["out_of_disk_report"]]: ...
 global___DatabaseInstance = DatabaseInstance
 
@@ -1790,7 +1813,7 @@ class DatabasesListResponse(google.protobuf.message.Message):
     KIND_FIELD_NUMBER: builtins.int
     ITEMS_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#databasesList**."""
+    """This is always `sql#databasesList`."""
 
     @property
     def items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Database]:
@@ -1812,7 +1835,7 @@ class DemoteMasterConfiguration(google.protobuf.message.Message):
     KIND_FIELD_NUMBER: builtins.int
     MYSQL_REPLICA_CONFIGURATION_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#demoteMasterConfiguration**."""
+    """This is always `sql#demoteMasterConfiguration`."""
 
     @property
     def mysql_replica_configuration(self) -> global___DemoteMasterMySqlReplicaConfiguration:
@@ -1821,7 +1844,7 @@ class DemoteMasterConfiguration(google.protobuf.message.Message):
         username, password, certificates, and keys are not stored in the instance
         metadata. The configuration information is used only to set up the
         replication connection and is stored by MySQL in a file named
-        **master.info** in the data directory.
+        `master.info` in the data directory.
         """
         pass
     def __init__(self,
@@ -1842,16 +1865,16 @@ class DemoteMasterContext(google.protobuf.message.Message):
     REPLICA_CONFIGURATION_FIELD_NUMBER: builtins.int
     SKIP_REPLICATION_SETUP_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#demoteMasterContext**."""
+    """This is always `sql#demoteMasterContext`."""
 
     @property
     def verify_gtid_consistency(self) -> google.protobuf.wrappers_pb2.BoolValue:
-        """Verify GTID consistency for demote operation. Default value:
-        **True**. Setting this flag to false enables you to bypass GTID consistency
-        check between on-premises primary instance and Cloud SQL instance during
-        the demotion operation but also exposes you to the risk of future
-        replication failures. Change the value only if you know the reason for the
-        GTID divergence and are confident that doing so will not cause any
+        """Verify the GTID consistency for demote operation. Default value:
+        `True`. Setting this flag to `false` enables you to bypass the GTID
+        consistency check between on-premises primary instance and Cloud SQL
+        instance during the demotion operation but also exposes you to the risk of
+        future replication failures. Change the value only if you know the reason
+        for the GTID divergence and are confident that doing so will not cause any
         replication issues.
         """
         pass
@@ -1891,7 +1914,7 @@ class DemoteMasterMySqlReplicaConfiguration(google.protobuf.message.Message):
     CLIENT_CERTIFICATE_FIELD_NUMBER: builtins.int
     CA_CERTIFICATE_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#demoteMasterMysqlReplicaConfiguration**."""
+    """This is always `sql#demoteMasterMysqlReplicaConfiguration`."""
 
     username: typing.Text = ...
     """The username for the replication connection."""
@@ -1973,10 +1996,10 @@ class ExportContext(google.protobuf.message.Message):
             @property
             def master_data(self) -> google.protobuf.wrappers_pb2.Int32Value:
                 """Option to include SQL statement required to set up replication. If set
-                to **1**, the dump file includes a CHANGE MASTER TO statement with the
+                to `1`, the dump file includes a CHANGE MASTER TO statement with the
                 binary log coordinates, and --set-gtid-purged is set to ON. If set to
-                **2**, the CHANGE MASTER TO statement is written as a SQL comment and
-                has no effect. If set to any value other than **1**, --set-gtid-purged
+                `2`, the CHANGE MASTER TO statement is written as a SQL comment and
+                has no effect. If set to any value other than `1`, --set-gtid-purged
                 is set to OFF.
                 """
                 pass
@@ -2021,30 +2044,30 @@ class ExportContext(google.protobuf.message.Message):
     OFFLOAD_FIELD_NUMBER: builtins.int
     uri: typing.Text = ...
     """The path to the file in Google Cloud Storage where the export will be
-    stored. The URI is in the form **gs://bucketName/fileName**. If the file
+    stored. The URI is in the form `gs://bucketName/fileName`. If the file
     already exists, the request succeeds, but the operation fails. If
-    **fileType** is **SQL** and the filename ends with .gz,
+    `fileType` is `SQL` and the filename ends with .gz,
     the contents are compressed.
     """
 
     @property
     def databases(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
-        """Databases to be exported. <br /> **MySQL instances:** If
-        **fileType** is **SQL** and no database is specified, all
-        databases are exported, except for the **mysql** system database.
-        If **fileType** is **CSV**, you can specify one database,
+        """Databases to be exported. <br /> `MySQL instances:` If
+        `fileType` is `SQL` and no database is specified, all
+        databases are exported, except for the `mysql` system database.
+        If `fileType` is `CSV`, you can specify one database,
         either by using this property or by using the
-        **csvExportOptions.selectQuery** property, which takes precedence
-        over this property. <br /> **PostgreSQL instances:** You must specify
-        one database to be exported. If **fileType** is **CSV**,
+        `csvExportOptions.selectQuery` property, which takes precedence
+        over this property. <br /> `PostgreSQL instances:` You must specify
+        one database to be exported. If `fileType` is `CSV`,
         this database must match the one specified in the
-        **csvExportOptions.selectQuery** property. <br /> **SQL Server
-        instances:** You must specify one database to be exported, and the
-        **fileType** must be **BAK**.
+        `csvExportOptions.selectQuery` property. <br /> `SQL Server
+        instances:` You must specify one database to be exported, and the
+        `fileType` must be `BAK`.
         """
         pass
     kind: typing.Text = ...
-    """This is always **sql#exportContext**."""
+    """This is always `sql#exportContext`."""
 
     @property
     def sql_export_options(self) -> global___ExportContext.SqlExportOptions:
@@ -2052,7 +2075,7 @@ class ExportContext(google.protobuf.message.Message):
         pass
     @property
     def csv_export_options(self) -> global___ExportContext.SqlCsvExportOptions:
-        """Options for exporting data as CSV. **MySQL** and **PostgreSQL**
+        """Options for exporting data as CSV. `MySQL` and `PostgreSQL`
         instances only.
         """
         pass
@@ -2088,7 +2111,7 @@ class FailoverContext(google.protobuf.message.Message):
     """
 
     kind: typing.Text = ...
-    """This is always **sql#failoverContext**."""
+    """This is always `sql#failoverContext`."""
 
     def __init__(self,
         *,
@@ -2113,32 +2136,40 @@ class Flag(google.protobuf.message.Message):
     ALLOWED_INT_VALUES_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """This is the name of the flag. Flag names always use underscores, not
-    hyphens, for example: **max_allowed_packet**
+    hyphens, for example: `max_allowed_packet`
     """
 
     type: global___SqlFlagType.ValueType = ...
-    """The type of the flag. Flags are typed to being **BOOLEAN**, **STRING**,
-    **INTEGER** or **NONE**. **NONE** is used for flags which do not take a
-    value, such as **skip_grant_tables**.
+    """The type of the flag. Flags are typed to being `BOOLEAN`, `STRING`,
+    `INTEGER` or `NONE`. `NONE` is used for flags which do not take a
+    value, such as `skip_grant_tables`.
     """
 
     @property
     def applies_to(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___SqlDatabaseVersion.ValueType]:
-        """The database version this flag applies to. Can be **MYSQL_8_0**,
-        **MYSQL_5_6**, or **MYSQL_5_7**.
+        """The database version this flag applies to. Can be
+        MySQL instances: `MYSQL_8_0`, `MYSQL_8_0_18`, `MYSQL_8_0_26`, `MYSQL_5_7`,
+        or `MYSQL_5_6`. PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
+        `POSTGRES_11` or `POSTGRES_12`. SQL Server instances:
+        `SQLSERVER_2017_STANDARD`, `SQLSERVER_2017_ENTERPRISE`,
+        `SQLSERVER_2017_EXPRESS`, `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`,
+        `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
+        `SQLSERVER_2019_WEB`.
+        See [the complete
+        list](/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
         """
         pass
     @property
     def allowed_string_values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
-        """For **STRING** flags, a list of strings that the value can be set to."""
+        """For `STRING` flags, a list of strings that the value can be set to."""
         pass
     @property
     def min_value(self) -> google.protobuf.wrappers_pb2.Int64Value:
-        """For **INTEGER** flags, the minimum allowed value."""
+        """For `INTEGER` flags, the minimum allowed value."""
         pass
     @property
     def max_value(self) -> google.protobuf.wrappers_pb2.Int64Value:
-        """For **INTEGER** flags, the maximum allowed value."""
+        """For `INTEGER` flags, the maximum allowed value."""
         pass
     @property
     def requires_restart(self) -> google.protobuf.wrappers_pb2.BoolValue:
@@ -2147,7 +2178,7 @@ class Flag(google.protobuf.message.Message):
         """
         pass
     kind: typing.Text = ...
-    """This is always **sql#flag**."""
+    """This is always `sql#flag`."""
 
     @property
     def in_beta(self) -> google.protobuf.wrappers_pb2.BoolValue:
@@ -2182,7 +2213,7 @@ class FlagsListResponse(google.protobuf.message.Message):
     KIND_FIELD_NUMBER: builtins.int
     ITEMS_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#flagsList**."""
+    """This is always `sql#flagsList`."""
 
     @property
     def items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Flag]:
@@ -2254,13 +2285,13 @@ class ImportContext(google.protobuf.message.Message):
             PVK_PASSWORD_FIELD_NUMBER: builtins.int
             cert_path: typing.Text = ...
             """Path to the Certificate (.cer) in Cloud Storage, in the form
-            **gs://bucketName/fileName**. The instance must have write permissions
+            `gs://bucketName/fileName`. The instance must have write permissions
             to the bucket and read access to the file.
             """
 
             pvk_path: typing.Text = ...
             """Path to the Certificate Private Key (.pvk)  in Cloud Storage, in the
-            form **gs://bucketName/fileName**. The instance must have write
+            form `gs://bucketName/fileName`. The instance must have write
             permissions to the bucket and read access to the file.
             """
 
@@ -2294,26 +2325,26 @@ class ImportContext(google.protobuf.message.Message):
     BAK_IMPORT_OPTIONS_FIELD_NUMBER: builtins.int
     uri: typing.Text = ...
     """Path to the import file in Cloud Storage, in the form
-    **gs://bucketName/fileName**. Compressed gzip files (.gz) are supported
-    when **fileType** is **SQL**. The instance must have
+    `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported
+    when `fileType` is `SQL`. The instance must have
     write permissions to the bucket and read access to the file.
     """
 
     database: typing.Text = ...
-    """The target database for the import. If **fileType** is **SQL**, this field
+    """The target database for the import. If `fileType` is `SQL`, this field
     is required only if the import file does not specify a database, and is
     overridden by any database specification in the import file. If
-    **fileType** is **CSV**, one database must be specified.
+    `fileType` is `CSV`, one database must be specified.
     """
 
     kind: typing.Text = ...
-    """This is always **sql#importContext**."""
+    """This is always `sql#importContext`."""
 
     file_type: global___SqlFileType.ValueType = ...
     """The file type for the specified uri.
-    *  **SQL**: The file contains SQL statements.
-    *  **CSV**: The file contains CSV data.
-    *  **BAK**: The file contains backup data for a SQL Server instance.
+    *  `SQL`: The file contains SQL statements.
+    *  `CSV`: The file contains CSV data.
+    *  `BAK`: The file contains backup data for a SQL Server instance.
     """
 
     @property
@@ -2444,7 +2475,7 @@ class InstancesListResponse(google.protobuf.message.Message):
     ITEMS_FIELD_NUMBER: builtins.int
     NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#instancesList**."""
+    """This is always `sql#instancesList`."""
 
     @property
     def warnings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ApiWarning]:
@@ -2481,7 +2512,7 @@ class InstancesListServerCasResponse(google.protobuf.message.Message):
         pass
     active_version: typing.Text = ...
     kind: typing.Text = ...
-    """This is always **sql#instancesListServerCas**."""
+    """This is always `sql#instancesListServerCas`."""
 
     def __init__(self,
         *,
@@ -2547,7 +2578,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse(google.protobuf.message.Mes
     ERRORS_FIELD_NUMBER: builtins.int
     WARNINGS_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#migrationSettingErrorList**."""
+    """This is always `sql#migrationSettingErrorList`."""
 
     @property
     def errors(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SqlExternalSyncSettingError]:
@@ -2726,8 +2757,8 @@ class SqlExternalSyncSettingError(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     DETAIL_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """Can be **sql#externalSyncSettingError** or
-    **sql#externalSyncSettingWarning**.
+    """Can be `sql#externalSyncSettingError` or
+    `sql#externalSyncSettingWarning`.
     """
 
     type: global___SqlExternalSyncSettingError.SqlExternalSyncSettingErrorType.ValueType = ...
@@ -2760,7 +2791,7 @@ class IpConfiguration(google.protobuf.message.Message):
     private_network: typing.Text = ...
     """The resource link for the VPC network from which the Cloud SQL instance is
     accessible for private IP. For example,
-    **/projects/myProject/global/networks/default**. This setting can
+    `/projects/myProject/global/networks/default`. This setting can
     be updated, but it cannot be removed after it is set.
     """
 
@@ -2772,7 +2803,7 @@ class IpConfiguration(google.protobuf.message.Message):
     def authorized_networks(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AclEntry]:
         """The list of external networks that are allowed to connect to the instance
         using the IP. In 'CIDR' notation, also known as 'slash' notation (for
-        example: **157.197.200.0/24**).
+        example: `157.197.200.0/24`).
         """
         pass
     allocated_ip_range: typing.Text = ...
@@ -2803,9 +2834,9 @@ class IpMapping(google.protobuf.message.Message):
     IP_ADDRESS_FIELD_NUMBER: builtins.int
     TIME_TO_RETIRE_FIELD_NUMBER: builtins.int
     type: global___SqlIpAddressType.ValueType = ...
-    """The type of this IP address. A **PRIMARY** address is a public address that
-    can accept incoming connections. A **PRIVATE** address is a private address
-    that can accept incoming connections. An **OUTGOING** address is the source
+    """The type of this IP address. A `PRIMARY` address is a public address that
+    can accept incoming connections. A `PRIVATE` address is a private address
+    that can accept incoming connections. An `OUTGOING` address is the source
     address of connections originating from the instance, if supported.
     """
 
@@ -2816,7 +2847,7 @@ class IpMapping(google.protobuf.message.Message):
     def time_to_retire(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The due time for this IP to be retired in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**. This field is only available when
+        `2012-11-15T16:19:00.094Z`. This field is only available when
         the IP is scheduled to be retired.
         """
         pass
@@ -2858,7 +2889,7 @@ class LocationPreference(google.protobuf.message.Message):
     """
 
     kind: typing.Text = ...
-    """This is always **sql#locationPreference**."""
+    """This is always `sql#locationPreference`."""
 
     def __init__(self,
         *,
@@ -2888,13 +2919,13 @@ class MaintenanceWindow(google.protobuf.message.Message):
         """day of week (1-7), starting on Monday."""
         pass
     update_track: global___SqlUpdateTrack.ValueType = ...
-    """Maintenance timing setting: **canary** (Earlier) or **stable** (Later).
+    """Maintenance timing setting: `canary` (Earlier) or `stable` (Later).
     [Learn
     more](https://cloud.google.com/sql/docs/mysql/instance-settings#maintenance-timing-2ndgen).
     """
 
     kind: typing.Text = ...
-    """This is always **sql#maintenanceWindow**."""
+    """This is always `sql#maintenanceWindow`."""
 
     def __init__(self,
         *,
@@ -3048,7 +3079,7 @@ class MySqlReplicaConfiguration(google.protobuf.message.Message):
         """
         pass
     kind: typing.Text = ...
-    """This is always **sql#mysqlReplicaConfiguration**."""
+    """This is always `sql#mysqlReplicaConfiguration`."""
 
     def __init__(self,
         *,
@@ -3084,7 +3115,7 @@ class OnPremisesConfiguration(google.protobuf.message.Message):
     """The host and port of the on-premises instance in host:port format"""
 
     kind: typing.Text = ...
-    """This is always **sql#onPremisesConfiguration**."""
+    """This is always `sql#onPremisesConfiguration`."""
 
     username: typing.Text = ...
     """The username for connecting to on-premises instance."""
@@ -3135,7 +3166,7 @@ class DiskEncryptionConfiguration(google.protobuf.message.Message):
     """Resource name of KMS key for disk encryption"""
 
     kind: typing.Text = ...
-    """This is always **sql#diskEncryptionConfiguration**."""
+    """This is always `sql#diskEncryptionConfiguration`."""
 
     def __init__(self,
         *,
@@ -3154,7 +3185,7 @@ class DiskEncryptionStatus(google.protobuf.message.Message):
     """KMS key version used to encrypt the Cloud SQL instance resource"""
 
     kind: typing.Text = ...
-    """This is always **sql#diskEncryptionStatus**."""
+    """This is always `sql#diskEncryptionStatus`."""
 
     def __init__(self,
         *,
@@ -3445,7 +3476,7 @@ class Operation(google.protobuf.message.Message):
     SELF_LINK_FIELD_NUMBER: builtins.int
     TARGET_PROJECT_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#operation**."""
+    """This is always `sql#operation`."""
 
     target_link: typing.Text = ...
     status: global___Operation.SqlOperationStatus.ValueType = ...
@@ -3458,21 +3489,21 @@ class Operation(google.protobuf.message.Message):
     def insert_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time this operation was enqueued in UTC timezone in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     @property
     def start_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time this operation actually started in UTC timezone in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     @property
     def end_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time this operation finished in UTC timezone in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     @property
@@ -3483,18 +3514,18 @@ class Operation(google.protobuf.message.Message):
         pass
     operation_type: global___Operation.SqlOperationType.ValueType = ...
     """The type of the operation. Valid values are:
-    *  **CREATE**
-    *  **DELETE**
-    *  **UPDATE**
-    *  **RESTART**
-    *  **IMPORT**
-    *  **EXPORT**
-    *  **BACKUP_VOLUME**
-    *  **RESTORE_VOLUME**
-    *  **CREATE_USER**
-    *  **DELETE_USER**
-    *  **CREATE_DATABASE**
-    *  **DELETE_DATABASE**
+    *  `CREATE`
+    *  `DELETE`
+    *  `UPDATE`
+    *  `RESTART`
+    *  `IMPORT`
+    *  `EXPORT`
+    *  `BACKUP_VOLUME`
+    *  `RESTORE_VOLUME`
+    *  `CREATE_USER`
+    *  `DELETE_USER`
+    *  `CREATE_DATABASE`
+    *  `DELETE_DATABASE`
     """
 
     @property
@@ -3554,7 +3585,7 @@ class OperationError(google.protobuf.message.Message):
     CODE_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#operationError**."""
+    """This is always `sql#operationError`."""
 
     code: typing.Text = ...
     """Identifies the specific error that occurred."""
@@ -3577,7 +3608,7 @@ class OperationErrors(google.protobuf.message.Message):
     KIND_FIELD_NUMBER: builtins.int
     ERRORS_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#operationErrors**."""
+    """This is always `sql#operationErrors`."""
 
     @property
     def errors(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OperationError]:
@@ -3665,7 +3696,7 @@ class OperationsListResponse(google.protobuf.message.Message):
     ITEMS_FIELD_NUMBER: builtins.int
     NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#operationsList**."""
+    """This is always `sql#operationsList`."""
 
     @property
     def items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Operation]:
@@ -3692,7 +3723,7 @@ class ReplicaConfiguration(google.protobuf.message.Message):
     MYSQL_REPLICA_CONFIGURATION_FIELD_NUMBER: builtins.int
     FAILOVER_TARGET_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#replicaConfiguration**."""
+    """This is always `sql#replicaConfiguration`."""
 
     @property
     def mysql_replica_configuration(self) -> global___MySqlReplicaConfiguration:
@@ -3701,13 +3732,13 @@ class ReplicaConfiguration(google.protobuf.message.Message):
         username, password, certificates, and keys are not stored in the instance
         metadata. The configuration information is used only to set up the
         replication connection and is stored by MySQL in a file named
-        **master.info** in the data directory.
+        `master.info` in the data directory.
         """
         pass
     @property
     def failover_target(self) -> google.protobuf.wrappers_pb2.BoolValue:
         """Specifies if the replica is the failover target. If the field is set to
-        **true** the replica will be designated as a failover replica. In case the
+        `true` the replica will be designated as a failover replica. In case the
         primary instance fails, the replica instance will be promoted as the new
         primary instance. Only one replica can be specified as failover target, and
         the replica has to be in different zone with the primary instance.
@@ -3733,7 +3764,7 @@ class RestoreBackupContext(google.protobuf.message.Message):
     INSTANCE_ID_FIELD_NUMBER: builtins.int
     PROJECT_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#restoreBackupContext**."""
+    """This is always `sql#restoreBackupContext`."""
 
     backup_run_id: builtins.int = ...
     """The ID of the backup run to restore from."""
@@ -3760,7 +3791,7 @@ class RotateServerCaContext(google.protobuf.message.Message):
     KIND_FIELD_NUMBER: builtins.int
     NEXT_VERSION_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#rotateServerCaContext**."""
+    """This is always `sql#rotateServerCaContext`."""
 
     next_version: typing.Text = ...
     """The fingerprint of the next version to be rotated to. If left unspecified,
@@ -3867,11 +3898,11 @@ class Settings(google.protobuf.message.Message):
         pass
     tier: typing.Text = ...
     """The tier (or machine type) for this instance, for example
-    **db-custom-1-3840**. WARNING: Changing this restarts the instance.
+    `db-custom-1-3840`. WARNING: Changing this restarts the instance.
     """
 
     kind: typing.Text = ...
-    """This is always **sql#settings**."""
+    """This is always `sql#settings`."""
 
     @property
     def user_labels(self) -> google.protobuf.internal.containers.ScalarMap[typing.Text, typing.Text]:
@@ -3881,9 +3912,9 @@ class Settings(google.protobuf.message.Message):
         pass
     availability_type: global___SqlAvailabilityType.ValueType = ...
     """Availability type. Potential values:
-    *  **ZONAL**: The instance serves data from only one zone. Outages in that
+    *  `ZONAL`: The instance serves data from only one zone. Outages in that
     zone affect data accessibility.
-    *  **REGIONAL**: The instance can serve data from more than one zone in a
+    *  `REGIONAL`: The instance can serve data from more than one zone in a
     region (it is highly available)./
 
     For more information, see [Overview of the High Availability
@@ -3891,13 +3922,13 @@ class Settings(google.protobuf.message.Message):
     """
 
     pricing_plan: global___SqlPricingPlan.ValueType = ...
-    """The pricing plan for this instance. This can be either **PER_USE** or
-    **PACKAGE**. Only **PER_USE** is supported for Second Generation instances.
+    """The pricing plan for this instance. This can be either `PER_USE` or
+    `PACKAGE`. Only `PER_USE` is supported for Second Generation instances.
     """
 
     replication_type: global___SqlReplicationType.ValueType = ...
     """The type of replication this instance uses. This can be either
-    **ASYNCHRONOUS** or **SYNCHRONOUS**. (Deprecated) This property was only
+    `ASYNCHRONOUS` or `SYNCHRONOUS`. (Deprecated) This property was only
     applicable to First Generation instances.
     """
 
@@ -3910,9 +3941,9 @@ class Settings(google.protobuf.message.Message):
     activation_policy: global___Settings.SqlActivationPolicy.ValueType = ...
     """The activation policy specifies when the instance is activated; it is
     applicable only when the instance state is RUNNABLE. Valid values:
-    *  **ALWAYS**: The instance is on, and remains so even in the absence of
+    *  `ALWAYS`: The instance is on, and remains so even in the absence of
     connection requests.
-    *  **NEVER**: The instance is off; it is not activated, even if a
+    *  `NEVER`: The instance is off; it is not activated, even if a
     connection request arrives.
     """
 
@@ -3942,7 +3973,7 @@ class Settings(google.protobuf.message.Message):
         """The database flags passed to the instance at startup."""
         pass
     data_disk_type: global___SqlDataDiskType.ValueType = ...
-    """The type of data disk: **PD_SSD** (default) or **PD_HDD**. Not used for
+    """The type of data disk: `PD_SSD` (default) or `PD_HDD`. Not used for
     First Generation instances.
     """
 
@@ -4043,7 +4074,7 @@ class SslCert(google.protobuf.message.Message):
     INSTANCE_FIELD_NUMBER: builtins.int
     SELF_LINK_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#sslCert**."""
+    """This is always `sql#sslCert`."""
 
     cert_serial_number: typing.Text = ...
     """Serial number, as extracted from the certificate."""
@@ -4055,7 +4086,7 @@ class SslCert(google.protobuf.message.Message):
     def create_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time when the certificate was created in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     common_name: typing.Text = ...
@@ -4065,7 +4096,7 @@ class SslCert(google.protobuf.message.Message):
     def expiration_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time when the certificate expires in
         [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-        **2012-11-15T16:19:00.094Z**.
+        `2012-11-15T16:19:00.094Z`.
         """
         pass
     sha1_fingerprint: typing.Text = ...
@@ -4199,7 +4230,7 @@ class SqlInstancesRescheduleMaintenanceRequestBody(google.protobuf.message.Messa
             """Optional. Timestamp when the maintenance shall be rescheduled to if
             reschedule_type=SPECIFIC_TIME, in
             [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
-            **2012-11-15T16:19:00.094Z**.
+            `2012-11-15T16:19:00.094Z`.
             """
             pass
         def __init__(self,
@@ -4231,7 +4262,7 @@ class SslCertsInsertResponse(google.protobuf.message.Message):
     SERVER_CA_CERT_FIELD_NUMBER: builtins.int
     CLIENT_CERT_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#sslCertsInsert**."""
+    """This is always `sql#sslCertsInsert`."""
 
     @property
     def operation(self) -> global___Operation:
@@ -4265,7 +4296,7 @@ class SslCertsListResponse(google.protobuf.message.Message):
     KIND_FIELD_NUMBER: builtins.int
     ITEMS_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#sslCertsList**."""
+    """This is always `sql#sslCertsList`."""
 
     @property
     def items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SslCert]:
@@ -4285,11 +4316,11 @@ class TruncateLogContext(google.protobuf.message.Message):
     KIND_FIELD_NUMBER: builtins.int
     LOG_TYPE_FIELD_NUMBER: builtins.int
     kind: typing.Text = ...
-    """This is always **sql#truncateLogContext**."""
+    """This is always `sql#truncateLogContext`."""
 
     log_type: typing.Text = ...
-    """The type of log to truncate. Valid values are **MYSQL_GENERAL_TABLE** and
-    **MYSQL_SLOW_TABLE**.
+    """The type of log to truncate. Valid values are `MYSQL_GENERAL_TABLE` and
+    `MYSQL_SLOW_TABLE`.
     """
 
     def __init__(self,

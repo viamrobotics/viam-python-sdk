@@ -61,26 +61,28 @@ class ConnectSettings(google.protobuf.message.Message):
         """The assigned IP addresses for the instance."""
         pass
     region: typing.Text = ...
-    """The cloud region for the instance. e.g. **us-central1**, **europe-west1**.
+    """The cloud region for the instance. e.g. `us-central1`, `europe-west1`.
     The region cannot be changed after instance creation.
     """
 
     database_version: google.cloud.sql.v1beta4.cloud_sql_resources_pb2.SqlDatabaseVersion.ValueType = ...
-    """The database engine type and version. The **databaseVersion**
+    """The database engine type and version. The `databaseVersion`
     field cannot be changed after instance creation.
-      MySQL instances: **MYSQL_8_0**, **MYSQL_5_7** (default),
-    or **MYSQL_5_6**.
-      PostgreSQL instances: **POSTGRES_9_6**, **POSTGRES_10**,
-    **POSTGRES_11** or **POSTGRES_12** (default).
-      SQL Server instances: **SQLSERVER_2017_STANDARD** (default),
-    **SQLSERVER_2017_ENTERPRISE**, **SQLSERVER_2017_EXPRESS**, or
-    **SQLSERVER_2017_WEB**.
+      MySQL instances: `MYSQL_8_0`, `MYSQL_5_7` (default),
+    or `MYSQL_5_6`.
+      PostgreSQL instances: `POSTGRES_9_6`, `POSTGRES_10`,
+    `POSTGRES_11` or `POSTGRES_12` (default), `POSTGRES_13`, or `POSTGRES_14`.
+      SQL Server instances: `SQLSERVER_2017_STANDARD` (default),
+    `SQLSERVER_2017_ENTERPRISE`, `SQLSERVER_2017_EXPRESS`,
+    `SQLSERVER_2017_WEB`, `SQLSERVER_2019_STANDARD`,
+    `SQLSERVER_2019_ENTERPRISE`, `SQLSERVER_2019_EXPRESS`, or
+    `SQLSERVER_2019_WEB`.
     """
 
     backend_type: google.cloud.sql.v1beta4.cloud_sql_resources_pb2.SqlBackendType.ValueType = ...
-    """**SECOND_GEN**: Cloud SQL database instance.
-    **EXTERNAL**: A database server that is not managed by Google.
-    This property is read-only; use the **tier** property in the **settings**
+    """`SECOND_GEN`: Cloud SQL database instance.
+    `EXTERNAL`: A database server that is not managed by Google.
+    This property is read-only; use the `tier` property in the `settings`
     object to determine the database type.
     """
 

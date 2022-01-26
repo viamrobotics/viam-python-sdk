@@ -6739,6 +6739,75 @@ class VirtualNIC(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["enabled",b"enabled"]) -> None: ...
 global___VirtualNIC = VirtualNIC
 
+class GetOpenIDConfigRequest(google.protobuf.message.Message):
+    """GetOpenIDConfigRequest gets the OIDC discovery document for the
+    cluster. See the OpenID Connect Discovery 1.0 specification for details.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    PARENT_FIELD_NUMBER: builtins.int
+    parent: typing.Text = ...
+    """The cluster (project, location, cluster name) to get the discovery document
+    for. Specified in the format `projects/*/locations/*/clusters/*`.
+    """
+
+    def __init__(self,
+        *,
+        parent : typing.Text = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["parent",b"parent"]) -> None: ...
+global___GetOpenIDConfigRequest = GetOpenIDConfigRequest
+
+class GetOpenIDConfigResponse(google.protobuf.message.Message):
+    """GetOpenIDConfigResponse is an OIDC discovery document for the cluster.
+    See the OpenID Connect Discovery 1.0 specification for details.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    ISSUER_FIELD_NUMBER: builtins.int
+    JWKS_URI_FIELD_NUMBER: builtins.int
+    RESPONSE_TYPES_SUPPORTED_FIELD_NUMBER: builtins.int
+    SUBJECT_TYPES_SUPPORTED_FIELD_NUMBER: builtins.int
+    ID_TOKEN_SIGNING_ALG_VALUES_SUPPORTED_FIELD_NUMBER: builtins.int
+    CLAIMS_SUPPORTED_FIELD_NUMBER: builtins.int
+    GRANT_TYPES_FIELD_NUMBER: builtins.int
+    issuer: typing.Text = ...
+    """OIDC Issuer."""
+
+    jwks_uri: typing.Text = ...
+    """JSON Web Key uri."""
+
+    @property
+    def response_types_supported(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """Supported response types."""
+        pass
+    @property
+    def subject_types_supported(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """Supported subject types."""
+        pass
+    @property
+    def id_token_signing_alg_values_supported(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """supported ID Token signing Algorithms."""
+        pass
+    @property
+    def claims_supported(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """Supported claims."""
+        pass
+    @property
+    def grant_types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """Supported grant types."""
+        pass
+    def __init__(self,
+        *,
+        issuer : typing.Text = ...,
+        jwks_uri : typing.Text = ...,
+        response_types_supported : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        subject_types_supported : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        id_token_signing_alg_values_supported : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        claims_supported : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        grant_types : typing.Optional[typing.Iterable[typing.Text]] = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["claims_supported",b"claims_supported","grant_types",b"grant_types","id_token_signing_alg_values_supported",b"id_token_signing_alg_values_supported","issuer",b"issuer","jwks_uri",b"jwks_uri","response_types_supported",b"response_types_supported","subject_types_supported",b"subject_types_supported"]) -> None: ...
+global___GetOpenIDConfigResponse = GetOpenIDConfigResponse
+
 class GetJSONWebKeysRequest(google.protobuf.message.Message):
     """GetJSONWebKeysRequest gets the public component of the keys used by the
     cluster to sign token requests. This will be the jwks_uri for the discover

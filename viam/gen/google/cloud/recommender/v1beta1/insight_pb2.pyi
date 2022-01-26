@@ -60,13 +60,53 @@ class Insight(google.protobuf.message.Message):
     """This insight is related to manageability."""
 
 
+    class _Severity:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+    class _SeverityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Severity.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+        SEVERITY_UNSPECIFIED: Insight.Severity.ValueType = ...  # 0
+        """Insight has unspecified severity."""
+
+        LOW: Insight.Severity.ValueType = ...  # 1
+        """Insight has low severity."""
+
+        MEDIUM: Insight.Severity.ValueType = ...  # 2
+        """Insight has medium severity."""
+
+        HIGH: Insight.Severity.ValueType = ...  # 3
+        """Insight has high severity."""
+
+        CRITICAL: Insight.Severity.ValueType = ...  # 4
+        """Insight has critical severity."""
+
+    class Severity(_Severity, metaclass=_SeverityEnumTypeWrapper):
+        """Insight severity levels."""
+        pass
+
+    SEVERITY_UNSPECIFIED: Insight.Severity.ValueType = ...  # 0
+    """Insight has unspecified severity."""
+
+    LOW: Insight.Severity.ValueType = ...  # 1
+    """Insight has low severity."""
+
+    MEDIUM: Insight.Severity.ValueType = ...  # 2
+    """Insight has medium severity."""
+
+    HIGH: Insight.Severity.ValueType = ...  # 3
+    """Insight has high severity."""
+
+    CRITICAL: Insight.Severity.ValueType = ...  # 4
+    """Insight has critical severity."""
+
+
     class RecommendationReference(google.protobuf.message.Message):
         """Reference to an associated recommendation."""
         DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
         RECOMMENDATION_FIELD_NUMBER: builtins.int
         recommendation: typing.Text = ...
         """Recommendation resource name, e.g.
-        projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/recommendations/[RECOMMENDATION_ID]
+        `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/recommendations/[RECOMMENDATION_ID]`
         """
 
         def __init__(self,
@@ -84,6 +124,7 @@ class Insight(google.protobuf.message.Message):
     OBSERVATION_PERIOD_FIELD_NUMBER: builtins.int
     STATE_INFO_FIELD_NUMBER: builtins.int
     CATEGORY_FIELD_NUMBER: builtins.int
+    SEVERITY_FIELD_NUMBER: builtins.int
     ETAG_FIELD_NUMBER: builtins.int
     ASSOCIATED_RECOMMENDATIONS_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
@@ -125,6 +166,9 @@ class Insight(google.protobuf.message.Message):
     category: global___Insight.Category.ValueType = ...
     """Category being targeted by the insight."""
 
+    severity: global___Insight.Severity.ValueType = ...
+    """Insight's severity."""
+
     etag: typing.Text = ...
     """Fingerprint of the Insight. Provides optimistic locking when updating
     states.
@@ -145,11 +189,12 @@ class Insight(google.protobuf.message.Message):
         observation_period : typing.Optional[google.protobuf.duration_pb2.Duration] = ...,
         state_info : typing.Optional[global___InsightStateInfo] = ...,
         category : global___Insight.Category.ValueType = ...,
+        severity : global___Insight.Severity.ValueType = ...,
         etag : typing.Text = ...,
         associated_recommendations : typing.Optional[typing.Iterable[global___Insight.RecommendationReference]] = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["content",b"content","last_refresh_time",b"last_refresh_time","observation_period",b"observation_period","state_info",b"state_info"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["associated_recommendations",b"associated_recommendations","category",b"category","content",b"content","description",b"description","etag",b"etag","insight_subtype",b"insight_subtype","last_refresh_time",b"last_refresh_time","name",b"name","observation_period",b"observation_period","state_info",b"state_info","target_resources",b"target_resources"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["associated_recommendations",b"associated_recommendations","category",b"category","content",b"content","description",b"description","etag",b"etag","insight_subtype",b"insight_subtype","last_refresh_time",b"last_refresh_time","name",b"name","observation_period",b"observation_period","severity",b"severity","state_info",b"state_info","target_resources",b"target_resources"]) -> None: ...
 global___Insight = Insight
 
 class InsightStateInfo(google.protobuf.message.Message):

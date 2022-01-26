@@ -21,6 +21,46 @@ class Recommendation(google.protobuf.message.Message):
     recommendation for an underutilized VM, IAM role recommendations, etc
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    class _Priority:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+    class _PriorityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Priority.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+        PRIORITY_UNSPECIFIED: Recommendation.Priority.ValueType = ...  # 0
+        """Recommendation has unspecified priority."""
+
+        P4: Recommendation.Priority.ValueType = ...  # 1
+        """Recommendation has P4 priority (lowest priority)."""
+
+        P3: Recommendation.Priority.ValueType = ...  # 2
+        """Recommendation has P3 priority (second lowest priority)."""
+
+        P2: Recommendation.Priority.ValueType = ...  # 3
+        """Recommendation has P2 priority (second highest priority)."""
+
+        P1: Recommendation.Priority.ValueType = ...  # 4
+        """Recommendation has P1 priority (highest priority)."""
+
+    class Priority(_Priority, metaclass=_PriorityEnumTypeWrapper):
+        """Recommendation priority levels."""
+        pass
+
+    PRIORITY_UNSPECIFIED: Recommendation.Priority.ValueType = ...  # 0
+    """Recommendation has unspecified priority."""
+
+    P4: Recommendation.Priority.ValueType = ...  # 1
+    """Recommendation has P4 priority (lowest priority)."""
+
+    P3: Recommendation.Priority.ValueType = ...  # 2
+    """Recommendation has P3 priority (second lowest priority)."""
+
+    P2: Recommendation.Priority.ValueType = ...  # 3
+    """Recommendation has P2 priority (second highest priority)."""
+
+    P1: Recommendation.Priority.ValueType = ...  # 4
+    """Recommendation has P1 priority (highest priority)."""
+
+
     class InsightReference(google.protobuf.message.Message):
         """Reference to an associated insight."""
         DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -42,10 +82,12 @@ class Recommendation(google.protobuf.message.Message):
     LAST_REFRESH_TIME_FIELD_NUMBER: builtins.int
     PRIMARY_IMPACT_FIELD_NUMBER: builtins.int
     ADDITIONAL_IMPACT_FIELD_NUMBER: builtins.int
+    PRIORITY_FIELD_NUMBER: builtins.int
     CONTENT_FIELD_NUMBER: builtins.int
     STATE_INFO_FIELD_NUMBER: builtins.int
     ETAG_FIELD_NUMBER: builtins.int
     ASSOCIATED_INSIGHTS_FIELD_NUMBER: builtins.int
+    XOR_GROUP_ID_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """Name of recommendation."""
 
@@ -85,6 +127,9 @@ class Recommendation(google.protobuf.message.Message):
         or negative.
         """
         pass
+    priority: global___Recommendation.Priority.ValueType = ...
+    """Recommendation's priority."""
+
     @property
     def content(self) -> global___RecommendationContent:
         """Content of the recommendation describing recommended changes to resources."""
@@ -102,6 +147,13 @@ class Recommendation(google.protobuf.message.Message):
     def associated_insights(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Recommendation.InsightReference]:
         """Insights that led to this recommendation."""
         pass
+    xor_group_id: typing.Text = ...
+    """Corresponds to a mutually exclusive group ID within a recommender.
+    A non-empty ID indicates that the recommendation belongs to a mutually
+    exclusive group. This means that only one recommendation within the group
+    is suggested to be applied.
+    """
+
     def __init__(self,
         *,
         name : typing.Text = ...,
@@ -110,19 +162,22 @@ class Recommendation(google.protobuf.message.Message):
         last_refresh_time : typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         primary_impact : typing.Optional[global___Impact] = ...,
         additional_impact : typing.Optional[typing.Iterable[global___Impact]] = ...,
+        priority : global___Recommendation.Priority.ValueType = ...,
         content : typing.Optional[global___RecommendationContent] = ...,
         state_info : typing.Optional[global___RecommendationStateInfo] = ...,
         etag : typing.Text = ...,
         associated_insights : typing.Optional[typing.Iterable[global___Recommendation.InsightReference]] = ...,
+        xor_group_id : typing.Text = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["content",b"content","last_refresh_time",b"last_refresh_time","primary_impact",b"primary_impact","state_info",b"state_info"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["additional_impact",b"additional_impact","associated_insights",b"associated_insights","content",b"content","description",b"description","etag",b"etag","last_refresh_time",b"last_refresh_time","name",b"name","primary_impact",b"primary_impact","recommender_subtype",b"recommender_subtype","state_info",b"state_info"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["additional_impact",b"additional_impact","associated_insights",b"associated_insights","content",b"content","description",b"description","etag",b"etag","last_refresh_time",b"last_refresh_time","name",b"name","primary_impact",b"primary_impact","priority",b"priority","recommender_subtype",b"recommender_subtype","state_info",b"state_info","xor_group_id",b"xor_group_id"]) -> None: ...
 global___Recommendation = Recommendation
 
 class RecommendationContent(google.protobuf.message.Message):
     """Contains what resources are changing and how they are changing."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     OPERATION_GROUPS_FIELD_NUMBER: builtins.int
+    OVERVIEW_FIELD_NUMBER: builtins.int
     @property
     def operation_groups(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___OperationGroup]:
         """Operations to one or more Google Cloud resources grouped in such a way
@@ -130,11 +185,17 @@ class RecommendationContent(google.protobuf.message.Message):
         atomically and in an order.
         """
         pass
+    @property
+    def overview(self) -> google.protobuf.struct_pb2.Struct:
+        """Condensed overview information about the recommendation."""
+        pass
     def __init__(self,
         *,
         operation_groups : typing.Optional[typing.Iterable[global___OperationGroup]] = ...,
+        overview : typing.Optional[google.protobuf.struct_pb2.Struct] = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["operation_groups",b"operation_groups"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["overview",b"overview"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["operation_groups",b"operation_groups","overview",b"overview"]) -> None: ...
 global___RecommendationContent = RecommendationContent
 
 class OperationGroup(google.protobuf.message.Message):
@@ -207,7 +268,7 @@ class Operation(google.protobuf.message.Message):
     PATH_FILTERS_FIELD_NUMBER: builtins.int
     PATH_VALUE_MATCHERS_FIELD_NUMBER: builtins.int
     action: typing.Text = ...
-    """Type of this operation. Contains one of 'and', 'remove', 'replace', 'move',
+    """Type of this operation. Contains one of 'add', 'remove', 'replace', 'move',
     'copy', 'test' and 'custom' operations. This field is case-insensitive and
     always populated.
     """
@@ -290,7 +351,7 @@ class Operation(google.protobuf.message.Message):
     @property
     def path_value_matchers(self) -> google.protobuf.internal.containers.MessageMap[typing.Text, global___ValueMatcher]:
         """Similar to path_filters, this contains set of filters to apply if `path`
-        field referes to array elements. This is meant to support value matching
+        field refers to array elements. This is meant to support value matching
         beyond exact match. To perform exact match, use path_filters.
         When both path_filters and path_value_matchers are set, an implicit AND
         must be performed.
@@ -343,6 +404,9 @@ class CostProjection(google.protobuf.message.Message):
         """An approximate projection on amount saved or amount incurred. Negative cost
         units indicate cost savings and positive cost units indicate increase.
         See google.type.Money documentation for positive/negative units.
+
+        A user's permissions may affect whether the cost is computed using list
+        prices or custom contract prices.
         """
         pass
     @property
@@ -357,6 +421,24 @@ class CostProjection(google.protobuf.message.Message):
     def HasField(self, field_name: typing_extensions.Literal["cost",b"cost","duration",b"duration"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing_extensions.Literal["cost",b"cost","duration",b"duration"]) -> None: ...
 global___CostProjection = CostProjection
+
+class SecurityProjection(google.protobuf.message.Message):
+    """Contains various ways of describing the impact on Security."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DETAILS_FIELD_NUMBER: builtins.int
+    @property
+    def details(self) -> google.protobuf.struct_pb2.Struct:
+        """This field can be used by the recommender to define details specific to
+        security impact.
+        """
+        pass
+    def __init__(self,
+        *,
+        details : typing.Optional[google.protobuf.struct_pb2.Struct] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["details",b"details"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["details",b"details"]) -> None: ...
+global___SecurityProjection = SecurityProjection
 
 class Impact(google.protobuf.message.Message):
     """Contains the impact a recommendation can have for a given category."""
@@ -381,6 +463,9 @@ class Impact(google.protobuf.message.Message):
         MANAGEABILITY: Impact.Category.ValueType = ...  # 4
         """Indicates a potential increase or decrease in manageability."""
 
+        SUSTAINABILITY: Impact.Category.ValueType = ...  # 5
+        """Indicates a potential increase or decrease in sustainability."""
+
     class Category(_Category, metaclass=_CategoryEnumTypeWrapper):
         """The category of the impact."""
         pass
@@ -400,9 +485,13 @@ class Impact(google.protobuf.message.Message):
     MANAGEABILITY: Impact.Category.ValueType = ...  # 4
     """Indicates a potential increase or decrease in manageability."""
 
+    SUSTAINABILITY: Impact.Category.ValueType = ...  # 5
+    """Indicates a potential increase or decrease in sustainability."""
+
 
     CATEGORY_FIELD_NUMBER: builtins.int
     COST_PROJECTION_FIELD_NUMBER: builtins.int
+    SECURITY_PROJECTION_FIELD_NUMBER: builtins.int
     category: global___Impact.Category.ValueType = ...
     """Category that is being targeted."""
 
@@ -410,14 +499,19 @@ class Impact(google.protobuf.message.Message):
     def cost_projection(self) -> global___CostProjection:
         """Use with CategoryType.COST"""
         pass
+    @property
+    def security_projection(self) -> global___SecurityProjection:
+        """Use with CategoryType.SECURITY"""
+        pass
     def __init__(self,
         *,
         category : global___Impact.Category.ValueType = ...,
         cost_projection : typing.Optional[global___CostProjection] = ...,
+        security_projection : typing.Optional[global___SecurityProjection] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["cost_projection",b"cost_projection","projection",b"projection"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["category",b"category","cost_projection",b"cost_projection","projection",b"projection"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing_extensions.Literal["projection",b"projection"]) -> typing.Optional[typing_extensions.Literal["cost_projection"]]: ...
+    def HasField(self, field_name: typing_extensions.Literal["cost_projection",b"cost_projection","projection",b"projection","security_projection",b"security_projection"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["category",b"category","cost_projection",b"cost_projection","projection",b"projection","security_projection",b"security_projection"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["projection",b"projection"]) -> typing.Optional[typing_extensions.Literal["cost_projection","security_projection"]]: ...
 global___Impact = Impact
 
 class RecommendationStateInfo(google.protobuf.message.Message):

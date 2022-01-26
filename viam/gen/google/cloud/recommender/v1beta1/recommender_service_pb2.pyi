@@ -4,8 +4,11 @@ isort:skip_file
 """
 import builtins
 import google.cloud.recommender.v1beta1.insight_pb2
+import google.cloud.recommender.v1beta1.insight_type_config_pb2
 import google.cloud.recommender.v1beta1.recommendation_pb2
+import google.cloud.recommender.v1beta1.recommender_config_pb2
 import google.protobuf.descriptor
+import google.protobuf.field_mask_pb2
 import google.protobuf.internal.containers
 import google.protobuf.message
 import typing
@@ -24,8 +27,15 @@ class ListInsightsRequest(google.protobuf.message.Message):
     """Required. The container resource on which to execute the request.
     Acceptable formats:
 
-    1.
-    "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
+    * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+
+    * `projects/[PROJECT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+
+    * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+
+    * `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
+
+    * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]`
 
     LOCATION here refers to GCP Locations:
     https://cloud.google.com/about/locations/
@@ -48,8 +58,26 @@ class ListInsightsRequest(google.protobuf.message.Message):
 
     filter: typing.Text = ...
     """Optional. Filter expression to restrict the insights returned. Supported
-    filter fields: state
-    Eg: `state:"DISMISSED" or state:"ACTIVE"
+    filter fields:
+
+    * `stateInfo.state`
+
+    * `insightSubtype`
+
+    * `severity`
+
+    Examples:
+
+    * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+
+    * `insightSubtype = PERMISSIONS_USAGE`
+
+    * `severity = CRITICAL OR severity = HIGH`
+
+    * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)`
+
+    (These expressions are based on the filter language described at
+    https://google.aip.dev/160)
     """
 
     def __init__(self,
@@ -149,8 +177,15 @@ class ListRecommendationsRequest(google.protobuf.message.Message):
     """Required. The container resource on which to execute the request.
     Acceptable formats:
 
-    1.
-    "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
+    * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+
+    * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+
+    * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+
+    * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+
+    * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
 
     LOCATION here refers to GCP Locations:
     https://cloud.google.com/about/locations/
@@ -173,8 +208,26 @@ class ListRecommendationsRequest(google.protobuf.message.Message):
 
     filter: typing.Text = ...
     """Filter expression to restrict the recommendations returned. Supported
-    filter fields: state_info.state
-    Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+    filter fields:
+
+    * `state_info.state`
+
+    * `recommenderSubtype`
+
+    * `priority`
+
+    Examples:
+
+    * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+
+    * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+
+    * `priority = P1 OR priority = P2`
+
+    * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+
+    (These expressions are based on the filter language described at
+    https://google.aip.dev/160)
     """
 
     def __init__(self,
@@ -348,3 +401,107 @@ class MarkRecommendationFailedRequest(google.protobuf.message.Message):
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["etag",b"etag","name",b"name","state_metadata",b"state_metadata"]) -> None: ...
 global___MarkRecommendationFailedRequest = MarkRecommendationFailedRequest
+
+class GetRecommenderConfigRequest(google.protobuf.message.Message):
+    """Request for the GetRecommenderConfig` method."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    """Required. Name of the Recommendation Config to get.
+
+    Acceptable formats:
+
+    * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+
+    * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+
+    * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
+    """
+
+    def __init__(self,
+        *,
+        name : typing.Text = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["name",b"name"]) -> None: ...
+global___GetRecommenderConfigRequest = GetRecommenderConfigRequest
+
+class UpdateRecommenderConfigRequest(google.protobuf.message.Message):
+    """Request for the `UpdateRecommenderConfig` method."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    RECOMMENDER_CONFIG_FIELD_NUMBER: builtins.int
+    UPDATE_MASK_FIELD_NUMBER: builtins.int
+    VALIDATE_ONLY_FIELD_NUMBER: builtins.int
+    @property
+    def recommender_config(self) -> google.cloud.recommender.v1beta1.recommender_config_pb2.RecommenderConfig:
+        """Required. The RecommenderConfig to update."""
+        pass
+    @property
+    def update_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
+        """The list of fields to be updated."""
+        pass
+    validate_only: builtins.bool = ...
+    """If true, validate the request and preview the change, but do not actually
+    update it.
+    """
+
+    def __init__(self,
+        *,
+        recommender_config : typing.Optional[google.cloud.recommender.v1beta1.recommender_config_pb2.RecommenderConfig] = ...,
+        update_mask : typing.Optional[google.protobuf.field_mask_pb2.FieldMask] = ...,
+        validate_only : builtins.bool = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["recommender_config",b"recommender_config","update_mask",b"update_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["recommender_config",b"recommender_config","update_mask",b"update_mask","validate_only",b"validate_only"]) -> None: ...
+global___UpdateRecommenderConfigRequest = UpdateRecommenderConfigRequest
+
+class GetInsightTypeConfigRequest(google.protobuf.message.Message):
+    """Request for the GetInsightTypeConfig` method."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    """Required. Name of the InsightTypeConfig to get.
+
+    Acceptable formats:
+
+    * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+
+    * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+
+    * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+    """
+
+    def __init__(self,
+        *,
+        name : typing.Text = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["name",b"name"]) -> None: ...
+global___GetInsightTypeConfigRequest = GetInsightTypeConfigRequest
+
+class UpdateInsightTypeConfigRequest(google.protobuf.message.Message):
+    """Request for the `UpdateInsightTypeConfig` method."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    INSIGHT_TYPE_CONFIG_FIELD_NUMBER: builtins.int
+    UPDATE_MASK_FIELD_NUMBER: builtins.int
+    VALIDATE_ONLY_FIELD_NUMBER: builtins.int
+    @property
+    def insight_type_config(self) -> google.cloud.recommender.v1beta1.insight_type_config_pb2.InsightTypeConfig:
+        """Required. The InsightTypeConfig to update."""
+        pass
+    @property
+    def update_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
+        """The list of fields to be updated."""
+        pass
+    validate_only: builtins.bool = ...
+    """If true, validate the request and preview the change, but do not actually
+    update it.
+    """
+
+    def __init__(self,
+        *,
+        insight_type_config : typing.Optional[google.cloud.recommender.v1beta1.insight_type_config_pb2.InsightTypeConfig] = ...,
+        update_mask : typing.Optional[google.protobuf.field_mask_pb2.FieldMask] = ...,
+        validate_only : builtins.bool = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["insight_type_config",b"insight_type_config","update_mask",b"update_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["insight_type_config",b"insight_type_config","update_mask",b"update_mask","validate_only",b"validate_only"]) -> None: ...
+global___UpdateInsightTypeConfigRequest = UpdateInsightTypeConfigRequest

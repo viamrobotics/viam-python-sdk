@@ -14,7 +14,10 @@ import google.api.client_pb2
 import google.api.field_behavior_pb2
 import google.api.resource_pb2
 import google.cloud.recommender.v1beta1.insight_pb2
+import google.cloud.recommender.v1beta1.insight_type_config_pb2
 import google.cloud.recommender.v1beta1.recommendation_pb2
+import google.cloud.recommender.v1beta1.recommender_config_pb2
+import google.protobuf.field_mask_pb2
 import google.cloud.recommender.v1beta1.recommender_service_pb2
 
 
@@ -50,6 +53,22 @@ class RecommenderBase(abc.ABC):
 
     @abc.abstractmethod
     async def MarkRecommendationFailed(self, stream: 'grpclib.server.Stream[google.cloud.recommender.v1beta1.recommender_service_pb2.MarkRecommendationFailedRequest, google.cloud.recommender.v1beta1.recommendation_pb2.Recommendation]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def GetRecommenderConfig(self, stream: 'grpclib.server.Stream[google.cloud.recommender.v1beta1.recommender_service_pb2.GetRecommenderConfigRequest, google.cloud.recommender.v1beta1.recommender_config_pb2.RecommenderConfig]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def UpdateRecommenderConfig(self, stream: 'grpclib.server.Stream[google.cloud.recommender.v1beta1.recommender_service_pb2.UpdateRecommenderConfigRequest, google.cloud.recommender.v1beta1.recommender_config_pb2.RecommenderConfig]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def GetInsightTypeConfig(self, stream: 'grpclib.server.Stream[google.cloud.recommender.v1beta1.recommender_service_pb2.GetInsightTypeConfigRequest, google.cloud.recommender.v1beta1.insight_type_config_pb2.InsightTypeConfig]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def UpdateInsightTypeConfig(self, stream: 'grpclib.server.Stream[google.cloud.recommender.v1beta1.recommender_service_pb2.UpdateInsightTypeConfigRequest, google.cloud.recommender.v1beta1.insight_type_config_pb2.InsightTypeConfig]') -> None:
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
@@ -101,6 +120,30 @@ class RecommenderBase(abc.ABC):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 google.cloud.recommender.v1beta1.recommender_service_pb2.MarkRecommendationFailedRequest,
                 google.cloud.recommender.v1beta1.recommendation_pb2.Recommendation,
+            ),
+            '/google.cloud.recommender.v1beta1.Recommender/GetRecommenderConfig': grpclib.const.Handler(
+                self.GetRecommenderConfig,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.cloud.recommender.v1beta1.recommender_service_pb2.GetRecommenderConfigRequest,
+                google.cloud.recommender.v1beta1.recommender_config_pb2.RecommenderConfig,
+            ),
+            '/google.cloud.recommender.v1beta1.Recommender/UpdateRecommenderConfig': grpclib.const.Handler(
+                self.UpdateRecommenderConfig,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.cloud.recommender.v1beta1.recommender_service_pb2.UpdateRecommenderConfigRequest,
+                google.cloud.recommender.v1beta1.recommender_config_pb2.RecommenderConfig,
+            ),
+            '/google.cloud.recommender.v1beta1.Recommender/GetInsightTypeConfig': grpclib.const.Handler(
+                self.GetInsightTypeConfig,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.cloud.recommender.v1beta1.recommender_service_pb2.GetInsightTypeConfigRequest,
+                google.cloud.recommender.v1beta1.insight_type_config_pb2.InsightTypeConfig,
+            ),
+            '/google.cloud.recommender.v1beta1.Recommender/UpdateInsightTypeConfig': grpclib.const.Handler(
+                self.UpdateInsightTypeConfig,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                google.cloud.recommender.v1beta1.recommender_service_pb2.UpdateInsightTypeConfigRequest,
+                google.cloud.recommender.v1beta1.insight_type_config_pb2.InsightTypeConfig,
             ),
         }
 
@@ -155,4 +198,28 @@ class RecommenderStub:
             '/google.cloud.recommender.v1beta1.Recommender/MarkRecommendationFailed',
             google.cloud.recommender.v1beta1.recommender_service_pb2.MarkRecommendationFailedRequest,
             google.cloud.recommender.v1beta1.recommendation_pb2.Recommendation,
+        )
+        self.GetRecommenderConfig = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.cloud.recommender.v1beta1.Recommender/GetRecommenderConfig',
+            google.cloud.recommender.v1beta1.recommender_service_pb2.GetRecommenderConfigRequest,
+            google.cloud.recommender.v1beta1.recommender_config_pb2.RecommenderConfig,
+        )
+        self.UpdateRecommenderConfig = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.cloud.recommender.v1beta1.Recommender/UpdateRecommenderConfig',
+            google.cloud.recommender.v1beta1.recommender_service_pb2.UpdateRecommenderConfigRequest,
+            google.cloud.recommender.v1beta1.recommender_config_pb2.RecommenderConfig,
+        )
+        self.GetInsightTypeConfig = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.cloud.recommender.v1beta1.Recommender/GetInsightTypeConfig',
+            google.cloud.recommender.v1beta1.recommender_service_pb2.GetInsightTypeConfigRequest,
+            google.cloud.recommender.v1beta1.insight_type_config_pb2.InsightTypeConfig,
+        )
+        self.UpdateInsightTypeConfig = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/google.cloud.recommender.v1beta1.Recommender/UpdateInsightTypeConfig',
+            google.cloud.recommender.v1beta1.recommender_service_pb2.UpdateInsightTypeConfigRequest,
+            google.cloud.recommender.v1beta1.insight_type_config_pb2.InsightTypeConfig,
         )
