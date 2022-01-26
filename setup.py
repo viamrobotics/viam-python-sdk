@@ -32,7 +32,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages=find_packages(),
+    packages=['viam'],
     python_requires='>=3.6, <4',
     install_requires=['grpclib'],
 )
