@@ -1,7 +1,7 @@
 GEN_DIR='./viam/gen'
 
 clean:
-	find . -type d -name '__pycache__' -exec rm -rf \;
+	find . -type d -name '__pycache__' | xargs rm -rf
 
 buf:
 	find $(GEN_DIR) -not -name '__init__.py' -delete || true
