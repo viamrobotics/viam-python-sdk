@@ -31,10 +31,10 @@ class Credentials:
 
 
 class DialOptions:
-    auth_entity: str | None
-    credentials: Credentials | None
-    webrtc_options: DialWebRTCOptions | None
-    external_auth_address: str | None
+    auth_entity: Optional[str]
+    credentials: Optional[Credentials]
+    webrtc_options: Optional[DialWebRTCOptions]
+    external_auth_address: Optional[str]
 
     #: Determine if the RPC connection is TLS based. Must be provided to
     #: establish an insecure connection. Otherwise, a TLS based connection
@@ -52,8 +52,8 @@ class DialOptions:
 
     def __init__(
         self,
-        auth_entity: str | None = None,
-        credentials: Credentials | None = None,
+        auth_entity: Optional[str] = None,
+        credentials: Optional[Credentials] = None,
         insecure: bool = False,
         allow_insecure_downgrade: bool = False,
         allow_insecure_with_creds_downgrade=False
@@ -65,7 +65,7 @@ class DialOptions:
         self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade  # noqa: E501
 
 
-def _host_port_from_url(url) -> Tuple[str | None, int | None]:
+def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
     query = '(?:.*://)?(?P<host>[^:/ ]+).?(?P<port>[0-9]*).*'
     match = re.search(query, url)
 
