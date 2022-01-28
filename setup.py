@@ -1,10 +1,23 @@
-from gettext import find
+import os
+from typing import List
 from setuptools import setup, find_packages
 import pathlib
 
 here = pathlib.Path(__file__).parent.resolve()
 
 long_description = (here / 'README.md').read_text(encoding='utf-8')
+
+
+def get_packages(root: str) -> List[str]:
+    packages: List[str] = []
+
+    for (dirname, dirpaths, _) in os.walk(root):
+        if dirpaths:
+            continue
+        packages.append(dirname.replace(os.path.sep, '.'))
+
+    return packages
+
 
 setup(
     name='viam',
@@ -33,7 +46,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages=['viam', 'viam.rpc', 'viam.gen.proto.rpc.v1'],
+    packages=get_packages('viam'),
     python_requires='>=3.6, <4',
     install_requires=['grpclib'],
 )
