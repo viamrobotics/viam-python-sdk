@@ -33,7 +33,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages=['viam', 'viam.rpc', 'viam.gen'],
+    packages=['viam', 'viam.rpc', 'viam.gen.proto.rpc.v1'],
     python_requires='>=3.6, <4',
     install_requires=['grpclib'],
 )
