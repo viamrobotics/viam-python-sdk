@@ -12,8 +12,6 @@ def get_packages(root: str) -> List[str]:
     packages: List[str] = []
 
     for (dirname, dirpaths, _) in os.walk(root):
-        if dirpaths:
-            continue
         packages.append(dirname.replace(os.path.sep, '.'))
 
     return packages
