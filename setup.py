@@ -1,6 +1,6 @@
 import os
 from typing import List
-from setuptools import setup, find_packages
+from setuptools import setup
 import pathlib
 
 here = pathlib.Path(__file__).parent.resolve()
@@ -46,7 +46,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages=get_packages('viam'),
+    packages=['viam'] + get_packages('viam/gen'),
     python_requires='>=3.6, <4',
     install_requires=['grpclib'],
 )
