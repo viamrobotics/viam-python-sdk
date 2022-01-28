@@ -46,7 +46,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages=find_packages('.', include='viam/gen'),
+    packages=find_packages() + get_packages('viam/gen'),
     python_requires='>=3.6, <4',
     install_requires=['grpclib'],
 )
