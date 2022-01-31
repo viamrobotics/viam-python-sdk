@@ -16,21 +16,19 @@ from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from proto.api.common.v1 import common_pb2 as proto_dot_api_dot_common_dot_v1_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n proto/api/component/v1/arm.proto\x12\x16proto.api.component.v1\x1a\x1cgoogle/api/annotations.proto\x1a proto/api/common/v1/common.proto\"-\n\x11\x41rmJointPositions\x12\x18\n\x07\x64\x65grees\x18\x01 \x03(\x01R\x07\x64\x65grees\"6\n ArmServiceCurrentPositionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"Z\n!ArmServiceCurrentPositionResponse\x12\x35\n\x08position\x18\x01 \x01(\x0b\x32\x19.proto.api.common.v1.PoseR\x08position\"<\n&ArmServiceCurrentJointPositionsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"r\n\'ArmServiceCurrentJointPositionsResponse\x12G\n\tpositions\x18\x01 \x01(\x0b\x32).proto.api.component.v1.ArmJointPositionsR\tpositions\"`\n\x1f\x41rmServiceMoveToPositionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12)\n\x02to\x18\x02 \x01(\x0b\x32\x19.proto.api.common.v1.PoseR\x02to\"\"\n ArmServiceMoveToPositionResponse\"v\n%ArmServiceMoveToJointPositionsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x39\n\x02to\x18\x02 \x01(\x0b\x32).proto.api.component.v1.ArmJointPositionsR\x02to\"(\n&ArmServiceMoveToJointPositionsResponse\"l\n\x1f\x41rmServiceJointMoveDeltaRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n\x05joint\x18\x02 \x01(\x05R\x05joint\x12\x1f\n\x0b\x61mount_degs\x18\x03 \x01(\x01R\namountDegs\"\"\n ArmServiceJointMoveDeltaResponse2\xf5\x07\n\nArmService\x12\xbd\x01\n\x0f\x43urrentPosition\x12\x38.proto.api.component.v1.ArmServiceCurrentPositionRequest\x1a\x39.proto.api.component.v1.ArmServiceCurrentPositionResponse\"5\x82\xd3\xe4\x93\x02/\x12-/api/v1/component/arm/{name}/current_position\x12\xba\x01\n\x0eMoveToPosition\x12\x37.proto.api.component.v1.ArmServiceMoveToPositionRequest\x1a\x38.proto.api.component.v1.ArmServiceMoveToPositionResponse\"5\x82\xd3\xe4\x93\x02/\x1a-/api/v1/component/arm/{name}/move_to_position\x12\xd6\x01\n\x15\x43urrentJointPositions\x12>.proto.api.component.v1.ArmServiceCurrentJointPositionsRequest\x1a?.proto.api.component.v1.ArmServiceCurrentJointPositionsResponse\"<\x82\xd3\xe4\x93\x02\x36\x12\x34/api/v1/component/arm/{name}/current_joint_positions\x12\xd3\x01\n\x14MoveToJointPositions\x12=.proto.api.component.v1.ArmServiceMoveToJointPositionsRequest\x1a>.proto.api.component.v1.ArmServiceMoveToJointPositionsResponse\"<\x82\xd3\xe4\x93\x02\x36\x1a\x34/api/v1/component/arm/{name}/move_to_joint_positions\x12\xba\x01\n\x0eJointMoveDelta\x12\x37.proto.api.component.v1.ArmServiceJointMoveDeltaRequest\x1a\x38.proto.api.component.v1.ArmServiceJointMoveDeltaResponse\"5\x82\xd3\xe4\x93\x02/\x1a-/api/v1/component/arm/{name}/joint_move_deltaBM\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n proto/api/component/v1/arm.proto\x12\x16proto.api.component.v1\x1a\x1cgoogle/api/annotations.proto\x1a proto/api/common/v1/common.proto\"-\n\x11\x41rmJointPositions\x12\x18\n\x07\x64\x65grees\x18\x01 \x03(\x01R\x07\x64\x65grees\"5\n\x1f\x41rmServiceGetEndPositionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"Q\n ArmServiceGetEndPositionResponse\x12-\n\x04pose\x18\x01 \x01(\x0b\x32\x19.proto.api.common.v1.PoseR\x04pose\"8\n\"ArmServiceGetJointPositionsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"u\n#ArmServiceGetJointPositionsResponse\x12N\n\rposition_degs\x18\x01 \x01(\x0b\x32).proto.api.component.v1.ArmJointPositionsR\x0cpositionDegs\"d\n\x1f\x41rmServiceMoveToPositionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12-\n\x04pose\x18\x02 \x01(\x0b\x32\x19.proto.api.common.v1.PoseR\x04pose\"\"\n ArmServiceMoveToPositionResponse\"\x8b\x01\n%ArmServiceMoveToJointPositionsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12N\n\rposition_degs\x18\x02 \x01(\x0b\x32).proto.api.component.v1.ArmJointPositionsR\x0cpositionDegs\"(\n&ArmServiceMoveToJointPositionsResponse2\xa9\x06\n\nArmService\x12\xba\x01\n\x0eGetEndPosition\x12\x37.proto.api.component.v1.ArmServiceGetEndPositionRequest\x1a\x38.proto.api.component.v1.ArmServiceGetEndPositionResponse\"5\x82\xd3\xe4\x93\x02/\x12-/api/v1/component/arm/{name}/current_position\x12\xba\x01\n\x0eMoveToPosition\x12\x37.proto.api.component.v1.ArmServiceMoveToPositionRequest\x1a\x38.proto.api.component.v1.ArmServiceMoveToPositionResponse\"5\x82\xd3\xe4\x93\x02/\x1a-/api/v1/component/arm/{name}/move_to_position\x12\xca\x01\n\x11GetJointPositions\x12:.proto.api.component.v1.ArmServiceGetJointPositionsRequest\x1a;.proto.api.component.v1.ArmServiceGetJointPositionsResponse\"<\x82\xd3\xe4\x93\x02\x36\x12\x34/api/v1/component/arm/{name}/current_joint_positions\x12\xd3\x01\n\x14MoveToJointPositions\x12=.proto.api.component.v1.ArmServiceMoveToJointPositionsRequest\x1a>.proto.api.component.v1.ArmServiceMoveToJointPositionsResponse\"<\x82\xd3\xe4\x93\x02\x36\x1a\x34/api/v1/component/arm/{name}/move_to_joint_positionsBM\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1b\x06proto3')
 
 
 
 _ARMJOINTPOSITIONS = DESCRIPTOR.message_types_by_name['ArmJointPositions']
-_ARMSERVICECURRENTPOSITIONREQUEST = DESCRIPTOR.message_types_by_name['ArmServiceCurrentPositionRequest']
-_ARMSERVICECURRENTPOSITIONRESPONSE = DESCRIPTOR.message_types_by_name['ArmServiceCurrentPositionResponse']
-_ARMSERVICECURRENTJOINTPOSITIONSREQUEST = DESCRIPTOR.message_types_by_name['ArmServiceCurrentJointPositionsRequest']
-_ARMSERVICECURRENTJOINTPOSITIONSRESPONSE = DESCRIPTOR.message_types_by_name['ArmServiceCurrentJointPositionsResponse']
+_ARMSERVICEGETENDPOSITIONREQUEST = DESCRIPTOR.message_types_by_name['ArmServiceGetEndPositionRequest']
+_ARMSERVICEGETENDPOSITIONRESPONSE = DESCRIPTOR.message_types_by_name['ArmServiceGetEndPositionResponse']
+_ARMSERVICEGETJOINTPOSITIONSREQUEST = DESCRIPTOR.message_types_by_name['ArmServiceGetJointPositionsRequest']
+_ARMSERVICEGETJOINTPOSITIONSRESPONSE = DESCRIPTOR.message_types_by_name['ArmServiceGetJointPositionsResponse']
 _ARMSERVICEMOVETOPOSITIONREQUEST = DESCRIPTOR.message_types_by_name['ArmServiceMoveToPositionRequest']
 _ARMSERVICEMOVETOPOSITIONRESPONSE = DESCRIPTOR.message_types_by_name['ArmServiceMoveToPositionResponse']
 _ARMSERVICEMOVETOJOINTPOSITIONSREQUEST = DESCRIPTOR.message_types_by_name['ArmServiceMoveToJointPositionsRequest']
 _ARMSERVICEMOVETOJOINTPOSITIONSRESPONSE = DESCRIPTOR.message_types_by_name['ArmServiceMoveToJointPositionsResponse']
-_ARMSERVICEJOINTMOVEDELTAREQUEST = DESCRIPTOR.message_types_by_name['ArmServiceJointMoveDeltaRequest']
-_ARMSERVICEJOINTMOVEDELTARESPONSE = DESCRIPTOR.message_types_by_name['ArmServiceJointMoveDeltaResponse']
 ArmJointPositions = _reflection.GeneratedProtocolMessageType('ArmJointPositions', (_message.Message,), {
   'DESCRIPTOR' : _ARMJOINTPOSITIONS,
   '__module__' : 'proto.api.component.v1.arm_pb2'
@@ -38,33 +36,33 @@ ArmJointPositions = _reflection.GeneratedProtocolMessageType('ArmJointPositions'
   })
 _sym_db.RegisterMessage(ArmJointPositions)
 
-ArmServiceCurrentPositionRequest = _reflection.GeneratedProtocolMessageType('ArmServiceCurrentPositionRequest', (_message.Message,), {
-  'DESCRIPTOR' : _ARMSERVICECURRENTPOSITIONREQUEST,
+ArmServiceGetEndPositionRequest = _reflection.GeneratedProtocolMessageType('ArmServiceGetEndPositionRequest', (_message.Message,), {
+  'DESCRIPTOR' : _ARMSERVICEGETENDPOSITIONREQUEST,
   '__module__' : 'proto.api.component.v1.arm_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceCurrentPositionRequest)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceGetEndPositionRequest)
   })
-_sym_db.RegisterMessage(ArmServiceCurrentPositionRequest)
+_sym_db.RegisterMessage(ArmServiceGetEndPositionRequest)
 
-ArmServiceCurrentPositionResponse = _reflection.GeneratedProtocolMessageType('ArmServiceCurrentPositionResponse', (_message.Message,), {
-  'DESCRIPTOR' : _ARMSERVICECURRENTPOSITIONRESPONSE,
+ArmServiceGetEndPositionResponse = _reflection.GeneratedProtocolMessageType('ArmServiceGetEndPositionResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ARMSERVICEGETENDPOSITIONRESPONSE,
   '__module__' : 'proto.api.component.v1.arm_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceCurrentPositionResponse)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceGetEndPositionResponse)
   })
-_sym_db.RegisterMessage(ArmServiceCurrentPositionResponse)
+_sym_db.RegisterMessage(ArmServiceGetEndPositionResponse)
 
-ArmServiceCurrentJointPositionsRequest = _reflection.GeneratedProtocolMessageType('ArmServiceCurrentJointPositionsRequest', (_message.Message,), {
-  'DESCRIPTOR' : _ARMSERVICECURRENTJOINTPOSITIONSREQUEST,
+ArmServiceGetJointPositionsRequest = _reflection.GeneratedProtocolMessageType('ArmServiceGetJointPositionsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _ARMSERVICEGETJOINTPOSITIONSREQUEST,
   '__module__' : 'proto.api.component.v1.arm_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceCurrentJointPositionsRequest)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceGetJointPositionsRequest)
   })
-_sym_db.RegisterMessage(ArmServiceCurrentJointPositionsRequest)
+_sym_db.RegisterMessage(ArmServiceGetJointPositionsRequest)
 
-ArmServiceCurrentJointPositionsResponse = _reflection.GeneratedProtocolMessageType('ArmServiceCurrentJointPositionsResponse', (_message.Message,), {
-  'DESCRIPTOR' : _ARMSERVICECURRENTJOINTPOSITIONSRESPONSE,
+ArmServiceGetJointPositionsResponse = _reflection.GeneratedProtocolMessageType('ArmServiceGetJointPositionsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ARMSERVICEGETJOINTPOSITIONSRESPONSE,
   '__module__' : 'proto.api.component.v1.arm_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceCurrentJointPositionsResponse)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceGetJointPositionsResponse)
   })
-_sym_db.RegisterMessage(ArmServiceCurrentJointPositionsResponse)
+_sym_db.RegisterMessage(ArmServiceGetJointPositionsResponse)
 
 ArmServiceMoveToPositionRequest = _reflection.GeneratedProtocolMessageType('ArmServiceMoveToPositionRequest', (_message.Message,), {
   'DESCRIPTOR' : _ARMSERVICEMOVETOPOSITIONREQUEST,
@@ -94,57 +92,37 @@ ArmServiceMoveToJointPositionsResponse = _reflection.GeneratedProtocolMessageTyp
   })
 _sym_db.RegisterMessage(ArmServiceMoveToJointPositionsResponse)
 
-ArmServiceJointMoveDeltaRequest = _reflection.GeneratedProtocolMessageType('ArmServiceJointMoveDeltaRequest', (_message.Message,), {
-  'DESCRIPTOR' : _ARMSERVICEJOINTMOVEDELTAREQUEST,
-  '__module__' : 'proto.api.component.v1.arm_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceJointMoveDeltaRequest)
-  })
-_sym_db.RegisterMessage(ArmServiceJointMoveDeltaRequest)
-
-ArmServiceJointMoveDeltaResponse = _reflection.GeneratedProtocolMessageType('ArmServiceJointMoveDeltaResponse', (_message.Message,), {
-  'DESCRIPTOR' : _ARMSERVICEJOINTMOVEDELTARESPONSE,
-  '__module__' : 'proto.api.component.v1.arm_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.ArmServiceJointMoveDeltaResponse)
-  })
-_sym_db.RegisterMessage(ArmServiceJointMoveDeltaResponse)
-
 _ARMSERVICE = DESCRIPTOR.services_by_name['ArmService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1'
-  _ARMSERVICE.methods_by_name['CurrentPosition']._options = None
-  _ARMSERVICE.methods_by_name['CurrentPosition']._serialized_options = b'\202\323\344\223\002/\022-/api/v1/component/arm/{name}/current_position'
+  _ARMSERVICE.methods_by_name['GetEndPosition']._options = None
+  _ARMSERVICE.methods_by_name['GetEndPosition']._serialized_options = b'\202\323\344\223\002/\022-/api/v1/component/arm/{name}/current_position'
   _ARMSERVICE.methods_by_name['MoveToPosition']._options = None
   _ARMSERVICE.methods_by_name['MoveToPosition']._serialized_options = b'\202\323\344\223\002/\032-/api/v1/component/arm/{name}/move_to_position'
-  _ARMSERVICE.methods_by_name['CurrentJointPositions']._options = None
-  _ARMSERVICE.methods_by_name['CurrentJointPositions']._serialized_options = b'\202\323\344\223\0026\0224/api/v1/component/arm/{name}/current_joint_positions'
+  _ARMSERVICE.methods_by_name['GetJointPositions']._options = None
+  _ARMSERVICE.methods_by_name['GetJointPositions']._serialized_options = b'\202\323\344\223\0026\0224/api/v1/component/arm/{name}/current_joint_positions'
   _ARMSERVICE.methods_by_name['MoveToJointPositions']._options = None
   _ARMSERVICE.methods_by_name['MoveToJointPositions']._serialized_options = b'\202\323\344\223\0026\0324/api/v1/component/arm/{name}/move_to_joint_positions'
-  _ARMSERVICE.methods_by_name['JointMoveDelta']._options = None
-  _ARMSERVICE.methods_by_name['JointMoveDelta']._serialized_options = b'\202\323\344\223\002/\032-/api/v1/component/arm/{name}/joint_move_delta'
   _ARMJOINTPOSITIONS._serialized_start=124
   _ARMJOINTPOSITIONS._serialized_end=169
-  _ARMSERVICECURRENTPOSITIONREQUEST._serialized_start=171
-  _ARMSERVICECURRENTPOSITIONREQUEST._serialized_end=225
-  _ARMSERVICECURRENTPOSITIONRESPONSE._serialized_start=227
-  _ARMSERVICECURRENTPOSITIONRESPONSE._serialized_end=317
-  _ARMSERVICECURRENTJOINTPOSITIONSREQUEST._serialized_start=319
-  _ARMSERVICECURRENTJOINTPOSITIONSREQUEST._serialized_end=379
-  _ARMSERVICECURRENTJOINTPOSITIONSRESPONSE._serialized_start=381
-  _ARMSERVICECURRENTJOINTPOSITIONSRESPONSE._serialized_end=495
-  _ARMSERVICEMOVETOPOSITIONREQUEST._serialized_start=497
-  _ARMSERVICEMOVETOPOSITIONREQUEST._serialized_end=593
-  _ARMSERVICEMOVETOPOSITIONRESPONSE._serialized_start=595
-  _ARMSERVICEMOVETOPOSITIONRESPONSE._serialized_end=629
-  _ARMSERVICEMOVETOJOINTPOSITIONSREQUEST._serialized_start=631
-  _ARMSERVICEMOVETOJOINTPOSITIONSREQUEST._serialized_end=749
-  _ARMSERVICEMOVETOJOINTPOSITIONSRESPONSE._serialized_start=751
-  _ARMSERVICEMOVETOJOINTPOSITIONSRESPONSE._serialized_end=791
-  _ARMSERVICEJOINTMOVEDELTAREQUEST._serialized_start=793
-  _ARMSERVICEJOINTMOVEDELTAREQUEST._serialized_end=901
-  _ARMSERVICEJOINTMOVEDELTARESPONSE._serialized_start=903
-  _ARMSERVICEJOINTMOVEDELTARESPONSE._serialized_end=937
-  _ARMSERVICE._serialized_start=940
-  _ARMSERVICE._serialized_end=1953
+  _ARMSERVICEGETENDPOSITIONREQUEST._serialized_start=171
+  _ARMSERVICEGETENDPOSITIONREQUEST._serialized_end=224
+  _ARMSERVICEGETENDPOSITIONRESPONSE._serialized_start=226
+  _ARMSERVICEGETENDPOSITIONRESPONSE._serialized_end=307
+  _ARMSERVICEGETJOINTPOSITIONSREQUEST._serialized_start=309
+  _ARMSERVICEGETJOINTPOSITIONSREQUEST._serialized_end=365
+  _ARMSERVICEGETJOINTPOSITIONSRESPONSE._serialized_start=367
+  _ARMSERVICEGETJOINTPOSITIONSRESPONSE._serialized_end=484
+  _ARMSERVICEMOVETOPOSITIONREQUEST._serialized_start=486
+  _ARMSERVICEMOVETOPOSITIONREQUEST._serialized_end=586
+  _ARMSERVICEMOVETOPOSITIONRESPONSE._serialized_start=588
+  _ARMSERVICEMOVETOPOSITIONRESPONSE._serialized_end=622
+  _ARMSERVICEMOVETOJOINTPOSITIONSREQUEST._serialized_start=625
+  _ARMSERVICEMOVETOJOINTPOSITIONSREQUEST._serialized_end=764
+  _ARMSERVICEMOVETOJOINTPOSITIONSRESPONSE._serialized_start=766
+  _ARMSERVICEMOVETOJOINTPOSITIONSRESPONSE._serialized_end=806
+  _ARMSERVICE._serialized_start=809
+  _ARMSERVICE._serialized_end=1618
 # @@protoc_insertion_point(module_scope)

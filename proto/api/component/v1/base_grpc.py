@@ -31,10 +31,6 @@ class BaseServiceBase(abc.ABC):
     async def Stop(self, stream: 'grpclib.server.Stream[proto.api.component.v1.base_pb2.BaseServiceStopRequest, proto.api.component.v1.base_pb2.BaseServiceStopResponse]') -> None:
         pass
 
-    @abc.abstractmethod
-    async def WidthGet(self, stream: 'grpclib.server.Stream[proto.api.component.v1.base_pb2.BaseServiceWidthGetRequest, proto.api.component.v1.base_pb2.BaseServiceWidthGetResponse]') -> None:
-        pass
-
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
             '/proto.api.component.v1.BaseService/MoveStraight': grpclib.const.Handler(
@@ -60,12 +56,6 @@ class BaseServiceBase(abc.ABC):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 proto.api.component.v1.base_pb2.BaseServiceStopRequest,
                 proto.api.component.v1.base_pb2.BaseServiceStopResponse,
-            ),
-            '/proto.api.component.v1.BaseService/WidthGet': grpclib.const.Handler(
-                self.WidthGet,
-                grpclib.const.Cardinality.UNARY_UNARY,
-                proto.api.component.v1.base_pb2.BaseServiceWidthGetRequest,
-                proto.api.component.v1.base_pb2.BaseServiceWidthGetResponse,
             ),
         }
 
@@ -96,10 +86,4 @@ class BaseServiceStub:
             '/proto.api.component.v1.BaseService/Stop',
             proto.api.component.v1.base_pb2.BaseServiceStopRequest,
             proto.api.component.v1.base_pb2.BaseServiceStopResponse,
-        )
-        self.WidthGet = grpclib.client.UnaryUnaryMethod(
-            channel,
-            '/proto.api.component.v1.BaseService/WidthGet',
-            proto.api.component.v1.base_pb2.BaseServiceWidthGetRequest,
-            proto.api.component.v1.base_pb2.BaseServiceWidthGetResponse,
         )
