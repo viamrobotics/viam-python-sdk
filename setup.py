@@ -46,5 +46,9 @@ setup(
     ],
     packages=find_packages() + get_packages('viam/gen'),
     python_requires='>=3.6, <4',
-    install_requires=['grpclib', 'protobuf'],
+    install_requires=[
+        'grpclib',
+        'protobuf',
+        'googleapis-common-protos',
+    ],
 )
