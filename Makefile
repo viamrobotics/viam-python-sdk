@@ -1,5 +1,7 @@
+clean:
+	find . -type d -name '__pycache__' | xargs rm -rf
+
 buf:
-	find ./gen -not -name '__init__.py' -delete
-	buf generate buf.build/googleapis/googleapis
+	rm -rf proto
 	buf generate buf.build/viamrobotics/goutils
 	buf generate buf.build/viamrobotics/rdk
