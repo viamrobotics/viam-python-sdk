@@ -16,37 +16,37 @@ from google.protobuf import struct_pb2 as google_dot_protobuf_dot_struct__pb2
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#proto/api/component/v1/sensor.proto\x12\x16proto.api.component.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\"2\n\x1cSensorServiceReadingsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"S\n\x1dSensorServiceReadingsResponse\x12\x32\n\x08readings\x18\x01 \x03(\x0b\x32\x16.google.protobuf.ValueR\x08readings2\xbb\x01\n\rSensorService\x12\xa9\x01\n\x08Readings\x12\x34.proto.api.component.v1.SensorServiceReadingsRequest\x1a\x35.proto.api.component.v1.SensorServiceReadingsResponse\"0\x82\xd3\xe4\x93\x02*\x12(/api/v1/component/sensor/{name}/readingsBM\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#proto/api/component/v1/sensor.proto\x12\x16proto.api.component.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1cgoogle/api/annotations.proto\"5\n\x1fSensorServiceGetReadingsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"V\n SensorServiceGetReadingsResponse\x12\x32\n\x08readings\x18\x01 \x03(\x0b\x32\x16.google.protobuf.ValueR\x08readings2\xc4\x01\n\rSensorService\x12\xb2\x01\n\x0bGetReadings\x12\x37.proto.api.component.v1.SensorServiceGetReadingsRequest\x1a\x38.proto.api.component.v1.SensorServiceGetReadingsResponse\"0\x82\xd3\xe4\x93\x02*\x12(/api/v1/component/sensor/{name}/readingsBM\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1b\x06proto3')
 
 
 
-_SENSORSERVICEREADINGSREQUEST = DESCRIPTOR.message_types_by_name['SensorServiceReadingsRequest']
-_SENSORSERVICEREADINGSRESPONSE = DESCRIPTOR.message_types_by_name['SensorServiceReadingsResponse']
-SensorServiceReadingsRequest = _reflection.GeneratedProtocolMessageType('SensorServiceReadingsRequest', (_message.Message,), {
-  'DESCRIPTOR' : _SENSORSERVICEREADINGSREQUEST,
+_SENSORSERVICEGETREADINGSREQUEST = DESCRIPTOR.message_types_by_name['SensorServiceGetReadingsRequest']
+_SENSORSERVICEGETREADINGSRESPONSE = DESCRIPTOR.message_types_by_name['SensorServiceGetReadingsResponse']
+SensorServiceGetReadingsRequest = _reflection.GeneratedProtocolMessageType('SensorServiceGetReadingsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _SENSORSERVICEGETREADINGSREQUEST,
   '__module__' : 'proto.api.component.v1.sensor_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.SensorServiceReadingsRequest)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.SensorServiceGetReadingsRequest)
   })
-_sym_db.RegisterMessage(SensorServiceReadingsRequest)
+_sym_db.RegisterMessage(SensorServiceGetReadingsRequest)
 
-SensorServiceReadingsResponse = _reflection.GeneratedProtocolMessageType('SensorServiceReadingsResponse', (_message.Message,), {
-  'DESCRIPTOR' : _SENSORSERVICEREADINGSRESPONSE,
+SensorServiceGetReadingsResponse = _reflection.GeneratedProtocolMessageType('SensorServiceGetReadingsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SENSORSERVICEGETREADINGSRESPONSE,
   '__module__' : 'proto.api.component.v1.sensor_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.SensorServiceReadingsResponse)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.SensorServiceGetReadingsResponse)
   })
-_sym_db.RegisterMessage(SensorServiceReadingsResponse)
+_sym_db.RegisterMessage(SensorServiceGetReadingsResponse)
 
 _SENSORSERVICE = DESCRIPTOR.services_by_name['SensorService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1'
-  _SENSORSERVICE.methods_by_name['Readings']._options = None
-  _SENSORSERVICE.methods_by_name['Readings']._serialized_options = b'\202\323\344\223\002*\022(/api/v1/component/sensor/{name}/readings'
-  _SENSORSERVICEREADINGSREQUEST._serialized_start=123
-  _SENSORSERVICEREADINGSREQUEST._serialized_end=173
-  _SENSORSERVICEREADINGSRESPONSE._serialized_start=175
-  _SENSORSERVICEREADINGSRESPONSE._serialized_end=258
-  _SENSORSERVICE._serialized_start=261
-  _SENSORSERVICE._serialized_end=448
+  _SENSORSERVICE.methods_by_name['GetReadings']._options = None
+  _SENSORSERVICE.methods_by_name['GetReadings']._serialized_options = b'\202\323\344\223\002*\022(/api/v1/component/sensor/{name}/readings'
+  _SENSORSERVICEGETREADINGSREQUEST._serialized_start=123
+  _SENSORSERVICEGETREADINGSREQUEST._serialized_end=176
+  _SENSORSERVICEGETREADINGSRESPONSE._serialized_start=178
+  _SENSORSERVICEGETREADINGSRESPONSE._serialized_end=264
+  _SENSORSERVICE._serialized_start=267
+  _SENSORSERVICE._serialized_end=463
 # @@protoc_insertion_point(module_scope)

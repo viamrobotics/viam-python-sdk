@@ -15,16 +15,16 @@ _sym_db = _symbol_database.Default()
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n proto/api/component/v1/imu.proto\x12\x16proto.api.component.v1\x1a\x1cgoogle/api/annotations.proto\";\n\x0f\x41ngularVelocity\x12\x0c\n\x01x\x18\x01 \x01(\x01R\x01x\x12\x0c\n\x01y\x18\x02 \x01(\x01R\x01y\x12\x0c\n\x01z\x18\x03 \x01(\x01R\x01z\"I\n\x0b\x45ulerAngles\x12\x12\n\x04roll\x18\x01 \x01(\x01R\x04roll\x12\x14\n\x05pitch\x18\x02 \x01(\x01R\x05pitch\x12\x10\n\x03yaw\x18\x03 \x01(\x01R\x03yaw\"6\n IMUServiceAngularVelocityRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"w\n!IMUServiceAngularVelocityResponse\x12R\n\x10\x61ngular_velocity\x18\x01 \x01(\x0b\x32\'.proto.api.component.v1.AngularVelocityR\x0f\x61ngularVelocity\"2\n\x1cIMUServiceOrientationRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"f\n\x1dIMUServiceOrientationResponse\x12\x45\n\x0borientation\x18\x01 \x01(\x0b\x32#.proto.api.component.v1.EulerAnglesR\x0borientation2\xfb\x02\n\nIMUService\x12\xbd\x01\n\x0f\x41ngularVelocity\x12\x38.proto.api.component.v1.IMUServiceAngularVelocityRequest\x1a\x39.proto.api.component.v1.IMUServiceAngularVelocityResponse\"5\x82\xd3\xe4\x93\x02/\x12-/api/v1/component/imu/{name}/angular_velocity\x12\xac\x01\n\x0bOrientation\x12\x34.proto.api.component.v1.IMUServiceOrientationRequest\x1a\x35.proto.api.component.v1.IMUServiceOrientationResponse\"0\x82\xd3\xe4\x93\x02*\x12(/api/v1/component/imu/{name}/orientationBM\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n proto/api/component/v1/imu.proto\x12\x16proto.api.component.v1\x1a\x1cgoogle/api/annotations.proto\"\x80\x01\n\x0f\x41ngularVelocity\x12#\n\x0ex_degs_per_sec\x18\x01 \x01(\x01R\x0bxDegsPerSec\x12#\n\x0ey_degs_per_sec\x18\x02 \x01(\x01R\x0byDegsPerSec\x12#\n\x0ez_degs_per_sec\x18\x03 \x01(\x01R\x0bzDegsPerSec\"^\n\x0b\x45ulerAngles\x12\x19\n\x08roll_deg\x18\x01 \x01(\x01R\x07rollDeg\x12\x1b\n\tpitch_deg\x18\x02 \x01(\x01R\x08pitchDeg\x12\x17\n\x07yaw_deg\x18\x03 \x01(\x01R\x06yawDeg\":\n$IMUServiceReadAngularVelocityRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"{\n%IMUServiceReadAngularVelocityResponse\x12R\n\x10\x61ngular_velocity\x18\x01 \x01(\x0b\x32\'.proto.api.component.v1.AngularVelocityR\x0f\x61ngularVelocity\"6\n IMUServiceReadOrientationRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\"j\n!IMUServiceReadOrientationResponse\x12\x45\n\x0borientation\x18\x01 \x01(\x0b\x32#.proto.api.component.v1.EulerAnglesR\x0borientation2\x93\x03\n\nIMUService\x12\xc9\x01\n\x13ReadAngularVelocity\x12<.proto.api.component.v1.IMUServiceReadAngularVelocityRequest\x1a=.proto.api.component.v1.IMUServiceReadAngularVelocityResponse\"5\x82\xd3\xe4\x93\x02/\x12-/api/v1/component/imu/{name}/angular_velocity\x12\xb8\x01\n\x0fReadOrientation\x12\x38.proto.api.component.v1.IMUServiceReadOrientationRequest\x1a\x39.proto.api.component.v1.IMUServiceReadOrientationResponse\"0\x82\xd3\xe4\x93\x02*\x12(/api/v1/component/imu/{name}/orientationBM\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1b\x06proto3')
 
 
 
 _ANGULARVELOCITY = DESCRIPTOR.message_types_by_name['AngularVelocity']
 _EULERANGLES = DESCRIPTOR.message_types_by_name['EulerAngles']
-_IMUSERVICEANGULARVELOCITYREQUEST = DESCRIPTOR.message_types_by_name['IMUServiceAngularVelocityRequest']
-_IMUSERVICEANGULARVELOCITYRESPONSE = DESCRIPTOR.message_types_by_name['IMUServiceAngularVelocityResponse']
-_IMUSERVICEORIENTATIONREQUEST = DESCRIPTOR.message_types_by_name['IMUServiceOrientationRequest']
-_IMUSERVICEORIENTATIONRESPONSE = DESCRIPTOR.message_types_by_name['IMUServiceOrientationResponse']
+_IMUSERVICEREADANGULARVELOCITYREQUEST = DESCRIPTOR.message_types_by_name['IMUServiceReadAngularVelocityRequest']
+_IMUSERVICEREADANGULARVELOCITYRESPONSE = DESCRIPTOR.message_types_by_name['IMUServiceReadAngularVelocityResponse']
+_IMUSERVICEREADORIENTATIONREQUEST = DESCRIPTOR.message_types_by_name['IMUServiceReadOrientationRequest']
+_IMUSERVICEREADORIENTATIONRESPONSE = DESCRIPTOR.message_types_by_name['IMUServiceReadOrientationResponse']
 AngularVelocity = _reflection.GeneratedProtocolMessageType('AngularVelocity', (_message.Message,), {
   'DESCRIPTOR' : _ANGULARVELOCITY,
   '__module__' : 'proto.api.component.v1.imu_pb2'
@@ -39,55 +39,55 @@ EulerAngles = _reflection.GeneratedProtocolMessageType('EulerAngles', (_message.
   })
 _sym_db.RegisterMessage(EulerAngles)
 
-IMUServiceAngularVelocityRequest = _reflection.GeneratedProtocolMessageType('IMUServiceAngularVelocityRequest', (_message.Message,), {
-  'DESCRIPTOR' : _IMUSERVICEANGULARVELOCITYREQUEST,
+IMUServiceReadAngularVelocityRequest = _reflection.GeneratedProtocolMessageType('IMUServiceReadAngularVelocityRequest', (_message.Message,), {
+  'DESCRIPTOR' : _IMUSERVICEREADANGULARVELOCITYREQUEST,
   '__module__' : 'proto.api.component.v1.imu_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.IMUServiceAngularVelocityRequest)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.IMUServiceReadAngularVelocityRequest)
   })
-_sym_db.RegisterMessage(IMUServiceAngularVelocityRequest)
+_sym_db.RegisterMessage(IMUServiceReadAngularVelocityRequest)
 
-IMUServiceAngularVelocityResponse = _reflection.GeneratedProtocolMessageType('IMUServiceAngularVelocityResponse', (_message.Message,), {
-  'DESCRIPTOR' : _IMUSERVICEANGULARVELOCITYRESPONSE,
+IMUServiceReadAngularVelocityResponse = _reflection.GeneratedProtocolMessageType('IMUServiceReadAngularVelocityResponse', (_message.Message,), {
+  'DESCRIPTOR' : _IMUSERVICEREADANGULARVELOCITYRESPONSE,
   '__module__' : 'proto.api.component.v1.imu_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.IMUServiceAngularVelocityResponse)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.IMUServiceReadAngularVelocityResponse)
   })
-_sym_db.RegisterMessage(IMUServiceAngularVelocityResponse)
+_sym_db.RegisterMessage(IMUServiceReadAngularVelocityResponse)
 
-IMUServiceOrientationRequest = _reflection.GeneratedProtocolMessageType('IMUServiceOrientationRequest', (_message.Message,), {
-  'DESCRIPTOR' : _IMUSERVICEORIENTATIONREQUEST,
+IMUServiceReadOrientationRequest = _reflection.GeneratedProtocolMessageType('IMUServiceReadOrientationRequest', (_message.Message,), {
+  'DESCRIPTOR' : _IMUSERVICEREADORIENTATIONREQUEST,
   '__module__' : 'proto.api.component.v1.imu_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.IMUServiceOrientationRequest)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.IMUServiceReadOrientationRequest)
   })
-_sym_db.RegisterMessage(IMUServiceOrientationRequest)
+_sym_db.RegisterMessage(IMUServiceReadOrientationRequest)
 
-IMUServiceOrientationResponse = _reflection.GeneratedProtocolMessageType('IMUServiceOrientationResponse', (_message.Message,), {
-  'DESCRIPTOR' : _IMUSERVICEORIENTATIONRESPONSE,
+IMUServiceReadOrientationResponse = _reflection.GeneratedProtocolMessageType('IMUServiceReadOrientationResponse', (_message.Message,), {
+  'DESCRIPTOR' : _IMUSERVICEREADORIENTATIONRESPONSE,
   '__module__' : 'proto.api.component.v1.imu_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.IMUServiceOrientationResponse)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.IMUServiceReadOrientationResponse)
   })
-_sym_db.RegisterMessage(IMUServiceOrientationResponse)
+_sym_db.RegisterMessage(IMUServiceReadOrientationResponse)
 
 _IMUSERVICE = DESCRIPTOR.services_by_name['IMUService']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1'
-  _IMUSERVICE.methods_by_name['AngularVelocity']._options = None
-  _IMUSERVICE.methods_by_name['AngularVelocity']._serialized_options = b'\202\323\344\223\002/\022-/api/v1/component/imu/{name}/angular_velocity'
-  _IMUSERVICE.methods_by_name['Orientation']._options = None
-  _IMUSERVICE.methods_by_name['Orientation']._serialized_options = b'\202\323\344\223\002*\022(/api/v1/component/imu/{name}/orientation'
-  _ANGULARVELOCITY._serialized_start=90
-  _ANGULARVELOCITY._serialized_end=149
-  _EULERANGLES._serialized_start=151
-  _EULERANGLES._serialized_end=224
-  _IMUSERVICEANGULARVELOCITYREQUEST._serialized_start=226
-  _IMUSERVICEANGULARVELOCITYREQUEST._serialized_end=280
-  _IMUSERVICEANGULARVELOCITYRESPONSE._serialized_start=282
-  _IMUSERVICEANGULARVELOCITYRESPONSE._serialized_end=401
-  _IMUSERVICEORIENTATIONREQUEST._serialized_start=403
-  _IMUSERVICEORIENTATIONREQUEST._serialized_end=453
-  _IMUSERVICEORIENTATIONRESPONSE._serialized_start=455
-  _IMUSERVICEORIENTATIONRESPONSE._serialized_end=557
-  _IMUSERVICE._serialized_start=560
-  _IMUSERVICE._serialized_end=939
+  _IMUSERVICE.methods_by_name['ReadAngularVelocity']._options = None
+  _IMUSERVICE.methods_by_name['ReadAngularVelocity']._serialized_options = b'\202\323\344\223\002/\022-/api/v1/component/imu/{name}/angular_velocity'
+  _IMUSERVICE.methods_by_name['ReadOrientation']._options = None
+  _IMUSERVICE.methods_by_name['ReadOrientation']._serialized_options = b'\202\323\344\223\002*\022(/api/v1/component/imu/{name}/orientation'
+  _ANGULARVELOCITY._serialized_start=91
+  _ANGULARVELOCITY._serialized_end=219
+  _EULERANGLES._serialized_start=221
+  _EULERANGLES._serialized_end=315
+  _IMUSERVICEREADANGULARVELOCITYREQUEST._serialized_start=317
+  _IMUSERVICEREADANGULARVELOCITYREQUEST._serialized_end=375
+  _IMUSERVICEREADANGULARVELOCITYRESPONSE._serialized_start=377
+  _IMUSERVICEREADANGULARVELOCITYRESPONSE._serialized_end=500
+  _IMUSERVICEREADORIENTATIONREQUEST._serialized_start=502
+  _IMUSERVICEREADORIENTATIONREQUEST._serialized_end=556
+  _IMUSERVICEREADORIENTATIONRESPONSE._serialized_start=558
+  _IMUSERVICEREADORIENTATIONRESPONSE._serialized_end=664
+  _IMUSERVICE._serialized_start=667
+  _IMUSERVICE._serialized_end=1070
 # @@protoc_insertion_point(module_scope)

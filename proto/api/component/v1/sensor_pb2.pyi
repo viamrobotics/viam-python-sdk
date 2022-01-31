@@ -12,7 +12,7 @@ import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
-class SensorServiceReadingsRequest(google.protobuf.message.Message):
+class SensorServiceGetReadingsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
@@ -21,9 +21,9 @@ class SensorServiceReadingsRequest(google.protobuf.message.Message):
         name : typing.Text = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["name",b"name"]) -> None: ...
-global___SensorServiceReadingsRequest = SensorServiceReadingsRequest
+global___SensorServiceGetReadingsRequest = SensorServiceGetReadingsRequest
 
-class SensorServiceReadingsResponse(google.protobuf.message.Message):
+class SensorServiceGetReadingsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     READINGS_FIELD_NUMBER: builtins.int
     @property
@@ -33,4 +33,4 @@ class SensorServiceReadingsResponse(google.protobuf.message.Message):
         readings : typing.Optional[typing.Iterable[google.protobuf.struct_pb2.Value]] = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["readings",b"readings"]) -> None: ...
-global___SensorServiceReadingsResponse = SensorServiceReadingsResponse
+global___SensorServiceGetReadingsResponse = SensorServiceGetReadingsResponse

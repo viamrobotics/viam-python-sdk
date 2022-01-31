@@ -12,7 +12,7 @@ import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
-class CameraServiceFrameRequest(google.protobuf.message.Message):
+class CameraServiceGetFrameRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
@@ -28,35 +28,35 @@ class CameraServiceFrameRequest(google.protobuf.message.Message):
         mime_type : typing.Text = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["mime_type",b"mime_type","name",b"name"]) -> None: ...
-global___CameraServiceFrameRequest = CameraServiceFrameRequest
+global___CameraServiceGetFrameRequest = CameraServiceGetFrameRequest
 
-class CameraServiceFrameResponse(google.protobuf.message.Message):
+class CameraServiceGetFrameResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MIME_TYPE_FIELD_NUMBER: builtins.int
     FRAME_FIELD_NUMBER: builtins.int
-    DIM_X_FIELD_NUMBER: builtins.int
-    DIM_Y_FIELD_NUMBER: builtins.int
+    WIDTH_PX_FIELD_NUMBER: builtins.int
+    HEIGHT_PX_FIELD_NUMBER: builtins.int
     mime_type: typing.Text = ...
     """Actual MIME type of response"""
 
     frame: builtins.bytes = ...
     """Frame in bytes"""
 
-    dim_x: builtins.int = ...
-    """Width of frame"""
+    width_px: builtins.int = ...
+    """Width of frame in px"""
 
-    dim_y: builtins.int = ...
-    """Height of frame"""
+    height_px: builtins.int = ...
+    """Height of frame in px"""
 
     def __init__(self,
         *,
         mime_type : typing.Text = ...,
         frame : builtins.bytes = ...,
-        dim_x : builtins.int = ...,
-        dim_y : builtins.int = ...,
+        width_px : builtins.int = ...,
+        height_px : builtins.int = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["dim_x",b"dim_x","dim_y",b"dim_y","frame",b"frame","mime_type",b"mime_type"]) -> None: ...
-global___CameraServiceFrameResponse = CameraServiceFrameResponse
+    def ClearField(self, field_name: typing_extensions.Literal["frame",b"frame","height_px",b"height_px","mime_type",b"mime_type","width_px",b"width_px"]) -> None: ...
+global___CameraServiceGetFrameResponse = CameraServiceGetFrameResponse
 
 class CameraServiceRenderFrameRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -76,7 +76,7 @@ class CameraServiceRenderFrameRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["mime_type",b"mime_type","name",b"name"]) -> None: ...
 global___CameraServiceRenderFrameRequest = CameraServiceRenderFrameRequest
 
-class CameraServicePointCloudRequest(google.protobuf.message.Message):
+class CameraServiceGetPointCloudRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
@@ -92,9 +92,9 @@ class CameraServicePointCloudRequest(google.protobuf.message.Message):
         mime_type : typing.Text = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["mime_type",b"mime_type","name",b"name"]) -> None: ...
-global___CameraServicePointCloudRequest = CameraServicePointCloudRequest
+global___CameraServiceGetPointCloudRequest = CameraServiceGetPointCloudRequest
 
-class CameraServicePointCloudResponse(google.protobuf.message.Message):
+class CameraServiceGetPointCloudResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MIME_TYPE_FIELD_NUMBER: builtins.int
     FRAME_FIELD_NUMBER: builtins.int
@@ -110,15 +110,15 @@ class CameraServicePointCloudResponse(google.protobuf.message.Message):
         frame : builtins.bytes = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["frame",b"frame","mime_type",b"mime_type"]) -> None: ...
-global___CameraServicePointCloudResponse = CameraServicePointCloudResponse
+global___CameraServiceGetPointCloudResponse = CameraServiceGetPointCloudResponse
 
-class CameraServiceObjectPointCloudsRequest(google.protobuf.message.Message):
+class CameraServiceGetObjectPointCloudsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     MIN_POINTS_IN_PLANE_FIELD_NUMBER: builtins.int
     MIN_POINTS_IN_SEGMENT_FIELD_NUMBER: builtins.int
-    CLUSTERING_RADIUS_FIELD_NUMBER: builtins.int
+    CLUSTERING_RADIUS_MM_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """Name of a camera"""
 
@@ -131,8 +131,8 @@ class CameraServiceObjectPointCloudsRequest(google.protobuf.message.Message):
     min_points_in_segment: builtins.int = ...
     """Minimum points in segment"""
 
-    clustering_radius: builtins.float = ...
-    """Clustering radius"""
+    clustering_radius_mm: builtins.float = ...
+    """Clustering radius in mm"""
 
     def __init__(self,
         *,
@@ -140,12 +140,12 @@ class CameraServiceObjectPointCloudsRequest(google.protobuf.message.Message):
         mime_type : typing.Text = ...,
         min_points_in_plane : builtins.int = ...,
         min_points_in_segment : builtins.int = ...,
-        clustering_radius : builtins.float = ...,
+        clustering_radius_mm : builtins.float = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["clustering_radius",b"clustering_radius","mime_type",b"mime_type","min_points_in_plane",b"min_points_in_plane","min_points_in_segment",b"min_points_in_segment","name",b"name"]) -> None: ...
-global___CameraServiceObjectPointCloudsRequest = CameraServiceObjectPointCloudsRequest
+    def ClearField(self, field_name: typing_extensions.Literal["clustering_radius_mm",b"clustering_radius_mm","mime_type",b"mime_type","min_points_in_plane",b"min_points_in_plane","min_points_in_segment",b"min_points_in_segment","name",b"name"]) -> None: ...
+global___CameraServiceGetObjectPointCloudsRequest = CameraServiceGetObjectPointCloudsRequest
 
-class CameraServiceObjectPointCloudsResponse(google.protobuf.message.Message):
+class CameraServiceGetObjectPointCloudsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MIME_TYPE_FIELD_NUMBER: builtins.int
     OBJECTS_FIELD_NUMBER: builtins.int
@@ -162,30 +162,30 @@ class CameraServiceObjectPointCloudsResponse(google.protobuf.message.Message):
         objects : typing.Optional[typing.Iterable[global___PointCloudObject]] = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["mime_type",b"mime_type","objects",b"objects"]) -> None: ...
-global___CameraServiceObjectPointCloudsResponse = CameraServiceObjectPointCloudsResponse
+global___CameraServiceGetObjectPointCloudsResponse = CameraServiceGetObjectPointCloudsResponse
 
 class PointCloudObject(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     FRAME_FIELD_NUMBER: builtins.int
-    CENTER_FIELD_NUMBER: builtins.int
-    BOUNDING_BOX_FIELD_NUMBER: builtins.int
+    CENTER_COORDINATES_MM_FIELD_NUMBER: builtins.int
+    BOUNDING_BOX_MM_FIELD_NUMBER: builtins.int
     frame: builtins.bytes = ...
     """Frame of object in bytes"""
 
     @property
-    def center(self) -> proto.api.common.v1.common_pb2.Vector3:
-        """Center of object in vector form"""
+    def center_coordinates_mm(self) -> proto.api.common.v1.common_pb2.Vector3:
+        """Center of object in mm"""
         pass
     @property
-    def bounding_box(self) -> proto.api.common.v1.common_pb2.BoxGeometry:
-        """Bounding box of object"""
+    def bounding_box_mm(self) -> proto.api.common.v1.common_pb2.BoxGeometry:
+        """Bounding box of object in mm"""
         pass
     def __init__(self,
         *,
         frame : builtins.bytes = ...,
-        center : typing.Optional[proto.api.common.v1.common_pb2.Vector3] = ...,
-        bounding_box : typing.Optional[proto.api.common.v1.common_pb2.BoxGeometry] = ...,
+        center_coordinates_mm : typing.Optional[proto.api.common.v1.common_pb2.Vector3] = ...,
+        bounding_box_mm : typing.Optional[proto.api.common.v1.common_pb2.BoxGeometry] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["bounding_box",b"bounding_box","center",b"center"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["bounding_box",b"bounding_box","center",b"center","frame",b"frame"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["bounding_box_mm",b"bounding_box_mm","center_coordinates_mm",b"center_coordinates_mm"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["bounding_box_mm",b"bounding_box_mm","center_coordinates_mm",b"center_coordinates_mm","frame",b"frame"]) -> None: ...
 global___PointCloudObject = PointCloudObject
