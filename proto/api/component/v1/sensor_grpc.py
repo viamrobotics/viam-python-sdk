@@ -17,16 +17,16 @@ import proto.api.component.v1.sensor_pb2
 class SensorServiceBase(abc.ABC):
 
     @abc.abstractmethod
-    async def GetReadings(self, stream: 'grpclib.server.Stream[proto.api.component.v1.sensor_pb2.SensorServiceGetReadingsRequest, proto.api.component.v1.sensor_pb2.SensorServiceGetReadingsResponse]') -> None:
+    async def Readings(self, stream: 'grpclib.server.Stream[proto.api.component.v1.sensor_pb2.SensorServiceReadingsRequest, proto.api.component.v1.sensor_pb2.SensorServiceReadingsResponse]') -> None:
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
-            '/proto.api.component.v1.SensorService/GetReadings': grpclib.const.Handler(
-                self.GetReadings,
+            '/proto.api.component.v1.SensorService/Readings': grpclib.const.Handler(
+                self.Readings,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                proto.api.component.v1.sensor_pb2.SensorServiceGetReadingsRequest,
-                proto.api.component.v1.sensor_pb2.SensorServiceGetReadingsResponse,
+                proto.api.component.v1.sensor_pb2.SensorServiceReadingsRequest,
+                proto.api.component.v1.sensor_pb2.SensorServiceReadingsResponse,
             ),
         }
 
@@ -34,9 +34,9 @@ class SensorServiceBase(abc.ABC):
 class SensorServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
-        self.GetReadings = grpclib.client.UnaryUnaryMethod(
+        self.Readings = grpclib.client.UnaryUnaryMethod(
             channel,
-            '/proto.api.component.v1.SensorService/GetReadings',
-            proto.api.component.v1.sensor_pb2.SensorServiceGetReadingsRequest,
-            proto.api.component.v1.sensor_pb2.SensorServiceGetReadingsResponse,
+            '/proto.api.component.v1.SensorService/Readings',
+            proto.api.component.v1.sensor_pb2.SensorServiceReadingsRequest,
+            proto.api.component.v1.sensor_pb2.SensorServiceReadingsResponse,
         )

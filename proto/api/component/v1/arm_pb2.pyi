@@ -19,7 +19,7 @@ class ArmJointPositions(google.protobuf.message.Message):
     def degrees(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         """A list of joint positions represented in degrees
         The numbers are ordered spatially from the base toward the end effector
-        This is used in ArmServiceGetJointPositionsResponse and ArmServiceMoveToJointPositionsRequest
+        This is used in ArmServiceCurrentJointPositionsResponse and ArmServiceMoveToJointPositionsRequest
         """
         pass
     def __init__(self,
@@ -29,7 +29,7 @@ class ArmJointPositions(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal["degrees",b"degrees"]) -> None: ...
 global___ArmJointPositions = ArmJointPositions
 
-class ArmServiceGetEndPositionRequest(google.protobuf.message.Message):
+class ArmServiceCurrentPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
@@ -40,26 +40,26 @@ class ArmServiceGetEndPositionRequest(google.protobuf.message.Message):
         name : typing.Text = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["name",b"name"]) -> None: ...
-global___ArmServiceGetEndPositionRequest = ArmServiceGetEndPositionRequest
+global___ArmServiceCurrentPositionRequest = ArmServiceCurrentPositionRequest
 
-class ArmServiceGetEndPositionResponse(google.protobuf.message.Message):
+class ArmServiceCurrentPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    POSE_FIELD_NUMBER: builtins.int
+    POSITION_FIELD_NUMBER: builtins.int
     @property
-    def pose(self) -> proto.api.common.v1.common_pb2.Pose:
+    def position(self) -> proto.api.common.v1.common_pb2.Pose:
         """Returns 6d pose of the end effector relative to the base, represented by X,Y,Z coordinates which express
         millimeters and theta, ox, oy, oz coordinates which express an orientation vector
         """
         pass
     def __init__(self,
         *,
-        pose : typing.Optional[proto.api.common.v1.common_pb2.Pose] = ...,
+        position : typing.Optional[proto.api.common.v1.common_pb2.Pose] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["pose",b"pose"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["pose",b"pose"]) -> None: ...
-global___ArmServiceGetEndPositionResponse = ArmServiceGetEndPositionResponse
+    def HasField(self, field_name: typing_extensions.Literal["position",b"position"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["position",b"position"]) -> None: ...
+global___ArmServiceCurrentPositionResponse = ArmServiceCurrentPositionResponse
 
-class ArmServiceGetJointPositionsRequest(google.protobuf.message.Message):
+class ArmServiceCurrentJointPositionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
@@ -70,39 +70,39 @@ class ArmServiceGetJointPositionsRequest(google.protobuf.message.Message):
         name : typing.Text = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["name",b"name"]) -> None: ...
-global___ArmServiceGetJointPositionsRequest = ArmServiceGetJointPositionsRequest
+global___ArmServiceCurrentJointPositionsRequest = ArmServiceCurrentJointPositionsRequest
 
-class ArmServiceGetJointPositionsResponse(google.protobuf.message.Message):
+class ArmServiceCurrentJointPositionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    POSITION_DEGS_FIELD_NUMBER: builtins.int
+    POSITIONS_FIELD_NUMBER: builtins.int
     @property
-    def position_degs(self) -> global___ArmJointPositions:
+    def positions(self) -> global___ArmJointPositions:
         """a list ArmJointPositions"""
         pass
     def __init__(self,
         *,
-        position_degs : typing.Optional[global___ArmJointPositions] = ...,
+        positions : typing.Optional[global___ArmJointPositions] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["position_degs",b"position_degs"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["position_degs",b"position_degs"]) -> None: ...
-global___ArmServiceGetJointPositionsResponse = ArmServiceGetJointPositionsResponse
+    def HasField(self, field_name: typing_extensions.Literal["positions",b"positions"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["positions",b"positions"]) -> None: ...
+global___ArmServiceCurrentJointPositionsResponse = ArmServiceCurrentJointPositionsResponse
 
 class ArmServiceMoveToPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    POSE_FIELD_NUMBER: builtins.int
+    TO_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """Name of an arm"""
 
     @property
-    def pose(self) -> proto.api.common.v1.common_pb2.Pose: ...
+    def to(self) -> proto.api.common.v1.common_pb2.Pose: ...
     def __init__(self,
         *,
         name : typing.Text = ...,
-        pose : typing.Optional[proto.api.common.v1.common_pb2.Pose] = ...,
+        to : typing.Optional[proto.api.common.v1.common_pb2.Pose] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["pose",b"pose"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["name",b"name","pose",b"pose"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["to",b"to"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["name",b"name","to",b"to"]) -> None: ...
 global___ArmServiceMoveToPositionRequest = ArmServiceMoveToPositionRequest
 
 class ArmServiceMoveToPositionResponse(google.protobuf.message.Message):
@@ -114,12 +114,12 @@ global___ArmServiceMoveToPositionResponse = ArmServiceMoveToPositionResponse
 class ArmServiceMoveToJointPositionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    POSITION_DEGS_FIELD_NUMBER: builtins.int
+    TO_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     """Name of an arm"""
 
     @property
-    def position_degs(self) -> global___ArmJointPositions:
+    def to(self) -> global___ArmJointPositions:
         """A list of joint positions represented in degrees
         There should be 1 entry in the list per joint, ordered spatially from the base toward the end effector
         """
@@ -127,10 +127,10 @@ class ArmServiceMoveToJointPositionsRequest(google.protobuf.message.Message):
     def __init__(self,
         *,
         name : typing.Text = ...,
-        position_degs : typing.Optional[global___ArmJointPositions] = ...,
+        to : typing.Optional[global___ArmJointPositions] = ...,
         ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["position_degs",b"position_degs"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["name",b"name","position_degs",b"position_degs"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["to",b"to"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["name",b"name","to",b"to"]) -> None: ...
 global___ArmServiceMoveToJointPositionsRequest = ArmServiceMoveToJointPositionsRequest
 
 class ArmServiceMoveToJointPositionsResponse(google.protobuf.message.Message):
@@ -138,3 +138,32 @@ class ArmServiceMoveToJointPositionsResponse(google.protobuf.message.Message):
     def __init__(self,
         ) -> None: ...
 global___ArmServiceMoveToJointPositionsResponse = ArmServiceMoveToJointPositionsResponse
+
+class ArmServiceJointMoveDeltaRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    JOINT_FIELD_NUMBER: builtins.int
+    AMOUNT_DEGS_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    """Name of an arm"""
+
+    joint: builtins.int = ...
+    """To specify a joint, refer to base as 0 and count forwards up to the end effector"""
+
+    amount_degs: builtins.float = ...
+    """Specify degrees, can be positive or negative"""
+
+    def __init__(self,
+        *,
+        name : typing.Text = ...,
+        joint : builtins.int = ...,
+        amount_degs : builtins.float = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["amount_degs",b"amount_degs","joint",b"joint","name",b"name"]) -> None: ...
+global___ArmServiceJointMoveDeltaRequest = ArmServiceJointMoveDeltaRequest
+
+class ArmServiceJointMoveDeltaResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    def __init__(self,
+        ) -> None: ...
+global___ArmServiceJointMoveDeltaResponse = ArmServiceJointMoveDeltaResponse

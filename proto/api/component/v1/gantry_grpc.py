@@ -16,7 +16,7 @@ import proto.api.component.v1.gantry_pb2
 class GantryServiceBase(abc.ABC):
 
     @abc.abstractmethod
-    async def GetPosition(self, stream: 'grpclib.server.Stream[proto.api.component.v1.gantry_pb2.GantryServiceGetPositionRequest, proto.api.component.v1.gantry_pb2.GantryServiceGetPositionResponse]') -> None:
+    async def CurrentPosition(self, stream: 'grpclib.server.Stream[proto.api.component.v1.gantry_pb2.GantryServiceCurrentPositionRequest, proto.api.component.v1.gantry_pb2.GantryServiceCurrentPositionResponse]') -> None:
         pass
 
     @abc.abstractmethod
@@ -24,16 +24,16 @@ class GantryServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
-    async def GetLengths(self, stream: 'grpclib.server.Stream[proto.api.component.v1.gantry_pb2.GantryServiceGetLengthsRequest, proto.api.component.v1.gantry_pb2.GantryServiceGetLengthsResponse]') -> None:
+    async def Lengths(self, stream: 'grpclib.server.Stream[proto.api.component.v1.gantry_pb2.GantryServiceLengthsRequest, proto.api.component.v1.gantry_pb2.GantryServiceLengthsResponse]') -> None:
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
-            '/proto.api.component.v1.GantryService/GetPosition': grpclib.const.Handler(
-                self.GetPosition,
+            '/proto.api.component.v1.GantryService/CurrentPosition': grpclib.const.Handler(
+                self.CurrentPosition,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                proto.api.component.v1.gantry_pb2.GantryServiceGetPositionRequest,
-                proto.api.component.v1.gantry_pb2.GantryServiceGetPositionResponse,
+                proto.api.component.v1.gantry_pb2.GantryServiceCurrentPositionRequest,
+                proto.api.component.v1.gantry_pb2.GantryServiceCurrentPositionResponse,
             ),
             '/proto.api.component.v1.GantryService/MoveToPosition': grpclib.const.Handler(
                 self.MoveToPosition,
@@ -41,11 +41,11 @@ class GantryServiceBase(abc.ABC):
                 proto.api.component.v1.gantry_pb2.GantryServiceMoveToPositionRequest,
                 proto.api.component.v1.gantry_pb2.GantryServiceMoveToPositionResponse,
             ),
-            '/proto.api.component.v1.GantryService/GetLengths': grpclib.const.Handler(
-                self.GetLengths,
+            '/proto.api.component.v1.GantryService/Lengths': grpclib.const.Handler(
+                self.Lengths,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                proto.api.component.v1.gantry_pb2.GantryServiceGetLengthsRequest,
-                proto.api.component.v1.gantry_pb2.GantryServiceGetLengthsResponse,
+                proto.api.component.v1.gantry_pb2.GantryServiceLengthsRequest,
+                proto.api.component.v1.gantry_pb2.GantryServiceLengthsResponse,
             ),
         }
 
@@ -53,11 +53,11 @@ class GantryServiceBase(abc.ABC):
 class GantryServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
-        self.GetPosition = grpclib.client.UnaryUnaryMethod(
+        self.CurrentPosition = grpclib.client.UnaryUnaryMethod(
             channel,
-            '/proto.api.component.v1.GantryService/GetPosition',
-            proto.api.component.v1.gantry_pb2.GantryServiceGetPositionRequest,
-            proto.api.component.v1.gantry_pb2.GantryServiceGetPositionResponse,
+            '/proto.api.component.v1.GantryService/CurrentPosition',
+            proto.api.component.v1.gantry_pb2.GantryServiceCurrentPositionRequest,
+            proto.api.component.v1.gantry_pb2.GantryServiceCurrentPositionResponse,
         )
         self.MoveToPosition = grpclib.client.UnaryUnaryMethod(
             channel,
@@ -65,9 +65,9 @@ class GantryServiceStub:
             proto.api.component.v1.gantry_pb2.GantryServiceMoveToPositionRequest,
             proto.api.component.v1.gantry_pb2.GantryServiceMoveToPositionResponse,
         )
-        self.GetLengths = grpclib.client.UnaryUnaryMethod(
+        self.Lengths = grpclib.client.UnaryUnaryMethod(
             channel,
-            '/proto.api.component.v1.GantryService/GetLengths',
-            proto.api.component.v1.gantry_pb2.GantryServiceGetLengthsRequest,
-            proto.api.component.v1.gantry_pb2.GantryServiceGetLengthsResponse,
+            '/proto.api.component.v1.GantryService/Lengths',
+            proto.api.component.v1.gantry_pb2.GantryServiceLengthsRequest,
+            proto.api.component.v1.gantry_pb2.GantryServiceLengthsResponse,
         )

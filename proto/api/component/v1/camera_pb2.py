@@ -17,31 +17,31 @@ from google.api import httpbody_pb2 as google_dot_api_dot_httpbody__pb2
 from proto.api.common.v1 import common_pb2 as proto_dot_api_dot_common_dot_v1_dot_common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#proto/api/component/v1/camera.proto\x12\x16proto.api.component.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/api/httpbody.proto\x1a proto/api/common/v1/common.proto\"O\n\x1c\x43\x61meraServiceGetFrameRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n\tmime_type\x18\x02 \x01(\tR\x08mimeType\"\x8a\x01\n\x1d\x43\x61meraServiceGetFrameResponse\x12\x1b\n\tmime_type\x18\x01 \x01(\tR\x08mimeType\x12\x14\n\x05\x66rame\x18\x02 \x01(\x0cR\x05\x66rame\x12\x19\n\x08width_px\x18\x03 \x01(\x03R\x07widthPx\x12\x1b\n\theight_px\x18\x04 \x01(\x03R\x08heightPx\"R\n\x1f\x43\x61meraServiceRenderFrameRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n\tmime_type\x18\x02 \x01(\tR\x08mimeType\"T\n!CameraServiceGetPointCloudRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n\tmime_type\x18\x02 \x01(\tR\x08mimeType\"W\n\"CameraServiceGetPointCloudResponse\x12\x1b\n\tmime_type\x18\x01 \x01(\tR\x08mimeType\x12\x14\n\x05\x66rame\x18\x02 \x01(\x0cR\x05\x66rame\"\xef\x01\n(CameraServiceGetObjectPointCloudsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n\tmime_type\x18\x02 \x01(\tR\x08mimeType\x12-\n\x13min_points_in_plane\x18\x03 \x01(\x03R\x10minPointsInPlane\x12\x31\n\x15min_points_in_segment\x18\x04 \x01(\x03R\x12minPointsInSegment\x12\x30\n\x14\x63lustering_radius_mm\x18\x05 \x01(\x01R\x12\x63lusteringRadiusMm\"\x8c\x01\n)CameraServiceGetObjectPointCloudsResponse\x12\x1b\n\tmime_type\x18\x01 \x01(\tR\x08mimeType\x12\x42\n\x07objects\x18\x02 \x03(\x0b\x32(.proto.api.component.v1.PointCloudObjectR\x07objects\"\xc4\x01\n\x10PointCloudObject\x12\x14\n\x05\x66rame\x18\x01 \x01(\x0cR\x05\x66rame\x12P\n\x15\x63\x65nter_coordinates_mm\x18\x02 \x01(\x0b\x32\x1c.proto.api.common.v1.Vector3R\x13\x63\x65nterCoordinatesMm\x12H\n\x0f\x62ounding_box_mm\x18\x03 \x01(\x0b\x32 .proto.api.common.v1.BoxGeometryR\rboundingBoxMm2\xe6\x05\n\rCameraService\x12\xa6\x01\n\x08GetFrame\x12\x34.proto.api.component.v1.CameraServiceGetFrameRequest\x1a\x35.proto.api.component.v1.CameraServiceGetFrameResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/api/v1/component/camera/{name}/frame\x12\x92\x01\n\x0bRenderFrame\x12\x37.proto.api.component.v1.CameraServiceRenderFrameRequest\x1a\x14.google.api.HttpBody\"4\x82\xd3\xe4\x93\x02.\x12,/api/v1/component/camera/{name}/render_frame\x12\xbb\x01\n\rGetPointCloud\x12\x39.proto.api.component.v1.CameraServiceGetPointCloudRequest\x1a:.proto.api.component.v1.CameraServiceGetPointCloudResponse\"3\x82\xd3\xe4\x93\x02-\x12+/api/v1/component/camera/{name}/point_cloud\x12\xd8\x01\n\x14GetObjectPointClouds\x12@.proto.api.component.v1.CameraServiceGetObjectPointCloudsRequest\x1a\x41.proto.api.component.v1.CameraServiceGetObjectPointCloudsResponse\";\x82\xd3\xe4\x93\x02\x35\x12\x33/api/v1/component/camera/{name}/object_point_cloudsBM\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n#proto/api/component/v1/camera.proto\x12\x16proto.api.component.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x19google/api/httpbody.proto\x1a proto/api/common/v1/common.proto\"L\n\x19\x43\x61meraServiceFrameRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n\tmime_type\x18\x02 \x01(\tR\x08mimeType\"y\n\x1a\x43\x61meraServiceFrameResponse\x12\x1b\n\tmime_type\x18\x01 \x01(\tR\x08mimeType\x12\x14\n\x05\x66rame\x18\x02 \x01(\x0cR\x05\x66rame\x12\x13\n\x05\x64im_x\x18\x03 \x01(\x03R\x04\x64imX\x12\x13\n\x05\x64im_y\x18\x04 \x01(\x03R\x04\x64imY\"R\n\x1f\x43\x61meraServiceRenderFrameRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n\tmime_type\x18\x02 \x01(\tR\x08mimeType\"Q\n\x1e\x43\x61meraServicePointCloudRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n\tmime_type\x18\x02 \x01(\tR\x08mimeType\"T\n\x1f\x43\x61meraServicePointCloudResponse\x12\x1b\n\tmime_type\x18\x01 \x01(\tR\x08mimeType\x12\x14\n\x05\x66rame\x18\x02 \x01(\x0cR\x05\x66rame\"\xe7\x01\n%CameraServiceObjectPointCloudsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12\x1b\n\tmime_type\x18\x02 \x01(\tR\x08mimeType\x12-\n\x13min_points_in_plane\x18\x03 \x01(\x03R\x10minPointsInPlane\x12\x31\n\x15min_points_in_segment\x18\x04 \x01(\x03R\x12minPointsInSegment\x12+\n\x11\x63lustering_radius\x18\x05 \x01(\x01R\x10\x63lusteringRadius\"\x89\x01\n&CameraServiceObjectPointCloudsResponse\x12\x1b\n\tmime_type\x18\x01 \x01(\tR\x08mimeType\x12\x42\n\x07objects\x18\x02 \x03(\x0b\x32(.proto.api.component.v1.PointCloudObjectR\x07objects\"\xa3\x01\n\x10PointCloudObject\x12\x14\n\x05\x66rame\x18\x01 \x01(\x0cR\x05\x66rame\x12\x34\n\x06\x63\x65nter\x18\x02 \x01(\x0b\x32\x1c.proto.api.common.v1.Vector3R\x06\x63\x65nter\x12\x43\n\x0c\x62ounding_box\x18\x03 \x01(\x0b\x32 .proto.api.common.v1.BoxGeometryR\x0b\x62oundingBox2\xc8\x05\n\rCameraService\x12\x9d\x01\n\x05\x46rame\x12\x31.proto.api.component.v1.CameraServiceFrameRequest\x1a\x32.proto.api.component.v1.CameraServiceFrameResponse\"-\x82\xd3\xe4\x93\x02\'\x12%/api/v1/component/camera/{name}/frame\x12\x92\x01\n\x0bRenderFrame\x12\x37.proto.api.component.v1.CameraServiceRenderFrameRequest\x1a\x14.google.api.HttpBody\"4\x82\xd3\xe4\x93\x02.\x12,/api/v1/component/camera/{name}/render_frame\x12\xb1\x01\n\nPointCloud\x12\x36.proto.api.component.v1.CameraServicePointCloudRequest\x1a\x37.proto.api.component.v1.CameraServicePointCloudResponse\"2\x82\xd3\xe4\x93\x02,\x12*/api/v1/component/camera/{name}/pointcloud\x12\xcd\x01\n\x11ObjectPointClouds\x12=.proto.api.component.v1.CameraServiceObjectPointCloudsRequest\x1a>.proto.api.component.v1.CameraServiceObjectPointCloudsResponse\"9\x82\xd3\xe4\x93\x02\x33\x12\x31/api/v1/component/camera/{name}/objectpointcloudsBM\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1b\x06proto3')
 
 
 
-_CAMERASERVICEGETFRAMEREQUEST = DESCRIPTOR.message_types_by_name['CameraServiceGetFrameRequest']
-_CAMERASERVICEGETFRAMERESPONSE = DESCRIPTOR.message_types_by_name['CameraServiceGetFrameResponse']
+_CAMERASERVICEFRAMEREQUEST = DESCRIPTOR.message_types_by_name['CameraServiceFrameRequest']
+_CAMERASERVICEFRAMERESPONSE = DESCRIPTOR.message_types_by_name['CameraServiceFrameResponse']
 _CAMERASERVICERENDERFRAMEREQUEST = DESCRIPTOR.message_types_by_name['CameraServiceRenderFrameRequest']
-_CAMERASERVICEGETPOINTCLOUDREQUEST = DESCRIPTOR.message_types_by_name['CameraServiceGetPointCloudRequest']
-_CAMERASERVICEGETPOINTCLOUDRESPONSE = DESCRIPTOR.message_types_by_name['CameraServiceGetPointCloudResponse']
-_CAMERASERVICEGETOBJECTPOINTCLOUDSREQUEST = DESCRIPTOR.message_types_by_name['CameraServiceGetObjectPointCloudsRequest']
-_CAMERASERVICEGETOBJECTPOINTCLOUDSRESPONSE = DESCRIPTOR.message_types_by_name['CameraServiceGetObjectPointCloudsResponse']
+_CAMERASERVICEPOINTCLOUDREQUEST = DESCRIPTOR.message_types_by_name['CameraServicePointCloudRequest']
+_CAMERASERVICEPOINTCLOUDRESPONSE = DESCRIPTOR.message_types_by_name['CameraServicePointCloudResponse']
+_CAMERASERVICEOBJECTPOINTCLOUDSREQUEST = DESCRIPTOR.message_types_by_name['CameraServiceObjectPointCloudsRequest']
+_CAMERASERVICEOBJECTPOINTCLOUDSRESPONSE = DESCRIPTOR.message_types_by_name['CameraServiceObjectPointCloudsResponse']
 _POINTCLOUDOBJECT = DESCRIPTOR.message_types_by_name['PointCloudObject']
-CameraServiceGetFrameRequest = _reflection.GeneratedProtocolMessageType('CameraServiceGetFrameRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CAMERASERVICEGETFRAMEREQUEST,
+CameraServiceFrameRequest = _reflection.GeneratedProtocolMessageType('CameraServiceFrameRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CAMERASERVICEFRAMEREQUEST,
   '__module__' : 'proto.api.component.v1.camera_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceGetFrameRequest)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceFrameRequest)
   })
-_sym_db.RegisterMessage(CameraServiceGetFrameRequest)
+_sym_db.RegisterMessage(CameraServiceFrameRequest)
 
-CameraServiceGetFrameResponse = _reflection.GeneratedProtocolMessageType('CameraServiceGetFrameResponse', (_message.Message,), {
-  'DESCRIPTOR' : _CAMERASERVICEGETFRAMERESPONSE,
+CameraServiceFrameResponse = _reflection.GeneratedProtocolMessageType('CameraServiceFrameResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CAMERASERVICEFRAMERESPONSE,
   '__module__' : 'proto.api.component.v1.camera_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceGetFrameResponse)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceFrameResponse)
   })
-_sym_db.RegisterMessage(CameraServiceGetFrameResponse)
+_sym_db.RegisterMessage(CameraServiceFrameResponse)
 
 CameraServiceRenderFrameRequest = _reflection.GeneratedProtocolMessageType('CameraServiceRenderFrameRequest', (_message.Message,), {
   'DESCRIPTOR' : _CAMERASERVICERENDERFRAMEREQUEST,
@@ -50,33 +50,33 @@ CameraServiceRenderFrameRequest = _reflection.GeneratedProtocolMessageType('Came
   })
 _sym_db.RegisterMessage(CameraServiceRenderFrameRequest)
 
-CameraServiceGetPointCloudRequest = _reflection.GeneratedProtocolMessageType('CameraServiceGetPointCloudRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CAMERASERVICEGETPOINTCLOUDREQUEST,
+CameraServicePointCloudRequest = _reflection.GeneratedProtocolMessageType('CameraServicePointCloudRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CAMERASERVICEPOINTCLOUDREQUEST,
   '__module__' : 'proto.api.component.v1.camera_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceGetPointCloudRequest)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServicePointCloudRequest)
   })
-_sym_db.RegisterMessage(CameraServiceGetPointCloudRequest)
+_sym_db.RegisterMessage(CameraServicePointCloudRequest)
 
-CameraServiceGetPointCloudResponse = _reflection.GeneratedProtocolMessageType('CameraServiceGetPointCloudResponse', (_message.Message,), {
-  'DESCRIPTOR' : _CAMERASERVICEGETPOINTCLOUDRESPONSE,
+CameraServicePointCloudResponse = _reflection.GeneratedProtocolMessageType('CameraServicePointCloudResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CAMERASERVICEPOINTCLOUDRESPONSE,
   '__module__' : 'proto.api.component.v1.camera_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceGetPointCloudResponse)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServicePointCloudResponse)
   })
-_sym_db.RegisterMessage(CameraServiceGetPointCloudResponse)
+_sym_db.RegisterMessage(CameraServicePointCloudResponse)
 
-CameraServiceGetObjectPointCloudsRequest = _reflection.GeneratedProtocolMessageType('CameraServiceGetObjectPointCloudsRequest', (_message.Message,), {
-  'DESCRIPTOR' : _CAMERASERVICEGETOBJECTPOINTCLOUDSREQUEST,
+CameraServiceObjectPointCloudsRequest = _reflection.GeneratedProtocolMessageType('CameraServiceObjectPointCloudsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CAMERASERVICEOBJECTPOINTCLOUDSREQUEST,
   '__module__' : 'proto.api.component.v1.camera_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceGetObjectPointCloudsRequest)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceObjectPointCloudsRequest)
   })
-_sym_db.RegisterMessage(CameraServiceGetObjectPointCloudsRequest)
+_sym_db.RegisterMessage(CameraServiceObjectPointCloudsRequest)
 
-CameraServiceGetObjectPointCloudsResponse = _reflection.GeneratedProtocolMessageType('CameraServiceGetObjectPointCloudsResponse', (_message.Message,), {
-  'DESCRIPTOR' : _CAMERASERVICEGETOBJECTPOINTCLOUDSRESPONSE,
+CameraServiceObjectPointCloudsResponse = _reflection.GeneratedProtocolMessageType('CameraServiceObjectPointCloudsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _CAMERASERVICEOBJECTPOINTCLOUDSRESPONSE,
   '__module__' : 'proto.api.component.v1.camera_pb2'
-  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceGetObjectPointCloudsResponse)
+  # @@protoc_insertion_point(class_scope:proto.api.component.v1.CameraServiceObjectPointCloudsResponse)
   })
-_sym_db.RegisterMessage(CameraServiceGetObjectPointCloudsResponse)
+_sym_db.RegisterMessage(CameraServiceObjectPointCloudsResponse)
 
 PointCloudObject = _reflection.GeneratedProtocolMessageType('PointCloudObject', (_message.Message,), {
   'DESCRIPTOR' : _POINTCLOUDOBJECT,
@@ -90,30 +90,30 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n#com.viam.rdk.proto.api.component.v1Z&go.viam.com/rdk/proto/api/component/v1'
-  _CAMERASERVICE.methods_by_name['GetFrame']._options = None
-  _CAMERASERVICE.methods_by_name['GetFrame']._serialized_options = b'\202\323\344\223\002\'\022%/api/v1/component/camera/{name}/frame'
+  _CAMERASERVICE.methods_by_name['Frame']._options = None
+  _CAMERASERVICE.methods_by_name['Frame']._serialized_options = b'\202\323\344\223\002\'\022%/api/v1/component/camera/{name}/frame'
   _CAMERASERVICE.methods_by_name['RenderFrame']._options = None
   _CAMERASERVICE.methods_by_name['RenderFrame']._serialized_options = b'\202\323\344\223\002.\022,/api/v1/component/camera/{name}/render_frame'
-  _CAMERASERVICE.methods_by_name['GetPointCloud']._options = None
-  _CAMERASERVICE.methods_by_name['GetPointCloud']._serialized_options = b'\202\323\344\223\002-\022+/api/v1/component/camera/{name}/point_cloud'
-  _CAMERASERVICE.methods_by_name['GetObjectPointClouds']._options = None
-  _CAMERASERVICE.methods_by_name['GetObjectPointClouds']._serialized_options = b'\202\323\344\223\0025\0223/api/v1/component/camera/{name}/object_point_clouds'
-  _CAMERASERVICEGETFRAMEREQUEST._serialized_start=154
-  _CAMERASERVICEGETFRAMEREQUEST._serialized_end=233
-  _CAMERASERVICEGETFRAMERESPONSE._serialized_start=236
-  _CAMERASERVICEGETFRAMERESPONSE._serialized_end=374
-  _CAMERASERVICERENDERFRAMEREQUEST._serialized_start=376
-  _CAMERASERVICERENDERFRAMEREQUEST._serialized_end=458
-  _CAMERASERVICEGETPOINTCLOUDREQUEST._serialized_start=460
-  _CAMERASERVICEGETPOINTCLOUDREQUEST._serialized_end=544
-  _CAMERASERVICEGETPOINTCLOUDRESPONSE._serialized_start=546
-  _CAMERASERVICEGETPOINTCLOUDRESPONSE._serialized_end=633
-  _CAMERASERVICEGETOBJECTPOINTCLOUDSREQUEST._serialized_start=636
-  _CAMERASERVICEGETOBJECTPOINTCLOUDSREQUEST._serialized_end=875
-  _CAMERASERVICEGETOBJECTPOINTCLOUDSRESPONSE._serialized_start=878
-  _CAMERASERVICEGETOBJECTPOINTCLOUDSRESPONSE._serialized_end=1018
-  _POINTCLOUDOBJECT._serialized_start=1021
-  _POINTCLOUDOBJECT._serialized_end=1217
-  _CAMERASERVICE._serialized_start=1220
-  _CAMERASERVICE._serialized_end=1962
+  _CAMERASERVICE.methods_by_name['PointCloud']._options = None
+  _CAMERASERVICE.methods_by_name['PointCloud']._serialized_options = b'\202\323\344\223\002,\022*/api/v1/component/camera/{name}/pointcloud'
+  _CAMERASERVICE.methods_by_name['ObjectPointClouds']._options = None
+  _CAMERASERVICE.methods_by_name['ObjectPointClouds']._serialized_options = b'\202\323\344\223\0023\0221/api/v1/component/camera/{name}/objectpointclouds'
+  _CAMERASERVICEFRAMEREQUEST._serialized_start=154
+  _CAMERASERVICEFRAMEREQUEST._serialized_end=230
+  _CAMERASERVICEFRAMERESPONSE._serialized_start=232
+  _CAMERASERVICEFRAMERESPONSE._serialized_end=353
+  _CAMERASERVICERENDERFRAMEREQUEST._serialized_start=355
+  _CAMERASERVICERENDERFRAMEREQUEST._serialized_end=437
+  _CAMERASERVICEPOINTCLOUDREQUEST._serialized_start=439
+  _CAMERASERVICEPOINTCLOUDREQUEST._serialized_end=520
+  _CAMERASERVICEPOINTCLOUDRESPONSE._serialized_start=522
+  _CAMERASERVICEPOINTCLOUDRESPONSE._serialized_end=606
+  _CAMERASERVICEOBJECTPOINTCLOUDSREQUEST._serialized_start=609
+  _CAMERASERVICEOBJECTPOINTCLOUDSREQUEST._serialized_end=840
+  _CAMERASERVICEOBJECTPOINTCLOUDSRESPONSE._serialized_start=843
+  _CAMERASERVICEOBJECTPOINTCLOUDSRESPONSE._serialized_end=980
+  _POINTCLOUDOBJECT._serialized_start=983
+  _POINTCLOUDOBJECT._serialized_end=1146
+  _CAMERASERVICE._serialized_start=1149
+  _CAMERASERVICE._serialized_end=1861
 # @@protoc_insertion_point(module_scope)

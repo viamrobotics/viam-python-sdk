@@ -17,7 +17,7 @@ import proto.api.component.v1.arm_pb2
 class ArmServiceBase(abc.ABC):
 
     @abc.abstractmethod
-    async def GetEndPosition(self, stream: 'grpclib.server.Stream[proto.api.component.v1.arm_pb2.ArmServiceGetEndPositionRequest, proto.api.component.v1.arm_pb2.ArmServiceGetEndPositionResponse]') -> None:
+    async def CurrentPosition(self, stream: 'grpclib.server.Stream[proto.api.component.v1.arm_pb2.ArmServiceCurrentPositionRequest, proto.api.component.v1.arm_pb2.ArmServiceCurrentPositionResponse]') -> None:
         pass
 
     @abc.abstractmethod
@@ -25,20 +25,24 @@ class ArmServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
-    async def GetJointPositions(self, stream: 'grpclib.server.Stream[proto.api.component.v1.arm_pb2.ArmServiceGetJointPositionsRequest, proto.api.component.v1.arm_pb2.ArmServiceGetJointPositionsResponse]') -> None:
+    async def CurrentJointPositions(self, stream: 'grpclib.server.Stream[proto.api.component.v1.arm_pb2.ArmServiceCurrentJointPositionsRequest, proto.api.component.v1.arm_pb2.ArmServiceCurrentJointPositionsResponse]') -> None:
         pass
 
     @abc.abstractmethod
     async def MoveToJointPositions(self, stream: 'grpclib.server.Stream[proto.api.component.v1.arm_pb2.ArmServiceMoveToJointPositionsRequest, proto.api.component.v1.arm_pb2.ArmServiceMoveToJointPositionsResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def JointMoveDelta(self, stream: 'grpclib.server.Stream[proto.api.component.v1.arm_pb2.ArmServiceJointMoveDeltaRequest, proto.api.component.v1.arm_pb2.ArmServiceJointMoveDeltaResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
-            '/proto.api.component.v1.ArmService/GetEndPosition': grpclib.const.Handler(
-                self.GetEndPosition,
+            '/proto.api.component.v1.ArmService/CurrentPosition': grpclib.const.Handler(
+                self.CurrentPosition,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                proto.api.component.v1.arm_pb2.ArmServiceGetEndPositionRequest,
-                proto.api.component.v1.arm_pb2.ArmServiceGetEndPositionResponse,
+                proto.api.component.v1.arm_pb2.ArmServiceCurrentPositionRequest,
+                proto.api.component.v1.arm_pb2.ArmServiceCurrentPositionResponse,
             ),
             '/proto.api.component.v1.ArmService/MoveToPosition': grpclib.const.Handler(
                 self.MoveToPosition,
@@ -46,11 +50,11 @@ class ArmServiceBase(abc.ABC):
                 proto.api.component.v1.arm_pb2.ArmServiceMoveToPositionRequest,
                 proto.api.component.v1.arm_pb2.ArmServiceMoveToPositionResponse,
             ),
-            '/proto.api.component.v1.ArmService/GetJointPositions': grpclib.const.Handler(
-                self.GetJointPositions,
+            '/proto.api.component.v1.ArmService/CurrentJointPositions': grpclib.const.Handler(
+                self.CurrentJointPositions,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                proto.api.component.v1.arm_pb2.ArmServiceGetJointPositionsRequest,
-                proto.api.component.v1.arm_pb2.ArmServiceGetJointPositionsResponse,
+                proto.api.component.v1.arm_pb2.ArmServiceCurrentJointPositionsRequest,
+                proto.api.component.v1.arm_pb2.ArmServiceCurrentJointPositionsResponse,
             ),
             '/proto.api.component.v1.ArmService/MoveToJointPositions': grpclib.const.Handler(
                 self.MoveToJointPositions,
@@ -58,17 +62,23 @@ class ArmServiceBase(abc.ABC):
                 proto.api.component.v1.arm_pb2.ArmServiceMoveToJointPositionsRequest,
                 proto.api.component.v1.arm_pb2.ArmServiceMoveToJointPositionsResponse,
             ),
+            '/proto.api.component.v1.ArmService/JointMoveDelta': grpclib.const.Handler(
+                self.JointMoveDelta,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                proto.api.component.v1.arm_pb2.ArmServiceJointMoveDeltaRequest,
+                proto.api.component.v1.arm_pb2.ArmServiceJointMoveDeltaResponse,
+            ),
         }
 
 
 class ArmServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
-        self.GetEndPosition = grpclib.client.UnaryUnaryMethod(
+        self.CurrentPosition = grpclib.client.UnaryUnaryMethod(
             channel,
-            '/proto.api.component.v1.ArmService/GetEndPosition',
-            proto.api.component.v1.arm_pb2.ArmServiceGetEndPositionRequest,
-            proto.api.component.v1.arm_pb2.ArmServiceGetEndPositionResponse,
+            '/proto.api.component.v1.ArmService/CurrentPosition',
+            proto.api.component.v1.arm_pb2.ArmServiceCurrentPositionRequest,
+            proto.api.component.v1.arm_pb2.ArmServiceCurrentPositionResponse,
         )
         self.MoveToPosition = grpclib.client.UnaryUnaryMethod(
             channel,
@@ -76,15 +86,21 @@ class ArmServiceStub:
             proto.api.component.v1.arm_pb2.ArmServiceMoveToPositionRequest,
             proto.api.component.v1.arm_pb2.ArmServiceMoveToPositionResponse,
         )
-        self.GetJointPositions = grpclib.client.UnaryUnaryMethod(
+        self.CurrentJointPositions = grpclib.client.UnaryUnaryMethod(
             channel,
-            '/proto.api.component.v1.ArmService/GetJointPositions',
-            proto.api.component.v1.arm_pb2.ArmServiceGetJointPositionsRequest,
-            proto.api.component.v1.arm_pb2.ArmServiceGetJointPositionsResponse,
+            '/proto.api.component.v1.ArmService/CurrentJointPositions',
+            proto.api.component.v1.arm_pb2.ArmServiceCurrentJointPositionsRequest,
+            proto.api.component.v1.arm_pb2.ArmServiceCurrentJointPositionsResponse,
         )
         self.MoveToJointPositions = grpclib.client.UnaryUnaryMethod(
             channel,
             '/proto.api.component.v1.ArmService/MoveToJointPositions',
             proto.api.component.v1.arm_pb2.ArmServiceMoveToJointPositionsRequest,
             proto.api.component.v1.arm_pb2.ArmServiceMoveToJointPositionsResponse,
+        )
+        self.JointMoveDelta = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/proto.api.component.v1.ArmService/JointMoveDelta',
+            proto.api.component.v1.arm_pb2.ArmServiceJointMoveDeltaRequest,
+            proto.api.component.v1.arm_pb2.ArmServiceJointMoveDeltaResponse,
         )

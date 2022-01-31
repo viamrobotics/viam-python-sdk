@@ -141,3 +141,29 @@ class BaseServiceStopResponse(google.protobuf.message.Message):
     def __init__(self,
         ) -> None: ...
 global___BaseServiceStopResponse = BaseServiceStopResponse
+
+class BaseServiceWidthGetRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    """Name of a base"""
+
+    def __init__(self,
+        *,
+        name : typing.Text = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["name",b"name"]) -> None: ...
+global___BaseServiceWidthGetRequest = BaseServiceWidthGetRequest
+
+class BaseServiceWidthGetResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    WIDTH_MM_FIELD_NUMBER: builtins.int
+    width_mm: builtins.int = ...
+    """Width of the base represented in millimeters"""
+
+    def __init__(self,
+        *,
+        width_mm : builtins.int = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["width_mm",b"width_mm"]) -> None: ...
+global___BaseServiceWidthGetResponse = BaseServiceWidthGetResponse

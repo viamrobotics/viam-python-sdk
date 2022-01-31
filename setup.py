@@ -45,9 +45,6 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     packages=find_packages() + get_packages('./proto'),
-    package_data={
-        '': ['py.typed', '*.pyi', '**/*.pyi'],
-    },
     python_requires='>=3.6, <4',
     install_requires=[
         'grpclib',

@@ -16,26 +16,26 @@ import proto.api.component.v1.imu_pb2
 class IMUServiceBase(abc.ABC):
 
     @abc.abstractmethod
-    async def ReadAngularVelocity(self, stream: 'grpclib.server.Stream[proto.api.component.v1.imu_pb2.IMUServiceReadAngularVelocityRequest, proto.api.component.v1.imu_pb2.IMUServiceReadAngularVelocityResponse]') -> None:
+    async def AngularVelocity(self, stream: 'grpclib.server.Stream[proto.api.component.v1.imu_pb2.IMUServiceAngularVelocityRequest, proto.api.component.v1.imu_pb2.IMUServiceAngularVelocityResponse]') -> None:
         pass
 
     @abc.abstractmethod
-    async def ReadOrientation(self, stream: 'grpclib.server.Stream[proto.api.component.v1.imu_pb2.IMUServiceReadOrientationRequest, proto.api.component.v1.imu_pb2.IMUServiceReadOrientationResponse]') -> None:
+    async def Orientation(self, stream: 'grpclib.server.Stream[proto.api.component.v1.imu_pb2.IMUServiceOrientationRequest, proto.api.component.v1.imu_pb2.IMUServiceOrientationResponse]') -> None:
         pass
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
-            '/proto.api.component.v1.IMUService/ReadAngularVelocity': grpclib.const.Handler(
-                self.ReadAngularVelocity,
+            '/proto.api.component.v1.IMUService/AngularVelocity': grpclib.const.Handler(
+                self.AngularVelocity,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                proto.api.component.v1.imu_pb2.IMUServiceReadAngularVelocityRequest,
-                proto.api.component.v1.imu_pb2.IMUServiceReadAngularVelocityResponse,
+                proto.api.component.v1.imu_pb2.IMUServiceAngularVelocityRequest,
+                proto.api.component.v1.imu_pb2.IMUServiceAngularVelocityResponse,
             ),
-            '/proto.api.component.v1.IMUService/ReadOrientation': grpclib.const.Handler(
-                self.ReadOrientation,
+            '/proto.api.component.v1.IMUService/Orientation': grpclib.const.Handler(
+                self.Orientation,
                 grpclib.const.Cardinality.UNARY_UNARY,
-                proto.api.component.v1.imu_pb2.IMUServiceReadOrientationRequest,
-                proto.api.component.v1.imu_pb2.IMUServiceReadOrientationResponse,
+                proto.api.component.v1.imu_pb2.IMUServiceOrientationRequest,
+                proto.api.component.v1.imu_pb2.IMUServiceOrientationResponse,
             ),
         }
 
@@ -43,15 +43,15 @@ class IMUServiceBase(abc.ABC):
 class IMUServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
-        self.ReadAngularVelocity = grpclib.client.UnaryUnaryMethod(
+        self.AngularVelocity = grpclib.client.UnaryUnaryMethod(
             channel,
-            '/proto.api.component.v1.IMUService/ReadAngularVelocity',
-            proto.api.component.v1.imu_pb2.IMUServiceReadAngularVelocityRequest,
-            proto.api.component.v1.imu_pb2.IMUServiceReadAngularVelocityResponse,
+            '/proto.api.component.v1.IMUService/AngularVelocity',
+            proto.api.component.v1.imu_pb2.IMUServiceAngularVelocityRequest,
+            proto.api.component.v1.imu_pb2.IMUServiceAngularVelocityResponse,
         )
-        self.ReadOrientation = grpclib.client.UnaryUnaryMethod(
+        self.Orientation = grpclib.client.UnaryUnaryMethod(
             channel,
-            '/proto.api.component.v1.IMUService/ReadOrientation',
-            proto.api.component.v1.imu_pb2.IMUServiceReadOrientationRequest,
-            proto.api.component.v1.imu_pb2.IMUServiceReadOrientationResponse,
+            '/proto.api.component.v1.IMUService/Orientation',
+            proto.api.component.v1.imu_pb2.IMUServiceOrientationRequest,
+            proto.api.component.v1.imu_pb2.IMUServiceOrientationResponse,
         )
