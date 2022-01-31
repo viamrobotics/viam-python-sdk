@@ -7,9 +7,9 @@ from grpclib.const import Cardinality
 from grpclib.metadata import _MetadataLike, Deadline
 from grpclib.stream import _RecvType, _SendType
 
-from ..gen.proto.rpc.v1.auth_pb2 import AuthenticateRequest
-from ..gen.proto.rpc.v1.auth_pb2 import Credentials as PBCredentials
-from ..gen.proto.rpc.v1.auth_grpc import AuthServiceStub
+from proto.rpc.v1.auth_pb2 import AuthenticateRequest
+from proto.rpc.v1.auth_pb2 import Credentials as PBCredentials
+from proto.rpc.v1.auth_grpc import AuthServiceStub
 
 
 class RTCConfiguration:
