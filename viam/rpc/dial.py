@@ -133,41 +133,39 @@ async def dial_direct(
     options: DialOptions = None
 ) -> Channel:
 
-    insecure = options.insecure if options else False
+    opts = options if options else DialOptions()
+    insecure = opts.insecure
+    has_creds = not (not opts.credentials)
 
     host, port = _host_port_from_url(address)
     if not port:
         port = 80 if insecure else 443
 
-    downgrade = False
-    ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
     if insecure:
-        downgrade = True
-    else:
-        if (
-            options
-            and (
-                options.allow_insecure_downgrade
-                or options.allow_insecure_with_creds_downgrade
-            )
-        ):
-            # Test if downgrade is required.
-            # Only needed if downgrade is available in options
-            with socket.create_connection((host, port)) as sock:
-                try:
-                    with ctx.wrap_socket(sock, server_hostname=host) as ssock:
-                        _ = ssock.version()
-                except ssl.SSLError as e:
-                    if e.reason != 'WRONG_VERSION_NUMBER':
-                        raise e
-                    if options.credentials:
-                        if options.allow_insecure_with_creds_downgrade:
-                            downgrade = True
-                    elif options.allow_insecure_downgrade:
-                        downgrade = True
-
-    if downgrade:
         ctx = None
+    else:
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+
+        # Test if downgrade is required.
+        downgrade = False
+        with socket.create_connection((host, port)) as sock:
+            try:
+                with ctx.wrap_socket(sock, server_hostname=host) as ssock:
+                    _ = ssock.version()
+            except ssl.SSLError as e:
+                if e.reason != 'WRONG_VERSION_NUMBER':
+                    raise e
+                downgrade = True
+
+        if downgrade:
+            if has_creds:
+                if not opts.allow_insecure_with_creds_downgrade:
+                    raise Exception(
+                        "Requested address is insecure " +
+                        "and will not send credentials")
+            elif not opts.allow_insecure_downgrade:
+                raise Exception("Requested address is insecure")
+            ctx = None
 
     if options and options.credentials:
         channel = AuthenticatedChannel(host, port, ssl=ctx)
