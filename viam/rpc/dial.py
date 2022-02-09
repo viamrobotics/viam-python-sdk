@@ -10,6 +10,7 @@ from grpclib.stream import _RecvType, _SendType
 from proto.rpc.v1.auth_pb2 import AuthenticateRequest
 from proto.rpc.v1.auth_pb2 import Credentials as PBCredentials
 from proto.rpc.v1.auth_grpc import AuthServiceStub
+from viam.errors import InsecureConnectionError
 
 
 class RTCConfiguration:
@@ -135,7 +136,6 @@ async def dial_direct(
 
     opts = options if options else DialOptions()
     insecure = opts.insecure
-    has_creds = not (not opts.credentials)
 
     host, port = _host_port_from_url(address)
     if not port:
@@ -158,13 +158,11 @@ async def dial_direct(
                 downgrade = True
 
         if downgrade:
-            if has_creds:
+            if opts.credentials:
                 if not opts.allow_insecure_with_creds_downgrade:
-                    raise Exception(
-                        "Requested address is insecure " +
-                        "and will not send credentials")
+                    raise InsecureConnectionError(address, authenticated=True)
             elif not opts.allow_insecure_downgrade:
-                raise Exception("Requested address is insecure")
+                raise InsecureConnectionError(address)
             ctx = None
 
     if options and options.credentials:
