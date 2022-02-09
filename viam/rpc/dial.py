@@ -139,32 +139,32 @@ async def dial_direct(
     if not port:
         port = 80 if insecure else 443
 
-    if insecure:
-        return Channel(host, port)
-
     downgrade = False
     ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-    if (
-        options
-        and (
-            options.allow_insecure_downgrade
-            or options.allow_insecure_with_creds_downgrade
-        )
-    ):
-        # Test if downgrade is required.
-        # Only needed if downgrade is available in options
-        with socket.create_connection((host, port)) as sock:
-            try:
-                with ctx.wrap_socket(sock, server_hostname=host) as ssock:
-                    _ = ssock.version()
-            except ssl.SSLError as e:
-                if e.reason != 'WRONG_VERSION_NUMBER':
-                    raise e
-                if options.credentials:
-                    if options.allow_insecure_with_creds_downgrade:
+    if insecure:
+        downgrade = True
+    else:
+        if (
+            options
+            and (
+                options.allow_insecure_downgrade
+                or options.allow_insecure_with_creds_downgrade
+            )
+        ):
+            # Test if downgrade is required.
+            # Only needed if downgrade is available in options
+            with socket.create_connection((host, port)) as sock:
+                try:
+                    with ctx.wrap_socket(sock, server_hostname=host) as ssock:
+                        _ = ssock.version()
+                except ssl.SSLError as e:
+                    if e.reason != 'WRONG_VERSION_NUMBER':
+                        raise e
+                    if options.credentials:
+                        if options.allow_insecure_with_creds_downgrade:
+                            downgrade = True
+                    elif options.allow_insecure_downgrade:
                         downgrade = True
-                elif options.allow_insecure_downgrade:
-                    downgrade = True
 
     if downgrade:
         ctx = None
