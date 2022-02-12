@@ -3,8 +3,8 @@ import sys
 
 # from viam import gen  # noqa: F401
 from viam.rpc.dial import Credentials, DialOptions, dial_direct
-from viam.gen.proto.rpc.examples.echo.v1.echo_grpc import EchoServiceStub
-from viam.gen.proto.rpc.examples.echo.v1.echo_pb2 import (
+from viam.proto.rpc.examples.echo.echo import (
+    EchoServiceStub,
     EchoRequest,
     EchoMultipleRequest,
     EchoBiDiRequest

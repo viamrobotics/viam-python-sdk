@@ -7,9 +7,11 @@ from grpclib.const import Cardinality
 from grpclib.metadata import _MetadataLike, Deadline
 from grpclib.stream import _RecvType, _SendType
 
-from viam.gen.proto.rpc.v1.auth_pb2 import AuthenticateRequest
-from viam.gen.proto.rpc.v1.auth_pb2 import Credentials as PBCredentials
-from viam.gen.proto.rpc.v1.auth_grpc import AuthServiceStub
+from viam.proto.rpc.auth import (
+    AuthenticateRequest,
+    AuthServiceStub,
+    Credentials as PBCredentials
+)
 from viam.errors import InsecureConnectionError
 
 
