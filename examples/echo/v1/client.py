@@ -1,7 +1,6 @@
 import asyncio
 import sys
 
-# from viam import gen  # noqa: F401
 from viam.rpc.dial import Credentials, DialOptions, dial_direct
 from viam.proto.rpc.examples.echo.echo import (
     EchoServiceStub,
