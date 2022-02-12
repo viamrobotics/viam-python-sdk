@@ -10,3 +10,9 @@ buf:
 	buf build -o tmp/rdk.bin --as-file-descriptor-set buf.build/viamrobotics/rdk
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o viam/gen raw tmp/goutils.bin
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o viam/gen raw tmp/rdk.bin
+
+better_imports:
+	python3 etc/generate_proto_import.py
+
+package: buf better_imports
+	@echo "TODO: Create pip-installable package"
