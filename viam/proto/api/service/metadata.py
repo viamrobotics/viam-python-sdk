@@ -7,7 +7,7 @@ from ....gen.proto.api.service.v1.metadata_grpc import (
     MetadataServiceStub
 )
 from ....gen.proto.api.service.v1.metadata_pb2 import (
-    ResourcesRequest,
     ResourceName,
+    ResourcesRequest,
     ResourcesResponse
 )

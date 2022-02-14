@@ -7,10 +7,10 @@ from ....gen.proto.api.component.v1.gantry_grpc import (
     GantryServiceStub
 )
 from ....gen.proto.api.component.v1.gantry_pb2 import (
+    GantryServiceGetLengthsRequest,
+    GantryServiceGetLengthsResponse,
     GantryServiceGetPositionRequest,
     GantryServiceGetPositionResponse,
     GantryServiceMoveToPositionRequest,
-    GantryServiceMoveToPositionResponse,
-    GantryServiceGetLengthsRequest,
-    GantryServiceGetLengthsResponse
+    GantryServiceMoveToPositionResponse
 )

@@ -9,9 +9,9 @@ from ...gen.proto.rpc.v1.auth_grpc import (
     ExternalAuthServiceStub
 )
 from ...gen.proto.rpc.v1.auth_pb2 import (
-    Credentials,
     AuthenticateRequest,
     AuthenticateResponse,
     AuthenticateToRequest,
-    AuthenticateToResponse
+    AuthenticateToResponse,
+    Credentials
 )

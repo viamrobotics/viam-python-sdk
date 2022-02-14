@@ -7,8 +7,8 @@ from ....gen.proto.api.component.v1.servo_grpc import (
     ServoServiceStub
 )
 from ....gen.proto.api.component.v1.servo_pb2 import (
-    ServoServiceMoveRequest,
-    ServoServiceMoveResponse,
     ServoServiceGetPositionRequest,
-    ServoServiceGetPositionResponse
+    ServoServiceGetPositionResponse,
+    ServoServiceMoveRequest,
+    ServoServiceMoveResponse
 )

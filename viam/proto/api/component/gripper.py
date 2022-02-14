@@ -7,8 +7,8 @@ from ....gen.proto.api.component.v1.gripper_grpc import (
     GripperServiceStub
 )
 from ....gen.proto.api.component.v1.gripper_pb2 import (
-    GripperServiceOpenRequest,
-    GripperServiceOpenResponse,
     GripperServiceGrabRequest,
-    GripperServiceGrabResponse
+    GripperServiceGrabResponse,
+    GripperServiceOpenRequest,
+    GripperServiceOpenResponse
 )
