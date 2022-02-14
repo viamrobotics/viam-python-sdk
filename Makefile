@@ -12,7 +12,7 @@ buf:
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o viam/gen raw tmp/rdk.bin
 
 better_imports:
-	python3 etc/generate_proto_import.py
+	python3 -m etc.generate_proto_import
 
 package: buf better_imports
 	@echo "TODO: Create pip-installable package"

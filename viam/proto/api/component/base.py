@@ -7,10 +7,10 @@ from ....gen.proto.api.component.v1.base_grpc import (
     BaseServiceStub
 )
 from ....gen.proto.api.component.v1.base_pb2 import (
-    BaseServiceMoveStraightRequest,
-    BaseServiceMoveStraightResponse,
     BaseServiceMoveArcRequest,
     BaseServiceMoveArcResponse,
+    BaseServiceMoveStraightRequest,
+    BaseServiceMoveStraightResponse,
     BaseServiceSpinRequest,
     BaseServiceSpinResponse,
     BaseServiceStopRequest,

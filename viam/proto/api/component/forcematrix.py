@@ -3,11 +3,11 @@
 ********** DO NOT EDIT ***********
 '''
 from ....gen.proto.api.component.v1.forcematrix_pb2 import (
-    Matrix,
+    ForceMatrixServiceDetectSlipRequest,
+    ForceMatrixServiceDetectSlipResponse,
     ForceMatrixServiceReadMatrixRequest,
     ForceMatrixServiceReadMatrixResponse,
-    ForceMatrixServiceDetectSlipRequest,
-    ForceMatrixServiceDetectSlipResponse
+    Matrix
 )
 from ....gen.proto.api.component.v1.forcematrix_grpc import (
     ForceMatrixServiceBase,

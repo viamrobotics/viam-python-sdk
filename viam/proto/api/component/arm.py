@@ -8,10 +8,10 @@ from ....gen.proto.api.component.v1.arm_pb2 import (
     ArmServiceGetEndPositionResponse,
     ArmServiceGetJointPositionsRequest,
     ArmServiceGetJointPositionsResponse,
-    ArmServiceMoveToPositionRequest,
-    ArmServiceMoveToPositionResponse,
     ArmServiceMoveToJointPositionsRequest,
-    ArmServiceMoveToJointPositionsResponse
+    ArmServiceMoveToJointPositionsResponse,
+    ArmServiceMoveToPositionRequest,
+    ArmServiceMoveToPositionResponse
 )
 from ....gen.proto.api.component.v1.arm_grpc import (
     ArmServiceBase,

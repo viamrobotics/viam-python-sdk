@@ -7,18 +7,18 @@ from ....gen.proto.api.component.v1.board_grpc import (
     BoardServiceStub
 )
 from ....gen.proto.api.component.v1.board_pb2 import (
-    BoardServiceStatusRequest,
-    BoardServiceStatusResponse,
-    BoardServiceSetGPIORequest,
-    BoardServiceSetGPIOResponse,
+    BoardServiceGetDigitalInterruptValueRequest,
+    BoardServiceGetDigitalInterruptValueResponse,
     BoardServiceGetGPIORequest,
     BoardServiceGetGPIOResponse,
-    BoardServiceSetPWMRequest,
-    BoardServiceSetPWMResponse,
-    BoardServiceSetPWMFrequencyResponse,
-    BoardServiceSetPWMFrequencyRequest,
     BoardServiceReadAnalogReaderRequest,
     BoardServiceReadAnalogReaderResponse,
-    BoardServiceGetDigitalInterruptValueRequest,
-    BoardServiceGetDigitalInterruptValueResponse
+    BoardServiceSetGPIORequest,
+    BoardServiceSetGPIOResponse,
+    BoardServiceSetPWMFrequencyRequest,
+    BoardServiceSetPWMFrequencyResponse,
+    BoardServiceSetPWMRequest,
+    BoardServiceSetPWMResponse,
+    BoardServiceStatusRequest,
+    BoardServiceStatusResponse
 )

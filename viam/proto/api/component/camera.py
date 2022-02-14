@@ -5,11 +5,11 @@
 from ....gen.proto.api.component.v1.camera_pb2 import (
     CameraServiceGetFrameRequest,
     CameraServiceGetFrameResponse,
-    CameraServiceRenderFrameRequest,
-    CameraServiceGetPointCloudRequest,
-    CameraServiceGetPointCloudResponse,
     CameraServiceGetObjectPointCloudsRequest,
     CameraServiceGetObjectPointCloudsResponse,
+    CameraServiceGetPointCloudRequest,
+    CameraServiceGetPointCloudResponse,
+    CameraServiceRenderFrameRequest,
     PointCloudObject
 )
 from ....gen.proto.api.component.v1.camera_grpc import (

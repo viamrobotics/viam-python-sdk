@@ -1,6 +1,7 @@
+import importlib
+import inspect
 import os
 from pathlib import Path
-import re
 import shutil
 from typing import List, Dict
 
@@ -39,7 +40,7 @@ def get_packages(root: str) -> Dict[str, List[str]]:
             rel_path = Path(dirpath).relative_to(root).__str__()
             rel_path = rel_path.replace(os.path.sep, '.')
             packages[rel_path] = list(
-                set([f.split('.')[0] for f in filenames]))
+                set(['.'.join(f.split('.')[:-1]) for f in filenames]))
     return packages
 
 
@@ -63,17 +64,18 @@ def build_dirs(root: str, package: str, modules: List[str]):
     Then, it will create the appropriate directory structure, and a new
     file for each module type (e.g. "imu" for "imu_grpc" and "imu_pb2").
     '''
-    # Create new directory/ies
+    # Create new directories
     dir_name = os.path.sep.join(package.split('.')[:-1])
     dir_name = os.path.join(root, dir_name)
     os.makedirs(dir_name, exist_ok=True)
 
-    # Get a list of all the new file names (grpc and pb2 combined)
+    # Get a list of new module names
+    # i.e. strip grpc and pb2 to leave only the base name
     mods = list(set([mod.replace('_grpc', '').replace('_pb2', '')
                 for mod in modules]))
     for mod in mods:
 
-        # Get list of only the files we want to import from,
+        # Get list of files we want to import from,
         # based on the new module name
         imports = list(filter(lambda n: mod in n, modules))
 
@@ -82,31 +84,13 @@ def build_dirs(root: str, package: str, modules: List[str]):
         # but `import *` is discouraged
         classes = {}
 
-        # regex for matching only classnames, ignoring any nested classes
-        class_match = re.compile(
-            r'^\s{0}class\s+(?P<class_name>\w+)(\(.+\))?:'
-        )
         for imp in imports:
-            if '_grpc' in imp:
-                f_name = f'{imp}.py'
-            elif '_pb2' in imp:
-                f_name = f'{imp}.pyi'
-            else:
-                continue
-
-            f_path = os.path.join(
-                GENERATED_PATH.__str__(),
-                package.replace('.', os.path.sep),
-                f_name
-            )
             class_names = []
-            with open(f_path, 'r') as f:
-                for line in f.readlines():
-                    for match in re.finditer(class_match, line):
-                        class_name = match.group('class_name')
-                        if class_name.startswith('_'):
-                            continue
-                        class_names.append(class_name)
+            module = importlib.import_module(
+                f'viam.{PROTO_GEN_PACKAGE}.{package}.{imp}'
+            )
+            for name, _ in inspect.getmembers(module, inspect.isclass):
+                class_names.append(name)
 
             classes[imp] = class_names
 
