@@ -146,7 +146,12 @@ async def dial_direct(
     if insecure:
         ctx = None
     else:
-        ctx = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+        ctx = ssl.create_default_context(
+            purpose=ssl.Purpose.SERVER_AUTH
+        )
+        ctx.minimum_version = ssl.TLSVersion.TLSv1_2
+        ctx.set_ciphers('ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20')
+        ctx.set_alpn_protocols(['h2'])
 
         # Test if downgrade is required.
         downgrade = False
