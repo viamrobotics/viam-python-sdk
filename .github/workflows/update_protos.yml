@@ -1,0 +1,47 @@
+name: Update Protos + Open PR
+
+on:
+  repository_dispatch:
+    types:
+      - protos-updated
+
+jobs:
+  update-protos:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bufbuild/buf-setup-action@v0.7.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: arduino/setup-protoc@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r etc/requirements.txt
+
+      - name: Generate buf
+        run: make buf
+        env: # Or as an environment variable
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
+
+      - name: Generate better imports
+        run: make better_imports
+
+      - name: Add + Commit + Open PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          default_author: github_actions
+          commit-message: '[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}'
+          branch: 'workflow/update-protos'
+          delete-branch: true
+          base: main
+          title: Automated Protos Update
+          body: Changes were made to protos that this repo depends on. Check the commits to see which repos and commits are responsible for the changes
+          assignees: njooma
+          reviewers: njooma
