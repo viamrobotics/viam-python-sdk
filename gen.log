@@ -1,0 +1,153 @@
+DEBUG:PATHS: PROTO_GEN_PACKAGE: gen, GENERATED_PATH: /__w/python-sdk/python-sdk/viam/gen, NEW_IMPORT_PATH: /__w/python-sdk/python-sdk/viam/proto
+DEBUG:CLEANING
+DEBUG:Getting packages at /__w/python-sdk/python-sdk/viam/gen
+DEBUG:	At: .
+DEBUG:	At: proto
+DEBUG:	At: proto/rpc
+DEBUG:	At: proto/rpc/v1
+DEBUG:	At: proto/rpc/webrtc
+DEBUG:	At: proto/rpc/webrtc/v1
+DEBUG:	At: proto/rpc/examples
+DEBUG:	At: proto/rpc/examples/fileupload
+DEBUG:	At: proto/rpc/examples/fileupload/v1
+DEBUG:	At: proto/rpc/examples/echo
+DEBUG:	At: proto/rpc/examples/echo/v1
+DEBUG:	At: proto/api
+DEBUG:	At: proto/api/v1
+DEBUG:	At: proto/api/component
+DEBUG:	At: proto/api/component/v1
+DEBUG:	At: proto/api/service
+DEBUG:	At: proto/api/service/v1
+DEBUG:	At: proto/api/common
+DEBUG:	At: proto/api/common/v1
+DEBUG:GOT PACKAGES: {'proto.rpc.v1': ['auth_pb2', 'auth_grpc'], 'proto.rpc.webrtc.v1': ['grpc_pb2', 'grpc_grpc', 'signaling_grpc', 'signaling_pb2'], 'proto.rpc.examples.fileupload.v1': ['fileupload_grpc', 'fileupload_pb2'], 'proto.rpc.examples.echo.v1': ['echo_grpc', 'echo_pb2'], 'proto.api.v1': ['robot_grpc', 'robot_pb2'], 'proto.api.component.v1': ['gantry_pb2', 'servo_grpc', 'imu_grpc', 'gripper_grpc', 'servo_pb2', 'gripper_pb2', 'board_pb2', 'base_pb2', 'arm_pb2', 'board_grpc', 'forcematrix_pb2', 'camera_pb2', 'motor_grpc', 'arm_grpc', 'gps_pb2', 'gantry_grpc', 'forcematrix_grpc', 'input_controller_grpc', 'gps_grpc', 'sensor_grpc', 'input_controller_pb2', 'imu_pb2', 'base_grpc', 'camera_grpc', 'sensor_pb2', 'motor_pb2'], 'proto.api.service.v1': ['metadata_grpc', 'metadata_pb2'], 'proto.api.common.v1': ['common_grpc', 'common_pb2']}
+DEBUG:Fixing imports for proto.rpc.v1: ['auth_pb2', 'auth_grpc']
+DEBUG:Improving imports for proto.rpc.v1, with modules ['auth_pb2', 'auth_grpc']
+DEBUG:	Creating directory structure: /__w/python-sdk/python-sdk/viam/proto/rpc
+DEBUG:	Creating new import for: auth
+DEBUG:		Importing from: ['auth_grpc', 'auth_pb2']
+DEBUG:			Class to import from auth_grpc: ['AuthServiceBase', 'AuthServiceStub', 'ExternalAuthServiceBase', 'ExternalAuthServiceStub']
+DEBUG:			Class to import from auth_pb2: ['AuthenticateRequest', 'AuthenticateResponse', 'AuthenticateToRequest', 'AuthenticateToResponse', 'Credentials']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/rpc/auth.py
+DEBUG:Fixing imports for proto.rpc.webrtc.v1: ['grpc_pb2', 'grpc_grpc', 'signaling_grpc', 'signaling_pb2']
+DEBUG:Improving imports for proto.rpc.webrtc.v1, with modules ['grpc_pb2', 'grpc_grpc', 'signaling_grpc', 'signaling_pb2']
+DEBUG:	Creating directory structure: /__w/python-sdk/python-sdk/viam/proto/rpc/webrtc
+DEBUG:	Creating new import for: signaling
+DEBUG:		Importing from: ['signaling_grpc', 'signaling_pb2']
+DEBUG:			Class to import from signaling_grpc: ['SignalingServiceBase', 'SignalingServiceStub']
+DEBUG:			Class to import from signaling_pb2: ['AnswerRequest', 'AnswerRequestDoneStage', 'AnswerRequestErrorStage', 'AnswerRequestInitStage', 'AnswerRequestUpdateStage', 'AnswerResponse', 'AnswerResponseDoneStage', 'AnswerResponseErrorStage', 'AnswerResponseInitStage', 'AnswerResponseUpdateStage', 'CallRequest', 'CallResponse', 'CallResponseInitStage', 'CallResponseUpdateStage', 'CallUpdateRequest', 'CallUpdateResponse', 'ICECandidate', 'ICEServer', 'OptionalWebRTCConfigRequest', 'OptionalWebRTCConfigResponse', 'WebRTCConfig']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/rpc/webrtc/signaling.py
+DEBUG:	Creating new import for: grpc
+DEBUG:		Importing from: ['grpc_grpc', 'grpc_pb2', 'signaling_grpc']
+DEBUG:			Class to import from grpc_grpc: []
+DEBUG:			Class to import from grpc_pb2: ['Metadata', 'PacketMessage', 'Request', 'RequestHeaders', 'RequestMessage', 'Response', 'ResponseHeaders', 'ResponseMessage', 'ResponseTrailers', 'Stream', 'Strings']
+DEBUG:			Class to import from signaling_grpc: ['SignalingServiceBase', 'SignalingServiceStub']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/rpc/webrtc/grpc.py
+DEBUG:Fixing imports for proto.rpc.examples.fileupload.v1: ['fileupload_grpc', 'fileupload_pb2']
+DEBUG:Improving imports for proto.rpc.examples.fileupload.v1, with modules ['fileupload_grpc', 'fileupload_pb2']
+DEBUG:	Creating directory structure: /__w/python-sdk/python-sdk/viam/proto/rpc/examples/fileupload
+DEBUG:	Creating new import for: fileupload
+DEBUG:		Importing from: ['fileupload_grpc', 'fileupload_pb2']
+DEBUG:			Class to import from fileupload_grpc: ['FileUploadServiceBase', 'FileUploadServiceStub']
+DEBUG:			Class to import from fileupload_pb2: ['UploadFileRequest', 'UploadFileResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/rpc/examples/fileupload/fileupload.py
+DEBUG:Fixing imports for proto.rpc.examples.echo.v1: ['echo_grpc', 'echo_pb2']
+DEBUG:Improving imports for proto.rpc.examples.echo.v1, with modules ['echo_grpc', 'echo_pb2']
+DEBUG:	Creating directory structure: /__w/python-sdk/python-sdk/viam/proto/rpc/examples/echo
+DEBUG:	Creating new import for: echo
+DEBUG:		Importing from: ['echo_grpc', 'echo_pb2']
+DEBUG:			Class to import from echo_grpc: ['EchoServiceBase', 'EchoServiceStub']
+DEBUG:			Class to import from echo_pb2: ['EchoBiDiRequest', 'EchoBiDiResponse', 'EchoMultipleRequest', 'EchoMultipleResponse', 'EchoRequest', 'EchoResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/rpc/examples/echo/echo.py
+DEBUG:Fixing imports for proto.api.v1: ['robot_grpc', 'robot_pb2']
+DEBUG:Improving imports for proto.api.v1, with modules ['robot_grpc', 'robot_pb2']
+DEBUG:	Creating directory structure: /__w/python-sdk/python-sdk/viam/proto/api
+DEBUG:	Creating new import for: robot
+DEBUG:		Importing from: ['robot_grpc', 'robot_pb2']
+DEBUG:			Class to import from robot_grpc: ['RobotServiceBase', 'RobotServiceStub']
+DEBUG:			Class to import from robot_pb2: ['ArmStatus', 'ComponentConfig', 'ConfigRequest', 'ConfigResponse', 'DoActionRequest', 'DoActionResponse', 'ExecuteFunctionRequest', 'ExecuteFunctionResponse', 'ExecuteSourceRequest', 'ExecuteSourceResponse', 'FrameConfig', 'FrameServiceConfigRequest', 'FrameServiceConfigResponse', 'FrameSystemConfig', 'GantryStatus', 'InputControllerEvent', 'InputControllerStatus', 'JointPositions', 'MotorStatus', 'NavigationServiceAddWaypointRequest', 'NavigationServiceAddWaypointResponse', 'NavigationServiceLocationRequest', 'NavigationServiceLocationResponse', 'NavigationServiceModeRequest', 'NavigationServiceModeResponse', 'NavigationServiceRemoveWaypointRequest', 'NavigationServiceRemoveWaypointResponse', 'NavigationServiceSetModeRequest', 'NavigationServiceSetModeResponse', 'NavigationServiceWaypoint', 'NavigationServiceWaypointsRequest', 'NavigationServiceWaypointsResponse', 'ObjectManipulationServiceDoGrabRequest', 'ObjectManipulationServiceDoGrabResponse', 'Pose', 'ResourceRunCommandRequest', 'ResourceRunCommandResponse', 'SensorReadingsRequest', 'SensorReadingsResponse', 'SensorStatus', 'ServoStatus', 'Status', 'StatusRequest', 'StatusResponse', 'StatusStreamRequest', 'StatusStreamResponse', 'Vector3']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/robot.py
+DEBUG:Fixing imports for proto.api.component.v1: ['gantry_pb2', 'servo_grpc', 'imu_grpc', 'gripper_grpc', 'servo_pb2', 'gripper_pb2', 'board_pb2', 'base_pb2', 'arm_pb2', 'board_grpc', 'forcematrix_pb2', 'camera_pb2', 'motor_grpc', 'arm_grpc', 'gps_pb2', 'gantry_grpc', 'forcematrix_grpc', 'input_controller_grpc', 'gps_grpc', 'sensor_grpc', 'input_controller_pb2', 'imu_pb2', 'base_grpc', 'camera_grpc', 'sensor_pb2', 'motor_pb2']
+DEBUG:Improving imports for proto.api.component.v1, with modules ['gantry_pb2', 'servo_grpc', 'imu_grpc', 'gripper_grpc', 'servo_pb2', 'gripper_pb2', 'board_pb2', 'base_pb2', 'arm_pb2', 'board_grpc', 'forcematrix_pb2', 'camera_pb2', 'motor_grpc', 'arm_grpc', 'gps_pb2', 'gantry_grpc', 'forcematrix_grpc', 'input_controller_grpc', 'gps_grpc', 'sensor_grpc', 'input_controller_pb2', 'imu_pb2', 'base_grpc', 'camera_grpc', 'sensor_pb2', 'motor_pb2']
+DEBUG:	Creating directory structure: /__w/python-sdk/python-sdk/viam/proto/api/component
+DEBUG:	Creating new import for: gripper
+DEBUG:		Importing from: ['gripper_grpc', 'gripper_pb2']
+DEBUG:			Class to import from gripper_grpc: ['GripperServiceBase', 'GripperServiceStub']
+DEBUG:			Class to import from gripper_pb2: ['GripperServiceGrabRequest', 'GripperServiceGrabResponse', 'GripperServiceOpenRequest', 'GripperServiceOpenResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/gripper.py
+DEBUG:	Creating new import for: base
+DEBUG:		Importing from: ['base_grpc', 'base_pb2']
+DEBUG:			Class to import from base_grpc: ['BaseServiceBase', 'BaseServiceStub']
+DEBUG:			Class to import from base_pb2: ['BaseServiceMoveArcRequest', 'BaseServiceMoveArcResponse', 'BaseServiceMoveStraightRequest', 'BaseServiceMoveStraightResponse', 'BaseServiceSpinRequest', 'BaseServiceSpinResponse', 'BaseServiceStopRequest', 'BaseServiceStopResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/base.py
+DEBUG:	Creating new import for: gps
+DEBUG:		Importing from: ['gps_grpc', 'gps_pb2']
+DEBUG:			Class to import from gps_grpc: ['GPSServiceBase', 'GPSServiceStub']
+DEBUG:			Class to import from gps_pb2: ['GPSServiceReadAltitudeRequest', 'GPSServiceReadAltitudeResponse', 'GPSServiceReadLocationRequest', 'GPSServiceReadLocationResponse', 'GPSServiceReadSpeedRequest', 'GPSServiceReadSpeedResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/gps.py
+DEBUG:	Creating new import for: sensor
+DEBUG:		Importing from: ['sensor_grpc', 'sensor_pb2']
+DEBUG:			Class to import from sensor_grpc: ['SensorServiceBase', 'SensorServiceStub']
+DEBUG:			Class to import from sensor_pb2: ['SensorServiceGetReadingsRequest', 'SensorServiceGetReadingsResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/sensor.py
+DEBUG:	Creating new import for: motor
+DEBUG:		Importing from: ['motor_grpc', 'motor_pb2']
+DEBUG:			Class to import from motor_grpc: ['MotorServiceBase', 'MotorServiceStub']
+DEBUG:			Class to import from motor_pb2: ['MotorServiceGoForRequest', 'MotorServiceGoForResponse', 'MotorServiceGoRequest', 'MotorServiceGoResponse', 'MotorServiceGoTillStopRequest', 'MotorServiceGoTillStopResponse', 'MotorServiceGoToRequest', 'MotorServiceGoToResponse', 'MotorServiceIsOnRequest', 'MotorServiceIsOnResponse', 'MotorServicePositionRequest', 'MotorServicePositionResponse', 'MotorServicePositionSupportedRequest', 'MotorServicePositionSupportedResponse', 'MotorServiceResetZeroPositionRequest', 'MotorServiceResetZeroPositionResponse', 'MotorServiceSetPowerRequest', 'MotorServiceSetPowerResponse', 'MotorServiceStopRequest', 'MotorServiceStopResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/motor.py
+DEBUG:	Creating new import for: arm
+DEBUG:		Importing from: ['arm_grpc', 'arm_pb2']
+DEBUG:			Class to import from arm_grpc: ['ArmServiceBase', 'ArmServiceStub']
+DEBUG:			Class to import from arm_pb2: ['ArmJointPositions', 'ArmServiceGetEndPositionRequest', 'ArmServiceGetEndPositionResponse', 'ArmServiceGetJointPositionsRequest', 'ArmServiceGetJointPositionsResponse', 'ArmServiceMoveToJointPositionsRequest', 'ArmServiceMoveToJointPositionsResponse', 'ArmServiceMoveToPositionRequest', 'ArmServiceMoveToPositionResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/arm.py
+DEBUG:	Creating new import for: forcematrix
+DEBUG:		Importing from: ['forcematrix_grpc', 'forcematrix_pb2']
+DEBUG:			Class to import from forcematrix_grpc: ['ForceMatrixServiceBase', 'ForceMatrixServiceStub']
+DEBUG:			Class to import from forcematrix_pb2: ['ForceMatrixServiceDetectSlipRequest', 'ForceMatrixServiceDetectSlipResponse', 'ForceMatrixServiceReadMatrixRequest', 'ForceMatrixServiceReadMatrixResponse', 'Matrix']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/forcematrix.py
+DEBUG:	Creating new import for: servo
+DEBUG:		Importing from: ['servo_grpc', 'servo_pb2']
+DEBUG:			Class to import from servo_grpc: ['ServoServiceBase', 'ServoServiceStub']
+DEBUG:			Class to import from servo_pb2: ['ServoServiceGetPositionRequest', 'ServoServiceGetPositionResponse', 'ServoServiceMoveRequest', 'ServoServiceMoveResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/servo.py
+DEBUG:	Creating new import for: gantry
+DEBUG:		Importing from: ['gantry_grpc', 'gantry_pb2']
+DEBUG:			Class to import from gantry_grpc: ['GantryServiceBase', 'GantryServiceStub']
+DEBUG:			Class to import from gantry_pb2: ['GantryServiceGetLengthsRequest', 'GantryServiceGetLengthsResponse', 'GantryServiceGetPositionRequest', 'GantryServiceGetPositionResponse', 'GantryServiceMoveToPositionRequest', 'GantryServiceMoveToPositionResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/gantry.py
+DEBUG:	Creating new import for: camera
+DEBUG:		Importing from: ['camera_grpc', 'camera_pb2']
+DEBUG:			Class to import from camera_grpc: ['CameraServiceBase', 'CameraServiceStub']
+DEBUG:			Class to import from camera_pb2: ['CameraServiceGetFrameRequest', 'CameraServiceGetFrameResponse', 'CameraServiceGetObjectPointCloudsRequest', 'CameraServiceGetObjectPointCloudsResponse', 'CameraServiceGetPointCloudRequest', 'CameraServiceGetPointCloudResponse', 'CameraServiceRenderFrameRequest', 'PointCloudObject']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/camera.py
+DEBUG:	Creating new import for: board
+DEBUG:		Importing from: ['board_grpc', 'board_pb2']
+DEBUG:			Class to import from board_grpc: ['BoardServiceBase', 'BoardServiceStub']
+DEBUG:			Class to import from board_pb2: ['BoardServiceGetDigitalInterruptValueRequest', 'BoardServiceGetDigitalInterruptValueResponse', 'BoardServiceGetGPIORequest', 'BoardServiceGetGPIOResponse', 'BoardServiceReadAnalogReaderRequest', 'BoardServiceReadAnalogReaderResponse', 'BoardServiceSetGPIORequest', 'BoardServiceSetGPIOResponse', 'BoardServiceSetPWMFrequencyRequest', 'BoardServiceSetPWMFrequencyResponse', 'BoardServiceSetPWMRequest', 'BoardServiceSetPWMResponse', 'BoardServiceStatusRequest', 'BoardServiceStatusResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/board.py
+DEBUG:	Creating new import for: input_controller
+DEBUG:		Importing from: ['input_controller_grpc', 'input_controller_pb2']
+DEBUG:			Class to import from input_controller_grpc: ['InputControllerServiceBase', 'InputControllerServiceStub']
+DEBUG:			Class to import from input_controller_pb2: ['InputControllerServiceEvent', 'InputControllerServiceGetControlsRequest', 'InputControllerServiceGetControlsResponse', 'InputControllerServiceGetEventsRequest', 'InputControllerServiceGetEventsResponse', 'InputControllerServiceStreamEventsRequest', 'InputControllerServiceStreamEventsResponse', 'InputControllerServiceTriggerEventRequest', 'InputControllerServiceTriggerEventResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/input_controller.py
+DEBUG:	Creating new import for: imu
+DEBUG:		Importing from: ['imu_grpc', 'imu_pb2']
+DEBUG:			Class to import from imu_grpc: ['IMUServiceBase', 'IMUServiceStub']
+DEBUG:			Class to import from imu_pb2: ['AngularVelocity', 'EulerAngles', 'IMUServiceReadAngularVelocityRequest', 'IMUServiceReadAngularVelocityResponse', 'IMUServiceReadOrientationRequest', 'IMUServiceReadOrientationResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/component/imu.py
+DEBUG:Fixing imports for proto.api.service.v1: ['metadata_grpc', 'metadata_pb2']
+DEBUG:Improving imports for proto.api.service.v1, with modules ['metadata_grpc', 'metadata_pb2']
+DEBUG:	Creating directory structure: /__w/python-sdk/python-sdk/viam/proto/api/service
+DEBUG:	Creating new import for: metadata
+DEBUG:		Importing from: ['metadata_grpc', 'metadata_pb2']
+DEBUG:			Class to import from metadata_grpc: ['MetadataServiceBase', 'MetadataServiceStub']
+DEBUG:			Class to import from metadata_pb2: ['ResourceName', 'ResourcesRequest', 'ResourcesResponse']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/service/metadata.py
+DEBUG:Fixing imports for proto.api.common.v1: ['common_grpc', 'common_pb2']
+DEBUG:Improving imports for proto.api.common.v1, with modules ['common_grpc', 'common_pb2']
+DEBUG:	Creating directory structure: /__w/python-sdk/python-sdk/viam/proto/api/common
+DEBUG:	Creating new import for: common
+DEBUG:		Importing from: ['common_grpc', 'common_pb2']
+DEBUG:			Class to import from common_grpc: []
+DEBUG:			Class to import from common_pb2: ['AnalogStatus', 'BoardStatus', 'BoxGeometry', 'DigitalInterruptStatus', 'GeoPoint', 'Pose', 'Vector3']
+DEBUG:		Writing new import file at /__w/python-sdk/python-sdk/viam/proto/api/common/common.py

@@ -239,7 +239,6 @@ class MotorServiceIsOnRequest(google.protobuf.message.Message):
 global___MotorServiceIsOnRequest = MotorServiceIsOnRequest
 
 class MotorServiceIsOnResponse(google.protobuf.message.Message):
-    """Returns true if the motor is on"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     IS_ON_FIELD_NUMBER: builtins.int
     is_on: builtins.bool = ...
