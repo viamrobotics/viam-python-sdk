@@ -2,10 +2,6 @@
 **** THIS IS A GENERATED FILE ****
 ********** DO NOT EDIT ***********
 '''
-from ...gen.proto.api.v1.robot_grpc import (
-    RobotServiceBase,
-    RobotServiceStub
-)
 from ...gen.proto.api.v1.robot_pb2 import (
     ArmStatus,
     ComponentConfig,
@@ -54,4 +50,8 @@ from ...gen.proto.api.v1.robot_pb2 import (
     StatusStreamRequest,
     StatusStreamResponse,
     Vector3
+)
+from ...gen.proto.api.v1.robot_grpc import (
+    RobotServiceBase,
+    RobotServiceStub
 )
