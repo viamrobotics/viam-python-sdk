@@ -39,6 +39,7 @@ def get_packages(root: str) -> Dict[str, List[str]]:
     packages: Dict[str, List[str]] = {}
 
     for (dirpath, _, filenames) in os.walk(root):
+        logger.debug(f'\tAt: {dirpath}')
         if '__' in dirpath:
             continue
         if filenames:
@@ -127,6 +128,7 @@ def run():
         f'PATHS: PROTO_GEN_PACKAGE: {PROTO_GEN_PACKAGE}, GENERATED_PATH: {GENERATED_PATH}, NEW_IMPORT_PATH: {NEW_IMPORT_PATH}')
     logger.debug('CLEANING')
     clean()
+    logger.debug(f'Getting packages at {GENERATED_PATH.__str__()}')
     packages = get_packages(GENERATED_PATH.__str__())
     logger.debug(f'GOT PACKAGES: {packages}')
     for (package, modules) in packages.items():

@@ -31,9 +31,7 @@ jobs:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
 
       - name: Generate better imports
-        run: |
-          sleep 5
-          python3 -m etc.generate_proto_import
+        run: make better_imports
 
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
