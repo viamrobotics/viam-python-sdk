@@ -39,8 +39,9 @@ def get_packages(root: str) -> Dict[str, List[str]]:
     packages: Dict[str, List[str]] = {}
 
     for (dirpath, _, filenames) in os.walk(root):
-        logger.debug(f'\tAt: {dirpath}')
-        if '__' in dirpath:
+        rel_path = Path(dirpath).relative_to(root).__str__()
+        logger.debug(f'\tAt: {rel_path}')
+        if '__' in rel_path:
             continue
         if filenames:
             rel_path = Path(dirpath).relative_to(root).__str__()
