@@ -32,6 +32,7 @@ jobs:
 
       - name: Generate better imports
         run: |
+          sleep 5
           python3 -m etc.generate_proto_import
 
       - name: Add + Commit + Open PR
