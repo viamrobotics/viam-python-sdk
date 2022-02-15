@@ -5,7 +5,6 @@ from pathlib import Path
 import shutil
 from typing import List, Dict
 
-
 # Name of the package where the protos are built
 PROTO_GEN_PACKAGE = 'gen'
 
@@ -34,10 +33,10 @@ def get_packages(root: str) -> Dict[str, List[str]]:
     packages: Dict[str, List[str]] = {}
 
     for (dirpath, _, filenames) in os.walk(root):
-        if '__' in dirpath:
+        rel_path = Path(dirpath).relative_to(root).__str__()
+        if '__' in rel_path:
             continue
         if filenames:
-            rel_path = Path(dirpath).relative_to(root).__str__()
             rel_path = rel_path.replace(os.path.sep, '.')
             packages[rel_path] = list(
                 set(['.'.join(f.split('.')[:-1]) for f in filenames]))
@@ -78,6 +77,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
         # Get list of files we want to import from,
         # based on the new module name
         imports = list(filter(lambda n: mod in n, modules))
+        imports = sorted(imports)
 
         # We only want to import classes. This could be accomplished with
         # from ... import *
@@ -95,7 +95,8 @@ def build_dirs(root: str, package: str, modules: List[str]):
             classes[imp] = class_names
 
         # Write new import to disk
-        with open(os.path.join(dir_name, f'{mod}.py'), 'w') as f:
+        new_import_path = os.path.join(dir_name, f'{mod}.py')
+        with open(new_import_path, 'w') as f:
             f.write("'''\n")
             f.write('**** THIS IS A GENERATED FILE ****\n')
             f.write('********** DO NOT EDIT ***********\n')
