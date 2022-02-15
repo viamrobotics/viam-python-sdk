@@ -1,7 +1,6 @@
 import asyncio
 
-from proto.api.v1.robot_grpc import RobotServiceStub
-from proto.api.v1.robot_pb2 import StatusRequest
+from viam.proto.api.robot import RobotServiceStub, StatusRequest
 
 from viam.rpc.dial import Credentials, DialOptions, dial_direct
 

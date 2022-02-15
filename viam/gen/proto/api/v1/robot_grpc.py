@@ -1,0 +1,101 @@
+import abc
+import typing
+import grpclib.const
+import grpclib.client
+if typing.TYPE_CHECKING:
+    import grpclib.server
+import google.protobuf.struct_pb2
+import google.protobuf.duration_pb2
+import google.protobuf.timestamp_pb2
+import google.api.annotations_pb2
+from .... import proto
+from .... import proto
+
+class RobotServiceBase(abc.ABC):
+
+    @abc.abstractmethod
+    async def Status(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.StatusRequest, proto.api.v1.robot_pb2.StatusResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def StatusStream(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.StatusStreamRequest, proto.api.v1.robot_pb2.StatusStreamResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def Config(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.ConfigRequest, proto.api.v1.robot_pb2.ConfigResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def DoAction(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.DoActionRequest, proto.api.v1.robot_pb2.DoActionResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def SensorReadings(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.SensorReadingsRequest, proto.api.v1.robot_pb2.SensorReadingsResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def ExecuteFunction(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.ExecuteFunctionRequest, proto.api.v1.robot_pb2.ExecuteFunctionResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def ExecuteSource(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.ExecuteSourceRequest, proto.api.v1.robot_pb2.ExecuteSourceResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def ResourceRunCommand(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.ResourceRunCommandRequest, proto.api.v1.robot_pb2.ResourceRunCommandResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def FrameServiceConfig(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.FrameServiceConfigRequest, proto.api.v1.robot_pb2.FrameServiceConfigResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def NavigationServiceMode(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.NavigationServiceModeRequest, proto.api.v1.robot_pb2.NavigationServiceModeResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def NavigationServiceSetMode(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.NavigationServiceSetModeRequest, proto.api.v1.robot_pb2.NavigationServiceSetModeResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def NavigationServiceLocation(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.NavigationServiceLocationRequest, proto.api.v1.robot_pb2.NavigationServiceLocationResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def NavigationServiceWaypoints(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.NavigationServiceWaypointsRequest, proto.api.v1.robot_pb2.NavigationServiceWaypointsResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def NavigationServiceAddWaypoint(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.NavigationServiceAddWaypointRequest, proto.api.v1.robot_pb2.NavigationServiceAddWaypointResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def NavigationServiceRemoveWaypoint(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.NavigationServiceRemoveWaypointRequest, proto.api.v1.robot_pb2.NavigationServiceRemoveWaypointResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def ObjectManipulationServiceDoGrab(self, stream: 'grpclib.server.Stream[proto.api.v1.robot_pb2.ObjectManipulationServiceDoGrabRequest, proto.api.v1.robot_pb2.ObjectManipulationServiceDoGrabResponse]') -> None:
+        pass
+
+    def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
+        return {'/proto.api.v1.RobotService/Status': grpclib.const.Handler(self.Status, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.StatusRequest, proto.api.v1.robot_pb2.StatusResponse), '/proto.api.v1.RobotService/StatusStream': grpclib.const.Handler(self.StatusStream, grpclib.const.Cardinality.UNARY_STREAM, proto.api.v1.robot_pb2.StatusStreamRequest, proto.api.v1.robot_pb2.StatusStreamResponse), '/proto.api.v1.RobotService/Config': grpclib.const.Handler(self.Config, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.ConfigRequest, proto.api.v1.robot_pb2.ConfigResponse), '/proto.api.v1.RobotService/DoAction': grpclib.const.Handler(self.DoAction, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.DoActionRequest, proto.api.v1.robot_pb2.DoActionResponse), '/proto.api.v1.RobotService/SensorReadings': grpclib.const.Handler(self.SensorReadings, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.SensorReadingsRequest, proto.api.v1.robot_pb2.SensorReadingsResponse), '/proto.api.v1.RobotService/ExecuteFunction': grpclib.const.Handler(self.ExecuteFunction, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.ExecuteFunctionRequest, proto.api.v1.robot_pb2.ExecuteFunctionResponse), '/proto.api.v1.RobotService/ExecuteSource': grpclib.const.Handler(self.ExecuteSource, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.ExecuteSourceRequest, proto.api.v1.robot_pb2.ExecuteSourceResponse), '/proto.api.v1.RobotService/ResourceRunCommand': grpclib.const.Handler(self.ResourceRunCommand, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.ResourceRunCommandRequest, proto.api.v1.robot_pb2.ResourceRunCommandResponse), '/proto.api.v1.RobotService/FrameServiceConfig': grpclib.const.Handler(self.FrameServiceConfig, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.FrameServiceConfigRequest, proto.api.v1.robot_pb2.FrameServiceConfigResponse), '/proto.api.v1.RobotService/NavigationServiceMode': grpclib.const.Handler(self.NavigationServiceMode, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.NavigationServiceModeRequest, proto.api.v1.robot_pb2.NavigationServiceModeResponse), '/proto.api.v1.RobotService/NavigationServiceSetMode': grpclib.const.Handler(self.NavigationServiceSetMode, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.NavigationServiceSetModeRequest, proto.api.v1.robot_pb2.NavigationServiceSetModeResponse), '/proto.api.v1.RobotService/NavigationServiceLocation': grpclib.const.Handler(self.NavigationServiceLocation, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.NavigationServiceLocationRequest, proto.api.v1.robot_pb2.NavigationServiceLocationResponse), '/proto.api.v1.RobotService/NavigationServiceWaypoints': grpclib.const.Handler(self.NavigationServiceWaypoints, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.NavigationServiceWaypointsRequest, proto.api.v1.robot_pb2.NavigationServiceWaypointsResponse), '/proto.api.v1.RobotService/NavigationServiceAddWaypoint': grpclib.const.Handler(self.NavigationServiceAddWaypoint, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.NavigationServiceAddWaypointRequest, proto.api.v1.robot_pb2.NavigationServiceAddWaypointResponse), '/proto.api.v1.RobotService/NavigationServiceRemoveWaypoint': grpclib.const.Handler(self.NavigationServiceRemoveWaypoint, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.NavigationServiceRemoveWaypointRequest, proto.api.v1.robot_pb2.NavigationServiceRemoveWaypointResponse), '/proto.api.v1.RobotService/ObjectManipulationServiceDoGrab': grpclib.const.Handler(self.ObjectManipulationServiceDoGrab, grpclib.const.Cardinality.UNARY_UNARY, proto.api.v1.robot_pb2.ObjectManipulationServiceDoGrabRequest, proto.api.v1.robot_pb2.ObjectManipulationServiceDoGrabResponse)}
+
+class RobotServiceStub:
+
+    def __init__(self, channel: grpclib.client.Channel) -> None:
+        self.Status = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/Status', proto.api.v1.robot_pb2.StatusRequest, proto.api.v1.robot_pb2.StatusResponse)
+        self.StatusStream = grpclib.client.UnaryStreamMethod(channel, '/proto.api.v1.RobotService/StatusStream', proto.api.v1.robot_pb2.StatusStreamRequest, proto.api.v1.robot_pb2.StatusStreamResponse)
+        self.Config = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/Config', proto.api.v1.robot_pb2.ConfigRequest, proto.api.v1.robot_pb2.ConfigResponse)
+        self.DoAction = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/DoAction', proto.api.v1.robot_pb2.DoActionRequest, proto.api.v1.robot_pb2.DoActionResponse)
+        self.SensorReadings = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/SensorReadings', proto.api.v1.robot_pb2.SensorReadingsRequest, proto.api.v1.robot_pb2.SensorReadingsResponse)
+        self.ExecuteFunction = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/ExecuteFunction', proto.api.v1.robot_pb2.ExecuteFunctionRequest, proto.api.v1.robot_pb2.ExecuteFunctionResponse)
+        self.ExecuteSource = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/ExecuteSource', proto.api.v1.robot_pb2.ExecuteSourceRequest, proto.api.v1.robot_pb2.ExecuteSourceResponse)
+        self.ResourceRunCommand = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/ResourceRunCommand', proto.api.v1.robot_pb2.ResourceRunCommandRequest, proto.api.v1.robot_pb2.ResourceRunCommandResponse)
+        self.FrameServiceConfig = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/FrameServiceConfig', proto.api.v1.robot_pb2.FrameServiceConfigRequest, proto.api.v1.robot_pb2.FrameServiceConfigResponse)
+        self.NavigationServiceMode = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/NavigationServiceMode', proto.api.v1.robot_pb2.NavigationServiceModeRequest, proto.api.v1.robot_pb2.NavigationServiceModeResponse)
+        self.NavigationServiceSetMode = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/NavigationServiceSetMode', proto.api.v1.robot_pb2.NavigationServiceSetModeRequest, proto.api.v1.robot_pb2.NavigationServiceSetModeResponse)
+        self.NavigationServiceLocation = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/NavigationServiceLocation', proto.api.v1.robot_pb2.NavigationServiceLocationRequest, proto.api.v1.robot_pb2.NavigationServiceLocationResponse)
+        self.NavigationServiceWaypoints = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/NavigationServiceWaypoints', proto.api.v1.robot_pb2.NavigationServiceWaypointsRequest, proto.api.v1.robot_pb2.NavigationServiceWaypointsResponse)
+        self.NavigationServiceAddWaypoint = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/NavigationServiceAddWaypoint', proto.api.v1.robot_pb2.NavigationServiceAddWaypointRequest, proto.api.v1.robot_pb2.NavigationServiceAddWaypointResponse)
+        self.NavigationServiceRemoveWaypoint = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/NavigationServiceRemoveWaypoint', proto.api.v1.robot_pb2.NavigationServiceRemoveWaypointRequest, proto.api.v1.robot_pb2.NavigationServiceRemoveWaypointResponse)
+        self.ObjectManipulationServiceDoGrab = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.v1.RobotService/ObjectManipulationServiceDoGrab', proto.api.v1.robot_pb2.ObjectManipulationServiceDoGrabRequest, proto.api.v1.robot_pb2.ObjectManipulationServiceDoGrabResponse)

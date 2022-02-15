@@ -7,9 +7,11 @@ from grpclib.const import Cardinality
 from grpclib.metadata import _MetadataLike, Deadline
 from grpclib.stream import _RecvType, _SendType
 
-from proto.rpc.v1.auth_pb2 import AuthenticateRequest
-from proto.rpc.v1.auth_pb2 import Credentials as PBCredentials
-from proto.rpc.v1.auth_grpc import AuthServiceStub
+from viam.proto.rpc.auth import (
+    AuthenticateRequest,
+    AuthServiceStub,
+    Credentials as PBCredentials
+)
 from viam.errors import InsecureConnectionError
 
 
@@ -165,9 +167,9 @@ async def dial_direct(
                 raise InsecureConnectionError(address)
             ctx = None
 
-    if options and options.credentials:
+    if opts.credentials:
         channel = AuthenticatedChannel(host, port, ssl=ctx)
-        access_token = await _get_access_token(channel, address, options)
+        access_token = await _get_access_token(channel, address, opts)
         metadata = {"authorization": f'Bearer {access_token}'}
         channel._metadata = metadata
     else:

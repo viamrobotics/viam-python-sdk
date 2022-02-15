@@ -44,7 +44,11 @@ setup(
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    packages=find_packages() + get_packages('./proto'),
+    packages=(
+        find_packages() +
+        get_packages('./viam/gen') +
+        get_packages('./viam/proto')
+    ),
     package_data={
         '': ['py.typed', '*.pyi', '**/*.pyi'],
     },
