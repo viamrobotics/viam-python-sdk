@@ -27,11 +27,12 @@ jobs:
 
       - name: Generate buf
         run: make buf
-        env: # Or as an environment variable
+        env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
 
       - name: Generate better imports
-        run: python3 -m etc.generate_proto_import
+        run: |
+          python3 -m etc.generate_proto_import
 
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
