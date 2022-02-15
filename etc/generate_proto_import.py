@@ -3,6 +3,7 @@ import inspect
 import os
 from pathlib import Path
 import shutil
+import sys
 from typing import List, Dict
 
 
@@ -64,11 +65,12 @@ def build_dirs(root: str, package: str, modules: List[str]):
     Then, it will create the appropriate directory structure, and a new
     file for each module type (e.g. "imu" for "imu_grpc" and "imu_pb2").
     '''
-    print(f'Improving imports for {package}, with modules {modules}')
+    print(
+        f'Improving imports for {package}, with modules {modules}', file=sys.stderr)
     # Create new directories
     dir_name = os.path.sep.join(package.split('.')[:-1])
     dir_name = os.path.join(root, dir_name)
-    print(f'\tCreating directory structure: {dir_name}')
+    print(f'\tCreating directory structure: {dir_name}', file=sys.stderr)
     os.makedirs(dir_name, exist_ok=True)
 
     # Get a list of new module names
@@ -76,13 +78,13 @@ def build_dirs(root: str, package: str, modules: List[str]):
     mods = list(set([mod.replace('_grpc', '').replace('_pb2', '')
                 for mod in modules]))
     for mod in mods:
-        print(f'\tCreating new import for: {mod}')
+        print(f'\tCreating new import for: {mod}', file=sys.stderr)
 
         # Get list of files we want to import from,
         # based on the new module name
         imports = list(filter(lambda n: mod in n, modules))
         imports = sorted(imports)
-        print(f'\t\tImporting from: {imports}')
+        print(f'\t\tImporting from: {imports}', file=sys.stderr)
 
         # We only want to import classes. This could be accomplished with
         # from ... import *
@@ -98,11 +100,13 @@ def build_dirs(root: str, package: str, modules: List[str]):
                 class_names.append(name)
 
             classes[imp] = class_names
-            print(f'\t\t\tClass to import from {imp}: {class_names}')
+            print(
+                f'\t\t\tClass to import from {imp}: {class_names}', file=sys.stderr)
 
         # Write new import to disk
         new_import_path = os.path.join(dir_name, f'{mod}.py')
-        print(f'\t\tWriting new import file at {new_import_path}')
+        print(
+            f'\t\tWriting new import file at {new_import_path}', file=sys.stderr)
         with open(new_import_path, 'w') as f:
             f.write("'''\n")
             f.write('**** THIS IS A GENERATED FILE ****\n')
