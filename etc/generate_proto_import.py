@@ -123,9 +123,14 @@ def build_dirs(root: str, package: str, modules: List[str]):
 
 
 def run():
+    logger.debug(
+        f'PATHS: PROTO_GEN_PACKAGE: {PROTO_GEN_PACKAGE}, GENERATED_PATH: {GENERATED_PATH}, NEW_IMPORT_PATH: {NEW_IMPORT_PATH}')
+    logger.debug('CLEANING')
     clean()
     packages = get_packages(GENERATED_PATH.__str__())
+    logger.debug(f'GOT PACKAGES: {packages}')
     for (package, modules) in packages.items():
+        logger.debug(f'Fixing imports for {package}: {modules}')
         build_dirs(NEW_IMPORT_PATH.parent.__str__(), package, modules)
 
 
