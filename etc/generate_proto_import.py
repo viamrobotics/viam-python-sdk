@@ -78,6 +78,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
         # Get list of files we want to import from,
         # based on the new module name
         imports = list(filter(lambda n: mod in n, modules))
+        imports = sorted(imports)
 
         # We only want to import classes. This could be accomplished with
         # from ... import *
