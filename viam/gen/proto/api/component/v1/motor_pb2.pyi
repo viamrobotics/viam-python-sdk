@@ -32,29 +32,6 @@ class MotorServiceSetPowerResponse(google.protobuf.message.Message):
         ...
 global___MotorServiceSetPowerResponse = MotorServiceSetPowerResponse
 
-class MotorServiceGoRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    NAME_FIELD_NUMBER: builtins.int
-    POWER_PCT_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
-    'Name of a motor'
-    power_pct: builtins.float = ...
-    "Percentage of motor's power, between -1 and 1"
-
-    def __init__(self, *, name: typing.Text=..., power_pct: builtins.float=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'power_pct', b'power_pct']) -> None:
-        ...
-global___MotorServiceGoRequest = MotorServiceGoRequest
-
-class MotorServiceGoResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___MotorServiceGoResponse = MotorServiceGoResponse
-
 class MotorServiceGoForRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
@@ -85,18 +62,18 @@ class MotorServiceGoToRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     RPM_FIELD_NUMBER: builtins.int
-    POSITION_FIELD_NUMBER: builtins.int
+    POSITION_REVOLUTIONS_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     'Name of a motor'
     rpm: builtins.float = ...
     'Speed of motor travel in rotations per minute'
-    position: builtins.float = ...
+    position_revolutions: builtins.float = ...
     "Number of revolutions relative to motor's home home/zero"
 
-    def __init__(self, *, name: typing.Text=..., rpm: builtins.float=..., position: builtins.float=...) -> None:
+    def __init__(self, *, name: typing.Text=..., rpm: builtins.float=..., position_revolutions: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'position', b'position', 'rpm', b'rpm']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'position_revolutions', b'position_revolutions', 'rpm', b'rpm']) -> None:
         ...
 global___MotorServiceGoToRequest = MotorServiceGoToRequest
 
@@ -106,29 +83,6 @@ class MotorServiceGoToResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___MotorServiceGoToResponse = MotorServiceGoToResponse
-
-class MotorServiceGoTillStopRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    NAME_FIELD_NUMBER: builtins.int
-    RPM_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
-    'Name of a motor'
-    rpm: builtins.float = ...
-    'Speed of motor travel in rotations per minute'
-
-    def __init__(self, *, name: typing.Text=..., rpm: builtins.float=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'rpm', b'rpm']) -> None:
-        ...
-global___MotorServiceGoTillStopRequest = MotorServiceGoTillStopRequest
-
-class MotorServiceGoTillStopResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___MotorServiceGoTillStopResponse = MotorServiceGoTillStopResponse
 
 class MotorServiceResetZeroPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -153,7 +107,7 @@ class MotorServiceResetZeroPositionResponse(google.protobuf.message.Message):
         ...
 global___MotorServiceResetZeroPositionResponse = MotorServiceResetZeroPositionResponse
 
-class MotorServicePositionRequest(google.protobuf.message.Message):
+class MotorServiceGetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
@@ -164,9 +118,9 @@ class MotorServicePositionRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
         ...
-global___MotorServicePositionRequest = MotorServicePositionRequest
+global___MotorServiceGetPositionRequest = MotorServiceGetPositionRequest
 
-class MotorServicePositionResponse(google.protobuf.message.Message):
+class MotorServiceGetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     POSITION_FIELD_NUMBER: builtins.int
     position: builtins.float = ...
@@ -177,33 +131,7 @@ class MotorServicePositionResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['position', b'position']) -> None:
         ...
-global___MotorServicePositionResponse = MotorServicePositionResponse
-
-class MotorServicePositionSupportedRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
-    'Name of a motor'
-
-    def __init__(self, *, name: typing.Text=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
-global___MotorServicePositionSupportedRequest = MotorServicePositionSupportedRequest
-
-class MotorServicePositionSupportedResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    SUPPORTED_FIELD_NUMBER: builtins.int
-    supported: builtins.bool = ...
-    'Returns true if the motor supports reporting its position'
-
-    def __init__(self, *, supported: builtins.bool=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['supported', b'supported']) -> None:
-        ...
-global___MotorServicePositionSupportedResponse = MotorServicePositionSupportedResponse
+global___MotorServiceGetPositionResponse = MotorServiceGetPositionResponse
 
 class MotorServiceStopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -225,7 +153,7 @@ class MotorServiceStopResponse(google.protobuf.message.Message):
         ...
 global___MotorServiceStopResponse = MotorServiceStopResponse
 
-class MotorServiceIsOnRequest(google.protobuf.message.Message):
+class MotorServiceIsPoweredRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
@@ -236,16 +164,43 @@ class MotorServiceIsOnRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
         ...
-global___MotorServiceIsOnRequest = MotorServiceIsOnRequest
+global___MotorServiceIsPoweredRequest = MotorServiceIsPoweredRequest
 
-class MotorServiceIsOnResponse(google.protobuf.message.Message):
+class MotorServiceIsPoweredResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     IS_ON_FIELD_NUMBER: builtins.int
     is_on: builtins.bool = ...
+    'Returns true if the motor is on'
 
     def __init__(self, *, is_on: builtins.bool=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['is_on', b'is_on']) -> None:
         ...
-global___MotorServiceIsOnResponse = MotorServiceIsOnResponse
+global___MotorServiceIsPoweredResponse = MotorServiceIsPoweredResponse
+
+class MotorServiceGetFeaturesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    'Name of a motor'
+
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___MotorServiceGetFeaturesRequest = MotorServiceGetFeaturesRequest
+
+class MotorServiceGetFeaturesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    POSITION_REPORTING_FIELD_NUMBER: builtins.int
+    position_reporting: builtins.bool = ...
+    'Returns true if the motor supports reporting its position'
+
+    def __init__(self, *, position_reporting: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['position_reporting', b'position_reporting']) -> None:
+        ...
+global___MotorServiceGetFeaturesResponse = MotorServiceGetFeaturesResponse
