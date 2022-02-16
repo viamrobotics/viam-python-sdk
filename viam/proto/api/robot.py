@@ -17,10 +17,6 @@ from ...gen.proto.api.v1.robot_pb2 import (
     ExecuteFunctionResponse,
     ExecuteSourceRequest,
     ExecuteSourceResponse,
-    FrameConfig,
-    FrameServiceConfigRequest,
-    FrameServiceConfigResponse,
-    FrameSystemConfig,
     GantryStatus,
     InputControllerEvent,
     InputControllerStatus,
@@ -39,8 +35,6 @@ from ...gen.proto.api.v1.robot_pb2 import (
     NavigationServiceWaypoint,
     NavigationServiceWaypointsRequest,
     NavigationServiceWaypointsResponse,
-    ObjectManipulationServiceDoGrabRequest,
-    ObjectManipulationServiceDoGrabResponse,
     Pose,
     ResourceRunCommandRequest,
     ResourceRunCommandResponse,
@@ -52,6 +46,5 @@ from ...gen.proto.api.v1.robot_pb2 import (
     StatusRequest,
     StatusResponse,
     StatusStreamRequest,
-    StatusStreamResponse,
-    Vector3
+    StatusStreamResponse
 )

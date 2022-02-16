@@ -514,86 +514,6 @@ class JointPositions(google.protobuf.message.Message):
         ...
 global___JointPositions = JointPositions
 
-class FrameConfig(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    PARENT_FIELD_NUMBER: builtins.int
-    POSE_FIELD_NUMBER: builtins.int
-    parent: typing.Text = ...
-
-    @property
-    def pose(self) -> global___Pose:
-        ...
-
-    def __init__(self, *, parent: typing.Text=..., pose: typing.Optional[global___Pose]=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['parent', b'parent', 'pose', b'pose']) -> None:
-        ...
-global___FrameConfig = FrameConfig
-
-class FrameSystemConfig(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    NAME_FIELD_NUMBER: builtins.int
-    FRAME_CONFIG_FIELD_NUMBER: builtins.int
-    MODEL_JSON_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
-
-    @property
-    def frame_config(self) -> global___FrameConfig:
-        ...
-    model_json: builtins.bytes = ...
-
-    def __init__(self, *, name: typing.Text=..., frame_config: typing.Optional[global___FrameConfig]=..., model_json: builtins.bytes=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['frame_config', b'frame_config']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['frame_config', b'frame_config', 'model_json', b'model_json', 'name', b'name']) -> None:
-        ...
-global___FrameSystemConfig = FrameSystemConfig
-
-class FrameServiceConfigRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___FrameServiceConfigRequest = FrameServiceConfigRequest
-
-class FrameServiceConfigResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    FRAME_SYSTEM_CONFIGS_FIELD_NUMBER: builtins.int
-
-    @property
-    def frame_system_configs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FrameSystemConfig]:
-        ...
-
-    def __init__(self, *, frame_system_configs: typing.Optional[typing.Iterable[global___FrameSystemConfig]]=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['frame_system_configs', b'frame_system_configs']) -> None:
-        ...
-global___FrameServiceConfigResponse = FrameServiceConfigResponse
-
-class Vector3(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    X_FIELD_NUMBER: builtins.int
-    Y_FIELD_NUMBER: builtins.int
-    Z_FIELD_NUMBER: builtins.int
-    x: builtins.float = ...
-    y: builtins.float = ...
-    z: builtins.float = ...
-
-    def __init__(self, *, x: builtins.float=..., y: builtins.float=..., z: builtins.float=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['x', b'x', 'y', b'y', 'z', b'z']) -> None:
-        ...
-global___Vector3 = Vector3
-
 class SensorStatus(google.protobuf.message.Message):
     """Sensor
 
@@ -934,49 +854,7 @@ class NavigationServiceRemoveWaypointResponse(google.protobuf.message.Message):
         ...
 global___NavigationServiceRemoveWaypointResponse = NavigationServiceRemoveWaypointResponse
 
-class ObjectManipulationServiceDoGrabRequest(google.protobuf.message.Message):
-    """Object Manipulation Service
-
-    """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    CAMERA_NAME_FIELD_NUMBER: builtins.int
-    CAMERA_POINT_FIELD_NUMBER: builtins.int
-    GRIPPER_NAME_FIELD_NUMBER: builtins.int
-    ARM_NAME_FIELD_NUMBER: builtins.int
-    camera_name: typing.Text = ...
-
-    @property
-    def camera_point(self) -> global___Vector3:
-        ...
-    gripper_name: typing.Text = ...
-    arm_name: typing.Text = ...
-
-    def __init__(self, *, camera_name: typing.Text=..., camera_point: typing.Optional[global___Vector3]=..., gripper_name: typing.Text=..., arm_name: typing.Text=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['camera_point', b'camera_point']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['arm_name', b'arm_name', 'camera_name', b'camera_name', 'camera_point', b'camera_point', 'gripper_name', b'gripper_name']) -> None:
-        ...
-global___ObjectManipulationServiceDoGrabRequest = ObjectManipulationServiceDoGrabRequest
-
-class ObjectManipulationServiceDoGrabResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    HAS_GRABBED_FIELD_NUMBER: builtins.int
-    has_grabbed: builtins.bool = ...
-
-    def __init__(self, *, has_grabbed: builtins.bool=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['has_grabbed', b'has_grabbed']) -> None:
-        ...
-global___ObjectManipulationServiceDoGrabResponse = ObjectManipulationServiceDoGrabResponse
-
 class InputControllerEvent(google.protobuf.message.Message):
-    """End Object Manipulation Service
-
-    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     TIME_FIELD_NUMBER: builtins.int
     EVENT_FIELD_NUMBER: builtins.int

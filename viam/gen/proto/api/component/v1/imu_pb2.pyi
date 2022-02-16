@@ -51,6 +51,26 @@ class EulerAngles(google.protobuf.message.Message):
         ...
 global___EulerAngles = EulerAngles
 
+class Acceleration(google.protobuf.message.Message):
+    """Acceleration contains linear acceleration in mm/s^2 across x/y/z axes."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    X_MM_PER_SEC_PER_SEC_FIELD_NUMBER: builtins.int
+    Y_MM_PER_SEC_PER_SEC_FIELD_NUMBER: builtins.int
+    Z_MM_PER_SEC_PER_SEC_FIELD_NUMBER: builtins.int
+    x_mm_per_sec_per_sec: builtins.float = ...
+    'Acceleration in mm/s^2 across the x-axis'
+    y_mm_per_sec_per_sec: builtins.float = ...
+    'Acceleration in mm/s^2 across the y-axis'
+    z_mm_per_sec_per_sec: builtins.float = ...
+    'Acceleration in mm/s^2 across the z-axis'
+
+    def __init__(self, *, x_mm_per_sec_per_sec: builtins.float=..., y_mm_per_sec_per_sec: builtins.float=..., z_mm_per_sec_per_sec: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['x_mm_per_sec_per_sec', b'x_mm_per_sec_per_sec', 'y_mm_per_sec_per_sec', b'y_mm_per_sec_per_sec', 'z_mm_per_sec_per_sec', b'z_mm_per_sec_per_sec']) -> None:
+        ...
+global___Acceleration = Acceleration
+
 class IMUServiceReadAngularVelocityRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
@@ -116,3 +136,35 @@ class IMUServiceReadOrientationResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['orientation', b'orientation']) -> None:
         ...
 global___IMUServiceReadOrientationResponse = IMUServiceReadOrientationResponse
+
+class IMUServiceReadAccelerationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    'Name of an IMU'
+
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___IMUServiceReadAccelerationRequest = IMUServiceReadAccelerationRequest
+
+class IMUServiceReadAccelerationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    ACCELERATION_FIELD_NUMBER: builtins.int
+
+    @property
+    def acceleration(self) -> global___Acceleration:
+        """Acceleration contains acceleration in mm/s^2 across x/y/z axes."""
+        pass
+
+    def __init__(self, *, acceleration: typing.Optional[global___Acceleration]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['acceleration', b'acceleration']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['acceleration', b'acceleration']) -> None:
+        ...
+global___IMUServiceReadAccelerationResponse = IMUServiceReadAccelerationResponse
