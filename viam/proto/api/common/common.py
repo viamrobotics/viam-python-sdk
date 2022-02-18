@@ -8,9 +8,13 @@ from ....gen.proto.api.common.v1.common_grpc import (
 from ....gen.proto.api.common.v1.common_pb2 import (
     AnalogStatus,
     BoardStatus,
-    BoxGeometry,
     DigitalInterruptStatus,
     GeoPoint,
+    GeometriesInFrame,
+    Geometry,
     Pose,
-    Vector3
+    RectangularPrism,
+    Sphere,
+    Vector3,
+    WorldState
 )
