@@ -134,7 +134,19 @@ class Vector3(google.protobuf.message.Message):
         ...
 global___Vector3 = Vector3
 
-class BoxGeometry(google.protobuf.message.Message):
+class Sphere(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    RADIUS_MM_FIELD_NUMBER: builtins.int
+    radius_mm: builtins.float = ...
+
+    def __init__(self, *, radius_mm: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['radius_mm', b'radius_mm']) -> None:
+        ...
+global___Sphere = Sphere
+
+class RectangularPrism(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     WIDTH_MM_FIELD_NUMBER: builtins.int
     LENGTH_MM_FIELD_NUMBER: builtins.int
@@ -148,7 +160,55 @@ class BoxGeometry(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['depth_mm', b'depth_mm', 'length_mm', b'length_mm', 'width_mm', b'width_mm']) -> None:
         ...
-global___BoxGeometry = BoxGeometry
+global___RectangularPrism = RectangularPrism
+
+class Geometry(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    CENTER_FIELD_NUMBER: builtins.int
+    SPHERE_FIELD_NUMBER: builtins.int
+    BOX_FIELD_NUMBER: builtins.int
+
+    @property
+    def center(self) -> global___Pose:
+        ...
+
+    @property
+    def sphere(self) -> global___Sphere:
+        ...
+
+    @property
+    def box(self) -> global___RectangularPrism:
+        ...
+
+    def __init__(self, *, center: typing.Optional[global___Pose]=..., sphere: typing.Optional[global___Sphere]=..., box: typing.Optional[global___RectangularPrism]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['box', b'box', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['box', b'box', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['geometry_type', b'geometry_type']) -> typing.Optional[typing_extensions.Literal['sphere', 'box']]:
+        ...
+global___Geometry = Geometry
+
+class GeometriesInFrame(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    FRAME_FIELD_NUMBER: builtins.int
+    GEOMETRIES_FIELD_NUMBER: builtins.int
+    frame: typing.Text = ...
+
+    @property
+    def geometries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]:
+        ...
+
+    def __init__(self, *, frame: typing.Text=..., geometries: typing.Optional[typing.Iterable[global___Geometry]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['frame', b'frame', 'geometries', b'geometries']) -> None:
+        ...
+global___GeometriesInFrame = GeometriesInFrame
 
 class GeoPoint(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -163,3 +223,18 @@ class GeoPoint(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['latitude', b'latitude', 'longitude', b'longitude']) -> None:
         ...
 global___GeoPoint = GeoPoint
+
+class WorldState(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    OBSTACLES_FIELD_NUMBER: builtins.int
+
+    @property
+    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]:
+        ...
+
+    def __init__(self, *, obstacles: typing.Optional[typing.Iterable[global___GeometriesInFrame]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles']) -> None:
+        ...
+global___WorldState = WorldState

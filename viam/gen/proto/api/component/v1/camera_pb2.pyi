@@ -155,11 +155,11 @@ class PointCloudObject(google.protobuf.message.Message):
         pass
 
     @property
-    def bounding_box_mm(self) -> proto.api.common.v1.common_pb2.BoxGeometry:
+    def bounding_box_mm(self) -> proto.api.common.v1.common_pb2.RectangularPrism:
         """Bounding box of object in mm"""
         pass
 
-    def __init__(self, *, frame: builtins.bytes=..., center_coordinates_mm: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., bounding_box_mm: typing.Optional[proto.api.common.v1.common_pb2.BoxGeometry]=...) -> None:
+    def __init__(self, *, frame: builtins.bytes=..., center_coordinates_mm: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., bounding_box_mm: typing.Optional[proto.api.common.v1.common_pb2.RectangularPrism]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['bounding_box_mm', b'bounding_box_mm', 'center_coordinates_mm', b'center_coordinates_mm']) -> builtins.bool:
