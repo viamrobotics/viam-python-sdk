@@ -5,7 +5,7 @@ from grpclib.utils import graceful_exit
 
 from viam.components.base import ComponentBase
 from viam.components.registry import Registry, RegistryManager, ResourceType
-from viam.components.servo.server import ServoServer
+from viam.components.servo.server import ServoService
 
 
 class Server(RegistryManager):
@@ -31,7 +31,7 @@ class Server(RegistryManager):
 
         self._server = GRPCServer(
             [
-                ServoServer(manager=self),
+                ServoService(manager=self),
             ]
         )
 

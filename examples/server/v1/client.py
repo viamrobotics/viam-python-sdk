@@ -1,4 +1,5 @@
 import asyncio
+from random import randint
 
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.proto.api.component.servo import (
@@ -17,7 +18,10 @@ async def client():
         """
         service = ServoServiceStub(channel)
 
-        request = ServoServiceMoveRequest(name="servo0", angle_deg=20)
+        request = ServoServiceMoveRequest(
+            name="servo0",
+            angle_deg=randint(0, 180)
+        )
         response = await service.Move(request)
         print('Response received')
 

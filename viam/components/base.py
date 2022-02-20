@@ -13,10 +13,10 @@ class ComponentBase(abc.ABC):
         self.name = name
 
 
-class ComponentServerBase(abc.ABC):
+class ComponentServiceBase(abc.ABC):
     """
-    Base component server.
-    All component servers must inherit from this class.
+    Base component service.
+    All component services must inherit from this class.
     """
     from viam.components.registry import RegistryManager
 

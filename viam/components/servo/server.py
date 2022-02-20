@@ -1,5 +1,5 @@
 from grpclib.server import Stream
-from viam.components.base import ComponentServerBase
+from viam.components.base import ComponentServiceBase
 from viam.components.registry import RegistryManager
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.servo import (
@@ -11,9 +11,9 @@ from viam.proto.api.component.servo import (
 from .servo import ServoBase
 
 
-class ServoServer(ServoServiceBase, ComponentServerBase):
+class ServoService(ServoServiceBase, ComponentServiceBase):
     """
-    gRPC Server for a Servo
+    gRPC Service for a Servo
     """
 
     manager: RegistryManager
