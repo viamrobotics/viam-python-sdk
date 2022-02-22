@@ -2,6 +2,10 @@
 **** THIS IS A GENERATED FILE ****
 ********** DO NOT EDIT ***********
 '''
+from .....gen.proto.api.component.inputcontroller.v1.input_controller_grpc import (
+    InputControllerServiceBase,
+    InputControllerServiceStub
+)
 from .....gen.proto.api.component.inputcontroller.v1.input_controller_pb2 import (
     Event,
     GetControlsRequest,
@@ -12,8 +16,4 @@ from .....gen.proto.api.component.inputcontroller.v1.input_controller_pb2 import
     StreamEventsResponse,
     TriggerEventRequest,
     TriggerEventResponse
-)
-from .....gen.proto.api.component.inputcontroller.v1.input_controller_grpc import (
-    InputControllerServiceBase,
-    InputControllerServiceStub
 )
