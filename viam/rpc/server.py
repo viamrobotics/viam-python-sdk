@@ -1,11 +1,13 @@
 from typing import List
 
+from grpclib.reflection.service import ServerReflection
 from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
 
 from viam.components.base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.components.servo import ServoService
+from viam.metadata.service import MetadataService
 
 
 class Server(ResourceManager):
@@ -26,11 +28,12 @@ class Server(ResourceManager):
         """
         super().__init__(components)
 
-        self._server = GRPCServer(
-            [
-                ServoService(manager=self),
-            ]
-        )
+        services = [
+            MetadataService(manager=self),
+            ServoService(manager=self),
+        ]
+        services = ServerReflection.extend(services)
+        self._server = GRPCServer(services)
 
     async def serve(self, host: str = 'localhost', port: int = 9090):
         """

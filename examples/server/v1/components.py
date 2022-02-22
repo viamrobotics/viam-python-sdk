@@ -3,7 +3,7 @@ from viam.components.servo import ServoBase
 
 class Servo(ServoBase):
 
-    angle: int
+    angle: int = 0
 
     async def move(self, angle: int):
         self.angle = angle

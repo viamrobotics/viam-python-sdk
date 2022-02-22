@@ -7,11 +7,24 @@ from viam.proto.api.component.servo import (
     MoveRequest,
     GetPositionRequest, GetPositionResponse
 )
+from viam.proto.api.service.metadata import (
+    MetadataServiceStub,
+    ResourcesRequest, ResourcesResponse
+)
 
 
 async def client():
     opts = DialOptions(insecure=True)
     async with await dial_direct("localhost:9090", opts) as channel:
+
+        """
+        #### METADATA ####
+        """
+        service = MetadataServiceStub(channel)
+        request = ResourcesRequest()
+        resources_response: ResourcesResponse = \
+            await service.Resources(request)
+        print(f'Response received: {resources_response.resources}')
 
         """
         #### SERVO ####
@@ -23,13 +36,15 @@ async def client():
             name="servo0",
             angle_deg=pos
         )
-        response = await service.Move(request)
+        _ = await service.Move(request)
         print(f'Response received: moved to position {pos}')
 
         request = GetPositionRequest(name="servo0")
-        response: GetPositionResponse = await service.GetPosition(request)
+        servo_get_pos_response: GetPositionResponse = \
+            await service.GetPosition(request)
         print(
-            f'Response received: current position is {response.position_deg}'
+            'Response received: current position is '
+            f'{servo_get_pos_response.position_deg}'
         )
 
 
