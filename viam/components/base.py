@@ -18,9 +18,9 @@ class ComponentServiceBase(abc.ABC):
     Base component service.
     All component services must inherit from this class.
     """
-    from viam.components.registry import RegistryManager
+    from viam.components.resource_manager import ResourceManager
 
-    manager: RegistryManager
+    manager: ResourceManager
 
-    def __init__(self, manager: RegistryManager):
+    def __init__(self, manager: ResourceManager):
         self.manager = manager

@@ -1,4 +1,4 @@
-from typing import Dict, List, Type, Protocol, TypeVar
+from typing import Dict, List, Type, TypeVar
 
 from .base import ComponentBase
 from ..errors import ComponentNotFoundError, DuplicateComponentError
@@ -7,7 +7,7 @@ from ..errors import ComponentNotFoundError, DuplicateComponentError
 ResourceType = TypeVar('ResourceType')
 
 
-class Registry:
+class ResourceManager:
     """
     Registry containing all components registered to this server.
     """
@@ -62,19 +62,3 @@ class Registry:
         if len(class_name.split('.')) >= 2:
             class_name = class_name.split('.')[2]
         raise ComponentNotFoundError(class_name, name)
-
-
-class RegistryManager(Protocol):
-    """
-    Protocol defining the requirements of objects
-    that interact with the registry
-    """
-
-    registry: Registry
-
-    def get_component(
-        self,
-        of_type: Type[ResourceType],
-        name: str
-    ) -> ResourceType:
-        return self.registry.get_component(of_type, name)

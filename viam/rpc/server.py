@@ -1,19 +1,17 @@
-from typing import List, Type
+from typing import List
 
 from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
 
 from viam.components.base import ComponentBase
-from viam.components.registry import Registry, RegistryManager, ResourceType
+from viam.components.resource_manager import ResourceManager
 from viam.components.servo import ServoService
 
 
-class Server(RegistryManager):
+class Server(ResourceManager):
     """
     gRPC Server
     """
-
-    registry: Registry
 
     def __init__(
         self,
@@ -26,8 +24,7 @@ class Server(RegistryManager):
         Args:
             components (List[ComponentBase]): List of components to be managed
         """
-
-        self.registry = Registry(components)
+        super().__init__(components)
 
         self._server = GRPCServer(
             [
@@ -52,13 +49,6 @@ class Server(RegistryManager):
 
     def close(self):
         self._server.close()
-
-    def get_component(
-        self,
-        of_type: Type[ResourceType],
-        name: str
-    ) -> ResourceType:
-        return super().get_component(of_type, name)
 
     @classmethod
     async def create_and_serve(

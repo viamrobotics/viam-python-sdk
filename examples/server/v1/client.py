@@ -18,16 +18,19 @@ async def client():
         """
         service = ServoServiceStub(channel)
 
+        pos = randint(0, 180)
         request = MoveRequest(
             name="servo0",
-            angle_deg=randint(0, 180)
+            angle_deg=pos
         )
         response = await service.Move(request)
-        print('Response received')
+        print(f'Response received: moved to position {pos}')
 
         request = GetPositionRequest(name="servo0")
         response: GetPositionResponse = await service.GetPosition(request)
-        print(f'Response received: {response.position_deg}')
+        print(
+            f'Response received: current position is {response.position_deg}'
+        )
 
 
 if __name__ == '__main__':

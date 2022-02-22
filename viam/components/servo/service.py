@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 from viam.components.base import ComponentServiceBase
-from viam.components.registry import RegistryManager
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.servo import (
     ServoServiceBase,
@@ -15,8 +14,6 @@ class ServoService(ServoServiceBase, ComponentServiceBase):
     """
     gRPC Service for a Servo
     """
-
-    manager: RegistryManager
 
     def get_servo(self, name: str) -> ServoBase:
         """
