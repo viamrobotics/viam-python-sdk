@@ -2,7 +2,7 @@ import asyncio
 import sys
 
 from viam.rpc.dial import Credentials, DialOptions, dial_direct
-from viam.proto.rpc.examples.echo.echo import (
+from viam.proto.rpc.examples.echo import (
     EchoServiceStub,
     EchoRequest,
     EchoMultipleRequest,

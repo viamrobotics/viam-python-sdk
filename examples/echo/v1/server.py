@@ -3,7 +3,7 @@ import asyncio
 from grpclib.utils import graceful_exit
 from grpclib.server import Server, Stream
 
-from viam.proto.rpc.examples.echo.echo import (
+from viam.proto.rpc.examples.echo import (
     EchoServiceBase,
     EchoRequest, EchoResponse,
     EchoMultipleRequest, EchoMultipleResponse,
