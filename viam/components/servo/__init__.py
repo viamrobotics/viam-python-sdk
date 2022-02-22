@@ -1,5 +1,5 @@
 from .servo import ServoBase
-from .server import ServoService
+from .service import ServoService
 
 __all__ = [
     'ServoBase',

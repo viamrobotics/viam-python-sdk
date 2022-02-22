@@ -4,8 +4,8 @@ from random import randint
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.proto.api.component.servo import (
     ServoServiceStub,
-    ServoServiceMoveRequest,
-    ServoServiceGetPositionRequest, ServoServiceGetPositionResponse
+    MoveRequest,
+    GetPositionRequest, GetPositionResponse
 )
 
 
@@ -18,16 +18,15 @@ async def client():
         """
         service = ServoServiceStub(channel)
 
-        request = ServoServiceMoveRequest(
+        request = MoveRequest(
             name="servo0",
             angle_deg=randint(0, 180)
         )
         response = await service.Move(request)
         print('Response received')
 
-        request = ServoServiceGetPositionRequest(name="servo0")
-        response: ServoServiceGetPositionResponse \
-            = await service.GetPosition(request)
+        request = GetPositionRequest(name="servo0")
+        response: GetPositionResponse = await service.GetPosition(request)
         print(f'Response received: {response.position_deg}')
 
 

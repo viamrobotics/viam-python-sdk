@@ -4,8 +4,8 @@ from viam.components.registry import RegistryManager
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.servo import (
     ServoServiceBase,
-    ServoServiceMoveRequest, ServoServiceMoveResponse,
-    ServoServiceGetPositionRequest, ServoServiceGetPositionResponse
+    MoveRequest, MoveResponse,
+    GetPositionRequest, GetPositionResponse
 )
 
 from .servo import ServoBase
@@ -37,7 +37,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase):
 
     async def Move(
         self,
-        stream: Stream[ServoServiceMoveRequest, ServoServiceMoveResponse]
+        stream: Stream[MoveRequest, MoveResponse]
     ) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -47,12 +47,11 @@ class ServoService(ServoServiceBase, ComponentServiceBase):
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         await servo.move(request.angle_deg)
-        await stream.send_message(ServoServiceMoveResponse())
+        await stream.send_message(MoveResponse())
 
     async def GetPosition(
         self,
-        stream: Stream[ServoServiceGetPositionRequest,
-                       ServoServiceGetPositionResponse]
+        stream: Stream[GetPositionRequest, GetPositionResponse]
     ) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -62,5 +61,5 @@ class ServoService(ServoServiceBase, ComponentServiceBase):
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         position = await servo.get_position()
-        resp = ServoServiceGetPositionResponse(position_deg=position)
+        resp = GetPositionResponse(position_deg=position)
         await stream.send_message(resp)
