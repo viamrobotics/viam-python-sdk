@@ -2,6 +2,10 @@
 **** THIS IS A GENERATED FILE ****
 ********** DO NOT EDIT ***********
 '''
+from ....gen.proto.rpc.webrtc.v1.signaling_grpc import (
+    SignalingServiceBase,
+    SignalingServiceStub
+)
 from ....gen.proto.rpc.webrtc.v1.signaling_pb2 import (
     AnswerRequest,
     AnswerRequestDoneStage,
@@ -24,8 +28,4 @@ from ....gen.proto.rpc.webrtc.v1.signaling_pb2 import (
     OptionalWebRTCConfigRequest,
     OptionalWebRTCConfigResponse,
     WebRTCConfig
-)
-from ....gen.proto.rpc.webrtc.v1.signaling_grpc import (
-    SignalingServiceBase,
-    SignalingServiceStub
 )
