@@ -9,10 +9,10 @@ LOGGERS: Dict[str, logging.Logger] = {}
 class ColorFormatter(logging.Formatter):
 
     MAPPING = {
-        'DEBUG': 37,  # white
-        'INFO': 36,  # cyan
-        'WARNING': 33,  # yellow
-        'ERROR': 31,  # red
+        'DEBUG': 37,     # white
+        'INFO': 36,      # cyan
+        'WARNING': 33,   # yellow
+        'ERROR': 31,     # red
         'CRITICAL': 41,  # white on red bg
     }
 

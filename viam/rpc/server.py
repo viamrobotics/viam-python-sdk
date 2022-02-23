@@ -9,6 +9,7 @@ from grpclib.utils import graceful_exit
 from viam import logging
 from viam.components.base import ComponentBase
 from viam.components.resource_manager import ResourceManager
+from viam.components.imu import IMUService
 from viam.components.servo import ServoService
 from viam.metadata.service import MetadataService
 from viam.robot.service import RobotService
@@ -41,6 +42,7 @@ class Server(ResourceManager):
             SignalingService(),
             MetadataService(manager=self),
             RobotService(manager=self),
+            IMUService(manager=self),
             ServoService(manager=self),
         ]
         services = ServerReflection.extend(services)
@@ -72,12 +74,12 @@ class Server(ResourceManager):
 
         Args:
             host (str, optional): Desired hostname of the server.
-                                  Defaults to 'localhost'.
+                Defaults to 'localhost'.
             port (int, optional): Desired port of the server.
-                                  Defaults to 9090.
+                Defaults to 9090.
             log_level(int, optional): The minimum log level.
-                                      To not receive any logs, set to None
-                                      Defaults to logging.INFO
+                To not receive any logs, set to None
+                Defaults to logging.INFO
         """
         logging.setLevel(log_level)
         listen(self._server, RecvRequest, self._grpc_event_handler)
@@ -106,8 +108,8 @@ class Server(ResourceManager):
             host (str, optional): Desired hostname. Defaults to "localhost".
             port (int, optional): Desired port. Defaults to 9090.
             log_level(int, optional): The minimum log level.
-                                      To not receive any logs, set to None
-                                      Defaults to logging.INFO
+                To not receive any logs, set to None.
+                Defaults to logging.INFO
         """
         server = cls(components)
         await server.serve(host, port, log_level)
