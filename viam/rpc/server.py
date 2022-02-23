@@ -8,6 +8,9 @@ from viam.components.base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.components.servo import ServoService
 from viam.metadata.service import MetadataService
+from viam.robot.service import RobotService
+
+from .signaling import SignalingService
 
 
 class Server(ResourceManager):
@@ -29,7 +32,9 @@ class Server(ResourceManager):
         super().__init__(components)
 
         services = [
+            SignalingService(),
             MetadataService(manager=self),
+            RobotService(manager=self),
             ServoService(manager=self),
         ]
         services = ServerReflection.extend(services)

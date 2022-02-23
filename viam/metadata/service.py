@@ -41,5 +41,5 @@ class MetadataService(MetadataServiceBase, ComponentServiceBase):
         request = await stream.recv_message()
         assert request is not None
         metadata = self._generate_metadata()
-        resp = ResourcesResponse(resources=metadata)
-        await stream.send_message(resp)
+        response = ResourcesResponse(resources=metadata)
+        await stream.send_message(response)
