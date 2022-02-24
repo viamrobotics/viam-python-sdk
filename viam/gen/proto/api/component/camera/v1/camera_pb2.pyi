@@ -28,22 +28,22 @@ global___GetFrameRequest = GetFrameRequest
 class GetFrameResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MIME_TYPE_FIELD_NUMBER: builtins.int
-    FRAME_FIELD_NUMBER: builtins.int
+    IMAGE_FIELD_NUMBER: builtins.int
     WIDTH_PX_FIELD_NUMBER: builtins.int
     HEIGHT_PX_FIELD_NUMBER: builtins.int
     mime_type: typing.Text = ...
     'Actual MIME type of response'
-    frame: builtins.bytes = ...
+    image: builtins.bytes = ...
     'Frame in bytes'
     width_px: builtins.int = ...
     'Width of frame in px'
     height_px: builtins.int = ...
     'Height of frame in px'
 
-    def __init__(self, *, mime_type: typing.Text=..., frame: builtins.bytes=..., width_px: builtins.int=..., height_px: builtins.int=...) -> None:
+    def __init__(self, *, mime_type: typing.Text=..., image: builtins.bytes=..., width_px: builtins.int=..., height_px: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['frame', b'frame', 'height_px', b'height_px', 'mime_type', b'mime_type', 'width_px', b'width_px']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['height_px', b'height_px', 'image', b'image', 'mime_type', b'mime_type', 'width_px', b'width_px']) -> None:
         ...
 global___GetFrameResponse = GetFrameResponse
 
@@ -82,15 +82,15 @@ global___GetPointCloudRequest = GetPointCloudRequest
 class GetPointCloudResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MIME_TYPE_FIELD_NUMBER: builtins.int
-    FRAME_FIELD_NUMBER: builtins.int
+    POINT_CLOUD_FIELD_NUMBER: builtins.int
     mime_type: typing.Text = ...
     'Actual MIME type of response'
-    frame: builtins.bytes = ...
+    point_cloud: builtins.bytes = ...
     'Frame in bytes'
 
-    def __init__(self, *, mime_type: typing.Text=..., frame: builtins.bytes=...) -> None:
+    def __init__(self, *, mime_type: typing.Text=..., point_cloud: builtins.bytes=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['frame', b'frame', 'mime_type', b'mime_type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'point_cloud', b'point_cloud']) -> None:
         ...
 global___GetPointCloudResponse = GetPointCloudResponse

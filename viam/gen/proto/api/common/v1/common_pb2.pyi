@@ -195,20 +195,42 @@ global___Geometry = Geometry
 
 class GeometriesInFrame(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    FRAME_FIELD_NUMBER: builtins.int
+    REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     GEOMETRIES_FIELD_NUMBER: builtins.int
-    frame: typing.Text = ...
+    reference_frame: typing.Text = ...
 
     @property
     def geometries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]:
         ...
 
-    def __init__(self, *, frame: typing.Text=..., geometries: typing.Optional[typing.Iterable[global___Geometry]]=...) -> None:
+    def __init__(self, *, reference_frame: typing.Text=..., geometries: typing.Optional[typing.Iterable[global___Geometry]]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['frame', b'frame', 'geometries', b'geometries']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['geometries', b'geometries', 'reference_frame', b'reference_frame']) -> None:
         ...
 global___GeometriesInFrame = GeometriesInFrame
+
+class PointCloudObject(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    POINT_CLOUD_FIELD_NUMBER: builtins.int
+    GEOMETRIES_FIELD_NUMBER: builtins.int
+    point_cloud: builtins.bytes = ...
+    'image frame expressed in bytes'
+
+    @property
+    def geometries(self) -> global___GeometriesInFrame:
+        """volume of a given geometry"""
+        pass
+
+    def __init__(self, *, point_cloud: builtins.bytes=..., geometries: typing.Optional[global___GeometriesInFrame]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['geometries', b'geometries']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['geometries', b'geometries', 'point_cloud', b'point_cloud']) -> None:
+        ...
+global___PointCloudObject = PointCloudObject
 
 class GeoPoint(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...

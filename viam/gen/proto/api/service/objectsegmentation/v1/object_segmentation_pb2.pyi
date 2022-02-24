@@ -44,41 +44,13 @@ class GetObjectPointCloudsResponse(google.protobuf.message.Message):
     'Actual MIME type of response'
 
     @property
-    def objects(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PointCloudObject]:
+    def objects(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.PointCloudObject]:
         """List of objects in the scene"""
         pass
 
-    def __init__(self, *, mime_type: typing.Text=..., objects: typing.Optional[typing.Iterable[global___PointCloudObject]]=...) -> None:
+    def __init__(self, *, mime_type: typing.Text=..., objects: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.PointCloudObject]]=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'objects', b'objects']) -> None:
         ...
 global___GetObjectPointCloudsResponse = GetObjectPointCloudsResponse
-
-class PointCloudObject(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    FRAME_FIELD_NUMBER: builtins.int
-    CENTER_COORDINATES_MM_FIELD_NUMBER: builtins.int
-    BOUNDING_BOX_MM_FIELD_NUMBER: builtins.int
-    frame: builtins.bytes = ...
-    'Frame of object in bytes'
-
-    @property
-    def center_coordinates_mm(self) -> proto.api.common.v1.common_pb2.Vector3:
-        """Center of object in mm"""
-        pass
-
-    @property
-    def bounding_box_mm(self) -> proto.api.common.v1.common_pb2.RectangularPrism:
-        """Bounding box of object in mm"""
-        pass
-
-    def __init__(self, *, frame: builtins.bytes=..., center_coordinates_mm: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., bounding_box_mm: typing.Optional[proto.api.common.v1.common_pb2.RectangularPrism]=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['bounding_box_mm', b'bounding_box_mm', 'center_coordinates_mm', b'center_coordinates_mm']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['bounding_box_mm', b'bounding_box_mm', 'center_coordinates_mm', b'center_coordinates_mm', 'frame', b'frame']) -> None:
-        ...
-global___PointCloudObject = PointCloudObject
