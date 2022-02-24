@@ -3,5 +3,5 @@ from .service import ServoService
 
 __all__ = [
     'ServoBase',
-    'ServoService'
+    'ServoService',
 ]

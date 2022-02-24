@@ -1,7 +1,5 @@
 import asyncio
 from typing import Dict
-from grpclib.const import Status as GRPCStatus
-from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
 from viam.components.base import ComponentServiceBase
 from viam.proto.api.robot import (
