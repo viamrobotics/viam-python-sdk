@@ -1,12 +1,9 @@
 import random
-from viam.components.imu import IMUBase, Orientation
-from viam.components.servo import ServoBase
-
-from viam.proto.api.component.imu import (
-    AngularVelocity,
-    Acceleration,
-    EulerAngles
+from viam.components.imu import (
+    IMUBase,
+    Orientation, AngularVelocity, Acceleration, EulerAngles
 )
+from viam.components.servo import ServoBase
 
 
 class IMU(IMUBase):
