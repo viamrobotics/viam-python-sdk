@@ -14,5 +14,8 @@ buf:
 better_imports:
 	python3 -m etc.generate_proto_import
 
-package: buf better_imports
+test:
+	python3 -m pytest
+
+package: buf better_imports test
 	@echo "TODO: Create pip-installable package"

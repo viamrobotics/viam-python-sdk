@@ -1,7 +1,7 @@
 import asyncio
 from typing import Dict
 from grpclib.server import Stream
-from viam.components.base import ComponentServiceBase
+from viam.components.service_base import ComponentServiceBase
 from viam.proto.api.robot import (
     RobotServiceBase,
     Status,
@@ -10,7 +10,6 @@ from viam.proto.api.robot import (
     StatusStreamRequest, StatusStreamResponse,
     ConfigRequest, ConfigResponse,
     DoActionRequest, DoActionResponse,
-    SensorReadingsRequest, SensorReadingsResponse,
     ExecuteFunctionRequest, ExecuteFunctionResponse,
     ExecuteSourceRequest, ExecuteSourceResponse,
     ResourceRunCommandRequest, ResourceRunCommandResponse,
@@ -77,12 +76,6 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
     async def DoAction(
         self,
         stream: Stream[DoActionRequest, DoActionResponse]
-    ) -> None:
-        pass
-
-    async def SensorReadings(
-        self,
-        stream: Stream[SensorReadingsRequest, SensorReadingsResponse]
     ) -> None:
         pass
 

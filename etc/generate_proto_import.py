@@ -1,3 +1,4 @@
+import getopt
 import importlib
 import inspect
 import logging as pylogging
@@ -5,6 +6,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import sys
 from typing import List, Dict
 
 from viam import logging
@@ -21,7 +23,7 @@ NEW_IMPORT_PATH = GENERATED_PATH.parent / 'proto'
 
 
 LOGGER = logging.getLogger(__name__)
-logging.setLevel(pylogging.DEBUG)
+logging.setLevel(pylogging.INFO)
 
 
 def clean():
@@ -147,4 +149,15 @@ def run():
 
 
 if __name__ == '__main__':
+    options = 'qv'
+    args = sys.argv[1:]
+    try:
+        arguments, _ = getopt.getopt(args, options)
+        for arg, _ in arguments:
+            if 'q' in arg:
+                LOGGER.disabled = True
+            if 'v' in arg:
+                logging.setLevel(pylogging.DEBUG)
+    except getopt.error:
+        pass
     run()

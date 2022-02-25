@@ -1,8 +1,8 @@
 from typing import List
 from grpclib.server import Stream
-from viam.components.base import ComponentServiceBase
+from viam.components.service_base import ComponentServiceBase
+from viam.proto.api.common import ResourceName
 from viam.proto.api.service.metadata import (
-    ResourceName,
     MetadataServiceBase,
     ResourcesRequest, ResourcesResponse
 )
