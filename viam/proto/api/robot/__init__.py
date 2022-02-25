@@ -38,8 +38,6 @@ from ....gen.proto.api.robot.v1.robot_pb2 import (
     Pose,
     ResourceRunCommandRequest,
     ResourceRunCommandResponse,
-    SensorReadingsRequest,
-    SensorReadingsResponse,
     SensorStatus,
     ServoStatus,
     Status,

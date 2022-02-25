@@ -4,10 +4,8 @@ import grpclib.const
 import grpclib.client
 if typing.TYPE_CHECKING:
     import grpclib.server
-import google.protobuf.struct_pb2
-import google.protobuf.duration_pb2
 import google.api.annotations_pb2
-import google.api.httpbody_pb2
+from ...... import proto
 from ...... import proto
 
 class MetadataServiceBase(abc.ABC):
