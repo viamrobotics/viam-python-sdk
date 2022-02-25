@@ -48,10 +48,10 @@ def get_packages(root: str) -> Dict[str, List[str]]:
     packages: Dict[str, List[str]] = {}
 
     for (dirpath, _, filenames) in os.walk(root):
-        if '__' in dirpath:
+        rel_path = Path(dirpath).relative_to(root).__str__()
+        if '__' in rel_path:
             continue
         if filenames:
-            rel_path = Path(dirpath).relative_to(root).__str__()
             rel_path = rel_path.replace(os.path.sep, '.')
             packages[rel_path] = list(
                 set(['.'.join(f.split('.')[:-1]) for f in filenames]))
