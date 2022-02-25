@@ -9,6 +9,7 @@ from ....gen.proto.api.common.v1.common_pb2 import (
     GeoPoint,
     GeometriesInFrame,
     Geometry,
+    PointCloudObject,
     Pose,
     RectangularPrism,
     Sphere,
