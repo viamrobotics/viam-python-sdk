@@ -1,10 +1,13 @@
 import importlib
 import inspect
+import logging as pylogging
 import os
 from pathlib import Path
 import re
 import shutil
 from typing import List, Dict
+
+from viam import logging
 
 
 # Name of the package where the protos are built
@@ -17,11 +20,19 @@ GENERATED_PATH = Path(__file__).parent.parent / 'viam' / PROTO_GEN_PACKAGE
 NEW_IMPORT_PATH = GENERATED_PATH.parent / 'proto'
 
 
+LOGGER = logging.getLogger(__name__)
+logging.setLevel(pylogging.DEBUG)
+
+
 def clean():
     '''
     Delete all the files in the NEW_IMPORT_PATH
     '''
-    shutil.rmtree(NEW_IMPORT_PATH)
+    LOGGER.info(f'Cleaning proto import directory: {NEW_IMPORT_PATH}')
+    try:
+        shutil.rmtree(NEW_IMPORT_PATH)
+    except FileNotFoundError:
+        pass
 
 
 def get_packages(root: str) -> Dict[str, List[str]]:
@@ -32,6 +43,8 @@ def get_packages(root: str) -> Dict[str, List[str]]:
     Key: package name
     Value: array of modules/files
     '''
+    LOGGER.info(f'Getting packages at root dir: {root}')
+
     packages: Dict[str, List[str]] = {}
 
     for (dirpath, _, filenames) in os.walk(root):
@@ -42,6 +55,7 @@ def get_packages(root: str) -> Dict[str, List[str]]:
             rel_path = rel_path.replace(os.path.sep, '.')
             packages[rel_path] = list(
                 set(['.'.join(f.split('.')[:-1]) for f in filenames]))
+            LOGGER.debug(f'Packages at path {rel_path}: {packages[rel_path]}')
     return packages
 
 
@@ -65,6 +79,8 @@ def build_dirs(root: str, package: str, modules: List[str]):
     Then, it will create the appropriate directory structure, and a new
     file for each module type (e.g. "imu" for "imu_grpc" and "imu_pb2").
     '''
+    LOGGER.info(f'Building proto imports for package {package}')
+
     # Create new directories
     dir_name = os.path.sep.join(package.split('.')[:-1])
     dir_name = os.path.join(root, dir_name)
@@ -75,11 +91,13 @@ def build_dirs(root: str, package: str, modules: List[str]):
     mods = list(set([mod.replace('_grpc', '').replace('_pb2', '')
                 for mod in modules]))
     for mod in mods:
+        LOGGER.debug(f'Building imports for {mod}')
 
         # Get list of files we want to import from,
         # based on the new module name
         imports = list(filter(lambda n: mod in n, modules))
         imports = sorted(imports)
+        LOGGER.debug(f'\tNew imports: {imports}')
 
         # We only want to import classes. This could be accomplished with
         # from ... import *
@@ -87,6 +105,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
         classes = {}
 
         for imp in imports:
+            LOGGER.debug(f'\t\tGrabbing classes from {imp}')
             class_names = []
             module = importlib.import_module(
                 f'viam.{PROTO_GEN_PACKAGE}.{package}.{imp}'
@@ -95,6 +114,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
                 class_names.append(name)
 
             if class_names:
+                LOGGER.debug(f'\t\tFound classes: {class_names}')
                 classes[imp] = class_names
 
         # Write new import to disk
@@ -103,6 +123,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
         n = re.sub(r'\s*_*-*', '', mod)
         file_name = f'{mod}.py' if p != n else '__init__.py'
         new_import_path = os.path.join(dir_name, file_name)
+        LOGGER.debug(f'\t\tWriting imports to {new_import_path}')
         with open(new_import_path, 'w') as f:
             f.write("'''\n")
             f.write('**** THIS IS A GENERATED FILE ****\n')
@@ -118,6 +139,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
 
 
 def run():
+    LOGGER.info('Generating better proto imports')
     clean()
     packages = get_packages(GENERATED_PATH.__str__())
     for (package, modules) in packages.items():
