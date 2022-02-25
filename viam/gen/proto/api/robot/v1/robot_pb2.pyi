@@ -529,33 +529,6 @@ class SensorStatus(google.protobuf.message.Message):
         ...
 global___SensorStatus = SensorStatus
 
-class SensorReadingsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
-
-    def __init__(self, *, name: typing.Text=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
-global___SensorReadingsRequest = SensorReadingsRequest
-
-class SensorReadingsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    READINGS_FIELD_NUMBER: builtins.int
-
-    @property
-    def readings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Value]:
-        ...
-
-    def __init__(self, *, readings: typing.Optional[typing.Iterable[google.protobuf.struct_pb2.Value]]=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['readings', b'readings']) -> None:
-        ...
-global___SensorReadingsResponse = SensorReadingsResponse
-
 class ExecuteFunctionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int

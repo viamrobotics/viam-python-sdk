@@ -6,6 +6,7 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+from ...... import proto
 import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
@@ -17,35 +18,15 @@ class ResourcesRequest(google.protobuf.message.Message):
         ...
 global___ResourcesRequest = ResourcesRequest
 
-class ResourceName(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    UUID_FIELD_NUMBER: builtins.int
-    NAMESPACE_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
-    SUBTYPE_FIELD_NUMBER: builtins.int
-    NAME_FIELD_NUMBER: builtins.int
-    uuid: typing.Text = ...
-    namespace: typing.Text = ...
-    type: typing.Text = ...
-    subtype: typing.Text = ...
-    name: typing.Text = ...
-
-    def __init__(self, *, uuid: typing.Text=..., namespace: typing.Text=..., type: typing.Text=..., subtype: typing.Text=..., name: typing.Text=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type', 'uuid', b'uuid']) -> None:
-        ...
-global___ResourceName = ResourceName
-
 class ResourcesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     RESOURCES_FIELD_NUMBER: builtins.int
 
     @property
-    def resources(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceName]:
+    def resources(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
         ...
 
-    def __init__(self, *, resources: typing.Optional[typing.Iterable[global___ResourceName]]=...) -> None:
+    def __init__(self, *, resources: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['resources', b'resources']) -> None:

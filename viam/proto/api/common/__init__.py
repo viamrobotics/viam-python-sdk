@@ -12,6 +12,7 @@ from ....gen.proto.api.common.v1.common_pb2 import (
     PointCloudObject,
     Pose,
     RectangularPrism,
+    ResourceName,
     Sphere,
     Vector3,
     WorldState
