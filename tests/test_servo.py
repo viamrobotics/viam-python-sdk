@@ -2,23 +2,14 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.resource_manager import ResourceManager
-from viam.components.servo import ServoBase, ServoService
+from viam.components.servo import ServoService
 from viam.proto.api.component.servo import (
     ServoServiceStub,
     MoveRequest,
     GetPositionRequest, GetPositionResponse
 )
 
-
-class MockServo(ServoBase):
-
-    angle: int = 0
-
-    async def move(self, angle: int):
-        self.angle = angle
-
-    async def get_position(self) -> int:
-        return self.angle
+from .mocks.components import MockServo
 
 
 class TestServo:
