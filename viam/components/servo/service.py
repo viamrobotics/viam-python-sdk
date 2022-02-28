@@ -10,27 +10,12 @@ from viam.proto.api.component.servo import (
 from .servo import ServoBase
 
 
-class ServoService(ServoServiceBase, ComponentServiceBase):
+class ServoService(ServoServiceBase, ComponentServiceBase[ServoBase]):
     """
     gRPC Service for a Servo
     """
 
-    def get_servo(self, name: str) -> ServoBase:
-        """
-        Get the servo with the given name if it exists in the registry.
-        If the servo does not exist in the registry,
-        this function will raise an error
-
-        Args:
-            name (str): _description_
-
-        Raises:
-            ComponentNotFoundError
-
-        Returns:
-            ServoBase: The servo
-        """
-        return self.manager.get_component(ServoBase, name)
+    RESOURCE_TYPE = ServoBase
 
     async def Move(
         self,
@@ -40,7 +25,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase):
         assert request is not None
         name = request.name
         try:
-            servo = self.get_servo(name)
+            servo = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         await servo.move(request.angle_deg)
@@ -54,7 +39,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase):
         assert request is not None
         name = request.name
         try:
-            servo = self.get_servo(name)
+            servo = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         position = await servo.get_position()

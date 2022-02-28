@@ -3,6 +3,7 @@ from viam.components.imu import (
     IMUBase,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
+from viam.components.motor import MotorBase
 from viam.components.servo import ServoBase
 
 
@@ -31,9 +32,53 @@ class IMU(IMUBase):
         return Orientation(euler_angles=angles)
 
 
+class Motor(MotorBase):
+
+    def __init__(self, name: str):
+        self.position: float = 0
+        self.power = 0
+        self.powered = False
+        super().__init__(name)
+
+    async def set_power(self, power: float):
+        self.power = power
+        self.powered = power != 0
+
+    async def go_for(self, rpm: float, revolutions: float):
+        if rpm > 0:
+            self.position += revolutions
+        if rpm < 0:
+            self.position -= revolutions
+        self.powered = False
+
+    async def go_to(self, rpm: float, position_revolutions: float):
+        if rpm != 0:
+            self.position = position_revolutions
+        self.powered = False
+
+    async def reset_zero_position(self, offset: float):
+        if (self.position > 0 and offset > 0) \
+                or (self.position < 0 and offset < 0):
+            self.position = offset
+        else:
+            self.position += offset
+        self.powered = False
+
+    async def get_position(self) -> float:
+        return self.position
+
+    async def get_features(self) -> MotorBase.Features:
+        return {'position_reporting': True}
+
+    async def is_powered(self) -> bool:
+        return self.powered
+
+
 class Servo(ServoBase):
 
-    angle: int = 0
+    def __init__(self, name: str):
+        self.angle = 0
+        super().__init__(name)
 
     async def move(self, angle: int):
         self.angle = angle

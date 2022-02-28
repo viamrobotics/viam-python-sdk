@@ -11,27 +11,12 @@ from viam.proto.api.component.imu import (
 from .imu import IMUBase
 
 
-class IMUService(IMUServiceBase, ComponentServiceBase):
+class IMUService(IMUServiceBase, ComponentServiceBase[IMUBase]):
     """
     gRPC Service for an IMU
     """
 
-    def get_imu(self, name: str) -> IMUBase:
-        """
-        Get the IMU with the given name if it exists in the registry.
-        If the IMU does not exist in the registry,
-        this function will raise an error
-
-        Args:
-            name (str): _description_
-
-        Raises:
-            ComponentNotFoundError
-
-        Returns:
-            IMUBase: The IMU
-        """
-        return self.manager.get_component(IMUBase, name)
+    RESOURCE_TYPE = IMUBase
 
     async def ReadAngularVelocity(
         self,
@@ -41,7 +26,7 @@ class IMUService(IMUServiceBase, ComponentServiceBase):
         assert request is not None
         name = request.name
         try:
-            imu = self.get_imu(name)
+            imu = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         velocity = await imu.read_angular_velocity()
@@ -56,7 +41,7 @@ class IMUService(IMUServiceBase, ComponentServiceBase):
         assert request is not None
         name = request.name
         try:
-            imu = self.get_imu(name)
+            imu = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         orientation = await imu.read_orientation()
@@ -72,7 +57,7 @@ class IMUService(IMUServiceBase, ComponentServiceBase):
         assert request is not None
         name = request.name
         try:
-            imu = self.get_imu(name)
+            imu = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         acceleration = await imu.read_acceleration()
