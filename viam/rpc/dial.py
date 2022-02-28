@@ -132,7 +132,7 @@ class AuthenticatedChannel(Channel):
 
 async def dial_direct(
     address: str,
-    options: DialOptions = None
+    options: Optional[DialOptions] = None
 ) -> Channel:
 
     opts = options if options else DialOptions()
