@@ -1,3 +1,4 @@
+import asyncio
 import random
 from viam.components.imu import (
     IMUBase,
@@ -40,6 +41,16 @@ class Motor(MotorBase):
         self.powered = False
         super().__init__(name)
 
+    def get_seconds(self, rpm: float, revolutions: float) -> int:
+        rps = rpm/60
+        sec = revolutions/rps
+        return int(sec)
+
+    async def run_for(self, sec: int):
+        self.powered = True
+        await asyncio.sleep(sec)
+        self.powered = False
+
     async def set_power(self, power: float):
         self.power = power
         self.powered = power != 0
@@ -49,12 +60,14 @@ class Motor(MotorBase):
             self.position += revolutions
         if rpm < 0:
             self.position -= revolutions
-        self.powered = False
+        asyncio.create_task(self.run_for(self.get_seconds(rpm, revolutions)))
 
     async def go_to(self, rpm: float, position_revolutions: float):
         if rpm != 0:
             self.position = position_revolutions
-        self.powered = False
+        distance = position_revolutions - self.position
+        distance = abs(distance)
+        asyncio.create_task(self.run_for(self.get_seconds(rpm, distance)))
 
     async def reset_zero_position(self, offset: float):
         if (self.position > 0 and offset > 0) \
