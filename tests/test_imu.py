@@ -2,7 +2,6 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.imu import (
-    IMUBase,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
 from viam.components.imu.service import IMUService
@@ -14,35 +13,33 @@ from viam.proto.api.component.imu import (
     ReadOrientationRequest, ReadOrientationResponse
 )
 
+from .mocks.components import MockIMU
 
-class MockIMU(IMUBase):
 
-    async def read_acceleration(self) -> Acceleration:
-        return Acceleration(
-            x_mm_per_sec_per_sec=1,
-            y_mm_per_sec_per_sec=2,
-            z_mm_per_sec_per_sec=3
-        )
-
-    async def read_angular_velocity(self) -> AngularVelocity:
-        return AngularVelocity(
-            x_degs_per_sec=1,
-            y_degs_per_sec=2,
-            z_degs_per_sec=3
-        )
-
-    async def read_orientation(self) -> Orientation:
-        angles = EulerAngles(
+PASS_RESULT = MockIMU.Result(
+    Acceleration(
+        x_mm_per_sec_per_sec=1,
+        y_mm_per_sec_per_sec=2,
+        z_mm_per_sec_per_sec=3
+    ),
+    AngularVelocity(
+        x_degs_per_sec=1,
+        y_degs_per_sec=2,
+        z_degs_per_sec=3
+    ),
+    Orientation(
+        euler_angles=EulerAngles(
             roll_deg=1,
             pitch_deg=2,
             yaw_deg=3
         )
-        return Orientation(euler_angles=angles)
+    )
+)
 
 
 class TestIMU:
 
-    imu = MockIMU(name='imu')
+    imu = MockIMU(name='imu', result=PASS_RESULT)
 
     @pytest.mark.asyncio
     async def test_read_acceleration(self):
@@ -76,7 +73,7 @@ class TestIMU:
 class TestService:
 
     name = 'imu'
-    imu = MockIMU(name=name)
+    imu = MockIMU(name=name, result=PASS_RESULT)
     manager = ResourceManager([imu])
     service = IMUService(manager)
 

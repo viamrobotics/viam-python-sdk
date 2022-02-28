@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import re
 import socket
 import ssl
@@ -19,18 +20,16 @@ class RTCConfiguration:
     pass
 
 
+@dataclass
 class DialWebRTCOptions:
     disable_tricle_ice: bool
     rtc_config: RTCConfiguration
 
 
+@dataclass
 class Credentials:
     type: str
     payload: str
-
-    def __init__(self, type: str, payload: str) -> None:
-        self.type = type
-        self.payload = payload
 
 
 class DialOptions:
@@ -133,7 +132,7 @@ class AuthenticatedChannel(Channel):
 
 async def dial_direct(
     address: str,
-    options: DialOptions = None
+    options: Optional[DialOptions] = None
 ) -> Channel:
 
     opts = options if options else DialOptions()
