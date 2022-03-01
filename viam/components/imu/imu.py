@@ -29,7 +29,7 @@ class IMUBase(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def read_angular_velocity() -> AngularVelocity:
+    async def read_angular_velocity(self) -> AngularVelocity:
         """
         Return the angular velocity of the IMU
 
@@ -39,7 +39,7 @@ class IMUBase(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def read_orientation() -> Orientation:
+    async def read_orientation(self) -> Orientation:
         """
         Return the orientation of the IMU
 
@@ -49,7 +49,7 @@ class IMUBase(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def read_acceleration() -> Acceleration:
+    async def read_acceleration(self) -> Acceleration:
         """
         Return the acceleration of the IMU
 

@@ -9,6 +9,10 @@ from viam.proto.api.component.imu import (
     ReadAngularVelocityRequest, ReadAngularVelocityResponse,
     ReadOrientationRequest, ReadOrientationResponse
 )
+from viam.proto.api.robot import (
+    RobotServiceStub,
+    StatusRequest, StatusResponse
+)
 from viam.proto.api.component.servo import (
     ServoServiceStub,
     MoveRequest,
@@ -32,6 +36,13 @@ async def client():
         response = await service.Resources(request)
         r = typing.cast(ResourcesResponse, response)
         print(f'Metadata response received: {r.resources}')
+
+        print('\n#### ROBOT ####')
+        service = RobotServiceStub(channel)
+        request = StatusRequest()
+        response = await service.Status(request)
+        r = typing.cast(StatusResponse, response)
+        print(f'Robot status response received: {r.status}')
 
         print('\n#### IMU ####')
         service = IMUServiceStub(channel)
