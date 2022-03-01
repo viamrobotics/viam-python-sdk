@@ -6,7 +6,6 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.duration_pb2
 import google.protobuf.internal.containers
-import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
@@ -14,23 +13,6 @@ from ..... import proto
 import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
-
-class _NavigationServiceMode:
-    ValueType = typing.NewType('ValueType', builtins.int)
-    V: typing_extensions.TypeAlias = ValueType
-
-class _NavigationServiceModeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_NavigationServiceMode.ValueType], builtins.type):
-    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
-    NAVIGATION_SERVICE_MODE_UNSPECIFIED: NavigationServiceMode.ValueType = ...
-    NAVIGATION_SERVICE_MODE_MANUAL: NavigationServiceMode.ValueType = ...
-    NAVIGATION_SERVICE_MODE_WAYPOINT: NavigationServiceMode.ValueType = ...
-
-class NavigationServiceMode(_NavigationServiceMode, metaclass=_NavigationServiceModeEnumTypeWrapper):
-    pass
-NAVIGATION_SERVICE_MODE_UNSPECIFIED: NavigationServiceMode.ValueType = ...
-NAVIGATION_SERVICE_MODE_MANUAL: NavigationServiceMode.ValueType = ...
-NAVIGATION_SERVICE_MODE_WAYPOINT: NavigationServiceMode.ValueType = ...
-global___NavigationServiceMode = NavigationServiceMode
 
 class StatusRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
@@ -677,155 +659,6 @@ class ResourceRunCommandResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['result', b'result']) -> None:
         ...
 global___ResourceRunCommandResponse = ResourceRunCommandResponse
-
-class NavigationServiceModeRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___NavigationServiceModeRequest = NavigationServiceModeRequest
-
-class NavigationServiceModeResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    MODE_FIELD_NUMBER: builtins.int
-    mode: global___NavigationServiceMode.ValueType = ...
-
-    def __init__(self, *, mode: global___NavigationServiceMode.ValueType=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['mode', b'mode']) -> None:
-        ...
-global___NavigationServiceModeResponse = NavigationServiceModeResponse
-
-class NavigationServiceSetModeRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    MODE_FIELD_NUMBER: builtins.int
-    mode: global___NavigationServiceMode.ValueType = ...
-
-    def __init__(self, *, mode: global___NavigationServiceMode.ValueType=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['mode', b'mode']) -> None:
-        ...
-global___NavigationServiceSetModeRequest = NavigationServiceSetModeRequest
-
-class NavigationServiceSetModeResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___NavigationServiceSetModeResponse = NavigationServiceSetModeResponse
-
-class NavigationServiceWaypoint(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    ID_FIELD_NUMBER: builtins.int
-    LOCATION_FIELD_NUMBER: builtins.int
-    id: typing.Text = ...
-
-    @property
-    def location(self) -> proto.api.common.v1.common_pb2.GeoPoint:
-        ...
-
-    def __init__(self, *, id: typing.Text=..., location: typing.Optional[proto.api.common.v1.common_pb2.GeoPoint]=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'location', b'location']) -> None:
-        ...
-global___NavigationServiceWaypoint = NavigationServiceWaypoint
-
-class NavigationServiceLocationRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___NavigationServiceLocationRequest = NavigationServiceLocationRequest
-
-class NavigationServiceLocationResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    LOCATION_FIELD_NUMBER: builtins.int
-
-    @property
-    def location(self) -> proto.api.common.v1.common_pb2.GeoPoint:
-        ...
-
-    def __init__(self, *, location: typing.Optional[proto.api.common.v1.common_pb2.GeoPoint]=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location']) -> None:
-        ...
-global___NavigationServiceLocationResponse = NavigationServiceLocationResponse
-
-class NavigationServiceWaypointsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___NavigationServiceWaypointsRequest = NavigationServiceWaypointsRequest
-
-class NavigationServiceWaypointsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    WAYPOINTS_FIELD_NUMBER: builtins.int
-
-    @property
-    def waypoints(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___NavigationServiceWaypoint]:
-        ...
-
-    def __init__(self, *, waypoints: typing.Optional[typing.Iterable[global___NavigationServiceWaypoint]]=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['waypoints', b'waypoints']) -> None:
-        ...
-global___NavigationServiceWaypointsResponse = NavigationServiceWaypointsResponse
-
-class NavigationServiceAddWaypointRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    LOCATION_FIELD_NUMBER: builtins.int
-
-    @property
-    def location(self) -> proto.api.common.v1.common_pb2.GeoPoint:
-        ...
-
-    def __init__(self, *, location: typing.Optional[proto.api.common.v1.common_pb2.GeoPoint]=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location']) -> None:
-        ...
-global___NavigationServiceAddWaypointRequest = NavigationServiceAddWaypointRequest
-
-class NavigationServiceAddWaypointResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___NavigationServiceAddWaypointResponse = NavigationServiceAddWaypointResponse
-
-class NavigationServiceRemoveWaypointRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    ID_FIELD_NUMBER: builtins.int
-    id: typing.Text = ...
-
-    def __init__(self, *, id: typing.Text=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
-        ...
-global___NavigationServiceRemoveWaypointRequest = NavigationServiceRemoveWaypointRequest
-
-class NavigationServiceRemoveWaypointResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-
-    def __init__(self) -> None:
-        ...
-global___NavigationServiceRemoveWaypointResponse = NavigationServiceRemoveWaypointResponse
 
 class InputControllerEvent(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
