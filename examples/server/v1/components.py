@@ -1,10 +1,12 @@
 import asyncio
 import random
+from typing import Any, List
 from viam.components.imu import (
     IMUBase,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
 from viam.components.motor import MotorBase
+from viam.components.sensor import SensorBase
 from viam.components.servo import ServoBase
 
 
@@ -85,6 +87,16 @@ class Motor(MotorBase):
 
     async def is_powered(self) -> bool:
         return self.powered
+
+
+class Sensor(SensorBase):
+
+    def __init__(self, name: str):
+        self.num_readings = random.randint(1, 10)
+        super().__init__(name)
+
+    async def get_readings(self) -> List[Any]:
+        return [random.random() for _ in range(self.num_readings)]
 
 
 class Servo(ServoBase):

@@ -11,6 +11,7 @@ from viam.components.base import ComponentBase
 from viam.components.motor import MotorService
 from viam.components.resource_manager import ResourceManager
 from viam.components.imu import IMUService
+from viam.components.sensor import SensorService
 from viam.components.servo import ServoService
 from viam.metadata.service import MetadataService
 from viam.robot.service import RobotService
@@ -45,6 +46,7 @@ class Server(ResourceManager):
             RobotService(manager=self),
             IMUService(manager=self),
             MotorService(manager=self),
+            SensorService(manager=self),
             ServoService(manager=self),
         ]
         services = ServerReflection.extend(services)

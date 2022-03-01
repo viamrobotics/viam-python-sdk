@@ -29,3 +29,24 @@ response = await service.ReadOrientation(...)
 ```
 
 View the `examples` for more details.
+
+---
+## Development
+To develop the python SDK, it is strongly encouraged that you use a python environment ([Miniconda](https://docs.conda.io/en/latest/miniconda.html), [venv](https://docs.python.org/3/library/venv.html), [pyenv](https://github.com/pyenv/pyenv), etc.)
+
+Install the requirements: `pip install -r etc/requirements.txt`
+
+[`flake8`](https://www.flake8rules.com) is our styleguide, and [`autopep8`](https://pypi.org/project/autopep8/) is used for automatic linting and formatting.
+
+### Adding new component types
+The SDK provides a number of abstract base components to start. To add more abstract base components, please make sure you follow these guidelines:
+
+* Create a new directory in `viam.components` with the name of the new component
+* Implement 3 new files in the newly created directory:
+    * `__init__.py`, where you should include the imports for the package
+    * `{COMPONENT}.py`, which should define the requirements of the component
+    * `service.py`, which should implement the gRPC service for this component
+* Add the new service in `viam.rpc.server` to expose the gRPC service
+* If the component needs to be included to the robot/status service, add it in `viam.robot.service`
+* Write tests and add the component to `tests.mocks.components`
+* Add the component to `examples.server.v1.components` and its corresponding concrete type in `examples.server.v1.server`
