@@ -1,6 +1,8 @@
 import asyncio
 from typing import Dict
+
 from grpclib.server import Stream
+
 from viam.components.service_base import ComponentServiceBase
 from viam.proto.api.robot import (
     RobotServiceBase,
@@ -13,13 +15,6 @@ from viam.proto.api.robot import (
     ExecuteFunctionRequest, ExecuteFunctionResponse,
     ExecuteSourceRequest, ExecuteSourceResponse,
     ResourceRunCommandRequest, ResourceRunCommandResponse,
-    NavigationServiceModeRequest, NavigationServiceModeResponse,
-    NavigationServiceSetModeRequest, NavigationServiceSetModeResponse,
-    NavigationServiceLocationRequest, NavigationServiceLocationResponse,
-    NavigationServiceWaypointsRequest, NavigationServiceWaypointsResponse,
-    NavigationServiceAddWaypointRequest, NavigationServiceAddWaypointResponse,
-    NavigationServiceRemoveWaypointRequest,
-    NavigationServiceRemoveWaypointResponse,
 )
 
 # Import all components
@@ -104,47 +99,5 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
     async def ResourceRunCommand(
         self,
         stream: Stream[ResourceRunCommandRequest, ResourceRunCommandResponse]
-    ) -> None:
-        pass
-
-    async def NavigationServiceMode(
-        self,
-        stream: Stream[NavigationServiceModeRequest,
-                       NavigationServiceModeResponse]
-    ) -> None:
-        pass
-
-    async def NavigationServiceSetMode(
-        self,
-        stream: Stream[NavigationServiceSetModeRequest,
-                       NavigationServiceSetModeResponse]
-    ) -> None:
-        pass
-
-    async def NavigationServiceLocation(
-        self,
-        stream: Stream[NavigationServiceLocationRequest,
-                       NavigationServiceLocationResponse]
-    ) -> None:
-        pass
-
-    async def NavigationServiceWaypoints(
-        self,
-        stream: Stream[NavigationServiceWaypointsRequest,
-                       NavigationServiceWaypointsResponse]
-    ) -> None:
-        pass
-
-    async def NavigationServiceAddWaypoint(
-        self,
-        stream: Stream[NavigationServiceAddWaypointRequest,
-                       NavigationServiceAddWaypointResponse]
-    ) -> None:
-        pass
-
-    async def NavigationServiceRemoveWaypoint(
-        self,
-        stream: Stream[NavigationServiceRemoveWaypointRequest,
-                       NavigationServiceRemoveWaypointResponse]
     ) -> None:
         pass
