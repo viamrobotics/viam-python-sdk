@@ -12,25 +12,29 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class DoGrabRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    CAMERA_NAME_FIELD_NUMBER: builtins.int
-    CAMERA_POINT_FIELD_NUMBER: builtins.int
+    TARGET_FIELD_NUMBER: builtins.int
     GRIPPER_NAME_FIELD_NUMBER: builtins.int
-    ARM_NAME_FIELD_NUMBER: builtins.int
-    camera_name: typing.Text = ...
+    WORLD_STATE_FIELD_NUMBER: builtins.int
 
     @property
-    def camera_point(self) -> proto.api.common.v1.common_pb2.Vector3:
+    def target(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
         ...
     gripper_name: typing.Text = ...
-    arm_name: typing.Text = ...
 
-    def __init__(self, *, camera_name: typing.Text=..., camera_point: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., gripper_name: typing.Text=..., arm_name: typing.Text=...) -> None:
+    @property
+    def world_state(self) -> proto.api.common.v1.common_pb2.WorldState:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['camera_point', b'camera_point']) -> builtins.bool:
+    def __init__(self, *, target: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., gripper_name: typing.Text=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['arm_name', b'arm_name', 'camera_name', b'camera_name', 'camera_point', b'camera_point', 'gripper_name', b'gripper_name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'target', b'target', 'world_state', b'world_state']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'gripper_name', b'gripper_name', 'target', b'target', 'world_state', b'world_state']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
         ...
 global___DoGrabRequest = DoGrabRequest
 
