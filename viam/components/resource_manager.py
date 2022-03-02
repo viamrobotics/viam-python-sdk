@@ -1,6 +1,6 @@
 from typing import Dict, List, Type, TypeVar
 
-from .base import ComponentBase
+from .component_base import ComponentBase
 from ..errors import ComponentNotFoundError, DuplicateComponentError
 
 

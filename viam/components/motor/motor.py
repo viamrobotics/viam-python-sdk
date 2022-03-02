@@ -1,7 +1,7 @@
 import abc
 from typing import TypedDict
 
-from ..base import ComponentBase
+from ..component_base import ComponentBase
 
 
 class MotorBase(ComponentBase):

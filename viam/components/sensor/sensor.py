@@ -1,7 +1,7 @@
 import abc
 from typing import Any, List
 
-from ..base import ComponentBase
+from ..component_base import ComponentBase
 
 
 class SensorBase(ComponentBase):

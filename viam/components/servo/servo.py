@@ -1,6 +1,6 @@
 import abc
 
-from ..base import ComponentBase
+from ..component_base import ComponentBase
 
 
 class ServoBase(ComponentBase):
