@@ -7,7 +7,7 @@ from viam.components.service_base import ComponentServiceBase
 from viam.proto.api.robot import (
     RobotServiceBase,
     Status,
-    MotorStatus, ServoStatus,
+    MotorStatus, SensorStatus, ServoStatus,
     StatusRequest, StatusResponse,
     StatusStreamRequest, StatusStreamResponse,
     ConfigRequest, ConfigResponse,
@@ -19,6 +19,7 @@ from viam.proto.api.robot import (
 
 # Import all components
 from viam.components.motor import MotorBase
+from viam.components.sensor import SensorBase
 from viam.components.servo import ServoBase
 
 
@@ -26,6 +27,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
 
     async def _generate_status(self) -> Status:
         motor_statuses: Dict[str, MotorStatus] = {}
+        sensor_statuses: Dict[str, SensorStatus] = {}
         servo_statuses: Dict[str, ServoStatus] = {}
 
         for component in self.manager.components.values():
@@ -36,6 +38,10 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
                 features = await component.get_features()
                 s.position_supported = features['position_reporting']
                 motor_statuses[component.name] = s
+            if isinstance(component, SensorBase):
+                s = SensorStatus()
+                s.type = 'sensor'
+                sensor_statuses[component.name] = s
             if isinstance(component, ServoBase):
                 s = ServoStatus()
                 s.angle = await component.get_position()
