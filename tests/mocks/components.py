@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from random import random
 from typing import Any, List
 
+from viam.components.base import BaseBase
 from viam.components.imu import (
     IMUBase,
     Orientation, AngularVelocity, Acceleration, EulerAngles
@@ -9,6 +10,67 @@ from viam.components.imu import (
 from viam.components.motor import MotorBase
 from viam.components.sensor import SensorBase
 from viam.components.servo import ServoBase
+
+
+class MockBase(BaseBase):
+
+    def __init__(self, name: str):
+        self.position = 0
+        self.angle = 0
+        self.stopped = True
+        super().__init__(name)
+
+    async def move_straight(
+        self,
+        distance: int,
+        velocity: float,
+        blocking: bool
+    ):
+        if distance == 0 or velocity == 0:
+            return await self.stop()
+
+        if velocity > 0:
+            self.position += distance
+        else:
+            self.position -= distance
+
+        self.stopped = False
+
+    async def move_arc(
+        self,
+        distance: int,
+        velocity: float,
+        angle: float,
+        blocking: bool
+    ):
+        if distance == 0:
+            return await self.spin(angle, velocity, blocking)
+
+        if velocity == 0:
+            return await self.stop()
+
+        if velocity > 0:
+            self.position += distance
+            self.angle += angle
+        else:
+            self.position -= distance
+            self.angle -= angle
+
+        self.stopped = False
+
+    async def spin(self, angle: float, velocity: float, blocking: bool):
+        if angle == 0 or velocity == 0:
+            return await self.stop()
+
+        if velocity > 0:
+            self.angle += angle
+        else:
+            self.angle -= angle
+
+        self.stopped = False
+
+    async def stop(self):
+        self.stopped = True
 
 
 class MockIMU(IMUBase):

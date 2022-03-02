@@ -1,6 +1,7 @@
 import asyncio
 import random
 from typing import Any, List
+from viam.components.base import BaseBase
 from viam.components.imu import (
     IMUBase,
     Orientation, AngularVelocity, Acceleration, EulerAngles
@@ -8,6 +9,67 @@ from viam.components.imu import (
 from viam.components.motor import MotorBase
 from viam.components.sensor import SensorBase
 from viam.components.servo import ServoBase
+
+
+class Base(BaseBase):
+
+    def __init__(self, name: str):
+        self.position = 0
+        self.angle = 0
+        self.stopped = True
+        super().__init__(name)
+
+    async def move_straight(
+        self,
+        distance: int,
+        velocity: float,
+        blocking: bool
+    ):
+        if distance == 0 or velocity == 0:
+            return await self.stop()
+
+        if velocity > 0:
+            self.position += distance
+        else:
+            self.position -= distance
+
+        self.stopped = False
+
+    async def move_arc(
+        self,
+        distance: int,
+        velocity: float,
+        angle: float,
+        blocking: bool
+    ):
+        if distance == 0:
+            return await self.spin(angle, velocity, blocking)
+
+        if velocity == 0:
+            return await self.stop()
+
+        if velocity > 0:
+            self.position += distance
+            self.angle += angle
+        else:
+            self.position -= distance
+            self.angle -= angle
+
+        self.stopped = False
+
+    async def spin(self, angle: float, velocity: float, blocking: bool):
+        if angle == 0 or velocity == 0:
+            return await self.stop()
+
+        if velocity > 0:
+            self.angle += angle
+        else:
+            self.angle -= angle
+
+        self.stopped = False
+
+    async def stop(self):
+        self.stopped = True
 
 
 class IMU(IMUBase):
@@ -41,35 +103,50 @@ class Motor(MotorBase):
         self.position: float = 0
         self.power = 0
         self.powered = False
+        self.task = None
         super().__init__(name)
 
-    def get_seconds(self, rpm: float, revolutions: float) -> int:
+    async def run_continuously(self, rpm: float):
         rps = rpm/60
-        sec = revolutions/rps
-        return int(sec)
-
-    async def run_for(self, sec: int):
-        self.powered = True
-        await asyncio.sleep(sec)
-        self.powered = False
+        while True:
+            await asyncio.sleep(1)
+            self.position += rps
 
     async def set_power(self, power: float):
         self.power = power
         self.powered = power != 0
+        if self.powered:
+            self.task = asyncio.create_task(self.run_continuously(power))
+        else:
+            if self.task:
+                self.task.cancel()
 
     async def go_for(self, rpm: float, revolutions: float):
+        if self.task:
+            self.task.cancel()
+        target = 0
+        rps = rpm/60
         if rpm > 0:
-            self.position += revolutions
+            target = self.position + revolutions
         if rpm < 0:
-            self.position -= revolutions
-        asyncio.create_task(self.run_for(self.get_seconds(rpm, revolutions)))
+            target = self.position - revolutions
+        self.powered = True
+        while abs(self.position-target) > 0.01:
+            await asyncio.sleep(1)
+            self.position += rps
+        self.powered = False
 
     async def go_to(self, rpm: float, position_revolutions: float):
-        if rpm != 0:
-            self.position = position_revolutions
+        if self.task:
+            self.task.cancel()
         distance = position_revolutions - self.position
-        distance = abs(distance)
-        asyncio.create_task(self.run_for(self.get_seconds(rpm, distance)))
+        rps = rpm/60
+        self.powered = True
+        while distance > 0:
+            await asyncio.sleep(1)
+            distance -= abs(rps)
+            self.position += rps
+        self.powered = False
 
     async def reset_zero_position(self, offset: float):
         if (self.position > 0 and offset > 0) \

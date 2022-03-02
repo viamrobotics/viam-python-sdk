@@ -11,12 +11,14 @@ from viam.proto.api.robot import (
 )
 from viam.robot.service import RobotService
 
-from .mocks.components import MockIMU, MockMotor, MockServo
+from .mocks.components import MockBase, MockIMU, MockMotor, MockServo
 
 
 @pytest.mark.asyncio
 async def test_robot_service():
     resources = [
+        MockBase(name='base1'),
+        MockBase(name='base2'),
         MockIMU(name='imu1'),
         MockIMU(name='imu2'),
         MockMotor(name='motor1'),
@@ -33,6 +35,10 @@ async def test_robot_service():
         request = StatusRequest()
         response: StatusResponse = await client.Status(request)
         assert response.status == Status(
+            bases={
+                'base1': True,
+                'base2': True,
+            },
             motors={
                 'motor1': MotorStatus(
                     on=False,
