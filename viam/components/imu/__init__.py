@@ -1,19 +1,10 @@
-from .imu import (
-    Orientation,
-    IMU
-)
-from .service import (
-    IMUService
-)
-
-from viam.proto.api.component.imu import (
-    Acceleration,
-    AngularVelocity,
-    EulerAngles
-)
+from .client import IMUClient
+from .imu import IMU, Acceleration, AngularVelocity, EulerAngles, Orientation
+from .service import IMUService
 
 __all__ = [
     'IMU',
+    'IMUClient',
     'IMUService',
     'Orientation',
     'Acceleration',
