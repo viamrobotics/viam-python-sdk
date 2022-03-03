@@ -1,6 +1,6 @@
 from typing import Dict, List, Type, TypeVar
 
-from .base import ComponentBase
+from .component_base import ComponentBase
 from ..errors import ComponentNotFoundError, DuplicateComponentError
 
 
@@ -59,6 +59,6 @@ class ResourceManager:
             return component
 
         class_name = str(of_type)
-        if len(class_name.split('.')) >= 2:
+        if len(class_name.split('.')) > 2:
             class_name = class_name.split('.')[2]
         raise ComponentNotFoundError(class_name, name)

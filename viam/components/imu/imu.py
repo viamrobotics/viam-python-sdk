@@ -7,7 +7,7 @@ from viam.proto.api.component.imu import (
     Acceleration
 )
 
-from ..base import ComponentBase
+from ..component_base import ComponentBase
 
 
 @dataclass

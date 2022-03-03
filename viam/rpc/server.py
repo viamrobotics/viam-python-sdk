@@ -7,7 +7,8 @@ from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
 
 from viam import logging
-from viam.components.base import ComponentBase
+from viam.components.base import BaseService
+from viam.components.component_base import ComponentBase
 from viam.components.motor import MotorService
 from viam.components.resource_manager import ResourceManager
 from viam.components.imu import IMUService
@@ -44,6 +45,7 @@ class Server(ResourceManager):
             SignalingService(),
             MetadataService(manager=self),
             RobotService(manager=self),
+            BaseService(manager=self),
             IMUService(manager=self),
             MotorService(manager=self),
             SensorService(manager=self),
