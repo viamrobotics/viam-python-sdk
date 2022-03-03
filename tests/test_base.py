@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.resource_manager import ResourceManager
-from viam.components.base import BaseService
+from viam.components.base import BaseClient, BaseService
 from viam.proto.api.component.base import (
     BaseServiceStub,
     MoveStraightRequest,
@@ -18,6 +18,12 @@ from .mocks.components import MockBase
 @pytest.fixture(scope='function')
 def base() -> MockBase:
     return MockBase(name='base')
+
+
+@pytest.fixture(scope='function')
+def service(base: MockBase) -> BaseService:
+    manager = ResourceManager([base])
+    return BaseService(manager)
 
 
 class TestBase:
@@ -207,4 +213,70 @@ class TestService:
                 block=False
             )
             await client.Spin(request)
+            assert base.stopped is True
+
+
+class TestClient:
+
+    @pytest.mark.asyncio
+    async def test_move_straight(self, base: MockBase, service: BaseService):
+        distances = [randint(-50, 50) for _ in range(4)]
+        velocities = [random()+1 for _ in range(4)]
+
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            for (i, (d, v)) in enumerate(zip(distances, velocities)):
+                await client.move_straight(d, v, False)
+                assert base.position == sum(distances[:i+1])
+
+    @pytest.mark.asyncio
+    async def test_move_arc(self, base: MockBase, service: BaseService):
+        distances = [randint(-50, 50) for _ in range(8)]
+        velocities = [random()+1 for _ in range(8)]
+        angles = [randint(-180, 180) for _ in range(8)]
+
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            for (i, (d, v, a)) in enumerate(
+                    zip(distances, velocities, angles)):
+                await client.move_arc(d, v, a, False)
+                assert base.position == sum(distances[:i+1])
+                assert base.angle == sum(angles[:i+1])
+
+    @pytest.mark.asyncio
+    async def test_spin(self, base: MockBase, service: BaseService):
+        angles = [randint(-180, 180) for _ in range(4)]
+        velocities = [random()+1 for _ in range(4)]
+
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            for (i, (a, v)) in enumerate(zip(angles, velocities)):
+                await client.spin(a, v, False)
+                assert base.angle == sum(angles[:i+1])
+
+    @pytest.mark.asyncio
+    async def test_stop(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+
+            assert base.stopped is True
+
+            await client.move_straight(1, 1, False)
+            assert base.stopped is False
+            await client.stop()
+            assert base.stopped is True
+
+            await client.move_straight(1, 1, False)
+            assert base.stopped is False
+            await client.move_straight(0, 0, False)
+            assert base.stopped is True
+
+            await client.move_arc(1, 1, 1, False)
+            assert base.stopped is False
+            await client.move_arc(0, 0, 0, False)
+            assert base.stopped is True
+
+            await client.spin(1, 1, False)
+            assert base.stopped is False
+            await client.spin(0, 0, False)
             assert base.stopped is True
