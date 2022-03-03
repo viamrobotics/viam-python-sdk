@@ -46,8 +46,8 @@ setup(
     ],
     packages=(
         find_packages() +
-        get_packages('./viam/gen') +
-        get_packages('./viam/proto')
+        get_packages(os.path.join('.', 'viam', 'gen')) +
+        get_packages(os.path.join('.', 'viam', 'proto'))
     ),
     package_data={
         '': ['py.typed', '*.pyi', '**/*.pyi'],
