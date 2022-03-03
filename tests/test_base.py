@@ -84,11 +84,6 @@ class TestBase:
 
 class TestService:
 
-    @pytest.fixture(scope='function')
-    def service(self, base: MockBase) -> BaseService:
-        manager = ResourceManager([base])
-        return BaseService(manager)
-
     @pytest.mark.asyncio
     async def test_move_straight(self, base: MockBase, service: BaseService):
         distances = [randint(-50, 50) for _ in range(4)]

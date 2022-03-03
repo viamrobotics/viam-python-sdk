@@ -2,7 +2,7 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.resource_manager import ResourceManager
-from viam.components.motor import MotorService
+from viam.components.motor import MotorService, MotorClient
 from viam.proto.api.component.motor import (
     MotorServiceStub,
     SetPowerRequest,
@@ -20,6 +20,12 @@ from .mocks.components import MockMotor
 @pytest.fixture(scope='function')
 def motor() -> MockMotor:
     return MockMotor(name='motor')
+
+
+@pytest.fixture(scope='function')
+def service(motor: MockMotor) -> MotorService:
+    manager = ResourceManager([motor])
+    return MotorService(manager)
 
 
 class TestMotor:
@@ -79,11 +85,6 @@ class TestMotor:
 
 
 class TestService:
-
-    @pytest.fixture(scope='function')
-    def service(self, motor: MockMotor) -> MotorService:
-        manager = ResourceManager([motor])
-        return MotorService(manager)
 
     @pytest.mark.asyncio
     async def test_set_power(self, motor: MockMotor, service: MotorService):
@@ -175,3 +176,75 @@ class TestService:
             request = IsPoweredRequest(name=motor.name)
             response: IsPoweredResponse = await client.IsPowered(request)
             assert response.is_on is False
+
+
+class TestClient:
+
+    @pytest.mark.asyncio
+    async def test_set_power(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            await client.set_power(13)
+            assert motor.power == 13
+
+    @pytest.mark.asyncio
+    async def test_get_position(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            position = await client.get_position()
+            assert position == 0
+
+    @pytest.mark.asyncio
+    async def test_go_for(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+
+            await client.go_for(30, 20)
+            assert motor.position == 20
+
+            await client.go_for(-10, 10)
+            assert motor.position == 10
+
+            await client.go_for(10, -5)
+            assert motor.position == 5
+
+            await client.go_for(-10, -10)
+            assert motor.position == 15
+
+    @pytest.mark.asyncio
+    async def test_go_to(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+
+            await client.go_to(30, 20)
+            assert motor.position == 20
+
+            await client.go_to(-10, 50)
+            assert motor.position == 50
+
+    @pytest.mark.asyncio
+    async def test_reset_zero(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            await client.reset_zero_position(20)
+            assert motor.offset == 20
+
+    @pytest.mark.asyncio
+    async def test_get_features(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            features = await client.get_features()
+            assert features['position_reporting'] is True
+
+    @pytest.mark.asyncio
+    async def test_is_powered(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+
+            await client.set_power(13)
+            is_on = await client.is_powered()
+            assert is_on is True
+
+            await client.set_power(0)
+            is_on = await client.is_powered()
+            assert is_on is False
