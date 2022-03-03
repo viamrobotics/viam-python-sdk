@@ -99,21 +99,29 @@ global___GetJointPositionsResponse = GetJointPositionsResponse
 class MoveToPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    POSE_FIELD_NUMBER: builtins.int
+    TO_FIELD_NUMBER: builtins.int
+    WORLD_STATE_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
     'Name of an arm'
 
     @property
-    def pose(self) -> proto.api.common.v1.common_pb2.Pose:
+    def to(self) -> proto.api.common.v1.common_pb2.Pose:
         ...
 
-    def __init__(self, *, name: typing.Text=..., pose: typing.Optional[proto.api.common.v1.common_pb2.Pose]=...) -> None:
+    @property
+    def world_state(self) -> proto.api.common.v1.common_pb2.WorldState:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
+    def __init__(self, *, name: typing.Text=..., to: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'pose', b'pose']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'to', b'to', 'world_state', b'world_state']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'name', b'name', 'to', b'to', 'world_state', b'world_state']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
         ...
 global___MoveToPositionRequest = MoveToPositionRequest
 

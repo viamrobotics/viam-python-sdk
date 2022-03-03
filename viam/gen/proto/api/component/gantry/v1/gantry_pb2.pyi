@@ -6,6 +6,7 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+from ...... import proto
 import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
@@ -41,16 +42,27 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     POSITIONS_MM_FIELD_NUMBER: builtins.int
+    WORLD_STATE_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
 
     @property
     def positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         ...
 
-    def __init__(self, *, name: typing.Text=..., positions_mm: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
+    @property
+    def world_state(self) -> proto.api.common.v1.common_pb2.WorldState:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'positions_mm', b'positions_mm']) -> None:
+    def __init__(self, *, name: typing.Text=..., positions_mm: typing.Optional[typing.Iterable[builtins.float]]=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'world_state', b'world_state']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'name', b'name', 'positions_mm', b'positions_mm', 'world_state', b'world_state']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
         ...
 global___MoveToPositionRequest = MoveToPositionRequest
 

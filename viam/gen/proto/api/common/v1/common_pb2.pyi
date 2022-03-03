@@ -140,22 +140,21 @@ global___Pose = Pose
 
 class PoseInFrame(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    FRAME_FIELD_NUMBER: builtins.int
+    REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     POSE_FIELD_NUMBER: builtins.int
-    frame: typing.Text = ...
-    'reference frame in which the pose was observed'
+    reference_frame: typing.Text = ...
 
     @property
     def pose(self) -> global___Pose:
         ...
 
-    def __init__(self, *, frame: typing.Text=..., pose: typing.Optional[global___Pose]=...) -> None:
+    def __init__(self, *, reference_frame: typing.Text=..., pose: typing.Optional[global___Pose]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['frame', b'frame', 'pose', b'pose']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose', 'reference_frame', b'reference_frame']) -> None:
         ...
 global___PoseInFrame = PoseInFrame
 
