@@ -1,14 +1,16 @@
 import asyncio
 import random
-from typing import Any, List
+from typing import Any, Dict, List
 from viam.components.base import BaseBase
 from viam.components.imu import (
     IMUBase,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
 from viam.components.motor import MotorBase
+from viam.components.pose_tracker import PoseTrackerBase
 from viam.components.sensor import SensorBase
 from viam.components.servo import ServoBase
+from viam.proto.api.common import Pose, PoseInFrame
 
 
 class Base(BaseBase):
@@ -164,6 +166,38 @@ class Motor(MotorBase):
 
     async def is_powered(self) -> bool:
         return self.powered
+
+
+class PoseTracker(PoseTrackerBase):
+
+    async def get_poses(self, body_names: List[str]) -> Dict[str, PoseInFrame]:
+        all_poses = {
+            "body1": PoseInFrame(
+                reference_frame='0',
+                pose=Pose(
+                    x=1,
+                    y=2,
+                    z=3,
+                    o_x=2,
+                    o_y=3,
+                    o_z=4,
+                    theta=20
+                )
+            ),
+            "body2": PoseInFrame(
+                reference_frame='0',
+                pose=Pose(
+                    x=3,
+                    y=2,
+                    z=3,
+                    o_x=4,
+                    o_y=3,
+                    o_z=4,
+                    theta=40
+                )
+            )
+        }
+        return {k: v for k, v in all_poses.items() if k in body_names}
 
 
 class Sensor(SensorBase):

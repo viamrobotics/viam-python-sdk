@@ -12,6 +12,7 @@ from viam.components.component_base import ComponentBase
 from viam.components.motor import MotorService
 from viam.components.resource_manager import ResourceManager
 from viam.components.imu import IMUService
+from viam.components.pose_tracker import PoseTrackerService
 from viam.components.sensor import SensorService
 from viam.components.servo import ServoService
 from viam.metadata.service import MetadataService
@@ -48,6 +49,7 @@ class Server(ResourceManager):
             BaseService(manager=self),
             IMUService(manager=self),
             MotorService(manager=self),
+            PoseTrackerService(manager=self),
             SensorService(manager=self),
             ServoService(manager=self),
         ]
