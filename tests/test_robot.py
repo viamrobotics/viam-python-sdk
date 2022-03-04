@@ -2,6 +2,7 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.resource_manager import ResourceManager
+from viam.proto.api.robot import ArmStatus, JointPositions, Pose
 from viam.proto.api.robot import (
     RobotServiceStub,
     Status,
@@ -11,12 +12,14 @@ from viam.proto.api.robot import (
 )
 from viam.robot.service import RobotService
 
-from .mocks.components import MockBase, MockIMU, MockMotor, MockServo
+from .mocks.components import MockArm, MockBase, MockIMU, MockMotor, MockServo
 
 
 @pytest.mark.asyncio
 async def test_robot_service():
     resources = [
+        MockArm(name='arm1'),
+        MockArm(name='arm2'),
         MockBase(name='base1'),
         MockBase(name='base2'),
         MockIMU(name='imu1'),
@@ -35,6 +38,32 @@ async def test_robot_service():
         request = StatusRequest()
         response: StatusResponse = await client.Status(request)
         assert response.status == Status(
+            arms={
+                'arm1': ArmStatus(
+                    grid_position=Pose(
+                        x=1,
+                        y=2,
+                        z=3,
+                        o_x=2,
+                        o_y=3,
+                        o_z=4,
+                        theta=20,
+                    ),
+                    joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+                ),
+                'arm2': ArmStatus(
+                    grid_position=Pose(
+                        x=1,
+                        y=2,
+                        z=3,
+                        o_x=2,
+                        o_y=3,
+                        o_z=4,
+                        theta=20,
+                    ),
+                    joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+                ),
+            },
             bases={
                 'base1': True,
                 'base2': True,

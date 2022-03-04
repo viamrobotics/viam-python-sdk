@@ -1,17 +1,45 @@
 from dataclasses import dataclass
 from random import random
-from typing import Any, List, Dict
+from typing import Any, Dict, List
 
+from viam.components.arm import Arm
 from viam.components.base import Base
-from viam.components.imu import (
-    IMU,
-    Orientation, AngularVelocity, Acceleration, EulerAngles
-)
+from viam.components.imu import (IMU, Acceleration, AngularVelocity,
+                                 EulerAngles, Orientation)
 from viam.components.motor import Motor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.proto.api.common import Pose, PoseInFrame
+from viam.proto.api.component.arm import ArmJointPositions
+
+
+class MockArm(Arm):
+
+    def __init__(self, name: str):
+        self.position = Pose(
+            x=1,
+            y=2,
+            z=3,
+            o_x=2,
+            o_y=3,
+            o_z=4,
+            theta=20,
+        )
+        self.joint_positions = ArmJointPositions(degrees=[0, 0, 0, 0, 0, 0])
+        super().__init__(name)
+
+    async def get_end_position(self) -> Pose:
+        return self.position
+
+    async def move_to_position(self, pose: Pose):
+        self.position = pose
+
+    async def get_joint_positions(self) -> ArmJointPositions:
+        return self.joint_positions
+
+    async def move_to_joint_positions(self, positions: ArmJointPositions):
+        self.joint_positions = positions
 
 
 class MockBase(Base):
