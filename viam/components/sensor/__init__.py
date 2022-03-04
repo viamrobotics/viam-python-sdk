@@ -1,7 +1,7 @@
-from .sensor import SensorBase
+from .sensor import Sensor
 from .service import SensorService
 
 __all__ = [
-    'SensorBase',
+    'Sensor',
     'SensorService',
 ]

@@ -1,19 +1,19 @@
 import asyncio
 import random
 from typing import Any, Dict, List
-from viam.components.base import BaseBase
+from viam.components.base import Base
 from viam.components.imu import (
-    IMUBase,
+    IMU,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
-from viam.components.motor import MotorBase
-from viam.components.pose_tracker import PoseTrackerBase
-from viam.components.sensor import SensorBase
-from viam.components.servo import ServoBase
+from viam.components.motor import Motor
+from viam.components.pose_tracker import PoseTracker
+from viam.components.sensor import Sensor
+from viam.components.servo import Servo
 from viam.proto.api.common import Pose, PoseInFrame
 
 
-class Base(BaseBase):
+class ExampleBase(Base):
 
     def __init__(self, name: str):
         self.position = 0
@@ -74,7 +74,7 @@ class Base(BaseBase):
         self.stopped = True
 
 
-class IMU(IMUBase):
+class ExampleIMU(IMU):
 
     async def read_acceleration(self) -> Acceleration:
         return Acceleration(
@@ -99,7 +99,7 @@ class IMU(IMUBase):
         return Orientation(euler_angles=angles)
 
 
-class Motor(MotorBase):
+class ExampleMotor(Motor):
 
     def __init__(self, name: str):
         self.position: float = 0
@@ -161,14 +161,14 @@ class Motor(MotorBase):
     async def get_position(self) -> float:
         return self.position
 
-    async def get_features(self) -> MotorBase.Features:
+    async def get_features(self) -> Motor.Features:
         return {'position_reporting': True}
 
     async def is_powered(self) -> bool:
         return self.powered
 
 
-class PoseTracker(PoseTrackerBase):
+class ExamplePoseTracker(PoseTracker):
 
     async def get_poses(self, body_names: List[str]) -> Dict[str, PoseInFrame]:
         all_poses = {
@@ -200,7 +200,7 @@ class PoseTracker(PoseTrackerBase):
         return {k: v for k, v in all_poses.items() if k in body_names}
 
 
-class Sensor(SensorBase):
+class ExampleSensor(Sensor):
 
     def __init__(self, name: str):
         self.num_readings = random.randint(1, 10)
@@ -210,7 +210,7 @@ class Sensor(SensorBase):
         return [random.random() for _ in range(self.num_readings)]
 
 
-class Servo(ServoBase):
+class ExampleServo(Servo):
 
     def __init__(self, name: str):
         self.angle = 0

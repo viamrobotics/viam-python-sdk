@@ -7,15 +7,15 @@ from viam.proto.api.component.servo import (
     GetPositionRequest, GetPositionResponse
 )
 
-from .servo import ServoBase
+from .servo import Servo
 
 
-class ServoService(ServoServiceBase, ComponentServiceBase[ServoBase]):
+class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
     """
     gRPC Service for a Servo
     """
 
-    RESOURCE_TYPE = ServoBase
+    RESOURCE_TYPE = Servo
 
     async def Move(
         self,

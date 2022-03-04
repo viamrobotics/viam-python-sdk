@@ -2,19 +2,19 @@ from dataclasses import dataclass
 from random import random
 from typing import Any, List, Dict
 
-from viam.components.base import BaseBase
+from viam.components.base import Base
 from viam.components.imu import (
-    IMUBase,
+    IMU,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
-from viam.components.motor import MotorBase
-from viam.components.pose_tracker import PoseTrackerBase
-from viam.components.sensor import SensorBase
-from viam.components.servo import ServoBase
+from viam.components.motor import Motor
+from viam.components.pose_tracker import PoseTracker
+from viam.components.sensor import Sensor
+from viam.components.servo import Servo
 from viam.proto.api.common import Pose, PoseInFrame
 
 
-class MockBase(BaseBase):
+class MockBase(Base):
 
     def __init__(self, name: str):
         self.position = 0
@@ -75,7 +75,7 @@ class MockBase(BaseBase):
         self.stopped = True
 
 
-class MockIMU(IMUBase):
+class MockIMU(IMU):
 
     @dataclass
     class Result:
@@ -117,7 +117,7 @@ class MockIMU(IMUBase):
         return self.orientation
 
 
-class MockMotor(MotorBase):
+class MockMotor(Motor):
 
     def __init__(self, name: str):
         self.position: float = 0
@@ -148,7 +148,7 @@ class MockMotor(MotorBase):
     async def get_position(self) -> float:
         return self.position
 
-    async def get_features(self) -> MotorBase.Features:
+    async def get_features(self) -> Motor.Features:
         return {'position_reporting': True}
 
     async def is_powered(self) -> bool:
@@ -178,7 +178,7 @@ class MockPose:
         return PoseInFrame(reference_frame=frame_name, pose=pose)
 
 
-class MockPoseTracker(PoseTrackerBase):
+class MockPoseTracker(PoseTracker):
 
     def __init__(self, name: str, poses: List[MockPose]):
         pose_map: Dict[str, MockPose] = {}
@@ -194,7 +194,7 @@ class MockPoseTracker(PoseTrackerBase):
         return result
 
 
-class MockSensor(SensorBase):
+class MockSensor(Sensor):
 
     def __init__(self, name: str, result: List[Any] = [
         0, {"foo": "bar"}, [1, 8, 2], "Hello world!"
@@ -206,7 +206,7 @@ class MockSensor(SensorBase):
         return self.readings
 
 
-class MockServo(ServoBase):
+class MockServo(Servo):
 
     def __init__(self, name: str):
         self.angle = 0

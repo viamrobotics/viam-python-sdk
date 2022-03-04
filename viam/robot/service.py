@@ -18,10 +18,10 @@ from viam.proto.api.robot import (
 )
 
 # Import all components
-from viam.components.base import BaseBase
-from viam.components.motor import MotorBase
-from viam.components.sensor import SensorBase
-from viam.components.servo import ServoBase
+from viam.components.base import Base
+from viam.components.motor import Motor
+from viam.components.sensor import Sensor
+from viam.components.servo import Servo
 
 
 class RobotService(RobotServiceBase, ComponentServiceBase):
@@ -33,20 +33,20 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
         servo_statuses: Dict[str, ServoStatus] = {}
 
         for component in self.manager.components.values():
-            if isinstance(component, BaseBase):
+            if isinstance(component, Base):
                 base_statuses[component.name] = True
-            if isinstance(component, MotorBase):
+            if isinstance(component, Motor):
                 s = MotorStatus()
                 s.on = await component.is_powered()
                 s.position = await component.get_position()
                 features = await component.get_features()
                 s.position_supported = features['position_reporting']
                 motor_statuses[component.name] = s
-            if isinstance(component, SensorBase):
+            if isinstance(component, Sensor):
                 s = SensorStatus()
                 s.type = 'sensor'
                 sensor_statuses[component.name] = s
-            if isinstance(component, ServoBase):
+            if isinstance(component, Servo):
                 s = ServoStatus()
                 s.angle = await component.get_position()
                 servo_statuses[component.name] = s
