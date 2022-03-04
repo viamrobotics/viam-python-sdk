@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from random import random
-from typing import Any, List
+from typing import Any, List, Dict
 
 from viam.components.base import BaseBase
 from viam.components.imu import (
@@ -8,8 +8,10 @@ from viam.components.imu import (
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
 from viam.components.motor import MotorBase
+from viam.components.pose_tracker import PoseTrackerBase
 from viam.components.sensor import SensorBase
 from viam.components.servo import ServoBase
+from viam.proto.api.common import Pose, PoseInFrame
 
 
 class MockBase(BaseBase):
@@ -151,6 +153,45 @@ class MockMotor(MotorBase):
 
     async def is_powered(self) -> bool:
         return self.powered
+
+
+@dataclass
+class MockPose:
+    X: float
+    Y: float
+    Z: float
+    o_X: float
+    o_Y: float
+    o_Z: float
+    theta: float
+
+    def to_pose_in_frame(self, frame_name: str):
+        pose = Pose(
+            x=self.X,
+            y=self.Y,
+            z=self.Z,
+            o_x=self.o_X,
+            o_y=self.o_Y,
+            o_z=self.o_Z,
+            theta=self.theta
+        )
+        return PoseInFrame(reference_frame=frame_name, pose=pose)
+
+
+class MockPoseTracker(PoseTrackerBase):
+
+    def __init__(self, name: str, poses: List[MockPose]):
+        pose_map: Dict[str, MockPose] = {}
+        for idx, pose in enumerate(poses):
+            pose_map[str(idx)] = pose
+        self.poses_result = pose_map
+        self.name = name
+
+    async def get_poses(self, body_names: List[str]) -> Dict[str, PoseInFrame]:
+        result: Dict[str, PoseInFrame] = {}
+        for name, pose in self.poses_result.items():
+            result[name] = pose.to_pose_in_frame(name)
+        return result
 
 
 class MockSensor(SensorBase):
