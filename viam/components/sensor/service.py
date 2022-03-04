@@ -9,7 +9,7 @@ from viam.proto.api.component.sensor import (
     SensorServiceBase,
     GetReadingsRequest, GetReadingsResponse,
 )
-from viam.utils import new_value
+from viam.utils import primitive_to_value
 
 from .sensor import Sensor
 
@@ -35,7 +35,7 @@ class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
         readings = await sensor.get_readings()
         v_readings: List[Value] = []
         for r in readings:
-            v = new_value(r)
+            v = primitive_to_value(r)
             v_readings.append(v)
         response = GetReadingsResponse(readings=v_readings)
         await stream.send_message(response)
