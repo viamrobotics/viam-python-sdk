@@ -21,12 +21,12 @@ class TestArm:
 
     arm = MockArm(name='arm')
     pose = Pose(
-        x=1,
-        y=2,
-        z=3,
-        o_x=2,
-        o_y=3,
-        o_z=4,
+        x=5,
+        y=5,
+        z=5,
+        o_x=5,
+        o_y=5,
+        o_z=5,
         theta=20
     )
     joint_pos = ArmJointPositions(degrees=[1, 8, 2])
@@ -59,12 +59,12 @@ class TestService:
     manager = ResourceManager([arm])
     service = ArmService(manager)
     pose = Pose(
-        x=1,
-        y=2,
-        z=3,
-        o_x=2,
-        o_y=3,
-        o_z=4,
+        x=5,
+        y=5,
+        z=5,
+        o_x=5,
+        o_y=5,
+        o_z=5,
         theta=20
     )
     joint_pos = ArmJointPositions(degrees=[1, 8, 2])
@@ -112,12 +112,12 @@ class TestClient:
     manager = ResourceManager([arm])
     service = ArmService(manager)
     pose = Pose(
-        x=1,
-        y=2,
-        z=3,
-        o_x=2,
-        o_y=3,
-        o_z=4,
+        x=5,
+        y=5,
+        z=5,
+        o_x=5,
+        o_y=5,
+        o_z=5,
         theta=20
     )
     joint_pos = ArmJointPositions(degrees=[1, 8, 2])

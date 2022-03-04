@@ -18,8 +18,16 @@ from viam.proto.api.common import Pose, PoseInFrame
 class ExampleArm(Arm):
 
     def __init__(self, name: str):
-        self.position = Pose()
-        self.joint_positions = ArmJointPositions()
+        self.position = Pose(
+            x=1,
+            y=2,
+            z=3,
+            o_x=2,
+            o_y=3,
+            o_z=4,
+            theta=20,
+        )
+        self.joint_positions = ArmJointPositions(degrees=[0, 0, 0, 0, 0, 0])
         super().__init__(name)
 
     async def get_end_position(self) -> Pose:

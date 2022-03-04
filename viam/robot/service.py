@@ -68,6 +68,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
                 servo_statuses[component.name] = s
 
         return Status(
+            arms=arm_statuses,
             bases=base_statuses,
             motors=motor_statuses,
             servos=servo_statuses,
