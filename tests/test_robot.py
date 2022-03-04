@@ -1,22 +1,18 @@
 import pytest
 from grpclib.testing import ChannelFor
-
 from viam.components.resource_manager import ResourceManager
-from viam.proto.api.robot import (
-    RobotServiceStub,
-    Status,
-    MotorStatus, ServoStatus,
-    StatusRequest,
-    StatusResponse
-)
+from viam.proto.api.robot import (MotorStatus, RobotServiceStub, ServoStatus,
+                                  Status, StatusRequest, StatusResponse)
 from viam.robot.service import RobotService
 
-from .mocks.components import MockBase, MockIMU, MockMotor, MockServo
+from .mocks.components import MockArm, MockBase, MockIMU, MockMotor, MockServo
 
 
 @pytest.mark.asyncio
 async def test_robot_service():
     resources = [
+        MockArm(name='arm1'),
+        MockArm(name='arm2'),
         MockBase(name='base1'),
         MockBase(name='base2'),
         MockIMU(name='imu1'),
