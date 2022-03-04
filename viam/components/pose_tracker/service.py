@@ -5,18 +5,18 @@ from viam.proto.api.component.posetracker import (GetPosesRequest,
                                                   GetPosesResponse,
                                                   PoseTrackerServiceBase)
 
-from .pose_tracker import PoseTrackerBase
+from .pose_tracker import PoseTracker
 
 
 class PoseTrackerService(
     PoseTrackerServiceBase,
-    ComponentServiceBase[PoseTrackerBase]
+    ComponentServiceBase[PoseTracker]
 ):
     """
     gRPC service for a pose tracker
     """
 
-    RESOURCE_TYPE = PoseTrackerBase
+    RESOURCE_TYPE = PoseTracker
 
     async def GetPoses(
         self,

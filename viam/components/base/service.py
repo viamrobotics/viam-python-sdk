@@ -10,15 +10,15 @@ from viam.proto.api.component.base import (
     StopRequest, StopResponse,
 )
 
-from .base import BaseBase
+from .base import Base
 
 
-class BaseService(BaseServiceBase, ComponentServiceBase[BaseBase]):
+class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
     """
     gRPC service for a robotic Base
     """
 
-    RESOURCE_TYPE = BaseBase
+    RESOURCE_TYPE = Base
 
     async def MoveStraight(
         self,

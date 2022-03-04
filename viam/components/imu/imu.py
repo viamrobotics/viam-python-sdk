@@ -20,7 +20,7 @@ class Orientation():
     euler_angles: EulerAngles
 
 
-class IMUBase(ComponentBase):
+class IMU(ComponentBase):
     """
     Abstract representation of a physical IMU
 

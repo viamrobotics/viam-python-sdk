@@ -2,7 +2,7 @@ import abc
 from ..component_base import ComponentBase
 
 
-class BaseBase(ComponentBase):
+class Base(ComponentBase):
     """
     Abstract representation of a physical base of a robot.
 

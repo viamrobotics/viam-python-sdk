@@ -13,15 +13,15 @@ from viam.proto.api.component.motor import (
     IsPoweredRequest, IsPoweredResponse,
 )
 
-from .motor import MotorBase
+from .motor import Motor
 
 
-class MotorService(MotorServiceBase, ComponentServiceBase[MotorBase]):
+class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
     """
     gRPC Service for a Motor
     """
 
-    RESOURCE_TYPE = MotorBase
+    RESOURCE_TYPE = Motor
 
     async def SetPower(
         self,

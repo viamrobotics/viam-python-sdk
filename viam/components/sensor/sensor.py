@@ -4,7 +4,7 @@ from typing import Any, List
 from ..component_base import ComponentBase
 
 
-class SensorBase(ComponentBase):
+class Sensor(ComponentBase):
     """
     Abstract sensing device that can provide measurement readings
 

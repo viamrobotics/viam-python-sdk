@@ -1,6 +1,6 @@
 from .imu import (
     Orientation,
-    IMUBase
+    IMU
 )
 from .service import (
     IMUService
@@ -13,7 +13,7 @@ from viam.proto.api.component.imu import (
 )
 
 __all__ = [
-    'IMUBase',
+    'IMU',
     'IMUService',
     'Orientation',
     'Acceleration',

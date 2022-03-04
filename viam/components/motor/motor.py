@@ -4,7 +4,7 @@ from typing import TypedDict
 from ..component_base import ComponentBase
 
 
-class MotorBase(ComponentBase):
+class Motor(ComponentBase):
 
     class Features(TypedDict):
         position_reporting: bool

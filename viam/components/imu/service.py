@@ -8,15 +8,15 @@ from viam.proto.api.component.imu import (
     ReadAccelerationRequest, ReadAccelerationResponse,
 )
 
-from .imu import IMUBase
+from .imu import IMU
 
 
-class IMUService(IMUServiceBase, ComponentServiceBase[IMUBase]):
+class IMUService(IMUServiceBase, ComponentServiceBase[IMU]):
     """
     gRPC Service for an IMU
     """
 
-    RESOURCE_TYPE = IMUBase
+    RESOURCE_TYPE = IMU
 
     async def ReadAngularVelocity(
         self,

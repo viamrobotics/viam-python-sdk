@@ -3,7 +3,7 @@ import abc
 from ..component_base import ComponentBase
 
 
-class ServoBase(ComponentBase):
+class Servo(ComponentBase):
     """
     Abstract representation of a physical servo.
 

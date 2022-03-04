@@ -1,7 +1,7 @@
-from .motor import MotorBase
+from .motor import Motor
 from .service import MotorService
 
 __all__ = [
-    'MotorBase',
+    'Motor',
     'MotorService',
 ]

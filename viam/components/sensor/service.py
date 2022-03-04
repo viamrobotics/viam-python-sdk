@@ -11,15 +11,15 @@ from viam.proto.api.component.sensor import (
 )
 from viam.utils import new_value
 
-from .sensor import SensorBase
+from .sensor import Sensor
 
 
-class SensorService(SensorServiceBase, ComponentServiceBase[SensorBase]):
+class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
     """
     gRPC Service for a generic Sensor
     """
 
-    RESOURCE_TYPE = SensorBase
+    RESOURCE_TYPE = Sensor
 
     async def GetReadings(
         self,
