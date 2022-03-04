@@ -1,32 +1,20 @@
 import asyncio
-from random import randint
 import typing
+from random import randint
 
+from viam.components.imu import IMUClient
+from viam.components.servo import ServoClient
+from viam.proto.api.robot import (RobotServiceStub, StatusRequest,
+                                  StatusResponse)
+from viam.proto.api.service.metadata import (MetadataServiceStub,
+                                             ResourcesRequest,
+                                             ResourcesResponse)
 from viam.rpc.dial import DialOptions, dial_direct
-from viam.proto.api.component.imu import (
-    IMUServiceStub,
-    ReadAccelerationRequest, ReadAccelerationResponse,
-    ReadAngularVelocityRequest, ReadAngularVelocityResponse,
-    ReadOrientationRequest, ReadOrientationResponse
-)
-from viam.proto.api.robot import (
-    RobotServiceStub,
-    StatusRequest, StatusResponse
-)
-from viam.proto.api.component.servo import (
-    ServoServiceStub,
-    MoveRequest,
-    GetPositionRequest, GetPositionResponse
-)
-from viam.proto.api.service.metadata import (
-    MetadataServiceStub,
-    ResourcesRequest, ResourcesResponse
-)
 
 
 async def client():
     opts = DialOptions(insecure=True)
-    async with await dial_direct("localhost:9090", opts) as channel:
+    async with await dial_direct('localhost:9090', opts) as channel:
 
         response: typing.Any
 
@@ -45,39 +33,28 @@ async def client():
         print(f'Robot status response received: {r.status}')
 
         print('\n#### IMU ####')
-        service = IMUServiceStub(channel)
-        request = ReadAccelerationRequest(name="imu0")
-        response = await service.ReadAcceleration(request)
-        r = typing.cast(ReadAccelerationResponse, response)
-        print(f'IMU response received: acceleration is {r.acceleration}')
+        client = IMUClient(name='imu0', channel=channel)
 
-        request = ReadAngularVelocityRequest(name="imu0")
-        response = await service.ReadAngularVelocity(request)
-        r = typing.cast(ReadAngularVelocityResponse, response)
+        acceleration = await client.read_acceleration()
+        print(f'IMU response received: acceleration is {acceleration}')
+
+        angular_velocity = await client.read_angular_velocity()
         print(
-            f'IMU response received: angular velocity is {r.angular_velocity}')
+            f'IMU response received: angular velocity is {angular_velocity}')
 
-        request = ReadOrientationRequest(name="imu0")
-        response = await service.ReadOrientation(request)
-        r = typing.cast(ReadOrientationResponse, response)
-        print(f'IMU response received: orientation is {r.orientation}')
+        orientation = await client.read_orientation()
+        print(f'IMU response received: orientation is {orientation}')
 
         print('\n#### SERVO ####')
-        service = ServoServiceStub(channel)
+        client = ServoClient(name='servo0', channel=channel)
 
         pos = randint(0, 180)
-        request = MoveRequest(
-            name="servo0",
-            angle_deg=pos
-        )
-        _ = await service.Move(request)
+        await client.move(pos)
         print(f'Response received: moved to position {pos}')
 
-        request = GetPositionRequest(name="servo0")
-        response = await service.GetPosition(request)
-        r = typing.cast(GetPositionResponse, response)
+        position_deg = await client.get_position()
         print(
-            f'Response received: current position is {r.position_deg}'
+            f'Response received: current position is {position_deg}'
         )
 
 

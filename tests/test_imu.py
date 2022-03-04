@@ -2,9 +2,9 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.imu import (
+    IMUClient, IMUService,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
-from viam.components.imu.service import IMUService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.imu import (
     IMUServiceStub,
@@ -114,4 +114,47 @@ class TestService:
                 roll_deg=1,
                 pitch_deg=2,
                 yaw_deg=3
+            )
+
+
+class TestClient:
+
+    name = 'imu'
+    imu = MockIMU(name=name, result=PASS_RESULT)
+    manager = ResourceManager([imu])
+    service = IMUService(manager)
+
+    @pytest.mark.asyncio
+    async def test_read_acceleration(self):
+        async with ChannelFor([self.service]) as channel:
+            client = IMUClient(self.imu.name, channel)
+            acceleration = await client.read_acceleration()
+            assert acceleration == Acceleration(
+                x_mm_per_sec_per_sec=1,
+                y_mm_per_sec_per_sec=2,
+                z_mm_per_sec_per_sec=3
+            )
+
+    @pytest.mark.asyncio
+    async def test_read_angular_velocity(self):
+        async with ChannelFor([self.service]) as channel:
+            client = IMUClient(self.imu.name, channel)
+            av = await client.read_angular_velocity()
+            assert av == AngularVelocity(
+                x_degs_per_sec=1,
+                y_degs_per_sec=2,
+                z_degs_per_sec=3
+            )
+
+    @pytest.mark.asyncio
+    async def test_read_orientation(self):
+        async with ChannelFor([self.service]) as channel:
+            client = IMUClient(self.imu.name, channel)
+            orientation = await client.read_orientation()
+            assert orientation == Orientation(
+                euler_angles=EulerAngles(
+                    roll_deg=1,
+                    pitch_deg=2,
+                    yaw_deg=3
+                )
             )
