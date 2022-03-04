@@ -3,10 +3,10 @@ from viam.proto.api.component.base import (BaseServiceStub, MoveArcRequest,
                                            MoveStraightRequest, SpinRequest,
                                            StopRequest)
 
-from .base import BaseBase
+from .base import Base
 
 
-class BaseClient(BaseBase):
+class BaseClient(Base):
     """
     gRPC client for the Base component.
     """

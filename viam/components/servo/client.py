@@ -3,10 +3,10 @@ from viam.proto.api.component.servo import (GetPositionRequest,
                                             GetPositionResponse, MoveRequest,
                                             ServoServiceStub)
 
-from .servo import ServoBase
+from .servo import Servo
 
 
-class ServoClient(ServoBase):
+class ServoClient(Servo):
     """
     gRPC client for the Servo component.
     """

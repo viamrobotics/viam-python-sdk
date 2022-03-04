@@ -7,10 +7,10 @@ from viam.proto.api.component.imu import (IMUServiceStub,
                                           ReadOrientationRequest,
                                           ReadOrientationResponse)
 
-from .imu import Acceleration, AngularVelocity, IMUBase, Orientation
+from .imu import Acceleration, AngularVelocity, IMU, Orientation
 
 
-class IMUClient(IMUBase):
+class IMUClient(IMU):
     """
     gRPC client for the IMU component.
     """

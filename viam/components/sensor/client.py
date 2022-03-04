@@ -6,10 +6,10 @@ from viam.proto.api.component.sensor import (
 )
 from viam.utils import value_to_primitive
 
-from .sensor import SensorBase
+from .sensor import Sensor
 
 
-class SensorClient(SensorBase):
+class SensorClient(Sensor):
     """
     gRPC client for the Sensor component.
     """

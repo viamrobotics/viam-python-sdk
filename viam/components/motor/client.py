@@ -9,10 +9,10 @@ from viam.proto.api.component.motor import (GetFeaturesRequest,
                                             ResetZeroPositionRequest,
                                             SetPowerRequest)
 
-from .motor import MotorBase
+from .motor import Motor
 
 
-class MotorClient(MotorBase):
+class MotorClient(Motor):
     """
     gRPC client for the Motor component.
     """
@@ -44,7 +44,7 @@ class MotorClient(MotorBase):
         response: GetPositionResponse = await self.client.GetPosition(request)
         return response.position
 
-    async def get_features(self) -> MotorBase.Features:
+    async def get_features(self) -> Motor.Features:
         request = GetFeaturesRequest(name=self.name)
         response: GetFeaturesResponse = await self.client.GetFeatures(request)
         return {'position_reporting': response.position_reporting}
