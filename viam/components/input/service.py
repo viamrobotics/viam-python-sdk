@@ -1,15 +1,14 @@
-from google.protobuf.timestamp_pb2 import Timestamp
+from multiprocessing import Pipe
+
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.inputcontroller import (
     GetControlsRequest, GetControlsResponse, GetEventsRequest,
     GetEventsResponse, InputControllerServiceBase, StreamEventsRequest,
-    StreamEventsResponse, TriggerEventRequest, TriggerEventResponse,
-    Event as PBEvent
-)
+    StreamEventsResponse, TriggerEventRequest, TriggerEventResponse)
 
-from .input import Control, Controller, Event, EventType
+from .input import Control, ControlFunction, Controller, Event, EventType
 
 
 class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Controller]):
@@ -46,18 +45,8 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         events = await controller.get_events()
-        pb_events = []
-        for (_, event) in events.items():
-            seconds = int(event.time)
-            nanos = int(event.time % 1 * 1e9)
-            timestamp = Timestamp(seconds=seconds, nanos=nanos)
-            pb_events.append(PBEvent(
-                time=timestamp,
-                event=event.event.value,
-                control=event.control.value,
-                value=event.value
-            ))
-        response = GetEventsResponse()
+        pb_events = [e.proto for e in events.values()]
+        response = GetEventsResponse(events=pb_events)
         await stream.send_message(response)
 
     async def StreamEvents(
@@ -71,6 +60,26 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             controller = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
+
+        pipe_r, pipe_w = Pipe(duplex=False)
+
+        def ctrlFunc(event: Event):
+            pipe_w.send(event.proto)
+
+        for event in request.events:
+            triggers = [EventType(et) for et in event.events]
+            if len(triggers):
+                await controller.register_control_callback(
+                    Control(event.control), triggers, ctrlFunc)
+
+            cancelled_triggers = [EventType(et)
+                                  for et in event.cancelled_events]
+            if len(cancelled_triggers):
+                await controller.register_control_callback(
+                    Control(event.control), cancelled_triggers, None)
+
+        while True:
+            pipe_r.recv
 
         response = StreamEventsResponse()
         await stream.send_message(response)

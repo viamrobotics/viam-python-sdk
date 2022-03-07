@@ -1,9 +1,12 @@
+
 import abc
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, List, Callable
+from typing import Callable, Dict, List, Optional
 
+from google.protobuf.timestamp_pb2 import Timestamp
 from viam.components.component_base import ComponentBase
+from viam.proto.api.component.inputcontroller import Event as PBEvent
 
 
 class EventType(Enum):
@@ -92,6 +95,18 @@ class Event:
     control: Control
     value: float  # 0 or 1 for buttons, -1.0 to +1.0 for axes
 
+    @property
+    def proto(self):
+        seconds = int(self.time)
+        nanos = int(self.time % 1 * 1e9)
+        timestamp = Timestamp(seconds=seconds, nanos=nanos)
+        return PBEvent(
+            time=timestamp,
+            event=self.event.value,
+            control=self.control.value,
+            value=self.value
+        )
+
 
 ControlFunction = Callable[[Event], None]
 
@@ -129,7 +144,7 @@ class Controller(ComponentBase):
         self,
         control: Control,
         triggers: List[EventType],
-        function: ControlFunction
+        function: Optional[ControlFunction]
     ):
         """
         Register a function that will fire on given EventTypes for a given
