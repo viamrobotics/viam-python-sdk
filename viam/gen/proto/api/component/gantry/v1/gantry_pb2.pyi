@@ -99,3 +99,23 @@ class GetLengthsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['lengths_mm', b'lengths_mm']) -> None:
         ...
 global___GetLengthsResponse = GetLengthsResponse
+
+class Status(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    POSITIONS_MM_FIELD_NUMBER: builtins.int
+    LENGTHS_MM_FIELD_NUMBER: builtins.int
+
+    @property
+    def positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        ...
+
+    @property
+    def lengths_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        ...
+
+    def __init__(self, *, positions_mm: typing.Optional[typing.Iterable[builtins.float]]=..., lengths_mm: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['lengths_mm', b'lengths_mm', 'positions_mm', b'positions_mm']) -> None:
+        ...
+global___Status = Status

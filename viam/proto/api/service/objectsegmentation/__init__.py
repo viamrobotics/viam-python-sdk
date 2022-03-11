@@ -8,5 +8,7 @@ from .....gen.proto.api.service.objectsegmentation.v1.object_segmentation_grpc i
 )
 from .....gen.proto.api.service.objectsegmentation.v1.object_segmentation_pb2 import (
     GetObjectPointCloudsRequest,
-    GetObjectPointCloudsResponse
+    GetObjectPointCloudsResponse,
+    GetSegmenterParametersRequest,
+    GetSegmenterParametersResponse
 )

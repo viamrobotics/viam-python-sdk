@@ -195,3 +195,18 @@ class StreamEventsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['event', b'event']) -> None:
         ...
 global___StreamEventsResponse = StreamEventsResponse
+
+class Status(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    EVENTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]:
+        ...
+
+    def __init__(self, *, events: typing.Optional[typing.Iterable[global___Event]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['events', b'events']) -> None:
+        ...
+global___Status = Status

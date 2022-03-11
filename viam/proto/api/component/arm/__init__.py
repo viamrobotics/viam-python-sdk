@@ -7,13 +7,14 @@ from .....gen.proto.api.component.arm.v1.arm_grpc import (
     ArmServiceStub
 )
 from .....gen.proto.api.component.arm.v1.arm_pb2 import (
-    ArmJointPositions,
     GetEndPositionRequest,
     GetEndPositionResponse,
     GetJointPositionsRequest,
     GetJointPositionsResponse,
+    JointPositions,
     MoveToJointPositionsRequest,
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
-    MoveToPositionResponse
+    MoveToPositionResponse,
+    Status
 )

@@ -11,25 +11,6 @@ import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
-class ArmJointPositions(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    DEGREES_FIELD_NUMBER: builtins.int
-
-    @property
-    def degrees(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
-        """A list of joint positions represented in degrees
-        The numbers are ordered spatially from the base toward the end effector
-        This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
-        """
-        pass
-
-    def __init__(self, *, degrees: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['degrees', b'degrees']) -> None:
-        ...
-global___ArmJointPositions = ArmJointPositions
-
 class GetEndPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
@@ -64,6 +45,25 @@ class GetEndPositionResponse(google.protobuf.message.Message):
         ...
 global___GetEndPositionResponse = GetEndPositionResponse
 
+class JointPositions(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DEGREES_FIELD_NUMBER: builtins.int
+
+    @property
+    def degrees(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        """A list of joint positions represented in degrees
+        The numbers are ordered spatially from the base toward the end effector
+        This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
+        """
+        pass
+
+    def __init__(self, *, degrees: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['degrees', b'degrees']) -> None:
+        ...
+global___JointPositions = JointPositions
+
 class GetJointPositionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
@@ -82,11 +82,11 @@ class GetJointPositionsResponse(google.protobuf.message.Message):
     POSITION_DEGS_FIELD_NUMBER: builtins.int
 
     @property
-    def position_degs(self) -> global___ArmJointPositions:
-        """a list ArmJointPositions"""
+    def position_degs(self) -> global___JointPositions:
+        """a list JointPositions"""
         pass
 
-    def __init__(self, *, position_degs: typing.Optional[global___ArmJointPositions]=...) -> None:
+    def __init__(self, *, position_degs: typing.Optional[global___JointPositions]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['position_degs', b'position_degs']) -> builtins.bool:
@@ -140,13 +140,13 @@ class MoveToJointPositionsRequest(google.protobuf.message.Message):
     'Name of an arm'
 
     @property
-    def position_degs(self) -> global___ArmJointPositions:
+    def position_degs(self) -> global___JointPositions:
         """A list of joint positions represented in degrees
         There should be 1 entry in the list per joint, ordered spatially from the base toward the end effector
         """
         pass
 
-    def __init__(self, *, name: typing.Text=..., position_degs: typing.Optional[global___ArmJointPositions]=...) -> None:
+    def __init__(self, *, name: typing.Text=..., position_degs: typing.Optional[global___JointPositions]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['position_degs', b'position_degs']) -> builtins.bool:
@@ -162,3 +162,26 @@ class MoveToJointPositionsResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___MoveToJointPositionsResponse = MoveToJointPositionsResponse
+
+class Status(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    END_POSITION_FIELD_NUMBER: builtins.int
+    JOINT_POSITIONS_FIELD_NUMBER: builtins.int
+
+    @property
+    def end_position(self) -> proto.api.common.v1.common_pb2.Pose:
+        ...
+
+    @property
+    def joint_positions(self) -> global___JointPositions:
+        ...
+
+    def __init__(self, *, end_position: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., joint_positions: typing.Optional[global___JointPositions]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['end_position', b'end_position', 'joint_positions', b'joint_positions']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['end_position', b'end_position', 'joint_positions', b'joint_positions']) -> None:
+        ...
+global___Status = Status
