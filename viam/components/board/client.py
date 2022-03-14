@@ -64,8 +64,6 @@ class BoardClient(Board):
     def __init__(self, name: str, channel: Channel):
         self.name = name
         self.client = BoardServiceStub(channel)
-        self._spi_names: Optional[List[str]] = None
-        self._i2c_names: Optional[List[str]] = None
         self._analog_reader_names: Optional[List[str]] = None
         self._digital_interrupt_names: Optional[List[str]] = None
 
@@ -77,12 +75,6 @@ class BoardClient(Board):
         name: str
     ) -> Board.DigitalInterrupt:
         return DigitalInterruptClient(name, self)
-
-    async def spi_names(self) -> List[str]:
-        return self._spi_names or []
-
-    async def i2c_names(self) -> List[str]:
-        return self._i2c_names or []
 
     async def analog_reader_names(self) -> List[str]:
         if self._analog_reader_names is None:

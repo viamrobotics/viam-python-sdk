@@ -67,7 +67,7 @@ class Board(ComponentBase):
             is a proxy to some real hardware interrupt or for tests.
 
             Args:
-                high (bool): _description_
+                high (bool): If the signal of the interrupt is high
                 nanos (int): Nanoseconds from an arbitrary point in time,
                     but always increasing and always needs to be accurate.
                     Using `time.time_ns()` would be acceptable
@@ -120,25 +120,6 @@ class Board(ComponentBase):
 
         Returns:
             DigitalInterrupt: the digital interrupt
-        """
-        ...
-
-    @abc.abstractmethod
-    async def spi_names(self) -> List[str]:
-        """
-        Get the names of all known SPI busses.
-
-        Returns:
-            List[str]: The names of the SPI busses
-        """
-
-    @abc.abstractmethod
-    async def i2c_names(self) -> List[str]:
-        """
-        Get the names of all known I2C busses.
-
-        Returns:
-            List[str]: The names of the I2C busses
         """
         ...
 

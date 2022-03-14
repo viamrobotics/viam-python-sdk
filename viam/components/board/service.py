@@ -107,10 +107,10 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         name = request.board_name
         try:
             board = self.get_component(name)
+            analog_reader = await board.analog_reader_by_name(
+                request.analog_reader_name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        analog_reader = await board.analog_reader_by_name(
-            request.analog_reader_name)
         value = await analog_reader.read()
         response = ReadAnalogReaderResponse(value=value)
         await stream.send_message(response)
@@ -125,10 +125,10 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         name = request.board_name
         try:
             board = self.get_component(name)
+            interrupt = await board.digital_interrupt_by_name(
+                request.digital_interrupt_name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        interrupt = await board.digital_interrupt_by_name(
-            request.digital_interrupt_name)
         value = await interrupt.value()
         response = GetDigitalInterruptValueResponse(value=value)
         await stream.send_message(response)

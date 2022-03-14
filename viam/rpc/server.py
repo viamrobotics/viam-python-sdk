@@ -9,6 +9,7 @@ from grpclib.utils import graceful_exit
 from viam import logging
 from viam.components.arm import ArmService
 from viam.components.base import BaseService
+from viam.components.board import BoardService
 from viam.components.component_base import ComponentBase
 from viam.components.motor import MotorService
 from viam.components.resource_manager import ResourceManager
@@ -51,6 +52,7 @@ class Server(ResourceManager):
             RobotService(manager=self),
             ArmService(manager=self),
             BaseService(manager=self),
+            BoardService(manager=self),
             IMUService(manager=self),
             MotorService(manager=self),
             PoseTrackerService(manager=self),

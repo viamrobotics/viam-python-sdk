@@ -1,21 +1,26 @@
 import asyncio
 import logging
+
 from viam.rpc.server import Server
 
-from .components import (
-    ExampleArm,
-    ExampleIMU,
-    ExampleBase,
-    ExampleMotor,
-    ExamplePoseTracker,
-    ExampleSensor,
-    ExampleServo
-)
+from .components import (ExampleAnalogReader, ExampleArm, ExampleBase,
+                         ExampleBoard, ExampleDigitalInterrupt, ExampleIMU,
+                         ExampleMotor, ExamplePoseTracker, ExampleSensor,
+                         ExampleServo)
 
 
 async def run():
     my_arm = ExampleArm('arm0')
     my_base = ExampleBase('base0')
+    my_board = ExampleBoard(
+        name="board",
+        analog_readers={
+            'reader1': ExampleAnalogReader('reader1', 3),
+        },
+        digital_interrupts={
+            'interrupt1': ExampleDigitalInterrupt('interrupt1'),
+        },
+    )
     my_imu = ExampleIMU('imu0')
     my_motor = ExampleMotor('motor0')
     my_pose_tracker = ExamplePoseTracker('pose_tracker0')
@@ -24,6 +29,7 @@ async def run():
     server = Server(components=[
         my_arm,
         my_base,
+        my_board,
         my_imu,
         my_motor,
         my_pose_tracker,
