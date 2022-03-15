@@ -4,9 +4,9 @@ import logging
 from viam.rpc.server import Server
 
 from .components import (ExampleAnalogReader, ExampleArm, ExampleBase,
-                         ExampleBoard, ExampleDigitalInterrupt, ExampleIMU,
-                         ExampleMotor, ExamplePoseTracker, ExampleSensor,
-                         ExampleServo)
+                         ExampleBoard, ExampleDigitalInterrupt, ExampleGPIOPin,
+                         ExampleIMU, ExampleMotor, ExamplePoseTracker,
+                         ExampleSensor, ExampleServo)
 
 
 async def run():
@@ -19,6 +19,9 @@ async def run():
         },
         digital_interrupts={
             'interrupt1': ExampleDigitalInterrupt('interrupt1'),
+        },
+        gpio_pins={
+            'pin1': ExampleGPIOPin('pin1'),
         },
     )
     my_imu = ExampleIMU('imu0')
