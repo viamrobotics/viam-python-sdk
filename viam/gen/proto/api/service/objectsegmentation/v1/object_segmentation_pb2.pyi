@@ -72,18 +72,55 @@ class GetSegmenterParametersRequest(google.protobuf.message.Message):
         ...
 global___GetSegmenterParametersRequest = GetSegmenterParametersRequest
 
+class TypedParameter(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    type: typing.Text = ...
+
+    def __init__(self, *, name: typing.Text=..., type: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'type', b'type']) -> None:
+        ...
+global___TypedParameter = TypedParameter
+
 class GetSegmenterParametersResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     PARAMETERS_FIELD_NUMBER: builtins.int
 
     @property
-    def parameters(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+    def parameters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TypedParameter]:
         """parameter names of the segmenter in the request"""
         pass
 
-    def __init__(self, *, parameters: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+    def __init__(self, *, parameters: typing.Optional[typing.Iterable[global___TypedParameter]]=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['parameters', b'parameters']) -> None:
         ...
 global___GetSegmenterParametersResponse = GetSegmenterParametersResponse
+
+class GetSegmentersRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+
+    def __init__(self) -> None:
+        ...
+global___GetSegmentersRequest = GetSegmentersRequest
+
+class GetSegmentersResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    SEGMENTERS_FIELD_NUMBER: builtins.int
+
+    @property
+    def segmenters(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """segmenters in the registry"""
+        pass
+
+    def __init__(self, *, segmenters: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['segmenters', b'segmenters']) -> None:
+        ...
+global___GetSegmentersResponse = GetSegmentersResponse

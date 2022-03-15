@@ -10,5 +10,8 @@ from .....gen.proto.api.service.objectsegmentation.v1.object_segmentation_pb2 im
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
     GetSegmenterParametersRequest,
-    GetSegmenterParametersResponse
+    GetSegmenterParametersResponse,
+    GetSegmentersRequest,
+    GetSegmentersResponse,
+    TypedParameter
 )
