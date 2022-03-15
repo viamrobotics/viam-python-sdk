@@ -7,16 +7,8 @@ from ....gen.proto.api.robot.v1.robot_grpc import (
     RobotServiceStub
 )
 from ....gen.proto.api.robot.v1.robot_pb2 import (
-    ComponentConfig,
-    ConfigRequest,
-    ConfigResponse,
     DoActionRequest,
     DoActionResponse,
-    ExecuteFunctionRequest,
-    ExecuteFunctionResponse,
-    ExecuteSourceRequest,
-    ExecuteSourceResponse,
-    Pose,
     ResourceRunCommandRequest,
     ResourceRunCommandResponse
 )
