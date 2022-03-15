@@ -2,7 +2,8 @@ import pytest
 from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.resource_manager import ResourceManager
-from viam.proto.api.common import Pose, ResourceName
+from viam.proto.api.common import (AnalogStatus, BoardStatus,
+                                   DigitalInterruptStatus, Pose, ResourceName)
 from viam.proto.api.component.arm import JointPositions
 from viam.proto.api.component.arm import Status as ArmStatus
 from viam.proto.api.component.motor import Status as MotorStatus
@@ -12,7 +13,9 @@ from viam.proto.api.service.status import (GetStatusRequest, GetStatusResponse,
 from viam.status.service import StatusService
 from viam.utils import message_to_struct
 
-from .mocks.components import MockArm, MockBase, MockIMU, MockMotor, MockServo
+from .mocks.components import (MockAnalogReader, MockArm, MockBase, MockBoard,
+                               MockDigitalInterrupt, MockGPIOPin, MockIMU,
+                               MockMotor, MockServo)
 
 
 @pytest.mark.asyncio
@@ -22,6 +25,30 @@ async def test_status_service():
         MockArm(name='arm2'),
         MockBase(name='base1'),
         MockBase(name='base2'),
+        MockBoard(
+            name='board1',
+            analog_readers={
+                'reader1': MockAnalogReader('reader1', 3),
+            },
+            digital_interrupts={
+                'interrupt1': MockDigitalInterrupt('interrupt1'),
+            },
+            gpio_pins={
+                'pin1': MockGPIOPin('pin1')
+            }
+        ),
+        MockBoard(
+            name='board2',
+            analog_readers={
+                'reader2': MockAnalogReader('reader2', 3),
+            },
+            digital_interrupts={
+                'interrupt2': MockDigitalInterrupt('interrupt2'),
+            },
+            gpio_pins={
+                'pin2': MockGPIOPin('pin2')
+            }
+        ),
         MockIMU(name='imu1'),
         MockIMU(name='imu2'),
         MockMotor(name='motor1'),
@@ -95,6 +122,38 @@ async def test_status_service():
                     name='base2'
                 ),
                 status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='board',
+                    name='board1'
+                ),
+                status=message_to_struct(BoardStatus(
+                    analogs={
+                        'reader1': AnalogStatus(value=3)
+                    },
+                    digital_interrupts={
+                        'interrupt1': DigitalInterruptStatus(value=0)
+                    }
+                ))
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='board',
+                    name='board2'
+                ),
+                status=message_to_struct(BoardStatus(
+                    analogs={
+                        'reader2': AnalogStatus(value=3)
+                    },
+                    digital_interrupts={
+                        'interrupt2': DigitalInterruptStatus(value=0)
+                    }
+                ))
             ),
             Status(
                 name=ResourceName(
