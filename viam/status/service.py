@@ -88,9 +88,12 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
         self,
         stream: Stream[StreamStatusRequest, StreamStatusResponse]
     ) -> None:
-        request = stream.recv_message()
+        request = await stream.recv_message()
         assert request is not None
-        interval = 1  # seconds
+        interval = 1
+        every = request.every.ToSeconds()
+        if every > 0:
+            interval = every
         while True:
             status = await self._generate_status()
             response = StreamStatusResponse(status=status)
