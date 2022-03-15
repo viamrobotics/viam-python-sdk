@@ -5,6 +5,9 @@ from viam.proto.api.component.board import (BoardServiceBase,
                                             GetDigitalInterruptValueRequest,
                                             GetDigitalInterruptValueResponse,
                                             GetGPIORequest, GetGPIOResponse,
+                                            PWMFrequencyRequest,
+                                            PWMFrequencyResponse, PWMRequest,
+                                            PWMResponse,
                                             ReadAnalogReaderRequest,
                                             ReadAnalogReaderResponse,
                                             SetGPIORequest, SetGPIOResponse,
@@ -47,9 +50,10 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         name = request.name
         try:
             board = self.get_component(name)
+            pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        await board.set_gpio(request.pin, request.high)
+        await pin.set(request.high)
         response = SetGPIOResponse()
         await stream.send_message(response)
 
@@ -62,10 +66,27 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         name = request.name
         try:
             board = self.get_component(name)
+            pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        high = await board.get_gpio(request.pin)
+        high = await pin.get()
         response = GetGPIOResponse(high=high)
+        await stream.send_message(response)
+
+    async def PWM(
+        self,
+        stream: Stream[PWMRequest, PWMResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            board = self.get_component(name)
+            pin = await board.gpio_pin_by_name(request.pin)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error()
+        pwm = await pin.get_pwm()
+        response = PWMResponse(duty_cycle_pct=pwm)
         await stream.send_message(response)
 
     async def SetPWM(
@@ -77,10 +98,27 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         name = request.name
         try:
             board = self.get_component(name)
+            pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        await board.set_pwm(request.pin, request.duty_cycle_pct)
+        await pin.set_pwm(request.duty_cycle_pct)
         response = SetPWMResponse()
+        await stream.send_message(response)
+
+    async def PWMFrequency(
+        self,
+        stream: Stream[PWMFrequencyRequest, PWMFrequencyResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            board = self.get_component(name)
+            pin = await board.gpio_pin_by_name(request.pin)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error()
+        frequency = await pin.get_pwm_frequency()
+        response = PWMFrequencyResponse(frequency_hz=frequency)
         await stream.send_message(response)
 
     async def SetPWMFrequency(
@@ -92,9 +130,10 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         name = request.name
         try:
             board = self.get_component(name)
+            pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        await board.set_pwm_freq(request.pin, request.frequency_hz)
+        await pin.set_pwm_frequency(request.frequency_hz)
         response = SetPWMFrequencyResponse()
         await stream.send_message(response)
 

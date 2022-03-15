@@ -95,7 +95,75 @@ class Board(ComponentBase):
             """
             ...
 
-    # AnalogReaderByName returns an analog reader by name.
+    class GPIOPin(ComponentBase):
+        """
+        Abstract representation of an individual GPIO pin on a board
+
+        Args:
+            ComponentBase (_type_): _description_
+        """
+
+        @abc.abstractmethod
+        async def set(self, high: bool):
+            """
+            Set the pin to either low or high
+
+            Args:
+                high (bool): If the pin should be set to high
+            """
+            ...
+
+        @abc.abstractmethod
+        async def get(self) -> bool:
+            """
+            Get the high/low state of the pin
+
+            Returns:
+                bool: If the state of the pin is high
+            """
+            ...
+
+        @abc.abstractmethod
+        async def get_pwm(self) -> float:
+            """
+            Get the pin's given duty cycle
+
+            Returns:
+                float: The duty cycle
+            """
+            ...
+
+        @abc.abstractmethod
+        async def set_pwm(self, duty_cycle: float):
+            """
+            Set the pin to the given duty cycle
+
+            Args:
+                duty_cycle (float): The duty cycle
+            """
+            ...
+
+        @abc.abstractmethod
+        async def get_pwm_frequency(self) -> int:
+            """
+            Get the PWM frequency of the pin
+
+            Returns:
+                int: The PWM frequency
+            """
+            ...
+
+        @abc.abstractmethod
+        async def set_pwm_frequency(self, frequency: int):
+            """
+            Set the pin to the given PWM frequency (in Hz).
+            0 will use the board's default PWM frequency
+
+            Args:
+                frequency (int): The frequency
+            """
+            ...
+
     @abc.abstractmethod
     async def analog_reader_by_name(self, name: str) -> AnalogReader:
         """
@@ -109,7 +177,6 @@ class Board(ComponentBase):
         """
         ...
 
-        # DigitalInterruptByName returns a digital interrupt by name.
     @abc.abstractmethod
     async def digital_interrupt_by_name(self, name: str) -> DigitalInterrupt:
         """
@@ -120,6 +187,19 @@ class Board(ComponentBase):
 
         Returns:
             DigitalInterrupt: the digital interrupt
+        """
+        ...
+
+    @abc.abstractmethod
+    async def gpio_pin_by_name(self, name: str) -> GPIOPin:
+        """
+        Get a GPIO Pin by name
+
+        Args:
+            name (str): Name of the GPIO pin
+
+        Returns:
+            GPIOPin: the pin
         """
         ...
 
@@ -141,52 +221,6 @@ class Board(ComponentBase):
         Returns:
             List[str]: The names of the digital interrupts
         """
-
-    @abc.abstractmethod
-    async def set_gpio(self, pin: str, high: bool):
-        """
-        Set the given pin to either low or high
-
-        Args:
-            pin (str): The pin identifier
-            high (bool): Whether the pin should be set to high
-        """
-        ...
-
-    @abc.abstractmethod
-    async def get_gpio(self, pin: str) -> bool:
-        """
-        Get the hihg/low state of the given pin
-
-        Args:
-            pin (str): The pin identifier
-
-        Returns:
-            bool: Whether the pin is in the high state
-        """
-        ...
-
-    @abc.abstractmethod
-    async def set_pwm(self, pin: str, duty_cycle: float):
-        """
-        Set the given pin to the given duty cycle
-
-        Args:
-            pin (str): The pin
-            duty_cycle (float): The duty cycle as a percent
-        """
-        ...
-
-    @abc.abstractmethod
-    async def set_pwm_freq(self, pin: str, frequency: int):
-        """
-        Set the given pin to the given PWM frequency.
-        A frequency of 0 (zero) will use the board's default PWM frequency
-
-        Args:
-            pin (str): The pin
-            frequency (int): The PWM frequency in Hz
-        """
         ...
 
     @abc.abstractmethod
@@ -198,7 +232,6 @@ class Board(ComponentBase):
             BoardStatus: the status
         """
 
-    # ModelAttributes returns attributes related to the model of this board.
     @abc.abstractmethod
     async def model_attributes(self) -> Attributes:
         """

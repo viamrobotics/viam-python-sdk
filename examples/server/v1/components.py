@@ -143,18 +143,44 @@ class ExampleDigitalInterrupt(Board.DigitalInterrupt):
         self.post_processors.append(processor)
 
 
+class ExampleGPIOPin(Board.GPIOPin):
+
+    def __init__(self, name: str):
+        self.high = False
+        self.pwm = 0.0
+        self.pwm_freq = 0
+        super().__init__(name)
+
+    async def get(self) -> bool:
+        return self.high
+
+    async def set(self, high: bool):
+        self.high = high
+
+    async def get_pwm(self) -> float:
+        return self.pwm
+
+    async def set_pwm(self, duty_cycle: float):
+        self.pwm = duty_cycle
+
+    async def get_pwm_frequency(self) -> int:
+        return self.pwm_freq
+
+    async def set_pwm_frequency(self, frequency: int):
+        self.pwm_freq = frequency
+
+
 class ExampleBoard(Board):
 
     def __init__(self,
                  name: str,
                  analog_readers: Dict[str, Board.AnalogReader],
-                 digital_interrupts: Dict[str, Board.DigitalInterrupt]
+                 digital_interrupts: Dict[str, Board.DigitalInterrupt],
+                 gpio_pins: Dict[str, Board.GPIOPin]
                  ):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
-        self.gpios: Dict[str, bool] = {}
-        self.pwms: Dict[str, float] = {}
-        self.pwm_freqs: Dict[str, int] = {}
+        self.gpios = gpio_pins
         super().__init__(name)
 
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
@@ -172,23 +198,17 @@ class ExampleBoard(Board):
         except KeyError:
             raise ComponentNotFoundError('Board.DigitalInterrupt', name)
 
+    async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:
+        try:
+            return self.gpios[name]
+        except KeyError:
+            raise ComponentNotFoundError('Board.GPIOPin', name)
+
     async def analog_reader_names(self) -> List[str]:
         return [key for key in self.analog_readers.keys()]
 
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
-
-    async def set_gpio(self, pin: str, high: bool):
-        self.gpios[pin] = high
-
-    async def get_gpio(self, pin: str) -> bool:
-        return self.gpios[pin]
-
-    async def set_pwm(self, pin: str, duty_cycle: float):
-        self.pwms[pin] = duty_cycle
-
-    async def set_pwm_freq(self, pin: str, frequency: int):
-        self.pwm_freqs[pin] = frequency
 
     async def status(self) -> BoardStatus:
         return BoardStatus(

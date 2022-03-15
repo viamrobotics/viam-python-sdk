@@ -5,6 +5,7 @@ from google.protobuf.struct_pb2 import Struct
 from grpclib.server import Stream
 from viam.components.arm import Arm
 from viam.components.base import Base
+from viam.components.board import Board
 from viam.components.motor import Motor
 from viam.components.sensor import Sensor
 from viam.components.service_base import ComponentServiceBase
@@ -42,6 +43,12 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 status = Status(
                     name=resource_name_for_component_type(component, Base),
                     status=Struct()
+                )
+                statuses.append(status)
+            if isinstance(component, Board):
+                status = Status(
+                    name=resource_name_for_component_type(component, Board),
+                    status=message_to_struct(await component.status())
                 )
                 statuses.append(status)
             if isinstance(component, Motor):
