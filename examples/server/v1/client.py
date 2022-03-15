@@ -4,11 +4,11 @@ from random import randint
 
 from viam.components.imu import IMUClient
 from viam.components.servo import ServoClient
-from viam.proto.api.robot import (RobotServiceStub, StatusRequest,
-                                  StatusResponse)
 from viam.proto.api.service.metadata import (MetadataServiceStub,
                                              ResourcesRequest,
                                              ResourcesResponse)
+from viam.proto.api.service.status import (GetStatusRequest, GetStatusResponse,
+                                           StatusServiceStub)
 from viam.rpc.dial import DialOptions, dial_direct
 
 
@@ -26,10 +26,10 @@ async def client():
         print(f'Metadata response received: {r.resources}')
 
         print('\n#### ROBOT ####')
-        service = RobotServiceStub(channel)
-        request = StatusRequest()
-        response = await service.Status(request)
-        r = typing.cast(StatusResponse, response)
+        service = StatusServiceStub(channel)
+        request = GetStatusRequest()
+        response = await service.GetStatus(request)
+        r = typing.cast(GetStatusResponse, response)
         print(f'Robot status response received: {r.status}')
 
         print('\n#### IMU ####')

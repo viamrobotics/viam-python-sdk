@@ -11,7 +11,7 @@ from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.proto.api.common import Pose, PoseInFrame
-from viam.proto.api.component.arm import ArmJointPositions
+from viam.proto.api.component.arm import JointPositions
 
 
 class MockArm(Arm):
@@ -26,7 +26,7 @@ class MockArm(Arm):
             o_z=4,
             theta=20,
         )
-        self.joint_positions = ArmJointPositions(degrees=[0, 0, 0, 0, 0, 0])
+        self.joint_positions = JointPositions(degrees=[0, 0, 0, 0, 0, 0])
         super().__init__(name)
 
     async def get_end_position(self) -> Pose:
@@ -35,10 +35,10 @@ class MockArm(Arm):
     async def move_to_position(self, pose: Pose):
         self.position = pose
 
-    async def get_joint_positions(self) -> ArmJointPositions:
+    async def get_joint_positions(self) -> JointPositions:
         return self.joint_positions
 
-    async def move_to_joint_positions(self, positions: ArmJointPositions):
+    async def move_to_joint_positions(self, positions: JointPositions):
         self.joint_positions = positions
 
 

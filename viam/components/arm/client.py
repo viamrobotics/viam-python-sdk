@@ -1,10 +1,11 @@
 from grpclib.client import Channel
 from viam.proto.api.common import Pose
-from viam.proto.api.component.arm import (ArmJointPositions, ArmServiceStub,
+from viam.proto.api.component.arm import (ArmServiceStub,
                                           GetEndPositionRequest,
                                           GetEndPositionResponse,
                                           GetJointPositionsRequest,
                                           GetJointPositionsResponse,
+                                          JointPositions,
                                           MoveToJointPositionsRequest,
                                           MoveToPositionRequest)
 
@@ -30,13 +31,13 @@ class ArmClient(Arm):
         request = MoveToPositionRequest(name=self.name, to=pose)
         await self.client.MoveToPosition(request)
 
-    async def get_joint_positions(self) -> ArmJointPositions:
+    async def get_joint_positions(self) -> JointPositions:
         request = GetJointPositionsRequest(name=self.name)
         response: GetJointPositionsResponse = \
             await self.client.GetJointPositions(request)
         return response.position_degs
 
-    async def move_to_joint_positions(self, positions: ArmJointPositions):
+    async def move_to_joint_positions(self, positions: JointPositions):
         request = MoveToJointPositionsRequest(
             name=self.name, position_degs=positions)
         await self.client.MoveToJointPositions(request)

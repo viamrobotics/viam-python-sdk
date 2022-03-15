@@ -6,6 +6,7 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import google.protobuf.struct_pb2
 from ...... import proto
 import typing
 import typing_extensions
@@ -13,26 +14,29 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    NAME_FIELD_NUMBER: builtins.int
+    CAMERA_NAME_FIELD_NUMBER: builtins.int
+    SEGMENTER_NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
-    MIN_POINTS_IN_PLANE_FIELD_NUMBER: builtins.int
-    MIN_POINTS_IN_SEGMENT_FIELD_NUMBER: builtins.int
-    CLUSTERING_RADIUS_MM_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    PARAMETERS_FIELD_NUMBER: builtins.int
+    camera_name: typing.Text = ...
     'Name of a camera'
+    segmenter_name: typing.Text = ...
+    'Name of the segmentation algorithm'
     mime_type: typing.Text = ...
     'Requested MIME type of response'
-    min_points_in_plane: builtins.int = ...
-    'Minimum points in plane'
-    min_points_in_segment: builtins.int = ...
-    'Minimum points in segment'
-    clustering_radius_mm: builtins.float = ...
-    'Clustering radius in mm'
 
-    def __init__(self, *, name: typing.Text=..., mime_type: typing.Text=..., min_points_in_plane: builtins.int=..., min_points_in_segment: builtins.int=..., clustering_radius_mm: builtins.float=...) -> None:
+    @property
+    def parameters(self) -> google.protobuf.struct_pb2.Struct:
+        """parameters for the chosen segmenter"""
+        pass
+
+    def __init__(self, *, camera_name: typing.Text=..., segmenter_name: typing.Text=..., mime_type: typing.Text=..., parameters: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['clustering_radius_mm', b'clustering_radius_mm', 'mime_type', b'mime_type', 'min_points_in_plane', b'min_points_in_plane', 'min_points_in_segment', b'min_points_in_segment', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['parameters', b'parameters']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'mime_type', b'mime_type', 'parameters', b'parameters', 'segmenter_name', b'segmenter_name']) -> None:
         ...
 global___GetObjectPointCloudsRequest = GetObjectPointCloudsRequest
 
@@ -54,3 +58,69 @@ class GetObjectPointCloudsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'objects', b'objects']) -> None:
         ...
 global___GetObjectPointCloudsResponse = GetObjectPointCloudsResponse
+
+class GetSegmenterParametersRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    SEGMENTER_NAME_FIELD_NUMBER: builtins.int
+    segmenter_name: typing.Text = ...
+    'Name of the segmentation algo'
+
+    def __init__(self, *, segmenter_name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['segmenter_name', b'segmenter_name']) -> None:
+        ...
+global___GetSegmenterParametersRequest = GetSegmenterParametersRequest
+
+class TypedParameter(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    type: typing.Text = ...
+
+    def __init__(self, *, name: typing.Text=..., type: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'type', b'type']) -> None:
+        ...
+global___TypedParameter = TypedParameter
+
+class GetSegmenterParametersResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    PARAMETERS_FIELD_NUMBER: builtins.int
+
+    @property
+    def parameters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TypedParameter]:
+        """parameter names of the segmenter in the request"""
+        pass
+
+    def __init__(self, *, parameters: typing.Optional[typing.Iterable[global___TypedParameter]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['parameters', b'parameters']) -> None:
+        ...
+global___GetSegmenterParametersResponse = GetSegmenterParametersResponse
+
+class GetSegmentersRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+
+    def __init__(self) -> None:
+        ...
+global___GetSegmentersRequest = GetSegmentersRequest
+
+class GetSegmentersResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    SEGMENTERS_FIELD_NUMBER: builtins.int
+
+    @property
+    def segmenters(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        """segmenters in the registry"""
+        pass
+
+    def __init__(self, *, segmenters: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['segmenters', b'segmenters']) -> None:
+        ...
+global___GetSegmentersResponse = GetSegmentersResponse

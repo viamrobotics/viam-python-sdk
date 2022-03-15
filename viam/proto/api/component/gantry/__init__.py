@@ -12,5 +12,6 @@ from .....gen.proto.api.component.gantry.v1.gantry_pb2 import (
     GetPositionRequest,
     GetPositionResponse,
     MoveToPositionRequest,
-    MoveToPositionResponse
+    MoveToPositionResponse,
+    Status
 )

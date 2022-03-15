@@ -7,7 +7,6 @@ from ....gen.proto.api.robot.v1.robot_grpc import (
     RobotServiceStub
 )
 from ....gen.proto.api.robot.v1.robot_pb2 import (
-    ArmStatus,
     ComponentConfig,
     ConfigRequest,
     ConfigResponse,
@@ -17,19 +16,7 @@ from ....gen.proto.api.robot.v1.robot_pb2 import (
     ExecuteFunctionResponse,
     ExecuteSourceRequest,
     ExecuteSourceResponse,
-    GantryStatus,
-    InputControllerEvent,
-    InputControllerStatus,
-    JointPositions,
-    MotorStatus,
     Pose,
     ResourceRunCommandRequest,
-    ResourceRunCommandResponse,
-    SensorStatus,
-    ServoStatus,
-    Status,
-    StatusRequest,
-    StatusResponse,
-    StatusStreamRequest,
-    StatusStreamResponse
+    ResourceRunCommandResponse
 )

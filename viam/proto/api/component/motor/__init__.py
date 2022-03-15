@@ -21,6 +21,7 @@ from .....gen.proto.api.component.motor.v1.motor_pb2 import (
     ResetZeroPositionResponse,
     SetPowerRequest,
     SetPowerResponse,
+    Status,
     StopRequest,
     StopResponse
 )

@@ -12,6 +12,7 @@ from .....gen.proto.api.component.inputcontroller.v1.input_controller_pb2 import
     GetControlsResponse,
     GetEventsRequest,
     GetEventsResponse,
+    Status,
     StreamEventsRequest,
     StreamEventsResponse,
     TriggerEventRequest,

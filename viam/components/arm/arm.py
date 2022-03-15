@@ -1,7 +1,7 @@
 import abc
 
-from viam.proto.api.component.arm import ArmJointPositions
 from viam.proto.api.common import Pose
+from viam.proto.api.component.arm import JointPositions
 
 from ..component_base import ComponentBase
 
@@ -36,21 +36,21 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def move_to_joint_positions(self, positions: ArmJointPositions):
+    async def move_to_joint_positions(self, positions: JointPositions):
         """
         Move this arm's joints to the given positions
 
         Args:
-            positions (ArmJointPositions): The positions to move the joints to
+            positions (JointPositions): The positions to move the joints to
         """
         ...
 
     @abc.abstractmethod
-    async def get_joint_positions(self) -> ArmJointPositions:
+    async def get_joint_positions(self) -> JointPositions:
         """
         Get the current joint positions for this arm
 
         Returns:
-            ArmJointPositions: The current joint positions
+            JointPositions: The current joint positions
         """
         ...

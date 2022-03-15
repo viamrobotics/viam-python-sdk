@@ -6,6 +6,7 @@ from viam.proto.api.service.metadata import (
     MetadataServiceBase,
     ResourcesRequest, ResourcesResponse
 )
+from viam.utils import resource_names_for_component
 
 
 class MetadataService(MetadataServiceBase, ComponentServiceBase):
@@ -14,23 +15,7 @@ class MetadataService(MetadataServiceBase, ComponentServiceBase):
         md: List[ResourceName] = []
 
         for component in self.manager.components.values():
-            for klass in component.__class__.mro():
-                class_name = str(klass)
-                if 'viam.components' not in class_name:
-                    continue
-                if 'ComponentBase' in class_name:
-                    continue
-                component_type = class_name \
-                    .split('viam.components.')[1] \
-                    .split('.')[0]
-
-                r_name = ResourceName(
-                    namespace='rdk',
-                    type='component',
-                    subtype=component_type,
-                    name=component.name
-                )
-                md.append(r_name)
+            md.extend(resource_names_for_component(component))
 
         return md
 

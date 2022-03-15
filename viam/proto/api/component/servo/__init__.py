@@ -10,5 +10,6 @@ from .....gen.proto.api.component.servo.v1.servo_pb2 import (
     GetPositionRequest,
     GetPositionResponse,
     MoveRequest,
-    MoveResponse
+    MoveResponse,
+    Status
 )
