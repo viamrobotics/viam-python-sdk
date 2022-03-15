@@ -17,6 +17,7 @@ from viam.components.pose_tracker import PoseTrackerService
 from viam.components.sensor import SensorService
 from viam.components.servo import ServoService
 from viam.metadata.service import MetadataService
+from viam.status.service import StatusService
 from viam.robot.service import RobotService
 
 from .signaling import SignalingService
@@ -46,6 +47,7 @@ class Server(ResourceManager):
         services = [
             SignalingService(),
             MetadataService(manager=self),
+            StatusService(manager=self),
             RobotService(manager=self),
             ArmService(manager=self),
             BaseService(manager=self),

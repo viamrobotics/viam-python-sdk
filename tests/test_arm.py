@@ -1,16 +1,14 @@
-from grpclib.testing import ChannelFor
 import pytest
-
-from viam.components.arm import (
-    ArmClient, ArmService
-)
+from grpclib.testing import ChannelFor
+from viam.components.arm import ArmClient, ArmService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.common import Pose
-from viam.proto.api.component.arm import (ArmJointPositions, ArmServiceStub,
+from viam.proto.api.component.arm import (ArmServiceStub,
                                           GetEndPositionRequest,
                                           GetEndPositionResponse,
                                           GetJointPositionsRequest,
                                           GetJointPositionsResponse,
+                                          JointPositions,
                                           MoveToJointPositionsRequest,
                                           MoveToPositionRequest)
 
@@ -29,7 +27,7 @@ class TestArm:
         o_z=5,
         theta=20
     )
-    joint_pos = ArmJointPositions(degrees=[1, 8, 2])
+    joint_pos = JointPositions(degrees=[1, 8, 2])
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -67,7 +65,7 @@ class TestService:
         o_z=5,
         theta=20
     )
-    joint_pos = ArmJointPositions(degrees=[1, 8, 2])
+    joint_pos = JointPositions(degrees=[1, 8, 2])
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -120,7 +118,7 @@ class TestClient:
         o_z=5,
         theta=20
     )
-    joint_pos = ArmJointPositions(degrees=[1, 8, 2])
+    joint_pos = JointPositions(degrees=[1, 8, 2])
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):

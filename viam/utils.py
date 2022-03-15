@@ -1,5 +1,11 @@
-from typing import Any, List, SupportsFloat, Dict
-from google.protobuf.struct_pb2 import Struct, Value, ListValue
+from typing import Any, Dict, List, SupportsFloat, Type
+
+from google.protobuf.json_format import MessageToDict
+from google.protobuf.message import Message
+from google.protobuf.struct_pb2 import ListValue, Struct, Value
+
+from viam.components.component_base import ComponentBase
+from viam.proto.api.common import ResourceName
 
 
 def primitive_to_value(v: Any) -> Value:
@@ -65,3 +71,53 @@ def value_to_primitive(value: Value) -> Any:
     if value.HasField('null_value'):
         return value.null_value
     return None
+
+
+def resource_names_for_component(
+    component: ComponentBase
+) -> List[ResourceName]:
+    rns: List[ResourceName] = []
+    for klass in component.__class__.mro():
+        class_name = str(klass)
+        if 'viam.components' not in class_name:
+            continue
+        if 'ComponentBase' in class_name:
+            continue
+        component_type = class_name \
+            .split('viam.components.')[1] \
+            .split('.')[0]
+
+        rns.append(ResourceName(
+            namespace='rdk',
+            type='component',
+            subtype=component_type,
+            name=component.name
+        ))
+    return rns
+
+
+def resource_name_for_component_type(
+    component: ComponentBase,
+    _type: Type
+) -> ResourceName:
+    if not isinstance(component, _type):
+        raise Exception(
+            f'Component named {component.name} is not of type {_type}'
+        )
+
+    component_type = str(_type) \
+        .split('viam.components.')[1] \
+        .split('.')[0]
+
+    return ResourceName(
+        namespace='rdk',
+        type='component',
+        subtype=component_type,
+        name=component.name
+    )
+
+
+def message_to_struct(message: Message) -> Struct:
+    struct = Struct()
+    struct.update(MessageToDict(message))
+    return struct
