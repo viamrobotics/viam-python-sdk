@@ -17,5 +17,10 @@ better_imports:
 test:
 	python3 -m pytest
 
+docs:
+	rm -rf ./docs
+	mkdir docs
+	pdoc -o ./docs ./viam
+
 package: buf better_imports test
 	@echo "TODO: Create pip-installable package"
