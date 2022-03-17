@@ -58,11 +58,7 @@ setup(
         'protobuf',
         'googleapis-common-protos',
     ],
-    options={
-        'entry_points': {
-            'console_scripts': {
-                'viam-update': 'viam.utils:update'
-            }
-        }
+    entry_points={
+        'console_scripts': ['viam-update=viam.utils:update', ],
     }
 )
