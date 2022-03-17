@@ -132,9 +132,12 @@ def update() -> None:
     try:
         token = sys.argv[1]
     except IndexError:
-        print("[ERROR] GitHub Personal Access Token is required")
-        return
+        token = os.environ.get('GITHUB_ACCESS_TOKEN', None)
+        if not token:
+            print("[ERROR] GitHub Personal Access Token is required")
+            return
     os.system('pip uninstall -y viam')
     os.system(
-        f'pip install git+https://{token}@github.com/viamrobotics/python-sdk.git'
+        f'pip install git+https://{token}' +
+        '@github.com/viamrobotics/python-sdk.git'
     )
