@@ -126,6 +126,8 @@ def message_to_struct(message: Message) -> Struct:
 
 
 def update() -> None:
-    print(sys.argv)
-    # os.system("pip uninstall viam")
-    # os.system("pip install ")
+    token = sys.argv[1]
+    os.system('pip uninstall viam')
+    os.system(
+        f'pip install git+https://{token}@github.com/njooma/python-sdk.git'
+    )
