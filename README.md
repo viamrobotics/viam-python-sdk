@@ -1,5 +1,7 @@
 # Viam Python SDK
 
+![build](https://github.com/viamrobotics/python-sdk/actions/workflows/test.yml/badge.svg)
+
 ## (In)stability Notice
 This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
 
@@ -16,16 +18,31 @@ This will install the current `main` branch to your project. If you would like a
 
 It is recommended that you install using a commit hash, as that will allow you to upgrade/install over an existing installation, rather than having to uninstall and reinstall to upgrade.
 
+### Upgrading
+To upgrade the SDK, you must either
+* First uninstall the SDK (`pip uninstall viam`) and then re-install using the above instructions
+* Install using a specific commit hash
+
+**Somewhat-Automatic Updates**
+
+There is a helper function included with the SDK that will take care of the upgrade proceess somewhat automatically. You can run
+`viam-update YOUR_ACCESS_TOKEN` from your terminal and it will automatically update to the latest package.
+
+You can also set the environment variable `GITHUB_ACCESS_TOKEN` to your personal access token, which will make the above command simply `viam-update`.
+
 ## Usage
-To connect to a server, you can use the `viam.rpc.dial.dial_direct` function, passing in an address and `DialOptions` (`viam.rpc.dial.DialOptions`). This will return a gRPC `Channel` which you can use to instantiate gRPC Services from the `proto` package, e.g.
+To connect to a server, you can use the `viam.rpc.dial.dial_direct` function, passing in an address and `DialOptions` (`viam.rpc.dial.DialOptions`). This will return a gRPC `Channel` which you can use to instantiate component clients, e.g.
 
 ```python
-from viam.proto.api.component import imu
+from viam.proto.api.component import motor
 
 # OMITTED: Obtian a channel using dial_direct
 
-service = imu.IMUServiceStub(channel)
-response = await service.ReadOrientation(...)
+my_motor = motor.MotorClient(name='my_motor', channel=channel)
+await my_motor.set_power(0.9)
+await asyncio.sleep(3)
+await my_motor.set_power(0)
+position = await my_motor.get_position()
 ```
 
 View the `examples` for more details.
