@@ -126,8 +126,11 @@ def message_to_struct(message: Message) -> Struct:
 
 
 def update() -> None:
-    token = sys.argv[1]
-    os.system('pip uninstall viam')
+    try:
+        token = sys.argv[1]
+    except IndexError:
+        print("[ERROR] GitHub Personal Access Token is required")
+    os.system('pip uninstall -y viam')
     os.system(
         f'pip install git+https://{token}@github.com/njooma/python-sdk.git'
     )
