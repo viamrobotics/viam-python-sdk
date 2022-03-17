@@ -126,11 +126,15 @@ def message_to_struct(message: Message) -> Struct:
 
 
 def update() -> None:
+    """
+    TODO (njooma): Only here while we don't have this package published on pypi
+    """
     try:
         token = sys.argv[1]
     except IndexError:
         print("[ERROR] GitHub Personal Access Token is required")
+        return
     os.system('pip uninstall -y viam')
     os.system(
-        f'pip install git+https://{token}@github.com/njooma/python-sdk.git'
+        f'pip install git+https://{token}@github.com/viamrobotics/python-sdk.git'
     )
