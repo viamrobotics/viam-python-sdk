@@ -1,3 +1,4 @@
+from importlib.metadata import entry_points
 import os
 from typing import List
 from setuptools import setup, find_packages
@@ -58,4 +59,9 @@ setup(
         'protobuf',
         'googleapis-common-protos',
     ],
+    options={
+        'entry_points': {
+            'viam-update': 'viam.utils:update'
+        }
+    }
 )

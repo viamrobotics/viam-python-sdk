@@ -1,3 +1,5 @@
+import os
+import sys
 from typing import Any, Dict, List, SupportsFloat, Type
 
 from google.protobuf.json_format import MessageToDict
@@ -121,3 +123,9 @@ def message_to_struct(message: Message) -> Struct:
     struct = Struct()
     struct.update(MessageToDict(message))
     return struct
+
+
+def update() -> None:
+    print(sys.argv)
+    # os.system("pip uninstall viam")
+    # os.system("pip install ")
