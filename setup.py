@@ -1,4 +1,3 @@
-from importlib.metadata import entry_points
 import os
 from typing import List
 from setuptools import setup, find_packages
@@ -61,7 +60,9 @@ setup(
     ],
     options={
         'entry_points': {
-            'viam-update': 'viam.utils:update'
+            'console_scripts': {
+                'viam-update': 'viam.utils:update'
+            }
         }
     }
 )
