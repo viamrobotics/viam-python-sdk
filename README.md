@@ -1,6 +1,6 @@
 # Viam Python SDK
-
-![build](https://github.com/viamrobotics/python-sdk/actions/workflows/test.yml/badge.svg)
+[![documentation](https://img.shields.io/static/v1?label=docs&message=python.viam.dev&color=informational)](https://python.viam.dev)
+![build status](https://github.com/viamrobotics/python-sdk/actions/workflows/test.yml/badge.svg)
 
 ## (In)stability Notice
 This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
@@ -45,7 +45,10 @@ await my_motor.set_power(0)
 position = await my_motor.get_position()
 ```
 
-View the `examples` for more details.
+View the [`examples`](https://github.com/viamrobotics/python-sdk/tree/main/examples) for more details.
+
+## Documentation
+Documentation, like this entire project, is under active development, and can be found at [python.viam.dev](https://python.viam.dev).
 
 ---
 ## Development
