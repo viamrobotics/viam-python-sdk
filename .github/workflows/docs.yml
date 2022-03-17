@@ -3,6 +3,8 @@ name: Generate docs
 on:
   workflow_dispatch:
   push:
+    paths:
+      - 'viam/**'
     branches: [ main ]
 
 jobs:
