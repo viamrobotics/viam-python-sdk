@@ -18,8 +18,6 @@ test:
 	python3 -m pytest
 
 documentation:
-	rm -rf ./docs
-	mkdir docs
 	pdoc -o ./docs ./viam
 
 package: buf better_imports test
