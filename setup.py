@@ -57,6 +57,7 @@ setup(
         'grpclib',
         'protobuf',
         'googleapis-common-protos',
+        'pillow',
     ],
     entry_points={
         'console_scripts': ['viam-update=viam.utils:update', ],
