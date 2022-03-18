@@ -45,6 +45,9 @@
             <li>
                     <a class="function" href="#message_to_struct">message_to_struct</a>
             </li>
+            <li>
+                    <a class="function" href="#update">update</a>
+            </li>
     </ul>
 
 
@@ -64,7 +67,9 @@
                 
                         <details>
             <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">SupportsFloat</span><span class="p">,</span> <span class="n">Type</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">SupportsFloat</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="kn">from</span> <span class="nn">google.protobuf.json_format</span> <span class="kn">import</span> <span class="n">MessageToDict</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.message</span> <span class="kn">import</span> <span class="n">Message</span>
@@ -187,6 +192,24 @@
     <span class="n">struct</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
     <span class="n">struct</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">MessageToDict</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">struct</span>
+
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    TODO (njooma): Only here while we don&#39;t have this package published on pypi</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GITHUB_ACCESS_TOKEN&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">token</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[ERROR] GitHub Personal Access Token is required&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;pip uninstall -y viam&#39;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">&#39;pip install git+https://</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39;@github.com/viamrobotics/python-sdk.git&#39;</span>
+    <span class="p">)</span>
 </pre></div>
 
         </details>
@@ -406,6 +429,41 @@ Supports primitive types of
         </details>
 
     
+
+                </section>
+                <section id="update">
+                            <div class="attr function"><a class="headerlink" href="#update">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">def</span>
+            <span class="name">update</span><span class="signature">() -&gt; None</span>:
+    </div>
+
+            <details>
+            <summary>View Source</summary>
+            <div class="pdoc-code codehilite"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    TODO (njooma): Only here while we don&#39;t have this package published on pypi</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GITHUB_ACCESS_TOKEN&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">token</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[ERROR] GitHub Personal Access Token is required&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;pip uninstall -y viam&#39;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">&#39;pip install git+https://</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span> <span class="o">+</span>
+        <span class="s1">&#39;@github.com/viamrobotics/python-sdk.git&#39;</span>
+    <span class="p">)</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>TODO (njooma): Only here while we don't have this package published on pypi</p>
+</div>
+
 
                 </section>
     </main>
