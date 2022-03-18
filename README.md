@@ -55,6 +55,28 @@ select the `CONNECT` tab, and copy the boilerplate code from the section labeled
 It is recommended that you save and run this simple program. Doing so will ensure that the python-sdk is properly installed,
 that the viam-server instance on your robot is alive, and that the computer running the program is able to connect to that instance.
 
+### Accessing a component:
+First you'll need to import the component's client. Generically this should look:
+```python
+from viam.components.component import ComponentClient
+```
+Example:
+```python
+from viam.components.motor import MotorClient
+```
+
+Then to instantiate a client, you'll call its constructor, which typically takes `name` and `channel` as arguements,
+where `channel` is our connection to the robot, and `name` is the name of the component in that robot's JSON config. Example:
+```python
+left_motor = MotorClient(name="left", channel=channel)
+```
+
+You can then use this Component object's methods to issue viam's gRPC API calls. Take a look at the component documentation to
+see a full list of methods for the object and their arguments. For Example:
+```python
+await left_motor.go_for(rpm=60, revolutions=100)
+```
+
 ## Implementing a component and using the python-sdk as server:
 Find the Component type you wish to implement in the docs and create a new class which sub-classes that Component’s BaseComponent class.
 
