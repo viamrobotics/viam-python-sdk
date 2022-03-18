@@ -17,7 +17,7 @@ better_imports:
 test:
 	python3 -m pytest
 
-docs:
+documentation:
 	rm -rf ./docs
 	mkdir docs
 	pdoc -o ./docs ./viam
