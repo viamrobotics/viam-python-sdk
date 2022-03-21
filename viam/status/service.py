@@ -56,7 +56,7 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 s.is_on = await component.is_powered()
                 s.position = await component.get_position()
                 features = await component.get_features()
-                s.position_reporting = features['position_reporting']
+                s.position_reporting = features.position_reporting
                 as_struct = message_to_struct(s)
                 status = Status(
                     name=resource_name_for_component_type(component, Motor),

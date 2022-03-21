@@ -1,12 +1,13 @@
 import abc
-from typing import TypedDict
+from dataclasses import dataclass
 
 from ..component_base import ComponentBase
 
 
 class Motor(ComponentBase):
 
-    class Features(TypedDict):
+    @dataclass
+    class Features:
         position_reporting: bool
 
     """

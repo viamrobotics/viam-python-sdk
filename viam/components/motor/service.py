@@ -105,7 +105,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         except ComponentNotFoundError as e:
             raise e.grpc_error()
         features = await motor.get_features()
-        response = GetFeaturesResponse(**features)
+        response = GetFeaturesResponse(**features.__dict__)
         await stream.send_message(response)
 
     async def Stop(

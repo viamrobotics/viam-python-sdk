@@ -71,7 +71,7 @@ class TestMotor:
     @pytest.mark.asyncio
     async def test_get_features(self, motor: MockMotor):
         features = await motor.get_features()
-        assert features['position_reporting'] is True
+        assert features.position_reporting is True
 
     @pytest.mark.asyncio
     async def test_is_powered(self, motor: MockMotor):
@@ -234,7 +234,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             features = await client.get_features()
-            assert features['position_reporting'] is True
+            assert features.position_reporting is True
 
     @pytest.mark.asyncio
     async def test_is_powered(self, motor: MockMotor, service: MotorService):

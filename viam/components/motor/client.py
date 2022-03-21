@@ -47,7 +47,7 @@ class MotorClient(Motor):
     async def get_features(self) -> Motor.Features:
         request = GetFeaturesRequest(name=self.name)
         response: GetFeaturesResponse = await self.client.GetFeatures(request)
-        return {'position_reporting': response.position_reporting}
+        return Motor.Features(position_reporting=response.position_reporting)
 
     async def is_powered(self) -> bool:
         request = IsPoweredRequest(name=self.name)

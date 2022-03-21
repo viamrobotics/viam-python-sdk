@@ -300,7 +300,7 @@ class MockMotor(Motor):
         return self.position
 
     async def get_features(self) -> Motor.Features:
-        return {'position_reporting': True}
+        return Motor.Features(position_reporting=True)
 
     async def is_powered(self) -> bool:
         return self.powered
