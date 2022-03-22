@@ -1,6 +1,7 @@
 import os
 import sys
 from typing import Any, Dict, List, SupportsFloat, Type
+from enum import Enum
 
 from google.protobuf.json_format import MessageToDict
 from google.protobuf.message import Message
@@ -141,3 +142,11 @@ def update() -> None:
         f'pip install git+https://{token}' +
         '@github.com/viamrobotics/python-sdk.git'
     )
+
+
+class CameraMimeType(Enum):
+    RAW = 'image/raw-rgba'
+    BEST = 'image/viambest'
+    JPEG = 'image/jpeg'
+    PNG = 'image/png'
+    PCD = 'pointcloud/pcd'

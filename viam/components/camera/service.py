@@ -1,6 +1,8 @@
-from typing import final
+from io import BytesIO
+
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
+from PIL.Image import Image
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.camera import (CameraServiceBase,
@@ -8,16 +10,35 @@ from viam.proto.api.component.camera import (CameraServiceBase,
                                              GetPointCloudRequest,
                                              GetPointCloudResponse,
                                              RenderFrameRequest)
+from viam.utils import CameraMimeType
 
 from .camera import Camera
 
 
-class SensorService(CameraServiceBase, ComponentServiceBase[Camera]):
+class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
     """
     gRPC Service for a generic Camera
     """
 
     RESOURCE_TYPE = Camera
+
+    def _get_image_bytes(
+        self,
+        image: Image,
+        mimetype: CameraMimeType
+    ) -> bytes:
+        if mimetype == CameraMimeType.RAW:
+            return image.convert('RGBA').tobytes('raw', 'RGBA')
+        elif mimetype == CameraMimeType.JPEG:
+            buf = BytesIO()
+            image.save(buf, format='JPEG')
+            return buf.getvalue()
+        elif mimetype == CameraMimeType.PNG:
+            buf = BytesIO()
+            image.save(buf, format='PNG')
+            return buf.getvalue()
+        else:
+            raise ValueError(f'Cannot encode image to {mimetype}')
 
     async def GetFrame(
         self,
@@ -30,21 +51,21 @@ class SensorService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        image, release = await camera.next()
+        image = await camera.next()
         try:
-            mimetype = request.mime_type
-            width = image.width
-            height = image.height
+            mimetype = CameraMimeType(request.mime_type)
+            if mimetype == CameraMimeType.BEST:
+                mimetype = CameraMimeType.RAW
             response = GetFrameResponse(
-                mime_type=mimetype,
-                width_px=width,
-                height_px=height,
+                mime_type=mimetype.value,
+                width_px=image.width,
+                height_px=image.height,
             )
-            await stream.send_message(response)
-
+            img_bytes = self._get_image_bytes(image, mimetype)
         finally:
-            if release:
-                release()
+            image.close()
+        response.image = img_bytes
+        await stream.send_message(response)
 
     async def RenderFrame(
         self,
@@ -57,8 +78,15 @@ class SensorService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-
-        response = HttpBody()
+        mimetype = CameraMimeType(request.mime_type)
+        if not mimetype:
+            mimetype = CameraMimeType.JPEG
+        image = await camera.next()
+        try:
+            img = self._get_image_bytes(await camera.next(), mimetype)
+        finally:
+            image.close()
+        response = HttpBody(data=img, content_type=mimetype)
         await stream.send_message(response)
 
     async def GetPointCloud(
@@ -72,6 +100,6 @@ class SensorService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-
-        response = GetPointCloudResponse()
+        pc, mimetype = await camera.next_point_cloud()
+        response = GetPointCloudResponse(mime_type=mimetype, point_cloud=pc)
         await stream.send_message(response)

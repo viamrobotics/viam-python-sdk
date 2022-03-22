@@ -1,5 +1,5 @@
 import abc
-from typing import Callable, Tuple
+from typing import Tuple
 
 from PIL.Image import Image
 
@@ -15,12 +15,27 @@ class Camera(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def next(self) -> Tuple[Image, Callable]:
+    async def next(self) -> Image:
         """
-        Return an image along with a function to release
-        the image once it is no longer used.
+        Get the next frame from the camera as an Image.
+        Be sure to close the image when finished.
 
         Returns:
-            Tuple[Image, Callable]: An image and a function to release it
+            Image: The next frame
+        """
+        ...
+
+    @abc.abstractmethod
+    async def next_point_cloud(self) -> Tuple[bytes, str]:
+        """
+        Get the next point cloud from the camera. This will be
+        returned as bytes with a mimetype describing
+        the structure of the data. The consumer of this call
+        should serialize the bytes into the formatted suggested
+        by the mimetype
+
+        Returns:
+            bytes: The pointcloud data
+            str: The mimetype of the pointcloud (e.g. PCD)
         """
         ...

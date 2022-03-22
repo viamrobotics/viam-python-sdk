@@ -20,6 +20,7 @@ from viam.components.servo import ServoService
 from viam.metadata.service import MetadataService
 from viam.status.service import StatusService
 from viam.robot.service import RobotService
+from viam.components.camera import CameraService
 
 from .signaling import SignalingService
 
@@ -53,6 +54,7 @@ class Server(ResourceManager):
             ArmService(manager=self),
             BaseService(manager=self),
             BoardService(manager=self),
+            CameraService(manager=self),
             IMUService(manager=self),
             MotorService(manager=self),
             PoseTrackerService(manager=self),
