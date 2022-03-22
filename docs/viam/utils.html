@@ -48,6 +48,27 @@
             <li>
                     <a class="function" href="#update">update</a>
             </li>
+            <li>
+                    <a class="class" href="#CameraMimeType">CameraMimeType</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#CameraMimeType.RAW">RAW</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#CameraMimeType.BEST">BEST</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#CameraMimeType.JPEG">JPEG</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#CameraMimeType.PNG">PNG</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#CameraMimeType.PCD">PCD</a>
+                        </li>
+                </ul>
+
+            </li>
     </ul>
 
 
@@ -70,6 +91,7 @@
             <div class="pdoc-code codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">SupportsFloat</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 
 <span class="kn">from</span> <span class="nn">google.protobuf.json_format</span> <span class="kn">import</span> <span class="n">MessageToDict</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.message</span> <span class="kn">import</span> <span class="n">Message</span>
@@ -210,6 +232,14 @@
         <span class="sa">f</span><span class="s1">&#39;pip install git+https://</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span> <span class="o">+</span>
         <span class="s1">&#39;@github.com/viamrobotics/python-sdk.git&#39;</span>
     <span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CameraMimeType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">RAW</span> <span class="o">=</span> <span class="s1">&#39;image/raw-rgba&#39;</span>
+    <span class="n">BEST</span> <span class="o">=</span> <span class="s1">&#39;image/viambest&#39;</span>
+    <span class="n">JPEG</span> <span class="o">=</span> <span class="s1">&#39;image/jpeg&#39;</span>
+    <span class="n">PNG</span> <span class="o">=</span> <span class="s1">&#39;image/png&#39;</span>
+    <span class="n">PCD</span> <span class="o">=</span> <span class="s1">&#39;pointcloud/pcd&#39;</span>
 </pre></div>
 
         </details>
@@ -465,6 +495,92 @@ Supports primitive types of
 </div>
 
 
+                </section>
+                <section id="CameraMimeType">
+                                <div class="attr class">
+        <a class="headerlink" href="#CameraMimeType">#&nbsp;&nbsp</a>
+
+        
+        <span class="def">class</span>
+        <span class="name">CameraMimeType</span><wbr>(<span class="base">enum.Enum</span>):
+    </div>
+
+            <details>
+            <summary>View Source</summary>
+            <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">CameraMimeType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+    <span class="n">RAW</span> <span class="o">=</span> <span class="s1">&#39;image/raw-rgba&#39;</span>
+    <span class="n">BEST</span> <span class="o">=</span> <span class="s1">&#39;image/viambest&#39;</span>
+    <span class="n">JPEG</span> <span class="o">=</span> <span class="s1">&#39;image/jpeg&#39;</span>
+    <span class="n">PNG</span> <span class="o">=</span> <span class="s1">&#39;image/png&#39;</span>
+    <span class="n">PCD</span> <span class="o">=</span> <span class="s1">&#39;pointcloud/pcd&#39;</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>An enumeration.</p>
+</div>
+
+
+                            <div id="CameraMimeType.RAW" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#CameraMimeType.RAW">#&nbsp;&nbsp</a>
+
+        <span class="name">RAW</span><span class="default_value"> = &lt;<a href="#CameraMimeType.RAW">CameraMimeType.RAW</a>: &#39;image/raw-rgba&#39;&gt;</span>
+    </div>
+
+    
+    
+
+                            </div>
+                            <div id="CameraMimeType.BEST" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#CameraMimeType.BEST">#&nbsp;&nbsp</a>
+
+        <span class="name">BEST</span><span class="default_value"> = &lt;<a href="#CameraMimeType.BEST">CameraMimeType.BEST</a>: &#39;image/viambest&#39;&gt;</span>
+    </div>
+
+    
+    
+
+                            </div>
+                            <div id="CameraMimeType.JPEG" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#CameraMimeType.JPEG">#&nbsp;&nbsp</a>
+
+        <span class="name">JPEG</span><span class="default_value"> = &lt;<a href="#CameraMimeType.JPEG">CameraMimeType.JPEG</a>: &#39;image/jpeg&#39;&gt;</span>
+    </div>
+
+    
+    
+
+                            </div>
+                            <div id="CameraMimeType.PNG" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#CameraMimeType.PNG">#&nbsp;&nbsp</a>
+
+        <span class="name">PNG</span><span class="default_value"> = &lt;<a href="#CameraMimeType.PNG">CameraMimeType.PNG</a>: &#39;image/png&#39;&gt;</span>
+    </div>
+
+    
+    
+
+                            </div>
+                            <div id="CameraMimeType.PCD" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#CameraMimeType.PCD">#&nbsp;&nbsp</a>
+
+        <span class="name">PCD</span><span class="default_value"> = &lt;<a href="#CameraMimeType.PCD">CameraMimeType.PCD</a>: &#39;pointcloud/pcd&#39;&gt;</span>
+    </div>
+
+    
+    
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>enum.Enum</dt>
+                                <dd id="CameraMimeType.name" class="variable">name</dd>
+                <dd id="CameraMimeType.value" class="variable">value</dd>
+
+            </div>
+                                </dl>
+                            </div>
                 </section>
     </main>
 <script>
