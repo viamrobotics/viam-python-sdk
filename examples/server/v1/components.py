@@ -1,12 +1,15 @@
 import asyncio
 import random
 from multiprocessing import Queue
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
+import cv2
+from PIL import Image
 from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
+from viam.components.camera import Camera
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
                                  EulerAngles, Orientation)
 from viam.components.motor import Motor
@@ -226,6 +229,28 @@ class ExampleBoard(Board):
         return Board.Attributes(remote=True)
 
 
+class ExampleCamera(Camera):
+
+    async def next(self) -> Image.Image:
+        frameWidth = 640
+        frameHeight = 480
+        cap = cv2.VideoCapture(0)
+        cap.set(3, frameWidth)
+        cap.set(4, frameHeight)
+        cap.set(10, 150)
+
+        while cap.isOpened():
+            success, img = cap.read()
+            if success:
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                return Image.fromarray(img)
+
+        raise Exception("Could not read from camera")
+
+    async def next_point_cloud(self) -> Tuple[bytes, str]:
+        raise NotImplementedError()
+
+
 class ExampleIMU(IMU):
 
     async def read_acceleration(self) -> Acceleration:
@@ -314,7 +339,7 @@ class ExampleMotor(Motor):
         return self.position
 
     async def get_features(self) -> Motor.Features:
-        return {'position_reporting': True}
+        return Motor.Features(position_reporting=True)
 
     async def is_powered(self) -> bool:
         return self.powered

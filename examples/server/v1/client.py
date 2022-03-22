@@ -2,6 +2,7 @@ import asyncio
 import typing
 from random import randint
 
+from viam.components.camera import CameraClient
 from viam.components.imu import IMUClient
 from viam.components.servo import ServoClient
 from viam.proto.api.service.metadata import (MetadataServiceStub,
@@ -56,6 +57,13 @@ async def client():
         print(
             f'Response received: current position is {position_deg}'
         )
+
+        print('\n#### CAMERA ####')
+        client = CameraClient('camera0', channel)
+        img = await client.next()
+        img.show()
+        await asyncio.sleep(1)
+        img.close()
 
 
 if __name__ == '__main__':

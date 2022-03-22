@@ -1,12 +1,14 @@
 from dataclasses import dataclass
 from multiprocessing import Queue
 from random import random
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Tuple
 
+from PIL import Image
 from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
+from viam.components.camera import Camera
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
                                  EulerAngles, Orientation)
 from viam.components.motor import Motor
@@ -224,6 +226,19 @@ class MockBoard(Board):
 
     async def model_attributes(self) -> Board.Attributes:
         return Board.Attributes(remote=True)
+
+
+class MockCamera(Camera):
+
+    def __init__(self, name: str):
+        self.image = Image.new('RGBA', (100, 100), '#AABBCCDD')
+        super().__init__(name)
+
+    async def next(self) -> Image.Image:
+        return self.image
+
+    async def next_point_cloud(self) -> Tuple[bytes, str]:
+        raise NotImplementedError()
 
 
 class MockIMU(IMU):
