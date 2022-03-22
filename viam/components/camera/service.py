@@ -53,7 +53,10 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             raise e.grpc_error()
         image = await camera.next()
         try:
-            mimetype = CameraMimeType(request.mime_type)
+            if not request.mime_type:
+                mimetype = CameraMimeType.RAW
+            else:
+                mimetype = CameraMimeType(request.mime_type)
             if mimetype == CameraMimeType.BEST:
                 mimetype = CameraMimeType.RAW
             response = GetFrameResponse(
@@ -86,7 +89,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             img = self._get_image_bytes(await camera.next(), mimetype)
         finally:
             image.close()
-        response = HttpBody(data=img, content_type=mimetype)
+        response = HttpBody(data=img, content_type=mimetype.value)
         await stream.send_message(response)
 
     async def GetPointCloud(
