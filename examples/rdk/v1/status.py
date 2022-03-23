@@ -1,7 +1,7 @@
 import asyncio
 
-from viam.proto.api.robot import RobotServiceStub, StatusRequest
-
+from viam.proto.api.service.status import (GetStatusRequest, GetStatusResponse,
+                                           StatusServiceStub)
 from viam.rpc.dial import Credentials, DialOptions, dial_direct
 
 
@@ -15,8 +15,8 @@ async def test():
         allow_insecure_with_creds_downgrade=True
     )
     channel = await dial_direct("localhost:8080", opts)
-    service = RobotServiceStub(channel)
-    resp = await service.Status(StatusRequest())
+    service = StatusServiceStub(channel)
+    resp: GetStatusResponse = await service.GetStatus(GetStatusRequest())
     print(resp)
     channel.close()
 

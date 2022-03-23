@@ -14,8 +14,8 @@ from viam.status.service import StatusService
 from viam.utils import message_to_struct
 
 from .mocks.components import (MockAnalogReader, MockArm, MockBase, MockBoard,
-                               MockDigitalInterrupt, MockGPIOPin, MockIMU,
-                               MockMotor, MockServo)
+                               MockCamera, MockDigitalInterrupt, MockGPIOPin,
+                               MockIMU, MockMotor, MockPoseTracker, MockServo)
 
 
 @pytest.mark.asyncio
@@ -49,10 +49,14 @@ async def test_status_service():
                 'pin2': MockGPIOPin('pin2')
             }
         ),
+        MockCamera(name='camera1'),
+        MockCamera(name='camera2'),
         MockIMU(name='imu1'),
         MockIMU(name='imu2'),
         MockMotor(name='motor1'),
         MockMotor(name='motor2'),
+        MockPoseTracker(name='pose_tracker1', poses=[]),
+        MockPoseTracker(name='pose_tracker2', poses=[]),
         MockServo(name='servo1'),
         MockServo(name='servo2'),
     ]
@@ -65,6 +69,22 @@ async def test_status_service():
         request = GetStatusRequest()
         response: GetStatusResponse = await client.GetStatus(request)
         expected = [
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='service',
+                    subtype='status',
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='service',
+                    subtype='object_segmentation',
+                ),
+                status=Struct()
+            ),
             Status(
                 name=ResourceName(
                     namespace='rdk',
@@ -159,6 +179,24 @@ async def test_status_service():
                 name=ResourceName(
                     namespace='rdk',
                     type='component',
+                    subtype='camera',
+                    name='camera1'
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='camera',
+                    name='camera2'
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
                     subtype='motor',
                     name='motor1'
                 ),
@@ -180,6 +218,24 @@ async def test_status_service():
                     position=0,
                     position_reporting=True
                 ))
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='pose_tracker',
+                    name='pose_tracker1'
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='pose_tracker',
+                    name='pose_tracker2'
+                ),
+                status=Struct()
             ),
             Status(
                 name=ResourceName(
