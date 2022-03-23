@@ -31,7 +31,7 @@ class Camera(ComponentBase):
         Get the next point cloud from the camera. This will be
         returned as bytes with a mimetype describing
         the structure of the data. The consumer of this call
-        should serialize the bytes into the formatted suggested
+        should encode the bytes into the formatted suggested
         by the mimetype
 
         Returns:
