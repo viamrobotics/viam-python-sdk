@@ -1,12 +1,11 @@
-from grpclib.testing import ChannelFor
 import pytest
-
-from viam.components.pose_tracker.service import PoseTrackerService
+from grpclib.testing import ChannelFor
+from viam.components.pose_tracker import PoseTrackerClient, PoseTrackerService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.common import Pose, PoseInFrame
-from viam.proto.api.component.posetracker import (
-    PoseTrackerServiceStub, GetPosesRequest, GetPosesResponse
-)
+from viam.proto.api.component.posetracker import (GetPosesRequest,
+                                                  GetPosesResponse,
+                                                  PoseTrackerServiceStub)
 
 from .mocks.components import MockPose, MockPoseTracker
 
@@ -79,6 +78,44 @@ class TestService:
             response: GetPosesResponse = \
                 await client.GetPoses(request)
             received_poses = response.body_poses
+            assert received_poses['0'] == PoseInFrame(
+                reference_frame='0',
+                pose=Pose(
+                    x=1,
+                    y=2,
+                    z=3,
+                    o_x=2,
+                    o_y=3,
+                    o_z=4,
+                    theta=20
+                )
+            )
+            assert received_poses['1'] == PoseInFrame(
+                reference_frame='1',
+                pose=Pose(
+                    x=5,
+                    y=5,
+                    z=5,
+                    o_x=5,
+                    o_y=3,
+                    o_z=4,
+                    theta=30
+                )
+            )
+
+
+class TestClient:
+
+    name = 'pose_tracker'
+    pose_tracker = MockPoseTracker(name=name, poses=POSES)
+    manager = ResourceManager([pose_tracker])
+    service = PoseTrackerService(manager)
+
+    @pytest.mark.asyncio
+    async def test_get_poses(self):
+        async with ChannelFor([self.service]) as channel:
+            client = PoseTrackerClient(self.name, channel)
+            received_poses = await client.get_poses([])
             assert received_poses['0'] == PoseInFrame(
                 reference_frame='0',
                 pose=Pose(
