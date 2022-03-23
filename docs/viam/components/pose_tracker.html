@@ -40,6 +40,18 @@
 
             </li>
             <li>
+                    <a class="class" href="#PoseTrackerClient">PoseTrackerClient</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#PoseTrackerClient.__init__">PoseTrackerClient</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#PoseTrackerClient.get_poses">get_poses</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
                     <a class="class" href="#PoseTrackerService">PoseTrackerService</a>
                             <ul class="memberlist">
                         <li>
@@ -70,12 +82,14 @@
                 
                         <details>
             <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">.client</span> <span class="kn">import</span> <span class="n">PoseTrackerClient</span>
+<span class="kn">from</span> <span class="nn">.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>
 <span class="kn">from</span> <span class="nn">.service</span> <span class="kn">import</span> <span class="n">PoseTrackerService</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;PoseTracker&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;PoseTrackerService&#39;</span>
+    <span class="s1">&#39;PoseTrackerClient&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PoseTrackerService&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 
@@ -148,6 +162,97 @@ you must call the super init function.</p>
 <span class="sd">                an empty list, all available poses are returned</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Returns the current pose of each body tracked by the pose tracker</p>
+
+<p>Args:
+    body_names (List[str]): Names of the bodies whose poses are being
+        requested. In the event this parameter is not supplied or is
+        an empty list, all available poses are returned</p>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="PoseTrackerClient">
+                                <div class="attr class">
+        <a class="headerlink" href="#PoseTrackerClient">#&nbsp;&nbsp</a>
+
+        
+        <span class="def">class</span>
+        <span class="name">PoseTrackerClient</span><wbr>(<span class="base"><a href="#PoseTracker">viam.components.pose_tracker.PoseTracker</a></span>):
+    </div>
+
+            <details>
+            <summary>View Source</summary>
+            <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">PoseTrackerClient</span><span class="p">(</span><span class="n">PoseTracker</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    gRPC client for the PoseTracker component.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">PoseTrackerServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_poses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PoseInFrame</span><span class="p">]:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPosesRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">body_names</span><span class="o">=</span><span class="n">body_names</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetPosesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetPoses</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">body_poses</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">body_poses</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>gRPC client for the PoseTracker component.</p>
+</div>
+
+
+                            <div id="PoseTrackerClient.__init__" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#PoseTrackerClient.__init__">#&nbsp;&nbsp</a>
+
+        
+            <span class="name">PoseTrackerClient</span><span class="signature">(name: str, channel: grpclib.client.Channel)</span>
+    </div>
+
+            <details>
+            <summary>View Source</summary>
+            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">PoseTrackerServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+        </details>
+
+    
+
+                            </div>
+                            <div id="PoseTrackerClient.get_poses" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#PoseTrackerClient.get_poses">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">async def</span>
+            <span class="name">get_poses</span><span class="signature">(
+    self,
+    body_names: List[str]
+) -&gt; Dict[str, proto.api.common.v1.common_pb2.PoseInFrame]</span>:
+    </div>
+
+            <details>
+            <summary>View Source</summary>
+            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_poses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PoseInFrame</span><span class="p">]:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPosesRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">body_names</span><span class="o">=</span><span class="n">body_names</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetPosesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetPoses</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">body_poses</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">body_poses</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span>
 </pre></div>
 
         </details>
