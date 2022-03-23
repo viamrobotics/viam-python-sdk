@@ -16,6 +16,12 @@ class ObjectSegmentationClient:
         self.client = ObjectSegmentationServiceStub(channel)
 
     async def get_segmenters(self) -> List[str]:
+        """
+        Get the list of segmenters in the registry
+
+        Returns:
+            List[str]: The segmenters
+        """
         request = GetSegmentersRequest()
         response: GetSegmentersResponse = \
             await self.client.GetSegmenters(request)
@@ -23,9 +29,20 @@ class ObjectSegmentationClient:
 
     async def get_segmenter_parameters(
         self,
-        name: str
+        segmenter_name: str
     ) -> List[Tuple[str, str]]:
-        request = GetSegmenterParametersRequest(segmenter_name=name)
+        """
+        Get the parameter fields needed for the given segmenter.
+
+        Args:
+            segmenter_name (str): The name of the segmenter
+
+        Returns:
+            List[Tuple[str, str]]: A list of parameters for the segmenter.
+                The first item in the tuple is the name of the parameter.
+                The second item in the tuple is the type of the parameter.
+        """
+        request = GetSegmenterParametersRequest(segmenter_name=segmenter_name)
         response: GetSegmenterParametersResponse = \
             await self.client.GetSegmenterParameters(request)
         return [(x.name, x.type) for x in response.parameters]
@@ -36,6 +53,19 @@ class ObjectSegmentationClient:
         segmenter_name: str,
         parameters: Dict[str, Any]
     ) -> List[PointCloudObject]:
+        """
+        Get all the found objects in a pointcloud from a camera of the
+        underlying robot, as well as the 3-vector center of each of the
+        found objects.
+
+        Args:
+            camera_name (str): The name of the camera
+            segmenter_name (str): The name of the segmenter
+            parameters (Dict[str, Any]): The parameters for the pointcloud
+
+        Returns:
+            List[PointCloudObject]: The pointclouds
+        """
         struct = Struct()
         struct.update(parameters)
         request = GetObjectPointCloudsRequest(
