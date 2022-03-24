@@ -7,13 +7,16 @@ from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.camera import Camera
-from viam.components.pose_tracker import PoseTracker
+from viam.components.gantry import Gantry
+from viam.components.imu import IMU
 from viam.components.motor import Motor
+from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.service_base import ComponentServiceBase
 from viam.components.servo import Servo
 from viam.proto.api.common import ResourceName
 from viam.proto.api.component.arm import Status as ArmStatus
+from viam.proto.api.component.gantry import Status as GantryStatus
 from viam.proto.api.component.motor import Status as MotorStatus
 from viam.proto.api.component.servo import Status as ServoStatus
 from viam.proto.api.service.status import (GetStatusRequest, GetStatusResponse,
@@ -77,6 +80,23 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
             if isinstance(component, Camera):
                 status = Status(
                     name=resource_name_for_component_type(component, Camera),
+                    status=Struct()
+                )
+                statuses.append(status)
+            if isinstance(component, Gantry):
+                s = GantryStatus(
+                    positions_mm=await component.get_position(),
+                    lengths_mm=await component.get_lengths()
+                )
+                as_struct = message_to_struct(s)
+                status = Status(
+                    name=resource_name_for_component_type(component, Gantry),
+                    status=as_struct
+                )
+                statuses.append(status)
+            if isinstance(component, IMU):
+                status = Status(
+                    name=resource_name_for_component_type(component, IMU),
                     status=Struct()
                 )
                 statuses.append(status)

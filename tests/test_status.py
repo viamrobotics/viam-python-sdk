@@ -6,6 +6,7 @@ from viam.proto.api.common import (AnalogStatus, BoardStatus,
                                    DigitalInterruptStatus, Pose, ResourceName)
 from viam.proto.api.component.arm import JointPositions
 from viam.proto.api.component.arm import Status as ArmStatus
+from viam.proto.api.component.gantry import Status as GantryStatus
 from viam.proto.api.component.motor import Status as MotorStatus
 from viam.proto.api.component.servo import Status as ServoStatus
 from viam.proto.api.service.status import (GetStatusRequest, GetStatusResponse,
@@ -14,8 +15,9 @@ from viam.status.service import StatusService
 from viam.utils import message_to_struct
 
 from .mocks.components import (MockAnalogReader, MockArm, MockBase, MockBoard,
-                               MockCamera, MockDigitalInterrupt, MockGPIOPin,
-                               MockIMU, MockMotor, MockPoseTracker, MockServo)
+                               MockCamera, MockDigitalInterrupt, MockGantry,
+                               MockGPIOPin, MockIMU, MockMotor,
+                               MockPoseTracker, MockServo)
 
 
 @pytest.mark.asyncio
@@ -51,6 +53,8 @@ async def test_status_service():
         ),
         MockCamera(name='camera1'),
         MockCamera(name='camera2'),
+        MockGantry(name='gantry1', position=[1, 2, 3], lengths=[4, 5, 6]),
+        MockGantry(name='gantry2', position=[7, 8, 9], lengths=[10, 11, 12]),
         MockIMU(name='imu1'),
         MockIMU(name='imu2'),
         MockMotor(name='motor1'),
@@ -190,6 +194,48 @@ async def test_status_service():
                     type='component',
                     subtype='camera',
                     name='camera2'
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='gantry',
+                    name='gantry1'
+                ),
+                status=message_to_struct(GantryStatus(
+                    positions_mm=[1, 2, 3],
+                    lengths_mm=[4, 5, 6]
+                ))
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='gantry',
+                    name='gantry2'
+                ),
+                status=message_to_struct(GantryStatus(
+                    positions_mm=[7, 8, 9],
+                    lengths_mm=[10, 11, 12]
+                ))
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='imu',
+                    name='imu1'
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='imu',
+                    name='imu2'
                 ),
                 status=Struct()
             ),

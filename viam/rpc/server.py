@@ -1,29 +1,28 @@
 import logging as pylogging
 from typing import List
 
-from grpclib.events import listen, RecvRequest
+from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
 from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
-
 from viam import logging
 from viam.components.arm import ArmService
 from viam.components.base import BaseService
 from viam.components.board import BoardService
+from viam.components.camera import CameraService
 from viam.components.component_base import ComponentBase
-from viam.components.motor import MotorService
-from viam.components.resource_manager import ResourceManager
+from viam.components.gantry import GantryService
 from viam.components.imu import IMUService
+from viam.components.motor import MotorService
 from viam.components.pose_tracker import PoseTrackerService
+from viam.components.resource_manager import ResourceManager
 from viam.components.sensor import SensorService
 from viam.components.servo import ServoService
 from viam.metadata.service import MetadataService
-from viam.status.service import StatusService
 from viam.robot.service import RobotService
-from viam.components.camera import CameraService
+from viam.status.service import StatusService
 
 from .signaling import SignalingService
-
 
 LOGGER = logging.getLogger(__name__)
 
@@ -55,6 +54,7 @@ class Server(ResourceManager):
             BaseService(manager=self),
             BoardService(manager=self),
             CameraService(manager=self),
+            GantryService(manager=self),
             IMUService(manager=self),
             MotorService(manager=self),
             PoseTrackerService(manager=self),

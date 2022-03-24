@@ -9,6 +9,7 @@ from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
+from viam.components.gantry import Gantry, GeometriesInFrame
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
                                  EulerAngles, Orientation)
 from viam.components.motor import Motor
@@ -241,6 +242,32 @@ class MockCamera(Camera):
 
     async def next_point_cloud(self) -> Tuple[bytes, str]:
         return self.point_cloud, CameraMimeType.PCD.value
+
+
+class MockGantry(Gantry):
+
+    def __init__(
+        self,
+        name: str,
+        position: List[float],
+        lengths: List[float]
+    ):
+        self.position = position
+        self.lengths = lengths
+        super().__init__(name)
+
+    async def get_position(self) -> List[float]:
+        return self.position
+
+    async def move_to_position(
+        self,
+        positions: List[float],
+        obstacles: List[GeometriesInFrame]
+    ):
+        self.position = positions
+
+    async def get_lengths(self) -> List[float]:
+        return self.lengths
 
 
 class MockIMU(IMU):
