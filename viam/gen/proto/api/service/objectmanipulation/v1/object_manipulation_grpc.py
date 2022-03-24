@@ -14,10 +14,15 @@ class ObjectManipulationServiceBase(abc.ABC):
     async def DoGrab(self, stream: 'grpclib.server.Stream[proto.api.service.objectmanipulation.v1.object_manipulation_pb2.DoGrabRequest, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.DoGrabResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def GetPose(self, stream: 'grpclib.server.Stream[proto.api.service.objectmanipulation.v1.object_manipulation_pb2.GetPoseRequest, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.GetPoseResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/proto.api.service.objectmanipulation.v1.ObjectManipulationService/DoGrab': grpclib.const.Handler(self.DoGrab, grpclib.const.Cardinality.UNARY_UNARY, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.DoGrabRequest, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.DoGrabResponse)}
+        return {'/proto.api.service.objectmanipulation.v1.ObjectManipulationService/DoGrab': grpclib.const.Handler(self.DoGrab, grpclib.const.Cardinality.UNARY_UNARY, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.DoGrabRequest, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.DoGrabResponse), '/proto.api.service.objectmanipulation.v1.ObjectManipulationService/GetPose': grpclib.const.Handler(self.GetPose, grpclib.const.Cardinality.UNARY_UNARY, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.GetPoseRequest, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.GetPoseResponse)}
 
 class ObjectManipulationServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
         self.DoGrab = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.service.objectmanipulation.v1.ObjectManipulationService/DoGrab', proto.api.service.objectmanipulation.v1.object_manipulation_pb2.DoGrabRequest, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.DoGrabResponse)
+        self.GetPose = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.service.objectmanipulation.v1.ObjectManipulationService/GetPose', proto.api.service.objectmanipulation.v1.object_manipulation_pb2.GetPoseRequest, proto.api.service.objectmanipulation.v1.object_manipulation_pb2.GetPoseResponse)

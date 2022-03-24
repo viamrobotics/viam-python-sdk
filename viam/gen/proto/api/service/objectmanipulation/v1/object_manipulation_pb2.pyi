@@ -49,3 +49,42 @@ class DoGrabResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
         ...
 global___DoGrabResponse = DoGrabResponse
+
+class GetPoseRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    DESTINATION_FRAME_FIELD_NUMBER: builtins.int
+
+    @property
+    def component_name(self) -> proto.api.common.v1.common_pb2.ResourceName:
+        ...
+    destination_frame: typing.Text = ...
+    'world if unset'
+
+    def __init__(self, *, component_name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., destination_frame: typing.Text=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'destination_frame', b'destination_frame']) -> None:
+        ...
+global___GetPoseRequest = GetPoseRequest
+
+class GetPoseResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    POSE_FIELD_NUMBER: builtins.int
+
+    @property
+    def pose(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
+        ...
+
+    def __init__(self, *, pose: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> None:
+        ...
+global___GetPoseResponse = GetPoseResponse
