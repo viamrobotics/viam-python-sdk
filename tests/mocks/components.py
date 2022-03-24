@@ -19,6 +19,7 @@ from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
                                    DigitalInterruptStatus, Pose, PoseInFrame)
 from viam.proto.api.component.arm import JointPositions
+from viam.utils import CameraMimeType
 
 
 class MockArm(Arm):
@@ -232,13 +233,14 @@ class MockCamera(Camera):
 
     def __init__(self, name: str):
         self.image = Image.new('RGBA', (100, 100), '#AABBCCDD')
+        self.point_cloud = b'THIS IS A POINT CLOUD'
         super().__init__(name)
 
     async def next(self) -> Image.Image:
         return self.image
 
     async def next_point_cloud(self) -> Tuple[bytes, str]:
-        raise NotImplementedError()
+        return self.point_cloud, CameraMimeType.PCD.value
 
 
 class MockIMU(IMU):

@@ -25,7 +25,10 @@ from viam.utils import message_to_struct, resource_name_for_component_type
 
 class StatusService(StatusServiceBase, ComponentServiceBase):
 
-    async def _generate_status(self, resource_names: Iterable[ResourceName]) -> List[Status]:
+    async def _generate_status(
+        self,
+        resource_names: Iterable[ResourceName]
+    ) -> List[Status]:
         statuses: List[Status] = [
             Status(
                 name=ResourceName(
