@@ -1,5 +1,4 @@
 from io import BytesIO
-from grpclib import GRPCError
 import pytest
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.testing import ChannelFor
@@ -17,16 +16,21 @@ from .mocks.components import MockCamera
 
 
 @pytest.fixture(scope='function')
-def camera() -> Camera:
-    return MockCamera(name='camera')
-
-
-@pytest.fixture()
 def image() -> Image.Image:
     return Image.new('RGBA', (100, 100), '#AABBCCDD')
 
 
-@pytest.fixture()
+@pytest.fixture(scope='function')
+def point_cloud() -> bytes:
+    return b'THIS IS A POINT CLOUD'
+
+
+@pytest.fixture(scope='function')
+def camera() -> Camera:
+    return MockCamera(name='camera')
+
+
+@pytest.fixture(scope='function')
 def service(camera: Camera) -> CameraService:
     rm = ResourceManager([camera])
     return CameraService(rm)
@@ -40,16 +44,17 @@ class TestCamera:
         assert img == image
 
     @pytest.mark.asyncio
-    async def test_next_point_cloud(self, camera: Camera):
-        with pytest.raises(NotImplementedError):
-            await camera.next_point_cloud()
+    async def test_next_point_cloud(self, camera: Camera, point_cloud: bytes):
+        pc, _ = await camera.next_point_cloud()
+        assert pc == point_cloud
 
 
 class TestService:
 
     @pytest.mark.asyncio
     async def test_get_frame(
-        self, service: CameraService,
+        self,
+        service: CameraService,
         image: Image.Image
     ):
         async with ChannelFor([service]) as channel:
@@ -84,13 +89,15 @@ class TestService:
     async def test_get_point_cloud(
         self,
         service: CameraService,
+        point_cloud: bytes
     ):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = GetPointCloudRequest(
                 name='camera', mime_type=CameraMimeType.PCD.value)
-            with pytest.raises(GRPCError):
+            response: GetPointCloudResponse = \
                 await client.GetPointCloud(request)
+            assert response.point_cloud == point_cloud
 
 
 class TestClient:
@@ -109,9 +116,10 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_next_point_cloud(
         self,
-        service: CameraService
+        service: CameraService,
+        point_cloud: bytes
     ):
         async with ChannelFor([service]) as channel:
             camera = CameraClient('camera', channel)
-            with pytest.raises(GRPCError):
-                await camera.next_point_cloud()
+            pc, _ = await camera.next_point_cloud()
+            assert pc == point_cloud

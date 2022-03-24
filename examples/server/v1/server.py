@@ -5,8 +5,9 @@ from viam.rpc.server import Server
 
 from .components import (ExampleAnalogReader, ExampleArm, ExampleBase,
                          ExampleBoard, ExampleCamera, ExampleDigitalInterrupt,
-                         ExampleGPIOPin, ExampleIMU, ExampleMotor,
-                         ExamplePoseTracker, ExampleSensor, ExampleServo)
+                         ExampleGantry, ExampleGPIOPin, ExampleIMU,
+                         ExampleMotor, ExamplePoseTracker, ExampleSensor,
+                         ExampleServo)
 
 
 async def run():
@@ -25,6 +26,7 @@ async def run():
         },
     )
     my_camera = ExampleCamera('camera0')
+    my_gantry = ExampleGantry('gantry0', [1, 2, 3], [4, 5, 6])
     my_imu = ExampleIMU('imu0')
     my_motor = ExampleMotor('motor0')
     my_pose_tracker = ExamplePoseTracker('pose_tracker0')
@@ -35,6 +37,7 @@ async def run():
         my_base,
         my_board,
         my_camera,
+        my_gantry,
         my_imu,
         my_motor,
         my_pose_tracker,
