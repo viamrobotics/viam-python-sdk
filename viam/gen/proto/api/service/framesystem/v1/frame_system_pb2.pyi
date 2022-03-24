@@ -74,3 +74,41 @@ class ConfigResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['frame_system_configs', b'frame_system_configs']) -> None:
         ...
 global___ConfigResponse = ConfigResponse
+
+class TransformPoseRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    SOURCE_FIELD_NUMBER: builtins.int
+    DESTINATION_FIELD_NUMBER: builtins.int
+
+    @property
+    def source(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
+        ...
+    destination: typing.Text = ...
+
+    def __init__(self, *, source: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., destination: typing.Text=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['source', b'source']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['destination', b'destination', 'source', b'source']) -> None:
+        ...
+global___TransformPoseRequest = TransformPoseRequest
+
+class TransformPoseResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    POSE_FIELD_NUMBER: builtins.int
+
+    @property
+    def pose(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
+        ...
+
+    def __init__(self, *, pose: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> None:
+        ...
+global___TransformPoseResponse = TransformPoseResponse

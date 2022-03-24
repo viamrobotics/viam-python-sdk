@@ -8,5 +8,7 @@ from .....gen.proto.api.service.objectmanipulation.v1.object_manipulation_grpc i
 )
 from .....gen.proto.api.service.objectmanipulation.v1.object_manipulation_pb2 import (
     DoGrabRequest,
-    DoGrabResponse
+    DoGrabResponse,
+    GetPoseRequest,
+    GetPoseResponse
 )
