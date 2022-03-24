@@ -8,6 +8,7 @@ from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.camera import Camera
 from viam.components.gantry import Gantry
+from viam.components.gps import GPS
 from viam.components.imu import IMU
 from viam.components.motor import Motor
 from viam.components.pose_tracker import PoseTracker
@@ -92,6 +93,12 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 status = Status(
                     name=resource_name_for_component_type(component, Gantry),
                     status=as_struct
+                )
+                statuses.append(status)
+            if isinstance(component, GPS):
+                status = Status(
+                    name=resource_name_for_component_type(component, GPS),
+                    status=Struct()
                 )
                 statuses.append(status)
             if isinstance(component, IMU):
