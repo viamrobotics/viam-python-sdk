@@ -70,13 +70,16 @@
 <span class="kn">from</span> <span class="nn">viam.components.base</span> <span class="kn">import</span> <span class="n">Base</span>
 <span class="kn">from</span> <span class="nn">viam.components.board</span> <span class="kn">import</span> <span class="n">Board</span>
 <span class="kn">from</span> <span class="nn">viam.components.camera</span> <span class="kn">import</span> <span class="n">Camera</span>
-<span class="kn">from</span> <span class="nn">viam.components.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>
+<span class="kn">from</span> <span class="nn">viam.components.gantry</span> <span class="kn">import</span> <span class="n">Gantry</span>
+<span class="kn">from</span> <span class="nn">viam.components.imu</span> <span class="kn">import</span> <span class="n">IMU</span>
 <span class="kn">from</span> <span class="nn">viam.components.motor</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">viam.components.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>
 <span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.components.servo</span> <span class="kn">import</span> <span class="n">Servo</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.arm</span> <span class="kn">import</span> <span class="n">Status</span> <span class="k">as</span> <span class="n">ArmStatus</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.gantry</span> <span class="kn">import</span> <span class="n">Status</span> <span class="k">as</span> <span class="n">GantryStatus</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.motor</span> <span class="kn">import</span> <span class="n">Status</span> <span class="k">as</span> <span class="n">MotorStatus</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.servo</span> <span class="kn">import</span> <span class="n">Status</span> <span class="k">as</span> <span class="n">ServoStatus</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.service.status</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GetStatusRequest</span><span class="p">,</span> <span class="n">GetStatusResponse</span><span class="p">,</span>
@@ -88,7 +91,10 @@
 
 <span class="k">class</span> <span class="nc">StatusService</span><span class="p">(</span><span class="n">StatusServiceBase</span><span class="p">,</span> <span class="n">ComponentServiceBase</span><span class="p">):</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_generate_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Status</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_generate_status</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">resource_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Status</span><span class="p">]:</span>
         <span class="n">statuses</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Status</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Status</span><span class="p">(</span>
                 <span class="n">name</span><span class="o">=</span><span class="n">ResourceName</span><span class="p">(</span>
@@ -137,6 +143,23 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Camera</span><span class="p">):</span>
                 <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
                     <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Camera</span><span class="p">),</span>
+                    <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Gantry</span><span class="p">):</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">GantryStatus</span><span class="p">(</span>
+                    <span class="n">positions_mm</span><span class="o">=</span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_position</span><span class="p">(),</span>
+                    <span class="n">lengths_mm</span><span class="o">=</span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_lengths</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">as_struct</span> <span class="o">=</span> <span class="n">message_to_struct</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Gantry</span><span class="p">),</span>
+                    <span class="n">status</span><span class="o">=</span><span class="n">as_struct</span>
+                <span class="p">)</span>
+                <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">IMU</span><span class="p">):</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">IMU</span><span class="p">),</span>
                     <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
                 <span class="p">)</span>
                 <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
@@ -222,7 +245,10 @@
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">StatusService</span><span class="p">(</span><span class="n">StatusServiceBase</span><span class="p">,</span> <span class="n">ComponentServiceBase</span><span class="p">):</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_generate_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Status</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_generate_status</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">resource_names</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Status</span><span class="p">]:</span>
         <span class="n">statuses</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Status</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Status</span><span class="p">(</span>
                 <span class="n">name</span><span class="o">=</span><span class="n">ResourceName</span><span class="p">(</span>
@@ -271,6 +297,23 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Camera</span><span class="p">):</span>
                 <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
                     <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Camera</span><span class="p">),</span>
+                    <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Gantry</span><span class="p">):</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">GantryStatus</span><span class="p">(</span>
+                    <span class="n">positions_mm</span><span class="o">=</span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_position</span><span class="p">(),</span>
+                    <span class="n">lengths_mm</span><span class="o">=</span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">get_lengths</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">as_struct</span> <span class="o">=</span> <span class="n">message_to_struct</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Gantry</span><span class="p">),</span>
+                    <span class="n">status</span><span class="o">=</span><span class="n">as_struct</span>
+                <span class="p">)</span>
+                <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">IMU</span><span class="p">):</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">IMU</span><span class="p">),</span>
                     <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
                 <span class="p">)</span>
                 <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
