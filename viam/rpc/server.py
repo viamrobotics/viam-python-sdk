@@ -12,6 +12,7 @@ from viam.components.board import BoardService
 from viam.components.camera import CameraService
 from viam.components.component_base import ComponentBase
 from viam.components.gantry import GantryService
+from viam.components.gps import GPSService
 from viam.components.imu import IMUService
 from viam.components.motor import MotorService
 from viam.components.pose_tracker import PoseTrackerService
@@ -55,6 +56,7 @@ class Server(ResourceManager):
             BoardService(manager=self),
             CameraService(manager=self),
             GantryService(manager=self),
+            GPSService(manager=self),
             IMUService(manager=self),
             MotorService(manager=self),
             PoseTrackerService(manager=self),

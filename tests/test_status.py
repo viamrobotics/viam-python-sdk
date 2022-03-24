@@ -1,6 +1,7 @@
 import pytest
 from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
+from viam.components.gps import GPS
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
                                    DigitalInterruptStatus, Pose, ResourceName)
@@ -16,7 +17,7 @@ from viam.utils import message_to_struct
 
 from .mocks.components import (MockAnalogReader, MockArm, MockBase, MockBoard,
                                MockCamera, MockDigitalInterrupt, MockGantry,
-                               MockGPIOPin, MockIMU, MockMotor,
+                               MockGPIOPin, MockGPS, MockIMU, MockMotor,
                                MockPoseTracker, MockServo)
 
 
@@ -55,6 +56,18 @@ async def test_status_service():
         MockCamera(name='camera2'),
         MockGantry(name='gantry1', position=[1, 2, 3], lengths=[4, 5, 6]),
         MockGantry(name='gantry2', position=[7, 8, 9], lengths=[10, 11, 12]),
+        MockGPS(
+            name='gps1',
+            location=GPS.Point(40.664679865782624, -73.97668056188789),
+            altitude=15,
+            speed=1341.12
+        ),
+        MockGPS(
+            name='gps2',
+            location=GPS.Point(-49.55979219617353, 69.4930936568856),
+            altitude=1850,
+            speed=614.57
+        ),
         MockIMU(name='imu1'),
         MockIMU(name='imu2'),
         MockMotor(name='motor1'),
@@ -220,6 +233,24 @@ async def test_status_service():
                     positions_mm=[7, 8, 9],
                     lengths_mm=[10, 11, 12]
                 ))
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='gps',
+                    name='gps1'
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='gps',
+                    name='gps2'
+                ),
+                status=Struct()
             ),
             Status(
                 name=ResourceName(

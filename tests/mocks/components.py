@@ -10,6 +10,7 @@ from viam.components.board import Board
 from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
 from viam.components.gantry import Gantry, GeometriesInFrame
+from viam.components.gps import GPS
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
                                  EulerAngles, Orientation)
 from viam.components.motor import Motor
@@ -268,6 +269,30 @@ class MockGantry(Gantry):
 
     async def get_lengths(self) -> List[float]:
         return self.lengths
+
+
+class MockGPS(GPS):
+
+    def __init__(
+        self,
+        name: str,
+        location: GPS.Point,
+        altitude: float,
+        speed: float
+    ):
+        self.location = location
+        self.altitude = altitude
+        self.speed = speed
+        super().__init__(name)
+
+    async def read_location(self) -> GPS.Point:
+        return self.location
+
+    async def read_altitude(self) -> float:
+        return self.altitude
+
+    async def read_speed(self) -> float:
+        return self.speed
 
 
 class MockIMU(IMU):
