@@ -10,35 +10,38 @@ import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
-class DoGrabRequest(google.protobuf.message.Message):
+class MoveRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    TARGET_FIELD_NUMBER: builtins.int
-    GRIPPER_NAME_FIELD_NUMBER: builtins.int
+    DESTINATION_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
 
     @property
-    def target(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
+    def destination(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
         ...
-    gripper_name: typing.Text = ...
+
+    @property
+    def component_name(self) -> proto.api.common.v1.common_pb2.ResourceName:
+        ...
 
     @property
     def world_state(self) -> proto.api.common.v1.common_pb2.WorldState:
         ...
 
-    def __init__(self, *, target: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., gripper_name: typing.Text=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=...) -> None:
+    def __init__(self, *, destination: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., component_name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'target', b'target', 'world_state', b'world_state']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'component_name', b'component_name', 'destination', b'destination', 'world_state', b'world_state']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'gripper_name', b'gripper_name', 'target', b'target', 'world_state', b'world_state']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'component_name', b'component_name', 'destination', b'destination', 'world_state', b'world_state']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
         ...
-global___DoGrabRequest = DoGrabRequest
+global___MoveRequest = MoveRequest
 
-class DoGrabResponse(google.protobuf.message.Message):
+class MoveResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     SUCCESS_FIELD_NUMBER: builtins.int
     success: builtins.bool = ...
@@ -48,7 +51,7 @@ class DoGrabResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
         ...
-global___DoGrabResponse = DoGrabResponse
+global___MoveResponse = MoveResponse
 
 class GetPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
