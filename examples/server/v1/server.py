@@ -1,14 +1,14 @@
 import asyncio
 import logging
 
-from viam.rpc.server import Server
 from viam.components.gps import GPS
+from viam.rpc.server import Server
 
 from .components import (ExampleAnalogReader, ExampleArm, ExampleBase,
                          ExampleBoard, ExampleCamera, ExampleDigitalInterrupt,
-                         ExampleGantry, ExampleGPIOPin, ExampleGPS, ExampleIMU,
-                         ExampleMotor, ExamplePoseTracker, ExampleSensor,
-                         ExampleServo)
+                         ExampleGantry, ExampleGPIOPin, ExampleGPS,
+                         ExampleGripper, ExampleIMU, ExampleMotor,
+                         ExamplePoseTracker, ExampleSensor, ExampleServo)
 
 
 async def run():
@@ -34,6 +34,7 @@ async def run():
         altitude=15,
         speed=1341.12
     )
+    my_gripper = ExampleGripper('gripper0')
     my_imu = ExampleIMU('imu0')
     my_motor = ExampleMotor('motor0')
     my_pose_tracker = ExamplePoseTracker('pose_tracker0')
@@ -46,6 +47,7 @@ async def run():
         my_camera,
         my_gantry,
         my_gps,
+        my_gripper,
         my_imu,
         my_motor,
         my_pose_tracker,
