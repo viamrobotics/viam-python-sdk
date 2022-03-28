@@ -72,6 +72,7 @@
 <span class="kn">from</span> <span class="nn">viam.components.camera</span> <span class="kn">import</span> <span class="n">Camera</span>
 <span class="kn">from</span> <span class="nn">viam.components.gantry</span> <span class="kn">import</span> <span class="n">Gantry</span>
 <span class="kn">from</span> <span class="nn">viam.components.gps</span> <span class="kn">import</span> <span class="n">GPS</span>
+<span class="kn">from</span> <span class="nn">viam.components.gripper</span> <span class="kn">import</span> <span class="n">Gripper</span>
 <span class="kn">from</span> <span class="nn">viam.components.imu</span> <span class="kn">import</span> <span class="n">IMU</span>
 <span class="kn">from</span> <span class="nn">viam.components.motor</span> <span class="kn">import</span> <span class="n">Motor</span>
 <span class="kn">from</span> <span class="nn">viam.components.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>
@@ -161,6 +162,12 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">GPS</span><span class="p">):</span>
                 <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
                     <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">GPS</span><span class="p">),</span>
+                    <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Gripper</span><span class="p">):</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Gripper</span><span class="p">),</span>
                     <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
                 <span class="p">)</span>
                 <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
@@ -321,6 +328,12 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">GPS</span><span class="p">):</span>
                 <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
                     <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">GPS</span><span class="p">),</span>
+                    <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Gripper</span><span class="p">):</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">resource_name_for_component_type</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">Gripper</span><span class="p">),</span>
                     <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
                 <span class="p">)</span>
                 <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
