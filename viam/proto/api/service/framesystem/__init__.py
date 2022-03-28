@@ -10,7 +10,6 @@ from .....gen.proto.api.service.framesystem.v1.frame_system_pb2 import (
     Config,
     ConfigRequest,
     ConfigResponse,
-    FrameConfig,
     TransformPoseRequest,
     TransformPoseResponse
 )

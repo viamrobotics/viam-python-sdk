@@ -11,45 +11,25 @@ import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
-class FrameConfig(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    PARENT_FIELD_NUMBER: builtins.int
-    POSE_FIELD_NUMBER: builtins.int
-    parent: typing.Text = ...
-
-    @property
-    def pose(self) -> proto.api.common.v1.common_pb2.Pose:
-        ...
-
-    def __init__(self, *, parent: typing.Text=..., pose: typing.Optional[proto.api.common.v1.common_pb2.Pose]=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['parent', b'parent', 'pose', b'pose']) -> None:
-        ...
-global___FrameConfig = FrameConfig
-
 class Config(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    FRAME_CONFIG_FIELD_NUMBER: builtins.int
+    POSE_IN_PARENT_FRAME_FIELD_NUMBER: builtins.int
     MODEL_JSON_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
 
     @property
-    def frame_config(self) -> global___FrameConfig:
+    def pose_in_parent_frame(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
         ...
     model_json: builtins.bytes = ...
 
-    def __init__(self, *, name: typing.Text=..., frame_config: typing.Optional[global___FrameConfig]=..., model_json: builtins.bytes=...) -> None:
+    def __init__(self, *, name: typing.Text=..., pose_in_parent_frame: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., model_json: builtins.bytes=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['frame_config', b'frame_config']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['pose_in_parent_frame', b'pose_in_parent_frame']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['frame_config', b'frame_config', 'model_json', b'model_json', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['model_json', b'model_json', 'name', b'name', 'pose_in_parent_frame', b'pose_in_parent_frame']) -> None:
         ...
 global___Config = Config
 
