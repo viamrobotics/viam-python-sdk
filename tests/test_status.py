@@ -17,8 +17,8 @@ from viam.utils import message_to_struct
 
 from .mocks.components import (MockAnalogReader, MockArm, MockBase, MockBoard,
                                MockCamera, MockDigitalInterrupt, MockGantry,
-                               MockGPIOPin, MockGPS, MockIMU, MockMotor,
-                               MockPoseTracker, MockServo)
+                               MockGPIOPin, MockGPS, MockGripper, MockIMU,
+                               MockMotor, MockPoseTracker, MockServo)
 
 
 @pytest.mark.asyncio
@@ -68,6 +68,8 @@ async def test_status_service():
             altitude=1850,
             speed=614.57
         ),
+        MockGripper(name='gripper1'),
+        MockGripper(name='gripper2'),
         MockIMU(name='imu1'),
         MockIMU(name='imu2'),
         MockMotor(name='motor1'),
@@ -249,6 +251,24 @@ async def test_status_service():
                     type='component',
                     subtype='gps',
                     name='gps2'
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='gripper',
+                    name='gripper1'
+                ),
+                status=Struct()
+            ),
+            Status(
+                name=ResourceName(
+                    namespace='rdk',
+                    type='component',
+                    subtype='gripper',
+                    name='gripper2'
                 ),
                 status=Struct()
             ),

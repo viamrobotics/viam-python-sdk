@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from multiprocessing import Queue
 from random import random
+from secrets import choice
 from typing import Any, Dict, List, Tuple
 
 from PIL import Image
@@ -11,6 +12,7 @@ from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
 from viam.components.gantry import Gantry, GeometriesInFrame
 from viam.components.gps import GPS
+from viam.components.gripper import Gripper
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
                                  EulerAngles, Orientation)
 from viam.components.motor import Motor
@@ -293,6 +295,20 @@ class MockGPS(GPS):
 
     async def read_speed(self) -> float:
         return self.speed
+
+
+class MockGripper(Gripper):
+
+    def __init__(self, name: str):
+        self.opened = False
+        super().__init__(name)
+
+    async def open(self):
+        self.opened = True
+
+    async def grab(self) -> bool:
+        self.opened = False
+        return choice([True, False])
 
 
 class MockIMU(IMU):

@@ -13,7 +13,7 @@ from .gps import GPS
 
 class GPSService(GPSServiceBase, ComponentServiceBase[GPS]):
     """
-    gRPC Service for an GPS
+    gRPC Service for a GPS
     """
 
     RESOURCE_TYPE = GPS
