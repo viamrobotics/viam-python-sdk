@@ -2,7 +2,7 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.imu import (
-    IMUClient
+    IMUClient,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
 from viam.components.imu.service import IMUService
