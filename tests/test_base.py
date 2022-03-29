@@ -3,7 +3,8 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.resource_manager import ResourceManager
-from viam.components.base import BaseClient, BaseService
+from viam.components.base import BaseClient
+from viam.components.base.service import BaseService
 from viam.proto.api.component.base import (
     BaseServiceStub,
     MoveStraightRequest,

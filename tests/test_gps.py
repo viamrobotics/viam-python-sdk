@@ -1,6 +1,7 @@
 import pytest
 from grpclib.testing import ChannelFor
-from viam.components.gps import GPS, GPSClient, GPSService
+from viam.components.gps import GPS, GPSClient
+from viam.components.gps.service import GPSService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.common import GeoPoint
 from viam.proto.api.component.gps import (GPSServiceStub, ReadAltitudeRequest,

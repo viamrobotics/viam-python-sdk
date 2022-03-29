@@ -2,7 +2,8 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.resource_manager import ResourceManager
-from viam.components.motor import MotorService, MotorClient
+from viam.components.motor import MotorClient
+from viam.components.motor.service import MotorService
 from viam.proto.api.component.motor import (
     MotorServiceStub,
     SetPowerRequest,

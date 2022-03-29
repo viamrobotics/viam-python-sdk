@@ -1,6 +1,7 @@
 import pytest
 from grpclib.testing import ChannelFor
 from viam.components.arm import ArmClient, ArmService
+from viam.components.arm.service import ArmService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.common import Pose
 from viam.proto.api.component.arm import (ArmServiceStub,

@@ -5,5 +5,4 @@ from .service import GripperService
 __all__ = [
     'Gripper',
     'GripperClient',
-    'GripperService',
 ]
