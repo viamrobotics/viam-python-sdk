@@ -1,5 +1,7 @@
+from typing import List
+
 from grpclib.client import Channel
-from viam.proto.api.common import Pose
+from viam.proto.api.common import GeometriesInFrame, Pose, WorldState
 from viam.proto.api.component.arm import (ArmServiceStub,
                                           GetEndPositionRequest,
                                           GetEndPositionResponse,
@@ -27,8 +29,14 @@ class ArmClient(Arm):
             await self.client.GetEndPosition(request)
         return response.pose
 
-    async def move_to_position(self, pose: Pose):
-        request = MoveToPositionRequest(name=self.name, to=pose)
+    async def move_to_position(
+        self,
+        pose: Pose,
+        obstacles: List[GeometriesInFrame]
+    ):
+        world_state = WorldState(obstacles=obstacles)
+        request = MoveToPositionRequest(
+            name=self.name, to=pose, world_state=world_state)
         await self.client.MoveToPosition(request)
 
     async def get_joint_positions(self) -> JointPositions:

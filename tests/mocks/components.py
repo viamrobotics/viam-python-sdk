@@ -44,7 +44,11 @@ class MockArm(Arm):
     async def get_end_position(self) -> Pose:
         return self.position
 
-    async def move_to_position(self, pose: Pose):
+    async def move_to_position(
+        self,
+        pose: Pose,
+        obstacles: List[GeometriesInFrame]
+    ):
         self.position = pose
 
     async def get_joint_positions(self) -> JointPositions:
