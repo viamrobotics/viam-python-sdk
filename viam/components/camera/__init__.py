@@ -5,5 +5,4 @@ from .service import CameraService
 __all__ = [
     'Camera',
     'CameraClient',
-    'CameraService',
 ]

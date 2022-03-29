@@ -5,7 +5,6 @@ from .service import IMUService
 __all__ = [
     'IMU',
     'IMUClient',
-    'IMUService',
     'Orientation',
     'Acceleration',
     'AngularVelocity',

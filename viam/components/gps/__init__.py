@@ -6,5 +6,4 @@ __all__ = [
     'GPS',
     'LocalGPS',
     'GPSClient',
-    'GPSService',
 ]
