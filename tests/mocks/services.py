@@ -1,13 +1,46 @@
 from typing import Dict, List, Tuple
 
 from grpclib.server import Stream
-from viam.proto.api.common import PointCloudObject
+from viam.proto.api.common import PointCloudObject, PoseInFrame, ResourceName
+from viam.proto.api.service.motion import (GetPoseRequest, GetPoseResponse,
+                                           MotionServiceBase, MoveRequest,
+                                           MoveResponse)
 from viam.proto.api.service.objectsegmentation import (
     GetObjectPointCloudsRequest, GetObjectPointCloudsResponse,
     GetSegmenterParametersRequest, GetSegmenterParametersResponse,
     GetSegmentersRequest, GetSegmentersResponse, ObjectSegmentationServiceBase,
     TypedParameter)
 from viam.utils import CameraMimeType
+
+
+class MockMotionService(MotionServiceBase):
+
+    def __init__(
+        self,
+        move_responses: Dict[str, bool],
+        get_pose_responses: Dict[str, PoseInFrame]
+    ):
+        self.move_responses = move_responses
+        self.get_pose_responses = get_pose_responses
+
+    async def Move(self, stream: Stream[MoveRequest, MoveResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name: ResourceName = request.component_name
+        success = self.move_responses[name.name]
+        response = MoveResponse(success=success)
+        await stream.send_message(response)
+
+    async def GetPose(
+        self,
+        stream: Stream[GetPoseRequest, GetPoseResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name: ResourceName = request.component_name
+        pose = self.get_pose_responses[name.name]
+        response = GetPoseResponse(pose=pose)
+        await stream.send_message(response)
 
 
 class MockObjectSegmentationService(ObjectSegmentationServiceBase):
