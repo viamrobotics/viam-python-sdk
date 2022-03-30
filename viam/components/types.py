@@ -14,3 +14,11 @@ class ComponentType(Enum):
     POSE_TRACKER = 'pose_tracker'
     SENSOR = 'sensor'
     SERVO = 'servo'
+
+
+class CameraMimeType(Enum):
+    RAW = 'image/raw-rgba'
+    BEST = 'image/viambest'
+    JPEG = 'image/jpeg'
+    PNG = 'image/png'
+    PCD = 'pointcloud/pcd'

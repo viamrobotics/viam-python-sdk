@@ -15,7 +15,7 @@ from viam.proto.api.service.objectsegmentation import (
     GetSegmenterParametersRequest, GetSegmenterParametersResponse,
     GetSegmentersRequest, GetSegmentersResponse, ObjectSegmentationServiceBase,
     TypedParameter)
-from viam.utils import CameraMimeType
+from viam.components.types import CameraMimeType
 
 
 class MockFrameSystemService(FrameSystemServiceBase):

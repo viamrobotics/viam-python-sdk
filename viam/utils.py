@@ -1,13 +1,13 @@
 import os
 import sys
 from typing import Any, Dict, List, SupportsFloat, Type
-from enum import Enum
 
 from google.protobuf.json_format import MessageToDict
 from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
 from viam.components.component_base import ComponentBase
+from viam.components import ComponentType
 from viam.proto.api.common import ResourceName
 
 
@@ -120,6 +120,18 @@ def resource_name_for_component_type(
     )
 
 
+def resource_name_for_component_name_type(
+    name: str,
+    _type: ComponentType
+) -> ResourceName:
+    return ResourceName(
+        namespace='rdk',
+        type='component',
+        subtype=_type.value,
+        name=name
+    )
+
+
 def message_to_struct(message: Message) -> Struct:
     struct = Struct()
     struct.update(MessageToDict(message))
@@ -142,11 +154,3 @@ def update() -> None:
         f'pip install git+https://{token}' +
         '@github.com/viamrobotics/python-sdk.git'
     )
-
-
-class CameraMimeType(Enum):
-    RAW = 'image/raw-rgba'
-    BEST = 'image/viambest'
-    JPEG = 'image/jpeg'
-    PNG = 'image/png'
-    PCD = 'pointcloud/pcd'

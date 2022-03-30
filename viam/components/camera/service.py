@@ -10,7 +10,7 @@ from viam.proto.api.component.camera import (CameraServiceBase,
                                              GetPointCloudRequest,
                                              GetPointCloudResponse,
                                              RenderFrameRequest)
-from viam.utils import CameraMimeType
+from viam.components.types import CameraMimeType
 
 from .camera import Camera
 
