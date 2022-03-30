@@ -99,14 +99,6 @@ async def test_status_service():
             Status(
                 name=ResourceName(
                     namespace='rdk',
-                    type='service',
-                    subtype='object_segmentation',
-                ),
-                status=Struct()
-            ),
-            Status(
-                name=ResourceName(
-                    namespace='rdk',
                     type='component',
                     subtype='arm',
                     name='arm1'
