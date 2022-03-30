@@ -34,10 +34,10 @@
                     <a class="class" href="#Camera">Camera</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="function" href="#Camera.next">next</a>
+                                <a class="function" href="#Camera.get_frame">get_frame</a>
                         </li>
                         <li>
-                                <a class="function" href="#Camera.next_point_cloud">next_point_cloud</a>
+                                <a class="function" href="#Camera.get_point_cloud">get_point_cloud</a>
                         </li>
                 </ul>
 
@@ -49,10 +49,10 @@
                                 <a class="function" href="#CameraClient.__init__">CameraClient</a>
                         </li>
                         <li>
-                                <a class="function" href="#CameraClient.next">next</a>
+                                <a class="function" href="#CameraClient.get_frame">get_frame</a>
                         </li>
                         <li>
-                                <a class="function" href="#CameraClient.next_point_cloud">next_point_cloud</a>
+                                <a class="function" href="#CameraClient.get_point_cloud">get_point_cloud</a>
                         </li>
                 </ul>
 
@@ -108,18 +108,18 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the next frame from the camera as an Image.</span>
 <span class="sd">        Be sure to close the image when finished.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Image: The next frame</span>
+<span class="sd">            Image: The frame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">next_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the next point cloud from the camera. This will be</span>
 <span class="sd">        returned as bytes with a mimetype describing</span>
@@ -143,25 +143,25 @@ you must call the super init function.</p>
 </div>
 
 
-                            <div id="Camera.next" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#Camera.next">#&nbsp;&nbsp</a>
+                            <div id="Camera.get_frame" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#Camera.get_frame">#&nbsp;&nbsp</a>
 
                 <div class="decorator">@abc.abstractmethod</div>
 
             <span class="def">async def</span>
-            <span class="name">next</span><span class="signature">(self) -&gt; PIL.Image.Image</span>:
+            <span class="name">get_frame</span><span class="signature">(self) -&gt; PIL.Image.Image</span>:
     </div>
 
             <details>
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the next frame from the camera as an Image.</span>
 <span class="sd">        Be sure to close the image when finished.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Image: The next frame</span>
+<span class="sd">            Image: The frame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
@@ -172,24 +172,24 @@ you must call the super init function.</p>
 Be sure to close the image when finished.</p>
 
 <p>Returns:
-    Image: The next frame</p>
+    Image: The frame</p>
 </div>
 
 
                             </div>
-                            <div id="Camera.next_point_cloud" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#Camera.next_point_cloud">#&nbsp;&nbsp</a>
+                            <div id="Camera.get_point_cloud" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#Camera.get_point_cloud">#&nbsp;&nbsp</a>
 
                 <div class="decorator">@abc.abstractmethod</div>
 
             <span class="def">async def</span>
-            <span class="name">next_point_cloud</span><span class="signature">(self) -&gt; Tuple[bytes, str]</span>:
+            <span class="name">get_point_cloud</span><span class="signature">(self) -&gt; Tuple[bytes, str]</span>:
     </div>
 
             <details>
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">next_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the next point cloud from the camera. This will be</span>
 <span class="sd">        returned as bytes with a mimetype describing</span>
@@ -240,7 +240,7 @@ by the mimetype</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">CameraServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetFrameRequest</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mime_type</span><span class="o">=</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">BEST</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetFrameResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetFrame</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -256,7 +256,7 @@ by the mimetype</p>
 
         <span class="k">return</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image</span><span class="p">),</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;JPEG&#39;</span><span class="p">,</span> <span class="s1">&#39;PNG&#39;</span><span class="p">])</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">next_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetPointCloudRequest</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mime_type</span><span class="o">=</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PCD</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetPointCloudResponse</span> <span class="o">=</span> \
@@ -289,17 +289,17 @@ by the mimetype</p>
     
 
                             </div>
-                            <div id="CameraClient.next" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#CameraClient.next">#&nbsp;&nbsp</a>
+                            <div id="CameraClient.get_frame" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#CameraClient.get_frame">#&nbsp;&nbsp</a>
 
         
             <span class="def">async def</span>
-            <span class="name">next</span><span class="signature">(self) -&gt; PIL.Image.Image</span>:
+            <span class="name">get_frame</span><span class="signature">(self) -&gt; PIL.Image.Image</span>:
     </div>
 
             <details>
             <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetFrameRequest</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mime_type</span><span class="o">=</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">BEST</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetFrameResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetFrame</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -322,22 +322,22 @@ by the mimetype</p>
 Be sure to close the image when finished.</p>
 
 <p>Returns:
-    Image: The next frame</p>
+    Image: The frame</p>
 </div>
 
 
                             </div>
-                            <div id="CameraClient.next_point_cloud" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#CameraClient.next_point_cloud">#&nbsp;&nbsp</a>
+                            <div id="CameraClient.get_point_cloud" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#CameraClient.get_point_cloud">#&nbsp;&nbsp</a>
 
         
             <span class="def">async def</span>
-            <span class="name">next_point_cloud</span><span class="signature">(self) -&gt; Tuple[bytes, str]</span>:
+            <span class="name">get_point_cloud</span><span class="signature">(self) -&gt; Tuple[bytes, str]</span>:
     </div>
 
             <details>
             <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">next_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_point_cloud</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetPointCloudRequest</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mime_type</span><span class="o">=</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PCD</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetPointCloudResponse</span> <span class="o">=</span> \
