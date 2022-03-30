@@ -1,6 +1,7 @@
 import pytest
 from grpclib.testing import ChannelFor
-from viam.components.gripper import Gripper, GripperClient, GripperService
+from viam.components.gripper import Gripper, GripperClient
+from viam.components.gripper.service import GripperService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.gripper import (GrabRequest, GrabResponse,
                                               GripperServiceStub, OpenRequest)

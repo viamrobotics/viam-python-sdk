@@ -2,7 +2,8 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.resource_manager import ResourceManager
-from viam.components.sensor import SensorService, SensorClient
+from viam.components.sensor import SensorClient
+from viam.components.sensor.service import SensorService
 from viam.proto.api.component.sensor import (
     SensorServiceStub,
     GetReadingsRequest, GetReadingsResponse,

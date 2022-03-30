@@ -3,7 +3,8 @@ import pytest
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.testing import ChannelFor
 from PIL import Image
-from viam.components.camera import Camera, CameraClient, CameraService
+from viam.components.camera import Camera, CameraClient
+from viam.components.camera.service import CameraService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.camera import (CameraServiceStub,
                                              GetFrameRequest, GetFrameResponse,

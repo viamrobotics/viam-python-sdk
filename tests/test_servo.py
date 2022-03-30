@@ -1,7 +1,8 @@
 import pytest
 from grpclib.testing import ChannelFor
 from viam.components.resource_manager import ResourceManager
-from viam.components.servo import ServoClient, ServoService
+from viam.components.servo import ServoClient
+from viam.components.servo.service import ServoService
 from viam.proto.api.component.servo import (GetPositionRequest,
                                             GetPositionResponse, MoveRequest,
                                             ServoServiceStub)
