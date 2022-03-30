@@ -1,10 +1,9 @@
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from grpclib.client import Channel
-from viam.components import ComponentType
+from viam.proto.api.common import ResourceName
 from viam.proto.api.service.status import (GetStatusRequest, GetStatusResponse,
                                            StatusServiceStub)
-from viam.utils import resource_name_for_component_name_type
 
 
 class StatusClient:
@@ -14,26 +13,17 @@ class StatusClient:
 
     async def get_status(
         self,
-        components: Optional[Dict[str, List[ComponentType]]] = None
+        components: Optional[List[ResourceName]] = None
     ):
         """
         Get the status of the robot's components. You can optionally
-        provide a mapping of the components for which you want statuses.
+        provide a list of `ResourceName` for which you want statuses.
 
         Args:
-            components (Optional[Dict[str, List[ComponentType]]]):
-                Optional mapping of components for which you want statuses.
-                Key: the name of the component
-                Value: an array of `ComponentType` this component conforms to
-                Example: { 'left': [ComponentType.MOTOR] }
+            components (Optional[List[ResourceName]]): Optional list of
+                `ResourceName` for components you want statuses.
         """
-        names = components if components is not None else {}
-        resource_names = []
-        for name, types in names.items():
-            for t in types:
-                resource_names.append(
-                    resource_name_for_component_name_type(name, t)
-                )
-        request = GetStatusRequest(resource_names=resource_names)
+        names = components if components is not None else []
+        request = GetStatusRequest(resource_names=names)
         response: GetStatusResponse = await self.client.GetStatus(request)
         return list(response.status)

@@ -25,7 +25,7 @@ from viam.proto.api.service.status import (GetStatusRequest, GetStatusResponse,
                                            Status, StatusServiceBase,
                                            StreamStatusRequest,
                                            StreamStatusResponse)
-from viam.utils import message_to_struct, resource_name_for_component_type
+from viam.utils import message_to_struct
 
 
 class StatusService(StatusServiceBase, ComponentServiceBase):
@@ -55,25 +55,25 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 )
                 as_struct = message_to_struct(s)
                 status = Status(
-                    name=resource_name_for_component_type(component, Arm),
+                    name=Arm.get_resource_name(component.name),
                     status=as_struct
                 )
                 statuses.append(status)
             if isinstance(component, Base):
                 status = Status(
-                    name=resource_name_for_component_type(component, Base),
+                    name=Base.get_resource_name(component.name),
                     status=Struct()
                 )
                 statuses.append(status)
             if isinstance(component, Board):
                 status = Status(
-                    name=resource_name_for_component_type(component, Board),
+                    name=Board.get_resource_name(component.name),
                     status=message_to_struct(await component.status())
                 )
                 statuses.append(status)
             if isinstance(component, Camera):
                 status = Status(
-                    name=resource_name_for_component_type(component, Camera),
+                    name=Camera.get_resource_name(component.name),
                     status=Struct()
                 )
                 statuses.append(status)
@@ -84,25 +84,25 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 )
                 as_struct = message_to_struct(s)
                 status = Status(
-                    name=resource_name_for_component_type(component, Gantry),
+                    name=Gantry.get_resource_name(component.name),
                     status=as_struct
                 )
                 statuses.append(status)
             if isinstance(component, GPS):
                 status = Status(
-                    name=resource_name_for_component_type(component, GPS),
+                    name=GPS.get_resource_name(component.name),
                     status=Struct()
                 )
                 statuses.append(status)
             if isinstance(component, Gripper):
                 status = Status(
-                    name=resource_name_for_component_type(component, Gripper),
+                    name=Gripper.get_resource_name(component.name),
                     status=Struct()
                 )
                 statuses.append(status)
             if isinstance(component, IMU):
                 status = Status(
-                    name=resource_name_for_component_type(component, IMU),
+                    name=IMU.get_resource_name(component.name),
                     status=Struct()
                 )
                 statuses.append(status)
@@ -114,20 +114,19 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 s.position_reporting = features.position_reporting
                 as_struct = message_to_struct(s)
                 status = Status(
-                    name=resource_name_for_component_type(component, Motor),
+                    name=Motor.get_resource_name(component.name),
                     status=as_struct
                 )
                 statuses.append(status)
             if isinstance(component, PoseTracker):
                 status = Status(
-                    name=resource_name_for_component_type(
-                        component, PoseTracker),
+                    name=PoseTracker.get_resource_name(component.name),
                     status=Struct()
                 )
                 statuses.append(status)
             if isinstance(component, Sensor):
                 status = Status(
-                    name=resource_name_for_component_type(component, Sensor),
+                    name=Sensor.get_resource_name(component.name),
                     status=Struct()
                 )
                 statuses.append(status)
@@ -136,7 +135,7 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 s.position_deg = await component.get_position()
                 as_struct = message_to_struct(s)
                 status = Status(
-                    name=resource_name_for_component_type(component, Servo),
+                    name=Servo.get_resource_name(component.name),
                     status=as_struct
                 )
                 statuses.append(status)

@@ -3,7 +3,6 @@ from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.gps import GPS
 from viam.components.resource_manager import ResourceManager
-from viam.components import ComponentType
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
                                    DigitalInterruptStatus, Pose, ResourceName)
 from viam.proto.api.component.arm import JointPositions
@@ -356,10 +355,10 @@ async def test_status_client(service: StatusService):
         statuses = await client.get_status()
         assert statuses == EXPECTED
 
-        statuses = await client.get_status({
-            'imu1': [ComponentType.IMU],
-            'servo2': [ComponentType.SERVO]
-        })
+        statuses = await client.get_status([
+            MockIMU.get_resource_name('imu1'),
+            MockServo.get_resource_name('servo2')
+        ])
         assert statuses == [
             Status(
                 name=ResourceName(

@@ -1,7 +1,8 @@
 import pytest
 from grpclib.testing import ChannelFor
-from viam.components import ComponentType
 from viam.proto.api.common import Pose, PoseInFrame
+from viam.components.arm import Arm
+from viam.components.gantry import Gantry
 from viam.services.motion import MotionClient
 
 from .mocks.services import MockMotionService
@@ -52,17 +53,18 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = MotionClient(channel)
             success = await client.move(
-                ComponentType.ARM, 'arm', PoseInFrame(), [])
+                Arm.get_resource_name('arm'), PoseInFrame(), [])
             assert success == MOVE_RESPONSES['arm']
-            success = await client.move(ComponentType.GANTRY,
-                                        'gantry', PoseInFrame(), [])
+            success = await client.move(
+                Gantry.get_resource_name('gantry'), PoseInFrame(), [])
             assert success == MOVE_RESPONSES['gantry']
 
     @pytest.mark.asyncio
     async def test_get_pose(self, service: MockMotionService):
         async with ChannelFor([service]) as channel:
             client = MotionClient(channel)
-            pose = await client.get_pose(ComponentType.ARM, 'arm', 'x')
+            pose = await client.get_pose(Arm.get_resource_name('arm'), 'x')
             assert pose == GET_POSE_RESPONSES['arm']
-            pose = await client.get_pose(ComponentType.GANTRY, 'gantry', 'y')
+            pose = await client.get_pose(
+                Gantry.get_resource_name('gantry'), 'y')
             assert pose == GET_POSE_RESPONSES['gantry']
