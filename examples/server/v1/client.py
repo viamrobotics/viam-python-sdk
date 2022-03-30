@@ -60,7 +60,7 @@ async def client():
 
         print('\n#### CAMERA ####')
         client = CameraClient('camera0', channel)
-        img = await client.next()
+        img = await client.get_frame()
         img.show()
         await asyncio.sleep(1)
         img.close()
