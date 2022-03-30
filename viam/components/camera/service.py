@@ -51,7 +51,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        image = await camera.next()
+        image = await camera.get_frame()
         try:
             if not request.mime_type:
                 mimetype = CameraMimeType.RAW
@@ -84,9 +84,9 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         mimetype = CameraMimeType(request.mime_type)
         if not mimetype:
             mimetype = CameraMimeType.JPEG
-        image = await camera.next()
+        image = await camera.get_frame()
         try:
-            img = self._get_image_bytes(await camera.next(), mimetype)
+            img = self._get_image_bytes(await camera.get_frame(), mimetype)
         finally:
             image.close()
         response = HttpBody(data=img, content_type=mimetype.value)
@@ -103,6 +103,6 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        pc, mimetype = await camera.next_point_cloud()
+        pc, mimetype = await camera.get_point_cloud()
         response = GetPointCloudResponse(mime_type=mimetype, point_cloud=pc)
         await stream.send_message(response)

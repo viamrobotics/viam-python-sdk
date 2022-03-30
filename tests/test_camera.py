@@ -40,13 +40,13 @@ def service(camera: Camera) -> CameraService:
 class TestCamera:
 
     @pytest.mark.asyncio
-    async def test_next(self, camera: Camera, image: Image.Image):
-        img = await camera.next()
+    async def test_get_frame(self, camera: Camera, image: Image.Image):
+        img = await camera.get_frame()
         assert img == image
 
     @pytest.mark.asyncio
-    async def test_next_point_cloud(self, camera: Camera, point_cloud: bytes):
-        pc, _ = await camera.next_point_cloud()
+    async def test_get_point_cloud(self, camera: Camera, point_cloud: bytes):
+        pc, _ = await camera.get_point_cloud()
         assert pc == point_cloud
 
 
@@ -104,23 +104,23 @@ class TestService:
 class TestClient:
 
     @pytest.mark.asyncio
-    async def test_next(
+    async def test_get_frame(
         self,
         service: CameraService,
         image: Image.Image
     ):
         async with ChannelFor([service]) as channel:
             camera = CameraClient('camera', channel)
-            img = await camera.next()
+            img = await camera.get_frame()
             assert img == image
 
     @pytest.mark.asyncio
-    async def test_next_point_cloud(
+    async def test_get_point_cloud(
         self,
         service: CameraService,
         point_cloud: bytes
     ):
         async with ChannelFor([service]) as channel:
             camera = CameraClient('camera', channel)
-            pc, _ = await camera.next_point_cloud()
+            pc, _ = await camera.get_point_cloud()
             assert pc == point_cloud

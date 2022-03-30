@@ -15,18 +15,18 @@ class Camera(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def next(self) -> Image:
+    async def get_frame(self) -> Image:
         """
         Get the next frame from the camera as an Image.
         Be sure to close the image when finished.
 
         Returns:
-            Image: The next frame
+            Image: The frame
         """
         ...
 
     @abc.abstractmethod
-    async def next_point_cloud(self) -> Tuple[bytes, str]:
+    async def get_point_cloud(self) -> Tuple[bytes, str]:
         """
         Get the next point cloud from the camera. This will be
         returned as bytes with a mimetype describing
