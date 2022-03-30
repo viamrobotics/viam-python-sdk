@@ -24,7 +24,7 @@ class StatusClient:
             components (Optional[Dict[str, List[ComponentType]]]):
                 Optional mapping of components for which you want statuses.
                 Key: the name of the component
-                Value: an array of component types this component conforms to
+                Value: an array of `ComponentType` this component conforms to
                 Example: { 'left': [ComponentType.MOTOR] }
         """
         names = components if components is not None else {}
