@@ -13,3 +13,13 @@ from .....gen.proto.api.service.sensors.v1.sensors_pb2 import (
     GetSensorsResponse,
     Readings
 )
+
+__all__ = [
+    'SensorsServiceBase',
+    'SensorsServiceStub'
+    'GetReadingsRequest',
+    'GetReadingsResponse',
+    'GetSensorsRequest',
+    'GetSensorsResponse',
+    'Readings'
+]

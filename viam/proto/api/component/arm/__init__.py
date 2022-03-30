@@ -18,3 +18,18 @@ from .....gen.proto.api.component.arm.v1.arm_pb2 import (
     MoveToPositionResponse,
     Status
 )
+
+__all__ = [
+    'ArmServiceBase',
+    'ArmServiceStub'
+    'GetEndPositionRequest',
+    'GetEndPositionResponse',
+    'GetJointPositionsRequest',
+    'GetJointPositionsResponse',
+    'JointPositions',
+    'MoveToJointPositionsRequest',
+    'MoveToJointPositionsResponse',
+    'MoveToPositionRequest',
+    'MoveToPositionResponse',
+    'Status'
+]

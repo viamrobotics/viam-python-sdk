@@ -12,3 +12,12 @@ from .....gen.proto.api.service.motion.v1.motion_pb2 import (
     MoveRequest,
     MoveResponse
 )
+
+__all__ = [
+    'MotionServiceBase',
+    'MotionServiceStub'
+    'GetPoseRequest',
+    'GetPoseResponse',
+    'MoveRequest',
+    'MoveResponse'
+]

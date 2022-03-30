@@ -20,3 +20,17 @@ from .....gen.proto.api.component.imu.v1.imu_pb2 import (
     ReadOrientationRequest,
     ReadOrientationResponse
 )
+
+__all__ = [
+    'IMUServiceBase',
+    'IMUServiceStub'
+    'Acceleration',
+    'AngularVelocity',
+    'EulerAngles',
+    'ReadAccelerationRequest',
+    'ReadAccelerationResponse',
+    'ReadAngularVelocityRequest',
+    'ReadAngularVelocityResponse',
+    'ReadOrientationRequest',
+    'ReadOrientationResponse'
+]

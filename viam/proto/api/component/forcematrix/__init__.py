@@ -13,3 +13,13 @@ from .....gen.proto.api.component.forcematrix.v1.force_matrix_pb2 import (
     ReadMatrixRequest,
     ReadMatrixResponse
 )
+
+__all__ = [
+    'ForceMatrixServiceBase',
+    'ForceMatrixServiceStub'
+    'DetectSlipRequest',
+    'DetectSlipResponse',
+    'Matrix',
+    'ReadMatrixRequest',
+    'ReadMatrixResponse'
+]

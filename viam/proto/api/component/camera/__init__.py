@@ -13,3 +13,13 @@ from .....gen.proto.api.component.camera.v1.camera_pb2 import (
     GetPointCloudResponse,
     RenderFrameRequest
 )
+
+__all__ = [
+    'CameraServiceBase',
+    'CameraServiceStub'
+    'GetFrameRequest',
+    'GetFrameResponse',
+    'GetPointCloudRequest',
+    'GetPointCloudResponse',
+    'RenderFrameRequest'
+]

@@ -18,3 +18,18 @@ from .....gen.proto.api.component.inputcontroller.v1.input_controller_pb2 import
     TriggerEventRequest,
     TriggerEventResponse
 )
+
+__all__ = [
+    'InputControllerServiceBase',
+    'InputControllerServiceStub'
+    'Event',
+    'GetControlsRequest',
+    'GetControlsResponse',
+    'GetEventsRequest',
+    'GetEventsResponse',
+    'Status',
+    'StreamEventsRequest',
+    'StreamEventsResponse',
+    'TriggerEventRequest',
+    'TriggerEventResponse'
+]

@@ -14,3 +14,14 @@ from .....gen.proto.api.component.gps.v1.gps_pb2 import (
     ReadSpeedRequest,
     ReadSpeedResponse
 )
+
+__all__ = [
+    'GPSServiceBase',
+    'GPSServiceStub'
+    'ReadAltitudeRequest',
+    'ReadAltitudeResponse',
+    'ReadLocationRequest',
+    'ReadLocationResponse',
+    'ReadSpeedRequest',
+    'ReadSpeedResponse'
+]

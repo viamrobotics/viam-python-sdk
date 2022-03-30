@@ -10,3 +10,10 @@ from .....gen.proto.api.component.posetracker.v1.pose_tracker_pb2 import (
     GetPosesRequest,
     GetPosesResponse
 )
+
+__all__ = [
+    'PoseTrackerServiceBase',
+    'PoseTrackerServiceStub'
+    'GetPosesRequest',
+    'GetPosesResponse'
+]

@@ -26,3 +26,26 @@ from .....gen.proto.api.component.board.v1.board_pb2 import (
     StatusRequest,
     StatusResponse
 )
+
+__all__ = [
+    'BoardServiceBase',
+    'BoardServiceStub'
+    'GetDigitalInterruptValueRequest',
+    'GetDigitalInterruptValueResponse',
+    'GetGPIORequest',
+    'GetGPIOResponse',
+    'PWMFrequencyRequest',
+    'PWMFrequencyResponse',
+    'PWMRequest',
+    'PWMResponse',
+    'ReadAnalogReaderRequest',
+    'ReadAnalogReaderResponse',
+    'SetGPIORequest',
+    'SetGPIOResponse',
+    'SetPWMFrequencyRequest',
+    'SetPWMFrequencyResponse',
+    'SetPWMRequest',
+    'SetPWMResponse',
+    'StatusRequest',
+    'StatusResponse'
+]

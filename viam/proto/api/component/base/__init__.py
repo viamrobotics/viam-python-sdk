@@ -16,3 +16,16 @@ from .....gen.proto.api.component.base.v1.base_pb2 import (
     StopRequest,
     StopResponse
 )
+
+__all__ = [
+    'BaseServiceBase',
+    'BaseServiceStub'
+    'MoveArcRequest',
+    'MoveArcResponse',
+    'MoveStraightRequest',
+    'MoveStraightResponse',
+    'SpinRequest',
+    'SpinResponse',
+    'StopRequest',
+    'StopResponse'
+]
