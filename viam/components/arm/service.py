@@ -1,9 +1,6 @@
-from typing import Optional
-
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.common import WorldState
 from viam.proto.api.component.arm import (
     ArmServiceBase,
     GetEndPositionRequest, GetEndPositionResponse,
@@ -48,10 +45,8 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        world_state: Optional[WorldState] = request.world_state
-        obstacles = []
-        if world_state:
-            obstacles = list(world_state.obstacles)
+        obstacles = list(
+            request.world_state.obstacles) if request.world_state else []
         await arm.move_to_position(request.to, obstacles)
         response = MoveToPositionResponse()
         await stream.send_message(response)
