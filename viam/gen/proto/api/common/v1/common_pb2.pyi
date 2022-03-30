@@ -286,17 +286,49 @@ class GeoPoint(google.protobuf.message.Message):
         ...
 global___GeoPoint = GeoPoint
 
+class Transform(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    REFERENCE_FRAME_FIELD_NUMBER: builtins.int
+    POSE_IN_OBSERVER_FRAME_FIELD_NUMBER: builtins.int
+    reference_frame: typing.Text = ...
+    'the name of a given reference frame'
+
+    @property
+    def pose_in_observer_frame(self) -> global___PoseInFrame:
+        """the pose of the above reference frame with respect
+        to a different observer reference frame
+        """
+        pass
+
+    def __init__(self, *, reference_frame: typing.Text=..., pose_in_observer_frame: typing.Optional[global___PoseInFrame]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame']) -> None:
+        ...
+global___Transform = Transform
+
 class WorldState(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     OBSTACLES_FIELD_NUMBER: builtins.int
+    TRANSFORMS_FIELD_NUMBER: builtins.int
 
     @property
     def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]:
         ...
 
-    def __init__(self, *, obstacles: typing.Optional[typing.Iterable[global___GeometriesInFrame]]=...) -> None:
+    @property
+    def transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]:
+        """a list of Transforms needed to transform a pose
+        from one reference frame to another; this field is optional
+        """
+        pass
+
+    def __init__(self, *, obstacles: typing.Optional[typing.Iterable[global___GeometriesInFrame]]=..., transforms: typing.Optional[typing.Iterable[global___Transform]]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles', 'transforms', b'transforms']) -> None:
         ...
 global___WorldState = WorldState

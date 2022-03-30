@@ -244,10 +244,10 @@ class MockCamera(Camera):
         self.point_cloud = b'THIS IS A POINT CLOUD'
         super().__init__(name)
 
-    async def next(self) -> Image.Image:
+    async def get_frame(self) -> Image.Image:
         return self.image
 
-    async def next_point_cloud(self) -> Tuple[bytes, str]:
+    async def get_point_cloud(self) -> Tuple[bytes, str]:
         return self.point_cloud, CameraMimeType.PCD.value
 
 

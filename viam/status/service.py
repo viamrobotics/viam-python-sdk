@@ -43,14 +43,6 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 ),
                 status=Struct()
             ),
-            Status(
-                name=ResourceName(
-                    namespace='rdk',
-                    type='service',
-                    subtype='object_segmentation',
-                ),
-                status=Struct()
-            )
         ]
 
         for component in self.manager.components.values():

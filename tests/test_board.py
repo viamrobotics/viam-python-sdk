@@ -2,7 +2,8 @@ from typing import cast
 import pytest
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
-from viam.components.board import Board, BoardClient, BoardService
+from viam.components.board import Board, BoardClient
+from viam.components.board.service import BoardService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (AnalogStatus, BoardStatus,

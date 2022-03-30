@@ -21,7 +21,7 @@ class CameraClient(Camera):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def next(self) -> Image.Image:
+    async def get_frame(self) -> Image.Image:
         request = GetFrameRequest(
             name=self.name, mime_type=CameraMimeType.BEST.value)
         response: GetFrameResponse = await self.client.GetFrame(request)
@@ -37,7 +37,7 @@ class CameraClient(Camera):
 
         return Image.open(BytesIO(response.image), formats=['JPEG', 'PNG'])
 
-    async def next_point_cloud(self) -> Tuple[bytes, str]:
+    async def get_point_cloud(self) -> Tuple[bytes, str]:
         request = GetPointCloudRequest(
             name=self.name, mime_type=CameraMimeType.PCD.value)
         response: GetPointCloudResponse = \

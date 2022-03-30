@@ -57,21 +57,6 @@
                 </ul>
 
             </li>
-            <li>
-                    <a class="class" href="#ServoService">ServoService</a>
-                            <ul class="memberlist">
-                        <li>
-                                <a class="class" href="#ServoService.RESOURCE_TYPE">ServoService.RESOURCE_TYPE</a>
-                        </li>
-                        <li>
-                                <a class="function" href="#ServoService.Move">Move</a>
-                        </li>
-                        <li>
-                                <a class="function" href="#ServoService.GetPosition">GetPosition</a>
-                        </li>
-                </ul>
-
-            </li>
     </ul>
 
 
@@ -92,13 +77,11 @@
                         <details>
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">.client</span> <span class="kn">import</span> <span class="n">ServoClient</span>
-<span class="kn">from</span> <span class="nn">.service</span> <span class="kn">import</span> <span class="n">ServoService</span>
 <span class="kn">from</span> <span class="nn">.servo</span> <span class="kn">import</span> <span class="n">Servo</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;Servo&#39;</span><span class="p">,</span>
     <span class="s1">&#39;ServoClient&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;ServoService&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 
@@ -326,194 +309,6 @@ you must call the super init function.</p>
 </div>
 
 
-                            </div>
-                </section>
-                <section id="ServoService">
-                                <div class="attr class">
-        <a class="headerlink" href="#ServoService">#&nbsp;&nbsp</a>
-
-        
-        <span class="def">class</span>
-        <span class="name">ServoService</span><wbr>(<span class="base">viam.gen.proto.api.component.servo.v1.servo_grpc.ServoServiceBase</span>, <span class="base"><a href="service_base.html#ComponentServiceBase">viam.components.service_base.ComponentServiceBase[viam.components.servo.servo.Servo]</a></span>):
-    </div>
-
-            <details>
-            <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">ServoService</span><span class="p">(</span><span class="n">ServoServiceBase</span><span class="p">,</span> <span class="n">ComponentServiceBase</span><span class="p">[</span><span class="n">Servo</span><span class="p">]):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    gRPC Service for a Servo</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Servo</span>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">Move</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">MoveRequest</span><span class="p">,</span> <span class="n">MoveResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">servo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span><span class="p">()</span>
-        <span class="k">await</span> <span class="n">servo</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">angle_deg</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">MoveResponse</span><span class="p">())</span>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetPosition</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPositionRequest</span><span class="p">,</span> <span class="n">GetPositionResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">servo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span><span class="p">()</span>
-        <span class="n">position</span> <span class="o">=</span> <span class="k">await</span> <span class="n">servo</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">GetPositionResponse</span><span class="p">(</span><span class="n">position_deg</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
-</pre></div>
-
-        </details>
-
-            <div class="docstring"><p>gRPC Service for a Servo</p>
-</div>
-
-
-                            <div id="ServoService.Move" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#ServoService.Move">#&nbsp;&nbsp</a>
-
-        
-            <span class="def">async def</span>
-            <span class="name">Move</span><span class="signature">(self, stream: grpclib.server.Stream) -&gt; None</span>:
-    </div>
-
-            <details>
-            <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Move</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">MoveRequest</span><span class="p">,</span> <span class="n">MoveResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">servo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span><span class="p">()</span>
-        <span class="k">await</span> <span class="n">servo</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">angle_deg</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">MoveResponse</span><span class="p">())</span>
-</pre></div>
-
-        </details>
-
-    
-
-                            </div>
-                            <div id="ServoService.GetPosition" class="classattr">
-                                        <div class="attr function"><a class="headerlink" href="#ServoService.GetPosition">#&nbsp;&nbsp</a>
-
-        
-            <span class="def">async def</span>
-            <span class="name">GetPosition</span><span class="signature">(self, stream: grpclib.server.Stream) -&gt; None</span>:
-    </div>
-
-            <details>
-            <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetPosition</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPositionRequest</span><span class="p">,</span> <span class="n">GetPositionResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
-        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">servo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span><span class="p">()</span>
-        <span class="n">position</span> <span class="o">=</span> <span class="k">await</span> <span class="n">servo</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">GetPositionResponse</span><span class="p">(</span><span class="n">position_deg</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
-</pre></div>
-
-        </details>
-
-    
-
-                            </div>
-                            <div class="inherited">
-                                <h5>Inherited Members</h5>
-                                <dl>
-                                    <div><dt><a href="service_base.html#ComponentServiceBase">viam.components.service_base.ComponentServiceBase</a></dt>
-                                <dd id="ServoService.__init__" class="function"><a href="service_base.html#ComponentServiceBase.__init__">ComponentServiceBase</a></dd>
-                <dd id="ServoService.get_component" class="function"><a href="service_base.html#ComponentServiceBase.get_component">get_component</a></dd>
-
-            </div>
-                                </dl>
-                            </div>
-                </section>
-                <section id="ServoService.RESOURCE_TYPE">
-                                <div class="attr class">
-        <a class="headerlink" href="#ServoService.RESOURCE_TYPE">#&nbsp;&nbsp</a>
-
-        
-        <span class="def">class</span>
-        <span class="name">ServoService.RESOURCE_TYPE</span><wbr>(<span class="base"><a href="component_base.html#ComponentBase">viam.components.component_base.ComponentBase</a></span>):
-    </div>
-
-            <details>
-            <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Servo</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Abstract representation of a physical servo.</span>
-
-<span class="sd">    If you override the init function,</span>
-<span class="sd">    you must call the super init function.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-
-    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Move the servo to the provided angle</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            angle (int): the desired angle of the servo in degrees</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="o">...</span>
-
-    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current angle (degrees) of the servo</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            int: The current angle of the servo in degrees</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="o">...</span>
-</pre></div>
-
-        </details>
-
-            <div class="docstring"><p>Abstract representation of a physical servo.</p>
-
-<p>If you override the init function,
-you must call the super init function.</p>
-</div>
-
-
-                            <div class="inherited">
-                                <h5>Inherited Members</h5>
-                                <dl>
-                                    <div><dt><a href="#Servo">Servo</a></dt>
-                                <dd id="ServoService.RESOURCE_TYPE.move" class="function"><a href="#Servo.move">move</a></dd>
-                <dd id="ServoService.RESOURCE_TYPE.get_position" class="function"><a href="#Servo.get_position">get_position</a></dd>
-
-            </div>
-                                </dl>
                             </div>
                 </section>
     </main>

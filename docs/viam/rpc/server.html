@@ -75,20 +75,20 @@
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Server</span> <span class="k">as</span> <span class="n">GRPCServer</span>
 <span class="kn">from</span> <span class="nn">grpclib.utils</span> <span class="kn">import</span> <span class="n">graceful_exit</span>
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">ArmService</span>
-<span class="kn">from</span> <span class="nn">viam.components.base</span> <span class="kn">import</span> <span class="n">BaseService</span>
-<span class="kn">from</span> <span class="nn">viam.components.board</span> <span class="kn">import</span> <span class="n">BoardService</span>
-<span class="kn">from</span> <span class="nn">viam.components.camera</span> <span class="kn">import</span> <span class="n">CameraService</span>
+<span class="kn">from</span> <span class="nn">viam.components.arm.service</span> <span class="kn">import</span> <span class="n">ArmService</span>
+<span class="kn">from</span> <span class="nn">viam.components.base.service</span> <span class="kn">import</span> <span class="n">BaseService</span>
+<span class="kn">from</span> <span class="nn">viam.components.board.service</span> <span class="kn">import</span> <span class="n">BoardService</span>
+<span class="kn">from</span> <span class="nn">viam.components.camera.service</span> <span class="kn">import</span> <span class="n">CameraService</span>
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span> <span class="nn">viam.components.gantry</span> <span class="kn">import</span> <span class="n">GantryService</span>
-<span class="kn">from</span> <span class="nn">viam.components.gps</span> <span class="kn">import</span> <span class="n">GPSService</span>
-<span class="kn">from</span> <span class="nn">viam.components.gripper</span> <span class="kn">import</span> <span class="n">GripperService</span>
-<span class="kn">from</span> <span class="nn">viam.components.imu</span> <span class="kn">import</span> <span class="n">IMUService</span>
-<span class="kn">from</span> <span class="nn">viam.components.motor</span> <span class="kn">import</span> <span class="n">MotorService</span>
-<span class="kn">from</span> <span class="nn">viam.components.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTrackerService</span>
+<span class="kn">from</span> <span class="nn">viam.components.gantry.service</span> <span class="kn">import</span> <span class="n">GantryService</span>
+<span class="kn">from</span> <span class="nn">viam.components.gps.service</span> <span class="kn">import</span> <span class="n">GPSService</span>
+<span class="kn">from</span> <span class="nn">viam.components.gripper.service</span> <span class="kn">import</span> <span class="n">GripperService</span>
+<span class="kn">from</span> <span class="nn">viam.components.imu.service</span> <span class="kn">import</span> <span class="n">IMUService</span>
+<span class="kn">from</span> <span class="nn">viam.components.motor.service</span> <span class="kn">import</span> <span class="n">MotorService</span>
+<span class="kn">from</span> <span class="nn">viam.components.pose_tracker.service</span> <span class="kn">import</span> <span class="n">PoseTrackerService</span>
 <span class="kn">from</span> <span class="nn">viam.components.resource_manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
-<span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">SensorService</span>
-<span class="kn">from</span> <span class="nn">viam.components.servo</span> <span class="kn">import</span> <span class="n">ServoService</span>
+<span class="kn">from</span> <span class="nn">viam.components.sensor.service</span> <span class="kn">import</span> <span class="n">SensorService</span>
+<span class="kn">from</span> <span class="nn">viam.components.servo.service</span> <span class="kn">import</span> <span class="n">ServoService</span>
 <span class="kn">from</span> <span class="nn">viam.metadata.service</span> <span class="kn">import</span> <span class="n">MetadataService</span>
 <span class="kn">from</span> <span class="nn">viam.robot.service</span> <span class="kn">import</span> <span class="n">RobotService</span>
 <span class="kn">from</span> <span class="nn">viam.status.service</span> <span class="kn">import</span> <span class="n">StatusService</span>
@@ -213,7 +213,7 @@
 
         
         <span class="def">class</span>
-        <span class="name">Server</span><wbr>(<span class="base"><a href="../components/resource_manager.html#ResourceManager">viam.components.resource_manager.ResourceManager</a></span>):
+        <span class="name">Server</span><wbr>(<span class="base">viam.components.resource_manager.ResourceManager</span>):
     </div>
 
             <details>
@@ -334,7 +334,7 @@
                                         <div class="attr function"><a class="headerlink" href="#Server.__init__">#&nbsp;&nbsp</a>
 
         
-            <span class="name">Server</span><span class="signature">(components: List[<a href="../components/component_base.html#ComponentBase">viam.components.component_base.ComponentBase</a>])</span>
+            <span class="name">Server</span><span class="signature">(components: List[viam.components.component_base.ComponentBase])</span>
     </div>
 
             <details>
@@ -465,7 +465,7 @@ to be managed.</p>
             <span class="def">async def</span>
             <span class="name">create_and_serve</span><span class="signature">(
     cls,
-    components: List[<a href="../components/component_base.html#ComponentBase">viam.components.component_base.ComponentBase</a>],
+    components: List[viam.components.component_base.ComponentBase],
     host: str = &#39;localhost&#39;,
     port: int = 9090,
     log_level: int = 20
@@ -515,9 +515,9 @@ to be managed.</p>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
-                                    <div><dt><a href="../components/resource_manager.html#ResourceManager">viam.components.resource_manager.ResourceManager</a></dt>
-                                <dd id="Server.register" class="function"><a href="../components/resource_manager.html#ResourceManager.register">register</a></dd>
-                <dd id="Server.get_component" class="function"><a href="../components/resource_manager.html#ResourceManager.get_component">get_component</a></dd>
+                                    <div><dt>viam.components.resource_manager.ResourceManager</dt>
+                                <dd id="Server.register" class="function">register</dd>
+                <dd id="Server.get_component" class="function">get_component</dd>
 
             </div>
                                 </dl>

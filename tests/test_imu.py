@@ -2,9 +2,10 @@ from grpclib.testing import ChannelFor
 import pytest
 
 from viam.components.imu import (
-    IMUClient, IMUService,
+    IMUClient,
     Orientation, AngularVelocity, Acceleration, EulerAngles
 )
+from viam.components.imu.service import IMUService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.imu import (
     IMUServiceStub,

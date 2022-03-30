@@ -1,6 +1,7 @@
 import pytest
 from grpclib.testing import ChannelFor
-from viam.components.pose_tracker import PoseTrackerClient, PoseTrackerService
+from viam.components.pose_tracker import PoseTrackerClient
+from viam.components.pose_tracker.service import PoseTrackerService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.common import Pose, PoseInFrame
 from viam.proto.api.component.posetracker import (GetPosesRequest,

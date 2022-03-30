@@ -1,6 +1,7 @@
 import pytest
 from grpclib.testing import ChannelFor
-from viam.components.gantry import GantryClient, GantryService
+from viam.components.gantry import GantryClient
+from viam.components.gantry.service import GantryService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetLengthsRequest,
