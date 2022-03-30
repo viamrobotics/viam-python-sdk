@@ -131,12 +131,18 @@
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
+        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move the arm to the given absolute position</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pose (Pose): The position to move the arm to</span>
+<span class="sd">            obstacles (List[GeometriesInFrame]): The geometries of any</span>
+<span class="sd">                obstacles</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
@@ -209,18 +215,28 @@ you must call the super init function.</p>
                 <div class="decorator">@abc.abstractmethod</div>
 
             <span class="def">async def</span>
-            <span class="name">move_to_position</span><span class="signature">(self, pose: proto.api.common.v1.common_pb2.Pose)</span>:
+            <span class="name">move_to_position</span><span class="signature">(
+    self,
+    pose: proto.api.common.v1.common_pb2.Pose,
+    obstacles: List[proto.api.common.v1.common_pb2.GeometriesInFrame]
+)</span>:
     </div>
 
             <details>
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
+        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+    <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move the arm to the given absolute position</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pose (Pose): The position to move the arm to</span>
+<span class="sd">            obstacles (List[GeometriesInFrame]): The geometries of any</span>
+<span class="sd">                obstacles</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
@@ -230,7 +246,9 @@ you must call the super init function.</p>
             <div class="docstring"><p>Move the arm to the given absolute position</p>
 
 <p>Args:
-    pose (Pose): The position to move the arm to</p>
+    pose (Pose): The position to move the arm to
+    obstacles (List[GeometriesInFrame]): The geometries of any
+        obstacles</p>
 </div>
 
 
@@ -299,6 +317,15 @@ you must call the super init function.</p>
 
 
                             </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt><a href="component_base.html#ComponentBase">viam.components.component_base.ComponentBase</a></dt>
+                                <dd id="Arm.get_resource_name" class="function"><a href="component_base.html#ComponentBase.get_resource_name">get_resource_name</a></dd>
+
+            </div>
+                                </dl>
+                            </div>
                 </section>
                 <section id="ArmClient">
                                 <div class="attr class">
@@ -326,8 +353,14 @@ you must call the super init function.</p>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetEndPosition</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">pose</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">):</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveToPositionRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">pose</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
+        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="n">world_state</span> <span class="o">=</span> <span class="n">WorldState</span><span class="p">(</span><span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveToPositionRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">pose</span><span class="p">,</span> <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveToPosition</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JointPositions</span><span class="p">:</span>
@@ -399,13 +432,23 @@ you must call the super init function.</p>
 
         
             <span class="def">async def</span>
-            <span class="name">move_to_position</span><span class="signature">(self, pose: proto.api.common.v1.common_pb2.Pose)</span>:
+            <span class="name">move_to_position</span><span class="signature">(
+    self,
+    pose: proto.api.common.v1.common_pb2.Pose,
+    obstacles: List[proto.api.common.v1.common_pb2.GeometriesInFrame]
+)</span>:
     </div>
 
             <details>
             <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">):</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveToPositionRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">pose</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
+        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="n">world_state</span> <span class="o">=</span> <span class="n">WorldState</span><span class="p">(</span><span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveToPositionRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">pose</span><span class="p">,</span> <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveToPosition</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
 </pre></div>
 
@@ -414,7 +457,9 @@ you must call the super init function.</p>
             <div class="docstring"><p>Move the arm to the given absolute position</p>
 
 <p>Args:
-    pose (Pose): The position to move the arm to</p>
+    pose (Pose): The position to move the arm to
+    obstacles (List[GeometriesInFrame]): The geometries of any
+        obstacles</p>
 </div>
 
 
@@ -471,6 +516,15 @@ you must call the super init function.</p>
 </div>
 
 
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt><a href="component_base.html#ComponentBase">viam.components.component_base.ComponentBase</a></dt>
+                                <dd id="ArmClient.get_resource_name" class="function"><a href="component_base.html#ComponentBase.get_resource_name">get_resource_name</a></dd>
+
+            </div>
+                                </dl>
                             </div>
                 </section>
     </main>

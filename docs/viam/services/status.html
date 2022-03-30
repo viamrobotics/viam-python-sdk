@@ -89,27 +89,18 @@
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">ComponentType</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the status of the robot&#39;s components. You can optionally</span>
-<span class="sd">        provide a mapping of the components for which you want statuses.</span>
+<span class="sd">        provide a list of `ResourceName` for which you want statuses.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            components (Optional[Dict[str, List[ComponentType]]]):</span>
-<span class="sd">                Optional mapping of components for which you want statuses.</span>
-<span class="sd">                Key: the name of the component</span>
-<span class="sd">                Value: an array of `ComponentType` this component conforms to</span>
-<span class="sd">                Example: { &#39;left&#39;: [ComponentType.MOTOR] }</span>
+<span class="sd">            components (Optional[List[ResourceName]]): Optional list of</span>
+<span class="sd">                `ResourceName` for components you want statuses.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="n">components</span> <span class="k">if</span> <span class="n">components</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
-        <span class="n">resource_names</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">types</span> <span class="ow">in</span> <span class="n">names</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
-                <span class="n">resource_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">resource_name_for_component_name_type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-                <span class="p">)</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetStatusRequest</span><span class="p">(</span><span class="n">resource_names</span><span class="o">=</span><span class="n">resource_names</span><span class="p">)</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">components</span> <span class="k">if</span> <span class="n">components</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetStatusRequest</span><span class="p">(</span><span class="n">resource_names</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetStatusResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
 </pre></div>
@@ -143,7 +134,7 @@
             <span class="def">async def</span>
             <span class="name">get_status</span><span class="signature">(
     self,
-    components: Optional[Dict[str, List[viam.components.types.ComponentType]]] = None
+    components: Optional[List[proto.api.common.v1.common_pb2.ResourceName]] = None
 )</span>:
     </div>
 
@@ -151,27 +142,18 @@
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">ComponentType</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the status of the robot&#39;s components. You can optionally</span>
-<span class="sd">        provide a mapping of the components for which you want statuses.</span>
+<span class="sd">        provide a list of `ResourceName` for which you want statuses.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            components (Optional[Dict[str, List[ComponentType]]]):</span>
-<span class="sd">                Optional mapping of components for which you want statuses.</span>
-<span class="sd">                Key: the name of the component</span>
-<span class="sd">                Value: an array of `ComponentType` this component conforms to</span>
-<span class="sd">                Example: { &#39;left&#39;: [ComponentType.MOTOR] }</span>
+<span class="sd">            components (Optional[List[ResourceName]]): Optional list of</span>
+<span class="sd">                `ResourceName` for components you want statuses.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">names</span> <span class="o">=</span> <span class="n">components</span> <span class="k">if</span> <span class="n">components</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">{}</span>
-        <span class="n">resource_names</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">types</span> <span class="ow">in</span> <span class="n">names</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
-                <span class="n">resource_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">resource_name_for_component_name_type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-                <span class="p">)</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetStatusRequest</span><span class="p">(</span><span class="n">resource_names</span><span class="o">=</span><span class="n">resource_names</span><span class="p">)</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="n">components</span> <span class="k">if</span> <span class="n">components</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetStatusRequest</span><span class="p">(</span><span class="n">resource_names</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetStatusResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
 </pre></div>
@@ -179,14 +161,11 @@
         </details>
 
             <div class="docstring"><p>Get the status of the robot's components. You can optionally
-provide a mapping of the components for which you want statuses.</p>
+provide a list of <code>ResourceName</code> for which you want statuses.</p>
 
 <p>Args:
-    components (Optional[Dict[str, List[ComponentType]]]):
-        Optional mapping of components for which you want statuses.
-        Key: the name of the component
-        Value: an array of <code>ComponentType</code> this component conforms to
-        Example: { 'left': [ComponentType.MOTOR] }</p>
+    components (Optional[List[ResourceName]]): Optional list of
+        <code>ResourceName</code> for components you want statuses.</p>
 </div>
 
 

@@ -40,12 +40,6 @@
                     <a class="function" href="#resource_names_for_component">resource_names_for_component</a>
             </li>
             <li>
-                    <a class="function" href="#resource_name_for_component_type">resource_name_for_component_type</a>
-            </li>
-            <li>
-                    <a class="function" href="#resource_name_for_component_name_type">resource_name_for_component_name_type</a>
-            </li>
-            <li>
                     <a class="function" href="#message_to_struct">message_to_struct</a>
             </li>
             <li>
@@ -72,14 +66,13 @@
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">SupportsFloat</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">SupportsFloat</span>
 
 <span class="kn">from</span> <span class="nn">google.protobuf.json_format</span> <span class="kn">import</span> <span class="n">MessageToDict</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.message</span> <span class="kn">import</span> <span class="n">Message</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">ListValue</span><span class="p">,</span> <span class="n">Struct</span><span class="p">,</span> <span class="n">Value</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span> <span class="nn">viam.components</span> <span class="kn">import</span> <span class="n">ComponentType</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 
 
@@ -169,39 +162,6 @@
             <span class="n">name</span><span class="o">=</span><span class="n">component</span><span class="o">.</span><span class="n">name</span>
         <span class="p">))</span>
     <span class="k">return</span> <span class="n">rns</span>
-
-
-<span class="k">def</span> <span class="nf">resource_name_for_component_type</span><span class="p">(</span>
-    <span class="n">component</span><span class="p">:</span> <span class="n">ComponentBase</span><span class="p">,</span>
-    <span class="n">_type</span><span class="p">:</span> <span class="n">Type</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceName</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">_type</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s1">&#39;Component named </span><span class="si">{</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> is not of type </span><span class="si">{</span><span class="n">_type</span><span class="si">}</span><span class="s1">&#39;</span>
-        <span class="p">)</span>
-
-    <span class="n">component_type</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">_type</span><span class="p">)</span> \
-        <span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;viam.components.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> \
-        <span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">ResourceName</span><span class="p">(</span>
-        <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;rdk&#39;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;component&#39;</span><span class="p">,</span>
-        <span class="n">subtype</span><span class="o">=</span><span class="n">component_type</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">component</span><span class="o">.</span><span class="n">name</span>
-    <span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">resource_name_for_component_name_type</span><span class="p">(</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">_type</span><span class="p">:</span> <span class="n">ComponentType</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceName</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">ResourceName</span><span class="p">(</span>
-        <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;rdk&#39;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;component&#39;</span><span class="p">,</span>
-        <span class="n">subtype</span><span class="o">=</span><span class="n">_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">name</span>
-    <span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">message_to_struct</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Struct</span><span class="p">:</span>
@@ -351,7 +311,7 @@ Supports primitive types of
         
             <span class="def">def</span>
             <span class="name">resource_names_for_component</span><span class="signature">(
-    component: viam.components.component_base.ComponentBase
+    component: <a href="components/component_base.html#ComponentBase">viam.components.component_base.ComponentBase</a>
 ) -&gt; List[proto.api.common.v1.common_pb2.ResourceName]</span>:
     </div>
 
@@ -378,75 +338,6 @@ Supports primitive types of
             <span class="n">name</span><span class="o">=</span><span class="n">component</span><span class="o">.</span><span class="n">name</span>
         <span class="p">))</span>
     <span class="k">return</span> <span class="n">rns</span>
-</pre></div>
-
-        </details>
-
-    
-
-                </section>
-                <section id="resource_name_for_component_type">
-                            <div class="attr function"><a class="headerlink" href="#resource_name_for_component_type">#&nbsp;&nbsp</a>
-
-        
-            <span class="def">def</span>
-            <span class="name">resource_name_for_component_type</span><span class="signature">(
-    component: viam.components.component_base.ComponentBase,
-    _type: Type
-) -&gt; proto.api.common.v1.common_pb2.ResourceName</span>:
-    </div>
-
-            <details>
-            <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="k">def</span> <span class="nf">resource_name_for_component_type</span><span class="p">(</span>
-    <span class="n">component</span><span class="p">:</span> <span class="n">ComponentBase</span><span class="p">,</span>
-    <span class="n">_type</span><span class="p">:</span> <span class="n">Type</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceName</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">_type</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s1">&#39;Component named </span><span class="si">{</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> is not of type </span><span class="si">{</span><span class="n">_type</span><span class="si">}</span><span class="s1">&#39;</span>
-        <span class="p">)</span>
-
-    <span class="n">component_type</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">_type</span><span class="p">)</span> \
-        <span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;viam.components.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> \
-        <span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">ResourceName</span><span class="p">(</span>
-        <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;rdk&#39;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;component&#39;</span><span class="p">,</span>
-        <span class="n">subtype</span><span class="o">=</span><span class="n">component_type</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">component</span><span class="o">.</span><span class="n">name</span>
-    <span class="p">)</span>
-</pre></div>
-
-        </details>
-
-    
-
-                </section>
-                <section id="resource_name_for_component_name_type">
-                            <div class="attr function"><a class="headerlink" href="#resource_name_for_component_name_type">#&nbsp;&nbsp</a>
-
-        
-            <span class="def">def</span>
-            <span class="name">resource_name_for_component_name_type</span><span class="signature">(
-    name: str,
-    _type: viam.components.types.ComponentType
-) -&gt; proto.api.common.v1.common_pb2.ResourceName</span>:
-    </div>
-
-            <details>
-            <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="k">def</span> <span class="nf">resource_name_for_component_name_type</span><span class="p">(</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">_type</span><span class="p">:</span> <span class="n">ComponentType</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceName</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">ResourceName</span><span class="p">(</span>
-        <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;rdk&#39;</span><span class="p">,</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;component&#39;</span><span class="p">,</span>
-        <span class="n">subtype</span><span class="o">=</span><span class="n">_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">name</span>
-    <span class="p">)</span>
 </pre></div>
 
         </details>

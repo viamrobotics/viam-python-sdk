@@ -27,52 +27,25 @@
                    pattern=".+" required>
 
 
-
-        <h2>API Documentation</h2>
-            <ul class="memberlist">
-            <li>
-                    <a class="class" href="#ComponentType">ComponentType</a>
-                            <ul class="memberlist">
-                        <li>
-                                <a class="variable" href="#ComponentType.ARM">ARM</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.BASE">BASE</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.BOARD">BOARD</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.CAMERA">CAMERA</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.GANTRY">GANTRY</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.GPS">GPS</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.GRIPPER">GRIPPER</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.IMU">IMU</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.MOTOR">MOTOR</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.POSE_TRACKER">POSE_TRACKER</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.SENSOR">SENSOR</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ComponentType.SERVO">SERVO</a>
-                        </li>
-                </ul>
-
-            </li>
-    </ul>
+        <h2>Submodules</h2>
+        <ul>
+                <li><a href="components/arm.html">viam.components.arm</a></li>
+                <li><a href="components/base.html">viam.components.base</a></li>
+                <li><a href="components/board.html">viam.components.board</a></li>
+                <li><a href="components/camera.html">viam.components.camera</a></li>
+                <li><a href="components/component_base.html">viam.components.component_base</a></li>
+                <li><a href="components/gantry.html">viam.components.gantry</a></li>
+                <li><a href="components/gps.html">viam.components.gps</a></li>
+                <li><a href="components/gripper.html">viam.components.gripper</a></li>
+                <li><a href="components/imu.html">viam.components.imu</a></li>
+                <li><a href="components/motor.html">viam.components.motor</a></li>
+                <li><a href="components/pose_tracker.html">viam.components.pose_tracker</a></li>
+                <li><a href="components/resource_manager.html">viam.components.resource_manager</a></li>
+                <li><a href="components/sensor.html">viam.components.sensor</a></li>
+                <li><a href="components/service_base.html">viam.components.service_base</a></li>
+                <li><a href="components/servo.html">viam.components.servo</a></li>
+                <li><a href="components/types.html">viam.components.types</a></li>
+        </ul>
 
 
 
@@ -89,181 +62,8 @@
 <a href="./../viam.html">viam</a><wbr>.components    </h1>
 
                 
-                        <details>
-            <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">ComponentType</span>
-
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;ComponentType&#39;</span><span class="p">,</span>
-<span class="p">]</span>
-</pre></div>
-
-        </details>
-
+                
             </section>
-                <section id="ComponentType">
-                                <div class="attr class">
-        <a class="headerlink" href="#ComponentType">#&nbsp;&nbsp</a>
-
-        
-        <span class="def">class</span>
-        <span class="name">ComponentType</span><wbr>(<span class="base">enum.Enum</span>):
-    </div>
-
-            <details>
-            <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">ComponentType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
-    <span class="n">ARM</span> <span class="o">=</span> <span class="s1">&#39;arm&#39;</span>
-    <span class="n">BASE</span> <span class="o">=</span> <span class="s1">&#39;base&#39;</span>
-    <span class="n">BOARD</span> <span class="o">=</span> <span class="s1">&#39;board&#39;</span>
-    <span class="n">CAMERA</span> <span class="o">=</span> <span class="s1">&#39;camera&#39;</span>
-    <span class="n">GANTRY</span> <span class="o">=</span> <span class="s1">&#39;gantry&#39;</span>
-    <span class="n">GPS</span> <span class="o">=</span> <span class="s1">&#39;gps&#39;</span>
-    <span class="n">GRIPPER</span> <span class="o">=</span> <span class="s1">&#39;gripper&#39;</span>
-    <span class="n">IMU</span> <span class="o">=</span> <span class="s1">&#39;imu&#39;</span>
-    <span class="n">MOTOR</span> <span class="o">=</span> <span class="s1">&#39;motor&#39;</span>
-    <span class="n">POSE_TRACKER</span> <span class="o">=</span> <span class="s1">&#39;pose_tracker&#39;</span>
-    <span class="n">SENSOR</span> <span class="o">=</span> <span class="s1">&#39;sensor&#39;</span>
-    <span class="n">SERVO</span> <span class="o">=</span> <span class="s1">&#39;servo&#39;</span>
-</pre></div>
-
-        </details>
-
-            <div class="docstring"><p>An enumeration.</p>
-</div>
-
-
-                            <div id="ComponentType.ARM" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.ARM">#&nbsp;&nbsp</a>
-
-        <span class="name">ARM</span><span class="default_value"> = &lt;<a href="#ComponentType.ARM">ComponentType.ARM</a>: &#39;arm&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.BASE" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.BASE">#&nbsp;&nbsp</a>
-
-        <span class="name">BASE</span><span class="default_value"> = &lt;<a href="#ComponentType.BASE">ComponentType.BASE</a>: &#39;base&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.BOARD" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.BOARD">#&nbsp;&nbsp</a>
-
-        <span class="name">BOARD</span><span class="default_value"> = &lt;<a href="#ComponentType.BOARD">ComponentType.BOARD</a>: &#39;board&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.CAMERA" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.CAMERA">#&nbsp;&nbsp</a>
-
-        <span class="name">CAMERA</span><span class="default_value"> = &lt;<a href="#ComponentType.CAMERA">ComponentType.CAMERA</a>: &#39;camera&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.GANTRY" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.GANTRY">#&nbsp;&nbsp</a>
-
-        <span class="name">GANTRY</span><span class="default_value"> = &lt;<a href="#ComponentType.GANTRY">ComponentType.GANTRY</a>: &#39;gantry&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.GPS" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.GPS">#&nbsp;&nbsp</a>
-
-        <span class="name">GPS</span><span class="default_value"> = &lt;<a href="#ComponentType.GPS">ComponentType.GPS</a>: &#39;gps&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.GRIPPER" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.GRIPPER">#&nbsp;&nbsp</a>
-
-        <span class="name">GRIPPER</span><span class="default_value"> = &lt;<a href="#ComponentType.GRIPPER">ComponentType.GRIPPER</a>: &#39;gripper&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.IMU" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.IMU">#&nbsp;&nbsp</a>
-
-        <span class="name">IMU</span><span class="default_value"> = &lt;<a href="#ComponentType.IMU">ComponentType.IMU</a>: &#39;imu&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.MOTOR" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.MOTOR">#&nbsp;&nbsp</a>
-
-        <span class="name">MOTOR</span><span class="default_value"> = &lt;<a href="#ComponentType.MOTOR">ComponentType.MOTOR</a>: &#39;motor&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.POSE_TRACKER" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.POSE_TRACKER">#&nbsp;&nbsp</a>
-
-        <span class="name">POSE_TRACKER</span><span class="default_value"> = &lt;<a href="#ComponentType.POSE_TRACKER">ComponentType.POSE_TRACKER</a>: &#39;pose_tracker&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.SENSOR" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.SENSOR">#&nbsp;&nbsp</a>
-
-        <span class="name">SENSOR</span><span class="default_value"> = &lt;<a href="#ComponentType.SENSOR">ComponentType.SENSOR</a>: &#39;sensor&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div id="ComponentType.SERVO" class="classattr">
-                                            <div class="attr variable"><a class="headerlink" href="#ComponentType.SERVO">#&nbsp;&nbsp</a>
-
-        <span class="name">SERVO</span><span class="default_value"> = &lt;<a href="#ComponentType.SERVO">ComponentType.SERVO</a>: &#39;servo&#39;&gt;</span>
-    </div>
-
-    
-    
-
-                            </div>
-                            <div class="inherited">
-                                <h5>Inherited Members</h5>
-                                <dl>
-                                    <div><dt>enum.Enum</dt>
-                                <dd id="ComponentType.name" class="variable">name</dd>
-                <dd id="ComponentType.value" class="variable">value</dd>
-
-            </div>
-                                </dl>
-                            </div>
-                </section>
     </main>
 <script>
     function escapeHTML(html) {
