@@ -8,27 +8,33 @@ from viam.proto.api.component.arm import (ArmServiceStub,
                                           JointPositions,
                                           MoveToJointPositionsRequest,
                                           MoveToPositionRequest)
+from viam.message_wrappers.wrappers import PyPose
 
 from .arm import Arm
 
 
 class ArmClient(Arm):
     """
-    gRPC client for the Arm component.
+    gRPC client for the Arm component. After
+    you have configured a robot that is running
+    the viam-server and has an arm, you may
+    call any of the functions listed below. 
+    Your robot will perform functions as you
+    call them in your code.
     """
 
     def __init__(self, name: str, channel: Channel):
         self.name = name
         self.client = ArmServiceStub(channel)
 
-    async def get_end_position(self) -> Pose:
+    async def get_end_position(self) -> PyPose:
         request = GetEndPositionRequest(name=self.name)
         response: GetEndPositionResponse = \
             await self.client.GetEndPosition(request)
-        return response.pose
+        return PyPose.from_message(response.pose)
 
-    async def move_to_position(self, pose: Pose):
-        request = MoveToPositionRequest(name=self.name, to=pose)
+    async def move_to_position(self, pose: PyPose):
+        request = MoveToPositionRequest(name=self.name, to=pose.to_message())
         await self.client.MoveToPosition(request)
 
     async def get_joint_positions(self) -> JointPositions:

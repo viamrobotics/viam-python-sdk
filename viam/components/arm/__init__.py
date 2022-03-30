@@ -5,5 +5,5 @@ from .service import ArmService
 __all__ = [
     'Arm',
     'ArmClient',
-    'ArmService',
+
 ]
