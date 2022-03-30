@@ -7,7 +7,7 @@ from viam.proto.api.service.objectsegmentation import (
     GetObjectPointCloudsRequest, GetObjectPointCloudsResponse,
     GetSegmenterParametersRequest, GetSegmenterParametersResponse,
     GetSegmentersRequest, GetSegmentersResponse, ObjectSegmentationServiceStub)
-from viam.utils import CameraMimeType
+from viam.components.types import CameraMimeType
 
 
 class ObjectSegmentationClient:

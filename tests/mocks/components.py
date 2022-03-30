@@ -23,7 +23,7 @@ from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
                                    DigitalInterruptStatus, Pose, PoseInFrame)
 from viam.proto.api.component.arm import JointPositions
-from viam.utils import CameraMimeType
+from viam.components.types import CameraMimeType
 
 
 class MockArm(Arm):

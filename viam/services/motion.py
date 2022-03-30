@@ -2,11 +2,11 @@ from typing import List
 
 from grpclib.client import Channel
 from viam.components import ComponentType
-from viam.proto.api.common import (GeometriesInFrame, PoseInFrame,
-                                   ResourceName, WorldState)
+from viam.proto.api.common import GeometriesInFrame, PoseInFrame, WorldState
 from viam.proto.api.service.motion import (GetPoseRequest, GetPoseResponse,
                                            MotionServiceStub, MoveRequest,
                                            MoveResponse)
+from viam.utils import resource_name_for_component_name_type
 
 
 class MotionClient:
@@ -23,11 +23,9 @@ class MotionClient:
     ) -> bool:
         request = MoveRequest(
             destination=destination,
-            component_name=ResourceName(
-                namespace='rdk',
-                type='component',
-                subtype=component_type.value,
-                name=component_name
+            component_name=resource_name_for_component_name_type(
+                component_name,
+                component_type
             ),
             world_state=WorldState(obstacles=obstacles)
         )
@@ -41,11 +39,9 @@ class MotionClient:
         destination_frame: str
     ) -> PoseInFrame:
         request = GetPoseRequest(
-            component_name=ResourceName(
-                namespace='rdk',
-                type='component',
-                subtype=component_type.value,
-                name=component_name
+            component_name=resource_name_for_component_name_type(
+                component_name,
+                component_type
             ),
             destination_frame=destination_frame
         )

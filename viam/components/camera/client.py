@@ -7,7 +7,7 @@ from viam.proto.api.component.camera import (CameraServiceStub,
                                              GetFrameRequest, GetFrameResponse,
                                              GetPointCloudRequest,
                                              GetPointCloudResponse)
-from viam.utils import CameraMimeType
+from viam.components.types import CameraMimeType
 
 from .camera import Camera
 

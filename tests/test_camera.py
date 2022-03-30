@@ -11,7 +11,7 @@ from viam.proto.api.component.camera import (CameraServiceStub,
                                              GetPointCloudRequest,
                                              GetPointCloudResponse,
                                              RenderFrameRequest)
-from viam.utils import CameraMimeType
+from viam.components.types import CameraMimeType
 
 from .mocks.components import MockCamera
 
