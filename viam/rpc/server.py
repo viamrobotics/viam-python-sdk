@@ -10,13 +10,13 @@ from viam.components.arm.service import ArmService
 from viam.components.base.service import BaseService
 from viam.components.board.service import BoardService
 from viam.components.camera.service import CameraService
-from viam.components.component_base.service import ComponentBase
+from viam.components.component_base import ComponentBase
 from viam.components.gantry.service import GantryService
 from viam.components.gps.service import GPSService
 from viam.components.gripper.service import GripperService
 from viam.components.imu.service import IMUService
 from viam.components.motor.service import MotorService
-from viam.components.pose_tracker import PoseTrackerService
+from viam.components.pose_tracker.service import PoseTrackerService
 from viam.components.resource_manager import ResourceManager
 from viam.components.sensor.service import SensorService
 from viam.components.servo.service import ServoService
