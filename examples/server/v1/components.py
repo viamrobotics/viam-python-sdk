@@ -234,7 +234,7 @@ class ExampleBoard(Board):
 
 class ExampleCamera(Camera):
 
-    async def next(self) -> Image.Image:
+    async def get_frame(self) -> Image.Image:
         frameWidth = 640
         frameHeight = 480
         cap = cv2.VideoCapture(0)
@@ -250,7 +250,7 @@ class ExampleCamera(Camera):
 
         raise Exception("Could not read from camera")
 
-    async def next_point_cloud(self) -> Tuple[bytes, str]:
+    async def get_point_cloud(self) -> Tuple[bytes, str]:
         raise NotImplementedError()
 
 
