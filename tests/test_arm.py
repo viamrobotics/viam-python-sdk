@@ -32,7 +32,7 @@ class TestArm:
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
-        await self.arm.move_to_position(self.pose)
+        await self.arm.move_to_position(self.pose, [])
         assert self.arm.position == self.pose
 
     @pytest.mark.asyncio
@@ -125,7 +125,7 @@ class TestClient:
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            await client.move_to_position(self.pose)
+            await client.move_to_position(self.pose, [])
             assert self.arm.position == self.pose
 
     @pytest.mark.asyncio
