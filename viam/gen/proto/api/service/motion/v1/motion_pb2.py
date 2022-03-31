@@ -16,7 +16,7 @@ MoveRequest = _reflection.GeneratedProtocolMessageType('MoveRequest', (_message.
 _sym_db.RegisterMessage(MoveRequest)
 MoveResponse = _reflection.GeneratedProtocolMessageType('MoveResponse', (_message.Message,), {'DESCRIPTOR': _MOVERESPONSE, '__module__': 'proto.api.service.motion.v1.motion_pb2'})
 _sym_db.RegisterMessage(MoveResponse)
-GetPoseRequest = _reflection.GeneratedProtocolMessageType('GetPoseRequest', (_message.Message,), {'DESCRIPTOR': _GETPOSEREQUEST, '__module__': 'proto.api.service.motion.v1.motion_pb2'})
+GetPoseRequest = _reflection.GeneratedProtocolMessageType('GetPoseRequest', (_message.Message,), {'DESCRIPTOR': _GETPOSEREQUEST, '__module__': 'proto.api.service.motion.v1.motion_pb2', '__doc__': 'Attributes:\n      destination_frame:\n          world if unset\n  '})
 _sym_db.RegisterMessage(GetPoseRequest)
 GetPoseResponse = _reflection.GeneratedProtocolMessageType('GetPoseResponse', (_message.Message,), {'DESCRIPTOR': _GETPOSERESPONSE, '__module__': 'proto.api.service.motion.v1.motion_pb2'})
 _sym_db.RegisterMessage(GetPoseResponse)

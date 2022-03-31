@@ -17,27 +17,35 @@ _READORIENTATIONREQUEST = DESCRIPTOR.message_types_by_name['ReadOrientationReque
 _READORIENTATIONRESPONSE = DESCRIPTOR.message_types_by_name['ReadOrientationResponse']
 _READACCELERATIONREQUEST = DESCRIPTOR.message_types_by_name['ReadAccelerationRequest']
 _READACCELERATIONRESPONSE = DESCRIPTOR.message_types_by_name['ReadAccelerationResponse']
+<<<<<<< HEAD
 _READMAGNETOMETERREQUEST = DESCRIPTOR.message_types_by_name['ReadMagnetometerRequest']
 _READMAGNETOMETERRESPONSE = DESCRIPTOR.message_types_by_name['ReadMagnetometerResponse']
 AngularVelocity = _reflection.GeneratedProtocolMessageType('AngularVelocity', (_message.Message,), {'DESCRIPTOR': _ANGULARVELOCITY, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+=======
+AngularVelocity = _reflection.GeneratedProtocolMessageType('AngularVelocity', (_message.Message,), {'DESCRIPTOR': _ANGULARVELOCITY, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'AngularVelocity contains angular velocity in deg/s across x/y/z axes.\n  \n  Attributes:\n      x_degs_per_sec:\n          Velocity in deg/s across the x-axis\n      y_degs_per_sec:\n          Velocity in deg/s across the y-axis\n      z_degs_per_sec:\n          Velocity in deg/s across the z-axis\n  '})
+>>>>>>> 92812fa (Adding basic docs, these are gross)
 _sym_db.RegisterMessage(AngularVelocity)
-EulerAngles = _reflection.GeneratedProtocolMessageType('EulerAngles', (_message.Message,), {'DESCRIPTOR': _EULERANGLES, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+EulerAngles = _reflection.GeneratedProtocolMessageType('EulerAngles', (_message.Message,), {'DESCRIPTOR': _EULERANGLES, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'EulerAngles are three angles used to represent the rotation of an\n  object in 3D Euclidean space The Tait–Bryan angle formalism is used,\n  with rotations around three distinct axes in the z-y′-x″ sequence.\n  \n  Attributes:\n      roll_deg:\n          Rotation in deg around the x-axis\n      pitch_deg:\n          Rotation in deg around the y-axis\n      yaw_deg:\n          Rotation in deg around the z-axis\n  '})
 _sym_db.RegisterMessage(EulerAngles)
-Acceleration = _reflection.GeneratedProtocolMessageType('Acceleration', (_message.Message,), {'DESCRIPTOR': _ACCELERATION, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+Acceleration = _reflection.GeneratedProtocolMessageType('Acceleration', (_message.Message,), {'DESCRIPTOR': _ACCELERATION, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'Acceleration contains linear acceleration in mm/s^2 across x/y/z axes.\n  \n  Attributes:\n      x_mm_per_sec_per_sec:\n          Acceleration in mm/s^2 across the x-axis\n      y_mm_per_sec_per_sec:\n          Acceleration in mm/s^2 across the y-axis\n      z_mm_per_sec_per_sec:\n          Acceleration in mm/s^2 across the z-axis\n  '})
 _sym_db.RegisterMessage(Acceleration)
+<<<<<<< HEAD
 Magnetometer = _reflection.GeneratedProtocolMessageType('Magnetometer', (_message.Message,), {'DESCRIPTOR': _MAGNETOMETER, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
 _sym_db.RegisterMessage(Magnetometer)
 ReadAngularVelocityRequest = _reflection.GeneratedProtocolMessageType('ReadAngularVelocityRequest', (_message.Message,), {'DESCRIPTOR': _READANGULARVELOCITYREQUEST, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+=======
+ReadAngularVelocityRequest = _reflection.GeneratedProtocolMessageType('ReadAngularVelocityRequest', (_message.Message,), {'DESCRIPTOR': _READANGULARVELOCITYREQUEST, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'Attributes:\n      name:\n          Name of an IMU\n  '})
+>>>>>>> 92812fa (Adding basic docs, these are gross)
 _sym_db.RegisterMessage(ReadAngularVelocityRequest)
-ReadAngularVelocityResponse = _reflection.GeneratedProtocolMessageType('ReadAngularVelocityResponse', (_message.Message,), {'DESCRIPTOR': _READANGULARVELOCITYRESPONSE, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+ReadAngularVelocityResponse = _reflection.GeneratedProtocolMessageType('ReadAngularVelocityResponse', (_message.Message,), {'DESCRIPTOR': _READANGULARVELOCITYRESPONSE, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'Attributes:\n      angular_velocity:\n          AngularVelocity contains angular velocity in deg/s across\n          x/y/z axes.\n  '})
 _sym_db.RegisterMessage(ReadAngularVelocityResponse)
-ReadOrientationRequest = _reflection.GeneratedProtocolMessageType('ReadOrientationRequest', (_message.Message,), {'DESCRIPTOR': _READORIENTATIONREQUEST, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+ReadOrientationRequest = _reflection.GeneratedProtocolMessageType('ReadOrientationRequest', (_message.Message,), {'DESCRIPTOR': _READORIENTATIONREQUEST, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'Attributes:\n      name:\n          Name of an IMU\n  '})
 _sym_db.RegisterMessage(ReadOrientationRequest)
-ReadOrientationResponse = _reflection.GeneratedProtocolMessageType('ReadOrientationResponse', (_message.Message,), {'DESCRIPTOR': _READORIENTATIONRESPONSE, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+ReadOrientationResponse = _reflection.GeneratedProtocolMessageType('ReadOrientationResponse', (_message.Message,), {'DESCRIPTOR': _READORIENTATIONRESPONSE, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'Attributes:\n      orientation:\n          EulerAngles are three angles used to represent the rotation of\n          an object in 3D Euclidean space The Tait–Bryan angle formalism\n          is used, with rotations around three distinct axes in the\n          z-y′-x″ sequence.\n  '})
 _sym_db.RegisterMessage(ReadOrientationResponse)
-ReadAccelerationRequest = _reflection.GeneratedProtocolMessageType('ReadAccelerationRequest', (_message.Message,), {'DESCRIPTOR': _READACCELERATIONREQUEST, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+ReadAccelerationRequest = _reflection.GeneratedProtocolMessageType('ReadAccelerationRequest', (_message.Message,), {'DESCRIPTOR': _READACCELERATIONREQUEST, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'Attributes:\n      name:\n          Name of an IMU\n  '})
 _sym_db.RegisterMessage(ReadAccelerationRequest)
-ReadAccelerationResponse = _reflection.GeneratedProtocolMessageType('ReadAccelerationResponse', (_message.Message,), {'DESCRIPTOR': _READACCELERATIONRESPONSE, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
+ReadAccelerationResponse = _reflection.GeneratedProtocolMessageType('ReadAccelerationResponse', (_message.Message,), {'DESCRIPTOR': _READACCELERATIONRESPONSE, '__module__': 'proto.api.component.imu.v1.imu_pb2', '__doc__': 'Attributes:\n      acceleration:\n          Acceleration contains acceleration in mm/s^2 across x/y/z\n          axes.\n  '})
 _sym_db.RegisterMessage(ReadAccelerationResponse)
 ReadMagnetometerRequest = _reflection.GeneratedProtocolMessageType('ReadMagnetometerRequest', (_message.Message,), {'DESCRIPTOR': _READMAGNETOMETERREQUEST, '__module__': 'proto.api.component.imu.v1.imu_pb2'})
 _sym_db.RegisterMessage(ReadMagnetometerRequest)

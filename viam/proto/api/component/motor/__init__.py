@@ -28,7 +28,7 @@ from .....gen.proto.api.component.motor.v1.motor_pb2 import (
 
 __all__ = [
     'MotorServiceBase',
-    'MotorServiceStub'
+    'MotorServiceStub',
     'GetFeaturesRequest',
     'GetFeaturesResponse',
     'GetPositionRequest',
@@ -45,5 +45,5 @@ __all__ = [
     'SetPowerResponse',
     'Status',
     'StopRequest',
-    'StopResponse'
+    'StopResponse',
 ]

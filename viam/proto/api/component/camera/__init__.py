@@ -16,10 +16,10 @@ from .....gen.proto.api.component.camera.v1.camera_pb2 import (
 
 __all__ = [
     'CameraServiceBase',
-    'CameraServiceStub'
+    'CameraServiceStub',
     'GetFrameRequest',
     'GetFrameResponse',
     'GetPointCloudRequest',
     'GetPointCloudResponse',
-    'RenderFrameRequest'
+    'RenderFrameRequest',
 ]

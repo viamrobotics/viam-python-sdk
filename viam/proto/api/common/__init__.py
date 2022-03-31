@@ -35,5 +35,5 @@ __all__ = [
     'Sphere',
     'Transform',
     'Vector3',
-    'WorldState'
+    'WorldState',
 ]

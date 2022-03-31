@@ -16,10 +16,10 @@ from .....gen.proto.api.service.framesystem.v1.frame_system_pb2 import (
 
 __all__ = [
     'FrameSystemServiceBase',
-    'FrameSystemServiceStub'
+    'FrameSystemServiceStub',
     'Config',
     'ConfigRequest',
     'ConfigResponse',
     'TransformPoseRequest',
-    'TransformPoseResponse'
+    'TransformPoseResponse',
 ]

@@ -29,7 +29,7 @@ from .....gen.proto.api.component.board.v1.board_pb2 import (
 
 __all__ = [
     'BoardServiceBase',
-    'BoardServiceStub'
+    'BoardServiceStub',
     'GetDigitalInterruptValueRequest',
     'GetDigitalInterruptValueResponse',
     'GetGPIORequest',
@@ -47,5 +47,5 @@ __all__ = [
     'SetPWMRequest',
     'SetPWMResponse',
     'StatusRequest',
-    'StatusResponse'
+    'StatusResponse',
 ]

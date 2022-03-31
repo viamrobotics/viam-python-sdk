@@ -16,10 +16,10 @@ from .....gen.proto.api.service.sensors.v1.sensors_pb2 import (
 
 __all__ = [
     'SensorsServiceBase',
-    'SensorsServiceStub'
+    'SensorsServiceStub',
     'GetReadingsRequest',
     'GetReadingsResponse',
     'GetSensorsRequest',
     'GetSensorsResponse',
-    'Readings'
+    'Readings',
 ]

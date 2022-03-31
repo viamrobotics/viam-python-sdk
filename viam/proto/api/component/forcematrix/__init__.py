@@ -16,10 +16,10 @@ from .....gen.proto.api.component.forcematrix.v1.force_matrix_pb2 import (
 
 __all__ = [
     'ForceMatrixServiceBase',
-    'ForceMatrixServiceStub'
+    'ForceMatrixServiceStub',
     'DetectSlipRequest',
     'DetectSlipResponse',
     'Matrix',
     'ReadMatrixRequest',
-    'ReadMatrixResponse'
+    'ReadMatrixResponse',
 ]

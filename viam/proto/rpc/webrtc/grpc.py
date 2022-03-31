@@ -31,7 +31,7 @@ __all__ = [
     'ResponseMessage',
     'ResponseTrailers',
     'Stream',
-    'Strings'
+    'Strings',
     'SignalingServiceBase',
-    'SignalingServiceStub'
+    'SignalingServiceStub',
 ]

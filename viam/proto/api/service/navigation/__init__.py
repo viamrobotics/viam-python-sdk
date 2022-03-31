@@ -24,7 +24,7 @@ from .....gen.proto.api.service.navigation.v1.navigation_pb2 import (
 
 __all__ = [
     'NavigationServiceBase',
-    'NavigationServiceStub'
+    'NavigationServiceStub',
     'AddWaypointRequest',
     'AddWaypointResponse',
     'GetLocationRequest',
@@ -37,5 +37,5 @@ __all__ = [
     'RemoveWaypointResponse',
     'SetModeRequest',
     'SetModeResponse',
-    'Waypoint'
+    'Waypoint',
 ]

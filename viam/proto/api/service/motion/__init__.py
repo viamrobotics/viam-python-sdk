@@ -15,9 +15,9 @@ from .....gen.proto.api.service.motion.v1.motion_pb2 import (
 
 __all__ = [
     'MotionServiceBase',
-    'MotionServiceStub'
+    'MotionServiceStub',
     'GetPoseRequest',
     'GetPoseResponse',
     'MoveRequest',
-    'MoveResponse'
+    'MoveResponse',
 ]

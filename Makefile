@@ -10,6 +10,7 @@ buf:
 	buf build -o tmp/rdk.bin --as-file-descriptor-set buf.build/viamrobotics/rdk
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o viam/gen raw tmp/goutils.bin
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o viam/gen raw tmp/rdk.bin
+	find viam/gen -type f -name '__init__.py' -delete
 
 better_imports:
 	python3 -m etc.generate_proto_import

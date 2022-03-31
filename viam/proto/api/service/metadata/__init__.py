@@ -13,7 +13,7 @@ from .....gen.proto.api.service.metadata.v1.metadata_pb2 import (
 
 __all__ = [
     'MetadataServiceBase',
-    'MetadataServiceStub'
+    'MetadataServiceStub',
     'ResourcesRequest',
-    'ResourcesResponse'
+    'ResourcesResponse',
 ]

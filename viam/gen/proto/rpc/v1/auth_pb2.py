@@ -12,15 +12,15 @@ _AUTHENTICATEREQUEST = DESCRIPTOR.message_types_by_name['AuthenticateRequest']
 _AUTHENTICATERESPONSE = DESCRIPTOR.message_types_by_name['AuthenticateResponse']
 _AUTHENTICATETOREQUEST = DESCRIPTOR.message_types_by_name['AuthenticateToRequest']
 _AUTHENTICATETORESPONSE = DESCRIPTOR.message_types_by_name['AuthenticateToResponse']
-Credentials = _reflection.GeneratedProtocolMessageType('Credentials', (_message.Message,), {'DESCRIPTOR': _CREDENTIALS, '__module__': 'proto.rpc.v1.auth_pb2'})
+Credentials = _reflection.GeneratedProtocolMessageType('Credentials', (_message.Message,), {'DESCRIPTOR': _CREDENTIALS, '__module__': 'proto.rpc.v1.auth_pb2', '__doc__': 'Attributes:\n      type:\n          type is the type of credentials being used.\n      payload:\n          payload is an opaque string used that are of the given type\n          above.\n  '})
 _sym_db.RegisterMessage(Credentials)
-AuthenticateRequest = _reflection.GeneratedProtocolMessageType('AuthenticateRequest', (_message.Message,), {'DESCRIPTOR': _AUTHENTICATEREQUEST, '__module__': 'proto.rpc.v1.auth_pb2'})
+AuthenticateRequest = _reflection.GeneratedProtocolMessageType('AuthenticateRequest', (_message.Message,), {'DESCRIPTOR': _AUTHENTICATEREQUEST, '__module__': 'proto.rpc.v1.auth_pb2', '__doc__': 'An AuthenticateRequest contains the credentials used to authenticate.'})
 _sym_db.RegisterMessage(AuthenticateRequest)
-AuthenticateResponse = _reflection.GeneratedProtocolMessageType('AuthenticateResponse', (_message.Message,), {'DESCRIPTOR': _AUTHENTICATERESPONSE, '__module__': 'proto.rpc.v1.auth_pb2'})
+AuthenticateResponse = _reflection.GeneratedProtocolMessageType('AuthenticateResponse', (_message.Message,), {'DESCRIPTOR': _AUTHENTICATERESPONSE, '__module__': 'proto.rpc.v1.auth_pb2', '__doc__': 'An AuthenticateResponse is returned after successful authentication.\n  \n  Attributes:\n      access_token:\n          access_token is a JWT where only the expiration should be\n          deemed important.  Future(erd): maybe a refresh_token\n  '})
 _sym_db.RegisterMessage(AuthenticateResponse)
-AuthenticateToRequest = _reflection.GeneratedProtocolMessageType('AuthenticateToRequest', (_message.Message,), {'DESCRIPTOR': _AUTHENTICATETOREQUEST, '__module__': 'proto.rpc.v1.auth_pb2'})
+AuthenticateToRequest = _reflection.GeneratedProtocolMessageType('AuthenticateToRequest', (_message.Message,), {'DESCRIPTOR': _AUTHENTICATETOREQUEST, '__module__': 'proto.rpc.v1.auth_pb2', '__doc__': 'An AuthenticateToRequest contains the entity to authenticate to.'})
 _sym_db.RegisterMessage(AuthenticateToRequest)
-AuthenticateToResponse = _reflection.GeneratedProtocolMessageType('AuthenticateToResponse', (_message.Message,), {'DESCRIPTOR': _AUTHENTICATETORESPONSE, '__module__': 'proto.rpc.v1.auth_pb2'})
+AuthenticateToResponse = _reflection.GeneratedProtocolMessageType('AuthenticateToResponse', (_message.Message,), {'DESCRIPTOR': _AUTHENTICATETORESPONSE, '__module__': 'proto.rpc.v1.auth_pb2', '__doc__': 'An AuthenticateResponse is returned after successful authentication.\n  \n  Attributes:\n      access_token:\n          access_token is a JWT where only the expiration should be\n          deemed important.  Future(erd): maybe a refresh_token\n  '})
 _sym_db.RegisterMessage(AuthenticateToResponse)
 _AUTHSERVICE = DESCRIPTOR.services_by_name['AuthService']
 _EXTERNALAUTHSERVICE = DESCRIPTOR.services_by_name['ExternalAuthService']

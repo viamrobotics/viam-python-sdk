@@ -17,11 +17,11 @@ from .....gen.proto.rpc.examples.echo.v1.echo_pb2 import (
 
 __all__ = [
     'EchoServiceBase',
-    'EchoServiceStub'
+    'EchoServiceStub',
     'EchoBiDiRequest',
     'EchoBiDiResponse',
     'EchoMultipleRequest',
     'EchoMultipleResponse',
     'EchoRequest',
-    'EchoResponse'
+    'EchoResponse',
 ]

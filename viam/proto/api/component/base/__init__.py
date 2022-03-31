@@ -19,7 +19,7 @@ from .....gen.proto.api.component.base.v1.base_pb2 import (
 
 __all__ = [
     'BaseServiceBase',
-    'BaseServiceStub'
+    'BaseServiceStub',
     'MoveArcRequest',
     'MoveArcResponse',
     'MoveStraightRequest',
@@ -27,5 +27,5 @@ __all__ = [
     'SpinRequest',
     'SpinResponse',
     'StopRequest',
-    'StopResponse'
+    'StopResponse',
 ]

@@ -17,11 +17,11 @@ from .....gen.proto.api.component.gps.v1.gps_pb2 import (
 
 __all__ = [
     'GPSServiceBase',
-    'GPSServiceStub'
+    'GPSServiceStub',
     'ReadAltitudeRequest',
     'ReadAltitudeResponse',
     'ReadLocationRequest',
     'ReadLocationResponse',
     'ReadSpeedRequest',
-    'ReadSpeedResponse'
+    'ReadSpeedResponse',
 ]

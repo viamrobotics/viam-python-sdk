@@ -20,10 +20,10 @@ __all__ = [
     'AuthServiceBase',
     'AuthServiceStub',
     'ExternalAuthServiceBase',
-    'ExternalAuthServiceStub'
+    'ExternalAuthServiceStub',
     'AuthenticateRequest',
     'AuthenticateResponse',
     'AuthenticateToRequest',
     'AuthenticateToResponse',
-    'Credentials'
+    'Credentials',
 ]

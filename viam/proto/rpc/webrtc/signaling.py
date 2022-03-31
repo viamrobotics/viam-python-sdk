@@ -32,7 +32,7 @@ from ....gen.proto.rpc.webrtc.v1.signaling_pb2 import (
 
 __all__ = [
     'SignalingServiceBase',
-    'SignalingServiceStub'
+    'SignalingServiceStub',
     'AnswerRequest',
     'AnswerRequestDoneStage',
     'AnswerRequestErrorStage',
@@ -53,5 +53,5 @@ __all__ = [
     'ICEServer',
     'OptionalWebRTCConfigRequest',
     'OptionalWebRTCConfigResponse',
-    'WebRTCConfig'
+    'WebRTCConfig',
 ]

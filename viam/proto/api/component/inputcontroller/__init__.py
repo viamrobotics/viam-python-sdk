@@ -21,7 +21,7 @@ from .....gen.proto.api.component.inputcontroller.v1.input_controller_pb2 import
 
 __all__ = [
     'InputControllerServiceBase',
-    'InputControllerServiceStub'
+    'InputControllerServiceStub',
     'Event',
     'GetControlsRequest',
     'GetControlsResponse',
@@ -31,5 +31,5 @@ __all__ = [
     'StreamEventsRequest',
     'StreamEventsResponse',
     'TriggerEventRequest',
-    'TriggerEventResponse'
+    'TriggerEventResponse',
 ]

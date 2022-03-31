@@ -18,12 +18,12 @@ from .....gen.proto.api.service.objectsegmentation.v1.object_segmentation_pb2 im
 
 __all__ = [
     'ObjectSegmentationServiceBase',
-    'ObjectSegmentationServiceStub'
+    'ObjectSegmentationServiceStub',
     'GetObjectPointCloudsRequest',
     'GetObjectPointCloudsResponse',
     'GetSegmenterParametersRequest',
     'GetSegmenterParametersResponse',
     'GetSegmentersRequest',
     'GetSegmentersResponse',
-    'TypedParameter'
+    'TypedParameter',
 ]

@@ -15,9 +15,9 @@ from .....gen.proto.api.component.gripper.v1.gripper_pb2 import (
 
 __all__ = [
     'GripperServiceBase',
-    'GripperServiceStub'
+    'GripperServiceStub',
     'GrabRequest',
     'GrabResponse',
     'OpenRequest',
-    'OpenResponse'
+    'OpenResponse',
 ]

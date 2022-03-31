@@ -13,7 +13,7 @@ from .....gen.proto.rpc.examples.fileupload.v1.fileupload_pb2 import (
 
 __all__ = [
     'FileUploadServiceBase',
-    'FileUploadServiceStub'
+    'FileUploadServiceStub',
     'UploadFileRequest',
-    'UploadFileResponse'
+    'UploadFileResponse',
 ]

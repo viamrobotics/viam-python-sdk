@@ -21,7 +21,7 @@ from .....gen.proto.api.component.arm.v1.arm_pb2 import (
 
 __all__ = [
     'ArmServiceBase',
-    'ArmServiceStub'
+    'ArmServiceStub',
     'GetEndPositionRequest',
     'GetEndPositionResponse',
     'GetJointPositionsRequest',
@@ -31,5 +31,5 @@ __all__ = [
     'MoveToJointPositionsResponse',
     'MoveToPositionRequest',
     'MoveToPositionResponse',
-    'Status'
+    'Status',
 ]

@@ -16,10 +16,10 @@ from .....gen.proto.api.component.servo.v1.servo_pb2 import (
 
 __all__ = [
     'ServoServiceBase',
-    'ServoServiceStub'
+    'ServoServiceStub',
     'GetPositionRequest',
     'GetPositionResponse',
     'MoveRequest',
     'MoveResponse',
-    'Status'
+    'Status',
 ]

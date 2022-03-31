@@ -13,7 +13,7 @@ from .....gen.proto.api.component.sensor.v1.sensor_pb2 import (
 
 __all__ = [
     'SensorServiceBase',
-    'SensorServiceStub'
+    'SensorServiceStub',
     'GetReadingsRequest',
-    'GetReadingsResponse'
+    'GetReadingsResponse',
 ]

@@ -140,7 +140,9 @@ def build_dirs(root: str, package: str, modules: List[str]):
                 f.write(')\n')
             f.write('\n__all__ = [\n')
             for (imp, cls) in classes.items():
-                f.write('    %s\n' % (',\n    '.join([f"'{c}'" for c in cls])))
+                f.write('    %s,\n' % (
+                    ',\n    '.join([f"'{c}'" for c in cls])
+                ))
             f.write(']\n')
 
 

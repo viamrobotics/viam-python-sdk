@@ -23,7 +23,7 @@ from .....gen.proto.api.component.imu.v1.imu_pb2 import (
 
 __all__ = [
     'IMUServiceBase',
-    'IMUServiceStub'
+    'IMUServiceStub',
     'Acceleration',
     'AngularVelocity',
     'EulerAngles',
@@ -32,5 +32,5 @@ __all__ = [
     'ReadAngularVelocityRequest',
     'ReadAngularVelocityResponse',
     'ReadOrientationRequest',
-    'ReadOrientationResponse'
+    'ReadOrientationResponse',
 ]
