@@ -9,20 +9,24 @@ from ..component_base import ComponentBase
 
 class Arm(ComponentBase):
     """
-    Abstract representation of a physical Arm that
-    exists in three-dimensional space
+    Arm represents a physical robot arm that exists in three-dimensional space.
 
-    If you override the init function,
-    you must call the super init function.
+    This acts as an abstract base class for any drivers representing specific 
+    arm implementations. This cannot be used on its own. If the init fucntion is
+    overriden, it must call the super init function.
     """
 
     @abc.abstractmethod
     async def get_end_position(self) -> Pose:
         """
-        Get the current position of the arm
+        Get the current position of the end of the arm expressed as
+        location (`x`, `y`, `z`), and orientation (`o_x`, `o_y`, `o_z`, `theta`).
 
         Returns:
-            Pose: Current position of the arm
+            Position : `Pose`
+
+        Raises:
+            grpc_error: If the component is not found in the registry   
         """
         ...
 
@@ -33,31 +37,42 @@ class Arm(ComponentBase):
         world_state: Optional[WorldState] = None
     ):
         """
-        Move the arm to the given absolute position
+        Moves the end of the arm to the given absolute position espressed
+        as location (`x`, `y`, `z`), and orientation (`o_x`, `o_y`, `o_z`, `theta`).
+        If obstacles are specified, the motion plan of the arm will avoid them.
 
         Args:
-            pose (Pose): The position to move the arm to
-            world_state (Optional[WorldState]): Object describing
-                obstacles and transforms
+            pose : `Pose`
+            obstacles : `World_State`, can be empty.
+
+        Raises:
+            grpc_error: If the component is not found in the registry
         """
         ...
 
     @abc.abstractmethod
     async def move_to_joint_positions(self, positions: JointPositions):
         """
-        Move this arm's joints to the given positions
+        Moves every joint on the arm to specified angles which are 
+        expressed in degrees.
 
         Args:
-            positions (JointPositions): The positions to move the joints to
+            positions : `JointPositions`
+
+        Raises:
+            grpc_error: If the component is not found in the registry
         """
         ...
 
     @abc.abstractmethod
     async def get_joint_positions(self) -> JointPositions:
         """
-        Get the current joint positions for this arm
+        Returns a list of the joint angles (in degrees) of every joint on the arm.
 
         Returns:
-            JointPositions: The current joint positions
+            positions : `JointPositions`
+
+        Raises:
+            grpc_error: If the component is not found in the registry
         """
         ...
