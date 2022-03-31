@@ -71,6 +71,26 @@ class Acceleration(google.protobuf.message.Message):
         ...
 global___Acceleration = Acceleration
 
+class Magnetometer(google.protobuf.message.Message):
+    """Magnetometer contains magnetic field readings in gauss x/y/z axes."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    X_GAUSS_FIELD_NUMBER: builtins.int
+    Y_GAUSS_FIELD_NUMBER: builtins.int
+    Z_GAUSS_FIELD_NUMBER: builtins.int
+    x_gauss: builtins.float = ...
+    'Magnetometer in gauss across the x-axis'
+    y_gauss: builtins.float = ...
+    'Magnetometer in gauss across the y-axis'
+    z_gauss: builtins.float = ...
+    'Magnetometer in gauss across the z-axis'
+
+    def __init__(self, *, x_gauss: builtins.float=..., y_gauss: builtins.float=..., z_gauss: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['x_gauss', b'x_gauss', 'y_gauss', b'y_gauss', 'z_gauss', b'z_gauss']) -> None:
+        ...
+global___Magnetometer = Magnetometer
+
 class ReadAngularVelocityRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
@@ -168,3 +188,35 @@ class ReadAccelerationResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['acceleration', b'acceleration']) -> None:
         ...
 global___ReadAccelerationResponse = ReadAccelerationResponse
+
+class ReadMagnetometerRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text = ...
+    'Name of an IMU'
+
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___ReadMagnetometerRequest = ReadMagnetometerRequest
+
+class ReadMagnetometerResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    MAGNETOMETER_FIELD_NUMBER: builtins.int
+
+    @property
+    def magnetometer(self) -> global___Magnetometer:
+        """Magnetometer contains magnetic field values in gauss across x/y/z axes."""
+        pass
+
+    def __init__(self, *, magnetometer: typing.Optional[global___Magnetometer]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['magnetometer', b'magnetometer']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['magnetometer', b'magnetometer']) -> None:
+        ...
+global___ReadMagnetometerResponse = ReadMagnetometerResponse

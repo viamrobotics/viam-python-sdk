@@ -21,8 +21,12 @@ class IMUServiceBase(abc.ABC):
     async def ReadAcceleration(self, stream: 'grpclib.server.Stream[proto.api.component.imu.v1.imu_pb2.ReadAccelerationRequest, proto.api.component.imu.v1.imu_pb2.ReadAccelerationResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def ReadMagnetometer(self, stream: 'grpclib.server.Stream[proto.api.component.imu.v1.imu_pb2.ReadMagnetometerRequest, proto.api.component.imu.v1.imu_pb2.ReadMagnetometerResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/proto.api.component.imu.v1.IMUService/ReadAngularVelocity': grpclib.const.Handler(self.ReadAngularVelocity, grpclib.const.Cardinality.UNARY_UNARY, proto.api.component.imu.v1.imu_pb2.ReadAngularVelocityRequest, proto.api.component.imu.v1.imu_pb2.ReadAngularVelocityResponse), '/proto.api.component.imu.v1.IMUService/ReadOrientation': grpclib.const.Handler(self.ReadOrientation, grpclib.const.Cardinality.UNARY_UNARY, proto.api.component.imu.v1.imu_pb2.ReadOrientationRequest, proto.api.component.imu.v1.imu_pb2.ReadOrientationResponse), '/proto.api.component.imu.v1.IMUService/ReadAcceleration': grpclib.const.Handler(self.ReadAcceleration, grpclib.const.Cardinality.UNARY_UNARY, proto.api.component.imu.v1.imu_pb2.ReadAccelerationRequest, proto.api.component.imu.v1.imu_pb2.ReadAccelerationResponse)}
+        return {'/proto.api.component.imu.v1.IMUService/ReadAngularVelocity': grpclib.const.Handler(self.ReadAngularVelocity, grpclib.const.Cardinality.UNARY_UNARY, proto.api.component.imu.v1.imu_pb2.ReadAngularVelocityRequest, proto.api.component.imu.v1.imu_pb2.ReadAngularVelocityResponse), '/proto.api.component.imu.v1.IMUService/ReadOrientation': grpclib.const.Handler(self.ReadOrientation, grpclib.const.Cardinality.UNARY_UNARY, proto.api.component.imu.v1.imu_pb2.ReadOrientationRequest, proto.api.component.imu.v1.imu_pb2.ReadOrientationResponse), '/proto.api.component.imu.v1.IMUService/ReadAcceleration': grpclib.const.Handler(self.ReadAcceleration, grpclib.const.Cardinality.UNARY_UNARY, proto.api.component.imu.v1.imu_pb2.ReadAccelerationRequest, proto.api.component.imu.v1.imu_pb2.ReadAccelerationResponse), '/proto.api.component.imu.v1.IMUService/ReadMagnetometer': grpclib.const.Handler(self.ReadMagnetometer, grpclib.const.Cardinality.UNARY_UNARY, proto.api.component.imu.v1.imu_pb2.ReadMagnetometerRequest, proto.api.component.imu.v1.imu_pb2.ReadMagnetometerResponse)}
 
 class IMUServiceStub:
 
@@ -30,3 +34,4 @@ class IMUServiceStub:
         self.ReadAngularVelocity = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.component.imu.v1.IMUService/ReadAngularVelocity', proto.api.component.imu.v1.imu_pb2.ReadAngularVelocityRequest, proto.api.component.imu.v1.imu_pb2.ReadAngularVelocityResponse)
         self.ReadOrientation = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.component.imu.v1.IMUService/ReadOrientation', proto.api.component.imu.v1.imu_pb2.ReadOrientationRequest, proto.api.component.imu.v1.imu_pb2.ReadOrientationResponse)
         self.ReadAcceleration = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.component.imu.v1.IMUService/ReadAcceleration', proto.api.component.imu.v1.imu_pb2.ReadAccelerationRequest, proto.api.component.imu.v1.imu_pb2.ReadAccelerationResponse)
+        self.ReadMagnetometer = grpclib.client.UnaryUnaryMethod(channel, '/proto.api.component.imu.v1.IMUService/ReadMagnetometer', proto.api.component.imu.v1.imu_pb2.ReadMagnetometerRequest, proto.api.component.imu.v1.imu_pb2.ReadMagnetometerResponse)

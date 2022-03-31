@@ -10,10 +10,13 @@ from .....gen.proto.api.component.imu.v1.imu_pb2 import (
     Acceleration,
     AngularVelocity,
     EulerAngles,
+    Magnetometer,
     ReadAccelerationRequest,
     ReadAccelerationResponse,
     ReadAngularVelocityRequest,
     ReadAngularVelocityResponse,
+    ReadMagnetometerRequest,
+    ReadMagnetometerResponse,
     ReadOrientationRequest,
     ReadOrientationResponse
 )
