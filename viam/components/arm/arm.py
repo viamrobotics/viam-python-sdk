@@ -21,14 +21,7 @@ class Arm(ComponentBase):
         """
         Get the current position of the end of the arm expressed as a `Pose`.
 
-        Returns:
-
-        Pose: location (comprised of `x`, `y`, and `z` representing distance in millimeters
-              from the arm's base)
-              and orientation (comprised of `o_x`, `o_y`, and `o_z`
-              representing a vector of the point on the cartesian unit sphere at 
-              which the end effector is pointing from the origin and
-              `theta` representing the angle around that unit vector)
+        Returns: the location and orientation of the arm described as a `Pose`.
         """
         ...
 
@@ -39,19 +32,14 @@ class Arm(ComponentBase):
         world_state: Optional[WorldState] = None
     ):
         """
-        Move the end of the arm to the specified `pose`.
+        Move the end of the arm to the `Pose` specified in `pose`.
         If obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
 
         Args:
 
-            pose: location (comprised of `x`, `y`, and `z` representing distance in millimeters
-                  from the arm's base)
-                  and orientation (comprised of `o_x`, `o_y`, and `o_z`
-                  representing a vector of the point on the cartesian unit sphere at 
-                  which the end effector is pointing from the origin and
-                  `theta` representing the angle around that unit vector)
+            pose (`Pose`): the destination `Pose` for the arm.
 
-            world_state: list of `GeometriesInFrame`. not sure how best to describe this portion
+            world_state (`WorldState`): the obstacles for the arm to avoid on its way to `pose`.
         """
         ...
 
@@ -62,8 +50,7 @@ class Arm(ComponentBase):
 
         Args:
 
-            positions: a list of floats representing joint angles in degrees, in order from
-                            base to end effector.
+            positions (`JointPositions`): the destination `JointPositions` for the arm.
         """
         ...
 
@@ -74,7 +61,6 @@ class Arm(ComponentBase):
 
         Returns:
 
-            JointPositions: a list of floats representing joint angles in degrees, in order from
-                            base to end effector.
+            `JointPositions`: the current `JointPositions` for the arm.
         """
         ...
