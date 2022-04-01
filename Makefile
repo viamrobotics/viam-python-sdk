@@ -21,5 +21,9 @@ test:
 documentation:
 	pdoc -o ./docs ./viam
 
+dox: buf
+	sphinx-apidoc -f -o ./docsx/source ./viam
+	sphinx-build -b html ./docsx/source ./docsx/build/html
+
 package: buf better_imports test
 	@echo "TODO: Create pip-installable package"
