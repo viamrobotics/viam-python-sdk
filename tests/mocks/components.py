@@ -10,7 +10,7 @@ from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
-from viam.components.gantry import Gantry, GeometriesInFrame
+from viam.components.gantry import Gantry
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
@@ -48,7 +48,7 @@ class MockArm(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState]
+        world_state: Optional[WorldState] = None
     ):
         self.position = pose
 
@@ -270,7 +270,7 @@ class MockGantry(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
-        obstacles: List[GeometriesInFrame]
+        world_state: Optional[WorldState] = None
     ):
         self.position = positions
 

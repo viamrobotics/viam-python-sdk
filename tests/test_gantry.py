@@ -24,7 +24,7 @@ class TestGantry:
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
-        await self.gantry.move_to_position([1, 8, 2], [])
+        await self.gantry.move_to_position([1, 8, 2])
         assert self.gantry.position == [1, 8, 2]
 
     @pytest.mark.asyncio
@@ -82,7 +82,7 @@ class TestClient:
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
-            await client.move_to_position([1, 8, 2], [])
+            await client.move_to_position([1, 8, 2])
             assert self.gantry.position == [1, 8, 2]
 
     @pytest.mark.asyncio

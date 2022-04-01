@@ -30,7 +30,7 @@ class Arm(ComponentBase):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState]
+        world_state: Optional[WorldState] = None
     ):
         """
         Move the arm to the given absolute position

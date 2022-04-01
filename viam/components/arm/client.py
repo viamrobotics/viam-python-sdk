@@ -32,7 +32,7 @@ class ArmClient(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState]
+        world_state: Optional[WorldState] = None
     ):
         request = MoveToPositionRequest(
             name=self.name, to=pose, world_state=world_state)
