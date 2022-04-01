@@ -18,9 +18,7 @@ class ArmClient(Arm):
     """
     gRPC client for an Arm component. 
 
-    After you have configured a robot that is running the viam-server and has an 
-    arm, you may call any of the functions listed below. Your robot will perform 
-    functions as you call them in your code.
+    Used to communicate with an existing `Arm` implementation over gRPC.
     """
 
     def __init__(self, name: str, channel: Channel):
