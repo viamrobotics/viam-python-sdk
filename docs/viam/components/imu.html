@@ -634,7 +634,15 @@ reference in 3D Euclidean space.</p>
     </div>
 
     
-            <div class="docstring"><p>A ProtocolMessage</p>
+            <div class="docstring"><p>Acceleration contains linear acceleration in mm/s^2 across x/y/z axes.</p>
+
+<p>Attributes:
+    x_mm_per_sec_per_sec:
+        Acceleration in mm/s^2 across the x-axis
+    y_mm_per_sec_per_sec:
+        Acceleration in mm/s^2 across the y-axis
+    z_mm_per_sec_per_sec:
+        Acceleration in mm/s^2 across the z-axis</p>
 </div>
 
 
@@ -726,7 +734,15 @@ reference in 3D Euclidean space.</p>
     </div>
 
     
-            <div class="docstring"><p>A ProtocolMessage</p>
+            <div class="docstring"><p>AngularVelocity contains angular velocity in deg/s across x/y/z axes.</p>
+
+<p>Attributes:
+    x_degs_per_sec:
+        Velocity in deg/s across the x-axis
+    y_degs_per_sec:
+        Velocity in deg/s across the y-axis
+    z_degs_per_sec:
+        Velocity in deg/s across the z-axis</p>
 </div>
 
 
@@ -818,7 +834,17 @@ reference in 3D Euclidean space.</p>
     </div>
 
     
-            <div class="docstring"><p>A ProtocolMessage</p>
+            <div class="docstring"><p>EulerAngles are three angles used to represent the rotation of an
+object in 3D Euclidean space The Tait–Bryan angle formalism is used,
+with rotations around three distinct axes in the z-y′-x″ sequence.</p>
+
+<p>Attributes:
+    roll_deg:
+        Rotation in deg around the x-axis
+    pitch_deg:
+        Rotation in deg around the y-axis
+    yaw_deg:
+        Rotation in deg around the z-axis</p>
 </div>
 
 
@@ -910,7 +936,15 @@ reference in 3D Euclidean space.</p>
     </div>
 
     
-            <div class="docstring"><p>A ProtocolMessage</p>
+            <div class="docstring"><p>Magnetometer contains magnetic field readings in gauss x/y/z axes.</p>
+
+<p>Attributes:
+    x_gauss:
+        Magnetometer in gauss across the x-axis
+    y_gauss:
+        Magnetometer in gauss across the y-axis
+    z_gauss:
+        Magnetometer in gauss across the z-axis</p>
 </div>
 
 
