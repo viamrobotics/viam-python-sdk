@@ -42,6 +42,9 @@
                         <li>
                                 <a class="function" href="#IMU.read_acceleration">read_acceleration</a>
                         </li>
+                        <li>
+                                <a class="function" href="#IMU.read_magnetometer">read_magnetometer</a>
+                        </li>
                 </ul>
 
             </li>
@@ -59,6 +62,9 @@
                         </li>
                         <li>
                                 <a class="function" href="#IMUClient.read_orientation">read_orientation</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#IMUClient.read_magnetometer">read_magnetometer</a>
                         </li>
                 </ul>
 
@@ -126,6 +132,24 @@
                 </ul>
 
             </li>
+            <li>
+                    <a class="class" href="#Magnetometer">Magnetometer</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#Magnetometer.DESCRIPTOR">DESCRIPTOR</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Magnetometer.x_gauss">x_gauss</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Magnetometer.y_gauss">y_gauss</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Magnetometer.z_gauss">z_gauss</a>
+                        </li>
+                </ul>
+
+            </li>
     </ul>
 
 
@@ -146,7 +170,8 @@
                         <details>
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">.client</span> <span class="kn">import</span> <span class="n">IMUClient</span>
-<span class="kn">from</span> <span class="nn">.imu</span> <span class="kn">import</span> <span class="n">IMU</span><span class="p">,</span> <span class="n">Acceleration</span><span class="p">,</span> <span class="n">AngularVelocity</span><span class="p">,</span> <span class="n">EulerAngles</span><span class="p">,</span> <span class="n">Orientation</span>
+<span class="kn">from</span> <span class="nn">.imu</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IMU</span><span class="p">,</span> <span class="n">Acceleration</span><span class="p">,</span> <span class="n">AngularVelocity</span><span class="p">,</span> <span class="n">EulerAngles</span><span class="p">,</span>
+                  <span class="n">Magnetometer</span><span class="p">,</span> <span class="n">Orientation</span><span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;IMU&#39;</span><span class="p">,</span>
@@ -155,6 +180,7 @@
     <span class="s1">&#39;Acceleration&#39;</span><span class="p">,</span>
     <span class="s1">&#39;AngularVelocity&#39;</span><span class="p">,</span>
     <span class="s1">&#39;EulerAngles&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Magnetometer&#39;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 
@@ -207,6 +233,16 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Acceleration</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span>
+
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">read_magnetometer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Magnetometer</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the most recent reading from the magnetometer of the IMU</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Magnetometer</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
@@ -316,6 +352,38 @@ you must call the super init function.</p>
 
 
                             </div>
+                            <div id="IMU.read_magnetometer" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#IMU.read_magnetometer">#&nbsp;&nbsp</a>
+
+                <div class="decorator">@abc.abstractmethod</div>
+
+            <span class="def">async def</span>
+            <span class="name">read_magnetometer</span><span class="signature">(self) -&gt; <a href="#Magnetometer">viam.components.imu.Magnetometer</a></span>:
+    </div>
+
+            <details>
+            <summary>View Source</summary>
+            <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">read_magnetometer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Magnetometer</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the most recent reading from the magnetometer of the IMU</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Magnetometer</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Return the most recent reading from the magnetometer of the IMU</p>
+
+<p>Returns:
+    Magnetometer</p>
+</div>
+
+
+                            </div>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
@@ -363,6 +431,12 @@ you must call the super init function.</p>
         <span class="n">response</span><span class="p">:</span> <span class="n">ReadOrientationResponse</span> <span class="o">=</span> \
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ReadOrientation</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Orientation</span><span class="p">(</span><span class="n">euler_angles</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">orientation</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">read_magnetometer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Magnetometer</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ReadMagnetometerRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ReadMagnetometerResponse</span> <span class="o">=</span> \
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ReadMagnetometer</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">magnetometer</span>
 </pre></div>
 
         </details>
@@ -467,6 +541,33 @@ you must call the super init function.</p>
 
 <p>Returns:
     Orientation</p>
+</div>
+
+
+                            </div>
+                            <div id="IMUClient.read_magnetometer" class="classattr">
+                                        <div class="attr function"><a class="headerlink" href="#IMUClient.read_magnetometer">#&nbsp;&nbsp</a>
+
+        
+            <span class="def">async def</span>
+            <span class="name">read_magnetometer</span><span class="signature">(self) -&gt; <a href="#Magnetometer">viam.components.imu.Magnetometer</a></span>:
+    </div>
+
+            <details>
+            <summary>View Source</summary>
+            <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read_magnetometer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Magnetometer</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ReadMagnetometerRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ReadMagnetometerResponse</span> <span class="o">=</span> \
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ReadMagnetometer</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">magnetometer</span>
+</pre></div>
+
+        </details>
+
+            <div class="docstring"><p>Return the most recent reading from the magnetometer of the IMU</p>
+
+<p>Returns:
+    Magnetometer</p>
 </div>
 
 
@@ -794,6 +895,98 @@ reference in 3D Euclidean space.</p>
                 <dd id="EulerAngles.RegisterExtension" class="function">RegisterExtension</dd>
                 <dd id="EulerAngles.FindInitializationErrors" class="function">FindInitializationErrors</dd>
                 <dd id="EulerAngles.Extensions" class="variable">Extensions</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="Magnetometer">
+                                <div class="attr class">
+        <a class="headerlink" href="#Magnetometer">#&nbsp;&nbsp</a>
+
+        
+        <span class="def">class</span>
+        <span class="name">Magnetometer</span><wbr>(<span class="base">google.protobuf.pyext._message.CMessage</span>, <span class="base">google.protobuf.message.Message</span>):
+    </div>
+
+    
+            <div class="docstring"><p>A ProtocolMessage</p>
+</div>
+
+
+                            <div id="Magnetometer.DESCRIPTOR" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Magnetometer.DESCRIPTOR">#&nbsp;&nbsp</a>
+
+        <span class="name">DESCRIPTOR</span><span class="default_value"> = &lt;google.protobuf.pyext._message.MessageDescriptor object&gt;</span>
+    </div>
+
+    
+    
+
+                            </div>
+                            <div id="Magnetometer.x_gauss" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Magnetometer.x_gauss">#&nbsp;&nbsp</a>
+
+        <span class="name">x_gauss</span>
+    </div>
+
+    
+            <div class="docstring"><p>Field proto.api.component.imu.v1.Magnetometer.x_gauss</p>
+</div>
+
+
+                            </div>
+                            <div id="Magnetometer.y_gauss" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Magnetometer.y_gauss">#&nbsp;&nbsp</a>
+
+        <span class="name">y_gauss</span>
+    </div>
+
+    
+            <div class="docstring"><p>Field proto.api.component.imu.v1.Magnetometer.y_gauss</p>
+</div>
+
+
+                            </div>
+                            <div id="Magnetometer.z_gauss" class="classattr">
+                                            <div class="attr variable"><a class="headerlink" href="#Magnetometer.z_gauss">#&nbsp;&nbsp</a>
+
+        <span class="name">z_gauss</span>
+    </div>
+
+    
+            <div class="docstring"><p>Field proto.api.component.imu.v1.Magnetometer.z_gauss</p>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>google.protobuf.pyext._message.CMessage</dt>
+                                <dd id="Magnetometer.__init__" class="function">CMessage</dd>
+                <dd id="Magnetometer.MergeFrom" class="function">MergeFrom</dd>
+                <dd id="Magnetometer.CopyFrom" class="function">CopyFrom</dd>
+                <dd id="Magnetometer.Clear" class="function">Clear</dd>
+                <dd id="Magnetometer.SetInParent" class="function">SetInParent</dd>
+                <dd id="Magnetometer.IsInitialized" class="function">IsInitialized</dd>
+                <dd id="Magnetometer.MergeFromString" class="function">MergeFromString</dd>
+                <dd id="Magnetometer.ParseFromString" class="function">ParseFromString</dd>
+                <dd id="Magnetometer.SerializeToString" class="function">SerializeToString</dd>
+                <dd id="Magnetometer.SerializePartialToString" class="function">SerializePartialToString</dd>
+                <dd id="Magnetometer.ListFields" class="function">ListFields</dd>
+                <dd id="Magnetometer.HasField" class="function">HasField</dd>
+                <dd id="Magnetometer.ClearField" class="function">ClearField</dd>
+                <dd id="Magnetometer.WhichOneof" class="function">WhichOneof</dd>
+                <dd id="Magnetometer.HasExtension" class="function">HasExtension</dd>
+                <dd id="Magnetometer.ClearExtension" class="function">ClearExtension</dd>
+                <dd id="Magnetometer.UnknownFields" class="function">UnknownFields</dd>
+                <dd id="Magnetometer.DiscardUnknownFields" class="function">DiscardUnknownFields</dd>
+                <dd id="Magnetometer.ByteSize" class="function">ByteSize</dd>
+                <dd id="Magnetometer.FromString" class="function">FromString</dd>
+                <dd id="Magnetometer.RegisterExtension" class="function">RegisterExtension</dd>
+                <dd id="Magnetometer.FindInitializationErrors" class="function">FindInitializationErrors</dd>
+                <dd id="Magnetometer.Extensions" class="variable">Extensions</dd>
 
             </div>
                                 </dl>
