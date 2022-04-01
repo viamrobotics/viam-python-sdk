@@ -14,7 +14,7 @@ from viam.components.gantry import Gantry, GeometriesInFrame
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
-                                 EulerAngles, Orientation)
+                                 EulerAngles, Orientation, Magnetometer)
 from viam.components.motor import Motor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
@@ -322,6 +322,7 @@ class MockIMU(IMU):
         acceleration: Acceleration
         angular_velocity: AngularVelocity
         orentation: Orientation
+        magnetometer: Magnetometer
 
     def __init__(self, name: str, result: Result = Result(
         Acceleration(
@@ -340,11 +341,17 @@ class MockIMU(IMU):
                 pitch_deg=random(),
                 yaw_deg=random()
             )
+        ),
+        Magnetometer(
+            x_gauss=random(),
+            y_gauss=random(),
+            z_gauss=random()
         )
     )):
         self.acceleration = result.acceleration
         self.angular_velocity = result.angular_velocity
         self.orientation = result.orentation
+        self.magnetometer = result.magnetometer
         super().__init__(name)
 
     async def read_acceleration(self) -> Acceleration:
@@ -355,6 +362,9 @@ class MockIMU(IMU):
 
     async def read_orientation(self) -> Orientation:
         return self.orientation
+
+    async def read_magnetometer(self) -> Magnetometer:
+        return self.magnetometer
 
 
 class MockMotor(Motor):

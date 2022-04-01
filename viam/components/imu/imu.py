@@ -1,11 +1,8 @@
 import abc
 from dataclasses import dataclass
 
-from viam.proto.api.component.imu import (
-    AngularVelocity,
-    EulerAngles,
-    Acceleration
-)
+from viam.proto.api.component.imu import (Acceleration, AngularVelocity,
+                                          EulerAngles, Magnetometer)
 
 from ..component_base import ComponentBase
 
@@ -55,5 +52,15 @@ class IMU(ComponentBase):
 
         Returns:
             Acceleration
+        """
+        ...
+
+    @abc.abstractmethod
+    async def read_magnetometer(self) -> Magnetometer:
+        """
+        Return the most recent reading from the magnetometer of the IMU
+
+        Returns:
+            Magnetometer
         """
         ...

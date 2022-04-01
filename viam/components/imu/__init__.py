@@ -1,5 +1,6 @@
 from .client import IMUClient
-from .imu import IMU, Acceleration, AngularVelocity, EulerAngles, Orientation
+from .imu import (IMU, Acceleration, AngularVelocity, EulerAngles,
+                  Magnetometer, Orientation)
 
 __all__ = [
     'IMU',
@@ -8,4 +9,5 @@ __all__ = [
     'Acceleration',
     'AngularVelocity',
     'EulerAngles',
+    'Magnetometer',
 ]

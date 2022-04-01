@@ -1,21 +1,20 @@
-from grpclib.testing import ChannelFor
 import pytest
-
-from viam.components.imu import (
-    IMUClient,
-    Orientation, AngularVelocity, Acceleration, EulerAngles
-)
+from grpclib.testing import ChannelFor
+from viam.components.imu import (Acceleration, AngularVelocity, EulerAngles,
+                                 IMUClient, Magnetometer, Orientation)
 from viam.components.imu.service import IMUService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.api.component.imu import (
-    IMUServiceStub,
-    ReadAccelerationRequest, ReadAccelerationResponse,
-    ReadAngularVelocityRequest, ReadAngularVelocityResponse,
-    ReadOrientationRequest, ReadOrientationResponse
-)
+from viam.proto.api.component.imu import (IMUServiceStub,
+                                          ReadAccelerationRequest,
+                                          ReadAccelerationResponse,
+                                          ReadAngularVelocityRequest,
+                                          ReadAngularVelocityResponse,
+                                          ReadMagnetometerRequest,
+                                          ReadMagnetometerResponse,
+                                          ReadOrientationRequest,
+                                          ReadOrientationResponse)
 
 from .mocks.components import MockIMU
-
 
 PASS_RESULT = MockIMU.Result(
     Acceleration(
@@ -34,6 +33,11 @@ PASS_RESULT = MockIMU.Result(
             pitch_deg=2,
             yaw_deg=3
         )
+    ),
+    Magnetometer(
+        x_gauss=1,
+        y_gauss=2,
+        z_gauss=3
     )
 )
 
@@ -69,6 +73,15 @@ class TestIMU:
         )
         orientation = await self.imu.read_orientation()
         assert orientation == Orientation(euler_angles=angles)
+
+    @pytest.mark.asyncio
+    async def test_read_magnetometer(self):
+        magnetometer = await self.imu.read_magnetometer()
+        assert magnetometer == Magnetometer(
+            x_gauss=1,
+            y_gauss=2,
+            z_gauss=3
+        )
 
 
 class TestService:
@@ -117,6 +130,19 @@ class TestService:
                 yaw_deg=3
             )
 
+    @pytest.mark.asyncio
+    async def test_read_magnetometer(self):
+        async with ChannelFor([self.service]) as channel:
+            client = IMUServiceStub(channel)
+            request = ReadMagnetometerRequest(name=self.name)
+            response: ReadMagnetometerResponse = \
+                await client.ReadMagnetometer(request)
+            assert response.magnetometer == Magnetometer(
+                x_gauss=1,
+                y_gauss=2,
+                z_gauss=3
+            )
+
 
 class TestClient:
 
@@ -158,4 +184,15 @@ class TestClient:
                     pitch_deg=2,
                     yaw_deg=3
                 )
+            )
+
+    @pytest.mark.asyncio
+    async def test_read_magnetometer(self):
+        async with ChannelFor([self.service]) as channel:
+            client = IMUClient(self.imu.name, channel)
+            magnetometer = await client.read_magnetometer()
+            assert magnetometer == Magnetometer(
+                x_gauss=1,
+                y_gauss=2,
+                z_gauss=3
             )
