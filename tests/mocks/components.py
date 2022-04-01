@@ -5,7 +5,7 @@ from secrets import choice
 from typing import Any, Dict, List, Optional, Tuple
 
 from PIL import Image
-from viam.components.arm import Arm
+from viam.components.arm import Arm, JointPositions
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
@@ -24,7 +24,6 @@ from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
                                    DigitalInterruptStatus, Pose, PoseInFrame,
                                    WorldState)
-from viam.proto.api.component.arm import JointPositions
 
 
 class MockArm(Arm):
