@@ -4,10 +4,12 @@ from viam.proto.api.component.imu import (IMUServiceStub,
                                           ReadAccelerationResponse,
                                           ReadAngularVelocityRequest,
                                           ReadAngularVelocityResponse,
+                                          ReadMagnetometerRequest,
+                                          ReadMagnetometerResponse,
                                           ReadOrientationRequest,
                                           ReadOrientationResponse)
 
-from .imu import Acceleration, AngularVelocity, IMU, Orientation
+from .imu import IMU, Acceleration, AngularVelocity, Magnetometer, Orientation
 
 
 class IMUClient(IMU):
@@ -36,3 +38,9 @@ class IMUClient(IMU):
         response: ReadOrientationResponse = \
             await self.client.ReadOrientation(request)
         return Orientation(euler_angles=response.orientation)
+
+    async def read_magnetometer(self) -> Magnetometer:
+        request = ReadMagnetometerRequest(name=self.name)
+        response: ReadMagnetometerResponse = \
+            await self.client.ReadMagnetometer(request)
+        return response.magnetometer
