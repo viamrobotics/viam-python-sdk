@@ -22,12 +22,13 @@ class Arm(ComponentBase):
         Get the current position of the end of the arm expressed as a `Pose`.
 
         Returns:
-            Pose: location (comprised of `x`, `y`, and `z` representing distance in millimeters
-                  from the arm's base)
-                  and orientation (comprised of `o_x`, `o_y`, and `o_z`
-                  representing a vector of the point on the cartesian unit sphere at 
-                  which the end effector is pointing from the origin and
-                  `theta` representing the angle around that unit vector)
+
+        Pose: location (comprised of `x`, `y`, and `z` representing distance in millimeters
+              from the arm's base)
+              and orientation (comprised of `o_x`, `o_y`, and `o_z`
+              representing a vector of the point on the cartesian unit sphere at 
+              which the end effector is pointing from the origin and
+              `theta` representing the angle around that unit vector)
         """
         ...
 
@@ -42,12 +43,14 @@ class Arm(ComponentBase):
         If obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
 
         Args:
+
             pose: location (comprised of `x`, `y`, and `z` representing distance in millimeters
                   from the arm's base)
                   and orientation (comprised of `o_x`, `o_y`, and `o_z`
                   representing a vector of the point on the cartesian unit sphere at 
                   which the end effector is pointing from the origin and
                   `theta` representing the angle around that unit vector)
+
             world_state: list of `GeometriesInFrame`. not sure how best to describe this portion
         """
         ...
@@ -58,6 +61,7 @@ class Arm(ComponentBase):
         Move each joint on the arm to the corresponding angle specified in `positions`.
 
         Args:
+
             positions: a list of floats representing joint angles in degrees, in order from
                             base to end effector.
         """
@@ -69,6 +73,7 @@ class Arm(ComponentBase):
         Get the list of the current joint angle (in degrees) for each joint on the arm.
 
         Returns:
+
             JointPositions: a list of floats representing joint angles in degrees, in order from
                             base to end effector.
         """
