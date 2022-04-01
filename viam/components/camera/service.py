@@ -53,10 +53,10 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             raise e.grpc_error()
         image = await camera.get_frame()
         try:
-            if not request.mime_type:
+            try:
+                mimetype = CameraMimeType(request.mime_type or '')
+            except ValueError:
                 mimetype = CameraMimeType.RAW
-            else:
-                mimetype = CameraMimeType(request.mime_type)
             if mimetype == CameraMimeType.BEST:
                 mimetype = CameraMimeType.RAW
             response = GetFrameResponse(
