@@ -1,7 +1,7 @@
 import abc
-from typing import List
+from typing import Optional
 
-from viam.proto.api.common import GeometriesInFrame, Pose
+from viam.proto.api.common import Pose, WorldState
 from viam.proto.api.component.arm import JointPositions
 
 from ..component_base import ComponentBase
@@ -30,15 +30,15 @@ class Arm(ComponentBase):
     async def move_to_position(
         self,
         pose: Pose,
-        obstacles: List[GeometriesInFrame]
+        world_state: Optional[WorldState]
     ):
         """
         Move the arm to the given absolute position
 
         Args:
             pose (Pose): The position to move the arm to
-            obstacles (List[GeometriesInFrame]): The geometries of any
-                obstacles
+            world_state (Optional[WorldState]): Object describing
+                obstacles and transforms
         """
         ...
 

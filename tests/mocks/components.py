@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from multiprocessing import Queue
 from random import random
 from secrets import choice
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from PIL import Image
 from viam.components.arm import Arm
@@ -14,16 +14,17 @@ from viam.components.gantry import Gantry, GeometriesInFrame
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
-                                 EulerAngles, Orientation, Magnetometer)
+                                 EulerAngles, Magnetometer, Orientation)
 from viam.components.motor import Motor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
+from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
-                                   DigitalInterruptStatus, Pose, PoseInFrame)
+                                   DigitalInterruptStatus, Pose, PoseInFrame,
+                                   WorldState)
 from viam.proto.api.component.arm import JointPositions
-from viam.components.types import CameraMimeType
 
 
 class MockArm(Arm):
@@ -47,7 +48,7 @@ class MockArm(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        obstacles: List[GeometriesInFrame]
+        world_state: Optional[WorldState]
     ):
         self.position = pose
 
