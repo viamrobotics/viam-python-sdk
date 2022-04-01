@@ -57,7 +57,7 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def get_joint_positions(self) -> JointPositions:
         """
-        Get the list of the current joint angle (in degrees) for each joint on the arm.
+        Get the `JointPositions` representing the current position of the arm.
 
         Returns:
 
