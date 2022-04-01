@@ -134,15 +134,15 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
-        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move the arm to the given absolute position</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pose (Pose): The position to move the arm to</span>
-<span class="sd">            obstacles (List[GeometriesInFrame]): The geometries of any</span>
-<span class="sd">                obstacles</span>
+<span class="sd">            world_state (Optional[WorldState]): Object describing</span>
+<span class="sd">                obstacles and transforms</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
@@ -218,7 +218,7 @@ you must call the super init function.</p>
             <span class="name">move_to_position</span><span class="signature">(
     self,
     pose: proto.api.common.v1.common_pb2.Pose,
-    obstacles: List[proto.api.common.v1.common_pb2.GeometriesInFrame]
+    world_state: Optional[proto.api.common.v1.common_pb2.WorldState] = None
 )</span>:
     </div>
 
@@ -228,15 +228,15 @@ you must call the super init function.</p>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
-        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move the arm to the given absolute position</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            pose (Pose): The position to move the arm to</span>
-<span class="sd">            obstacles (List[GeometriesInFrame]): The geometries of any</span>
-<span class="sd">                obstacles</span>
+<span class="sd">            world_state (Optional[WorldState]): Object describing</span>
+<span class="sd">                obstacles and transforms</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
@@ -247,8 +247,8 @@ you must call the super init function.</p>
 
 <p>Args:
     pose (Pose): The position to move the arm to
-    obstacles (List[GeometriesInFrame]): The geometries of any
-        obstacles</p>
+    world_state (Optional[WorldState]): Object describing
+        obstacles and transforms</p>
 </div>
 
 
@@ -356,9 +356,8 @@ you must call the super init function.</p>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
-        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
-        <span class="n">world_state</span> <span class="o">=</span> <span class="n">WorldState</span><span class="p">(</span><span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">)</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">MoveToPositionRequest</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">pose</span><span class="p">,</span> <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveToPosition</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -435,7 +434,7 @@ you must call the super init function.</p>
             <span class="name">move_to_position</span><span class="signature">(
     self,
     pose: proto.api.common.v1.common_pb2.Pose,
-    obstacles: List[proto.api.common.v1.common_pb2.GeometriesInFrame]
+    world_state: Optional[proto.api.common.v1.common_pb2.WorldState] = None
 )</span>:
     </div>
 
@@ -444,9 +443,8 @@ you must call the super init function.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
-        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">):</span>
-        <span class="n">world_state</span> <span class="o">=</span> <span class="n">WorldState</span><span class="p">(</span><span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">)</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">MoveToPositionRequest</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">pose</span><span class="p">,</span> <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveToPosition</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -458,8 +456,8 @@ you must call the super init function.</p>
 
 <p>Args:
     pose (Pose): The position to move the arm to
-    obstacles (List[GeometriesInFrame]): The geometries of any
-        obstacles</p>
+    world_state (Optional[WorldState]): Object describing
+        obstacles and transforms</p>
 </div>
 
 

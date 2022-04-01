@@ -64,11 +64,10 @@
                 
                         <details>
             <summary>View Source</summary>
-            <div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GeometriesInFrame</span><span class="p">,</span> <span class="n">PoseInFrame</span><span class="p">,</span>
-                                   <span class="n">ResourceName</span><span class="p">,</span> <span class="n">WorldState</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">WorldState</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.service.motion</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GetPoseRequest</span><span class="p">,</span> <span class="n">GetPoseResponse</span><span class="p">,</span>
                                            <span class="n">MotionServiceStub</span><span class="p">,</span> <span class="n">MoveRequest</span><span class="p">,</span>
                                            <span class="n">MoveResponse</span><span class="p">)</span>
@@ -83,12 +82,12 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">resource_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
         <span class="n">destination</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span>
-        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">MoveRequest</span><span class="p">(</span>
             <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
             <span class="n">component_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span>
-            <span class="n">world_state</span><span class="o">=</span><span class="n">WorldState</span><span class="p">(</span><span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">)</span>
+            <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span>
@@ -129,12 +128,12 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">resource_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
         <span class="n">destination</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span>
-        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">MoveRequest</span><span class="p">(</span>
             <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
             <span class="n">component_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span>
-            <span class="n">world_state</span><span class="o">=</span><span class="n">WorldState</span><span class="p">(</span><span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">)</span>
+            <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span>
@@ -183,7 +182,7 @@
     self,
     resource_name: proto.api.common.v1.common_pb2.ResourceName,
     destination: proto.api.common.v1.common_pb2.PoseInFrame,
-    obstacles: List[proto.api.common.v1.common_pb2.GeometriesInFrame]
+    world_state: Optional[proto.api.common.v1.common_pb2.WorldState] = None
 ) -&gt; bool</span>:
     </div>
 
@@ -193,12 +192,12 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">resource_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
         <span class="n">destination</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span>
-        <span class="n">obstacles</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GeometriesInFrame</span><span class="p">]</span>
+        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">MoveRequest</span><span class="p">(</span>
             <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
             <span class="n">component_name</span><span class="o">=</span><span class="n">resource_name</span><span class="p">,</span>
-            <span class="n">world_state</span><span class="o">=</span><span class="n">WorldState</span><span class="p">(</span><span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">)</span>
+            <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span>
