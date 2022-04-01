@@ -45,9 +45,10 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        obstacles = list(
-            request.world_state.obstacles) if request.world_state else []
-        await gantry.move_to_position(list(request.positions_mm), obstacles)
+        await gantry.move_to_position(
+            list(request.positions_mm),
+            request.world_state
+        )
         response = MoveToPositionResponse()
         await stream.send_message(response)
 

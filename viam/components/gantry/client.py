@@ -1,7 +1,7 @@
-from typing import List
+from typing import List, Optional
 
 from grpclib.client import Channel
-from viam.proto.api.common import GeometriesInFrame, WorldState
+from viam.proto.api.common import WorldState
 from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetLengthsRequest,
                                              GetLengthsResponse,
@@ -29,9 +29,8 @@ class GantryClient(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
-        obstacles: List[GeometriesInFrame]
+        world_state: Optional[WorldState] = None
     ):
-        world_state = WorldState(obstacles=obstacles)
         request = MoveToPositionRequest(
             name=self.name, positions_mm=positions, world_state=world_state)
         await self.client.MoveToPosition(request)

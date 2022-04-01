@@ -1,7 +1,7 @@
 import abc
-from typing import List
+from typing import List, Optional
 
-from viam.proto.api.common import GeometriesInFrame
+from viam.proto.api.common import WorldState
 
 from ..component_base import ComponentBase
 
@@ -29,7 +29,7 @@ class Gantry(ComponentBase):
     async def move_to_position(
         self,
         positions: List[float],
-        obstacles: List[GeometriesInFrame]
+        world_state: Optional[WorldState] = None
     ):
         """
         Move the gantry to a new poition
@@ -37,8 +37,8 @@ class Gantry(ComponentBase):
         Args:
             positions (List[float]): List of positions for the axes to move to,
                 in millimeters
-            obstacles (List[GeometriesInFrame]): The geometries of any
-                obstacles
+            world_state (Optional[WorldState]): Object describing
+                obstacles and transforms
         """
         ...
 

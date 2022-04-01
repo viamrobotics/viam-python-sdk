@@ -45,9 +45,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-        obstacles = list(
-            request.world_state.obstacles) if request.world_state else []
-        await arm.move_to_position(request.to, obstacles)
+        await arm.move_to_position(request.to, request.world_state)
         response = MoveToPositionResponse()
         await stream.send_message(response)
 

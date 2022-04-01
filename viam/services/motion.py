@@ -1,8 +1,7 @@
-from typing import List
+from typing import Optional
 
 from grpclib.client import Channel
-from viam.proto.api.common import (GeometriesInFrame, PoseInFrame,
-                                   ResourceName, WorldState)
+from viam.proto.api.common import PoseInFrame, ResourceName, WorldState
 from viam.proto.api.service.motion import (GetPoseRequest, GetPoseResponse,
                                            MotionServiceStub, MoveRequest,
                                            MoveResponse)
@@ -17,12 +16,12 @@ class MotionClient:
         self,
         resource_name: ResourceName,
         destination: PoseInFrame,
-        obstacles: List[GeometriesInFrame]
+        world_state: Optional[WorldState] = None
     ) -> bool:
         request = MoveRequest(
             destination=destination,
             component_name=resource_name,
-            world_state=WorldState(obstacles=obstacles)
+            world_state=world_state
         )
         response: MoveResponse = await self.client.Move(request)
         return response.success

@@ -1,7 +1,7 @@
 import asyncio
 import random
 from multiprocessing import Queue
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import cv2
 from PIL import Image
@@ -10,16 +10,17 @@ from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
-from viam.components.gantry import Gantry, GeometriesInFrame
+from viam.components.gantry import Gantry
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
-                                 EulerAngles, Orientation)
+                                 EulerAngles, Magnetometer, Orientation)
 from viam.components.motor import Motor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ComponentNotFoundError
+from viam.gen.proto.api.common.v1.common_pb2 import WorldState
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
                                    DigitalInterruptStatus, Pose, PoseInFrame)
 from viam.proto.api.component.arm import JointPositions
@@ -43,7 +44,10 @@ class ExampleArm(Arm):
     async def get_end_position(self) -> Pose:
         return self.position
 
-    async def move_to_position(self, pose: Pose):
+    async def move_to_position(
+        self, pose: Pose,
+        world_state: Optional[WorldState] = None
+    ):
         self.position = pose
 
     async def get_joint_positions(self) -> JointPositions:
@@ -272,7 +276,7 @@ class ExampleGantry(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
-        obstacles: List[GeometriesInFrame]
+        world_state: Optional[WorldState] = None
     ):
         self.position = positions
 
@@ -341,6 +345,13 @@ class ExampleIMU(IMU):
             yaw_deg=random.random()
         )
         return Orientation(euler_angles=angles)
+
+    async def read_magnetometer(self) -> Magnetometer:
+        return Magnetometer(
+            x_gauss=random.random(),
+            y_gauss=random.random(),
+            z_gauss=random.random()
+        )
 
 
 class ExampleMotor(Motor):
