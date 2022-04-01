@@ -53,10 +53,10 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = MotionClient(channel)
             success = await client.move(
-                Arm.get_resource_name('arm'), PoseInFrame(), [])
+                Arm.get_resource_name('arm'), PoseInFrame())
             assert success == MOVE_RESPONSES['arm']
             success = await client.move(
-                Gantry.get_resource_name('gantry'), PoseInFrame(), [])
+                Gantry.get_resource_name('gantry'), PoseInFrame())
             assert success == MOVE_RESPONSES['gantry']
 
     @pytest.mark.asyncio
