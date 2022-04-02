@@ -12,9 +12,7 @@
 
 import os
 import sys
-xxx = os.path.abspath('../..')
-print(xxx)
-sys.path.insert(0, xxx)
+sys.path.insert(0, os.path.abspath('../..'))
 
 
 # -- Project information -----------------------------------------------------
@@ -37,6 +35,8 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.coverage',
     'sphinx.ext.napoleon',
+    'myst_parser',
+    'sphinx_rtd_theme',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -46,6 +46,21 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
+
+
+def skip_member(app, what, name, obj, skip, options) -> bool:
+    str_obj = str(obj)
+    if 'proto' in str_obj:
+        if 'google' in str_obj:
+            return True
+        if 'field property' in str_obj:
+            return True
+    return skip
+
+
+def setup(app):
+    app.connect('autodoc-skip-member', skip_member)
+
 
 napoleon_google_docstring = True
 napoleon_numpy_docstring = True
@@ -67,7 +82,7 @@ napoleon_attr_annotations = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

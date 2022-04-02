@@ -21,7 +21,9 @@ test:
 documentation:
 	pdoc -o ./docs ./viam
 
-dox: buf
+dox:
+	find docsx/source -type f -name '*.rst' -not -name 'index.rst' -delete
+	rm -rf docsx/build/*
 	sphinx-apidoc -f -o ./docsx/source ./viam
 	sphinx-build -b html ./docsx/source ./docsx/build/html
 

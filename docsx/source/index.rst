@@ -1,15 +1,18 @@
-.. Viam Python SDK documentation master file, created by
-   sphinx-quickstart on Thu Mar 31 13:50:10 2022.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Welcome to the Viam Python SDK documentation!
+=============================================
 
-Welcome to Viam Python SDK's documentation!
-===========================================
+.. automodule:: viam
+   :members:
+
+.. autosummary::
+   :recursive:
+   viam
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   modules
 
 
 Indices and tables
@@ -19,4 +22,8 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. automodule:: viam
+
+README
+======
+.. include:: ../../README.md
+   :parser: myst_parser.sphinx_
