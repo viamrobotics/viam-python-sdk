@@ -19,7 +19,7 @@ jobs:
       - uses: arduino/setup-protoc@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - users: r-lib/actions/setup-pandoc
+      - uses: r-lib/actions/setup-pandoc
         with:
           pandoc-version: '2.17.1.1'
 
