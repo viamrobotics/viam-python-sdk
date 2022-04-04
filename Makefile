@@ -19,9 +19,6 @@ test:
 	python3 -m pytest
 
 documentation:
-	pdoc -o ./docs ./viam
-
-dox:
 	find docsx/source -type f -name '*.rst' -not -name 'index.rst' -delete
 	rm -rf docsx/build/*
 	sphinx-apidoc -f -o ./docsx/source ./viam

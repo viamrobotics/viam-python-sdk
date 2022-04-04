@@ -25,7 +25,8 @@ jobs:
       - name: Generate docs
         run: make documentation
 
-      - name: Add, Commit, and Push Docs
-        uses: EndBug/add-and-commit@v9.0.0
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1
         with:
-          message: '[WORKFLOW] Autogenerate documentation'
+          name: html-docs
+          path: docs/build/html/
