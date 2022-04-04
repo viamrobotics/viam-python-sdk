@@ -24,7 +24,7 @@ test:
 documentation:
 	find docs/source -type f -name '*.rst' -not -name 'index.rst' -delete
 	rm -rf docs/build/*
-	SPHINX_APIDOC_OPTIONS="members,show-inheritance" sphinx-apidoc -aefM --templatedir ./docs/templates -o ./docs/source ./viam
+	SPHINX_APIDOC_OPTIONS="members,show-inheritance" sphinx-apidoc -aefM --templatedir ./docs/_templates -o ./docs/source ./viam
 	sphinx-build -b html ./docs/source ./docs/build/html
 
 package: buf better_imports test

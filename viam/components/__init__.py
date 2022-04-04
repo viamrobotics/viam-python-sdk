@@ -1,4 +1,4 @@
-"""
+"""!markdown
 ## Accessing a component
 First you'll need to import the component's client. Generically this should look:
 ```python

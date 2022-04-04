@@ -14,13 +14,13 @@ def primitive_to_value(v: Any) -> Value:
     """
     Create a new google.protobuf.struct_pb2.Value
     Supports primitive types of
-        - None
-        - Number
-        - Bool
-        - String
-        - Dict
-        - List
-        - Bytes
+    - None
+    - Number
+    - Bool
+    - String
+    - Dict
+    - List
+    - Bytes
 
     Args:
         v (Any): object to convert to a Value

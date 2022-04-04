@@ -10,6 +10,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
+import pypandoc
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
@@ -54,6 +55,17 @@ autodoc_default_options = {
 }
 
 
+def process_docstring(app, what, name, obj, options, lines):
+    if len(lines) <= 0:
+        return
+    if '!markdown' not in lines[0]:
+        return
+    md = '\n'.join(lines[1:])
+    rst = pypandoc.convert(md, 'rst', 'md')
+    lines.clear()
+    lines += rst.splitlines()
+
+
 def skip_member(app, what, name, obj, skip, options) -> bool:
     str_obj = str(obj)
     if 'proto' in str_obj:
@@ -65,6 +77,7 @@ def skip_member(app, what, name, obj, skip, options) -> bool:
 
 
 def setup(app):
+    app.connect('autodoc-process-docstring', process_docstring)
     app.connect('autodoc-skip-member', skip_member)
 
 
