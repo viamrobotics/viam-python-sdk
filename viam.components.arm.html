@@ -106,20 +106,20 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.arm.Arm.get_end_position">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_end_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="proto.api.common.v1.common_pb2.Pose"><span class="pre">proto.api.common.v1.common_pb2.Pose</span></a></span></span><a class="headerlink" href="#viam.components.arm.arm.Arm.get_end_position" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current position of the end of the arm expressed as a <cite>Pose</cite>.</p>
-<p>Returns: The location and orientation of the arm described as a <cite>Pose</cite>.</p>
+<dd><p>Get the current position of the end of the arm expressed as a Pose.</p>
+<p>Returns: The location and orientation of the arm described as a Pose.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.arm.Arm.get_joint_positions">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_joint_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.arm.JointPositions" title="proto.api.component.arm.v1.arm_pb2.JointPositions"><span class="pre">proto.api.component.arm.v1.arm_pb2.JointPositions</span></a></span></span><a class="headerlink" href="#viam.components.arm.arm.Arm.get_joint_positions" title="Permalink to this definition"></a></dt>
-<dd><p>Get the <cite>JointPositions</cite> representing the current position of the arm.</p>
+<dd><p>Get the JointPositions representing the current position of the arm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current <cite>JointPositions</cite> for the arm.</p>
+<dd class="field-odd"><p>The current JointPositions for the arm.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><cite>JointPositions</cite></p>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions">JointPositions</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -130,7 +130,7 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dd><p>Move each joint on the arm to the corresponding angle specified in <cite>positions</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>positions</strong> (<cite>JointPositions</cite>) – The destination <cite>JointPositions</cite> for the arm.</p>
+<dd class="field-odd"><p><strong>positions</strong> (<a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions"><em>JointPositions</em></a>) – The destination <cite>JointPositions</cite> for the arm.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -138,13 +138,13 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.arm.Arm.move_to_position">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="proto.api.common.v1.common_pb2.Pose"><span class="pre">proto.api.common.v1.common_pb2.Pose</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="proto.api.common.v1.common_pb2.WorldState"><span class="pre">proto.api.common.v1.common_pb2.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.arm.Arm.move_to_position" title="Permalink to this definition"></a></dt>
-<dd><p>Move the end of the arm to the <cite>Pose</cite> specified in <cite>pose</cite>.
+<dd><p>Move the end of the arm to the Pose specified in <cite>pose</cite>.
 When obstacles are specified in <cite>world_state</cite>, the motion plan of the arm will avoid them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pose</strong> (<cite>Pose</cite>) – The destination <cite>Pose</cite> for the arm.</p></li>
-<li><p><strong>world_state</strong> (<cite>WorldState</cite>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
+<li><p><strong>pose</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><em>Pose</em></a>) – The destination Pose for the arm.</p></li>
+<li><p><strong>world_state</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><em>WorldState</em></a>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -164,20 +164,20 @@ When obstacles are specified in <cite>world_state</cite>, the motion plan of the
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.client.ArmClient.get_end_position">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_end_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="proto.api.common.v1.common_pb2.Pose"><span class="pre">proto.api.common.v1.common_pb2.Pose</span></a></span></span><a class="headerlink" href="#viam.components.arm.client.ArmClient.get_end_position" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current position of the end of the arm expressed as a <cite>Pose</cite>.</p>
-<p>Returns: The location and orientation of the arm described as a <cite>Pose</cite>.</p>
+<dd><p>Get the current position of the end of the arm expressed as a Pose.</p>
+<p>Returns: The location and orientation of the arm described as a Pose.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.client.ArmClient.get_joint_positions">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_joint_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.arm.JointPositions" title="proto.api.component.arm.v1.arm_pb2.JointPositions"><span class="pre">proto.api.component.arm.v1.arm_pb2.JointPositions</span></a></span></span><a class="headerlink" href="#viam.components.arm.client.ArmClient.get_joint_positions" title="Permalink to this definition"></a></dt>
-<dd><p>Get the <cite>JointPositions</cite> representing the current position of the arm.</p>
+<dd><p>Get the JointPositions representing the current position of the arm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current <cite>JointPositions</cite> for the arm.</p>
+<dd class="field-odd"><p>The current JointPositions for the arm.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><cite>JointPositions</cite></p>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions">JointPositions</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -188,7 +188,7 @@ When obstacles are specified in <cite>world_state</cite>, the motion plan of the
 <dd><p>Move each joint on the arm to the corresponding angle specified in <cite>positions</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>positions</strong> (<cite>JointPositions</cite>) – The destination <cite>JointPositions</cite> for the arm.</p>
+<dd class="field-odd"><p><strong>positions</strong> (<a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions"><em>JointPositions</em></a>) – The destination <cite>JointPositions</cite> for the arm.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -196,13 +196,13 @@ When obstacles are specified in <cite>world_state</cite>, the motion plan of the
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.client.ArmClient.move_to_position">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="proto.api.common.v1.common_pb2.Pose"><span class="pre">proto.api.common.v1.common_pb2.Pose</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="proto.api.common.v1.common_pb2.WorldState"><span class="pre">proto.api.common.v1.common_pb2.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.client.ArmClient.move_to_position" title="Permalink to this definition"></a></dt>
-<dd><p>Move the end of the arm to the <cite>Pose</cite> specified in <cite>pose</cite>.
+<dd><p>Move the end of the arm to the Pose specified in <cite>pose</cite>.
 When obstacles are specified in <cite>world_state</cite>, the motion plan of the arm will avoid them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pose</strong> (<cite>Pose</cite>) – The destination <cite>Pose</cite> for the arm.</p></li>
-<li><p><strong>world_state</strong> (<cite>WorldState</cite>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
+<li><p><strong>pose</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><em>Pose</em></a>) – The destination Pose for the arm.</p></li>
+<li><p><strong>world_state</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><em>WorldState</em></a>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -260,20 +260,20 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.Arm.get_end_position">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_end_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="proto.api.common.v1.common_pb2.Pose"><span class="pre">proto.api.common.v1.common_pb2.Pose</span></a></span></span><a class="headerlink" href="#viam.components.arm.Arm.get_end_position" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current position of the end of the arm expressed as a <cite>Pose</cite>.</p>
-<p>Returns: The location and orientation of the arm described as a <cite>Pose</cite>.</p>
+<dd><p>Get the current position of the end of the arm expressed as a Pose.</p>
+<p>Returns: The location and orientation of the arm described as a Pose.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.Arm.get_joint_positions">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_joint_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.arm.JointPositions" title="proto.api.component.arm.v1.arm_pb2.JointPositions"><span class="pre">proto.api.component.arm.v1.arm_pb2.JointPositions</span></a></span></span><a class="headerlink" href="#viam.components.arm.Arm.get_joint_positions" title="Permalink to this definition"></a></dt>
-<dd><p>Get the <cite>JointPositions</cite> representing the current position of the arm.</p>
+<dd><p>Get the JointPositions representing the current position of the arm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current <cite>JointPositions</cite> for the arm.</p>
+<dd class="field-odd"><p>The current JointPositions for the arm.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><cite>JointPositions</cite></p>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions">JointPositions</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -284,7 +284,7 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dd><p>Move each joint on the arm to the corresponding angle specified in <cite>positions</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>positions</strong> (<cite>JointPositions</cite>) – The destination <cite>JointPositions</cite> for the arm.</p>
+<dd class="field-odd"><p><strong>positions</strong> (<a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions"><em>JointPositions</em></a>) – The destination <cite>JointPositions</cite> for the arm.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -292,13 +292,13 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.Arm.move_to_position">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="proto.api.common.v1.common_pb2.Pose"><span class="pre">proto.api.common.v1.common_pb2.Pose</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="proto.api.common.v1.common_pb2.WorldState"><span class="pre">proto.api.common.v1.common_pb2.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.Arm.move_to_position" title="Permalink to this definition"></a></dt>
-<dd><p>Move the end of the arm to the <cite>Pose</cite> specified in <cite>pose</cite>.
+<dd><p>Move the end of the arm to the Pose specified in <cite>pose</cite>.
 When obstacles are specified in <cite>world_state</cite>, the motion plan of the arm will avoid them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pose</strong> (<cite>Pose</cite>) – The destination <cite>Pose</cite> for the arm.</p></li>
-<li><p><strong>world_state</strong> (<cite>WorldState</cite>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
+<li><p><strong>pose</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><em>Pose</em></a>) – The destination Pose for the arm.</p></li>
+<li><p><strong>world_state</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><em>WorldState</em></a>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -315,20 +315,20 @@ When obstacles are specified in <cite>world_state</cite>, the motion plan of the
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.ArmClient.get_end_position">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_end_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="proto.api.common.v1.common_pb2.Pose"><span class="pre">proto.api.common.v1.common_pb2.Pose</span></a></span></span><a class="headerlink" href="#viam.components.arm.ArmClient.get_end_position" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current position of the end of the arm expressed as a <cite>Pose</cite>.</p>
-<p>Returns: The location and orientation of the arm described as a <cite>Pose</cite>.</p>
+<dd><p>Get the current position of the end of the arm expressed as a Pose.</p>
+<p>Returns: The location and orientation of the arm described as a Pose.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.ArmClient.get_joint_positions">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_joint_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.arm.JointPositions" title="proto.api.component.arm.v1.arm_pb2.JointPositions"><span class="pre">proto.api.component.arm.v1.arm_pb2.JointPositions</span></a></span></span><a class="headerlink" href="#viam.components.arm.ArmClient.get_joint_positions" title="Permalink to this definition"></a></dt>
-<dd><p>Get the <cite>JointPositions</cite> representing the current position of the arm.</p>
+<dd><p>Get the JointPositions representing the current position of the arm.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current <cite>JointPositions</cite> for the arm.</p>
+<dd class="field-odd"><p>The current JointPositions for the arm.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><cite>JointPositions</cite></p>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions">JointPositions</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -339,7 +339,7 @@ When obstacles are specified in <cite>world_state</cite>, the motion plan of the
 <dd><p>Move each joint on the arm to the corresponding angle specified in <cite>positions</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>positions</strong> (<cite>JointPositions</cite>) – The destination <cite>JointPositions</cite> for the arm.</p>
+<dd class="field-odd"><p><strong>positions</strong> (<a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions"><em>JointPositions</em></a>) – The destination <cite>JointPositions</cite> for the arm.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -347,13 +347,13 @@ When obstacles are specified in <cite>world_state</cite>, the motion plan of the
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.ArmClient.move_to_position">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="proto.api.common.v1.common_pb2.Pose"><span class="pre">proto.api.common.v1.common_pb2.Pose</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="proto.api.common.v1.common_pb2.WorldState"><span class="pre">proto.api.common.v1.common_pb2.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.arm.ArmClient.move_to_position" title="Permalink to this definition"></a></dt>
-<dd><p>Move the end of the arm to the <cite>Pose</cite> specified in <cite>pose</cite>.
+<dd><p>Move the end of the arm to the Pose specified in <cite>pose</cite>.
 When obstacles are specified in <cite>world_state</cite>, the motion plan of the arm will avoid them.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pose</strong> (<cite>Pose</cite>) – The destination <cite>Pose</cite> for the arm.</p></li>
-<li><p><strong>world_state</strong> (<cite>WorldState</cite>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
+<li><p><strong>pose</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><em>Pose</em></a>) – The destination Pose for the arm.</p></li>
+<li><p><strong>world_state</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><em>WorldState</em></a>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
 </ul>
 </dd>
 </dl>
