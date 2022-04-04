@@ -9,17 +9,17 @@ import google.protobuf.message
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class ResourcesRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
 global___ResourcesRequest = ResourcesRequest
 
 class ResourcesResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESOURCES_FIELD_NUMBER: builtins.int
 
     @property

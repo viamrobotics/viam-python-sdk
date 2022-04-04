@@ -9,13 +9,13 @@ import google.protobuf.message
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetPosesRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     BODY_NAMES_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of the pose tracker'
 
     @property
@@ -34,13 +34,13 @@ class GetPosesRequest(google.protobuf.message.Message):
 global___GetPosesRequest = GetPosesRequest
 
 class GetPosesResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     class BodyPosesEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
-        key: typing.Text = ...
+        key: typing.Text
 
         @property
         def value(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
