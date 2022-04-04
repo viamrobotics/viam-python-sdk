@@ -4,10 +4,11 @@ from ..component_base import ComponentBase
 
 class Base(ComponentBase):
     """
-    Abstract representation of a physical base of a robot.
+    Base represents a physical base of a robot.
 
-    If you override the init function,
-    you must call the super init function.
+    This acts as an abstract base class for any drivers representing specific 
+    base implementations. This cannot be used on its own. If the `__init__()` function is
+    overriden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
@@ -18,18 +19,17 @@ class Base(ComponentBase):
         blocking: bool
     ):
         """
-        Instructs the robot to move a robot's base in a straight line
-        by a given distance, expressed in millimeters,
-        and a given speed, expressed in millimeters per second.
-        The method can be requested to block until the move is complete.
-        If a distance or speed of zero is given, the base will stop.
+        Move the base in a straight line the given `distance`, expressed in millimeters,
+        at the given `velocity`, expressed in millimeters per second.
+        When `blocking` is true, the method not return until the move is complete.
+        When `distance` or `velocity` is 0, the base will stop.
 
         Args:
             distance (int): The distance (in millimeters) to move.
                 Negative implies backwards.
-            velocity (float): The speed (in millimeters per second) to move.
+            velocity (float): The velocity (in millimeters per second) to move.
                 Negative implies backwards.
-            blocking (bool): Whether this method should be blocking
+            blocking (bool): whether this method should be blocking.
         """
         ...
 
@@ -42,45 +42,45 @@ class Base(ComponentBase):
         blocking: bool
     ):
         """
-        Instructs the robot to move its base in an arc
-        by a given distance, expressed in millimeters,
-        a given speed, expressed in millimeters per second of movement,
-        and a given angle, expressed in degrees.
-        If a distance of 0 is given the resultant motion is a spin
-        and if velocity of 0 is given the base will stop.
+        Move the base in an arc the given `distance`, expressed in millimeters,
+        at the given `velocity`, expressed in millimeters per second, turning `angle`
+        degrees in the process.
+        When `blocking` is true, the method not return until the move is complete.
+        When `distance` is 0, the the base will spin.
+        When `angle` is 0, the the base will move in a straight line.
+        When `velocity` is 0, the base will stop.
 
         Args:
-            distance (int): The distance (in millimeters) to move
+            distance (int): The distance (in millimeters) to move.
                 Negative implies backwards.
-            velocity (float): The speed (in millimeters per second) to move
+            velocity (float): The velocity (in millimeters per second) to move.
                 Negative implies backwards.
-            angle (float): The angle (in degrees) to move
+            angle (float): The angle (in degrees) to move.
                 Negative implies backwards.
-            blocking (bool): Whether this method should be blocking
+            blocking (bool): Whether this method should be blocking.
         """
         ...
 
     @abc.abstractmethod
     async def spin(self, angle: float, velocity: float, blocking: bool):
         """
-        Instructs the robot to spin by the given angle in degrees,
-        expressed in degrees, at a given angular speed, expressed
-        in degrees per second.
-        The method can be requested to block until the move is complete.
-        If a speed of 0 is given the base will stop.
+        Spin the base in place `angle` degrees, at the given angular `velocity`,
+        expressed in degrees per second.
+        When `blocking` is true, the method not return until the move is complete.
+        When `velocity` is 0, the base will stop.
 
         Args:
-            angle (float): The angle (in degrees) to spin
+            angle (float): The angle (in degrees) to spin.
                 Negative implies backwards.
-            velocity (float): The angular velocity (in degrees per second)
+            velocity (float): The angular velocity (in degrees per second).
                 to spin. Negative implies backwards.
-            blocking (bool): Whether this method should be blocking
+            blocking (bool): Whether this method should be blocking.
         """
         ...
 
     @abc.abstractmethod
     async def stop(self):
         """
-        Instructs the robot to stop its base
+        Stop the base.
         """
         ...
