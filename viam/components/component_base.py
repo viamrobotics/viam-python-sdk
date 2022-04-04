@@ -15,7 +15,7 @@ class ComponentBase(abc.ABC):
     @classmethod
     def get_resource_name(cls, name: str) -> ResourceName:
         """
-        Get the `ResourceName` for this component type with the given name
+        Get the ResourceName for this component type with the given name
 
         Args:
             name (str): The name of the Component
