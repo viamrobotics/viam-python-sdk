@@ -10,8 +10,8 @@ from viam.proto.api.service.framesystem import (Config, ConfigRequest,
 
 class FrameSystemClient:
     """
-    FrameSystem is a Viam service that handles tracking and transforming the reference frames of observations made by different components
-    of a robot.
+    FrameSystem is Viam service that handles tracking and trasforming the reference frames of observations made by different components of
+    a robot.
 
     """
 
@@ -22,7 +22,7 @@ class FrameSystemClient:
         """
         Get the configuration of the frame system of a given robot.
 
-        Returns (Config): The configuration of a given robot's frame system.
+        Returns: The configuration of a given robot's frame system
         """
         request = ConfigRequest()
         response: ConfigResponse = await self.client.Config(request)
@@ -34,12 +34,12 @@ class FrameSystemClient:
         destination: str
     ) -> PoseInFrame:
         """
-        Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
+        Transforms a given pose from the reference frame to a new specified reference frame.
 
         Args:
 
-            source (Pose): The pose that needs to be transformed.
-            destination (str) : The name of the reference frame to transform the given pose to.
+            source (Pose): The pose that needs to be transformed
+            destination : The reference frame to transform the given pose to
 
         """
         request = TransformPoseRequest(source=source, destination=destination)
