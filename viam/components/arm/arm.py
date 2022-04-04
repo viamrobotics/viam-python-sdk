@@ -19,9 +19,9 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def get_end_position(self) -> Pose:
         """
-        Get the current position of the end of the arm expressed as a `Pose`.
+        Get the current position of the end of the arm expressed as a Pose.
 
-        Returns: The location and orientation of the arm described as a `Pose`.
+        Returns: The location and orientation of the arm described as a Pose.
         """
         ...
 
@@ -32,14 +32,14 @@ class Arm(ComponentBase):
         world_state: Optional[WorldState] = None
     ):
         """
-        Move the end of the arm to the `Pose` specified in `pose`.
+        Move the end of the arm to the Pose specified in `pose`.
         When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
 
         Args:
 
-            pose (`Pose`): The destination `Pose` for the arm.
+            pose (Pose): The destination Pose for the arm.
 
-            world_state (`WorldState`): The obstacles for the arm to avoid on its way to `pose`.
+            world_state (WorldState): The obstacles for the arm to avoid on its way to `pose`.
         """
         ...
 
@@ -50,17 +50,17 @@ class Arm(ComponentBase):
 
         Args:
 
-            positions (`JointPositions`): The destination `JointPositions` for the arm.
+            positions (JointPositions): The destination `JointPositions` for the arm.
         """
         ...
 
     @abc.abstractmethod
     async def get_joint_positions(self) -> JointPositions:
         """
-        Get the `JointPositions` representing the current position of the arm.
+        Get the JointPositions representing the current position of the arm.
 
         Returns:
 
-            `JointPositions`: The current `JointPositions` for the arm.
+            JointPositions: The current JointPositions for the arm.
         """
         ...
