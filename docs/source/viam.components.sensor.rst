@@ -1,37 +1,16 @@
 viam.components.sensor package
 ==============================
 
+.. automodule:: viam.components.sensor
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.sensor.client module
-------------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.sensor.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.sensor.sensor module
-------------------------------------
-
-.. automodule:: viam.components.sensor.sensor
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.sensor.service module
--------------------------------------
-
-.. automodule:: viam.components.sensor.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.sensor
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.sensor.client
+   viam.components.sensor.sensor
+   viam.components.sensor.service

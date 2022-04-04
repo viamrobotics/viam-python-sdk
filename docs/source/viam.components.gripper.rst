@@ -1,37 +1,16 @@
 viam.components.gripper package
 ===============================
 
+.. automodule:: viam.components.gripper
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.gripper.client module
--------------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.gripper.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.gripper.gripper module
---------------------------------------
-
-.. automodule:: viam.components.gripper.gripper
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.gripper.service module
---------------------------------------
-
-.. automodule:: viam.components.gripper.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.gripper
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.gripper.client
+   viam.components.gripper.gripper
+   viam.components.gripper.service

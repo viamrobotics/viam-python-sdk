@@ -47,6 +47,12 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+autodoc_default_options = {
+    'members': None,
+    'exclude-members': 'google.protobuf.message.Message',
+    'undoc-members': False
+}
+
 
 def skip_member(app, what, name, obj, skip, options) -> bool:
     str_obj = str(obj)
@@ -58,7 +64,20 @@ def skip_member(app, what, name, obj, skip, options) -> bool:
     return skip
 
 
+def process_bases(app, name, obj, options, bases):
+    if 'JointPositions' in name:
+        print('*****'*10)
+        print(name, obj, options, bases)
+    for (idx, base) in enumerate(bases):
+        if 'google.protobuf.message.Message' in str(base):
+            del bases[idx]
+            options['show-inheritance'] = False
+    if 'JointPositions' in name:
+        print(name, obj, options, bases)
+
+
 def setup(app):
+    app.connect('autodoc-process-bases', process_bases)
     app.connect('autodoc-skip-member', skip_member)
 
 
@@ -81,7 +100,6 @@ napoleon_attr_annotations = True
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
 html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,

@@ -1,37 +1,16 @@
 viam.components.motor package
 =============================
 
+.. automodule:: viam.components.motor
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.motor.client module
------------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.motor.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.motor.motor module
-----------------------------------
-
-.. automodule:: viam.components.motor.motor
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.motor.service module
-------------------------------------
-
-.. automodule:: viam.components.motor.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.motor
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.motor.client
+   viam.components.motor.motor
+   viam.components.motor.service

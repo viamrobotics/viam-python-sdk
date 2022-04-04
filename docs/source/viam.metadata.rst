@@ -1,21 +1,14 @@
 viam.metadata package
 =====================
 
+.. automodule:: viam.metadata
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.metadata.service module
-----------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.metadata.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.metadata
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.metadata.service

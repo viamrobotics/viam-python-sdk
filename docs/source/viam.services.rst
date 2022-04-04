@@ -1,45 +1,24 @@
 viam.services package
 =====================
 
+.. automodule:: viam.services
+   :members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
    viam.services.status
 
 Submodules
 ----------
 
-viam.services.frame\_system module
-----------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.services.frame_system
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.services.motion module
----------------------------
-
-.. automodule:: viam.services.motion
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.services.object\_segmentation module
------------------------------------------
-
-.. automodule:: viam.services.object_segmentation
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.services
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.services.frame_system
+   viam.services.motion
+   viam.services.object_segmentation

@@ -1,37 +1,16 @@
 viam.rpc package
 ================
 
+.. automodule:: viam.rpc
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.rpc.dial module
---------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.rpc.dial
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.rpc.server module
-----------------------
-
-.. automodule:: viam.rpc.server
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.rpc.signaling module
--------------------------
-
-.. automodule:: viam.rpc.signaling
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.rpc
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.rpc.dial
+   viam.rpc.server
+   viam.rpc.signaling
