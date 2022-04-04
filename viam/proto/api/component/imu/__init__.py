@@ -27,10 +27,13 @@ __all__ = [
     'Acceleration',
     'AngularVelocity',
     'EulerAngles',
+    'Magnetometer',
     'ReadAccelerationRequest',
     'ReadAccelerationResponse',
     'ReadAngularVelocityRequest',
     'ReadAngularVelocityResponse',
+    'ReadMagnetometerRequest',
+    'ReadMagnetometerResponse',
     'ReadOrientationRequest',
     'ReadOrientationResponse',
 ]
