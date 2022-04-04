@@ -12,9 +12,9 @@ _READMATRIXREQUEST = DESCRIPTOR.message_types_by_name['ReadMatrixRequest']
 _READMATRIXRESPONSE = DESCRIPTOR.message_types_by_name['ReadMatrixResponse']
 _DETECTSLIPREQUEST = DESCRIPTOR.message_types_by_name['DetectSlipRequest']
 _DETECTSLIPRESPONSE = DESCRIPTOR.message_types_by_name['DetectSlipResponse']
-Matrix = _reflection.GeneratedProtocolMessageType('Matrix', (_message.Message,), {'DESCRIPTOR': _MATRIX, '__module__': 'proto.api.component.forcematrix.v1.force_matrix_pb2'})
+Matrix = _reflection.GeneratedProtocolMessageType('Matrix', (_message.Message,), {'DESCRIPTOR': _MATRIX, '__module__': 'proto.api.component.forcematrix.v1.force_matrix_pb2', '__doc__': 'Matrix'})
 _sym_db.RegisterMessage(Matrix)
-ReadMatrixRequest = _reflection.GeneratedProtocolMessageType('ReadMatrixRequest', (_message.Message,), {'DESCRIPTOR': _READMATRIXREQUEST, '__module__': 'proto.api.component.forcematrix.v1.force_matrix_pb2'})
+ReadMatrixRequest = _reflection.GeneratedProtocolMessageType('ReadMatrixRequest', (_message.Message,), {'DESCRIPTOR': _READMATRIXREQUEST, '__module__': 'proto.api.component.forcematrix.v1.force_matrix_pb2', '__doc__': 'ForceMatrix'})
 _sym_db.RegisterMessage(ReadMatrixRequest)
 ReadMatrixResponse = _reflection.GeneratedProtocolMessageType('ReadMatrixResponse', (_message.Message,), {'DESCRIPTOR': _READMATRIXRESPONSE, '__module__': 'proto.api.component.forcematrix.v1.force_matrix_pb2'})
 _sym_db.RegisterMessage(ReadMatrixResponse)

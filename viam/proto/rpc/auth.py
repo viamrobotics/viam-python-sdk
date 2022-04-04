@@ -15,3 +15,15 @@ from ...gen.proto.rpc.v1.auth_pb2 import (
     AuthenticateToResponse,
     Credentials
 )
+
+__all__ = [
+    'AuthServiceBase',
+    'AuthServiceStub',
+    'ExternalAuthServiceBase',
+    'ExternalAuthServiceStub',
+    'AuthenticateRequest',
+    'AuthenticateResponse',
+    'AuthenticateToRequest',
+    'AuthenticateToResponse',
+    'Credentials',
+]

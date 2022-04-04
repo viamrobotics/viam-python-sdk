@@ -12,3 +12,12 @@ from ....gen.proto.api.robot.v1.robot_pb2 import (
     ResourceRunCommandRequest,
     ResourceRunCommandResponse
 )
+
+__all__ = [
+    'RobotServiceBase',
+    'RobotServiceStub',
+    'DoActionRequest',
+    'DoActionResponse',
+    'ResourceRunCommandRequest',
+    'ResourceRunCommandResponse',
+]

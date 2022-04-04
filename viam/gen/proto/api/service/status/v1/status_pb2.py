@@ -21,7 +21,7 @@ GetStatusRequest = _reflection.GeneratedProtocolMessageType('GetStatusRequest', 
 _sym_db.RegisterMessage(GetStatusRequest)
 GetStatusResponse = _reflection.GeneratedProtocolMessageType('GetStatusResponse', (_message.Message,), {'DESCRIPTOR': _GETSTATUSRESPONSE, '__module__': 'proto.api.service.status.v1.status_pb2'})
 _sym_db.RegisterMessage(GetStatusResponse)
-StreamStatusRequest = _reflection.GeneratedProtocolMessageType('StreamStatusRequest', (_message.Message,), {'DESCRIPTOR': _STREAMSTATUSREQUEST, '__module__': 'proto.api.service.status.v1.status_pb2'})
+StreamStatusRequest = _reflection.GeneratedProtocolMessageType('StreamStatusRequest', (_message.Message,), {'DESCRIPTOR': _STREAMSTATUSREQUEST, '__module__': 'proto.api.service.status.v1.status_pb2', '__doc__': 'Attributes:\n      every:\n          how often to send a new status.\n  '})
 _sym_db.RegisterMessage(StreamStatusRequest)
 StreamStatusResponse = _reflection.GeneratedProtocolMessageType('StreamStatusResponse', (_message.Message,), {'DESCRIPTOR': _STREAMSTATUSRESPONSE, '__module__': 'proto.api.service.status.v1.status_pb2'})
 _sym_db.RegisterMessage(StreamStatusResponse)

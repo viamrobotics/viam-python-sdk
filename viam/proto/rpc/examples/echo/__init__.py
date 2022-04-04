@@ -14,3 +14,14 @@ from .....gen.proto.rpc.examples.echo.v1.echo_pb2 import (
     EchoRequest,
     EchoResponse
 )
+
+__all__ = [
+    'EchoServiceBase',
+    'EchoServiceStub',
+    'EchoBiDiRequest',
+    'EchoBiDiResponse',
+    'EchoMultipleRequest',
+    'EchoMultipleResponse',
+    'EchoRequest',
+    'EchoResponse',
+]

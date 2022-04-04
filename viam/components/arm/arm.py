@@ -11,7 +11,7 @@ class Arm(ComponentBase):
     """
     Arm represents a physical robot arm that exists in three-dimensional space.
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     arm implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """

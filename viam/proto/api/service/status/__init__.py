@@ -13,3 +13,13 @@ from .....gen.proto.api.service.status.v1.status_pb2 import (
     StreamStatusRequest,
     StreamStatusResponse
 )
+
+__all__ = [
+    'StatusServiceBase',
+    'StatusServiceStub',
+    'GetStatusRequest',
+    'GetStatusResponse',
+    'Status',
+    'StreamStatusRequest',
+    'StreamStatusResponse',
+]

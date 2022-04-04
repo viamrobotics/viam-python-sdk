@@ -25,7 +25,17 @@ jobs:
       - name: Generate docs
         run: make documentation
 
-      - name: Add, Commit, and Push Docs
-        uses: EndBug/add-and-commit@v9.0.0
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1
         with:
-          message: '[WORKFLOW] Autogenerate documentation'
+          name: html-docs
+          path: docs/build/html/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/build/html
+          publish_branch: docs-gh_pages
+          cname: python.viam.dev

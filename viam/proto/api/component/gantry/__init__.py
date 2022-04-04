@@ -15,3 +15,15 @@ from .....gen.proto.api.component.gantry.v1.gantry_pb2 import (
     MoveToPositionResponse,
     Status
 )
+
+__all__ = [
+    'GantryServiceBase',
+    'GantryServiceStub',
+    'GetLengthsRequest',
+    'GetLengthsResponse',
+    'GetPositionRequest',
+    'GetPositionResponse',
+    'MoveToPositionRequest',
+    'MoveToPositionResponse',
+    'Status',
+]

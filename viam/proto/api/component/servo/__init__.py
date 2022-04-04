@@ -13,3 +13,13 @@ from .....gen.proto.api.component.servo.v1.servo_pb2 import (
     MoveResponse,
     Status
 )
+
+__all__ = [
+    'ServoServiceBase',
+    'ServoServiceStub',
+    'GetPositionRequest',
+    'GetPositionResponse',
+    'MoveRequest',
+    'MoveResponse',
+    'Status',
+]

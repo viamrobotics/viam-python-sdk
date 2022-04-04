@@ -12,13 +12,13 @@ _MOVERESPONSE = DESCRIPTOR.message_types_by_name['MoveResponse']
 _GETPOSITIONREQUEST = DESCRIPTOR.message_types_by_name['GetPositionRequest']
 _GETPOSITIONRESPONSE = DESCRIPTOR.message_types_by_name['GetPositionResponse']
 _STATUS = DESCRIPTOR.message_types_by_name['Status']
-MoveRequest = _reflection.GeneratedProtocolMessageType('MoveRequest', (_message.Message,), {'DESCRIPTOR': _MOVEREQUEST, '__module__': 'proto.api.component.servo.v1.servo_pb2'})
+MoveRequest = _reflection.GeneratedProtocolMessageType('MoveRequest', (_message.Message,), {'DESCRIPTOR': _MOVEREQUEST, '__module__': 'proto.api.component.servo.v1.servo_pb2', '__doc__': 'Attributes:\n      name:\n          the name of the servo, as registered\n      angle_deg:\n          the degrees by which to rotate the servo. Accepted values are\n          between 0 and 180\n  '})
 _sym_db.RegisterMessage(MoveRequest)
 MoveResponse = _reflection.GeneratedProtocolMessageType('MoveResponse', (_message.Message,), {'DESCRIPTOR': _MOVERESPONSE, '__module__': 'proto.api.component.servo.v1.servo_pb2'})
 _sym_db.RegisterMessage(MoveResponse)
-GetPositionRequest = _reflection.GeneratedProtocolMessageType('GetPositionRequest', (_message.Message,), {'DESCRIPTOR': _GETPOSITIONREQUEST, '__module__': 'proto.api.component.servo.v1.servo_pb2'})
+GetPositionRequest = _reflection.GeneratedProtocolMessageType('GetPositionRequest', (_message.Message,), {'DESCRIPTOR': _GETPOSITIONREQUEST, '__module__': 'proto.api.component.servo.v1.servo_pb2', '__doc__': 'Attributes:\n      name:\n          the name of the servo, as registered\n  '})
 _sym_db.RegisterMessage(GetPositionRequest)
-GetPositionResponse = _reflection.GeneratedProtocolMessageType('GetPositionResponse', (_message.Message,), {'DESCRIPTOR': _GETPOSITIONRESPONSE, '__module__': 'proto.api.component.servo.v1.servo_pb2'})
+GetPositionResponse = _reflection.GeneratedProtocolMessageType('GetPositionResponse', (_message.Message,), {'DESCRIPTOR': _GETPOSITIONRESPONSE, '__module__': 'proto.api.component.servo.v1.servo_pb2', '__doc__': 'Attributes:\n      position_deg:\n          the degrees from neutral by which the servo is currently\n          rotated. Values are between 0 and 180\n  '})
 _sym_db.RegisterMessage(GetPositionResponse)
 Status = _reflection.GeneratedProtocolMessageType('Status', (_message.Message,), {'DESCRIPTOR': _STATUS, '__module__': 'proto.api.component.servo.v1.servo_pb2'})
 _sym_db.RegisterMessage(Status)

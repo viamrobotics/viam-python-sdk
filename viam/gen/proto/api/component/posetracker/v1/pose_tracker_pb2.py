@@ -12,9 +12,9 @@ DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n5proto/api/compone
 _GETPOSESREQUEST = DESCRIPTOR.message_types_by_name['GetPosesRequest']
 _GETPOSESRESPONSE = DESCRIPTOR.message_types_by_name['GetPosesResponse']
 _GETPOSESRESPONSE_BODYPOSESENTRY = _GETPOSESRESPONSE.nested_types_by_name['BodyPosesEntry']
-GetPosesRequest = _reflection.GeneratedProtocolMessageType('GetPosesRequest', (_message.Message,), {'DESCRIPTOR': _GETPOSESREQUEST, '__module__': 'proto.api.component.posetracker.v1.pose_tracker_pb2'})
+GetPosesRequest = _reflection.GeneratedProtocolMessageType('GetPosesRequest', (_message.Message,), {'DESCRIPTOR': _GETPOSESREQUEST, '__module__': 'proto.api.component.posetracker.v1.pose_tracker_pb2', '__doc__': 'Attributes:\n      name:\n          Name of the pose tracker\n      body_names:\n          Names of the bodies whose poses are being requested. In the\n          event this parameter is not supplied or is an empty list, all\n          available poses are returned\n  '})
 _sym_db.RegisterMessage(GetPosesRequest)
-GetPosesResponse = _reflection.GeneratedProtocolMessageType('GetPosesResponse', (_message.Message,), {'BodyPosesEntry': _reflection.GeneratedProtocolMessageType('BodyPosesEntry', (_message.Message,), {'DESCRIPTOR': _GETPOSESRESPONSE_BODYPOSESENTRY, '__module__': 'proto.api.component.posetracker.v1.pose_tracker_pb2'}), 'DESCRIPTOR': _GETPOSESRESPONSE, '__module__': 'proto.api.component.posetracker.v1.pose_tracker_pb2'})
+GetPosesResponse = _reflection.GeneratedProtocolMessageType('GetPosesResponse', (_message.Message,), {'BodyPosesEntry': _reflection.GeneratedProtocolMessageType('BodyPosesEntry', (_message.Message,), {'DESCRIPTOR': _GETPOSESRESPONSE_BODYPOSESENTRY, '__module__': 'proto.api.component.posetracker.v1.pose_tracker_pb2'}), 'DESCRIPTOR': _GETPOSESRESPONSE, '__module__': 'proto.api.component.posetracker.v1.pose_tracker_pb2', '__doc__': 'Attributes:\n      body_poses:\n          Mapping of each body name to the pose representing the center\n          of the body.\n  '})
 _sym_db.RegisterMessage(GetPosesResponse)
 _sym_db.RegisterMessage(GetPosesResponse.BodyPosesEntry)
 _POSETRACKERSERVICE = DESCRIPTOR.services_by_name['PoseTrackerService']

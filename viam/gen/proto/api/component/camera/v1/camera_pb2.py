@@ -14,15 +14,15 @@ _GETFRAMERESPONSE = DESCRIPTOR.message_types_by_name['GetFrameResponse']
 _RENDERFRAMEREQUEST = DESCRIPTOR.message_types_by_name['RenderFrameRequest']
 _GETPOINTCLOUDREQUEST = DESCRIPTOR.message_types_by_name['GetPointCloudRequest']
 _GETPOINTCLOUDRESPONSE = DESCRIPTOR.message_types_by_name['GetPointCloudResponse']
-GetFrameRequest = _reflection.GeneratedProtocolMessageType('GetFrameRequest', (_message.Message,), {'DESCRIPTOR': _GETFRAMEREQUEST, '__module__': 'proto.api.component.camera.v1.camera_pb2'})
+GetFrameRequest = _reflection.GeneratedProtocolMessageType('GetFrameRequest', (_message.Message,), {'DESCRIPTOR': _GETFRAMEREQUEST, '__module__': 'proto.api.component.camera.v1.camera_pb2', '__doc__': 'Attributes:\n      name:\n          Name of a camera\n      mime_type:\n          Requested MIME type of response\n  '})
 _sym_db.RegisterMessage(GetFrameRequest)
-GetFrameResponse = _reflection.GeneratedProtocolMessageType('GetFrameResponse', (_message.Message,), {'DESCRIPTOR': _GETFRAMERESPONSE, '__module__': 'proto.api.component.camera.v1.camera_pb2'})
+GetFrameResponse = _reflection.GeneratedProtocolMessageType('GetFrameResponse', (_message.Message,), {'DESCRIPTOR': _GETFRAMERESPONSE, '__module__': 'proto.api.component.camera.v1.camera_pb2', '__doc__': 'Attributes:\n      mime_type:\n          Actual MIME type of response\n      image:\n          Frame in bytes\n      width_px:\n          Width of frame in px\n      height_px:\n          Height of frame in px\n  '})
 _sym_db.RegisterMessage(GetFrameResponse)
-RenderFrameRequest = _reflection.GeneratedProtocolMessageType('RenderFrameRequest', (_message.Message,), {'DESCRIPTOR': _RENDERFRAMEREQUEST, '__module__': 'proto.api.component.camera.v1.camera_pb2'})
+RenderFrameRequest = _reflection.GeneratedProtocolMessageType('RenderFrameRequest', (_message.Message,), {'DESCRIPTOR': _RENDERFRAMEREQUEST, '__module__': 'proto.api.component.camera.v1.camera_pb2', '__doc__': 'Attributes:\n      name:\n          Name of a camera\n      mime_type:\n          Requested MIME type of response\n  '})
 _sym_db.RegisterMessage(RenderFrameRequest)
-GetPointCloudRequest = _reflection.GeneratedProtocolMessageType('GetPointCloudRequest', (_message.Message,), {'DESCRIPTOR': _GETPOINTCLOUDREQUEST, '__module__': 'proto.api.component.camera.v1.camera_pb2'})
+GetPointCloudRequest = _reflection.GeneratedProtocolMessageType('GetPointCloudRequest', (_message.Message,), {'DESCRIPTOR': _GETPOINTCLOUDREQUEST, '__module__': 'proto.api.component.camera.v1.camera_pb2', '__doc__': 'Attributes:\n      name:\n          Name of a camera\n      mime_type:\n          Requested MIME type of response\n  '})
 _sym_db.RegisterMessage(GetPointCloudRequest)
-GetPointCloudResponse = _reflection.GeneratedProtocolMessageType('GetPointCloudResponse', (_message.Message,), {'DESCRIPTOR': _GETPOINTCLOUDRESPONSE, '__module__': 'proto.api.component.camera.v1.camera_pb2'})
+GetPointCloudResponse = _reflection.GeneratedProtocolMessageType('GetPointCloudResponse', (_message.Message,), {'DESCRIPTOR': _GETPOINTCLOUDRESPONSE, '__module__': 'proto.api.component.camera.v1.camera_pb2', '__doc__': 'Attributes:\n      mime_type:\n          Actual MIME type of response\n      point_cloud:\n          Frame in bytes\n  '})
 _sym_db.RegisterMessage(GetPointCloudResponse)
 _CAMERASERVICE = DESCRIPTOR.services_by_name['CameraService']
 if _descriptor._USE_C_DESCRIPTORS == False:

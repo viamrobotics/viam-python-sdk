@@ -10,3 +10,10 @@ from .....gen.proto.api.component.sensor.v1.sensor_pb2 import (
     GetReadingsRequest,
     GetReadingsResponse
 )
+
+__all__ = [
+    'SensorServiceBase',
+    'SensorServiceStub',
+    'GetReadingsRequest',
+    'GetReadingsResponse',
+]

@@ -17,7 +17,7 @@ DoActionRequest = _reflection.GeneratedProtocolMessageType('DoActionRequest', (_
 _sym_db.RegisterMessage(DoActionRequest)
 DoActionResponse = _reflection.GeneratedProtocolMessageType('DoActionResponse', (_message.Message,), {'DESCRIPTOR': _DOACTIONRESPONSE, '__module__': 'proto.api.robot.v1.robot_pb2'})
 _sym_db.RegisterMessage(DoActionResponse)
-ResourceRunCommandRequest = _reflection.GeneratedProtocolMessageType('ResourceRunCommandRequest', (_message.Message,), {'DESCRIPTOR': _RESOURCERUNCOMMANDREQUEST, '__module__': 'proto.api.robot.v1.robot_pb2'})
+ResourceRunCommandRequest = _reflection.GeneratedProtocolMessageType('ResourceRunCommandRequest', (_message.Message,), {'DESCRIPTOR': _RESOURCERUNCOMMANDREQUEST, '__module__': 'proto.api.robot.v1.robot_pb2', '__doc__': 'Attributes:\n      resource_name:\n          Note(erd): okay in v1 because names are unique. v2 should be a\n          VRN\n  '})
 _sym_db.RegisterMessage(ResourceRunCommandRequest)
 ResourceRunCommandResponse = _reflection.GeneratedProtocolMessageType('ResourceRunCommandResponse', (_message.Message,), {'DESCRIPTOR': _RESOURCERUNCOMMANDRESPONSE, '__module__': 'proto.api.robot.v1.robot_pb2'})
 _sym_db.RegisterMessage(ResourceRunCommandResponse)

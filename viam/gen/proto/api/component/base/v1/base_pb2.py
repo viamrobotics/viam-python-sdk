@@ -15,19 +15,19 @@ _SPINREQUEST = DESCRIPTOR.message_types_by_name['SpinRequest']
 _SPINRESPONSE = DESCRIPTOR.message_types_by_name['SpinResponse']
 _STOPREQUEST = DESCRIPTOR.message_types_by_name['StopRequest']
 _STOPRESPONSE = DESCRIPTOR.message_types_by_name['StopResponse']
-MoveStraightRequest = _reflection.GeneratedProtocolMessageType('MoveStraightRequest', (_message.Message,), {'DESCRIPTOR': _MOVESTRAIGHTREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2'})
+MoveStraightRequest = _reflection.GeneratedProtocolMessageType('MoveStraightRequest', (_message.Message,), {'DESCRIPTOR': _MOVESTRAIGHTREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2', '__doc__': 'Attributes:\n      name:\n          Name of a base\n      distance_mm:\n          Desired travel distance in millimeters\n      mm_per_sec:\n          Desired travel velocity in millimeters/second\n      block:\n          Whether the movement should block all other movement commands\n          to base until this movement is complete\n  '})
 _sym_db.RegisterMessage(MoveStraightRequest)
 MoveStraightResponse = _reflection.GeneratedProtocolMessageType('MoveStraightResponse', (_message.Message,), {'DESCRIPTOR': _MOVESTRAIGHTRESPONSE, '__module__': 'proto.api.component.base.v1.base_pb2'})
 _sym_db.RegisterMessage(MoveStraightResponse)
-MoveArcRequest = _reflection.GeneratedProtocolMessageType('MoveArcRequest', (_message.Message,), {'DESCRIPTOR': _MOVEARCREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2'})
+MoveArcRequest = _reflection.GeneratedProtocolMessageType('MoveArcRequest', (_message.Message,), {'DESCRIPTOR': _MOVEARCREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2', '__doc__': 'Attributes:\n      name:\n          Name of a base\n      distance_mm:\n          Desired travel distance in millimeters\n      mm_per_sec:\n          Desired speed in millimeters per second\n      angle_deg:\n          Desired angle in degrees\n      block:\n          Whether the movement should block all other movement commands\n          to base until this movement is complete\n  '})
 _sym_db.RegisterMessage(MoveArcRequest)
 MoveArcResponse = _reflection.GeneratedProtocolMessageType('MoveArcResponse', (_message.Message,), {'DESCRIPTOR': _MOVEARCRESPONSE, '__module__': 'proto.api.component.base.v1.base_pb2'})
 _sym_db.RegisterMessage(MoveArcResponse)
-SpinRequest = _reflection.GeneratedProtocolMessageType('SpinRequest', (_message.Message,), {'DESCRIPTOR': _SPINREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2'})
+SpinRequest = _reflection.GeneratedProtocolMessageType('SpinRequest', (_message.Message,), {'DESCRIPTOR': _SPINREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2', '__doc__': 'Attributes:\n      name:\n          Name of a base\n      angle_deg:\n          Desired angle\n      degs_per_sec:\n          Desired angular velocity\n      block:\n          Whether the movement should block all other movement commands\n          to base until this movement is complete\n  '})
 _sym_db.RegisterMessage(SpinRequest)
 SpinResponse = _reflection.GeneratedProtocolMessageType('SpinResponse', (_message.Message,), {'DESCRIPTOR': _SPINRESPONSE, '__module__': 'proto.api.component.base.v1.base_pb2'})
 _sym_db.RegisterMessage(SpinResponse)
-StopRequest = _reflection.GeneratedProtocolMessageType('StopRequest', (_message.Message,), {'DESCRIPTOR': _STOPREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2'})
+StopRequest = _reflection.GeneratedProtocolMessageType('StopRequest', (_message.Message,), {'DESCRIPTOR': _STOPREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2', '__doc__': 'Attributes:\n      name:\n          Name of a base\n  '})
 _sym_db.RegisterMessage(StopRequest)
 StopResponse = _reflection.GeneratedProtocolMessageType('StopResponse', (_message.Message,), {'DESCRIPTOR': _STOPRESPONSE, '__module__': 'proto.api.component.base.v1.base_pb2'})
 _sym_db.RegisterMessage(StopResponse)

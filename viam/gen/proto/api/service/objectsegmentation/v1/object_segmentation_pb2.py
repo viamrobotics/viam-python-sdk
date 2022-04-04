@@ -16,19 +16,19 @@ _TYPEDPARAMETER = DESCRIPTOR.message_types_by_name['TypedParameter']
 _GETSEGMENTERPARAMETERSRESPONSE = DESCRIPTOR.message_types_by_name['GetSegmenterParametersResponse']
 _GETSEGMENTERSREQUEST = DESCRIPTOR.message_types_by_name['GetSegmentersRequest']
 _GETSEGMENTERSRESPONSE = DESCRIPTOR.message_types_by_name['GetSegmentersResponse']
-GetObjectPointCloudsRequest = _reflection.GeneratedProtocolMessageType('GetObjectPointCloudsRequest', (_message.Message,), {'DESCRIPTOR': _GETOBJECTPOINTCLOUDSREQUEST, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2'})
+GetObjectPointCloudsRequest = _reflection.GeneratedProtocolMessageType('GetObjectPointCloudsRequest', (_message.Message,), {'DESCRIPTOR': _GETOBJECTPOINTCLOUDSREQUEST, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2', '__doc__': 'Attributes:\n      camera_name:\n          Name of a camera\n      segmenter_name:\n          Name of the segmentation algorithm\n      mime_type:\n          Requested MIME type of response\n      parameters:\n          parameters for the chosen segmenter\n  '})
 _sym_db.RegisterMessage(GetObjectPointCloudsRequest)
-GetObjectPointCloudsResponse = _reflection.GeneratedProtocolMessageType('GetObjectPointCloudsResponse', (_message.Message,), {'DESCRIPTOR': _GETOBJECTPOINTCLOUDSRESPONSE, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2'})
+GetObjectPointCloudsResponse = _reflection.GeneratedProtocolMessageType('GetObjectPointCloudsResponse', (_message.Message,), {'DESCRIPTOR': _GETOBJECTPOINTCLOUDSRESPONSE, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2', '__doc__': 'Attributes:\n      mime_type:\n          Actual MIME type of response\n      objects:\n          List of objects in the scene\n  '})
 _sym_db.RegisterMessage(GetObjectPointCloudsResponse)
-GetSegmenterParametersRequest = _reflection.GeneratedProtocolMessageType('GetSegmenterParametersRequest', (_message.Message,), {'DESCRIPTOR': _GETSEGMENTERPARAMETERSREQUEST, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2'})
+GetSegmenterParametersRequest = _reflection.GeneratedProtocolMessageType('GetSegmenterParametersRequest', (_message.Message,), {'DESCRIPTOR': _GETSEGMENTERPARAMETERSREQUEST, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2', '__doc__': 'Attributes:\n      segmenter_name:\n          Name of the segmentation algo\n  '})
 _sym_db.RegisterMessage(GetSegmenterParametersRequest)
 TypedParameter = _reflection.GeneratedProtocolMessageType('TypedParameter', (_message.Message,), {'DESCRIPTOR': _TYPEDPARAMETER, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2'})
 _sym_db.RegisterMessage(TypedParameter)
-GetSegmenterParametersResponse = _reflection.GeneratedProtocolMessageType('GetSegmenterParametersResponse', (_message.Message,), {'DESCRIPTOR': _GETSEGMENTERPARAMETERSRESPONSE, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2'})
+GetSegmenterParametersResponse = _reflection.GeneratedProtocolMessageType('GetSegmenterParametersResponse', (_message.Message,), {'DESCRIPTOR': _GETSEGMENTERPARAMETERSRESPONSE, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2', '__doc__': 'Attributes:\n      parameters:\n          parameter names of the segmenter in the request\n  '})
 _sym_db.RegisterMessage(GetSegmenterParametersResponse)
 GetSegmentersRequest = _reflection.GeneratedProtocolMessageType('GetSegmentersRequest', (_message.Message,), {'DESCRIPTOR': _GETSEGMENTERSREQUEST, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2'})
 _sym_db.RegisterMessage(GetSegmentersRequest)
-GetSegmentersResponse = _reflection.GeneratedProtocolMessageType('GetSegmentersResponse', (_message.Message,), {'DESCRIPTOR': _GETSEGMENTERSRESPONSE, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2'})
+GetSegmentersResponse = _reflection.GeneratedProtocolMessageType('GetSegmentersResponse', (_message.Message,), {'DESCRIPTOR': _GETSEGMENTERSRESPONSE, '__module__': 'proto.api.service.objectsegmentation.v1.object_segmentation_pb2', '__doc__': 'Attributes:\n      segmenters:\n          segmenters in the registry\n  '})
 _sym_db.RegisterMessage(GetSegmentersResponse)
 _OBJECTSEGMENTATIONSERVICE = DESCRIPTOR.services_by_name['ObjectSegmentationService']
 if _descriptor._USE_C_DESCRIPTORS == False:
