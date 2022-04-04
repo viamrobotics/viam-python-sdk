@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.gripper package &mdash; Viam Python SDK 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="viam.components.imu package" href="viam.components.imu.html" />
+    <link rel="prev" title="viam.components.gps package" href="viam.components.gps.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">viam</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="viam.html">viam package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="viam.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="viam.components.html">viam.components package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="viam.metadata.html">viam.metadata package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="viam.proto.html">viam.proto package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="viam.robot.html">viam.robot package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="viam.rpc.html">viam.rpc package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="viam.services.html">viam.services package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="viam.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.errors">viam.errors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.logging">viam.logging module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.utils">viam.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">viam</a> &raquo;</li>
+          <li><a href="viam.html">viam package</a> &raquo;</li>
+          <li><a href="viam.components.html">viam.components package</a> &raquo;</li>
+      <li>viam.components.gripper package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/viam.components.gripper.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="viam-components-gripper-package">
+<h1>viam.components.gripper package<a class="headerlink" href="#viam-components-gripper-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-viam.components.gripper.client">
+<span id="viam-components-gripper-client-module"></span><h2>viam.components.gripper.client module<a class="headerlink" href="#module-viam.components.gripper.client" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.gripper.client.GripperClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gripper.client.</span></span><span class="sig-name descname"><span class="pre">GripperClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.client.GripperClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.components.gripper.gripper.Gripper" title="viam.components.gripper.gripper.Gripper"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gripper.gripper.Gripper</span></code></a></p>
+<p>gRPC client for the Gripper component</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.client.GripperClient.grab">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.gripper.client.GripperClient.grab" title="Permalink to this definition"></a></dt>
+<dd><p>Instruct the gripper to grab.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Indicates if the gripper grabbed something.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.client.GripperClient.open">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.client.GripperClient.open" title="Permalink to this definition"></a></dt>
+<dd><p>Open the gripper.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-viam.components.gripper.gripper">
+<span id="viam-components-gripper-gripper-module"></span><h2>viam.components.gripper.gripper module<a class="headerlink" href="#module-viam.components.gripper.gripper" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.gripper.gripper.Gripper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gripper.gripper.</span></span><span class="sig-name descname"><span class="pre">Gripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.gripper.Gripper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
+<p>Gripper represents a physical robotic gripper.</p>
+<p>This acts as an abstract base class for any drivers representing specific
+gripper implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
+overriden, it must call the <cite>super().__init__()</cite> function.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.gripper.Gripper.grab">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.grab" title="Permalink to this definition"></a></dt>
+<dd><p>Instruct the gripper to grab.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Indicates if the gripper grabbed something.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.gripper.Gripper.open">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.open" title="Permalink to this definition"></a></dt>
+<dd><p>Open the gripper.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-viam.components.gripper.service">
+<span id="viam-components-gripper-service-module"></span><h2>viam.components.gripper.service module<a class="headerlink" href="#module-viam.components.gripper.service" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.gripper.service.GripperService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gripper.service.</span></span><span class="sig-name descname"><span class="pre">GripperService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.components.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.service.GripperService" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">viam.gen.proto.api.component.gripper.v1.gripper_grpc.GripperServiceBase</span></code>, <a class="reference internal" href="viam.components.html#viam.components.service_base.ComponentServiceBase" title="viam.components.service_base.ComponentServiceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.service_base.ComponentServiceBase</span></code></a>[<a class="reference internal" href="#viam.components.gripper.gripper.Gripper" title="viam.components.gripper.gripper.Gripper"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gripper.gripper.Gripper</span></code></a>]</p>
+<p>gRPC Service for a Gripper</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.service.GripperService.Grab">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Grab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.gripper.v1.gripper_pb2.GrabRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.gripper.v1.gripper_pb2.GrabResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.gripper.service.GripperService.Grab" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.service.GripperService.Open">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.gripper.v1.gripper_pb2.OpenRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.gripper.v1.gripper_pb2.OpenResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.gripper.service.GripperService.Open" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.gripper.service.GripperService.RESOURCE_TYPE">
+<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.gripper.service.GripperService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#viam.components.gripper.gripper.Gripper" title="viam.components.gripper.gripper.Gripper"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gripper.gripper.Gripper</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-viam.components.gripper">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-viam.components.gripper" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.gripper.Gripper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gripper.</span></span><span class="sig-name descname"><span class="pre">Gripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.Gripper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
+<p>Gripper represents a physical robotic gripper.</p>
+<p>This acts as an abstract base class for any drivers representing specific
+gripper implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
+overriden, it must call the <cite>super().__init__()</cite> function.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.Gripper.grab">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.gripper.Gripper.grab" title="Permalink to this definition"></a></dt>
+<dd><p>Instruct the gripper to grab.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Indicates if the gripper grabbed something.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.Gripper.open">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.Gripper.open" title="Permalink to this definition"></a></dt>
+<dd><p>Open the gripper.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.gripper.GripperClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gripper.</span></span><span class="sig-name descname"><span class="pre">GripperClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.GripperClient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.components.gripper.gripper.Gripper" title="viam.components.gripper.gripper.Gripper"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gripper.gripper.Gripper</span></code></a></p>
+<p>gRPC client for the Gripper component</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.GripperClient.grab">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.gripper.GripperClient.grab" title="Permalink to this definition"></a></dt>
+<dd><p>Instruct the gripper to grab.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Indicates if the gripper grabbed something.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.GripperClient.open">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gripper.GripperClient.open" title="Permalink to this definition"></a></dt>
+<dd><p>Open the gripper.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="viam.components.gps.html" class="btn btn-neutral float-left" title="viam.components.gps package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viam.components.imu.html" class="btn btn-neutral float-right" title="viam.components.imu package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
