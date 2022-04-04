@@ -19,36 +19,37 @@ class Orientation():
 
 class IMU(ComponentBase):
     """
-    Abstract representation of a physical IMU
+    IMU represents a physical IMU (inertial measurement unit).
 
-    If you override the init function,
-    you must call the super init function.
+    This acts as an abstract base class for any drivers representing specific 
+    IMU implementations. This cannot be used on its own. If the `__init__()` function is
+    overriden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
     async def read_angular_velocity(self) -> AngularVelocity:
         """
-        Return the angular velocity of the IMU
+        Return the angular velocity of the IMU.
 
         Returns:
-            AngularVelocity
+            AngularVelocity, in degrees per second.
         """
         ...
 
     @abc.abstractmethod
     async def read_orientation(self) -> Orientation:
         """
-        Return the orientation of the IMU
+        Return the orientation of the IMU.
 
         Returns:
-            Orientation
+            Orientation, represented in EulerAngles.
         """
         ...
 
     @abc.abstractmethod
     async def read_acceleration(self) -> Acceleration:
         """
-        Return the acceleration of the IMU
+        Return the acceleration of the IMU.
 
         Returns:
             Acceleration
@@ -58,7 +59,7 @@ class IMU(ComponentBase):
     @abc.abstractmethod
     async def read_magnetometer(self) -> Magnetometer:
         """
-        Return the most recent reading from the magnetometer of the IMU
+        Return the most recent reading from the magnetometer of the IMU.
 
         Returns:
             Magnetometer

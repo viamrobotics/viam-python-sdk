@@ -8,20 +8,20 @@ from ..component_base import ComponentBase
 
 class Gantry(ComponentBase):
     """
-    Abstract representation of a physical Gantry,
-    used for controlling gantries of N axes.
+    Gantry represents a physical Gantry and can be used for controlling gantries of N axes.
 
-    If you override the init function,
-    you must call the super init function.
+    This acts as an abstract base class for any drivers representing specific 
+    gantry implementations. This cannot be used on its own. If the `__init__()` function is
+    overriden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
     async def get_position(self) -> List[float]:
         """
-        Get the position in millimeters
+        Get the position in millimeters.
 
         Returns:
-            List[float]: the position of the axes
+            List[float]: The position of the axes.
         """
         ...
 
@@ -32,22 +32,22 @@ class Gantry(ComponentBase):
         world_state: Optional[WorldState] = None
     ):
         """
-        Move the gantry to a new poition
+        Move the gantry to a new position.
 
         Args:
             positions (List[float]): List of positions for the axes to move to,
-                in millimeters
-            world_state (Optional[WorldState]): Object describing
-                obstacles and transforms
+                in millimeters.
+            world_state (Optional[`WorldState`]): Object describing
+                obstacles for the gantry to avoid on its way to `positions`.
         """
         ...
 
     @abc.abstractmethod
     async def get_lengths(self) -> List[float]:
         """
-        Get the lengths of the axes of the gantry in millimeters
+        Get the lengths of the axes of the gantry in millimeters.
 
         Returns:
-            List[float]: The lengths of the axes
+            List[float]: The lengths of the axes.
         """
         ...

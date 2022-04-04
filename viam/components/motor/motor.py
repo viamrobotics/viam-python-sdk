@@ -11,97 +11,92 @@ class Motor(ComponentBase):
         position_reporting: bool
 
     """
-    Abstract representation of a physical Motor
+    Motor represents a physical motor.
 
-    If you override the init function,
-    you must call the super init function.
+    This acts as an abstract base class for any drivers representing specific 
+    motor implementations. This cannot be used on its own. If the `__init__()` function is
+    overriden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
     async def set_power(self, power: float):
         """
-        Sets the percentage of power the motor should employ between -1 and 1.
-        Negative power implies a backward directional rotation
+        Sets the "percentage" of power the motor should employ between -1 and 1.
+        When `power` is negative, the rotation will be in the backward direction.
 
         Args:
-            power (float): Power percentage between -1 and 1
-                (negative implies backwards)
+            power (float): Power between -1 and 1
+                (negative implies backwards).
         """
         ...
 
     @abc.abstractmethod
     async def go_for(self, rpm: float, revolutions: float):
         """
-        Instructs the motor to go in a specific direction for a specific
-        amount of revolutions at a given speed in revolutions per minute.
-        Both the RPM and the revolutions can be assigned negative values
-        to move in a backwards direction.
-        Note: if both RPM and revolustions are negative,
-        the motor will spin in the forward direction
+        Spin the motor the specified number of `revolutions` at specified `rpm`.
+        When `rpm` or `revolutions` is a negative value, the rotation will be in the backward direction.
+        Note: if both `rpm` and `revolutions` are negative, the motor will spin in the forward direction.
 
         Args:
-            rpm (float): Speed at which the motor should move
-                (negative implies backwards)
-            revolutions (float): Number of revolutions the motor should run
-                (negative implies backwards)
+            rpm (float): Speed at which the motor should move in rotations per minute
+                (negative implies backwards).
+            revolutions (float): Number of revolutions the motor should run for
+                (negative implies backwards).
         """
         ...
 
     @abc.abstractmethod
     async def go_to(self, rpm: float, position_revolutions: float):
         """
-        Instructs the motor to go to a specific position (provided in
-        revolutions from home/zero), at a specific speed.
-        Regardless of the directionality of the RPM this function will move
-        the motor towards the specified target/position
+        Spin the motor to the specified position (provided in revolutions from home/zero),
+        at the specified speed, in revolutions per minute.
+        Regardless of the directionality of the `rpm` this function will move
+        the motor towards the specified position.
 
         Args:
-            rpm (float): Speed at which the motor should move (absolute value)
-            position_revolutions (float): Target position relative to home/zero
+            rpm (float): Speed at which the motor should rotate (absolute value).
+            position_revolutions (float): Target position relative to home/zero, in revolutions.
         """
         ...
 
     @abc.abstractmethod
     async def reset_zero_position(self, offset: float):
         """
-        Set the current position (+/- offset)
-        to be the new zero (home) position.
+        Set the current position (modified by `offset`) to be the new zero (home) position.
 
         Args:
-            offset (float): The new home/zero position
+            offset (float): The offset from the current position to new home/zero position.
         """
         ...
 
     @abc.abstractmethod
     async def get_position(self) -> float:
         """
-        Reports the position of the motor based on its encoder.
-        The unit returned is the number of revolutions relative
-        to its zero position.
-        This method will raise an exception if position reporting is
-        not supported.
+        Report the position of the motor based on its encoder.
+        The value returned is the number of revolutions relative to its zero position.
+        This method will raise an exception if position reporting is not supported by the motor.
 
         Returns:
-            float: position of the motor relative to zero/home
+            float: Number of revolutions the motor is away from zero/home.
         """
         ...
 
     @abc.abstractmethod
     async def get_features(self) -> Features:
         """
-        Reports a dictionary mapping optional features to
-        whether it is supported by this motor
+        Report a dictionary mapping optional features to
+        whether it is supported by this motor.
 
         Returns:
-            Features: map of feature names to supported status
+            Features: Map of feature names to supported status.
         """
         ...
 
     async def is_powered(self) -> bool:
         """
-        Returns whether or not the motor is currently running
+        Returns whether or not the motor is currently running.
 
         Returns:
-            bool: The power state of the motor
+            bool: Indicates whether the motor is currently powered.
         """
         ...
