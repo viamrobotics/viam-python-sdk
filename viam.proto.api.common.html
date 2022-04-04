@@ -93,6 +93,11 @@ Do not edit manually!</p>
 <dt class="sig sig-object py" id="viam.proto.api.common.AnalogStatus">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">AnalogStatus</span></span><a class="headerlink" href="#viam.proto.api.common.AnalogStatus" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Attributes:
+value:</p>
+<blockquote>
+<div><p>Current value of the analog reader of a robot’s board</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py class">
@@ -117,6 +122,11 @@ Do not edit manually!</p>
 <dt class="sig sig-object py" id="viam.proto.api.common.DigitalInterruptStatus">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">DigitalInterruptStatus</span></span><a class="headerlink" href="#viam.proto.api.common.DigitalInterruptStatus" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Attributes:
+value:</p>
+<blockquote>
+<div><p>Current value of the digital interrupt of a robot’s board</p>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py class">
@@ -129,30 +139,132 @@ Do not edit manually!</p>
 <dt class="sig sig-object py" id="viam.proto.api.common.GeometriesInFrame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">GeometriesInFrame</span></span><a class="headerlink" href="#viam.proto.api.common.GeometriesInFrame" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GeometriesinFrame contains the dimensions of a given geometry, pose of
+its center point, and the reference frame by which it was observed.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.GeometriesInFrame.reference_frame">
+<span class="sig-name descname"><span class="pre">reference_frame</span></span><a class="headerlink" href="#viam.proto.api.common.GeometriesInFrame.reference_frame" title="Permalink to this definition"></a></dt>
+<dd><p>Reference frame of the observer of the geometry</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.GeometriesInFrame.geometries">
+<span class="sig-name descname"><span class="pre">geometries</span></span><a class="headerlink" href="#viam.proto.api.common.GeometriesInFrame.geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Dimensional type</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.common.Geometry">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">Geometry</span></span><a class="headerlink" href="#viam.proto.api.common.Geometry" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Geometry contains the dimensions of a given geometry and the pose of
+its center. The geometry is one of either a sphere or a box.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Geometry.center">
+<span class="sig-name descname"><span class="pre">center</span></span><a class="headerlink" href="#viam.proto.api.common.Geometry.center" title="Permalink to this definition"></a></dt>
+<dd><p>Pose of a gemetries center point</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Geometry.geometry_type">
+<span class="sig-name descname"><span class="pre">geometry_type</span></span><a class="headerlink" href="#viam.proto.api.common.Geometry.geometry_type" title="Permalink to this definition"></a></dt>
+<dd><p>Deminsions of a give geometry. This can be a sphere or box</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.common.PointCloudObject">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">PointCloudObject</span></span><a class="headerlink" href="#viam.proto.api.common.PointCloudObject" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>PointCloudObject contains an image in bytes with point cloud data of
+all of the objects captured by a given observer as well as a repeated
+list of geometries which respresents the center point and geometry of
+each of the objects within the point cloud</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.PointCloudObject.point_cloud">
+<span class="sig-name descname"><span class="pre">point_cloud</span></span><a class="headerlink" href="#viam.proto.api.common.PointCloudObject.point_cloud" title="Permalink to this definition"></a></dt>
+<dd><p>image frame expressed in bytes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.PointCloudObject.geometries">
+<span class="sig-name descname"><span class="pre">geometries</span></span><a class="headerlink" href="#viam.proto.api.common.PointCloudObject.geometries" title="Permalink to this definition"></a></dt>
+<dd><p>volume of a given geometry</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.common.Pose">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">Pose</span></span><a class="headerlink" href="#viam.proto.api.common.Pose" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Pose is a combination of location and orientation. Location is
+expressed as distance which is represented by x , y, z coordinates.
+Orientation is expressed as an orientation vector which is represented
+by o_x, o_y, o_z and theta. The o_x, o_y, o_z coordinates represent
+the point on the cartesian unit sphere that the end of the arm is
+pointing to (with the origin as reference). That unit vector forms an
+axis around which theta rotates. This means that incrementing /
+decrementing theta will perform an inline rotation of the end
+effector. Theta is defined as rotation between two planes: the first
+being defined by the origin, the point (0,0,1), and the rx, ry, rz
+point, and the second being defined by the origin, the rx, ry, rz
+point and the local Z axis. Therefore, if theta is kept at zero as the
+north/south pole is circled, the Roll will correct itself to remain
+in-line.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Pose.x">
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#viam.proto.api.common.Pose.x" title="Permalink to this definition"></a></dt>
+<dd><p>millimeters from the origin</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Pose.y">
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#viam.proto.api.common.Pose.y" title="Permalink to this definition"></a></dt>
+<dd><p>millimeters from the origin</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Pose.z">
+<span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#viam.proto.api.common.Pose.z" title="Permalink to this definition"></a></dt>
+<dd><p>millimeters from the origin</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Pose.o_x">
+<span class="sig-name descname"><span class="pre">o_x</span></span><a class="headerlink" href="#viam.proto.api.common.Pose.o_x" title="Permalink to this definition"></a></dt>
+<dd><p>z component of a vector defining axis of rotation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Pose.o_y">
+<span class="sig-name descname"><span class="pre">o_y</span></span><a class="headerlink" href="#viam.proto.api.common.Pose.o_y" title="Permalink to this definition"></a></dt>
+<dd><p>x component of a vector defining axis of rotation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Pose.o_z">
+<span class="sig-name descname"><span class="pre">o_z</span></span><a class="headerlink" href="#viam.proto.api.common.Pose.o_z" title="Permalink to this definition"></a></dt>
+<dd><p>y component of a vector defining axis of rotation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Pose.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><a class="headerlink" href="#viam.proto.api.common.Pose.theta" title="Permalink to this definition"></a></dt>
+<dd><p>degrees</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.common.PoseInFrame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">PoseInFrame</span></span><a class="headerlink" href="#viam.proto.api.common.PoseInFrame" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>PoseInFrame contains a pose and the and the reference frame in which
+it was observed</p>
 </dd></dl>
 
 <dl class="py class">
@@ -177,6 +289,24 @@ Do not edit manually!</p>
 <dt class="sig sig-object py" id="viam.proto.api.common.Transform">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">Transform</span></span><a class="headerlink" href="#viam.proto.api.common.Transform" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Transform contains a pose and two reference frames. The first
+reference frame is the starting reference frame, and the second
+reference frame is the observer reference frame. The second reference
+frame has a pose which represents the pose of an object in the first
+reference frame as observed within the second reference frame.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Transform.reference_frame">
+<span class="sig-name descname"><span class="pre">reference_frame</span></span><a class="headerlink" href="#viam.proto.api.common.Transform.reference_frame" title="Permalink to this definition"></a></dt>
+<dd><p>the name of a given reference frame</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Transform.pose_in_observer_frame">
+<span class="sig-name descname"><span class="pre">pose_in_observer_frame</span></span><a class="headerlink" href="#viam.proto.api.common.Transform.pose_in_observer_frame" title="Permalink to this definition"></a></dt>
+<dd><p>the pose of the above reference frame with respect to a
+different observer reference frame</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -189,6 +319,25 @@ Do not edit manually!</p>
 <dt class="sig sig-object py" id="viam.proto.api.common.WorldState">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">WorldState</span></span><a class="headerlink" href="#viam.proto.api.common.WorldState" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>WorldState contains information about the physical environment around
+a given robot. All of the fields within this message are optional,
+they can include information about the physical dimensions of an
+obstacle, the freespace of a robot, and any desired transforms between
+a given reference frame and a new target reference frame.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.WorldState.obstacles">
+<span class="sig-name descname"><span class="pre">obstacles</span></span><a class="headerlink" href="#viam.proto.api.common.WorldState.obstacles" title="Permalink to this definition"></a></dt>
+<dd><p>a list of obstacles expressed as a geomtry and the reference
+frame in which it was observed; this field is optional</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.WorldState.transforms">
+<span class="sig-name descname"><span class="pre">transforms</span></span><a class="headerlink" href="#viam.proto.api.common.WorldState.transforms" title="Permalink to this definition"></a></dt>
+<dd><p>a list of Transforms needed to transform a pose from one
+reference frame to another; this field is optional</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
