@@ -24,7 +24,8 @@ jobs:
 
       - name: Generate docs
         uses: docker://pandoc/core:2.9
-        run: make documentation
+        with:
+          entrypoint: make documentation
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v1
