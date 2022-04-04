@@ -1,21 +1,14 @@
 viam.robot package
 ==================
 
+.. automodule:: viam.robot
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.robot.service module
--------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.robot.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.robot
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.robot.service

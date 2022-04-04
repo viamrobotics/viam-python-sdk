@@ -1,37 +1,16 @@
 viam.components.gps package
 ===========================
 
+.. automodule:: viam.components.gps
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.gps.client module
----------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.gps.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.gps.gps module
-------------------------------
-
-.. automodule:: viam.components.gps.gps
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.gps.service module
-----------------------------------
-
-.. automodule:: viam.components.gps.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.gps
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.gps.client
+   viam.components.gps.gps
+   viam.components.gps.service

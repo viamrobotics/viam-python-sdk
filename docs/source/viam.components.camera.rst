@@ -1,37 +1,16 @@
 viam.components.camera package
 ==============================
 
+.. automodule:: viam.components.camera
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.camera.camera module
-------------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.camera.camera
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.camera.client module
-------------------------------------
-
-.. automodule:: viam.components.camera.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.camera.service module
--------------------------------------
-
-.. automodule:: viam.components.camera.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.camera
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.camera.camera
+   viam.components.camera.client
+   viam.components.camera.service

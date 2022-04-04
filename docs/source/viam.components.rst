@@ -1,11 +1,15 @@
 viam.components package
 =======================
 
+.. automodule:: viam.components
+   :members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
    viam.components.arm
    viam.components.base
@@ -23,42 +27,10 @@ Subpackages
 Submodules
 ----------
 
-viam.components.component\_base module
---------------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.component_base
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.resource\_manager module
-----------------------------------------
-
-.. automodule:: viam.components.resource_manager
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.service\_base module
-------------------------------------
-
-.. automodule:: viam.components.service_base
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.types module
-----------------------------
-
-.. automodule:: viam.components.types
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.component_base
+   viam.components.resource_manager
+   viam.components.service_base
+   viam.components.types

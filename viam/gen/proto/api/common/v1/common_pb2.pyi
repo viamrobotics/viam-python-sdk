@@ -113,18 +113,6 @@ class DigitalInterruptStatus(google.protobuf.message.Message):
 global___DigitalInterruptStatus = DigitalInterruptStatus
 
 class Pose(google.protobuf.message.Message):
-    """
-    Pose is a combination of location and orientation.
-    Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
-    is represented by o_x, o_y, o_z and theta.
-
-    The o_x, o_y, o_z coordinates represent the point on the cartesian unit sphere that the end of
-    the arm is pointing to (with the origin as reference). That unit vector forms an axis around which theta rotates. This means that
-    incrementing / decrementing theta will perform an inline rotation of the end effector. Theta is defined as rotation between two planes:
-    the first being defined by the origin, the point (0,0,1), and the rx, ry, rz point, and the second being defined by the origin, the rx,
-    ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole is circled, the Roll will correct itself
-    to remain in-line.
-    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     X_FIELD_NUMBER: builtins.int
     Y_FIELD_NUMBER: builtins.int
@@ -134,19 +122,14 @@ class Pose(google.protobuf.message.Message):
     O_Z_FIELD_NUMBER: builtins.int
     THETA_FIELD_NUMBER: builtins.int
     x: builtins.float = ...
-    'millimeters from the origin'
+    'millimeters of the end effector from the base'
     y: builtins.float = ...
-    'millimeters from the origin'
     z: builtins.float = ...
-    'millimeters from the origin'
     o_x: builtins.float = ...
-    'a vector, this input will get normalized to a point on the unit sphere'
+    'ox, oy, oz, theta represents an orientation vector\n    Structured similarly to an angle axis, an orientation vector works differently. Rather than representing an orientation\n    with an arbitrary axis and a rotation around it from an origin, an orientation vector represents orientation\n    such that the ox/oy/oz components represent the point on the cartesian unit sphere at which your end effector is pointing\n    from the origin, and that unit vector forms an axis around which theta rotates. This means that incrementing/decrementing\n    theta will perform an in-line rotation of the end effector.\n    Theta is defined as rotation between two planes: the plane defined by the origin, the point (0,0,1), and the rx,ry,rz\n    point, and the plane defined by the origin, the rx,ry,rz point, and the new local Z axis. So if theta is kept at\n    zero as the north/south pole is circled, the Roll will correct itself to remain in-line.\n    Theta in pb.Pose should be degrees. It will be converted to radians in the internal OrientationVec.\n    '
     o_y: builtins.float = ...
-    'a vector, this input will get normalized to a point on the unit sphere'
     o_z: builtins.float = ...
-    'a vector, this input will get normalized to a point on the unit sphere'
     theta: builtins.float = ...
-    'degrees'
 
     def __init__(self, *, x: builtins.float=..., y: builtins.float=..., z: builtins.float=..., o_x: builtins.float=..., o_y: builtins.float=..., o_z: builtins.float=..., theta: builtins.float=...) -> None:
         ...

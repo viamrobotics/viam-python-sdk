@@ -1,37 +1,16 @@
 viam.components.gantry package
 ==============================
 
+.. automodule:: viam.components.gantry
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.gantry.client module
-------------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.gantry.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.gantry.gantry module
-------------------------------------
-
-.. automodule:: viam.components.gantry.gantry
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.gantry.service module
--------------------------------------
-
-.. automodule:: viam.components.gantry.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.gantry
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.gantry.client
+   viam.components.gantry.gantry
+   viam.components.gantry.service

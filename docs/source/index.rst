@@ -1,13 +1,6 @@
 Welcome to the Viam Python SDK documentation!
 =============================================
 
-.. automodule:: viam
-   :members:
-
-.. autosummary::
-   :recursive:
-   viam
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

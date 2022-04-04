@@ -10,6 +10,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
+import pypandoc
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
@@ -47,6 +48,23 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+autodoc_default_options = {
+    'members': None,
+    'exclude-members': 'google.protobuf.message.Message',
+    'undoc-members': False
+}
+
+
+def process_docstring(app, what, name, obj, options, lines):
+    if len(lines) <= 0:
+        return
+    if '!markdown' not in lines[0]:
+        return
+    md = '\n'.join(lines[1:])
+    rst = pypandoc.convert(md, 'rst', 'md')
+    lines.clear()
+    lines += rst.splitlines()
+
 
 def skip_member(app, what, name, obj, skip, options) -> bool:
     str_obj = str(obj)
@@ -59,6 +77,7 @@ def skip_member(app, what, name, obj, skip, options) -> bool:
 
 
 def setup(app):
+    app.connect('autodoc-process-docstring', process_docstring)
     app.connect('autodoc-skip-member', skip_member)
 
 
@@ -81,7 +100,6 @@ napoleon_attr_annotations = True
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#
 html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
