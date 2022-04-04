@@ -8,10 +8,10 @@ from viam.proto.api.service.motion import (GetPoseRequest, GetPoseResponse,
 
 
 class MotionClient:
-    """ Motion is a viam service that coordinates motion planning across all of the components in a given robot.
+    """ Motion is a Viam service that coordinates motion planning across all of the components in a given robot.
 
     The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
-    `World_State` message, the motion planning service will also account for those.
+    `world_state` message, the motion planning service will also account for those.
      """
 
     def __init__(self, channel: Channel):
@@ -24,13 +24,13 @@ class MotionClient:
         world_state: Optional[WorldState] = None
     ) -> bool:
         """
-        Move a give component on the robot to a given destination, obey any constraints (transforms or obstacles) if supplied.
+        Move a component on the robot to a given destination, obey any constraints (transforms or obstacles) if supplied in WorldState.
 
         Args:
-            resource_name (ResourceName): Name of a component on a given robot
-            destination (PoseInFrame): The destination to move to, expressed as a `Pose` and the frame in which it was observed
+            resource_name (ResourceName): Name of a component on a given robot.
+            destination (PoseInFrame): The destination to move to, expressed as a `Pose` and the frame in which it was observed.
             world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the
-                WorldState message, this can be obstacles, freespace, and transforms.
+                WorldState message.
         """
         request = MoveRequest(
             destination=destination,
@@ -46,10 +46,14 @@ class MotionClient:
         destination_frame: str
     ) -> PoseInFrame:
         """
-        Get the Pose and observer frame for any given component on a robot
+        Get the Pose and observer frame for any given component on a robot.
 
         Args:
-            component_name(ResourceName): Name of a component on a robot
+            component_name(ResourceName): Name of a component on a robot.
+            destination_frame(str):
+
+        Returns:
+            Pose(PoseInFrame): Pose of the given component and the frame in which it was observed.
         """
         request = GetPoseRequest(
             component_name=resource_name,
