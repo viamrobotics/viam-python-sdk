@@ -1,37 +1,16 @@
 viam.components.base package
 ============================
 
+.. automodule:: viam.components.base
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.base.base module
---------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.base.base
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.base.client module
-----------------------------------
-
-.. automodule:: viam.components.base.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.base.service module
------------------------------------
-
-.. automodule:: viam.components.base.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.base
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.base.base
+   viam.components.base.client
+   viam.components.base.service

@@ -1,29 +1,15 @@
 viam.services.status package
 ============================
 
+.. automodule:: viam.services.status
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.services.status.client module
-----------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.services.status.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.services.status.service module
------------------------------------
-
-.. automodule:: viam.services.status.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.services.status
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.services.status.client
+   viam.services.status.service

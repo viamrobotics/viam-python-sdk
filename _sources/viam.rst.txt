@@ -1,11 +1,15 @@
 viam package
 ============
 
+.. automodule:: viam
+   :members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
    viam.components
    viam.metadata
@@ -17,34 +21,9 @@ Subpackages
 Submodules
 ----------
 
-viam.errors module
-------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.errors
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.logging module
--------------------
-
-.. automodule:: viam.logging
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.utils module
------------------
-
-.. automodule:: viam.utils
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.errors
+   viam.logging
+   viam.utils

@@ -18,8 +18,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="viam.components.board package" href="viam.components.board.html" />
-    <link rel="prev" title="viam.components.arm package" href="viam.components.arm.html" /> 
+    <link rel="next" title="viam.components.base.base module" href="viam.components.base.base.html" />
+    <link rel="prev" title="viam.components.arm.service module" href="viam.components.arm.service.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,10 +51,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="viam.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.errors">viam.errors module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.logging">viam.logging module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.utils">viam.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -88,218 +84,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="viam-components-base-package">
-<h1>viam.components.base package<a class="headerlink" href="#viam-components-base-package" title="Permalink to this headline"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-</section>
-<section id="module-viam.components.base.base">
-<span id="viam-components-base-base-module"></span><h2>viam.components.base.base module<a class="headerlink" href="#module-viam.components.base.base" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.base.base.Base">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.base.</span></span><span class="sig-name descname"><span class="pre">Base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
-<p>Base represents a physical base of a robot.</p>
-<p>This acts as an abstract base class for any drivers representing specific
-base implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
-overriden, it must call the <cite>super().__init__()</cite> function.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.base.Base.move_arc">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_arc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.move_arc" title="Permalink to this definition"></a></dt>
-<dd><p>Move the base in an arc the given <cite>distance</cite>, expressed in millimeters,
-at the given <cite>velocity</cite>, expressed in millimeters per second, turning <cite>angle</cite>
-degrees in the process.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
-When <cite>distance</cite> is 0, the the base will spin.
-When <cite>angle</cite> is 0, the the base will move in a straight line.
-When <cite>velocity</cite> is 0, the base will stop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>distance</strong> (<em>int</em>) – The distance (in millimeters) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The velocity (in millimeters per second) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – Whether this method should be blocking.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.base.Base.move_straight">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.move_straight" title="Permalink to this definition"></a></dt>
-<dd><p>Move the base in a straight line the given <cite>distance</cite>, expressed in millimeters,
-at the given <cite>velocity</cite>, expressed in millimeters per second.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
-When <cite>distance</cite> or <cite>velocity</cite> is 0, the base will stop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>distance</strong> (<em>int</em>) – The distance (in millimeters) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The velocity (in millimeters per second) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – whether this method should be blocking.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.base.Base.spin">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.spin" title="Permalink to this definition"></a></dt>
-<dd><p>Spin the base in place <cite>angle</cite> degrees, at the given angular <cite>velocity</cite>,
-expressed in degrees per second.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
-When <cite>velocity</cite> is 0, the base will stop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to spin.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The angular velocity (in degrees per second).
-to spin. Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – Whether this method should be blocking.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.base.Base.stop">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.stop" title="Permalink to this definition"></a></dt>
-<dd><p>Stop the base.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.base.client">
-<span id="viam-components-base-client-module"></span><h2>viam.components.base.client module<a class="headerlink" href="#module-viam.components.base.client" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.base.client.BaseClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.client.</span></span><span class="sig-name descname"><span class="pre">BaseClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.base.base.Base" title="viam.components.base.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.base.base.Base</span></code></a></p>
-<p>gRPC client for the Base component.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.client.BaseClient.move_arc">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_arc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient.move_arc" title="Permalink to this definition"></a></dt>
-<dd><p>Move the base in an arc the given <cite>distance</cite>, expressed in millimeters,
-at the given <cite>velocity</cite>, expressed in millimeters per second, turning <cite>angle</cite>
-degrees in the process.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
-When <cite>distance</cite> is 0, the the base will spin.
-When <cite>angle</cite> is 0, the the base will move in a straight line.
-When <cite>velocity</cite> is 0, the base will stop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>distance</strong> (<em>int</em>) – The distance (in millimeters) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The velocity (in millimeters per second) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – Whether this method should be blocking.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.client.BaseClient.move_straight">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient.move_straight" title="Permalink to this definition"></a></dt>
-<dd><p>Move the base in a straight line the given <cite>distance</cite>, expressed in millimeters,
-at the given <cite>velocity</cite>, expressed in millimeters per second.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
-When <cite>distance</cite> or <cite>velocity</cite> is 0, the base will stop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>distance</strong> (<em>int</em>) – The distance (in millimeters) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The velocity (in millimeters per second) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – whether this method should be blocking.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.client.BaseClient.spin">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient.spin" title="Permalink to this definition"></a></dt>
-<dd><p>Spin the base in place <cite>angle</cite> degrees, at the given angular <cite>velocity</cite>,
-expressed in degrees per second.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
-When <cite>velocity</cite> is 0, the base will stop.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to spin.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The angular velocity (in degrees per second).
-to spin. Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – Whether this method should be blocking.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.client.BaseClient.stop">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient.stop" title="Permalink to this definition"></a></dt>
-<dd><p>Stop the base.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.base.service">
-<span id="viam-components-base-service-module"></span><h2>viam.components.base.service module<a class="headerlink" href="#module-viam.components.base.service" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.base.service.BaseService">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.service.</span></span><span class="sig-name descname"><span class="pre">BaseService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.components.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.service.BaseService" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">viam.gen.proto.api.component.base.v1.base_grpc.BaseServiceBase</span></code>, <a class="reference internal" href="viam.components.html#viam.components.service_base.ComponentServiceBase" title="viam.components.service_base.ComponentServiceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.service_base.ComponentServiceBase</span></code></a>[<a class="reference internal" href="#viam.components.base.base.Base" title="viam.components.base.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.base.base.Base</span></code></a>]</p>
-<p>gRPC service for a robotic Base</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.service.BaseService.MoveArc">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveArc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.base.v1.base_pb2.MoveArcRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.base.v1.base_pb2.MoveArcResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.base.service.BaseService.MoveArc" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.service.BaseService.MoveStraight">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveStraight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.base.v1.base_pb2.MoveStraightRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.base.v1.base_pb2.MoveStraightResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.base.service.BaseService.MoveStraight" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.base.service.BaseService.RESOURCE_TYPE">
-<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.base.service.BaseService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#viam.components.base.base.Base" title="viam.components.base.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.base.base.Base</span></code></a></p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.service.BaseService.Spin">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.base.v1.base_pb2.SpinRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.base.v1.base_pb2.SpinResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.base.service.BaseService.Spin" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.service.BaseService.Stop">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.base.v1.base_pb2.StopRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.base.v1.base_pb2.StopResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.base.service.BaseService.Stop" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.base">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-viam.components.base" title="Permalink to this headline"></a></h2>
+  <section id="module-viam.components.base">
+<span id="viam-components-base-package"></span><h1>viam.components.base package<a class="headerlink" href="#module-viam.components.base" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.base.Base">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.</span></span><span class="sig-name descname"><span class="pre">Base</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.Base" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.component_base.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
 <p>Base represents a physical base of a robot.</p>
 <p>This acts as an abstract base class for any drivers representing specific
 base implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
@@ -380,7 +170,7 @@ to spin. Negative implies backwards.</p></li>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.base.BaseClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.</span></span><span class="sig-name descname"><span class="pre">BaseClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.BaseClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.base.base.Base" title="viam.components.base.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.base.base.Base</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.base.base.html#viam.components.base.base.Base" title="viam.components.base.base.Base"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.base.base.Base</span></code></a></p>
 <p>gRPC client for the Base component.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.BaseClient.move_arc">
@@ -455,6 +245,15 @@ to spin. Negative implies backwards.</p></li>
 
 </dd></dl>
 
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.base.base.html">viam.components.base.base module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.base.client.html">viam.components.base.client module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.base.service.html">viam.components.base.service module</a></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -462,8 +261,8 @@ to spin. Negative implies backwards.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="viam.components.arm.html" class="btn btn-neutral float-left" title="viam.components.arm package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="viam.components.board.html" class="btn btn-neutral float-right" title="viam.components.board package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="viam.components.arm.service.html" class="btn btn-neutral float-left" title="viam.components.arm.service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viam.components.base.base.html" class="btn btn-neutral float-right" title="viam.components.base.base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,37 +1,16 @@
 viam.components.arm package
 ===========================
 
+.. automodule:: viam.components.arm
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.arm.arm module
-------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.arm.arm
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.arm.client module
----------------------------------
-
-.. automodule:: viam.components.arm.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.arm.service module
-----------------------------------
-
-.. automodule:: viam.components.arm.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.arm
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.arm.arm
+   viam.components.arm.client
+   viam.components.arm.service

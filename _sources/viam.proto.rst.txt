@@ -1,18 +1,14 @@
 viam.proto package
 ==================
 
+.. automodule:: viam.proto
+   :members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
    viam.proto.api
-
-Module contents
----------------
-
-.. automodule:: viam.proto
-   :members:
-   :undoc-members:
-   :show-inheritance:

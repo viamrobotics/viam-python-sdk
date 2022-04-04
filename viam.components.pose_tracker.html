@@ -18,8 +18,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="viam.components.sensor package" href="viam.components.sensor.html" />
-    <link rel="prev" title="viam.components.motor package" href="viam.components.motor.html" /> 
+    <link rel="next" title="viam.components.pose_tracker.client module" href="viam.components.pose_tracker.client.html" />
+    <link rel="prev" title="viam.components.motor.service module" href="viam.components.motor.service.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,10 +51,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="viam.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.errors">viam.errors module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.logging">viam.logging module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.utils">viam.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -88,87 +84,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="viam-components-pose-tracker-package">
-<h1>viam.components.pose_tracker package<a class="headerlink" href="#viam-components-pose-tracker-package" title="Permalink to this headline"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-</section>
-<section id="module-viam.components.pose_tracker.client">
-<span id="viam-components-pose-tracker-client-module"></span><h2>viam.components.pose_tracker.client module<a class="headerlink" href="#module-viam.components.pose_tracker.client" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.pose_tracker.client.PoseTrackerClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.pose_tracker.client.</span></span><span class="sig-name descname"><span class="pre">PoseTrackerClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.pose_tracker.client.PoseTrackerClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker" title="viam.components.pose_tracker.pose_tracker.PoseTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.pose_tracker.pose_tracker.PoseTracker</span></code></a></p>
-<p>gRPC client for the PoseTracker component.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.pose_tracker.client.PoseTrackerClient.get_poses">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_poses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.PoseInFrame" title="proto.api.common.v1.common_pb2.PoseInFrame"><span class="pre">proto.api.common.v1.common_pb2.PoseInFrame</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.pose_tracker.client.PoseTrackerClient.get_poses" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the current pose of each body tracked by the pose tracker.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>body_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – Names of the bodies whose poses are being
-requested. In the event this parameter is not supplied or is
-an empty list, all available poses are returned.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.pose_tracker.pose_tracker">
-<span id="viam-components-pose-tracker-pose-tracker-module"></span><h2>viam.components.pose_tracker.pose_tracker module<a class="headerlink" href="#module-viam.components.pose_tracker.pose_tracker" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.pose_tracker.pose_tracker.PoseTracker">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.pose_tracker.pose_tracker.</span></span><span class="sig-name descname"><span class="pre">PoseTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.pose_tracker.pose_tracker.PoseTracker" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
-<p>PoseTracker represents a physical pose or motion tracking device.</p>
-<p>This acts as an abstract base class for any drivers representing specific
-pose tracker implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
-overriden, it must call the <cite>super().__init__()</cite> function.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.pose_tracker.pose_tracker.PoseTracker.get_poses">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_poses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.PoseInFrame" title="proto.api.common.v1.common_pb2.PoseInFrame"><span class="pre">proto.api.common.v1.common_pb2.PoseInFrame</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.pose_tracker.pose_tracker.PoseTracker.get_poses" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the current pose of each body tracked by the pose tracker.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>body_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – Names of the bodies whose poses are being
-requested. In the event this parameter is not supplied or is
-an empty list, all available poses are returned.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.pose_tracker.service">
-<span id="viam-components-pose-tracker-service-module"></span><h2>viam.components.pose_tracker.service module<a class="headerlink" href="#module-viam.components.pose_tracker.service" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.pose_tracker.service.PoseTrackerService">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.pose_tracker.service.</span></span><span class="sig-name descname"><span class="pre">PoseTrackerService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.components.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.pose_tracker.service.PoseTrackerService" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">viam.gen.proto.api.component.posetracker.v1.pose_tracker_grpc.PoseTrackerServiceBase</span></code>, <a class="reference internal" href="viam.components.html#viam.components.service_base.ComponentServiceBase" title="viam.components.service_base.ComponentServiceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.service_base.ComponentServiceBase</span></code></a>[<a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker" title="viam.components.pose_tracker.pose_tracker.PoseTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.pose_tracker.pose_tracker.PoseTracker</span></code></a>]</p>
-<p>gRPC service for a pose tracker</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.pose_tracker.service.PoseTrackerService.GetPoses">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPoses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.posetracker.v1.pose_tracker_pb2.GetPosesRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.posetracker.v1.pose_tracker_pb2.GetPosesResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.pose_tracker.service.PoseTrackerService.GetPoses" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.pose_tracker.service.PoseTrackerService.RESOURCE_TYPE">
-<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.pose_tracker.service.PoseTrackerService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker" title="viam.components.pose_tracker.pose_tracker.PoseTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.pose_tracker.pose_tracker.PoseTracker</span></code></a></p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.pose_tracker">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-viam.components.pose_tracker" title="Permalink to this headline"></a></h2>
+  <section id="module-viam.components.pose_tracker">
+<span id="viam-components-pose-tracker-package"></span><h1>viam.components.pose_tracker package<a class="headerlink" href="#module-viam.components.pose_tracker" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.pose_tracker.PoseTracker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.pose_tracker.</span></span><span class="sig-name descname"><span class="pre">PoseTracker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.pose_tracker.PoseTracker" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.component_base.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
 <p>PoseTracker represents a physical pose or motion tracking device.</p>
 <p>This acts as an abstract base class for any drivers representing specific
 pose tracker implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
@@ -191,7 +112,7 @@ an empty list, all available poses are returned.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.pose_tracker.PoseTrackerClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.pose_tracker.</span></span><span class="sig-name descname"><span class="pre">PoseTrackerClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.pose_tracker.PoseTrackerClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker" title="viam.components.pose_tracker.pose_tracker.PoseTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.pose_tracker.pose_tracker.PoseTracker</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.pose_tracker.pose_tracker.html#viam.components.pose_tracker.pose_tracker.PoseTracker" title="viam.components.pose_tracker.pose_tracker.PoseTracker"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.pose_tracker.pose_tracker.PoseTracker</span></code></a></p>
 <p>gRPC client for the PoseTracker component.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.pose_tracker.PoseTrackerClient.get_poses">
@@ -208,6 +129,15 @@ an empty list, all available poses are returned.</p>
 
 </dd></dl>
 
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.pose_tracker.client.html">viam.components.pose_tracker.client module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.pose_tracker.pose_tracker.html">viam.components.pose_tracker.pose_tracker module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.pose_tracker.service.html">viam.components.pose_tracker.service module</a></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -215,8 +145,8 @@ an empty list, all available poses are returned.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="viam.components.motor.html" class="btn btn-neutral float-left" title="viam.components.motor package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="viam.components.sensor.html" class="btn btn-neutral float-right" title="viam.components.sensor package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="viam.components.motor.service.html" class="btn btn-neutral float-left" title="viam.components.motor.service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viam.components.pose_tracker.client.html" class="btn btn-neutral float-right" title="viam.components.pose_tracker.client module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

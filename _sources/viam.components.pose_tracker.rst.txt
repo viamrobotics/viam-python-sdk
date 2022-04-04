@@ -1,37 +1,16 @@
 viam.components.pose\_tracker package
 =====================================
 
+.. automodule:: viam.components.pose_tracker
+   :members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-viam.components.pose\_tracker.client module
--------------------------------------------
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: viam.components.pose_tracker.client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.pose\_tracker.pose\_tracker module
---------------------------------------------------
-
-.. automodule:: viam.components.pose_tracker.pose_tracker
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-viam.components.pose\_tracker.service module
---------------------------------------------
-
-.. automodule:: viam.components.pose_tracker.service
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: viam.components.pose_tracker
-   :members:
-   :undoc-members:
-   :show-inheritance:
+   viam.components.pose_tracker.client
+   viam.components.pose_tracker.pose_tracker
+   viam.components.pose_tracker.service

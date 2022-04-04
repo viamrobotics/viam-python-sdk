@@ -18,6 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="viam.services.status.client module" href="viam.services.status.client.html" />
     <link rel="prev" title="viam.services package" href="viam.services.html" /> 
 </head>
 
@@ -50,10 +51,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="viam.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.errors">viam.errors module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.logging">viam.logging module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.utils">viam.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -87,54 +84,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="viam-services-status-package">
-<h1>viam.services.status package<a class="headerlink" href="#viam-services-status-package" title="Permalink to this headline"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-</section>
-<section id="module-viam.services.status.client">
-<span id="viam-services-status-client-module"></span><h2>viam.services.status.client module<a class="headerlink" href="#module-viam.services.status.client" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.services.status.client.StatusClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.status.client.</span></span><span class="sig-name descname"><span class="pre">StatusClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.status.client.StatusClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.status.client.StatusClient.get_status">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="proto.api.common.v1.common_pb2.ResourceName"><span class="pre">proto.api.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.status.client.StatusClient.get_status" title="Permalink to this definition"></a></dt>
-<dd><p>Get the status of the robot’s components. You can optionally
-provide a list of <cite>ResourceName</cite> for which you want statuses.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>components</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a><em>]</em><em>]</em>) – Optional list of
-<cite>ResourceName</cite> for components you want statuses.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.services.status.service">
-<span id="viam-services-status-service-module"></span><h2>viam.services.status.service module<a class="headerlink" href="#module-viam.services.status.service" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.services.status.service.StatusService">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.status.service.</span></span><span class="sig-name descname"><span class="pre">StatusService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.components.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.status.service.StatusService" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">viam.gen.proto.api.service.status.v1.status_grpc.StatusServiceBase</span></code>, <a class="reference internal" href="viam.components.html#viam.components.service_base.ComponentServiceBase" title="viam.components.service_base.ComponentServiceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.service_base.ComponentServiceBase</span></code></a></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.status.service.StatusService.GetStatus">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.status.v1.status_pb2.GetStatusRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.status.v1.status_pb2.GetStatusResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.services.status.service.StatusService.GetStatus" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.status.service.StatusService.StreamStatus">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StreamStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.status.v1.status_pb2.StreamStatusRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.status.v1.status_pb2.StreamStatusResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.services.status.service.StatusService.StreamStatus" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.services.status">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-viam.services.status" title="Permalink to this headline"></a></h2>
+  <section id="module-viam.services.status">
+<span id="viam-services-status-package"></span><h1>viam.services.status package<a class="headerlink" href="#module-viam.services.status" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.status.StatusClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.status.</span></span><span class="sig-name descname"><span class="pre">StatusClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.status.StatusClient" title="Permalink to this definition"></a></dt>
@@ -154,6 +105,14 @@ provide a list of <cite>ResourceName</cite> for which you want statuses.</p>
 
 </dd></dl>
 
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="viam.services.status.client.html">viam.services.status.client module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.services.status.service.html">viam.services.status.service module</a></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -162,6 +121,7 @@ provide a list of <cite>ResourceName</cite> for which you want statuses.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="viam.services.html" class="btn btn-neutral float-left" title="viam.services package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viam.services.status.client.html" class="btn btn-neutral float-right" title="viam.services.status.client module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

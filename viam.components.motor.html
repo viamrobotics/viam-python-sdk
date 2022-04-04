@@ -18,8 +18,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="viam.components.pose_tracker package" href="viam.components.pose_tracker.html" />
-    <link rel="prev" title="viam.components.imu package" href="viam.components.imu.html" /> 
+    <link rel="next" title="viam.components.motor.client module" href="viam.components.motor.client.html" />
+    <link rel="prev" title="viam.components.imu.service module" href="viam.components.imu.service.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,10 +51,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="viam.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.errors">viam.errors module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.logging">viam.logging module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.utils">viam.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -88,311 +84,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="viam-components-motor-package">
-<h1>viam.components.motor package<a class="headerlink" href="#viam-components-motor-package" title="Permalink to this headline"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-</section>
-<section id="module-viam.components.motor.client">
-<span id="viam-components-motor-client-module"></span><h2>viam.components.motor.client module<a class="headerlink" href="#module-viam.components.motor.client" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.motor.client.</span></span><span class="sig-name descname"><span class="pre">MotorClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.client.MotorClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.motor.motor.Motor" title="viam.components.motor.motor.Motor"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.motor.motor.Motor</span></code></a></p>
-<p>gRPC client for the Motor component.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.get_features">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features"><span class="pre">viam.components.motor.motor.Motor.Features</span></a></span></span><a class="headerlink" href="#viam.components.motor.client.MotorClient.get_features" title="Permalink to this definition"></a></dt>
-<dd><p>Report a dictionary mapping optional features to
-whether it is supported by this motor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Map of feature names to supported status.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features">Features</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.get_position">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#viam.components.motor.client.MotorClient.get_position" title="Permalink to this definition"></a></dt>
-<dd><p>Report the position of the motor based on its encoder.
-The value returned is the number of revolutions relative to its zero position.
-This method will raise an exception if position reporting is not supported by the motor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Number of revolutions the motor is away from zero/home.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.go_for">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">go_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rpm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revolutions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.client.MotorClient.go_for" title="Permalink to this definition"></a></dt>
-<dd><p>Spin the motor the specified number of <cite>revolutions</cite> at specified <cite>rpm</cite>.
-When <cite>rpm</cite> or <cite>revolutions</cite> is a negative value, the rotation will be in the backward direction.
-Note: if both <cite>rpm</cite> and <cite>revolutions</cite> are negative, the motor will spin in the forward direction.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rpm</strong> (<em>float</em>) – Speed at which the motor should move in rotations per minute
-(negative implies backwards).</p></li>
-<li><p><strong>revolutions</strong> (<em>float</em>) – Number of revolutions the motor should run for
-(negative implies backwards).</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.go_to">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">go_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rpm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_revolutions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.client.MotorClient.go_to" title="Permalink to this definition"></a></dt>
-<dd><p>Spin the motor to the specified position (provided in revolutions from home/zero),
-at the specified speed, in revolutions per minute.
-Regardless of the directionality of the <cite>rpm</cite> this function will move
-the motor towards the specified position.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rpm</strong> (<em>float</em>) – Speed at which the motor should rotate (absolute value).</p></li>
-<li><p><strong>position_revolutions</strong> (<em>float</em>) – Target position relative to home/zero, in revolutions.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.is_powered">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_powered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.motor.client.MotorClient.is_powered" title="Permalink to this definition"></a></dt>
-<dd><p>Returns whether or not the motor is currently running.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Indicates whether the motor is currently powered.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.reset_zero_position">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reset_zero_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.client.MotorClient.reset_zero_position" title="Permalink to this definition"></a></dt>
-<dd><p>Set the current position (modified by <cite>offset</cite>) to be the new zero (home) position.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>offset</strong> (<em>float</em>) – The offset from the current position to new home/zero position.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.set_power">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.client.MotorClient.set_power" title="Permalink to this definition"></a></dt>
-<dd><p>Sets the “percentage” of power the motor should employ between -1 and 1.
-When <cite>power</cite> is negative, the rotation will be in the backward direction.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>power</strong> (<em>float</em>) – Power between -1 and 1
-(negative implies backwards).</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.motor.motor">
-<span id="viam-components-motor-motor-module"></span><h2>viam.components.motor.motor module<a class="headerlink" href="#module-viam.components.motor.motor" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.motor.motor.</span></span><span class="sig-name descname"><span class="pre">Motor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.motor.Motor" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.Features">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position_reporting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.motor.Motor.Features" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.Features.position_reporting">
-<span class="sig-name descname"><span class="pre">position_reporting</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.components.motor.motor.Motor.Features.position_reporting" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.get_features">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features"><span class="pre">viam.components.motor.motor.Motor.Features</span></a></span></span><a class="headerlink" href="#viam.components.motor.motor.Motor.get_features" title="Permalink to this definition"></a></dt>
-<dd><p>Report a dictionary mapping optional features to
-whether it is supported by this motor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Map of feature names to supported status.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features">Features</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.get_position">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#viam.components.motor.motor.Motor.get_position" title="Permalink to this definition"></a></dt>
-<dd><p>Report the position of the motor based on its encoder.
-The value returned is the number of revolutions relative to its zero position.
-This method will raise an exception if position reporting is not supported by the motor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Number of revolutions the motor is away from zero/home.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.go_for">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">go_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rpm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">revolutions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.motor.Motor.go_for" title="Permalink to this definition"></a></dt>
-<dd><p>Spin the motor the specified number of <cite>revolutions</cite> at specified <cite>rpm</cite>.
-When <cite>rpm</cite> or <cite>revolutions</cite> is a negative value, the rotation will be in the backward direction.
-Note: if both <cite>rpm</cite> and <cite>revolutions</cite> are negative, the motor will spin in the forward direction.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rpm</strong> (<em>float</em>) – Speed at which the motor should move in rotations per minute
-(negative implies backwards).</p></li>
-<li><p><strong>revolutions</strong> (<em>float</em>) – Number of revolutions the motor should run for
-(negative implies backwards).</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.go_to">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">go_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rpm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_revolutions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.motor.Motor.go_to" title="Permalink to this definition"></a></dt>
-<dd><p>Spin the motor to the specified position (provided in revolutions from home/zero),
-at the specified speed, in revolutions per minute.
-Regardless of the directionality of the <cite>rpm</cite> this function will move
-the motor towards the specified position.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rpm</strong> (<em>float</em>) – Speed at which the motor should rotate (absolute value).</p></li>
-<li><p><strong>position_revolutions</strong> (<em>float</em>) – Target position relative to home/zero, in revolutions.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.is_powered">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_powered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.motor.motor.Motor.is_powered" title="Permalink to this definition"></a></dt>
-<dd><p>Returns whether or not the motor is currently running.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Indicates whether the motor is currently powered.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.reset_zero_position">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reset_zero_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.motor.Motor.reset_zero_position" title="Permalink to this definition"></a></dt>
-<dd><p>Set the current position (modified by <cite>offset</cite>) to be the new zero (home) position.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>offset</strong> (<em>float</em>) – The offset from the current position to new home/zero position.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.motor.Motor.set_power">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.motor.Motor.set_power" title="Permalink to this definition"></a></dt>
-<dd><p>Sets the “percentage” of power the motor should employ between -1 and 1.
-When <cite>power</cite> is negative, the rotation will be in the backward direction.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>power</strong> (<em>float</em>) – Power between -1 and 1
-(negative implies backwards).</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.motor.service">
-<span id="viam-components-motor-service-module"></span><h2>viam.components.motor.service module<a class="headerlink" href="#module-viam.components.motor.service" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.motor.service.</span></span><span class="sig-name descname"><span class="pre">MotorService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.components.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.service.MotorService" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">viam.gen.proto.api.component.motor.v1.motor_grpc.MotorServiceBase</span></code>, <a class="reference internal" href="viam.components.html#viam.components.service_base.ComponentServiceBase" title="viam.components.service_base.ComponentServiceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.service_base.ComponentServiceBase</span></code></a>[<a class="reference internal" href="#viam.components.motor.motor.Motor" title="viam.components.motor.motor.Motor"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.motor.motor.Motor</span></code></a>]</p>
-<p>gRPC Service for a Motor</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.GetFeatures">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetFeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.motor.v1.motor_pb2.GetFeaturesRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.motor.v1.motor_pb2.GetFeaturesResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.GetFeatures" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.GetPosition">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.motor.v1.motor_pb2.GetPositionRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.motor.v1.motor_pb2.GetPositionResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.GetPosition" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.GoFor">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GoFor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.motor.v1.motor_pb2.GoForRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.motor.v1.motor_pb2.GoForResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.GoFor" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.GoTo">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GoTo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.motor.v1.motor_pb2.GoToRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.motor.v1.motor_pb2.GoToResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.GoTo" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.IsPowered">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsPowered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.motor.v1.motor_pb2.IsPoweredRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.motor.v1.motor_pb2.IsPoweredResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.IsPowered" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.RESOURCE_TYPE">
-<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#viam.components.motor.motor.Motor" title="viam.components.motor.motor.Motor"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.motor.motor.Motor</span></code></a></p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.ResetZeroPosition">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ResetZeroPosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.motor.v1.motor_pb2.ResetZeroPositionRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.motor.v1.motor_pb2.ResetZeroPositionResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.ResetZeroPosition" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.SetPower">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetPower</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.motor.v1.motor_pb2.SetPowerRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.motor.v1.motor_pb2.SetPowerResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.SetPower" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.service.MotorService.Stop">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.motor.v1.motor_pb2.StopRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.motor.v1.motor_pb2.StopResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.motor.service.MotorService.Stop" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.motor">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-viam.components.motor" title="Permalink to this headline"></a></h2>
+  <section id="module-viam.components.motor">
+<span id="viam-components-motor-package"></span><h1>viam.components.motor package<a class="headerlink" href="#module-viam.components.motor" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.motor.Motor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.motor.</span></span><span class="sig-name descname"><span class="pre">Motor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.Motor" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.component_base.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.motor.Motor.Features">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position_reporting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.Motor.Features" title="Permalink to this definition"></a></dt>
@@ -406,7 +103,7 @@ When <cite>power</cite> is negative, the rotation will be in the backward direct
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.motor.Motor.get_features">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features"><span class="pre">viam.components.motor.motor.Motor.Features</span></a></span></span><a class="headerlink" href="#viam.components.motor.Motor.get_features" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.components.motor.motor.html#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features"><span class="pre">viam.components.motor.motor.Motor.Features</span></a></span></span><a class="headerlink" href="#viam.components.motor.Motor.get_features" title="Permalink to this definition"></a></dt>
 <dd><p>Report a dictionary mapping optional features to
 whether it is supported by this motor.</p>
 <dl class="field-list simple">
@@ -513,11 +210,11 @@ When <cite>power</cite> is negative, the rotation will be in the backward direct
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.motor.MotorClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.motor.</span></span><span class="sig-name descname"><span class="pre">MotorClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.MotorClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.motor.motor.Motor" title="viam.components.motor.motor.Motor"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.motor.motor.Motor</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.motor.motor.html#viam.components.motor.motor.Motor" title="viam.components.motor.motor.Motor"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.motor.motor.Motor</span></code></a></p>
 <p>gRPC client for the Motor component.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.motor.MotorClient.get_features">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features"><span class="pre">viam.components.motor.motor.Motor.Features</span></a></span></span><a class="headerlink" href="#viam.components.motor.MotorClient.get_features" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.components.motor.motor.html#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features"><span class="pre">viam.components.motor.motor.Motor.Features</span></a></span></span><a class="headerlink" href="#viam.components.motor.MotorClient.get_features" title="Permalink to this definition"></a></dt>
 <dd><p>Report a dictionary mapping optional features to
 whether it is supported by this motor.</p>
 <dl class="field-list simple">
@@ -525,7 +222,7 @@ whether it is supported by this motor.</p>
 <dd class="field-odd"><p>Map of feature names to supported status.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features">Features</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.motor.Motor.Features" title="viam.components.motor.Motor.Features">Features</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -621,6 +318,15 @@ When <cite>power</cite> is negative, the rotation will be in the backward direct
 
 </dd></dl>
 
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.motor.client.html">viam.components.motor.client module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.motor.motor.html">viam.components.motor.motor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.motor.service.html">viam.components.motor.service module</a></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -628,8 +334,8 @@ When <cite>power</cite> is negative, the rotation will be in the backward direct
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="viam.components.imu.html" class="btn btn-neutral float-left" title="viam.components.imu package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="viam.components.pose_tracker.html" class="btn btn-neutral float-right" title="viam.components.pose_tracker package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="viam.components.imu.service.html" class="btn btn-neutral float-left" title="viam.components.imu.service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viam.components.motor.client.html" class="btn btn-neutral float-right" title="viam.components.motor.client module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

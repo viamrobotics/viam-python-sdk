@@ -18,8 +18,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="viam.components.gripper package" href="viam.components.gripper.html" />
-    <link rel="prev" title="viam.components.gantry package" href="viam.components.gantry.html" /> 
+    <link rel="next" title="viam.components.gps.client module" href="viam.components.gps.client.html" />
+    <link rel="prev" title="viam.components.gantry.service module" href="viam.components.gantry.service.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,10 +51,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="viam.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.errors">viam.errors module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.logging">viam.logging module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam.utils">viam.utils module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#module-viam">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -88,232 +84,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="viam-components-gps-package">
-<h1>viam.components.gps package<a class="headerlink" href="#viam-components-gps-package" title="Permalink to this headline"></a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
-</section>
-<section id="module-viam.components.gps.client">
-<span id="viam-components-gps-client-module"></span><h2>viam.components.gps.client module<a class="headerlink" href="#module-viam.components.gps.client" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.gps.client.GPSClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gps.client.</span></span><span class="sig-name descname"><span class="pre">GPSClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gps.client.GPSClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a></p>
-<p>gRPC client for the GPS component.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.client.GPSClient.read_altitude">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_altitude</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#viam.components.gps.client.GPSClient.read_altitude" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current altitude.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current altitude in meters.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.client.GPSClient.read_location">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.gps.GPS.Point" title="viam.components.gps.gps.Point"><span class="pre">viam.components.gps.gps.Point</span></a></span></span><a class="headerlink" href="#viam.components.gps.client.GPSClient.read_location" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current latitude and longitude.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current lat/long.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.components.gps.gps.GPS.Point" title="viam.components.gps.gps.GPS.Point">Point</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.client.GPSClient.read_speed">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#viam.components.gps.client.GPSClient.read_speed" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current ground speed in millimeters per second.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The speed in mm/sec.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.gps.gps">
-<span id="viam-components-gps-gps-module"></span><h2>viam.components.gps.gps module<a class="headerlink" href="#module-viam.components.gps.gps" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.gps.gps.GPS">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gps.gps.</span></span><span class="sig-name descname"><span class="pre">GPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gps.gps.GPS" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
-<p>GPS represents a GPS unit that can report latitude/longitude, altitude, and speed measurements.</p>
-<p>This acts as an abstract base class for any drivers representing specific
-GPS implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
-overriden, it must call the <cite>super().__init__()</cite> function.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.gps.gps.GPS.Point">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lng</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gps.gps.GPS.Point" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.gps.gps.GPS.Point.lat">
-<span class="sig-name descname"><span class="pre">lat</span></span><a class="headerlink" href="#viam.components.gps.gps.GPS.Point.lat" title="Permalink to this definition"></a></dt>
-<dd><p>Alias for field number 0</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.gps.gps.GPS.Point.lng">
-<span class="sig-name descname"><span class="pre">lng</span></span><a class="headerlink" href="#viam.components.gps.gps.GPS.Point.lng" title="Permalink to this definition"></a></dt>
-<dd><p>Alias for field number 1</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.gps.GPS.read_altitude">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_altitude</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#viam.components.gps.gps.GPS.read_altitude" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current altitude.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current altitude in meters.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.gps.GPS.read_location">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.gps.GPS.Point" title="viam.components.gps.gps.Point"><span class="pre">viam.components.gps.gps.Point</span></a></span></span><a class="headerlink" href="#viam.components.gps.gps.GPS.read_location" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current latitude and longitude.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current lat/long.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.components.gps.gps.GPS.Point" title="viam.components.gps.gps.GPS.Point">Point</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.gps.GPS.read_speed">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_speed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#viam.components.gps.gps.GPS.read_speed" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current ground speed in millimeters per second.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The speed in mm/sec.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.gps.gps.LocalGPS">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gps.gps.</span></span><span class="sig-name descname"><span class="pre">LocalGPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gps.gps.LocalGPS" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a></p>
-<p>LocalGPS represents a GPS that can report accuracy,
-satellites, and valid measurements in addition to the standard
-GPS measurements of latitude/longitude, altitude, and speed.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.gps.LocalGPS.read_accuracy">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_accuracy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.gps.gps.LocalGPS.read_accuracy" title="Permalink to this definition"></a></dt>
-<dd><p>Get the horizontal and vertical position error in meters.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>Horizontal and vertical position errors,</dt><dd><p>in meters.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Tuple[float, float]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.gps.LocalGPS.read_satellites">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_satellites</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.gps.gps.LocalGPS.read_satellites" title="Permalink to this definition"></a></dt>
-<dd><p>Get the number of satellites used for the location fix and the total satellites in view.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><dl class="simple">
-<dt>The number of satellites used for the location fix</dt><dd><p>and the total number of satellites in view.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Tuple[int, int]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.gps.LocalGPS.read_valid">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.gps.gps.LocalGPS.read_valid" title="Permalink to this definition"></a></dt>
-<dd><p>Get whether or not the GPS had a valid location fix for the most recent dataset.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>If the location fix is valid.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.gps.service">
-<span id="viam-components-gps-service-module"></span><h2>viam.components.gps.service module<a class="headerlink" href="#module-viam.components.gps.service" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.gps.service.GPSService">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gps.service.</span></span><span class="sig-name descname"><span class="pre">GPSService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.components.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gps.service.GPSService" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">viam.gen.proto.api.component.gps.v1.gps_grpc.GPSServiceBase</span></code>, <a class="reference internal" href="viam.components.html#viam.components.service_base.ComponentServiceBase" title="viam.components.service_base.ComponentServiceBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.service_base.ComponentServiceBase</span></code></a>[<a class="reference internal" href="#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a>]</p>
-<p>gRPC Service for a GPS</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.gps.service.GPSService.RESOURCE_TYPE">
-<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.gps.service.GPSService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
-<dd><p>alias of <a class="reference internal" href="#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a></p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.service.GPSService.ReadAltitude">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadAltitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.gps.v1.gps_pb2.ReadAltitudeRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.gps.v1.gps_pb2.ReadAltitudeResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.gps.service.GPSService.ReadAltitude" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.service.GPSService.ReadLocation">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadLocation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.gps.v1.gps_pb2.ReadLocationRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.gps.v1.gps_pb2.ReadLocationResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.gps.service.GPSService.ReadLocation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gps.service.GPSService.ReadSpeed">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadSpeed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.gps.v1.gps_pb2.ReadSpeedRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.gps.v1.gps_pb2.ReadSpeedResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.gps.service.GPSService.ReadSpeed" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-viam.components.gps">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-viam.components.gps" title="Permalink to this headline"></a></h2>
+  <section id="module-viam.components.gps">
+<span id="viam-components-gps-package"></span><h1>viam.components.gps package<a class="headerlink" href="#module-viam.components.gps" title="Permalink to this headline"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.gps.GPS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gps.</span></span><span class="sig-name descname"><span class="pre">GPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gps.GPS" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="viam.components.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.component_base.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
 <p>GPS represents a GPS unit that can report latitude/longitude, altitude, and speed measurements.</p>
 <p>This acts as an abstract base class for any drivers representing specific
 GPS implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
@@ -352,7 +128,7 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.gps.GPS.read_location">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.gps.GPS.Point" title="viam.components.gps.gps.Point"><span class="pre">viam.components.gps.gps.Point</span></a></span></span><a class="headerlink" href="#viam.components.gps.GPS.read_location" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.components.gps.gps.html#viam.components.gps.gps.GPS.Point" title="viam.components.gps.gps.Point"><span class="pre">viam.components.gps.gps.Point</span></a></span></span><a class="headerlink" href="#viam.components.gps.GPS.read_location" title="Permalink to this definition"></a></dt>
 <dd><p>Get the current latitude and longitude.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -383,7 +159,7 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.gps.GPSClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gps.</span></span><span class="sig-name descname"><span class="pre">GPSClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gps.GPSClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.gps.gps.html#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a></p>
 <p>gRPC client for the GPS component.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.gps.GPSClient.read_altitude">
@@ -401,14 +177,14 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.gps.GPSClient.read_location">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.gps.GPS.Point" title="viam.components.gps.gps.Point"><span class="pre">viam.components.gps.gps.Point</span></a></span></span><a class="headerlink" href="#viam.components.gps.GPSClient.read_location" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.components.gps.gps.html#viam.components.gps.gps.GPS.Point" title="viam.components.gps.gps.Point"><span class="pre">viam.components.gps.gps.Point</span></a></span></span><a class="headerlink" href="#viam.components.gps.GPSClient.read_location" title="Permalink to this definition"></a></dt>
 <dd><p>Get the current latitude and longitude.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The current lat/long.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.components.gps.gps.GPS.Point" title="viam.components.gps.gps.GPS.Point">Point</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.gps.GPS.Point" title="viam.components.gps.GPS.Point">Point</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -432,7 +208,7 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.gps.LocalGPS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gps.</span></span><span class="sig-name descname"><span class="pre">LocalGPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.gps.LocalGPS" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="viam.components.gps.gps.html#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a></p>
 <p>LocalGPS represents a GPS that can report accuracy,
 satellites, and valid measurements in addition to the standard
 GPS measurements of latitude/longitude, altitude, and speed.</p>
@@ -488,6 +264,15 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
 
 </dd></dl>
 
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.gps.client.html">viam.components.gps.client module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.gps.gps.html">viam.components.gps.gps module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.gps.service.html">viam.components.gps.service module</a></li>
+</ul>
+</div>
 </section>
 </section>
 
@@ -495,8 +280,8 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="viam.components.gantry.html" class="btn btn-neutral float-left" title="viam.components.gantry package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="viam.components.gripper.html" class="btn btn-neutral float-right" title="viam.components.gripper package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="viam.components.gantry.service.html" class="btn btn-neutral float-left" title="viam.components.gantry.service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viam.components.gps.client.html" class="btn btn-neutral float-right" title="viam.components.gps.client module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
