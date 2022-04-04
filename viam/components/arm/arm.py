@@ -9,20 +9,19 @@ from ..component_base import ComponentBase
 
 class Arm(ComponentBase):
     """
-    Abstract representation of a physical Arm that
-    exists in three-dimensional space
+    Arm represents a physical robot arm that exists in three-dimensional space.
 
-    If you override the init function,
-    you must call the super init function.
+    This acts as an abstract base class for any drivers representing specific 
+    arm implementations. This cannot be used on its own. If the `__init__()` function is
+    overriden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
     async def get_end_position(self) -> Pose:
         """
-        Get the current position of the arm
+        Get the current position of the end of the arm expressed as a `Pose`.
 
-        Returns:
-            Pose: Current position of the arm
+        Returns: The location and orientation of the arm described as a `Pose`.
         """
         ...
 
@@ -33,31 +32,35 @@ class Arm(ComponentBase):
         world_state: Optional[WorldState] = None
     ):
         """
-        Move the arm to the given absolute position
+        Move the end of the arm to the `Pose` specified in `pose`.
+        When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
 
         Args:
-            pose (Pose): The position to move the arm to
-            world_state (Optional[WorldState]): Object describing
-                obstacles and transforms
+
+            pose (`Pose`): The destination `Pose` for the arm.
+
+            world_state (`WorldState`): The obstacles for the arm to avoid on its way to `pose`.
         """
         ...
 
     @abc.abstractmethod
     async def move_to_joint_positions(self, positions: JointPositions):
         """
-        Move this arm's joints to the given positions
+        Move each joint on the arm to the corresponding angle specified in `positions`.
 
         Args:
-            positions (JointPositions): The positions to move the joints to
+
+            positions (`JointPositions`): The destination `JointPositions` for the arm.
         """
         ...
 
     @abc.abstractmethod
     async def get_joint_positions(self) -> JointPositions:
         """
-        Get the current joint positions for this arm
+        Get the `JointPositions` representing the current position of the arm.
 
         Returns:
-            JointPositions: The current joint positions
+
+            `JointPositions`: The current `JointPositions` for the arm.
         """
         ...

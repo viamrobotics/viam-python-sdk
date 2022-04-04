@@ -16,7 +16,9 @@ from .arm import Arm
 
 class ArmClient(Arm):
     """
-    gRPC client for the Arm component.
+    gRPC client for an Arm component. 
+
+    Used to communicate with an existing `Arm` implementation over gRPC.
     """
 
     def __init__(self, name: str, channel: Channel):
