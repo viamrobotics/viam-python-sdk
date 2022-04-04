@@ -64,20 +64,7 @@ def skip_member(app, what, name, obj, skip, options) -> bool:
     return skip
 
 
-def process_bases(app, name, obj, options, bases):
-    if 'JointPositions' in name:
-        print('*****'*10)
-        print(name, obj, options, bases)
-    for (idx, base) in enumerate(bases):
-        if 'google.protobuf.message.Message' in str(base):
-            del bases[idx]
-            options['show-inheritance'] = False
-    if 'JointPositions' in name:
-        print(name, obj, options, bases)
-
-
 def setup(app):
-    app.connect('autodoc-process-bases', process_bases)
     app.connect('autodoc-skip-member', skip_member)
 
 
