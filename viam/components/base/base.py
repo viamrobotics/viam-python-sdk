@@ -21,13 +21,13 @@ class Base(ComponentBase):
         """
         Move the base in a straight line the given `distance`, expressed in millimeters,
         at the given `velocity`, expressed in millimeters per second.
-        If `blocking` is true, the method not return until the move is complete.
-        If `distance` or `velocity` is 0, the base will stop.
+        When `blocking` is true, the method not return until the move is complete.
+        When `distance` or `velocity` is 0, the base will stop.
 
         Args:
-            distance (int): the distance (in millimeters) to move.
+            distance (int): The distance (in millimeters) to move.
                 Negative implies backwards.
-            velocity (float): the velocity (in millimeters per second) to move.
+            velocity (float): The velocity (in millimeters per second) to move.
                 Negative implies backwards.
             blocking (bool): whether this method should be blocking.
         """
@@ -45,19 +45,19 @@ class Base(ComponentBase):
         Move the base in an arc the given `distance`, expressed in millimeters,
         at the given `velocity`, expressed in millimeters per second, turning `angle`
         degrees in the process.
-        If `blocking` is true, the method not return until the move is complete.
-        If `distance` is 0, the the base will spin.
-        If `angle` is 0, the the base will move in a straight line.
-        If `velocity` is 0, the base will stop.
+        When `blocking` is true, the method not return until the move is complete.
+        When `distance` is 0, the the base will spin.
+        When `angle` is 0, the the base will move in a straight line.
+        When `velocity` is 0, the base will stop.
 
         Args:
-            distance (int): The distance (in millimeters) to move
+            distance (int): The distance (in millimeters) to move.
                 Negative implies backwards.
-            velocity (float): The velocity (in millimeters per second) to move
+            velocity (float): The velocity (in millimeters per second) to move.
                 Negative implies backwards.
-            angle (float): The angle (in degrees) to move
+            angle (float): The angle (in degrees) to move.
                 Negative implies backwards.
-            blocking (bool): Whether this method should be blocking
+            blocking (bool): Whether this method should be blocking.
         """
         ...
 
@@ -66,15 +66,15 @@ class Base(ComponentBase):
         """
         Spin the base in place `angle` degrees, at the given angular `velocity`,
         expressed in degrees per second.
-        If `blocking` is true, the method not return until the move is complete.
-        If `velocity` is 0, the base will stop.
+        When `blocking` is true, the method not return until the move is complete.
+        When `velocity` is 0, the base will stop.
 
         Args:
-            angle (float): The angle (in degrees) to spin
+            angle (float): The angle (in degrees) to spin.
                 Negative implies backwards.
-            velocity (float): The angular velocity (in degrees per second)
+            velocity (float): The angular velocity (in degrees per second).
                 to spin. Negative implies backwards.
-            blocking (bool): Whether this method should be blocking
+            blocking (bool): Whether this method should be blocking.
         """
         ...
 

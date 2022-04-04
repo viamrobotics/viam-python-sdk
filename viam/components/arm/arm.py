@@ -21,7 +21,7 @@ class Arm(ComponentBase):
         """
         Get the current position of the end of the arm expressed as a `Pose`.
 
-        Returns: the location and orientation of the arm described as a `Pose`.
+        Returns: The location and orientation of the arm described as a `Pose`.
         """
         ...
 
@@ -37,9 +37,9 @@ class Arm(ComponentBase):
 
         Args:
 
-            pose (`Pose`): the destination `Pose` for the arm.
+            pose (`Pose`): The destination `Pose` for the arm.
 
-            world_state (`WorldState`): the obstacles for the arm to avoid on its way to `pose`.
+            world_state (`WorldState`): The obstacles for the arm to avoid on its way to `pose`.
         """
         ...
 
@@ -50,7 +50,7 @@ class Arm(ComponentBase):
 
         Args:
 
-            positions (`JointPositions`): the destination `JointPositions` for the arm.
+            positions (`JointPositions`): The destination `JointPositions` for the arm.
         """
         ...
 
@@ -61,6 +61,6 @@ class Arm(ComponentBase):
 
         Returns:
 
-            `JointPositions`: the current `JointPositions` for the arm.
+            `JointPositions`: The current `JointPositions` for the arm.
         """
         ...
