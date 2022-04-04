@@ -126,8 +126,11 @@
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">GPS</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Abstract representation of a GPS that can report</span>
-<span class="sd">    latitude/longitude, altitude, and speed measurements.</span>
+<span class="sd">    GPS represents a GPS unit that can report latitude/longitude, altitude, and speed measurements.</span>
+
+<span class="sd">    This acts as an abstract base class for any drivers representing specific </span>
+<span class="sd">    GPS implementations. This cannot be used on its own. If the `__init__()` function is</span>
+<span class="sd">    overriden, it must call the `super().__init__()` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">Point</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Point&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lng&#39;</span><span class="p">])</span>
@@ -135,38 +138,41 @@
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_location</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current latitude and longitude</span>
+<span class="sd">        Get the current latitude and longitude.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Point: The current lat/lng</span>
+<span class="sd">            Point: The current lat/long.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_altitude</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current altitude</span>
+<span class="sd">        Get the current altitude.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            float: The current altitude in meters</span>
+<span class="sd">            float: The current altitude in meters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current ground speed in millimeters per second</span>
+<span class="sd">        Get the current ground speed in millimeters per second.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            float: The speed in mm/sec</span>
+<span class="sd">            float: The speed in mm/sec.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Abstract representation of a GPS that can report
-latitude/longitude, altitude, and speed measurements.</p>
+            <div class="docstring"><p>GPS represents a GPS unit that can report latitude/longitude, altitude, and speed measurements.</p>
+
+<p>This acts as an abstract base class for any drivers representing specific 
+GPS implementations. This cannot be used on its own. If the <code>__init__()</code> function is
+overriden, it must call the <code>super().__init__()</code> function.</p>
 </div>
 
 
@@ -184,20 +190,20 @@ latitude/longitude, altitude, and speed measurements.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_location</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current latitude and longitude</span>
+<span class="sd">        Get the current latitude and longitude.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Point: The current lat/lng</span>
+<span class="sd">            Point: The current lat/long.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the current latitude and longitude</p>
+            <div class="docstring"><p>Get the current latitude and longitude.</p>
 
 <p>Returns:
-    Point: The current lat/lng</p>
+    Point: The current lat/long.</p>
 </div>
 
 
@@ -216,20 +222,20 @@ latitude/longitude, altitude, and speed measurements.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_altitude</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current altitude</span>
+<span class="sd">        Get the current altitude.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            float: The current altitude in meters</span>
+<span class="sd">            float: The current altitude in meters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the current altitude</p>
+            <div class="docstring"><p>Get the current altitude.</p>
 
 <p>Returns:
-    float: The current altitude in meters</p>
+    float: The current altitude in meters.</p>
 </div>
 
 
@@ -248,20 +254,20 @@ latitude/longitude, altitude, and speed measurements.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current ground speed in millimeters per second</span>
+<span class="sd">        Get the current ground speed in millimeters per second.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            float: The speed in mm/sec</span>
+<span class="sd">            float: The speed in mm/sec.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the current ground speed in millimeters per second</p>
+            <div class="docstring"><p>Get the current ground speed in millimeters per second.</p>
 
 <p>Returns:
-    float: The speed in mm/sec</p>
+    float: The speed in mm/sec.</p>
 </div>
 
 
@@ -320,48 +326,48 @@ latitude/longitude, altitude, and speed measurements.</p>
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">LocalGPS</span><span class="p">(</span><span class="n">GPS</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    An abstract representation of a GPS that can report accuracy,</span>
-<span class="sd">    satellites and valid measurements in addition to the standard</span>
+<span class="sd">    LocalGPS represents a GPS that can report accuracy,</span>
+<span class="sd">    satellites, and valid measurements in addition to the standard</span>
 <span class="sd">    GPS measurements of latitude/longitude, altitude, and speed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_accuracy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the horizontal and vertical position error in meters</span>
+<span class="sd">        Get the horizontal and vertical position error in meters.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[float, float]: Horizontal and vertical position errors,</span>
-<span class="sd">                in meters</span>
+<span class="sd">                in meters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_satellites</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the number of satellites used for fix, and the total in view</span>
+<span class="sd">        Get the number of satellites used for the location fix and the total satellites in view.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[int, int]: The number of satellites used for the fix,</span>
-<span class="sd">                and the total number of satellites in view</span>
+<span class="sd">            Tuple[int, int]: The number of satellites used for the location fix</span>
+<span class="sd">                and the total number of satellites in view.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get whether or not the GPS had a valid fix for the most recent dataset</span>
+<span class="sd">        Get whether or not the GPS had a valid location fix for the most recent dataset.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: If the fix is valid</span>
+<span class="sd">            bool: If the location fix is valid.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>An abstract representation of a GPS that can report accuracy,
-satellites and valid measurements in addition to the standard
+            <div class="docstring"><p>LocalGPS represents a GPS that can report accuracy,
+satellites, and valid measurements in addition to the standard
 GPS measurements of latitude/longitude, altitude, and speed.</p>
 </div>
 
@@ -380,22 +386,22 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_accuracy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the horizontal and vertical position error in meters</span>
+<span class="sd">        Get the horizontal and vertical position error in meters.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[float, float]: Horizontal and vertical position errors,</span>
-<span class="sd">                in meters</span>
+<span class="sd">                in meters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the horizontal and vertical position error in meters</p>
+            <div class="docstring"><p>Get the horizontal and vertical position error in meters.</p>
 
 <p>Returns:
     Tuple[float, float]: Horizontal and vertical position errors,
-        in meters</p>
+        in meters.</p>
 </div>
 
 
@@ -414,22 +420,22 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_satellites</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the number of satellites used for fix, and the total in view</span>
+<span class="sd">        Get the number of satellites used for the location fix and the total satellites in view.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[int, int]: The number of satellites used for the fix,</span>
-<span class="sd">                and the total number of satellites in view</span>
+<span class="sd">            Tuple[int, int]: The number of satellites used for the location fix</span>
+<span class="sd">                and the total number of satellites in view.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the number of satellites used for fix, and the total in view</p>
+            <div class="docstring"><p>Get the number of satellites used for the location fix and the total satellites in view.</p>
 
 <p>Returns:
-    Tuple[int, int]: The number of satellites used for the fix,
-        and the total number of satellites in view</p>
+    Tuple[int, int]: The number of satellites used for the location fix
+        and the total number of satellites in view.</p>
 </div>
 
 
@@ -448,20 +454,20 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">read_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get whether or not the GPS had a valid fix for the most recent dataset</span>
+<span class="sd">        Get whether or not the GPS had a valid location fix for the most recent dataset.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: If the fix is valid</span>
+<span class="sd">            bool: If the location fix is valid.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get whether or not the GPS had a valid fix for the most recent dataset</p>
+            <div class="docstring"><p>Get whether or not the GPS had a valid location fix for the most recent dataset.</p>
 
 <p>Returns:
-    bool: If the fix is valid</p>
+    bool: If the location fix is valid.</p>
 </div>
 
 
@@ -567,10 +573,10 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
 
         </details>
 
-            <div class="docstring"><p>Get the current latitude and longitude</p>
+            <div class="docstring"><p>Get the current latitude and longitude.</p>
 
 <p>Returns:
-    Point: The current lat/lng</p>
+    Point: The current lat/long.</p>
 </div>
 
 
@@ -594,10 +600,10 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
 
         </details>
 
-            <div class="docstring"><p>Get the current altitude</p>
+            <div class="docstring"><p>Get the current altitude.</p>
 
 <p>Returns:
-    float: The current altitude in meters</p>
+    float: The current altitude in meters.</p>
 </div>
 
 
@@ -620,10 +626,10 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
 
         </details>
 
-            <div class="docstring"><p>Get the current ground speed in millimeters per second</p>
+            <div class="docstring"><p>Get the current ground speed in millimeters per second.</p>
 
 <p>Returns:
-    float: The speed in mm/sec</p>
+    float: The speed in mm/sec.</p>
 </div>
 
 
