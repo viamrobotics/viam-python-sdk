@@ -9,12 +9,12 @@ import google.protobuf.message
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetEndPositionRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of an arm'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -25,7 +25,7 @@ class GetEndPositionRequest(google.protobuf.message.Message):
 global___GetEndPositionRequest = GetEndPositionRequest
 
 class GetEndPositionResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSE_FIELD_NUMBER: builtins.int
 
     @property
@@ -46,7 +46,7 @@ class GetEndPositionResponse(google.protobuf.message.Message):
 global___GetEndPositionResponse = GetEndPositionResponse
 
 class JointPositions(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DEGREES_FIELD_NUMBER: builtins.int
 
     @property
@@ -65,9 +65,9 @@ class JointPositions(google.protobuf.message.Message):
 global___JointPositions = JointPositions
 
 class GetJointPositionsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of an arm'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -78,7 +78,7 @@ class GetJointPositionsRequest(google.protobuf.message.Message):
 global___GetJointPositionsRequest = GetJointPositionsRequest
 
 class GetJointPositionsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITION_DEGS_FIELD_NUMBER: builtins.int
 
     @property
@@ -97,11 +97,11 @@ class GetJointPositionsResponse(google.protobuf.message.Message):
 global___GetJointPositionsResponse = GetJointPositionsResponse
 
 class MoveToPositionRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     TO_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of an arm'
 
     @property
@@ -126,17 +126,17 @@ class MoveToPositionRequest(google.protobuf.message.Message):
 global___MoveToPositionRequest = MoveToPositionRequest
 
 class MoveToPositionResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
 global___MoveToPositionResponse = MoveToPositionResponse
 
 class MoveToJointPositionsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     POSITION_DEGS_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of an arm'
 
     @property
@@ -157,14 +157,14 @@ class MoveToJointPositionsRequest(google.protobuf.message.Message):
 global___MoveToJointPositionsRequest = MoveToJointPositionsRequest
 
 class MoveToJointPositionsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
 global___MoveToJointPositionsResponse = MoveToJointPositionsResponse
 
 class Status(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     END_POSITION_FIELD_NUMBER: builtins.int
     JOINT_POSITIONS_FIELD_NUMBER: builtins.int
 

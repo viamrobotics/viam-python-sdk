@@ -8,16 +8,16 @@ import google.protobuf.internal.containers
 import google.protobuf.message
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class Matrix(google.protobuf.message.Message):
     """Matrix"""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROWS_FIELD_NUMBER: builtins.int
     COLS_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
-    rows: builtins.int = ...
-    cols: builtins.int = ...
+    rows: builtins.int
+    cols: builtins.int
 
     @property
     def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
@@ -32,9 +32,9 @@ global___Matrix = Matrix
 
 class ReadMatrixRequest(google.protobuf.message.Message):
     """ForceMatrix"""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -44,7 +44,7 @@ class ReadMatrixRequest(google.protobuf.message.Message):
 global___ReadMatrixRequest = ReadMatrixRequest
 
 class ReadMatrixResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MATRIX_FIELD_NUMBER: builtins.int
 
     @property
@@ -62,9 +62,9 @@ class ReadMatrixResponse(google.protobuf.message.Message):
 global___ReadMatrixResponse = ReadMatrixResponse
 
 class DetectSlipRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -74,9 +74,9 @@ class DetectSlipRequest(google.protobuf.message.Message):
 global___DetectSlipRequest = DetectSlipRequest
 
 class DetectSlipResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SLIP_DETECTED_FIELD_NUMBER: builtins.int
-    slip_detected: builtins.bool = ...
+    slip_detected: builtins.bool
 
     def __init__(self, *, slip_detected: builtins.bool=...) -> None:
         ...
