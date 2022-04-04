@@ -14,6 +14,10 @@ jobs:
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
+      - uses: r-lib/actions/setup-pandoc@v2
+        with:
+          pandoc-version: '2.17.1.1'
+
       - name: Checkout Push/Workflow Dispatch
         uses: actions/checkout@v2
 
