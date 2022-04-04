@@ -11,6 +11,9 @@ from viam.components.types import CameraMimeType
 
 
 class ObjectSegmentationClient:
+    """
+    Object Segmentation is a viam service that identifies objects from a given dataset and describes their geometry.
+    """
 
     def __init__(self, channel: Channel):
         self.client = ObjectSegmentationServiceStub(channel)
