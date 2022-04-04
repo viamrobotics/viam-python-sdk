@@ -90,77 +90,18 @@
 <dt class="sig sig-object py" id="viam.components.imu.Acceleration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.imu.</span></span><span class="sig-name descname"><span class="pre">Acceleration</span></span><a class="headerlink" href="#viam.components.imu.Acceleration" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Acceleration contains linear acceleration in mm/s^2 across x/y/z axes.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.Acceleration.x_mm_per_sec_per_sec">
-<span class="sig-name descname"><span class="pre">x_mm_per_sec_per_sec</span></span><a class="headerlink" href="#viam.components.imu.Acceleration.x_mm_per_sec_per_sec" title="Permalink to this definition"></a></dt>
-<dd><p>Acceleration in mm/s^2 across the x-axis</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.Acceleration.y_mm_per_sec_per_sec">
-<span class="sig-name descname"><span class="pre">y_mm_per_sec_per_sec</span></span><a class="headerlink" href="#viam.components.imu.Acceleration.y_mm_per_sec_per_sec" title="Permalink to this definition"></a></dt>
-<dd><p>Acceleration in mm/s^2 across the y-axis</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.Acceleration.z_mm_per_sec_per_sec">
-<span class="sig-name descname"><span class="pre">z_mm_per_sec_per_sec</span></span><a class="headerlink" href="#viam.components.imu.Acceleration.z_mm_per_sec_per_sec" title="Permalink to this definition"></a></dt>
-<dd><p>Acceleration in mm/s^2 across the z-axis</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.imu.AngularVelocity">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.imu.</span></span><span class="sig-name descname"><span class="pre">AngularVelocity</span></span><a class="headerlink" href="#viam.components.imu.AngularVelocity" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>AngularVelocity contains angular velocity in deg/s across x/y/z axes.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.AngularVelocity.x_degs_per_sec">
-<span class="sig-name descname"><span class="pre">x_degs_per_sec</span></span><a class="headerlink" href="#viam.components.imu.AngularVelocity.x_degs_per_sec" title="Permalink to this definition"></a></dt>
-<dd><p>Velocity in deg/s across the x-axis</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.AngularVelocity.y_degs_per_sec">
-<span class="sig-name descname"><span class="pre">y_degs_per_sec</span></span><a class="headerlink" href="#viam.components.imu.AngularVelocity.y_degs_per_sec" title="Permalink to this definition"></a></dt>
-<dd><p>Velocity in deg/s across the y-axis</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.AngularVelocity.z_degs_per_sec">
-<span class="sig-name descname"><span class="pre">z_degs_per_sec</span></span><a class="headerlink" href="#viam.components.imu.AngularVelocity.z_degs_per_sec" title="Permalink to this definition"></a></dt>
-<dd><p>Velocity in deg/s across the z-axis</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.imu.EulerAngles">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.imu.</span></span><span class="sig-name descname"><span class="pre">EulerAngles</span></span><a class="headerlink" href="#viam.components.imu.EulerAngles" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>EulerAngles are three angles used to represent the rotation of an
-object in 3D Euclidean space The Tait–Bryan angle formalism is used,
-with rotations around three distinct axes in the z-y′-x″ sequence.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.EulerAngles.roll_deg">
-<span class="sig-name descname"><span class="pre">roll_deg</span></span><a class="headerlink" href="#viam.components.imu.EulerAngles.roll_deg" title="Permalink to this definition"></a></dt>
-<dd><p>Rotation in deg around the x-axis</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.EulerAngles.pitch_deg">
-<span class="sig-name descname"><span class="pre">pitch_deg</span></span><a class="headerlink" href="#viam.components.imu.EulerAngles.pitch_deg" title="Permalink to this definition"></a></dt>
-<dd><p>Rotation in deg around the y-axis</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.EulerAngles.yaw_deg">
-<span class="sig-name descname"><span class="pre">yaw_deg</span></span><a class="headerlink" href="#viam.components.imu.EulerAngles.yaw_deg" title="Permalink to this definition"></a></dt>
-<dd><p>Rotation in deg around the z-axis</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -272,25 +213,6 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dt class="sig sig-object py" id="viam.components.imu.Magnetometer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.imu.</span></span><span class="sig-name descname"><span class="pre">Magnetometer</span></span><a class="headerlink" href="#viam.components.imu.Magnetometer" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Magnetometer contains magnetic field readings in gauss x/y/z axes.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.Magnetometer.x_gauss">
-<span class="sig-name descname"><span class="pre">x_gauss</span></span><a class="headerlink" href="#viam.components.imu.Magnetometer.x_gauss" title="Permalink to this definition"></a></dt>
-<dd><p>Magnetometer in gauss across the x-axis</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.Magnetometer.y_gauss">
-<span class="sig-name descname"><span class="pre">y_gauss</span></span><a class="headerlink" href="#viam.components.imu.Magnetometer.y_gauss" title="Permalink to this definition"></a></dt>
-<dd><p>Magnetometer in gauss across the y-axis</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.imu.Magnetometer.z_gauss">
-<span class="sig-name descname"><span class="pre">z_gauss</span></span><a class="headerlink" href="#viam.components.imu.Magnetometer.z_gauss" title="Permalink to this definition"></a></dt>
-<dd><p>Magnetometer in gauss across the z-axis</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
