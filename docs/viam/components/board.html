@@ -194,50 +194,50 @@
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Board</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A Board represents a physical general purpose board that contains various</span>
+<span class="sd">    Board represents a physical general purpose compute board that contains various</span>
 <span class="sd">    components such as analog readers, and digital interrupts.</span>
 
-<span class="sd">    If you override the init function,</span>
-<span class="sd">    you must call the super init function.</span>
+<span class="sd">    This acts as an abstract base class for any drivers representing specific </span>
+<span class="sd">    board implementations. This cannot be used on its own. If the `__init__()` function is</span>
+<span class="sd">    overriden, it must call the `super().__init__()` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@dataclass</span>
     <span class="k">class</span> <span class="nc">Attributes</span><span class="p">:</span>
         <span class="n">remote</span><span class="p">:</span> <span class="nb">bool</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        If this board is accessed over a remote connection, e.g. gRPC</span>
+<span class="sd">        Indicates whether this board is accessed over a remote connection, e.g. gRPC.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="k">class</span> <span class="nc">AnalogReader</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        An AnalogReader represents an analog pin reader</span>
-<span class="sd">        that resides on a board.</span>
+<span class="sd">        AnalogReader represents an analog pin reader that resides on a Board.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Read the current value</span>
+<span class="sd">            Read the current value.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The current value</span>
+<span class="sd">                int: The current value.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
     <span class="k">class</span> <span class="nc">DigitalInterrupt</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        A DigitalInterrupt represents a configured interrupt on the board that,</span>
-<span class="sd">        when interrupted, calls the added callbacks. Post processors can also</span>
-<span class="sd">        be added to modify what Value ultimately returns.</span>
+<span class="sd">        DigitalInterrupt represents a configured interrupt on the Board that</span>
+<span class="sd">        when interrupted, calls the added callbacks. Post processors can</span>
+<span class="sd">        be added to modify what Value it ultimately returns.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Get the current value of the interrupt,</span>
-<span class="sd">            which is based on the type of interrupt</span>
+<span class="sd">            which is based on the type of interrupt.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The current value</span>
+<span class="sd">                int: The current value.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
@@ -248,20 +248,20 @@
 <span class="sd">            is a proxy to some real hardware interrupt or for tests.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                high (bool): If the signal of the interrupt is high</span>
+<span class="sd">                high (bool): If the signal of the interrupt is high.</span>
 <span class="sd">                nanos (int): Nanoseconds from an arbitrary point in time,</span>
 <span class="sd">                    but always increasing and always needs to be accurate.</span>
-<span class="sd">                    Using `time.time_ns()` would be acceptable</span>
+<span class="sd">                    Using `time.time_ns()` would be acceptable.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Add a callback to be sent a low/high value on tick.</span>
+<span class="sd">            Add a callback to be sent the low/high value on `tick()`.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                queue (Queue): The receiving queue</span>
+<span class="sd">                queue (Queue): The receiving queue.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
@@ -272,7 +272,7 @@
 <span class="sd">            is returned by `self.value()`</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                processor (PostProcessor): The post processor to add</span>
+<span class="sd">                processor (PostProcessor): The post processor to add.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
@@ -287,120 +287,120 @@
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to either low or high</span>
+<span class="sd">            Set the pin to either low or high.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                high (bool): If the pin should be set to high</span>
+<span class="sd">                high (bool): When true, sets the pin to high. When false, sets the pin to low.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the high/low state of the pin</span>
+<span class="sd">            Get the high/low state of the pin.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                bool: If the state of the pin is high</span>
+<span class="sd">                bool: Indicates if the state of the pin is high.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the pin&#39;s given duty cycle</span>
+<span class="sd">            Get the pin&#39;s given duty cycle.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                float: The duty cycle</span>
+<span class="sd">                float: The duty cycle.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to the given duty cycle</span>
+<span class="sd">            Set the pin to the given `duty_cycle`.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                duty_cycle (float): The duty cycle</span>
+<span class="sd">                duty_cycle (float): The duty cycle.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the PWM frequency of the pin</span>
+<span class="sd">            Get the PWM frequency of the pin.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The PWM frequency</span>
+<span class="sd">                int: The PWM frequency.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to the given PWM frequency (in Hz).</span>
-<span class="sd">            0 will use the board&#39;s default PWM frequency</span>
+<span class="sd">            Set the pin to the given PWM `frequency` (in Hz).</span>
+<span class="sd">            When `frequency` is 0, it will use the board&#39;s default PWM frequency.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                frequency (int): The frequency</span>
+<span class="sd">                frequency (int): The frequency, in Hz.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalogReader</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get an AnalogReader by name</span>
+<span class="sd">        Get an AnalogReader by `name`.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the analog reader</span>
+<span class="sd">            name (str): Name of the analog reader to be retrieved.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            AnalogReader: the analog reader</span>
+<span class="sd">            AnalogReader: The analog reader.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DigitalInterrupt</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a DigitalInterrupt by name</span>
+<span class="sd">        Get a DigitalInterrupt by `name`.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the digital interrupt</span>
+<span class="sd">            name (str): Name of the digital interrupt.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            DigitalInterrupt: the digital interrupt</span>
+<span class="sd">            DigitalInterrupt: the digital interrupt.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">gpio_pin_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GPIOPin</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a GPIO Pin by name</span>
+<span class="sd">        Get a GPIO Pin by `name`.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the GPIO pin</span>
+<span class="sd">            name (str): Name of the GPIO pin.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            GPIOPin: the pin</span>
+<span class="sd">            GPIOPin: the pin.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the names of all known analog readers</span>
+<span class="sd">        Get the names of all known analog readers.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[str]: The names of the analog readers</span>
+<span class="sd">            List[str]: The names of the analog readers..</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the names of all known digital interrupts</span>
+<span class="sd">        Get the names of all known digital interrupts.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[str]: The names of the digital interrupts</span>
+<span class="sd">            List[str]: The names of the digital interrupts.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 
@@ -410,27 +410,28 @@
 <span class="sd">        Return the current status of the board.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            BoardStatus: the status</span>
+<span class="sd">            BoardStatus: the status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
     <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">model_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Attributes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the attributes related to the model of this board</span>
+<span class="sd">        Get the attributes related to the model of this board.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Attributes: The attributes</span>
+<span class="sd">            Attributes: The attributes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>A Board represents a physical general purpose board that contains various
+            <div class="docstring"><p>Board represents a physical general purpose compute board that contains various
 components such as analog readers, and digital interrupts.</p>
 
-<p>If you override the init function,
-you must call the super init function.</p>
+<p>This acts as an abstract base class for any drivers representing specific 
+board implementations. This cannot be used on its own. If the <code>__init__()</code> function is
+overriden, it must call the <code>super().__init__()</code> function.</p>
 </div>
 
 
@@ -448,26 +449,26 @@ you must call the super init function.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalogReader</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get an AnalogReader by name</span>
+<span class="sd">        Get an AnalogReader by `name`.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the analog reader</span>
+<span class="sd">            name (str): Name of the analog reader to be retrieved.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            AnalogReader: the analog reader</span>
+<span class="sd">            AnalogReader: The analog reader.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get an AnalogReader by name</p>
+            <div class="docstring"><p>Get an AnalogReader by <code>name</code>.</p>
 
 <p>Args:
-    name (str): Name of the analog reader</p>
+    name (str): Name of the analog reader to be retrieved.</p>
 
 <p>Returns:
-    AnalogReader: the analog reader</p>
+    AnalogReader: The analog reader.</p>
 </div>
 
 
@@ -489,26 +490,26 @@ you must call the super init function.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DigitalInterrupt</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a DigitalInterrupt by name</span>
+<span class="sd">        Get a DigitalInterrupt by `name`.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the digital interrupt</span>
+<span class="sd">            name (str): Name of the digital interrupt.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            DigitalInterrupt: the digital interrupt</span>
+<span class="sd">            DigitalInterrupt: the digital interrupt.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get a DigitalInterrupt by name</p>
+            <div class="docstring"><p>Get a DigitalInterrupt by <code>name</code>.</p>
 
 <p>Args:
-    name (str): Name of the digital interrupt</p>
+    name (str): Name of the digital interrupt.</p>
 
 <p>Returns:
-    DigitalInterrupt: the digital interrupt</p>
+    DigitalInterrupt: the digital interrupt.</p>
 </div>
 
 
@@ -527,26 +528,26 @@ you must call the super init function.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">gpio_pin_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GPIOPin</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a GPIO Pin by name</span>
+<span class="sd">        Get a GPIO Pin by `name`.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the GPIO pin</span>
+<span class="sd">            name (str): Name of the GPIO pin.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            GPIOPin: the pin</span>
+<span class="sd">            GPIOPin: the pin.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get a GPIO Pin by name</p>
+            <div class="docstring"><p>Get a GPIO Pin by <code>name</code>.</p>
 
 <p>Args:
-    name (str): Name of the GPIO pin</p>
+    name (str): Name of the GPIO pin.</p>
 
 <p>Returns:
-    GPIOPin: the pin</p>
+    GPIOPin: the pin.</p>
 </div>
 
 
@@ -565,20 +566,20 @@ you must call the super init function.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the names of all known analog readers</span>
+<span class="sd">        Get the names of all known analog readers.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[str]: The names of the analog readers</span>
+<span class="sd">            List[str]: The names of the analog readers..</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the names of all known analog readers</p>
+            <div class="docstring"><p>Get the names of all known analog readers.</p>
 
 <p>Returns:
-    List[str]: The names of the analog readers</p>
+    List[str]: The names of the analog readers..</p>
 </div>
 
 
@@ -597,20 +598,20 @@ you must call the super init function.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the names of all known digital interrupts</span>
+<span class="sd">        Get the names of all known digital interrupts.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[str]: The names of the digital interrupts</span>
+<span class="sd">            List[str]: The names of the digital interrupts.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the names of all known digital interrupts</p>
+            <div class="docstring"><p>Get the names of all known digital interrupts.</p>
 
 <p>Returns:
-    List[str]: The names of the digital interrupts</p>
+    List[str]: The names of the digital interrupts.</p>
 </div>
 
 
@@ -632,7 +633,7 @@ you must call the super init function.</p>
 <span class="sd">        Return the current status of the board.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            BoardStatus: the status</span>
+<span class="sd">            BoardStatus: the status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 </pre></div>
 
@@ -641,7 +642,7 @@ you must call the super init function.</p>
             <div class="docstring"><p>Return the current status of the board.</p>
 
 <p>Returns:
-    BoardStatus: the status</p>
+    BoardStatus: the status.</p>
 </div>
 
 
@@ -660,20 +661,20 @@ you must call the super init function.</p>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">model_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Attributes</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the attributes related to the model of this board</span>
+<span class="sd">        Get the attributes related to the model of this board.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Attributes: The attributes</span>
+<span class="sd">            Attributes: The attributes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the attributes related to the model of this board</p>
+            <div class="docstring"><p>Get the attributes related to the model of this board.</p>
 
 <p>Returns:
-    Attributes: The attributes</p>
+    Attributes: The attributes.</p>
 </div>
 
 
@@ -704,7 +705,7 @@ you must call the super init function.</p>
     <span class="k">class</span> <span class="nc">Attributes</span><span class="p">:</span>
         <span class="n">remote</span><span class="p">:</span> <span class="nb">bool</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        If this board is accessed over a remote connection, e.g. gRPC</span>
+<span class="sd">        Indicates whether this board is accessed over a remote connection, e.g. gRPC.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 </pre></div>
 
@@ -732,7 +733,7 @@ you must call the super init function.</p>
     </div>
 
     
-            <div class="docstring"><p>If this board is accessed over a remote connection, e.g. gRPC</p>
+            <div class="docstring"><p>Indicates whether this board is accessed over a remote connection, e.g. gRPC.</p>
 </div>
 
 
@@ -751,24 +752,22 @@ you must call the super init function.</p>
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">AnalogReader</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        An AnalogReader represents an analog pin reader</span>
-<span class="sd">        that resides on a board.</span>
+<span class="sd">        AnalogReader represents an analog pin reader that resides on a Board.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Read the current value</span>
+<span class="sd">            Read the current value.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The current value</span>
+<span class="sd">                int: The current value.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>An AnalogReader represents an analog pin reader
-that resides on a board.</p>
+            <div class="docstring"><p>AnalogReader represents an analog pin reader that resides on a Board.</p>
 </div>
 
 
@@ -786,20 +785,20 @@ that resides on a board.</p>
             <div class="pdoc-code codehilite"><pre><span></span>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Read the current value</span>
+<span class="sd">            Read the current value.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The current value</span>
+<span class="sd">                int: The current value.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Read the current value</p>
+            <div class="docstring"><p>Read the current value.</p>
 
 <p>Returns:
-    int: The current value</p>
+    int: The current value.</p>
 </div>
 
 
@@ -827,19 +826,19 @@ that resides on a board.</p>
             <summary>View Source</summary>
             <div class="pdoc-code codehilite"><pre><span></span>    <span class="k">class</span> <span class="nc">DigitalInterrupt</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        A DigitalInterrupt represents a configured interrupt on the board that,</span>
-<span class="sd">        when interrupted, calls the added callbacks. Post processors can also</span>
-<span class="sd">        be added to modify what Value ultimately returns.</span>
+<span class="sd">        DigitalInterrupt represents a configured interrupt on the Board that</span>
+<span class="sd">        when interrupted, calls the added callbacks. Post processors can</span>
+<span class="sd">        be added to modify what Value it ultimately returns.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Get the current value of the interrupt,</span>
-<span class="sd">            which is based on the type of interrupt</span>
+<span class="sd">            which is based on the type of interrupt.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The current value</span>
+<span class="sd">                int: The current value.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
@@ -850,20 +849,20 @@ that resides on a board.</p>
 <span class="sd">            is a proxy to some real hardware interrupt or for tests.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                high (bool): If the signal of the interrupt is high</span>
+<span class="sd">                high (bool): If the signal of the interrupt is high.</span>
 <span class="sd">                nanos (int): Nanoseconds from an arbitrary point in time,</span>
 <span class="sd">                    but always increasing and always needs to be accurate.</span>
-<span class="sd">                    Using `time.time_ns()` would be acceptable</span>
+<span class="sd">                    Using `time.time_ns()` would be acceptable.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Add a callback to be sent a low/high value on tick.</span>
+<span class="sd">            Add a callback to be sent the low/high value on `tick()`.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                queue (Queue): The receiving queue</span>
+<span class="sd">                queue (Queue): The receiving queue.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
@@ -874,16 +873,16 @@ that resides on a board.</p>
 <span class="sd">            is returned by `self.value()`</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                processor (PostProcessor): The post processor to add</span>
+<span class="sd">                processor (PostProcessor): The post processor to add.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>A DigitalInterrupt represents a configured interrupt on the board that,
-when interrupted, calls the added callbacks. Post processors can also
-be added to modify what Value ultimately returns.</p>
+            <div class="docstring"><p>DigitalInterrupt represents a configured interrupt on the Board that
+when interrupted, calls the added callbacks. Post processors can
+be added to modify what Value it ultimately returns.</p>
 </div>
 
 
@@ -902,10 +901,10 @@ be added to modify what Value ultimately returns.</p>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Get the current value of the interrupt,</span>
-<span class="sd">            which is based on the type of interrupt</span>
+<span class="sd">            which is based on the type of interrupt.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The current value</span>
+<span class="sd">                int: The current value.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
@@ -913,10 +912,10 @@ be added to modify what Value ultimately returns.</p>
         </details>
 
             <div class="docstring"><p>Get the current value of the interrupt,
-which is based on the type of interrupt</p>
+which is based on the type of interrupt.</p>
 
 <p>Returns:
-    int: The current value</p>
+    int: The current value.</p>
 </div>
 
 
@@ -939,10 +938,10 @@ which is based on the type of interrupt</p>
 <span class="sd">            is a proxy to some real hardware interrupt or for tests.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                high (bool): If the signal of the interrupt is high</span>
+<span class="sd">                high (bool): If the signal of the interrupt is high.</span>
 <span class="sd">                nanos (int): Nanoseconds from an arbitrary point in time,</span>
 <span class="sd">                    but always increasing and always needs to be accurate.</span>
-<span class="sd">                    Using `time.time_ns()` would be acceptable</span>
+<span class="sd">                    Using `time.time_ns()` would be acceptable.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
@@ -953,10 +952,10 @@ which is based on the type of interrupt</p>
 is a proxy to some real hardware interrupt or for tests.</p>
 
 <p>Args:
-    high (bool): If the signal of the interrupt is high
+    high (bool): If the signal of the interrupt is high.
     nanos (int): Nanoseconds from an arbitrary point in time,
         but always increasing and always needs to be accurate.
-        Using <code>time.time_ns()</code> would be acceptable</p>
+        Using <code>time.time_ns()</code> would be acceptable.</p>
 </div>
 
 
@@ -969,7 +968,7 @@ is a proxy to some real hardware interrupt or for tests.</p>
             <span class="def">async def</span>
             <span class="name">add_callback</span><span class="signature">(
     self,
-    queue: &lt;bound method BaseContext.Queue of &lt;multiprocessing.context.DefaultContext object at 0x7f08bf774730&gt;&gt;
+    queue: &lt;bound method BaseContext.Queue of &lt;multiprocessing.context.DefaultContext object at 0x7f19149ffb80&gt;&gt;
 )</span>:
     </div>
 
@@ -978,20 +977,20 @@ is a proxy to some real hardware interrupt or for tests.</p>
             <div class="pdoc-code codehilite"><pre><span></span>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Add a callback to be sent a low/high value on tick.</span>
+<span class="sd">            Add a callback to be sent the low/high value on `tick()`.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                queue (Queue): The receiving queue</span>
+<span class="sd">                queue (Queue): The receiving queue.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Add a callback to be sent a low/high value on tick.</p>
+            <div class="docstring"><p>Add a callback to be sent the low/high value on <code><a href="#Board.DigitalInterrupt.tick">tick()</a></code>.</p>
 
 <p>Args:
-    queue (Queue): The receiving queue</p>
+    queue (Queue): The receiving queue.</p>
 </div>
 
 
@@ -1014,7 +1013,7 @@ is a proxy to some real hardware interrupt or for tests.</p>
 <span class="sd">            is returned by `self.value()`</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                processor (PostProcessor): The post processor to add</span>
+<span class="sd">                processor (PostProcessor): The post processor to add.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
@@ -1025,7 +1024,7 @@ is a proxy to some real hardware interrupt or for tests.</p>
 is returned by <code>self.value()</code></p>
 
 <p>Args:
-    processor (PostProcessor): The post processor to add</p>
+    processor (PostProcessor): The post processor to add.</p>
 </div>
 
 
@@ -1062,61 +1061,61 @@ is returned by <code>self.value()</code></p>
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to either low or high</span>
+<span class="sd">            Set the pin to either low or high.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                high (bool): If the pin should be set to high</span>
+<span class="sd">                high (bool): When true, sets the pin to high. When false, sets the pin to low.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the high/low state of the pin</span>
+<span class="sd">            Get the high/low state of the pin.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                bool: If the state of the pin is high</span>
+<span class="sd">                bool: Indicates if the state of the pin is high.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the pin&#39;s given duty cycle</span>
+<span class="sd">            Get the pin&#39;s given duty cycle.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                float: The duty cycle</span>
+<span class="sd">                float: The duty cycle.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to the given duty cycle</span>
+<span class="sd">            Set the pin to the given `duty_cycle`.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                duty_cycle (float): The duty cycle</span>
+<span class="sd">                duty_cycle (float): The duty cycle.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the PWM frequency of the pin</span>
+<span class="sd">            Get the PWM frequency of the pin.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The PWM frequency</span>
+<span class="sd">                int: The PWM frequency.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 
         <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to the given PWM frequency (in Hz).</span>
-<span class="sd">            0 will use the board&#39;s default PWM frequency</span>
+<span class="sd">            Set the pin to the given PWM `frequency` (in Hz).</span>
+<span class="sd">            When `frequency` is 0, it will use the board&#39;s default PWM frequency.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                frequency (int): The frequency</span>
+<span class="sd">                frequency (int): The frequency, in Hz.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
@@ -1144,20 +1143,20 @@ is returned by <code>self.value()</code></p>
             <div class="pdoc-code codehilite"><pre><span></span>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to either low or high</span>
+<span class="sd">            Set the pin to either low or high.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                high (bool): If the pin should be set to high</span>
+<span class="sd">                high (bool): When true, sets the pin to high. When false, sets the pin to low.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Set the pin to either low or high</p>
+            <div class="docstring"><p>Set the pin to either low or high.</p>
 
 <p>Args:
-    high (bool): If the pin should be set to high</p>
+    high (bool): When true, sets the pin to high. When false, sets the pin to low.</p>
 </div>
 
 
@@ -1176,20 +1175,20 @@ is returned by <code>self.value()</code></p>
             <div class="pdoc-code codehilite"><pre><span></span>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the high/low state of the pin</span>
+<span class="sd">            Get the high/low state of the pin.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                bool: If the state of the pin is high</span>
+<span class="sd">                bool: Indicates if the state of the pin is high.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the high/low state of the pin</p>
+            <div class="docstring"><p>Get the high/low state of the pin.</p>
 
 <p>Returns:
-    bool: If the state of the pin is high</p>
+    bool: Indicates if the state of the pin is high.</p>
 </div>
 
 
@@ -1208,20 +1207,20 @@ is returned by <code>self.value()</code></p>
             <div class="pdoc-code codehilite"><pre><span></span>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the pin&#39;s given duty cycle</span>
+<span class="sd">            Get the pin&#39;s given duty cycle.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                float: The duty cycle</span>
+<span class="sd">                float: The duty cycle.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the pin's given duty cycle</p>
+            <div class="docstring"><p>Get the pin's given duty cycle.</p>
 
 <p>Returns:
-    float: The duty cycle</p>
+    float: The duty cycle.</p>
 </div>
 
 
@@ -1240,20 +1239,20 @@ is returned by <code>self.value()</code></p>
             <div class="pdoc-code codehilite"><pre><span></span>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to the given duty cycle</span>
+<span class="sd">            Set the pin to the given `duty_cycle`.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                duty_cycle (float): The duty cycle</span>
+<span class="sd">                duty_cycle (float): The duty cycle.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Set the pin to the given duty cycle</p>
+            <div class="docstring"><p>Set the pin to the given <code>duty_cycle</code>.</p>
 
 <p>Args:
-    duty_cycle (float): The duty cycle</p>
+    duty_cycle (float): The duty cycle.</p>
 </div>
 
 
@@ -1272,20 +1271,20 @@ is returned by <code>self.value()</code></p>
             <div class="pdoc-code codehilite"><pre><span></span>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the PWM frequency of the pin</span>
+<span class="sd">            Get the PWM frequency of the pin.</span>
 
 <span class="sd">            Returns:</span>
-<span class="sd">                int: The PWM frequency</span>
+<span class="sd">                int: The PWM frequency.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Get the PWM frequency of the pin</p>
+            <div class="docstring"><p>Get the PWM frequency of the pin.</p>
 
 <p>Returns:
-    int: The PWM frequency</p>
+    int: The PWM frequency.</p>
 </div>
 
 
@@ -1304,22 +1303,22 @@ is returned by <code>self.value()</code></p>
             <div class="pdoc-code codehilite"><pre><span></span>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to the given PWM frequency (in Hz).</span>
-<span class="sd">            0 will use the board&#39;s default PWM frequency</span>
+<span class="sd">            Set the pin to the given PWM `frequency` (in Hz).</span>
+<span class="sd">            When `frequency` is 0, it will use the board&#39;s default PWM frequency.</span>
 
 <span class="sd">            Args:</span>
-<span class="sd">                frequency (int): The frequency</span>
+<span class="sd">                frequency (int): The frequency, in Hz.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span>
 </pre></div>
 
         </details>
 
-            <div class="docstring"><p>Set the pin to the given PWM frequency (in Hz).
-0 will use the board's default PWM frequency</p>
+            <div class="docstring"><p>Set the pin to the given PWM <code>frequency</code> (in Hz).
+When <code>frequency</code> is 0, it will use the board's default PWM frequency.</p>
 
 <p>Args:
-    frequency (int): The frequency</p>
+    frequency (int): The frequency, in Hz.</p>
 </div>
 
 
@@ -1434,13 +1433,13 @@ is returned by <code>self.value()</code></p>
 
         </details>
 
-            <div class="docstring"><p>Get an AnalogReader by name</p>
+            <div class="docstring"><p>Get an AnalogReader by <code>name</code>.</p>
 
 <p>Args:
-    name (str): Name of the analog reader</p>
+    name (str): Name of the analog reader to be retrieved.</p>
 
 <p>Returns:
-    AnalogReader: the analog reader</p>
+    AnalogReader: The analog reader.</p>
 </div>
 
 
@@ -1467,13 +1466,13 @@ is returned by <code>self.value()</code></p>
 
         </details>
 
-            <div class="docstring"><p>Get a DigitalInterrupt by name</p>
+            <div class="docstring"><p>Get a DigitalInterrupt by <code>name</code>.</p>
 
 <p>Args:
-    name (str): Name of the digital interrupt</p>
+    name (str): Name of the digital interrupt.</p>
 
 <p>Returns:
-    DigitalInterrupt: the digital interrupt</p>
+    DigitalInterrupt: the digital interrupt.</p>
 </div>
 
 
@@ -1494,13 +1493,13 @@ is returned by <code>self.value()</code></p>
 
         </details>
 
-            <div class="docstring"><p>Get a GPIO Pin by name</p>
+            <div class="docstring"><p>Get a GPIO Pin by <code>name</code>.</p>
 
 <p>Args:
-    name (str): Name of the GPIO pin</p>
+    name (str): Name of the GPIO pin.</p>
 
 <p>Returns:
-    GPIOPin: the pin</p>
+    GPIOPin: the pin.</p>
 </div>
 
 
@@ -1525,10 +1524,10 @@ is returned by <code>self.value()</code></p>
 
         </details>
 
-            <div class="docstring"><p>Get the names of all known analog readers</p>
+            <div class="docstring"><p>Get the names of all known analog readers.</p>
 
 <p>Returns:
-    List[str]: The names of the analog readers</p>
+    List[str]: The names of the analog readers..</p>
 </div>
 
 
@@ -1553,10 +1552,10 @@ is returned by <code>self.value()</code></p>
 
         </details>
 
-            <div class="docstring"><p>Get the names of all known digital interrupts</p>
+            <div class="docstring"><p>Get the names of all known digital interrupts.</p>
 
 <p>Returns:
-    List[str]: The names of the digital interrupts</p>
+    List[str]: The names of the digital interrupts.</p>
 </div>
 
 
@@ -1582,7 +1581,7 @@ is returned by <code>self.value()</code></p>
             <div class="docstring"><p>Return the current status of the board.</p>
 
 <p>Returns:
-    BoardStatus: the status</p>
+    BoardStatus: the status.</p>
 </div>
 
 
@@ -1603,10 +1602,10 @@ is returned by <code>self.value()</code></p>
 
         </details>
 
-            <div class="docstring"><p>Get the attributes related to the model of this board</p>
+            <div class="docstring"><p>Get the attributes related to the model of this board.</p>
 
 <p>Returns:
-    Attributes: The attributes</p>
+    Attributes: The attributes.</p>
 </div>
 
 
