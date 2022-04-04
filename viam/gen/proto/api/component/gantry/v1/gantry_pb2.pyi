@@ -9,12 +9,12 @@ import google.protobuf.message
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class GetPositionRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -24,7 +24,7 @@ class GetPositionRequest(google.protobuf.message.Message):
 global___GetPositionRequest = GetPositionRequest
 
 class GetPositionResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     POSITIONS_MM_FIELD_NUMBER: builtins.int
 
     @property
@@ -39,11 +39,11 @@ class GetPositionResponse(google.protobuf.message.Message):
 global___GetPositionResponse = GetPositionResponse
 
 class MoveToPositionRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     POSITIONS_MM_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     @property
     def positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
@@ -67,16 +67,16 @@ class MoveToPositionRequest(google.protobuf.message.Message):
 global___MoveToPositionRequest = MoveToPositionRequest
 
 class MoveToPositionResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___MoveToPositionResponse = MoveToPositionResponse
 
 class GetLengthsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -86,7 +86,7 @@ class GetLengthsRequest(google.protobuf.message.Message):
 global___GetLengthsRequest = GetLengthsRequest
 
 class GetLengthsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     LENGTHS_MM_FIELD_NUMBER: builtins.int
 
     @property
@@ -101,7 +101,7 @@ class GetLengthsResponse(google.protobuf.message.Message):
 global___GetLengthsResponse = GetLengthsResponse
 
 class Status(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     POSITIONS_MM_FIELD_NUMBER: builtins.int
     LENGTHS_MM_FIELD_NUMBER: builtins.int
 

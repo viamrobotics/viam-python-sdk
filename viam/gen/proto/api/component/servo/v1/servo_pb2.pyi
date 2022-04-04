@@ -7,15 +7,15 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class MoveRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     ANGLE_DEG_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'the name of the servo, as registered'
-    angle_deg: builtins.int
+    angle_deg: builtins.int = ...
     'the degrees by which to rotate the servo. Accepted values are between 0 and 180'
 
     def __init__(self, *, name: typing.Text=..., angle_deg: builtins.int=...) -> None:
@@ -26,16 +26,16 @@ class MoveRequest(google.protobuf.message.Message):
 global___MoveRequest = MoveRequest
 
 class MoveResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___MoveResponse = MoveResponse
 
 class GetPositionRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'the name of the servo, as registered'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -46,9 +46,9 @@ class GetPositionRequest(google.protobuf.message.Message):
 global___GetPositionRequest = GetPositionRequest
 
 class GetPositionResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     POSITION_DEG_FIELD_NUMBER: builtins.int
-    position_deg: builtins.int
+    position_deg: builtins.int = ...
     'the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180'
 
     def __init__(self, *, position_deg: builtins.int=...) -> None:
@@ -59,9 +59,9 @@ class GetPositionResponse(google.protobuf.message.Message):
 global___GetPositionResponse = GetPositionResponse
 
 class Status(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     POSITION_DEG_FIELD_NUMBER: builtins.int
-    position_deg: builtins.int
+    position_deg: builtins.int = ...
 
     def __init__(self, *, position_deg: builtins.int=...) -> None:
         ...

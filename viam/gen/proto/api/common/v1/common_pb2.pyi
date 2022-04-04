@@ -8,20 +8,20 @@ import google.protobuf.internal.containers
 import google.protobuf.message
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class ResourceName(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     UUID_FIELD_NUMBER: builtins.int
     NAMESPACE_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
     SUBTYPE_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    uuid: typing.Text
-    namespace: typing.Text
-    type: typing.Text
-    subtype: typing.Text
-    name: typing.Text
+    uuid: typing.Text = ...
+    namespace: typing.Text = ...
+    type: typing.Text = ...
+    subtype: typing.Text = ...
+    name: typing.Text = ...
 
     def __init__(self, *, uuid: typing.Text=..., namespace: typing.Text=..., type: typing.Text=..., subtype: typing.Text=..., name: typing.Text=...) -> None:
         ...
@@ -31,13 +31,13 @@ class ResourceName(google.protobuf.message.Message):
 global___ResourceName = ResourceName
 
 class BoardStatus(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     class AnalogsEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
-        key: typing.Text
+        key: typing.Text = ...
 
         @property
         def value(self) -> global___AnalogStatus:
@@ -53,10 +53,10 @@ class BoardStatus(google.protobuf.message.Message):
             ...
 
     class DigitalInterruptsEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
-        key: typing.Text
+        key: typing.Text = ...
 
         @property
         def value(self) -> global___DigitalInterruptStatus:
@@ -89,9 +89,9 @@ class BoardStatus(google.protobuf.message.Message):
 global___BoardStatus = BoardStatus
 
 class AnalogStatus(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     VALUE_FIELD_NUMBER: builtins.int
-    value: builtins.int
+    value: builtins.int = ...
     "Current value of the analog reader of a robot's board"
 
     def __init__(self, *, value: builtins.int=...) -> None:
@@ -102,9 +102,9 @@ class AnalogStatus(google.protobuf.message.Message):
 global___AnalogStatus = AnalogStatus
 
 class DigitalInterruptStatus(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     VALUE_FIELD_NUMBER: builtins.int
-    value: builtins.int
+    value: builtins.int = ...
     "Current value of the digital interrupt of a robot's board"
 
     def __init__(self, *, value: builtins.int=...) -> None:
@@ -124,7 +124,7 @@ class Pose(google.protobuf.message.Message):
     second being defined by the origin, the rx, ry, rz point and the local Z axis. Therefore, if theta is kept at zero as the north/south pole 
     is circled, the Roll will correct itself to remain in-line.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     X_FIELD_NUMBER: builtins.int
     Y_FIELD_NUMBER: builtins.int
     Z_FIELD_NUMBER: builtins.int
@@ -132,19 +132,19 @@ class Pose(google.protobuf.message.Message):
     O_Y_FIELD_NUMBER: builtins.int
     O_Z_FIELD_NUMBER: builtins.int
     THETA_FIELD_NUMBER: builtins.int
-    x: builtins.float
+    x: builtins.float = ...
     'millimeters from the origin'
-    y: builtins.float
+    y: builtins.float = ...
     'millimeters from the origin'
-    z: builtins.float
+    z: builtins.float = ...
     'millimeters from the origin'
-    o_x: builtins.float
+    o_x: builtins.float = ...
     'z component of a vector defining axis of rotation'
-    o_y: builtins.float
+    o_y: builtins.float = ...
     'x component of a vector defining axis of rotation'
-    o_z: builtins.float
+    o_z: builtins.float = ...
     'y component of a vector defining axis of rotation'
-    theta: builtins.float
+    theta: builtins.float = ...
     'degrees'
 
     def __init__(self, *, x: builtins.float=..., y: builtins.float=..., z: builtins.float=..., o_x: builtins.float=..., o_y: builtins.float=..., o_z: builtins.float=..., theta: builtins.float=...) -> None:
@@ -156,10 +156,10 @@ global___Pose = Pose
 
 class PoseInFrame(google.protobuf.message.Message):
     """PoseInFrame contains a pose and the and the reference frame in which it was observed"""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     POSE_FIELD_NUMBER: builtins.int
-    reference_frame: typing.Text
+    reference_frame: typing.Text = ...
 
     @property
     def pose(self) -> global___Pose:
@@ -176,13 +176,13 @@ class PoseInFrame(google.protobuf.message.Message):
 global___PoseInFrame = PoseInFrame
 
 class Vector3(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     X_FIELD_NUMBER: builtins.int
     Y_FIELD_NUMBER: builtins.int
     Z_FIELD_NUMBER: builtins.int
-    x: builtins.float
-    y: builtins.float
-    z: builtins.float
+    x: builtins.float = ...
+    y: builtins.float = ...
+    z: builtins.float = ...
 
     def __init__(self, *, x: builtins.float=..., y: builtins.float=..., z: builtins.float=...) -> None:
         ...
@@ -192,9 +192,9 @@ class Vector3(google.protobuf.message.Message):
 global___Vector3 = Vector3
 
 class Sphere(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     RADIUS_MM_FIELD_NUMBER: builtins.int
-    radius_mm: builtins.float
+    radius_mm: builtins.float = ...
 
     def __init__(self, *, radius_mm: builtins.float=...) -> None:
         ...
@@ -204,13 +204,13 @@ class Sphere(google.protobuf.message.Message):
 global___Sphere = Sphere
 
 class RectangularPrism(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     WIDTH_MM_FIELD_NUMBER: builtins.int
     LENGTH_MM_FIELD_NUMBER: builtins.int
     DEPTH_MM_FIELD_NUMBER: builtins.int
-    width_mm: builtins.float
-    length_mm: builtins.float
-    depth_mm: builtins.float
+    width_mm: builtins.float = ...
+    length_mm: builtins.float = ...
+    depth_mm: builtins.float = ...
 
     def __init__(self, *, width_mm: builtins.float=..., length_mm: builtins.float=..., depth_mm: builtins.float=...) -> None:
         ...
@@ -221,7 +221,7 @@ global___RectangularPrism = RectangularPrism
 
 class Geometry(google.protobuf.message.Message):
     """Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     CENTER_FIELD_NUMBER: builtins.int
     SPHERE_FIELD_NUMBER: builtins.int
     BOX_FIELD_NUMBER: builtins.int
@@ -256,10 +256,10 @@ class GeometriesInFrame(google.protobuf.message.Message):
     """GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was 
     observed.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     GEOMETRIES_FIELD_NUMBER: builtins.int
-    reference_frame: typing.Text
+    reference_frame: typing.Text = ...
     'Reference frame of the observer of the geometry'
 
     @property
@@ -278,10 +278,10 @@ class PointCloudObject(google.protobuf.message.Message):
     """PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a 
     repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     POINT_CLOUD_FIELD_NUMBER: builtins.int
     GEOMETRIES_FIELD_NUMBER: builtins.int
-    point_cloud: builtins.bytes
+    point_cloud: builtins.bytes = ...
     'image frame expressed in bytes'
 
     @property
@@ -300,11 +300,11 @@ class PointCloudObject(google.protobuf.message.Message):
 global___PointCloudObject = PointCloudObject
 
 class GeoPoint(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     LATITUDE_FIELD_NUMBER: builtins.int
     LONGITUDE_FIELD_NUMBER: builtins.int
-    latitude: builtins.float
-    longitude: builtins.float
+    latitude: builtins.float = ...
+    longitude: builtins.float = ...
 
     def __init__(self, *, latitude: builtins.float=..., longitude: builtins.float=...) -> None:
         ...
@@ -318,10 +318,10 @@ class Transform(google.protobuf.message.Message):
     frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
     reference frame as observed within the second reference frame.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     POSE_IN_OBSERVER_FRAME_FIELD_NUMBER: builtins.int
-    reference_frame: typing.Text
+    reference_frame: typing.Text = ...
     'the name of a given reference frame'
 
     @property
@@ -344,7 +344,7 @@ class WorldState(google.protobuf.message.Message):
     they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
     given reference frame and a new target reference frame.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     OBSTACLES_FIELD_NUMBER: builtins.int
     TRANSFORMS_FIELD_NUMBER: builtins.int
 

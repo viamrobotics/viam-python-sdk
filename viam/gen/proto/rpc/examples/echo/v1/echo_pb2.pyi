@@ -7,12 +7,12 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class EchoRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MESSAGE_FIELD_NUMBER: builtins.int
-    message: typing.Text
+    message: typing.Text = ...
 
     def __init__(self, *, message: typing.Text=...) -> None:
         ...
@@ -22,9 +22,9 @@ class EchoRequest(google.protobuf.message.Message):
 global___EchoRequest = EchoRequest
 
 class EchoResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MESSAGE_FIELD_NUMBER: builtins.int
-    message: typing.Text
+    message: typing.Text = ...
 
     def __init__(self, *, message: typing.Text=...) -> None:
         ...
@@ -34,9 +34,9 @@ class EchoResponse(google.protobuf.message.Message):
 global___EchoResponse = EchoResponse
 
 class EchoMultipleRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MESSAGE_FIELD_NUMBER: builtins.int
-    message: typing.Text
+    message: typing.Text = ...
 
     def __init__(self, *, message: typing.Text=...) -> None:
         ...
@@ -46,9 +46,9 @@ class EchoMultipleRequest(google.protobuf.message.Message):
 global___EchoMultipleRequest = EchoMultipleRequest
 
 class EchoMultipleResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MESSAGE_FIELD_NUMBER: builtins.int
-    message: typing.Text
+    message: typing.Text = ...
 
     def __init__(self, *, message: typing.Text=...) -> None:
         ...
@@ -58,9 +58,9 @@ class EchoMultipleResponse(google.protobuf.message.Message):
 global___EchoMultipleResponse = EchoMultipleResponse
 
 class EchoBiDiRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MESSAGE_FIELD_NUMBER: builtins.int
-    message: typing.Text
+    message: typing.Text = ...
 
     def __init__(self, *, message: typing.Text=...) -> None:
         ...
@@ -70,9 +70,9 @@ class EchoBiDiRequest(google.protobuf.message.Message):
 global___EchoBiDiRequest = EchoBiDiRequest
 
 class EchoBiDiResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MESSAGE_FIELD_NUMBER: builtins.int
-    message: typing.Text
+    message: typing.Text = ...
 
     def __init__(self, *, message: typing.Text=...) -> None:
         ...

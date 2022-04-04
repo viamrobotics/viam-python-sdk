@@ -10,36 +10,36 @@ import google.protobuf.message
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class _Mode:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
 class _ModeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Mode.ValueType], builtins.type):
-    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
-    MODE_UNSPECIFIED: _Mode.ValueType
-    MODE_MANUAL: _Mode.ValueType
-    MODE_WAYPOINT: _Mode.ValueType
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor = ...
+    MODE_UNSPECIFIED: Mode.ValueType = ...
+    MODE_MANUAL: Mode.ValueType = ...
+    MODE_WAYPOINT: Mode.ValueType = ...
 
 class Mode(_Mode, metaclass=_ModeEnumTypeWrapper):
     pass
-MODE_UNSPECIFIED: Mode.ValueType
-MODE_MANUAL: Mode.ValueType
-MODE_WAYPOINT: Mode.ValueType
+MODE_UNSPECIFIED: Mode.ValueType = ...
+MODE_MANUAL: Mode.ValueType = ...
+MODE_WAYPOINT: Mode.ValueType = ...
 global___Mode = Mode
 
 class GetModeRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___GetModeRequest = GetModeRequest
 
 class GetModeResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MODE_FIELD_NUMBER: builtins.int
-    mode: global___Mode.ValueType
+    mode: global___Mode.ValueType = ...
 
     def __init__(self, *, mode: global___Mode.ValueType=...) -> None:
         ...
@@ -49,9 +49,9 @@ class GetModeResponse(google.protobuf.message.Message):
 global___GetModeResponse = GetModeResponse
 
 class SetModeRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MODE_FIELD_NUMBER: builtins.int
-    mode: global___Mode.ValueType
+    mode: global___Mode.ValueType = ...
 
     def __init__(self, *, mode: global___Mode.ValueType=...) -> None:
         ...
@@ -61,17 +61,17 @@ class SetModeRequest(google.protobuf.message.Message):
 global___SetModeRequest = SetModeRequest
 
 class SetModeResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___SetModeResponse = SetModeResponse
 
 class Waypoint(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     ID_FIELD_NUMBER: builtins.int
     LOCATION_FIELD_NUMBER: builtins.int
-    id: typing.Text
+    id: typing.Text = ...
 
     @property
     def location(self) -> proto.api.common.v1.common_pb2.GeoPoint:
@@ -88,14 +88,14 @@ class Waypoint(google.protobuf.message.Message):
 global___Waypoint = Waypoint
 
 class GetLocationRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___GetLocationRequest = GetLocationRequest
 
 class GetLocationResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     LOCATION_FIELD_NUMBER: builtins.int
 
     @property
@@ -113,14 +113,14 @@ class GetLocationResponse(google.protobuf.message.Message):
 global___GetLocationResponse = GetLocationResponse
 
 class GetWaypointsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___GetWaypointsRequest = GetWaypointsRequest
 
 class GetWaypointsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     WAYPOINTS_FIELD_NUMBER: builtins.int
 
     @property
@@ -135,7 +135,7 @@ class GetWaypointsResponse(google.protobuf.message.Message):
 global___GetWaypointsResponse = GetWaypointsResponse
 
 class AddWaypointRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     LOCATION_FIELD_NUMBER: builtins.int
 
     @property
@@ -153,16 +153,16 @@ class AddWaypointRequest(google.protobuf.message.Message):
 global___AddWaypointRequest = AddWaypointRequest
 
 class AddWaypointResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___AddWaypointResponse = AddWaypointResponse
 
 class RemoveWaypointRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     ID_FIELD_NUMBER: builtins.int
-    id: typing.Text
+    id: typing.Text = ...
 
     def __init__(self, *, id: typing.Text=...) -> None:
         ...
@@ -172,7 +172,7 @@ class RemoveWaypointRequest(google.protobuf.message.Message):
 global___RemoveWaypointRequest = RemoveWaypointRequest
 
 class RemoveWaypointResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...

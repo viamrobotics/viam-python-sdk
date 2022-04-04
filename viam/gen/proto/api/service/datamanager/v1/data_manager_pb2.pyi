@@ -9,10 +9,10 @@ import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class SensorMetadata(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     TIME_REQUESTED_FIELD_NUMBER: builtins.int
     TIME_RECEIVED_FIELD_NUMBER: builtins.int
 
@@ -35,7 +35,7 @@ class SensorMetadata(google.protobuf.message.Message):
 global___SensorMetadata = SensorMetadata
 
 class SensorData(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     METADATA_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
 

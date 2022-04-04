@@ -9,12 +9,12 @@ import google.protobuf.message
 import google.protobuf.struct_pb2
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class GetReadingsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -24,7 +24,7 @@ class GetReadingsRequest(google.protobuf.message.Message):
 global___GetReadingsRequest = GetReadingsRequest
 
 class GetReadingsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     READINGS_FIELD_NUMBER: builtins.int
 
     @property

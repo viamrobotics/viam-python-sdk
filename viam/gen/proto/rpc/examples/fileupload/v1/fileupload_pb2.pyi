@@ -7,14 +7,14 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class UploadFileRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     CHUNK_DATA_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    chunk_data: builtins.bytes
+    name: typing.Text = ...
+    chunk_data: builtins.bytes = ...
 
     def __init__(self, *, name: typing.Text=..., chunk_data: builtins.bytes=...) -> None:
         ...
@@ -30,11 +30,11 @@ class UploadFileRequest(google.protobuf.message.Message):
 global___UploadFileRequest = UploadFileRequest
 
 class UploadFileResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     SIZE_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    size: builtins.int
+    name: typing.Text = ...
+    size: builtins.int = ...
 
     def __init__(self, *, name: typing.Text=..., size: builtins.int=...) -> None:
         ...

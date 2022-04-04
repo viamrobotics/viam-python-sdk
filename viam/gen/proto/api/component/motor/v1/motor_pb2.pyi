@@ -7,15 +7,15 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class SetPowerRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     POWER_PCT_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'Name of a motor'
-    power_pct: builtins.float
+    power_pct: builtins.float = ...
     "Percentage of motor's power, between -1 and 1"
 
     def __init__(self, *, name: typing.Text=..., power_pct: builtins.float=...) -> None:
@@ -26,22 +26,22 @@ class SetPowerRequest(google.protobuf.message.Message):
 global___SetPowerRequest = SetPowerRequest
 
 class SetPowerResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___SetPowerResponse = SetPowerResponse
 
 class GoForRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     RPM_FIELD_NUMBER: builtins.int
     REVOLUTIONS_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'Name of a motor'
-    rpm: builtins.float
+    rpm: builtins.float = ...
     'Speed of motor travel in rotations per minute'
-    revolutions: builtins.float
+    revolutions: builtins.float = ...
     "Number of revolutions relative to motor's start position"
 
     def __init__(self, *, name: typing.Text=..., rpm: builtins.float=..., revolutions: builtins.float=...) -> None:
@@ -52,22 +52,22 @@ class GoForRequest(google.protobuf.message.Message):
 global___GoForRequest = GoForRequest
 
 class GoForResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___GoForResponse = GoForResponse
 
 class GoToRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     RPM_FIELD_NUMBER: builtins.int
     POSITION_REVOLUTIONS_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'Name of a motor'
-    rpm: builtins.float
+    rpm: builtins.float = ...
     'Speed of motor travel in rotations per minute'
-    position_revolutions: builtins.float
+    position_revolutions: builtins.float = ...
     "Number of revolutions relative to motor's home home/zero"
 
     def __init__(self, *, name: typing.Text=..., rpm: builtins.float=..., position_revolutions: builtins.float=...) -> None:
@@ -78,19 +78,19 @@ class GoToRequest(google.protobuf.message.Message):
 global___GoToRequest = GoToRequest
 
 class GoToResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___GoToResponse = GoToResponse
 
 class ResetZeroPositionRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     OFFSET_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'Name of a motor'
-    offset: builtins.float
+    offset: builtins.float = ...
     'Motor position'
 
     def __init__(self, *, name: typing.Text=..., offset: builtins.float=...) -> None:
@@ -101,16 +101,16 @@ class ResetZeroPositionRequest(google.protobuf.message.Message):
 global___ResetZeroPositionRequest = ResetZeroPositionRequest
 
 class ResetZeroPositionResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___ResetZeroPositionResponse = ResetZeroPositionResponse
 
 class GetPositionRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'Name of a motor'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -121,9 +121,9 @@ class GetPositionRequest(google.protobuf.message.Message):
 global___GetPositionRequest = GetPositionRequest
 
 class GetPositionResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     POSITION_FIELD_NUMBER: builtins.int
-    position: builtins.float
+    position: builtins.float = ...
     'Current position of the motor relative to its home'
 
     def __init__(self, *, position: builtins.float=...) -> None:
@@ -134,9 +134,9 @@ class GetPositionResponse(google.protobuf.message.Message):
 global___GetPositionResponse = GetPositionResponse
 
 class StopRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'Name of a motor'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -147,16 +147,16 @@ class StopRequest(google.protobuf.message.Message):
 global___StopRequest = StopRequest
 
 class StopResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___StopResponse = StopResponse
 
 class IsPoweredRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'Name of a motor'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -167,9 +167,9 @@ class IsPoweredRequest(google.protobuf.message.Message):
 global___IsPoweredRequest = IsPoweredRequest
 
 class IsPoweredResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     IS_ON_FIELD_NUMBER: builtins.int
-    is_on: builtins.bool
+    is_on: builtins.bool = ...
     'Returns true if the motor is on'
 
     def __init__(self, *, is_on: builtins.bool=...) -> None:
@@ -180,9 +180,9 @@ class IsPoweredResponse(google.protobuf.message.Message):
 global___IsPoweredResponse = IsPoweredResponse
 
 class GetFeaturesRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
     'Name of a motor'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -193,9 +193,9 @@ class GetFeaturesRequest(google.protobuf.message.Message):
 global___GetFeaturesRequest = GetFeaturesRequest
 
 class GetFeaturesResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     POSITION_REPORTING_FIELD_NUMBER: builtins.int
-    position_reporting: builtins.bool
+    position_reporting: builtins.bool = ...
     'Returns true if the motor supports reporting its position'
 
     def __init__(self, *, position_reporting: builtins.bool=...) -> None:
@@ -206,15 +206,15 @@ class GetFeaturesResponse(google.protobuf.message.Message):
 global___GetFeaturesResponse = GetFeaturesResponse
 
 class Status(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     IS_ON_FIELD_NUMBER: builtins.int
     POSITION_REPORTING_FIELD_NUMBER: builtins.int
     POSITION_FIELD_NUMBER: builtins.int
-    is_on: builtins.bool
+    is_on: builtins.bool = ...
     'To D0 (FA): Delete this field'
-    position_reporting: builtins.bool
+    position_reporting: builtins.bool = ...
     'Returns true if the motor has position support'
-    position: builtins.float
+    position: builtins.float = ...
     'Returns current position of the motor relative to its home'
 
     def __init__(self, *, is_on: builtins.bool=..., position_reporting: builtins.bool=..., position: builtins.float=...) -> None:

@@ -10,19 +10,19 @@ import google.protobuf.struct_pb2
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class GetObjectPointCloudsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     PARAMETERS_FIELD_NUMBER: builtins.int
-    camera_name: typing.Text
+    camera_name: typing.Text = ...
     'Name of a camera'
-    segmenter_name: typing.Text
+    segmenter_name: typing.Text = ...
     'Name of the segmentation algorithm'
-    mime_type: typing.Text
+    mime_type: typing.Text = ...
     'Requested MIME type of response'
 
     @property
@@ -41,10 +41,10 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
 global___GetObjectPointCloudsRequest = GetObjectPointCloudsRequest
 
 class GetObjectPointCloudsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     MIME_TYPE_FIELD_NUMBER: builtins.int
     OBJECTS_FIELD_NUMBER: builtins.int
-    mime_type: typing.Text
+    mime_type: typing.Text = ...
     'Actual MIME type of response'
 
     @property
@@ -60,9 +60,9 @@ class GetObjectPointCloudsResponse(google.protobuf.message.Message):
 global___GetObjectPointCloudsResponse = GetObjectPointCloudsResponse
 
 class GetSegmenterParametersRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
-    segmenter_name: typing.Text
+    segmenter_name: typing.Text = ...
     'Name of the segmentation algo'
 
     def __init__(self, *, segmenter_name: typing.Text=...) -> None:
@@ -73,11 +73,11 @@ class GetSegmenterParametersRequest(google.protobuf.message.Message):
 global___GetSegmenterParametersRequest = GetSegmenterParametersRequest
 
 class TypedParameter(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    type: typing.Text
+    name: typing.Text = ...
+    type: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=..., type: typing.Text=...) -> None:
         ...
@@ -87,7 +87,7 @@ class TypedParameter(google.protobuf.message.Message):
 global___TypedParameter = TypedParameter
 
 class GetSegmenterParametersResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     PARAMETERS_FIELD_NUMBER: builtins.int
 
     @property
@@ -103,14 +103,14 @@ class GetSegmenterParametersResponse(google.protobuf.message.Message):
 global___GetSegmenterParametersResponse = GetSegmenterParametersResponse
 
 class GetSegmentersRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___GetSegmentersRequest = GetSegmentersRequest
 
 class GetSegmentersResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     SEGMENTERS_FIELD_NUMBER: builtins.int
 
     @property

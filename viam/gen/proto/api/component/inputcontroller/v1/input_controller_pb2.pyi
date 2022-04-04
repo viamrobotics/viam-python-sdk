@@ -9,12 +9,12 @@ import google.protobuf.message
 import google.protobuf.timestamp_pb2
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class GetControlsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     CONTROLLER_FIELD_NUMBER: builtins.int
-    controller: typing.Text
+    controller: typing.Text = ...
     'Name of an input controller'
 
     def __init__(self, *, controller: typing.Text=...) -> None:
@@ -25,7 +25,7 @@ class GetControlsRequest(google.protobuf.message.Message):
 global___GetControlsRequest = GetControlsRequest
 
 class GetControlsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     CONTROLS_FIELD_NUMBER: builtins.int
 
     @property
@@ -43,9 +43,9 @@ class GetControlsResponse(google.protobuf.message.Message):
 global___GetControlsResponse = GetControlsResponse
 
 class GetEventsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     CONTROLLER_FIELD_NUMBER: builtins.int
-    controller: typing.Text
+    controller: typing.Text = ...
     'Name of an input controller'
 
     def __init__(self, *, controller: typing.Text=...) -> None:
@@ -56,7 +56,7 @@ class GetEventsRequest(google.protobuf.message.Message):
 global___GetEventsRequest = GetEventsRequest
 
 class GetEventsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     EVENTS_FIELD_NUMBER: builtins.int
 
     @property
@@ -74,10 +74,10 @@ class GetEventsResponse(google.protobuf.message.Message):
 global___GetEventsResponse = GetEventsResponse
 
 class TriggerEventRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     CONTROLLER_FIELD_NUMBER: builtins.int
     EVENT_FIELD_NUMBER: builtins.int
-    controller: typing.Text
+    controller: typing.Text = ...
     'Name of an input controller'
 
     @property
@@ -96,14 +96,14 @@ class TriggerEventRequest(google.protobuf.message.Message):
 global___TriggerEventRequest = TriggerEventRequest
 
 class TriggerEventResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___TriggerEventResponse = TriggerEventResponse
 
 class Event(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     TIME_FIELD_NUMBER: builtins.int
     EVENT_FIELD_NUMBER: builtins.int
     CONTROL_FIELD_NUMBER: builtins.int
@@ -113,11 +113,11 @@ class Event(google.protobuf.message.Message):
     def time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Timestamp of event"""
         pass
-    event: typing.Text
+    event: typing.Text = ...
     'An event type (eg: ButtonPress, ButtonRelease)'
-    control: typing.Text
+    control: typing.Text = ...
     'A control, can be a button (eg: ButtonSouth) or an axis (eg: AbsoluteX)'
-    value: builtins.float
+    value: builtins.float = ...
     '0 or 1 for buttons, -1.0 to +1.0 for axes'
 
     def __init__(self, *, time: typing.Optional[google.protobuf.timestamp_pb2.Timestamp]=..., event: typing.Text=..., control: typing.Text=..., value: builtins.float=...) -> None:
@@ -131,14 +131,14 @@ class Event(google.protobuf.message.Message):
 global___Event = Event
 
 class StreamEventsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     class Events(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
         CONTROL_FIELD_NUMBER: builtins.int
         EVENTS_FIELD_NUMBER: builtins.int
         CANCELLED_EVENTS_FIELD_NUMBER: builtins.int
-        control: typing.Text
+        control: typing.Text = ...
         'Name of a control (button or axis)'
 
         @property
@@ -162,7 +162,7 @@ class StreamEventsRequest(google.protobuf.message.Message):
             ...
     CONTROLLER_FIELD_NUMBER: builtins.int
     EVENTS_FIELD_NUMBER: builtins.int
-    controller: typing.Text
+    controller: typing.Text = ...
     'Name of an input controller'
 
     @property
@@ -178,7 +178,7 @@ class StreamEventsRequest(google.protobuf.message.Message):
 global___StreamEventsRequest = StreamEventsRequest
 
 class StreamEventsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     EVENT_FIELD_NUMBER: builtins.int
 
     @property
@@ -197,7 +197,7 @@ class StreamEventsResponse(google.protobuf.message.Message):
 global___StreamEventsResponse = StreamEventsResponse
 
 class Status(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     EVENTS_FIELD_NUMBER: builtins.int
 
     @property

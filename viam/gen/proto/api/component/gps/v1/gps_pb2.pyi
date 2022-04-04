@@ -8,12 +8,12 @@ import google.protobuf.message
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class ReadLocationRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -23,7 +23,7 @@ class ReadLocationRequest(google.protobuf.message.Message):
 global___ReadLocationRequest = ReadLocationRequest
 
 class ReadLocationResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     COORDINATE_FIELD_NUMBER: builtins.int
 
     @property
@@ -41,9 +41,9 @@ class ReadLocationResponse(google.protobuf.message.Message):
 global___ReadLocationResponse = ReadLocationResponse
 
 class ReadAltitudeRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -53,9 +53,9 @@ class ReadAltitudeRequest(google.protobuf.message.Message):
 global___ReadAltitudeRequest = ReadAltitudeRequest
 
 class ReadAltitudeResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     ALTITUDE_METERS_FIELD_NUMBER: builtins.int
-    altitude_meters: builtins.float
+    altitude_meters: builtins.float = ...
 
     def __init__(self, *, altitude_meters: builtins.float=...) -> None:
         ...
@@ -65,9 +65,9 @@ class ReadAltitudeResponse(google.protobuf.message.Message):
 global___ReadAltitudeResponse = ReadAltitudeResponse
 
 class ReadSpeedRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -77,9 +77,9 @@ class ReadSpeedRequest(google.protobuf.message.Message):
 global___ReadSpeedRequest = ReadSpeedRequest
 
 class ReadSpeedResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     SPEED_MM_PER_SEC_FIELD_NUMBER: builtins.int
-    speed_mm_per_sec: builtins.float
+    speed_mm_per_sec: builtins.float = ...
 
     def __init__(self, *, speed_mm_per_sec: builtins.float=...) -> None:
         ...

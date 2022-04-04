@@ -11,10 +11,10 @@ import google.protobuf.struct_pb2
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class Status(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
 
@@ -37,7 +37,7 @@ class Status(google.protobuf.message.Message):
 global___Status = Status
 
 class GetStatusRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     RESOURCE_NAMES_FIELD_NUMBER: builtins.int
 
     @property
@@ -52,7 +52,7 @@ class GetStatusRequest(google.protobuf.message.Message):
 global___GetStatusRequest = GetStatusRequest
 
 class GetStatusResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     STATUS_FIELD_NUMBER: builtins.int
 
     @property
@@ -67,7 +67,7 @@ class GetStatusResponse(google.protobuf.message.Message):
 global___GetStatusResponse = GetStatusResponse
 
 class StreamStatusRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     RESOURCE_NAMES_FIELD_NUMBER: builtins.int
     EVERY_FIELD_NUMBER: builtins.int
 
@@ -91,7 +91,7 @@ class StreamStatusRequest(google.protobuf.message.Message):
 global___StreamStatusRequest = StreamStatusRequest
 
 class StreamStatusResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     STATUS_FIELD_NUMBER: builtins.int
 
     @property

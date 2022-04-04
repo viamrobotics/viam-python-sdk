@@ -10,17 +10,17 @@ import google.protobuf.message
 import google.rpc.status_pb2
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class PacketMessage(google.protobuf.message.Message):
     """A PacketMessage is used to packetize large messages (> 64KiB) to be able to safely
     transmit over WebRTC data channels.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     DATA_FIELD_NUMBER: builtins.int
     EOM_FIELD_NUMBER: builtins.int
-    data: builtins.bytes
-    eom: builtins.bool
+    data: builtins.bytes = ...
+    eom: builtins.bool = ...
 
     def __init__(self, *, data: builtins.bytes=..., eom: builtins.bool=...) -> None:
         ...
@@ -33,9 +33,9 @@ class Stream(google.protobuf.message.Message):
     """A Stream represents an instance of a gRPC stream between
     a client and a server.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     ID_FIELD_NUMBER: builtins.int
-    id: builtins.int
+    id: builtins.int = ...
 
     def __init__(self, *, id: builtins.int=...) -> None:
         ...
@@ -50,7 +50,7 @@ class Request(google.protobuf.message.Message):
     identifier. Servers will drop frames where the stream identifier
     has no association (if a non-header frames are sent).
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     STREAM_FIELD_NUMBER: builtins.int
     HEADERS_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -82,11 +82,11 @@ global___Request = Request
 
 class RequestHeaders(google.protobuf.message.Message):
     """RequestHeaders describe the unary or streaming call to make."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     METHOD_FIELD_NUMBER: builtins.int
     METADATA_FIELD_NUMBER: builtins.int
     TIMEOUT_FIELD_NUMBER: builtins.int
-    method: typing.Text
+    method: typing.Text = ...
 
     @property
     def metadata(self) -> global___Metadata:
@@ -110,16 +110,16 @@ class RequestMessage(google.protobuf.message.Message):
     """A RequestMessage contains individual gRPC messages and a potential
     end-of-stream (EOS) marker.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     HAS_MESSAGE_FIELD_NUMBER: builtins.int
     PACKET_MESSAGE_FIELD_NUMBER: builtins.int
     EOS_FIELD_NUMBER: builtins.int
-    has_message: builtins.bool
+    has_message: builtins.bool = ...
 
     @property
     def packet_message(self) -> global___PacketMessage:
         ...
-    eos: builtins.bool
+    eos: builtins.bool = ...
 
     def __init__(self, *, has_message: builtins.bool=..., packet_message: typing.Optional[global___PacketMessage]=..., eos: builtins.bool=...) -> None:
         ...
@@ -137,7 +137,7 @@ class Response(google.protobuf.message.Message):
     identifier. Clients will drop frames where the stream identifier
     has no association.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     STREAM_FIELD_NUMBER: builtins.int
     HEADERS_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -176,7 +176,7 @@ class ResponseHeaders(google.protobuf.message.Message):
     """ResponseHeaders contain custom metadata that are sent to the client
     before any message or trailers (unless only trailers are sent).
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     METADATA_FIELD_NUMBER: builtins.int
 
     @property
@@ -195,7 +195,7 @@ global___ResponseHeaders = ResponseHeaders
 
 class ResponseMessage(google.protobuf.message.Message):
     """ResponseMessage contains the data of a response to a call."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     PACKET_MESSAGE_FIELD_NUMBER: builtins.int
 
     @property
@@ -214,7 +214,7 @@ global___ResponseMessage = ResponseMessage
 
 class ResponseTrailers(google.protobuf.message.Message):
     """ResponseTrailers contain the status of a response and any custom metadata."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     STATUS_FIELD_NUMBER: builtins.int
     METADATA_FIELD_NUMBER: builtins.int
 
@@ -238,7 +238,7 @@ global___ResponseTrailers = ResponseTrailers
 
 class Strings(google.protobuf.message.Message):
     """Strings are a series of values."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     VALUES_FIELD_NUMBER: builtins.int
 
     @property
@@ -256,13 +256,13 @@ class Metadata(google.protobuf.message.Message):
     """Metadata is for custom key values provided by a client or server
     during a stream.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     class MdEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
-        key: typing.Text
+        key: typing.Text = ...
 
         @property
         def value(self) -> global___Strings:

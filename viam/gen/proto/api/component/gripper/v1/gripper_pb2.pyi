@@ -7,12 +7,12 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
 class OpenRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -22,16 +22,16 @@ class OpenRequest(google.protobuf.message.Message):
 global___OpenRequest = OpenRequest
 
 class OpenResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
 
     def __init__(self) -> None:
         ...
 global___OpenResponse = OpenResponse
 
 class GrabRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: typing.Text = ...
 
     def __init__(self, *, name: typing.Text=...) -> None:
         ...
@@ -41,9 +41,9 @@ class GrabRequest(google.protobuf.message.Message):
 global___GrabRequest = GrabRequest
 
 class GrabResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     SUCCESS_FIELD_NUMBER: builtins.int
-    success: builtins.bool
+    success: builtins.bool = ...
 
     def __init__(self, *, success: builtins.bool=...) -> None:
         ...
