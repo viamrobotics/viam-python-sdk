@@ -8,10 +8,11 @@ from ..component_base import ComponentBase
 
 class Camera(ComponentBase):
     """
-    Abstract camera representing anything that can capture frames
+    Camera represents any physical hardware that can capture frames.
 
-    If you override the init function,
-    you must call the super init function.
+    This acts as an abstract base class for any drivers representing specific 
+    camera implementations. This cannot be used on its own. If the `__init__()` function is
+    overriden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
@@ -21,7 +22,7 @@ class Camera(ComponentBase):
         Be sure to close the image when finished.
 
         Returns:
-            Image: The frame
+            Image: The frame.
         """
         ...
 
@@ -32,10 +33,10 @@ class Camera(ComponentBase):
         returned as bytes with a mimetype describing
         the structure of the data. The consumer of this call
         should encode the bytes into the formatted suggested
-        by the mimetype
+        by the mimetype.
 
         Returns:
-            bytes: The pointcloud data
-            str: The mimetype of the pointcloud (e.g. PCD)
+            bytes: The pointcloud data.
+            str: The mimetype of the pointcloud (e.g. PCD).
         """
         ...
