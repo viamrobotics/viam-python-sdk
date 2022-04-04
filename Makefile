@@ -19,10 +19,10 @@ test:
 	python3 -m pytest
 
 documentation:
-	find docsx/source -type f -name '*.rst' -not -name 'index.rst' -delete
-	rm -rf docsx/build/*
-	sphinx-apidoc -f -o ./docsx/source ./viam
-	sphinx-build -b html ./docsx/source ./docsx/build/html
+	find docs/source -type f -name '*.rst' -not -name 'index.rst' -delete
+	rm -rf docs/build/*
+	sphinx-apidoc -f -o ./docs/source ./viam
+	sphinx-build -b html ./docs/source ./docs/build/html
 
 package: buf better_imports test
 	@echo "TODO: Create pip-installable package"
