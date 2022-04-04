@@ -6,18 +6,19 @@ from ..component_base import ComponentBase
 
 class Sensor(ComponentBase):
     """
-    Abstract sensing device that can provide measurement readings
+    Sensor represents a physical sensing device that can provide measurement readings.
 
-    If you override the init function,
-    you must call the super init function.
+    This acts as an abstract base class for any drivers representing specific 
+    sensor implementations. This cannot be used on its own. If the `__init__()` function is
+    overriden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
     async def get_readings(self) -> List[Any]:
         """
-        Obtain the measurements/data specific to this sensor
+        Obtain the measurements/data specific to this sensor.
 
         Returns:
-            List[Dict]: The measurements. Can be of any type
+            List[Dict]: The measurements. Can be of any type.
         """
         ...
