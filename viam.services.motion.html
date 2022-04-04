@@ -90,15 +90,44 @@
 <dt class="sig sig-object py" id="viam.services.motion.MotionClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.motion.</span></span><span class="sig-name descname"><span class="pre">MotionClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.motion.MotionClient" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</p>
+<p>The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
+<cite>world_state</cite> message, the motion planning service will also account for those.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.motion.MotionClient.get_pose">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="proto.api.common.v1.common_pb2.ResourceName"><span class="pre">proto.api.common.v1.common_pb2.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.PoseInFrame" title="proto.api.common.v1.common_pb2.PoseInFrame"><span class="pre">proto.api.common.v1.common_pb2.PoseInFrame</span></a></span></span><a class="headerlink" href="#viam.services.motion.MotionClient.get_pose" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get the Pose and observer frame for any given component on a robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_name</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a>) – Name of a component on a robot.</p></li>
+<li><p><strong>destination_frame</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Pose of the given component and the frame in which it was observed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose">Pose</a>(<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame">PoseInFrame</a>)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.motion.MotionClient.move">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="proto.api.common.v1.common_pb2.ResourceName"><span class="pre">proto.api.common.v1.common_pb2.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.PoseInFrame" title="proto.api.common.v1.common_pb2.PoseInFrame"><span class="pre">proto.api.common.v1.common_pb2.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="proto.api.common.v1.common_pb2.WorldState"><span class="pre">proto.api.common.v1.common_pb2.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.services.motion.MotionClient.move" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Move a component on the robot to a given destination, obey any constraints (transforms or obstacles) if supplied in WorldState.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>resource_name</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a>) – Name of a component on a given robot.</p></li>
+<li><p><strong>destination</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><em>PoseInFrame</em></a>) – The destination to move to, expressed as a <cite>Pose</cite> and the frame in which it was observed.</p></li>
+<li><p><strong>world_state</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><em>WorldState</em></a>) – When supplied, the motion service will create a plan that obeys any contraints expressed in the
+WorldState message.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
