@@ -23,6 +23,7 @@ jobs:
           pip install -r etc/requirements.txt
 
       - name: Generate docs
+        uses: docker://pandoc/core:2.9
         run: make documentation
 
       - name: Upload artifacts
