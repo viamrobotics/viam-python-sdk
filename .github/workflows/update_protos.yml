@@ -2,12 +2,6 @@ name: Update Protos + Open PR
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'viam/**'
-      - 'docs/source/**'
-      - 'README.md'
-    branches: [ new-proto ]
   repository_dispatch:
     types:
       - protos-updated
