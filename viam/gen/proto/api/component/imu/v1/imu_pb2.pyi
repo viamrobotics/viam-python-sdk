@@ -7,19 +7,19 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class AngularVelocity(google.protobuf.message.Message):
     """AngularVelocity contains angular velocity in deg/s across x/y/z axes."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     X_DEGS_PER_SEC_FIELD_NUMBER: builtins.int
     Y_DEGS_PER_SEC_FIELD_NUMBER: builtins.int
     Z_DEGS_PER_SEC_FIELD_NUMBER: builtins.int
-    x_degs_per_sec: builtins.float = ...
+    x_degs_per_sec: builtins.float
     'Velocity in deg/s across the x-axis'
-    y_degs_per_sec: builtins.float = ...
+    y_degs_per_sec: builtins.float
     'Velocity in deg/s across the y-axis'
-    z_degs_per_sec: builtins.float = ...
+    z_degs_per_sec: builtins.float
     'Velocity in deg/s across the z-axis'
 
     def __init__(self, *, x_degs_per_sec: builtins.float=..., y_degs_per_sec: builtins.float=..., z_degs_per_sec: builtins.float=...) -> None:
@@ -33,15 +33,15 @@ class EulerAngles(google.protobuf.message.Message):
     """EulerAngles are three angles used to represent the rotation of an object in 3D Euclidean space
     The Tait–Bryan angle formalism is used, with rotations around three distinct axes in the z-y′-x″ sequence.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROLL_DEG_FIELD_NUMBER: builtins.int
     PITCH_DEG_FIELD_NUMBER: builtins.int
     YAW_DEG_FIELD_NUMBER: builtins.int
-    roll_deg: builtins.float = ...
+    roll_deg: builtins.float
     'Rotation in deg around the x-axis'
-    pitch_deg: builtins.float = ...
+    pitch_deg: builtins.float
     'Rotation in deg around the y-axis'
-    yaw_deg: builtins.float = ...
+    yaw_deg: builtins.float
     'Rotation in deg around the z-axis'
 
     def __init__(self, *, roll_deg: builtins.float=..., pitch_deg: builtins.float=..., yaw_deg: builtins.float=...) -> None:
@@ -53,15 +53,15 @@ global___EulerAngles = EulerAngles
 
 class Acceleration(google.protobuf.message.Message):
     """Acceleration contains linear acceleration in mm/s^2 across x/y/z axes."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     X_MM_PER_SEC_PER_SEC_FIELD_NUMBER: builtins.int
     Y_MM_PER_SEC_PER_SEC_FIELD_NUMBER: builtins.int
     Z_MM_PER_SEC_PER_SEC_FIELD_NUMBER: builtins.int
-    x_mm_per_sec_per_sec: builtins.float = ...
+    x_mm_per_sec_per_sec: builtins.float
     'Acceleration in mm/s^2 across the x-axis'
-    y_mm_per_sec_per_sec: builtins.float = ...
+    y_mm_per_sec_per_sec: builtins.float
     'Acceleration in mm/s^2 across the y-axis'
-    z_mm_per_sec_per_sec: builtins.float = ...
+    z_mm_per_sec_per_sec: builtins.float
     'Acceleration in mm/s^2 across the z-axis'
 
     def __init__(self, *, x_mm_per_sec_per_sec: builtins.float=..., y_mm_per_sec_per_sec: builtins.float=..., z_mm_per_sec_per_sec: builtins.float=...) -> None:
@@ -73,15 +73,15 @@ global___Acceleration = Acceleration
 
 class Magnetometer(google.protobuf.message.Message):
     """Magnetometer contains magnetic field readings in gauss x/y/z axes."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     X_GAUSS_FIELD_NUMBER: builtins.int
     Y_GAUSS_FIELD_NUMBER: builtins.int
     Z_GAUSS_FIELD_NUMBER: builtins.int
-    x_gauss: builtins.float = ...
+    x_gauss: builtins.float
     'Magnetometer in gauss across the x-axis'
-    y_gauss: builtins.float = ...
+    y_gauss: builtins.float
     'Magnetometer in gauss across the y-axis'
-    z_gauss: builtins.float = ...
+    z_gauss: builtins.float
     'Magnetometer in gauss across the z-axis'
 
     def __init__(self, *, x_gauss: builtins.float=..., y_gauss: builtins.float=..., z_gauss: builtins.float=...) -> None:
@@ -92,9 +92,9 @@ class Magnetometer(google.protobuf.message.Message):
 global___Magnetometer = Magnetometer
 
 class ReadAngularVelocityRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of an IMU'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -105,7 +105,7 @@ class ReadAngularVelocityRequest(google.protobuf.message.Message):
 global___ReadAngularVelocityRequest = ReadAngularVelocityRequest
 
 class ReadAngularVelocityResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ANGULAR_VELOCITY_FIELD_NUMBER: builtins.int
 
     @property
@@ -124,9 +124,9 @@ class ReadAngularVelocityResponse(google.protobuf.message.Message):
 global___ReadAngularVelocityResponse = ReadAngularVelocityResponse
 
 class ReadOrientationRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of an IMU'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -137,7 +137,7 @@ class ReadOrientationRequest(google.protobuf.message.Message):
 global___ReadOrientationRequest = ReadOrientationRequest
 
 class ReadOrientationResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORIENTATION_FIELD_NUMBER: builtins.int
 
     @property
@@ -158,9 +158,9 @@ class ReadOrientationResponse(google.protobuf.message.Message):
 global___ReadOrientationResponse = ReadOrientationResponse
 
 class ReadAccelerationRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of an IMU'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -171,7 +171,7 @@ class ReadAccelerationRequest(google.protobuf.message.Message):
 global___ReadAccelerationRequest = ReadAccelerationRequest
 
 class ReadAccelerationResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ACCELERATION_FIELD_NUMBER: builtins.int
 
     @property
@@ -190,9 +190,9 @@ class ReadAccelerationResponse(google.protobuf.message.Message):
 global___ReadAccelerationResponse = ReadAccelerationResponse
 
 class ReadMagnetometerRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text = ...
+    name: typing.Text
     'Name of an IMU'
 
     def __init__(self, *, name: typing.Text=...) -> None:
@@ -203,7 +203,7 @@ class ReadMagnetometerRequest(google.protobuf.message.Message):
 global___ReadMagnetometerRequest = ReadMagnetometerRequest
 
 class ReadMagnetometerResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MAGNETOMETER_FIELD_NUMBER: builtins.int
 
     @property
