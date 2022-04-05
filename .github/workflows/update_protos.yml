@@ -1,6 +1,7 @@
 name: Update Protos + Open PR
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types:
       - protos-updated
@@ -21,7 +22,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: r-lib/actions/setup-pandoc@v2
         with:
-          pandoc-version: '2.17.1.1'
+          pandoc-version: '2.18'
 
       - name: Install dependencies
         run: |

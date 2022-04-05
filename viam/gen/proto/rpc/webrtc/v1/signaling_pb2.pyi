@@ -9,21 +9,21 @@ import google.protobuf.message
 import google.rpc.status_pb2
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class ICECandidate(google.protobuf.message.Message):
     """ICECandidate represents an ICE candidate.
     From https://github.com/pion/webrtc/blob/5f6baf73255598a7b4a7c9400bb0381acc9aa3dc/icecandidateinit.go
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CANDIDATE_FIELD_NUMBER: builtins.int
     SDP_MID_FIELD_NUMBER: builtins.int
     SDPM_LINE_INDEX_FIELD_NUMBER: builtins.int
     USERNAME_FRAGMENT_FIELD_NUMBER: builtins.int
-    candidate: typing.Text = ...
-    sdp_mid: typing.Text = ...
-    sdpm_line_index: builtins.int = ...
-    username_fragment: typing.Text = ...
+    candidate: typing.Text
+    sdp_mid: typing.Text
+    sdpm_line_index: builtins.int
+    username_fragment: typing.Text
 
     def __init__(self, *, candidate: typing.Text=..., sdp_mid: typing.Optional[typing.Text]=..., sdpm_line_index: typing.Optional[builtins.int]=..., username_fragment: typing.Optional[typing.Text]=...) -> None:
         ...
@@ -49,11 +49,11 @@ global___ICECandidate = ICECandidate
 
 class CallRequest(google.protobuf.message.Message):
     """CallRequest is the SDP offer that the controlling side is making."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
     DISABLE_TRICKLE_FIELD_NUMBER: builtins.int
-    sdp: typing.Text = ...
-    disable_trickle: builtins.bool = ...
+    sdp: typing.Text
+    disable_trickle: builtins.bool
     'when disable_trickle is true, the init stage will be the only stage\n    to be received in the response and the caller can expect the SDP\n    to contain all ICE candidates.\n    '
 
     def __init__(self, *, sdp: typing.Text=..., disable_trickle: builtins.bool=...) -> None:
@@ -67,9 +67,9 @@ class CallResponseInitStage(google.protobuf.message.Message):
     """CallResponseInitStage is the first and a one time stage that represents
     the initial response to starting a call.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
-    sdp: typing.Text = ...
+    sdp: typing.Text
 
     def __init__(self, *, sdp: typing.Text=...) -> None:
         ...
@@ -82,7 +82,7 @@ class CallResponseUpdateStage(google.protobuf.message.Message):
     """CallResponseUpdateStage is multiply used to trickle in ICE candidates from
     the controlled (answering) side.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CANDIDATE_FIELD_NUMBER: builtins.int
 
     @property
@@ -101,11 +101,11 @@ global___CallResponseUpdateStage = CallResponseUpdateStage
 
 class CallResponse(google.protobuf.message.Message):
     """CallResponse is the SDP answer that the controlled side responds with."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UUID_FIELD_NUMBER: builtins.int
     INIT_FIELD_NUMBER: builtins.int
     UPDATE_FIELD_NUMBER: builtins.int
-    uuid: typing.Text = ...
+    uuid: typing.Text
 
     @property
     def init(self) -> global___CallResponseInitStage:
@@ -130,17 +130,17 @@ global___CallResponse = CallResponse
 
 class CallUpdateRequest(google.protobuf.message.Message):
     """CallUpdateRequest updates the call with additional info to the controlled side."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UUID_FIELD_NUMBER: builtins.int
     CANDIDATE_FIELD_NUMBER: builtins.int
     DONE_FIELD_NUMBER: builtins.int
     ERROR_FIELD_NUMBER: builtins.int
-    uuid: typing.Text = ...
+    uuid: typing.Text
 
     @property
     def candidate(self) -> global___ICECandidate:
         ...
-    done: builtins.bool = ...
+    done: builtins.bool
 
     @property
     def error(self) -> google.rpc.status_pb2.Status:
@@ -161,7 +161,7 @@ global___CallUpdateRequest = CallUpdateRequest
 
 class CallUpdateResponse(google.protobuf.message.Message):
     """CallUpdateResponse contains nothing in response to a call update."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
@@ -169,7 +169,7 @@ global___CallUpdateResponse = CallUpdateResponse
 
 class ICEServer(google.protobuf.message.Message):
     """ICEServer describes an ICE server."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     URLS_FIELD_NUMBER: builtins.int
     USERNAME_FIELD_NUMBER: builtins.int
     CREDENTIAL_FIELD_NUMBER: builtins.int
@@ -177,8 +177,8 @@ class ICEServer(google.protobuf.message.Message):
     @property
     def urls(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
         ...
-    username: typing.Text = ...
-    credential: typing.Text = ...
+    username: typing.Text
+    credential: typing.Text
 
     def __init__(self, *, urls: typing.Optional[typing.Iterable[typing.Text]]=..., username: typing.Text=..., credential: typing.Text=...) -> None:
         ...
@@ -189,14 +189,14 @@ global___ICEServer = ICEServer
 
 class WebRTCConfig(google.protobuf.message.Message):
     """WebRTCConfig represents parts of a WebRTC config."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ADDITIONAL_ICE_SERVERS_FIELD_NUMBER: builtins.int
     DISABLE_TRICKLE_FIELD_NUMBER: builtins.int
 
     @property
     def additional_ice_servers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ICEServer]:
         ...
-    disable_trickle: builtins.bool = ...
+    disable_trickle: builtins.bool
     'disable_trickle indicates if Trickle ICE should be used. Currently, both\n    sides must both respect this setting.\n    '
 
     def __init__(self, *, additional_ice_servers: typing.Optional[typing.Iterable[global___ICEServer]]=..., disable_trickle: builtins.bool=...) -> None:
@@ -210,10 +210,10 @@ class AnswerRequestInitStage(google.protobuf.message.Message):
     """AnswerRequestInitStage is the first and a one time stage that represents the
     callers initial SDP request to the controlled (answerer) side.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
     OPTIONAL_CONFIG_FIELD_NUMBER: builtins.int
-    sdp: typing.Text = ...
+    sdp: typing.Text
 
     @property
     def optional_config(self) -> global___WebRTCConfig:
@@ -233,7 +233,7 @@ class AnswerRequestUpdateStage(google.protobuf.message.Message):
     """AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to
     the controlled (answerer) side.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CANDIDATE_FIELD_NUMBER: builtins.int
 
     @property
@@ -252,7 +252,7 @@ global___AnswerRequestUpdateStage = AnswerRequestUpdateStage
 
 class AnswerRequestDoneStage(google.protobuf.message.Message):
     """AnswerRequestDoneStage indicates the controller is done responding with candidates."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
@@ -260,7 +260,7 @@ global___AnswerRequestDoneStage = AnswerRequestDoneStage
 
 class AnswerRequestErrorStage(google.protobuf.message.Message):
     """AnswerRequestErrorStage indicates the exchange has failed with an error."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     STATUS_FIELD_NUMBER: builtins.int
 
     @property
@@ -281,13 +281,13 @@ class AnswerRequest(google.protobuf.message.Message):
     """AnswerRequest is the SDP offer that the controlling side is making via the answering
     stream.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UUID_FIELD_NUMBER: builtins.int
     INIT_FIELD_NUMBER: builtins.int
     UPDATE_FIELD_NUMBER: builtins.int
     DONE_FIELD_NUMBER: builtins.int
     ERROR_FIELD_NUMBER: builtins.int
-    uuid: typing.Text = ...
+    uuid: typing.Text
 
     @property
     def init(self) -> global___AnswerRequestInitStage:
@@ -324,9 +324,9 @@ class AnswerResponseInitStage(google.protobuf.message.Message):
     """AnswerResponseInitStage is the first and a one time stage that represents the
     answerers initial SDP response to the controlling side.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
-    sdp: typing.Text = ...
+    sdp: typing.Text
 
     def __init__(self, *, sdp: typing.Text=...) -> None:
         ...
@@ -339,7 +339,7 @@ class AnswerResponseUpdateStage(google.protobuf.message.Message):
     """AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to
     the controlling side.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CANDIDATE_FIELD_NUMBER: builtins.int
 
     @property
@@ -358,7 +358,7 @@ global___AnswerResponseUpdateStage = AnswerResponseUpdateStage
 
 class AnswerResponseDoneStage(google.protobuf.message.Message):
     """AnswerResponseDoneStage indicates the answerer is done responding with candidates."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
@@ -366,7 +366,7 @@ global___AnswerResponseDoneStage = AnswerResponseDoneStage
 
 class AnswerResponseErrorStage(google.protobuf.message.Message):
     """AnswerResponseErrorStage indicates the exchange has failed with an error."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     STATUS_FIELD_NUMBER: builtins.int
 
     @property
@@ -385,13 +385,13 @@ global___AnswerResponseErrorStage = AnswerResponseErrorStage
 
 class AnswerResponse(google.protobuf.message.Message):
     """AnswerResponse is the SDP answer that an answerer responds with."""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UUID_FIELD_NUMBER: builtins.int
     INIT_FIELD_NUMBER: builtins.int
     UPDATE_FIELD_NUMBER: builtins.int
     DONE_FIELD_NUMBER: builtins.int
     ERROR_FIELD_NUMBER: builtins.int
-    uuid: typing.Text = ...
+    uuid: typing.Text
 
     @property
     def init(self) -> global___AnswerResponseInitStage:
@@ -428,7 +428,7 @@ class OptionalWebRTCConfigRequest(google.protobuf.message.Message):
     """OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config
     to use for the peer connection.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
@@ -438,7 +438,7 @@ class OptionalWebRTCConfigResponse(google.protobuf.message.Message):
     """OptionalWebRTCConfigResponse contains the optional WebRTC config
     to use for the peer connection.
     """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONFIG_FIELD_NUMBER: builtins.int
 
     @property

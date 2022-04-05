@@ -8,10 +8,10 @@ import google.protobuf.message
 from ...... import proto
 import typing
 import typing_extensions
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class MoveRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DESTINATION_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
@@ -42,9 +42,9 @@ class MoveRequest(google.protobuf.message.Message):
 global___MoveRequest = MoveRequest
 
 class MoveResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUCCESS_FIELD_NUMBER: builtins.int
-    success: builtins.bool = ...
+    success: builtins.bool
 
     def __init__(self, *, success: builtins.bool=...) -> None:
         ...
@@ -54,14 +54,14 @@ class MoveResponse(google.protobuf.message.Message):
 global___MoveResponse = MoveResponse
 
 class GetPoseRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     DESTINATION_FRAME_FIELD_NUMBER: builtins.int
 
     @property
     def component_name(self) -> proto.api.common.v1.common_pb2.ResourceName:
         ...
-    destination_frame: typing.Text = ...
+    destination_frame: typing.Text
     'world if unset'
 
     def __init__(self, *, component_name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., destination_frame: typing.Text=...) -> None:
@@ -75,7 +75,7 @@ class GetPoseRequest(google.protobuf.message.Message):
 global___GetPoseRequest = GetPoseRequest
 
 class GetPoseResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSE_FIELD_NUMBER: builtins.int
 
     @property
