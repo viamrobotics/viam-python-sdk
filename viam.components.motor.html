@@ -169,7 +169,7 @@ the motor towards the specified position.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.motor.Motor.is_powered">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_powered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.motor.Motor.is_powered" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_powered</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.motor.Motor.is_powered" title="Permalink to this definition"></a></dt>
 <dd><p>Returns whether or not the motor is currently running.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -203,6 +203,12 @@ When <cite>power</cite> is negative, the rotation will be in the backward direct
 (negative implies backwards).</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.motor.Motor.stop">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.Motor.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stop the motor immediately, without any gradual step down.</p>
 </dd></dl>
 
 </dd></dl>
@@ -314,6 +320,12 @@ When <cite>power</cite> is negative, the rotation will be in the backward direct
 (negative implies backwards).</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.motor.MotorClient.stop">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.motor.MotorClient.stop" title="Permalink to this definition"></a></dt>
+<dd><p>Stop the motor immediately, without any gradual step down.</p>
 </dd></dl>
 
 </dd></dl>
