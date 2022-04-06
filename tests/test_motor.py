@@ -1,20 +1,17 @@
-from grpclib.testing import ChannelFor
 import pytest
-
-from viam.components.resource_manager import ResourceManager
+from grpclib.testing import ChannelFor
 from viam.components.motor import MotorClient
 from viam.components.motor.service import MotorService
-from viam.gen.proto.api.component.motor.v1.motor_pb2 import StopRequest
-from viam.proto.api.component.motor import (
-    MotorServiceStub,
-    SetPowerRequest,
-    GoForRequest,
-    GoToRequest,
-    ResetZeroPositionRequest,
-    GetPositionRequest, GetPositionResponse,
-    GetFeaturesRequest, GetFeaturesResponse,
-    IsPoweredRequest, IsPoweredResponse,
-)
+from viam.components.resource_manager import ResourceManager
+from viam.proto.api.component.motor import (GetFeaturesRequest,
+                                            GetFeaturesResponse,
+                                            GetPositionRequest,
+                                            GetPositionResponse, GoForRequest,
+                                            GoToRequest, IsPoweredRequest,
+                                            IsPoweredResponse,
+                                            MotorServiceStub,
+                                            ResetZeroPositionRequest,
+                                            SetPowerRequest, StopRequest)
 
 from .mocks.components import MockMotor
 
