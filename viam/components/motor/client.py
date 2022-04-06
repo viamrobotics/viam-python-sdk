@@ -7,7 +7,7 @@ from viam.proto.api.component.motor import (GetFeaturesRequest,
                                             IsPoweredResponse,
                                             MotorServiceStub,
                                             ResetZeroPositionRequest,
-                                            SetPowerRequest)
+                                            SetPowerRequest, StopRequest)
 
 from .motor import Motor
 
@@ -48,6 +48,10 @@ class MotorClient(Motor):
         request = GetFeaturesRequest(name=self.name)
         response: GetFeaturesResponse = await self.client.GetFeatures(request)
         return Motor.Features(position_reporting=response.position_reporting)
+
+    async def stop(self):
+        request = StopRequest(name=self.name)
+        await self.client.Stop(request)
 
     async def is_powered(self) -> bool:
         request = IsPoweredRequest(name=self.name)

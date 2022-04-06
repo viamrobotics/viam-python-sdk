@@ -419,6 +419,9 @@ class ExampleMotor(Motor):
     async def get_features(self) -> Motor.Features:
         return Motor.Features(position_reporting=True)
 
+    async def stop(self):
+        await self.set_power(0)
+
     async def is_powered(self) -> bool:
         return self.powered
 

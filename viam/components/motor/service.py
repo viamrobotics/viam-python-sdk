@@ -112,7 +112,16 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         self,
         stream: Stream[StopRequest, StopResponse]
     ) -> None:
-        pass
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            motor = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error()
+        await motor.stop()
+        response = StopResponse()
+        await stream.send_message(response)
 
     async def IsPowered(
         self,

@@ -13,7 +13,7 @@ class Motor(ComponentBase):
     """
     Motor represents a physical motor.
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     motor implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """
@@ -92,6 +92,14 @@ class Motor(ComponentBase):
         """
         ...
 
+    @abc.abstractmethod
+    async def stop(self):
+        """
+        Stop the motor immediately, without any gradual step down.
+        """
+        ...
+
+    @abc.abstractmethod
     async def is_powered(self) -> bool:
         """
         Returns whether or not the motor is currently running.

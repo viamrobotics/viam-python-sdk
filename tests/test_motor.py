@@ -4,6 +4,7 @@ import pytest
 from viam.components.resource_manager import ResourceManager
 from viam.components.motor import MotorClient
 from viam.components.motor.service import MotorService
+from viam.gen.proto.api.component.motor.v1.motor_pb2 import StopRequest
 from viam.proto.api.component.motor import (
     MotorServiceStub,
     SetPowerRequest,
@@ -73,6 +74,14 @@ class TestMotor:
     async def test_get_features(self, motor: MockMotor):
         features = await motor.get_features()
         assert features.position_reporting is True
+
+    @pytest.mark.asyncio
+    async def test_stop(self, motor: MockMotor):
+        await motor.set_power(10)
+        assert motor.powered is True
+        await motor.stop()
+        assert motor.powered is False
+        assert motor.power == 0
 
     @pytest.mark.asyncio
     async def test_is_powered(self, motor: MockMotor):
@@ -162,6 +171,15 @@ class TestService:
             assert response.position_reporting is True
 
     @pytest.mark.asyncio
+    async def test_stop(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorServiceStub(channel)
+            request = StopRequest(name=motor.name)
+            await client.Stop(request)
+            assert motor.powered is False
+            assert motor.power == 0
+
+    @pytest.mark.asyncio
     async def test_is_powered(self, motor: MockMotor, service: MotorService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
@@ -236,6 +254,14 @@ class TestClient:
             client = MotorClient(motor.name, channel)
             features = await client.get_features()
             assert features.position_reporting is True
+
+    @pytest.mark.asyncio
+    async def test_stop(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            await client.stop()
+            assert motor.powered is False
+            assert motor.power == 0
 
     @pytest.mark.asyncio
     async def test_is_powered(self, motor: MockMotor, service: MotorService):
