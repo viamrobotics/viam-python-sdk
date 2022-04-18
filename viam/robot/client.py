@@ -125,7 +125,6 @@ class RobotClient:
         resource_names = await self._metadata_client.resources()
         if resource_names == self._resource_names:
             return
-        self._resource_names = resource_names
         manager = ResourceManager()
         for rname in resource_names:
             if rname.type != 'component':
@@ -159,8 +158,9 @@ class RobotClient:
                 manager.register(ServoClient(rname.name, self._channel))
             else:
                 raise ComponentNotImplementedError(subtype)
-        if manager.components != self._manager.components:
-            with self._lock:
+        with self._lock:
+            self._resource_names = resource_names
+            if manager.components != self._manager.components:
                 self._manager = manager
 
     async def _refresh_every(self, interval: int):
@@ -171,7 +171,7 @@ class RobotClient:
             except Exception as e:
                 LOGGER.error('Failed to refresh status', exc_info=e)
 
-    def get_component_by_name(self, name: ResourceName) -> ComponentBase:
+    def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
 
         Because this function returns a generic `ComponentBase` rather than the specific
@@ -179,21 +179,21 @@ class RobotClient:
         different methods:
 
         #### Assertion
-            arm = robot.get_resource_by_name(Arm.get_resource_name('my_arm'))\n
+            arm = robot.get_component(Arm.get_resource_name('my_arm'))\n
             assert isinstance(arm, Arm)\n
             end_pos = await arm.get_end_position()
 
         #### Explicit cast
             from typing import cast\n
             \n
-            arm = robot.get_resource_by_name(Arm.get_resource_name('my_arm'))\n
+            arm = robot.get_component(Arm.get_resource_name('my_arm'))\n
             arm = cast(Arm, arm)\n
             end_pos = await arm.get_end_position()\n
 
         #### Declare type on variable assignment.
         Note: If using an IDE, a type error may be shown which can be ignored.
 
-            arm: Arm = robot.get_resource_by_name(Arm.get_resource_name('my_arm'))  # type: ignore \n
+            arm: Arm = robot.get_component(Arm.get_resource_name('my_arm'))  # type: ignore \n
             end_pos = await arm.get_end_position()
 
         Args:
@@ -212,9 +212,21 @@ class RobotClient:
             return self._manager.get_component(ComponentBase, name.name)
 
     def get_service(self, service_type: ServiceType[Service]) -> Service:
-        if service_type.name in [rn.subtype for rn in self._resource_names if rn.type == 'service']:
-            return service_type.with_channel(self._channel)
-        raise ServiceNotImplementedError(service_type.name)
+        """Get a service by specifying the `ServiceType`.
+
+        Args:
+            service_type (ServiceType): The service type
+
+        Raises:
+            ServiceNotImplementedError: Raised the service is not implemented or available on the Robot
+
+        Returns:
+            Service: The service
+        """
+        with self._lock:
+            if service_type.name in [rn.subtype for rn in self._resource_names if rn.type == 'service']:
+                return service_type.with_channel(self._channel)
+            raise ServiceNotImplementedError(service_type.name)
 
     @property
     def function_names(self) -> List[str]:
