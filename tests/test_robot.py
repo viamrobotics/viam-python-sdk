@@ -123,6 +123,13 @@ class TestRobotClient:
                     )
                 )
 
+            # Test BaseComponent.from_robot(...)
+            component = MockArm.from_robot(client, 'arm1')
+            assert isinstance(component, Arm)
+
+            with pytest.raises(ComponentNotFoundError):
+                MockArm.from_robot(client, 'arm2')
+
     @pytest.mark.asyncio
     async def test_get_service(self, service: MetadataService):
         async with ChannelFor([service]) as channel:

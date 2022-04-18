@@ -50,5 +50,5 @@ class ComponentBase(abc.ABC):
 
     @classmethod
     def from_robot(cls, robot: 'RobotClient', name: str) -> Self:
-        component = robot.get_component_by_name(cls.get_resource_name(name))
+        component = robot.get_component(cls.get_resource_name(name))
         return cast(cls, component)
