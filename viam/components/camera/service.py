@@ -60,7 +60,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             if mimetype == CameraMimeType.BEST:
                 mimetype = CameraMimeType.RAW
             response = GetFrameResponse(
-                mime_type=mimetype.value,
+                mime_type=mimetype,
                 width_px=image.width,
                 height_px=image.height,
             )
@@ -89,7 +89,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             img = self._get_image_bytes(await camera.get_frame(), mimetype)
         finally:
             image.close()
-        response = HttpBody(data=img, content_type=mimetype.value)
+        response = HttpBody(data=img, content_type=mimetype)
         await stream.send_message(response)
 
     async def GetPointCloud(

@@ -20,10 +20,13 @@ from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.resource_manager import ResourceManager
 from viam.components.sensor import SensorClient
 from viam.components.servo import ServoClient
-from viam.errors import ComponentNotImplementedError, ViamError
-from viam.metadata.client import MetadataClient
+from viam.errors import (ComponentNotImplementedError,
+                         ServiceNotImplementedError, ViamError)
 from viam.proto.api.common import ResourceName
 from viam.rpc.dial import DialOptions, dial_direct
+from viam.services import ServiceType
+from viam.services.metadata.client import MetadataClient
+from viam.services.types import Service
 
 LOGGER = logging.getLogger(__name__)
 
@@ -108,7 +111,7 @@ class RobotClient:
     _lock: Lock
     _manager: ResourceManager
     _metadata_client: MetadataClient
-    _refresh_task: Optional[asyncio.Task]
+    _refresh_task: Optional[asyncio.Task] = None
     _resource_names: List[ResourceName]
     _should_close_channel: bool
 
@@ -126,6 +129,8 @@ class RobotClient:
         manager = ResourceManager()
         for rname in resource_names:
             if rname.type != 'component':
+                continue
+            if rname.subtype == 'remote':
                 continue
             subtype = rname.subtype
             if subtype == 'arm':
@@ -205,6 +210,11 @@ class RobotClient:
             raise ViamError(f'ResourceName does not describe a component: {name}')
         with self._lock:
             return self._manager.get_component(ComponentBase, name.name)
+
+    def get_service(self, service_type: ServiceType[Service]) -> Service:
+        if service_type.name in [rn.subtype for rn in self._resource_names if rn.type == 'service']:
+            return service_type.with_channel(self._channel)
+        raise ServiceNotImplementedError(service_type.name)
 
     @property
     def function_names(self) -> List[str]:

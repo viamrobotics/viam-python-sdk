@@ -20,8 +20,8 @@ from viam.components.pose_tracker.service import PoseTrackerService
 from viam.components.resource_manager import ResourceManager
 from viam.components.sensor.service import SensorService
 from viam.components.servo.service import ServoService
-from viam.metadata.service import MetadataService
 from viam.robot.service import RobotService
+from viam.services.metadata.service import MetadataService
 from viam.services.status.service import StatusService
 
 from .signaling import SignalingService

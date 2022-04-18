@@ -23,7 +23,7 @@ class CameraClient(Camera):
 
     async def get_frame(self) -> Image.Image:
         request = GetFrameRequest(
-            name=self.name, mime_type=CameraMimeType.BEST.value)
+            name=self.name, mime_type=CameraMimeType.BEST)
         response: GetFrameResponse = await self.client.GetFrame(request)
         mimetype = CameraMimeType(response.mime_type)
         if mimetype == CameraMimeType.RAW:
@@ -39,7 +39,7 @@ class CameraClient(Camera):
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         request = GetPointCloudRequest(
-            name=self.name, mime_type=CameraMimeType.PCD.value)
+            name=self.name, mime_type=CameraMimeType.PCD)
         response: GetPointCloudResponse = \
             await self.client.GetPointCloud(request)
         return (response.point_cloud, response.mime_type)

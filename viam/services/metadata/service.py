@@ -12,7 +12,18 @@ from viam.utils import resource_names_for_component
 class MetadataService(MetadataServiceBase, ComponentServiceBase):
 
     def _generate_metadata(self) -> List[ResourceName]:
-        md: List[ResourceName] = []
+        md: List[ResourceName] = [
+            ResourceName(
+                namespace='rdk',
+                type='service',
+                subtype='metadata',
+            ),
+            ResourceName(
+                namespace='rdk',
+                type='service',
+                subtype='status',
+            ),
+        ]
 
         for component in self.manager.components.values():
             md.extend(resource_names_for_component(component))
