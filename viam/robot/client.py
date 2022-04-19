@@ -6,22 +6,11 @@ from typing import List, Optional
 from grpclib.client import Channel
 from typing_extensions import Self
 from viam import logging
-from viam.components.arm import ArmClient
-from viam.components.base import BaseClient
-from viam.components.board import BoardClient
-from viam.components.camera import CameraClient
 from viam.components.component_base import ComponentBase
-from viam.components.gantry import GantryClient
-from viam.components.gps import GPSClient
-from viam.components.gripper import GripperClient
-from viam.components.imu import IMUClient
-from viam.components.motor import MotorClient
-from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.resource_manager import ResourceManager
-from viam.components.sensor import SensorClient
-from viam.components.servo import ServoClient
-from viam.errors import ServiceNotImplementedError, ViamError
+from viam.errors import ComponentNotFoundError, ServiceNotImplementedError, ViamError
 from viam.proto.api.common import ResourceName
+from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
 from viam.services.metadata.client import MetadataClient
@@ -128,31 +117,9 @@ class RobotClient:
             if rname.subtype == 'remote':
                 continue
             subtype = rname.subtype
-            if subtype == 'arm':
-                manager.register(ArmClient(rname.name, self._channel))
-            elif subtype == 'base':
-                manager.register(BaseClient(rname.name, self._channel))
-            elif subtype == 'board':
-                manager.register(BoardClient(rname.name, self._channel))
-            elif subtype == 'camera':
-                manager.register(CameraClient(rname.name, self._channel))
-            elif subtype == 'gantry':
-                manager.register(GantryClient(rname.name, self._channel))
-            elif subtype == 'gps':
-                manager.register(GPSClient(rname.name, self._channel))
-            elif subtype == 'gripper':
-                manager.register(GripperClient(rname.name, self._channel))
-            elif subtype == 'imu':
-                manager.register(IMUClient(rname.name, self._channel))
-            elif subtype == 'motor':
-                manager.register(MotorClient(rname.name, self._channel))
-            elif subtype == 'pose_tracker':
-                manager.register(PoseTrackerClient(rname.name, self._channel))
-            elif subtype == 'sensor':
-                manager.register(SensorClient(rname.name, self._channel))
-            elif subtype == 'servo':
-                manager.register(ServoClient(rname.name, self._channel))
-            else:
+            try:
+                manager.register(Registry.lookup(subtype).create_rpc_client(rname.name, self._channel))
+            except ComponentNotFoundError:
                 LOGGER.warn(f'Component of type {subtype} is not implemented')
         with self._lock:
             self._resource_names = resource_names
