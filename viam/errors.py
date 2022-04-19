@@ -59,17 +59,6 @@ class ComponentNotFoundError(ViamError):
         )
 
 
-class ComponentNotImplementedError(ViamError):
-    """
-    Exception raised when a component type is not implemented
-    """
-
-    def __init__(self, component: str):
-        self.component = component
-        self.message = f'Component {component} is not implemented'
-        super().__init__(self.message)
-
-
 class ServiceNotImplementedError(ViamError):
     """
     Exception raised when a service is not implemented on the Robot

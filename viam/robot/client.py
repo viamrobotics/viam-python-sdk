@@ -20,8 +20,7 @@ from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.resource_manager import ResourceManager
 from viam.components.sensor import SensorClient
 from viam.components.servo import ServoClient
-from viam.errors import (ComponentNotImplementedError,
-                         ServiceNotImplementedError, ViamError)
+from viam.errors import ServiceNotImplementedError, ViamError
 from viam.proto.api.common import ResourceName
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
@@ -118,9 +117,6 @@ class RobotClient:
     async def refresh(self):
         """
         Manually refresh the underlying parts of this robot
-
-        Raises:
-            ComponentNotImplementedError: Raised if the component type is not implemented in the SDK
         """
         resource_names = await self._metadata_client.resources()
         if resource_names == self._resource_names:
@@ -157,7 +153,7 @@ class RobotClient:
             elif subtype == 'servo':
                 manager.register(ServoClient(rname.name, self._channel))
             else:
-                raise ComponentNotImplementedError(subtype)
+                LOGGER.warn(f'Component of type {subtype} is not implemented')
         with self._lock:
             self._resource_names = resource_names
             if manager.components != self._manager.components:
@@ -174,33 +170,48 @@ class RobotClient:
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
 
+        This function should not be used except in specific cases. The method `Component.from_robot(...)` is the preferred method
+        for obtaining components.
+
+        ```python3
+        arm = Arm.from_robot(robot=robot, name='my_arm')
+        ```
+
         Because this function returns a generic `ComponentBase` rather than the specific
-        componet type, it will be necessary to cast the returned component to the desired component. This can be done using a few
+        component type, it will be necessary to cast the returned component to the desired component. This can be done using a few
         different methods:
 
-        #### Assertion
-            arm = robot.get_component(Arm.get_resource_name('my_arm'))\n
-            assert isinstance(arm, Arm)\n
+        - Assertion
+
+        ```python3
+            arm = robot.get_component(Arm.get_resource_name('my_arm'))
+            assert isinstance(arm, Arm)
             end_pos = await arm.get_end_position()
+        ```
 
-        #### Explicit cast
-            from typing import cast\n
-            \n
-            arm = robot.get_component(Arm.get_resource_name('my_arm'))\n
-            arm = cast(Arm, arm)\n
-            end_pos = await arm.get_end_position()\n
+        - Explicit cast
 
-        #### Declare type on variable assignment.
-        Note: If using an IDE, a type error may be shown which can be ignored.
+        ```python3
+            from typing import cast
 
-            arm: Arm = robot.get_component(Arm.get_resource_name('my_arm'))  # type: ignore \n
+            arm = robot.get_component(Arm.get_resource_name('my_arm'))
+            arm = cast(Arm, arm)
             end_pos = await arm.get_end_position()
+        ```
+
+        - Declare type on variable assignment.
+          - Note: If using an IDE, a type error may be shown which can be ignored.
+
+        ```python3
+            arm: Arm = robot.get_component(Arm.get_resource_name('my_arm'))  # type: ignore
+            end_pos = await arm.get_end_position()
+        ```
 
         Args:
             name (ResourceName): The component's name
 
         Raises:
-            ViamError: Raised if the requested resource is not a comonent
+            ViamError: Raised if the requested resource is not a component
             ComponentNotFoundError: Error if component with the given type and name does not exist in the registry
 
         Returns:
@@ -227,20 +238,6 @@ class RobotClient:
             if service_type.name in [rn.subtype for rn in self._resource_names if rn.type == 'service']:
                 return service_type.with_channel(self._channel)
             raise ServiceNotImplementedError(service_type.name)
-
-    @property
-    def function_names(self) -> List[str]:
-        """
-        Get a list of all known functions
-
-        Returns:
-            List[str]: List of function names
-        """
-        with self._lock:
-            return [
-                rn.name for rn in self._resource_names
-                if rn.type == 'function'
-            ]
 
     @property
     def resource_names(self) -> List[ResourceName]:
