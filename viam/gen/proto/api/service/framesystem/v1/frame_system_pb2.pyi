@@ -35,8 +35,19 @@ global___Config = Config
 
 class ConfigRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SUPPLEMENTAL_TRANSFORMS_FIELD_NUMBER: builtins.int
 
-    def __init__(self) -> None:
+    @property
+    def supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.Transform]:
+        """pose information on any additional reference frames that are needed
+        to supplement the robot's frame system
+        """
+        pass
+
+    def __init__(self, *, supplemental_transforms: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.Transform]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['supplemental_transforms', b'supplemental_transforms']) -> None:
         ...
 global___ConfigRequest = ConfigRequest
 
@@ -59,19 +70,31 @@ class TransformPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SOURCE_FIELD_NUMBER: builtins.int
     DESTINATION_FIELD_NUMBER: builtins.int
+    SUPPLEMENTAL_TRANSFORMS_FIELD_NUMBER: builtins.int
 
     @property
     def source(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
-        ...
+        """the original pose to transform along with the reference frame in
+        which it was observed
+        """
+        pass
     destination: typing.Text
+    'the reference frame into which the source pose should be transformed,\n    if unset this defaults to the "world" reference frame\n    '
 
-    def __init__(self, *, source: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., destination: typing.Text=...) -> None:
+    @property
+    def supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.Transform]:
+        """pose information on any additional reference frames that are needed
+        to perform the transform
+        """
+        pass
+
+    def __init__(self, *, source: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., destination: typing.Text=..., supplemental_transforms: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.Transform]]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['source', b'source']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['destination', b'destination', 'source', b'source']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['destination', b'destination', 'source', b'source', 'supplemental_transforms', b'supplemental_transforms']) -> None:
         ...
 global___TransformPoseRequest = TransformPoseRequest
 

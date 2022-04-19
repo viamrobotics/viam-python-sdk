@@ -7,8 +7,15 @@ from ....gen.proto.api.robot.v1.robot_grpc import (
     RobotServiceStub
 )
 from ....gen.proto.api.robot.v1.robot_pb2 import (
+    BlockForOperationRequest,
+    BlockForOperationResponse,
+    CancelOperationRequest,
+    CancelOperationResponse,
     DoActionRequest,
     DoActionResponse,
+    GetOperationsRequest,
+    GetOperationsResponse,
+    Operation,
     ResourceRunCommandRequest,
     ResourceRunCommandResponse
 )
@@ -16,8 +23,15 @@ from ....gen.proto.api.robot.v1.robot_pb2 import (
 __all__ = [
     'RobotServiceBase',
     'RobotServiceStub',
+    'BlockForOperationRequest',
+    'BlockForOperationResponse',
+    'CancelOperationRequest',
+    'CancelOperationResponse',
     'DoActionRequest',
     'DoActionResponse',
+    'GetOperationsRequest',
+    'GetOperationsResponse',
+    'Operation',
     'ResourceRunCommandRequest',
     'ResourceRunCommandResponse',
 ]

@@ -4,6 +4,7 @@ isort:skip_file
 """
 import builtins
 import google.protobuf.descriptor
+import google.protobuf.internal.containers
 import google.protobuf.message
 from ...... import proto
 import typing
@@ -57,20 +58,29 @@ class GetPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     DESTINATION_FRAME_FIELD_NUMBER: builtins.int
+    SUPPLEMENTAL_TRANSFORMS_FIELD_NUMBER: builtins.int
 
     @property
     def component_name(self) -> proto.api.common.v1.common_pb2.ResourceName:
-        ...
+        """the component whose pose is being requested"""
+        pass
     destination_frame: typing.Text
-    'world if unset'
+    'the reference frame in which the component\'s pose \n    should be provided, if unset this defaults \n    to the "world" reference frame\n    '
 
-    def __init__(self, *, component_name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., destination_frame: typing.Text=...) -> None:
+    @property
+    def supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.Transform]:
+        """pose information on any additional reference frames that are needed
+        to compute the component's pose
+        """
+        pass
+
+    def __init__(self, *, component_name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., destination_frame: typing.Text=..., supplemental_transforms: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.Transform]]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'destination_frame', b'destination_frame']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'destination_frame', b'destination_frame', 'supplemental_transforms', b'supplemental_transforms']) -> None:
         ...
 global___GetPoseRequest = GetPoseRequest
 
