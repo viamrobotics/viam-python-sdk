@@ -16,8 +16,7 @@ class FakeComponentService(ComponentServiceBase[FakeComponent]):
 
 class FakeComponentClient(FakeComponent):
     def __init__(self, name: str, channel: Channel):
-        self.name = name
-        self.channel = channel
+        pass
 
 
 def test_components_register_themselves_correctly():
