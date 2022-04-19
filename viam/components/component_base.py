@@ -1,6 +1,10 @@
 import abc
+from typing import cast, TYPE_CHECKING
+from typing_extensions import Self
 
 from viam.proto.api.common import ResourceName
+if TYPE_CHECKING:
+    from viam.robot.client import RobotClient
 
 
 class ComponentBase(abc.ABC):
@@ -43,3 +47,8 @@ class ComponentBase(abc.ABC):
             f'Unable to create a ResourceName for {cls} named {name}.' +
             'This should not be possible. Please file an issue.'
         )
+
+    @classmethod
+    def from_robot(cls, robot: 'RobotClient', name: str) -> Self:
+        component = robot.get_component(cls.get_resource_name(name))
+        return cast(cls, component)

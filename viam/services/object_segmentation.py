@@ -2,12 +2,12 @@ from typing import Any, Dict, List, Tuple
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
+from viam.components.types import CameraMimeType
 from viam.proto.api.common import PointCloudObject
 from viam.proto.api.service.objectsegmentation import (
     GetObjectPointCloudsRequest, GetObjectPointCloudsResponse,
     GetSegmenterParametersRequest, GetSegmenterParametersResponse,
     GetSegmentersRequest, GetSegmentersResponse, ObjectSegmentationServiceStub)
-from viam.components.types import CameraMimeType
 
 
 class ObjectSegmentationClient:

@@ -57,3 +57,13 @@ class ComponentNotFoundError(ViamError):
             Status.NOT_FOUND,
             self.message
         )
+
+
+class ServiceNotImplementedError(ViamError):
+    """
+    Exception raised when a service is not implemented on the Robot
+    """
+
+    def __init__(self, service: str):
+        self.service = service
+        self.message = f'Service {service} is not implemented on the Robot'

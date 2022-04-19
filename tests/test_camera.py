@@ -79,9 +79,9 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = RenderFrameRequest(
-                name='camera', mime_type=CameraMimeType.PNG.value)
+                name='camera', mime_type=CameraMimeType.PNG)
             response: HttpBody = await client.RenderFrame(request)
-            assert response.content_type == CameraMimeType.PNG.value
+            assert response.content_type == CameraMimeType.PNG
             buf = BytesIO(response.data)
             img = Image.open(buf, formats=['JPEG', 'PNG'])
             assert img.tobytes() == image.tobytes()
@@ -95,7 +95,7 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = GetPointCloudRequest(
-                name='camera', mime_type=CameraMimeType.PCD.value)
+                name='camera', mime_type=CameraMimeType.PCD)
             response: GetPointCloudResponse = \
                 await client.GetPointCloud(request)
             assert response.point_cloud == point_cloud
