@@ -43,7 +43,6 @@
 <li class="toctree-l2 current"><a class="reference internal" href="viam.html">viam package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="viam.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="viam.components.html">viam.components package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="viam.metadata.html">viam.metadata package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="viam.proto.html">viam.proto package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="viam.robot.html">viam.robot package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="viam.rpc.html">viam.rpc package</a></li>
@@ -92,6 +91,11 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Base component.
 All components must inherit from this class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.robot.client.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.components.component_base.ComponentBase.from_robot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.get_resource_name">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="proto.api.common.v1.common_pb2.ResourceName"><span class="pre">proto.api.common.v1.common_pb2.ResourceName</span></a></span></span><a class="headerlink" href="#viam.components.component_base.ComponentBase.get_resource_name" title="Permalink to this definition"></a></dt>

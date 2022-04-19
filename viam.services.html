@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="viam.services.status package" href="viam.services.status.html" />
+    <link rel="next" title="viam.services.metadata package" href="viam.services.metadata.html" />
     <link rel="prev" title="viam.rpc.signaling module" href="viam.rpc.signaling.html" /> 
 </head>
 
@@ -43,7 +43,6 @@
 <li class="toctree-l2 current"><a class="reference internal" href="viam.html">viam package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="viam.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="viam.components.html">viam.components package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="viam.metadata.html">viam.metadata package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="viam.proto.html">viam.proto package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="viam.robot.html">viam.robot package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="viam.rpc.html">viam.rpc package</a></li>
@@ -85,10 +84,52 @@
              
   <section id="module-viam.services">
 <span id="viam-services-package"></span><h1>viam.services package<a class="headerlink" href="#module-viam.services" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.ServiceType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.</span></span><span class="sig-name descname"><span class="pre">ServiceType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.services.types.Service</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.ServiceType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.types.Service</span></code>]</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.ServiceType.FRAME_SYSTEM">
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FRAME_SYSTEM</span></span><a class="headerlink" href="#viam.services.ServiceType.FRAME_SYSTEM" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.ServiceType.METADATA">
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">METADATA</span></span><a class="headerlink" href="#viam.services.ServiceType.METADATA" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.ServiceType.MOTION">
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MOTION</span></span><a class="headerlink" href="#viam.services.ServiceType.MOTION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.ServiceType.OBJECT_SEGMENTATION">
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OBJECT_SEGMENTATION</span></span><a class="headerlink" href="#viam.services.ServiceType.OBJECT_SEGMENTATION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.ServiceType.STATUS">
+<em class="property"><span class="pre">class</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">STATUS</span></span><a class="headerlink" href="#viam.services.ServiceType.STATUS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.ServiceType.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.services.ServiceType.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.ServiceType.with_channel">
+<span class="sig-name descname"><span class="pre">with_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.types.Service</span></span></span><a class="headerlink" href="#viam.services.ServiceType.with_channel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="viam.services.metadata.html">viam.services.metadata package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="viam.services.status.html">viam.services.status package</a></li>
 </ul>
 </div>
@@ -100,6 +141,7 @@
 <li class="toctree-l1"><a class="reference internal" href="viam.services.frame_system.html">viam.services.frame_system module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="viam.services.motion.html">viam.services.motion module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="viam.services.object_segmentation.html">viam.services.object_segmentation module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.services.types.html">viam.services.types module</a></li>
 </ul>
 </div>
 </section>
@@ -110,7 +152,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="viam.rpc.signaling.html" class="btn btn-neutral float-left" title="viam.rpc.signaling module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="viam.services.status.html" class="btn btn-neutral float-right" title="viam.services.status package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="viam.services.metadata.html" class="btn btn-neutral float-right" title="viam.services.metadata package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
