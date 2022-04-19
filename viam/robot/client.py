@@ -254,7 +254,10 @@ class RobotClient:
         """
         Cleanly close the underlying connections and stop any periodic tasks
         """
-        self._lock.release()
+        try:
+            self._lock.release()
+        except RuntimeError:
+            pass
         if self._refresh_task is not None:
             self._refresh_task.cancel()
         if self._should_close_channel:
