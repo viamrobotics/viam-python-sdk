@@ -4,7 +4,7 @@ from .component_base import ComponentBase
 from ..errors import ComponentNotFoundError, DuplicateComponentError
 
 
-ResourceType = TypeVar('ResourceType')
+ResourceType = TypeVar('ResourceType', bound=ComponentBase)
 
 
 class ResourceManager:

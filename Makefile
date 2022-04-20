@@ -19,7 +19,7 @@ better_imports:
 	touch viam/proto/api/__init__.py
 
 test:
-	python3 -m pytest
+	coverage run -m pytest && coverage html
 
 documentation:
 	find docs/source -type f -name '*.rst' -not -name 'index.rst' -delete
