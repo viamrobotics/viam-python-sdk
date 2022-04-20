@@ -12,21 +12,19 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class ResourceName(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    UUID_FIELD_NUMBER: builtins.int
     NAMESPACE_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
     SUBTYPE_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    uuid: typing.Text
     namespace: typing.Text
     type: typing.Text
     subtype: typing.Text
     name: typing.Text
 
-    def __init__(self, *, uuid: typing.Text=..., namespace: typing.Text=..., type: typing.Text=..., subtype: typing.Text=..., name: typing.Text=...) -> None:
+    def __init__(self, *, namespace: typing.Text=..., type: typing.Text=..., subtype: typing.Text=..., name: typing.Text=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type', 'uuid', b'uuid']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
         ...
 global___ResourceName = ResourceName
 

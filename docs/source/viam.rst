@@ -12,7 +12,6 @@ Subpackages
    :maxdepth: 1
 
    viam.components
-   viam.metadata
    viam.proto
    viam.robot
    viam.rpc
