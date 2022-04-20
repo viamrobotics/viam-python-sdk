@@ -11,4 +11,5 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   viam.robot.client
    viam.robot.service
