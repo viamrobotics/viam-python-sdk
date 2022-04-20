@@ -58,6 +58,7 @@ setup(
         'protobuf',
         'googleapis-common-protos',
         'Pillow',
+        'typing-extensions',
     ],
     entry_points={
         'console_scripts': ['viam-update=viam.utils:update', ],
