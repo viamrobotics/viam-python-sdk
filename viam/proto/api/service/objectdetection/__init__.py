@@ -9,6 +9,9 @@ from .....gen.proto.api.service.objectdetection.v1.object_detection_grpc import 
 from .....gen.proto.api.service.objectdetection.v1.object_detection_pb2 import (
     AddDetectorRequest,
     AddDetectorResponse,
+    DetectRequest,
+    DetectResponse,
+    Detection,
     DetectorNamesRequest,
     DetectorNamesResponse
 )
@@ -18,6 +21,9 @@ __all__ = [
     'ObjectDetectionServiceStub',
     'AddDetectorRequest',
     'AddDetectorResponse',
+    'DetectRequest',
+    'DetectResponse',
+    'Detection',
     'DetectorNamesRequest',
     'DetectorNamesResponse',
 ]

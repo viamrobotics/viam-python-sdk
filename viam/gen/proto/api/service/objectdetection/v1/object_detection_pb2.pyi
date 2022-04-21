@@ -67,3 +67,60 @@ class AddDetectorResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
         ...
 global___AddDetectorResponse = AddDetectorResponse
+
+class DetectRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CAMERA_NAME_FIELD_NUMBER: builtins.int
+    DETECTOR_NAME_FIELD_NUMBER: builtins.int
+    camera_name: typing.Text
+    'name of camera source to use as input'
+    detector_name: typing.Text
+    'name of the registered detector to use'
+
+    def __init__(self, *, camera_name: typing.Text=..., detector_name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'detector_name', b'detector_name']) -> None:
+        ...
+global___DetectRequest = DetectRequest
+
+class DetectResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DETECTIONS_FIELD_NUMBER: builtins.int
+
+    @property
+    def detections(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]:
+        """the bounding boxes and labels"""
+        pass
+
+    def __init__(self, *, detections: typing.Optional[typing.Iterable[global___Detection]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['detections', b'detections']) -> None:
+        ...
+global___DetectResponse = DetectResponse
+
+class Detection(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    X_MIN_FIELD_NUMBER: builtins.int
+    Y_MIN_FIELD_NUMBER: builtins.int
+    X_MAX_FIELD_NUMBER: builtins.int
+    Y_MAX_FIELD_NUMBER: builtins.int
+    CONFIDENCE_FIELD_NUMBER: builtins.int
+    CLASS_NAME_FIELD_NUMBER: builtins.int
+    x_min: builtins.int
+    'the four corners of the box'
+    y_min: builtins.int
+    x_max: builtins.int
+    y_max: builtins.int
+    confidence: builtins.float
+    'the confidence of the detection'
+    class_name: typing.Text
+    'label associated with the detected object'
+
+    def __init__(self, *, x_min: builtins.int=..., y_min: builtins.int=..., x_max: builtins.int=..., y_max: builtins.int=..., confidence: builtins.float=..., class_name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['class_name', b'class_name', 'confidence', b'confidence', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> None:
+        ...
+global___Detection = Detection
