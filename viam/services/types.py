@@ -5,8 +5,8 @@ from viam.proto.api.common import ResourceName
 from viam.services.frame_system import FrameSystemClient
 from viam.services.metadata.client import MetadataClient
 from viam.services.motion import MotionClient
-from viam.services.object_segmentation import ObjectSegmentationClient
 from viam.services.status.client import StatusClient
+from viam.services.vision import VisionClient
 
 Service = TypeVar('Service')
 
@@ -35,8 +35,8 @@ class ServiceType(Generic[Service]):
 
     @classmethod
     @property
-    def OBJECT_SEGMENTATION(cls):
-        return ServiceType('object_segmentation', ObjectSegmentationClient)
+    def VISION(cls):
+        return ServiceType('vision', VisionClient)
 
     def __init__(self, name: str, cls: Type[Service]):
         self.resource_name = ResourceName(

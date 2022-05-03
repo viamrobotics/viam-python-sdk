@@ -1,12 +1,38 @@
+from random import random
 from typing import Dict, List, Tuple
+
 import pytest
 from grpclib.testing import ChannelFor
 from viam.proto.api.common import (GeometriesInFrame, Geometry,
                                    PointCloudObject, Pose, RectangularPrism)
-from viam.services.object_segmentation import ObjectSegmentationClient
+from viam.proto.api.service.vision import VisionServiceBase
+from viam.services.vision import (Detection, DetectorConfig, DetectorType,
+                                  VisionClient)
 
-from .mocks.services import MockObjectSegmentationService
+from .mocks.services import MockVisionService
 
+DETECTORS = [
+    'detector-0',
+    'detector-1',
+]
+DETECTIONS = [
+    Detection(
+        x_min=0,
+        y_min=1,
+        x_max=10,
+        y_max=11,
+        confidence=random(),
+        class_name='test-detection-class',
+    ),
+    Detection(
+        x_min=100,
+        y_min=200,
+        x_max=300,
+        y_max=400,
+        confidence=random(),
+        class_name='test-detection-class',
+    ),
+]
 SEGMENTERS = [
     'segmenter-0',
     'segmenter-1',
@@ -68,8 +94,10 @@ POINT_CLOUDS = [
 
 
 @pytest.fixture(scope='function')
-def service() -> MockObjectSegmentationService:
-    return MockObjectSegmentationService(
+def service() -> VisionServiceBase:
+    return MockVisionService(
+        detectors=DETECTORS,
+        detections=DETECTIONS,
         segmenters=SEGMENTERS,
         parameters=PARAMETERS,
         point_clouds=POINT_CLOUDS
@@ -78,32 +106,63 @@ def service() -> MockObjectSegmentationService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_segmenters(
+    async def test_get_detectors(
         self,
-        service: MockObjectSegmentationService
+        service: VisionServiceBase
     ):
         async with ChannelFor([service]) as channel:
-            client = ObjectSegmentationClient(channel)
-            response = await client.get_segmenters()
+            client = VisionClient(channel)
+            response = await client.get_detector_names()
+            assert response == DETECTORS
+
+    @pytest.mark.asyncio
+    async def test_add_detectors(
+        self,
+        service: VisionServiceBase
+    ):
+        async with ChannelFor([service]) as channel:
+            client = VisionClient(channel)
+            await client.add_detector(DetectorConfig('detector-2', DetectorType.TENSORFLOW, {'foo': 'bar'}))
+            response = await client.get_detector_names()
+            assert response[-1] == 'detector-2'
+
+    @pytest.mark.asyncio
+    async def test_get_detections(
+        self,
+        service: VisionServiceBase
+    ):
+        async with ChannelFor([service]) as channel:
+            client = VisionClient(channel)
+            response = await client.get_detections('fake-camera', 'fake-detector')
+            assert response == DETECTIONS
+
+    @pytest.mark.asyncio
+    async def test_get_segmenters(
+        self,
+        service: VisionServiceBase
+    ):
+        async with ChannelFor([service]) as channel:
+            client = VisionClient(channel)
+            response = await client.get_segmenter_names()
             assert response == SEGMENTERS
 
     @pytest.mark.asyncio
     async def test_get_segmenter_parameters(
         self,
-        service: MockObjectSegmentationService
+        service: VisionServiceBase
     ):
         async with ChannelFor([service]) as channel:
-            client = ObjectSegmentationClient(channel)
+            client = VisionClient(channel)
             response = await client.get_segmenter_parameters('segmenter-0')
             assert response == PARAMETERS['segmenter-0']
 
     @pytest.mark.asyncio
     async def test_get_object_point_clouds(
         self,
-        service: MockObjectSegmentationService
+        service: VisionServiceBase
     ):
         async with ChannelFor([service]) as channel:
-            client = ObjectSegmentationClient(channel)
+            client = VisionClient(channel)
             response = await client.get_object_point_clouds('camera',
                                                             'segmenter',
                                                             {})
