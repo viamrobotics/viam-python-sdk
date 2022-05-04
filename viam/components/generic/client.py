@@ -1,5 +1,6 @@
 from google.protobuf.struct_pb2 import Struct
 from typing import Any, Dict
+from grpclib import GRPCError, Status
 from grpclib.client import Channel
 from viam.proto.api.component.generic import (
     GenericServiceStub,
@@ -23,5 +24,26 @@ class GenericClient(Generic):
         struct = Struct()
         struct.update(command)
         request = DoRequest(name=self.name, command=struct)
-        response: DoResponse = await self.client.Do(request)
+        try:
+            response: DoResponse = await self.client.Do(request)
+        except GRPCError as e:
+            if e.status == Status.UNIMPLEMENTED:
+                raise NotImplementedError()
+            raise e
+
         return {key: value_to_primitive(value) for (key, value) in response.result.fields.items()}
+
+
+async def do_command(channel: Channel, name: str, command: Dict[str, Any]) -> Dict[str, Any]:
+    """Convenience method to allow component clients to execut `do` commands
+
+    Args:
+        channel (Channel): A gRPC channel
+        name (str): The name of the component
+        command (Dict[str, Any]): The command to execute
+
+    Returns:
+        Dict[str, Any]: The result of the executed command
+    """
+    client = GenericClient(name, channel)
+    return await client.do(command)

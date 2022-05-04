@@ -1,5 +1,6 @@
 from grpclib.testing import ChannelFor
 import pytest
+from viam.components.generic.service import GenericService
 
 from viam.components.resource_manager import ResourceManager
 from viam.components.sensor import SensorClient
@@ -21,6 +22,11 @@ class TestSensor:
     async def test_get_readings(self):
         readings = await self.sensor.get_readings()
         assert readings == [1, 2, 3]
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        with pytest.raises(NotImplementedError):
+            await self.sensor.do({'command': 'args'})
 
 
 class TestService:
@@ -57,3 +63,10 @@ class TestClient:
             client = SensorClient(self.name, channel)
             value_readings = await client.get_readings()
             assert self.readings == value_readings
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+            client = SensorClient(self.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

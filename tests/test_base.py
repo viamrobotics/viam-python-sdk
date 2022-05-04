@@ -1,6 +1,7 @@
 from random import randint, random
 from grpclib.testing import ChannelFor
 import pytest
+from viam.components.generic.service import GenericService
 
 from viam.components.resource_manager import ResourceManager
 from viam.components.base import BaseClient
@@ -25,6 +26,12 @@ def base() -> MockBase:
 def service(base: MockBase) -> BaseService:
     manager = ResourceManager([base])
     return BaseService(manager)
+
+
+@pytest.fixture(scope='function')
+def generic_service(base: MockBase) -> GenericService:
+    manager = ResourceManager([base])
+    return GenericService(manager)
 
 
 class TestBase:
@@ -81,6 +88,11 @@ class TestBase:
         assert base.stopped is False
         await base.spin(0, 0, False)
         assert base.stopped is True
+
+    @pytest.mark.asyncio
+    async def test_do(self, base: MockBase):
+        with pytest.raises(NotImplementedError):
+            await base.do({'command': 'args'})
 
 
 class TestService:
@@ -276,3 +288,10 @@ class TestClient:
             assert base.stopped is False
             await client.spin(0, 0, False)
             assert base.stopped is True
+
+    @pytest.mark.asyncio
+    async def test_do(self, base: MockBase, service: BaseService, generic_service: GenericService):
+        async with ChannelFor([service, generic_service]) as channel:
+            client = BaseClient(base.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

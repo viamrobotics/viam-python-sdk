@@ -1,5 +1,6 @@
 import pytest
 from grpclib.testing import ChannelFor
+from viam.components.generic.service import GenericService
 from viam.components.imu import (Acceleration, AngularVelocity, EulerAngles,
                                  IMUClient, Magnetometer, Orientation)
 from viam.components.imu.service import IMUService
@@ -82,6 +83,11 @@ class TestIMU:
             y_gauss=2,
             z_gauss=3
         )
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        with pytest.raises(NotImplementedError):
+            await self.imu.do({'command': 'args'})
 
 
 class TestService:
@@ -196,3 +202,10 @@ class TestClient:
                 y_gauss=2,
                 z_gauss=3
             )
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+            client = IMUClient(self.imu.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

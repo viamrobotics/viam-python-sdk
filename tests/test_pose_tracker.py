@@ -1,5 +1,6 @@
 import pytest
 from grpclib.testing import ChannelFor
+from viam.components.generic.service import GenericService
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerService
 from viam.components.resource_manager import ResourceManager
@@ -63,6 +64,11 @@ class TestPoseTracker:
                 theta=30
             )
         )
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        with pytest.raises(NotImplementedError):
+            await self.mock_pose_tracker.do({'command': 'args'})
 
 
 class TestService:
@@ -141,3 +147,10 @@ class TestClient:
                     theta=30
                 )
             )
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+            client = PoseTrackerClient(self.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

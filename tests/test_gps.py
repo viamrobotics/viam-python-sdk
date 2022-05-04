@@ -1,5 +1,6 @@
 import pytest
 from grpclib.testing import ChannelFor
+from viam.components.generic.service import GenericService
 from viam.components.gps import GPS, GPSClient
 from viam.components.gps.service import GPSService
 from viam.components.resource_manager import ResourceManager
@@ -28,6 +29,12 @@ def service(gps: GPS) -> GPSService:
     return GPSService(rm)
 
 
+@pytest.fixture(scope='function')
+def generic_service(gps: GPS) -> GenericService:
+    manager = ResourceManager([gps])
+    return GenericService(manager)
+
+
 class TestGPS:
 
     @pytest.mark.asyncio
@@ -44,6 +51,11 @@ class TestGPS:
     async def test_read_speed(self, gps: GPS):
         speed = await gps.read_speed()
         assert speed == SPEED
+
+    @pytest.mark.asyncio
+    async def test_do(self, gps: GPS):
+        with pytest.raises(NotImplementedError):
+            await gps.do({'command': 'args'})
 
 
 class TestService:
@@ -96,3 +108,10 @@ class TestClient:
             client = GPSClient(gps.name, channel)
             speed = await client.read_speed()
             assert speed == SPEED
+
+    @pytest.mark.asyncio
+    async def test_do(self, gps: GPS, service: GPSService, generic_service: GenericService):
+        async with ChannelFor([service, generic_service]) as channel:
+            client = GPSClient(gps.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

@@ -1,6 +1,7 @@
-from typing import Optional
+from typing import Any, Dict, Optional
 
 from grpclib.client import Channel
+from viam.components.generic.client import do_command
 from viam.proto.api.common import Pose, WorldState
 from viam.proto.api.component.arm import (ArmServiceStub,
                                           GetEndPositionRequest,
@@ -16,14 +17,15 @@ from .arm import Arm
 
 class ArmClient(Arm):
     """
-    gRPC client for an Arm component. 
+    gRPC client for an Arm component.
 
     Used to communicate with an existing `Arm` implementation over gRPC.
     """
 
     def __init__(self, name: str, channel: Channel):
-        self.name = name
+        self.channel = channel
         self.client = ArmServiceStub(channel)
+        super().__init__(name)
 
     async def get_end_position(self) -> Pose:
         request = GetEndPositionRequest(name=self.name)
@@ -50,3 +52,6 @@ class ArmClient(Arm):
         request = MoveToJointPositionsRequest(
             name=self.name, position_degs=positions)
         await self.client.MoveToJointPositions(request)
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

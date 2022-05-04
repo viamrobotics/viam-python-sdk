@@ -1,4 +1,7 @@
+from typing import Any, Dict
+
 from grpclib.client import Channel
+from viam.components.generic.client import do_command
 from viam.proto.api.component.motor import (GetFeaturesRequest,
                                             GetFeaturesResponse,
                                             GetPositionRequest,
@@ -18,6 +21,7 @@ class MotorClient(Motor):
     """
 
     def __init__(self, name: str, channel: Channel):
+        self.channel = channel
         self.client = MotorServiceStub(channel)
         super().__init__(name)
 
@@ -57,3 +61,6 @@ class MotorClient(Motor):
         request = IsPoweredRequest(name=self.name)
         response: IsPoweredResponse = await self.client.IsPowered(request)
         return response.is_on
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

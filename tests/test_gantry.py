@@ -2,6 +2,7 @@ import pytest
 from grpclib.testing import ChannelFor
 from viam.components.gantry import GantryClient
 from viam.components.gantry.service import GantryService
+from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetLengthsRequest,
@@ -31,6 +32,11 @@ class TestGantry:
     async def test_get_lengths(self):
         lengths = await self.gantry.get_lengths()
         assert lengths == [4, 5, 6]
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        with pytest.raises(NotImplementedError):
+            await self.gantry.do({'command': 'args'})
 
 
 class TestService:
@@ -91,3 +97,10 @@ class TestClient:
             client = GantryClient(self.gantry.name, channel)
             lengths = await client.get_lengths()
             assert lengths == [4, 5, 6]
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+            client = GantryClient(self.gantry.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

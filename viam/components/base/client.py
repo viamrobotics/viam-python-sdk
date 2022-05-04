@@ -1,4 +1,7 @@
+from typing import Any, Dict
+
 from grpclib.client import Channel
+from viam.components.generic.client import do_command
 from viam.proto.api.component.base import (BaseServiceStub, MoveArcRequest,
                                            MoveStraightRequest, SpinRequest,
                                            StopRequest)
@@ -12,6 +15,7 @@ class BaseClient(Base):
     """
 
     def __init__(self, name: str, channel: Channel):
+        self.channel = channel
         self.client = BaseServiceStub(channel)
         super().__init__(name)
 
@@ -57,3 +61,6 @@ class BaseClient(Base):
     async def stop(self):
         request = StopRequest(name=self.name)
         await self.client.Stop(request)
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

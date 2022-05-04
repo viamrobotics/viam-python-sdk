@@ -1,5 +1,6 @@
 import pytest
 from grpclib.testing import ChannelFor
+from viam.components.generic.service import GenericService
 from viam.components.gripper import Gripper, GripperClient
 from viam.components.gripper.service import GripperService
 from viam.components.resource_manager import ResourceManager
@@ -20,6 +21,12 @@ def service(gripper: Gripper) -> GripperService:
     return GripperService(rm)
 
 
+@pytest.fixture(scope='function')
+def generic_service(gripper: Gripper) -> GenericService:
+    manager = ResourceManager([gripper])
+    return GenericService(manager)
+
+
 class TestGripper:
 
     @pytest.mark.asyncio
@@ -32,6 +39,11 @@ class TestGripper:
         grabbed = await gripper.grab()
         assert gripper.opened is False
         assert isinstance(grabbed, bool)
+
+    @pytest.mark.asyncio
+    async def test_do(self, gripper: MockGripper):
+        with pytest.raises(NotImplementedError):
+            await gripper.do({'command': 'args'})
 
 
 class TestService:
@@ -70,3 +82,10 @@ class TestClient:
             grabbed = await client.grab()
             assert gripper.opened is False
             assert isinstance(grabbed, bool)
+
+    @pytest.mark.asyncio
+    async def test_do(self, gripper: MockGripper, service: GripperService, generic_service: GenericService):
+        async with ChannelFor([service, generic_service]) as channel:
+            client = GripperClient(gripper.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

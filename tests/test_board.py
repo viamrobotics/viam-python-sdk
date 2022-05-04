@@ -4,6 +4,7 @@ from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardService
+from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
@@ -46,6 +47,12 @@ def board() -> MockBoard:
 def service(board: MockBoard) -> BoardService:
     manager = ResourceManager([board])
     return BoardService(manager)
+
+
+@pytest.fixture(scope='function')
+def generic_service(board: MockBoard) -> GenericService:
+    manager = ResourceManager([board])
+    return GenericService(manager)
 
 
 class TestBoard:
@@ -99,6 +106,11 @@ class TestBoard:
     async def test_model_attributes(self, board: MockBoard):
         attrs = await board.model_attributes()
         assert attrs == Board.Attributes(remote=True)
+
+    @pytest.mark.asyncio
+    async def test_do(self, board: MockBoard):
+        with pytest.raises(NotImplementedError):
+            await board.do({'command': 'args'})
 
 
 class TestService:
@@ -434,3 +446,10 @@ class TestGPIOPinClient:
             pin = await client.gpio_pin_by_name('pin1')
             freq = await pin.get_pwm_frequency()
             assert freq == 0
+
+    @pytest.mark.asyncio
+    async def test_do(self, board: MockBoard, service: BoardService, generic_service: GenericService):
+        async with ChannelFor([service, generic_service]) as channel:
+            client = BoardClient(board.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})
