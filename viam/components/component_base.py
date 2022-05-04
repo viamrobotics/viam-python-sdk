@@ -1,5 +1,5 @@
 import abc
-from typing import cast, TYPE_CHECKING
+from typing import Any, Dict, cast, TYPE_CHECKING
 from typing_extensions import Self
 
 from viam.proto.api.common import ResourceName
@@ -50,5 +50,28 @@ class ComponentBase(abc.ABC):
 
     @classmethod
     def from_robot(cls, robot: 'RobotClient', name: str) -> Self:
+        """Get the component named `name` from the provided robot.
+
+        Args:
+            robot (RobotClient): The robot
+            name (str): The name of the component
+
+        Returns:
+            Self: The component, if it exists on the robot
+        """
         component = robot.get_component(cls.get_resource_name(name))
         return cast(cls, component)
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        """Send/Receive arbitrary commands
+
+        Args:
+            command (Dict[str, Any]): The command to execute
+
+        Raises:
+            NotImplementedError: Raised if the component does not support arbitrary commands
+
+        Returns:
+            Dict[str, Any]: Result of the executed command
+        """
+        raise NotImplementedError()
