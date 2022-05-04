@@ -1,5 +1,6 @@
 import pytest
 from grpclib.testing import ChannelFor
+from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.components.servo import ServoClient
 from viam.components.servo.service import ServoService
@@ -24,6 +25,11 @@ class TestServo:
     async def test_get_position(self):
         new_pos = await self.servo.get_position()
         assert new_pos == self.pos
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        with pytest.raises(NotImplementedError):
+            await self.servo.do({'command': 'args'})
 
 
 class TestService:
@@ -72,3 +78,10 @@ class TestClient:
             client = ServoClient(self.servo.name, channel)
             new_pos = await client.get_position()
             assert new_pos == self.pos
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+            client = ServoClient(self.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

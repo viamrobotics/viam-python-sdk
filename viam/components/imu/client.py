@@ -1,4 +1,7 @@
+from typing import Any, Dict
+
 from grpclib.client import Channel
+from viam.components.generic.client import do_command
 from viam.proto.api.component.imu import (IMUServiceStub,
                                           ReadAccelerationRequest,
                                           ReadAccelerationResponse,
@@ -18,8 +21,9 @@ class IMUClient(IMU):
     """
 
     def __init__(self, name: str, channel: Channel):
-        self.name = name
+        self.channel = channel
         self.client = IMUServiceStub(channel)
+        super().__init__(name)
 
     async def read_acceleration(self) -> Acceleration:
         request = ReadAccelerationRequest(name=self.name)
@@ -44,3 +48,6 @@ class IMUClient(IMU):
         response: ReadMagnetometerResponse = \
             await self.client.ReadMagnetometer(request)
         return response.magnetometer
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

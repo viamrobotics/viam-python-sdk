@@ -11,6 +11,7 @@ from viam.components.board import Board
 from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
 from viam.components.gantry import Gantry
+from viam.components.generic import Generic as GenericComponent
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
@@ -275,6 +276,12 @@ class MockGantry(Gantry):
 
     async def get_lengths(self) -> List[float]:
         return self.lengths
+
+
+class MockGeneric(GenericComponent):
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return {key: True for key in command.keys()}
 
 
 class MockGPS(GPS):

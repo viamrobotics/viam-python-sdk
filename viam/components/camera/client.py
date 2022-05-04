@@ -1,13 +1,14 @@
 from io import BytesIO
-from typing import Tuple
+from typing import Any, Dict, Tuple
 
 from grpclib.client import Channel
 from PIL import Image
+from viam.components.generic.client import do_command
+from viam.components.types import CameraMimeType
 from viam.proto.api.component.camera import (CameraServiceStub,
                                              GetFrameRequest, GetFrameResponse,
                                              GetPointCloudRequest,
                                              GetPointCloudResponse)
-from viam.components.types import CameraMimeType
 
 from .camera import Camera
 
@@ -18,6 +19,7 @@ class CameraClient(Camera):
     """
 
     def __init__(self, name: str, channel: Channel):
+        self.channel = channel
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
@@ -43,3 +45,6 @@ class CameraClient(Camera):
         response: GetPointCloudResponse = \
             await self.client.GetPointCloud(request)
         return (response.point_cloud, response.mime_type)
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

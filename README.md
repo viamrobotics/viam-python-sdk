@@ -56,25 +56,22 @@ It is recommended that you save and run this simple program. Doing so will ensur
 that the viam-server instance on your robot is alive, and that the computer running the program is able to connect to that instance.
 
 ### Accessing a component:
-First you'll need to import the component's client. Generically this should look:
+First you'll need to access the RobotClient. This should look:
 ```python
-from viam.components.component import ComponentClient
-```
-Example:
-```python
-from viam.components.motor import MotorClient
+from viam.robot.client import RobotClient
 ```
 
-Then to instantiate a client, you'll call its constructor, which typically takes `name` and `channel` as arguements,
-where `channel` is our connection to the robot, and `name` is the name of the component in that robot's JSON config. Example:
+Then to instantiate the robot, you'll call one of two class methods, `RobotClient.at_address`, `RobotClient.with_channel`, which will
+return a `RobotClient` that can be used to access the components of the robot.
 ```python
-left_motor = MotorClient(name="left", channel=channel)
+robot = await RobotClient.with_channel(channel=channel, options=RobotClient.Options(refresh_interval=10))
 ```
 
-You can then use this Component object's methods to issue viam's gRPC API calls. Take a look at the component documentation to
+You can then use this Robot to access components by name. Take a look at the component documentation to
 see a full list of methods for the object and their arguments. For Example:
 ```python
-await left_motor.go_for(rpm=60, revolutions=100)
+motor = Motor.from_robot(robot, 'my_motor')
+await motor.go_for(rpm=60, revolutions=100)
 ```
 
 ## Implementing a component and using the python-sdk as server:
@@ -106,6 +103,33 @@ To use this custom server as part of a larger robot, you’ll want to add it as 
     }
   ]
 ```
+
+And to ensure that the python server starts up with the rest of the robot, you can add it as a process. **NOTE**: The `viam-server`
+starts as a root process, so you may need to switch users to run the python SDK server.
+```json
+[
+  {
+    "id": 0,
+    "log": true,
+    "name": "sudo",
+    "args": [
+      "-u",
+      "pi",
+      "python",
+      "/home/pi/python-server.py"
+    ]
+  }
+]
+```
+
+## The `do` method
+Every component provided by the SDK includes a generic `do` method which is useful to execute commands that are not already defined on the component.
+```python
+async def do(self, command: Dict[str, Any]) -> Dict[str, Any]
+```
+
+If this is not generic enough, you can also create your own custom component by subclassing the `viam.components.generic.Generic` component
+class. For more details, you can view the documentation for the `Generic` component.
 
 ## Documentation
 Documentation, like this entire project, is under active development, and can be found at [python.viam.dev](https://python.viam.dev).

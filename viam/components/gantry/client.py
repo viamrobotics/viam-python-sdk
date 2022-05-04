@@ -1,6 +1,7 @@
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 from grpclib.client import Channel
+from viam.components.generic.client import do_command
 from viam.proto.api.common import WorldState
 from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetLengthsRequest,
@@ -18,6 +19,7 @@ class GantryClient(Gantry):
     """
 
     def __init__(self, name: str, channel: Channel):
+        self.channel = channel
         self.client = GantryServiceStub(channel)
         super().__init__(name)
 
@@ -39,3 +41,6 @@ class GantryClient(Gantry):
         request = GetLengthsRequest(name=self.name)
         response: GetLengthsResponse = await self.client.GetLengths(request)
         return list(response.lengths_mm)
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

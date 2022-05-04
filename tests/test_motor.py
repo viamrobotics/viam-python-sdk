@@ -1,5 +1,6 @@
 import pytest
 from grpclib.testing import ChannelFor
+from viam.components.generic.service import GenericService
 from viam.components.motor import MotorClient
 from viam.components.motor.service import MotorService
 from viam.components.resource_manager import ResourceManager
@@ -25,6 +26,12 @@ def motor() -> MockMotor:
 def service(motor: MockMotor) -> MotorService:
     manager = ResourceManager([motor])
     return MotorService(manager)
+
+
+@pytest.fixture(scope='function')
+def generic_service(motor: MockMotor) -> GenericService:
+    manager = ResourceManager([motor])
+    return GenericService(manager)
 
 
 class TestMotor:
@@ -89,6 +96,11 @@ class TestMotor:
         await motor.set_power(0)
         is_powered = await motor.is_powered()
         assert is_powered is False
+
+    @pytest.mark.asyncio
+    async def test_do(self, motor: MockMotor):
+        with pytest.raises(NotImplementedError):
+            await motor.do({'command': 'args'})
 
 
 class TestService:
@@ -272,3 +284,10 @@ class TestClient:
             await client.set_power(0)
             is_on = await client.is_powered()
             assert is_on is False
+
+    @pytest.mark.asyncio
+    async def test_do(self, motor: MockMotor, service: MotorService, generic_service: GenericService):
+        async with ChannelFor([service, generic_service]) as channel:
+            client = MotorClient(motor.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

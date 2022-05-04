@@ -1,4 +1,7 @@
+from typing import Any, Dict
+
 from grpclib.client import Channel
+from viam.components.generic.client import do_command
 from viam.proto.api.common import GeoPoint
 from viam.proto.api.component.gps import (GPSServiceStub, ReadAltitudeRequest,
                                           ReadAltitudeResponse,
@@ -15,6 +18,7 @@ class GPSClient(GPS):
     """
 
     def __init__(self, name: str, channel: Channel):
+        self.channel = channel
         self.client = GPSServiceStub(channel)
         super().__init__(name)
 
@@ -35,3 +39,6 @@ class GPSClient(GPS):
         request = ReadSpeedRequest(name=self.name)
         response: ReadSpeedResponse = await self.client.ReadSpeed(request)
         return response.speed_mm_per_sec
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

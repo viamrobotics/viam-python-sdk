@@ -1,4 +1,7 @@
+from typing import Any, Dict
+
 from grpclib.client import Channel
+from viam.components.generic.client import do_command
 from viam.proto.api.component.servo import (GetPositionRequest,
                                             GetPositionResponse, MoveRequest,
                                             ServoServiceStub)
@@ -12,6 +15,7 @@ class ServoClient(Servo):
     """
 
     def __init__(self, name: str, channel: Channel):
+        self.channel = channel
         self.client = ServoServiceStub(channel)
         super().__init__(name)
 
@@ -23,3 +27,6 @@ class ServoClient(Servo):
     async def move(self, angle: int):
         request = MoveRequest(name=self.name, angle_deg=angle)
         await self.client.Move(request)
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

@@ -1,7 +1,8 @@
 from multiprocessing import Queue
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 from grpclib.client import Channel
+from viam.components.generic.client import do_command
 from viam.proto.api.common import BoardStatus
 from viam.proto.api.component.board import (BoardServiceStub,
                                             GetDigitalInterruptValueRequest,
@@ -103,10 +104,11 @@ class BoardClient(Board):
     """
 
     def __init__(self, name: str, channel: Channel):
-        self.name = name
+        self.channel = channel
         self.client = BoardServiceStub(channel)
         self._analog_reader_names: Optional[List[str]] = None
         self._digital_interrupt_names: Optional[List[str]] = None
+        super().__init__(name)
 
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
         return AnalogReaderClient(name, self)
@@ -141,3 +143,6 @@ class BoardClient(Board):
 
     async def model_attributes(self) -> Board.Attributes:
         return Board.Attributes(remote=True)
+
+    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

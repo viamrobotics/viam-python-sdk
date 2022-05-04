@@ -2,6 +2,7 @@ import pytest
 from grpclib.testing import ChannelFor
 from viam.components.arm import ArmClient
 from viam.components.arm.service import ArmService
+from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.common import Pose
 from viam.proto.api.component.arm import (ArmServiceStub,
@@ -49,6 +50,11 @@ class TestArm:
     async def test_get_joint_positions(self):
         jp = await self.arm.get_joint_positions()
         assert jp == self.joint_pos
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        with pytest.raises(NotImplementedError):
+            await self.arm.do({'command': 'args'})
 
 
 class TestService:
@@ -148,3 +154,10 @@ class TestClient:
             client = ArmClient(self.name, channel)
             jp = await client.get_joint_positions()
             assert jp == self.joint_pos
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+            client = ArmClient(self.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})

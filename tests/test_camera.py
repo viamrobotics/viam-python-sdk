@@ -5,6 +5,7 @@ from grpclib.testing import ChannelFor
 from PIL import Image
 from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraService
+from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.camera import (CameraServiceStub,
                                              GetFrameRequest, GetFrameResponse,
@@ -37,6 +38,12 @@ def service(camera: Camera) -> CameraService:
     return CameraService(rm)
 
 
+@pytest.fixture(scope='function')
+def generic_service(camera: Camera) -> GenericService:
+    manager = ResourceManager([camera])
+    return GenericService(manager)
+
+
 class TestCamera:
 
     @pytest.mark.asyncio
@@ -48,6 +55,11 @@ class TestCamera:
     async def test_get_point_cloud(self, camera: Camera, point_cloud: bytes):
         pc, _ = await camera.get_point_cloud()
         assert pc == point_cloud
+
+    @pytest.mark.asyncio
+    async def test_do(self, camera: Camera):
+        with pytest.raises(NotImplementedError):
+            await camera.do({'command': 'args'})
 
 
 class TestService:
@@ -124,3 +136,10 @@ class TestClient:
             camera = CameraClient('camera', channel)
             pc, _ = await camera.get_point_cloud()
             assert pc == point_cloud
+
+    @pytest.mark.asyncio
+    async def test_do(self, service: CameraService, generic_service: GenericService):
+        async with ChannelFor([service, generic_service]) as channel:
+            client = CameraClient('camera', channel)
+            with pytest.raises(NotImplementedError):
+                await client.do({'command': 'args'})
