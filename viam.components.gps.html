@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="viam.components.gps.client module" href="viam.components.gps.client.html" />
-    <link rel="prev" title="viam.components.gantry.service module" href="viam.components.gantry.service.html" /> 
+    <link rel="prev" title="viam.components.generic.service module" href="viam.components.generic.service.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -161,6 +161,26 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dd><p>Bases: <a class="reference internal" href="viam.components.gps.gps.html#viam.components.gps.gps.GPS" title="viam.components.gps.gps.GPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">viam.components.gps.gps.GPS</span></code></a></p>
 <p>gRPC client for the GPS component.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gps.GPSClient.do">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.gps.GPSClient.do" title="Permalink to this definition"></a></dt>
+<dd><p>Send/Receive arbitrary commands</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Result of the executed command</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.components.gps.GPSClient.read_altitude">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_altitude</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#viam.components.gps.GPSClient.read_altitude" title="Permalink to this definition"></a></dt>
 <dd><p>Get the current altitude.</p>
@@ -279,7 +299,7 @@ GPS measurements of latitude/longitude, altitude, and speed.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="viam.components.gantry.service.html" class="btn btn-neutral float-left" title="viam.components.gantry.service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="viam.components.generic.service.html" class="btn btn-neutral float-left" title="viam.components.generic.service module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="viam.components.gps.client.html" class="btn btn-neutral float-right" title="viam.components.gps.client module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

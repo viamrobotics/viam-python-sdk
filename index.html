@@ -141,22 +141,19 @@ select the <code class="docutils literal notranslate"><span class="pre">CONNECT<
 that the viam-server instance on your robot is alive, and that the computer running the program is able to connect to that instance.</p>
 <section id="accessing-a-component">
 <h4>Accessing a component:<a class="headerlink" href="#accessing-a-component" title="Permalink to this headline"></a></h4>
-<p>First you’ll need to import the component’s client. Generically this should look:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.component</span> <span class="kn">import</span> <span class="n">ComponentClient</span>
+<p>First you’ll need to access the RobotClient. This should look:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 </pre></div>
 </div>
-<p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.motor</span> <span class="kn">import</span> <span class="n">MotorClient</span>
+<p>Then to instantiate the robot, you’ll call one of two class methods, <code class="docutils literal notranslate"><span class="pre">RobotClient.at_address</span></code>, <code class="docutils literal notranslate"><span class="pre">RobotClient.with_channel</span></code>, which will
+return a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> that can be used to access the components of the robot.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Then to instantiate a client, you’ll call its constructor, which typically takes <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">channel</span></code> as arguements,
-where <code class="docutils literal notranslate"><span class="pre">channel</span></code> is our connection to the robot, and <code class="docutils literal notranslate"><span class="pre">name</span></code> is the name of the component in that robot’s JSON config. Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">left_motor</span> <span class="o">=</span> <span class="n">MotorClient</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>You can then use this Component object’s methods to issue viam’s gRPC API calls. Take a look at the component documentation to
+<p>You can then use this Robot to access components by name. Take a look at the component documentation to
 see a full list of methods for the object and their arguments. For Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">left_motor</span><span class="o">.</span><span class="n">go_for</span><span class="p">(</span><span class="n">rpm</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">revolutions</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s1">&#39;my_motor&#39;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">motor</span><span class="o">.</span><span class="n">go_for</span><span class="p">(</span><span class="n">rpm</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">revolutions</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -188,6 +185,32 @@ so you’ll want to connect insecurely. To connect your python client applicatio
 <span class="w">  </span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
+<p>And to ensure that the python server starts up with the rest of the robot, you can add it as a process. <strong>NOTE</strong>: The <code class="docutils literal notranslate"><span class="pre">viam-server</span></code>
+starts as a root process, so you may need to switch users to run the python SDK server.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sudo&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;-u&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;pi&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;/home/pi/python-server.py&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="the-do-method">
+<h3>The <code class="docutils literal notranslate"><span class="pre">do</span></code> method<a class="headerlink" href="#the-do-method" title="Permalink to this headline"></a></h3>
+<p>Every component provided by the SDK includes a generic <code class="docutils literal notranslate"><span class="pre">do</span></code> method which is useful to execute commands that are not already defined on the component.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If this is not generic enough, you can also create your own custom component by subclassing the <code class="docutils literal notranslate"><span class="pre">viam.components.generic.Generic</span></code> component
+class. For more details, you can view the documentation for the <code class="docutils literal notranslate"><span class="pre">Generic</span></code> component.</p>
 </section>
 <section id="documentation">
 <h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h3>
