@@ -1,0 +1,29 @@
+name: Bump Prerelease Version
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  bump-version:
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Bump Version
+        id: bump_version
+        run: |
+          SDK_VERSION=$(python3 -c "import viam; v = viam.__version__.split('.'); v[-1] = str(int(v[-1])+1); print('.'.join(v))")
+          echo "__version__ = '$SDK_VERSION'" > viam/_version.py
+          echo "SDK_VERSION=$SDK_VERSION" >> $GITHUB_ENV
+
+      - name: Commit + Push
+        uses: EndBug/add-and-commit@v9.0.0
+        with:
+          default_author: github_actions
+          message: 'Bumping prerelease version to v${{ env.SDK_VERSION }}'

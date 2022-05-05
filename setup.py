@@ -1,7 +1,10 @@
 import os
-from typing import List
-from setuptools import setup, find_packages
 import pathlib
+from typing import List
+
+from setuptools import find_packages, setup
+
+import viam
 
 here = pathlib.Path(__file__).parent.resolve()
 
@@ -19,7 +22,7 @@ def get_packages(root: str) -> List[str]:
 
 setup(
     name='viam',
-    version='0.0.1',
+    version=viam.__version__,
     author='Viam',
     author_email='naveed@viam.com',
     description='Viam Python SDK to connect to robots running the Viam RDK',

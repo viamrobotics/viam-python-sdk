@@ -1,5 +1,6 @@
 """
 .. include:: ../README.md
 """
+from ._version import __version__  # noqa: F401
+
 __docformat__ = "restructuredtext"
-__version__ = '0.0.1'
