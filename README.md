@@ -21,13 +21,6 @@ Because the SDK is under active development, we suggest that you upgrade the pac
 
 `pip install -U git+https://YOUR_ACCESS_TOKEN@github.com/viamrobotics/python-sdk.git`
 
-**Somewhat-Automatic Updates**
-
-There is a helper function included with the SDK that will take care of the upgrade proceess somewhat automatically. You can run
-`viam-update YOUR_ACCESS_TOKEN` from your terminal and it will automatically update to the latest package.
-
-You can also set the environment variable `GITHUB_ACCESS_TOKEN` to your personal access token, which will make the above command simply `viam-update`.
-
 ## Usage
 To connect to a server, you can use the `viam.rpc.dial.dial_direct` function, passing in an address and `DialOptions` (`viam.rpc.dial.DialOptions`). This will return a gRPC `Channel` which you can use to instantiate component clients, e.g.
 
