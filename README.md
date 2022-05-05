@@ -16,12 +16,10 @@ This will install the current `main` branch to your project. If you would like a
 
 `pip install git+https://YOUR_ACCESS_TOKEN@github.com/viamrobotics/python-sdk.git@FULL_COMMIT_HASH`
 
-It is recommended that you install using a commit hash, as that will allow you to upgrade/install over an existing installation, rather than having to uninstall and reinstall to upgrade.
-
 ### Upgrading
-To upgrade the SDK, you must either
-* First uninstall the SDK (`pip uninstall viam`) and then re-install using the above instructions
-* Install using a specific commit hash
+Because the SDK is under active development, we suggest that you upgrade the package frequently. To do so, simply run the `pip install` command with the `-U` option:
+
+`pip install -U git+https://YOUR_ACCESS_TOKEN@github.com/viamrobotics/python-sdk.git`
 
 **Somewhat-Automatic Updates**
 

@@ -63,7 +63,4 @@ setup(
         'Pillow',
         'typing-extensions',
     ],
-    entry_points={
-        'console_scripts': ['viam-update=viam.utils:update', ],
-    }
 )

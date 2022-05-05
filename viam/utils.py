@@ -1,5 +1,3 @@
-import os
-import sys
 from typing import Any, Dict, List, SupportsFloat
 
 from google.protobuf.json_format import MessageToDict
@@ -102,21 +100,3 @@ def message_to_struct(message: Message) -> Struct:
     struct = Struct()
     struct.update(MessageToDict(message))
     return struct
-
-
-def update() -> None:
-    """
-    TODO (njooma): Only here while we don't have this package published on pypi
-    """
-    try:
-        token = sys.argv[1]
-    except IndexError:
-        token = os.environ.get('GITHUB_ACCESS_TOKEN', None)
-        if not token:
-            print("[ERROR] GitHub Personal Access Token is required")
-            return
-    os.system('pip uninstall -y viam')
-    os.system(
-        f'pip install git+https://{token}' +
-        '@github.com/viamrobotics/python-sdk.git'
-    )
