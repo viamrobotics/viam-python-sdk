@@ -102,14 +102,10 @@
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git</span></code></p>
 <p>This will install the current <code class="docutils literal notranslate"><span class="pre">main</span></code> branch to your project. If you would like a specific branch or commit, you can do so with the command</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git&#64;FULL_COMMIT_HASH</span></code></p>
-<p>It is recommended that you install using a commit hash, as that will allow you to upgrade/install over an existing installation, rather than having to uninstall and reinstall to upgrade.</p>
 <section id="upgrading">
 <h4>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline"></a></h4>
-<p>To upgrade the SDK, you must either</p>
-<ul class="simple">
-<li><p>First uninstall the SDK (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">uninstall</span> <span class="pre">viam</span></code>) and then re-install using the above instructions</p></li>
-<li><p>Install using a specific commit hash</p></li>
-</ul>
+<p>Because the SDK is under active development, we suggest that you upgrade the package frequently. To do so, simply run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-U</span></code> option:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git</span></code></p>
 <p><strong>Somewhat-Automatic Updates</strong></p>
 <p>There is a helper function included with the SDK that will take care of the upgrade proceess somewhat automatically. You can run
 <code class="docutils literal notranslate"><span class="pre">viam-update</span> <span class="pre">YOUR_ACCESS_TOKEN</span></code> from your terminal and it will automatically update to the latest package.</p>
