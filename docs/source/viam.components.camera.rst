@@ -9,7 +9,7 @@ Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.components.camera.camera
    viam.components.camera.client

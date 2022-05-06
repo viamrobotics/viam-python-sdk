@@ -9,7 +9,7 @@ Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.components.board.board
    viam.components.board.client

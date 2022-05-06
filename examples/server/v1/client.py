@@ -1,66 +1,50 @@
 import asyncio
-import typing
 from random import randint
 
-from viam.components.camera import CameraClient
-from viam.components.imu import IMUClient
-from viam.components.servo import ServoClient
-from viam.proto.api.service.metadata import (MetadataServiceStub,
-                                             ResourcesRequest,
-                                             ResourcesResponse)
-from viam.proto.api.service.status import (GetStatusRequest, GetStatusResponse,
-                                           StatusServiceStub)
-from viam.rpc.dial import DialOptions, dial_direct
+from viam.components.camera import Camera
+from viam.components.imu import IMU
+from viam.components.servo import Servo
+from viam.robot.client import RobotClient
+from viam.rpc.dial import DialOptions
+from viam.services.types import ServiceType
 
 
 async def client():
-    opts = DialOptions(insecure=True)
-    async with await dial_direct('localhost:9090', opts) as channel:
-
-        response: typing.Any
+    opts = RobotClient.Options(dial_options=DialOptions(insecure=True))
+    async with await RobotClient.at_address('localhost:9090', opts) as robot:
 
         print('\n#### METADATA ####')
-        service = MetadataServiceStub(channel)
-        request = ResourcesRequest()
-        response = await service.Resources(request)
-        r = typing.cast(ResourcesResponse, response)
-        print(f'Metadata response received: {r.resources}')
+        service = robot.get_service(ServiceType.METADATA)
+        print(f'Metadata response received: {await service.resources()}')
 
-        print('\n#### ROBOT ####')
-        service = StatusServiceStub(channel)
-        request = GetStatusRequest()
-        response = await service.GetStatus(request)
-        r = typing.cast(GetStatusResponse, response)
-        print(f'Robot status response received: {r.status}')
+        print('\n#### STATUS ####')
+        service = robot.get_service(ServiceType.STATUS)
+        print(f'Robot status response received: {service.get_status()}')
 
         print('\n#### IMU ####')
-        client = IMUClient(name='imu0', channel=channel)
-
-        acceleration = await client.read_acceleration()
+        imu = IMU.from_robot(robot, 'imu0')
+        acceleration = await imu.read_acceleration()
         print(f'IMU response received: acceleration is {acceleration}')
 
-        angular_velocity = await client.read_angular_velocity()
-        print(
-            f'IMU response received: angular velocity is {angular_velocity}')
+        angular_velocity = await imu.read_angular_velocity()
+        print(f'IMU response received: angular velocity is {angular_velocity}')
 
-        orientation = await client.read_orientation()
+        orientation = await imu.read_orientation()
         print(f'IMU response received: orientation is {orientation}')
 
         print('\n#### SERVO ####')
-        client = ServoClient(name='servo0', channel=channel)
+        servo = Servo.from_robot(robot, 'servo0')
 
         pos = randint(0, 180)
-        await client.move(pos)
+        await servo.move(pos)
         print(f'Response received: moved to position {pos}')
 
-        position_deg = await client.get_position()
-        print(
-            f'Response received: current position is {position_deg}'
-        )
+        position_deg = await servo.get_position()
+        print(f'Response received: current position is {position_deg}')
 
         print('\n#### CAMERA ####')
-        client = CameraClient('camera0', channel)
-        img = await client.get_frame()
+        camera = Camera.from_robot(robot, 'camera0')
+        img = await camera.get_frame()
         img.show()
         await asyncio.sleep(1)
         img.close()

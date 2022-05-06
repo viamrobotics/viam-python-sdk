@@ -9,7 +9,7 @@ Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.components.pose_tracker.client
    viam.components.pose_tracker.pose_tracker
