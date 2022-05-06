@@ -19,7 +19,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="viam.components.arm package" href="viam.components.arm.html" />
-    <link rel="prev" title="viam package" href="viam.html" /> 
+    <link rel="prev" title="Welcome to the Viam Python SDK documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,21 +39,38 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">viam</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="viam.html">viam package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="viam.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">viam.components package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="viam.proto.html">viam.proto package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="viam.robot.html">viam.robot package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="viam.rpc.html">viam.rpc package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="viam.services.html">viam.services package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">viam.components package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-a-component">Accessing a component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementing-a-component-and-using-the-python-sdk-as-server">Implementing a component and using the python-sdk as server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.arm.html">viam.components.arm package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.base.html">viam.components.base package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.board.html">viam.components.board package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.camera.html">viam.components.camera package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.gantry.html">viam.components.gantry package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.generic.html">viam.components.generic package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.gps.html">viam.components.gps package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.gripper.html">viam.components.gripper package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.imu.html">viam.components.imu package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.motor.html">viam.components.motor package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.pose_tracker.html">viam.components.pose_tracker package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.sensor.html">viam.components.sensor package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.servo.html">viam.components.servo package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="viam.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.component_base.html">viam.components.component_base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.resource_manager.html">viam.components.resource_manager module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.service_base.html">viam.components.service_base module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam.components.types.html">viam.components.types module</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="viam.services.html">viam.services package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.robot.html">viam.robot package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.rpc.html">viam.rpc package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.proto.html">viam.proto package</a></li>
 </ul>
 
         </div>
@@ -70,8 +87,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="modules.html">viam</a> &raquo;</li>
-          <li><a href="viam.html">viam package</a> &raquo;</li>
       <li>viam.components package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/viam.components.rst.txt" rel="nofollow"> View page source</a>
@@ -147,19 +162,58 @@ it as a <code class="docutils literal notranslate"><span class="pre">remote</spa
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.arm.html">viam.components.arm package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.base.html">viam.components.base package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.board.html">viam.components.board package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.camera.html">viam.components.camera package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.gantry.html">viam.components.gantry package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.generic.html">viam.components.generic package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.gps.html">viam.components.gps package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.gripper.html">viam.components.gripper package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.imu.html">viam.components.imu package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.motor.html">viam.components.motor package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.pose_tracker.html">viam.components.pose_tracker package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.sensor.html">viam.components.sensor package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.servo.html">viam.components.servo package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.arm.html">viam.components.arm package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.arm.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.base.html">viam.components.base package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.base.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.board.html">viam.components.board package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.board.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.camera.html">viam.components.camera package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.camera.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.gantry.html">viam.components.gantry package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.gantry.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.generic.html">viam.components.generic package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.generic.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.gps.html">viam.components.gps package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.gps.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.gripper.html">viam.components.gripper package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.gripper.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.imu.html">viam.components.imu package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.imu.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.motor.html">viam.components.motor package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.motor.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.pose_tracker.html">viam.components.pose_tracker package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.pose_tracker.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.sensor.html">viam.components.sensor package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.sensor.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="viam.components.servo.html">viam.components.servo package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="viam.components.servo.html#submodules">Submodules</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -180,7 +234,7 @@ it as a <code class="docutils literal notranslate"><span class="pre">remote</spa
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="viam.html" class="btn btn-neutral float-left" title="viam package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the Viam Python SDK documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="viam.components.arm.html" class="btn btn-neutral float-right" title="viam.components.arm package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
