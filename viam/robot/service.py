@@ -5,14 +5,10 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   CancelOperationRequest,
                                   CancelOperationResponse,
                                   GetOperationsRequest, GetOperationsResponse,
-                                  ResourceRunCommandRequest,
-                                  ResourceRunCommandResponse, RobotServiceBase)
+                                  RobotServiceBase)
 
 
 class RobotService(RobotServiceBase, ComponentServiceBase):
-
-    async def ResourceRunCommand(self, stream: Stream[ResourceRunCommandRequest, ResourceRunCommandResponse]) -> None:
-        pass
 
     async def GetOperations(self, stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
         pass
