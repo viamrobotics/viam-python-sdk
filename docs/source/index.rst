@@ -2,10 +2,14 @@ Welcome to the Viam Python SDK documentation!
 =============================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-   modules
+   viam.components.rst
+   viam.services.rst
+   viam.robot.rst
+   viam.rpc.rst
+   viam.proto.rst
 
 
 Indices and tables

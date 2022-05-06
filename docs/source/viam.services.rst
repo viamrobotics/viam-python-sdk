@@ -9,7 +9,7 @@ Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.services.metadata
    viam.services.status
@@ -18,9 +18,9 @@ Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.services.frame_system
    viam.services.motion
-   viam.services.object_segmentation
    viam.services.types
+   viam.services.vision

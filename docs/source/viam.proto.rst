@@ -9,6 +9,6 @@ Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.proto.api

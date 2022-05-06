@@ -9,7 +9,7 @@ Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.components
    viam.proto
@@ -21,8 +21,9 @@ Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.errors
    viam.logging
+   viam.registry
    viam.utils

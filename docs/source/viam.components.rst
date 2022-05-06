@@ -9,13 +9,14 @@ Subpackages
 -----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.components.arm
    viam.components.base
    viam.components.board
    viam.components.camera
    viam.components.gantry
+   viam.components.generic
    viam.components.gps
    viam.components.gripper
    viam.components.imu
@@ -28,7 +29,7 @@ Submodules
 ----------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    viam.components.component_base
    viam.components.resource_manager
