@@ -61,7 +61,7 @@ def process_docstring(app, what, name, obj, options, lines):
     if '!markdown' not in lines[0]:
         return
     md = '\n'.join(lines[1:])
-    rst = pypandoc.convert(md, 'rst', 'md')
+    rst = pypandoc.convert_text(md, 'rst', 'md')
     lines.clear()
     lines += rst.splitlines()
 
