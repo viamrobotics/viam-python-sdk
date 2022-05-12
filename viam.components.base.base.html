@@ -108,14 +108,14 @@ base implementations. This cannot be used on its own. If the <cite>__init__()</c
 overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.move_arc">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_arc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.move_arc" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_arc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.move_arc" title="Permalink to this definition"></a></dt>
 <dd><p>Move the base in an arc the given <cite>distance</cite>, expressed in millimeters,
 at the given <cite>velocity</cite>, expressed in millimeters per second, turning <cite>angle</cite>
 degrees in the process.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
 When <cite>distance</cite> is 0, the the base will spin.
 When <cite>angle</cite> is 0, the the base will move in a straight line.
-When <cite>velocity</cite> is 0, the base will stop.</p>
+When <cite>velocity</cite> is 0, the base will stop.
+This method blocks until completed or cancelled</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -125,7 +125,6 @@ Negative implies backwards.</p></li>
 Negative implies backwards.</p></li>
 <li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to move.
 Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – Whether this method should be blocking.</p></li>
 </ul>
 </dd>
 </dl>
@@ -133,11 +132,11 @@ Negative implies backwards.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.move_straight">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.move_straight" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.move_straight" title="Permalink to this definition"></a></dt>
 <dd><p>Move the base in a straight line the given <cite>distance</cite>, expressed in millimeters,
 at the given <cite>velocity</cite>, expressed in millimeters per second.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
-When <cite>distance</cite> or <cite>velocity</cite> is 0, the base will stop.</p>
+When <cite>distance</cite> or <cite>velocity</cite> is 0, the base will stop.
+This method blocks until completed or cancelled</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -145,7 +144,6 @@ When <cite>distance</cite> or <cite>velocity</cite> is 0, the base will stop.</p
 Negative implies backwards.</p></li>
 <li><p><strong>velocity</strong> (<em>float</em>) – The velocity (in millimeters per second) to move.
 Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – whether this method should be blocking.</p></li>
 </ul>
 </dd>
 </dl>
@@ -153,11 +151,11 @@ Negative implies backwards.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.spin">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blocking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.spin" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.base.Base.spin" title="Permalink to this definition"></a></dt>
 <dd><p>Spin the base in place <cite>angle</cite> degrees, at the given angular <cite>velocity</cite>,
 expressed in degrees per second.
-When <cite>blocking</cite> is true, the method not return until the move is complete.
-When <cite>velocity</cite> is 0, the base will stop.</p>
+When <cite>velocity</cite> is 0, the base will stop.
+This method blocks until completed or cancelled</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -165,7 +163,6 @@ When <cite>velocity</cite> is 0, the base will stop.</p>
 Negative implies backwards.</p></li>
 <li><p><strong>velocity</strong> (<em>float</em>) – The angular velocity (in degrees per second).
 to spin. Negative implies backwards.</p></li>
-<li><p><strong>blocking</strong> (<em>bool</em>) – Whether this method should be blocking.</p></li>
 </ul>
 </dd>
 </dl>
