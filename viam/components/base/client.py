@@ -23,13 +23,11 @@ class BaseClient(Base):
         self,
         distance: int,
         velocity: float,
-        blocking: bool
     ):
         request = MoveStraightRequest(
             name=self.name,
             distance_mm=distance,
             mm_per_sec=velocity,
-            block=blocking
         )
         await self.client.MoveStraight(request)
 
@@ -38,23 +36,20 @@ class BaseClient(Base):
         distance: int,
         velocity: float,
         angle: float,
-        blocking: bool
     ):
         request = MoveArcRequest(
             name=self.name,
             distance_mm=distance,
             mm_per_sec=velocity,
             angle_deg=angle,
-            block=blocking
         )
         await self.client.MoveArc(request)
 
-    async def spin(self, angle: float, velocity: float, blocking: bool):
+    async def spin(self, angle: float, velocity: float):
         request = SpinRequest(
             name=self.name,
             angle_deg=angle,
             degs_per_sec=velocity,
-            block=blocking
         )
         await self.client.Spin(request)
 
