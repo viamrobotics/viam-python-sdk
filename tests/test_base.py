@@ -42,7 +42,7 @@ class TestBase:
         velocities = [random()+1 for _ in range(4)]
 
         for (i, (d, v)) in enumerate(zip(distances, velocities)):
-            await base.move_straight(d, v, False)
+            await base.move_straight(d, v)
             assert base.position == sum(distances[:i+1])
 
     @pytest.mark.asyncio
@@ -52,7 +52,7 @@ class TestBase:
         angles = [randint(-180, 180) for _ in range(8)]
 
         for (i, (d, v, a)) in enumerate(zip(distances, velocities, angles)):
-            await base.move_arc(d, v, a, False)
+            await base.move_arc(d, v, a)
             assert base.position == sum(distances[:i+1])
             assert base.angle == sum(angles[:i+1])
 
@@ -62,31 +62,31 @@ class TestBase:
         velocities = [random()+1 for _ in range(4)]
 
         for (i, (a, v)) in enumerate(zip(angles, velocities)):
-            await base.spin(a, v, False)
+            await base.spin(a, v)
             assert base.angle == sum(angles[:i+1])
 
     @pytest.mark.asyncio
     async def test_stop(self, base: MockBase):
         assert base.stopped is True
 
-        await base.move_straight(1, 1, False)
+        await base.move_straight(1, 1)
         assert base.stopped is False
         await base.stop()
         assert base.stopped is True
 
-        await base.move_straight(1, 1, False)
+        await base.move_straight(1, 1)
         assert base.stopped is False
-        await base.move_straight(0, 0, False)
+        await base.move_straight(0, 0)
         assert base.stopped is True
 
-        await base.move_arc(1, 1, 1, False)
+        await base.move_arc(1, 1, 1)
         assert base.stopped is False
-        await base.move_arc(0, 0, 0, False)
+        await base.move_arc(0, 0, 0)
         assert base.stopped is True
 
-        await base.spin(1, 1, False)
+        await base.spin(1, 1)
         assert base.stopped is False
-        await base.spin(0, 0, False)
+        await base.spin(0, 0)
         assert base.stopped is True
 
     @pytest.mark.asyncio
@@ -109,7 +109,6 @@ class TestService:
                     name=base.name,
                     distance_mm=d,
                     mm_per_sec=v,
-                    block=False
                 )
                 await client.MoveStraight(request)
                 assert base.position == sum(distances[:i+1])
@@ -129,7 +128,6 @@ class TestService:
                     distance_mm=d,
                     mm_per_sec=v,
                     angle_deg=a,
-                    block=False
                 )
                 await client.MoveArc(request)
                 assert base.position == sum(distances[:i+1])
@@ -147,7 +145,6 @@ class TestService:
                     name=base.name,
                     angle_deg=a,
                     degs_per_sec=v,
-                    block=False
                 )
                 await client.Spin(request)
                 assert base.angle == sum(angles[:i+1])
@@ -163,7 +160,6 @@ class TestService:
                 name=base.name,
                 distance_mm=1,
                 mm_per_sec=1,
-                block=False
             )
             await client.MoveStraight(request)
             assert base.stopped is False
@@ -174,7 +170,6 @@ class TestService:
                 name=base.name,
                 distance_mm=1,
                 mm_per_sec=1,
-                block=False
             )
             await client.MoveStraight(request)
             assert base.stopped is False
@@ -182,7 +177,6 @@ class TestService:
                 name=base.name,
                 distance_mm=0,
                 mm_per_sec=0,
-                block=False
             )
             await client.MoveStraight(request)
             assert base.stopped is True
@@ -192,7 +186,6 @@ class TestService:
                 distance_mm=1,
                 mm_per_sec=1,
                 angle_deg=1,
-                block=False
             )
             await client.MoveArc(request)
             assert base.stopped is False
@@ -201,7 +194,6 @@ class TestService:
                 distance_mm=0,
                 mm_per_sec=0,
                 angle_deg=0,
-                block=False
             )
             await client.MoveArc(request)
             assert base.stopped is True
@@ -210,7 +202,6 @@ class TestService:
                 name=base.name,
                 angle_deg=1,
                 degs_per_sec=1,
-                block=False
             )
             await client.Spin(request)
             assert base.stopped is False
@@ -218,7 +209,6 @@ class TestService:
                 name=base.name,
                 angle_deg=0,
                 degs_per_sec=0,
-                block=False
             )
             await client.Spin(request)
             assert base.stopped is True
@@ -234,7 +224,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
             for (i, (d, v)) in enumerate(zip(distances, velocities)):
-                await client.move_straight(d, v, False)
+                await client.move_straight(d, v)
                 assert base.position == sum(distances[:i+1])
 
     @pytest.mark.asyncio
@@ -247,7 +237,7 @@ class TestClient:
             client = BaseClient(base.name, channel)
             for (i, (d, v, a)) in enumerate(
                     zip(distances, velocities, angles)):
-                await client.move_arc(d, v, a, False)
+                await client.move_arc(d, v, a)
                 assert base.position == sum(distances[:i+1])
                 assert base.angle == sum(angles[:i+1])
 
@@ -259,7 +249,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
             for (i, (a, v)) in enumerate(zip(angles, velocities)):
-                await client.spin(a, v, False)
+                await client.spin(a, v)
                 assert base.angle == sum(angles[:i+1])
 
     @pytest.mark.asyncio
@@ -269,24 +259,24 @@ class TestClient:
 
             assert base.stopped is True
 
-            await client.move_straight(1, 1, False)
+            await client.move_straight(1, 1)
             assert base.stopped is False
             await client.stop()
             assert base.stopped is True
 
-            await client.move_straight(1, 1, False)
+            await client.move_straight(1, 1)
             assert base.stopped is False
-            await client.move_straight(0, 0, False)
+            await client.move_straight(0, 0)
             assert base.stopped is True
 
-            await client.move_arc(1, 1, 1, False)
+            await client.move_arc(1, 1, 1)
             assert base.stopped is False
-            await client.move_arc(0, 0, 0, False)
+            await client.move_arc(0, 0, 0)
             assert base.stopped is True
 
-            await client.spin(1, 1, False)
+            await client.spin(1, 1)
             assert base.stopped is False
-            await client.spin(0, 0, False)
+            await client.spin(0, 0)
             assert base.stopped is True
 
     @pytest.mark.asyncio

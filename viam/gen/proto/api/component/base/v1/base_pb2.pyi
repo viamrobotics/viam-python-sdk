@@ -14,20 +14,17 @@ class MoveStraightRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     DISTANCE_MM_FIELD_NUMBER: builtins.int
     MM_PER_SEC_FIELD_NUMBER: builtins.int
-    BLOCK_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of a base'
     distance_mm: builtins.int
     'Desired travel distance in millimeters'
     mm_per_sec: builtins.float
     'Desired travel velocity in millimeters/second'
-    block: builtins.bool
-    'Whether the movement should block all other\n    movement commands to base until this movement is complete\n    '
 
-    def __init__(self, *, name: typing.Text=..., distance_mm: builtins.int=..., mm_per_sec: builtins.float=..., block: builtins.bool=...) -> None:
+    def __init__(self, *, name: typing.Text=..., distance_mm: builtins.int=..., mm_per_sec: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['block', b'block', 'distance_mm', b'distance_mm', 'mm_per_sec', b'mm_per_sec', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['distance_mm', b'distance_mm', 'mm_per_sec', b'mm_per_sec', 'name', b'name']) -> None:
         ...
 global___MoveStraightRequest = MoveStraightRequest
 
@@ -44,7 +41,6 @@ class MoveArcRequest(google.protobuf.message.Message):
     DISTANCE_MM_FIELD_NUMBER: builtins.int
     MM_PER_SEC_FIELD_NUMBER: builtins.int
     ANGLE_DEG_FIELD_NUMBER: builtins.int
-    BLOCK_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of a base'
     distance_mm: builtins.int
@@ -53,13 +49,11 @@ class MoveArcRequest(google.protobuf.message.Message):
     'Desired speed in millimeters per second'
     angle_deg: builtins.float
     'Desired angle in degrees'
-    block: builtins.bool
-    'Whether the movement should block all other\n    movement commands to base until this movement is complete\n    '
 
-    def __init__(self, *, name: typing.Text=..., distance_mm: builtins.int=..., mm_per_sec: builtins.float=..., angle_deg: builtins.float=..., block: builtins.bool=...) -> None:
+    def __init__(self, *, name: typing.Text=..., distance_mm: builtins.int=..., mm_per_sec: builtins.float=..., angle_deg: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['angle_deg', b'angle_deg', 'block', b'block', 'distance_mm', b'distance_mm', 'mm_per_sec', b'mm_per_sec', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['angle_deg', b'angle_deg', 'distance_mm', b'distance_mm', 'mm_per_sec', b'mm_per_sec', 'name', b'name']) -> None:
         ...
 global___MoveArcRequest = MoveArcRequest
 
@@ -75,20 +69,17 @@ class SpinRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     ANGLE_DEG_FIELD_NUMBER: builtins.int
     DEGS_PER_SEC_FIELD_NUMBER: builtins.int
-    BLOCK_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of a base'
     angle_deg: builtins.float
     'Desired angle'
     degs_per_sec: builtins.float
     'Desired angular velocity'
-    block: builtins.bool
-    'Whether the movement should block all other\n    movement commands to base until this movement is complete\n    '
 
-    def __init__(self, *, name: typing.Text=..., angle_deg: builtins.float=..., degs_per_sec: builtins.float=..., block: builtins.bool=...) -> None:
+    def __init__(self, *, name: typing.Text=..., angle_deg: builtins.float=..., degs_per_sec: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['angle_deg', b'angle_deg', 'block', b'block', 'degs_per_sec', b'degs_per_sec', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['angle_deg', b'angle_deg', 'degs_per_sec', b'degs_per_sec', 'name', b'name']) -> None:
         ...
 global___SpinRequest = SpinRequest
 

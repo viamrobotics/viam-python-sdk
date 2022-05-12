@@ -71,7 +71,6 @@ class MockBase(Base):
         self,
         distance: int,
         velocity: float,
-        blocking: bool
     ):
         if distance == 0 or velocity == 0:
             return await self.stop()
@@ -88,10 +87,9 @@ class MockBase(Base):
         distance: int,
         velocity: float,
         angle: float,
-        blocking: bool
     ):
         if distance == 0:
-            return await self.spin(angle, velocity, blocking)
+            return await self.spin(angle, velocity)
 
         if velocity == 0:
             return await self.stop()
@@ -105,7 +103,7 @@ class MockBase(Base):
 
         self.stopped = False
 
-    async def spin(self, angle: float, velocity: float, blocking: bool):
+    async def spin(self, angle: float, velocity: float, ):
         if angle == 0 or velocity == 0:
             return await self.stop()
 

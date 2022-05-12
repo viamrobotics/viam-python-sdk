@@ -34,7 +34,6 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await base.move_straight(
             distance=request.distance_mm,
             velocity=request.mm_per_sec,
-            blocking=request.block
         )
         response = MoveStraightResponse()
         await stream.send_message(response)
@@ -54,7 +53,6 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             distance=request.distance_mm,
             velocity=request.mm_per_sec,
             angle=request.angle_deg,
-            blocking=request.block
         )
         response = MoveArcResponse()
         await stream.send_message(response)
@@ -73,7 +71,6 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await base.spin(
             angle=request.angle_deg,
             velocity=request.degs_per_sec,
-            blocking=request.block
         )
         response = SpinResponse()
         await stream.send_message(response)
