@@ -7,8 +7,9 @@ from viam.proto.api.component.inputcontroller import (
     GetControlsRequest, GetControlsResponse, GetEventsRequest,
     GetEventsResponse, InputControllerServiceBase, StreamEventsRequest,
     StreamEventsResponse, TriggerEventRequest, TriggerEventResponse)
+from viam.proto.api.component.inputcontroller import Event as PBEvent
 
-from .input import Control, ControlFunction, Controller, Event, EventType
+from .input import Control, Controller, Event, EventType
 
 
 class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Controller]):
@@ -68,21 +69,25 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
 
         for event in request.events:
             triggers = [EventType(et) for et in event.events]
+            print(event, triggers)
             if len(triggers):
-                await controller.register_control_callback(
+                controller.register_control_callback(
                     Control(event.control), triggers, ctrlFunc)
 
             cancelled_triggers = [EventType(et)
                                   for et in event.cancelled_events]
+            print(event, cancelled_triggers)
             if len(cancelled_triggers):
-                await controller.register_control_callback(
+                controller.register_control_callback(
                     Control(event.control), cancelled_triggers, None)
 
         while True:
-            pipe_r.recv
-
-        response = StreamEventsResponse()
-        await stream.send_message(response)
+            print("In the while true")
+            pb_event: PBEvent = pipe_r.recv()
+            print("Received event")
+            response = StreamEventsResponse(event=pb_event)
+            print("Response created, awaiting send message")
+            await stream.send_message(response)
 
     async def TriggerEvent(
         self,
@@ -93,8 +98,10 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         name = request.controller
         try:
             controller = self.get_component(name)
+            pb_event = request.event
+            event = Event.from_proto(pb_event)
+            await controller.trigger_event(event)
         except ComponentNotFoundError as e:
             raise e.grpc_error()
-
         response = TriggerEventResponse()
         await stream.send_message(response)

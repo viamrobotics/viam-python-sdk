@@ -67,3 +67,9 @@ class ServiceNotImplementedError(ViamError):
     def __init__(self, service: str):
         self.service = service
         self.message = f'Service {service} is not implemented on the Robot'
+
+
+class NotSupportedError(ViamError):
+    """
+    Exception raised when specific component functionality is not supported
+    """

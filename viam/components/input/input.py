@@ -3,13 +3,15 @@ import abc
 from dataclasses import dataclass
 from enum import Enum
 from typing import Callable, Dict, List, Optional
+from typing_extensions import Self
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from viam.components.component_base import ComponentBase
+from viam.errors import NotSupportedError
 from viam.proto.api.component.inputcontroller import Event as PBEvent
 
 
-class EventType(Enum):
+class EventType(str, Enum):
     """
     Represents the type of input event.
     """
@@ -58,7 +60,7 @@ class EventType(Enum):
     """
 
 
-class Control(Enum):
+class Control(str, Enum):
     """
     Control identifies the input (specific Axis or Button) of a controller.
     """
@@ -107,6 +109,15 @@ class Event:
             value=self.value
         )
 
+    @classmethod
+    def from_proto(cls, proto: PBEvent) -> Self:
+        return cls(
+            proto.time.ToSeconds(),
+            EventType(proto.event),
+            Control(proto.control),
+            proto.value
+        )
+
 
 ControlFunction = Callable[[Event], None]
 
@@ -140,7 +151,7 @@ class Controller(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def register_control_callback(
+    def register_control_callback(
         self,
         control: Control,
         triggers: List[EventType],
@@ -158,3 +169,11 @@ class Controller(ComponentBase):
                 specific triggers
         """
         ...
+
+    async def trigger_event(self, event: Event):
+        """Directly send an Event (such as a button press) from external code
+
+        Args:
+            event (Event): The event to trigger
+        """
+        raise NotSupportedError(f'Input controller named {self.name} does not support triggering events')
