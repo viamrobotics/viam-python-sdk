@@ -1,3 +1,4 @@
+import asyncio
 from multiprocessing import Pipe
 
 from grpclib.server import Stream
@@ -7,7 +8,6 @@ from viam.proto.api.component.inputcontroller import (
     GetControlsRequest, GetControlsResponse, GetEventsRequest,
     GetEventsResponse, InputControllerServiceBase, StreamEventsRequest,
     StreamEventsResponse, TriggerEventRequest, TriggerEventResponse)
-from viam.proto.api.component.inputcontroller import Event as PBEvent
 
 from .input import Control, Controller, Event, EventType
 
@@ -62,32 +62,50 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         except ComponentNotFoundError as e:
             raise e.grpc_error()
 
+        # Using Pipes to send event data back to this function so it can be streamed to clients
+        # The write pipe is added to the callbacks for a control, so whenever that control sends a watched event,,
+        # that event is sent through the pipe, where it will be read (further down) and sent over the stream
         pipe_r, pipe_w = Pipe(duplex=False)
 
         def ctrlFunc(event: Event):
-            pipe_w.send(event.proto)
+            pipe_w.send(event)
 
+        # Register the pipe callbacks
         for event in request.events:
             triggers = [EventType(et) for et in event.events]
-            print(event, triggers)
             if len(triggers):
                 controller.register_control_callback(
                     Control(event.control), triggers, ctrlFunc)
 
             cancelled_triggers = [EventType(et)
                                   for et in event.cancelled_events]
-            print(event, cancelled_triggers)
             if len(cancelled_triggers):
                 controller.register_control_callback(
                     Control(event.control), cancelled_triggers, None)
 
-        while True:
-            print("In the while true")
-            pb_event: PBEvent = pipe_r.recv()
-            print("Received event")
-            response = StreamEventsResponse(event=pb_event)
-            print("Response created, awaiting send message")
-            await stream.send_message(response)
+        # Asynchronously wait for messages to come over the read pipe and run the READ function whenever the pipe is ready.
+        loop = asyncio.get_running_loop()
+
+        def read():
+            ev: Event = pipe_r.recv()
+            pb_ev = ev.proto
+            response = StreamEventsResponse(event=pb_ev)
+
+            async def send_message():
+                stream._cancel_done = False  # Undo hack, see below
+                await stream.send_message(response)
+
+            loop.create_task(send_message())
+
+        loop.add_reader(pipe_r, read)
+
+        # HACK: Keep the stream open when this function returns.
+        # When the StreamEvents function returns, the Stream is closed. But we don't want the stream to close because we still need
+        # to send events to any clients who have registered callbacks.
+        # By setting `stream._cancel_done` to `True`, this tricks grpclib into thinking it already closed the stream, so it doesn't
+        # perform any cleanup (like removing the stream). We eventually do want to actually close this stream, so we undo this hack
+        # every time we send a message. That way, the trailing metadata is sent when either the server closes or the client disconnects.
+        stream._cancel_done = True
 
     async def TriggerEvent(
         self,

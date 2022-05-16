@@ -1,4 +1,6 @@
+import asyncio
 import logging as pylogging
+import signal
 from typing import List
 
 from grpclib.events import RecvRequest, listen
@@ -79,6 +81,13 @@ class Server(ResourceManager):
         """
         logging.setLevel(log_level)
         listen(self._server, RecvRequest, self._grpc_event_handler)
+
+        loop = asyncio.get_running_loop()
+        for signame in {'SIGINT', 'SIGTERM'}:
+            loop.add_signal_handler(
+                getattr(signal, signame),
+                self.close
+            )
 
         with graceful_exit([self._server]):
             await self._server.start(host, port)

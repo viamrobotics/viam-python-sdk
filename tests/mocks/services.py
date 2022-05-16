@@ -2,7 +2,12 @@ from typing import Dict, List, Tuple
 
 from grpclib.server import Stream
 from viam.components.types import CameraMimeType
+from viam.components.input import Control, Event, EventType
 from viam.proto.api.common import PointCloudObject, PoseInFrame, ResourceName
+from viam.proto.api.component.inputcontroller import (
+    GetControlsRequest, GetControlsResponse, GetEventsRequest,
+    GetEventsResponse, InputControllerServiceBase, StreamEventsRequest,
+    StreamEventsResponse, TriggerEventRequest, TriggerEventResponse)
 from viam.proto.api.service.framesystem import (Config, ConfigRequest,
                                                 ConfigResponse,
                                                 FrameSystemServiceBase,
@@ -156,3 +161,44 @@ class MockVisionService(VisionServiceBase):
             segmenter_names=self.segmenters
         )
         await stream.send_message(response)
+
+
+class MockInputControllerService(InputControllerServiceBase):
+
+    async def GetControls(self, stream: Stream[GetControlsRequest, GetControlsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = GetControlsResponse(controls=[
+            Control.ABSOLUTE_X,
+            Control.ABSOLUTE_Y,
+            Control.ABSOLUTE_Z,
+            Control.ABSOLUTE_RX,
+            Control.ABSOLUTE_RY,
+            Control.ABSOLUTE_RZ,
+            Control.ABSOLUTE_HAT0_X,
+            Control.ABSOLUTE_HAT0_Y,
+            Control.BUTTON_SOUTH,
+            Control.BUTTON_EAST,
+            Control.BUTTON_WEST,
+            Control.BUTTON_NORTH,
+            Control.BUTTON_LT,
+            Control.BUTTON_RT,
+            Control.BUTTON_L_THUMB,
+            Control.BUTTON_R_THUMB,
+            Control.BUTTON_SELECT,
+            Control.BUTTON_START,
+            Control.BUTTON_MENU,
+            Control.BUTTON_RECORD,
+            Control.BUTTON_E_STOP,
+        ])
+        await stream.send_message(response)
+
+    async def GetEvents(self, stream: Stream[GetEventsRequest, GetEventsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+
+    async def StreamEvents(self, stream: Stream[StreamEventsRequest, StreamEventsResponse]) -> None:
+        return await super().StreamEvents(stream)
+
+    async def TriggerEvent(self, stream: Stream[TriggerEventRequest, TriggerEventResponse]) -> None:
+        return await super().TriggerEvent(stream)

@@ -84,7 +84,7 @@ class ControllerClient(Controller):
 
         try:
             async with self.client.StreamEvents.open() as stream:
-                await stream.send_message(request)
+                await stream.send_message(request, end=True)
                 self._send_connection_status(True)
                 reply: StreamEventsResponse
                 async for reply in stream:

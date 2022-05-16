@@ -92,7 +92,6 @@ class Registry:
         Returns:
             ComponentRegistration: The registration object of the component
         """
-        print(Registry.REGISTERED_COMPONENTS)
         try:
             return cls._COMPONENTS[component_name]
         except KeyError:
