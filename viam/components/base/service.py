@@ -1,14 +1,13 @@
 from grpclib.server import Stream
-
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.base import (
-    BaseServiceBase,
-    MoveStraightRequest, MoveStraightResponse,
-    MoveArcRequest, MoveArcResponse,
-    SpinRequest, SpinResponse,
-    StopRequest, StopResponse,
-)
+from viam.proto.api.component.base import (BaseServiceBase, MoveArcRequest,
+                                           MoveArcResponse,
+                                           MoveStraightRequest,
+                                           MoveStraightResponse,
+                                           SetPowerRequest, SetPowerResponse,
+                                           SpinRequest, SpinResponse,
+                                           StopRequest, StopResponse)
 
 from .base import Base
 
@@ -73,6 +72,18 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             velocity=request.degs_per_sec,
         )
         response = SpinResponse()
+        await stream.send_message(response)
+
+    async def SetPower(self, stream: Stream[SetPowerRequest, SetPowerResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            base = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error()
+        await base.set_power(request.linear, request.angular)
+        response = SetPowerResponse()
         await stream.send_message(response)
 
     async def Stop(

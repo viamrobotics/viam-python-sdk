@@ -1,18 +1,15 @@
 from random import randint, random
-from grpclib.testing import ChannelFor
-import pytest
-from viam.components.generic.service import GenericService
 
-from viam.components.resource_manager import ResourceManager
-from viam.components.base import BaseClient
+import pytest
+from grpclib.testing import ChannelFor
+from viam.components.base import BaseClient, Vector3
 from viam.components.base.service import BaseService
-from viam.proto.api.component.base import (
-    BaseServiceStub,
-    MoveStraightRequest,
-    MoveArcRequest,
-    SpinRequest,
-    StopRequest
-)
+from viam.components.generic.service import GenericService
+from viam.components.resource_manager import ResourceManager
+from viam.proto.api.component.base import (BaseServiceStub, MoveArcRequest,
+                                           MoveStraightRequest,
+                                           SetPowerRequest, SetPowerResponse,
+                                           SpinRequest, StopRequest)
 
 from .mocks.components import MockBase
 
@@ -90,6 +87,16 @@ class TestBase:
         assert base.stopped is True
 
     @pytest.mark.asyncio
+    async def test_set_power(self, base: MockBase):
+        assert base.linear == Vector3(x=0, y=0, z=0)
+        assert base.angular == Vector3(x=0, y=0, z=0)
+
+        await base.set_power(Vector3(x=1, y=2, z=3), Vector3(x=4, y=5, z=6))
+
+        assert base.linear == Vector3(x=1, y=2, z=3)
+        assert base.angular == Vector3(x=4, y=5, z=6)
+
+    @pytest.mark.asyncio
     async def test_do(self, base: MockBase):
         with pytest.raises(NotImplementedError):
             await base.do({'command': 'args'})
@@ -148,6 +155,19 @@ class TestService:
                 )
                 await client.Spin(request)
                 assert base.angle == sum(angles[:i+1])
+
+    @pytest.mark.asyncio
+    async def test_set_power(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseServiceStub(channel)
+            assert base.linear == Vector3(x=0, y=0, z=0)
+            assert base.angular == Vector3(x=0, y=0, z=0)
+
+            request = SetPowerRequest(name=base.name, linear=Vector3(x=1, y=2, z=3), angular=Vector3(x=4, y=5, z=6))
+            await client.SetPower(request)
+
+            assert base.linear == Vector3(x=1, y=2, z=3)
+            assert base.angular == Vector3(x=4, y=5, z=6)
 
     @pytest.mark.asyncio
     async def test_stop(self, base: MockBase, service: BaseService):
@@ -278,6 +298,18 @@ class TestClient:
             assert base.stopped is False
             await client.spin(0, 0)
             assert base.stopped is True
+
+    @pytest.mark.asyncio
+    async def test_set_power(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            assert base.linear == Vector3(x=0, y=0, z=0)
+            assert base.angular == Vector3(x=0, y=0, z=0)
+
+            await client.set_power(Vector3(x=1, y=2, z=3), Vector3(x=4, y=5, z=6))
+
+            assert base.linear == Vector3(x=1, y=2, z=3)
+            assert base.angular == Vector3(x=4, y=5, z=6)
 
     @pytest.mark.asyncio
     async def test_do(self, base: MockBase, service: BaseService, generic_service: GenericService):

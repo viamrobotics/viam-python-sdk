@@ -41,6 +41,12 @@ _sym_db.RegisterMessage(StopRequest)
 StopResponse = _reflection.GeneratedProtocolMessageType('StopResponse', (_message.Message,), {
                                                         'DESCRIPTOR': _STOPRESPONSE, '__module__': 'proto.api.component.base.v1.base_pb2'})
 _sym_db.RegisterMessage(StopResponse)
+SetPowerRequest = _reflection.GeneratedProtocolMessageType('SetPowerRequest', (_message.Message,), {'DESCRIPTOR': _SETPOWERREQUEST, '__module__': 'proto.api.component.base.v1.base_pb2',
+                                                           '__doc__': 'Attributes:\n      name:\n          Name of a base\n      linear:\n          Desired linear power percentage as -1 -> 1\n      angular:\n          Desired angular power percentage % as -1 -> 1\n  '})
+_sym_db.RegisterMessage(SetPowerRequest)
+SetPowerResponse = _reflection.GeneratedProtocolMessageType('SetPowerResponse', (_message.Message,), {
+                                                            'DESCRIPTOR': _SETPOWERRESPONSE, '__module__': 'proto.api.component.base.v1.base_pb2'})
+_sym_db.RegisterMessage(SetPowerResponse)
 _BASESERVICE = DESCRIPTOR.services_by_name['BaseService']
 if _descriptor._USE_C_DESCRIPTORS == False:
     DESCRIPTOR._options = None
@@ -52,6 +58,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
     _BASESERVICE.methods_by_name['MoveArc']._serialized_options = b'\x82\xd3\xe4\x93\x02-"+/viam/api/v1/component/base/{name}/move_arc'
     _BASESERVICE.methods_by_name['Spin']._options = None
     _BASESERVICE.methods_by_name['Spin']._serialized_options = b'\x82\xd3\xe4\x93\x02)"\'/viam/api/v1/component/base/{name}/spin'
+    _BASESERVICE.methods_by_name['SetPower']._options = None
+    _BASESERVICE.methods_by_name['SetPower']._serialized_options = b'\x82\xd3\xe4\x93\x02.",/viam/api/v1/component/base/{name}/set_power'
     _BASESERVICE.methods_by_name['Stop']._options = None
     _BASESERVICE.methods_by_name['Stop']._serialized_options = b'\x82\xd3\xe4\x93\x02)"\'/viam/api/v1/component/base/{name}/stop'
     _MOVESTRAIGHTREQUEST._serialized_start = 101
