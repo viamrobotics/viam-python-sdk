@@ -1,8 +1,9 @@
 from copy import copy
 import logging
+from logging import DEBUG, INFO, WARN, WARNING, ERROR, FATAL  # noqa: F401
 from typing import Dict
 
-LOG_LEVEL = logging.INFO
+LOG_LEVEL = INFO
 LOGGERS: Dict[str, logging.Logger] = {}
 
 

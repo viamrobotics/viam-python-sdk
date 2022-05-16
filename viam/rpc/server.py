@@ -1,5 +1,4 @@
 import asyncio
-import logging as pylogging
 import signal
 from typing import List
 
@@ -65,7 +64,7 @@ class Server(ResourceManager):
         self,
         host: str = 'localhost',
         port: int = 9090,
-        log_level: int = pylogging.INFO,
+        log_level: int = logging.INFO,
     ):
         """
         Server the gRPC server on the provided host and port
@@ -103,7 +102,7 @@ class Server(ResourceManager):
         components: List[ComponentBase],
         host: str = "localhost",
         port: int = 9090,
-        log_level: int = pylogging.INFO,
+        log_level: int = logging.INFO,
     ):
         """
         Convenience method to create and start the server.

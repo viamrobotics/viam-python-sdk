@@ -4,6 +4,7 @@ from time import time
 from typing import Any, Dict, List, Optional
 
 from grpclib.client import Channel
+import viam
 from viam.components.generic.client import do_command
 from viam.logging import getLogger
 from viam.proto.api.component.inputcontroller import (
@@ -24,6 +25,7 @@ class ControllerClient(Controller):
         self.channel = channel
         self.client = InputControllerServiceStub(channel)
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
+        self._lock = Lock()
         self._stream_lock = Lock()
         self._is_streaming = False
         self._is_stream_ready = False
@@ -40,25 +42,26 @@ class ControllerClient(Controller):
         return {Control(event.control): Event.from_proto(event) for (event) in response.events}
 
     def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction]):
-        callbacks = self.callbacks.get(control, {})
-        for trigger in triggers:
-            if trigger == EventType.BUTTON_CHANGE:
-                callbacks[EventType.BUTTON_PRESS] = function
-                callbacks[EventType.BUTTON_RELEASE] = function
-            else:
-                callbacks[trigger] = function
-        self.callbacks[control] = callbacks
+        with self._lock:
+            callbacks = self.callbacks.get(control, {})
+            for trigger in triggers:
+                if trigger == EventType.BUTTON_CHANGE:
+                    callbacks[EventType.BUTTON_PRESS] = function
+                    callbacks[EventType.BUTTON_RELEASE] = function
+                else:
+                    callbacks[trigger] = function
+            self.callbacks[control] = callbacks
 
         def handle_task_result(task: asyncio.Task):
             try:
                 result = task.result()
-                LOGGER.debug(f'Task {task} returned with result {result}')
+                LOGGER.debug(f'Task {task.get_name()} returned with result {result}')
             except asyncio.CancelledError:
                 pass
             except Exception:
                 LOGGER.exception('Exception raised by task = %r', task)
 
-        task = asyncio.create_task(self._stream_events())
+        task = asyncio.create_task(self._stream_events(), name=f'{viam._TASK_PREFIX}-input_stream_events')
         task.add_done_callback(handle_task_result)
 
     async def trigger_event(self, event: Event):
@@ -90,6 +93,8 @@ class ControllerClient(Controller):
                 async for reply in stream:
                     event = reply.event
                     self._execute_callback(Event.from_proto(event))
+        except Exception as e:
+            print(e)
         finally:
             self._send_connection_status(False)
             with self._stream_lock:

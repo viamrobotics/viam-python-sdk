@@ -1,7 +1,10 @@
 import asyncio
 from multiprocessing import Pipe
+from typing import Optional
+from h2.exceptions import StreamClosedError
 
 from grpclib.server import Stream
+import viam
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.inputcontroller import (
@@ -10,6 +13,9 @@ from viam.proto.api.component.inputcontroller import (
     StreamEventsResponse, TriggerEventRequest, TriggerEventResponse)
 
 from .input import Control, Controller, Event, EventType
+
+
+LOGGER = viam.logging.getLogger(__name__)
 
 
 class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Controller]):
@@ -62,13 +68,33 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         except ComponentNotFoundError as e:
             raise e.grpc_error()
 
+        loop = asyncio.get_running_loop()
         # Using Pipes to send event data back to this function so it can be streamed to clients
         # The write pipe is added to the callbacks for a control, so whenever that control sends a watched event,,
         # that event is sent through the pipe, where it will be read (further down) and sent over the stream
         pipe_r, pipe_w = Pipe(duplex=False)
 
         def ctrlFunc(event: Event):
-            pipe_w.send(event)
+            try:
+                pipe_w.send(event)
+            except Exception as e:
+                LOGGER.error(e)
+                cleanup(e)
+
+        # Remove ctrl functions when the time is up
+        def cleanup(exc: Optional[Exception] = None):
+            loop.remove_reader(pipe_r)
+            pipe_w.close()
+            pipe_r.close()
+            unregister_pipe_callbacks()
+            asyncio.create_task(stream.__aexit__(None, exc, None))
+
+        def unregister_pipe_callbacks():
+            for event in request.events:
+                triggers = [EventType(et) for et in event.events]
+                if len(triggers):
+                    controller.register_control_callback(
+                        Control(event.control), triggers, None)
 
         # Register the pipe callbacks
         for event in request.events:
@@ -84,18 +110,21 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
                     Control(event.control), cancelled_triggers, None)
 
         # Asynchronously wait for messages to come over the read pipe and run the READ function whenever the pipe is ready.
-        loop = asyncio.get_running_loop()
-
         def read():
             ev: Event = pipe_r.recv()
             pb_ev = ev.proto
             response = StreamEventsResponse(event=pb_ev)
 
             async def send_message():
-                stream._cancel_done = False  # Undo hack, see below
-                await stream.send_message(response)
+                try:
+                    stream._cancel_done = False  # Undo hack, see below
+                    await stream.send_message(response)
+                except StreamClosedError:
+                    cleanup()
+                except Exception as e:
+                    cleanup(e)
 
-            loop.create_task(send_message())
+            loop.create_task(send_message(), name=f'{viam._TASK_PREFIX}-input_send_event')
 
         loop.add_reader(pipe_r, read)
 
