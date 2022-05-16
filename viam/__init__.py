@@ -12,12 +12,10 @@ __docformat__ = "restructuredtext"
 _TASK_PREFIX = uuid4().hex
 
 
-LOGGER = getLogger(__name__)
-
-
-def my_except_hook(exctype, value, traceback):
-    LOGGER.error('[ERROR] Uncaught exception', exc_info=(exctype, value, traceback))
+def _log_exceptions(exctype, value, traceback):
+    _LOGGER = getLogger(__name__)
+    _LOGGER.error('[ERROR] Uncaught exception', exc_info=(exctype, value, traceback))
     sys.__excepthook__(exctype, value, traceback)
 
 
-sys.excepthook = my_except_hook
+sys.excepthook = _log_exceptions
