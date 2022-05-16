@@ -24,7 +24,7 @@ from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
                                    DigitalInterruptStatus, Pose, PoseInFrame,
-                                   WorldState)
+                                   Vector3, WorldState)
 
 
 class MockArm(Arm):
@@ -65,6 +65,8 @@ class MockBase(Base):
         self.position = 0
         self.angle = 0
         self.stopped = True
+        self.linear = Vector3(x=0, y=0, z=0)
+        self.angular = Vector3(x=0, y=0, z=0)
         super().__init__(name)
 
     async def move_straight(
@@ -113,6 +115,10 @@ class MockBase(Base):
             self.angle -= angle
 
         self.stopped = False
+
+    async def set_power(self, linear: Vector3, angular: Vector3):
+        self.linear = linear
+        self.angular = angular
 
     async def stop(self):
         self.stopped = True

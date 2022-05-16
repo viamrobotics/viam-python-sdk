@@ -1,4 +1,7 @@
 import abc
+
+from viam.proto.api.common import Vector3
+
 from ..component_base import ComponentBase
 
 
@@ -70,6 +73,16 @@ class Base(ComponentBase):
                 Negative implies backwards.
             velocity (float): The angular velocity (in degrees per second).
                 to spin. Negative implies backwards.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def set_power(self, linear: Vector3, angular: Vector3):
+        """Set the linear and angular velocity of the Base
+
+        Args:
+            linear (Vector3): The linear velocity
+            angular (Vector3): The angular velocity
         """
         ...
 

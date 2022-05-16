@@ -5,6 +5,7 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
+from ...... import proto
 import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
@@ -109,3 +110,38 @@ class StopResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___StopResponse = StopResponse
+
+class SetPowerRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    LINEAR_FIELD_NUMBER: builtins.int
+    ANGULAR_FIELD_NUMBER: builtins.int
+    name: typing.Text
+    'Name of a base'
+
+    @property
+    def linear(self) -> proto.api.common.v1.common_pb2.Vector3:
+        """Desired linear power percentage as -1 -> 1"""
+        pass
+
+    @property
+    def angular(self) -> proto.api.common.v1.common_pb2.Vector3:
+        """Desired angular power percentage % as -1 -> 1"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., linear: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., angular: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['angular', b'angular', 'linear', b'linear']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['angular', b'angular', 'linear', b'linear', 'name', b'name']) -> None:
+        ...
+global___SetPowerRequest = SetPowerRequest
+
+class SetPowerResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___SetPowerResponse = SetPowerResponse
