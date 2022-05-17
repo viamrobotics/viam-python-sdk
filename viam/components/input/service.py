@@ -70,7 +70,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
 
         loop = asyncio.get_running_loop()
         # Using Pipes to send event data back to this function so it can be streamed to clients
-        # The write pipe is added to the callbacks for a control, so whenever that control sends a watched event,,
+        # The write pipe is added to the callbacks for a control, so whenever that control sends a watched event,
         # that event is sent through the pipe, where it will be read (further down) and sent over the stream
         pipe_r, pipe_w = Pipe(duplex=False)
 
@@ -80,20 +80,6 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             except Exception as e:
                 LOGGER.error(e)
                 cleanup(e)
-
-        # Remove ctrl functions when the time is up
-        def cleanup(exc: Optional[Exception] = None):
-            loop.remove_reader(pipe_r)
-            pipe_w.close()
-            pipe_r.close()
-            unregister_pipe_callbacks()
-            asyncio.create_task(stream.__aexit__(None, exc, None))
-
-        def unregister_pipe_callbacks():
-            for event in request.events:
-                triggers = [EventType(et) for et in event.events]
-                if len(triggers):
-                    controller.register_control_callback(Control(event.control), triggers, None)
 
         # Register the pipe callbacks
         for event in request.events:
@@ -131,6 +117,20 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         # perform any cleanup (like removing the stream). We eventually do want to actually close this stream, so we undo this hack
         # every time we send a message. That way, the trailing metadata is sent when either the server closes or the client disconnects.
         stream._cancel_done = True
+
+        # Remove ctrl functions when this stream is closed
+        def cleanup(exc: Optional[Exception] = None):
+            loop.remove_reader(pipe_r)
+            pipe_w.close()
+            pipe_r.close()
+            unregister_pipe_callbacks()
+            asyncio.create_task(stream.__aexit__(None, exc, None))
+
+        def unregister_pipe_callbacks():
+            for event in request.events:
+                triggers = [EventType(et) for et in event.events]
+                if len(triggers):
+                    controller.register_control_callback(Control(event.control), triggers, None)
 
     async def TriggerEvent(
         self,
