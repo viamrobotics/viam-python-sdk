@@ -2,12 +2,7 @@ from typing import Dict, List, Tuple
 
 from grpclib.server import Stream
 from viam.components.types import CameraMimeType
-from viam.components.input import Control, Event, EventType
 from viam.proto.api.common import PointCloudObject, PoseInFrame, ResourceName
-from viam.proto.api.component.inputcontroller import (
-    GetControlsRequest, GetControlsResponse, GetEventsRequest,
-    GetEventsResponse, InputControllerServiceBase, StreamEventsRequest,
-    StreamEventsResponse, TriggerEventRequest, TriggerEventResponse)
 from viam.proto.api.service.framesystem import (Config, ConfigRequest,
                                                 ConfigResponse,
                                                 FrameSystemServiceBase,
