@@ -13,7 +13,9 @@ from ....gen.proto.api.robot.v1.robot_pb2 import (
     CancelOperationResponse,
     GetOperationsRequest,
     GetOperationsResponse,
-    Operation
+    Operation,
+    ResourceNamesRequest,
+    ResourceNamesResponse
 )
 
 __all__ = [
@@ -26,4 +28,6 @@ __all__ = [
     'GetOperationsRequest',
     'GetOperationsResponse',
     'Operation',
+    'ResourceNamesRequest',
+    'ResourceNamesResponse',
 ]
