@@ -19,11 +19,6 @@ RESOURCE_NAMES = [
     ResourceName(
         namespace='rdk',
         type='service',
-        subtype='robot',
-    ),
-    ResourceName(
-        namespace='rdk',
-        type='service',
         subtype='status',
     ),
     ResourceName(
@@ -131,7 +126,7 @@ class TestRobotClient:
                     ResourceName(
                         namespace='rdk',
                         type='service',
-                        subtype='robot',
+                        subtype='vision',
                     )
                 )
 

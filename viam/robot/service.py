@@ -20,11 +20,6 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
             ResourceName(
                 namespace='rdk',
                 type='service',
-                subtype='robot',
-            ),
-            ResourceName(
-                namespace='rdk',
-                type='service',
                 subtype='status',
             ),
         ]

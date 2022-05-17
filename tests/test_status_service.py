@@ -26,14 +26,6 @@ EXPECTED = [
         name=ResourceName(
             namespace='rdk',
             type='service',
-            subtype='robot',
-        ),
-        status=Struct()
-    ),
-    Status(
-        name=ResourceName(
-            namespace='rdk',
-            type='service',
             subtype='status',
         ),
         status=Struct()
