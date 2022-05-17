@@ -78,12 +78,13 @@ class ControllerClient(Controller):
             return
 
         request = StreamEventsRequest(controller=self.name, events=[])
-        for (control, callbacks) in self.callbacks.items():
-            event = StreamEventsRequest.Events(
-                control=control,
-                events=[et for (et, func) in callbacks.items() if func is not None],
-                cancelled_events=[et for (et, func) in callbacks.items() if func is None])
-            request.events.append(event)
+        with self._lock:
+            for (control, callbacks) in self.callbacks.items():
+                event = StreamEventsRequest.Events(
+                    control=control,
+                    events=[et for (et, func) in callbacks.items() if func is not None],
+                    cancelled_events=[et for (et, func) in callbacks.items() if func is None])
+                request.events.append(event)
 
         try:
             async with self.client.StreamEvents.open() as stream:
@@ -94,7 +95,7 @@ class ControllerClient(Controller):
                     event = reply.event
                     self._execute_callback(Event.from_proto(event))
         except Exception as e:
-            print(e)
+            LOGGER.error(e)
         finally:
             self._send_connection_status(False)
             with self._stream_lock:

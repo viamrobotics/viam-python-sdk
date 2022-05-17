@@ -90,7 +90,7 @@ class Server(ResourceManager):
 
         with graceful_exit([self._server]):
             await self._server.start(host, port)
-            print(f'Serving on {host}:{port}')
+            LOGGER.info(f'Serving on {host}:{port}')
             await self._server.wait_closed()
 
     def close(self):

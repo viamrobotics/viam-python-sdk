@@ -1,6 +1,7 @@
 
 import abc
 from dataclasses import dataclass
+from datetime import datetime
 from enum import Enum
 from typing import Callable, Dict, List, Optional
 from typing_extensions import Self
@@ -92,16 +93,21 @@ class Control(str, Enum):
 
 @dataclass
 class Event:
-    time: float  # seconds since epoch
+    time: float
+    """seconds since epoch"""
+
     event: EventType
+
     control: Control
-    value: float  # 0 or 1 for buttons, -1.0 to +1.0 for axes
+
+    value: float
+    """0 or 1 for buttons, -1.0 to +1.0 for axes"""
 
     @property
     def proto(self):
-        seconds = int(self.time)
-        nanos = int(self.time % 1 * 1e9)
-        timestamp = Timestamp(seconds=seconds, nanos=nanos)
+        dt = datetime.fromtimestamp(self.time)
+        timestamp = Timestamp()
+        timestamp.FromDatetime(dt)
         return PBEvent(
             time=timestamp,
             event=self.event.value,
@@ -111,8 +117,9 @@ class Event:
 
     @classmethod
     def from_proto(cls, proto: PBEvent) -> Self:
+        dt = proto.time.ToDatetime()
         return cls(
-            proto.time.ToSeconds(),
+            dt.timestamp(),
             EventType(proto.event),
             Control(proto.control),
             proto.value

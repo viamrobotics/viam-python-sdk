@@ -93,21 +93,17 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             for event in request.events:
                 triggers = [EventType(et) for et in event.events]
                 if len(triggers):
-                    controller.register_control_callback(
-                        Control(event.control), triggers, None)
+                    controller.register_control_callback(Control(event.control), triggers, None)
 
         # Register the pipe callbacks
         for event in request.events:
             triggers = [EventType(et) for et in event.events]
             if len(triggers):
-                controller.register_control_callback(
-                    Control(event.control), triggers, ctrlFunc)
+                controller.register_control_callback(Control(event.control), triggers, ctrlFunc)
 
-            cancelled_triggers = [EventType(et)
-                                  for et in event.cancelled_events]
+            cancelled_triggers = [EventType(et) for et in event.cancelled_events]
             if len(cancelled_triggers):
-                controller.register_control_callback(
-                    Control(event.control), cancelled_triggers, None)
+                controller.register_control_callback(Control(event.control), cancelled_triggers, None)
 
         # Asynchronously wait for messages to come over the read pipe and run the READ function whenever the pipe is ready.
         def read():
