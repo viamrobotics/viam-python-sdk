@@ -10,7 +10,6 @@ from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.registry import Registry
 from viam.robot.service import RobotService
-from viam.services.metadata.service import MetadataService
 from viam.services.status.service import StatusService
 
 from .signaling import SignalingService
@@ -38,9 +37,8 @@ class Server(ResourceManager):
 
         services = [
             SignalingService(),
-            MetadataService(manager=self),
-            StatusService(manager=self),
             RobotService(manager=self),
+            StatusService(manager=self),
             *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_COMPONENTS.values()]
         ]
         services = ServerReflection.extend(services)

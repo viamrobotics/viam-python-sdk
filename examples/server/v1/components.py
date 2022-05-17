@@ -20,9 +20,9 @@ from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ComponentNotFoundError
-from viam.gen.proto.api.common.v1.common_pb2 import WorldState
 from viam.proto.api.common import (AnalogStatus, BoardStatus,
-                                   DigitalInterruptStatus, Pose, PoseInFrame)
+                                   DigitalInterruptStatus, Pose, PoseInFrame,
+                                   Vector3, WorldState)
 from viam.proto.api.component.arm import JointPositions
 
 
@@ -63,6 +63,8 @@ class ExampleBase(Base):
         self.position = 0
         self.angle = 0
         self.stopped = True
+        self.linear = Vector3(x=0, y=0, z=0)
+        self.angular = Vector3(x=0, y=0, z=0)
         super().__init__(name)
 
     async def move_straight(
@@ -113,6 +115,10 @@ class ExampleBase(Base):
             self.angle -= angle
 
         self.stopped = False
+
+    async def set_power(self, linear: Vector3, angular: Vector3):
+        self.linear = linear
+        self.anglular = angular
 
     async def stop(self):
         self.stopped = True

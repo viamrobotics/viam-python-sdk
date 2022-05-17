@@ -8,9 +8,32 @@ import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
+from ..... import proto
 import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class ResourceNamesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ResourceNamesRequest = ResourceNamesRequest
+
+class ResourceNamesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOURCES_FIELD_NUMBER: builtins.int
+
+    @property
+    def resources(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
+        ...
+
+    def __init__(self, *, resources: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['resources', b'resources']) -> None:
+        ...
+global___ResourceNamesResponse = ResourceNamesResponse
 
 class Operation(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

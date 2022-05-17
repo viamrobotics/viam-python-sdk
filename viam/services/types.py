@@ -3,7 +3,6 @@ from typing import Generic, Type, TypeVar
 from grpclib.client import Channel
 from viam.proto.api.common import ResourceName
 from viam.services.frame_system import FrameSystemClient
-from viam.services.metadata.client import MetadataClient
 from viam.services.motion import MotionClient
 from viam.services.status.client import StatusClient
 from viam.services.vision import VisionClient
@@ -12,11 +11,6 @@ Service = TypeVar('Service')
 
 
 class ServiceType(Generic[Service]):
-
-    @classmethod
-    @property
-    def METADATA(cls):
-        return ServiceType('metadata', MetadataClient)
 
     @classmethod
     @property

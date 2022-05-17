@@ -23,14 +23,6 @@ class StatusService(StatusServiceBase, ComponentServiceBase):
                 name=ResourceName(
                     namespace='rdk',
                     type='service',
-                    subtype='metadata',
-                ),
-                status=Struct()
-            ),
-            Status(
-                name=ResourceName(
-                    namespace='rdk',
-                    type='service',
                     subtype='status',
                 ),
                 status=Struct()
