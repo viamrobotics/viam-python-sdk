@@ -8,12 +8,14 @@ from typing_extensions import Self
 from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
-from viam.errors import ComponentNotFoundError, ServiceNotImplementedError, ViamError
+from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
+                         ViamError)
 from viam.proto.api.common import ResourceName
+from viam.proto.api.robot import (ResourceNamesRequest, ResourceNamesResponse,
+                                  RobotServiceStub)
 from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
-from viam.services.metadata.client import MetadataClient
 from viam.services.types import Service
 
 LOGGER = logging.getLogger(__name__)
@@ -82,7 +84,7 @@ class RobotClient:
         """
         self = cls()
         self._channel = channel
-        self._metadata_client = MetadataClient(self._channel)
+        self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
         self._lock = Lock()
         self._resource_names = []
@@ -98,7 +100,7 @@ class RobotClient:
     _channel: Channel
     _lock: Lock
     _manager: ResourceManager
-    _metadata_client: MetadataClient
+    _client: RobotServiceStub
     _refresh_task: Optional[asyncio.Task] = None
     _resource_names: List[ResourceName]
     _should_close_channel: bool
@@ -107,7 +109,8 @@ class RobotClient:
         """
         Manually refresh the underlying parts of this robot
         """
-        resource_names = await self._metadata_client.resources()
+        response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
+        resource_names: List[ResourceName] = list(response.resources)
         if resource_names == self._resource_names:
             return
         manager = ResourceManager()

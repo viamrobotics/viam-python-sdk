@@ -13,9 +13,8 @@ async def client():
     opts = RobotClient.Options(dial_options=DialOptions(insecure=True))
     async with await RobotClient.at_address('localhost:9090', opts) as robot:
 
-        print('\n#### METADATA ####')
-        service = robot.get_service(ServiceType.METADATA)
-        print(f'Metadata response received: {await service.resources()}')
+        print('\n#### RESOURCES ####')
+        print(f'Resources: {robot.resource_names}')
 
         print('\n#### STATUS ####')
         service = robot.get_service(ServiceType.STATUS)
