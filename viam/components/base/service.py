@@ -29,7 +29,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         try:
             base = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await base.move_straight(
             distance=request.distance_mm,
             velocity=request.mm_per_sec,
@@ -47,7 +47,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         try:
             base = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await base.move_arc(
             distance=request.distance_mm,
             velocity=request.mm_per_sec,
@@ -66,7 +66,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         try:
             base = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await base.spin(
             angle=request.angle_deg,
             velocity=request.degs_per_sec,
@@ -81,7 +81,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         try:
             base = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await base.set_power(request.linear, request.angular)
         response = SetPowerResponse()
         await stream.send_message(response)
@@ -96,7 +96,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         try:
             base = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await base.stop()
         response = StopResponse()
         await stream.send_message(response)

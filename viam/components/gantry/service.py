@@ -29,7 +29,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         try:
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         position = await gantry.get_position()
         response = GetPositionResponse(positions_mm=position)
         await stream.send_message(response)
@@ -44,7 +44,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         try:
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await gantry.move_to_position(
             list(request.positions_mm),
             request.world_state
@@ -62,7 +62,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         try:
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         lengths = await gantry.get_lengths()
         response = GetLengthsResponse(lengths_mm=lengths)
         await stream.send_message(response)

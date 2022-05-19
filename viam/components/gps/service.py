@@ -28,7 +28,7 @@ class GPSService(GPSServiceBase, ComponentServiceBase[GPS]):
         try:
             gps = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         loc = await gps.read_location()
         point = GeoPoint(latitude=loc.lat, longitude=loc.lng)
         response = ReadLocationResponse(coordinate=point)
@@ -44,7 +44,7 @@ class GPSService(GPSServiceBase, ComponentServiceBase[GPS]):
         try:
             gps = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         alt = await gps.read_altitude()
         response = ReadAltitudeResponse(altitude_meters=alt)
         await stream.send_message(response)
@@ -59,7 +59,7 @@ class GPSService(GPSServiceBase, ComponentServiceBase[GPS]):
         try:
             gps = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         speed = await gps.read_speed()
         response = ReadSpeedResponse(speed_mm_per_sec=speed)
         await stream.send_message(response)

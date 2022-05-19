@@ -6,7 +6,7 @@ from h2.exceptions import StreamClosedError
 from grpclib.server import Stream
 import viam
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ComponentNotFoundError, NotSupportedError
 from viam.proto.api.component.inputcontroller import (
     GetControlsRequest, GetControlsResponse, GetEventsRequest,
     GetEventsResponse, InputControllerServiceBase, StreamEventsRequest,
@@ -35,7 +35,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         try:
             controller = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         controls = await controller.get_controls()
         response = GetControlsResponse(controls=[c.value for c in controls])
         await stream.send_message(response)
@@ -50,7 +50,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         try:
             controller = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         events = await controller.get_events()
         pb_events = [e.proto for e in events.values()]
         response = GetEventsResponse(events=pb_events)
@@ -66,7 +66,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         try:
             controller = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
 
         loop = asyncio.get_running_loop()
         # Using Pipes to send event data back to this function so it can be streamed to clients
@@ -145,6 +145,9 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             event = Event.from_proto(pb_event)
             await controller.trigger_event(event)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
+        except NotSupportedError as e:
+            raise e.grpc_error
+
         response = TriggerEventResponse()
         await stream.send_message(response)

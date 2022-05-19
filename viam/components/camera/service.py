@@ -50,7 +50,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         try:
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         image = await camera.get_frame()
         try:
             try:
@@ -80,7 +80,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         try:
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         mimetype = CameraMimeType(request.mime_type)
         if not mimetype:
             mimetype = CameraMimeType.JPEG
@@ -102,7 +102,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         try:
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         pc, mimetype = await camera.get_point_cloud()
         response = GetPointCloudResponse(mime_type=mimetype, point_cloud=pc)
         await stream.send_message(response)

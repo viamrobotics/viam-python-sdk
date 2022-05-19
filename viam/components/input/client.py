@@ -2,10 +2,12 @@ import asyncio
 from threading import Lock
 from time import time
 from typing import Any, Dict, List, Optional
+from grpclib import GRPCError, Status
 
 from grpclib.client import Channel
 import viam
 from viam.components.generic.client import do_command
+from viam.errors import NotSupportedError
 from viam.logging import getLogger
 from viam.proto.api.component.inputcontroller import (
     GetControlsRequest, GetControlsResponse, GetEventsRequest,
@@ -66,7 +68,11 @@ class ControllerClient(Controller):
 
     async def trigger_event(self, event: Event):
         request = TriggerEventRequest(controller=self.name, event=event.proto)
-        await self.client.TriggerEvent(request)
+        try:
+            await self.client.TriggerEvent(request)
+        except GRPCError as e:
+            if e.status == Status.UNIMPLEMENTED and ('does not support triggering events' in e.message if e.message else False):
+                raise NotSupportedError(f'Input controller named {self.name} does not support triggering events')
 
     async def _stream_events(self):
         with self._stream_lock:

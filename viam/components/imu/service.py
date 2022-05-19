@@ -31,7 +31,7 @@ class IMUService(IMUServiceBase, ComponentServiceBase[IMU]):
         try:
             imu = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         velocity = await imu.read_angular_velocity()
         response = ReadAngularVelocityResponse(angular_velocity=velocity)
         await stream.send_message(response)
@@ -46,7 +46,7 @@ class IMUService(IMUServiceBase, ComponentServiceBase[IMU]):
         try:
             imu = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         orientation = await imu.read_orientation()
         response = ReadOrientationResponse(
             orientation=orientation.euler_angles)
@@ -62,7 +62,7 @@ class IMUService(IMUServiceBase, ComponentServiceBase[IMU]):
         try:
             imu = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         acceleration = await imu.read_acceleration()
         response = ReadAccelerationResponse(acceleration=acceleration)
         await stream.send_message(response)
@@ -77,7 +77,7 @@ class IMUService(IMUServiceBase, ComponentServiceBase[IMU]):
         try:
             imu = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         magnetometer = await imu.read_magnetometer()
         response = ReadMagnetometerResponse(magnetometer=magnetometer)
         await stream.send_message(response)

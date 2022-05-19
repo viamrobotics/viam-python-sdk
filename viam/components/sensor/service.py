@@ -31,7 +31,7 @@ class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
         try:
             sensor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         readings = await sensor.get_readings()
         v_readings: List[Value] = []
         for r in readings:

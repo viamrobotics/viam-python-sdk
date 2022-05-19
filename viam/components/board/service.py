@@ -36,7 +36,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         try:
             board = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         status = await board.status()
         response = StatusResponse(status=status)
         await stream.send_message(response)
@@ -52,7 +52,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             board = self.get_component(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await pin.set(request.high)
         response = SetGPIOResponse()
         await stream.send_message(response)
@@ -68,7 +68,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             board = self.get_component(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         high = await pin.get()
         response = GetGPIOResponse(high=high)
         await stream.send_message(response)
@@ -84,7 +84,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             board = self.get_component(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         pwm = await pin.get_pwm()
         response = PWMResponse(duty_cycle_pct=pwm)
         await stream.send_message(response)
@@ -100,7 +100,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             board = self.get_component(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await pin.set_pwm(request.duty_cycle_pct)
         response = SetPWMResponse()
         await stream.send_message(response)
@@ -116,7 +116,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             board = self.get_component(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         frequency = await pin.get_pwm_frequency()
         response = PWMFrequencyResponse(frequency_hz=frequency)
         await stream.send_message(response)
@@ -132,7 +132,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             board = self.get_component(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await pin.set_pwm_frequency(request.frequency_hz)
         response = SetPWMFrequencyResponse()
         await stream.send_message(response)
@@ -149,7 +149,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             analog_reader = await board.analog_reader_by_name(
                 request.analog_reader_name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         value = await analog_reader.read()
         response = ReadAnalogReaderResponse(value=value)
         await stream.send_message(response)
@@ -167,7 +167,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             interrupt = await board.digital_interrupt_by_name(
                 request.digital_interrupt_name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         value = await interrupt.value()
         response = GetDigitalInterruptValueResponse(value=value)
         await stream.send_message(response)

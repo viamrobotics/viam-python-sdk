@@ -52,7 +52,8 @@ class ComponentNotFoundError(ViamError):
             'found in the registry'
         super().__init__(self.message)
 
-    def grpc_error(self):
+    @property
+    def grpc_error(self) -> GRPCError:
         return GRPCError(
             Status.NOT_FOUND,
             self.message
@@ -73,3 +74,10 @@ class NotSupportedError(ViamError):
     """
     Exception raised when specific component functionality is not supported
     """
+
+    @property
+    def grpc_error(self) -> GRPCError:
+        return GRPCError(
+            Status.UNIMPLEMENTED,
+            self.__str__()
+        )

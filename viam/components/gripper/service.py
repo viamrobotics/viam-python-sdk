@@ -25,7 +25,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         try:
             gripper = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await gripper.open()
         response = OpenResponse()
         await stream.send_message(response)
@@ -40,7 +40,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         try:
             gripper = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         grabbed = await gripper.grab()
         response = GrabResponse(success=grabbed)
         await stream.send_message(response)

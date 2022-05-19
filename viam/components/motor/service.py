@@ -33,7 +33,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         try:
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await motor.set_power(request.power_pct)
         await stream.send_message(SetPowerResponse())
 
@@ -47,7 +47,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         try:
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await motor.go_for(request.rpm, request.revolutions)
         await stream.send_message(GoForResponse())
 
@@ -61,7 +61,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         try:
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await motor.go_to(request.rpm, request.position_revolutions)
         await stream.send_message(GoToResponse())
 
@@ -75,7 +75,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         try:
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await motor.reset_zero_position(request.offset)
         await stream.send_message(ResetZeroPositionResponse())
 
@@ -89,7 +89,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         try:
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         position = await motor.get_position()
         await stream.send_message(GetPositionResponse(position=position))
 
@@ -103,7 +103,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         try:
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         features = await motor.get_features()
         response = GetFeaturesResponse(**features.__dict__)
         await stream.send_message(response)
@@ -118,7 +118,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         try:
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await motor.stop()
         response = StopResponse()
         await stream.send_message(response)
@@ -133,6 +133,6 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         try:
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         is_powered = await motor.is_powered()
         await stream.send_message(IsPoweredResponse(is_on=is_powered))

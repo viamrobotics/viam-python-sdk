@@ -27,7 +27,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         try:
             servo = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await servo.move(request.angle_deg)
         await stream.send_message(MoveResponse())
 
@@ -41,7 +41,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         try:
             servo = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         position = await servo.get_position()
         resp = GetPositionResponse(position_deg=position)
         await stream.send_message(resp)

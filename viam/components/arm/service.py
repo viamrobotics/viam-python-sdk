@@ -29,7 +29,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         try:
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         position = await arm.get_end_position()
         response = GetEndPositionResponse(pose=position)
         await stream.send_message(response)
@@ -44,7 +44,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         try:
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await arm.move_to_position(request.to, request.world_state)
         response = MoveToPositionResponse()
         await stream.send_message(response)
@@ -59,7 +59,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         try:
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         positions = await arm.get_joint_positions()
         response = GetJointPositionsResponse(position_degs=positions)
         await stream.send_message(response)
@@ -75,7 +75,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         try:
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         await arm.move_to_joint_positions(request.position_degs)
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)

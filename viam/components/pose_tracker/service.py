@@ -28,6 +28,6 @@ class PoseTrackerService(
         try:
             pose_tracker = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         poses = await pose_tracker.get_poses(list(request.body_names))
         await stream.send_message(GetPosesResponse(body_poses=poses))

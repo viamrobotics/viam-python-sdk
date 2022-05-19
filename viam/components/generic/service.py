@@ -25,7 +25,7 @@ class GenericService(GenericServiceBase, ComponentServiceBase[ComponentBase]):
         try:
             component = self.get_component(name)
         except ComponentNotFoundError as e:
-            raise e.grpc_error()
+            raise e.grpc_error
         try:
             result = await component.do({key: value_to_primitive(value) for (key, value) in request.command.fields.items()})
         except NotImplementedError:
