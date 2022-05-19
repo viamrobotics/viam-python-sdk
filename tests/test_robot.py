@@ -1,14 +1,18 @@
 import asyncio
 
 import pytest
+from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
 from viam.components.resource_manager import ResourceManager
 from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
                          ViamError)
-from viam.proto.api.common import ResourceName
-from viam.proto.api.robot import (ResourceNamesRequest, ResourceNamesResponse,
-                                  RobotServiceStub)
+from viam.proto.api.common import Pose, PoseInFrame, ResourceName
+from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
+                                  FrameSystemConfigResponse,
+                                  ResourceNamesRequest, ResourceNamesResponse,
+                                  RobotServiceStub, TransformPoseRequest,
+                                  TransformPoseResponse)
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services import ServiceType
@@ -41,6 +45,54 @@ RESOURCE_NAMES = [
     ),
 ]
 
+CONFIG_RESPONSE = [
+    FrameSystemConfig(
+        name='config0',
+        pose_in_parent_frame=PoseInFrame(
+            reference_frame='reference0',
+            pose=Pose(
+                x=1,
+                y=2,
+                z=3,
+                o_x=2,
+                o_y=3,
+                o_z=4,
+                theta=20
+            )
+        ),
+        model_json=b'some fake json'
+    ),
+    FrameSystemConfig(
+        name='config1',
+        pose_in_parent_frame=PoseInFrame(
+            reference_frame='reference1',
+            pose=Pose(
+                x=2,
+                y=3,
+                z=4,
+                o_x=3,
+                o_y=4,
+                o_z=5,
+                theta=21
+            )
+        ),
+        model_json=b'some fake json part 2'
+    ),
+]
+
+TRANSFORM_RESPONSE = PoseInFrame(
+    reference_frame='arm',
+    pose=Pose(
+        x=1,
+        y=2,
+        z=3,
+        o_x=2,
+        o_y=3,
+        o_z=4,
+        theta=20
+    )
+)
+
 
 @pytest.fixture(scope='function')
 def service() -> RobotService:
@@ -50,8 +102,27 @@ def service() -> RobotService:
         MockMotor(name='motor1'),
     ]
 
+    async def Config(
+        stream: Stream[FrameSystemConfigRequest, FrameSystemConfigResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = FrameSystemConfigResponse(frame_system_configs=CONFIG_RESPONSE)
+        await stream.send_message(response)
+
+    async def TransformPose(
+        stream: Stream[TransformPoseRequest, TransformPoseResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = TransformPoseResponse(pose=TRANSFORM_RESPONSE)
+        await stream.send_message(response)
+
     manager = ResourceManager(resources)
-    return RobotService(manager)
+    service = RobotService(manager)
+    service.FrameSystemConfig = Config
+    service.TransformPose = TransformPose
+    return service
 
 
 class TestRobotService:
@@ -142,4 +213,18 @@ class TestRobotClient:
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             with pytest.raises(ServiceNotImplementedError):
-                client.get_service(ServiceType.FRAME_SYSTEM)
+                client.get_service(ServiceType.VISION)
+
+    @pytest.mark.asyncio
+    async def test_config(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            configs = await client.get_frame_system_config()
+            assert configs == CONFIG_RESPONSE
+
+    @pytest.mark.asyncio
+    async def test_transform_pose(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            pose = await client.transform_pose(PoseInFrame(), 'some dest')
+            assert pose == TRANSFORM_RESPONSE

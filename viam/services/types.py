@@ -2,7 +2,6 @@ from typing import Generic, Type, TypeVar
 
 from grpclib.client import Channel
 from viam.proto.api.common import ResourceName
-from viam.services.frame_system import FrameSystemClient
 from viam.services.motion import MotionClient
 from viam.services.status.client import StatusClient
 from viam.services.vision import VisionClient
@@ -16,11 +15,6 @@ class ServiceType(Generic[Service]):
     @property
     def STATUS(cls):
         return ServiceType('status', StatusClient)
-
-    @classmethod
-    @property
-    def FRAME_SYSTEM(cls):
-        return ServiceType('frame_system', FrameSystemClient)
 
     @classmethod
     @property
