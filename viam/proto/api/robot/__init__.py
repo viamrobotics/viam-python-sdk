@@ -11,11 +11,16 @@ from ....gen.proto.api.robot.v1.robot_pb2 import (
     BlockForOperationResponse,
     CancelOperationRequest,
     CancelOperationResponse,
+    FrameSystemConfig,
+    FrameSystemConfigRequest,
+    FrameSystemConfigResponse,
     GetOperationsRequest,
     GetOperationsResponse,
     Operation,
     ResourceNamesRequest,
-    ResourceNamesResponse
+    ResourceNamesResponse,
+    TransformPoseRequest,
+    TransformPoseResponse
 )
 
 __all__ = [
@@ -25,9 +30,14 @@ __all__ = [
     'BlockForOperationResponse',
     'CancelOperationRequest',
     'CancelOperationResponse',
+    'FrameSystemConfig',
+    'FrameSystemConfigRequest',
+    'FrameSystemConfigResponse',
     'GetOperationsRequest',
     'GetOperationsResponse',
     'Operation',
     'ResourceNamesRequest',
     'ResourceNamesResponse',
+    'TransformPoseRequest',
+    'TransformPoseResponse',
 ]
