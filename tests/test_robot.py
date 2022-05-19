@@ -216,7 +216,7 @@ class TestRobotClient:
                 client.get_service(ServiceType.VISION)
 
     @pytest.mark.asyncio
-    async def test_config(self, service: RobotService):
+    async def test_get_frame_system_config(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             configs = await client.get_frame_system_config()
