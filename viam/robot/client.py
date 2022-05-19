@@ -3,17 +3,20 @@ from dataclasses import dataclass
 from threading import Lock
 from typing import List, Optional
 
+import viam
 from grpclib.client import Channel
 from typing_extensions import Self
 from viam import logging
-import viam
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
                          ViamError)
-from viam.proto.api.common import ResourceName
-from viam.proto.api.robot import (ResourceNamesRequest, ResourceNamesResponse,
-                                  RobotServiceStub)
+from viam.proto.api.common import PoseInFrame, ResourceName, Transform
+from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
+                                  FrameSystemConfigResponse,
+                                  ResourceNamesRequest, ResourceNamesResponse,
+                                  RobotServiceStub, TransformPoseRequest,
+                                  TransformPoseResponse)
 from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
@@ -248,3 +251,35 @@ class RobotClient:
 
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self.close()
+
+    ################
+    # FRAME SYSTEM #
+    ################
+    async def get_frame_system_config(self, additional_transforms: Optional[List[Transform]] = None) -> List[FrameSystemConfig]:
+        """
+        Get the configuration of the frame system of a given robot.
+
+        Returns (Config): The configuration of a given robot's frame system.
+        """
+        request = FrameSystemConfigRequest(supplemental_transforms=additional_transforms)
+        response: FrameSystemConfigResponse = await self._client.FrameSystemConfig(request)
+        return list(response.frame_system_configs)
+
+    async def transform_pose(
+        self,
+        query: PoseInFrame,
+        destination: str,
+        additional_transforms: Optional[List[Transform]] = None
+    ) -> PoseInFrame:
+        """
+        Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
+
+        Args:
+
+            query (Pose): The pose that should be transformed.
+            destination (str) : The name of the reference frame to transform the given pose to.
+
+        """
+        request = TransformPoseRequest(source=query, destination=destination, supplemental_transforms=additional_transforms)
+        response: TransformPoseResponse = await self._client.TransformPose(request)
+        return response.pose

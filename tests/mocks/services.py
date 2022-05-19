@@ -3,11 +3,6 @@ from typing import Dict, List, Tuple
 from grpclib.server import Stream
 from viam.components.types import CameraMimeType
 from viam.proto.api.common import PointCloudObject, PoseInFrame, ResourceName
-from viam.proto.api.service.framesystem import (Config, ConfigRequest,
-                                                ConfigResponse,
-                                                FrameSystemServiceBase,
-                                                TransformPoseRequest,
-                                                TransformPoseResponse)
 from viam.proto.api.service.motion import (GetPoseRequest, GetPoseResponse,
                                            MotionServiceBase, MoveRequest,
                                            MoveResponse)
@@ -24,35 +19,6 @@ from viam.proto.api.service.vision import (AddDetectorRequest,
                                            GetSegmenterParametersRequest,
                                            GetSegmenterParametersResponse,
                                            TypedParameter, VisionServiceBase)
-
-
-class MockFrameSystemService(FrameSystemServiceBase):
-
-    def __init__(
-        self,
-        config_response: List[Config],
-        transform_response: PoseInFrame
-    ):
-        self.config_response = config_response
-        self.transform_response = transform_response
-
-    async def Config(
-        self,
-        stream: Stream[ConfigRequest, ConfigResponse]
-    ) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        response = ConfigResponse(frame_system_configs=self.config_response)
-        await stream.send_message(response)
-
-    async def TransformPose(
-        self,
-        stream: Stream[TransformPoseRequest, TransformPoseResponse]
-    ) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        response = TransformPoseResponse(pose=self.transform_response)
-        await stream.send_message(response)
 
 
 class MockMotionService(MotionServiceBase):
