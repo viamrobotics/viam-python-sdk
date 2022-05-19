@@ -473,10 +473,10 @@
 </li>
       <li><a href="viam.components.component_base.html#viam.components.component_base.ComponentBase">ComponentBase (class in viam.components.component_base)</a>
 </li>
-      <li><a href="viam.errors.html#viam.errors.ComponentNotFoundError">ComponentNotFoundError</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="viam.errors.html#viam.errors.ComponentNotFoundError">ComponentNotFoundError</a>
+</li>
       <li><a href="viam.registry.html#viam.registry.ComponentRegistration">ComponentRegistration (class in viam.registry)</a>
 </li>
       <li><a href="viam.components.resource_manager.html#viam.components.resource_manager.ResourceManager.components">components (viam.components.resource_manager.ResourceManager attribute)</a>
@@ -486,8 +486,6 @@
 </li>
       </ul></li>
       <li><a href="viam.components.service_base.html#viam.components.service_base.ComponentServiceBase">ComponentServiceBase (class in viam.components.service_base)</a>
-</li>
-      <li><a href="viam.services.frame_system.html#viam.services.frame_system.FrameSystemClient.config">config() (viam.services.frame_system.FrameSystemClient method)</a>
 </li>
       <li><a href="viam.components.input.html#viam.components.input.EventType.CONNECT">CONNECT (viam.components.input.EventType attribute)</a>
 
@@ -695,15 +693,19 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="viam.logging.html#viam.logging.ColorFormatter.format">format() (viam.logging.ColorFormatter method)</a>
 </li>
-      <li><a href="viam.services.html#viam.services.ServiceType.FRAME_SYSTEM">FRAME_SYSTEM (viam.services.ServiceType property)</a>
+      <li><a href="viam.proto.api.robot.html#viam.proto.api.robot.FrameSystemConfig">FrameSystemConfig (class in viam.proto.api.robot)</a>
+</li>
+      <li><a href="viam.proto.api.robot.html#viam.proto.api.robot.RobotServiceBase.FrameSystemConfig">FrameSystemConfig() (viam.proto.api.robot.RobotServiceBase method)</a>
 
       <ul>
-        <li><a href="viam.services.types.html#viam.services.types.ServiceType.FRAME_SYSTEM">(viam.services.types.ServiceType property)</a>
+        <li><a href="viam.robot.service.html#viam.robot.service.RobotService.FrameSystemConfig">(viam.robot.service.RobotService method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="viam.services.frame_system.html#viam.services.frame_system.FrameSystemClient">FrameSystemClient (class in viam.services.frame_system)</a>
+      <li><a href="viam.proto.api.robot.html#viam.proto.api.robot.FrameSystemConfigRequest">FrameSystemConfigRequest (class in viam.proto.api.robot)</a>
+</li>
+      <li><a href="viam.proto.api.robot.html#viam.proto.api.robot.FrameSystemConfigResponse">FrameSystemConfigResponse (class in viam.proto.api.robot)</a>
 </li>
       <li><a href="viam.components.input.html#viam.components.input.Event.from_proto">from_proto() (viam.components.input.Event class method)</a>
 
@@ -831,6 +833,8 @@
         <li><a href="viam.components.camera.client.html#viam.components.camera.client.CameraClient.get_frame">(viam.components.camera.client.CameraClient method)</a>
 </li>
       </ul></li>
+      <li><a href="viam.robot.client.html#viam.robot.client.RobotClient.get_frame_system_config">get_frame_system_config() (viam.robot.client.RobotClient method)</a>
+</li>
       <li><a href="viam.components.arm.html#viam.components.arm.Arm.get_joint_positions">get_joint_positions() (viam.components.arm.Arm method)</a>
 
       <ul>
@@ -1338,8 +1342,6 @@
         <li><a href="viam.rpc.signaling.html#module-viam.rpc.signaling">viam.rpc.signaling</a>
 </li>
         <li><a href="viam.services.html#module-viam.services">viam.services</a>
-</li>
-        <li><a href="viam.services.frame_system.html#module-viam.services.frame_system">viam.services.frame_system</a>
 </li>
         <li><a href="viam.services.motion.html#module-viam.services.motion">viam.services.motion</a>
 </li>
@@ -2044,9 +2046,19 @@
       </ul></li>
       <li><a href="viam.proto.api.common.html#viam.proto.api.common.Transform">Transform (class in viam.proto.api.common)</a>
 </li>
+      <li><a href="viam.robot.client.html#viam.robot.client.RobotClient.transform_pose">transform_pose() (viam.robot.client.RobotClient method)</a>
+</li>
+      <li><a href="viam.proto.api.robot.html#viam.proto.api.robot.RobotServiceBase.TransformPose">TransformPose() (viam.proto.api.robot.RobotServiceBase method)</a>
+
+      <ul>
+        <li><a href="viam.robot.service.html#viam.robot.service.RobotService.TransformPose">(viam.robot.service.RobotService method)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="viam.services.frame_system.html#viam.services.frame_system.FrameSystemClient.transform_pose">transform_pose() (viam.services.frame_system.FrameSystemClient method)</a>
+      <li><a href="viam.proto.api.robot.html#viam.proto.api.robot.TransformPoseRequest">TransformPoseRequest (class in viam.proto.api.robot)</a>
+</li>
+      <li><a href="viam.proto.api.robot.html#viam.proto.api.robot.TransformPoseResponse">TransformPoseResponse (class in viam.proto.api.robot)</a>
 </li>
       <li><a href="viam.proto.api.common.html#viam.proto.api.common.WorldState.transforms">transforms (viam.proto.api.common.WorldState attribute)</a>
 </li>
@@ -2383,6 +2395,8 @@
         <li><a href="viam.components.input.client.html#module-viam.components.input.client">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.components.input.input
 
@@ -2390,8 +2404,6 @@
         <li><a href="viam.components.input.input.html#module-viam.components.input.input">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.components.input.service
 
@@ -2635,13 +2647,6 @@
 
       <ul>
         <li><a href="viam.services.html#module-viam.services">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.services.frame_system
-
-      <ul>
-        <li><a href="viam.services.frame_system.html#module-viam.services.frame_system">module</a>
 </li>
       </ul></li>
       <li>

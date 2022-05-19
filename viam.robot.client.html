@@ -206,6 +206,13 @@ end_pos = await arm.get_end_position()</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_frame_system_config">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_frame_system_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Transform" title="proto.api.common.v1.common_pb2.Transform"><span class="pre">proto.api.common.v1.common_pb2.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.robot.html#viam.proto.api.robot.FrameSystemConfig" title="proto.api.robot.v1.robot_pb2.FrameSystemConfig"><span class="pre">proto.api.robot.v1.robot_pb2.FrameSystemConfig</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.client.RobotClient.get_frame_system_config" title="Permalink to this definition"></a></dt>
+<dd><p>Get the configuration of the frame system of a given robot.</p>
+<p>Returns (Config): The configuration of a given robot’s frame system.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_service">
 <span class="sig-name descname"><span class="pre">get_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.services.types.html#viam.services.types.ServiceType" title="viam.services.types.ServiceType"><span class="pre">viam.services.types.ServiceType</span></a><span class="p"><span class="pre">[</span></span><span class="pre">viam.services.types.Service</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.types.Service</span></span></span><a class="headerlink" href="#viam.robot.client.RobotClient.get_service" title="Permalink to this definition"></a></dt>
 <dd><p>Get a service by specifying the <cite>ServiceType</cite>.</p>
@@ -241,6 +248,20 @@ end_pos = await arm.get_end_position()</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName">ResourceName</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.transform_pose">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.PoseInFrame" title="proto.api.common.v1.common_pb2.PoseInFrame"><span class="pre">proto.api.common.v1.common_pb2.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Transform" title="proto.api.common.v1.common_pb2.Transform"><span class="pre">proto.api.common.v1.common_pb2.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.PoseInFrame" title="proto.api.common.v1.common_pb2.PoseInFrame"><span class="pre">proto.api.common.v1.common_pb2.PoseInFrame</span></a></span></span><a class="headerlink" href="#viam.robot.client.RobotClient.transform_pose" title="Permalink to this definition"></a></dt>
+<dd><p>Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><em>Pose</em></a>) – The pose that should be transformed.</p></li>
+<li><p><strong>destination</strong> (<em>str</em>) – The name of the reference frame to transform the given pose to.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
