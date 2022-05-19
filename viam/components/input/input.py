@@ -4,9 +4,9 @@ from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
 from typing import Callable, Dict, List, Optional
-from typing_extensions import Self
 
 from google.protobuf.timestamp_pb2 import Timestamp
+from typing_extensions import Self
 from viam.components.component_base import ComponentBase
 from viam.errors import NotSupportedError
 from viam.proto.api.component.inputcontroller import Event as PBEvent
@@ -19,8 +19,7 @@ class EventType(str, Enum):
 
     ALL_EVENTS = 'AllEvents'
     """
-    Callbacks registered for this event will be called
-    in ADDITION to other registered event callbacks.
+    Callbacks registered for this event will be called in ADDITION to other registered event callbacks.
     """
 
     CONNECT = 'Connect'
@@ -43,10 +42,14 @@ class EventType(str, Enum):
     Key release.
     """
 
+    BUTTON_HOLD = 'ButtonHold'
+    """
+    Key is held down. This wil likely be a repeated event.
+    """
+
     BUTTON_CHANGE = 'ButtonChange'
     """
-    Both up and down for convenience during registration,
-    not typically emitted.
+    Both up and down for convenience during registration, not typically emitted.
     """
 
     POSITION_CHANGE_ABSOLUTE = 'PositionChangeAbs'
@@ -56,8 +59,7 @@ class EventType(str, Enum):
 
     POSITION_CHANGE_RELATIVE = 'PositionChangeRel'
     """
-    Relative position is reported via Value, a la mice, or
-    simulating axes with up/down buttons.
+    Relative position is reported via Value, a la mice, or simulating axes with up/down buttons.
     """
 
 
@@ -82,6 +84,8 @@ class Control(str, Enum):
     BUTTON_NORTH = 'ButtonNorth'
     BUTTON_LT = 'ButtonLT'
     BUTTON_RT = 'ButtonRT'
+    BUTTON_LT2 = 'ButtonLT2'
+    BUTTON_RT2 = 'ButtonRT2'
     BUTTON_L_THUMB = 'ButtonLThumb'
     BUTTON_R_THUMB = 'ButtonRThumb'
     BUTTON_SELECT = 'ButtonSelect'
