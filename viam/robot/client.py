@@ -6,6 +6,7 @@ from typing import List, Optional
 from grpclib.client import Channel
 from typing_extensions import Self
 from viam import logging
+import viam
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
@@ -92,8 +93,8 @@ class RobotClient:
         await self.refresh()
 
         if options.refresh_interval > 0:
-            loop = asyncio.get_event_loop()
-            self._refresh_task = loop.create_task(self._refresh_every(options.refresh_interval))
+            self._refresh_task = asyncio.create_task(self._refresh_every(options.refresh_interval),
+                                                     name=f'{viam._TASK_PREFIX}-robot_refresh_metadata')
 
         return self
 
@@ -220,27 +221,30 @@ class RobotClient:
         with self._lock:
             return [r for r in self._resource_names]
 
-    def close(self):
+    async def close(self):
         """
         Cleanly close the underlying connections and stop any periodic tasks
         """
+        LOGGER.debug('Closing RobotClient')
         try:
             self._lock.release()
         except RuntimeError:
             pass
-        if self._refresh_task is not None:
-            self._refresh_task.cancel()
+
+        # Cancel all tasks created by VIAM
+        LOGGER.debug('Closing tasks spawned by Viam')
+        tasks = [task for task in asyncio.all_tasks() if task.get_name().startswith(viam._TASK_PREFIX)]
+        for task in tasks:
+            LOGGER.debug(f'Closing task {task.get_name()}')
+            task.cancel()
+        await asyncio.gather(*tasks, return_exceptions=True)
+
         if self._should_close_channel:
+            LOGGER.debug('Closing gRPC channel to remote robot')
             self._channel.close()
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, type, value, traceback):
-        self.close()
 
     async def __aenter__(self):
         return self
 
     async def __aexit__(self, exc_type, exc_value, traceback):
-        self.close()
+        await self.close()

@@ -85,7 +85,7 @@ class TestRobotClient:
 
             client = await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=100))
             assert client._refresh_task is not None
-            client.close()
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_close(self, service: RobotService):
@@ -94,7 +94,7 @@ class TestRobotClient:
             assert client._channel._connected is True
             assert client._refresh_task is not None and client._refresh_task.cancelled() is False
 
-            client.close()
+            await client.close()
             assert client._channel._connected is True  # Robots created with `with_channel` do not close Channels automatically
             with pytest.raises(asyncio.CancelledError):
                 await client._refresh_task

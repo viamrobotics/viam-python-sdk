@@ -6,6 +6,7 @@ from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
 from viam.components.component_base import ComponentBase
 from viam.proto.api.common import ResourceName
+from viam.registry import Registry
 
 
 def primitive_to_value(v: Any) -> Value:
@@ -78,14 +79,21 @@ def resource_names_for_component(
 ) -> List[ResourceName]:
     rns: List[ResourceName] = []
     for klass in component.__class__.mro():
-        class_name = str(klass)
-        if 'viam.components' not in class_name:
-            continue
-        if 'ComponentBase' in class_name:
-            continue
-        component_type = class_name \
-            .split('viam.components.')[1] \
-            .split('.')[0]
+        component_type = ''
+        for registration in Registry.REGISTERED_COMPONENTS.values():
+            if klass is registration.component_type:
+                component_type = registration.name
+
+        if not component_type:
+            class_name = str(klass)
+            if 'viam.components' not in class_name:
+                continue
+            if 'ComponentBase' in class_name:
+                continue
+
+            component_type = class_name \
+                .split('viam.components.')[1] \
+                .split('.')[0]
 
         rns.append(ResourceName(
             namespace='rdk',

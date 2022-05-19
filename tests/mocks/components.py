@@ -16,6 +16,8 @@ from viam.components.gps import GPS
 from viam.components.gripper import Gripper
 from viam.components.imu import (IMU, Acceleration, AngularVelocity,
                                  EulerAngles, Magnetometer, Orientation)
+from viam.components.input import (Control, ControlFunction, Controller, Event,
+                                   EventType)
 from viam.components.motor import Motor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
@@ -376,6 +378,51 @@ class MockIMU(IMU):
 
     async def read_magnetometer(self) -> Magnetometer:
         return self.magnetometer
+
+
+class MockInputController(Controller):
+
+    def __init__(self, name: str):
+        super().__init__(name)
+        self.events: Dict[Control, Event] = {}
+        self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
+
+    async def get_controls(self) -> List[Control]:
+        return [
+            Control.ABSOLUTE_X,
+            Control.ABSOLUTE_Y,
+            Control.ABSOLUTE_Z,
+            Control.ABSOLUTE_RX,
+            Control.ABSOLUTE_RY,
+            Control.ABSOLUTE_RZ,
+            Control.ABSOLUTE_HAT0_X,
+            Control.ABSOLUTE_HAT0_Y,
+            Control.BUTTON_SOUTH,
+            Control.BUTTON_EAST,
+            Control.BUTTON_WEST,
+            Control.BUTTON_NORTH,
+            Control.BUTTON_LT,
+            Control.BUTTON_RT,
+            Control.BUTTON_L_THUMB,
+            Control.BUTTON_R_THUMB,
+            Control.BUTTON_SELECT,
+            Control.BUTTON_START,
+            Control.BUTTON_MENU,
+            Control.BUTTON_RECORD,
+            Control.BUTTON_E_STOP,
+        ]
+
+    async def get_events(self) -> Dict[Control, Event]:
+        return self.events
+
+    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction]):
+        self.callbacks[control] = {trigger: function for trigger in triggers}
+
+    async def trigger_event(self, event: Event):
+        self.events[event.control] = event
+        callback = self.callbacks.get(event.control, {}).get(event.event)
+        if callback:
+            callback(event)
 
 
 class MockMotor(Motor):

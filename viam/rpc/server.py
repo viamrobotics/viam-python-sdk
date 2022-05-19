@@ -1,4 +1,5 @@
-import logging as pylogging
+import asyncio
+import signal
 from typing import List
 
 from grpclib.events import RecvRequest, listen
@@ -63,7 +64,7 @@ class Server(ResourceManager):
         self,
         host: str = 'localhost',
         port: int = 9090,
-        log_level: int = pylogging.INFO,
+        log_level: int = logging.INFO,
     ):
         """
         Server the gRPC server on the provided host and port
@@ -80,9 +81,16 @@ class Server(ResourceManager):
         logging.setLevel(log_level)
         listen(self._server, RecvRequest, self._grpc_event_handler)
 
+        loop = asyncio.get_running_loop()
+        for signame in {'SIGINT', 'SIGTERM'}:
+            loop.add_signal_handler(
+                getattr(signal, signame),
+                self.close
+            )
+
         with graceful_exit([self._server]):
             await self._server.start(host, port)
-            print(f'Serving on {host}:{port}')
+            LOGGER.info(f'Serving on {host}:{port}')
             await self._server.wait_closed()
 
     def close(self):
@@ -94,7 +102,7 @@ class Server(ResourceManager):
         components: List[ComponentBase],
         host: str = "localhost",
         port: int = 9090,
-        log_level: int = pylogging.INFO,
+        log_level: int = logging.INFO,
     ):
         """
         Convenience method to create and start the server.

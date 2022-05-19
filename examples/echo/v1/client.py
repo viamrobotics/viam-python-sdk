@@ -15,7 +15,7 @@ async def echo(msg: str):
     opts = DialOptions(credentials=creds,
                        allow_insecure_with_creds_downgrade=True)
     opts = DialOptions(insecure=True)
-    async with await dial_direct("localhost:8080", opts) as channel:
+    async with await dial_direct("127.0.0.1:8080", opts) as channel:
         service = EchoServiceStub(channel)
 
         # Simple Echo
