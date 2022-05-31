@@ -36,35 +36,6 @@ class MoveStraightResponse(google.protobuf.message.Message):
         ...
 global___MoveStraightResponse = MoveStraightResponse
 
-class MoveArcRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    DISTANCE_MM_FIELD_NUMBER: builtins.int
-    MM_PER_SEC_FIELD_NUMBER: builtins.int
-    ANGLE_DEG_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    'Name of a base'
-    distance_mm: builtins.int
-    'Desired travel distance in millimeters'
-    mm_per_sec: builtins.float
-    'Desired speed in millimeters per second'
-    angle_deg: builtins.float
-    'Desired angle in degrees'
-
-    def __init__(self, *, name: typing.Text=..., distance_mm: builtins.int=..., mm_per_sec: builtins.float=..., angle_deg: builtins.float=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['angle_deg', b'angle_deg', 'distance_mm', b'distance_mm', 'mm_per_sec', b'mm_per_sec', 'name', b'name']) -> None:
-        ...
-global___MoveArcRequest = MoveArcRequest
-
-class MoveArcResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(self) -> None:
-        ...
-global___MoveArcResponse = MoveArcResponse
-
 class SpinRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -145,3 +116,38 @@ class SetPowerResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___SetPowerResponse = SetPowerResponse
+
+class SetVelocityRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    LINEAR_FIELD_NUMBER: builtins.int
+    ANGULAR_FIELD_NUMBER: builtins.int
+    name: typing.Text
+    'Name of a base'
+
+    @property
+    def linear(self) -> proto.api.common.v1.common_pb2.Vector3:
+        """Desired linear velocity in mm per second"""
+        pass
+
+    @property
+    def angular(self) -> proto.api.common.v1.common_pb2.Vector3:
+        """Desired angular velocity in degrees per second"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., linear: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., angular: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['angular', b'angular', 'linear', b'linear']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['angular', b'angular', 'linear', b'linear', 'name', b'name']) -> None:
+        ...
+global___SetVelocityRequest = SetVelocityRequest
+
+class SetVelocityResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___SetVelocityResponse = SetVelocityResponse
