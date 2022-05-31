@@ -233,6 +233,19 @@ end_pos = await arm.get_end_position()</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_status">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="proto.api.common.v1.common_pb2.ResourceName"><span class="pre">proto.api.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.robot.client.RobotClient.get_status" title="Permalink to this definition"></a></dt>
+<dd><p>Get the status of the robot’s components. You can optionally
+provide a list of <cite>ResourceName</cite> for which you want statuses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>components</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a><em>]</em><em>]</em>) – Optional list of
+<cite>ResourceName</cite> for components you want statuses.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.refresh">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.robot.client.RobotClient.refresh" title="Permalink to this definition"></a></dt>
 <dd><p>Manually refresh the underlying parts of this robot</p>

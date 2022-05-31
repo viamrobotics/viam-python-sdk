@@ -145,6 +145,18 @@ needed to supplement the robot’s frame system</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.GetStatusRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">GetStatusRequest</span></span><a class="headerlink" href="#viam.proto.api.robot.GetStatusRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.GetStatusResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">GetStatusResponse</span></span><a class="headerlink" href="#viam.proto.api.robot.GetStatusResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.robot.Operation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">Operation</span></span><a class="headerlink" href="#viam.proto.api.robot.Operation" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -187,8 +199,18 @@ needed to supplement the robot’s frame system</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.RobotServiceBase.GetStatus">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.proto.api.robot.GetStatusRequest" title="proto.api.robot.v1.robot_pb2.GetStatusRequest"><span class="pre">proto.api.robot.v1.robot_pb2.GetStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.proto.api.robot.GetStatusResponse" title="proto.api.robot.v1.robot_pb2.GetStatusResponse"><span class="pre">proto.api.robot.v1.robot_pb2.GetStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.api.robot.RobotServiceBase.GetStatus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.robot.RobotServiceBase.ResourceNames">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ResourceNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.proto.api.robot.ResourceNamesRequest" title="proto.api.robot.v1.robot_pb2.ResourceNamesRequest"><span class="pre">proto.api.robot.v1.robot_pb2.ResourceNamesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.proto.api.robot.ResourceNamesResponse" title="proto.api.robot.v1.robot_pb2.ResourceNamesResponse"><span class="pre">proto.api.robot.v1.robot_pb2.ResourceNamesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.api.robot.RobotServiceBase.ResourceNames" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.RobotServiceBase.StreamStatus">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StreamStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.proto.api.robot.StreamStatusRequest" title="proto.api.robot.v1.robot_pb2.StreamStatusRequest"><span class="pre">proto.api.robot.v1.robot_pb2.StreamStatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.proto.api.robot.StreamStatusResponse" title="proto.api.robot.v1.robot_pb2.StreamStatusResponse"><span class="pre">proto.api.robot.v1.robot_pb2.StreamStatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.api.robot.RobotServiceBase.StreamStatus" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -202,6 +224,29 @@ needed to supplement the robot’s frame system</p>
 <dt class="sig sig-object py" id="viam.proto.api.robot.RobotServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">RobotServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.robot.RobotServiceStub" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.Status">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><a class="headerlink" href="#viam.proto.api.robot.Status" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StreamStatusRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">StreamStatusRequest</span></span><a class="headerlink" href="#viam.proto.api.robot.StreamStatusRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Attributes:
+every:</p>
+<blockquote>
+<div><p>how often to send a new status.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StreamStatusResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">StreamStatusResponse</span></span><a class="headerlink" href="#viam.proto.api.robot.StreamStatusResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.pyext._message.CMessage</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 </dd></dl>
 
 <dl class="py class">
