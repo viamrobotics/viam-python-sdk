@@ -6,7 +6,7 @@
 This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
 
 ## Installation - pre open sourcing
-To install, you need to be invited to the repository. You will also need a [GitHub Access Token](https://github.com/settings/tokens).
+To install, you need to be invited to the repository. You will also need a [GitHub Access Token](https://github.com/settings/tokens) with *repo* access.
 
 Once you have access and a token, you can install the SDK with the command:
 

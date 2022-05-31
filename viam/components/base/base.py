@@ -35,32 +35,6 @@ class Base(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def move_arc(
-        self,
-        distance: int,
-        velocity: float,
-        angle: float,
-    ):
-        """
-        Move the base in an arc the given `distance`, expressed in millimeters,
-        at the given `velocity`, expressed in millimeters per second, turning `angle`
-        degrees in the process.
-        When `distance` is 0, the the base will spin.
-        When `angle` is 0, the the base will move in a straight line.
-        When `velocity` is 0, the base will stop.
-        This method blocks until completed or cancelled
-
-        Args:
-            distance (int): The distance (in millimeters) to move.
-                Negative implies backwards.
-            velocity (float): The velocity (in millimeters per second) to move.
-                Negative implies backwards.
-            angle (float): The angle (in degrees) to move.
-                Negative implies backwards.
-        """
-        ...
-
-    @abc.abstractmethod
     async def spin(self, angle: float, velocity: float):
         """
         Spin the base in place `angle` degrees, at the given angular `velocity`,
@@ -79,12 +53,27 @@ class Base(ComponentBase):
     @abc.abstractmethod
     async def set_power(self, linear: Vector3, angular: Vector3):
         """Set the linear and angular velocity of the Base
+        When `linear` is 0, the the base will spin.
+        When `angular` is 0, the the base will move in a straight line.
+        When both `linear` and `angular` are 0, the base will stop.
+        This method blocks until completed or cancelled
 
         Args:
             linear (Vector3): The linear velocity
             angular (Vector3): The angular velocity
         """
         ...
+
+    @abc.abstractmethod
+    async def set_velocity(self, linear: Vector3, angular: Vector3):
+        """
+        Set the linear and angular velocities of the base.
+
+
+        Args:
+            linear (Vector3): Velocity in mm/sec
+            angular (Vector3): Velocity in deg/sec
+        """
 
     @abc.abstractmethod
     async def stop(self):
