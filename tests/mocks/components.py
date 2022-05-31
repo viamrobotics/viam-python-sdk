@@ -42,6 +42,7 @@ class MockArm(Arm):
             theta=20,
         )
         self.joint_positions = JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+        self.is_stopped = True
         super().__init__(name)
 
     async def get_end_position(self) -> Pose:
@@ -53,12 +54,17 @@ class MockArm(Arm):
         world_state: Optional[WorldState] = None
     ):
         self.position = pose
+        self.is_stopped = False
 
     async def get_joint_positions(self) -> JointPositions:
         return self.joint_positions
 
     async def move_to_joint_positions(self, positions: JointPositions):
         self.joint_positions = positions
+        self.is_stopped = False
+
+    async def stop(self):
+        self.is_stopped = True
 
 
 class MockBase(Base):

@@ -64,3 +64,10 @@ class Arm(ComponentBase):
             JointPositions: The current JointPositions for the arm.
         """
         ...
+
+    @abc.abstractmethod
+    async def stop(self):
+        """
+        Stop all motion of the arm. It is assumed that the arm stops immediately.
+        """
+        ...
