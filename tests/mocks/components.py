@@ -73,8 +73,10 @@ class MockBase(Base):
         self.position = 0
         self.angle = 0
         self.stopped = True
-        self.linear = Vector3(x=0, y=0, z=0)
-        self.angular = Vector3(x=0, y=0, z=0)
+        self.linear_pwr = Vector3(x=0, y=0, z=0)
+        self.angular_pwr = Vector3(x=0, y=0, z=0)
+        self.linear_vel = Vector3(x=0, y=0, z=0)
+        self.angular_vel = Vector3(x=0, y=0, z=0)
         super().__init__(name)
 
     async def move_straight(
@@ -113,7 +115,7 @@ class MockBase(Base):
 
         self.stopped = False
 
-    async def spin(self, angle: float, velocity: float, ):
+    async def spin(self, angle: float, velocity: float):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -124,9 +126,13 @@ class MockBase(Base):
 
         self.stopped = False
 
+    async def set_velocity(self, linear: Vector3, angular: Vector3):
+        self.linear_vel = linear
+        self.angular_vel = angular
+
     async def set_power(self, linear: Vector3, angular: Vector3):
-        self.linear = linear
-        self.angular = angular
+        self.linear_pwr = linear
+        self.angular_pwr = angular
 
     async def stop(self):
         self.stopped = True

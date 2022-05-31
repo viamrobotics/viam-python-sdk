@@ -6,9 +6,9 @@ from viam.components.base import BaseClient, Vector3
 from viam.components.base.service import BaseService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.api.component.base import (BaseServiceStub, MoveArcRequest,
+from viam.proto.api.component.base import (BaseServiceStub,
                                            MoveStraightRequest,
-                                           SetPowerRequest, SetPowerResponse,
+                                           SetPowerRequest, SetVelocityRequest,
                                            SpinRequest, StopRequest)
 
 from .mocks.components import MockBase
@@ -41,17 +41,6 @@ class TestBase:
         for (i, (d, v)) in enumerate(zip(distances, velocities)):
             await base.move_straight(d, v)
             assert base.position == sum(distances[:i+1])
-
-    @pytest.mark.asyncio
-    async def test_move_arc(self, base: MockBase):
-        distances = [randint(-50, 50) for _ in range(8)]
-        velocities = [random()+1 for _ in range(8)]
-        angles = [randint(-180, 180) for _ in range(8)]
-
-        for (i, (d, v, a)) in enumerate(zip(distances, velocities, angles)):
-            await base.move_arc(d, v, a)
-            assert base.position == sum(distances[:i+1])
-            assert base.angle == sum(angles[:i+1])
 
     @pytest.mark.asyncio
     async def test_spin(self, base: MockBase):
@@ -88,13 +77,23 @@ class TestBase:
 
     @pytest.mark.asyncio
     async def test_set_power(self, base: MockBase):
-        assert base.linear == Vector3(x=0, y=0, z=0)
-        assert base.angular == Vector3(x=0, y=0, z=0)
+        assert base.linear_pwr == Vector3(x=0, y=0, z=0)
+        assert base.angular_pwr == Vector3(x=0, y=0, z=0)
 
         await base.set_power(Vector3(x=1, y=2, z=3), Vector3(x=4, y=5, z=6))
 
-        assert base.linear == Vector3(x=1, y=2, z=3)
-        assert base.angular == Vector3(x=4, y=5, z=6)
+        assert base.linear_pwr == Vector3(x=1, y=2, z=3)
+        assert base.angular_pwr == Vector3(x=4, y=5, z=6)
+
+    @pytest.mark.asyncio
+    async def test_velocity(self, base: MockBase):
+        assert base.linear_vel == Vector3(x=0, y=0, z=0)
+        assert base.angular_vel == Vector3(x=0, y=0, z=0)
+
+        await base.set_velocity(Vector3(x=1, y=2, z=3), Vector3(x=4, y=5, z=6))
+
+        assert base.linear_vel == Vector3(x=1, y=2, z=3)
+        assert base.angular_vel == Vector3(x=4, y=5, z=6)
 
     @pytest.mark.asyncio
     async def test_do(self, base: MockBase):
@@ -121,26 +120,6 @@ class TestService:
                 assert base.position == sum(distances[:i+1])
 
     @pytest.mark.asyncio
-    async def test_move_arc(self, base: MockBase, service: BaseService):
-        distances = [randint(-50, 50) for _ in range(8)]
-        velocities = [random()+1 for _ in range(8)]
-        angles = [randint(-180, 180) for _ in range(8)]
-
-        async with ChannelFor([service]) as channel:
-            client = BaseServiceStub(channel)
-            for (i, (d, v, a)) in enumerate(
-                    zip(distances, velocities, angles)):
-                request = MoveArcRequest(
-                    name=base.name,
-                    distance_mm=d,
-                    mm_per_sec=v,
-                    angle_deg=a,
-                )
-                await client.MoveArc(request)
-                assert base.position == sum(distances[:i+1])
-                assert base.angle == sum(angles[:i+1])
-
-    @pytest.mark.asyncio
     async def test_spin(self, base: MockBase, service: BaseService):
         angles = [randint(-180, 180) for _ in range(4)]
         velocities = [random()+1 for _ in range(4)]
@@ -160,14 +139,27 @@ class TestService:
     async def test_set_power(self, base: MockBase, service: BaseService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
-            assert base.linear == Vector3(x=0, y=0, z=0)
-            assert base.angular == Vector3(x=0, y=0, z=0)
+            assert base.linear_pwr == Vector3(x=0, y=0, z=0)
+            assert base.angular_pwr == Vector3(x=0, y=0, z=0)
 
             request = SetPowerRequest(name=base.name, linear=Vector3(x=1, y=2, z=3), angular=Vector3(x=4, y=5, z=6))
             await client.SetPower(request)
 
-            assert base.linear == Vector3(x=1, y=2, z=3)
-            assert base.angular == Vector3(x=4, y=5, z=6)
+            assert base.linear_pwr == Vector3(x=1, y=2, z=3)
+            assert base.angular_pwr == Vector3(x=4, y=5, z=6)
+
+    @pytest.mark.asyncio
+    async def test_set_velocity(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseServiceStub(channel)
+            assert base.linear_vel == Vector3(x=0, y=0, z=0)
+            assert base.angular_vel == Vector3(x=0, y=0, z=0)
+
+            request = SetVelocityRequest(name=base.name, linear=Vector3(x=1, y=2, z=3), angular=Vector3(x=4, y=5, z=6))
+            await client.SetVelocity(request)
+
+            assert base.linear_vel == Vector3(x=1, y=2, z=3)
+            assert base.angular_vel == Vector3(x=4, y=5, z=6)
 
     @pytest.mark.asyncio
     async def test_stop(self, base: MockBase, service: BaseService):
@@ -201,23 +193,6 @@ class TestService:
             await client.MoveStraight(request)
             assert base.stopped is True
 
-            request = MoveArcRequest(
-                name=base.name,
-                distance_mm=1,
-                mm_per_sec=1,
-                angle_deg=1,
-            )
-            await client.MoveArc(request)
-            assert base.stopped is False
-            request = MoveArcRequest(
-                name=base.name,
-                distance_mm=0,
-                mm_per_sec=0,
-                angle_deg=0,
-            )
-            await client.MoveArc(request)
-            assert base.stopped is True
-
             request = SpinRequest(
                 name=base.name,
                 angle_deg=1,
@@ -248,20 +223,6 @@ class TestClient:
                 assert base.position == sum(distances[:i+1])
 
     @pytest.mark.asyncio
-    async def test_move_arc(self, base: MockBase, service: BaseService):
-        distances = [randint(-50, 50) for _ in range(8)]
-        velocities = [random()+1 for _ in range(8)]
-        angles = [randint(-180, 180) for _ in range(8)]
-
-        async with ChannelFor([service]) as channel:
-            client = BaseClient(base.name, channel)
-            for (i, (d, v, a)) in enumerate(
-                    zip(distances, velocities, angles)):
-                await client.move_arc(d, v, a)
-                assert base.position == sum(distances[:i+1])
-                assert base.angle == sum(angles[:i+1])
-
-    @pytest.mark.asyncio
     async def test_spin(self, base: MockBase, service: BaseService):
         angles = [randint(-180, 180) for _ in range(4)]
         velocities = [random()+1 for _ in range(4)]
@@ -271,6 +232,30 @@ class TestClient:
             for (i, (a, v)) in enumerate(zip(angles, velocities)):
                 await client.spin(a, v)
                 assert base.angle == sum(angles[:i+1])
+
+    @pytest.mark.asyncio
+    async def test_set_power(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            assert base.linear_pwr == Vector3(x=0, y=0, z=0)
+            assert base.angular_pwr == Vector3(x=0, y=0, z=0)
+
+            await client.set_power(Vector3(x=1, y=2, z=3), Vector3(x=4, y=5, z=6))
+
+            assert base.linear_pwr == Vector3(x=1, y=2, z=3)
+            assert base.angular_pwr == Vector3(x=4, y=5, z=6)
+
+    @pytest.mark.asyncio
+    async def test_set_velocity(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            assert base.linear_vel == Vector3(x=0, y=0, z=0)
+            assert base.angular_vel == Vector3(x=0, y=0, z=0)
+
+            await client.set_velocity(Vector3(x=1, y=2, z=3), Vector3(x=4, y=5, z=6))
+
+            assert base.linear_vel == Vector3(x=1, y=2, z=3)
+            assert base.angular_vel == Vector3(x=4, y=5, z=6)
 
     @pytest.mark.asyncio
     async def test_stop(self, base: MockBase, service: BaseService):
@@ -289,27 +274,10 @@ class TestClient:
             await client.move_straight(0, 0)
             assert base.stopped is True
 
-            await client.move_arc(1, 1, 1)
-            assert base.stopped is False
-            await client.move_arc(0, 0, 0)
-            assert base.stopped is True
-
             await client.spin(1, 1)
             assert base.stopped is False
             await client.spin(0, 0)
             assert base.stopped is True
-
-    @pytest.mark.asyncio
-    async def test_set_power(self, base: MockBase, service: BaseService):
-        async with ChannelFor([service]) as channel:
-            client = BaseClient(base.name, channel)
-            assert base.linear == Vector3(x=0, y=0, z=0)
-            assert base.angular == Vector3(x=0, y=0, z=0)
-
-            await client.set_power(Vector3(x=1, y=2, z=3), Vector3(x=4, y=5, z=6))
-
-            assert base.linear == Vector3(x=1, y=2, z=3)
-            assert base.angular == Vector3(x=4, y=5, z=6)
 
     @pytest.mark.asyncio
     async def test_do(self, base: MockBase, service: BaseService, generic_service: GenericService):

@@ -1,13 +1,14 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.base import (BaseServiceBase, MoveArcRequest,
-                                           MoveArcResponse,
+from viam.proto.api.component.base import (BaseServiceBase,
                                            MoveStraightRequest,
                                            MoveStraightResponse,
                                            SetPowerRequest, SetPowerResponse,
-                                           SpinRequest, SpinResponse,
-                                           StopRequest, StopResponse)
+                                           SetVelocityRequest,
+                                           SetVelocityResponse, SpinRequest,
+                                           SpinResponse, StopRequest,
+                                           StopResponse)
 
 from .base import Base
 
@@ -35,25 +36,6 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             velocity=request.mm_per_sec,
         )
         response = MoveStraightResponse()
-        await stream.send_message(response)
-
-    async def MoveArc(
-        self,
-        stream: Stream[MoveArcRequest, MoveArcResponse]
-    ) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        try:
-            base = self.get_component(name)
-        except ComponentNotFoundError as e:
-            raise e.grpc_error
-        await base.move_arc(
-            distance=request.distance_mm,
-            velocity=request.mm_per_sec,
-            angle=request.angle_deg,
-        )
-        response = MoveArcResponse()
         await stream.send_message(response)
 
     async def Spin(
@@ -86,10 +68,18 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         response = SetPowerResponse()
         await stream.send_message(response)
 
-    async def Stop(
-        self,
-        stream: Stream[StopRequest, StopResponse]
-    ) -> None:
+    async def SetVelocity(self, stream: Stream[SetVelocityRequest, SetVelocityResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            base = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        await base.set_velocity(request.linear, request.angular)
+        await stream.send_message(SetVelocityResponse())
+
+    async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name

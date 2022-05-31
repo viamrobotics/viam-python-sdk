@@ -3,10 +3,10 @@ from typing import Any, Dict
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.common import Vector3
-from viam.proto.api.component.base import (BaseServiceStub, MoveArcRequest,
+from viam.proto.api.component.base import (BaseServiceStub,
                                            MoveStraightRequest,
-                                           SetPowerRequest, SpinRequest,
-                                           StopRequest)
+                                           SetPowerRequest, SetVelocityRequest,
+                                           SpinRequest, StopRequest)
 
 from .base import Base
 
@@ -33,20 +33,6 @@ class BaseClient(Base):
         )
         await self.client.MoveStraight(request)
 
-    async def move_arc(
-        self,
-        distance: int,
-        velocity: float,
-        angle: float,
-    ):
-        request = MoveArcRequest(
-            name=self.name,
-            distance_mm=distance,
-            mm_per_sec=velocity,
-            angle_deg=angle,
-        )
-        await self.client.MoveArc(request)
-
     async def spin(self, angle: float, velocity: float):
         request = SpinRequest(
             name=self.name,
@@ -62,6 +48,10 @@ class BaseClient(Base):
             angular=angular
         )
         await self.client.SetPower(request)
+
+    async def set_velocity(self, linear: Vector3, angular: Vector3):
+        request = SetVelocityRequest(name=self.name, linear=linear, angular=angular)
+        await self.client.SetVelocity(request)
 
     async def stop(self):
         request = StopRequest(name=self.name)
