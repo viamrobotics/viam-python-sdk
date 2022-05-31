@@ -4,6 +4,7 @@ isort:skip_file
 """
 import builtins
 import google.protobuf.descriptor
+import google.protobuf.duration_pb2
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
@@ -226,3 +227,95 @@ class BlockForOperationResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___BlockForOperationResponse = BlockForOperationResponse
+
+class Status(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    STATUS_FIELD_NUMBER: builtins.int
+
+    @property
+    def name(self) -> proto.api.common.v1.common_pb2.ResourceName:
+        ...
+
+    @property
+    def status(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., status: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['name', b'name', 'status', b'status']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'status', b'status']) -> None:
+        ...
+global___Status = Status
+
+class GetStatusRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOURCE_NAMES_FIELD_NUMBER: builtins.int
+
+    @property
+    def resource_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
+        ...
+
+    def __init__(self, *, resource_names: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['resource_names', b'resource_names']) -> None:
+        ...
+global___GetStatusRequest = GetStatusRequest
+
+class GetStatusResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    STATUS_FIELD_NUMBER: builtins.int
+
+    @property
+    def status(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]:
+        ...
+
+    def __init__(self, *, status: typing.Optional[typing.Iterable[global___Status]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['status', b'status']) -> None:
+        ...
+global___GetStatusResponse = GetStatusResponse
+
+class StreamStatusRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOURCE_NAMES_FIELD_NUMBER: builtins.int
+    EVERY_FIELD_NUMBER: builtins.int
+
+    @property
+    def resource_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
+        ...
+
+    @property
+    def every(self) -> google.protobuf.duration_pb2.Duration:
+        """how often to send a new status."""
+        pass
+
+    def __init__(self, *, resource_names: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=..., every: typing.Optional[google.protobuf.duration_pb2.Duration]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['every', b'every']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['every', b'every', 'resource_names', b'resource_names']) -> None:
+        ...
+global___StreamStatusRequest = StreamStatusRequest
+
+class StreamStatusResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    STATUS_FIELD_NUMBER: builtins.int
+
+    @property
+    def status(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]:
+        ...
+
+    def __init__(self, *, status: typing.Optional[typing.Iterable[global___Status]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['status', b'status']) -> None:
+        ...
+global___StreamStatusResponse = StreamStatusResponse

@@ -1,12 +1,13 @@
 from dataclasses import dataclass
-from typing import Callable, Coroutine, Dict, Generic, Type, TypeVar, Any
-from google.protobuf.struct_pb2 import Struct
+from typing import Any, Callable, Coroutine, Dict, Generic, Type, TypeVar
 
+from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
+
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError, DuplicateComponentError
-from viam.proto.api.service.status import Status
+from viam.proto.api.robot import Status
 
 Component = TypeVar('Component', bound=ComponentBase)
 

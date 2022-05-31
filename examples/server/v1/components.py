@@ -42,6 +42,7 @@ class ExampleArm(Arm):
             theta=20,
         )
         self.joint_positions = JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+        self.is_stoppped = True
         super().__init__(name)
 
     async def get_end_position(self) -> Pose:
@@ -51,13 +52,18 @@ class ExampleArm(Arm):
         self, pose: Pose,
         world_state: Optional[WorldState] = None
     ):
+        self.is_stoppped = False
         self.position = pose
 
     async def get_joint_positions(self) -> JointPositions:
         return self.joint_positions
 
     async def move_to_joint_positions(self, positions: JointPositions):
+        self.is_stoppped = False
         self.joint_positions = positions
+
+    async def stop(self):
+        self.is_stoppped = True
 
 
 class ExampleBase(Base):

@@ -1,6 +1,7 @@
 import asyncio
 
 import pytest
+from google.protobuf.struct_pb2 import Struct
 from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
@@ -8,23 +9,23 @@ from viam.components.resource_manager import ResourceManager
 from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
                          ViamError)
 from viam.proto.api.common import Pose, PoseInFrame, ResourceName
+from viam.proto.api.component.arm import JointPositions
+from viam.proto.api.component.arm import Status as ArmStatus
+from viam.proto.api.component.motor import Status as MotorStatus
 from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
-                                  FrameSystemConfigResponse,
-                                  ResourceNamesRequest, ResourceNamesResponse,
-                                  RobotServiceStub, TransformPoseRequest,
+                                  FrameSystemConfigResponse, GetStatusRequest,
+                                  GetStatusResponse, ResourceNamesRequest,
+                                  ResourceNamesResponse, RobotServiceStub,
+                                  Status, TransformPoseRequest,
                                   TransformPoseResponse)
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services import ServiceType
+from viam.utils import message_to_struct
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockSensor
 
 RESOURCE_NAMES = [
-    ResourceName(
-        namespace='rdk',
-        type='service',
-        subtype='status',
-    ),
     ResourceName(
         namespace='rdk',
         type='component',
@@ -42,6 +43,51 @@ RESOURCE_NAMES = [
         type='component',
         subtype='motor',
         name='motor1'
+    ),
+]
+
+STATUSES = [
+    Status(
+        name=ResourceName(
+            namespace='rdk',
+            type='component',
+            subtype='arm',
+            name='arm1'
+        ),
+        status=message_to_struct(ArmStatus(
+            end_position=Pose(
+                x=1,
+                y=2,
+                z=3,
+                o_x=2,
+                o_y=3,
+                o_z=4,
+                theta=20,
+            ),
+            joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+        ))
+    ),
+    Status(
+        name=ResourceName(
+            namespace='rdk',
+            type='component',
+            subtype='camera',
+            name='camera1'
+        ),
+        status=Struct()
+    ),
+    Status(
+        name=ResourceName(
+            namespace='rdk',
+            type='component',
+            subtype='motor',
+            name='motor1'
+        ),
+        status=message_to_struct(MotorStatus(
+            is_on=False,
+            position=0,
+            position_reporting=True
+        ))
     ),
 ]
 
@@ -133,6 +179,50 @@ class TestRobotService:
             response: ResourceNamesResponse = await client.ResourceNames(ResourceNamesRequest())
             assert list(response.resources) == RESOURCE_NAMES
 
+    @pytest.mark.asyncio
+    async def test_get_status(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = RobotServiceStub(channel)
+            response: GetStatusResponse = await client.GetStatus(GetStatusRequest())
+            assert list(response.status) == STATUSES
+
+            request = GetStatusRequest(resource_names=[
+                MockArm.get_resource_name('arm1'),
+                MockCamera.get_resource_name('camera1')
+            ])
+            response: GetStatusResponse = await client.GetStatus(request)
+            assert list(response.status) == [
+                Status(
+                    name=ResourceName(
+                        namespace='rdk',
+                        type='component',
+                        subtype='arm',
+                        name='arm1'
+                    ),
+                    status=message_to_struct(ArmStatus(
+                        end_position=Pose(
+                            x=1,
+                            y=2,
+                            z=3,
+                            o_x=2,
+                            o_y=3,
+                            o_z=4,
+                            theta=20,
+                        ),
+                        joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+                    ))
+                ),
+                Status(
+                    name=ResourceName(
+                        namespace='rdk',
+                        type='component',
+                        subtype='camera',
+                        name='camera1'
+                    ),
+                    status=Struct()
+                ),
+            ]
+
 
 class TestRobotClient:
 
@@ -207,6 +297,49 @@ class TestRobotClient:
 
             with pytest.raises(ComponentNotFoundError):
                 MockArm.from_robot(client, 'arm2')
+
+    @pytest.mark.asyncio
+    async def test_get_status(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            statuses = await client.get_status()
+            assert statuses == STATUSES
+
+            statuses = await client.get_status([
+                MockArm.get_resource_name('arm1'),
+                MockCamera.get_resource_name('camera1')
+            ])
+            assert statuses == [
+                Status(
+                    name=ResourceName(
+                        namespace='rdk',
+                        type='component',
+                        subtype='arm',
+                        name='arm1'
+                    ),
+                    status=message_to_struct(ArmStatus(
+                        end_position=Pose(
+                            x=1,
+                            y=2,
+                            z=3,
+                            o_x=2,
+                            o_y=3,
+                            o_z=4,
+                            theta=20,
+                        ),
+                        joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+                    ))
+                ),
+                Status(
+                    name=ResourceName(
+                        namespace='rdk',
+                        type='component',
+                        subtype='camera',
+                        name='camera1'
+                    ),
+                    status=Struct()
+                ),
+            ]
 
     @pytest.mark.asyncio
     async def test_get_service(self, service: RobotService):

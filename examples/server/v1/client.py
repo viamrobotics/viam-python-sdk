@@ -6,7 +6,6 @@ from viam.components.imu import IMU
 from viam.components.servo import Servo
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
-from viam.services.types import ServiceType
 
 
 async def client():
@@ -17,8 +16,7 @@ async def client():
         print(f'Resources: {robot.resource_names}')
 
         print('\n#### STATUS ####')
-        service = robot.get_service(ServiceType.STATUS)
-        print(f'Robot status response received: {service.get_status()}')
+        print(f'Robot status response received: {await robot.get_status()}')
 
         print('\n#### IMU ####')
         imu = IMU.from_robot(robot, 'imu0')
