@@ -12,7 +12,7 @@ from viam.proto.api.component.arm import (ArmServiceStub,
                                           GetJointPositionsResponse,
                                           JointPositions,
                                           MoveToJointPositionsRequest,
-                                          MoveToPositionRequest)
+                                          MoveToPositionRequest, StopRequest)
 
 from .mocks.components import MockArm
 
@@ -50,6 +50,12 @@ class TestArm:
     async def test_get_joint_positions(self):
         jp = await self.arm.get_joint_positions()
         assert jp == self.joint_pos
+
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        assert self.arm.is_stopped is False
+        await self.arm.stop()
+        assert self.arm.is_stopped is True
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -109,6 +115,15 @@ class TestService:
                 await client.GetJointPositions(request)
             assert response.position_degs == self.joint_pos
 
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.arm.is_stopped is False
+            client = ArmServiceStub(channel)
+            request = StopRequest(name=self.name)
+            await client.Stop(request)
+            assert self.arm.is_stopped is True
+
 
 class TestClient:
 
@@ -154,6 +169,14 @@ class TestClient:
             client = ArmClient(self.name, channel)
             jp = await client.get_joint_positions()
             assert jp == self.joint_pos
+
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.arm.is_stopped is False
+            client = ArmClient(self.name, channel)
+            await client.stop()
+            assert self.arm.is_stopped is True
 
     @pytest.mark.asyncio
     async def test_do(self):

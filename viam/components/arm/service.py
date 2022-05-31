@@ -1,13 +1,16 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.arm import (
-    ArmServiceBase,
-    GetEndPositionRequest, GetEndPositionResponse,
-    MoveToPositionRequest, MoveToPositionResponse,
-    GetJointPositionsRequest, GetJointPositionsResponse,
-    MoveToJointPositionsRequest, MoveToJointPositionsResponse,
-)
+from viam.proto.api.component.arm import (ArmServiceBase,
+                                          GetEndPositionRequest,
+                                          GetEndPositionResponse,
+                                          GetJointPositionsRequest,
+                                          GetJointPositionsResponse,
+                                          MoveToJointPositionsRequest,
+                                          MoveToJointPositionsResponse,
+                                          MoveToPositionRequest,
+                                          MoveToPositionResponse, StopRequest,
+                                          StopResponse)
 
 from .arm import Arm
 
@@ -78,4 +81,16 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             raise e.grpc_error
         await arm.move_to_joint_positions(request.position_degs)
         response = MoveToJointPositionsResponse()
+        await stream.send_message(response)
+
+    async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            arm = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        await arm.stop()
+        response = StopResponse()
         await stream.send_message(response)

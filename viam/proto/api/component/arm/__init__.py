@@ -16,7 +16,9 @@ from .....gen.proto.api.component.arm.v1.arm_pb2 import (
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
     MoveToPositionResponse,
-    Status
+    Status,
+    StopRequest,
+    StopResponse
 )
 
 __all__ = [
@@ -32,4 +34,6 @@ __all__ = [
     'MoveToPositionRequest',
     'MoveToPositionResponse',
     'Status',
+    'StopRequest',
+    'StopResponse',
 ]

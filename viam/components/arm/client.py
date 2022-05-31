@@ -10,7 +10,7 @@ from viam.proto.api.component.arm import (ArmServiceStub,
                                           GetJointPositionsResponse,
                                           JointPositions,
                                           MoveToJointPositionsRequest,
-                                          MoveToPositionRequest)
+                                          MoveToPositionRequest, StopRequest)
 
 from .arm import Arm
 
@@ -52,6 +52,10 @@ class ArmClient(Arm):
         request = MoveToJointPositionsRequest(
             name=self.name, position_degs=positions)
         await self.client.MoveToJointPositions(request)
+
+    async def stop(self):
+        request = StopRequest(name=self.name)
+        await self.client.Stop(request)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)
