@@ -13,10 +13,10 @@ from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
                          ViamError)
 from viam.proto.api.common import PoseInFrame, ResourceName, Transform
 from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
-                                  FrameSystemConfigResponse,
-                                  ResourceNamesRequest, ResourceNamesResponse,
-                                  RobotServiceStub, TransformPoseRequest,
-                                  TransformPoseResponse)
+                                  FrameSystemConfigResponse, GetStatusRequest,
+                                  GetStatusResponse, ResourceNamesRequest,
+                                  ResourceNamesResponse, RobotServiceStub,
+                                  TransformPoseRequest, TransformPoseResponse)
 from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
@@ -252,9 +252,30 @@ class RobotClient:
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self.close()
 
+    ##########
+    # STATUS #
+    ##########
+    async def get_status(
+        self,
+        components: Optional[List[ResourceName]] = None
+    ):
+        """
+        Get the status of the robot's components. You can optionally
+        provide a list of `ResourceName` for which you want statuses.
+
+        Args:
+            components (Optional[List[ResourceName]]): Optional list of
+                `ResourceName` for components you want statuses.
+        """
+        names = components if components is not None else []
+        request = GetStatusRequest(resource_names=names)
+        response: GetStatusResponse = await self._client.GetStatus(request)
+        return list(response.status)
+
     ################
     # FRAME SYSTEM #
     ################
+
     async def get_frame_system_config(self, additional_transforms: Optional[List[Transform]] = None) -> List[FrameSystemConfig]:
         """
         Get the configuration of the frame system of a given robot.
