@@ -125,30 +125,6 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.client.BaseClient.move_arc">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_arc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient.move_arc" title="Permalink to this definition"></a></dt>
-<dd><p>Move the base in an arc the given <cite>distance</cite>, expressed in millimeters,
-at the given <cite>velocity</cite>, expressed in millimeters per second, turning <cite>angle</cite>
-degrees in the process.
-When <cite>distance</cite> is 0, the the base will spin.
-When <cite>angle</cite> is 0, the the base will move in a straight line.
-When <cite>velocity</cite> is 0, the base will stop.
-This method blocks until completed or cancelled</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>distance</strong> (<em>int</em>) – The distance (in millimeters) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The velocity (in millimeters per second) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to move.
-Negative implies backwards.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.client.BaseClient.move_straight">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient.move_straight" title="Permalink to this definition"></a></dt>
 <dd><p>Move the base in a straight line the given <cite>distance</cite>, expressed in millimeters,
@@ -170,12 +146,30 @@ Negative implies backwards.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.client.BaseClient.set_power">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Vector3" title="proto.api.common.v1.common_pb2.Vector3"><span class="pre">proto.api.common.v1.common_pb2.Vector3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Vector3" title="proto.api.common.v1.common_pb2.Vector3"><span class="pre">proto.api.common.v1.common_pb2.Vector3</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient.set_power" title="Permalink to this definition"></a></dt>
-<dd><p>Set the linear and angular velocity of the Base</p>
+<dd><p>Set the linear and angular velocity of the Base
+When <cite>linear</cite> is 0, the the base will spin.
+When <cite>angular</cite> is 0, the the base will move in a straight line.
+When both <cite>linear</cite> and <cite>angular</cite> are 0, the base will stop.
+This method blocks until completed or cancelled</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>linear</strong> (<a class="reference internal" href="viam.components.base.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The linear velocity</p></li>
 <li><p><strong>angular</strong> (<a class="reference internal" href="viam.components.base.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The angular velocity</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.client.BaseClient.set_velocity">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Vector3" title="proto.api.common.v1.common_pb2.Vector3"><span class="pre">proto.api.common.v1.common_pb2.Vector3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.Vector3" title="proto.api.common.v1.common_pb2.Vector3"><span class="pre">proto.api.common.v1.common_pb2.Vector3</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.client.BaseClient.set_velocity" title="Permalink to this definition"></a></dt>
+<dd><p>Set the linear and angular velocities of the base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>linear</strong> (<a class="reference internal" href="viam.components.base.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – Velocity in mm/sec</p></li>
+<li><p><strong>angular</strong> (<a class="reference internal" href="viam.components.base.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – Velocity in deg/sec</p></li>
 </ul>
 </dd>
 </dl>
