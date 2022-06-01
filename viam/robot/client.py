@@ -16,7 +16,9 @@ from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
                                   FrameSystemConfigResponse, GetStatusRequest,
                                   GetStatusResponse, ResourceNamesRequest,
                                   ResourceNamesResponse, RobotServiceStub,
-                                  TransformPoseRequest, TransformPoseResponse)
+                                  TransformPoseRequest, TransformPoseResponse,
+                                  Discovery, DiscoveryQuery,
+                                  DiscoverComponentsRequest, DiscoverComponentsResponse)
 from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
@@ -304,3 +306,23 @@ class RobotClient:
         request = TransformPoseRequest(source=query, destination=destination, supplemental_transforms=additional_transforms)
         response: TransformPoseResponse = await self._client.TransformPose(request)
         return response.pose
+
+    #######################
+    # COMPONENT DISCOVERY #
+    #######################
+
+    async def discover_components(
+        self,
+        queries: List[DiscoveryQuery],
+    ) -> List[Discovery]:
+        """
+        Get the list of discovered component configurations.
+
+        Args:
+
+            queries (List[DiscoveryQuery]): The list of component models to lookup configurations for.
+
+        """
+        request = DiscoverComponentsRequest(queries=queries)
+        response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
+        return list(response.discovery)

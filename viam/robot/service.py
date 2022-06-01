@@ -15,7 +15,8 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   ResourceNamesRequest, ResourceNamesResponse,
                                   RobotServiceBase, Status,
                                   StreamStatusRequest, StreamStatusResponse,
-                                  TransformPoseRequest, TransformPoseResponse)
+                                  TransformPoseRequest, TransformPoseResponse,
+                                  DiscoverComponentsRequest, DiscoverComponentsResponse)
 from viam.registry import Registry
 from viam.utils import resource_names_for_component
 
@@ -86,4 +87,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
         pass
 
     async def TransformPose(self, stream: Stream[TransformPoseRequest, TransformPoseResponse]) -> None:
+        pass
+
+    async def DiscoverComponents(self, stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
         pass

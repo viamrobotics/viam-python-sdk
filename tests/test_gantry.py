@@ -9,7 +9,8 @@ from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetLengthsResponse,
                                              GetPositionRequest,
                                              GetPositionResponse,
-                                             MoveToPositionRequest)
+                                             MoveToPositionRequest,
+                                             StopRequest)
 
 from .mocks.components import MockGantry
 
@@ -37,6 +38,12 @@ class TestGantry:
     async def test_do(self):
         with pytest.raises(NotImplementedError):
             await self.gantry.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        assert self.gantry.is_stopped is False
+        await self.gantry.stop()
+        assert self.gantry.is_stopped is True
 
 
 class TestService:
@@ -69,6 +76,15 @@ class TestService:
             request = GetLengthsRequest(name=self.gantry.name)
             response: GetLengthsResponse = await client.GetLengths(request)
             assert list(response.lengths_mm) == [4, 5, 6]
+
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.gantry.is_stopped is False
+            client = GantryServiceStub(channel)
+            request = StopRequest(name=self.gantry.name)
+            await client.Stop(request)
+            assert self.gantry.is_stopped is True
 
 
 class TestClient:
@@ -104,3 +120,11 @@ class TestClient:
             client = GantryClient(self.gantry.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.gantry.is_stopped is False
+            client = GantryClient(self.gantry.name, channel)
+            await client.stop()
+            assert self.gantry.is_stopped is True
