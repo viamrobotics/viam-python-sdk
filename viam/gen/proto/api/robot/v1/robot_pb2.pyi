@@ -228,6 +228,76 @@ class BlockForOperationResponse(google.protobuf.message.Message):
         ...
 global___BlockForOperationResponse = BlockForOperationResponse
 
+class DiscoveryQuery(google.protobuf.message.Message):
+    """Discovery
+
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SUBTYPE_FIELD_NUMBER: builtins.int
+    MODEL_FIELD_NUMBER: builtins.int
+    subtype: typing.Text
+    model: typing.Text
+
+    def __init__(self, *, subtype: typing.Text=..., model: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['model', b'model', 'subtype', b'subtype']) -> None:
+        ...
+global___DiscoveryQuery = DiscoveryQuery
+
+class Discovery(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    QUERY_FIELD_NUMBER: builtins.int
+    RESULTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def query(self) -> global___DiscoveryQuery:
+        ...
+
+    @property
+    def results(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, query: typing.Optional[global___DiscoveryQuery]=..., results: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['query', b'query', 'results', b'results']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['query', b'query', 'results', b'results']) -> None:
+        ...
+global___Discovery = Discovery
+
+class DiscoverComponentsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    QUERIES_FIELD_NUMBER: builtins.int
+
+    @property
+    def queries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]:
+        ...
+
+    def __init__(self, *, queries: typing.Optional[typing.Iterable[global___DiscoveryQuery]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['queries', b'queries']) -> None:
+        ...
+global___DiscoverComponentsRequest = DiscoverComponentsRequest
+
+class DiscoverComponentsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DISCOVERY_FIELD_NUMBER: builtins.int
+
+    @property
+    def discovery(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]:
+        ...
+
+    def __init__(self, *, discovery: typing.Optional[typing.Iterable[global___Discovery]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['discovery', b'discovery']) -> None:
+        ...
+global___DiscoverComponentsResponse = DiscoverComponentsResponse
+
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
