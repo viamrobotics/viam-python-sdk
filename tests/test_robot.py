@@ -12,14 +12,15 @@ from viam.proto.api.common import Pose, PoseInFrame, ResourceName
 from viam.proto.api.component.arm import JointPositions
 from viam.proto.api.component.arm import Status as ArmStatus
 from viam.proto.api.component.motor import Status as MotorStatus
-from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
+from viam.proto.api.robot import (DiscoverComponentsRequest,
+                                  DiscoverComponentsResponse, Discovery,
+                                  DiscoveryQuery, FrameSystemConfig,
+                                  FrameSystemConfigRequest,
                                   FrameSystemConfigResponse, GetStatusRequest,
                                   GetStatusResponse, ResourceNamesRequest,
                                   ResourceNamesResponse, RobotServiceStub,
                                   Status, TransformPoseRequest,
-                                  TransformPoseResponse, DiscoveryQuery,
-                                  Discovery, DiscoverComponentsRequest,
-                                  DiscoverComponentsResponse)
+                                  TransformPoseResponse)
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services import ServiceType

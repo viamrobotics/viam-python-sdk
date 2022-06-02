@@ -8,8 +8,7 @@ from viam.proto.api.component.gantry import (GantryServiceBase,
                                              GetPositionResponse,
                                              MoveToPositionRequest,
                                              MoveToPositionResponse,
-                                             StopRequest,
-                                             StopResponse)
+                                             StopRequest, StopResponse)
 
 from .gantry import Gantry
 

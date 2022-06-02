@@ -8,6 +8,8 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   BlockForOperationResponse,
                                   CancelOperationRequest,
                                   CancelOperationResponse,
+                                  DiscoverComponentsRequest,
+                                  DiscoverComponentsResponse,
                                   FrameSystemConfigRequest,
                                   FrameSystemConfigResponse,
                                   GetOperationsRequest, GetOperationsResponse,
@@ -15,8 +17,7 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   ResourceNamesRequest, ResourceNamesResponse,
                                   RobotServiceBase, Status,
                                   StreamStatusRequest, StreamStatusResponse,
-                                  TransformPoseRequest, TransformPoseResponse,
-                                  DiscoverComponentsRequest, DiscoverComponentsResponse)
+                                  TransformPoseRequest, TransformPoseResponse)
 from viam.registry import Registry
 from viam.utils import resource_names_for_component
 

@@ -12,13 +12,14 @@ from viam.components.resource_manager import ResourceManager
 from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
                          ViamError)
 from viam.proto.api.common import PoseInFrame, ResourceName, Transform
-from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
+from viam.proto.api.robot import (DiscoverComponentsRequest,
+                                  DiscoverComponentsResponse, Discovery,
+                                  DiscoveryQuery, FrameSystemConfig,
+                                  FrameSystemConfigRequest,
                                   FrameSystemConfigResponse, GetStatusRequest,
                                   GetStatusResponse, ResourceNamesRequest,
                                   ResourceNamesResponse, RobotServiceStub,
-                                  TransformPoseRequest, TransformPoseResponse,
-                                  Discovery, DiscoveryQuery,
-                                  DiscoverComponentsRequest, DiscoverComponentsResponse)
+                                  TransformPoseRequest, TransformPoseResponse)
 from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
