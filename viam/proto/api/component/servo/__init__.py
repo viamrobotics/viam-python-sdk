@@ -11,7 +11,9 @@ from .....gen.proto.api.component.servo.v1.servo_pb2 import (
     GetPositionResponse,
     MoveRequest,
     MoveResponse,
-    Status
+    Status,
+    StopRequest,
+    StopResponse
 )
 
 __all__ = [
@@ -22,4 +24,6 @@ __all__ = [
     'MoveRequest',
     'MoveResponse',
     'Status',
+    'StopRequest',
+    'StopResponse',
 ]
