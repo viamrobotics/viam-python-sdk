@@ -144,6 +144,17 @@ If not set, the robot will not be refreshed automatically</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.discover_components">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discover_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.robot.html#viam.proto.api.robot.DiscoveryQuery" title="proto.api.robot.v1.robot_pb2.DiscoveryQuery"><span class="pre">proto.api.robot.v1.robot_pb2.DiscoveryQuery</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="viam.proto.api.robot.html#viam.proto.api.robot.Discovery" title="proto.api.robot.v1.robot_pb2.Discovery"><span class="pre">proto.api.robot.v1.robot_pb2.Discovery</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.client.RobotClient.discover_components" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of discovered component configurations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>queries</strong> (<em>List</em><em>[</em><a class="reference internal" href="viam.proto.api.robot.html#viam.proto.api.robot.DiscoveryQuery" title="viam.proto.api.robot.DiscoveryQuery"><em>DiscoveryQuery</em></a><em>]</em>) – The list of component models to lookup configurations for.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_component">
 <span class="sig-name descname"><span class="pre">get_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="viam.proto.api.common.html#viam.proto.api.common.ResourceName" title="proto.api.common.v1.common_pb2.ResourceName"><span class="pre">proto.api.common.v1.common_pb2.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="viam.components.component_base.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a></span></span><a class="headerlink" href="#viam.robot.client.RobotClient.get_component" title="Permalink to this definition"></a></dt>
 <dd><p>Get a component using its ResourceName.</p>
