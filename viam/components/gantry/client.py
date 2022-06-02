@@ -8,7 +8,8 @@ from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetLengthsResponse,
                                              GetPositionRequest,
                                              GetPositionResponse,
-                                             MoveToPositionRequest)
+                                             MoveToPositionRequest,
+                                             StopRequest)
 
 from .gantry import Gantry
 
@@ -41,6 +42,10 @@ class GantryClient(Gantry):
         request = GetLengthsRequest(name=self.name)
         response: GetLengthsResponse = await self.client.GetLengths(request)
         return list(response.lengths_mm)
+
+    async def stop(self):
+        request = StopRequest(name=self.name)
+        await self.client.Stop(request)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

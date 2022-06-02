@@ -8,6 +8,8 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   BlockForOperationResponse,
                                   CancelOperationRequest,
                                   CancelOperationResponse,
+                                  DiscoverComponentsRequest,
+                                  DiscoverComponentsResponse,
                                   FrameSystemConfigRequest,
                                   FrameSystemConfigResponse,
                                   GetOperationsRequest, GetOperationsResponse,
@@ -86,4 +88,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
         pass
 
     async def TransformPose(self, stream: Stream[TransformPoseRequest, TransformPoseResponse]) -> None:
+        pass
+
+    async def DiscoverComponents(self, stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
         pass

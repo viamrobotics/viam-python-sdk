@@ -100,6 +100,26 @@ class GetLengthsResponse(google.protobuf.message.Message):
         ...
 global___GetLengthsResponse = GetLengthsResponse
 
+class StopRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
+    'Name of a gantry'
+
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___StopRequest = StopRequest
+
+class StopResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___StopResponse = StopResponse
+
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITIONS_MM_FIELD_NUMBER: builtins.int

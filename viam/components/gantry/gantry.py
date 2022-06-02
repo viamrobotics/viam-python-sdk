@@ -10,7 +10,7 @@ class Gantry(ComponentBase):
     """
     Gantry represents a physical Gantry and can be used for controlling gantries of N axes.
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     gantry implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """
@@ -49,5 +49,12 @@ class Gantry(ComponentBase):
 
         Returns:
             List[float]: The lengths of the axes.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def stop(self):
+        """
+        Stop all motion of the gantry. It is assumed that the gantry stops immediately.
         """
         ...

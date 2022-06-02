@@ -1,7 +1,7 @@
 import asyncio
 
 import pytest
-from google.protobuf.struct_pb2 import Struct
+from google.protobuf.struct_pb2 import Struct, Value
 from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
@@ -12,7 +12,10 @@ from viam.proto.api.common import Pose, PoseInFrame, ResourceName
 from viam.proto.api.component.arm import JointPositions
 from viam.proto.api.component.arm import Status as ArmStatus
 from viam.proto.api.component.motor import Status as MotorStatus
-from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
+from viam.proto.api.robot import (DiscoverComponentsRequest,
+                                  DiscoverComponentsResponse, Discovery,
+                                  DiscoveryQuery, FrameSystemConfig,
+                                  FrameSystemConfigRequest,
                                   FrameSystemConfigResponse, GetStatusRequest,
                                   GetStatusResponse, ResourceNamesRequest,
                                   ResourceNamesResponse, RobotServiceStub,
@@ -139,6 +142,21 @@ TRANSFORM_RESPONSE = PoseInFrame(
     )
 )
 
+DISCOVERY_QUERY = DiscoveryQuery(
+    subtype='camera',
+    model='webcam'
+)
+
+DISCOVERY_RESPONSE = [
+    Discovery(
+        query=DISCOVERY_QUERY,
+        results=Struct(fields={
+            'foo': Value(string_value="bar"),
+            'one': Value(number_value=1),
+        })
+    )
+]
+
 
 @pytest.fixture(scope='function')
 def service() -> RobotService:
@@ -164,10 +182,19 @@ def service() -> RobotService:
         response = TransformPoseResponse(pose=TRANSFORM_RESPONSE)
         await stream.send_message(response)
 
+    async def DiscoverComponents(
+        stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = DiscoverComponentsResponse(discovery=DISCOVERY_RESPONSE)
+        await stream.send_message(response)
+
     manager = ResourceManager(resources)
     service = RobotService(manager)
     service.FrameSystemConfig = Config
     service.TransformPose = TransformPose
+    service.DiscoverComponents = DiscoverComponents
     return service
 
 
@@ -361,3 +388,10 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             pose = await client.transform_pose(PoseInFrame(), 'some dest')
             assert pose == TRANSFORM_RESPONSE
+
+    @pytest.mark.asyncio
+    async def test_discover_components(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            discoveries = await client.discover_components([DISCOVERY_QUERY])
+            assert discoveries == DISCOVERY_RESPONSE

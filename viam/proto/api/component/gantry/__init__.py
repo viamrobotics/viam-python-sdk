@@ -13,7 +13,9 @@ from .....gen.proto.api.component.gantry.v1.gantry_pb2 import (
     GetPositionResponse,
     MoveToPositionRequest,
     MoveToPositionResponse,
-    Status
+    Status,
+    StopRequest,
+    StopResponse
 )
 
 __all__ = [
@@ -26,4 +28,6 @@ __all__ = [
     'MoveToPositionRequest',
     'MoveToPositionResponse',
     'Status',
+    'StopRequest',
+    'StopResponse',
 ]

@@ -4,6 +4,7 @@ isort:skip_file
 """
 import builtins
 import google.protobuf.descriptor
+import google.protobuf.internal.containers
 import google.protobuf.message
 import typing
 import typing_extensions
@@ -94,3 +95,78 @@ class GetPointCloudResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'point_cloud', b'point_cloud']) -> None:
         ...
 global___GetPointCloudResponse = GetPointCloudResponse
+
+class Webcams(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    WEBCAMS_FIELD_NUMBER: builtins.int
+
+    @property
+    def webcams(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Webcam]:
+        ...
+
+    def __init__(self, *, webcams: typing.Optional[typing.Iterable[global___Webcam]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['webcams', b'webcams']) -> None:
+        ...
+global___Webcams = Webcams
+
+class Webcam(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LABEL_FIELD_NUMBER: builtins.int
+    STATUS_FIELD_NUMBER: builtins.int
+    PROPERTIES_FIELD_NUMBER: builtins.int
+    label: typing.Text
+    'Camera driver label'
+    status: typing.Text
+    'Camera driver status'
+
+    @property
+    def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]:
+        """Camera properties"""
+        pass
+
+    def __init__(self, *, label: typing.Text=..., status: typing.Text=..., properties: typing.Optional[typing.Iterable[global___Property]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['label', b'label', 'properties', b'properties', 'status', b'status']) -> None:
+        ...
+global___Webcam = Webcam
+
+class Property(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VIDEO_FIELD_NUMBER: builtins.int
+
+    @property
+    def video(self) -> global___Video:
+        """Camera video properties"""
+        pass
+
+    def __init__(self, *, video: typing.Optional[global___Video]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['video', b'video']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['video', b'video']) -> None:
+        ...
+global___Property = Property
+
+class Video(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    WIDTH_FIELD_NUMBER: builtins.int
+    HEIGHT_FIELD_NUMBER: builtins.int
+    FRAME_FORMAT_FIELD_NUMBER: builtins.int
+    width: builtins.int
+    'Video resolution width'
+    height: builtins.int
+    'Video resolution height'
+    frame_format: typing.Text
+    'Video frame format'
+
+    def __init__(self, *, width: builtins.int=..., height: builtins.int=..., frame_format: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['frame_format', b'frame_format', 'height', b'height', 'width', b'width']) -> None:
+        ...
+global___Video = Video

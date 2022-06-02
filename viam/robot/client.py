@@ -12,7 +12,10 @@ from viam.components.resource_manager import ResourceManager
 from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
                          ViamError)
 from viam.proto.api.common import PoseInFrame, ResourceName, Transform
-from viam.proto.api.robot import (FrameSystemConfig, FrameSystemConfigRequest,
+from viam.proto.api.robot import (DiscoverComponentsRequest,
+                                  DiscoverComponentsResponse, Discovery,
+                                  DiscoveryQuery, FrameSystemConfig,
+                                  FrameSystemConfigRequest,
                                   FrameSystemConfigResponse, GetStatusRequest,
                                   GetStatusResponse, ResourceNamesRequest,
                                   ResourceNamesResponse, RobotServiceStub,
@@ -304,3 +307,23 @@ class RobotClient:
         request = TransformPoseRequest(source=query, destination=destination, supplemental_transforms=additional_transforms)
         response: TransformPoseResponse = await self._client.TransformPose(request)
         return response.pose
+
+    #######################
+    # COMPONENT DISCOVERY #
+    #######################
+
+    async def discover_components(
+        self,
+        queries: List[DiscoveryQuery],
+    ) -> List[Discovery]:
+        """
+        Get the list of discovered component configurations.
+
+        Args:
+
+            queries (List[DiscoveryQuery]): The list of component models to lookup configurations for.
+
+        """
+        request = DiscoverComponentsRequest(queries=queries)
+        response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
+        return list(response.discovery)

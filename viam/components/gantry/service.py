@@ -7,7 +7,8 @@ from viam.proto.api.component.gantry import (GantryServiceBase,
                                              GetPositionRequest,
                                              GetPositionResponse,
                                              MoveToPositionRequest,
-                                             MoveToPositionResponse)
+                                             MoveToPositionResponse,
+                                             StopRequest, StopResponse)
 
 from .gantry import Gantry
 
@@ -65,4 +66,16 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             raise e.grpc_error
         lengths = await gantry.get_lengths()
         response = GetLengthsResponse(lengths_mm=lengths)
+        await stream.send_message(response)
+
+    async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            arm = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        await arm.stop()
+        response = StopResponse()
         await stream.send_message(response)
