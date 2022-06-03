@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "viam"
+version = "0.0.1-alpha.30"
+description = "Viam Robotics python SDK"
+authors = ["Viam Inc"]
+license = "None"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.11"
+grpclib = "^0.4.2"
+googleapis-common-protos = "^1.56.2"
+typing-extensions = "^4.2.0"
+Pillow = "^9.1.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+pytest-asyncio = "^0.18.3"
+coverage = "^6.4.1"
+mypy-protobuf = "^3.2.0"
+protoletariat = "^0.9.3"
+jupyter = "^1.0.0"
+flake8 = "^4.0.1"
+myst-nb = "^0.15.0"
+sphinx-autoapi = "^1.8.4"
+sphinx-rtd-theme = "^1.0.0"
+autopep8 = "^1.6.0"
+black = "^22.3.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = "tests"
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+omit = ['*/gen/*']
+
+[tool.coverage.report]
+exclude_lines = ['pragma: no\s*cover',  '\.\.\.']
+
+[tool.black]
+line-length = 140

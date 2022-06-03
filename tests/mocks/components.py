@@ -538,10 +538,15 @@ class MockServo(Servo):
 
     def __init__(self, name: str):
         self.angle = 0
+        self.is_stopped = True
         super().__init__(name)
 
     async def move(self, angle: int):
         self.angle = angle
+        self.is_stopped = False
 
     async def get_position(self) -> int:
         return self.angle
+
+    async def stop(self):
+        self.is_stopped = True
