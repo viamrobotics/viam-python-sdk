@@ -382,6 +382,7 @@ class ExampleGantry(Gantry):
     ):
         self.position = position
         self.lengths = lengths
+        self.is_stopped = True
         super().__init__(name)
 
     async def get_position(self) -> List[float]:
@@ -393,9 +394,13 @@ class ExampleGantry(Gantry):
         world_state: Optional[WorldState] = None
     ):
         self.position = positions
+        self.is_stopped = False
 
     async def get_lengths(self) -> List[float]:
         return self.lengths
+
+    async def stop(self):
+        self.is_stopped = True
 
 
 class ExampleGPS(GPS):
