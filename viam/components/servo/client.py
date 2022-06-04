@@ -4,7 +4,7 @@ from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.component.servo import (GetPositionRequest,
                                             GetPositionResponse, MoveRequest,
-                                            ServoServiceStub)
+                                            ServoServiceStub, StopRequest)
 
 from .servo import Servo
 
@@ -27,6 +27,10 @@ class ServoClient(Servo):
     async def move(self, angle: int):
         request = MoveRequest(name=self.name, angle_deg=angle)
         await self.client.Move(request)
+
+    async def stop(self):
+        request = StopRequest(name=self.name)
+        await self.client.Stop(request)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)
