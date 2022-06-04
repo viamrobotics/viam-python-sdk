@@ -7,7 +7,7 @@ class Servo(ComponentBase):
     """
     Servo represents a physical servo.
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     servo implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """
@@ -31,5 +31,12 @@ class Servo(ComponentBase):
 
         Returns:
             int: The current angle of the servo in degrees.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def stop(self):
+        """
+        Stop the servo. It is assumed that the servo stops immediately.
         """
         ...

@@ -6,7 +6,7 @@ from viam.components.servo import ServoClient
 from viam.components.servo.service import ServoService
 from viam.proto.api.component.servo import (GetPositionRequest,
                                             GetPositionResponse, MoveRequest,
-                                            ServoServiceStub)
+                                            ServoServiceStub, StopRequest)
 
 from .mocks.components import MockServo
 
@@ -25,6 +25,12 @@ class TestServo:
     async def test_get_position(self):
         new_pos = await self.servo.get_position()
         assert new_pos == self.pos
+
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        assert self.servo.is_stopped is False
+        await self.servo.stop()
+        assert self.servo.is_stopped is True
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -56,6 +62,15 @@ class TestService:
             response: GetPositionResponse = await client.GetPosition(request)
             assert response.position_deg == self.pos
 
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.servo.is_stopped is False
+            client = ServoServiceStub(channel)
+            request = StopRequest(name=self.name)
+            await client.Stop(request)
+            assert self.servo.is_stopped is True
+
 
 class TestClient:
 
@@ -78,6 +93,14 @@ class TestClient:
             client = ServoClient(self.servo.name, channel)
             new_pos = await client.get_position()
             assert new_pos == self.pos
+
+    @pytest.mark.asyncio
+    async def test_stop(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.servo.is_stopped is False
+            client = ServoClient(self.name, channel)
+            await client.stop()
+            assert self.servo.is_stopped is True
 
     @pytest.mark.asyncio
     async def test_do(self):
