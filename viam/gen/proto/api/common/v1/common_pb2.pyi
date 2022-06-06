@@ -251,7 +251,7 @@ class Geometry(google.protobuf.message.Message):
 global___Geometry = Geometry
 
 class GeometriesInFrame(google.protobuf.message.Message):
-    """GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was 
+    """GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
     observed.
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -273,7 +273,7 @@ class GeometriesInFrame(google.protobuf.message.Message):
 global___GeometriesInFrame = GeometriesInFrame
 
 class PointCloudObject(google.protobuf.message.Message):
-    """PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a 
+    """PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
     repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -338,7 +338,7 @@ class Transform(google.protobuf.message.Message):
 global___Transform = Transform
 
 class WorldState(google.protobuf.message.Message):
-    """WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional, 
+    """WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
     they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
     given reference frame and a new target reference frame.
     """

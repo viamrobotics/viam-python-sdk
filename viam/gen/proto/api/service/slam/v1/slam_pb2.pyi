@@ -60,7 +60,7 @@ class GetMapRequest(google.protobuf.message.Message):
         """
         pass
     include_robot_marker: builtins.bool
-    'Optional parameter for image/jpeg mime_type, defaults to false.    \n    Tells us whether to include the robot position on the 2D image.\n    '
+    'Optional parameter for image/jpeg mime_type, defaults to false.\n    Tells us whether to include the robot position on the 2D image.\n    '
 
     def __init__(self, *, name: typing.Text=..., mime_type: typing.Text=..., camera_position: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., include_robot_marker: builtins.bool=...) -> None:
         ...
