@@ -21,30 +21,13 @@ Because the SDK is under active development, we suggest that you upgrade the pac
 
 `pip install -U git+https://YOUR_ACCESS_TOKEN@github.com/viamrobotics/python-sdk.git`
 
-## Usage
-To connect to a server, you can use the `viam.rpc.dial.dial_direct` function, passing in an address and `DialOptions` (`viam.rpc.dial.DialOptions`). This will return a gRPC `Channel` which you can use to instantiate component clients, e.g.
-
-```python
-from viam.proto.api.component import motor
-
-# OMITTED: Obtian a channel using dial_direct
-
-my_motor = motor.MotorClient(name='my_motor', channel=channel)
-await my_motor.set_power(0.9)
-await asyncio.sleep(3)
-await my_motor.set_power(0)
-position = await my_motor.get_position()
-```
-
-View the [`examples`](https://github.com/viamrobotics/python-sdk/tree/main/examples) for more details.
-
-## Easy Setup via app.viam.com
+## Easy Setup via [app.viam.com](app.viam.com)
 The easiest way to get started writing a client application (that is, one which is not directly responsible for interacting hardware,
-but rather calls into the viam-server to actuate hardware or read from sensors), is to navigate to the robot page on app.viam.com,
+but rather calls into the viam-server to actuate hardware or read from sensors), is to navigate to the robot page on [app.viam.com](app.viam.com),
 select the `CONNECT` tab, and copy the boilerplate code from the section labeled `Python SDK`.
 
 It is recommended that you save and run this simple program. Doing so will ensure that the python-sdk is properly installed,
-that the viam-server instance on your robot is alive, and that the computer running the program is able to connect to that instance.
+that the `viam-server` instance on your robot is alive, and that the computer running the program is able to connect to that instance.
 
 ### Accessing a component:
 First you'll need to access the RobotClient. This should look:
@@ -52,7 +35,7 @@ First you'll need to access the RobotClient. This should look:
 from viam.robot.client import RobotClient
 ```
 
-Then to instantiate the robot, you'll call one of two class methods, `RobotClient.at_address`, `RobotClient.with_channel`, which will
+Then to instantiate the robot, you'll call one of two class methods, `RobotClient.at_address` (connecting to a robot at a specific address/URL), or `RobotClient.with_channel` (attaching an existing connection via `grpclib.client.Channel` to the `RobotClient`), which will
 return a `RobotClient` that can be used to access the components of the robot.
 ```python
 robot = await RobotClient.with_channel(channel=channel, options=RobotClient.Options(refresh_interval=10))
@@ -64,6 +47,8 @@ see a full list of methods for the object and their arguments. For Example:
 motor = Motor.from_robot(robot, 'my_motor')
 await motor.go_for(rpm=60, revolutions=100)
 ```
+
+View the [Example Usage](example.html) for more on how to connect to a robot.
 
 ## Implementing a component and using the python-sdk as server:
 Find the Component type you wish to implement in the docs and create a new class which sub-classes that Component’s BaseComponent class.
