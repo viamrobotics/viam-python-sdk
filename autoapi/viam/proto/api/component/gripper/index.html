@@ -77,6 +77,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.gripper.GripperServiceBase">GripperServiceBase</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.gripper.GripperServiceBase.Open">Open</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.gripper.GripperServiceBase.Grab">Grab</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.gripper.GripperServiceBase.Stop">Stop</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.gripper.GripperServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -94,6 +95,11 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.gripper.OpenResponse">OpenResponse</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.gripper.StopRequest">StopRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.gripper.StopRequest.name">name</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.gripper.StopResponse">StopResponse</a></li>
 </ul>
 </li>
 </ul>
@@ -182,6 +188,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.component.gripper.OpenResponse" title="viam.proto.api.component.gripper.OpenResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.component.gripper.StopRequest" title="viam.proto.api.component.gripper.StopRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.component.gripper.StopResponse" title="viam.proto.api.component.gripper.StopResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -197,6 +209,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.component.gripper.GripperServiceBase.Grab">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Grab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.gripper.v1.gripper_pb2.GrabRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.gripper.v1.gripper_pb2.GrabResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/component/gripper/v1/gripper_grpc.html#GripperServiceBase.Grab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.component.gripper.GripperServiceBase.Grab" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.component.gripper.GripperServiceBase.Stop">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.gripper.v1.gripper_pb2.StopRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.gripper.v1.gripper_pb2.StopResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/component/gripper/v1/gripper_grpc.html#GripperServiceBase.Stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.component.gripper.GripperServiceBase.Stop" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -256,6 +273,30 @@ shown below.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.component.gripper.OpenResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.gripper.</span></span><span class="sig-name descname"><span class="pre">OpenResponse</span></span><a class="headerlink" href="#viam.proto.api.component.gripper.OpenResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.component.gripper.StopRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.gripper.</span></span><span class="sig-name descname"><span class="pre">StopRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.gripper.StopRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.component.gripper.StopRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.component.gripper.StopRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of a gripper</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.component.gripper.StopResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.gripper.</span></span><span class="sig-name descname"><span class="pre">StopResponse</span></span><a class="headerlink" href="#viam.proto.api.component.gripper.StopResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods

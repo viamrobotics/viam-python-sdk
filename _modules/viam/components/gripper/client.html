@@ -87,7 +87,8 @@
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">viam.components.generic.client</span> <span class="kn">import</span> <span class="n">do_command</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.gripper</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GrabRequest</span><span class="p">,</span> <span class="n">GrabResponse</span><span class="p">,</span>
-                                              <span class="n">GripperServiceStub</span><span class="p">,</span> <span class="n">OpenRequest</span><span class="p">)</span>
+                                              <span class="n">GripperServiceStub</span><span class="p">,</span> <span class="n">OpenRequest</span><span class="p">,</span>
+                                              <span class="n">StopRequest</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.gripper</span> <span class="kn">import</span> <span class="n">Gripper</span>
 
@@ -110,6 +111,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">GrabRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GrabResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Grab</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
+
+<div class="viewcode-block" id="GripperClient.stop"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/index.html#viam.components.gripper.client.GripperClient.stop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">StopRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Stop</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GripperClient.do"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/index.html#viam.components.gripper.client.GripperClient.do">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="k">return</span> <span class="k">await</span> <span class="n">do_command</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span></div></div>
