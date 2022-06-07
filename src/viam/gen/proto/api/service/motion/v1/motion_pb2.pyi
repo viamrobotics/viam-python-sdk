@@ -65,7 +65,7 @@ class GetPoseRequest(google.protobuf.message.Message):
         """the component whose pose is being requested"""
         pass
     destination_frame: typing.Text
-    'the reference frame in which the component\'s pose \n    should be provided, if unset this defaults \n    to the "world" reference frame\n    '
+    'the reference frame in which the component\'s pose\n    should be provided, if unset this defaults\n    to the "world" reference frame\n    '
 
     @property
     def supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.Transform]:

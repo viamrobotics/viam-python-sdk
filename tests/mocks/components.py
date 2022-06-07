@@ -335,14 +335,20 @@ class MockGripper(Gripper):
 
     def __init__(self, name: str):
         self.opened = False
+        self.is_stopped = True
         super().__init__(name)
 
     async def open(self):
         self.opened = True
+        self.is_stopped = False
 
     async def grab(self) -> bool:
         self.opened = False
+        self.is_stopped = False
         return choice([True, False])
+
+    async def stop(self):
+        self.is_stopped = True
 
 
 class MockIMU(IMU):

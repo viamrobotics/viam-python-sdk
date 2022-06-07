@@ -5,7 +5,8 @@ from viam.components.gripper import Gripper, GripperClient
 from viam.components.gripper.service import GripperService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.gripper import (GrabRequest, GrabResponse,
-                                              GripperServiceStub, OpenRequest)
+                                              GripperServiceStub, OpenRequest,
+                                              StopRequest)
 
 from .mocks.components import MockGripper
 
@@ -41,6 +42,14 @@ class TestGripper:
         assert isinstance(grabbed, bool)
 
     @pytest.mark.asyncio
+    async def test_stop(self, gripper: MockGripper):
+        assert gripper.is_stopped is True
+        await gripper.open()
+        assert gripper.is_stopped is False
+        await gripper.stop()
+        assert gripper.is_stopped is True
+
+    @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper):
         with pytest.raises(NotImplementedError):
             await gripper.do({'command': 'args'})
@@ -65,6 +74,20 @@ class TestService:
             assert gripper.opened is False
             assert isinstance(response.success, bool)
 
+    @pytest.mark.asyncio
+    async def test_stop(self, gripper: MockGripper, service: GripperService):
+        async with ChannelFor([service]) as channel:
+            assert gripper.is_stopped is True
+
+            client = GripperServiceStub(channel)
+            request = OpenRequest(name=gripper.name)
+            await client.Open(request)
+            assert gripper.is_stopped is False
+
+            request = StopRequest(name=gripper.name)
+            await client.Stop(request)
+            assert gripper.is_stopped is True
+
 
 class TestClient:
 
@@ -82,6 +105,17 @@ class TestClient:
             grabbed = await client.grab()
             assert gripper.opened is False
             assert isinstance(grabbed, bool)
+
+    @pytest.mark.asyncio
+    async def test_stop(self, gripper: MockGripper, service: GripperService):
+        async with ChannelFor([service]) as channel:
+            client = GripperClient(gripper.name, channel)
+
+            assert gripper.is_stopped is True
+            await client.open()
+            assert gripper.is_stopped is False
+            await client.stop()
+            assert gripper.is_stopped is True
 
     @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper, service: GripperService, generic_service: GenericService):
