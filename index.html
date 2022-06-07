@@ -108,36 +108,20 @@
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git</span></code></p>
 </section>
 </section>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
-<p>To connect to a server, you can use the <code class="docutils literal notranslate"><span class="pre">viam.rpc.dial.dial_direct</span></code> function, passing in an address and <code class="docutils literal notranslate"><span class="pre">DialOptions</span></code> (<code class="docutils literal notranslate"><span class="pre">viam.rpc.dial.DialOptions</span></code>). This will return a gRPC <code class="docutils literal notranslate"><span class="pre">Channel</span></code> which you can use to instantiate component clients, e.g.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.api.component</span> <span class="kn">import</span> <span class="n">motor</span>
-
-<span class="c1"># OMITTED: Obtian a channel using dial_direct</span>
-
-<span class="n">my_motor</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">MotorClient</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_motor&#39;</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">set_power</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">set_power</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">position</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>View the <a class="reference external" href="https://github.com/viamrobotics/python-sdk/tree/main/examples"><code class="docutils literal notranslate"><span class="pre">examples</span></code></a> for more details.</p>
-</section>
 <section id="easy-setup-via-app-viam-com">
-<h2>Easy Setup via app.viam.com<a class="headerlink" href="#easy-setup-via-app-viam-com" title="Permalink to this headline"></a></h2>
+<h2>Easy Setup via <span class="xref myst">app.viam.com</span><a class="headerlink" href="#easy-setup-via-app-viam-com" title="Permalink to this headline"></a></h2>
 <p>The easiest way to get started writing a client application (that is, one which is not directly responsible for interacting hardware,
-but rather calls into the viam-server to actuate hardware or read from sensors), is to navigate to the robot page on app.viam.com,
+but rather calls into the viam-server to actuate hardware or read from sensors), is to navigate to the robot page on <span class="xref myst">app.viam.com</span>,
 select the <code class="docutils literal notranslate"><span class="pre">CONNECT</span></code> tab, and copy the boilerplate code from the section labeled <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">SDK</span></code>.</p>
 <p>It is recommended that you save and run this simple program. Doing so will ensure that the python-sdk is properly installed,
-that the viam-server instance on your robot is alive, and that the computer running the program is able to connect to that instance.</p>
+that the <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> instance on your robot is alive, and that the computer running the program is able to connect to that instance.</p>
 <section id="accessing-a-component">
 <h3>Accessing a component:<a class="headerlink" href="#accessing-a-component" title="Permalink to this headline"></a></h3>
 <p>First you’ll need to access the RobotClient. This should look:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 </pre></div>
 </div>
-<p>Then to instantiate the robot, you’ll call one of two class methods, <code class="docutils literal notranslate"><span class="pre">RobotClient.at_address</span></code>, <code class="docutils literal notranslate"><span class="pre">RobotClient.with_channel</span></code>, which will
+<p>Then to instantiate the robot, you’ll call one of two class methods, <code class="docutils literal notranslate"><span class="pre">RobotClient.at_address</span></code> (connecting to a robot at a specific address/URL), or <code class="docutils literal notranslate"><span class="pre">RobotClient.with_channel</span></code> (attaching an existing connection via <code class="docutils literal notranslate"><span class="pre">grpclib.client.Channel</span></code> to the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code>), which will
 return a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> that can be used to access the components of the robot.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
@@ -148,6 +132,7 @@ see a full list of methods for the object and their arguments. For Example:</p>
 <span class="k">await</span> <span class="n">motor</span><span class="o">.</span><span class="n">go_for</span><span class="p">(</span><span class="n">rpm</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">revolutions</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>View the <span class="xref myst">Example Usage</span> for more on how to connect to a robot.</p>
 </section>
 </section>
 <section id="implementing-a-component-and-using-the-python-sdk-as-server">
