@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="viam.components.arm" href="arm/index.html" />
+    <link rel="prev" title="Code of Conduct" href="../../../conduct.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gps/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="imu/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.imu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="component_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.component_base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.resource_manager</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="service_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.service_base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.types</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/viam/components/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.components">
+<span id="viam-components"></span><h1><a class="reference internal" href="#module-viam.components" title="viam.components"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><a class="headerlink" href="#module-viam.components" title="Permalink to this headline"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="arm/arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm.arm</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="arm/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="arm/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="base/base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.base</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="base/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="base/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="board/board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.board</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="board/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="board/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="camera/camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera.camera</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gantry/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gantry/gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry.gantry</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gantry/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generic/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic/generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic.generic</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gps/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gps</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gps/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gps.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gps/gps/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gps.gps</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gps/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gps.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gripper/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gripper/gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper.gripper</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="gripper/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="imu/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.imu</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="imu/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.imu.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="imu/imu/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.imu.imu</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="imu/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.imu.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="input/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="input/input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input.input</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="input/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="motor/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor/motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor.motor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pose_tracker/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pose_tracker/pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker.pose_tracker</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pose_tracker/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sensor/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensor/sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor.sensor</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sensor/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="servo/client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo.client</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="servo/service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo.service</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="servo/servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo.servo</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="component_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.component_base</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.resource_manager</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="service_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.service_base</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.types</span></code></a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../../conduct.html" class="btn btn-neutral float-left" title="Code of Conduct" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="arm/index.html" class="btn btn-neutral float-right" title="viam.components.arm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

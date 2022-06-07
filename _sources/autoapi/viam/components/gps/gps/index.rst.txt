@@ -1,0 +1,111 @@
+:py:mod:`viam.components.gps.gps`
+=================================
+
+.. py:module:: viam.components.gps.gps
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.gps.gps.GPS
+   viam.components.gps.gps.LocalGPS
+
+
+
+
+.. py:class:: GPS(name: str)
+
+
+
+   GPS represents a GPS unit that can report latitude/longitude, altitude, and speed measurements.
+
+   This acts as an abstract base class for any drivers representing specific
+   GPS implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:attribute:: Point
+      
+
+      
+
+   .. py:method:: read_location(self) -> Point
+      :abstractmethod:
+      :async:
+
+      Get the current latitude and longitude.
+
+      :returns: The current lat/long.
+      :rtype: Point
+
+
+   .. py:method:: read_altitude(self) -> float
+      :abstractmethod:
+      :async:
+
+      Get the current altitude.
+
+      :returns: The current altitude in meters.
+      :rtype: float
+
+
+   .. py:method:: read_speed(self) -> float
+      :abstractmethod:
+      :async:
+
+      Get the current ground speed in millimeters per second.
+
+      :returns: The speed in mm/sec.
+      :rtype: float
+
+
+
+.. py:class:: LocalGPS(name: str)
+
+
+
+   LocalGPS represents a GPS that can report accuracy,
+   satellites, and valid measurements in addition to the standard
+   GPS measurements of latitude/longitude, altitude, and speed.
+
+   .. py:method:: read_accuracy(self) -> Tuple[float, float]
+      :abstractmethod:
+      :async:
+
+      Get the horizontal and vertical position error in meters.
+
+      :returns:
+
+                Horizontal and vertical position errors,
+                    in meters.
+      :rtype: Tuple[float, float]
+
+
+   .. py:method:: read_satellites(self) -> Tuple[int, int]
+      :abstractmethod:
+      :async:
+
+      Get the number of satellites used for the location fix and the total satellites in view.
+
+      :returns:
+
+                The number of satellites used for the location fix
+                    and the total number of satellites in view.
+      :rtype: Tuple[int, int]
+
+
+   .. py:method:: read_valid(self) -> bool
+      :abstractmethod:
+      :async:
+
+      Get whether or not the GPS had a valid location fix for the most recent dataset.
+
+      :returns: If the location fix is valid.
+      :rtype: bool
+
+
+

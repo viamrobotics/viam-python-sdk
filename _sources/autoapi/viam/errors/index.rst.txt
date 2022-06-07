@@ -1,0 +1,73 @@
+:py:mod:`viam.errors`
+=====================
+
+.. py:module:: viam.errors
+
+
+Module Contents
+---------------
+
+.. py:exception:: ViamError
+
+
+
+   Base Viam Error
+
+
+.. py:exception:: InsecureConnectionError(address: str, authenticated: bool = False)
+
+
+
+   Exception raised when establishing an insecure connection
+
+   .. attribute:: address
+
+      The endpoint of the connection
+
+   .. attribute:: authenticated
+
+      True if the insecure connection provided credentials
+
+   .. attribute:: message
+
+      Explanation of the error
+
+
+.. py:exception:: DuplicateComponentError(name: str)
+
+
+
+   Exception raised when attempting to register a component
+   with the same name as an existing component already in
+   the registry
+
+
+.. py:exception:: ComponentNotFoundError(component: str, name: str)
+
+
+
+   Exception raised when a component is not found in the registry
+
+   .. py:method:: grpc_error(self) -> grpclib.GRPCError
+      :property:
+
+
+
+.. py:exception:: ServiceNotImplementedError(service: str)
+
+
+
+   Exception raised when a service is not implemented on the Robot
+
+
+.. py:exception:: NotSupportedError
+
+
+
+   Exception raised when specific component functionality is not supported
+
+   .. py:method:: grpc_error(self) -> grpclib.GRPCError
+      :property:
+
+
+

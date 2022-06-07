@@ -1,0 +1,251 @@
+:py:mod:`viam.components.board.client`
+======================================
+
+.. py:module:: viam.components.board.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.board.client.AnalogReaderClient
+   viam.components.board.client.DigitalInterruptClient
+   viam.components.board.client.GPIOPinClient
+   viam.components.board.client.BoardClient
+
+
+
+
+.. py:class:: AnalogReaderClient(name: str, board: BoardClient)
+
+
+
+   AnalogReader represents an analog pin reader that resides on a Board.
+
+   .. py:method:: read(self) -> int
+      :async:
+
+      Read the current value.
+
+      :returns: The current value.
+      :rtype: int
+
+
+
+.. py:class:: DigitalInterruptClient(name: str, board: BoardClient)
+
+
+
+   DigitalInterrupt represents a configured interrupt on the Board that
+   when interrupted, calls the added callbacks. Post processors can
+   be added to modify what Value it ultimately returns.
+
+   .. py:method:: value(self) -> int
+      :async:
+
+      Get the current value of the interrupt,
+      which is based on the type of interrupt.
+
+      :returns: The current value.
+      :rtype: int
+
+
+   .. py:method:: tick(self, high: bool, nanos: int)
+      :abstractmethod:
+      :async:
+
+      This method is to be called either manually if the interrupt
+      is a proxy to some real hardware interrupt or for tests.
+
+      :param high: If the signal of the interrupt is high.
+      :type high: bool
+      :param nanos: Nanoseconds from an arbitrary point in time,
+                    but always increasing and always needs to be accurate.
+                    Using `time.time_ns()` would be acceptable.
+      :type nanos: int
+
+
+   .. py:method:: add_callback(self, queue: multiprocessing.Queue)
+      :abstractmethod:
+      :async:
+
+      Add a callback to be sent the low/high value on `tick()`.
+
+      :param queue: The receiving queue.
+      :type queue: Queue
+
+
+   .. py:method:: add_post_processor(self, processor: viam.components.board.board.PostProcessor)
+      :abstractmethod:
+      :async:
+
+      Add a post processor that should be used to modify what
+      is returned by `self.value()`
+
+      :param processor: The post processor to add.
+      :type processor: PostProcessor
+
+
+
+.. py:class:: GPIOPinClient(name: str, board: BoardClient)
+
+
+
+   Abstract representation of an individual GPIO pin on a board
+
+   :param ComponentBase: _description_
+   :type ComponentBase: _type_
+
+   .. py:method:: get(self) -> bool
+      :async:
+
+      Get the high/low state of the pin.
+
+      :returns: Indicates if the state of the pin is high.
+      :rtype: bool
+
+
+   .. py:method:: set(self, high: bool)
+      :async:
+
+      Set the pin to either low or high.
+
+      :param high: When true, sets the pin to high. When false, sets the pin to low.
+      :type high: bool
+
+
+   .. py:method:: get_pwm(self) -> float
+      :async:
+
+      Get the pin's given duty cycle.
+
+      :returns: The duty cycle.
+      :rtype: float
+
+
+   .. py:method:: set_pwm(self, duty_cycle: float)
+      :async:
+
+      Set the pin to the given `duty_cycle`.
+
+      :param duty_cycle: The duty cycle.
+      :type duty_cycle: float
+
+
+   .. py:method:: get_pwm_frequency(self) -> int
+      :async:
+
+      Get the PWM frequency of the pin.
+
+      :returns: The PWM frequency.
+      :rtype: int
+
+
+   .. py:method:: set_pwm_frequency(self, frequency: int)
+      :async:
+
+      Set the pin to the given PWM `frequency` (in Hz).
+      When `frequency` is 0, it will use the board's default PWM frequency.
+
+      :param frequency: The frequency, in Hz.
+      :type frequency: int
+
+
+
+.. py:class:: BoardClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the Board component.
+
+   .. py:method:: analog_reader_by_name(self, name: str) -> viam.components.board.board.Board.AnalogReader
+      :async:
+
+      Get an AnalogReader by `name`.
+
+      :param name: Name of the analog reader to be retrieved.
+      :type name: str
+
+      :returns: The analog reader.
+      :rtype: AnalogReader
+
+
+   .. py:method:: digital_interrupt_by_name(self, name: str) -> viam.components.board.board.Board.DigitalInterrupt
+      :async:
+
+      Get a DigitalInterrupt by `name`.
+
+      :param name: Name of the digital interrupt.
+      :type name: str
+
+      :returns: the digital interrupt.
+      :rtype: DigitalInterrupt
+
+
+   .. py:method:: gpio_pin_by_name(self, name: str) -> viam.components.board.board.Board.GPIOPin
+      :async:
+
+      Get a GPIO Pin by `name`.
+
+      :param name: Name of the GPIO pin.
+      :type name: str
+
+      :returns: the pin.
+      :rtype: GPIOPin
+
+
+   .. py:method:: analog_reader_names(self) -> List[str]
+      :async:
+
+      Get the names of all known analog readers.
+
+      :returns: The names of the analog readers..
+      :rtype: List[str]
+
+
+   .. py:method:: digital_interrupt_names(self) -> List[str]
+      :async:
+
+      Get the names of all known digital interrupts.
+
+      :returns: The names of the digital interrupts.
+      :rtype: List[str]
+
+
+   .. py:method:: status(self) -> viam.proto.api.common.BoardStatus
+      :async:
+
+      Return the current status of the board.
+
+      :returns: the status.
+      :rtype: BoardStatus
+
+
+   .. py:method:: model_attributes(self) -> viam.components.board.board.Board.Attributes
+      :async:
+
+      Get the attributes related to the model of this board.
+
+      :returns: The attributes.
+      :rtype: Attributes
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+

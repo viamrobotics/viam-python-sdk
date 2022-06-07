@@ -1,0 +1,275 @@
+:py:mod:`viam.components.board.board`
+=====================================
+
+.. py:module:: viam.components.board.board
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.board.board.Board
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.board.board.PostProcessor
+
+
+.. py:data:: PostProcessor
+   
+
+   
+
+.. py:class:: Board(name: str)
+
+
+
+   Board represents a physical general purpose compute board that contains various
+   components such as analog readers, and digital interrupts.
+
+   This acts as an abstract base class for any drivers representing specific
+   board implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:class:: Attributes
+
+      .. py:attribute:: remote
+         :annotation: :bool
+
+         Indicates whether this board is accessed over a remote connection, e.g. gRPC.
+
+
+   .. py:class:: AnalogReader(name: str)
+
+
+
+      AnalogReader represents an analog pin reader that resides on a Board.
+
+      .. py:method:: read(self) -> int
+         :abstractmethod:
+         :async:
+
+         Read the current value.
+
+         :returns: The current value.
+         :rtype: int
+
+
+
+   .. py:class:: DigitalInterrupt(name: str)
+
+
+
+      DigitalInterrupt represents a configured interrupt on the Board that
+      when interrupted, calls the added callbacks. Post processors can
+      be added to modify what Value it ultimately returns.
+
+      .. py:method:: value(self) -> int
+         :abstractmethod:
+         :async:
+
+         Get the current value of the interrupt,
+         which is based on the type of interrupt.
+
+         :returns: The current value.
+         :rtype: int
+
+
+      .. py:method:: tick(self, high: bool, nanos: int)
+         :abstractmethod:
+         :async:
+
+         This method is to be called either manually if the interrupt
+         is a proxy to some real hardware interrupt or for tests.
+
+         :param high: If the signal of the interrupt is high.
+         :type high: bool
+         :param nanos: Nanoseconds from an arbitrary point in time,
+                       but always increasing and always needs to be accurate.
+                       Using `time.time_ns()` would be acceptable.
+         :type nanos: int
+
+
+      .. py:method:: add_callback(self, queue: multiprocessing.Queue)
+         :abstractmethod:
+         :async:
+
+         Add a callback to be sent the low/high value on `tick()`.
+
+         :param queue: The receiving queue.
+         :type queue: Queue
+
+
+      .. py:method:: add_post_processor(self, processor: PostProcessor)
+         :abstractmethod:
+         :async:
+
+         Add a post processor that should be used to modify what
+         is returned by `self.value()`
+
+         :param processor: The post processor to add.
+         :type processor: PostProcessor
+
+
+
+   .. py:class:: GPIOPin(name: str)
+
+
+
+      Abstract representation of an individual GPIO pin on a board
+
+      :param ComponentBase: _description_
+      :type ComponentBase: _type_
+
+      .. py:method:: set(self, high: bool)
+         :abstractmethod:
+         :async:
+
+         Set the pin to either low or high.
+
+         :param high: When true, sets the pin to high. When false, sets the pin to low.
+         :type high: bool
+
+
+      .. py:method:: get(self) -> bool
+         :abstractmethod:
+         :async:
+
+         Get the high/low state of the pin.
+
+         :returns: Indicates if the state of the pin is high.
+         :rtype: bool
+
+
+      .. py:method:: get_pwm(self) -> float
+         :abstractmethod:
+         :async:
+
+         Get the pin's given duty cycle.
+
+         :returns: The duty cycle.
+         :rtype: float
+
+
+      .. py:method:: set_pwm(self, duty_cycle: float)
+         :abstractmethod:
+         :async:
+
+         Set the pin to the given `duty_cycle`.
+
+         :param duty_cycle: The duty cycle.
+         :type duty_cycle: float
+
+
+      .. py:method:: get_pwm_frequency(self) -> int
+         :abstractmethod:
+         :async:
+
+         Get the PWM frequency of the pin.
+
+         :returns: The PWM frequency.
+         :rtype: int
+
+
+      .. py:method:: set_pwm_frequency(self, frequency: int)
+         :abstractmethod:
+         :async:
+
+         Set the pin to the given PWM `frequency` (in Hz).
+         When `frequency` is 0, it will use the board's default PWM frequency.
+
+         :param frequency: The frequency, in Hz.
+         :type frequency: int
+
+
+
+   .. py:method:: analog_reader_by_name(self, name: str) -> AnalogReader
+      :abstractmethod:
+      :async:
+
+      Get an AnalogReader by `name`.
+
+      :param name: Name of the analog reader to be retrieved.
+      :type name: str
+
+      :returns: The analog reader.
+      :rtype: AnalogReader
+
+
+   .. py:method:: digital_interrupt_by_name(self, name: str) -> DigitalInterrupt
+      :abstractmethod:
+      :async:
+
+      Get a DigitalInterrupt by `name`.
+
+      :param name: Name of the digital interrupt.
+      :type name: str
+
+      :returns: the digital interrupt.
+      :rtype: DigitalInterrupt
+
+
+   .. py:method:: gpio_pin_by_name(self, name: str) -> GPIOPin
+      :abstractmethod:
+      :async:
+
+      Get a GPIO Pin by `name`.
+
+      :param name: Name of the GPIO pin.
+      :type name: str
+
+      :returns: the pin.
+      :rtype: GPIOPin
+
+
+   .. py:method:: analog_reader_names(self) -> List[str]
+      :abstractmethod:
+      :async:
+
+      Get the names of all known analog readers.
+
+      :returns: The names of the analog readers..
+      :rtype: List[str]
+
+
+   .. py:method:: digital_interrupt_names(self) -> List[str]
+      :abstractmethod:
+      :async:
+
+      Get the names of all known digital interrupts.
+
+      :returns: The names of the digital interrupts.
+      :rtype: List[str]
+
+
+   .. py:method:: status(self) -> viam.proto.api.common.BoardStatus
+      :abstractmethod:
+      :async:
+
+      Return the current status of the board.
+
+      :returns: the status.
+      :rtype: BoardStatus
+
+
+   .. py:method:: model_attributes(self) -> Attributes
+      :abstractmethod:
+      :async:
+
+      Get the attributes related to the model of this board.
+
+      :returns: The attributes.
+      :rtype: Attributes
+
+
+

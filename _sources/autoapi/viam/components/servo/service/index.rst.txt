@@ -1,0 +1,43 @@
+:py:mod:`viam.components.servo.service`
+=======================================
+
+.. py:module:: viam.components.servo.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.servo.service.ServoService
+
+
+
+
+.. py:class:: ServoService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for a Servo
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: Move(self, stream: grpclib.server.Stream[viam.proto.api.component.servo.MoveRequest, viam.proto.api.component.servo.MoveResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPosition(self, stream: grpclib.server.Stream[viam.proto.api.component.servo.GetPositionRequest, viam.proto.api.component.servo.GetPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: Stop(self, stream: grpclib.server.Stream[viam.proto.api.component.servo.StopRequest, viam.proto.api.component.servo.StopResponse]) -> None
+      :async:
+
+
+

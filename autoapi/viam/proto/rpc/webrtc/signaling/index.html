@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.proto.rpc.webrtc.signaling &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="viam.proto.rpc.auth" href="../../auth/index.html" />
+    <link rel="prev" title="viam.proto.rpc.webrtc.grpc" href="../grpc/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../api/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc</span></code></a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../../examples/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.examples</span></code></a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc</span></code></a><ul class="current">
+<li class="toctree-l6 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l7"><a class="reference internal" href="../grpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc.grpc</span></code></a></li>
+<li class="toctree-l7 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc.signaling</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase">SignalingServiceBase</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.Call">Call</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.CallUpdate">CallUpdate</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.Answer">Answer</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.OptionalWebRTCConfig">OptionalWebRTCConfig</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.__mapping__">__mapping__</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub">SignalingServiceStub</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest">AnswerRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.uuid">uuid</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.init">init</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.update">update</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.done">done</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.error">error</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.HasField">HasField</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage">AnswerRequestDoneStage</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage">AnswerRequestErrorStage</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage.status">status</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage">AnswerRequestInitStage</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.sdp">sdp</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config">optional_config</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage">AnswerRequestUpdateStage</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage.candidate">candidate</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse">AnswerResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.uuid">uuid</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.init">init</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.update">update</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.done">done</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.error">error</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.HasField">HasField</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage">AnswerResponseDoneStage</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage">AnswerResponseErrorStage</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage.status">status</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage">AnswerResponseInitStage</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage.sdp">sdp</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage">AnswerResponseUpdateStage</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage.candidate">candidate</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallRequest">CallRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallRequest.sdp">sdp</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallRequest.disable_trickle">disable_trickle</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse">CallResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse.uuid">uuid</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse.init">init</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse.update">update</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse.HasField">HasField</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseInitStage">CallResponseInitStage</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseInitStage.sdp">sdp</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage">CallResponseUpdateStage</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage.candidate">candidate</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest">CallUpdateRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.uuid">uuid</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.done">done</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.candidate">candidate</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.error">error</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.HasField">HasField</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateResponse">CallUpdateResponse</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate">ICECandidate</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.candidate">candidate</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.sdp_mid">sdp_mid</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.sdpm_line_index">sdpm_line_index</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.username_fragment">username_fragment</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.HasField">HasField</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer">ICEServer</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer.username">username</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer.credential">credential</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer.urls">urls</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest">OptionalWebRTCConfigRequest</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse">OptionalWebRTCConfigResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.config">config</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig">WebRTCConfig</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig.disable_trickle">disable_trickle</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig.additional_ice_servers">additional_ice_servers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a> &raquo;</li>
+          <li><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc</span></code></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc.signaling</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../../_sources/autoapi/viam/proto/rpc/webrtc/signaling/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.proto.rpc.webrtc.signaling">
+<span id="viam-proto-rpc-webrtc-signaling"></span><h1><a class="reference internal" href="#module-viam.proto.rpc.webrtc.signaling" title="viam.proto.rpc.webrtc.signaling"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc.signaling</span></code></a><a class="headerlink" href="#module-viam.proto.rpc.webrtc.signaling" title="Permalink to this headline"></a></h1>
+<p>&#64;generated by Viam.
+Do not edit manually!</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase" title="viam.proto.rpc.webrtc.signaling.SignalingServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SignalingServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub" title="viam.proto.rpc.webrtc.signaling.SignalingServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SignalingServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest" title="viam.proto.rpc.webrtc.signaling.AnswerRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequest</span></code></a></p></td>
+<td><p>AnswerRequest is the SDP offer that the controlling side is making via the answering</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestDoneStage</span></code></a></p></td>
+<td><p>AnswerRequestDoneStage indicates the controller is done responding with candidates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestErrorStage</span></code></a></p></td>
+<td><p>AnswerRequestErrorStage indicates the exchange has failed with an error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestInitStage</span></code></a></p></td>
+<td><p>AnswerRequestInitStage is the first and a one time stage that represents the</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestUpdateStage</span></code></a></p></td>
+<td><p>AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse" title="viam.proto.rpc.webrtc.signaling.AnswerResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponse</span></code></a></p></td>
+<td><p>AnswerResponse is the SDP answer that an answerer responds with.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseDoneStage</span></code></a></p></td>
+<td><p>AnswerResponseDoneStage indicates the answerer is done responding with candidates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseErrorStage</span></code></a></p></td>
+<td><p>AnswerResponseErrorStage indicates the exchange has failed with an error.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseInitStage</span></code></a></p></td>
+<td><p>AnswerResponseInitStage is the first and a one time stage that represents the</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseUpdateStage</span></code></a></p></td>
+<td><p>AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallRequest" title="viam.proto.rpc.webrtc.signaling.CallRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallRequest</span></code></a></p></td>
+<td><p>CallRequest is the SDP offer that the controlling side is making.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse" title="viam.proto.rpc.webrtc.signaling.CallResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponse</span></code></a></p></td>
+<td><p>CallResponse is the SDP answer that the controlled side responds with.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseInitStage" title="viam.proto.rpc.webrtc.signaling.CallResponseInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponseInitStage</span></code></a></p></td>
+<td><p>CallResponseInitStage is the first and a one time stage that represents</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage" title="viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponseUpdateStage</span></code></a></p></td>
+<td><p>CallResponseUpdateStage is multiply used to trickle in ICE candidates from</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest" title="viam.proto.rpc.webrtc.signaling.CallUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallUpdateRequest</span></code></a></p></td>
+<td><p>CallUpdateRequest updates the call with additional info to the controlled side.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateResponse" title="viam.proto.rpc.webrtc.signaling.CallUpdateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallUpdateResponse</span></code></a></p></td>
+<td><p>CallUpdateResponse contains nothing in response to a call update.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate" title="viam.proto.rpc.webrtc.signaling.ICECandidate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICECandidate</span></code></a></p></td>
+<td><p>ICECandidate represents an ICE candidate.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer" title="viam.proto.rpc.webrtc.signaling.ICEServer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICEServer</span></code></a></p></td>
+<td><p>ICEServer describes an ICE server.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionalWebRTCConfigRequest</span></code></a></p></td>
+<td><p>OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionalWebRTCConfigResponse</span></code></a></p></td>
+<td><p>OptionalWebRTCConfigResponse contains the optional WebRTC config</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig" title="viam.proto.rpc.webrtc.signaling.WebRTCConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WebRTCConfig</span></code></a></p></td>
+<td><p>WebRTCConfig represents parts of a WebRTC config.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">SignalingServiceBase</span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceBase.Call">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.CallRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.CallResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.Call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.Call" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceBase.CallUpdate">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CallUpdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.CallUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.CallUpdate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceBase.Answer">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.Answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.Answer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceBase.OptionalWebRTCConfig">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OptionalWebRTCConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.OptionalWebRTCConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.OptionalWebRTCConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceBase.__mapping__">
+<span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">SignalingServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AnswerRequestInitStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AnswerRequestUpdateStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AnswerRequestDoneStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AnswerRequestErrorStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerRequest is the SDP offer that the controlling side is making via the answering
+stream.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest.uuid">
+<span class="sig-name descname"><span class="pre">uuid</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.uuid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest.init">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnswerRequestInitStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.init" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest.update">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnswerRequestUpdateStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest.done">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">done</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnswerRequestDoneStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.done" title="Permalink to this definition"></a></dt>
+<dd><p>done is sent when the requester is done sending information</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest.error">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnswerRequestErrorStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.error" title="Permalink to this definition"></a></dt>
+<dd><p>error is sent any time before done</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">done</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'done'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">error</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'error'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">init</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'init'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">stage</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'stage'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">update</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'update'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">stage</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'stage'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">init</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">update</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">done</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">error</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequestDoneStage</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerRequestDoneStage indicates the controller is done responding with candidates.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequestErrorStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">google.rpc.status_pb2.Status</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerRequestErrorStage indicates the exchange has failed with an error.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.rpc.status_pb2.Status</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">status</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'status'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequestInitStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___WebRTCConfig</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerRequestInitStage is the first and a one time stage that represents the
+callers initial SDP request to the controlled (answerer) side.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.sdp">
+<span class="sig-name descname"><span class="pre">sdp</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.sdp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">optional_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___WebRTCConfig</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">optional_config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'optional_config'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequestUpdateStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ICECandidate</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to
+the controlled (answerer) side.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage.candidate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___ICECandidate</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage.candidate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">candidate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'candidate'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AnswerResponseInitStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AnswerResponseUpdateStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AnswerResponseDoneStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AnswerResponseErrorStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerResponse is the SDP answer that an answerer responds with.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponse.uuid">
+<span class="sig-name descname"><span class="pre">uuid</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.uuid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponse.init">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnswerResponseInitStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.init" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponse.update">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnswerResponseUpdateStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponse.done">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">done</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnswerResponseDoneStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.done" title="Permalink to this definition"></a></dt>
+<dd><p>done is sent when the answerer is done sending information</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponse.error">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnswerResponseErrorStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.error" title="Permalink to this definition"></a></dt>
+<dd><p>error is sent any time before done</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">done</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'done'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">error</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'error'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">init</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'init'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">stage</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'stage'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">update</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'update'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponse.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">stage</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'stage'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">init</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">update</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">done</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">error</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerResponseDoneStage</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerResponseDoneStage indicates the answerer is done responding with candidates.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerResponseErrorStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">google.rpc.status_pb2.Status</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerResponseErrorStage indicates the exchange has failed with an error.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.rpc.status_pb2.Status</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">status</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'status'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerResponseInitStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerResponseInitStage is the first and a one time stage that represents the
+answerers initial SDP response to the controlling side.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage.sdp">
+<span class="sig-name descname"><span class="pre">sdp</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage.sdp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerResponseUpdateStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ICECandidate</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage" title="Permalink to this definition"></a></dt>
+<dd><p>AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to
+the controlling side.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage.candidate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___ICECandidate</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage.candidate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">candidate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'candidate'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">CallRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_trickle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallRequest" title="Permalink to this definition"></a></dt>
+<dd><p>CallRequest is the SDP offer that the controlling side is making.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallRequest.sdp">
+<span class="sig-name descname"><span class="pre">sdp</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallRequest.sdp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallRequest.disable_trickle">
+<span class="sig-name descname"><span class="pre">disable_trickle</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallRequest.disable_trickle" title="Permalink to this definition"></a></dt>
+<dd><p>when disable_trickle is true, the init stage will be the only stage
+to be received in the response and the caller can expect the SDP
+to contain all ICE candidates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">CallResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___CallResponseInitStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___CallResponseUpdateStage</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponse" title="Permalink to this definition"></a></dt>
+<dd><p>CallResponse is the SDP answer that the controlled side responds with.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponse.uuid">
+<span class="sig-name descname"><span class="pre">uuid</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponse.uuid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponse.init">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___CallResponseInitStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponse.init" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponse.update">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___CallResponseUpdateStage</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponse.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">init</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'init'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">stage</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'stage'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">update</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'update'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponse.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">stage</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'stage'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">init</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">update</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponse.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponseInitStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">CallResponseInitStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponseInitStage" title="Permalink to this definition"></a></dt>
+<dd><p>CallResponseInitStage is the first and a one time stage that represents
+the initial response to starting a call.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponseInitStage.sdp">
+<span class="sig-name descname"><span class="pre">sdp</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponseInitStage.sdp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">CallResponseUpdateStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ICECandidate</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage" title="Permalink to this definition"></a></dt>
+<dd><p>CallResponseUpdateStage is multiply used to trickle in ICE candidates from
+the controlled (answering) side.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage.candidate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___ICECandidate</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage.candidate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">candidate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'candidate'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallUpdateRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">CallUpdateRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ICECandidate</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">done</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">google.rpc.status_pb2.Status</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest" title="Permalink to this definition"></a></dt>
+<dd><p>CallUpdateRequest updates the call with additional info to the controlled side.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallUpdateRequest.uuid">
+<span class="sig-name descname"><span class="pre">uuid</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.uuid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallUpdateRequest.done">
+<span class="sig-name descname"><span class="pre">done</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.done" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallUpdateRequest.candidate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">candidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___ICECandidate</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.candidate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallUpdateRequest.error">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.rpc.status_pb2.Status</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallUpdateRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">candidate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'candidate'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">done</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'done'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">error</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'error'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">update</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'update'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallUpdateRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">update</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'update'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">candidate</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">done</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">error</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.CallUpdateResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">CallUpdateResponse</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.CallUpdateResponse" title="Permalink to this definition"></a></dt>
+<dd><p>CallUpdateResponse contains nothing in response to a call update.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ICECandidate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp_mid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Text</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdpm_line_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username_fragment</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Text</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidate" title="Permalink to this definition"></a></dt>
+<dd><p>ICECandidate represents an ICE candidate.
+From <a class="reference external" href="https://github.com/pion/webrtc/blob/5f6baf73255598a7b4a7c9400bb0381acc9aa3dc/icecandidateinit.go">https://github.com/pion/webrtc/blob/5f6baf73255598a7b4a7c9400bb0381acc9aa3dc/icecandidateinit.go</a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidate.candidate">
+<span class="sig-name descname"><span class="pre">candidate</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.candidate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidate.sdp_mid">
+<span class="sig-name descname"><span class="pre">sdp_mid</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.sdp_mid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidate.sdpm_line_index">
+<span class="sig-name descname"><span class="pre">sdpm_line_index</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.sdpm_line_index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidate.username_fragment">
+<span class="sig-name descname"><span class="pre">username_fragment</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.username_fragment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidate.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_sdp_mid</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_sdp_mid'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_sdpm_line_index</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_sdpm_line_index'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_username_fragment</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_username_fragment'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">sdp_mid</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'sdp_mid'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">sdpm_line_index</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'sdpm_line_index'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">username_fragment</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'username_fragment'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICECandidate.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_sdp_mid</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_sdp_mid'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">sdp_mid</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICECandidate.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_sdpm_line_index</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_sdpm_line_index'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">sdpm_line_index</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_username_fragment</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_username_fragment'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">username_fragment</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICEServer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">ICEServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Text</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credential</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICEServer" title="Permalink to this definition"></a></dt>
+<dd><p>ICEServer describes an ICE server.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICEServer.username">
+<span class="sig-name descname"><span class="pre">username</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICEServer.username" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICEServer.credential">
+<span class="sig-name descname"><span class="pre">credential</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICEServer.credential" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.ICEServer.urls">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">Text</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.ICEServer.urls" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">OptionalWebRTCConfigRequest</span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest" title="Permalink to this definition"></a></dt>
+<dd><p>OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config
+to use for the peer connection.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">OptionalWebRTCConfigResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___WebRTCConfig</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse" title="Permalink to this definition"></a></dt>
+<dd><p>OptionalWebRTCConfigResponse contains the optional WebRTC config
+to use for the peer connection.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___WebRTCConfig</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'config'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.WebRTCConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">WebRTCConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_ice_servers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ICEServer</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_trickle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig" title="Permalink to this definition"></a></dt>
+<dd><p>WebRTCConfig represents parts of a WebRTC config.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.WebRTCConfig.disable_trickle">
+<span class="sig-name descname"><span class="pre">disable_trickle</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig.disable_trickle" title="Permalink to this definition"></a></dt>
+<dd><p>disable_trickle indicates if Trickle ICE should be used. Currently, both
+sides must both respect this setting.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.WebRTCConfig.additional_ice_servers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">additional_ice_servers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ICEServer</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig.additional_ice_servers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../grpc/index.html" class="btn btn-neutral float-left" title="viam.proto.rpc.webrtc.grpc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../auth/index.html" class="btn btn-neutral float-right" title="viam.proto.rpc.auth" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

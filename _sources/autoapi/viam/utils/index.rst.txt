@@ -1,0 +1,52 @@
+:py:mod:`viam.utils`
+====================
+
+.. py:module:: viam.utils
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.utils.primitive_to_value
+   viam.utils.value_to_primitive
+   viam.utils.resource_names_for_component
+   viam.utils.message_to_struct
+
+
+
+.. py:function:: primitive_to_value(v: Any) -> google.protobuf.struct_pb2.Value
+
+   Create a new google.protobuf.struct_pb2.Value
+   Supports primitive types of
+   - None
+   - Number
+   - Bool
+   - String
+   - Dict
+   - List
+   - Bytes
+
+   :param v: object to convert to a Value
+   :type v: Any
+
+   :raises TypeError: If the object cannot be converted
+
+   :returns: a protobuf Value instance of the object
+   :rtype: Value
+
+
+.. py:function:: value_to_primitive(value: google.protobuf.struct_pb2.Value) -> Any
+
+
+.. py:function:: resource_names_for_component(component: viam.components.component_base.ComponentBase) -> List[viam.proto.api.common.ResourceName]
+
+
+.. py:function:: message_to_struct(message: google.protobuf.message.Message) -> google.protobuf.struct_pb2.Struct
+
+

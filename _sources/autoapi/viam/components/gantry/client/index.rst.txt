@@ -1,0 +1,77 @@
+:py:mod:`viam.components.gantry.client`
+=======================================
+
+.. py:module:: viam.components.gantry.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.gantry.client.GantryClient
+
+
+
+
+.. py:class:: GantryClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the Gantry component.
+
+   .. py:method:: get_position(self) -> List[float]
+      :async:
+
+      Get the position in millimeters.
+
+      :returns: The position of the axes.
+      :rtype: List[float]
+
+
+   .. py:method:: move_to_position(self, positions: List[float], world_state: Optional[viam.proto.api.common.WorldState] = None)
+      :async:
+
+      Move the gantry to a new position.
+
+      :param positions: List of positions for the axes to move to,
+                        in millimeters.
+      :type positions: List[float]
+      :param world_state: Object describing
+                          obstacles for the gantry to avoid on its way to `positions`.
+      :type world_state: Optional[WorldState]
+
+
+   .. py:method:: get_lengths(self) -> List[float]
+      :async:
+
+      Get the lengths of the axes of the gantry in millimeters.
+
+      :returns: The lengths of the axes.
+      :rtype: List[float]
+
+
+   .. py:method:: stop(self)
+      :async:
+
+      Stop all motion of the gantry. It is assumed that the gantry stops immediately.
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+

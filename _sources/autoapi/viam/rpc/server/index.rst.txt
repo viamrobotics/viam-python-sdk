@@ -1,0 +1,77 @@
+:py:mod:`viam.rpc.server`
+=========================
+
+.. py:module:: viam.rpc.server
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.rpc.server.Server
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.rpc.server.LOGGER
+
+
+.. py:data:: LOGGER
+   
+
+   
+
+.. py:class:: Server(components: List[viam.components.component_base.ComponentBase])
+
+
+
+   gRPC Server
+
+   .. py:method:: serve(self, host: str = 'localhost', port: int = 9090, log_level: int = logging.INFO)
+      :async:
+
+      Server the gRPC server on the provided host and port
+
+      :param host: Desired hostname of the server.
+                   Defaults to 'localhost'.
+      :type host: str, optional
+      :param port: Desired port of the server.
+                   Defaults to 9090.
+      :type port: int, optional
+      :param log_level: The minimum log level.
+                        To not receive any logs, set to None
+                        Defaults to logging.INFO
+      :type log_level: int, optional
+
+
+   .. py:method:: close(self)
+
+
+   .. py:method:: create_and_serve(cls, components: List[viam.components.component_base.ComponentBase], host: str = 'localhost', port: int = 9090, log_level: int = logging.INFO)
+      :classmethod:
+      :async:
+
+      Convenience method to create and start the server.
+
+      :param components: List of components to manage
+      :type components: List[ComponentBase]
+      :param host: Desired hostname. Defaults to "localhost".
+      :type host: str, optional
+      :param port: Desired port. Defaults to 9090.
+      :type port: int, optional
+      :param log_level: The minimum log level.
+                        To not receive any logs, set to None.
+                        Defaults to logging.INFO
+      :type log_level: int, optional
+
+
+

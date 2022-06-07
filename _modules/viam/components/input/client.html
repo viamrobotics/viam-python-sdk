@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.input.client &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>viam.components.input.client</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.components.input.client</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Lock</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
+
+<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+<span class="kn">import</span> <span class="nn">viam</span>
+<span class="kn">from</span> <span class="nn">viam.components.generic.client</span> <span class="kn">import</span> <span class="n">do_command</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">NotSupportedError</span>
+<span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.inputcontroller</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetControlsRequest</span><span class="p">,</span> <span class="n">GetControlsResponse</span><span class="p">,</span> <span class="n">GetEventsRequest</span><span class="p">,</span>
+    <span class="n">GetEventsResponse</span><span class="p">,</span> <span class="n">InputControllerServiceStub</span><span class="p">,</span> <span class="n">StreamEventsRequest</span><span class="p">,</span>
+    <span class="n">StreamEventsResponse</span><span class="p">,</span> <span class="n">TriggerEventRequest</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">.input</span> <span class="kn">import</span> <span class="n">Control</span><span class="p">,</span> <span class="n">ControlFunction</span><span class="p">,</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ControllerClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/index.html#viam.components.input.client.ControllerClient">[docs]</a><span class="k">class</span> <span class="nc">ControllerClient</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;gRPC client for an Input Controller</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">InputControllerServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Control</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">EventType</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ControlFunction</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stream_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_streaming</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_stream_ready</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ControllerClient.get_controls"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/index.html#viam.components.input.client.ControllerClient.get_controls">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_controls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Control</span><span class="p">]:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetControlsRequest</span><span class="p">(</span><span class="n">controller</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetControlsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetControls</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Control</span><span class="p">(</span><span class="n">control</span><span class="p">)</span> <span class="k">for</span> <span class="n">control</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">controls</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="ControllerClient.get_events"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/index.html#viam.components.input.client.ControllerClient.get_events">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Control</span><span class="p">,</span> <span class="n">Event</span><span class="p">]:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetEventsRequest</span><span class="p">(</span><span class="n">controller</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetEventsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetEvents</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">Control</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">control</span><span class="p">):</span> <span class="n">Event</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">events</span><span class="p">}</span></div>
+
+<div class="viewcode-block" id="ControllerClient.register_control_callback"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/index.html#viam.components.input.client.ControllerClient.register_control_callback">[docs]</a>    <span class="k">def</span> <span class="nf">register_control_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">control</span><span class="p">:</span> <span class="n">Control</span><span class="p">,</span> <span class="n">triggers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">EventType</span><span class="p">],</span> <span class="n">function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ControlFunction</span><span class="p">]):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="n">callbacks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="k">for</span> <span class="n">trigger</span> <span class="ow">in</span> <span class="n">triggers</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">trigger</span> <span class="o">==</span> <span class="n">EventType</span><span class="o">.</span><span class="n">BUTTON_CHANGE</span><span class="p">:</span>
+                    <span class="n">callbacks</span><span class="p">[</span><span class="n">EventType</span><span class="o">.</span><span class="n">BUTTON_PRESS</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span>
+                    <span class="n">callbacks</span><span class="p">[</span><span class="n">EventType</span><span class="o">.</span><span class="n">BUTTON_RELEASE</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">callbacks</span><span class="p">[</span><span class="n">trigger</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="p">[</span><span class="n">control</span><span class="p">]</span> <span class="o">=</span> <span class="n">callbacks</span>
+
+        <span class="k">def</span> <span class="nf">handle_task_result</span><span class="p">(</span><span class="n">task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Task </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s1"> returned with result </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Exception raised by task = </span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+
+        <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stream_events</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s1">-input_stream_events&#39;</span><span class="p">)</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">handle_task_result</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ControllerClient.trigger_event"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/index.html#viam.components.input.client.ControllerClient.trigger_event">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">trigger_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TriggerEventRequest</span><span class="p">(</span><span class="n">controller</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">event</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">proto</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">TriggerEvent</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">GRPCError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;does not support triggering events&#39;</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="k">else</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Input controller named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> does not support triggering events&#39;</span><span class="p">)</span></div>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_stream_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream_lock</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_streaming</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_streaming</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">StreamEventsRequest</span><span class="p">(</span><span class="n">controller</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">events</span><span class="o">=</span><span class="p">[])</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">callbacks</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">event</span> <span class="o">=</span> <span class="n">StreamEventsRequest</span><span class="o">.</span><span class="n">Events</span><span class="p">(</span>
+                    <span class="n">control</span><span class="o">=</span><span class="n">control</span><span class="p">,</span>
+                    <span class="n">events</span><span class="o">=</span><span class="p">[</span><span class="n">et</span> <span class="k">for</span> <span class="p">(</span><span class="n">et</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">],</span>
+                    <span class="n">cancelled_events</span><span class="o">=</span><span class="p">[</span><span class="n">et</span> <span class="k">for</span> <span class="p">(</span><span class="n">et</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">])</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">StreamEvents</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_send_connection_status</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">reply</span><span class="p">:</span> <span class="n">StreamEventsResponse</span>
+                <span class="k">async</span> <span class="k">for</span> <span class="n">reply</span> <span class="ow">in</span> <span class="n">stream</span><span class="p">:</span>
+                    <span class="n">event</span> <span class="o">=</span> <span class="n">reply</span><span class="o">.</span><span class="n">event</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_execute_callback</span><span class="p">(</span><span class="n">Event</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">event</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_send_connection_status</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream_lock</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_streaming</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_is_stream_ready</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_send_connection_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connected</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">control</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span>
+                <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">(),</span>
+                <span class="n">event</span><span class="o">=</span><span class="n">EventType</span><span class="o">.</span><span class="n">CONNECT</span> <span class="k">if</span> <span class="n">connected</span> <span class="k">else</span> <span class="n">EventType</span><span class="o">.</span><span class="n">DISCONNECT</span><span class="p">,</span>
+                <span class="n">control</span><span class="o">=</span><span class="n">control</span><span class="p">,</span>
+                <span class="n">value</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_execute_callback</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_execute_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">callbacks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="p">[</span><span class="n">event</span><span class="o">.</span><span class="n">control</span><span class="p">]</span>
+            <span class="n">callback</span> <span class="o">=</span> <span class="n">callbacks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">event</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">all_callback</span> <span class="o">=</span> <span class="n">callbacks</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">EventType</span><span class="o">.</span><span class="n">ALL_EVENTS</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">callback</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">all_callback</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">all_callback</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ControllerClient.do"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/index.html#viam.components.input.client.ControllerClient.do">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">do_command</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

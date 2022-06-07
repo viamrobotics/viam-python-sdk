@@ -1,0 +1,51 @@
+:py:mod:`viam.components.arm.service`
+=====================================
+
+.. py:module:: viam.components.arm.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.arm.service.ArmService
+
+
+
+
+.. py:class:: ArmService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for an Arm
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: GetEndPosition(self, stream: grpclib.server.Stream[viam.proto.api.component.arm.GetEndPositionRequest, viam.proto.api.component.arm.GetEndPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: MoveToPosition(self, stream: grpclib.server.Stream[viam.proto.api.component.arm.MoveToPositionRequest, viam.proto.api.component.arm.MoveToPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetJointPositions(self, stream: grpclib.server.Stream[viam.proto.api.component.arm.GetJointPositionsRequest, viam.proto.api.component.arm.GetJointPositionsResponse]) -> None
+      :async:
+
+
+   .. py:method:: MoveToJointPositions(self, stream: grpclib.server.Stream[viam.proto.api.component.arm.MoveToJointPositionsRequest, viam.proto.api.component.arm.MoveToJointPositionsResponse]) -> None
+      :async:
+
+
+   .. py:method:: Stop(self, stream: grpclib.server.Stream[viam.proto.api.component.arm.StopRequest, viam.proto.api.component.arm.StopResponse]) -> None
+      :async:
+
+
+

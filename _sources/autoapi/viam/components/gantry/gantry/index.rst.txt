@@ -1,0 +1,71 @@
+:py:mod:`viam.components.gantry.gantry`
+=======================================
+
+.. py:module:: viam.components.gantry.gantry
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.gantry.gantry.Gantry
+
+
+
+
+.. py:class:: Gantry(name: str)
+
+
+
+   Gantry represents a physical Gantry and can be used for controlling gantries of N axes.
+
+   This acts as an abstract base class for any drivers representing specific
+   gantry implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:method:: get_position(self) -> List[float]
+      :abstractmethod:
+      :async:
+
+      Get the position in millimeters.
+
+      :returns: The position of the axes.
+      :rtype: List[float]
+
+
+   .. py:method:: move_to_position(self, positions: List[float], world_state: Optional[viam.proto.api.common.WorldState] = None)
+      :abstractmethod:
+      :async:
+
+      Move the gantry to a new position.
+
+      :param positions: List of positions for the axes to move to,
+                        in millimeters.
+      :type positions: List[float]
+      :param world_state: Object describing
+                          obstacles for the gantry to avoid on its way to `positions`.
+      :type world_state: Optional[WorldState]
+
+
+   .. py:method:: get_lengths(self) -> List[float]
+      :abstractmethod:
+      :async:
+
+      Get the lengths of the axes of the gantry in millimeters.
+
+      :returns: The lengths of the axes.
+      :rtype: List[float]
+
+
+   .. py:method:: stop(self)
+      :abstractmethod:
+      :async:
+
+      Stop all motion of the gantry. It is assumed that the gantry stops immediately.
+
+
+

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.services.vision &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>viam.services.vision</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.services.vision</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
+<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+<span class="kn">from</span> <span class="nn">viam.components.types</span> <span class="kn">import</span> <span class="n">CameraMimeType</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">PointCloudObject</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.service.vision</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AddDetectorRequest</span><span class="p">,</span> <span class="n">Detection</span><span class="p">,</span>
+                                           <span class="n">GetDetectionsRequest</span><span class="p">,</span>
+                                           <span class="n">GetDetectionsResponse</span><span class="p">,</span>
+                                           <span class="n">GetDetectorNamesRequest</span><span class="p">,</span>
+                                           <span class="n">GetDetectorNamesResponse</span><span class="p">,</span>
+                                           <span class="n">GetObjectPointCloudsRequest</span><span class="p">,</span>
+                                           <span class="n">GetObjectPointCloudsResponse</span><span class="p">,</span>
+                                           <span class="n">GetSegmenterNamesRequest</span><span class="p">,</span>
+                                           <span class="n">GetSegmenterNamesResponse</span><span class="p">,</span>
+                                           <span class="n">GetSegmenterParametersRequest</span><span class="p">,</span>
+                                           <span class="n">GetSegmenterParametersResponse</span><span class="p">,</span>
+                                           <span class="n">VisionServiceStub</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="DetectorType"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.DetectorType">[docs]</a><span class="k">class</span> <span class="nc">DetectorType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="n">TF_LITE</span> <span class="o">=</span> <span class="s1">&#39;tflite&#39;</span>
+    <span class="n">TENSORFLOW</span> <span class="o">=</span> <span class="s1">&#39;tensorflow&#39;</span>
+    <span class="n">COLOR</span> <span class="o">=</span> <span class="s1">&#39;color&#39;</span></div>
+
+
+<div class="viewcode-block" id="DetectorConfig"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.DetectorConfig">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DetectorConfig</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">DetectorType</span>
+    <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="VisionClient"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient">[docs]</a><span class="k">class</span> <span class="nc">VisionClient</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Connect to the Vision service, which allows you to access various computer vision algorithms</span>
+<span class="sd">    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">VisionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
+<div class="viewcode-block" id="VisionClient.get_detector_names"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detector_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detector_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get the list of detectors in the registry.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: The detector names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectorNamesRequest</span><span class="p">()</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetDetectorNamesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDetectorNames</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detector_names</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VisionClient.add_detector"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.add_detector">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_detector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detector</span><span class="p">:</span> <span class="n">DetectorConfig</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a new detector to the registry.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            detector (DetectorConfig): The configuration of the detector to add</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
+        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">detector</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">AddDetectorRequest</span><span class="p">(</span><span class="n">detector_name</span><span class="o">=</span><span class="n">detector</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">detector_model_type</span><span class="o">=</span><span class="n">detector</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">detector_parameters</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">AddDetector</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VisionClient.get_detections"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detections">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detector_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get a list of detections in the next image given a camera and a detector</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            camera_name (str): The name of the camera to use for detection</span>
+<span class="sd">            detector_name (str): The name of the detector to use for detection</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Detection]: The detections</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsRequest</span><span class="p">(</span><span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">detector_name</span><span class="o">=</span><span class="n">detector_name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetDetectionsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDetections</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detections</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VisionClient.get_segmenter_names"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_segmenter_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_segmenter_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the list of segmenters in the registry</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: The segmenter names</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetSegmenterNamesRequest</span><span class="p">()</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetSegmenterNamesResponse</span> <span class="o">=</span> \
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetSegmenterNames</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">segmenter_names</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VisionClient.get_segmenter_parameters"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_segmenter_parameters">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_segmenter_parameters</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the parameter fields needed for the given segmenter.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            segmenter_name (str): The name of the segmenter</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Tuple[str, str]]: A list of parameters for the segmenter.</span>
+<span class="sd">                The first item in the tuple is the name of the parameter.</span>
+<span class="sd">                The second item in the tuple is the type of the parameter.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetSegmenterParametersRequest</span><span class="p">(</span><span class="n">segmenter_name</span><span class="o">=</span><span class="n">segmenter_name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetSegmenterParametersResponse</span> <span class="o">=</span> \
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetSegmenterParameters</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">segmenter_parameters</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="VisionClient.get_object_point_clouds"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_object_point_clouds">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_point_clouds</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all the found objects in a pointcloud from a camera of the</span>
+<span class="sd">        underlying robot, as well as the 3-vector center of each of the</span>
+<span class="sd">        found objects.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            camera_name (str): The name of the camera</span>
+<span class="sd">            segmenter_name (str): The name of the segmenter</span>
+<span class="sd">            parameters (Dict[str, Any]): The parameters for the pointcloud</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[PointCloudObject]: The pointclouds</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">struct</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
+        <span class="n">struct</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetObjectPointCloudsRequest</span><span class="p">(</span>
+            <span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span>
+            <span class="n">segmenter_name</span><span class="o">=</span><span class="n">segmenter_name</span><span class="p">,</span>
+            <span class="n">mime_type</span><span class="o">=</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PCD</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">parameters</span><span class="o">=</span><span class="n">struct</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetObjectPointCloudsResponse</span> <span class="o">=</span> \
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetObjectPointClouds</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.board.client &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>viam.components.board.client</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.components.board.client</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+<span class="kn">from</span> <span class="nn">viam.components.generic.client</span> <span class="kn">import</span> <span class="n">do_command</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">BoardStatus</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.board</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BoardServiceStub</span><span class="p">,</span>
+                                            <span class="n">GetDigitalInterruptValueRequest</span><span class="p">,</span>
+                                            <span class="n">GetDigitalInterruptValueResponse</span><span class="p">,</span>
+                                            <span class="n">GetGPIORequest</span><span class="p">,</span> <span class="n">GetGPIOResponse</span><span class="p">,</span>
+                                            <span class="n">PWMFrequencyRequest</span><span class="p">,</span>
+                                            <span class="n">PWMFrequencyResponse</span><span class="p">,</span> <span class="n">PWMRequest</span><span class="p">,</span>
+                                            <span class="n">PWMResponse</span><span class="p">,</span>
+                                            <span class="n">ReadAnalogReaderRequest</span><span class="p">,</span>
+                                            <span class="n">ReadAnalogReaderResponse</span><span class="p">,</span>
+                                            <span class="n">SetGPIORequest</span><span class="p">,</span>
+                                            <span class="n">SetPWMFrequencyRequest</span><span class="p">,</span>
+                                            <span class="n">SetPWMRequest</span><span class="p">,</span> <span class="n">StatusRequest</span><span class="p">,</span>
+                                            <span class="n">StatusResponse</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">.board</span> <span class="kn">import</span> <span class="n">Board</span><span class="p">,</span> <span class="n">PostProcessor</span>
+
+
+<div class="viewcode-block" id="AnalogReaderClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.AnalogReaderClient">[docs]</a><span class="k">class</span> <span class="nc">AnalogReaderClient</span><span class="p">(</span><span class="n">Board</span><span class="o">.</span><span class="n">AnalogReader</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">board</span><span class="p">:</span> <span class="s1">&#39;BoardClient&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span> <span class="o">=</span> <span class="n">board</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AnalogReaderClient.read"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.AnalogReaderClient.read">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ReadAnalogReaderRequest</span><span class="p">(</span>
+            <span class="n">board_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">analog_reader_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ReadAnalogReaderResponse</span> <span class="o">=</span> \
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ReadAnalogReader</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">value</span></div></div>
+
+
+<div class="viewcode-block" id="DigitalInterruptClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient">[docs]</a><span class="k">class</span> <span class="nc">DigitalInterruptClient</span><span class="p">(</span><span class="n">Board</span><span class="o">.</span><span class="n">DigitalInterrupt</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">board</span><span class="p">:</span> <span class="s1">&#39;BoardClient&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span> <span class="o">=</span> <span class="n">board</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DigitalInterruptClient.value"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.value">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetDigitalInterruptValueRequest</span><span class="p">(</span>
+            <span class="n">board_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">digital_interrupt_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetDigitalInterruptValueResponse</span> <span class="o">=</span> \
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDigitalInterruptValue</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">value</span></div>
+
+<div class="viewcode-block" id="DigitalInterruptClient.tick"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.tick">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">nanos</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DigitalInterruptClient.add_callback"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.add_callback">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DigitalInterruptClient.add_post_processor"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.add_post_processor">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_post_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor</span><span class="p">:</span> <span class="n">PostProcessor</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="GPIOPinClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient">[docs]</a><span class="k">class</span> <span class="nc">GPIOPinClient</span><span class="p">(</span><span class="n">Board</span><span class="o">.</span><span class="n">GPIOPin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">board</span><span class="p">:</span> <span class="s1">&#39;BoardClient&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span> <span class="o">=</span> <span class="n">board</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GPIOPinClient.get"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient.get">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetGPIORequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetGPIOResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetGPIO</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">high</span></div>
+
+<div class="viewcode-block" id="GPIOPinClient.set"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient.set">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SetGPIORequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                 <span class="n">pin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">high</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">SetGPIO</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GPIOPinClient.get_pwm"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient.get_pwm">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">PWMRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">PWMResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">PWM</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">duty_cycle_pct</span></div>
+
+<div class="viewcode-block" id="GPIOPinClient.set_pwm"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient.set_pwm">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SetPWMRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                <span class="n">duty_cycle_pct</span><span class="o">=</span><span class="n">duty_cycle</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">SetPWM</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GPIOPinClient.get_pwm_frequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient.get_pwm_frequency">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">PWMFrequencyRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">PWMFrequencyResponse</span> <span class="o">=</span> \
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">PWMFrequency</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">frequency_hz</span></div>
+
+<div class="viewcode-block" id="GPIOPinClient.set_pwm_frequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient.set_pwm_frequency">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SetPWMFrequencyRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">frequency_hz</span><span class="o">=</span><span class="n">frequency</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">SetPWMFrequency</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="BoardClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient">[docs]</a><span class="k">class</span> <span class="nc">BoardClient</span><span class="p">(</span><span class="n">Board</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    gRPC client for the Board component.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">BoardServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_analog_reader_names</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_digital_interrupt_names</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BoardClient.analog_reader_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient.analog_reader_by_name">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Board</span><span class="o">.</span><span class="n">AnalogReader</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">AnalogReaderClient</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BoardClient.digital_interrupt_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient.digital_interrupt_by_name">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_by_name</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Board</span><span class="o">.</span><span class="n">DigitalInterrupt</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">DigitalInterruptClient</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BoardClient.gpio_pin_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient.gpio_pin_by_name">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">gpio_pin_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Board</span><span class="o">.</span><span class="n">GPIOPin</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GPIOPinClient</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BoardClient.analog_reader_names"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient.analog_reader_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analog_reader_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">status</span><span class="o">.</span><span class="n">analogs</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_analog_reader_names</span> <span class="o">=</span> <span class="n">names</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_analog_reader_names</span></div>
+
+<div class="viewcode-block" id="BoardClient.digital_interrupt_names"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient.digital_interrupt_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_digital_interrupt_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">status</span><span class="o">.</span><span class="n">digital_interrupts</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_digital_interrupt_names</span> <span class="o">=</span> <span class="n">names</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_digital_interrupt_names</span></div>
+
+<div class="viewcode-block" id="BoardClient.status"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient.status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BoardStatus</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">StatusRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">StatusResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Status</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">status</span></div>
+
+<div class="viewcode-block" id="BoardClient.model_attributes"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient.model_attributes">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">model_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Board</span><span class="o">.</span><span class="n">Attributes</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Board</span><span class="o">.</span><span class="n">Attributes</span><span class="p">(</span><span class="n">remote</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BoardClient.do"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.client.BoardClient.do">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">do_command</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

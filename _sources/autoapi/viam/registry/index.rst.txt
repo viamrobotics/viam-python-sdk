@@ -1,0 +1,134 @@
+:py:mod:`viam.registry`
+=======================
+
+.. py:module:: viam.registry
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.registry.ComponentRegistration
+   viam.registry.Registry
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.registry.default_create_status
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.registry.Component
+
+
+.. py:data:: Component
+   
+
+   
+
+.. py:function:: default_create_status(component: viam.components.component_base.ComponentBase) -> viam.proto.api.robot.Status
+   :async:
+
+
+.. py:class:: ComponentRegistration
+
+
+
+   An object representing a component to be registered.
+
+   This object is generic over the component, and it includes various functionality for the component, such as creating its RPC client
+   or status.
+
+   If creating a custom Component type, you should register the component by creating a `ComponentRegistration` object and registering it
+   to the `Registry`.
+
+   .. py:attribute:: component_type
+      :annotation: :Type[Component]
+
+      The type of the Component to be registered
+
+   .. py:attribute:: name
+      :annotation: :str
+
+      The name of the Component type
+
+   .. py:attribute:: rpc_service
+      :annotation: :Type[viam.components.service_base.ComponentServiceBase]
+
+      The RPC service of the component. This must extend from `ComponentServiceBase`
+
+   .. py:attribute:: create_rpc_client
+      :annotation: :Callable[[str, grpclib.client.Channel], Component]
+
+      A function that will create the RPC client for this component
+
+   .. py:attribute:: create_status
+      :annotation: :Callable[[Component], Coroutine[Any, Any, viam.proto.api.robot.Status]]
+
+      A function to create a Status object for this component.
+
+      If the Component does not provide a custom status type, the default implementation can be used.
+
+
+.. py:class:: Registry
+
+   The global registry of robotic parts.
+
+   **NB** The Registry should almost never be used directly
+
+   The Registry keeps track of the types of Components that are available on robots using this SDK. All the base component types are
+   pre-registered (e.g. Arm, Motor).
+
+   If you create a new component type that is not an extension of any of the existing base component types, then you must register said
+   component using `Registry.register(...)`.
+
+   .. py:method:: register(cls, registration: ComponentRegistration)
+      :classmethod:
+
+      Register a Component with the Registry
+
+      :param registration: Object containing registration data for the component
+      :type registration: ComponentRegistration
+
+      :raises DuplicateComponentError: Raised if the Component to register is already in the registry
+
+
+   .. py:method:: lookup(cls, component_name: str) -> ComponentRegistration
+      :classmethod:
+
+      Lookup and retrieve a registered component by its name
+
+      :param component_name: The name of the component
+      :type component_name: str
+
+      :raises ComponentNotFoundError: Raised if the component type is not registered
+
+      :returns: The registration object of the component
+      :rtype: ComponentRegistration
+
+
+   .. py:method:: REGISTERED_COMPONENTS(cls) -> Dict[str, ComponentRegistration]
+      :property:
+
+      The dictionary of all registered components
+      - Key: Name of the component type
+      - Value: The registration object for the component type
+
+      :returns: All registered components
+      :rtype: Dict[str, ComponentRegistration]
+
+
+

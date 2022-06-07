@@ -1,0 +1,82 @@
+:py:mod:`viam.components.sensor`
+================================
+
+.. py:module:: viam.components.sensor
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   client/index.rst
+   sensor/index.rst
+   service/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.sensor.SensorClient
+   viam.components.sensor.Sensor
+
+
+
+
+.. py:class:: SensorClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the Sensor component.
+
+   .. py:method:: get_readings(self) -> List[Any]
+      :async:
+
+      Obtain the measurements/data specific to this sensor.
+
+      :returns: The measurements. Can be of any type.
+      :rtype: List[Dict]
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+
+.. py:class:: Sensor(name: str)
+
+
+
+   Sensor represents a physical sensing device that can provide measurement readings.
+
+   This acts as an abstract base class for any drivers representing specific
+   sensor implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:method:: get_readings(self) -> List[Any]
+      :abstractmethod:
+      :async:
+
+      Obtain the measurements/data specific to this sensor.
+
+      :returns: The measurements. Can be of any type.
+      :rtype: List[Dict]
+
+
+

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.board.board &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>viam.components.board.board</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.components.board.board</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">BoardStatus</span>
+
+<span class="kn">from</span> <span class="nn">..component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
+
+
+<span class="n">PostProcessor</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Board"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board">[docs]</a><span class="k">class</span> <span class="nc">Board</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Board represents a physical general purpose compute board that contains various</span>
+<span class="sd">    components such as analog readers, and digital interrupts.</span>
+
+<span class="sd">    This acts as an abstract base class for any drivers representing specific </span>
+<span class="sd">    board implementations. This cannot be used on its own. If the `__init__()` function is</span>
+<span class="sd">    overriden, it must call the `super().__init__()` function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Board.Attributes"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.Attributes">[docs]</a>    <span class="nd">@dataclass</span>
+    <span class="k">class</span> <span class="nc">Attributes</span><span class="p">:</span>
+        <span class="n">remote</span><span class="p">:</span> <span class="nb">bool</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Indicates whether this board is accessed over a remote connection, e.g. gRPC.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="Board.AnalogReader"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.AnalogReader">[docs]</a>    <span class="k">class</span> <span class="nc">AnalogReader</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        AnalogReader represents an analog pin reader that resides on a Board.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Board.AnalogReader.read"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.AnalogReader.read">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Read the current value.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                int: The current value.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div></div>
+
+<div class="viewcode-block" id="Board.DigitalInterrupt"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt">[docs]</a>    <span class="k">class</span> <span class="nc">DigitalInterrupt</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DigitalInterrupt represents a configured interrupt on the Board that</span>
+<span class="sd">        when interrupted, calls the added callbacks. Post processors can</span>
+<span class="sd">        be added to modify what Value it ultimately returns.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Board.DigitalInterrupt.value"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.value">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Get the current value of the interrupt,</span>
+<span class="sd">            which is based on the type of interrupt.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                int: The current value.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.DigitalInterrupt.tick"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.tick">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">nanos</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            This method is to be called either manually if the interrupt</span>
+<span class="sd">            is a proxy to some real hardware interrupt or for tests.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                high (bool): If the signal of the interrupt is high.</span>
+<span class="sd">                nanos (int): Nanoseconds from an arbitrary point in time,</span>
+<span class="sd">                    but always increasing and always needs to be accurate.</span>
+<span class="sd">                    Using `time.time_ns()` would be acceptable.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.DigitalInterrupt.add_callback"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.add_callback">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Add a callback to be sent the low/high value on `tick()`.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                queue (Queue): The receiving queue.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.DigitalInterrupt.add_post_processor"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.add_post_processor">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">add_post_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor</span><span class="p">:</span> <span class="n">PostProcessor</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Add a post processor that should be used to modify what</span>
+<span class="sd">            is returned by `self.value()`</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                processor (PostProcessor): The post processor to add.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div></div>
+
+<div class="viewcode-block" id="Board.GPIOPin"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin">[docs]</a>    <span class="k">class</span> <span class="nc">GPIOPin</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Abstract representation of an individual GPIO pin on a board</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ComponentBase (_type_): _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Board.GPIOPin.set"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.set">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Set the pin to either low or high.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                high (bool): When true, sets the pin to high. When false, sets the pin to low.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.GPIOPin.get"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.get">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Get the high/low state of the pin.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                bool: Indicates if the state of the pin is high.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.GPIOPin.get_pwm"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.get_pwm">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Get the pin&#39;s given duty cycle.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                float: The duty cycle.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.GPIOPin.set_pwm"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.set_pwm">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Set the pin to the given `duty_cycle`.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                duty_cycle (float): The duty cycle.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.GPIOPin.get_pwm_frequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.get_pwm_frequency">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Get the PWM frequency of the pin.</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                int: The PWM frequency.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.GPIOPin.set_pwm_frequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.set_pwm_frequency">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Set the pin to the given PWM `frequency` (in Hz).</span>
+<span class="sd">            When `frequency` is 0, it will use the board&#39;s default PWM frequency.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                frequency (int): The frequency, in Hz.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div></div>
+
+<div class="viewcode-block" id="Board.analog_reader_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.analog_reader_by_name">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalogReader</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get an AnalogReader by `name`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): Name of the analog reader to be retrieved.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            AnalogReader: The analog reader.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.digital_interrupt_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.digital_interrupt_by_name">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DigitalInterrupt</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a DigitalInterrupt by `name`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): Name of the digital interrupt.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            DigitalInterrupt: the digital interrupt.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.gpio_pin_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.gpio_pin_by_name">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">gpio_pin_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GPIOPin</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a GPIO Pin by `name`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): Name of the GPIO pin.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            GPIOPin: the pin.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.analog_reader_names"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.analog_reader_names">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the names of all known analog readers.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: The names of the analog readers..</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.digital_interrupt_names"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.digital_interrupt_names">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the names of all known digital interrupts.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: The names of the digital interrupts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.status"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.status">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BoardStatus</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the current status of the board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            BoardStatus: the status.</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="Board.model_attributes"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.model_attributes">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">model_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Attributes</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the attributes related to the model of this board.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Attributes: The attributes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

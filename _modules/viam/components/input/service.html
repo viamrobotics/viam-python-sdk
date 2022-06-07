@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.input.service &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>viam.components.input.service</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.components.input.service</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pipe</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">h2.exceptions</span> <span class="kn">import</span> <span class="n">StreamClosedError</span>
+
+<span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
+<span class="kn">import</span> <span class="nn">viam</span>
+<span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">NotSupportedError</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.inputcontroller</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetControlsRequest</span><span class="p">,</span> <span class="n">GetControlsResponse</span><span class="p">,</span> <span class="n">GetEventsRequest</span><span class="p">,</span>
+    <span class="n">GetEventsResponse</span><span class="p">,</span> <span class="n">InputControllerServiceBase</span><span class="p">,</span> <span class="n">StreamEventsRequest</span><span class="p">,</span>
+    <span class="n">StreamEventsResponse</span><span class="p">,</span> <span class="n">TriggerEventRequest</span><span class="p">,</span> <span class="n">TriggerEventResponse</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">.input</span> <span class="kn">import</span> <span class="n">Control</span><span class="p">,</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span>
+
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">viam</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="InputControllerService"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService">[docs]</a><span class="k">class</span> <span class="nc">InputControllerService</span><span class="p">(</span><span class="n">InputControllerServiceBase</span><span class="p">,</span> <span class="n">ComponentServiceBase</span><span class="p">[</span><span class="n">Controller</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    gRPC Service for an input controller</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Controller</span>
+
+<div class="viewcode-block" id="InputControllerService.GetControls"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.GetControls">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetControls</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetControlsRequest</span><span class="p">,</span> <span class="n">GetControlsResponse</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">controller</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
+        <span class="n">controls</span> <span class="o">=</span> <span class="k">await</span> <span class="n">controller</span><span class="o">.</span><span class="n">get_controls</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">GetControlsResponse</span><span class="p">(</span><span class="n">controls</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">controls</span><span class="p">])</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InputControllerService.GetEvents"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.GetEvents">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetEvents</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetEventsRequest</span><span class="p">,</span> <span class="n">GetEventsResponse</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">controller</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
+        <span class="n">events</span> <span class="o">=</span> <span class="k">await</span> <span class="n">controller</span><span class="o">.</span><span class="n">get_events</span><span class="p">()</span>
+        <span class="n">pb_events</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">proto</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">events</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">GetEventsResponse</span><span class="p">(</span><span class="n">events</span><span class="o">=</span><span class="n">pb_events</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InputControllerService.StreamEvents"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.StreamEvents">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">StreamEvents</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StreamEventsRequest</span><span class="p">,</span> <span class="n">StreamEventsResponse</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">controller</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
+
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+        <span class="c1"># Using Pipes to send event data back to this function so it can be streamed to clients</span>
+        <span class="c1"># The write pipe is added to the callbacks for a control, so whenever that control sends a watched event,</span>
+        <span class="c1"># that event is sent through the pipe, where it will be read (further down) and sent over the stream</span>
+        <span class="n">pipe_r</span><span class="p">,</span> <span class="n">pipe_w</span> <span class="o">=</span> <span class="n">Pipe</span><span class="p">(</span><span class="n">duplex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">ctrlFunc</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pipe_w</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">cleanup</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="c1"># Register the pipe callbacks</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">events</span><span class="p">:</span>
+            <span class="n">triggers</span> <span class="o">=</span> <span class="p">[</span><span class="n">EventType</span><span class="p">(</span><span class="n">et</span><span class="p">)</span> <span class="k">for</span> <span class="n">et</span> <span class="ow">in</span> <span class="n">event</span><span class="o">.</span><span class="n">events</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">triggers</span><span class="p">):</span>
+                <span class="n">controller</span><span class="o">.</span><span class="n">register_control_callback</span><span class="p">(</span><span class="n">Control</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">control</span><span class="p">),</span> <span class="n">triggers</span><span class="p">,</span> <span class="n">ctrlFunc</span><span class="p">)</span>
+
+            <span class="n">cancelled_triggers</span> <span class="o">=</span> <span class="p">[</span><span class="n">EventType</span><span class="p">(</span><span class="n">et</span><span class="p">)</span> <span class="k">for</span> <span class="n">et</span> <span class="ow">in</span> <span class="n">event</span><span class="o">.</span><span class="n">cancelled_events</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cancelled_triggers</span><span class="p">):</span>
+                <span class="n">controller</span><span class="o">.</span><span class="n">register_control_callback</span><span class="p">(</span><span class="n">Control</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">control</span><span class="p">),</span> <span class="n">cancelled_triggers</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="c1"># Asynchronously wait for messages to come over the read pipe and run the READ function whenever the pipe is ready.</span>
+        <span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
+            <span class="n">ev</span><span class="p">:</span> <span class="n">Event</span> <span class="o">=</span> <span class="n">pipe_r</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span>
+            <span class="n">pb_ev</span> <span class="o">=</span> <span class="n">ev</span><span class="o">.</span><span class="n">proto</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">StreamEventsResponse</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="n">pb_ev</span><span class="p">)</span>
+
+            <span class="k">async</span> <span class="k">def</span> <span class="nf">send_message</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">stream</span><span class="o">.</span><span class="n">_cancel_done</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Undo hack, see below</span>
+                    <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">StreamClosedError</span><span class="p">:</span>
+                    <span class="n">cleanup</span><span class="p">()</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">cleanup</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+            <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">send_message</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s1">-input_send_event&#39;</span><span class="p">)</span>
+
+        <span class="n">loop</span><span class="o">.</span><span class="n">add_reader</span><span class="p">(</span><span class="n">pipe_r</span><span class="p">,</span> <span class="n">read</span><span class="p">)</span>
+
+        <span class="c1"># HACK: Keep the stream open when this function returns.</span>
+        <span class="c1"># When the StreamEvents function returns, the Stream is closed. But we don&#39;t want the stream to close because we still need</span>
+        <span class="c1"># to send events to any clients who have registered callbacks.</span>
+        <span class="c1"># By setting `stream._cancel_done` to `True`, this tricks grpclib into thinking it already closed the stream, so it doesn&#39;t</span>
+        <span class="c1"># perform any cleanup (like removing the stream). We eventually do want to actually close this stream, so we undo this hack</span>
+        <span class="c1"># every time we send a message. That way, the trailing metadata is sent when either the server closes or the client disconnects.</span>
+        <span class="n">stream</span><span class="o">.</span><span class="n">_cancel_done</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># Remove ctrl functions when this stream is closed</span>
+        <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="n">exc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="ne">Exception</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">loop</span><span class="o">.</span><span class="n">remove_reader</span><span class="p">(</span><span class="n">pipe_r</span><span class="p">)</span>
+            <span class="n">pipe_w</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">pipe_r</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">unregister_pipe_callbacks</span><span class="p">()</span>
+            <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">stream</span><span class="o">.</span><span class="fm">__aexit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">exc</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+
+        <span class="k">def</span> <span class="nf">unregister_pipe_callbacks</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">events</span><span class="p">:</span>
+                <span class="n">triggers</span> <span class="o">=</span> <span class="p">[</span><span class="n">EventType</span><span class="p">(</span><span class="n">et</span><span class="p">)</span> <span class="k">for</span> <span class="n">et</span> <span class="ow">in</span> <span class="n">event</span><span class="o">.</span><span class="n">events</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">triggers</span><span class="p">):</span>
+                    <span class="n">controller</span><span class="o">.</span><span class="n">register_control_callback</span><span class="p">(</span><span class="n">Control</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">control</span><span class="p">),</span> <span class="n">triggers</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="InputControllerService.TriggerEvent"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.TriggerEvent">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">TriggerEvent</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">TriggerEventRequest</span><span class="p">,</span> <span class="n">TriggerEventResponse</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">controller</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">pb_event</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">event</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">pb_event</span><span class="p">)</span>
+            <span class="k">await</span> <span class="n">controller</span><span class="o">.</span><span class="n">trigger_event</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
+        <span class="k">except</span> <span class="n">NotSupportedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">TriggerEventResponse</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

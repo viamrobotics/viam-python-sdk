@@ -1,0 +1,47 @@
+:py:mod:`viam.components.gantry.service`
+========================================
+
+.. py:module:: viam.components.gantry.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.gantry.service.GantryService
+
+
+
+
+.. py:class:: GantryService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for an Gantry
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: GetPosition(self, stream: grpclib.server.Stream[viam.proto.api.component.gantry.GetPositionRequest, viam.proto.api.component.gantry.GetPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: MoveToPosition(self, stream: grpclib.server.Stream[viam.proto.api.component.gantry.MoveToPositionRequest, viam.proto.api.component.gantry.MoveToPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetLengths(self, stream: grpclib.server.Stream[viam.proto.api.component.gantry.GetLengthsRequest, viam.proto.api.component.gantry.GetLengthsResponse]) -> None
+      :async:
+
+
+   .. py:method:: Stop(self, stream: grpclib.server.Stream[viam.proto.api.component.gantry.StopRequest, viam.proto.api.component.gantry.StopResponse]) -> None
+      :async:
+
+
+

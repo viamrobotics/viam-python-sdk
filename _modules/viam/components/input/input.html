@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.input.input &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>viam.components.input.input</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.components.input.input</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">google.protobuf.timestamp_pb2</span> <span class="kn">import</span> <span class="n">Timestamp</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
+<span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">NotSupportedError</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.inputcontroller</span> <span class="kn">import</span> <span class="n">Event</span> <span class="k">as</span> <span class="n">PBEvent</span>
+
+
+<div class="viewcode-block" id="EventType"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.EventType">[docs]</a><span class="k">class</span> <span class="nc">EventType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents the type of input event.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ALL_EVENTS</span> <span class="o">=</span> <span class="s1">&#39;AllEvents&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Callbacks registered for this event will be called in ADDITION to other registered event callbacks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONNECT</span> <span class="o">=</span> <span class="s1">&#39;Connect&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sent at controller initialization, and on reconnects.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DISCONNECT</span> <span class="o">=</span> <span class="s1">&#39;Disconnect&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If unplugged, or wireless/network times out.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">BUTTON_PRESS</span> <span class="o">=</span> <span class="s1">&#39;ButtonPress&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Typical key press.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">BUTTON_RELEASE</span> <span class="o">=</span> <span class="s1">&#39;ButtonRelease&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Key release.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">BUTTON_HOLD</span> <span class="o">=</span> <span class="s1">&#39;ButtonHold&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Key is held down. This wil likely be a repeated event.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">BUTTON_CHANGE</span> <span class="o">=</span> <span class="s1">&#39;ButtonChange&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Both up and down for convenience during registration, not typically emitted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">POSITION_CHANGE_ABSOLUTE</span> <span class="o">=</span> <span class="s1">&#39;PositionChangeAbs&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Absolute position is reported via Value, a la joysticks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">POSITION_CHANGE_RELATIVE</span> <span class="o">=</span> <span class="s1">&#39;PositionChangeRel&#39;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Relative position is reported via Value, a la mice, or simulating axes with up/down buttons.</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Control"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.Control">[docs]</a><span class="k">class</span> <span class="nc">Control</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Control identifies the input (specific Axis or Button) of a controller.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Axes</span>
+    <span class="n">ABSOLUTE_X</span> <span class="o">=</span> <span class="s1">&#39;AbsoluteX&#39;</span>
+    <span class="n">ABSOLUTE_Y</span> <span class="o">=</span> <span class="s1">&#39;AbsoluteY&#39;</span>
+    <span class="n">ABSOLUTE_Z</span> <span class="o">=</span> <span class="s1">&#39;AbsoluteZ&#39;</span>
+    <span class="n">ABSOLUTE_RX</span> <span class="o">=</span> <span class="s1">&#39;AbsoluteRX&#39;</span>
+    <span class="n">ABSOLUTE_RY</span> <span class="o">=</span> <span class="s1">&#39;AbsoluteRY&#39;</span>
+    <span class="n">ABSOLUTE_RZ</span> <span class="o">=</span> <span class="s1">&#39;AbsoluteRZ&#39;</span>
+    <span class="n">ABSOLUTE_HAT0_X</span> <span class="o">=</span> <span class="s1">&#39;AbsoluteHat0X&#39;</span>
+    <span class="n">ABSOLUTE_HAT0_Y</span> <span class="o">=</span> <span class="s1">&#39;AbsoluteHat0Y&#39;</span>
+
+    <span class="c1"># Buttons</span>
+    <span class="n">BUTTON_SOUTH</span> <span class="o">=</span> <span class="s1">&#39;ButtonSouth&#39;</span>
+    <span class="n">BUTTON_EAST</span> <span class="o">=</span> <span class="s1">&#39;ButtonEast&#39;</span>
+    <span class="n">BUTTON_WEST</span> <span class="o">=</span> <span class="s1">&#39;ButtonWest&#39;</span>
+    <span class="n">BUTTON_NORTH</span> <span class="o">=</span> <span class="s1">&#39;ButtonNorth&#39;</span>
+    <span class="n">BUTTON_LT</span> <span class="o">=</span> <span class="s1">&#39;ButtonLT&#39;</span>
+    <span class="n">BUTTON_RT</span> <span class="o">=</span> <span class="s1">&#39;ButtonRT&#39;</span>
+    <span class="n">BUTTON_LT2</span> <span class="o">=</span> <span class="s1">&#39;ButtonLT2&#39;</span>
+    <span class="n">BUTTON_RT2</span> <span class="o">=</span> <span class="s1">&#39;ButtonRT2&#39;</span>
+    <span class="n">BUTTON_L_THUMB</span> <span class="o">=</span> <span class="s1">&#39;ButtonLThumb&#39;</span>
+    <span class="n">BUTTON_R_THUMB</span> <span class="o">=</span> <span class="s1">&#39;ButtonRThumb&#39;</span>
+    <span class="n">BUTTON_SELECT</span> <span class="o">=</span> <span class="s1">&#39;ButtonSelect&#39;</span>
+    <span class="n">BUTTON_START</span> <span class="o">=</span> <span class="s1">&#39;ButtonStart&#39;</span>
+    <span class="n">BUTTON_MENU</span> <span class="o">=</span> <span class="s1">&#39;ButtonMenu&#39;</span>
+    <span class="n">BUTTON_RECORD</span> <span class="o">=</span> <span class="s1">&#39;ButtonRecord&#39;</span>
+    <span class="n">BUTTON_E_STOP</span> <span class="o">=</span> <span class="s1">&#39;ButtonEStop&#39;</span></div>
+
+
+<div class="viewcode-block" id="Event"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.Event">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Event</span><span class="p">:</span>
+    <span class="n">time</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="sd">&quot;&quot;&quot;seconds since epoch&quot;&quot;&quot;</span>
+
+    <span class="n">event</span><span class="p">:</span> <span class="n">EventType</span>
+
+    <span class="n">control</span><span class="p">:</span> <span class="n">Control</span>
+
+    <span class="n">value</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="sd">&quot;&quot;&quot;0 or 1 for buttons, -1.0 to +1.0 for axes&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">()</span>
+        <span class="n">timestamp</span><span class="o">.</span><span class="n">FromDatetime</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PBEvent</span><span class="p">(</span>
+            <span class="n">time</span><span class="o">=</span><span class="n">timestamp</span><span class="p">,</span>
+            <span class="n">event</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">control</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="Event.from_proto"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.Event.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">proto</span><span class="p">:</span> <span class="n">PBEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">proto</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">dt</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(),</span>
+            <span class="n">EventType</span><span class="p">(</span><span class="n">proto</span><span class="o">.</span><span class="n">event</span><span class="p">),</span>
+            <span class="n">Control</span><span class="p">(</span><span class="n">proto</span><span class="o">.</span><span class="n">control</span><span class="p">),</span>
+            <span class="n">proto</span><span class="o">.</span><span class="n">value</span>
+        <span class="p">)</span></div></div>
+
+
+<span class="n">ControlFunction</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Event</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Controller"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.Controller">[docs]</a><span class="k">class</span> <span class="nc">Controller</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Controller is a logical &quot;container&quot; more than an actual device</span>
+<span class="sd">    Could be a single gamepad, or a collection of digitalInterrupts</span>
+<span class="sd">    and analogReaders, a keyboard, etc.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Controller.get_controls"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.Controller.get_controls">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_controls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Control</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list of Controls provided by the Controller</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Control]: List of controls provided by the Controller</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Controller.get_events"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.Controller.get_events">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Control</span><span class="p">,</span> <span class="n">Event</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the most recent Event for each input</span>
+<span class="sd">        (which should be the current state)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[Control, Event]: The most recent event for each input</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Controller.register_control_callback"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.Controller.register_control_callback">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">register_control_callback</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">control</span><span class="p">:</span> <span class="n">Control</span><span class="p">,</span>
+        <span class="n">triggers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">EventType</span><span class="p">],</span>
+        <span class="n">function</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ControlFunction</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Register a function that will fire on given EventTypes for a given</span>
+<span class="sd">        Control</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            control (Control): The control to register the function for</span>
+<span class="sd">            triggers (List[EventType]): The events that will</span>
+<span class="sd">                trigger the function</span>
+<span class="sd">            function (ControlFunction): The function to run on</span>
+<span class="sd">                specific triggers</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Controller.trigger_event"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/input/index.html#viam.components.input.Controller.trigger_event">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">trigger_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Directly send an Event (such as a button press) from external code</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event (Event): The event to trigger</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Input controller named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> does not support triggering events&#39;</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

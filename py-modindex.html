@@ -3,9 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Module Index &mdash; Viam Python SDK 0.0.1 documentation</title>
+  <title>Python Module Index &mdash; viam  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -14,6 +17,11 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Viam Python SDK
+            <a href="index.html" class="icon icon-home"> viam
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -37,13 +45,19 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="viam.components.html">viam.components package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.services.html">viam.services package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.robot.html">viam.robot package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.rpc.html">viam.rpc package</a></li>
-<li class="toctree-l1"><a class="reference internal" href="viam.proto.html">viam.proto package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
 </ul>
 
         </div>
@@ -52,7 +66,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Viam Python SDK</a>
+          <a href="index.html">viam</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -84,407 +98,1117 @@
        <td><img src="_static/minus.png" class="toggler"
               id="toggle-1" style="display: none" alt="-" /></td>
        <td>
-       <a href="viam.html#module-viam"><code class="xref">viam</code></a></td><td>
+       <a href="autoapi/viam/index.html#module-viam"><code class="xref">viam</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.html#module-viam.components"><code class="xref">viam.components</code></a></td><td>
+       <a href="autoapi/viam/components/index.html#module-viam.components"><code class="xref">viam.components</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.arm.html#module-viam.components.arm"><code class="xref">viam.components.arm</code></a></td><td>
+       <a href="autoapi/viam/components/arm/index.html#module-viam.components.arm"><code class="xref">viam.components.arm</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.arm.arm.html#module-viam.components.arm.arm"><code class="xref">viam.components.arm.arm</code></a></td><td>
+       <a href="autoapi/viam/components/arm/arm/index.html#module-viam.components.arm.arm"><code class="xref">viam.components.arm.arm</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.arm.client.html#module-viam.components.arm.client"><code class="xref">viam.components.arm.client</code></a></td><td>
+       <a href="autoapi/viam/components/arm/client/index.html#module-viam.components.arm.client"><code class="xref">viam.components.arm.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.arm.service.html#module-viam.components.arm.service"><code class="xref">viam.components.arm.service</code></a></td><td>
+       <a href="autoapi/viam/components/arm/service/index.html#module-viam.components.arm.service"><code class="xref">viam.components.arm.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.base.html#module-viam.components.base"><code class="xref">viam.components.base</code></a></td><td>
+       <a href="autoapi/viam/components/base/index.html#module-viam.components.base"><code class="xref">viam.components.base</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.base.base.html#module-viam.components.base.base"><code class="xref">viam.components.base.base</code></a></td><td>
+       <a href="autoapi/viam/components/base/base/index.html#module-viam.components.base.base"><code class="xref">viam.components.base.base</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.base.client.html#module-viam.components.base.client"><code class="xref">viam.components.base.client</code></a></td><td>
+       <a href="autoapi/viam/components/base/client/index.html#module-viam.components.base.client"><code class="xref">viam.components.base.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.base.service.html#module-viam.components.base.service"><code class="xref">viam.components.base.service</code></a></td><td>
+       <a href="autoapi/viam/components/base/service/index.html#module-viam.components.base.service"><code class="xref">viam.components.base.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.board.html#module-viam.components.board"><code class="xref">viam.components.board</code></a></td><td>
+       <a href="autoapi/viam/components/board/index.html#module-viam.components.board"><code class="xref">viam.components.board</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.board.board.html#module-viam.components.board.board"><code class="xref">viam.components.board.board</code></a></td><td>
+       <a href="autoapi/viam/components/board/board/index.html#module-viam.components.board.board"><code class="xref">viam.components.board.board</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.board.client.html#module-viam.components.board.client"><code class="xref">viam.components.board.client</code></a></td><td>
+       <a href="autoapi/viam/components/board/client/index.html#module-viam.components.board.client"><code class="xref">viam.components.board.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.board.service.html#module-viam.components.board.service"><code class="xref">viam.components.board.service</code></a></td><td>
+       <a href="autoapi/viam/components/board/service/index.html#module-viam.components.board.service"><code class="xref">viam.components.board.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.camera.html#module-viam.components.camera"><code class="xref">viam.components.camera</code></a></td><td>
+       <a href="autoapi/viam/components/camera/index.html#module-viam.components.camera"><code class="xref">viam.components.camera</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.camera.camera.html#module-viam.components.camera.camera"><code class="xref">viam.components.camera.camera</code></a></td><td>
+       <a href="autoapi/viam/components/camera/camera/index.html#module-viam.components.camera.camera"><code class="xref">viam.components.camera.camera</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.camera.client.html#module-viam.components.camera.client"><code class="xref">viam.components.camera.client</code></a></td><td>
+       <a href="autoapi/viam/components/camera/client/index.html#module-viam.components.camera.client"><code class="xref">viam.components.camera.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.camera.service.html#module-viam.components.camera.service"><code class="xref">viam.components.camera.service</code></a></td><td>
+       <a href="autoapi/viam/components/camera/service/index.html#module-viam.components.camera.service"><code class="xref">viam.components.camera.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.component_base.html#module-viam.components.component_base"><code class="xref">viam.components.component_base</code></a></td><td>
+       <a href="autoapi/viam/components/component_base/index.html#module-viam.components.component_base"><code class="xref">viam.components.component_base</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gantry.html#module-viam.components.gantry"><code class="xref">viam.components.gantry</code></a></td><td>
+       <a href="autoapi/viam/components/gantry/index.html#module-viam.components.gantry"><code class="xref">viam.components.gantry</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gantry.client.html#module-viam.components.gantry.client"><code class="xref">viam.components.gantry.client</code></a></td><td>
+       <a href="autoapi/viam/components/gantry/client/index.html#module-viam.components.gantry.client"><code class="xref">viam.components.gantry.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gantry.gantry.html#module-viam.components.gantry.gantry"><code class="xref">viam.components.gantry.gantry</code></a></td><td>
+       <a href="autoapi/viam/components/gantry/gantry/index.html#module-viam.components.gantry.gantry"><code class="xref">viam.components.gantry.gantry</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gantry.service.html#module-viam.components.gantry.service"><code class="xref">viam.components.gantry.service</code></a></td><td>
+       <a href="autoapi/viam/components/gantry/service/index.html#module-viam.components.gantry.service"><code class="xref">viam.components.gantry.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.generic.html#module-viam.components.generic"><code class="xref">viam.components.generic</code></a></td><td>
+       <a href="autoapi/viam/components/generic/index.html#module-viam.components.generic"><code class="xref">viam.components.generic</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.generic.client.html#module-viam.components.generic.client"><code class="xref">viam.components.generic.client</code></a></td><td>
+       <a href="autoapi/viam/components/generic/client/index.html#module-viam.components.generic.client"><code class="xref">viam.components.generic.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.generic.generic.html#module-viam.components.generic.generic"><code class="xref">viam.components.generic.generic</code></a></td><td>
+       <a href="autoapi/viam/components/generic/generic/index.html#module-viam.components.generic.generic"><code class="xref">viam.components.generic.generic</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.generic.service.html#module-viam.components.generic.service"><code class="xref">viam.components.generic.service</code></a></td><td>
+       <a href="autoapi/viam/components/generic/service/index.html#module-viam.components.generic.service"><code class="xref">viam.components.generic.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gps.html#module-viam.components.gps"><code class="xref">viam.components.gps</code></a></td><td>
+       <a href="autoapi/viam/components/gps/index.html#module-viam.components.gps"><code class="xref">viam.components.gps</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gps.client.html#module-viam.components.gps.client"><code class="xref">viam.components.gps.client</code></a></td><td>
+       <a href="autoapi/viam/components/gps/client/index.html#module-viam.components.gps.client"><code class="xref">viam.components.gps.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gps.gps.html#module-viam.components.gps.gps"><code class="xref">viam.components.gps.gps</code></a></td><td>
+       <a href="autoapi/viam/components/gps/gps/index.html#module-viam.components.gps.gps"><code class="xref">viam.components.gps.gps</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gps.service.html#module-viam.components.gps.service"><code class="xref">viam.components.gps.service</code></a></td><td>
+       <a href="autoapi/viam/components/gps/service/index.html#module-viam.components.gps.service"><code class="xref">viam.components.gps.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gripper.html#module-viam.components.gripper"><code class="xref">viam.components.gripper</code></a></td><td>
+       <a href="autoapi/viam/components/gripper/index.html#module-viam.components.gripper"><code class="xref">viam.components.gripper</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gripper.client.html#module-viam.components.gripper.client"><code class="xref">viam.components.gripper.client</code></a></td><td>
+       <a href="autoapi/viam/components/gripper/client/index.html#module-viam.components.gripper.client"><code class="xref">viam.components.gripper.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gripper.gripper.html#module-viam.components.gripper.gripper"><code class="xref">viam.components.gripper.gripper</code></a></td><td>
+       <a href="autoapi/viam/components/gripper/gripper/index.html#module-viam.components.gripper.gripper"><code class="xref">viam.components.gripper.gripper</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.gripper.service.html#module-viam.components.gripper.service"><code class="xref">viam.components.gripper.service</code></a></td><td>
+       <a href="autoapi/viam/components/gripper/service/index.html#module-viam.components.gripper.service"><code class="xref">viam.components.gripper.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.imu.html#module-viam.components.imu"><code class="xref">viam.components.imu</code></a></td><td>
+       <a href="autoapi/viam/components/imu/index.html#module-viam.components.imu"><code class="xref">viam.components.imu</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.imu.client.html#module-viam.components.imu.client"><code class="xref">viam.components.imu.client</code></a></td><td>
+       <a href="autoapi/viam/components/imu/client/index.html#module-viam.components.imu.client"><code class="xref">viam.components.imu.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.imu.imu.html#module-viam.components.imu.imu"><code class="xref">viam.components.imu.imu</code></a></td><td>
+       <a href="autoapi/viam/components/imu/imu/index.html#module-viam.components.imu.imu"><code class="xref">viam.components.imu.imu</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.imu.service.html#module-viam.components.imu.service"><code class="xref">viam.components.imu.service</code></a></td><td>
+       <a href="autoapi/viam/components/imu/service/index.html#module-viam.components.imu.service"><code class="xref">viam.components.imu.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.input.html#module-viam.components.input"><code class="xref">viam.components.input</code></a></td><td>
+       <a href="autoapi/viam/components/input/index.html#module-viam.components.input"><code class="xref">viam.components.input</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.input.client.html#module-viam.components.input.client"><code class="xref">viam.components.input.client</code></a></td><td>
+       <a href="autoapi/viam/components/input/client/index.html#module-viam.components.input.client"><code class="xref">viam.components.input.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.input.input.html#module-viam.components.input.input"><code class="xref">viam.components.input.input</code></a></td><td>
+       <a href="autoapi/viam/components/input/input/index.html#module-viam.components.input.input"><code class="xref">viam.components.input.input</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.input.service.html#module-viam.components.input.service"><code class="xref">viam.components.input.service</code></a></td><td>
+       <a href="autoapi/viam/components/input/service/index.html#module-viam.components.input.service"><code class="xref">viam.components.input.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.motor.html#module-viam.components.motor"><code class="xref">viam.components.motor</code></a></td><td>
+       <a href="autoapi/viam/components/motor/index.html#module-viam.components.motor"><code class="xref">viam.components.motor</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.motor.client.html#module-viam.components.motor.client"><code class="xref">viam.components.motor.client</code></a></td><td>
+       <a href="autoapi/viam/components/motor/client/index.html#module-viam.components.motor.client"><code class="xref">viam.components.motor.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.motor.motor.html#module-viam.components.motor.motor"><code class="xref">viam.components.motor.motor</code></a></td><td>
+       <a href="autoapi/viam/components/motor/motor/index.html#module-viam.components.motor.motor"><code class="xref">viam.components.motor.motor</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.motor.service.html#module-viam.components.motor.service"><code class="xref">viam.components.motor.service</code></a></td><td>
+       <a href="autoapi/viam/components/motor/service/index.html#module-viam.components.motor.service"><code class="xref">viam.components.motor.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.pose_tracker.html#module-viam.components.pose_tracker"><code class="xref">viam.components.pose_tracker</code></a></td><td>
+       <a href="autoapi/viam/components/pose_tracker/index.html#module-viam.components.pose_tracker"><code class="xref">viam.components.pose_tracker</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.pose_tracker.client.html#module-viam.components.pose_tracker.client"><code class="xref">viam.components.pose_tracker.client</code></a></td><td>
+       <a href="autoapi/viam/components/pose_tracker/client/index.html#module-viam.components.pose_tracker.client"><code class="xref">viam.components.pose_tracker.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.pose_tracker.pose_tracker.html#module-viam.components.pose_tracker.pose_tracker"><code class="xref">viam.components.pose_tracker.pose_tracker</code></a></td><td>
+       <a href="autoapi/viam/components/pose_tracker/pose_tracker/index.html#module-viam.components.pose_tracker.pose_tracker"><code class="xref">viam.components.pose_tracker.pose_tracker</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.pose_tracker.service.html#module-viam.components.pose_tracker.service"><code class="xref">viam.components.pose_tracker.service</code></a></td><td>
+       <a href="autoapi/viam/components/pose_tracker/service/index.html#module-viam.components.pose_tracker.service"><code class="xref">viam.components.pose_tracker.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.resource_manager.html#module-viam.components.resource_manager"><code class="xref">viam.components.resource_manager</code></a></td><td>
+       <a href="autoapi/viam/components/resource_manager/index.html#module-viam.components.resource_manager"><code class="xref">viam.components.resource_manager</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.sensor.html#module-viam.components.sensor"><code class="xref">viam.components.sensor</code></a></td><td>
+       <a href="autoapi/viam/components/sensor/index.html#module-viam.components.sensor"><code class="xref">viam.components.sensor</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.sensor.client.html#module-viam.components.sensor.client"><code class="xref">viam.components.sensor.client</code></a></td><td>
+       <a href="autoapi/viam/components/sensor/client/index.html#module-viam.components.sensor.client"><code class="xref">viam.components.sensor.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.sensor.sensor.html#module-viam.components.sensor.sensor"><code class="xref">viam.components.sensor.sensor</code></a></td><td>
+       <a href="autoapi/viam/components/sensor/sensor/index.html#module-viam.components.sensor.sensor"><code class="xref">viam.components.sensor.sensor</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.sensor.service.html#module-viam.components.sensor.service"><code class="xref">viam.components.sensor.service</code></a></td><td>
+       <a href="autoapi/viam/components/sensor/service/index.html#module-viam.components.sensor.service"><code class="xref">viam.components.sensor.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.service_base.html#module-viam.components.service_base"><code class="xref">viam.components.service_base</code></a></td><td>
+       <a href="autoapi/viam/components/service_base/index.html#module-viam.components.service_base"><code class="xref">viam.components.service_base</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.servo.html#module-viam.components.servo"><code class="xref">viam.components.servo</code></a></td><td>
+       <a href="autoapi/viam/components/servo/index.html#module-viam.components.servo"><code class="xref">viam.components.servo</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.servo.client.html#module-viam.components.servo.client"><code class="xref">viam.components.servo.client</code></a></td><td>
+       <a href="autoapi/viam/components/servo/client/index.html#module-viam.components.servo.client"><code class="xref">viam.components.servo.client</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.servo.service.html#module-viam.components.servo.service"><code class="xref">viam.components.servo.service</code></a></td><td>
+       <a href="autoapi/viam/components/servo/service/index.html#module-viam.components.servo.service"><code class="xref">viam.components.servo.service</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.servo.servo.html#module-viam.components.servo.servo"><code class="xref">viam.components.servo.servo</code></a></td><td>
+       <a href="autoapi/viam/components/servo/servo/index.html#module-viam.components.servo.servo"><code class="xref">viam.components.servo.servo</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.components.types.html#module-viam.components.types"><code class="xref">viam.components.types</code></a></td><td>
+       <a href="autoapi/viam/components/types/index.html#module-viam.components.types"><code class="xref">viam.components.types</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.errors.html#module-viam.errors"><code class="xref">viam.errors</code></a></td><td>
+       <a href="autoapi/viam/errors/index.html#module-viam.errors"><code class="xref">viam.errors</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.logging.html#module-viam.logging"><code class="xref">viam.logging</code></a></td><td>
+       <a href="autoapi/viam/gen/index.html#module-viam.gen"><code class="xref">viam.gen</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.proto.html#module-viam.proto"><code class="xref">viam.proto</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/index.html#module-viam.gen.proto"><code class="xref">viam.gen.proto</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.proto.api.html#module-viam.proto.api"><code class="xref">viam.proto.api</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/index.html#module-viam.gen.proto.api"><code class="xref">viam.gen.proto.api</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.proto.api.common.html#module-viam.proto.api.common"><code class="xref">viam.proto.api.common</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/common/index.html#module-viam.gen.proto.api.common"><code class="xref">viam.gen.proto.api.common</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.proto.api.robot.html#module-viam.proto.api.robot"><code class="xref">viam.proto.api.robot</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/common/v1/index.html#module-viam.gen.proto.api.common.v1"><code class="xref">viam.gen.proto.api.common.v1</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.registry.html#module-viam.registry"><code class="xref">viam.registry</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/common/v1/common_grpc/index.html#module-viam.gen.proto.api.common.v1.common_grpc"><code class="xref">viam.gen.proto.api.common.v1.common_grpc</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.robot.html#module-viam.robot"><code class="xref">viam.robot</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/common/v1/common_pb2/index.html#module-viam.gen.proto.api.common.v1.common_pb2"><code class="xref">viam.gen.proto.api.common.v1.common_pb2</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.robot.client.html#module-viam.robot.client"><code class="xref">viam.robot.client</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/index.html#module-viam.gen.proto.api.component"><code class="xref">viam.gen.proto.api.component</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.robot.service.html#module-viam.robot.service"><code class="xref">viam.robot.service</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/arm/index.html#module-viam.gen.proto.api.component.arm"><code class="xref">viam.gen.proto.api.component.arm</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.rpc.html#module-viam.rpc"><code class="xref">viam.rpc</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/arm/v1/index.html#module-viam.gen.proto.api.component.arm.v1"><code class="xref">viam.gen.proto.api.component.arm.v1</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.rpc.dial.html#module-viam.rpc.dial"><code class="xref">viam.rpc.dial</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/arm/v1/arm_grpc/index.html#module-viam.gen.proto.api.component.arm.v1.arm_grpc"><code class="xref">viam.gen.proto.api.component.arm.v1.arm_grpc</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.rpc.server.html#module-viam.rpc.server"><code class="xref">viam.rpc.server</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/arm/v1/arm_pb2/index.html#module-viam.gen.proto.api.component.arm.v1.arm_pb2"><code class="xref">viam.gen.proto.api.component.arm.v1.arm_pb2</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.rpc.signaling.html#module-viam.rpc.signaling"><code class="xref">viam.rpc.signaling</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/base/index.html#module-viam.gen.proto.api.component.base"><code class="xref">viam.gen.proto.api.component.base</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.services.html#module-viam.services"><code class="xref">viam.services</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/base/v1/index.html#module-viam.gen.proto.api.component.base.v1"><code class="xref">viam.gen.proto.api.component.base.v1</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.services.motion.html#module-viam.services.motion"><code class="xref">viam.services.motion</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/base/v1/base_grpc/index.html#module-viam.gen.proto.api.component.base.v1.base_grpc"><code class="xref">viam.gen.proto.api.component.base.v1.base_grpc</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.services.types.html#module-viam.services.types"><code class="xref">viam.services.types</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/base/v1/base_pb2/index.html#module-viam.gen.proto.api.component.base.v1.base_pb2"><code class="xref">viam.gen.proto.api.component.base.v1.base_pb2</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.services.vision.html#module-viam.services.vision"><code class="xref">viam.services.vision</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/board/index.html#module-viam.gen.proto.api.component.board"><code class="xref">viam.gen.proto.api.component.board</code></a></td><td>
        <em></em></td></tr>
      <tr class="cg-1">
        <td></td>
        <td>&#160;&#160;&#160;
-       <a href="viam.utils.html#module-viam.utils"><code class="xref">viam.utils</code></a></td><td>
+       <a href="autoapi/viam/gen/proto/api/component/board/v1/index.html#module-viam.gen.proto.api.component.board.v1"><code class="xref">viam.gen.proto.api.component.board.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/board/v1/board_grpc/index.html#module-viam.gen.proto.api.component.board.v1.board_grpc"><code class="xref">viam.gen.proto.api.component.board.v1.board_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/board/v1/board_pb2/index.html#module-viam.gen.proto.api.component.board.v1.board_pb2"><code class="xref">viam.gen.proto.api.component.board.v1.board_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/camera/index.html#module-viam.gen.proto.api.component.camera"><code class="xref">viam.gen.proto.api.component.camera</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/camera/v1/index.html#module-viam.gen.proto.api.component.camera.v1"><code class="xref">viam.gen.proto.api.component.camera.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/camera/v1/camera_grpc/index.html#module-viam.gen.proto.api.component.camera.v1.camera_grpc"><code class="xref">viam.gen.proto.api.component.camera.v1.camera_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/camera/v1/camera_pb2/index.html#module-viam.gen.proto.api.component.camera.v1.camera_pb2"><code class="xref">viam.gen.proto.api.component.camera.v1.camera_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gantry/index.html#module-viam.gen.proto.api.component.gantry"><code class="xref">viam.gen.proto.api.component.gantry</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gantry/v1/index.html#module-viam.gen.proto.api.component.gantry.v1"><code class="xref">viam.gen.proto.api.component.gantry.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gantry/v1/gantry_grpc/index.html#module-viam.gen.proto.api.component.gantry.v1.gantry_grpc"><code class="xref">viam.gen.proto.api.component.gantry.v1.gantry_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gantry/v1/gantry_pb2/index.html#module-viam.gen.proto.api.component.gantry.v1.gantry_pb2"><code class="xref">viam.gen.proto.api.component.gantry.v1.gantry_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/generic/index.html#module-viam.gen.proto.api.component.generic"><code class="xref">viam.gen.proto.api.component.generic</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/generic/v1/index.html#module-viam.gen.proto.api.component.generic.v1"><code class="xref">viam.gen.proto.api.component.generic.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/generic/v1/generic_grpc/index.html#module-viam.gen.proto.api.component.generic.v1.generic_grpc"><code class="xref">viam.gen.proto.api.component.generic.v1.generic_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/generic/v1/generic_pb2/index.html#module-viam.gen.proto.api.component.generic.v1.generic_pb2"><code class="xref">viam.gen.proto.api.component.generic.v1.generic_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gps/index.html#module-viam.gen.proto.api.component.gps"><code class="xref">viam.gen.proto.api.component.gps</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gps/v1/index.html#module-viam.gen.proto.api.component.gps.v1"><code class="xref">viam.gen.proto.api.component.gps.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gps/v1/gps_grpc/index.html#module-viam.gen.proto.api.component.gps.v1.gps_grpc"><code class="xref">viam.gen.proto.api.component.gps.v1.gps_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gps/v1/gps_pb2/index.html#module-viam.gen.proto.api.component.gps.v1.gps_pb2"><code class="xref">viam.gen.proto.api.component.gps.v1.gps_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gripper/index.html#module-viam.gen.proto.api.component.gripper"><code class="xref">viam.gen.proto.api.component.gripper</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gripper/v1/index.html#module-viam.gen.proto.api.component.gripper.v1"><code class="xref">viam.gen.proto.api.component.gripper.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gripper/v1/gripper_grpc/index.html#module-viam.gen.proto.api.component.gripper.v1.gripper_grpc"><code class="xref">viam.gen.proto.api.component.gripper.v1.gripper_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/gripper/v1/gripper_pb2/index.html#module-viam.gen.proto.api.component.gripper.v1.gripper_pb2"><code class="xref">viam.gen.proto.api.component.gripper.v1.gripper_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/imu/index.html#module-viam.gen.proto.api.component.imu"><code class="xref">viam.gen.proto.api.component.imu</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/imu/v1/index.html#module-viam.gen.proto.api.component.imu.v1"><code class="xref">viam.gen.proto.api.component.imu.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/imu/v1/imu_grpc/index.html#module-viam.gen.proto.api.component.imu.v1.imu_grpc"><code class="xref">viam.gen.proto.api.component.imu.v1.imu_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/imu/v1/imu_pb2/index.html#module-viam.gen.proto.api.component.imu.v1.imu_pb2"><code class="xref">viam.gen.proto.api.component.imu.v1.imu_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/inputcontroller/index.html#module-viam.gen.proto.api.component.inputcontroller"><code class="xref">viam.gen.proto.api.component.inputcontroller</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/inputcontroller/v1/index.html#module-viam.gen.proto.api.component.inputcontroller.v1"><code class="xref">viam.gen.proto.api.component.inputcontroller.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/inputcontroller/v1/input_controller_grpc/index.html#module-viam.gen.proto.api.component.inputcontroller.v1.input_controller_grpc"><code class="xref">viam.gen.proto.api.component.inputcontroller.v1.input_controller_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/inputcontroller/v1/input_controller_pb2/index.html#module-viam.gen.proto.api.component.inputcontroller.v1.input_controller_pb2"><code class="xref">viam.gen.proto.api.component.inputcontroller.v1.input_controller_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/motor/index.html#module-viam.gen.proto.api.component.motor"><code class="xref">viam.gen.proto.api.component.motor</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/motor/v1/index.html#module-viam.gen.proto.api.component.motor.v1"><code class="xref">viam.gen.proto.api.component.motor.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/motor/v1/motor_grpc/index.html#module-viam.gen.proto.api.component.motor.v1.motor_grpc"><code class="xref">viam.gen.proto.api.component.motor.v1.motor_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/motor/v1/motor_pb2/index.html#module-viam.gen.proto.api.component.motor.v1.motor_pb2"><code class="xref">viam.gen.proto.api.component.motor.v1.motor_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/posetracker/index.html#module-viam.gen.proto.api.component.posetracker"><code class="xref">viam.gen.proto.api.component.posetracker</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/posetracker/v1/index.html#module-viam.gen.proto.api.component.posetracker.v1"><code class="xref">viam.gen.proto.api.component.posetracker.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/posetracker/v1/pose_tracker_grpc/index.html#module-viam.gen.proto.api.component.posetracker.v1.pose_tracker_grpc"><code class="xref">viam.gen.proto.api.component.posetracker.v1.pose_tracker_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/posetracker/v1/pose_tracker_pb2/index.html#module-viam.gen.proto.api.component.posetracker.v1.pose_tracker_pb2"><code class="xref">viam.gen.proto.api.component.posetracker.v1.pose_tracker_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/sensor/index.html#module-viam.gen.proto.api.component.sensor"><code class="xref">viam.gen.proto.api.component.sensor</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/sensor/v1/index.html#module-viam.gen.proto.api.component.sensor.v1"><code class="xref">viam.gen.proto.api.component.sensor.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/sensor/v1/sensor_grpc/index.html#module-viam.gen.proto.api.component.sensor.v1.sensor_grpc"><code class="xref">viam.gen.proto.api.component.sensor.v1.sensor_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/sensor/v1/sensor_pb2/index.html#module-viam.gen.proto.api.component.sensor.v1.sensor_pb2"><code class="xref">viam.gen.proto.api.component.sensor.v1.sensor_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/servo/index.html#module-viam.gen.proto.api.component.servo"><code class="xref">viam.gen.proto.api.component.servo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/servo/v1/index.html#module-viam.gen.proto.api.component.servo.v1"><code class="xref">viam.gen.proto.api.component.servo.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/servo/v1/servo_grpc/index.html#module-viam.gen.proto.api.component.servo.v1.servo_grpc"><code class="xref">viam.gen.proto.api.component.servo.v1.servo_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/component/servo/v1/servo_pb2/index.html#module-viam.gen.proto.api.component.servo.v1.servo_pb2"><code class="xref">viam.gen.proto.api.component.servo.v1.servo_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/robot/index.html#module-viam.gen.proto.api.robot"><code class="xref">viam.gen.proto.api.robot</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/robot/v1/index.html#module-viam.gen.proto.api.robot.v1"><code class="xref">viam.gen.proto.api.robot.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/robot/v1/robot_grpc/index.html#module-viam.gen.proto.api.robot.v1.robot_grpc"><code class="xref">viam.gen.proto.api.robot.v1.robot_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/robot/v1/robot_pb2/index.html#module-viam.gen.proto.api.robot.v1.robot_pb2"><code class="xref">viam.gen.proto.api.robot.v1.robot_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/index.html#module-viam.gen.proto.api.service"><code class="xref">viam.gen.proto.api.service</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/datamanager/index.html#module-viam.gen.proto.api.service.datamanager"><code class="xref">viam.gen.proto.api.service.datamanager</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/datamanager/v1/index.html#module-viam.gen.proto.api.service.datamanager.v1"><code class="xref">viam.gen.proto.api.service.datamanager.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/datamanager/v1/data_manager_grpc/index.html#module-viam.gen.proto.api.service.datamanager.v1.data_manager_grpc"><code class="xref">viam.gen.proto.api.service.datamanager.v1.data_manager_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/datamanager/v1/data_manager_pb2/index.html#module-viam.gen.proto.api.service.datamanager.v1.data_manager_pb2"><code class="xref">viam.gen.proto.api.service.datamanager.v1.data_manager_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/motion/index.html#module-viam.gen.proto.api.service.motion"><code class="xref">viam.gen.proto.api.service.motion</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/motion/v1/index.html#module-viam.gen.proto.api.service.motion.v1"><code class="xref">viam.gen.proto.api.service.motion.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/motion/v1/motion_grpc/index.html#module-viam.gen.proto.api.service.motion.v1.motion_grpc"><code class="xref">viam.gen.proto.api.service.motion.v1.motion_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/motion/v1/motion_pb2/index.html#module-viam.gen.proto.api.service.motion.v1.motion_pb2"><code class="xref">viam.gen.proto.api.service.motion.v1.motion_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/navigation/index.html#module-viam.gen.proto.api.service.navigation"><code class="xref">viam.gen.proto.api.service.navigation</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/navigation/v1/index.html#module-viam.gen.proto.api.service.navigation.v1"><code class="xref">viam.gen.proto.api.service.navigation.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/navigation/v1/navigation_grpc/index.html#module-viam.gen.proto.api.service.navigation.v1.navigation_grpc"><code class="xref">viam.gen.proto.api.service.navigation.v1.navigation_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/navigation/v1/navigation_pb2/index.html#module-viam.gen.proto.api.service.navigation.v1.navigation_pb2"><code class="xref">viam.gen.proto.api.service.navigation.v1.navigation_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/sensors/index.html#module-viam.gen.proto.api.service.sensors"><code class="xref">viam.gen.proto.api.service.sensors</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/sensors/v1/index.html#module-viam.gen.proto.api.service.sensors.v1"><code class="xref">viam.gen.proto.api.service.sensors.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/sensors/v1/sensors_grpc/index.html#module-viam.gen.proto.api.service.sensors.v1.sensors_grpc"><code class="xref">viam.gen.proto.api.service.sensors.v1.sensors_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/sensors/v1/sensors_pb2/index.html#module-viam.gen.proto.api.service.sensors.v1.sensors_pb2"><code class="xref">viam.gen.proto.api.service.sensors.v1.sensors_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/slam/index.html#module-viam.gen.proto.api.service.slam"><code class="xref">viam.gen.proto.api.service.slam</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/slam/v1/index.html#module-viam.gen.proto.api.service.slam.v1"><code class="xref">viam.gen.proto.api.service.slam.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/slam/v1/slam_grpc/index.html#module-viam.gen.proto.api.service.slam.v1.slam_grpc"><code class="xref">viam.gen.proto.api.service.slam.v1.slam_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/slam/v1/slam_pb2/index.html#module-viam.gen.proto.api.service.slam.v1.slam_pb2"><code class="xref">viam.gen.proto.api.service.slam.v1.slam_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/vision/index.html#module-viam.gen.proto.api.service.vision"><code class="xref">viam.gen.proto.api.service.vision</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/vision/v1/index.html#module-viam.gen.proto.api.service.vision.v1"><code class="xref">viam.gen.proto.api.service.vision.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/vision/v1/vision_grpc/index.html#module-viam.gen.proto.api.service.vision.v1.vision_grpc"><code class="xref">viam.gen.proto.api.service.vision.v1.vision_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/api/service/vision/v1/vision_pb2/index.html#module-viam.gen.proto.api.service.vision.v1.vision_pb2"><code class="xref">viam.gen.proto.api.service.vision.v1.vision_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/index.html#module-viam.gen.proto.rpc"><code class="xref">viam.gen.proto.rpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/index.html#module-viam.gen.proto.rpc.examples"><code class="xref">viam.gen.proto.rpc.examples</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/echo/index.html#module-viam.gen.proto.rpc.examples.echo"><code class="xref">viam.gen.proto.rpc.examples.echo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/echo/v1/index.html#module-viam.gen.proto.rpc.examples.echo.v1"><code class="xref">viam.gen.proto.rpc.examples.echo.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/echo/v1/echo_grpc/index.html#module-viam.gen.proto.rpc.examples.echo.v1.echo_grpc"><code class="xref">viam.gen.proto.rpc.examples.echo.v1.echo_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/echo/v1/echo_pb2/index.html#module-viam.gen.proto.rpc.examples.echo.v1.echo_pb2"><code class="xref">viam.gen.proto.rpc.examples.echo.v1.echo_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/fileupload/index.html#module-viam.gen.proto.rpc.examples.fileupload"><code class="xref">viam.gen.proto.rpc.examples.fileupload</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/fileupload/v1/index.html#module-viam.gen.proto.rpc.examples.fileupload.v1"><code class="xref">viam.gen.proto.rpc.examples.fileupload.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/fileupload/v1/fileupload_grpc/index.html#module-viam.gen.proto.rpc.examples.fileupload.v1.fileupload_grpc"><code class="xref">viam.gen.proto.rpc.examples.fileupload.v1.fileupload_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/examples/fileupload/v1/fileupload_pb2/index.html#module-viam.gen.proto.rpc.examples.fileupload.v1.fileupload_pb2"><code class="xref">viam.gen.proto.rpc.examples.fileupload.v1.fileupload_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/v1/index.html#module-viam.gen.proto.rpc.v1"><code class="xref">viam.gen.proto.rpc.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/v1/auth_grpc/index.html#module-viam.gen.proto.rpc.v1.auth_grpc"><code class="xref">viam.gen.proto.rpc.v1.auth_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/v1/auth_pb2/index.html#module-viam.gen.proto.rpc.v1.auth_pb2"><code class="xref">viam.gen.proto.rpc.v1.auth_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/webrtc/index.html#module-viam.gen.proto.rpc.webrtc"><code class="xref">viam.gen.proto.rpc.webrtc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/webrtc/v1/index.html#module-viam.gen.proto.rpc.webrtc.v1"><code class="xref">viam.gen.proto.rpc.webrtc.v1</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/webrtc/v1/grpc_grpc/index.html#module-viam.gen.proto.rpc.webrtc.v1.grpc_grpc"><code class="xref">viam.gen.proto.rpc.webrtc.v1.grpc_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/webrtc/v1/grpc_pb2/index.html#module-viam.gen.proto.rpc.webrtc.v1.grpc_pb2"><code class="xref">viam.gen.proto.rpc.webrtc.v1.grpc_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/webrtc/v1/signaling_grpc/index.html#module-viam.gen.proto.rpc.webrtc.v1.signaling_grpc"><code class="xref">viam.gen.proto.rpc.webrtc.v1.signaling_grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/gen/proto/rpc/webrtc/v1/signaling_pb2/index.html#module-viam.gen.proto.rpc.webrtc.v1.signaling_pb2"><code class="xref">viam.gen.proto.rpc.webrtc.v1.signaling_pb2</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/logging/index.html#module-viam.logging"><code class="xref">viam.logging</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/index.html#module-viam.proto"><code class="xref">viam.proto</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/index.html#module-viam.proto.api"><code class="xref">viam.proto.api</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/common/index.html#module-viam.proto.api.common"><code class="xref">viam.proto.api.common</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/index.html#module-viam.proto.api.component"><code class="xref">viam.proto.api.component</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/arm/index.html#module-viam.proto.api.component.arm"><code class="xref">viam.proto.api.component.arm</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/base/index.html#module-viam.proto.api.component.base"><code class="xref">viam.proto.api.component.base</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/board/index.html#module-viam.proto.api.component.board"><code class="xref">viam.proto.api.component.board</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/camera/index.html#module-viam.proto.api.component.camera"><code class="xref">viam.proto.api.component.camera</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/gantry/index.html#module-viam.proto.api.component.gantry"><code class="xref">viam.proto.api.component.gantry</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/generic/index.html#module-viam.proto.api.component.generic"><code class="xref">viam.proto.api.component.generic</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/gps/index.html#module-viam.proto.api.component.gps"><code class="xref">viam.proto.api.component.gps</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/gripper/index.html#module-viam.proto.api.component.gripper"><code class="xref">viam.proto.api.component.gripper</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/imu/index.html#module-viam.proto.api.component.imu"><code class="xref">viam.proto.api.component.imu</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/inputcontroller/index.html#module-viam.proto.api.component.inputcontroller"><code class="xref">viam.proto.api.component.inputcontroller</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/motor/index.html#module-viam.proto.api.component.motor"><code class="xref">viam.proto.api.component.motor</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/posetracker/index.html#module-viam.proto.api.component.posetracker"><code class="xref">viam.proto.api.component.posetracker</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/sensor/index.html#module-viam.proto.api.component.sensor"><code class="xref">viam.proto.api.component.sensor</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/component/servo/index.html#module-viam.proto.api.component.servo"><code class="xref">viam.proto.api.component.servo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/robot/index.html#module-viam.proto.api.robot"><code class="xref">viam.proto.api.robot</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/service/index.html#module-viam.proto.api.service"><code class="xref">viam.proto.api.service</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/service/datamanager/index.html#module-viam.proto.api.service.datamanager"><code class="xref">viam.proto.api.service.datamanager</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/service/motion/index.html#module-viam.proto.api.service.motion"><code class="xref">viam.proto.api.service.motion</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/service/navigation/index.html#module-viam.proto.api.service.navigation"><code class="xref">viam.proto.api.service.navigation</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/service/sensors/index.html#module-viam.proto.api.service.sensors"><code class="xref">viam.proto.api.service.sensors</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/service/slam/index.html#module-viam.proto.api.service.slam"><code class="xref">viam.proto.api.service.slam</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/api/service/vision/index.html#module-viam.proto.api.service.vision"><code class="xref">viam.proto.api.service.vision</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/rpc/index.html#module-viam.proto.rpc"><code class="xref">viam.proto.rpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/rpc/auth/index.html#module-viam.proto.rpc.auth"><code class="xref">viam.proto.rpc.auth</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/rpc/examples/index.html#module-viam.proto.rpc.examples"><code class="xref">viam.proto.rpc.examples</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/rpc/examples/echo/index.html#module-viam.proto.rpc.examples.echo"><code class="xref">viam.proto.rpc.examples.echo</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/rpc/examples/fileupload/index.html#module-viam.proto.rpc.examples.fileupload"><code class="xref">viam.proto.rpc.examples.fileupload</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/rpc/webrtc/index.html#module-viam.proto.rpc.webrtc"><code class="xref">viam.proto.rpc.webrtc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/rpc/webrtc/grpc/index.html#module-viam.proto.rpc.webrtc.grpc"><code class="xref">viam.proto.rpc.webrtc.grpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#module-viam.proto.rpc.webrtc.signaling"><code class="xref">viam.proto.rpc.webrtc.signaling</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/registry/index.html#module-viam.registry"><code class="xref">viam.registry</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/robot/index.html#module-viam.robot"><code class="xref">viam.robot</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/robot/client/index.html#module-viam.robot.client"><code class="xref">viam.robot.client</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/robot/service/index.html#module-viam.robot.service"><code class="xref">viam.robot.service</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/rpc/index.html#module-viam.rpc"><code class="xref">viam.rpc</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/rpc/dial/index.html#module-viam.rpc.dial"><code class="xref">viam.rpc.dial</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/rpc/server/index.html#module-viam.rpc.server"><code class="xref">viam.rpc.server</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/rpc/signaling/index.html#module-viam.rpc.signaling"><code class="xref">viam.rpc.signaling</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/services/index.html#module-viam.services"><code class="xref">viam.services</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/services/motion/index.html#module-viam.services.motion"><code class="xref">viam.services.motion</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/services/types/index.html#module-viam.services.types"><code class="xref">viam.services.types</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/services/vision/index.html#module-viam.services.vision"><code class="xref">viam.services.vision</code></a></td><td>
+       <em></em></td></tr>
+     <tr class="cg-1">
+       <td></td>
+       <td>&#160;&#160;&#160;
+       <a href="autoapi/viam/utils/index.html#module-viam.utils"><code class="xref">viam.utils</code></a></td><td>
        <em></em></td></tr>
    </table>
 
@@ -496,7 +1220,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam.</p>
+    <p>&#169; Copyright 2022, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

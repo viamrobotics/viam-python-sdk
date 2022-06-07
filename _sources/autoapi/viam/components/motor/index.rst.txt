@@ -1,0 +1,246 @@
+:py:mod:`viam.components.motor`
+===============================
+
+.. py:module:: viam.components.motor
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   client/index.rst
+   motor/index.rst
+   service/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.motor.MotorClient
+   viam.components.motor.Motor
+
+
+
+
+.. py:class:: MotorClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the Motor component.
+
+   .. py:method:: set_power(self, power: float)
+      :async:
+
+      Sets the "percentage" of power the motor should employ between -1 and 1.
+      When `power` is negative, the rotation will be in the backward direction.
+
+      :param power: Power between -1 and 1
+                    (negative implies backwards).
+      :type power: float
+
+
+   .. py:method:: go_for(self, rpm: float, revolutions: float)
+      :async:
+
+      Spin the motor the specified number of `revolutions` at specified `rpm`.
+      When `rpm` or `revolutions` is a negative value, the rotation will be in the backward direction.
+      Note: if both `rpm` and `revolutions` are negative, the motor will spin in the forward direction.
+
+      :param rpm: Speed at which the motor should move in rotations per minute
+                  (negative implies backwards).
+      :type rpm: float
+      :param revolutions: Number of revolutions the motor should run for
+                          (negative implies backwards).
+      :type revolutions: float
+
+
+   .. py:method:: go_to(self, rpm: float, position_revolutions: float)
+      :async:
+
+      Spin the motor to the specified position (provided in revolutions from home/zero),
+      at the specified speed, in revolutions per minute.
+      Regardless of the directionality of the `rpm` this function will move
+      the motor towards the specified position.
+
+      :param rpm: Speed at which the motor should rotate (absolute value).
+      :type rpm: float
+      :param position_revolutions: Target position relative to home/zero, in revolutions.
+      :type position_revolutions: float
+
+
+   .. py:method:: reset_zero_position(self, offset: float)
+      :async:
+
+      Set the current position (modified by `offset`) to be the new zero (home) position.
+
+      :param offset: The offset from the current position to new home/zero position.
+      :type offset: float
+
+
+   .. py:method:: get_position(self) -> float
+      :async:
+
+      Report the position of the motor based on its encoder.
+      The value returned is the number of revolutions relative to its zero position.
+      This method will raise an exception if position reporting is not supported by the motor.
+
+      :returns: Number of revolutions the motor is away from zero/home.
+      :rtype: float
+
+
+   .. py:method:: get_features(self) -> viam.components.motor.motor.Motor.Features
+      :async:
+
+      Report a dictionary mapping optional features to
+      whether it is supported by this motor.
+
+      :returns: Map of feature names to supported status.
+      :rtype: Features
+
+
+   .. py:method:: stop(self)
+      :async:
+
+      Stop the motor immediately, without any gradual step down.
+
+
+   .. py:method:: is_powered(self) -> bool
+      :async:
+
+      Returns whether or not the motor is currently running.
+
+      :returns: Indicates whether the motor is currently powered.
+      :rtype: bool
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+
+.. py:class:: Motor(name: str)
+
+
+
+   Base component.
+   All components must inherit from this class.
+
+   .. py:class:: Features
+
+      .. py:attribute:: position_reporting
+         :annotation: :bool
+
+         
+
+
+   .. py:method:: set_power(self, power: float)
+      :abstractmethod:
+      :async:
+
+      Sets the "percentage" of power the motor should employ between -1 and 1.
+      When `power` is negative, the rotation will be in the backward direction.
+
+      :param power: Power between -1 and 1
+                    (negative implies backwards).
+      :type power: float
+
+
+   .. py:method:: go_for(self, rpm: float, revolutions: float)
+      :abstractmethod:
+      :async:
+
+      Spin the motor the specified number of `revolutions` at specified `rpm`.
+      When `rpm` or `revolutions` is a negative value, the rotation will be in the backward direction.
+      Note: if both `rpm` and `revolutions` are negative, the motor will spin in the forward direction.
+
+      :param rpm: Speed at which the motor should move in rotations per minute
+                  (negative implies backwards).
+      :type rpm: float
+      :param revolutions: Number of revolutions the motor should run for
+                          (negative implies backwards).
+      :type revolutions: float
+
+
+   .. py:method:: go_to(self, rpm: float, position_revolutions: float)
+      :abstractmethod:
+      :async:
+
+      Spin the motor to the specified position (provided in revolutions from home/zero),
+      at the specified speed, in revolutions per minute.
+      Regardless of the directionality of the `rpm` this function will move
+      the motor towards the specified position.
+
+      :param rpm: Speed at which the motor should rotate (absolute value).
+      :type rpm: float
+      :param position_revolutions: Target position relative to home/zero, in revolutions.
+      :type position_revolutions: float
+
+
+   .. py:method:: reset_zero_position(self, offset: float)
+      :abstractmethod:
+      :async:
+
+      Set the current position (modified by `offset`) to be the new zero (home) position.
+
+      :param offset: The offset from the current position to new home/zero position.
+      :type offset: float
+
+
+   .. py:method:: get_position(self) -> float
+      :abstractmethod:
+      :async:
+
+      Report the position of the motor based on its encoder.
+      The value returned is the number of revolutions relative to its zero position.
+      This method will raise an exception if position reporting is not supported by the motor.
+
+      :returns: Number of revolutions the motor is away from zero/home.
+      :rtype: float
+
+
+   .. py:method:: get_features(self) -> Features
+      :abstractmethod:
+      :async:
+
+      Report a dictionary mapping optional features to
+      whether it is supported by this motor.
+
+      :returns: Map of feature names to supported status.
+      :rtype: Features
+
+
+   .. py:method:: stop(self)
+      :abstractmethod:
+      :async:
+
+      Stop the motor immediately, without any gradual step down.
+
+
+   .. py:method:: is_powered(self) -> bool
+      :abstractmethod:
+      :async:
+
+      Returns whether or not the motor is currently running.
+
+      :returns: Indicates whether the motor is currently powered.
+      :rtype: bool
+
+
+

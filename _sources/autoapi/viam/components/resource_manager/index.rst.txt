@@ -1,0 +1,70 @@
+:py:mod:`viam.components.resource_manager`
+==========================================
+
+.. py:module:: viam.components.resource_manager
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.resource_manager.ResourceManager
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.resource_manager.ResourceType
+
+
+.. py:data:: ResourceType
+   
+
+   
+
+.. py:class:: ResourceManager(components: List[viam.components.component_base.ComponentBase] = [])
+
+   Registry containing all components registered to this server.
+
+   .. py:attribute:: components
+      :annotation: :Dict[str, viam.components.component_base.ComponentBase]
+
+      
+
+   .. py:method:: register(self, component: viam.components.component_base.ComponentBase)
+
+      Register a new component with the registry.
+      Components may not have the same name.
+
+      :raises DuplicateComponentError: Error if attempting to register component
+          with the name of an existing component
+
+      :param component: The component to register
+      :type component: ComponentBase
+
+
+   .. py:method:: get_component(self, of_type: Type[ResourceType], name: str) -> ResourceType
+
+      Return a component from the registry.
+
+      :param of_type: The type of the component
+      :type of_type: Type[ResourceType]
+      :param name: The name of the component
+      :type name: str
+
+      :raises ComponentNotFoundError: Error if component with the given type
+          and name does not exist in the registry
+
+      :returns: The component
+      :rtype: ResourceType
+
+
+

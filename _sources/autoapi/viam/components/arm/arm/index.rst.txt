@@ -1,0 +1,79 @@
+:py:mod:`viam.components.arm.arm`
+=================================
+
+.. py:module:: viam.components.arm.arm
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.arm.arm.Arm
+
+
+
+
+.. py:class:: Arm(name: str)
+
+
+
+   Arm represents a physical robot arm that exists in three-dimensional space.
+
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:method:: get_end_position(self) -> viam.proto.api.common.Pose
+      :abstractmethod:
+      :async:
+
+      Get the current position of the end of the arm expressed as a Pose.
+
+      Returns: The location and orientation of the arm described as a Pose.
+
+
+   .. py:method:: move_to_position(self, pose: viam.proto.api.common.Pose, world_state: Optional[viam.proto.api.common.WorldState] = None)
+      :abstractmethod:
+      :async:
+
+      Move the end of the arm to the Pose specified in `pose`.
+      When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
+
+      :param pose: The destination Pose for the arm.
+      :type pose: Pose
+      :param world_state: The obstacles for the arm to avoid on its way to `pose`.
+      :type world_state: WorldState
+
+
+   .. py:method:: move_to_joint_positions(self, positions: viam.proto.api.component.arm.JointPositions)
+      :abstractmethod:
+      :async:
+
+      Move each joint on the arm to the corresponding angle specified in `positions`.
+
+      :param positions: The destination `JointPositions` for the arm.
+      :type positions: JointPositions
+
+
+   .. py:method:: get_joint_positions(self) -> viam.proto.api.component.arm.JointPositions
+      :abstractmethod:
+      :async:
+
+      Get the JointPositions representing the current position of the arm.
+
+      :returns: The current JointPositions for the arm.
+      :rtype: JointPositions
+
+
+   .. py:method:: stop(self)
+      :abstractmethod:
+      :async:
+
+      Stop all motion of the arm. It is assumed that the arm stops immediately.
+
+
+

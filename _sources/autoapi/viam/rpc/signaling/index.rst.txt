@@ -1,0 +1,43 @@
+:py:mod:`viam.rpc.signaling`
+============================
+
+.. py:module:: viam.rpc.signaling
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.rpc.signaling.SignalingService
+
+
+
+
+.. py:class:: SignalingService
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Call(self, stream: grpclib.server.Stream[viam.proto.rpc.webrtc.signaling.CallRequest, viam.proto.rpc.webrtc.signaling.CallResponse]) -> None
+      :async:
+
+
+   .. py:method:: CallUpdate(self, stream: grpclib.server.Stream[viam.proto.rpc.webrtc.signaling.CallUpdateRequest, viam.proto.rpc.webrtc.signaling.CallUpdateResponse]) -> None
+      :async:
+
+
+   .. py:method:: Answer(self, stream: grpclib.server.Stream[viam.proto.rpc.webrtc.signaling.AnswerResponse, viam.proto.rpc.webrtc.signaling.AnswerRequest]) -> None
+      :async:
+
+
+   .. py:method:: OptionalWebRTCConfig(self, stream: grpclib.server.Stream[viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest, viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse]) -> None
+      :async:
+
+
+

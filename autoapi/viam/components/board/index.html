@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.board &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="viam.components.board.board" href="board/index.html" />
+    <link rel="prev" title="viam.components.base.service" href="../base/service/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.board</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.client</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.service</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.board.Board">Board</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.Attributes">Attributes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.Attributes.remote">remote</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.AnalogReader">AnalogReader</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.AnalogReader.read">read</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt">DigitalInterrupt</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.value">value</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.tick">tick</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.add_callback">add_callback</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.add_post_processor">add_post_processor</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.GPIOPin">GPIOPin</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.set">set</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.get">get</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.get_pwm">get_pwm</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.set_pwm">set_pwm</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.get_pwm_frequency">get_pwm_frequency</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.set_pwm_frequency">set_pwm_frequency</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.analog_reader_by_name">analog_reader_by_name</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.digital_interrupt_by_name">digital_interrupt_by_name</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.gpio_pin_by_name">gpio_pin_by_name</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.analog_reader_names">analog_reader_names</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.digital_interrupt_names">digital_interrupt_names</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.status">status</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.model_attributes">model_attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.board.BoardClient">BoardClient</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.BoardClient.analog_reader_by_name">analog_reader_by_name</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.BoardClient.digital_interrupt_by_name">digital_interrupt_by_name</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.BoardClient.gpio_pin_by_name">gpio_pin_by_name</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.BoardClient.analog_reader_names">analog_reader_names</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.BoardClient.digital_interrupt_names">digital_interrupt_names</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.BoardClient.status">status</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.BoardClient.model_attributes">model_attributes</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.BoardClient.do">do</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gps/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../imu/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.imu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/viam/components/board/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.components.board">
+<span id="viam-components-board"></span><h1><a class="reference internal" href="#module-viam.components.board" title="viam.components.board"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a><a class="headerlink" href="#module-viam.components.board" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.board</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.client</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.service</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.board.Board" title="viam.components.board.Board"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Board</span></code></a></p></td>
+<td><p>Board represents a physical general purpose compute board that contains various</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.board.BoardClient" title="viam.components.board.BoardClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoardClient</span></code></a></p></td>
+<td><p>gRPC client for the Board component.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.board.Board">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.board.</span></span><span class="sig-name descname"><span class="pre">Board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board" title="Permalink to this definition"></a></dt>
+<dd><p>Board represents a physical general purpose compute board that contains various
+components such as analog readers, and digital interrupts.</p>
+<p>This acts as an abstract base class for any drivers representing specific
+board implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
+overriden, it must call the <cite>super().__init__()</cite> function.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.board.Board.Attributes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Attributes</span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.Attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.Attributes" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.board.Board.Attributes.remote">
+<span class="sig-name descname"><span class="pre">remote</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.components.board.Board.Attributes.remote" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether this board is accessed over a remote connection, e.g. gRPC.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.board.Board.AnalogReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AnalogReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.AnalogReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.AnalogReader" title="Permalink to this definition"></a></dt>
+<dd><p>AnalogReader represents an analog pin reader that resides on a Board.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.AnalogReader.read">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.AnalogReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.AnalogReader.read" title="Permalink to this definition"></a></dt>
+<dd><p>Read the current value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.board.Board.DigitalInterrupt">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DigitalInterrupt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.DigitalInterrupt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.DigitalInterrupt" title="Permalink to this definition"></a></dt>
+<dd><p>DigitalInterrupt represents a configured interrupt on the Board that
+when interrupted, calls the added callbacks. Post processors can
+be added to modify what Value it ultimately returns.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.DigitalInterrupt.value">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.DigitalInterrupt.value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.DigitalInterrupt.value" title="Permalink to this definition"></a></dt>
+<dd><p>Get the current value of the interrupt,
+which is based on the type of interrupt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current value.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.DigitalInterrupt.tick">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nanos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.DigitalInterrupt.tick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.DigitalInterrupt.tick" title="Permalink to this definition"></a></dt>
+<dd><p>This method is to be called either manually if the interrupt
+is a proxy to some real hardware interrupt or for tests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>high</strong> (<em>bool</em>) – If the signal of the interrupt is high.</p></li>
+<li><p><strong>nanos</strong> (<em>int</em>) – Nanoseconds from an arbitrary point in time,
+but always increasing and always needs to be accurate.
+Using <cite>time.time_ns()</cite> would be acceptable.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.DigitalInterrupt.add_callback">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">multiprocessing.Queue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.DigitalInterrupt.add_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.DigitalInterrupt.add_callback" title="Permalink to this definition"></a></dt>
+<dd><p>Add a callback to be sent the low/high value on <cite>tick()</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>queue</strong> (<em>Queue</em>) – The receiving queue.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.DigitalInterrupt.add_post_processor">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_post_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PostProcessor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.DigitalInterrupt.add_post_processor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.DigitalInterrupt.add_post_processor" title="Permalink to this definition"></a></dt>
+<dd><p>Add a post processor that should be used to modify what
+is returned by <cite>self.value()</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>processor</strong> (<em>PostProcessor</em>) – The post processor to add.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GPIOPin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.GPIOPin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.GPIOPin" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract representation of an individual GPIO pin on a board</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ComponentBase</strong> (<em>_type_</em>) – _description_</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin.set">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.GPIOPin.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.GPIOPin.set" title="Permalink to this definition"></a></dt>
+<dd><p>Set the pin to either low or high.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>high</strong> (<em>bool</em>) – When true, sets the pin to high. When false, sets the pin to low.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin.get">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.GPIOPin.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.GPIOPin.get" title="Permalink to this definition"></a></dt>
+<dd><p>Get the high/low state of the pin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Indicates if the state of the pin is high.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin.get_pwm">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_pwm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.GPIOPin.get_pwm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.GPIOPin.get_pwm" title="Permalink to this definition"></a></dt>
+<dd><p>Get the pin’s given duty cycle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The duty cycle.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin.set_pwm">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_pwm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty_cycle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.GPIOPin.set_pwm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.GPIOPin.set_pwm" title="Permalink to this definition"></a></dt>
+<dd><p>Set the pin to the given <cite>duty_cycle</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>duty_cycle</strong> (<em>float</em>) – The duty cycle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin.get_pwm_frequency">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_pwm_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.GPIOPin.get_pwm_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.GPIOPin.get_pwm_frequency" title="Permalink to this definition"></a></dt>
+<dd><p>Get the PWM frequency of the pin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The PWM frequency.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin.set_pwm_frequency">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_pwm_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.GPIOPin.set_pwm_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.GPIOPin.set_pwm_frequency" title="Permalink to this definition"></a></dt>
+<dd><p>Set the pin to the given PWM <cite>frequency</cite> (in Hz).
+When <cite>frequency</cite> is 0, it will use the board’s default PWM frequency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frequency</strong> (<em>int</em>) – The frequency, in Hz.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.analog_reader_by_name">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analog_reader_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.board.Board.AnalogReader" title="viam.components.board.Board.AnalogReader"><span class="pre">AnalogReader</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.analog_reader_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.analog_reader_by_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get an AnalogReader by <cite>name</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the analog reader to be retrieved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The analog reader.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viam.components.board.Board.AnalogReader" title="viam.components.board.Board.AnalogReader">AnalogReader</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.digital_interrupt_by_name">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupt_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt" title="viam.components.board.Board.DigitalInterrupt"><span class="pre">DigitalInterrupt</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.digital_interrupt_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.digital_interrupt_by_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get a DigitalInterrupt by <cite>name</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the digital interrupt.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the digital interrupt.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt" title="viam.components.board.Board.DigitalInterrupt">DigitalInterrupt</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.gpio_pin_by_name">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gpio_pin_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.board.Board.GPIOPin" title="viam.components.board.Board.GPIOPin"><span class="pre">GPIOPin</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.gpio_pin_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.gpio_pin_by_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get a GPIO Pin by <cite>name</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the GPIO pin.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the pin.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#viam.components.board.Board.GPIOPin" title="viam.components.board.Board.GPIOPin">GPIOPin</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.analog_reader_names">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analog_reader_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.analog_reader_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.analog_reader_names" title="Permalink to this definition"></a></dt>
+<dd><p>Get the names of all known analog readers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The names of the analog readers..</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.digital_interrupt_names">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupt_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.digital_interrupt_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.digital_interrupt_names" title="Permalink to this definition"></a></dt>
+<dd><p>Get the names of all known digital interrupts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The names of the digital interrupts.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.status">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.BoardStatus" title="viam.proto.api.common.BoardStatus"><span class="pre">viam.proto.api.common.BoardStatus</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.status" title="Permalink to this definition"></a></dt>
+<dd><p>Return the current status of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the status.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.BoardStatus" title="viam.proto.api.common.BoardStatus">BoardStatus</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.Board.model_attributes">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.board.Board.Attributes" title="viam.components.board.Board.Attributes"><span class="pre">Attributes</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.model_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.model_attributes" title="Permalink to this definition"></a></dt>
+<dd><p>Get the attributes related to the model of this board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The attributes.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.board.Board.Attributes" title="viam.components.board.Board.Attributes">Attributes</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.board.</span></span><span class="sig-name descname"><span class="pre">BoardClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient" title="Permalink to this definition"></a></dt>
+<dd><p>gRPC client for the Board component.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient.analog_reader_by_name">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analog_reader_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="board/index.html#viam.components.board.board.Board.AnalogReader" title="viam.components.board.board.Board.AnalogReader"><span class="pre">viam.components.board.board.Board.AnalogReader</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient.analog_reader_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient.analog_reader_by_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get an AnalogReader by <cite>name</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the analog reader to be retrieved.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The analog reader.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="board/index.html#viam.components.board.board.Board.AnalogReader" title="viam.components.board.board.Board.AnalogReader">AnalogReader</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient.digital_interrupt_by_name">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupt_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="board/index.html#viam.components.board.board.Board.DigitalInterrupt" title="viam.components.board.board.Board.DigitalInterrupt"><span class="pre">viam.components.board.board.Board.DigitalInterrupt</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient.digital_interrupt_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient.digital_interrupt_by_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get a DigitalInterrupt by <cite>name</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the digital interrupt.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the digital interrupt.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="board/index.html#viam.components.board.board.Board.DigitalInterrupt" title="viam.components.board.board.Board.DigitalInterrupt">DigitalInterrupt</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient.gpio_pin_by_name">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gpio_pin_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="board/index.html#viam.components.board.board.Board.GPIOPin" title="viam.components.board.board.Board.GPIOPin"><span class="pre">viam.components.board.board.Board.GPIOPin</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient.gpio_pin_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient.gpio_pin_by_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get a GPIO Pin by <cite>name</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the GPIO pin.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the pin.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="board/index.html#viam.components.board.board.Board.GPIOPin" title="viam.components.board.board.Board.GPIOPin">GPIOPin</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient.analog_reader_names">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analog_reader_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient.analog_reader_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient.analog_reader_names" title="Permalink to this definition"></a></dt>
+<dd><p>Get the names of all known analog readers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The names of the analog readers..</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient.digital_interrupt_names">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupt_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient.digital_interrupt_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient.digital_interrupt_names" title="Permalink to this definition"></a></dt>
+<dd><p>Get the names of all known digital interrupts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The names of the digital interrupts.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient.status">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.BoardStatus" title="viam.proto.api.common.BoardStatus"><span class="pre">viam.proto.api.common.BoardStatus</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient.status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient.status" title="Permalink to this definition"></a></dt>
+<dd><p>Return the current status of the board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the status.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.BoardStatus" title="viam.proto.api.common.BoardStatus">BoardStatus</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient.model_attributes">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">model_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="board/index.html#viam.components.board.board.Board.Attributes" title="viam.components.board.board.Board.Attributes"><span class="pre">viam.components.board.board.Board.Attributes</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient.model_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient.model_attributes" title="Permalink to this definition"></a></dt>
+<dd><p>Get the attributes related to the model of this board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The attributes.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="board/index.html#viam.components.board.board.Board.Attributes" title="viam.components.board.board.Board.Attributes">Attributes</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.board.BoardClient.do">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/board/client.html#BoardClient.do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.BoardClient.do" title="Permalink to this definition"></a></dt>
+<dd><p>Send/Receive arbitrary commands</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Result of the executed command</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../base/service/index.html" class="btn btn-neutral float-left" title="viam.components.base.service" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="board/index.html" class="btn btn-neutral float-right" title="viam.components.board.board" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

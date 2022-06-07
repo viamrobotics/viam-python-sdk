@@ -1,0 +1,113 @@
+:py:mod:`viam.components.camera`
+================================
+
+.. py:module:: viam.components.camera
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   camera/index.rst
+   client/index.rst
+   service/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.camera.Camera
+   viam.components.camera.CameraClient
+
+
+
+
+.. py:class:: Camera(name: str)
+
+
+
+   Camera represents any physical hardware that can capture frames.
+
+   This acts as an abstract base class for any drivers representing specific
+   camera implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:method:: get_frame(self) -> PIL.Image.Image
+      :abstractmethod:
+      :async:
+
+      Get the next frame from the camera as an Image.
+      Be sure to close the image when finished.
+
+      :returns: The frame.
+      :rtype: Image
+
+
+   .. py:method:: get_point_cloud(self) -> Tuple[bytes, str]
+      :abstractmethod:
+      :async:
+
+      Get the next point cloud from the camera. This will be
+      returned as bytes with a mimetype describing
+      the structure of the data. The consumer of this call
+      should encode the bytes into the formatted suggested
+      by the mimetype.
+
+      :returns: The pointcloud data.
+                str: The mimetype of the pointcloud (e.g. PCD).
+      :rtype: bytes
+
+
+
+.. py:class:: CameraClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the Camera component
+
+   .. py:method:: get_frame(self) -> PIL.Image.Image
+      :async:
+
+      Get the next frame from the camera as an Image.
+      Be sure to close the image when finished.
+
+      :returns: The frame.
+      :rtype: Image
+
+
+   .. py:method:: get_point_cloud(self) -> Tuple[bytes, str]
+      :async:
+
+      Get the next point cloud from the camera. This will be
+      returned as bytes with a mimetype describing
+      the structure of the data. The consumer of this call
+      should encode the bytes into the formatted suggested
+      by the mimetype.
+
+      :returns: The pointcloud data.
+                str: The mimetype of the pointcloud (e.g. PCD).
+      :rtype: bytes
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+

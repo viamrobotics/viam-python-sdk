@@ -1,0 +1,86 @@
+:py:mod:`viam.components.arm.client`
+====================================
+
+.. py:module:: viam.components.arm.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.arm.client.ArmClient
+
+
+
+
+.. py:class:: ArmClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for an Arm component.
+
+   Used to communicate with an existing `Arm` implementation over gRPC.
+
+   .. py:method:: get_end_position(self) -> viam.proto.api.common.Pose
+      :async:
+
+      Get the current position of the end of the arm expressed as a Pose.
+
+      Returns: The location and orientation of the arm described as a Pose.
+
+
+   .. py:method:: move_to_position(self, pose: viam.proto.api.common.Pose, world_state: Optional[viam.proto.api.common.WorldState] = None)
+      :async:
+
+      Move the end of the arm to the Pose specified in `pose`.
+      When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
+
+      :param pose: The destination Pose for the arm.
+      :type pose: Pose
+      :param world_state: The obstacles for the arm to avoid on its way to `pose`.
+      :type world_state: WorldState
+
+
+   .. py:method:: get_joint_positions(self) -> viam.proto.api.component.arm.JointPositions
+      :async:
+
+      Get the JointPositions representing the current position of the arm.
+
+      :returns: The current JointPositions for the arm.
+      :rtype: JointPositions
+
+
+   .. py:method:: move_to_joint_positions(self, positions: viam.proto.api.component.arm.JointPositions)
+      :async:
+
+      Move each joint on the arm to the corresponding angle specified in `positions`.
+
+      :param positions: The destination `JointPositions` for the arm.
+      :type positions: JointPositions
+
+
+   .. py:method:: stop(self)
+      :async:
+
+      Stop all motion of the arm. It is assumed that the arm stops immediately.
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+

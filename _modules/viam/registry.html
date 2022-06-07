@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.registry &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>viam.registry</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.registry</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
+<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+
+<span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
+<span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">DuplicateComponentError</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.robot</span> <span class="kn">import</span> <span class="n">Status</span>
+
+<span class="n">Component</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;Component&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ComponentBase</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="default_create_status"><a class="viewcode-back" href="../../autoapi/viam/registry/index.html#viam.registry.default_create_status">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">default_create_status</span><span class="p">(</span><span class="n">component</span><span class="p">:</span> <span class="n">ComponentBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">component</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+        <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ComponentRegistration"><a class="viewcode-back" href="../../autoapi/viam/registry/index.html#viam.registry.ComponentRegistration">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ComponentRegistration</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">Component</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;An object representing a component to be registered.</span>
+
+<span class="sd">    This object is generic over the component, and it includes various functionality for the component, such as creating its RPC client</span>
+<span class="sd">    or status.</span>
+
+<span class="sd">    If creating a custom Component type, you should register the component by creating a `ComponentRegistration` object and registering it</span>
+<span class="sd">    to the `Registry`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">component_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Component</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;The type of the Component to be registered</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">&quot;&quot;&quot;The name of the Component type</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">rpc_service</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ComponentServiceBase</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;The RPC service of the component. This must extend from `ComponentServiceBase`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">create_rpc_client</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Channel</span><span class="p">],</span> <span class="n">Component</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;A function that will create the RPC client for this component</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">create_status</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Component</span><span class="p">],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Status</span><span class="p">]]</span> <span class="o">=</span> <span class="n">default_create_status</span>
+    <span class="sd">&quot;&quot;&quot;A function to create a Status object for this component.</span>
+
+<span class="sd">    If the Component does not provide a custom status type, the default implementation can be used.</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Registry"><a class="viewcode-back" href="../../autoapi/viam/registry/index.html#viam.registry.Registry">[docs]</a><span class="k">class</span> <span class="nc">Registry</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;The global registry of robotic parts.</span>
+
+<span class="sd">    **NB** The Registry should almost never be used directly</span>
+
+<span class="sd">    The Registry keeps track of the types of Components that are available on robots using this SDK. All the base component types are</span>
+<span class="sd">    pre-registered (e.g. Arm, Motor).</span>
+
+<span class="sd">    If you create a new component type that is not an extension of any of the existing base component types, then you must register said</span>
+<span class="sd">    component using `Registry.register(...)`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_COMPONENTS</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ComponentRegistration</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="Registry.register"><a class="viewcode-back" href="../../autoapi/viam/registry/index.html#viam.registry.Registry.register">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">registration</span><span class="p">:</span> <span class="n">ComponentRegistration</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Register a Component with the Registry</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            registration (ComponentRegistration): Object containing registration data for the component</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            DuplicateComponentError: Raised if the Component to register is already in the registry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">registration</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_COMPONENTS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DuplicateComponentError</span><span class="p">(</span><span class="n">registration</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_COMPONENTS</span><span class="p">[</span><span class="n">registration</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">registration</span></div>
+
+<div class="viewcode-block" id="Registry.lookup"><a class="viewcode-back" href="../../autoapi/viam/registry/index.html#viam.registry.Registry.lookup">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">lookup</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentRegistration</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Lookup and retrieve a registered component by its name</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            component_name (str): The name of the component</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ComponentNotFoundError: Raised if the component type is not registered</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ComponentRegistration: The registration object of the component</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_COMPONENTS</span><span class="p">[</span><span class="n">component_name</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ComponentNotFoundError</span><span class="p">(</span><span class="s1">&#39;component&#39;</span><span class="p">,</span> <span class="n">component_name</span><span class="p">)</span></div>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">REGISTERED_COMPONENTS</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ComponentRegistration</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;The dictionary of all registered components</span>
+<span class="sd">        - Key: Name of the component type</span>
+<span class="sd">        - Value: The registration object for the component type</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Dict[str, ComponentRegistration]: All registered components</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_COMPONENTS</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

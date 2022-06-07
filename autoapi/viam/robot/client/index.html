@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.robot.client &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="viam.robot.service" href="../service/index.html" />
+    <link rel="prev" title="viam.robot" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot.client</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.LOGGER">LOGGER</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient">RobotClient</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.Options">Options</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.refresh_interval">refresh_interval</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.dial_options">dial_options</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.log_level">log_level</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.at_address">at_address</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.with_channel">with_channel</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.refresh">refresh</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_component">get_component</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_service">get_service</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.resource_names">resource_names</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.close">close</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__">__aenter__</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aexit__">__aexit__</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_status">get_status</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_frame_system_config">get_frame_system_config</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose">transform_pose</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.discover_components">discover_components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot.service</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot.client</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/viam/robot/client/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.robot.client">
+<span id="viam-robot-client"></span><h1><a class="reference internal" href="#module-viam.robot.client" title="viam.robot.client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot.client</span></code></a><a class="headerlink" href="#module-viam.robot.client" title="Permalink to this headline"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotClient</span></code></a></p></td>
+<td><p>gRPC client for a Robot. This class should be used for all interactions with a robot.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.robot.client.LOGGER" title="viam.robot.client.LOGGER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOGGER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.robot.client.LOGGER">
+<span class="sig-prename descclassname"><span class="pre">viam.robot.client.</span></span><span class="sig-name descname"><span class="pre">LOGGER</span></span><a class="headerlink" href="#viam.robot.client.LOGGER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.robot.client.</span></span><span class="sig-name descname"><span class="pre">RobotClient</span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient" title="Permalink to this definition"></a></dt>
+<dd><p>gRPC client for a Robot. This class should be used for all interactions with a robot.</p>
+<p>There are 2 ways to instantiate a robot client:</p>
+<blockquote>
+<div><p>RobotClient.at_address(…)</p>
+<p>RobotClient.with_channel(…)</p>
+</div></blockquote>
+<p>You can use the client standalone or within a context</p>
+<blockquote>
+<div><p>robot = await RobotClient.at_address(…)</p>
+<p>async with await RobotClient.with_channel(…) as robot: …</p>
+</div></blockquote>
+<p>You must <cite>close()</cite> the robot to release resources.</p>
+<p>Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using <cite>with_channel</cite> are
+not automatically closed.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Options</span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.Options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.Options" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options.refresh_interval">
+<span class="sig-name descname"><span class="pre">refresh_interval</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span> <span class="pre">=</span> <span class="pre">0</span></em><a class="headerlink" href="#viam.robot.client.RobotClient.Options.refresh_interval" title="Permalink to this definition"></a></dt>
+<dd><p>How often to refresh the status/parts of the robot in seconds.
+If not set, the robot will not be refreshed automatically</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options.dial_options">
+<span class="sig-name descname"><span class="pre">dial_options</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[viam.rpc.dial.DialOptions]</span></em><a class="headerlink" href="#viam.robot.client.RobotClient.Options.dial_options" title="Permalink to this definition"></a></dt>
+<dd><p>Options used to connect clients to gRPC servers</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options.log_level">
+<span class="sig-name descname"><span class="pre">log_level</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.robot.client.RobotClient.Options.log_level" title="Permalink to this definition"></a></dt>
+<dd><p>The log level to output</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.at_address">
+<em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">at_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><span class="pre">Options</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.at_address"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.at_address" title="Permalink to this definition"></a></dt>
+<dd><p>Create a robot client that is connected to the robot at the provided address.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>address</strong> (<em>str</em>) – Address of the robot (IP address, URL, etc.)</p></li>
+<li><p><strong>options</strong> (<a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><em>Options</em></a>) – Options for connecting and refreshing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the RobotClient</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.with_channel">
+<em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><span class="pre">Options</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.with_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.with_channel" title="Permalink to this definition"></a></dt>
+<dd><p>Create a robot that is connected to a robot over the given channel.</p>
+<p>Any robots created using this method will <em>NOT</em> automatically close the channel upon exit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel</strong> (<em>Channel</em>) – The gRPC channel that is connected to a robot</p></li>
+<li><p><strong>options</strong> (<a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><em>Options</em></a>) – Options for refreshing. Any connection options will be ignored.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the RobotClient</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.refresh">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.refresh" title="Permalink to this definition"></a></dt>
+<dd><p>Manually refresh the underlying parts of this robot</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_component">
+<span class="sig-name descname"><span class="pre">get_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_component" title="Permalink to this definition"></a></dt>
+<dd><p>Get a component using its ResourceName.</p>
+<p>This function should not be used except in specific cases. The method <cite>Component.from_robot(…)</cite> is the preferred method
+for obtaining components.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`python3</span>
+<span class="pre">arm</span> <span class="pre">=</span> <span class="pre">Arm.from_robot(robot=robot,</span> <span class="pre">name='my_arm')</span>
+<span class="pre">`</span></code></p>
+<p>Because this function returns a generic <cite>ComponentBase</cite> rather than the specific
+component type, it will be necessary to cast the returned component to the desired component. This can be done using a few
+different methods:</p>
+<ul class="simple">
+<li><p>Assertion</p></li>
+</ul>
+<dl class="simple">
+<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python3</dt><dd><p>arm = robot.get_component(Arm.get_resource_name(‘my_arm’))
+assert isinstance(arm, Arm)
+end_pos = await arm.get_end_position()</p>
+</dd>
+</dl>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<ul class="simple">
+<li><p>Explicit cast</p></li>
+</ul>
+<dl>
+<dt><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python3</dt><dd><p>from typing import cast</p>
+<p>arm = robot.get_component(Arm.get_resource_name(‘my_arm’))
+arm = cast(Arm, arm)
+end_pos = await arm.get_end_position()</p>
+</dd>
+</dl>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<ul class="simple">
+<li><p>Declare type on variable assignment.
+- Note: If using an IDE, a type error may be shown which can be ignored.</p></li>
+</ul>
+<dl class="simple">
+<dt><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>python3</dt><dd><p>arm: Arm = robot.get_component(Arm.get_resource_name(‘my_arm’))  # type: ignore
+end_pos = await arm.get_end_position()</p>
+</dd>
+</dl>
+<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a>) – The component’s name</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ViamError" title="viam.errors.ViamError"><strong>ViamError</strong></a> – Raised if the requested resource is not a component</p></li>
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ComponentNotFoundError" title="viam.errors.ComponentNotFoundError"><strong>ComponentNotFoundError</strong></a> – Error if component with the given type and name does not exist in the registry</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The component</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase">ComponentBase</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_service">
+<span class="sig-name descname"><span class="pre">get_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../services/index.html#viam.services.ServiceType" title="viam.services.ServiceType"><span class="pre">viam.services.ServiceType</span></a><span class="p"><span class="pre">[</span></span><span class="pre">viam.services.types.Service</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.types.Service</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_service" title="Permalink to this definition"></a></dt>
+<dd><p>Get a service by specifying the <cite>ServiceType</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>service_type</strong> (<a class="reference internal" href="../../services/index.html#viam.services.ServiceType" title="viam.services.ServiceType"><em>ServiceType</em></a>) – The service type</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.ServiceNotImplementedError" title="viam.errors.ServiceNotImplementedError"><strong>ServiceNotImplementedError</strong></a> – Raised the service is not implemented or available on the Robot</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The service</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Service</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.resource_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.client.RobotClient.resource_names" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of all resource names</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The list of resource names</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName">ResourceName</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.close" title="Permalink to this definition"></a></dt>
+<dd><p>Cleanly close the underlying connections and stop any periodic tasks</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.__aenter__">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__aenter__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.__aenter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.__aenter__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.__aexit__">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__aexit__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traceback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.__aexit__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.__aexit__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_status">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_status" title="Permalink to this definition"></a></dt>
+<dd><p>Get the status of the robot’s components. You can optionally
+provide a list of <cite>ResourceName</cite> for which you want statuses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>components</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a><em>]</em><em>]</em>) – Optional list of
+<cite>ResourceName</cite> for components you want statuses.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_frame_system_config">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_frame_system_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.Transform" title="viam.proto.api.common.Transform"><span class="pre">viam.proto.api.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.FrameSystemConfig" title="viam.proto.api.robot.FrameSystemConfig"><span class="pre">viam.proto.api.robot.FrameSystemConfig</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_frame_system_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_frame_system_config" title="Permalink to this definition"></a></dt>
+<dd><p>Get the configuration of the frame system of a given robot.</p>
+<p>Returns (Config): The configuration of a given robot’s frame system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.transform_pose">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><span class="pre">viam.proto.api.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.Transform" title="viam.proto.api.common.Transform"><span class="pre">viam.proto.api.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><span class="pre">viam.proto.api.common.PoseInFrame</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.transform_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.transform_pose" title="Permalink to this definition"></a></dt>
+<dd><p>Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>query</strong> (<a class="reference internal" href="../../components/arm/index.html#viam.components.arm.Pose" title="viam.components.arm.Pose"><em>Pose</em></a>) – The pose that should be transformed.</p></li>
+<li><p><strong>destination</strong> (<em>str</em>) – The name of the reference frame to transform the given pose to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.discover_components">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discover_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.DiscoveryQuery" title="viam.proto.api.robot.DiscoveryQuery"><span class="pre">viam.proto.api.robot.DiscoveryQuery</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.Discovery" title="viam.proto.api.robot.Discovery"><span class="pre">viam.proto.api.robot.Discovery</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.discover_components"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.discover_components" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of discovered component configurations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>queries</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.DiscoveryQuery" title="viam.proto.api.robot.DiscoveryQuery"><em>DiscoveryQuery</em></a><em>]</em>) – The list of component models to lookup configurations for.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="viam.robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../service/index.html" class="btn btn-neutral float-right" title="viam.robot.service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+:py:mod:`viam.components.base.base`
+===================================
+
+.. py:module:: viam.components.base.base
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.base.base.Base
+
+
+
+
+.. py:class:: Base(name: str)
+
+
+
+   Base represents a physical base of a robot.
+
+   This acts as an abstract base class for any drivers representing specific
+   base implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:method:: move_straight(self, distance: int, velocity: float)
+      :abstractmethod:
+      :async:
+
+      Move the base in a straight line the given `distance`, expressed in millimeters,
+      at the given `velocity`, expressed in millimeters per second.
+      When `distance` or `velocity` is 0, the base will stop.
+      This method blocks until completed or cancelled
+
+      :param distance: The distance (in millimeters) to move.
+                       Negative implies backwards.
+      :type distance: int
+      :param velocity: The velocity (in millimeters per second) to move.
+                       Negative implies backwards.
+      :type velocity: float
+
+
+   .. py:method:: spin(self, angle: float, velocity: float)
+      :abstractmethod:
+      :async:
+
+      Spin the base in place `angle` degrees, at the given angular `velocity`,
+      expressed in degrees per second.
+      When `velocity` is 0, the base will stop.
+      This method blocks until completed or cancelled
+
+      :param angle: The angle (in degrees) to spin.
+                    Negative implies backwards.
+      :type angle: float
+      :param velocity: The angular velocity (in degrees per second).
+                       to spin. Negative implies backwards.
+      :type velocity: float
+
+
+   .. py:method:: set_power(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3)
+      :abstractmethod:
+      :async:
+
+      Set the linear and angular velocity of the Base
+      When `linear` is 0, the the base will spin.
+      When `angular` is 0, the the base will move in a straight line.
+      When both `linear` and `angular` are 0, the base will stop.
+      This method blocks until completed or cancelled
+
+      :param linear: The linear velocity
+      :type linear: Vector3
+      :param angular: The angular velocity
+      :type angular: Vector3
+
+
+   .. py:method:: set_velocity(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3)
+      :abstractmethod:
+      :async:
+
+      Set the linear and angular velocities of the base.
+
+
+      :param linear: Velocity in mm/sec
+      :type linear: Vector3
+      :param angular: Velocity in deg/sec
+      :type angular: Vector3
+
+
+   .. py:method:: stop(self)
+      :abstractmethod:
+      :async:
+
+      Stop the base.
+
+
+

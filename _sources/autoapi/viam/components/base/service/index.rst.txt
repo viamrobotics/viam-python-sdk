@@ -1,0 +1,51 @@
+:py:mod:`viam.components.base.service`
+======================================
+
+.. py:module:: viam.components.base.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.base.service.BaseService
+
+
+
+
+.. py:class:: BaseService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC service for a robotic Base
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: MoveStraight(self, stream: grpclib.server.Stream[viam.proto.api.component.base.MoveStraightRequest, viam.proto.api.component.base.MoveStraightResponse]) -> None
+      :async:
+
+
+   .. py:method:: Spin(self, stream: grpclib.server.Stream[viam.proto.api.component.base.SpinRequest, viam.proto.api.component.base.SpinResponse]) -> None
+      :async:
+
+
+   .. py:method:: SetPower(self, stream: grpclib.server.Stream[viam.proto.api.component.base.SetPowerRequest, viam.proto.api.component.base.SetPowerResponse]) -> None
+      :async:
+
+
+   .. py:method:: SetVelocity(self, stream: grpclib.server.Stream[viam.proto.api.component.base.SetVelocityRequest, viam.proto.api.component.base.SetVelocityResponse]) -> None
+      :async:
+
+
+   .. py:method:: Stop(self, stream: grpclib.server.Stream[viam.proto.api.component.base.StopRequest, viam.proto.api.component.base.StopResponse]) -> None
+      :async:
+
+
+

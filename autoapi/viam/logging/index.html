@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.logging &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.logging</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/viam/logging/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.logging">
+<span id="viam-logging"></span><h1><a class="reference internal" href="#module-viam.logging" title="viam.logging"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.logging</span></code></a><a class="headerlink" href="#module-viam.logging" title="Permalink to this headline"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.logging.ColorFormatter" title="viam.logging.ColorFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColorFormatter</span></code></a></p></td>
+<td><p>Formatter instances are used to convert a LogRecord to text.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.logging.getLogger" title="viam.logging.getLogger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getLogger</span></code></a>(name: str) → logging.Logger</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.logging.setLevel" title="viam.logging.setLevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setLevel</span></code></a>(level: int)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.logging.LOG_LEVEL" title="viam.logging.LOG_LEVEL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOG_LEVEL</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.logging.LOGGERS" title="viam.logging.LOGGERS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOGGERS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.logging.LOG_LEVEL">
+<span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">LOG_LEVEL</span></span><a class="headerlink" href="#viam.logging.LOG_LEVEL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.logging.LOGGERS">
+<span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">LOGGERS</span></span><em class="property"><span class="w"> </span><span class="pre">:Dict[str,</span> <span class="pre">logging.Logger]</span></em><a class="headerlink" href="#viam.logging.LOGGERS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.logging.ColorFormatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">ColorFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patern</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#ColorFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.ColorFormatter" title="Permalink to this definition"></a></dt>
+<dd><p>Formatter instances are used to convert a LogRecord to text.</p>
+<p>Formatters need to know how a LogRecord is constructed. They are
+responsible for converting a LogRecord to (usually) a string which can
+be interpreted by either a human or an external system. The base Formatter
+allows a formatting string to be specified. If none is supplied, the
+style-dependent default value, “%(message)s”, “{message}”, or
+“${message}”, is used.</p>
+<p>The Formatter can be initialized with a format string which makes use of
+knowledge of the LogRecord attributes - e.g. the default value mentioned
+above makes use of the fact that the user’s message and arguments are pre-
+formatted into a LogRecord’s message attribute. Currently, the useful
+attributes in a LogRecord are described by:</p>
+<p>%(name)s            Name of the logger (logging channel)
+%(levelno)s         Numeric logging level for the message (DEBUG, INFO,</p>
+<blockquote>
+<div><p>WARNING, ERROR, CRITICAL)</p>
+</div></blockquote>
+<dl class="simple">
+<dt>%(levelname)s       Text logging level for the message (“DEBUG”, “INFO”,</dt><dd><p>“WARNING”, “ERROR”, “CRITICAL”)</p>
+</dd>
+<dt>%(pathname)s        Full pathname of the source file where the logging</dt><dd><p>call was issued (if available)</p>
+</dd>
+</dl>
+<p>%(filename)s        Filename portion of pathname
+%(module)s          Module (name portion of filename)
+%(lineno)d          Source line number where the logging call was issued</p>
+<blockquote>
+<div><p>(if available)</p>
+</div></blockquote>
+<p>%(funcName)s        Function name
+%(created)f         Time when the LogRecord was created (time.time()</p>
+<blockquote>
+<div><p>return value)</p>
+</div></blockquote>
+<p>%(asctime)s         Textual time when the LogRecord was created
+%(msecs)d           Millisecond portion of the creation time
+%(relativeCreated)d Time in milliseconds when the LogRecord was created,</p>
+<blockquote>
+<div><p>relative to the time the logging module was loaded
+(typically at application startup time)</p>
+</div></blockquote>
+<p>%(thread)d          Thread ID (if available)
+%(threadName)s      Thread name (if available)
+%(process)d         Process ID (if available)
+%(message)s         The result of record.getMessage(), computed just as</p>
+<blockquote>
+<div><p>the record is emitted</p>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.logging.ColorFormatter.MAPPING">
+<span class="sig-name descname"><span class="pre">MAPPING</span></span><a class="headerlink" href="#viam.logging.ColorFormatter.MAPPING" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.logging.ColorFormatter.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#ColorFormatter.format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.ColorFormatter.format" title="Permalink to this definition"></a></dt>
+<dd><p>Format the specified record as text.</p>
+<p>The record’s attribute dictionary is used as the operand to a
+string formatting operation which yields the returned string.
+Before formatting the dictionary, a couple of preparatory steps
+are carried out. The message attribute of the record is computed
+using LogRecord.getMessage(). If the formatting string uses the
+time (as determined by a call to usesTime(), formatTime() is
+called to format the event time. If there is exception information,
+it is formatted using formatException() and appended to the message.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.logging.getLogger">
+<span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">getLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">logging.Logger</span></span></span><a class="reference internal" href="../../../_modules/viam/logging.html#getLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.getLogger" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.logging.setLevel">
+<span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">setLevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#setLevel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.setLevel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

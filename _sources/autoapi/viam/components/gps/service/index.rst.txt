@@ -1,0 +1,43 @@
+:py:mod:`viam.components.gps.service`
+=====================================
+
+.. py:module:: viam.components.gps.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.gps.service.GPSService
+
+
+
+
+.. py:class:: GPSService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for a GPS
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: ReadLocation(self, stream: grpclib.server.Stream[viam.proto.api.component.gps.ReadLocationRequest, viam.proto.api.component.gps.ReadLocationResponse]) -> None
+      :async:
+
+
+   .. py:method:: ReadAltitude(self, stream: grpclib.server.Stream[viam.proto.api.component.gps.ReadAltitudeRequest, viam.proto.api.component.gps.ReadAltitudeResponse]) -> None
+      :async:
+
+
+   .. py:method:: ReadSpeed(self, stream: grpclib.server.Stream[viam.proto.api.component.gps.ReadSpeedRequest, viam.proto.api.component.gps.ReadSpeedResponse]) -> None
+      :async:
+
+
+

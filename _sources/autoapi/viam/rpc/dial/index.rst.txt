@@ -1,0 +1,131 @@
+:py:mod:`viam.rpc.dial`
+=======================
+
+.. py:module:: viam.rpc.dial
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.rpc.dial.RTCConfiguration
+   viam.rpc.dial.DialWebRTCOptions
+   viam.rpc.dial.Credentials
+   viam.rpc.dial.DialOptions
+   viam.rpc.dial.AuthenticatedChannel
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.rpc.dial.dial_direct
+
+
+
+.. py:class:: RTCConfiguration
+
+
+.. py:class:: DialWebRTCOptions
+
+   .. py:attribute:: disable_tricle_ice
+      :annotation: :bool
+
+      
+
+   .. py:attribute:: rtc_config
+      :annotation: :RTCConfiguration
+
+      
+
+
+.. py:class:: Credentials
+
+   .. py:attribute:: type
+      :annotation: :str
+
+      
+
+   .. py:attribute:: payload
+      :annotation: :str
+
+      
+
+
+.. py:class:: DialOptions(auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade=False)
+
+   .. py:attribute:: auth_entity
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: credentials
+      :annotation: :Optional[Credentials]
+
+      
+
+   .. py:attribute:: webrtc_options
+      :annotation: :Optional[DialWebRTCOptions]
+
+      
+
+   .. py:attribute:: external_auth_address
+      :annotation: :Optional[str]
+
+      
+
+   .. py:attribute:: insecure
+      :annotation: :bool
+
+      
+
+   .. py:attribute:: allow_insecure_downgrade
+      :annotation: :bool
+
+      
+
+   .. py:attribute:: allow_insecure_with_creds_downgrade
+      :annotation: :bool
+
+      
+
+
+.. py:class:: AuthenticatedChannel(host: Optional[str] = None, port: Optional[int] = None, *, loop: Optional[asyncio.AbstractEventLoop] = None, path: Optional[str] = None, codec: Optional[grpclib.encoding.base.CodecBase] = None, status_details_codec: Optional[grpclib.encoding.base.StatusDetailsCodecBase] = None, ssl: Union[None, bool, ssl.SSLContext] = None, config: Optional[grpclib.config.Configuration] = None)
+
+
+
+   Represents a connection to the server, which can be used with generated
+   stub classes to perform gRPC calls.
+
+   .. code-block:: python3
+
+       channel = Channel()
+       client = cafe_grpc.CoffeeMachineStub(channel)
+
+       ...
+
+       request = cafe_pb2.LatteOrder(
+           size=cafe_pb2.SMALL,
+           temperature=70,
+           sugar=3,
+       )
+       reply: empty_pb2.Empty = await client.MakeLatte(request)
+
+       ...
+
+       channel.close()
+
+   .. py:method:: request(self, name: str, cardinality: grpclib.const.Cardinality, request_type: Type[grpclib.stream._SendType], reply_type: Type[grpclib.stream._RecvType], *, timeout: Optional[float] = None, deadline: Optional[grpclib.metadata.Deadline] = None, metadata: Optional[grpclib.metadata._MetadataLike] = None) -> grpclib.client.Stream[grpclib.stream._SendType, grpclib.stream._RecvType]
+
+
+
+.. py:function:: dial_direct(address: str, options: Optional[DialOptions] = None) -> grpclib.client.Channel
+   :async:
+
+

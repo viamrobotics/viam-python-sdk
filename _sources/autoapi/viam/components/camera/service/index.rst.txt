@@ -1,0 +1,43 @@
+:py:mod:`viam.components.camera.service`
+========================================
+
+.. py:module:: viam.components.camera.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.camera.service.CameraService
+
+
+
+
+.. py:class:: CameraService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for a generic Camera
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: GetFrame(self, stream: grpclib.server.Stream[viam.proto.api.component.camera.GetFrameRequest, viam.proto.api.component.camera.GetFrameResponse]) -> None
+      :async:
+
+
+   .. py:method:: RenderFrame(self, stream: grpclib.server.Stream[viam.proto.api.component.camera.RenderFrameRequest, google.api.httpbody_pb2.HttpBody]) -> None
+      :async:
+
+
+   .. py:method:: GetPointCloud(self, stream: grpclib.server.Stream[viam.proto.api.component.camera.GetPointCloudRequest, viam.proto.api.component.camera.GetPointCloudResponse]) -> None
+      :async:
+
+
+

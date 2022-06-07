@@ -1,0 +1,105 @@
+:py:mod:`viam.components.base.client`
+=====================================
+
+.. py:module:: viam.components.base.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.base.client.BaseClient
+
+
+
+
+.. py:class:: BaseClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the Base component.
+
+   .. py:method:: move_straight(self, distance: int, velocity: float)
+      :async:
+
+      Move the base in a straight line the given `distance`, expressed in millimeters,
+      at the given `velocity`, expressed in millimeters per second.
+      When `distance` or `velocity` is 0, the base will stop.
+      This method blocks until completed or cancelled
+
+      :param distance: The distance (in millimeters) to move.
+                       Negative implies backwards.
+      :type distance: int
+      :param velocity: The velocity (in millimeters per second) to move.
+                       Negative implies backwards.
+      :type velocity: float
+
+
+   .. py:method:: spin(self, angle: float, velocity: float)
+      :async:
+
+      Spin the base in place `angle` degrees, at the given angular `velocity`,
+      expressed in degrees per second.
+      When `velocity` is 0, the base will stop.
+      This method blocks until completed or cancelled
+
+      :param angle: The angle (in degrees) to spin.
+                    Negative implies backwards.
+      :type angle: float
+      :param velocity: The angular velocity (in degrees per second).
+                       to spin. Negative implies backwards.
+      :type velocity: float
+
+
+   .. py:method:: set_power(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3)
+      :async:
+
+      Set the linear and angular velocity of the Base
+      When `linear` is 0, the the base will spin.
+      When `angular` is 0, the the base will move in a straight line.
+      When both `linear` and `angular` are 0, the base will stop.
+      This method blocks until completed or cancelled
+
+      :param linear: The linear velocity
+      :type linear: Vector3
+      :param angular: The angular velocity
+      :type angular: Vector3
+
+
+   .. py:method:: set_velocity(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3)
+      :async:
+
+      Set the linear and angular velocities of the base.
+
+
+      :param linear: Velocity in mm/sec
+      :type linear: Vector3
+      :param angular: Velocity in deg/sec
+      :type angular: Vector3
+
+
+   .. py:method:: stop(self)
+      :async:
+
+      Stop the base.
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+

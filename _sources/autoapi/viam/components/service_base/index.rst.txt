@@ -1,0 +1,47 @@
+:py:mod:`viam.components.service_base`
+======================================
+
+.. py:module:: viam.components.service_base
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.service_base.ComponentServiceBase
+
+
+
+
+.. py:class:: ComponentServiceBase(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   Base component service.
+   All component services must inherit from this class.
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: get_component(self, name: str) -> viam.components.resource_manager.ResourceType
+
+      Return the component with the given name if it exists in the registry.
+      If the component does not exist in the registry,
+      this function will raise an error
+
+      :param name: Name of the component
+      :type name: str
+
+      :raises ComponentNotFoundError:
+
+      :returns: The component
+      :rtype: ResourceType
+
+
+

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.base.service &mdash; viam  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="viam.components.board" href="../../board/index.html" />
+    <link rel="prev" title="viam.components.base.client" href="../client/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../index.html" class="icon icon-home"> viam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../conduct.html">Code of Conduct</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.base</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.client</span></code></a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.service</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.base.service.BaseService">BaseService</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.service.BaseService.RESOURCE_TYPE">RESOURCE_TYPE</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.service.BaseService.MoveStraight">MoveStraight</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.service.BaseService.Spin">Spin</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.service.BaseService.SetPower">SetPower</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.service.BaseService.SetVelocity">SetVelocity</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.service.BaseService.Stop">Stop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gps/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../imu/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.imu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">viam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.service</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/viam/components/base/service/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.components.base.service">
+<span id="viam-components-base-service"></span><h1><a class="reference internal" href="#module-viam.components.base.service" title="viam.components.base.service"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base.service</span></code></a><a class="headerlink" href="#module-viam.components.base.service" title="Permalink to this headline"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.service.BaseService" title="viam.components.base.service.BaseService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseService</span></code></a></p></td>
+<td><p>gRPC service for a robotic Base</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.base.service.BaseService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.service.</span></span><span class="sig-name descname"><span class="pre">BaseService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource_manager/index.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/service.html#BaseService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.service.BaseService" title="Permalink to this definition"></a></dt>
+<dd><p>gRPC service for a robotic Base</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.service.BaseService.RESOURCE_TYPE">
+<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.base.service.BaseService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.service.BaseService.MoveStraight">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveStraight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.MoveStraightRequest" title="viam.proto.api.component.base.MoveStraightRequest"><span class="pre">viam.proto.api.component.base.MoveStraightRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.MoveStraightResponse" title="viam.proto.api.component.base.MoveStraightResponse"><span class="pre">viam.proto.api.component.base.MoveStraightResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/service.html#BaseService.MoveStraight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.service.BaseService.MoveStraight" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.service.BaseService.Spin">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.SpinRequest" title="viam.proto.api.component.base.SpinRequest"><span class="pre">viam.proto.api.component.base.SpinRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.SpinResponse" title="viam.proto.api.component.base.SpinResponse"><span class="pre">viam.proto.api.component.base.SpinResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/service.html#BaseService.Spin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.service.BaseService.Spin" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.service.BaseService.SetPower">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetPower</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.SetPowerRequest" title="viam.proto.api.component.base.SetPowerRequest"><span class="pre">viam.proto.api.component.base.SetPowerRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.SetPowerResponse" title="viam.proto.api.component.base.SetPowerResponse"><span class="pre">viam.proto.api.component.base.SetPowerResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/service.html#BaseService.SetPower"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.service.BaseService.SetPower" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.service.BaseService.SetVelocity">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetVelocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.SetVelocityRequest" title="viam.proto.api.component.base.SetVelocityRequest"><span class="pre">viam.proto.api.component.base.SetVelocityRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.SetVelocityResponse" title="viam.proto.api.component.base.SetVelocityResponse"><span class="pre">viam.proto.api.component.base.SetVelocityResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/service.html#BaseService.SetVelocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.service.BaseService.SetVelocity" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.service.BaseService.Stop">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.StopRequest" title="viam.proto.api.component.base.StopRequest"><span class="pre">viam.proto.api.component.base.StopRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/api/component/base/index.html#viam.proto.api.component.base.StopResponse" title="viam.proto.api.component.base.StopResponse"><span class="pre">viam.proto.api.component.base.StopResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/service.html#BaseService.Stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.service.BaseService.Stop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../client/index.html" class="btn btn-neutral float-left" title="viam.components.base.client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../board/index.html" class="btn btn-neutral float-right" title="viam.components.board" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

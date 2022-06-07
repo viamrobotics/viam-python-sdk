@@ -1,0 +1,56 @@
+:py:mod:`viam.components.camera.camera`
+=======================================
+
+.. py:module:: viam.components.camera.camera
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.camera.camera.Camera
+
+
+
+
+.. py:class:: Camera(name: str)
+
+
+
+   Camera represents any physical hardware that can capture frames.
+
+   This acts as an abstract base class for any drivers representing specific
+   camera implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:method:: get_frame(self) -> PIL.Image.Image
+      :abstractmethod:
+      :async:
+
+      Get the next frame from the camera as an Image.
+      Be sure to close the image when finished.
+
+      :returns: The frame.
+      :rtype: Image
+
+
+   .. py:method:: get_point_cloud(self) -> Tuple[bytes, str]
+      :abstractmethod:
+      :async:
+
+      Get the next point cloud from the camera. This will be
+      returned as bytes with a mimetype describing
+      the structure of the data. The consumer of this call
+      should encode the bytes into the formatted suggested
+      by the mimetype.
+
+      :returns: The pointcloud data.
+                str: The mimetype of the pointcloud (e.g. PCD).
+      :rtype: bytes
+
+
+

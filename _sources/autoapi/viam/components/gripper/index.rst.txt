@@ -1,0 +1,95 @@
+:py:mod:`viam.components.gripper`
+=================================
+
+.. py:module:: viam.components.gripper
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   client/index.rst
+   gripper/index.rst
+   service/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.gripper.GripperClient
+   viam.components.gripper.Gripper
+
+
+
+
+.. py:class:: GripperClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the Gripper component
+
+   .. py:method:: open(self)
+      :async:
+
+      Open the gripper.
+
+
+   .. py:method:: grab(self) -> bool
+      :async:
+
+      Instruct the gripper to grab.
+
+      :returns: Indicates if the gripper grabbed something.
+      :rtype: bool
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+
+.. py:class:: Gripper(name: str)
+
+
+
+   Gripper represents a physical robotic gripper.
+
+   This acts as an abstract base class for any drivers representing specific
+   gripper implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:method:: open(self)
+      :abstractmethod:
+      :async:
+
+      Open the gripper.
+
+
+   .. py:method:: grab(self) -> bool
+      :abstractmethod:
+      :async:
+
+      Instruct the gripper to grab.
+
+      :returns: Indicates if the gripper grabbed something.
+      :rtype: bool
+
+
+

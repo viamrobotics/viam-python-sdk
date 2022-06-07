@@ -1,0 +1,40 @@
+:py:mod:`viam.components.sensor.sensor`
+=======================================
+
+.. py:module:: viam.components.sensor.sensor
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.sensor.sensor.Sensor
+
+
+
+
+.. py:class:: Sensor(name: str)
+
+
+
+   Sensor represents a physical sensing device that can provide measurement readings.
+
+   This acts as an abstract base class for any drivers representing specific
+   sensor implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:method:: get_readings(self) -> List[Any]
+      :abstractmethod:
+      :async:
+
+      Obtain the measurements/data specific to this sensor.
+
+      :returns: The measurements. Can be of any type.
+      :rtype: List[Dict]
+
+
+

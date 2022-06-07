@@ -1,0 +1,62 @@
+:py:mod:`viam.components.servo.servo`
+=====================================
+
+.. py:module:: viam.components.servo.servo
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.servo.servo.Servo
+
+
+
+
+.. py:class:: Servo(name: str)
+
+
+
+   Servo represents a physical servo.
+
+   This acts as an abstract base class for any drivers representing specific
+   servo implementations. This cannot be used on its own. If the `__init__()` function is
+   overriden, it must call the `super().__init__()` function.
+
+   .. py:attribute:: name
+      :annotation: :str
+
+      
+
+   .. py:method:: move(self, angle: int)
+      :abstractmethod:
+      :async:
+
+      Move the servo to the provided angle.
+
+      :param angle: The desired angle of the servo in degrees.
+      :type angle: int
+
+
+   .. py:method:: get_position(self) -> int
+      :abstractmethod:
+      :async:
+
+      Get the current angle (degrees) of the servo.
+
+      :returns: The current angle of the servo in degrees.
+      :rtype: int
+
+
+   .. py:method:: stop(self)
+      :abstractmethod:
+      :async:
+
+      Stop the servo. It is assumed that the servo stops immediately.
+
+
+

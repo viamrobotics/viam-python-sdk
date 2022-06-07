@@ -1,0 +1,35 @@
+:py:mod:`viam.components.sensor.service`
+========================================
+
+.. py:module:: viam.components.sensor.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.sensor.service.SensorService
+
+
+
+
+.. py:class:: SensorService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for a generic Sensor
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: GetReadings(self, stream: grpclib.server.Stream[viam.proto.api.component.sensor.GetReadingsRequest, viam.proto.api.component.sensor.GetReadingsResponse]) -> None
+      :async:
+
+
+

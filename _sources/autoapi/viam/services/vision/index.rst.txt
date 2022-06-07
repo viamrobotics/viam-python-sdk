@@ -1,0 +1,151 @@
+:py:mod:`viam.services.vision`
+==============================
+
+.. py:module:: viam.services.vision
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.vision.DetectorType
+   viam.services.vision.DetectorConfig
+   viam.services.vision.VisionClient
+
+
+
+
+.. py:class:: DetectorType
+
+
+
+   str(object='') -> str
+   str(bytes_or_buffer[, encoding[, errors]]) -> str
+
+   Create a new string object from the given object. If encoding or
+   errors is specified, then the object must expose a data buffer
+   that will be decoded using the given encoding and error handler.
+   Otherwise, returns the result of object.__str__() (if defined)
+   or repr(object).
+   encoding defaults to sys.getdefaultencoding().
+   errors defaults to 'strict'.
+
+   .. py:attribute:: TF_LITE
+      :annotation: = tflite
+
+      
+
+   .. py:attribute:: TENSORFLOW
+      :annotation: = tensorflow
+
+      
+
+   .. py:attribute:: COLOR
+      :annotation: = color
+
+      
+
+
+.. py:class:: DetectorConfig
+
+   .. py:attribute:: name
+      :annotation: :str
+
+      
+
+   .. py:attribute:: type
+      :annotation: :DetectorType
+
+      
+
+   .. py:attribute:: parameters
+      :annotation: :Dict[str, Any]
+
+      
+
+
+.. py:class:: VisionClient(channel: grpclib.client.Channel)
+
+   Connect to the Vision service, which allows you to access various computer vision algorithms
+   (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
+
+   .. py:method:: get_detector_names(self) -> List[str]
+      :async:
+
+      Get the list of detectors in the registry.
+
+      :returns: The detector names
+      :rtype: List[str]
+
+
+   .. py:method:: add_detector(self, detector: DetectorConfig)
+      :async:
+
+      Add a new detector to the registry.
+
+      :param detector: The configuration of the detector to add
+      :type detector: DetectorConfig
+
+
+   .. py:method:: get_detections(self, camera_name: str, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
+      :async:
+
+      Get a list of detections in the next image given a camera and a detector
+
+      :param camera_name: The name of the camera to use for detection
+      :type camera_name: str
+      :param detector_name: The name of the detector to use for detection
+      :type detector_name: str
+
+      :returns: The detections
+      :rtype: List[Detection]
+
+
+   .. py:method:: get_segmenter_names(self) -> List[str]
+      :async:
+
+      Get the list of segmenters in the registry
+
+      :returns: The segmenter names
+      :rtype: List[str]
+
+
+   .. py:method:: get_segmenter_parameters(self, segmenter_name: str) -> List[Tuple[str, str]]
+      :async:
+
+      Get the parameter fields needed for the given segmenter.
+
+      :param segmenter_name: The name of the segmenter
+      :type segmenter_name: str
+
+      :returns:
+
+                A list of parameters for the segmenter.
+                    The first item in the tuple is the name of the parameter.
+                    The second item in the tuple is the type of the parameter.
+      :rtype: List[Tuple[str, str]]
+
+
+   .. py:method:: get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Dict[str, Any]) -> List[viam.proto.api.common.PointCloudObject]
+      :async:
+
+      Get all the found objects in a pointcloud from a camera of the
+      underlying robot, as well as the 3-vector center of each of the
+      found objects.
+
+      :param camera_name: The name of the camera
+      :type camera_name: str
+      :param segmenter_name: The name of the segmenter
+      :type segmenter_name: str
+      :param parameters: The parameters for the pointcloud
+      :type parameters: Dict[str, Any]
+
+      :returns: The pointclouds
+      :rtype: List[PointCloudObject]
+
+
+

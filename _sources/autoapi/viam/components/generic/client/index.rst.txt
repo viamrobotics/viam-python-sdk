@@ -1,0 +1,64 @@
+:py:mod:`viam.components.generic.client`
+========================================
+
+.. py:module:: viam.components.generic.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.generic.client.GenericClient
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.generic.client.do_command
+
+
+
+.. py:class:: GenericClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the Generic component.
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+
+.. py:function:: do_command(channel: grpclib.client.Channel, name: str, command: Dict[str, Any]) -> Dict[str, Any]
+   :async:
+
+   Convenience method to allow component clients to execut `do` commands
+
+   :param channel: A gRPC channel
+   :type channel: Channel
+   :param name: The name of the component
+   :type name: str
+   :param command: The command to execute
+   :type command: Dict[str, Any]
+
+   :returns: The result of the executed command
+   :rtype: Dict[str, Any]
+
+

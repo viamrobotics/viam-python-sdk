@@ -1,0 +1,39 @@
+:py:mod:`viam.components.gripper.service`
+=========================================
+
+.. py:module:: viam.components.gripper.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.gripper.service.GripperService
+
+
+
+
+.. py:class:: GripperService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for a Gripper
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: Open(self, stream: grpclib.server.Stream[viam.proto.api.component.gripper.OpenRequest, viam.proto.api.component.gripper.OpenResponse]) -> None
+      :async:
+
+
+   .. py:method:: Grab(self, stream: grpclib.server.Stream[viam.proto.api.component.gripper.GrabRequest, viam.proto.api.component.gripper.GrabResponse]) -> None
+      :async:
+
+
+

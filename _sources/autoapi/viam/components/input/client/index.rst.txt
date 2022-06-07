@@ -1,0 +1,97 @@
+:py:mod:`viam.components.input.client`
+======================================
+
+.. py:module:: viam.components.input.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.input.client.ControllerClient
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.input.client.LOGGER
+
+
+.. py:data:: LOGGER
+   
+
+   
+
+.. py:class:: ControllerClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for an Input Controller
+
+
+   .. py:method:: get_controls(self) -> List[viam.components.input.input.Control]
+      :async:
+
+      Returns a list of Controls provided by the Controller
+
+      :returns: List of controls provided by the Controller
+      :rtype: List[Control]
+
+
+   .. py:method:: get_events(self) -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
+      :async:
+
+      Returns the most recent Event for each input
+      (which should be the current state)
+
+      :returns: The most recent event for each input
+      :rtype: Dict[Control, Event]
+
+
+   .. py:method:: register_control_callback(self, control: viam.components.input.input.Control, triggers: List[viam.components.input.input.EventType], function: Optional[viam.components.input.input.ControlFunction])
+
+      Register a function that will fire on given EventTypes for a given
+      Control
+
+      :param control: The control to register the function for
+      :type control: Control
+      :param triggers: The events that will
+                       trigger the function
+      :type triggers: List[EventType]
+      :param function: The function to run on
+                       specific triggers
+      :type function: ControlFunction
+
+
+   .. py:method:: trigger_event(self, event: viam.components.input.input.Event)
+      :async:
+
+      Directly send an Event (such as a button press) from external code
+
+      :param event: The event to trigger
+      :type event: Event
+
+
+   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+

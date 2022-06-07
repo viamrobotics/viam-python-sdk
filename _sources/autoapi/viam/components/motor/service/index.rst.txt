@@ -1,0 +1,63 @@
+:py:mod:`viam.components.motor.service`
+=======================================
+
+.. py:module:: viam.components.motor.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.motor.service.MotorService
+
+
+
+
+.. py:class:: MotorService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for a Motor
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: SetPower(self, stream: grpclib.server.Stream[viam.proto.api.component.motor.SetPowerRequest, viam.proto.api.component.motor.SetPowerResponse]) -> None
+      :async:
+
+
+   .. py:method:: GoFor(self, stream: grpclib.server.Stream[viam.proto.api.component.motor.GoForRequest, viam.proto.api.component.motor.GoForResponse]) -> None
+      :async:
+
+
+   .. py:method:: GoTo(self, stream: grpclib.server.Stream[viam.proto.api.component.motor.GoToRequest, viam.proto.api.component.motor.GoToResponse]) -> None
+      :async:
+
+
+   .. py:method:: ResetZeroPosition(self, stream: grpclib.server.Stream[viam.proto.api.component.motor.ResetZeroPositionRequest, viam.proto.api.component.motor.ResetZeroPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPosition(self, stream: grpclib.server.Stream[viam.proto.api.component.motor.GetPositionRequest, viam.proto.api.component.motor.GetPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetFeatures(self, stream: grpclib.server.Stream[viam.proto.api.component.motor.GetFeaturesRequest, viam.proto.api.component.motor.GetFeaturesResponse]) -> None
+      :async:
+
+
+   .. py:method:: Stop(self, stream: grpclib.server.Stream[viam.proto.api.component.motor.StopRequest, viam.proto.api.component.motor.StopResponse]) -> None
+      :async:
+
+
+   .. py:method:: IsPowered(self, stream: grpclib.server.Stream[viam.proto.api.component.motor.IsPoweredRequest, viam.proto.api.component.motor.IsPoweredResponse]) -> None
+      :async:
+
+
+
