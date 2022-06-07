@@ -20,22 +20,20 @@ jobs:
       - uses: arduino/setup-protoc@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: r-lib/actions/setup-pandoc@v2
-        with:
-          pandoc-version: '2.18'
 
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install --no-cache-dir -r etc/requirements.txt
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install package
+        run: poetry install
 
       - name: Generate buf
-        run: make buf
+        run: poetry run make buf
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
 
       - name: Generate better imports
-        run: make better_imports
+        run: poetry run make better_imports
 
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3

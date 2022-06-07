@@ -23,10 +23,11 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install --no-cache-dir -r etc/requirements.txt
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install package
+        run: poetry install
 
       - name: Test
-        run: make test
+        run: poetry run make test

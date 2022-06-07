@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'viam/**'
-      - 'docs/source/**'
+      - 'src/viam/**'
+      - 'docs/**'
       - 'README.md'
     branches: [ main ]
 
@@ -16,32 +16,29 @@ jobs:
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
-      - uses: r-lib/actions/setup-pandoc@v2
-        with:
-          pandoc-version: '2.18'
-
       - name: Checkout Push/Workflow Dispatch
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install --no-cache-dir -r etc/requirements.txt
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install package
+        run: poetry install
 
       - name: Generate docs
-        run: make documentation
+        run: poetry run make documentation
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: html-docs
-          path: docs/build/html/
+          path: docs/_build/html/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/build/html
+          publish_dir: docs/_build/html
           publish_branch: docs-gh_pages
           cname: python.viam.dev

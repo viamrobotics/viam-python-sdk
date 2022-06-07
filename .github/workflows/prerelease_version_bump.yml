@@ -15,12 +15,17 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install package
+        run: poetry install
+
       - name: Bump Version
         id: bump_version
         run: |
-          SDK_VERSION=$(python3 -c "import viam; v = viam.__version__.split('.'); v[-1] = str(int(v[-1])+1); print('.'.join(v))")
-          echo "__version__ = '$SDK_VERSION'" > viam/_version.py
-          echo "SDK_VERSION=$SDK_VERSION" >> $GITHUB_ENV
+          poetry version prerelease
+          echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
 
       - name: Commit + Push
         uses: EndBug/add-and-commit@v9.0.0

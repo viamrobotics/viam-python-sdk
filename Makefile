@@ -12,8 +12,8 @@ buf:
 better_imports:
 	python3 -m etc.generate_proto_import
 	@echo Add init files for specific documented protos
-	touch viam/proto/__init__.py
-	touch viam/proto/api/__init__.py
+	touch src/viam/proto/__init__.py
+	touch src/viam/proto/api/__init__.py
 
 test:
 	coverage run -m pytest && coverage html
