@@ -3,7 +3,8 @@ from typing import Any, Dict
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.component.gripper import (GrabRequest, GrabResponse,
-                                              GripperServiceStub, OpenRequest)
+                                              GripperServiceStub, OpenRequest,
+                                              StopRequest)
 
 from .gripper import Gripper
 
@@ -26,6 +27,10 @@ class GripperClient(Gripper):
         request = GrabRequest(name=self.name)
         response: GrabResponse = await self.client.Grab(request)
         return response.success
+
+    async def stop(self):
+        request = StopRequest(name=self.name)
+        await self.client.Stop(request)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)
