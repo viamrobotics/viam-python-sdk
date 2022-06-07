@@ -61,7 +61,7 @@ class GetEventsResponse(google.protobuf.message.Message):
 
     @property
     def events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]:
-        """Returns a list of the most recent event for each control on a given InputController. Effectively provides the current "state" of all 
+        """Returns a list of the most recent event for each control on a given InputController. Effectively provides the current "state" of all
         buttons/axes on a given input controller
         """
         pass

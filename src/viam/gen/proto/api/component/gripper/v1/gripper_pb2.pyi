@@ -51,3 +51,23 @@ class GrabResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
         ...
 global___GrabResponse = GrabResponse
+
+class StopRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
+    'Name of a gripper'
+
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___StopRequest = StopRequest
+
+class StopResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___StopResponse = StopResponse

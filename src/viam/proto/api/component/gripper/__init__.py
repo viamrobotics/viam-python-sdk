@@ -10,7 +10,9 @@ from .....gen.proto.api.component.gripper.v1.gripper_pb2 import (
     GrabRequest,
     GrabResponse,
     OpenRequest,
-    OpenResponse
+    OpenResponse,
+    StopRequest,
+    StopResponse
 )
 
 __all__ = [
@@ -20,4 +22,6 @@ __all__ = [
     'GrabResponse',
     'OpenRequest',
     'OpenResponse',
+    'StopRequest',
+    'StopResponse',
 ]
