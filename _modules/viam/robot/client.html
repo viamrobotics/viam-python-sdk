@@ -241,9 +241,7 @@
 <span class="sd">        This function should not be used except in specific cases. The method `Component.from_robot(...)` is the preferred method</span>
 <span class="sd">        for obtaining components.</span>
 
-<span class="sd">        ```python3</span>
-<span class="sd">        arm = Arm.from_robot(robot=robot, name=&#39;my_arm&#39;)</span>
-<span class="sd">        ```</span>
+<span class="sd">            `arm = Arm.from_robot(robot=robot, name=&#39;my_arm&#39;)`</span>
 
 <span class="sd">        Because this function returns a generic `ComponentBase` rather than the specific</span>
 <span class="sd">        component type, it will be necessary to cast the returned component to the desired component. This can be done using a few</span>
@@ -251,29 +249,22 @@
 
 <span class="sd">        - Assertion</span>
 
-<span class="sd">        ```python3</span>
-<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))</span>
-<span class="sd">            assert isinstance(arm, Arm)</span>
-<span class="sd">            end_pos = await arm.get_end_position()</span>
-<span class="sd">        ```</span>
+<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))\n</span>
+<span class="sd">            assert isinstance(arm, Arm)\n</span>
+<span class="sd">            end_pos = await arm.get_end_position()\n</span>
 
 <span class="sd">        - Explicit cast</span>
 
-<span class="sd">        ```python3</span>
-<span class="sd">            from typing import cast</span>
-
-<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))</span>
-<span class="sd">            arm = cast(Arm, arm)</span>
-<span class="sd">            end_pos = await arm.get_end_position()</span>
-<span class="sd">        ```</span>
+<span class="sd">            from typing import cast\n\n</span>
+<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))\n</span>
+<span class="sd">            arm = cast(Arm, arm)\n</span>
+<span class="sd">            end_pos = await arm.get_end_position()\n</span>
 
 <span class="sd">        - Declare type on variable assignment.</span>
 <span class="sd">          - Note: If using an IDE, a type error may be shown which can be ignored.</span>
 
-<span class="sd">        ```python3</span>
-<span class="sd">            arm: Arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))  # type: ignore</span>
-<span class="sd">            end_pos = await arm.get_end_position()</span>
-<span class="sd">        ```</span>
+<span class="sd">            arm: Arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))  # type: ignore\n</span>
+<span class="sd">            end_pos = await arm.get_end_position()\n</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (ResourceName): The component&#39;s name</span>
