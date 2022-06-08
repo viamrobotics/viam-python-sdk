@@ -157,9 +157,7 @@ class RobotClient:
         This function should not be used except in specific cases. The method `Component.from_robot(...)` is the preferred method
         for obtaining components.
 
-        ```python3
-        arm = Arm.from_robot(robot=robot, name='my_arm')
-        ```
+            `arm = Arm.from_robot(robot=robot, name='my_arm')`
 
         Because this function returns a generic `ComponentBase` rather than the specific
         component type, it will be necessary to cast the returned component to the desired component. This can be done using a few
@@ -167,29 +165,22 @@ class RobotClient:
 
         - Assertion
 
-        ```python3
-            arm = robot.get_component(Arm.get_resource_name('my_arm'))
-            assert isinstance(arm, Arm)
-            end_pos = await arm.get_end_position()
-        ```
+            arm = robot.get_component(Arm.get_resource_name('my_arm'))\n
+            assert isinstance(arm, Arm)\n
+            end_pos = await arm.get_end_position()\n
 
         - Explicit cast
 
-        ```python3
-            from typing import cast
-
-            arm = robot.get_component(Arm.get_resource_name('my_arm'))
-            arm = cast(Arm, arm)
-            end_pos = await arm.get_end_position()
-        ```
+            from typing import cast\n\n
+            arm = robot.get_component(Arm.get_resource_name('my_arm'))\n
+            arm = cast(Arm, arm)\n
+            end_pos = await arm.get_end_position()\n
 
         - Declare type on variable assignment.
           - Note: If using an IDE, a type error may be shown which can be ignored.
 
-        ```python3
-            arm: Arm = robot.get_component(Arm.get_resource_name('my_arm'))  # type: ignore
-            end_pos = await arm.get_end_position()
-        ```
+            arm: Arm = robot.get_component(Arm.get_resource_name('my_arm'))  # type: ignore\n
+            end_pos = await arm.get_end_position()\n
 
         Args:
             name (ResourceName): The component's name
