@@ -9,7 +9,6 @@ from .service import GantryService
 
 __all__ = [
     'Gantry',
-    'GantryClient',
 ]
 
 

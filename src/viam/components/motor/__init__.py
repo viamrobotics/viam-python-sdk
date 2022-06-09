@@ -9,7 +9,6 @@ from .service import MotorService
 
 __all__ = [
     'Motor',
-    'MotorClient',
 ]
 
 

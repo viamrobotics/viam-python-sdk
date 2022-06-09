@@ -6,7 +6,6 @@ from .service import PoseTrackerService
 
 __all__ = [
     'PoseTracker',
-    'PoseTrackerClient',
 ]
 
 Registry.register(

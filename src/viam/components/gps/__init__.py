@@ -7,7 +7,6 @@ from .service import GPSService
 __all__ = [
     'GPS',
     'LocalGPS',
-    'GPSClient',
 ]
 
 Registry.register(

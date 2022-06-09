@@ -8,7 +8,6 @@ from .service import BoardService
 
 __all__ = [
     'Board',
-    'BoardClient',
 ]
 
 

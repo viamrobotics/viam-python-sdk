@@ -6,7 +6,6 @@ from .service import BaseService
 
 __all__ = [
     'Base',
-    'BaseClient',
     'Vector3'
 ]
 

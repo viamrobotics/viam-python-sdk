@@ -6,7 +6,6 @@ from .service import CameraService
 
 __all__ = [
     'Camera',
-    'CameraClient',
 ]
 
 Registry.register(

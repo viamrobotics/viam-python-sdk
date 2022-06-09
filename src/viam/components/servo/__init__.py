@@ -10,7 +10,6 @@ from.service import ServoService
 
 __all__ = [
     'Servo',
-    'ServoClient',
 ]
 
 

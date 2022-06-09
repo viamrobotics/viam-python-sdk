@@ -6,7 +6,6 @@ from .service import GripperService
 
 __all__ = [
     'Gripper',
-    'GripperClient',
 ]
 
 Registry.register(

@@ -9,7 +9,6 @@ from .service import ArmService
 
 __all__ = [
     'Arm',
-    'ArmClient',
     'JointPositions',
     'Pose',
     'WorldState',

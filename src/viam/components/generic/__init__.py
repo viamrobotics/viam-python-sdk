@@ -6,7 +6,6 @@ from .service import GenericService
 
 __all__ = [
     'Generic',
-    'GenericClient',
 ]
 
 Registry.register(

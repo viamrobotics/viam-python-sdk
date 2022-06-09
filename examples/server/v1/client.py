@@ -1,9 +1,9 @@
 import asyncio
-from random import randint
 
+from viam.components.arm import Arm, Pose
+from viam.components.base import Base, Vector3
 from viam.components.camera import Camera
-from viam.components.imu import IMU
-from viam.components.servo import Servo
+from viam.components.motor import Motor
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 
@@ -18,26 +18,16 @@ async def client():
         print('\n#### STATUS ####')
         print(f'Robot status response received: {await robot.get_status()}')
 
-        print('\n#### IMU ####')
-        imu = IMU.from_robot(robot, 'imu0')
-        acceleration = await imu.read_acceleration()
-        print(f'IMU response received: acceleration is {acceleration}')
+        print('\n#### ARM ####')
+        arm = Arm.from_robot(robot, 'arm0')
+        await arm.move_to_position(Pose(x=0, y=1, z=2, o_x=3, o_y=4, o_z=5, theta=6))
+        position = await arm.get_end_position()
+        print(f'Arm position is: {position}')
 
-        angular_velocity = await imu.read_angular_velocity()
-        print(f'IMU response received: angular velocity is {angular_velocity}')
-
-        orientation = await imu.read_orientation()
-        print(f'IMU response received: orientation is {orientation}')
-
-        print('\n#### SERVO ####')
-        servo = Servo.from_robot(robot, 'servo0')
-
-        pos = randint(0, 180)
-        await servo.move(pos)
-        print(f'Response received: moved to position {pos}')
-
-        position_deg = await servo.get_position()
-        print(f'Response received: current position is {position_deg}')
+        print('\n#### BASE ####')
+        base = Base.from_robot(robot, 'base0')
+        await base.set_velocity(Vector3(x=0, y=1, z=2), Vector3(x=3, y=4, z=5))
+        await base.stop()
 
         print('\n#### CAMERA ####')
         camera = Camera.from_robot(robot, 'camera0')
@@ -46,6 +36,10 @@ async def client():
         await asyncio.sleep(1)
         img.close()
 
+        print('\n#### MOTOR ####')
+        motor = Motor.from_robot(robot, 'motor0')
+        await motor.go_for(rpm=100, revolutions=10)
+        await motor.stop()
 
 if __name__ == '__main__':
     asyncio.run(client())

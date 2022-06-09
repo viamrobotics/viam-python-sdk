@@ -6,7 +6,6 @@ from .service import SensorService
 
 __all__ = [
     'Sensor',
-    'SensorClient',
 ]
 
 Registry.register(
