@@ -79,15 +79,6 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Vector3.z">z</a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.base.BaseClient">BaseClient</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.BaseClient.move_straight">move_straight</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.BaseClient.spin">spin</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.BaseClient.set_power">set_power</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.BaseClient.set_velocity">set_velocity</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.BaseClient.stop">stop</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.BaseClient.do">do</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -169,9 +160,6 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.components.base.Vector3" title="viam.components.base.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.BaseClient" title="viam.components.base.BaseClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseClient</span></code></a></p></td>
-<td><p>gRPC client for the Base component.</p></td>
 </tr>
 </tbody>
 </table>
@@ -281,108 +269,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.components.base.Vector3.z">
 <span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.components.base.Vector3.z" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.base.BaseClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.</span></span><span class="sig-name descname"><span class="pre">BaseClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/base/client.html#BaseClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.BaseClient" title="Permalink to this definition"></a></dt>
-<dd><p>gRPC client for the Base component.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.BaseClient.move_straight">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/base/client.html#BaseClient.move_straight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.BaseClient.move_straight" title="Permalink to this definition"></a></dt>
-<dd><p>Move the base in a straight line the given <cite>distance</cite>, expressed in millimeters,
-at the given <cite>velocity</cite>, expressed in millimeters per second.
-When <cite>distance</cite> or <cite>velocity</cite> is 0, the base will stop.
-This method blocks until completed or cancelled</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>distance</strong> (<em>int</em>) – The distance (in millimeters) to move.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The velocity (in millimeters per second) to move.
-Negative implies backwards.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.BaseClient.spin">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/base/client.html#BaseClient.spin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.BaseClient.spin" title="Permalink to this definition"></a></dt>
-<dd><p>Spin the base in place <cite>angle</cite> degrees, at the given angular <cite>velocity</cite>,
-expressed in degrees per second.
-When <cite>velocity</cite> is 0, the base will stop.
-This method blocks until completed or cancelled</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to spin.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The angular velocity (in degrees per second).
-to spin. Negative implies backwards.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.BaseClient.set_power">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.Vector3" title="viam.proto.api.common.Vector3"><span class="pre">viam.proto.api.common.Vector3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.Vector3" title="viam.proto.api.common.Vector3"><span class="pre">viam.proto.api.common.Vector3</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/base/client.html#BaseClient.set_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.BaseClient.set_power" title="Permalink to this definition"></a></dt>
-<dd><p>Set the linear and angular velocity of the Base
-When <cite>linear</cite> is 0, the the base will spin.
-When <cite>angular</cite> is 0, the the base will move in a straight line.
-When both <cite>linear</cite> and <cite>angular</cite> are 0, the base will stop.
-This method blocks until completed or cancelled</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>linear</strong> (<a class="reference internal" href="#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The linear velocity</p></li>
-<li><p><strong>angular</strong> (<a class="reference internal" href="#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The angular velocity</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.BaseClient.set_velocity">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.Vector3" title="viam.proto.api.common.Vector3"><span class="pre">viam.proto.api.common.Vector3</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.Vector3" title="viam.proto.api.common.Vector3"><span class="pre">viam.proto.api.common.Vector3</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/base/client.html#BaseClient.set_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.BaseClient.set_velocity" title="Permalink to this definition"></a></dt>
-<dd><p>Set the linear and angular velocities of the base.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>linear</strong> (<a class="reference internal" href="#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – Velocity in mm/sec</p></li>
-<li><p><strong>angular</strong> (<a class="reference internal" href="#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – Velocity in deg/sec</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.BaseClient.stop">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/base/client.html#BaseClient.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.BaseClient.stop" title="Permalink to this definition"></a></dt>
-<dd><p>Stop the base.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.base.BaseClient.do">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/base/client.html#BaseClient.do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.BaseClient.do" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Result of the executed command</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Dict[str, Any]</p>
-</dd>
-</dl>
-</dd></dl>
 
 </dd></dl>
 

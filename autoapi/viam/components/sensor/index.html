@@ -76,11 +76,6 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.sensor.SensorClient">SensorClient</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.sensor.SensorClient.get_readings">get_readings</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.sensor.SensorClient.do">do</a></li>
-</ul>
-</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.sensor.Sensor">Sensor</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.sensor.Sensor.get_readings">get_readings</a></li>
 </ul>
@@ -150,54 +145,11 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.sensor.SensorClient" title="viam.components.sensor.SensorClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorClient</span></code></a></p></td>
-<td><p>gRPC client for the Sensor component.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.sensor.Sensor" title="viam.components.sensor.Sensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sensor</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.sensor.Sensor" title="viam.components.sensor.Sensor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sensor</span></code></a></p></td>
 <td><p>Sensor represents a physical sensing device that can provide measurement readings.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.sensor.SensorClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.sensor.</span></span><span class="sig-name descname"><span class="pre">SensorClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/sensor/client.html#SensorClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.sensor.SensorClient" title="Permalink to this definition"></a></dt>
-<dd><p>gRPC client for the Sensor component.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.sensor.SensorClient.get_readings">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_readings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/sensor/client.html#SensorClient.get_readings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.sensor.SensorClient.get_readings" title="Permalink to this definition"></a></dt>
-<dd><p>Obtain the measurements/data specific to this sensor.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The measurements. Can be of any type.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Dict]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.sensor.SensorClient.do">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/sensor/client.html#SensorClient.do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.sensor.SensorClient.do" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Result of the executed command</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Dict[str, Any]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.sensor.Sensor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.sensor.</span></span><span class="sig-name descname"><span class="pre">Sensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/sensor/sensor.html#Sensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.sensor.Sensor" title="Permalink to this definition"></a></dt>

@@ -71,13 +71,6 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.gripper.GripperClient">GripperClient</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.GripperClient.open">open</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.GripperClient.grab">grab</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.GripperClient.stop">stop</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.GripperClient.do">do</a></li>
-</ul>
-</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.gripper.Gripper">Gripper</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.Gripper.open">open</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.Gripper.grab">grab</a></li>
@@ -154,66 +147,11 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.gripper.GripperClient" title="viam.components.gripper.GripperClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GripperClient</span></code></a></p></td>
-<td><p>gRPC client for the Gripper component</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.gripper.Gripper" title="viam.components.gripper.Gripper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Gripper</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.gripper.Gripper" title="viam.components.gripper.Gripper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Gripper</span></code></a></p></td>
 <td><p>Gripper represents a physical robotic gripper.</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.gripper.GripperClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gripper.</span></span><span class="sig-name descname"><span class="pre">GripperClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/gripper/client.html#GripperClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.GripperClient" title="Permalink to this definition"></a></dt>
-<dd><p>gRPC client for the Gripper component</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gripper.GripperClient.open">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/gripper/client.html#GripperClient.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.GripperClient.open" title="Permalink to this definition"></a></dt>
-<dd><p>Open the gripper.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gripper.GripperClient.grab">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/gripper/client.html#GripperClient.grab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.GripperClient.grab" title="Permalink to this definition"></a></dt>
-<dd><p>Instruct the gripper to grab.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Indicates if the gripper grabbed something.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gripper.GripperClient.stop">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/gripper/client.html#GripperClient.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.GripperClient.stop" title="Permalink to this definition"></a></dt>
-<dd><p>Stop the gripper. It is assumed the gripper stops immediately.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.gripper.GripperClient.do">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/gripper/client.html#GripperClient.do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.GripperClient.do" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Result of the executed command</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Dict[str, Any]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.gripper.Gripper">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.gripper.</span></span><span class="sig-name descname"><span class="pre">Gripper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/gripper/gripper.html#Gripper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.Gripper" title="Permalink to this definition"></a></dt>

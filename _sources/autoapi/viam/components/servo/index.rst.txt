@@ -23,54 +23,8 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.servo.ServoClient
    viam.components.servo.Servo
 
-
-
-
-.. py:class:: ServoClient(name: str, channel: grpclib.client.Channel)
-
-
-
-   gRPC client for the Servo component.
-
-   .. py:method:: get_position(self) -> int
-      :async:
-
-      Get the current angle (degrees) of the servo.
-
-      :returns: The current angle of the servo in degrees.
-      :rtype: int
-
-
-   .. py:method:: move(self, angle: int)
-      :async:
-
-      Move the servo to the provided angle.
-
-      :param angle: The desired angle of the servo in degrees.
-      :type angle: int
-
-
-   .. py:method:: stop(self)
-      :async:
-
-      Stop the servo. It is assumed that the servo stops immediately.
-
-
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
-      :async:
-
-      Send/Receive arbitrary commands
-
-      :param command: The command to execute
-      :type command: Dict[str, Any]
-
-      :raises NotImplementedError: Raised if the component does not support arbitrary commands
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, Any]
 
 
 

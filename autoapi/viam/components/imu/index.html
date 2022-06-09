@@ -72,14 +72,6 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.imu.IMUClient">IMUClient</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.imu.IMUClient.read_acceleration">read_acceleration</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.imu.IMUClient.read_angular_velocity">read_angular_velocity</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.imu.IMUClient.read_orientation">read_orientation</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.imu.IMUClient.read_magnetometer">read_magnetometer</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.imu.IMUClient.do">do</a></li>
-</ul>
-</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.imu.IMU">IMU</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.imu.IMU.read_angular_velocity">read_angular_velocity</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.imu.IMU.read_orientation">read_orientation</a></li>
@@ -184,99 +176,26 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.imu.IMUClient" title="viam.components.imu.IMUClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IMUClient</span></code></a></p></td>
-<td><p>gRPC client for the IMU component.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.imu.IMU" title="viam.components.imu.IMU"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IMU</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.imu.IMU" title="viam.components.imu.IMU"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IMU</span></code></a></p></td>
 <td><p>IMU represents a physical IMU (inertial measurement unit).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.imu.Acceleration" title="viam.components.imu.Acceleration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Acceleration</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.imu.Acceleration" title="viam.components.imu.Acceleration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Acceleration</span></code></a></p></td>
 <td><p>Acceleration contains linear acceleration in mm/s^2 across x/y/z axes.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.imu.AngularVelocity" title="viam.components.imu.AngularVelocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AngularVelocity</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.imu.AngularVelocity" title="viam.components.imu.AngularVelocity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AngularVelocity</span></code></a></p></td>
 <td><p>AngularVelocity contains angular velocity in deg/s across x/y/z axes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.imu.EulerAngles" title="viam.components.imu.EulerAngles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EulerAngles</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.imu.EulerAngles" title="viam.components.imu.EulerAngles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EulerAngles</span></code></a></p></td>
 <td><p>EulerAngles are three angles used to represent the rotation of an object in 3D Euclidean space</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.imu.Magnetometer" title="viam.components.imu.Magnetometer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Magnetometer</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.imu.Magnetometer" title="viam.components.imu.Magnetometer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Magnetometer</span></code></a></p></td>
 <td><p>Magnetometer contains magnetic field readings in gauss x/y/z axes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.imu.Orientation" title="viam.components.imu.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.imu.Orientation" title="viam.components.imu.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
 <td><p>An object used to express the different parameterizations</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.imu.IMUClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.imu.</span></span><span class="sig-name descname"><span class="pre">IMUClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/imu/client.html#IMUClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.imu.IMUClient" title="Permalink to this definition"></a></dt>
-<dd><p>gRPC client for the IMU component.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.imu.IMUClient.read_acceleration">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.components.imu.imu.Acceleration</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/imu/client.html#IMUClient.read_acceleration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.imu.IMUClient.read_acceleration" title="Permalink to this definition"></a></dt>
-<dd><p>Return the acceleration of the IMU.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Acceleration</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.imu.IMUClient.read_angular_velocity">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_angular_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.components.imu.imu.AngularVelocity</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/imu/client.html#IMUClient.read_angular_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.imu.IMUClient.read_angular_velocity" title="Permalink to this definition"></a></dt>
-<dd><p>Return the angular velocity of the IMU.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>AngularVelocity, in degrees per second.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.imu.IMUClient.read_orientation">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_orientation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="imu/index.html#viam.components.imu.imu.Orientation" title="viam.components.imu.imu.Orientation"><span class="pre">viam.components.imu.imu.Orientation</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/imu/client.html#IMUClient.read_orientation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.imu.IMUClient.read_orientation" title="Permalink to this definition"></a></dt>
-<dd><p>Return the orientation of the IMU.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Orientation, represented in EulerAngles.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.imu.IMUClient.read_magnetometer">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_magnetometer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.components.imu.imu.Magnetometer</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/imu/client.html#IMUClient.read_magnetometer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.imu.IMUClient.read_magnetometer" title="Permalink to this definition"></a></dt>
-<dd><p>Return the most recent reading from the magnetometer of the IMU.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Magnetometer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.imu.IMUClient.do">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/imu/client.html#IMUClient.do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.imu.IMUClient.do" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Result of the executed command</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Dict[str, Any]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.imu.IMU">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.imu.</span></span><span class="sig-name descname"><span class="pre">IMU</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/imu/imu.html#IMU"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.imu.IMU" title="Permalink to this definition"></a></dt>

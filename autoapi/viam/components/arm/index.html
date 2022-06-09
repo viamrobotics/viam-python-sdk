@@ -91,15 +91,6 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.WorldState.transforms">transforms</a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.ArmClient">ArmClient</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.ArmClient.get_end_position">get_end_position</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.ArmClient.move_to_position">move_to_position</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.ArmClient.get_joint_positions">get_joint_positions</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.ArmClient.move_to_joint_positions">move_to_joint_positions</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.ArmClient.stop">stop</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.ArmClient.do">do</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -188,9 +179,6 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.components.arm.WorldState" title="viam.components.arm.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
 <td><p>WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.arm.ArmClient" title="viam.components.arm.ArmClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArmClient</span></code></a></p></td>
-<td><p>gRPC client for an Arm component.</p></td>
 </tr>
 </tbody>
 </table>
@@ -344,86 +332,6 @@ given reference frame and a new target reference frame.</p>
 <dt class="sig sig-object py" id="viam.components.arm.WorldState.transforms">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transforms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Transform</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.arm.WorldState.transforms" title="Permalink to this definition"></a></dt>
 <dd><p>a list of Transforms needed to transform a pose from one reference frame to another; this field is optional</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.arm.ArmClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.arm.</span></span><span class="sig-name descname"><span class="pre">ArmClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/arm/client.html#ArmClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.ArmClient" title="Permalink to this definition"></a></dt>
-<dd><p>gRPC client for an Arm component.</p>
-<p>Used to communicate with an existing <cite>Arm</cite> implementation over gRPC.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.arm.ArmClient.get_end_position">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_end_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><span class="pre">viam.proto.api.common.Pose</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/arm/client.html#ArmClient.get_end_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.ArmClient.get_end_position" title="Permalink to this definition"></a></dt>
-<dd><p>Get the current position of the end of the arm expressed as a Pose.</p>
-<p>Returns: The location and orientation of the arm described as a Pose.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.arm.ArmClient.move_to_position">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><span class="pre">viam.proto.api.common.Pose</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><span class="pre">viam.proto.api.common.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/arm/client.html#ArmClient.move_to_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.ArmClient.move_to_position" title="Permalink to this definition"></a></dt>
-<dd><p>Move the end of the arm to the Pose specified in <cite>pose</cite>.
-When obstacles are specified in <cite>world_state</cite>, the motion plan of the arm will avoid them.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pose</strong> (<a class="reference internal" href="#viam.components.arm.Pose" title="viam.components.arm.Pose"><em>Pose</em></a>) – The destination Pose for the arm.</p></li>
-<li><p><strong>world_state</strong> (<a class="reference internal" href="#viam.components.arm.WorldState" title="viam.components.arm.WorldState"><em>WorldState</em></a>) – The obstacles for the arm to avoid on its way to <cite>pose</cite>.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.arm.ArmClient.get_joint_positions">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_joint_positions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/api/component/arm/index.html#viam.proto.api.component.arm.JointPositions" title="viam.proto.api.component.arm.JointPositions"><span class="pre">viam.proto.api.component.arm.JointPositions</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/arm/client.html#ArmClient.get_joint_positions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.ArmClient.get_joint_positions" title="Permalink to this definition"></a></dt>
-<dd><p>Get the JointPositions representing the current position of the arm.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The current JointPositions for the arm.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions">JointPositions</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.arm.ArmClient.move_to_joint_positions">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_to_joint_positions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/component/arm/index.html#viam.proto.api.component.arm.JointPositions" title="viam.proto.api.component.arm.JointPositions"><span class="pre">viam.proto.api.component.arm.JointPositions</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/arm/client.html#ArmClient.move_to_joint_positions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.ArmClient.move_to_joint_positions" title="Permalink to this definition"></a></dt>
-<dd><p>Move each joint on the arm to the corresponding angle specified in <cite>positions</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>positions</strong> (<a class="reference internal" href="#viam.components.arm.JointPositions" title="viam.components.arm.JointPositions"><em>JointPositions</em></a>) – The destination <cite>JointPositions</cite> for the arm.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.arm.ArmClient.stop">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/arm/client.html#ArmClient.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.ArmClient.stop" title="Permalink to this definition"></a></dt>
-<dd><p>Stop all motion of the arm. It is assumed that the arm stops immediately.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.arm.ArmClient.do">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/arm/client.html#ArmClient.do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.ArmClient.do" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Result of the executed command</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Dict[str, Any]</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>

@@ -23,30 +23,8 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.generic.GenericClient
    viam.components.generic.Generic
 
-
-
-
-.. py:class:: GenericClient(name: str, channel: grpclib.client.Channel)
-
-
-
-   gRPC client for the Generic component.
-
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
-      :async:
-
-      Send/Receive arbitrary commands
-
-      :param command: The command to execute
-      :type command: Dict[str, Any]
-
-      :raises NotImplementedError: Raised if the component does not support arbitrary commands
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, Any]
 
 
 

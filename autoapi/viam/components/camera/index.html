@@ -72,12 +72,6 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_point_cloud">get_point_cloud</a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.CameraClient">CameraClient</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.CameraClient.get_frame">get_frame</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.CameraClient.get_point_cloud">get_point_cloud</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.CameraClient.do">do</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -155,9 +149,6 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.Camera" title="viam.components.camera.Camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Camera</span></code></a></p></td>
 <td><p>Camera represents any physical hardware that can capture frames.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.CameraClient" title="viam.components.camera.CameraClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraClient</span></code></a></p></td>
-<td><p>gRPC client for the Camera component</p></td>
-</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -197,66 +188,6 @@ str: The mimetype of the pointcloud (e.g. PCD).</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>bytes</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.camera.CameraClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.camera.</span></span><span class="sig-name descname"><span class="pre">CameraClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/camera/client.html#CameraClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.CameraClient" title="Permalink to this definition"></a></dt>
-<dd><p>gRPC client for the Camera component</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.camera.CameraClient.get_frame">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PIL.Image.Image</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/client.html#CameraClient.get_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.CameraClient.get_frame" title="Permalink to this definition"></a></dt>
-<dd><p>Get the next frame from the camera as an Image.
-Be sure to close the image when finished.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The frame.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Image</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.camera.CameraClient.get_point_cloud">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_point_cloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/client.html#CameraClient.get_point_cloud"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.CameraClient.get_point_cloud" title="Permalink to this definition"></a></dt>
-<dd><p>Get the next point cloud from the camera. This will be
-returned as bytes with a mimetype describing
-the structure of the data. The consumer of this call
-should encode the bytes into the formatted suggested
-by the mimetype.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The pointcloud data.
-str: The mimetype of the pointcloud (e.g. PCD).</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>bytes</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.camera.CameraClient.do">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/client.html#CameraClient.do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.CameraClient.do" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Result of the executed command</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Dict[str, Any]</p>
 </dd>
 </dl>
 </dd></dl>

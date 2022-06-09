@@ -23,7 +23,6 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.imu.IMUClient
    viam.components.imu.IMU
    viam.components.imu.Acceleration
    viam.components.imu.AngularVelocity
@@ -31,59 +30,6 @@ Classes
    viam.components.imu.Magnetometer
    viam.components.imu.Orientation
 
-
-
-
-.. py:class:: IMUClient(name: str, channel: grpclib.client.Channel)
-
-
-
-   gRPC client for the IMU component.
-
-   .. py:method:: read_acceleration(self) -> viam.components.imu.imu.Acceleration
-      :async:
-
-      Return the acceleration of the IMU.
-
-      :returns: Acceleration
-
-
-   .. py:method:: read_angular_velocity(self) -> viam.components.imu.imu.AngularVelocity
-      :async:
-
-      Return the angular velocity of the IMU.
-
-      :returns: AngularVelocity, in degrees per second.
-
-
-   .. py:method:: read_orientation(self) -> viam.components.imu.imu.Orientation
-      :async:
-
-      Return the orientation of the IMU.
-
-      :returns: Orientation, represented in EulerAngles.
-
-
-   .. py:method:: read_magnetometer(self) -> viam.components.imu.imu.Magnetometer
-      :async:
-
-      Return the most recent reading from the magnetometer of the IMU.
-
-      :returns: Magnetometer
-
-
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
-      :async:
-
-      Send/Receive arbitrary commands
-
-      :param command: The command to execute
-      :type command: Dict[str, Any]
-
-      :raises NotImplementedError: Raised if the component does not support arbitrary commands
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, Any]
 
 
 

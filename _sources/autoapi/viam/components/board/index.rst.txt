@@ -24,7 +24,6 @@ Classes
 .. autoapisummary::
 
    viam.components.board.Board
-   viam.components.board.BoardClient
 
 
 
@@ -269,99 +268,6 @@ Classes
 
       :returns: The attributes.
       :rtype: Attributes
-
-
-
-.. py:class:: BoardClient(name: str, channel: grpclib.client.Channel)
-
-
-
-   gRPC client for the Board component.
-
-   .. py:method:: analog_reader_by_name(self, name: str) -> viam.components.board.board.Board.AnalogReader
-      :async:
-
-      Get an AnalogReader by `name`.
-
-      :param name: Name of the analog reader to be retrieved.
-      :type name: str
-
-      :returns: The analog reader.
-      :rtype: AnalogReader
-
-
-   .. py:method:: digital_interrupt_by_name(self, name: str) -> viam.components.board.board.Board.DigitalInterrupt
-      :async:
-
-      Get a DigitalInterrupt by `name`.
-
-      :param name: Name of the digital interrupt.
-      :type name: str
-
-      :returns: the digital interrupt.
-      :rtype: DigitalInterrupt
-
-
-   .. py:method:: gpio_pin_by_name(self, name: str) -> viam.components.board.board.Board.GPIOPin
-      :async:
-
-      Get a GPIO Pin by `name`.
-
-      :param name: Name of the GPIO pin.
-      :type name: str
-
-      :returns: the pin.
-      :rtype: GPIOPin
-
-
-   .. py:method:: analog_reader_names(self) -> List[str]
-      :async:
-
-      Get the names of all known analog readers.
-
-      :returns: The names of the analog readers..
-      :rtype: List[str]
-
-
-   .. py:method:: digital_interrupt_names(self) -> List[str]
-      :async:
-
-      Get the names of all known digital interrupts.
-
-      :returns: The names of the digital interrupts.
-      :rtype: List[str]
-
-
-   .. py:method:: status(self) -> viam.proto.api.common.BoardStatus
-      :async:
-
-      Return the current status of the board.
-
-      :returns: the status.
-      :rtype: BoardStatus
-
-
-   .. py:method:: model_attributes(self) -> viam.components.board.board.Board.Attributes
-      :async:
-
-      Get the attributes related to the model of this board.
-
-      :returns: The attributes.
-      :rtype: Attributes
-
-
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
-      :async:
-
-      Send/Receive arbitrary commands
-
-      :param command: The command to execute
-      :type command: Dict[str, Any]
-
-      :raises NotImplementedError: Raised if the component does not support arbitrary commands
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, Any]
 
 
 

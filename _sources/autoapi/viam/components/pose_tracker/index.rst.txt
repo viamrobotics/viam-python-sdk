@@ -23,41 +23,8 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.pose_tracker.PoseTrackerClient
    viam.components.pose_tracker.PoseTracker
 
-
-
-
-.. py:class:: PoseTrackerClient(name: str, channel: grpclib.client.Channel)
-
-
-
-   gRPC client for the PoseTracker component.
-
-   .. py:method:: get_poses(self, body_names: List[str]) -> Dict[str, viam.proto.api.common.PoseInFrame]
-      :async:
-
-      Returns the current pose of each body tracked by the pose tracker.
-
-      :param body_names: Names of the bodies whose poses are being
-                         requested. In the event this parameter is not supplied or is
-                         an empty list, all available poses are returned.
-      :type body_names: List[str]
-
-
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
-      :async:
-
-      Send/Receive arbitrary commands
-
-      :param command: The command to execute
-      :type command: Dict[str, Any]
-
-      :raises NotImplementedError: Raised if the component does not support arbitrary commands
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, Any]
 
 
 

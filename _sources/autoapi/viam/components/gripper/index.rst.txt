@@ -23,51 +23,8 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.gripper.GripperClient
    viam.components.gripper.Gripper
 
-
-
-
-.. py:class:: GripperClient(name: str, channel: grpclib.client.Channel)
-
-
-
-   gRPC client for the Gripper component
-
-   .. py:method:: open(self)
-      :async:
-
-      Open the gripper.
-
-
-   .. py:method:: grab(self) -> bool
-      :async:
-
-      Instruct the gripper to grab.
-
-      :returns: Indicates if the gripper grabbed something.
-      :rtype: bool
-
-
-   .. py:method:: stop(self)
-      :async:
-
-      Stop the gripper. It is assumed the gripper stops immediately.
-
-
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
-      :async:
-
-      Send/Receive arbitrary commands
-
-      :param command: The command to execute
-      :type command: Dict[str, Any]
-
-      :raises NotImplementedError: Raised if the component does not support arbitrary commands
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, Any]
 
 
 
