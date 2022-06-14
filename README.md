@@ -22,7 +22,7 @@ Because the SDK is under active development, we suggest that you upgrade the pac
 `pip install -U git+https://YOUR_ACCESS_TOKEN@github.com/viamrobotics/python-sdk.git`
 
 ## Easy Setup via [app.viam.com](app.viam.com)
-The easiest way to get started writing a client application (that is, one which is not directly responsible for interacting hardware,
+The easiest way to get started writing a client application (that is, one which is not directly responsible for interacting with hardware,
 but rather calls into the viam-server to actuate hardware or read from sensors), is to navigate to the robot page on [app.viam.com](app.viam.com),
 select the `CONNECT` tab, and copy the boilerplate code from the section labeled `Python SDK`.
 
