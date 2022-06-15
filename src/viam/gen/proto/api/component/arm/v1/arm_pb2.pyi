@@ -187,6 +187,7 @@ class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     END_POSITION_FIELD_NUMBER: builtins.int
     JOINT_POSITIONS_FIELD_NUMBER: builtins.int
+    IS_MOVING_FIELD_NUMBER: builtins.int
 
     @property
     def end_position(self) -> proto.api.common.v1.common_pb2.Pose:
@@ -195,13 +196,14 @@ class Status(google.protobuf.message.Message):
     @property
     def joint_positions(self) -> global___JointPositions:
         ...
+    is_moving: builtins.bool
 
-    def __init__(self, *, end_position: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., joint_positions: typing.Optional[global___JointPositions]=...) -> None:
+    def __init__(self, *, end_position: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., joint_positions: typing.Optional[global___JointPositions]=..., is_moving: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['end_position', b'end_position', 'joint_positions', b'joint_positions']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['end_position', b'end_position', 'joint_positions', b'joint_positions']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['end_position', b'end_position', 'is_moving', b'is_moving', 'joint_positions', b'joint_positions']) -> None:
         ...
 global___Status = Status

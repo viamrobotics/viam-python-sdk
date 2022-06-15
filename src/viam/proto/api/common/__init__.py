@@ -3,6 +3,7 @@
 Do not edit manually!
 '''
 from ....gen.proto.api.common.v1.common_pb2 import (
+    ActuatorStatus,
     AnalogStatus,
     BoardStatus,
     DigitalInterruptStatus,
@@ -21,6 +22,7 @@ from ....gen.proto.api.common.v1.common_pb2 import (
 )
 
 __all__ = [
+    'ActuatorStatus',
     'AnalogStatus',
     'BoardStatus',
     'DigitalInterruptStatus',

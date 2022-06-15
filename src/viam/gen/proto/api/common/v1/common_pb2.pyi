@@ -362,3 +362,16 @@ class WorldState(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles', 'transforms', b'transforms']) -> None:
         ...
 global___WorldState = WorldState
+
+class ActuatorStatus(google.protobuf.message.Message):
+    """ActuatorStatus is a generic status for resources that only need to return actuator status."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IS_MOVING_FIELD_NUMBER: builtins.int
+    is_moving: builtins.bool
+
+    def __init__(self, *, is_moving: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
+        ...
+global___ActuatorStatus = ActuatorStatus
