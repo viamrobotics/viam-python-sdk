@@ -18,6 +18,7 @@ Classes
 
 .. autoapisummary::
 
+   viam.proto.api.common.ActuatorStatus
    viam.proto.api.common.AnalogStatus
    viam.proto.api.common.BoardStatus
    viam.proto.api.common.DigitalInterruptStatus
@@ -35,6 +36,18 @@ Classes
    viam.proto.api.common.WorldState
 
 
+
+
+.. py:class:: ActuatorStatus(*, is_moving: bool = ...)
+
+
+
+   ActuatorStatus is a generic status for resources that only need to return actuator status.
+
+   .. py:attribute:: is_moving
+      :annotation: :bool
+
+      
 
 
 .. py:class:: AnalogStatus(*, value: int = ...)

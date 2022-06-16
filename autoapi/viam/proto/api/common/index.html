@@ -64,6 +64,10 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api.common</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.common.ActuatorStatus">ActuatorStatus</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.ActuatorStatus.is_moving">is_moving</a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.common.AnalogStatus">AnalogStatus</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.AnalogStatus.value">value</a></li>
 </ul>
@@ -223,53 +227,67 @@ Do not edit manually!</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.AnalogStatus" title="viam.proto.api.common.AnalogStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnalogStatus</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.ActuatorStatus" title="viam.proto.api.common.ActuatorStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActuatorStatus</span></code></a></p></td>
+<td><p>ActuatorStatus is a generic status for resources that only need to return actuator status.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.AnalogStatus" title="viam.proto.api.common.AnalogStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnalogStatus</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.BoardStatus" title="viam.proto.api.common.BoardStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoardStatus</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.BoardStatus" title="viam.proto.api.common.BoardStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoardStatus</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.DigitalInterruptStatus" title="viam.proto.api.common.DigitalInterruptStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DigitalInterruptStatus</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.DigitalInterruptStatus" title="viam.proto.api.common.DigitalInterruptStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DigitalInterruptStatus</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.GeoPoint" title="viam.proto.api.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.GeoPoint" title="viam.proto.api.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.GeometriesInFrame" title="viam.proto.api.common.GeometriesInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.GeometriesInFrame" title="viam.proto.api.common.GeometriesInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a></p></td>
 <td><p>GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Geometry" title="viam.proto.api.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Geometry" title="viam.proto.api.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
 <td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.PointCloudObject" title="viam.proto.api.common.PointCloudObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.PointCloudObject" title="viam.proto.api.common.PointCloudObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a></p></td>
 <td><p>PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
 <td><p>Pose is a combination of location and orientation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
 <td><p>PoseInFrame contains a pose and the and the reference frame in which it was observed</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.RectangularPrism" title="viam.proto.api.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.RectangularPrism" title="viam.proto.api.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Sphere" title="viam.proto.api.common.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Sphere" title="viam.proto.api.common.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Transform" title="viam.proto.api.common.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Transform" title="viam.proto.api.common.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a></p></td>
 <td><p>Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Vector3" title="viam.proto.api.common.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Vector3" title="viam.proto.api.common.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
 <td><p>WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.common.ActuatorStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">ActuatorStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_moving</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.common.ActuatorStatus" title="Permalink to this definition"></a></dt>
+<dd><p>ActuatorStatus is a generic status for resources that only need to return actuator status.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.ActuatorStatus.is_moving">
+<span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.api.common.ActuatorStatus.is_moving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.common.AnalogStatus">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">AnalogStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.common.AnalogStatus" title="Permalink to this definition"></a></dt>
