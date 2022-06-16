@@ -124,6 +124,7 @@ class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITIONS_MM_FIELD_NUMBER: builtins.int
     LENGTHS_MM_FIELD_NUMBER: builtins.int
+    IS_MOVING_FIELD_NUMBER: builtins.int
 
     @property
     def positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
@@ -132,10 +133,11 @@ class Status(google.protobuf.message.Message):
     @property
     def lengths_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         ...
+    is_moving: builtins.bool
 
-    def __init__(self, *, positions_mm: typing.Optional[typing.Iterable[builtins.float]]=..., lengths_mm: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
+    def __init__(self, *, positions_mm: typing.Optional[typing.Iterable[builtins.float]]=..., lengths_mm: typing.Optional[typing.Iterable[builtins.float]]=..., is_moving: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['lengths_mm', b'lengths_mm', 'positions_mm', b'positions_mm']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving', 'lengths_mm', b'lengths_mm', 'positions_mm', b'positions_mm']) -> None:
         ...
 global___Status = Status
