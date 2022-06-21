@@ -141,6 +141,48 @@ class ResourceNamesResponse(google.protobuf.message.Message):
         ...
 global___ResourceNamesResponse = ResourceNamesResponse
 
+class ResourceRPCSubtype(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SUBTYPE_FIELD_NUMBER: builtins.int
+    PROTO_SERVICE_FIELD_NUMBER: builtins.int
+
+    @property
+    def subtype(self) -> proto.api.common.v1.common_pb2.ResourceName:
+        ...
+    proto_service: typing.Text
+
+    def __init__(self, *, subtype: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., proto_service: typing.Text=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['subtype', b'subtype']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['proto_service', b'proto_service', 'subtype', b'subtype']) -> None:
+        ...
+global___ResourceRPCSubtype = ResourceRPCSubtype
+
+class ResourceRPCSubtypesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ResourceRPCSubtypesRequest = ResourceRPCSubtypesRequest
+
+class ResourceRPCSubtypesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOURCE_RPC_SUBTYPES_FIELD_NUMBER: builtins.int
+
+    @property
+    def resource_rpc_subtypes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceRPCSubtype]:
+        ...
+
+    def __init__(self, *, resource_rpc_subtypes: typing.Optional[typing.Iterable[global___ResourceRPCSubtype]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['resource_rpc_subtypes', b'resource_rpc_subtypes']) -> None:
+        ...
+global___ResourceRPCSubtypesResponse = ResourceRPCSubtypesResponse
+
 class Operation(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int

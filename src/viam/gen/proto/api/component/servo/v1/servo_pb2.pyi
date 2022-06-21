@@ -81,11 +81,13 @@ global___StopResponse = StopResponse
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITION_DEG_FIELD_NUMBER: builtins.int
+    IS_MOVING_FIELD_NUMBER: builtins.int
     position_deg: builtins.int
+    is_moving: builtins.bool
 
-    def __init__(self, *, position_deg: builtins.int=...) -> None:
+    def __init__(self, *, position_deg: builtins.int=..., is_moving: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['position_deg', b'position_deg']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving', 'position_deg', b'position_deg']) -> None:
         ...
 global___Status = Status
