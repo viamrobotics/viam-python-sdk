@@ -6,6 +6,7 @@ example.ipynb
 changelog.md
 contributing.md
 conduct.md
+Full Viam Docs <https://docs.viam.com>
 ```
 
 ```{toctree}
