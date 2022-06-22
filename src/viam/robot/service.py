@@ -78,43 +78,40 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
             await asyncio.sleep(interval)
 
     async def GetOperations(self, stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
-        raise GRPCError(
-            GRPCStatus.UNIMPLEMENTED,
-            "method GetOperations not implemented"
-        )
+        pass
 
     async def ResourceRPCSubtypes(self, stream: Stream[ResourceRPCSubtypesRequest, ResourceRPCSubtypesResponse]) -> None:
         raise GRPCError(
             GRPCStatus.UNIMPLEMENTED,
-            "method ResourceRPCSubtypes not implemented"
+            "Method ResourceRPCSubtypes not implemented."
         )
 
     async def CancelOperation(self, stream: Stream[CancelOperationRequest, CancelOperationResponse]) -> None:
         raise GRPCError(
             GRPCStatus.UNIMPLEMENTED,
-            "method CancelOperation not implemented"
+            "Method CancelOperation not implemented."
         )
 
     async def BlockForOperation(self, stream: Stream[BlockForOperationRequest, BlockForOperationResponse]) -> None:
         raise GRPCError(
             GRPCStatus.UNIMPLEMENTED,
-            "method BlockForOperation not implemented"
+            "Method BlockForOperation not implemented."
         )
 
     async def FrameSystemConfig(self, stream: Stream[FrameSystemConfigRequest, FrameSystemConfigResponse]) -> None:
         raise GRPCError(
             GRPCStatus.UNIMPLEMENTED,
-            "method FrameSystemConfig not implemented"
+            "Method FrameSystemConfig not implemented."
         )
 
     async def TransformPose(self, stream: Stream[TransformPoseRequest, TransformPoseResponse]) -> None:
         raise GRPCError(
             GRPCStatus.UNIMPLEMENTED,
-            "method TransformPose not implemented"
+            "Method TransformPose not implemented."
         )
 
     async def DiscoverComponents(self, stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
         raise GRPCError(
             GRPCStatus.UNIMPLEMENTED,
-            "method DiscoverComponents not implemented"
+            "Method DiscoverComponents not implemented."
         )
