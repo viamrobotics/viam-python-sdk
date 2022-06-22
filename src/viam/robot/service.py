@@ -2,6 +2,7 @@ import asyncio
 from typing import Iterable, List
 
 from grpclib.server import Stream
+from grpclib import GRPCError, Status as GRPCStatus
 from viam.components.service_base import ComponentServiceBase
 from viam.proto.api.common import ResourceName
 from viam.proto.api.robot import (BlockForOperationRequest,
@@ -15,6 +16,7 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   GetOperationsRequest, GetOperationsResponse,
                                   GetStatusRequest, GetStatusResponse,
                                   ResourceNamesRequest, ResourceNamesResponse,
+                                  ResourceRPCSubtypesRequest, ResourceRPCSubtypesResponse,
                                   RobotServiceBase, Status,
                                   StreamStatusRequest, StreamStatusResponse,
                                   TransformPoseRequest, TransformPoseResponse)
@@ -76,19 +78,43 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
             await asyncio.sleep(interval)
 
     async def GetOperations(self, stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
-        pass
+        raise GRPCError(
+            GRPCStatus.UNIMPLEMENTED,
+            "method GetOperations not implemented"
+        )
+
+    async def ResourceRPCSubtypes(self, stream: Stream[ResourceRPCSubtypesRequest, ResourceRPCSubtypesResponse]) -> None:
+        raise GRPCError(
+            GRPCStatus.UNIMPLEMENTED,
+            "method ResourceRPCSubtypes not implemented"
+        )
 
     async def CancelOperation(self, stream: Stream[CancelOperationRequest, CancelOperationResponse]) -> None:
-        pass
+        raise GRPCError(
+            GRPCStatus.UNIMPLEMENTED,
+            "method CancelOperation not implemented"
+        )
 
     async def BlockForOperation(self, stream: Stream[BlockForOperationRequest, BlockForOperationResponse]) -> None:
-        pass
+        raise GRPCError(
+            GRPCStatus.UNIMPLEMENTED,
+            "method BlockForOperation not implemented"
+        )
 
     async def FrameSystemConfig(self, stream: Stream[FrameSystemConfigRequest, FrameSystemConfigResponse]) -> None:
-        pass
+        raise GRPCError(
+            GRPCStatus.UNIMPLEMENTED,
+            "method FrameSystemConfig not implemented"
+        )
 
     async def TransformPose(self, stream: Stream[TransformPoseRequest, TransformPoseResponse]) -> None:
-        pass
+        raise GRPCError(
+            GRPCStatus.UNIMPLEMENTED,
+            "method TransformPose not implemented"
+        )
 
     async def DiscoverComponents(self, stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
-        pass
+        raise GRPCError(
+            GRPCStatus.UNIMPLEMENTED,
+            "method DiscoverComponents not implemented"
+        )
