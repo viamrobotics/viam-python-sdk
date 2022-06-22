@@ -69,6 +69,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase">RobotServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.GetOperations">GetOperations</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.ResourceNames">ResourceNames</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.ResourceRPCSubtypes">ResourceRPCSubtypes</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.CancelOperation">CancelOperation</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.BlockForOperation">BlockForOperation</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.DiscoverComponents">DiscoverComponents</a></li>
@@ -148,6 +149,17 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.ResourceNamesRequest">ResourceNamesRequest</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.ResourceNamesResponse">ResourceNamesResponse</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.ResourceNamesResponse.resources">resources</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtype">ResourceRPCSubtype</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtype.proto_service">proto_service</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtype.subtype">subtype</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtype.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtypesRequest">ResourceRPCSubtypesRequest</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtypesResponse">ResourceRPCSubtypesResponse</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes">resource_rpc_subtypes</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.Status">Status</a><ul>
@@ -296,19 +308,28 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.ResourceNamesResponse" title="viam.proto.api.robot.ResourceNamesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceNamesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.Status" title="viam.proto.api.robot.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtype" title="viam.proto.api.robot.ResourceRPCSubtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCSubtype</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.StreamStatusRequest" title="viam.proto.api.robot.StreamStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtypesRequest" title="viam.proto.api.robot.ResourceRPCSubtypesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCSubtypesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.StreamStatusResponse" title="viam.proto.api.robot.StreamStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.ResourceRPCSubtypesResponse" title="viam.proto.api.robot.ResourceRPCSubtypesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.TransformPoseRequest" title="viam.proto.api.robot.TransformPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.Status" title="viam.proto.api.robot.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.TransformPoseResponse" title="viam.proto.api.robot.TransformPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.StreamStatusRequest" title="viam.proto.api.robot.StreamStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.StreamStatusResponse" title="viam.proto.api.robot.StreamStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.TransformPoseRequest" title="viam.proto.api.robot.TransformPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.TransformPoseResponse" title="viam.proto.api.robot.TransformPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -326,6 +347,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.robot.RobotServiceBase.ResourceNames">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ResourceNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.robot.v1.robot_pb2.ResourceNamesRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.robot.v1.robot_pb2.ResourceNamesResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/api/robot/v1/robot_grpc.html#RobotServiceBase.ResourceNames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.robot.RobotServiceBase.ResourceNames" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.RobotServiceBase.ResourceRPCSubtypes">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ResourceRPCSubtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.robot.v1.robot_pb2.ResourceRPCSubtypesRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.robot.v1.robot_pb2.ResourceRPCSubtypesResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/api/robot/v1/robot_grpc.html#RobotServiceBase.ResourceRPCSubtypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.robot.RobotServiceBase.ResourceRPCSubtypes" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -706,6 +732,71 @@ shown below.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.robot.ResourceNamesResponse.resources">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.api.robot.ResourceNamesResponse.resources" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.ResourceRPCSubtype">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">ResourceRPCSubtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto_service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.robot.ResourceRPCSubtype" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.robot.ResourceRPCSubtype.proto_service">
+<span class="sig-name descname"><span class="pre">proto_service</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.robot.ResourceRPCSubtype.proto_service" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.ResourceRPCSubtype.subtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span></span></span><a class="headerlink" href="#viam.proto.api.robot.ResourceRPCSubtype.subtype" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.ResourceRPCSubtype.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">subtype</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'subtype'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.robot.ResourceRPCSubtype.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.ResourceRPCSubtypesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">ResourceRPCSubtypesRequest</span></span><a class="headerlink" href="#viam.proto.api.robot.ResourceRPCSubtypesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.ResourceRPCSubtypesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">ResourceRPCSubtypesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_rpc_subtypes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceRPCSubtype</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.robot.ResourceRPCSubtypesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_rpc_subtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceRPCSubtype</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.api.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

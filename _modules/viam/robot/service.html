@@ -86,6 +86,7 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
+<span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span> <span class="k">as</span> <span class="n">GRPCStatus</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.robot</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BlockForOperationRequest</span><span class="p">,</span>
@@ -99,6 +100,7 @@
                                   <span class="n">GetOperationsRequest</span><span class="p">,</span> <span class="n">GetOperationsResponse</span><span class="p">,</span>
                                   <span class="n">GetStatusRequest</span><span class="p">,</span> <span class="n">GetStatusResponse</span><span class="p">,</span>
                                   <span class="n">ResourceNamesRequest</span><span class="p">,</span> <span class="n">ResourceNamesResponse</span><span class="p">,</span>
+                                  <span class="n">ResourceRPCSubtypesRequest</span><span class="p">,</span> <span class="n">ResourceRPCSubtypesResponse</span><span class="p">,</span>
                                   <span class="n">RobotServiceBase</span><span class="p">,</span> <span class="n">Status</span><span class="p">,</span>
                                   <span class="n">StreamStatusRequest</span><span class="p">,</span> <span class="n">StreamStatusResponse</span><span class="p">,</span>
                                   <span class="n">TransformPoseRequest</span><span class="p">,</span> <span class="n">TransformPoseResponse</span><span class="p">)</span>
@@ -162,20 +164,41 @@
 <div class="viewcode-block" id="RobotService.GetOperations"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.GetOperations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetOperations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetOperationsRequest</span><span class="p">,</span> <span class="n">GetOperationsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">pass</span></div>
 
+<div class="viewcode-block" id="RobotService.ResourceRPCSubtypes"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.ResourceRPCSubtypes">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ResourceRPCSubtypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ResourceRPCSubtypesRequest</span><span class="p">,</span> <span class="n">ResourceRPCSubtypesResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span>
+            <span class="n">GRPCStatus</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span>
+            <span class="s2">&quot;Method ResourceRPCSubtypes not implemented.&quot;</span>
+        <span class="p">)</span></div>
+
 <div class="viewcode-block" id="RobotService.CancelOperation"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.CancelOperation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">CancelOperation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">CancelOperationRequest</span><span class="p">,</span> <span class="n">CancelOperationResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">pass</span></div>
+        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span>
+            <span class="n">GRPCStatus</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span>
+            <span class="s2">&quot;Method CancelOperation not implemented.&quot;</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="RobotService.BlockForOperation"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.BlockForOperation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">BlockForOperation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">BlockForOperationRequest</span><span class="p">,</span> <span class="n">BlockForOperationResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">pass</span></div>
+        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span>
+            <span class="n">GRPCStatus</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span>
+            <span class="s2">&quot;Method BlockForOperation not implemented.&quot;</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="RobotService.FrameSystemConfig"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.FrameSystemConfig">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">FrameSystemConfig</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">FrameSystemConfigRequest</span><span class="p">,</span> <span class="n">FrameSystemConfigResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">pass</span></div>
+        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span>
+            <span class="n">GRPCStatus</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span>
+            <span class="s2">&quot;Method FrameSystemConfig not implemented.&quot;</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="RobotService.TransformPose"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.TransformPose">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">TransformPose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">TransformPoseRequest</span><span class="p">,</span> <span class="n">TransformPoseResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">pass</span></div>
+        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span>
+            <span class="n">GRPCStatus</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span>
+            <span class="s2">&quot;Method TransformPose not implemented.&quot;</span>
+        <span class="p">)</span></div>
 
 <div class="viewcode-block" id="RobotService.DiscoverComponents"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.DiscoverComponents">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">DiscoverComponents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">DiscoverComponentsRequest</span><span class="p">,</span> <span class="n">DiscoverComponentsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">pass</span></div></div>
+        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span>
+            <span class="n">GRPCStatus</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span>
+            <span class="s2">&quot;Method DiscoverComponents not implemented.&quot;</span>
+        <span class="p">)</span></div></div>
 </pre></div>
 
            </div>
