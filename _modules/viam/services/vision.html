@@ -128,7 +128,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">VisionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
 
 <div class="viewcode-block" id="VisionClient.get_detector_names"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detector_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detector_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get the list of detectors in the registry.</span>
+        <span class="sd">&quot;&quot;&quot;Get the list of detectors currently registered in the service.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The detector names</span>
@@ -138,10 +138,15 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detector_names</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionClient.add_detector"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.add_detector">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_detector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detector</span><span class="p">:</span> <span class="n">DetectorConfig</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add a new detector to the registry.</span>
+        <span class="sd">&quot;&quot;&quot;Add a new detector to the service. Returns nothing is successful, and an error if not.</span>
+<span class="sd">        Registers a new detector just as if you had put it in the original &quot;register_detectors&quot; field</span>
+<span class="sd">        in the robot config.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            detector (DetectorConfig): The configuration of the detector to add</span>
+<span class="sd">            detector (DetectorConfig): The configuration of the detector to add. Will need to </span>
+<span class="sd">            specify the name of the detector, the type of detector it is, and the necessary parameters</span>
+<span class="sd">            for that detector type. Available types and their parameters can be found in the </span>
+<span class="sd">            vision service documentation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
         <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">detector</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
@@ -156,7 +161,9 @@
 <span class="sd">            detector_name (str): The name of the detector to use for detection</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Detection]: The detections</span>
+<span class="sd">            List[Detection]: A list of 2D bounding boxes, their labels, and the</span>
+<span class="sd">            confidence score of the labels, around the found objects in the next 2D image </span>
+<span class="sd">            from the given camera, with the given detector applied to it. </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsRequest</span><span class="p">(</span><span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">detector_name</span><span class="o">=</span><span class="n">detector_name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDetectionsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDetections</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -164,7 +171,7 @@
 
 <div class="viewcode-block" id="VisionClient.get_segmenter_names"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_segmenter_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_segmenter_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the list of segmenters in the registry</span>
+<span class="sd">        Get the list of segmenters currently registered in the service.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The segmenter names</span>
@@ -201,17 +208,17 @@
         <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get all the found objects in a pointcloud from a camera of the</span>
-<span class="sd">        underlying robot, as well as the 3-vector center of each of the</span>
-<span class="sd">        found objects.</span>
+<span class="sd">        Returns a list of the 3D point cloud objects and associated metadata in the latest </span>
+<span class="sd">        picture obtained from the specified 3D camera (using the specified segmenter). </span>
+<span class="sd">        The parameters are the necessary parameters that the given segmenter needs in order to work.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            camera_name (str): The name of the camera</span>
 <span class="sd">            segmenter_name (str): The name of the segmenter</span>
-<span class="sd">            parameters (Dict[str, Any]): The parameters for the pointcloud</span>
+<span class="sd">            parameters (Dict[str, Any]): The parameters for the named segmenter</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[PointCloudObject]: The pointclouds</span>
+<span class="sd">            List[PointCloudObject]: The pointcloud objects with metadata</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">struct</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
         <span class="n">struct</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>

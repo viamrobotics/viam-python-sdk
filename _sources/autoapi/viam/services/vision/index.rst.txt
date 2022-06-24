@@ -76,7 +76,7 @@ Classes
    .. py:method:: get_detector_names(self) -> List[str]
       :async:
 
-      Get the list of detectors in the registry.
+      Get the list of detectors currently registered in the service.
 
       :returns: The detector names
       :rtype: List[str]
@@ -85,10 +85,17 @@ Classes
    .. py:method:: add_detector(self, detector: DetectorConfig)
       :async:
 
-      Add a new detector to the registry.
+      Add a new detector to the service. Returns nothing is successful, and an error if not.
+      Registers a new detector just as if you had put it in the original "register_detectors" field
+      in the robot config.
 
-      :param detector: The configuration of the detector to add
+      :param detector: The configuration of the detector to add. Will need to
       :type detector: DetectorConfig
+      :param specify the name of the detector:
+      :param the type of detector it is:
+      :param and the necessary parameters:
+      :param for that detector type. Available types and their parameters can be found in the:
+      :param vision service documentation.:
 
 
    .. py:method:: get_detections(self, camera_name: str, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
@@ -101,14 +108,16 @@ Classes
       :param detector_name: The name of the detector to use for detection
       :type detector_name: str
 
-      :returns: The detections
+      :returns: A list of 2D bounding boxes, their labels, and the
+                confidence score of the labels, around the found objects in the next 2D image
+                from the given camera, with the given detector applied to it.
       :rtype: List[Detection]
 
 
    .. py:method:: get_segmenter_names(self) -> List[str]
       :async:
 
-      Get the list of segmenters in the registry
+      Get the list of segmenters currently registered in the service.
 
       :returns: The segmenter names
       :rtype: List[str]
@@ -133,18 +142,18 @@ Classes
    .. py:method:: get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Dict[str, Any]) -> List[viam.proto.api.common.PointCloudObject]
       :async:
 
-      Get all the found objects in a pointcloud from a camera of the
-      underlying robot, as well as the 3-vector center of each of the
-      found objects.
+      Returns a list of the 3D point cloud objects and associated metadata in the latest
+      picture obtained from the specified 3D camera (using the specified segmenter).
+      The parameters are the necessary parameters that the given segmenter needs in order to work.
 
       :param camera_name: The name of the camera
       :type camera_name: str
       :param segmenter_name: The name of the segmenter
       :type segmenter_name: str
-      :param parameters: The parameters for the pointcloud
+      :param parameters: The parameters for the named segmenter
       :type parameters: Dict[str, Any]
 
-      :returns: The pointclouds
+      :returns: The pointcloud objects with metadata
       :rtype: List[PointCloudObject]
 
 

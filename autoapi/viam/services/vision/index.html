@@ -204,7 +204,7 @@ errors defaults to ‘strict’.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.vision.VisionClient.get_detector_names">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_detector_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionClient.get_detector_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient.get_detector_names" title="Permalink to this definition"></a></dt>
-<dd><p>Get the list of detectors in the registry.</p>
+<dd><p>Get the list of detectors currently registered in the service.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The detector names</p>
@@ -218,10 +218,19 @@ errors defaults to ‘strict’.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.vision.VisionClient.add_detector">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.services.vision.DetectorConfig" title="viam.services.vision.DetectorConfig"><span class="pre">DetectorConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionClient.add_detector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient.add_detector" title="Permalink to this definition"></a></dt>
-<dd><p>Add a new detector to the registry.</p>
+<dd><p>Add a new detector to the service. Returns nothing is successful, and an error if not.
+Registers a new detector just as if you had put it in the original “register_detectors” field
+in the robot config.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>detector</strong> (<a class="reference internal" href="#viam.services.vision.DetectorConfig" title="viam.services.vision.DetectorConfig"><em>DetectorConfig</em></a>) – The configuration of the detector to add</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>detector</strong> (<em>specify the name of the</em>) – The configuration of the detector to add. Will need to</p></li>
+<li><p><strong>detector</strong> – </p></li>
+<li><p><strong>is</strong> (<em>the type of detector it</em>) – </p></li>
+<li><p><strong>parameters</strong> (<em>and the necessary</em>) – </p></li>
+<li><p><strong>the</strong> (<em>for that detector type. Available types and their parameters can be found in</em>) – </p></li>
+<li><p><strong>documentation.</strong> (<em>vision service</em>) – </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -238,7 +247,9 @@ errors defaults to ‘strict’.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The detections</p>
+<dd class="field-even"><p>A list of 2D bounding boxes, their labels, and the
+confidence score of the labels, around the found objects in the next 2D image
+from the given camera, with the given detector applied to it.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection" title="viam.proto.api.service.vision.Detection">Detection</a>]</p>
@@ -249,7 +260,7 @@ errors defaults to ‘strict’.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.vision.VisionClient.get_segmenter_names">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_segmenter_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionClient.get_segmenter_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient.get_segmenter_names" title="Permalink to this definition"></a></dt>
-<dd><p>Get the list of segmenters in the registry</p>
+<dd><p>Get the list of segmenters currently registered in the service.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The segmenter names</p>
@@ -285,19 +296,19 @@ The second item in the tuple is the type of the parameter.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.vision.VisionClient.get_object_point_clouds">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_object_point_clouds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segmenter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PointCloudObject" title="viam.proto.api.common.PointCloudObject"><span class="pre">viam.proto.api.common.PointCloudObject</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionClient.get_object_point_clouds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient.get_object_point_clouds" title="Permalink to this definition"></a></dt>
-<dd><p>Get all the found objects in a pointcloud from a camera of the
-underlying robot, as well as the 3-vector center of each of the
-found objects.</p>
+<dd><p>Returns a list of the 3D point cloud objects and associated metadata in the latest
+picture obtained from the specified 3D camera (using the specified segmenter).
+The parameters are the necessary parameters that the given segmenter needs in order to work.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>camera_name</strong> (<em>str</em>) – The name of the camera</p></li>
 <li><p><strong>segmenter_name</strong> (<em>str</em>) – The name of the segmenter</p></li>
-<li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The parameters for the pointcloud</p></li>
+<li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The parameters for the named segmenter</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The pointclouds</p>
+<dd class="field-even"><p>The pointcloud objects with metadata</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PointCloudObject" title="viam.proto.api.common.PointCloudObject">PointCloudObject</a>]</p>
