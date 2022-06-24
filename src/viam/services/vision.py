@@ -43,7 +43,7 @@ class VisionClient:
         self.client = VisionServiceStub(channel)
 
     async def get_detector_names(self) -> List[str]:
-        """Get the list of detectors in the registry.
+        """Get the list of detectors currently registered in the service.
 
         Returns:
             List[str]: The detector names
@@ -53,10 +53,15 @@ class VisionClient:
         return list(response.detector_names)
 
     async def add_detector(self, detector: DetectorConfig):
-        """Add a new detector to the registry.
+        """Add a new detector to the service. Returns nothing is successful, and an error if not.
+        Registers a new detector just as if you had put it in the original "register_detectors" field
+        in the robot config.
 
         Args:
-            detector (DetectorConfig): The configuration of the detector to add
+            detector (DetectorConfig): The configuration of the detector to add. Will need to 
+            specify the name of the detector, the type of detector it is, and the necessary parameters
+            for that detector type. Available types and their parameters can be found in the 
+            vision service documentation.
         """
         params = Struct()
         params.update(detector.parameters)
@@ -71,7 +76,9 @@ class VisionClient:
             detector_name (str): The name of the detector to use for detection
 
         Returns:
-            List[Detection]: The detections
+            List[Detection]: A list of 2D bounding boxes, their labels, and the
+            confidence score of the labels, around the found objects in the next 2D image 
+            from the given camera, with the given detector applied to it. 
         """
         request = GetDetectionsRequest(camera_name=camera_name, detector_name=detector_name)
         response: GetDetectionsResponse = await self.client.GetDetections(request)
@@ -79,7 +86,7 @@ class VisionClient:
 
     async def get_segmenter_names(self) -> List[str]:
         """
-        Get the list of segmenters in the registry
+        Get the list of segmenters currently registered in the service.
 
         Returns:
             List[str]: The segmenter names
@@ -116,17 +123,17 @@ class VisionClient:
         parameters: Dict[str, Any]
     ) -> List[PointCloudObject]:
         """
-        Get all the found objects in a pointcloud from a camera of the
-        underlying robot, as well as the 3-vector center of each of the
-        found objects.
+        Returns a list of the 3D point cloud objects and associated metadata in the latest 
+        picture obtained from the specified 3D camera (using the specified segmenter). 
+        The parameters are the necessary parameters that the given segmenter needs in order to work.
 
         Args:
             camera_name (str): The name of the camera
             segmenter_name (str): The name of the segmenter
-            parameters (Dict[str, Any]): The parameters for the pointcloud
+            parameters (Dict[str, Any]): The parameters for the named segmenter
 
         Returns:
-            List[PointCloudObject]: The pointclouds
+            List[PointCloudObject]: The pointcloud objects with metadata
         """
         struct = Struct()
         struct.update(parameters)
