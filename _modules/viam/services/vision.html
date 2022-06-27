@@ -140,13 +140,11 @@
 <div class="viewcode-block" id="VisionClient.add_detector"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.add_detector">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_detector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detector</span><span class="p">:</span> <span class="n">DetectorConfig</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a new detector to the service. Returns nothing is successful, and an error if not.</span>
 <span class="sd">        Registers a new detector just as if you had put it in the original &quot;register_detectors&quot; field</span>
-<span class="sd">        in the robot config.</span>
+<span class="sd">        in the robot config. Available types and their parameters can be found in the </span>
+<span class="sd">        vision service documentation.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            detector (DetectorConfig): The configuration of the detector to add. Will need to </span>
-<span class="sd">            specify the name of the detector, the type of detector it is, and the necessary parameters</span>
-<span class="sd">            for that detector type. Available types and their parameters can be found in the </span>
-<span class="sd">            vision service documentation.</span>
+<span class="sd">            detector (DetectorConfig): The configuration of the detector to add. </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
         <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">detector</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>

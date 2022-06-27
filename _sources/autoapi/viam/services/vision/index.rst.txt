@@ -87,15 +87,11 @@ Classes
 
       Add a new detector to the service. Returns nothing is successful, and an error if not.
       Registers a new detector just as if you had put it in the original "register_detectors" field
-      in the robot config.
+      in the robot config. Available types and their parameters can be found in the
+      vision service documentation.
 
-      :param detector: The configuration of the detector to add. Will need to
+      :param detector: The configuration of the detector to add.
       :type detector: DetectorConfig
-      :param specify the name of the detector:
-      :param the type of detector it is:
-      :param and the necessary parameters:
-      :param for that detector type. Available types and their parameters can be found in the:
-      :param vision service documentation.:
 
 
    .. py:method:: get_detections(self, camera_name: str, detector_name: str) -> List[viam.proto.api.service.vision.Detection]

@@ -220,17 +220,11 @@ errors defaults to ‘strict’.</p>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.services.vision.DetectorConfig" title="viam.services.vision.DetectorConfig"><span class="pre">DetectorConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionClient.add_detector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient.add_detector" title="Permalink to this definition"></a></dt>
 <dd><p>Add a new detector to the service. Returns nothing is successful, and an error if not.
 Registers a new detector just as if you had put it in the original “register_detectors” field
-in the robot config.</p>
+in the robot config. Available types and their parameters can be found in the
+vision service documentation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>detector</strong> (<em>specify the name of the</em>) – The configuration of the detector to add. Will need to</p></li>
-<li><p><strong>detector</strong> – </p></li>
-<li><p><strong>is</strong> (<em>the type of detector it</em>) – </p></li>
-<li><p><strong>parameters</strong> (<em>and the necessary</em>) – </p></li>
-<li><p><strong>the</strong> (<em>for that detector type. Available types and their parameters can be found in</em>) – </p></li>
-<li><p><strong>documentation.</strong> (<em>vision service</em>) – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>detector</strong> (<a class="reference internal" href="#viam.services.vision.DetectorConfig" title="viam.services.vision.DetectorConfig"><em>DetectorConfig</em></a>) – The configuration of the detector to add.</p>
 </dd>
 </dl>
 </dd></dl>
