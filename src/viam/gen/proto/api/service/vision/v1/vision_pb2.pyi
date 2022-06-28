@@ -114,10 +114,29 @@ class Detection(google.protobuf.message.Message):
     class_name: typing.Text
     'label associated with the detected object'
 
-    def __init__(self, *, x_min: builtins.int=..., y_min: builtins.int=..., x_max: builtins.int=..., y_max: builtins.int=..., confidence: builtins.float=..., class_name: typing.Text=...) -> None:
+    def __init__(self, *, x_min: typing.Optional[builtins.int]=..., y_min: typing.Optional[builtins.int]=..., x_max: typing.Optional[builtins.int]=..., y_max: typing.Optional[builtins.int]=..., confidence: builtins.float=..., class_name: typing.Text=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['class_name', b'class_name', 'confidence', b'confidence', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'class_name', b'class_name', 'confidence', b'confidence', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_x_max', b'_x_max']) -> typing.Optional[typing_extensions.Literal['x_max']]:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_x_min', b'_x_min']) -> typing.Optional[typing_extensions.Literal['x_min']]:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_max', b'_y_max']) -> typing.Optional[typing_extensions.Literal['y_max']]:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_min', b'_y_min']) -> typing.Optional[typing_extensions.Literal['y_min']]:
         ...
 global___Detection = Detection
 

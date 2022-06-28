@@ -7,7 +7,6 @@ if typing.TYPE_CHECKING:
 import google.api.annotations_pb2
 import google.protobuf.struct_pb2
 from ...... import proto
-from ...... import proto
 
 class VisionServiceBase(abc.ABC):
 

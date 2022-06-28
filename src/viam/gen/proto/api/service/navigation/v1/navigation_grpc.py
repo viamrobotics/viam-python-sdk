@@ -6,7 +6,6 @@ if typing.TYPE_CHECKING:
     import grpclib.server
 import google.api.annotations_pb2
 from ...... import proto
-from ...... import proto
 
 class NavigationServiceBase(abc.ABC):
 

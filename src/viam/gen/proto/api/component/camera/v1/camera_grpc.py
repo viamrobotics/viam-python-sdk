@@ -7,7 +7,6 @@ if typing.TYPE_CHECKING:
 import google.api.annotations_pb2
 import google.api.httpbody_pb2
 from ...... import proto
-from ...... import proto
 
 class CameraServiceBase(abc.ABC):
 
