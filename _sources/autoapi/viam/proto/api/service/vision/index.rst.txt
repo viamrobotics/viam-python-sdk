@@ -135,7 +135,7 @@ Classes
    shown below.
 
 
-.. py:class:: Detection(*, x_min: int = ..., y_min: int = ..., x_max: int = ..., y_max: int = ..., confidence: float = ..., class_name: Text = ...)
+.. py:class:: Detection(*, x_min: Optional[int] = ..., y_min: Optional[int] = ..., x_max: Optional[int] = ..., y_max: Optional[int] = ..., confidence: float = ..., class_name: Text = ...)
 
 
 
@@ -174,6 +174,41 @@ Classes
       :annotation: :Text
 
       label associated with the detected object
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_x_max, b'_x_max', _x_min, b'_x_min', _y_max, b'_y_max', _y_min, b'_y_min', x_max, b'x_max', x_min, b'x_min', y_max, b'y_max', y_min, b'y_min']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_x_max, b'_x_max']) -> Optional[typing_extensions.Literal[x_max]]
+               WhichOneof(self, oneof_group: typing_extensions.Literal[_x_min, b'_x_min']) -> Optional[typing_extensions.Literal[x_min]]
+               WhichOneof(self, oneof_group: typing_extensions.Literal[_y_max, b'_y_max']) -> Optional[typing_extensions.Literal[y_max]]
+               WhichOneof(self, oneof_group: typing_extensions.Literal[_y_min, b'_y_min']) -> Optional[typing_extensions.Literal[y_min]]
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: GetDetectionsRequest(*, camera_name: Text = ..., detector_name: Text = ...)

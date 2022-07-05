@@ -329,7 +329,7 @@ Classes
    shown below.
 
 
-.. py:class:: Status(*, is_on: bool = ..., position_reporting: bool = ..., position: float = ...)
+.. py:class:: Status(*, is_powered: bool = ..., position_reporting: bool = ..., position: float = ..., is_moving: bool = ...)
 
 
 
@@ -339,12 +339,10 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: is_on
+   .. py:attribute:: is_powered
       :annotation: :bool
 
-      Delete this field
-
-      :type: To D0 (FA)
+      Returns true if the motor is powered
 
    .. py:attribute:: position_reporting
       :annotation: :bool
@@ -355,6 +353,11 @@ Classes
       :annotation: :float
 
       Returns current position of the motor relative to its home
+
+   .. py:attribute:: is_moving
+      :annotation: :bool
+
+      Returns true if the motor is moving
 
 
 .. py:class:: StopRequest(*, name: Text = ...)

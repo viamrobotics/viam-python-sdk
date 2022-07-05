@@ -70,18 +70,14 @@
 <li class="toctree-l7 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api.service.datamanager</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorData">SensorData</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorData.metadata">metadata</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorData.data">data</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorData.HasField">HasField</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.datamanager.DataManagerServiceBase">DataManagerServiceBase</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.datamanager.DataManagerServiceBase.Sync">Sync</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.datamanager.DataManagerServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorMetadata">SensorMetadata</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorMetadata.time_requested">time_requested</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorMetadata.time_received">time_received</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorMetadata.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.datamanager.DataManagerServiceStub">DataManagerServiceStub</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.datamanager.SyncRequest">SyncRequest</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.datamanager.SyncResponse">SyncResponse</a></li>
 </ul>
 </li>
 </ul>
@@ -91,6 +87,7 @@
 <li class="toctree-l7"><a class="reference internal" href="../motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api.service.motion</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="../navigation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api.service.navigation</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="../sensors/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api.service.sensors</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="../shell/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api.service.shell</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="../slam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api.service.slam</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="../vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.api.service.vision</span></code></a></li>
 </ul>
@@ -149,96 +146,58 @@ Do not edit manually!</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorData" title="viam.proto.api.service.datamanager.SensorData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorData</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.datamanager.DataManagerServiceBase" title="viam.proto.api.service.datamanager.DataManagerServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataManagerServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.datamanager.DataManagerServiceStub" title="viam.proto.api.service.datamanager.DataManagerServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataManagerServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.datamanager.SyncRequest" title="viam.proto.api.service.datamanager.SyncRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.datamanager.SensorMetadata" title="viam.proto.api.service.datamanager.SensorMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorMetadata</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.datamanager.SyncResponse" title="viam.proto.api.service.datamanager.SyncResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SyncResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SensorData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.datamanager.</span></span><span class="sig-name descname"><span class="pre">SensorData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">global___SensorMetadata</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.datamanager.SensorData" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.DataManagerServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.datamanager.</span></span><span class="sig-name descname"><span class="pre">DataManagerServiceBase</span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/datamanager/v1/data_manager_grpc.html#DataManagerServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.datamanager.DataManagerServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SensorData.metadata">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___SensorMetadata</span></span></span><a class="headerlink" href="#viam.proto.api.service.datamanager.SensorData.metadata" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.DataManagerServiceBase.Sync">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.datamanager.v1.data_manager_pb2.SyncRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.datamanager.v1.data_manager_pb2.SyncResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/datamanager/v1/data_manager_grpc.html#DataManagerServiceBase.Sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.datamanager.DataManagerServiceBase.Sync" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SensorData.data">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.api.service.datamanager.SensorData.data" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.DataManagerServiceBase.__mapping__">
+<span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/datamanager/v1/data_manager_grpc.html#DataManagerServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.datamanager.DataManagerServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SensorData.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">data</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.service.datamanager.SensorData.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SensorMetadata">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.datamanager.</span></span><span class="sig-name descname"><span class="pre">SensorMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_requested</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_received</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.datamanager.SensorMetadata" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.DataManagerServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.datamanager.</span></span><span class="sig-name descname"><span class="pre">DataManagerServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/datamanager/v1/data_manager_grpc.html#DataManagerServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.datamanager.DataManagerServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SyncRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.datamanager.</span></span><span class="sig-name descname"><span class="pre">SyncRequest</span></span><a class="headerlink" href="#viam.proto.api.service.datamanager.SyncRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SensorMetadata.time_requested">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_requested</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></span></span><a class="headerlink" href="#viam.proto.api.service.datamanager.SensorMetadata.time_requested" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SensorMetadata.time_received">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_received</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></span></span><a class="headerlink" href="#viam.proto.api.service.datamanager.SensorMetadata.time_received" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SensorMetadata.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">time_received</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'time_received'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">time_requested</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'time_requested'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.service.datamanager.SensorMetadata.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.datamanager.SyncResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.datamanager.</span></span><span class="sig-name descname"><span class="pre">SyncResponse</span></span><a class="headerlink" href="#viam.proto.api.service.datamanager.SyncResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 </section>
