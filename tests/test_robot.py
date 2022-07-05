@@ -87,7 +87,7 @@ STATUSES = [
             name='motor1'
         ),
         status=message_to_struct(MotorStatus(
-            is_on=False,
+            is_powered=False,
             position=0,
             position_reporting=True
         ))
