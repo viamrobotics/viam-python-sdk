@@ -14,7 +14,7 @@ __all__ = [
 
 async def create_status(component: Motor) -> Status:
     s = MotorStatus(
-        is_on=await component.is_powered(),
+        is_powered=await component.is_powered(),
         position=await component.get_position(),
         position_reporting=(await component.get_features()).position_reporting
     )
