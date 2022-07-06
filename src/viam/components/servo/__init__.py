@@ -15,7 +15,8 @@ __all__ = [
 
 async def create_status(component: Servo) -> Status:
     s = ServoStatus(
-        position_deg=await component.get_position()
+        position_deg=await component.get_position(),
+        is_moving=await component.is_moving()
     )
     return Status(
         name=Servo.get_resource_name(component.name),

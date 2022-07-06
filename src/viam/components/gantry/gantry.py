@@ -1,6 +1,7 @@
 import abc
 from typing import List, Optional
 
+from viam.errors import NotSupportedError
 from viam.proto.api.common import WorldState
 
 from ..component_base import ComponentBase
@@ -58,3 +59,12 @@ class Gantry(ComponentBase):
         Stop all motion of the gantry. It is assumed that the gantry stops immediately.
         """
         ...
+
+    async def is_moving(self) -> bool:
+        """
+        Get if the gantry is currently moving.
+
+        Returns:
+            bool: Whether the gantry is moving.
+        """
+        raise NotSupportedError(f'Gantry named {self.name} does not support returning whether it is moving')

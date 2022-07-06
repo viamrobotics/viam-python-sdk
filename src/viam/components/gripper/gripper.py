@@ -1,5 +1,7 @@
 import abc
 
+from viam.errors import NotSupportedError
+
 from viam.components.component_base import ComponentBase
 
 
@@ -35,3 +37,12 @@ class Gripper(ComponentBase):
         Stop the gripper. It is assumed the gripper stops immediately.
         """
         ...
+
+    async def is_moving(self) -> bool:
+        """
+        Get if the gripper is currently moving.
+
+        Returns:
+            bool: Whether the gripper is moving.
+        """
+        raise NotSupportedError(f'Gripper named {self.name} does not support returning whether it is moving')

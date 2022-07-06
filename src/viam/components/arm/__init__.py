@@ -18,7 +18,8 @@ __all__ = [
 async def create_status(component: Arm) -> Status:
     s = ArmStatus(
         end_position=await component.get_end_position(),
-        joint_positions=await component.get_joint_positions()
+        joint_positions=await component.get_joint_positions(),
+        is_moving=await component.is_moving()
     )
     return Status(
         name=Arm.get_resource_name(component.name),
