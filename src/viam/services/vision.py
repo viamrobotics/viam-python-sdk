@@ -53,7 +53,7 @@ class VisionClient:
         return list(response.detector_names)
 
     async def add_detector(self, detector: DetectorConfig):
-        """Add a new detector to the service. Returns nothing is successful, and an error if not.
+        """Add a new detector to the service. Returns nothing if successful, and an error if not.
         Registers a new detector just as if you had put it in the original "register_detectors" field
         in the robot config. Available types and their parameters can be found in the 
         vision service documentation.
