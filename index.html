@@ -116,70 +116,12 @@ but rather calls into the viam-server to actuate hardware or read from sensors),
 select the <code class="docutils literal notranslate"><span class="pre">CONNECT</span></code> tab, and copy the boilerplate code from the section labeled <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">SDK</span></code>.</p>
 <p>It is recommended that you save and run this simple program. Doing so will ensure that the python-sdk is properly installed,
 that the <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> instance on your robot is alive, and that the computer running the program is able to connect to that instance.</p>
-<section id="accessing-a-component">
-<h3>Accessing a component:<a class="headerlink" href="#accessing-a-component" title="Permalink to this headline"></a></h3>
-<p>First you’ll need to access the RobotClient. This should look:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
-</pre></div>
-</div>
-<p>Then to instantiate the robot, you’ll call one of two class methods, <code class="docutils literal notranslate"><span class="pre">RobotClient.at_address</span></code> (connecting to a robot at a specific address/URL), or <code class="docutils literal notranslate"><span class="pre">RobotClient.with_channel</span></code> (attaching an existing connection via <code class="docutils literal notranslate"><span class="pre">grpclib.client.Channel</span></code> to the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code>), which will
-return a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> that can be used to access the components of the robot.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>You can then use this Robot to access components by name. Take a look at the component documentation to
-see a full list of methods for the object and their arguments. For Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s1">&#39;my_motor&#39;</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">motor</span><span class="o">.</span><span class="n">go_for</span><span class="p">(</span><span class="n">rpm</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">revolutions</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>View the <span class="xref myst">Example Usage</span> for more on how to connect to a robot.</p>
 </section>
-</section>
-<section id="implementing-a-component-and-using-the-python-sdk-as-server">
-<h2>Implementing a component and using the python-sdk as server:<a class="headerlink" href="#implementing-a-component-and-using-the-python-sdk-as-server" title="Permalink to this headline"></a></h2>
-<p>Find the Component type you wish to implement in the docs and create a new class which sub-classes that Component’s BaseComponent class.</p>
-<p>You’ll need to create an implementation of each method that class has. If however you do not need or wish to implement every method,
-a simple no-op method whose body consists of <code class="docutils literal notranslate"><span class="pre">pass</span></code> is sufficient to get the server up and running.
-For a simple Server program, your <code class="docutils literal notranslate"><span class="pre">main()</span></code> method can look like:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">(</span><span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">MyCoolMotor</span><span class="p">(</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)])</span>
-    <span class="k">await</span> <span class="n">srv</span><span class="o">.</span><span class="n">serve</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>With this program running, you can connect directly via the python-sdk. Currently the python-sdk does not support authentication,
-so you’ll want to connect insecurely. To connect your python client application to a server running on the same machine you can use:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">opts</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial_direct</span><span class="p">(</span><span class="s2">&quot;localhost:9090&quot;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>To use this custom server as part of a larger robot, you’ll want to add it as a <code class="docutils literal notranslate"><span class="pre">remote</span></code> in the config for your main part.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;remotes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-cool-python-server&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;insecure&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:9090&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">]</span><span class="w"></span>
-</pre></div>
-</div>
-<p>And to ensure that the python server starts up with the rest of the robot, you can add it as a process. <strong>NOTE</strong>: The <code class="docutils literal notranslate"><span class="pre">viam-server</span></code>
-starts as a root process, so you may need to switch users to run the python SDK server.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
-<span class="w">  </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sudo&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;-u&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;pi&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;/home/pi/python-server.py&quot;</span><span class="w"></span>
-<span class="w">    </span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">]</span><span class="w"></span>
-</pre></div>
-</div>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<p>The <a class="reference external" href="https://python.viam.dev/example.html">Example Usage</a> has the info required to access a component, build a custom component, and expose
+custom components as a remote to existing robots.</p>
+<p>Further examples can be found in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory.</p>
 </section>
 <section id="the-do-method">
 <h2>The <code class="docutils literal notranslate"><span class="pre">do</span></code> method<a class="headerlink" href="#the-do-method" title="Permalink to this headline"></a></h2>

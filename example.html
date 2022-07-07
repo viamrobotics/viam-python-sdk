@@ -194,7 +194,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">WorldState</span>
 
-<span class="k">class</span> <span class="nc">CustomArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MyCoolArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Starting position</span>
@@ -243,9 +243,40 @@
 <p>Now that we’ve created the custom component, we must register it with a server so that it will be visible to any robots connecting to it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.rpc.server</span> <span class="kn">import</span> <span class="n">Server</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># python-server.py</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.server</span> <span class="kn">import</span> <span class="n">Server</span>
 
-<span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">([</span><span class="n">CustomArm</span><span class="p">(</span><span class="s1">&#39;my-arm&#39;</span><span class="p">)])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">([</span><span class="n">MyCoolArm</span><span class="p">(</span><span class="s1">&#39;my-arm&#39;</span><span class="p">)])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">Input In [8],</span> in <span class="ni">&lt;cell line: 8&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">([</span><span class="n">MyCoolArm</span><span class="p">(</span><span class="s1">&#39;my-arm&#39;</span><span class="p">)])</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="ne">----&gt; </span><span class="mi">9</span>     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+
+<span class="nn">File /usr/lib/python3.9/asyncio/runners.py:33,</span> in <span class="ni">run</span><span class="nt">(main, debug)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="sd">&quot;&quot;&quot;Execute the coroutine and return the result.</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span><span class="sd"> This function runs the passed coroutine, taking care of</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span><span class="sd">     asyncio.run(main())</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="k">if</span> <span class="n">events</span><span class="o">.</span><span class="n">_get_running_loop</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">33</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span>         <span class="s2">&quot;asyncio.run() cannot be called from a running event loop&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">coroutines</span><span class="o">.</span><span class="n">iscoroutine</span><span class="p">(</span><span class="n">main</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;a coroutine was expected, got </span><span class="si">{!r}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">main</span><span class="p">))</span>
+
+<span class="ne">RuntimeError</span>: asyncio.run() cannot be called from a running event loop
 </pre></div>
 </div>
 </div>
@@ -254,21 +285,38 @@
 <section id="start-the-server-and-add-it-as-a-remote">
 <h3>Start the Server and add it as a Remote<a class="headerlink" href="#start-the-server-and-add-it-as-a-remote" title="Permalink to this headline"></a></h3>
 <p>Now that we have a server that knows about our custom Arm component, we need to start the server so it can receive gRPC calls. Once it’s started, we can then register this server as a remote.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">srv</span><span class="o">.</span><span class="n">serve</span><span class="p">()</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># python-server.py</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+  <span class="o">...</span>
+  <span class="k">await</span> <span class="n">srv</span><span class="o">.</span><span class="n">serve</span><span class="p">()</span>
 </pre></div>
 </div>
+<p><strong>NB</strong>: When you call <code class="docutils literal notranslate"><span class="pre">srv.serve()</span></code>, the default host and port is <code class="docutils literal notranslate"><span class="pre">localhost:9090</span></code>. This can be changed by passing in a <code class="docutils literal notranslate"><span class="pre">host</span></code> and/or <code class="docutils literal notranslate"><span class="pre">port</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">serve</span></code> function.</p>
 <p>To use this custom server as part of a larger robot, you’ll want to add it as a <code class="docutils literal notranslate"><span class="pre">remote</span></code> in the config for your main part.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;remotes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;custom-python-components&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;insecure&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:9090&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-cool-python-components&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// The name of the remote, can be anything</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;insecure&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">                    </span><span class="c1">// Whether this connection should use SSL</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:9090&quot;</span><span class="w">          </span><span class="c1">// The location of the remote robot</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">  </span><span class="p">]</span><span class="w"></span>
 </pre></div>
 </div>
-<p>And to ensure that the python server starts up with the rest of the robot, you can add it as a process. <strong>NOTE</strong>: The <code class="docutils literal notranslate"><span class="pre">viam-server</span></code>
-starts as a root process, so you may need to switch users to run the python SDK server.</p>
+<p>And to ensure that the python server starts up with the rest of the robot, you can add it as a process.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;/home/pi/python-server.py&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>NB</strong>: The <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> starts as a root process, so you may need to switch users to run the python SDK server.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
 <span class="w">  </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
