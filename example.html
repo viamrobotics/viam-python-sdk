@@ -106,7 +106,10 @@
 <p>To connect to a robot as a client, you should instantiate an instance of a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">autoawait</span> asyncio
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please excuse the boilerplate</span>
+<span class="o">%</span><span class="k">autoawait</span> asyncio
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -255,13 +258,6 @@
         <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_171/381452114.py:12: RuntimeWarning: coroutine &#39;main&#39; was never awaited
-  pass
-RuntimeWarning: Enable tracemalloc to get the object allocation traceback
 </pre></div>
 </div>
 </div>
