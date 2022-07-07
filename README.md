@@ -29,74 +29,11 @@ select the `CONNECT` tab, and copy the boilerplate code from the section labeled
 It is recommended that you save and run this simple program. Doing so will ensure that the python-sdk is properly installed,
 that the `viam-server` instance on your robot is alive, and that the computer running the program is able to connect to that instance.
 
-### Accessing a component:
-First you'll need to access the RobotClient. This should look:
-```python
-from viam.robot.client import RobotClient
-```
+## Examples
+The [Example Usage](https://python.viam.dev/example.html) has the info required to access a component, build a custom component, and expose
+custom components as a remote to existing robots.
 
-Then to instantiate the robot, you'll call one of two class methods, `RobotClient.at_address` (connecting to a robot at a specific address/URL), or `RobotClient.with_channel` (attaching an existing connection via `grpclib.client.Channel` to the `RobotClient`), which will
-return a `RobotClient` that can be used to access the components of the robot.
-```python
-robot = await RobotClient.with_channel(channel=channel, options=RobotClient.Options(refresh_interval=10))
-```
-
-You can then use this Robot to access components by name. Take a look at the component documentation to
-see a full list of methods for the object and their arguments. For Example:
-```python
-motor = Motor.from_robot(robot, 'my_motor')
-await motor.go_for(rpm=60, revolutions=100)
-```
-
-View the [Example Usage](example.html) for more on how to connect to a robot.
-
-## Implementing a component and using the python-sdk as server:
-Find the Component type you wish to implement in the docs and create a new class which sub-classes that Component’s BaseComponent class.
-
-You’ll need to create an implementation of each method that class has. If however you do not need or wish to implement every method,
-a simple no-op method whose body consists of `pass` is sufficient to get the server up and running.
-For a simple Server program, your `main()` method can look like:
-```python
-async def main():
-    srv = Server(components=[MyCoolMotor("left_motor")])
-    await srv.serve()
-```
-
-With this program running, you can connect directly via the python-sdk. Currently the python-sdk does not support authentication,
-so you’ll want to connect insecurely. To connect your python client application to a server running on the same machine you can use:
-```python
-opts = DialOptions(insecure=True)
-channel = await dial_direct("localhost:9090", opts)
-```
-
-To use this custom server as part of a larger robot, you’ll want to add it as a `remote` in the config for your main part.
-```json
-"remotes": [
-    {
-      "name": "my-cool-python-server",
-      "insecure": true,
-      "address": "localhost:9090"
-    }
-  ]
-```
-
-And to ensure that the python server starts up with the rest of the robot, you can add it as a process. **NOTE**: The `viam-server`
-starts as a root process, so you may need to switch users to run the python SDK server.
-```json
-[
-  {
-    "id": 0,
-    "log": true,
-    "name": "sudo",
-    "args": [
-      "-u",
-      "pi",
-      "python",
-      "/home/pi/python-server.py"
-    ]
-  }
-]
-```
+Further examples can be found in the `examples` directory.
 
 ## The `do` method
 Every component provided by the SDK includes a generic `do` method which is useful to execute commands that are not already defined on the component.
