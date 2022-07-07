@@ -66,6 +66,9 @@ class MockArm(Arm):
     async def stop(self):
         self.is_stopped = True
 
+    async def is_moving(self) -> bool:
+        return not self.is_stopped
+
 
 class MockBase(Base):
 
@@ -136,6 +139,9 @@ class MockBase(Base):
 
     async def stop(self):
         self.stopped = True
+
+    async def is_moving(self) -> bool:
+        return not self.stopped
 
 
 class MockAnalogReader(Board.AnalogReader):
@@ -300,6 +306,9 @@ class MockGantry(Gantry):
     async def stop(self):
         self.is_stopped = True
 
+    async def is_moving(self) -> bool:
+        return not self.is_stopped
+
 
 class MockGeneric(GenericComponent):
 
@@ -349,6 +358,9 @@ class MockGripper(Gripper):
 
     async def stop(self):
         self.is_stopped = True
+
+    async def is_moving(self) -> bool:
+        return not self.is_stopped
 
 
 class MockIMU(IMU):
@@ -488,6 +500,9 @@ class MockMotor(Motor):
     async def is_powered(self) -> bool:
         return self.powered
 
+    async def is_moving(self) -> bool:
+        return self.powered
+
 
 @dataclass
 class MockPose:
@@ -556,3 +571,6 @@ class MockServo(Servo):
 
     async def stop(self):
         self.is_stopped = True
+
+    async def is_moving(self) -> bool:
+        return not self.is_stopped

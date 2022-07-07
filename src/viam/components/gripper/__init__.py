@@ -16,7 +16,7 @@ __all__ = [
 async def create_status(component: Gripper) -> Status:
     s = ActuatorStatus(is_moving=await component.is_moving())
     return Status(
-        name=Gantry.get_resource_name(component.name),
+        name=Gripper.get_resource_name(component.name),
         status=message_to_struct(s)
     )
 
