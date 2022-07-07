@@ -228,7 +228,10 @@
                 "    srv = Server([MyCoolArm('my-arm')])\n",
                 "\n",
                 "if __name__ == '__main__':\n",
-                "    asyncio.run(main())"
+                "    try:\n",
+                "        asyncio.run(main())\n",
+                "    except:\n",
+                "        pass"
             ]
         },
         {
