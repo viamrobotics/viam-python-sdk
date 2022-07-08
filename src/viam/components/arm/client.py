@@ -46,11 +46,11 @@ class ArmClient(Arm):
         request = GetJointPositionsRequest(name=self.name)
         response: GetJointPositionsResponse = \
             await self.client.GetJointPositions(request)
-        return response.position_degs
+        return response.positions
 
     async def move_to_joint_positions(self, positions: JointPositions):
         request = MoveToJointPositionsRequest(
-            name=self.name, position_degs=positions)
+            name=self.name, positions=positions)
         await self.client.MoveToJointPositions(request)
 
     async def stop(self):

@@ -344,11 +344,19 @@ class WorldState(google.protobuf.message.Message):
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     OBSTACLES_FIELD_NUMBER: builtins.int
+    INTERACTION_SPACES_FIELD_NUMBER: builtins.int
     TRANSFORMS_FIELD_NUMBER: builtins.int
 
     @property
     def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]:
-        """a list of obstacles expressed as a geomtry and the reference frame in which it was observed; this field is optional"""
+        """a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional"""
+        pass
+
+    @property
+    def interaction_spaces(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]:
+        """a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+        this field is optional
+        """
         pass
 
     @property
@@ -356,10 +364,10 @@ class WorldState(google.protobuf.message.Message):
         """a list of Transforms needed to transform a pose from one reference frame to another; this field is optional"""
         pass
 
-    def __init__(self, *, obstacles: typing.Optional[typing.Iterable[global___GeometriesInFrame]]=..., transforms: typing.Optional[typing.Iterable[global___Transform]]=...) -> None:
+    def __init__(self, *, obstacles: typing.Optional[typing.Iterable[global___GeometriesInFrame]]=..., interaction_spaces: typing.Optional[typing.Iterable[global___GeometriesInFrame]]=..., transforms: typing.Optional[typing.Iterable[global___Transform]]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles', 'transforms', b'transforms']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['interaction_spaces', b'interaction_spaces', 'obstacles', b'obstacles', 'transforms', b'transforms']) -> None:
         ...
 global___WorldState = WorldState
 

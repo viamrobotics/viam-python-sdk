@@ -41,7 +41,7 @@ class MockArm(Arm):
             o_z=4,
             theta=20,
         )
-        self.joint_positions = JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+        self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         super().__init__(name)
 

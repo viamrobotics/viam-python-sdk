@@ -64,7 +64,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         positions = await arm.get_joint_positions()
-        response = GetJointPositionsResponse(position_degs=positions)
+        response = GetJointPositionsResponse(positions=positions)
         await stream.send_message(response)
 
     async def MoveToJointPositions(
@@ -79,7 +79,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.move_to_joint_positions(request.position_degs)
+        await arm.move_to_joint_positions(request.positions)
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)
 

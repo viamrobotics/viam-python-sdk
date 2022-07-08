@@ -47,20 +47,20 @@ global___GetEndPositionResponse = GetEndPositionResponse
 
 class JointPositions(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    DEGREES_FIELD_NUMBER: builtins.int
+    VALUES_FIELD_NUMBER: builtins.int
 
     @property
-    def degrees(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
-        """A list of joint positions represented in degrees
+    def values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        """A list of joint positions. Rotations values are in degrees, translational values in mm.
         The numbers are ordered spatially from the base toward the end effector
         This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
         """
         pass
 
-    def __init__(self, *, degrees: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
+    def __init__(self, *, values: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['degrees', b'degrees']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['values', b'values']) -> None:
         ...
 global___JointPositions = JointPositions
 
@@ -79,20 +79,20 @@ global___GetJointPositionsRequest = GetJointPositionsRequest
 
 class GetJointPositionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    POSITION_DEGS_FIELD_NUMBER: builtins.int
+    POSITIONS_FIELD_NUMBER: builtins.int
 
     @property
-    def position_degs(self) -> global___JointPositions:
+    def positions(self) -> global___JointPositions:
         """a list JointPositions"""
         pass
 
-    def __init__(self, *, position_degs: typing.Optional[global___JointPositions]=...) -> None:
+    def __init__(self, *, positions: typing.Optional[global___JointPositions]=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['position_degs', b'position_degs']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['positions', b'positions']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['position_degs', b'position_degs']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['positions', b'positions']) -> None:
         ...
 global___GetJointPositionsResponse = GetJointPositionsResponse
 
@@ -135,24 +135,24 @@ global___MoveToPositionResponse = MoveToPositionResponse
 class MoveToJointPositionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    POSITION_DEGS_FIELD_NUMBER: builtins.int
+    POSITIONS_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of an arm'
 
     @property
-    def position_degs(self) -> global___JointPositions:
-        """A list of joint positions represented in degrees
-        There should be 1 entry in the list per joint, ordered spatially from the base toward the end effector
+    def positions(self) -> global___JointPositions:
+        """A list of joint positions
+        There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector
         """
         pass
 
-    def __init__(self, *, name: typing.Text=..., position_degs: typing.Optional[global___JointPositions]=...) -> None:
+    def __init__(self, *, name: typing.Text=..., positions: typing.Optional[global___JointPositions]=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['position_degs', b'position_degs']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['positions', b'positions']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'position_degs', b'position_degs']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'positions', b'positions']) -> None:
         ...
 global___MoveToJointPositionsRequest = MoveToJointPositionsRequest
 

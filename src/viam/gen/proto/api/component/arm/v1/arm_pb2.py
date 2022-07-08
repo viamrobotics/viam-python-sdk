@@ -6,7 +6,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 from ......proto.api.common.v1 import common_pb2 as proto_dot_api_dot_common_dot_v1_dot_common__pb2
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$proto/api/component/arm/v1/arm.proto\x12\x1aproto.api.component.arm.v1\x1a\x1cgoogle/api/annotations.proto\x1a proto/api/common/v1/common.proto"+\n\x15GetEndPositionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name"G\n\x16GetEndPositionResponse\x12-\n\x04pose\x18\x01 \x01(\x0b2\x19.proto.api.common.v1.PoseR\x04pose"*\n\x0eJointPositions\x12\x18\n\x07degrees\x18\x01 \x03(\x01R\x07degrees".\n\x18GetJointPositionsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name"l\n\x19GetJointPositionsResponse\x12O\n\rposition_degs\x18\x01 \x01(\x0b2*.proto.api.component.arm.v1.JointPositionsR\x0cpositionDegs"\xad\x01\n\x15MoveToPositionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12)\n\x02to\x18\x02 \x01(\x0b2\x19.proto.api.common.v1.PoseR\x02to\x12E\n\x0bworld_state\x18\x03 \x01(\x0b2\x1f.proto.api.common.v1.WorldStateH\x00R\nworldState\x88\x01\x01B\x0e\n\x0c_world_state"\x18\n\x16MoveToPositionResponse"\x82\x01\n\x1bMoveToJointPositionsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12O\n\rposition_degs\x18\x02 \x01(\x0b2*.proto.api.component.arm.v1.JointPositionsR\x0cpositionDegs"\x1e\n\x1cMoveToJointPositionsResponse"!\n\x0bStopRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name"\x0e\n\x0cStopResponse"\xb8\x01\n\x06Status\x12<\n\x0cend_position\x18\x01 \x01(\x0b2\x19.proto.api.common.v1.PoseR\x0bendPosition\x12S\n\x0fjoint_positions\x18\x02 \x01(\x0b2*.proto.api.component.arm.v1.JointPositionsR\x0ejointPositions\x12\x1b\n\tis_moving\x18\x03 \x01(\x08R\x08isMoving2\xf9\x06\n\nArmService\x12\xab\x01\n\x0eGetEndPosition\x121.proto.api.component.arm.v1.GetEndPositionRequest\x1a2.proto.api.component.arm.v1.GetEndPositionResponse"2\x82\xd3\xe4\x93\x02,\x12*/viam/api/v1/component/arm/{name}/position\x12\xab\x01\n\x0eMoveToPosition\x121.proto.api.component.arm.v1.MoveToPositionRequest\x1a2.proto.api.component.arm.v1.MoveToPositionResponse"2\x82\xd3\xe4\x93\x02,\x1a*/viam/api/v1/component/arm/{name}/position\x12\xbb\x01\n\x11GetJointPositions\x124.proto.api.component.arm.v1.GetJointPositionsRequest\x1a5.proto.api.component.arm.v1.GetJointPositionsResponse"9\x82\xd3\xe4\x93\x023\x121/viam/api/v1/component/arm/{name}/joint_positions\x12\xc4\x01\n\x14MoveToJointPositions\x127.proto.api.component.arm.v1.MoveToJointPositionsRequest\x1a8.proto.api.component.arm.v1.MoveToJointPositionsResponse"9\x82\xd3\xe4\x93\x023\x1a1/viam/api/v1/component/arm/{name}/joint_positions\x12\x89\x01\n\x04Stop\x12\'.proto.api.component.arm.v1.StopRequest\x1a(.proto.api.component.arm.v1.StopResponse".\x82\xd3\xe4\x93\x02("&/viam/api/v1/component/arm/{name}/stopBU\n\'com.viam.rdk.proto.api.component.arm.v1Z*go.viam.com/rdk/proto/api/component/arm/v1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$proto/api/component/arm/v1/arm.proto\x12\x1aproto.api.component.arm.v1\x1a\x1cgoogle/api/annotations.proto\x1a proto/api/common/v1/common.proto"+\n\x15GetEndPositionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name"G\n\x16GetEndPositionResponse\x12-\n\x04pose\x18\x01 \x01(\x0b2\x19.proto.api.common.v1.PoseR\x04pose"(\n\x0eJointPositions\x12\x16\n\x06values\x18\x01 \x03(\x01R\x06values".\n\x18GetJointPositionsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name"e\n\x19GetJointPositionsResponse\x12H\n\tpositions\x18\x01 \x01(\x0b2*.proto.api.component.arm.v1.JointPositionsR\tpositions"\xad\x01\n\x15MoveToPositionRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12)\n\x02to\x18\x02 \x01(\x0b2\x19.proto.api.common.v1.PoseR\x02to\x12E\n\x0bworld_state\x18\x03 \x01(\x0b2\x1f.proto.api.common.v1.WorldStateH\x00R\nworldState\x88\x01\x01B\x0e\n\x0c_world_state"\x18\n\x16MoveToPositionResponse"{\n\x1bMoveToJointPositionsRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name\x12H\n\tpositions\x18\x02 \x01(\x0b2*.proto.api.component.arm.v1.JointPositionsR\tpositions"\x1e\n\x1cMoveToJointPositionsResponse"!\n\x0bStopRequest\x12\x12\n\x04name\x18\x01 \x01(\tR\x04name"\x0e\n\x0cStopResponse"\xb8\x01\n\x06Status\x12<\n\x0cend_position\x18\x01 \x01(\x0b2\x19.proto.api.common.v1.PoseR\x0bendPosition\x12S\n\x0fjoint_positions\x18\x02 \x01(\x0b2*.proto.api.component.arm.v1.JointPositionsR\x0ejointPositions\x12\x1b\n\tis_moving\x18\x03 \x01(\x08R\x08isMoving2\xf9\x06\n\nArmService\x12\xab\x01\n\x0eGetEndPosition\x121.proto.api.component.arm.v1.GetEndPositionRequest\x1a2.proto.api.component.arm.v1.GetEndPositionResponse"2\x82\xd3\xe4\x93\x02,\x12*/viam/api/v1/component/arm/{name}/position\x12\xab\x01\n\x0eMoveToPosition\x121.proto.api.component.arm.v1.MoveToPositionRequest\x1a2.proto.api.component.arm.v1.MoveToPositionResponse"2\x82\xd3\xe4\x93\x02,\x1a*/viam/api/v1/component/arm/{name}/position\x12\xbb\x01\n\x11GetJointPositions\x124.proto.api.component.arm.v1.GetJointPositionsRequest\x1a5.proto.api.component.arm.v1.GetJointPositionsResponse"9\x82\xd3\xe4\x93\x023\x121/viam/api/v1/component/arm/{name}/joint_positions\x12\xc4\x01\n\x14MoveToJointPositions\x127.proto.api.component.arm.v1.MoveToJointPositionsRequest\x1a8.proto.api.component.arm.v1.MoveToJointPositionsResponse"9\x82\xd3\xe4\x93\x023\x1a1/viam/api/v1/component/arm/{name}/joint_positions\x12\x89\x01\n\x04Stop\x12\'.proto.api.component.arm.v1.StopRequest\x1a(.proto.api.component.arm.v1.StopResponse".\x82\xd3\xe4\x93\x02("&/viam/api/v1/component/arm/{name}/stopBU\n\'com.viam.rdk.proto.api.component.arm.v1Z*go.viam.com/rdk/proto/api/component/arm/v1b\x06proto3')
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'proto.api.component.arm.v1.arm_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
@@ -27,24 +27,24 @@ if _descriptor._USE_C_DESCRIPTORS == False:
     _GETENDPOSITIONRESPONSE._serialized_start = 177
     _GETENDPOSITIONRESPONSE._serialized_end = 248
     _JOINTPOSITIONS._serialized_start = 250
-    _JOINTPOSITIONS._serialized_end = 292
-    _GETJOINTPOSITIONSREQUEST._serialized_start = 294
-    _GETJOINTPOSITIONSREQUEST._serialized_end = 340
-    _GETJOINTPOSITIONSRESPONSE._serialized_start = 342
-    _GETJOINTPOSITIONSRESPONSE._serialized_end = 450
-    _MOVETOPOSITIONREQUEST._serialized_start = 453
-    _MOVETOPOSITIONREQUEST._serialized_end = 626
-    _MOVETOPOSITIONRESPONSE._serialized_start = 628
-    _MOVETOPOSITIONRESPONSE._serialized_end = 652
-    _MOVETOJOINTPOSITIONSREQUEST._serialized_start = 655
-    _MOVETOJOINTPOSITIONSREQUEST._serialized_end = 785
-    _MOVETOJOINTPOSITIONSRESPONSE._serialized_start = 787
-    _MOVETOJOINTPOSITIONSRESPONSE._serialized_end = 817
-    _STOPREQUEST._serialized_start = 819
-    _STOPREQUEST._serialized_end = 852
-    _STOPRESPONSE._serialized_start = 854
-    _STOPRESPONSE._serialized_end = 868
-    _STATUS._serialized_start = 871
-    _STATUS._serialized_end = 1055
-    _ARMSERVICE._serialized_start = 1058
-    _ARMSERVICE._serialized_end = 1947
+    _JOINTPOSITIONS._serialized_end = 290
+    _GETJOINTPOSITIONSREQUEST._serialized_start = 292
+    _GETJOINTPOSITIONSREQUEST._serialized_end = 338
+    _GETJOINTPOSITIONSRESPONSE._serialized_start = 340
+    _GETJOINTPOSITIONSRESPONSE._serialized_end = 441
+    _MOVETOPOSITIONREQUEST._serialized_start = 444
+    _MOVETOPOSITIONREQUEST._serialized_end = 617
+    _MOVETOPOSITIONRESPONSE._serialized_start = 619
+    _MOVETOPOSITIONRESPONSE._serialized_end = 643
+    _MOVETOJOINTPOSITIONSREQUEST._serialized_start = 645
+    _MOVETOJOINTPOSITIONSREQUEST._serialized_end = 768
+    _MOVETOJOINTPOSITIONSRESPONSE._serialized_start = 770
+    _MOVETOJOINTPOSITIONSRESPONSE._serialized_end = 800
+    _STOPREQUEST._serialized_start = 802
+    _STOPREQUEST._serialized_end = 835
+    _STOPRESPONSE._serialized_start = 837
+    _STOPRESPONSE._serialized_end = 851
+    _STATUS._serialized_start = 854
+    _STATUS._serialized_end = 1038
+    _ARMSERVICE._serialized_start = 1041
+    _ARMSERVICE._serialized_end = 1930

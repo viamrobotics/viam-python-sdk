@@ -66,7 +66,7 @@ ARM_STATUS = Status(
             o_z=4,
             theta=20,
         ),
-        joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0]),
+        joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0]),
         is_moving=False
     ))
 )
