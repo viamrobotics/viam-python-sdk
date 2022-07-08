@@ -142,7 +142,7 @@ Classes
       Name of an arm
 
 
-.. py:class:: GetJointPositionsResponse(*, position_degs: Optional[global___JointPositions] = ...)
+.. py:class:: GetJointPositionsResponse(*, positions: Optional[global___JointPositions] = ...)
 
 
 
@@ -152,13 +152,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: position_degs(self) -> global___JointPositions
+   .. py:method:: positions(self) -> global___JointPositions
       :property:
 
       a list JointPositions
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[position_degs, b'position_degs']) -> bool
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[positions, b'positions']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -176,7 +176,7 @@ Classes
 
 
 
-.. py:class:: JointPositions(*, degrees: Optional[Iterable[float]] = ...)
+.. py:class:: JointPositions(*, values: Optional[Iterable[float]] = ...)
 
 
 
@@ -186,16 +186,16 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: degrees(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
       :property:
 
-      A list of joint positions represented in degrees
+      A list of joint positions. Rotations values are in degrees, translational values in mm.
       The numbers are ordered spatially from the base toward the end effector
       This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
 
 
 
-.. py:class:: MoveToJointPositionsRequest(*, name: Text = ..., position_degs: Optional[global___JointPositions] = ...)
+.. py:class:: MoveToJointPositionsRequest(*, name: Text = ..., positions: Optional[global___JointPositions] = ...)
 
 
 
@@ -210,14 +210,14 @@ Classes
 
       Name of an arm
 
-   .. py:method:: position_degs(self) -> global___JointPositions
+   .. py:method:: positions(self) -> global___JointPositions
       :property:
 
-      A list of joint positions represented in degrees
-      There should be 1 entry in the list per joint, ordered spatially from the base toward the end effector
+      A list of joint positions
+      There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[position_degs, b'position_degs']) -> bool
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[positions, b'positions']) -> bool
 
       Checks if a certain field is set for the message.
 

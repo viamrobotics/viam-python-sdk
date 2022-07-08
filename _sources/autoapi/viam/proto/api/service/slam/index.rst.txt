@@ -85,7 +85,7 @@ Classes
       cloud into a 2D image.
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[camera_position, b'camera_position']) -> bool
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_camera_position, b'_camera_position', camera_position, b'camera_position']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -100,6 +100,21 @@ Classes
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_camera_position, b'_camera_position']) -> Optional[typing_extensions.Literal[camera_position]]
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 

@@ -100,7 +100,7 @@ Classes
 
 
 
-.. py:class:: JointPositions(*, degrees: Optional[Iterable[float]] = ...)
+.. py:class:: JointPositions(*, values: Optional[Iterable[float]] = ...)
 
 
 
@@ -110,10 +110,10 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: degrees(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
       :property:
 
-      A list of joint positions represented in degrees
+      A list of joint positions. Rotations values are in degrees, translational values in mm.
       The numbers are ordered spatially from the base toward the end effector
       This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
 
@@ -168,7 +168,7 @@ Classes
       degrees
 
 
-.. py:class:: WorldState(*, obstacles: Optional[Iterable[global___GeometriesInFrame]] = ..., transforms: Optional[Iterable[global___Transform]] = ...)
+.. py:class:: WorldState(*, obstacles: Optional[Iterable[global___GeometriesInFrame]] = ..., interaction_spaces: Optional[Iterable[global___GeometriesInFrame]] = ..., transforms: Optional[Iterable[global___Transform]] = ...)
 
 
 
@@ -179,7 +179,14 @@ Classes
    .. py:method:: obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
       :property:
 
-      a list of obstacles expressed as a geomtry and the reference frame in which it was observed; this field is optional
+      a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
+
+
+   .. py:method:: interaction_spaces(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
+      :property:
+
+      a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+      this field is optional
 
 
    .. py:method:: transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
