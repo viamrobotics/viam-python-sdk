@@ -67,7 +67,7 @@ STATUSES = [
                 o_z=4,
                 theta=20,
             ),
-            joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+            joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0])
         ))
     ),
     Status(
@@ -236,7 +236,7 @@ class TestRobotService:
                             o_z=4,
                             theta=20,
                         ),
-                        joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+                        joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0])
                     ))
                 ),
                 Status(
@@ -354,7 +354,7 @@ class TestRobotClient:
                             o_z=4,
                             theta=20,
                         ),
-                        joint_positions=JointPositions(degrees=[0, 0, 0, 0, 0, 0])
+                        joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0])
                     ))
                 ),
                 Status(

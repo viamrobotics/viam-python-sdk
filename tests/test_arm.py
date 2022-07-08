@@ -29,7 +29,7 @@ class TestArm:
         o_z=5,
         theta=20
     )
-    joint_pos = JointPositions(degrees=[1, 8, 2])
+    joint_pos = JointPositions(values=[1, 8, 2])
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -78,7 +78,7 @@ class TestService:
         o_z=5,
         theta=20
     )
-    joint_pos = JointPositions(degrees=[1, 8, 2])
+    joint_pos = JointPositions(values=[1, 8, 2])
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -102,7 +102,7 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
             request = MoveToJointPositionsRequest(
-                name=self.name, position_degs=self.joint_pos)
+                name=self.name, positions=self.joint_pos)
             await client.MoveToJointPositions(request)
             assert self.arm.joint_positions == self.joint_pos
 
@@ -113,7 +113,7 @@ class TestService:
             request = GetJointPositionsRequest(name=self.name)
             response: GetJointPositionsResponse = \
                 await client.GetJointPositions(request)
-            assert response.position_degs == self.joint_pos
+            assert response.positions == self.joint_pos
 
     @pytest.mark.asyncio
     async def test_stop(self):
@@ -140,7 +140,7 @@ class TestClient:
         o_z=5,
         theta=20
     )
-    joint_pos = JointPositions(degrees=[1, 8, 2])
+    joint_pos = JointPositions(values=[1, 8, 2])
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
