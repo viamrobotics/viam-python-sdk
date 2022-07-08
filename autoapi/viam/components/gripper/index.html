@@ -76,6 +76,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.Gripper.open">open</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.Gripper.grab">grab</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.Gripper.stop">stop</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.gripper.Gripper.is_moving">is_moving</a></li>
 </ul>
 </li>
 </ul>
@@ -184,6 +185,20 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dt class="sig sig-object py" id="viam.components.gripper.Gripper.stop">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/gripper/gripper.html#Gripper.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.Gripper.stop" title="Permalink to this definition"></a></dt>
 <dd><p>Stop the gripper. It is assumed the gripper stops immediately.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.gripper.Gripper.is_moving">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_moving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/gripper/gripper.html#Gripper.is_moving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.Gripper.is_moving" title="Permalink to this definition"></a></dt>
+<dd><p>Get if the gripper is currently moving.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whether the gripper is moving.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

@@ -86,6 +86,7 @@
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">NotSupportedError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">WorldState</span>
 
 <span class="kn">from</span> <span class="nn">..component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
@@ -142,7 +143,16 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stop all motion of the gantry. It is assumed that the gantry stops immediately.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="o">...</span></div></div>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Gantry.is_moving"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/index.html#viam.components.gantry.gantry.Gantry.is_moving">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get if the gantry is currently moving.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the gantry is moving.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Gantry named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> does not support returning whether it is moving&#39;</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

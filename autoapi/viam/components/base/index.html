@@ -72,6 +72,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.set_power">set_power</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.set_velocity">set_velocity</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.stop">stop</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.is_moving">is_moving</a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.base.Vector3">Vector3</a><ul>
@@ -245,6 +246,20 @@ This method blocks until completed or cancelled</p>
 <dt class="sig sig-object py" id="viam.components.base.Base.stop">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/base/base.html#Base.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.Base.stop" title="Permalink to this definition"></a></dt>
 <dd><p>Stop the base.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.Base.is_moving">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_moving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/base/base.html#Base.is_moving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.Base.is_moving" title="Permalink to this definition"></a></dt>
+<dd><p>Get if the base is currently moving.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Whether the base is moving.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
