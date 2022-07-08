@@ -2,14 +2,17 @@ from random import randint, random
 
 import pytest
 from grpclib.testing import ChannelFor
-from viam.components.base import BaseClient, Vector3
+from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
+from viam.errors import NotSupportedError
+from viam.proto.api.common import ActuatorStatus
 from viam.proto.api.component.base import (BaseServiceStub,
                                            MoveStraightRequest,
                                            SetPowerRequest, SetVelocityRequest,
                                            SpinRequest, StopRequest)
+from viam.utils import message_to_struct
 
 from .mocks.components import MockBase
 
@@ -96,9 +99,24 @@ class TestBase:
         assert base.angular_vel == Vector3(x=4, y=5, z=6)
 
     @pytest.mark.asyncio
+    async def test_is_moving(self, base: MockBase):
+        await base.move_straight(1, 1)
+        assert await base.is_moving()
+        await base.stop()
+        assert base.stopped is True
+        assert not await base.is_moving()
+
+    @pytest.mark.asyncio
     async def test_do(self, base: MockBase):
         with pytest.raises(NotImplementedError):
             await base.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_status(self, base: MockBase):
+        await base.move_straight(1, 1)
+        status = await create_status(base)
+        assert status.name == base.get_resource_name(base.name)
+        assert status.status == message_to_struct(ActuatorStatus(is_moving=True))
 
 
 class TestService:
@@ -280,8 +298,22 @@ class TestClient:
             assert base.stopped is True
 
     @pytest.mark.asyncio
+    async def test_is_moving(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            with pytest.raises(NotSupportedError):
+                await client.is_moving()
+
+    @pytest.mark.asyncio
     async def test_do(self, base: MockBase, service: BaseService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
             client = BaseClient(base.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_status(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            with pytest.raises(NotSupportedError):
+                await create_status(client)

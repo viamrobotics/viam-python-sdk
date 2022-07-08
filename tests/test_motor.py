@@ -1,9 +1,10 @@
 import pytest
 from grpclib.testing import ChannelFor
 from viam.components.generic.service import GenericService
-from viam.components.motor import MotorClient
+from viam.components.motor import MotorClient, MotorStatus, create_status
 from viam.components.motor.service import MotorService
 from viam.components.resource_manager import ResourceManager
+from viam.errors import NotSupportedError
 from viam.proto.api.component.motor import (GetFeaturesRequest,
                                             GetFeaturesResponse,
                                             GetPositionRequest,
@@ -13,6 +14,7 @@ from viam.proto.api.component.motor import (GetFeaturesRequest,
                                             MotorServiceStub,
                                             ResetZeroPositionRequest,
                                             SetPowerRequest, StopRequest)
+from viam.utils import message_to_struct
 
 from .mocks.components import MockMotor
 
@@ -98,9 +100,30 @@ class TestMotor:
         assert is_powered is False
 
     @pytest.mark.asyncio
+    async def test_is_moving(self, motor: MockMotor):
+        await motor.set_power(10)
+        assert await motor.is_moving()
+        await motor.set_power(0)
+        assert not await motor.is_moving()
+
+    @pytest.mark.asyncio
     async def test_do(self, motor: MockMotor):
         with pytest.raises(NotImplementedError):
             await motor.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_status(self, motor: MockMotor):
+        await motor.set_power(10)
+        status = await create_status(motor)
+        assert status.name == motor.get_resource_name(motor.name)
+        assert status.status == message_to_struct(
+            MotorStatus(
+                is_powered=True,
+                position=0,
+                position_reporting=True,
+                is_moving=True
+            )
+        )
 
 
 class TestService:
@@ -286,8 +309,22 @@ class TestClient:
             assert is_on is False
 
     @pytest.mark.asyncio
+    async def test_is_moving(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            with pytest.raises(NotSupportedError):
+                await client.is_moving()
+
+    @pytest.mark.asyncio
     async def test_do(self, motor: MockMotor, service: MotorService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
             client = MotorClient(motor.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_status(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            with pytest.raises(NotSupportedError):
+                await create_status(client)

@@ -1,5 +1,7 @@
 import abc
 
+from viam.errors import NotSupportedError
+
 from ..component_base import ComponentBase
 
 
@@ -40,3 +42,12 @@ class Servo(ComponentBase):
         Stop the servo. It is assumed that the servo stops immediately.
         """
         ...
+
+    async def is_moving(self) -> bool:
+        """
+        Get if the servo is currently moving.
+
+        Returns:
+            bool: Whether the servo is moving.
+        """
+        raise NotSupportedError(f'Servo named {self.name} does not support returning whether it is moving')
