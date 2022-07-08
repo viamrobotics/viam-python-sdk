@@ -1,9 +1,10 @@
 import pytest
 from grpclib.testing import ChannelFor
-from viam.components.gantry import GantryClient
+from viam.components.gantry import GantryClient, GantryStatus, create_status
 from viam.components.gantry.service import GantryService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
+from viam.errors import NotSupportedError
 from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetLengthsRequest,
                                              GetLengthsResponse,
@@ -11,6 +12,7 @@ from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetPositionResponse,
                                              MoveToPositionRequest,
                                              StopRequest)
+from viam.utils import message_to_struct
 
 from .mocks.components import MockGantry
 
@@ -44,6 +46,26 @@ class TestGantry:
         assert self.gantry.is_stopped is False
         await self.gantry.stop()
         assert self.gantry.is_stopped is True
+
+    @pytest.mark.asyncio
+    async def test_is_moving(self):
+        await self.gantry.move_to_position([1, 8, 2])
+        assert await self.gantry.is_moving()
+        await self.gantry.stop()
+        assert not await self.gantry.is_moving()
+
+    @pytest.mark.asyncio
+    async def test_status(self):
+        await self.gantry.move_to_position([1, 2, 3])
+        status = await create_status(self.gantry)
+        assert status.name == MockGantry.get_resource_name(self.gantry.name)
+        assert status.status == message_to_struct(
+            GantryStatus(
+                lengths_mm=[4, 5, 6],
+                positions_mm=[1, 2, 3],
+                is_moving=True
+            )
+        )
 
 
 class TestService:
@@ -128,3 +150,17 @@ class TestClient:
             client = GantryClient(self.gantry.name, channel)
             await client.stop()
             assert self.gantry.is_stopped is True
+
+    @pytest.mark.asyncio
+    async def test_is_moving(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryClient(self.gantry.name, channel)
+            with pytest.raises(NotSupportedError):
+                await client.is_moving()
+
+    @pytest.mark.asyncio
+    async def test_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryClient(self.gantry.name, channel)
+            with pytest.raises(NotSupportedError):
+                await create_status(client)

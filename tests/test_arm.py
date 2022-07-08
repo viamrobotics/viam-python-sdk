@@ -1,9 +1,10 @@
 import pytest
 from grpclib.testing import ChannelFor
-from viam.components.arm import ArmClient
+from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
+from viam.errors import NotSupportedError
 from viam.proto.api.common import Pose
 from viam.proto.api.component.arm import (ArmServiceStub,
                                           GetEndPositionRequest,
@@ -13,6 +14,7 @@ from viam.proto.api.component.arm import (ArmServiceStub,
                                           JointPositions,
                                           MoveToJointPositionsRequest,
                                           MoveToPositionRequest, StopRequest)
+from viam.utils import message_to_struct
 
 from .mocks.components import MockArm
 
@@ -58,9 +60,29 @@ class TestArm:
         assert self.arm.is_stopped is True
 
     @pytest.mark.asyncio
+    async def test_is_moving(self):
+        await self.arm.move_to_position(self.pose)
+        assert await self.arm.is_moving()
+        await self.arm.stop()
+        assert not await self.arm.is_moving()
+
+    @pytest.mark.asyncio
     async def test_do(self):
         with pytest.raises(NotImplementedError):
             await self.arm.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_status(self):
+        await self.arm.move_to_position(self.pose)
+        status = await create_status(self.arm)
+        assert status.name == MockArm.get_resource_name(self.arm.name)
+        assert status.status == message_to_struct(
+            ArmStatus(
+                end_position=self.pose,
+                joint_positions=self.joint_pos,
+                is_moving=True
+            )
+        )
 
 
 class TestService:
@@ -179,8 +201,22 @@ class TestClient:
             assert self.arm.is_stopped is True
 
     @pytest.mark.asyncio
+    async def test_is_moving(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            with pytest.raises(NotSupportedError):
+                await client.is_moving()
+
+    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = ArmClient(self.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            with pytest.raises(NotSupportedError):
+                await create_status(client)

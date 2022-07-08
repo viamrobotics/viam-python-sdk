@@ -1,6 +1,8 @@
 import abc
 from dataclasses import dataclass
 
+from viam.errors import NotSupportedError
+
 from ..component_base import ComponentBase
 
 
@@ -108,3 +110,12 @@ class Motor(ComponentBase):
             bool: Indicates whether the motor is currently powered.
         """
         ...
+
+    async def is_moving(self) -> bool:
+        """
+        Get if the motor is currently moving.
+
+        Returns:
+            bool: Whether the motor is moving.
+        """
+        raise NotSupportedError(f'Motor named {self.name} does not support returning whether it is moving')

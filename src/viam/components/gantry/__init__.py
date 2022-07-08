@@ -15,7 +15,8 @@ __all__ = [
 async def create_status(component: Gantry) -> Status:
     s = GantryStatus(
         positions_mm=await component.get_position(),
-        lengths_mm=await component.get_lengths()
+        lengths_mm=await component.get_lengths(),
+        is_moving=await component.is_moving()
     )
     return Status(
         name=Gantry.get_resource_name(component.name),

@@ -2,11 +2,13 @@ import pytest
 from grpclib.testing import ChannelFor
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.components.servo import ServoClient
+from viam.components.servo import ServoClient, ServoStatus, create_status
 from viam.components.servo.service import ServoService
+from viam.errors import NotSupportedError
 from viam.proto.api.component.servo import (GetPositionRequest,
                                             GetPositionResponse, MoveRequest,
                                             ServoServiceStub, StopRequest)
+from viam.utils import message_to_struct
 
 from .mocks.components import MockServo
 
@@ -33,9 +35,28 @@ class TestServo:
         assert self.servo.is_stopped is True
 
     @pytest.mark.asyncio
+    async def test_is_moving(self):
+        await self.servo.move(self.pos)
+        assert await self.servo.is_moving()
+        await self.servo.stop()
+        assert not await self.servo.is_moving()
+
+    @pytest.mark.asyncio
     async def test_do(self):
         with pytest.raises(NotImplementedError):
             await self.servo.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_status(self):
+        await self.servo.move(self.pos)
+        status = await create_status(self.servo)
+        assert status.name == self.servo.get_resource_name(self.servo.name)
+        assert status.status == message_to_struct(
+            ServoStatus(
+                position_deg=self.pos,
+                is_moving=True
+            )
+        )
 
 
 class TestService:
@@ -103,8 +124,22 @@ class TestClient:
             assert self.servo.is_stopped is True
 
     @pytest.mark.asyncio
+    async def test_is_moving(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ServoClient(self.name, channel)
+            with pytest.raises(NotSupportedError):
+                await client.is_moving()
+
+    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = ServoClient(self.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do({'command': 'args'})
+
+    @pytest.mark.asyncio
+    async def test_status(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ServoClient(self.name, channel)
+            with pytest.raises(NotSupportedError):
+                await create_status(client)

@@ -49,36 +49,41 @@ RESOURCE_NAMES = [
     ),
 ]
 
+ARM_STATUS = Status(
+    name=ResourceName(
+        namespace='rdk',
+        type='component',
+        subtype='arm',
+        name='arm1'
+    ),
+    status=message_to_struct(ArmStatus(
+        end_position=Pose(
+            x=1,
+            y=2,
+            z=3,
+            o_x=2,
+            o_y=3,
+            o_z=4,
+            theta=20,
+        ),
+        joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0]),
+        is_moving=False
+    ))
+)
+
+CAMERA_STATUS = Status(
+    name=ResourceName(
+        namespace='rdk',
+        type='component',
+        subtype='camera',
+        name='camera1'
+    ),
+    status=Struct()
+)
+
 STATUSES = [
-    Status(
-        name=ResourceName(
-            namespace='rdk',
-            type='component',
-            subtype='arm',
-            name='arm1'
-        ),
-        status=message_to_struct(ArmStatus(
-            end_position=Pose(
-                x=1,
-                y=2,
-                z=3,
-                o_x=2,
-                o_y=3,
-                o_z=4,
-                theta=20,
-            ),
-            joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0])
-        ))
-    ),
-    Status(
-        name=ResourceName(
-            namespace='rdk',
-            type='component',
-            subtype='camera',
-            name='camera1'
-        ),
-        status=Struct()
-    ),
+    ARM_STATUS,
+    CAMERA_STATUS,
     Status(
         name=ResourceName(
             namespace='rdk',
@@ -89,7 +94,8 @@ STATUSES = [
         status=message_to_struct(MotorStatus(
             is_powered=False,
             position=0,
-            position_reporting=True
+            position_reporting=True,
+            is_moving=False
         ))
     ),
 ]
@@ -218,37 +224,7 @@ class TestRobotService:
                 MockCamera.get_resource_name('camera1')
             ])
             response: GetStatusResponse = await client.GetStatus(request)
-            assert list(response.status) == [
-                Status(
-                    name=ResourceName(
-                        namespace='rdk',
-                        type='component',
-                        subtype='arm',
-                        name='arm1'
-                    ),
-                    status=message_to_struct(ArmStatus(
-                        end_position=Pose(
-                            x=1,
-                            y=2,
-                            z=3,
-                            o_x=2,
-                            o_y=3,
-                            o_z=4,
-                            theta=20,
-                        ),
-                        joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0])
-                    ))
-                ),
-                Status(
-                    name=ResourceName(
-                        namespace='rdk',
-                        type='component',
-                        subtype='camera',
-                        name='camera1'
-                    ),
-                    status=Struct()
-                ),
-            ]
+            assert list(response.status) == [ARM_STATUS, CAMERA_STATUS]
 
 
 class TestRobotClient:
@@ -336,60 +312,30 @@ class TestRobotClient:
                 MockArm.get_resource_name('arm1'),
                 MockCamera.get_resource_name('camera1')
             ])
-            assert statuses == [
-                Status(
-                    name=ResourceName(
-                        namespace='rdk',
-                        type='component',
-                        subtype='arm',
-                        name='arm1'
-                    ),
-                    status=message_to_struct(ArmStatus(
-                        end_position=Pose(
-                            x=1,
-                            y=2,
-                            z=3,
-                            o_x=2,
-                            o_y=3,
-                            o_z=4,
-                            theta=20,
-                        ),
-                        joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0])
-                    ))
-                ),
-                Status(
-                    name=ResourceName(
-                        namespace='rdk',
-                        type='component',
-                        subtype='camera',
-                        name='camera1'
-                    ),
-                    status=Struct()
-                ),
-            ]
+            assert statuses == [ARM_STATUS, CAMERA_STATUS]
 
-    @pytest.mark.asyncio
+    @ pytest.mark.asyncio
     async def test_get_service(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             with pytest.raises(ServiceNotImplementedError):
                 client.get_service(ServiceType.VISION)
 
-    @pytest.mark.asyncio
+    @ pytest.mark.asyncio
     async def test_get_frame_system_config(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             configs = await client.get_frame_system_config()
             assert configs == CONFIG_RESPONSE
 
-    @pytest.mark.asyncio
+    @ pytest.mark.asyncio
     async def test_transform_pose(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             pose = await client.transform_pose(PoseInFrame(), 'some dest')
             assert pose == TRANSFORM_RESPONSE
 
-    @pytest.mark.asyncio
+    @ pytest.mark.asyncio
     async def test_discover_components(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
