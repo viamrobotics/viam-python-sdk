@@ -65,10 +65,13 @@ class GetMapRequest(google.protobuf.message.Message):
     def __init__(self, *, name: typing.Text=..., mime_type: typing.Text=..., camera_position: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., include_robot_marker: builtins.bool=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['camera_position', b'camera_position']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_camera_position', b'_camera_position', 'camera_position', b'camera_position']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_position', b'camera_position', 'include_robot_marker', b'include_robot_marker', 'mime_type', b'mime_type', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_camera_position', b'_camera_position', 'camera_position', b'camera_position', 'include_robot_marker', b'include_robot_marker', 'mime_type', b'mime_type', 'name', b'name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_camera_position', b'_camera_position']) -> typing.Optional[typing_extensions.Literal['camera_position']]:
         ...
 global___GetMapRequest = GetMapRequest
 
