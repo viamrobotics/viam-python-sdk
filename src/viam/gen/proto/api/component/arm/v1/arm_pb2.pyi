@@ -6,6 +6,7 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import google.protobuf.struct_pb2
 from ...... import proto
 import typing
 import typing_extensions
@@ -14,13 +15,22 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 class GetEndPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of an arm'
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method."""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetEndPositionRequest = GetEndPositionRequest
 
@@ -67,13 +77,22 @@ global___JointPositions = JointPositions
 class GetJointPositionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of an arm'
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method."""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetJointPositionsRequest = GetJointPositionsRequest
 
@@ -101,6 +120,7 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     TO_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of an arm'
 
@@ -112,13 +132,18 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     def world_state(self) -> proto.api.common.v1.common_pb2.WorldState:
         ...
 
-    def __init__(self, *, name: typing.Text=..., to: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method."""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., to: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'to', b'to', 'world_state', b'world_state']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'to', b'to', 'world_state', b'world_state']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'name', b'name', 'to', b'to', 'world_state', b'world_state']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'name', b'name', 'to', b'to', 'world_state', b'world_state']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
@@ -136,6 +161,7 @@ class MoveToJointPositionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     POSITIONS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of an arm'
 
@@ -146,13 +172,18 @@ class MoveToJointPositionsRequest(google.protobuf.message.Message):
         """
         pass
 
-    def __init__(self, *, name: typing.Text=..., positions: typing.Optional[global___JointPositions]=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method."""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., positions: typing.Optional[global___JointPositions]=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['positions', b'positions']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'positions', b'positions']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'positions', b'positions']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'positions', b'positions']) -> None:
         ...
 global___MoveToJointPositionsRequest = MoveToJointPositionsRequest
 
@@ -166,13 +197,22 @@ global___MoveToJointPositionsResponse = MoveToJointPositionsResponse
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     'Name of an arm'
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method."""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___StopRequest = StopRequest
 
