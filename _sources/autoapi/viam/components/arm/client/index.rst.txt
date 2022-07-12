@@ -25,7 +25,7 @@ Classes
 
    Used to communicate with an existing `Arm` implementation over gRPC.
 
-   .. py:method:: get_end_position(self) -> viam.proto.api.common.Pose
+   .. py:method:: get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> viam.proto.api.common.Pose
       :async:
 
       Get the current position of the end of the arm expressed as a Pose.
@@ -33,7 +33,7 @@ Classes
       Returns: The location and orientation of the arm described as a Pose.
 
 
-   .. py:method:: move_to_position(self, pose: viam.proto.api.common.Pose, world_state: Optional[viam.proto.api.common.WorldState] = None)
+   .. py:method:: move_to_position(self, pose: viam.proto.api.common.Pose, world_state: Optional[viam.proto.api.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Move the end of the arm to the Pose specified in `pose`.
@@ -45,7 +45,7 @@ Classes
       :type world_state: WorldState
 
 
-   .. py:method:: get_joint_positions(self) -> viam.proto.api.component.arm.JointPositions
+   .. py:method:: get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> viam.proto.api.component.arm.JointPositions
       :async:
 
       Get the JointPositions representing the current position of the arm.
@@ -54,7 +54,7 @@ Classes
       :rtype: JointPositions
 
 
-   .. py:method:: move_to_joint_positions(self, positions: viam.proto.api.component.arm.JointPositions)
+   .. py:method:: move_to_joint_positions(self, positions: viam.proto.api.component.arm.JointPositions, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Move each joint on the arm to the corresponding angle specified in `positions`.
@@ -63,7 +63,7 @@ Classes
       :type positions: JointPositions
 
 
-   .. py:method:: stop(self)
+   .. py:method:: stop(self, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Stop all motion of the arm. It is assumed that the arm stops immediately.
