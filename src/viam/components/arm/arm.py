@@ -1,5 +1,5 @@
 import abc
-from typing import Optional
+from typing import Any, Dict, Optional
 
 from viam.errors import NotSupportedError
 from viam.proto.api.common import Pose, WorldState
@@ -18,7 +18,7 @@ class Arm(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_end_position(self) -> Pose:
+    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
         """
         Get the current position of the end of the arm expressed as a Pose.
 
@@ -30,7 +30,8 @@ class Arm(ComponentBase):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None
     ):
         """
         Move the end of the arm to the Pose specified in `pose`.
@@ -45,7 +46,7 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def move_to_joint_positions(self, positions: JointPositions):
+    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
         """
         Move each joint on the arm to the corresponding angle specified in `positions`.
 
@@ -56,7 +57,7 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_joint_positions(self) -> JointPositions:
+    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
         """
         Get the JointPositions representing the current position of the arm.
 
@@ -66,7 +67,7 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         """
         Stop all motion of the arm. It is assumed that the arm stops immediately.
         """

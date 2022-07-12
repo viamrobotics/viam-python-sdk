@@ -1,4 +1,5 @@
 import pytest
+from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
@@ -84,6 +85,11 @@ class TestArm:
             )
         )
 
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        await self.arm.get_end_position(extra={"foo": "bar"})
+        assert self.arm.extra == {"foo": "bar"}
+
 
 class TestService:
 
@@ -145,6 +151,16 @@ class TestService:
             request = StopRequest(name=self.name)
             await client.Stop(request)
             assert self.arm.is_stopped is True
+
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            struct = Struct()
+            struct.update({"foo": "bar"})
+            request = GetEndPositionRequest(name=self.name, extra=struct)
+            await client.GetEndPosition(request)
+            assert self.arm.extra == {"foo": "bar"}
 
 
 class TestClient:
@@ -220,3 +236,10 @@ class TestClient:
             client = ArmClient(self.name, channel)
             with pytest.raises(NotSupportedError):
                 await create_status(client)
+
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            await client.get_end_position(extra={"foo": "bar"})
+            assert self.arm.extra == {"foo": "bar"}

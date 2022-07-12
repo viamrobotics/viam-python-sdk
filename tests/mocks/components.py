@@ -43,28 +43,35 @@ class MockArm(Arm):
         )
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
+        self.extra = None
         super().__init__(name)
 
-    async def get_end_position(self) -> Pose:
+    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
+        self.extra = extra
         return self.position
 
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None
     ):
         self.position = pose
         self.is_stopped = False
+        self.extra = extra
 
-    async def get_joint_positions(self) -> JointPositions:
+    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
+        self.extra = extra
         return self.joint_positions
 
-    async def move_to_joint_positions(self, positions: JointPositions):
+    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
         self.joint_positions = positions
         self.is_stopped = False
+        self.extra = extra
 
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         self.is_stopped = True
+        self.extra = extra
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
