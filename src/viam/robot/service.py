@@ -2,8 +2,9 @@ import asyncio
 from typing import Iterable, List
 
 from grpclib.server import Stream
-from grpclib import GRPCError, Status as GRPCStatus
+from viam import logging
 from viam.components.service_base import ComponentServiceBase
+from viam.errors import MethodNotImplementedError, ViamGRPCError
 from viam.proto.api.common import ResourceName
 from viam.proto.api.robot import (BlockForOperationRequest,
                                   BlockForOperationResponse,
@@ -16,7 +17,8 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   GetOperationsRequest, GetOperationsResponse,
                                   GetStatusRequest, GetStatusResponse,
                                   ResourceNamesRequest, ResourceNamesResponse,
-                                  ResourceRPCSubtypesRequest, ResourceRPCSubtypesResponse,
+                                  ResourceRPCSubtypesRequest,
+                                  ResourceRPCSubtypesResponse,
                                   RobotServiceBase, Status,
                                   StreamStatusRequest, StreamStatusResponse,
                                   TransformPoseRequest, TransformPoseResponse)
@@ -43,8 +45,13 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
         for component in self.manager.components.values():
             for registration in Registry.REGISTERED_COMPONENTS.values():
                 if isinstance(component, registration.component_type):
-                    status = await registration.create_status(component)
-                    statuses.append(status)
+                    if resource_names and component.get_resource_name(component.name) not in resource_names:
+                        continue
+                    try:
+                        status = await registration.create_status(component)
+                        statuses.append(status)
+                    except ViamGRPCError as e:
+                        raise e.grpc_error
 
         if resource_names:
             statuses = [s for s in statuses if s.name in resource_names]
@@ -78,40 +85,22 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
             await asyncio.sleep(interval)
 
     async def GetOperations(self, stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
-        pass
+        raise MethodNotImplementedError("GetOperations").grpc_error
 
     async def ResourceRPCSubtypes(self, stream: Stream[ResourceRPCSubtypesRequest, ResourceRPCSubtypesResponse]) -> None:
-        raise GRPCError(
-            GRPCStatus.UNIMPLEMENTED,
-            "Method ResourceRPCSubtypes not implemented."
-        )
+        raise MethodNotImplementedError("ResourceRPCSubtypes").grpc_error
 
     async def CancelOperation(self, stream: Stream[CancelOperationRequest, CancelOperationResponse]) -> None:
-        raise GRPCError(
-            GRPCStatus.UNIMPLEMENTED,
-            "Method CancelOperation not implemented."
-        )
+        raise MethodNotImplementedError("CancelOperation").grpc_error
 
     async def BlockForOperation(self, stream: Stream[BlockForOperationRequest, BlockForOperationResponse]) -> None:
-        raise GRPCError(
-            GRPCStatus.UNIMPLEMENTED,
-            "Method BlockForOperation not implemented."
-        )
+        raise MethodNotImplementedError("BlockForOperation").grpc_error
 
     async def FrameSystemConfig(self, stream: Stream[FrameSystemConfigRequest, FrameSystemConfigResponse]) -> None:
-        raise GRPCError(
-            GRPCStatus.UNIMPLEMENTED,
-            "Method FrameSystemConfig not implemented."
-        )
+        raise MethodNotImplementedError("FrameSystemConfig").grpc_error
 
     async def TransformPose(self, stream: Stream[TransformPoseRequest, TransformPoseResponse]) -> None:
-        raise GRPCError(
-            GRPCStatus.UNIMPLEMENTED,
-            "Method TransformPose not implemented."
-        )
+        raise MethodNotImplementedError("TransformPose").grpc_error
 
     async def DiscoverComponents(self, stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
-        raise GRPCError(
-            GRPCStatus.UNIMPLEMENTED,
-            "Method DiscoverComponents not implemented."
-        )
+        raise MethodNotImplementedError("DiscoverComponents").grpc_error

@@ -40,7 +40,21 @@ class DuplicateComponentError(ViamError):
         super().__init__(self.message)
 
 
-class ComponentNotFoundError(ViamError):
+class ViamGRPCError(ViamError):
+    """
+    Exception raised if it could happen as a part of GRPC calls.
+    """
+
+    def __init__(self, message: str = "", grpc_code: Status = Status.INTERNAL) -> None:
+        self.message = message
+        self.grpc_code = grpc_code
+
+    @property
+    def grpc_error(self) -> GRPCError:
+        return GRPCError(self.grpc_code, self.message)
+
+
+class ComponentNotFoundError(ViamGRPCError):
     """
     Exception raised when a component is not found in the registry
     """
@@ -50,17 +64,10 @@ class ComponentNotFoundError(ViamError):
         self.name = name
         self.message = f'No {component} with name "{name}" ' + \
             'found in the registry'
-        super().__init__(self.message)
-
-    @property
-    def grpc_error(self) -> GRPCError:
-        return GRPCError(
-            Status.NOT_FOUND,
-            self.message
-        )
+        self.grpc_code = Status.NOT_FOUND
 
 
-class ServiceNotImplementedError(ViamError):
+class ServiceNotImplementedError(ViamGRPCError):
     """
     Exception raised when a service is not implemented on the Robot
     """
@@ -68,16 +75,24 @@ class ServiceNotImplementedError(ViamError):
     def __init__(self, service: str):
         self.service = service
         self.message = f'Service {service} is not implemented on the Robot'
+        self.grpc_code = Status.UNIMPLEMENTED
 
 
-class NotSupportedError(ViamError):
+class MethodNotImplementedError(ViamGRPCError):
+    """
+    Exception raised when specific methods are unimplemented.
+    """
+
+    def __init__(self, method_name: str):
+        self.message = f"Method {method_name} not implemented."
+        self.grpc_code = Status.UNIMPLEMENTED
+
+
+class NotSupportedError(ViamGRPCError):
     """
     Exception raised when specific component functionality is not supported
     """
 
-    @property
-    def grpc_error(self) -> GRPCError:
-        return GRPCError(
-            Status.UNIMPLEMENTED,
-            self.__str__()
-        )
+    def __init__(self, message: str):
+        self.message = message
+        self.grpc_code = Status.UNIMPLEMENTED
