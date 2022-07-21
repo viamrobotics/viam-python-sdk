@@ -25,7 +25,7 @@ class Base(ComponentBase):
         Move the base in a straight line the given `distance`, expressed in millimeters,
         at the given `velocity`, expressed in millimeters per second.
         When `distance` or `velocity` is 0, the base will stop.
-        This method blocks until completed or cancelled
+        This method blocks until completed or cancelled.
 
         Args:
             distance (int): The distance (in millimeters) to move.
@@ -41,7 +41,7 @@ class Base(ComponentBase):
         Spin the base in place `angle` degrees, at the given angular `velocity`,
         expressed in degrees per second.
         When `velocity` is 0, the base will stop.
-        This method blocks until completed or cancelled
+        This method blocks until completed or cancelled.
 
         Args:
             angle (float): The angle (in degrees) to spin.
@@ -57,11 +57,14 @@ class Base(ComponentBase):
         When `linear` is 0, the the base will spin.
         When `angular` is 0, the the base will move in a straight line.
         When both `linear` and `angular` are 0, the base will stop.
-        This method blocks until completed or cancelled
+        When `linear` and `angular` are both nonzero, the base will move in an arc,
+        with a tighter radius if angular power is greater than linear power.
 
         Args:
-            linear (Vector3): The linear velocity
-            angular (Vector3): The angular velocity
+            linear (Vector3): The linear component. Only the Y component is used
+                for wheeled base. Negative implies backwards.
+            angular (Vector3): The angular component. Only the Z component is used
+                for wheeled base. Positive turns left; negative turns right.
         """
         ...
 
