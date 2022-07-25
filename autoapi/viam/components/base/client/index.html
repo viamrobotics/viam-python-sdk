@@ -160,7 +160,7 @@
 <dd><p>Move the base in a straight line the given <cite>distance</cite>, expressed in millimeters,
 at the given <cite>velocity</cite>, expressed in millimeters per second.
 When <cite>distance</cite> or <cite>velocity</cite> is 0, the base will stop.
-This method blocks until completed or cancelled</p>
+This method blocks until completed or cancelled.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -179,7 +179,7 @@ Negative implies backwards.</p></li>
 <dd><p>Spin the base in place <cite>angle</cite> degrees, at the given angular <cite>velocity</cite>,
 expressed in degrees per second.
 When <cite>velocity</cite> is 0, the base will stop.
-This method blocks until completed or cancelled</p>
+This method blocks until completed or cancelled.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -199,12 +199,15 @@ to spin. Negative implies backwards.</p></li>
 When <cite>linear</cite> is 0, the the base will spin.
 When <cite>angular</cite> is 0, the the base will move in a straight line.
 When both <cite>linear</cite> and <cite>angular</cite> are 0, the base will stop.
-This method blocks until completed or cancelled</p>
+When <cite>linear</cite> and <cite>angular</cite> are both nonzero, the base will move in an arc,
+with a tighter radius if angular power is greater than linear power.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>linear</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The linear velocity</p></li>
-<li><p><strong>angular</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The angular velocity</p></li>
+<li><p><strong>linear</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The linear component. Only the Y component is used
+for wheeled base. Negative implies backwards.</p></li>
+<li><p><strong>angular</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The angular component. Only the Z component is used
+for wheeled base. Positive turns left; negative turns right.</p></li>
 </ul>
 </dd>
 </dl>
