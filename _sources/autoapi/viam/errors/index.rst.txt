@@ -42,15 +42,22 @@ Module Contents
    the registry
 
 
+.. py:exception:: ViamGRPCError(message: str = '', grpc_code: grpclib.Status = Status.INTERNAL)
+
+
+
+   Exception raised if it could happen as a part of GRPC calls.
+
+   .. py:method:: grpc_error(self) -> grpclib.GRPCError
+      :property:
+
+
+
 .. py:exception:: ComponentNotFoundError(component: str, name: str)
 
 
 
    Exception raised when a component is not found in the registry
-
-   .. py:method:: grpc_error(self) -> grpclib.GRPCError
-      :property:
-
 
 
 .. py:exception:: ServiceNotImplementedError(service: str)
@@ -60,14 +67,17 @@ Module Contents
    Exception raised when a service is not implemented on the Robot
 
 
-.. py:exception:: NotSupportedError
+.. py:exception:: MethodNotImplementedError(method_name: str)
+
+
+
+   Exception raised when specific methods are unimplemented.
+
+
+.. py:exception:: NotSupportedError(message: str)
 
 
 
    Exception raised when specific component functionality is not supported
-
-   .. py:method:: grpc_error(self) -> grpclib.GRPCError
-      :property:
-
 
 

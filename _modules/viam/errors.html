@@ -125,7 +125,21 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="ComponentNotFoundError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ComponentNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">ComponentNotFoundError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
+<div class="viewcode-block" id="ViamGRPCError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ViamGRPCError">[docs]</a><span class="k">class</span> <span class="nc">ViamGRPCError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exception raised if it could happen as a part of GRPC calls.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">grpc_code</span><span class="p">:</span> <span class="n">Status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">INTERNAL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">grpc_code</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">grpc_error</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GRPCError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GRPCError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ComponentNotFoundError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ComponentNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">ComponentNotFoundError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when a component is not found in the registry</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -135,37 +149,38 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;No </span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s1"> with name &quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot; &#39;</span> <span class="o">+</span> \
             <span class="s1">&#39;found in the registry&#39;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">grpc_error</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GRPCError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">GRPCError</span><span class="p">(</span>
-            <span class="n">Status</span><span class="o">.</span><span class="n">NOT_FOUND</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">message</span>
-        <span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">NOT_FOUND</span></div>
 
 
-<div class="viewcode-block" id="ServiceNotImplementedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ServiceNotImplementedError">[docs]</a><span class="k">class</span> <span class="nc">ServiceNotImplementedError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
+<div class="viewcode-block" id="ServiceNotImplementedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ServiceNotImplementedError">[docs]</a><span class="k">class</span> <span class="nc">ServiceNotImplementedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when a service is not implemented on the Robot</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="n">service</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Service </span><span class="si">{</span><span class="n">service</span><span class="si">}</span><span class="s1"> is not implemented on the Robot&#39;</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Service </span><span class="si">{</span><span class="n">service</span><span class="si">}</span><span class="s1"> is not implemented on the Robot&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span></div>
 
 
-<div class="viewcode-block" id="NotSupportedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.NotSupportedError">[docs]</a><span class="k">class</span> <span class="nc">NotSupportedError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
+<div class="viewcode-block" id="MethodNotImplementedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.MethodNotImplementedError">[docs]</a><span class="k">class</span> <span class="nc">MethodNotImplementedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exception raised when specific methods are unimplemented.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Method </span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> not implemented.&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span></div>
+
+
+<div class="viewcode-block" id="NotSupportedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.NotSupportedError">[docs]</a><span class="k">class</span> <span class="nc">NotSupportedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when specific component functionality is not supported</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">grpc_error</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GRPCError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">GRPCError</span><span class="p">(</span>
-            <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
-        <span class="p">)</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span></div>
 </pre></div>
 
            </div>
