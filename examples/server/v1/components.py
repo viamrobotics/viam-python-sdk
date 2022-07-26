@@ -2,9 +2,9 @@ import asyncio
 import random
 import struct
 from multiprocessing import Lock, Queue
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-import cv2
 from PIL import Image
 from viam.components.arm import Arm
 from viam.components.base import Base
@@ -41,29 +41,32 @@ class ExampleArm(Arm):
             o_z=4,
             theta=20,
         )
-        self.joint_positions = JointPositions(degrees=[0, 0, 0, 0, 0, 0])
-        self.is_stoppped = True
+        self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
+        self.is_stopped = True
         super().__init__(name)
 
-    async def get_end_position(self) -> Pose:
+    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
         return self.position
 
     async def move_to_position(
         self, pose: Pose,
         world_state: Optional[WorldState] = None
     ):
-        self.is_stoppped = False
+        self.is_stopped = False
         self.position = pose
 
-    async def get_joint_positions(self) -> JointPositions:
+    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
         return self.joint_positions
 
-    async def move_to_joint_positions(self, positions: JointPositions):
-        self.is_stoppped = False
+    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
+        self.is_stopped = False
         self.joint_positions = positions
 
-    async def stop(self):
-        self.is_stoppped = True
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+        self.is_stopped = True
+
+    async def is_moving(self):
+        return not self.is_stopped
 
 
 class ExampleBase(Base):
@@ -71,7 +74,7 @@ class ExampleBase(Base):
     def __init__(self, name: str):
         self.position = 0
         self.angle = 0
-        self.stopped = True
+        self.is_stopped = True
         self.linear_pwr = Vector3(x=0, y=0, z=0)
         self.angular_pwr = Vector3(x=0, y=0, z=0)
         self.linear_vel = Vector3(x=0, y=0, z=0)
@@ -91,7 +94,7 @@ class ExampleBase(Base):
         else:
             self.position -= distance
 
-        self.stopped = False
+        self.is_stopped = False
 
     async def spin(self, angle: float, velocity: float):
         if angle == 0 or velocity == 0:
@@ -102,7 +105,7 @@ class ExampleBase(Base):
         else:
             self.angle -= angle
 
-        self.stopped = False
+        self.is_stopped = False
 
     async def set_power(self, linear: Vector3, angular: Vector3):
         self.linear_pwr = linear
@@ -113,7 +116,10 @@ class ExampleBase(Base):
         self.anglular_vel = angular
 
     async def stop(self):
-        self.stopped = True
+        self.is_stopped = True
+
+    async def is_moving(self):
+        return not self.is_stopped
 
 
 class ExampleAnalogReader(Board.AnalogReader):
@@ -235,22 +241,13 @@ class ExampleBoard(Board):
 
 
 class ExampleCamera(Camera):
+    def __init__(self, name: str):
+        p = Path(__file__)
+        self.image = Image.open(p.parent.absolute().joinpath("viam.webp"))
+        super().__init__(name)
 
     async def get_frame(self) -> Image.Image:
-        frameWidth = 640
-        frameHeight = 480
-        cap = cv2.VideoCapture(0)
-        cap.set(3, frameWidth)
-        cap.set(4, frameHeight)
-        cap.set(10, 150)
-
-        while cap.isOpened():
-            success, img = cap.read()
-            if success:
-                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                return Image.fromarray(img)
-
-        raise Exception("Could not read from camera")
+        return self.image.copy()
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         raise NotImplementedError()
@@ -402,6 +399,9 @@ class ExampleGantry(Gantry):
     async def stop(self):
         self.is_stopped = True
 
+    async def is_moving(self):
+        return not self.is_stopped
+
 
 class ExampleGPS(GPS):
 
@@ -445,6 +445,9 @@ class ExampleGripper(Gripper):
 
     async def stop(self):
         self.is_stopped = True
+
+    async def is_moving(self):
+        return not self.is_stopped
 
 
 class ExampleIMU(IMU):
@@ -550,6 +553,9 @@ class ExampleMotor(Motor):
     async def is_powered(self) -> bool:
         return self.powered
 
+    async def is_moving(self):
+        return self.powered
+
 
 class ExamplePoseTracker(PoseTracker):
 
@@ -609,3 +615,6 @@ class ExampleServo(Servo):
 
     async def stop(self):
         self.is_stopped = True
+
+    async def is_moving(self):
+        return not self.is_stopped
