@@ -2,9 +2,9 @@ import asyncio
 import random
 import struct
 from multiprocessing import Lock, Queue
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-import cv2
 from PIL import Image
 from viam.components.arm import Arm
 from viam.components.base import Base
@@ -241,22 +241,13 @@ class ExampleBoard(Board):
 
 
 class ExampleCamera(Camera):
+    def __init__(self, name: str):
+        p = Path(__file__)
+        self.image = Image.open(p.parent.absolute().joinpath("viam.webp"))
+        super().__init__(name)
 
     async def get_frame(self) -> Image.Image:
-        frameWidth = 640
-        frameHeight = 480
-        cap = cv2.VideoCapture(0)
-        cap.set(3, frameWidth)
-        cap.set(4, frameHeight)
-        cap.set(10, 150)
-
-        while cap.isOpened():
-            success, img = cap.read()
-            if success:
-                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                return Image.fromarray(img)
-
-        raise Exception("Could not read from camera")
+        return self.image.copy()
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         raise NotImplementedError()

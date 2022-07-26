@@ -2,7 +2,6 @@ import asyncio
 from typing import Iterable, List
 
 from grpclib.server import Stream
-from viam import logging
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import MethodNotImplementedError, ViamGRPCError
 from viam.proto.api.common import ResourceName
