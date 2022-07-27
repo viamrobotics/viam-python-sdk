@@ -1,4 +1,5 @@
 import pytest
+from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.gantry import GantryClient, GantryStatus, create_status
 from viam.components.gantry.service import GantryService
@@ -67,6 +68,13 @@ class TestGantry:
             )
         )
 
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        assert self.gantry.extra is None or len(self.gantry.extra) == 0
+        extra = {"foo": "bar", "baz": [1, 2, 3]}
+        await self.gantry.move_to_position([1, 2, 3], extra=extra)
+        assert self.gantry.extra == extra
+
 
 class TestService:
 
@@ -107,6 +115,18 @@ class TestService:
             request = StopRequest(name=self.gantry.name)
             await client.Stop(request)
             assert self.gantry.is_stopped is True
+
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.gantry.extra is None or len(self.gantry.extra) == 0
+            client = GantryServiceStub(channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            struct = Struct()
+            struct.update(extra)
+            request = StopRequest(name=self.gantry.name, extra=struct)
+            await client.Stop(request)
+            assert self.gantry.extra == extra
 
 
 class TestClient:
@@ -164,3 +184,12 @@ class TestClient:
             client = GantryClient(self.gantry.name, channel)
             with pytest.raises(NotSupportedError):
                 await create_status(client)
+
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.gantry.extra is None or len(self.gantry.extra) == 0
+            client = GantryClient(self.gantry.name, channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            await client.move_to_position([1, 2, 3], extra=extra)
+            assert self.gantry.extra == extra

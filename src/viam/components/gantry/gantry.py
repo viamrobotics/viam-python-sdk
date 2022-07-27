@@ -1,5 +1,5 @@
 import abc
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 from viam.errors import NotSupportedError
 from viam.proto.api.common import WorldState
@@ -17,7 +17,7 @@ class Gantry(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_position(self) -> List[float]:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
         """
         Get the position in millimeters.
 
@@ -30,7 +30,8 @@ class Gantry(ComponentBase):
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None
     ):
         """
         Move the gantry to a new position.
@@ -44,7 +45,7 @@ class Gantry(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_lengths(self) -> List[float]:
+    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
         """
         Get the lengths of the axes of the gantry in millimeters.
 
@@ -54,7 +55,7 @@ class Gantry(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         """
         Stop all motion of the gantry. It is assumed that the gantry stops immediately.
         """

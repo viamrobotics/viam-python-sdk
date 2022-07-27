@@ -303,23 +303,29 @@ class MockGantry(Gantry):
         self.position = position
         self.lengths = lengths
         self.is_stopped = True
+        self.extra = None
         super().__init__(name)
 
-    async def get_position(self) -> List[float]:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+        self.extra = extra
         return self.position
 
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None,
     ):
         self.position = positions
         self.is_stopped = False
+        self.extra = extra
 
-    async def get_lengths(self) -> List[float]:
+    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+        self.extra = extra
         return self.lengths
 
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+        self.extra = extra
         self.is_stopped = True
 
     async def is_moving(self) -> bool:
