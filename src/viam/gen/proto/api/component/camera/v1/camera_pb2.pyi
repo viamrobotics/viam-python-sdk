@@ -96,6 +96,37 @@ class GetPointCloudResponse(google.protobuf.message.Message):
         ...
 global___GetPointCloudResponse = GetPointCloudResponse
 
+class GetPropertiesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
+    'Name of a camera'
+
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetPropertiesRequest = GetPropertiesRequest
+
+class GetPropertiesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INTRINSIC_PARAMETERS_FIELD_NUMBER: builtins.int
+
+    @property
+    def intrinsic_parameters(self) -> global___IntrinsicParameters:
+        ...
+
+    def __init__(self, *, intrinsic_parameters: typing.Optional[global___IntrinsicParameters]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['intrinsic_parameters', b'intrinsic_parameters']) -> None:
+        ...
+global___GetPropertiesResponse = GetPropertiesResponse
+
 class Webcams(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WEBCAMS_FIELD_NUMBER: builtins.int
@@ -170,3 +201,25 @@ class Video(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['frame_format', b'frame_format', 'height', b'height', 'width', b'width']) -> None:
         ...
 global___Video = Video
+
+class IntrinsicParameters(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    WIDTH_PX_FIELD_NUMBER: builtins.int
+    HEIGHT_PX_FIELD_NUMBER: builtins.int
+    FOCAL_X_PX_FIELD_NUMBER: builtins.int
+    FOCAL_Y_PX_FIELD_NUMBER: builtins.int
+    CENTER_X_PX_FIELD_NUMBER: builtins.int
+    CENTER_Y_PX_FIELD_NUMBER: builtins.int
+    width_px: builtins.int
+    height_px: builtins.int
+    focal_x_px: builtins.float
+    focal_y_px: builtins.float
+    center_x_px: builtins.float
+    center_y_px: builtins.float
+
+    def __init__(self, *, width_px: builtins.int=..., height_px: builtins.int=..., focal_x_px: builtins.float=..., focal_y_px: builtins.float=..., center_x_px: builtins.float=..., center_y_px: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['center_x_px', b'center_x_px', 'center_y_px', b'center_y_px', 'focal_x_px', b'focal_x_px', 'focal_y_px', b'focal_y_px', 'height_px', b'height_px', 'width_px', b'width_px']) -> None:
+        ...
+global___IntrinsicParameters = IntrinsicParameters

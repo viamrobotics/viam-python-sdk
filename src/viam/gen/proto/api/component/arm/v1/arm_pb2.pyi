@@ -21,7 +21,7 @@ class GetEndPositionRequest(google.protobuf.message.Message):
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional arguments to the method."""
+        """Additional arguments to the method"""
         pass
 
     def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
@@ -83,7 +83,7 @@ class GetJointPositionsRequest(google.protobuf.message.Message):
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional arguments to the method."""
+        """Additional arguments to the method"""
         pass
 
     def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
@@ -134,7 +134,7 @@ class MoveToPositionRequest(google.protobuf.message.Message):
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional arguments to the method."""
+        """Additional arguments to the method"""
         pass
 
     def __init__(self, *, name: typing.Text=..., to: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
@@ -174,7 +174,7 @@ class MoveToJointPositionsRequest(google.protobuf.message.Message):
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional arguments to the method."""
+        """Additional arguments to the method"""
         pass
 
     def __init__(self, *, name: typing.Text=..., positions: typing.Optional[global___JointPositions]=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
@@ -203,7 +203,7 @@ class StopRequest(google.protobuf.message.Message):
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional arguments to the method."""
+        """Additional arguments to the method"""
         pass
 
     def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
