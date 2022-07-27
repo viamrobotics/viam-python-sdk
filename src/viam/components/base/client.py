@@ -1,5 +1,6 @@
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
+from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.common import Vector3
@@ -25,36 +26,60 @@ class BaseClient(Base):
         self,
         distance: int,
         velocity: float,
+        extra: Optional[Dict[str, Any]] = None
     ):
+        struct = None
+        if extra:
+            struct = Struct()
+            struct.update(extra)
         request = MoveStraightRequest(
             name=self.name,
             distance_mm=distance,
             mm_per_sec=velocity,
+            extra=struct,
         )
         await self.client.MoveStraight(request)
 
-    async def spin(self, angle: float, velocity: float):
+    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
+        struct = None
+        if extra:
+            struct = Struct()
+            struct.update(extra)
         request = SpinRequest(
             name=self.name,
             angle_deg=angle,
             degs_per_sec=velocity,
+            extra=struct,
         )
         await self.client.Spin(request)
 
-    async def set_power(self, linear: Vector3, angular: Vector3):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+        struct = None
+        if extra:
+            struct = Struct()
+            struct.update(extra)
         request = SetPowerRequest(
             name=self.name,
             linear=linear,
-            angular=angular
+            angular=angular,
+            extra=struct,
         )
         await self.client.SetPower(request)
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3):
-        request = SetVelocityRequest(name=self.name, linear=linear, angular=angular)
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+        struct = None
+        if extra:
+            struct = Struct()
+            struct.update(extra)
+        request = SetVelocityRequest(name=self.name, linear=linear, angular=angular, extra=struct)
         await self.client.SetVelocity(request)
 
-    async def stop(self):
-        request = StopRequest(name=self.name)
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+        struct = None
+        if extra:
+            struct = Struct()
+            struct.update(extra)
+        request = StopRequest(name=self.name, extra=struct)
         await self.client.Stop(request)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:

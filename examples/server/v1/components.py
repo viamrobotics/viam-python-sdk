@@ -84,7 +84,8 @@ class ExampleBase(Base):
     async def move_straight(
         self,
         distance: int,
-        velocity: float
+        velocity: float,
+        extra: Optional[Dict[str, Any]] = None
     ):
         if distance == 0 or velocity == 0:
             return await self.stop()
@@ -96,7 +97,7 @@ class ExampleBase(Base):
 
         self.is_stopped = False
 
-    async def spin(self, angle: float, velocity: float):
+    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -107,15 +108,15 @@ class ExampleBase(Base):
 
         self.is_stopped = False
 
-    async def set_power(self, linear: Vector3, angular: Vector3):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
         self.linear_pwr = linear
         self.anglular_pwr = angular
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
         self.linear_vel = linear
         self.anglular_vel = angular
 
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         self.is_stopped = True
 
     async def is_moving(self):

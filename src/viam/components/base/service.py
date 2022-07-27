@@ -9,6 +9,7 @@ from viam.proto.api.component.base import (BaseServiceBase,
                                            SetVelocityResponse, SpinRequest,
                                            SpinResponse, StopRequest,
                                            StopResponse)
+from viam.utils import value_to_primitive
 
 from .base import Base
 
@@ -34,6 +35,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await base.move_straight(
             distance=request.distance_mm,
             velocity=request.mm_per_sec,
+            extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()},
         )
         response = MoveStraightResponse()
         await stream.send_message(response)
@@ -52,6 +54,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await base.spin(
             angle=request.angle_deg,
             velocity=request.degs_per_sec,
+            extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()},
         )
         response = SpinResponse()
         await stream.send_message(response)
@@ -64,7 +67,11 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.set_power(request.linear, request.angular)
+        await base.set_power(
+            request.linear,
+            request.angular,
+            {key: value_to_primitive(value) for (key, value) in request.extra.fields.items()},
+        )
         response = SetPowerResponse()
         await stream.send_message(response)
 
@@ -76,7 +83,11 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.set_velocity(request.linear, request.angular)
+        await base.set_velocity(
+            request.linear,
+            request.angular,
+            {key: value_to_primitive(value) for (key, value) in request.extra.fields.items()}
+        )
         await stream.send_message(SetVelocityResponse())
 
     async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:
@@ -87,6 +98,6 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.stop()
+        await base.stop({key: value_to_primitive(value) for (key, value) in request.extra.fields.items()})
         response = StopResponse()
         await stream.send_message(response)

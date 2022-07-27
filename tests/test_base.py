@@ -1,6 +1,7 @@
 from random import randint, random
 
 import pytest
+from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseService
@@ -118,6 +119,13 @@ class TestBase:
         assert status.name == base.get_resource_name(base.name)
         assert status.status == message_to_struct(ActuatorStatus(is_moving=True))
 
+    @pytest.mark.asyncio
+    async def test_extra(self, base: MockBase):
+        assert base.extra is None
+        extra = {"foo": "bar", "baz": [1, 2, 3]}
+        await base.move_straight(1, 1, extra)
+        assert base.extra == extra
+
 
 class TestService:
 
@@ -226,6 +234,18 @@ class TestService:
             await client.Spin(request)
             assert base.stopped is True
 
+    @pytest.mark.asyncio
+    async def test_extra(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            assert base.extra is None
+            client = BaseServiceStub(channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            struct = Struct()
+            struct.update(extra)
+            request = MoveStraightRequest(name=base.name, distance_mm=1, mm_per_sec=1, extra=struct)
+            await client.MoveStraight(request)
+            assert base.extra == extra
+
 
 class TestClient:
 
@@ -317,3 +337,12 @@ class TestClient:
             client = BaseClient(base.name, channel)
             with pytest.raises(NotSupportedError):
                 await create_status(client)
+
+    @pytest.mark.asyncio
+    async def test_extra(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            assert base.extra is None
+            client = BaseClient(base.name, channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            await client.move_straight(1, 1, extra)
+            assert base.extra == extra

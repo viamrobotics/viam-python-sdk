@@ -87,12 +87,14 @@ class MockBase(Base):
         self.angular_pwr = Vector3(x=0, y=0, z=0)
         self.linear_vel = Vector3(x=0, y=0, z=0)
         self.angular_vel = Vector3(x=0, y=0, z=0)
+        self.extra: Optional[Dict[str, Any]] = None
         super().__init__(name)
 
     async def move_straight(
         self,
         distance: int,
         velocity: float,
+        extra: Optional[Dict[str, Any]] = None
     ):
         if distance == 0 or velocity == 0:
             return await self.stop()
@@ -103,12 +105,14 @@ class MockBase(Base):
             self.position -= distance
 
         self.stopped = False
+        self.extra = extra
 
     async def move_arc(
         self,
         distance: int,
         velocity: float,
         angle: float,
+        extra: Optional[Dict[str, Any]] = None,
     ):
         if distance == 0:
             return await self.spin(angle, velocity)
@@ -124,8 +128,9 @@ class MockBase(Base):
             self.angle -= angle
 
         self.stopped = False
+        self.extra = extra
 
-    async def spin(self, angle: float, velocity: float):
+    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -135,17 +140,21 @@ class MockBase(Base):
             self.angle -= angle
 
         self.stopped = False
+        self.extra = extra
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
         self.linear_vel = linear
         self.angular_vel = angular
+        self.extra = extra
 
-    async def set_power(self, linear: Vector3, angular: Vector3):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
         self.linear_pwr = linear
         self.angular_pwr = angular
+        self.extra = extra
 
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         self.stopped = True
+        self.extra = extra
 
     async def is_moving(self) -> bool:
         return not self.stopped
