@@ -27,7 +27,7 @@ Classes
    base implementations. This cannot be used on its own. If the `__init__()` function is
    overriden, it must call the `super().__init__()` function.
 
-   .. py:method:: move_straight(self, distance: int, velocity: float, extra: Dict[str, Any] = {})
+   .. py:method:: move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -44,7 +44,7 @@ Classes
       :type velocity: float
 
 
-   .. py:method:: spin(self, angle: float, velocity: float, extra: Dict[str, Any] = {})
+   .. py:method:: spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -61,7 +61,7 @@ Classes
       :type velocity: float
 
 
-   .. py:method:: set_power(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3, extra: Dict[str, Any] = {})
+   .. py:method:: set_power(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -80,7 +80,7 @@ Classes
       :type angular: Vector3
 
 
-   .. py:method:: set_velocity(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3, extra: Dict[str, Any] = {})
+   .. py:method:: set_velocity(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -93,7 +93,7 @@ Classes
       :type angular: Vector3
 
 
-   .. py:method:: stop(self, extra: Dict[str, Any] = {})
+   .. py:method:: stop(self, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
