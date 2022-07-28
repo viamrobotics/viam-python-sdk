@@ -78,6 +78,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.TransformPose">TransformPose</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.GetStatus">GetStatus</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.StreamStatus">StreamStatus</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.StopAll">StopAll</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.RobotServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -167,6 +168,17 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.Status.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.Status.status">status</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.Status.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.StopAllRequest">StopAllRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.StopAllRequest.extra">extra</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.StopAllResponse">StopAllResponse</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.StopExtraParameters">StopExtraParameters</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.StopExtraParameters.name">name</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.StopExtraParameters.params">params</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.robot.StopExtraParameters.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.robot.StreamStatusRequest">StreamStatusRequest</a><ul>
@@ -321,16 +333,25 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.Status" title="viam.proto.api.robot.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.StreamStatusRequest" title="viam.proto.api.robot.StreamStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.StopAllRequest" title="viam.proto.api.robot.StopAllRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopAllRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.StreamStatusResponse" title="viam.proto.api.robot.StreamStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.StopAllResponse" title="viam.proto.api.robot.StopAllResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopAllResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.TransformPoseRequest" title="viam.proto.api.robot.TransformPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.StopExtraParameters" title="viam.proto.api.robot.StopExtraParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopExtraParameters</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.TransformPoseResponse" title="viam.proto.api.robot.TransformPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.StreamStatusRequest" title="viam.proto.api.robot.StreamStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.StreamStatusResponse" title="viam.proto.api.robot.StreamStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.robot.TransformPoseRequest" title="viam.proto.api.robot.TransformPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.robot.TransformPoseResponse" title="viam.proto.api.robot.TransformPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -388,6 +409,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.robot.RobotServiceBase.StreamStatus">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StreamStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.robot.v1.robot_pb2.StreamStatusRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.robot.v1.robot_pb2.StreamStatusResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/api/robot/v1/robot_grpc.html#RobotServiceBase.StreamStatus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.robot.RobotServiceBase.StreamStatus" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.RobotServiceBase.StopAll">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StopAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.robot.v1.robot_pb2.StopAllRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.robot.v1.robot_pb2.StopAllResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/api/robot/v1/robot_grpc.html#RobotServiceBase.StopAll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.robot.RobotServiceBase.StopAll" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -822,6 +848,71 @@ shown below.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.robot.Status.HasField">
 <span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">status</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'status'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.robot.Status.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StopAllRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">StopAllRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___StopExtraParameters</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.robot.StopAllRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StopAllRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___StopExtraParameters</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.api.robot.StopAllRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StopAllResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">StopAllResponse</span></span><a class="headerlink" href="#viam.proto.api.robot.StopAllResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StopExtraParameters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.robot.</span></span><span class="sig-name descname"><span class="pre">StopExtraParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.robot.StopExtraParameters" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StopExtraParameters.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span></span></span><a class="headerlink" href="#viam.proto.api.robot.StopExtraParameters.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StopExtraParameters.params">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.api.robot.StopExtraParameters.params" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.robot.StopExtraParameters.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">params</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'params'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.robot.StopExtraParameters.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will

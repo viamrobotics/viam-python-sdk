@@ -83,6 +83,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_frame_system_config">get_frame_system_config</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose">transform_pose</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.discover_components">discover_components</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.stop_all">stop_all</a></li>
 </ul>
 </li>
 </ul>
@@ -395,6 +396,18 @@ provide a list of <cite>ResourceName</cite> for which you want statuses.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>queries</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.DiscoveryQuery" title="viam.proto.api.robot.DiscoveryQuery"><em>DiscoveryQuery</em></a><em>]</em>) – The list of component models to lookup configurations for.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.stop_all">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.stop_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.stop_all" title="Permalink to this definition"></a></dt>
+<dd><p>Cancel all current and outstanding operations for the robot and stop all actuators and movement</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>extra</strong> (<em>Dict</em><em>[</em><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a><em>, </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Any extra parameters to pass to the components’ <cite>stop</cite> methods, keyed on the
+component’s <cite>ResourceName</cite></p>
 </dd>
 </dl>
 </dd></dl>

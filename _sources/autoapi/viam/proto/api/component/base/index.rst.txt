@@ -73,7 +73,7 @@ Classes
 .. py:class:: BaseServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: MoveStraightRequest(*, name: Text = ..., distance_mm: int = ..., mm_per_sec: float = ...)
+.. py:class:: MoveStraightRequest(*, name: Text = ..., distance_mm: int = ..., mm_per_sec: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -98,6 +98,29 @@ Classes
 
       Desired travel velocity in millimeters/second
 
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
 
 .. py:class:: MoveStraightResponse
 
@@ -110,7 +133,7 @@ Classes
    shown below.
 
 
-.. py:class:: SetPowerRequest(*, name: Text = ..., linear: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., angular: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ...)
+.. py:class:: SetPowerRequest(*, name: Text = ..., linear: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., angular: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -137,7 +160,13 @@ Classes
       Desired angular power percentage % as -1 -> 1
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[angular, b'angular', linear, b'linear']) -> bool
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -166,7 +195,7 @@ Classes
    shown below.
 
 
-.. py:class:: SetVelocityRequest(*, name: Text = ..., linear: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., angular: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ...)
+.. py:class:: SetVelocityRequest(*, name: Text = ..., linear: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., angular: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -193,7 +222,13 @@ Classes
       Desired angular velocity in degrees per second
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[angular, b'angular', linear, b'linear']) -> bool
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -222,7 +257,7 @@ Classes
    shown below.
 
 
-.. py:class:: SpinRequest(*, name: Text = ..., angle_deg: float = ..., degs_per_sec: float = ...)
+.. py:class:: SpinRequest(*, name: Text = ..., angle_deg: float = ..., degs_per_sec: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -247,6 +282,29 @@ Classes
 
       Desired angular velocity
 
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
 
 .. py:class:: SpinResponse
 
@@ -259,7 +317,7 @@ Classes
    shown below.
 
 
-.. py:class:: StopRequest(*, name: Text = ...)
+.. py:class:: StopRequest(*, name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -273,6 +331,29 @@ Classes
       :annotation: :Text
 
       Name of a base
+
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: StopResponse

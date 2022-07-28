@@ -17,6 +17,19 @@ Classes
 
 
 
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.robot.service.LOGGER
+
+
+.. py:data:: LOGGER
+   
+
+   
+
 .. py:class:: RobotService(manager: viam.components.resource_manager.ResourceManager)
 
 
@@ -61,6 +74,10 @@ Classes
 
 
    .. py:method:: DiscoverComponents(self, stream: grpclib.server.Stream[viam.proto.api.robot.DiscoverComponentsRequest, viam.proto.api.robot.DiscoverComponentsResponse]) -> None
+      :async:
+
+
+   .. py:method:: StopAll(self, stream: grpclib.server.Stream[viam.proto.api.robot.StopAllRequest, viam.proto.api.robot.StopAllResponse]) -> None
       :async:
 
 

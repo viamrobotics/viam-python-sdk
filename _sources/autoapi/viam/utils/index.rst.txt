@@ -17,6 +17,8 @@ Functions
    viam.utils.value_to_primitive
    viam.utils.resource_names_for_component
    viam.utils.message_to_struct
+   viam.utils.struct_to_dict
+   viam.utils.dict_to_struct
 
 
 
@@ -48,5 +50,11 @@ Functions
 
 
 .. py:function:: message_to_struct(message: google.protobuf.message.Message) -> google.protobuf.struct_pb2.Struct
+
+
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, Any]
+
+
+.. py:function:: dict_to_struct(obj: Dict[str, Any]) -> google.protobuf.struct_pb2.Struct
 
 

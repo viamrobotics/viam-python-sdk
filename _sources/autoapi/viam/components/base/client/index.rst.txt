@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the Base component.
 
-   .. py:method:: move_straight(self, distance: int, velocity: float)
+   .. py:method:: move_straight(self, distance: int, velocity: float, extra: Dict[str, Any] = {})
       :async:
 
       Move the base in a straight line the given `distance`, expressed in millimeters,
@@ -39,7 +39,7 @@ Classes
       :type velocity: float
 
 
-   .. py:method:: spin(self, angle: float, velocity: float)
+   .. py:method:: spin(self, angle: float, velocity: float, extra: Dict[str, Any] = {})
       :async:
 
       Spin the base in place `angle` degrees, at the given angular `velocity`,
@@ -55,7 +55,7 @@ Classes
       :type velocity: float
 
 
-   .. py:method:: set_power(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3)
+   .. py:method:: set_power(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3, extra: Dict[str, Any] = {})
       :async:
 
       Set the linear and angular velocity of the Base
@@ -73,7 +73,7 @@ Classes
       :type angular: Vector3
 
 
-   .. py:method:: set_velocity(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3)
+   .. py:method:: set_velocity(self, linear: viam.proto.api.common.Vector3, angular: viam.proto.api.common.Vector3, extra: Dict[str, Any] = {})
       :async:
 
       Set the linear and angular velocities of the base.
@@ -85,7 +85,7 @@ Classes
       :type angular: Vector3
 
 
-   .. py:method:: stop(self)
+   .. py:method:: stop(self, extra: Dict[str, Any] = {})
       :async:
 
       Stop the base.

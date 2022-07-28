@@ -71,6 +71,16 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera">Camera</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_frame">get_frame</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_point_cloud">get_point_cloud</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_properties">get_properties</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters">IntrinsicParameters</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.width_px">width_px</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.height_px">height_px</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.focal_x_px">focal_x_px</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.focal_y_px">focal_y_px</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.center_x_px">center_x_px</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.center_y_px">center_y_px</a></li>
 </ul>
 </li>
 </ul>
@@ -150,6 +160,9 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.Camera" title="viam.components.camera.Camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Camera</span></code></a></p></td>
 <td><p>Camera represents any physical hardware that can capture frames.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.IntrinsicParameters" title="viam.components.camera.IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -192,6 +205,59 @@ str: The mimetype of the pointcloud (e.g. PCD).</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.camera.Camera.get_properties">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/api/component/camera/index.html#viam.proto.api.component.camera.IntrinsicParameters" title="viam.proto.api.component.camera.IntrinsicParameters"><span class="pre">viam.proto.api.component.camera.IntrinsicParameters</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/camera.html#Camera.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.Camera.get_properties" title="Permalink to this definition"></a></dt>
+<dd><p>Get the camera intrinsic parameters and camera distortion parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The properties of the camera</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#viam.components.camera.IntrinsicParameters" title="viam.components.camera.IntrinsicParameters">IntrinsicParameters</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.camera.IntrinsicParameters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.camera.</span></span><span class="sig-name descname"><span class="pre">IntrinsicParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">focal_x_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">focal_y_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_x_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_y_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.camera.IntrinsicParameters" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.IntrinsicParameters.width_px">
+<span class="sig-name descname"><span class="pre">width_px</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.components.camera.IntrinsicParameters.width_px" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.IntrinsicParameters.height_px">
+<span class="sig-name descname"><span class="pre">height_px</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.components.camera.IntrinsicParameters.height_px" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.IntrinsicParameters.focal_x_px">
+<span class="sig-name descname"><span class="pre">focal_x_px</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.components.camera.IntrinsicParameters.focal_x_px" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.IntrinsicParameters.focal_y_px">
+<span class="sig-name descname"><span class="pre">focal_y_px</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.components.camera.IntrinsicParameters.focal_y_px" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.IntrinsicParameters.center_x_px">
+<span class="sig-name descname"><span class="pre">center_x_px</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.components.camera.IntrinsicParameters.center_x_px" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.IntrinsicParameters.center_y_px">
+<span class="sig-name descname"><span class="pre">center_y_px</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.components.camera.IntrinsicParameters.center_y_px" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

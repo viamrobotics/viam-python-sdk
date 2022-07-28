@@ -27,7 +27,7 @@ Classes
    arm implementations. This cannot be used on its own. If the `__init__()` function is
    overriden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> viam.proto.api.common.Pose
+   .. py:method:: get_end_position(self, extra: Dict[str, Any] = {}) -> viam.proto.api.common.Pose
       :abstractmethod:
       :async:
 
@@ -36,7 +36,7 @@ Classes
       Returns: The location and orientation of the arm described as a Pose.
 
 
-   .. py:method:: move_to_position(self, pose: viam.proto.api.common.Pose, world_state: Optional[viam.proto.api.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: move_to_position(self, pose: viam.proto.api.common.Pose, world_state: Optional[viam.proto.api.common.WorldState] = None, extra: Dict[str, Any] = {})
       :abstractmethod:
       :async:
 
@@ -49,7 +49,7 @@ Classes
       :type world_state: WorldState
 
 
-   .. py:method:: move_to_joint_positions(self, positions: viam.proto.api.component.arm.JointPositions, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: move_to_joint_positions(self, positions: viam.proto.api.component.arm.JointPositions, extra: Dict[str, Any] = {})
       :abstractmethod:
       :async:
 
@@ -59,7 +59,7 @@ Classes
       :type positions: JointPositions
 
 
-   .. py:method:: get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> viam.proto.api.component.arm.JointPositions
+   .. py:method:: get_joint_positions(self, extra: Dict[str, Any] = {}) -> viam.proto.api.component.arm.JointPositions
       :abstractmethod:
       :async:
 
@@ -69,7 +69,7 @@ Classes
       :rtype: JointPositions
 
 
-   .. py:method:: stop(self, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: stop(self, extra: Dict[str, Any] = {})
       :abstractmethod:
       :async:
 

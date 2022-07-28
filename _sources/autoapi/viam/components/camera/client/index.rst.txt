@@ -47,6 +47,15 @@ Classes
       :rtype: bytes
 
 
+   .. py:method:: get_properties(self) -> viam.proto.api.component.camera.IntrinsicParameters
+      :async:
+
+      Get the camera intrinsic parameters and camera distortion parameters
+
+      :returns: The properties of the camera
+      :rtype: IntrinsicParameters
+
+
    .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
       :async:
 

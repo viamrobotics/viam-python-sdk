@@ -27,7 +27,7 @@ Classes
    gantry implementations. This cannot be used on its own. If the `__init__()` function is
    overriden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_position(self) -> List[float]
+   .. py:method:: get_position(self, extra: Dict[str, Any] = {}) -> List[float]
       :abstractmethod:
       :async:
 
@@ -37,7 +37,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: move_to_position(self, positions: List[float], world_state: Optional[viam.proto.api.common.WorldState] = None)
+   .. py:method:: move_to_position(self, positions: List[float], world_state: Optional[viam.proto.api.common.WorldState] = None, extra: Dict[str, Any] = {})
       :abstractmethod:
       :async:
 
@@ -51,7 +51,7 @@ Classes
       :type world_state: Optional[WorldState]
 
 
-   .. py:method:: get_lengths(self) -> List[float]
+   .. py:method:: get_lengths(self, extra: Dict[str, Any] = {}) -> List[float]
       :abstractmethod:
       :async:
 
@@ -61,7 +61,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: stop(self)
+   .. py:method:: stop(self, extra: Dict[str, Any] = {})
       :abstractmethod:
       :async:
 

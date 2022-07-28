@@ -94,6 +94,7 @@
                                            <span class="n">SetVelocityResponse</span><span class="p">,</span> <span class="n">SpinRequest</span><span class="p">,</span>
                                            <span class="n">SpinResponse</span><span class="p">,</span> <span class="n">StopRequest</span><span class="p">,</span>
                                            <span class="n">StopResponse</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">Base</span>
 
@@ -119,6 +120,7 @@
         <span class="k">await</span> <span class="n">base</span><span class="o">.</span><span class="n">move_straight</span><span class="p">(</span>
             <span class="n">distance</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">distance_mm</span><span class="p">,</span>
             <span class="n">velocity</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">mm_per_sec</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">MoveStraightResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
@@ -137,6 +139,7 @@
         <span class="k">await</span> <span class="n">base</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span>
             <span class="n">angle</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">angle_deg</span><span class="p">,</span>
             <span class="n">velocity</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">degs_per_sec</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">SpinResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
@@ -149,7 +152,11 @@
             <span class="n">base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
-        <span class="k">await</span> <span class="n">base</span><span class="o">.</span><span class="n">set_power</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">linear</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">angular</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">base</span><span class="o">.</span><span class="n">set_power</span><span class="p">(</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">linear</span><span class="p">,</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">angular</span><span class="p">,</span>
+            <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">SetPowerResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
@@ -161,7 +168,11 @@
             <span class="n">base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
-        <span class="k">await</span> <span class="n">base</span><span class="o">.</span><span class="n">set_velocity</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">linear</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">angular</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">base</span><span class="o">.</span><span class="n">set_velocity</span><span class="p">(</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">linear</span><span class="p">,</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">angular</span><span class="p">,</span>
+            <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">SetVelocityResponse</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="BaseService.Stop"><a class="viewcode-back" href="../../../../autoapi/viam/components/base/service/index.html#viam.components.base.service.BaseService.Stop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StopRequest</span><span class="p">,</span> <span class="n">StopResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -172,7 +183,7 @@
             <span class="n">base</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
-        <span class="k">await</span> <span class="n">base</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">base</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">))</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">StopResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 </pre></div>

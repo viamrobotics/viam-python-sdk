@@ -61,7 +61,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot.client</span></code></a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot.service</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.service.LOGGER">LOGGER</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.service.RobotService">RobotService</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.service.RobotService.ResourceNames">ResourceNames</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.service.RobotService.GetStatus">GetStatus</a></li>
@@ -73,6 +75,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.service.RobotService.FrameSystemConfig">FrameSystemConfig</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.service.RobotService.TransformPose">TransformPose</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.service.RobotService.DiscoverComponents">DiscoverComponents</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.service.RobotService.StopAll">StopAll</a></li>
 </ul>
 </li>
 </ul>
@@ -131,6 +134,25 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.robot.service.LOGGER" title="viam.robot.service.LOGGER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOGGER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.robot.service.LOGGER">
+<span class="sig-prename descclassname"><span class="pre">viam.robot.service.</span></span><span class="sig-name descname"><span class="pre">LOGGER</span></span><a class="headerlink" href="#viam.robot.service.LOGGER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.robot.service.RobotService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.robot.service.</span></span><span class="sig-name descname"><span class="pre">RobotService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../components/resource_manager/index.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/service.html#RobotService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.service.RobotService" title="Permalink to this definition"></a></dt>
@@ -184,6 +206,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.service.RobotService.DiscoverComponents">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DiscoverComponents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.DiscoverComponentsRequest" title="viam.proto.api.robot.DiscoverComponentsRequest"><span class="pre">viam.proto.api.robot.DiscoverComponentsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.DiscoverComponentsResponse" title="viam.proto.api.robot.DiscoverComponentsResponse"><span class="pre">viam.proto.api.robot.DiscoverComponentsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/service.html#RobotService.DiscoverComponents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.service.RobotService.DiscoverComponents" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.service.RobotService.StopAll">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StopAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.StopAllRequest" title="viam.proto.api.robot.StopAllRequest"><span class="pre">viam.proto.api.robot.StopAllRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/api/robot/index.html#viam.proto.api.robot.StopAllResponse" title="viam.proto.api.robot.StopAllResponse"><span class="pre">viam.proto.api.robot.StopAllResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/service.html#RobotService.StopAll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.service.RobotService.StopAll" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

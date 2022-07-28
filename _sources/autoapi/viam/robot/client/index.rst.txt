@@ -235,4 +235,14 @@ Attributes
       :type queries: List[DiscoveryQuery]
 
 
+   .. py:method:: stop_all(self, extra: Dict[viam.proto.api.common.ResourceName, Dict[str, Any]] = {})
+      :async:
+
+      Cancel all current and outstanding operations for the robot and stop all actuators and movement
+
+      :param extra: Any extra parameters to pass to the components' `stop` methods, keyed on the
+                    component's `ResourceName`
+      :type extra: Dict[ResourceName, Dict[str, Any]]
+
+
 

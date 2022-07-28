@@ -67,6 +67,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.camera.Camera">Camera</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.camera.camera.Camera.get_frame">get_frame</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.camera.camera.Camera.get_point_cloud">get_point_cloud</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.camera.camera.Camera.get_properties">get_properties</a></li>
 </ul>
 </li>
 </ul>
@@ -183,6 +184,20 @@ str: The mimetype of the pointcloud (e.g. PCD).</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>bytes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.camera.camera.Camera.get_properties">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/api/component/camera/index.html#viam.proto.api.component.camera.IntrinsicParameters" title="viam.proto.api.component.camera.IntrinsicParameters"><span class="pre">viam.proto.api.component.camera.IntrinsicParameters</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/camera.html#Camera.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.camera.Camera.get_properties" title="Permalink to this definition"></a></dt>
+<dd><p>Get the camera intrinsic parameters and camera distortion parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The properties of the camera</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../index.html#viam.components.camera.IntrinsicParameters" title="viam.components.camera.IntrinsicParameters">IntrinsicParameters</a></p>
 </dd>
 </dl>
 </dd></dl>

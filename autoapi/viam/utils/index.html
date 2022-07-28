@@ -107,6 +107,12 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.message_to_struct" title="viam.utils.message_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">message_to_struct</span></code></a>(message: google.protobuf.message.Message) → google.protobuf.struct_pb2.Struct</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_dict" title="viam.utils.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(struct: google.protobuf.struct_pb2.Struct) → Dict[str, Any]</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.dict_to_struct" title="viam.utils.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(obj: Dict[str, Any]) → google.protobuf.struct_pb2.Struct</p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py function">
@@ -150,6 +156,16 @@ Supports primitive types of
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.utils.message_to_struct">
 <span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">message_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.message.Message</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#message_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.message_to_struct" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.utils.struct_to_dict">
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">struct_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#struct_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.struct_to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.utils.dict_to_struct">
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">dict_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#dict_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.dict_to_struct" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
