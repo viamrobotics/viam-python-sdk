@@ -1,7 +1,6 @@
 from random import randint, random
 
 import pytest
-from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseService
@@ -13,7 +12,7 @@ from viam.proto.api.component.base import (BaseServiceStub,
                                            MoveStraightRequest,
                                            SetPowerRequest, SetVelocityRequest,
                                            SpinRequest, StopRequest)
-from viam.utils import message_to_struct
+from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockBase
 
@@ -240,9 +239,7 @@ class TestService:
             assert base.extra is None
             client = BaseServiceStub(channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            struct = Struct()
-            struct.update(extra)
-            request = MoveStraightRequest(name=base.name, distance_mm=1, mm_per_sec=1, extra=struct)
+            request = MoveStraightRequest(name=base.name, distance_mm=1, mm_per_sec=1, extra=dict_to_struct(extra))
             await client.MoveStraight(request)
             assert base.extra == extra
 

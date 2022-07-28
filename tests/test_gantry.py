@@ -1,5 +1,4 @@
 import pytest
-from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.gantry import GantryClient, GantryStatus, create_status
 from viam.components.gantry.service import GantryService
@@ -13,7 +12,7 @@ from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetPositionResponse,
                                              MoveToPositionRequest,
                                              StopRequest)
-from viam.utils import message_to_struct
+from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockGantry
 
@@ -122,9 +121,7 @@ class TestService:
             assert self.gantry.extra is None or len(self.gantry.extra) == 0
             client = GantryServiceStub(channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            struct = Struct()
-            struct.update(extra)
-            request = StopRequest(name=self.gantry.name, extra=struct)
+            request = StopRequest(name=self.gantry.name, extra=dict_to_struct(extra))
             await client.Stop(request)
             assert self.gantry.extra == extra
 

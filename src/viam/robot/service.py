@@ -24,7 +24,7 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   StreamStatusResponse, TransformPoseRequest,
                                   TransformPoseResponse)
 from viam.registry import Registry
-from viam.utils import resource_names_for_component, value_to_primitive
+from viam.utils import resource_names_for_component, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -114,7 +114,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
 
         extra: Dict[ResourceName, Dict[str, Any]] = {}
         for ex in request.extra:
-            extra[ex.name] = {key: value_to_primitive(value) for (key, value) in ex.params.fields.items()}
+            extra[ex.name] = struct_to_dict(ex.params)
 
         errors: List[str] = []
         for component in self.manager.components.values():

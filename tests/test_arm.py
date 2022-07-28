@@ -1,5 +1,4 @@
 import pytest
-from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
@@ -15,7 +14,7 @@ from viam.proto.api.component.arm import (ArmServiceStub,
                                           JointPositions,
                                           MoveToJointPositionsRequest,
                                           MoveToPositionRequest, StopRequest)
-from viam.utils import message_to_struct
+from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockArm
 
@@ -156,11 +155,10 @@ class TestService:
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
-            struct = Struct()
-            struct.update({"foo": "bar"})
-            request = GetEndPositionRequest(name=self.name, extra=struct)
+            extra = {"foo": "bar"}
+            request = GetEndPositionRequest(name=self.name, extra=dict_to_struct(extra))
             await client.GetEndPosition(request)
-            assert self.arm.extra == {"foo": "bar"}
+            assert self.arm.extra == extra
 
 
 class TestClient:

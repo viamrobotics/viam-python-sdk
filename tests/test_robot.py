@@ -27,7 +27,7 @@ from viam.proto.api.robot import (DiscoverComponentsRequest,
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services import ServiceType
-from viam.utils import message_to_struct
+from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockSensor
 
@@ -245,9 +245,8 @@ class TestRobotService:
             await motor.set_power(1)
             assert await motor.is_moving() is True
 
-            extra = Struct()
-            extra.update({"foo": "bar", "baz": [1, 2, 3]})
-            param = StopExtraParameters(name=Arm.get_resource_name('arm1'), params=extra)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            param = StopExtraParameters(name=Arm.get_resource_name('arm1'), params=dict_to_struct(extra))
             request = StopAllRequest(extra=[param])
             await client.StopAll(request)
 
@@ -262,10 +261,9 @@ class TestRobotService:
             await motor.set_power(1)
             assert await motor.is_moving() is True
 
-            extra = Struct()
-            extra.update({"foo": "bar", "baz": [3, 2, 1]})
-            param1 = StopExtraParameters(name=Arm.get_resource_name('arm1'), params=extra)
-            param2 = StopExtraParameters(name=Motor.get_resource_name('motor1'), params=extra)
+            extra = {"foo": "bar", "baz": [3, 2, 1]}
+            param1 = StopExtraParameters(name=Arm.get_resource_name('arm1'), params=dict_to_struct(extra))
+            param2 = StopExtraParameters(name=Motor.get_resource_name('motor1'), params=dict_to_struct(extra))
             request = StopAllRequest(extra=[param1, param2])
             await client.StopAll(request)
 

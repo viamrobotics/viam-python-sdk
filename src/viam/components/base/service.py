@@ -9,7 +9,7 @@ from viam.proto.api.component.base import (BaseServiceBase,
                                            SetVelocityResponse, SpinRequest,
                                            SpinResponse, StopRequest,
                                            StopResponse)
-from viam.utils import value_to_primitive
+from viam.utils import struct_to_dict
 
 from .base import Base
 
@@ -35,7 +35,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await base.move_straight(
             distance=request.distance_mm,
             velocity=request.mm_per_sec,
-            extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()},
+            extra=struct_to_dict(request.extra)
         )
         response = MoveStraightResponse()
         await stream.send_message(response)
@@ -54,7 +54,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await base.spin(
             angle=request.angle_deg,
             velocity=request.degs_per_sec,
-            extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()},
+            extra=struct_to_dict(request.extra)
         )
         response = SpinResponse()
         await stream.send_message(response)
@@ -70,7 +70,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await base.set_power(
             request.linear,
             request.angular,
-            {key: value_to_primitive(value) for (key, value) in request.extra.fields.items()},
+            struct_to_dict(request.extra)
         )
         response = SetPowerResponse()
         await stream.send_message(response)
@@ -86,7 +86,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await base.set_velocity(
             request.linear,
             request.angular,
-            {key: value_to_primitive(value) for (key, value) in request.extra.fields.items()}
+            struct_to_dict(request.extra)
         )
         await stream.send_message(SetVelocityResponse())
 
@@ -98,6 +98,6 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.stop({key: value_to_primitive(value) for (key, value) in request.extra.fields.items()})
+        await base.stop(extra=struct_to_dict(request.extra))
         response = StopResponse()
         await stream.send_message(response)

@@ -9,7 +9,7 @@ from viam.proto.api.component.gantry import (GantryServiceBase,
                                              MoveToPositionRequest,
                                              MoveToPositionResponse,
                                              StopRequest, StopResponse)
-from viam.utils import value_to_primitive
+from viam.utils import struct_to_dict
 
 from .gantry import Gantry
 
@@ -32,7 +32,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        position = await gantry.get_position({key: value_to_primitive(value) for (key, value) in request.extra.fields.items()})
+        position = await gantry.get_position(extra=struct_to_dict(request.extra))
         response = GetPositionResponse(positions_mm=position)
         await stream.send_message(response)
 
@@ -50,7 +50,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         await gantry.move_to_position(
             list(request.positions_mm),
             request.world_state,
-            {key: value_to_primitive(value) for (key, value) in request.extra.fields.items()},
+            struct_to_dict(request.extra)
         )
         response = MoveToPositionResponse()
         await stream.send_message(response)
@@ -66,7 +66,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        lengths = await gantry.get_lengths({key: value_to_primitive(value) for (key, value) in request.extra.fields.items()})
+        lengths = await gantry.get_lengths(extra=struct_to_dict(request.extra))
         response = GetLengthsResponse(lengths_mm=lengths)
         await stream.send_message(response)
 
@@ -78,6 +78,6 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await gantry.stop({key: value_to_primitive(value) for (key, value) in request.extra.fields.items()})
+        await gantry.stop(extra=struct_to_dict(request.extra))
         response = StopResponse()
         await stream.send_message(response)

@@ -11,7 +11,7 @@ from viam.proto.api.component.arm import (ArmServiceBase,
                                           MoveToPositionRequest,
                                           MoveToPositionResponse, StopRequest,
                                           StopResponse)
-from viam.utils import value_to_primitive
+from viam.utils import struct_to_dict
 
 from .arm import Arm
 
@@ -34,7 +34,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        position = await arm.get_end_position(extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()})
+        position = await arm.get_end_position(extra=struct_to_dict(request.extra))
         response = GetEndPositionResponse(pose=position)
         await stream.send_message(response)
 
@@ -52,7 +52,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         await arm.move_to_position(
             request.to,
             request.world_state,
-            extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()}
+            extra=struct_to_dict(request.extra)
         )
         response = MoveToPositionResponse()
         await stream.send_message(response)
@@ -68,7 +68,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        positions = await arm.get_joint_positions(extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()})
+        positions = await arm.get_joint_positions(extra=struct_to_dict(request.extra))
         response = GetJointPositionsResponse(positions=positions)
         await stream.send_message(response)
 
@@ -86,7 +86,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             raise e.grpc_error
         await arm.move_to_joint_positions(
             request.positions,
-            extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()}
+            extra=struct_to_dict(request.extra)
         )
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)
@@ -99,6 +99,6 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.stop(extra={key: value_to_primitive(value) for (key, value) in request.extra.fields.items()})
+        await arm.stop(extra=struct_to_dict(request.extra))
         response = StopResponse()
         await stream.send_message(response)

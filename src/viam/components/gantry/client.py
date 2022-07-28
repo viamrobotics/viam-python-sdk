@@ -1,6 +1,5 @@
 from typing import Any, Dict, List, Optional
 
-from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.common import WorldState
@@ -11,6 +10,7 @@ from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetPositionResponse,
                                              MoveToPositionRequest,
                                              StopRequest)
+from viam.utils import dict_to_struct
 
 from .gantry import Gantry
 
@@ -25,12 +25,8 @@ class GantryClient(Gantry):
         self.client = GantryServiceStub(channel)
         super().__init__(name)
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
-        struct = None
-        if extra:
-            struct = Struct()
-            struct.update(extra)
-        request = GetPositionRequest(name=self.name, extra=struct)
+    async def get_position(self, extra: Dict[str, Any] = {}) -> List[float]:
+        request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPositionResponse = await self.client.GetPosition(request)
         return list(response.positions_mm)
 
@@ -38,30 +34,18 @@ class GantryClient(Gantry):
         self,
         positions: List[float],
         world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None,
+        extra: Dict[str, Any] = {},
     ):
-        struct = None
-        if extra:
-            struct = Struct()
-            struct.update(extra)
-        request = MoveToPositionRequest(name=self.name, positions_mm=positions, world_state=world_state, extra=struct)
+        request = MoveToPositionRequest(name=self.name, positions_mm=positions, world_state=world_state, extra=dict_to_struct(extra))
         await self.client.MoveToPosition(request)
 
-    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
-        struct = None
-        if extra:
-            struct = Struct()
-            struct.update(extra)
-        request = GetLengthsRequest(name=self.name, extra=struct)
+    async def get_lengths(self, extra: Dict[str, Any] = {}) -> List[float]:
+        request = GetLengthsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetLengthsResponse = await self.client.GetLengths(request)
         return list(response.lengths_mm)
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
-        struct = None
-        if extra:
-            struct = Struct()
-            struct.update(extra)
-        request = StopRequest(name=self.name, extra=struct)
+    async def stop(self, extra: Dict[str, Any] = {}):
+        request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:

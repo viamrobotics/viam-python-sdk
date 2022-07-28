@@ -4,7 +4,6 @@ from threading import Lock
 from typing import Any, Dict, List, Optional
 
 import viam
-from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
 from typing_extensions import Self
 from viam import logging
@@ -26,6 +25,7 @@ from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
 from viam.services.types import Service
+from viam.utils import dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
 
@@ -343,8 +343,6 @@ class RobotClient:
         """
         ep: List[StopExtraParameters] = []
         for name, params in extra.items():
-            struct = Struct()
-            struct.update(params)
-            ep.append(StopExtraParameters(name=name, params=struct))
+            ep.append(StopExtraParameters(name=name, params=dict_to_struct(params)))
         request = StopAllRequest(extra=ep)
         await self._client.StopAll(request)
