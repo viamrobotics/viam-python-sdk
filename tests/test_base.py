@@ -120,7 +120,7 @@ class TestBase:
 
     @pytest.mark.asyncio
     async def test_extra(self, base: MockBase):
-        assert base.extra is None
+        assert len(base.extra) == 0
         extra = {"foo": "bar", "baz": [1, 2, 3]}
         await base.move_straight(1, 1, extra)
         assert base.extra == extra
@@ -236,7 +236,7 @@ class TestService:
     @pytest.mark.asyncio
     async def test_extra(self, base: MockBase, service: BaseService):
         async with ChannelFor([service]) as channel:
-            assert base.extra is None
+            assert len(base.extra) == 0
             client = BaseServiceStub(channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
             request = MoveStraightRequest(name=base.name, distance_mm=1, mm_per_sec=1, extra=dict_to_struct(extra))
@@ -338,7 +338,7 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_extra(self, base: MockBase, service: BaseService):
         async with ChannelFor([service]) as channel:
-            assert base.extra is None
+            assert len(base.extra) == 0
             client = BaseClient(base.name, channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
             await client.move_straight(1, 1, extra)

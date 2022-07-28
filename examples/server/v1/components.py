@@ -45,25 +45,25 @@ class ExampleArm(Arm):
         self.is_stopped = True
         super().__init__(name)
 
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
+    async def get_end_position(self, extra: Dict[str, Any] = {}) -> Pose:
         return self.position
 
     async def move_to_position(
         self, pose: Pose,
         world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None,
+        extra: Dict[str, Any] = {},
     ):
         self.is_stopped = False
         self.position = pose
 
-    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
+    async def get_joint_positions(self, extra: Dict[str, Any] = {}) -> JointPositions:
         return self.joint_positions
 
-    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
+    async def move_to_joint_positions(self, positions: JointPositions, extra: Dict[str, Any] = {}):
         self.is_stopped = False
         self.joint_positions = positions
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Dict[str, Any] = {}):
         self.is_stopped = True
 
     async def is_moving(self):
@@ -86,7 +86,7 @@ class ExampleBase(Base):
         self,
         distance: int,
         velocity: float,
-        extra: Optional[Dict[str, Any]] = None
+        extra: Dict[str, Any] = {}
     ):
         if distance == 0 or velocity == 0:
             return await self.stop()
@@ -98,7 +98,7 @@ class ExampleBase(Base):
 
         self.is_stopped = False
 
-    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def spin(self, angle: float, velocity: float, extra: Dict[str, Any] = {}):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -109,15 +109,15 @@ class ExampleBase(Base):
 
         self.is_stopped = False
 
-    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Dict[str, Any] = {}):
         self.linear_pwr = linear
         self.anglular_pwr = angular
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Dict[str, Any] = {}):
         self.linear_vel = linear
         self.anglular_vel = angular
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Dict[str, Any] = {}):
         self.is_stopped = True
 
     async def is_moving(self):
@@ -387,22 +387,22 @@ class ExampleGantry(Gantry):
         self.is_stopped = True
         super().__init__(name)
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+    async def get_position(self, extra: Dict[str, Any] = {}) -> List[float]:
         return self.position
 
     async def move_to_position(
         self,
         positions: List[float],
         world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None,
+        extra: Dict[str, Any] = {},
     ):
         self.position = positions
         self.is_stopped = False
 
-    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+    async def get_lengths(self, extra: Dict[str, Any] = {}) -> List[float]:
         return self.lengths
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Dict[str, Any] = {}):
         self.is_stopped = True
 
     async def is_moving(self):
