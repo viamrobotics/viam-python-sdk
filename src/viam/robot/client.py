@@ -1,9 +1,10 @@
 import asyncio
 from dataclasses import dataclass
 from threading import Lock
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 import viam
+from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
 from typing_extensions import Self
 from viam import logging
@@ -19,6 +20,7 @@ from viam.proto.api.robot import (DiscoverComponentsRequest,
                                   FrameSystemConfigResponse, GetStatusRequest,
                                   GetStatusResponse, ResourceNamesRequest,
                                   ResourceNamesResponse, RobotServiceStub,
+                                  StopAllRequest, StopExtraParameters,
                                   TransformPoseRequest, TransformPoseResponse)
 from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
@@ -325,3 +327,24 @@ class RobotClient:
         request = DiscoverComponentsRequest(queries=queries)
         response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
         return list(response.discovery)
+
+    ############
+    # STOP ALL #
+    ############
+
+    async def stop_all(self, extra: Dict[ResourceName, Dict[str, Any]] = {}):
+        """
+        Cancel all current and outstanding operations for the robot and stop all actuators and movement
+
+        Args:
+            extra (Dict[ResourceName, Dict[str, Any]]): Any extra parameters to pass to the components' `stop` methods, keyed on the
+                                                        component's `ResourceName`
+
+        """
+        ep: List[StopExtraParameters] = []
+        for name, params in extra.items():
+            struct = Struct()
+            struct.update(params)
+            ep.append(StopExtraParameters(name=name, params=struct))
+        request = StopAllRequest(extra=ep)
+        await self._client.StopAll(request)

@@ -1,10 +1,13 @@
 import asyncio
+from typing import Any, Dict, Optional
 
 import pytest
 from google.protobuf.struct_pb2 import Struct, Value
+from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
+from viam.components.motor import Motor
 from viam.components.resource_manager import ResourceManager
 from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
                          ViamError)
@@ -19,8 +22,8 @@ from viam.proto.api.robot import (DiscoverComponentsRequest,
                                   FrameSystemConfigResponse, GetStatusRequest,
                                   GetStatusResponse, ResourceNamesRequest,
                                   ResourceNamesResponse, RobotServiceStub,
-                                  Status, TransformPoseRequest,
-                                  TransformPoseResponse)
+                                  Status, StopAllRequest, StopExtraParameters,
+                                  TransformPoseRequest, TransformPoseResponse)
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services import ServiceType
@@ -226,6 +229,64 @@ class TestRobotService:
             response: GetStatusResponse = await client.GetStatus(request)
             assert list(response.status) == [ARM_STATUS, CAMERA_STATUS]
 
+    @pytest.mark.asyncio
+    async def test_stop_all(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = RobotServiceStub(channel)
+
+            arm = service.manager.get_component(Arm, 'arm1')
+            assert isinstance(arm, MockArm)
+            motor = service.manager.get_component(Motor, 'motor1')
+            assert isinstance(motor, MockMotor)
+
+            # Test one with extra, one without
+            await arm.move_to_position(Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
+            assert await arm.is_moving() is True
+            await motor.set_power(1)
+            assert await motor.is_moving() is True
+
+            extra = Struct()
+            extra.update({"foo": "bar", "baz": [1, 2, 3]})
+            param = StopExtraParameters(name=Arm.get_resource_name('arm1'), params=extra)
+            request = StopAllRequest(extra=[param])
+            await client.StopAll(request)
+
+            assert await arm.is_moving() is False
+            assert arm.extra == {"foo": "bar", "baz": [1, 2, 3]}
+
+            assert await motor.is_moving() is False
+
+            # Test passing extra where component's `stop` function doesn't take extra
+            await arm.move_to_position(Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
+            assert await arm.is_moving() is True
+            await motor.set_power(1)
+            assert await motor.is_moving() is True
+
+            extra = Struct()
+            extra.update({"foo": "bar", "baz": [3, 2, 1]})
+            param1 = StopExtraParameters(name=Arm.get_resource_name('arm1'), params=extra)
+            param2 = StopExtraParameters(name=Motor.get_resource_name('motor1'), params=extra)
+            request = StopAllRequest(extra=[param1, param2])
+            await client.StopAll(request)
+
+            assert await arm.is_moving() is False
+            assert arm.extra == {"foo": "bar", "baz": [3, 2, 1]}
+
+            assert await motor.is_moving() is False
+
+            # Test that one error doesn't prevent other components from stopping
+            await arm.move_to_position(Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
+            assert await arm.is_moving() is True
+            await motor.set_power(1)
+            assert await motor.is_moving() is True
+
+            async def error_stop(extra: Optional[Dict[str, Any]] = None): raise Exception("Some random error")
+            arm.stop = error_stop
+            with pytest.raises(GRPCError):
+                await client.StopAll(StopAllRequest())
+            assert await arm.is_moving() is True
+            assert await motor.is_moving() is False
+
 
 class TestRobotClient:
 
@@ -341,3 +402,26 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             discoveries = await client.discover_components([DISCOVERY_QUERY])
             assert discoveries == DISCOVERY_RESPONSE
+
+    @ pytest.mark.asyncio
+    async def test_stop_all(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+
+            arm = service.manager.get_component(Arm, 'arm1')
+            assert isinstance(arm, MockArm)
+            motor = service.manager.get_component(Motor, 'motor1')
+            assert isinstance(motor, MockMotor)
+
+            await arm.move_to_position(Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
+            assert await arm.is_moving() is True
+            await motor.set_power(1)
+            assert await motor.is_moving() is True
+
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            await client.stop_all({arm.get_resource_name(arm.name): extra})
+
+            assert await arm.is_moving() is False
+            assert arm.extra == extra
+
+            assert await motor.is_moving() is False
