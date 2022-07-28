@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 from viam.errors import NotSupportedError
 from viam.proto.api.common import Vector3
@@ -21,7 +21,7 @@ class Base(ComponentBase):
         self,
         distance: int,
         velocity: float,
-        extra: Dict[str, Any] = {}
+        extra: Optional[Dict[str, Any]] = None
     ):
         """
         Move the base in a straight line the given `distance`, expressed in millimeters,
@@ -38,7 +38,7 @@ class Base(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def spin(self, angle: float, velocity: float, extra: Dict[str, Any] = {}):
+    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
         """
         Spin the base in place `angle` degrees, at the given angular `velocity`,
         expressed in degrees per second.
@@ -54,7 +54,7 @@ class Base(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def set_power(self, linear: Vector3, angular: Vector3, extra: Dict[str, Any] = {}):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
         """Set the linear and angular velocity of the Base
         When `linear` is 0, the the base will spin.
         When `angular` is 0, the the base will move in a straight line.
@@ -71,7 +71,7 @@ class Base(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Dict[str, Any] = {}):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
         """
         Set the linear and angular velocities of the base.
 
@@ -82,7 +82,7 @@ class Base(ComponentBase):
         """
 
     @abc.abstractmethod
-    async def stop(self, extra: Dict[str, Any] = {}):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         """
         Stop the base.
         """

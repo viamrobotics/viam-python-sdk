@@ -25,7 +25,9 @@ class GantryClient(Gantry):
         self.client = GantryServiceStub(channel)
         super().__init__(name)
 
-    async def get_position(self, extra: Dict[str, Any] = {}) -> List[float]:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+        if extra is None:
+            extra = {}
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPositionResponse = await self.client.GetPosition(request)
         return list(response.positions_mm)
@@ -34,17 +36,23 @@ class GantryClient(Gantry):
         self,
         positions: List[float],
         world_state: Optional[WorldState] = None,
-        extra: Dict[str, Any] = {},
+        extra: Optional[Dict[str, Any]] = None,
     ):
+        if extra is None:
+            extra = {}
         request = MoveToPositionRequest(name=self.name, positions_mm=positions, world_state=world_state, extra=dict_to_struct(extra))
         await self.client.MoveToPosition(request)
 
-    async def get_lengths(self, extra: Dict[str, Any] = {}) -> List[float]:
+    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+        if extra is None:
+            extra = {}
         request = GetLengthsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetLengthsResponse = await self.client.GetLengths(request)
         return list(response.lengths_mm)
 
-    async def stop(self, extra: Dict[str, Any] = {}):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+        if extra is None:
+            extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request)
 

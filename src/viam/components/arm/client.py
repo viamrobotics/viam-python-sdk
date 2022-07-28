@@ -28,7 +28,9 @@ class ArmClient(Arm):
         self.client = ArmServiceStub(channel)
         super().__init__(name)
 
-    async def get_end_position(self, extra: Dict[str, Any] = {}) -> Pose:
+    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
+        if extra is None:
+            extra = {}
         request = GetEndPositionRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetEndPositionResponse = \
             await self.client.GetEndPosition(request)
@@ -38,22 +40,30 @@ class ArmClient(Arm):
         self,
         pose: Pose,
         world_state: Optional[WorldState] = None,
-        extra: Dict[str, Any] = {}
+        extra: Optional[Dict[str, Any]] = None,
     ):
+        if extra is None:
+            extra = {}
         request = MoveToPositionRequest(name=self.name, to=pose, world_state=world_state, extra=dict_to_struct(extra))
         await self.client.MoveToPosition(request)
 
-    async def get_joint_positions(self, extra: Dict[str, Any] = {}) -> JointPositions:
+    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
+        if extra is None:
+            extra = {}
         request = GetJointPositionsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetJointPositionsResponse = \
             await self.client.GetJointPositions(request)
         return response.positions
 
-    async def move_to_joint_positions(self, positions: JointPositions, extra: Dict[str, Any] = {}):
+    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
+        if extra is None:
+            extra = {}
         request = MoveToJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
         await self.client.MoveToJointPositions(request)
 
-    async def stop(self, extra: Dict[str, Any] = {}):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+        if extra is None:
+            extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request)
 
