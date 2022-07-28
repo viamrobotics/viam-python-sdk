@@ -9,7 +9,7 @@ from viam.components.arm import Arm, JointPositions
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
-from viam.components.camera import Camera
+from viam.components.camera import Camera, IntrinsicParameters
 from viam.components.gantry import Gantry
 from viam.components.generic import Generic as GenericComponent
 from viam.components.gps import GPS
@@ -283,6 +283,7 @@ class MockCamera(Camera):
     def __init__(self, name: str):
         self.image = Image.new('RGBA', (100, 100), '#AABBCCDD')
         self.point_cloud = b'THIS IS A POINT CLOUD'
+        self.props = IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
         super().__init__(name)
 
     async def get_frame(self) -> Image.Image:
@@ -290,6 +291,9 @@ class MockCamera(Camera):
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         return self.point_cloud, CameraMimeType.PCD.value
+
+    async def get_properties(self) -> IntrinsicParameters:
+        return self.props
 
 
 class MockGantry(Gantry):

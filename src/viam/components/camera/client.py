@@ -8,7 +8,10 @@ from viam.components.types import CameraMimeType
 from viam.proto.api.component.camera import (CameraServiceStub,
                                              GetFrameRequest, GetFrameResponse,
                                              GetPointCloudRequest,
-                                             GetPointCloudResponse)
+                                             GetPointCloudResponse,
+                                             GetPropertiesRequest,
+                                             GetPropertiesResponse,
+                                             IntrinsicParameters)
 
 from .camera import Camera
 
@@ -45,6 +48,10 @@ class CameraClient(Camera):
         response: GetPointCloudResponse = \
             await self.client.GetPointCloud(request)
         return (response.point_cloud, response.mime_type)
+
+    async def get_properties(self) -> IntrinsicParameters:
+        response: GetPropertiesResponse = await self.client.GetProperties(GetPropertiesRequest(name=self.name))
+        return response.intrinsic_parameters
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)
