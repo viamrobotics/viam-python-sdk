@@ -106,5 +106,5 @@ def resource_names_for_component(
 
 def message_to_struct(message: Message) -> Struct:
     struct = Struct()
-    struct.update(MessageToDict(message))
+    struct.update(MessageToDict(message, preserving_proto_field_name=True))
     return struct
