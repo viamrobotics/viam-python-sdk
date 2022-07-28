@@ -9,7 +9,7 @@ from viam.components.arm import Arm, JointPositions
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
-from viam.components.camera import Camera
+from viam.components.camera import Camera, IntrinsicParameters
 from viam.components.gantry import Gantry
 from viam.components.generic import Generic as GenericComponent
 from viam.components.gps import GPS
@@ -46,7 +46,7 @@ class MockArm(Arm):
         self.extra = None
         super().__init__(name)
 
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
+    async def get_end_position(self, extra: Dict[str, Any] = {}) -> Pose:
         self.extra = extra
         return self.position
 
@@ -54,22 +54,22 @@ class MockArm(Arm):
         self,
         pose: Pose,
         world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None
+        extra: Dict[str, Any] = {}
     ):
         self.position = pose
         self.is_stopped = False
         self.extra = extra
 
-    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
+    async def get_joint_positions(self, extra: Dict[str, Any] = {}) -> JointPositions:
         self.extra = extra
         return self.joint_positions
 
-    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
+    async def move_to_joint_positions(self, positions: JointPositions, extra: Dict[str, Any] = {}):
         self.joint_positions = positions
         self.is_stopped = False
         self.extra = extra
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Dict[str, Any] = {}):
         self.is_stopped = True
         self.extra = extra
 
@@ -87,12 +87,14 @@ class MockBase(Base):
         self.angular_pwr = Vector3(x=0, y=0, z=0)
         self.linear_vel = Vector3(x=0, y=0, z=0)
         self.angular_vel = Vector3(x=0, y=0, z=0)
+        self.extra: Dict[str, Any] = {}
         super().__init__(name)
 
     async def move_straight(
         self,
         distance: int,
         velocity: float,
+        extra: Dict[str, Any] = {}
     ):
         if distance == 0 or velocity == 0:
             return await self.stop()
@@ -103,12 +105,14 @@ class MockBase(Base):
             self.position -= distance
 
         self.stopped = False
+        self.extra = extra
 
     async def move_arc(
         self,
         distance: int,
         velocity: float,
         angle: float,
+        extra: Dict[str, Any] = {},
     ):
         if distance == 0:
             return await self.spin(angle, velocity)
@@ -124,8 +128,9 @@ class MockBase(Base):
             self.angle -= angle
 
         self.stopped = False
+        self.extra = extra
 
-    async def spin(self, angle: float, velocity: float):
+    async def spin(self, angle: float, velocity: float, extra: Dict[str, Any] = {}):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -135,17 +140,21 @@ class MockBase(Base):
             self.angle -= angle
 
         self.stopped = False
+        self.extra = extra
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Dict[str, Any] = {}):
         self.linear_vel = linear
         self.angular_vel = angular
+        self.extra = extra
 
-    async def set_power(self, linear: Vector3, angular: Vector3):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Dict[str, Any] = {}):
         self.linear_pwr = linear
         self.angular_pwr = angular
+        self.extra = extra
 
-    async def stop(self):
+    async def stop(self, extra: Dict[str, Any] = {}):
         self.stopped = True
+        self.extra = extra
 
     async def is_moving(self) -> bool:
         return not self.stopped
@@ -274,6 +283,7 @@ class MockCamera(Camera):
     def __init__(self, name: str):
         self.image = Image.new('RGBA', (100, 100), '#AABBCCDD')
         self.point_cloud = b'THIS IS A POINT CLOUD'
+        self.props = IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
         super().__init__(name)
 
     async def get_frame(self) -> Image.Image:
@@ -281,6 +291,9 @@ class MockCamera(Camera):
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         return self.point_cloud, CameraMimeType.PCD.value
+
+    async def get_properties(self) -> IntrinsicParameters:
+        return self.props
 
 
 class MockGantry(Gantry):
@@ -294,23 +307,29 @@ class MockGantry(Gantry):
         self.position = position
         self.lengths = lengths
         self.is_stopped = True
+        self.extra = None
         super().__init__(name)
 
-    async def get_position(self) -> List[float]:
+    async def get_position(self, extra: Dict[str, Any] = {}) -> List[float]:
+        self.extra = extra
         return self.position
 
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Dict[str, Any] = {},
     ):
         self.position = positions
         self.is_stopped = False
+        self.extra = extra
 
-    async def get_lengths(self) -> List[float]:
+    async def get_lengths(self, extra: Dict[str, Any] = {}) -> List[float]:
+        self.extra = extra
         return self.lengths
 
-    async def stop(self):
+    async def stop(self, extra: Dict[str, Any] = {}):
+        self.extra = extra
         self.is_stopped = True
 
     async def is_moving(self) -> bool:

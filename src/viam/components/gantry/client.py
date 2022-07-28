@@ -10,6 +10,7 @@ from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetPositionResponse,
                                              MoveToPositionRequest,
                                              StopRequest)
+from viam.utils import dict_to_struct
 
 from .gantry import Gantry
 
@@ -24,27 +25,27 @@ class GantryClient(Gantry):
         self.client = GantryServiceStub(channel)
         super().__init__(name)
 
-    async def get_position(self) -> List[float]:
-        request = GetPositionRequest(name=self.name)
+    async def get_position(self, extra: Dict[str, Any] = {}) -> List[float]:
+        request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPositionResponse = await self.client.GetPosition(request)
         return list(response.positions_mm)
 
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Dict[str, Any] = {},
     ):
-        request = MoveToPositionRequest(
-            name=self.name, positions_mm=positions, world_state=world_state)
+        request = MoveToPositionRequest(name=self.name, positions_mm=positions, world_state=world_state, extra=dict_to_struct(extra))
         await self.client.MoveToPosition(request)
 
-    async def get_lengths(self) -> List[float]:
-        request = GetLengthsRequest(name=self.name)
+    async def get_lengths(self, extra: Dict[str, Any] = {}) -> List[float]:
+        request = GetLengthsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetLengthsResponse = await self.client.GetLengths(request)
         return list(response.lengths_mm)
 
-    async def stop(self):
-        request = StopRequest(name=self.name)
+    async def stop(self, extra: Dict[str, Any] = {}):
+        request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:

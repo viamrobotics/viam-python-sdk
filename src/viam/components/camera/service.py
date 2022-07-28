@@ -4,13 +4,15 @@ from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 from PIL.Image import Image
 from viam.components.service_base import ComponentServiceBase
+from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.camera import (CameraServiceBase,
                                              GetFrameRequest, GetFrameResponse,
                                              GetPointCloudRequest,
                                              GetPointCloudResponse,
+                                             GetPropertiesRequest,
+                                             GetPropertiesResponse,
                                              RenderFrameRequest)
-from viam.components.types import CameraMimeType
 
 from .camera import Camera
 
@@ -105,4 +107,16 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             raise e.grpc_error
         pc, mimetype = await camera.get_point_cloud()
         response = GetPointCloudResponse(mime_type=mimetype, point_cloud=pc)
+        await stream.send_message(response)
+
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            camera = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        properties = await camera.get_properties()
+        response = GetPropertiesResponse(intrinsic_parameters=properties)
         await stream.send_message(response)

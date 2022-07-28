@@ -108,3 +108,13 @@ def message_to_struct(message: Message) -> Struct:
     struct = Struct()
     struct.update(MessageToDict(message))
     return struct
+
+
+def struct_to_dict(struct: Struct) -> Dict[str, Any]:
+    return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
+
+
+def dict_to_struct(obj: Dict[str, Any]) -> Struct:
+    struct = Struct()
+    struct.update(obj)
+    return struct

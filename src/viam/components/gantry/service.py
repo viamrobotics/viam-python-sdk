@@ -9,6 +9,7 @@ from viam.proto.api.component.gantry import (GantryServiceBase,
                                              MoveToPositionRequest,
                                              MoveToPositionResponse,
                                              StopRequest, StopResponse)
+from viam.utils import struct_to_dict
 
 from .gantry import Gantry
 
@@ -31,7 +32,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        position = await gantry.get_position()
+        position = await gantry.get_position(extra=struct_to_dict(request.extra))
         response = GetPositionResponse(positions_mm=position)
         await stream.send_message(response)
 
@@ -48,7 +49,8 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             raise e.grpc_error
         await gantry.move_to_position(
             list(request.positions_mm),
-            request.world_state
+            request.world_state,
+            struct_to_dict(request.extra)
         )
         response = MoveToPositionResponse()
         await stream.send_message(response)
@@ -64,7 +66,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        lengths = await gantry.get_lengths()
+        lengths = await gantry.get_lengths(extra=struct_to_dict(request.extra))
         response = GetLengthsResponse(lengths_mm=lengths)
         await stream.send_message(response)
 
@@ -73,9 +75,9 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         assert request is not None
         name = request.name
         try:
-            arm = self.get_component(name)
+            gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.stop()
+        await gantry.stop(extra=struct_to_dict(request.extra))
         response = StopResponse()
         await stream.send_message(response)

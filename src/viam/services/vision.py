@@ -2,7 +2,6 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Dict, List, Tuple
 
-from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
 from viam.components.types import CameraMimeType
 from viam.proto.api.common import PointCloudObject
@@ -18,6 +17,7 @@ from viam.proto.api.service.vision import (AddDetectorRequest, Detection,
                                            GetSegmenterParametersRequest,
                                            GetSegmenterParametersResponse,
                                            VisionServiceStub)
+from viam.utils import dict_to_struct
 
 
 class DetectorType(str, Enum):
@@ -55,15 +55,17 @@ class VisionClient:
     async def add_detector(self, detector: DetectorConfig):
         """Add a new detector to the service. Returns nothing if successful, and an error if not.
         Registers a new detector just as if you had put it in the original "register_detectors" field
-        in the robot config. Available types and their parameters can be found in the 
+        in the robot config. Available types and their parameters can be found in the
         vision service documentation.
 
         Args:
-            detector (DetectorConfig): The configuration of the detector to add. 
+            detector (DetectorConfig): The configuration of the detector to add.
         """
-        params = Struct()
-        params.update(detector.parameters)
-        request = AddDetectorRequest(detector_name=detector.name, detector_model_type=detector.type, detector_parameters=params)
+        request = AddDetectorRequest(
+            detector_name=detector.name,
+            detector_model_type=detector.type,
+            detector_parameters=dict_to_struct(detector.parameters)
+        )
         await self.client.AddDetector(request)
 
     async def get_detections(self, camera_name: str, detector_name: str) -> List[Detection]:
@@ -75,8 +77,8 @@ class VisionClient:
 
         Returns:
             List[Detection]: A list of 2D bounding boxes, their labels, and the
-            confidence score of the labels, around the found objects in the next 2D image 
-            from the given camera, with the given detector applied to it. 
+            confidence score of the labels, around the found objects in the next 2D image
+            from the given camera, with the given detector applied to it.
         """
         request = GetDetectionsRequest(camera_name=camera_name, detector_name=detector_name)
         response: GetDetectionsResponse = await self.client.GetDetections(request)
@@ -121,8 +123,8 @@ class VisionClient:
         parameters: Dict[str, Any]
     ) -> List[PointCloudObject]:
         """
-        Returns a list of the 3D point cloud objects and associated metadata in the latest 
-        picture obtained from the specified 3D camera (using the specified segmenter). 
+        Returns a list of the 3D point cloud objects and associated metadata in the latest
+        picture obtained from the specified 3D camera (using the specified segmenter).
         The parameters are the necessary parameters that the given segmenter needs in order to work.
 
         Args:
@@ -133,13 +135,11 @@ class VisionClient:
         Returns:
             List[PointCloudObject]: The pointcloud objects with metadata
         """
-        struct = Struct()
-        struct.update(parameters)
         request = GetObjectPointCloudsRequest(
             camera_name=camera_name,
             segmenter_name=segmenter_name,
             mime_type=CameraMimeType.PCD.value,
-            parameters=struct
+            parameters=dict_to_struct(parameters)
         )
         response: GetObjectPointCloudsResponse = \
             await self.client.GetObjectPointClouds(request)

@@ -1,11 +1,12 @@
 from viam.registry import ComponentRegistration, Registry
 
-from .camera import Camera
+from .camera import Camera, IntrinsicParameters
 from .client import CameraClient
 from .service import CameraService
 
 __all__ = [
     'Camera',
+    'IntrinsicParameters',
 ]
 
 Registry.register(

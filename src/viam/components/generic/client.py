@@ -1,4 +1,3 @@
-from google.protobuf.struct_pb2 import Struct
 from typing import Any, Dict
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
@@ -6,7 +5,7 @@ from viam.proto.api.component.generic import (
     GenericServiceStub,
     DoRequest, DoResponse
 )
-from viam.utils import value_to_primitive
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .generic import Generic
 
@@ -21,9 +20,7 @@ class GenericClient(Generic):
         super().__init__(name)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
-        struct = Struct()
-        struct.update(command)
-        request = DoRequest(name=self.name, command=struct)
+        request = DoRequest(name=self.name, command=dict_to_struct(command))
         try:
             response: DoResponse = await self.client.Do(request)
         except GRPCError as e:
@@ -31,7 +28,7 @@ class GenericClient(Generic):
                 raise NotImplementedError()
             raise e
 
-        return {key: value_to_primitive(value) for (key, value) in response.result.fields.items()}
+        return struct_to_dict(response.result)
 
 
 async def do_command(channel: Channel, name: str, command: Dict[str, Any]) -> Dict[str, Any]:

@@ -1,4 +1,5 @@
 from io import BytesIO
+
 import pytest
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.testing import ChannelFor
@@ -7,14 +8,23 @@ from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
+from viam.components.types import CameraMimeType
 from viam.proto.api.component.camera import (CameraServiceStub,
                                              GetFrameRequest, GetFrameResponse,
                                              GetPointCloudRequest,
                                              GetPointCloudResponse,
+                                             GetPropertiesRequest,
+                                             GetPropertiesResponse,
+                                             IntrinsicParameters,
                                              RenderFrameRequest)
-from viam.components.types import CameraMimeType
 
 from .mocks.components import MockCamera
+
+# ################################ NB ################################# #
+#   These test values have to be fixtures and must match the values in  #
+#  MockCamera because there are some weird PIL errors if you pass these #
+#   fixtures in the initializer to seed the mock with expected values   #
+# ##################################################################### #
 
 
 @pytest.fixture(scope='function')
@@ -28,8 +38,13 @@ def point_cloud() -> bytes:
 
 
 @pytest.fixture(scope='function')
+def properties() -> IntrinsicParameters:
+    return IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
+
+
+@pytest.fixture(scope='function')
 def camera() -> Camera:
-    return MockCamera(name='camera')
+    return MockCamera('camera')
 
 
 @pytest.fixture(scope='function')
@@ -55,6 +70,11 @@ class TestCamera:
     async def test_get_point_cloud(self, camera: Camera, point_cloud: bytes):
         pc, _ = await camera.get_point_cloud()
         assert pc == point_cloud
+
+    @pytest.mark.asyncio
+    async def test_get_properties(self, camera: Camera, properties: IntrinsicParameters):
+        props = await camera.get_properties()
+        assert props == properties
 
     @pytest.mark.asyncio
     async def test_do(self, camera: Camera):
@@ -112,6 +132,18 @@ class TestService:
                 await client.GetPointCloud(request)
             assert response.point_cloud == point_cloud
 
+    @pytest.mark.asyncio
+    async def test_get_properties(
+        self,
+        service: CameraService,
+        properties: IntrinsicParameters
+    ):
+        async with ChannelFor([service]) as channel:
+            client = CameraServiceStub(channel)
+            request = GetPropertiesRequest(name='camera')
+            response: GetPropertiesResponse = await client.GetProperties(request)
+            assert response.intrinsic_parameters == properties
+
 
 class TestClient:
 
@@ -136,6 +168,17 @@ class TestClient:
             camera = CameraClient('camera', channel)
             pc, _ = await camera.get_point_cloud()
             assert pc == point_cloud
+
+    @pytest.mark.asyncio
+    async def test_get_properties(
+        self,
+        service: CameraService,
+        properties: IntrinsicParameters
+    ):
+        async with ChannelFor([service]) as channel:
+            camera = CameraClient('camera', channel)
+            props = await camera.get_properties()
+            assert props == properties
 
     @pytest.mark.asyncio
     async def test_do(self, service: CameraService, generic_service: GenericService):

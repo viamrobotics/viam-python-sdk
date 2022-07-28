@@ -1,11 +1,10 @@
 import pytest
-from google.protobuf.struct_pb2 import Struct
 from grpclib.testing import ChannelFor
 from viam.components.generic import GenericClient, GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.generic import (DoRequest, DoResponse,
                                               GenericServiceStub)
-from viam.utils import value_to_primitive
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .mocks.components import MockGeneric
 
@@ -31,11 +30,9 @@ class TestService:
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = GenericServiceStub(channel)
-            command = Struct()
-            command.update({'command': 'args'})
-            request = DoRequest(name=self.name, command=command)
+            request = DoRequest(name=self.name, command=dict_to_struct({'command': 'args'}))
             response: DoResponse = await client.Do(request)
-            result = {key: value_to_primitive(value) for (key, value) in response.result.fields.items()}
+            result = struct_to_dict(response.result)
             assert result == {'command': True}
 
 
