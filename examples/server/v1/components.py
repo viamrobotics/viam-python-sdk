@@ -10,7 +10,7 @@ from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
-from viam.components.camera import Camera
+from viam.components.camera import Camera, IntrinsicParameters
 from viam.components.gantry import Gantry
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
@@ -50,7 +50,8 @@ class ExampleArm(Arm):
 
     async def move_to_position(
         self, pose: Pose,
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None,
     ):
         self.is_stopped = False
         self.position = pose
@@ -251,6 +252,9 @@ class ExampleCamera(Camera):
         return self.image.copy()
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
+        raise NotImplementedError()
+
+    async def get_properties(self) -> IntrinsicParameters:
         raise NotImplementedError()
 
 
