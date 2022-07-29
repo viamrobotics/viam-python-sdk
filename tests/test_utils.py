@@ -1,7 +1,10 @@
+from typing import Text
+from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import Struct, ListValue, Value
 import pytest
 
-from viam.utils import dict_to_struct, primitive_to_value, struct_to_dict, value_to_primitive
+from viam.proto.api.common import ActuatorStatus
+from viam.utils import dict_to_struct, message_to_struct, primitive_to_value, struct_to_dict, value_to_primitive
 
 
 def test_primitive_to_value():
@@ -94,6 +97,21 @@ def test_value_to_primitive():
     v = Value(string_value=b'viamtest'.decode())
     prim = value_to_primitive(v)
     assert prim == b'viamtest'.decode()
+
+
+def test_message_to_struct():
+    status = ActuatorStatus(is_moving=True)
+    struct = Struct(fields={'is_moving': Value(bool_value=True)})
+    assert message_to_struct(status) == struct
+
+    struct = Struct(fields={'IsMoving': Value(bool_value=True)})
+    assert message_to_struct(status) != struct
+
+    struct = Struct(fields={
+        'foo': Value(string_value='bar'),
+        'one': Value(number_value=1),
+    })
+    assert message_to_struct(struct) == struct
 
 
 def test_dict_to_struct():
