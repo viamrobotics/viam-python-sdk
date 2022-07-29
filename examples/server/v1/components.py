@@ -10,7 +10,7 @@ from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
-from viam.components.camera import Camera
+from viam.components.camera import Camera, IntrinsicParameters
 from viam.components.gantry import Gantry
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
@@ -50,7 +50,8 @@ class ExampleArm(Arm):
 
     async def move_to_position(
         self, pose: Pose,
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None,
     ):
         self.is_stopped = False
         self.position = pose
@@ -84,7 +85,8 @@ class ExampleBase(Base):
     async def move_straight(
         self,
         distance: int,
-        velocity: float
+        velocity: float,
+        extra: Optional[Dict[str, Any]] = None
     ):
         if distance == 0 or velocity == 0:
             return await self.stop()
@@ -96,7 +98,7 @@ class ExampleBase(Base):
 
         self.is_stopped = False
 
-    async def spin(self, angle: float, velocity: float):
+    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -107,15 +109,15 @@ class ExampleBase(Base):
 
         self.is_stopped = False
 
-    async def set_power(self, linear: Vector3, angular: Vector3):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
         self.linear_pwr = linear
         self.anglular_pwr = angular
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
         self.linear_vel = linear
         self.anglular_vel = angular
 
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         self.is_stopped = True
 
     async def is_moving(self):
@@ -252,6 +254,9 @@ class ExampleCamera(Camera):
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         raise NotImplementedError()
 
+    async def get_properties(self) -> IntrinsicParameters:
+        raise NotImplementedError()
+
 
 class ExampleController(Controller):
 
@@ -382,21 +387,22 @@ class ExampleGantry(Gantry):
         self.is_stopped = True
         super().__init__(name)
 
-    async def get_position(self) -> List[float]:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
         return self.position
 
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None,
     ):
         self.position = positions
         self.is_stopped = False
 
-    async def get_lengths(self) -> List[float]:
+    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
         return self.lengths
 
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         self.is_stopped = True
 
     async def is_moving(self):

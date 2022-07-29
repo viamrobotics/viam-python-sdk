@@ -431,3 +431,48 @@ class StreamStatusResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['status', b'status']) -> None:
         ...
 global___StreamStatusResponse = StreamStatusResponse
+
+class StopExtraParameters(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    PARAMS_FIELD_NUMBER: builtins.int
+
+    @property
+    def name(self) -> proto.api.common.v1.common_pb2.ResourceName:
+        ...
+
+    @property
+    def params(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., params: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['name', b'name', 'params', b'params']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'params', b'params']) -> None:
+        ...
+global___StopExtraParameters = StopExtraParameters
+
+class StopAllRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    EXTRA_FIELD_NUMBER: builtins.int
+
+    @property
+    def extra(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]:
+        ...
+
+    def __init__(self, *, extra: typing.Optional[typing.Iterable[global___StopExtraParameters]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> None:
+        ...
+global___StopAllRequest = StopAllRequest
+
+class StopAllResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___StopAllResponse = StopAllResponse

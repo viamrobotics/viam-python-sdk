@@ -1,7 +1,7 @@
 from google.protobuf.struct_pb2 import Struct, ListValue, Value
 import pytest
 
-from viam.utils import primitive_to_value, value_to_primitive
+from viam.utils import dict_to_struct, primitive_to_value, struct_to_dict, value_to_primitive
 
 
 def test_primitive_to_value():
@@ -94,3 +94,36 @@ def test_value_to_primitive():
     v = Value(string_value=b'viamtest'.decode())
     prim = value_to_primitive(v)
     assert prim == b'viamtest'.decode()
+
+
+def test_dict_to_struct():
+    expected = {
+        "a": 1,
+        "b": "2",
+        "c": [3, 4, 5],
+        "d": True,
+        "e": {"1": 2, "3": "4", "5": [6, 7, 8], "9": False}
+    }
+
+    # Just testing that this doesn't error, since this calls `primitive_to_value`
+    _ = dict_to_struct(expected)
+
+    # Unsupported type
+    class X:
+        pass
+    expected['x'] = X()
+    with pytest.raises(ValueError):
+        _ = dict_to_struct(expected)
+
+
+def test_struct_to_dict():
+    expected = {
+        "a": 1,
+        "b": "2",
+        "c": [3, 4, 5],
+        "d": True,
+        "e": {"1": 2, "3": "4", "5": [6, 7, 8], "9": False}
+    }
+    struct = dict_to_struct(expected)
+
+    assert struct_to_dict(struct) == expected

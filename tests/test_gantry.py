@@ -12,7 +12,7 @@ from viam.proto.api.component.gantry import (GantryServiceStub,
                                              GetPositionResponse,
                                              MoveToPositionRequest,
                                              StopRequest)
-from viam.utils import message_to_struct
+from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockGantry
 
@@ -67,6 +67,13 @@ class TestGantry:
             )
         )
 
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        assert self.gantry.extra is None or len(self.gantry.extra) == 0
+        extra = {"foo": "bar", "baz": [1, 2, 3]}
+        await self.gantry.move_to_position([1, 2, 3], extra=extra)
+        assert self.gantry.extra == extra
+
 
 class TestService:
 
@@ -107,6 +114,16 @@ class TestService:
             request = StopRequest(name=self.gantry.name)
             await client.Stop(request)
             assert self.gantry.is_stopped is True
+
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.gantry.extra is None or len(self.gantry.extra) == 0
+            client = GantryServiceStub(channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            request = StopRequest(name=self.gantry.name, extra=dict_to_struct(extra))
+            await client.Stop(request)
+            assert self.gantry.extra == extra
 
 
 class TestClient:
@@ -164,3 +181,12 @@ class TestClient:
             client = GantryClient(self.gantry.name, channel)
             with pytest.raises(NotSupportedError):
                 await create_status(client)
+
+    @pytest.mark.asyncio
+    async def test_extra(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.gantry.extra is None or len(self.gantry.extra) == 0
+            client = GantryClient(self.gantry.name, channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            await client.move_to_position([1, 2, 3], extra=extra)
+            assert self.gantry.extra == extra

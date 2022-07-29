@@ -6,7 +6,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u"viam"
+project = u"Viam Python SDK"
 copyright = u"2022, Viam Inc"
 author = u"Viam Inc"
 

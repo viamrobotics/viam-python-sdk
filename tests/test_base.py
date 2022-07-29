@@ -12,7 +12,7 @@ from viam.proto.api.component.base import (BaseServiceStub,
                                            MoveStraightRequest,
                                            SetPowerRequest, SetVelocityRequest,
                                            SpinRequest, StopRequest)
-from viam.utils import message_to_struct
+from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockBase
 
@@ -117,6 +117,13 @@ class TestBase:
         status = await create_status(base)
         assert status.name == base.get_resource_name(base.name)
         assert status.status == message_to_struct(ActuatorStatus(is_moving=True))
+
+    @pytest.mark.asyncio
+    async def test_extra(self, base: MockBase):
+        assert base.extra is None
+        extra = {"foo": "bar", "baz": [1, 2, 3]}
+        await base.move_straight(1, 1, extra)
+        assert base.extra == extra
 
 
 class TestService:
@@ -226,6 +233,16 @@ class TestService:
             await client.Spin(request)
             assert base.stopped is True
 
+    @pytest.mark.asyncio
+    async def test_extra(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            assert base.extra is None
+            client = BaseServiceStub(channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            request = MoveStraightRequest(name=base.name, distance_mm=1, mm_per_sec=1, extra=dict_to_struct(extra))
+            await client.MoveStraight(request)
+            assert base.extra == extra
+
 
 class TestClient:
 
@@ -317,3 +334,12 @@ class TestClient:
             client = BaseClient(base.name, channel)
             with pytest.raises(NotSupportedError):
                 await create_status(client)
+
+    @pytest.mark.asyncio
+    async def test_extra(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            assert base.extra is None
+            client = BaseClient(base.name, channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            await client.move_straight(1, 1, extra)
+            assert base.extra == extra

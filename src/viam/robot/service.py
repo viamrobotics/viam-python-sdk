@@ -1,7 +1,8 @@
 import asyncio
-from typing import Iterable, List
+from typing import Any, Dict, Iterable, List
 
 from grpclib.server import Stream
+from viam import logging
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import MethodNotImplementedError, ViamGRPCError
 from viam.proto.api.common import ResourceName
@@ -18,11 +19,14 @@ from viam.proto.api.robot import (BlockForOperationRequest,
                                   ResourceNamesRequest, ResourceNamesResponse,
                                   ResourceRPCSubtypesRequest,
                                   ResourceRPCSubtypesResponse,
-                                  RobotServiceBase, Status,
-                                  StreamStatusRequest, StreamStatusResponse,
-                                  TransformPoseRequest, TransformPoseResponse)
+                                  RobotServiceBase, Status, StopAllRequest,
+                                  StopAllResponse, StreamStatusRequest,
+                                  StreamStatusResponse, TransformPoseRequest,
+                                  TransformPoseResponse)
 from viam.registry import Registry
-from viam.utils import resource_names_for_component
+from viam.utils import resource_names_for_component, struct_to_dict
+
+LOGGER = logging.getLogger(__name__)
 
 
 class RobotService(RobotServiceBase, ComponentServiceBase):
@@ -103,3 +107,31 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
 
     async def DiscoverComponents(self, stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
         raise MethodNotImplementedError("DiscoverComponents").grpc_error
+
+    async def StopAll(self, stream: Stream[StopAllRequest, StopAllResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+
+        extra: Dict[ResourceName, Dict[str, Any]] = {}
+        for ex in request.extra:
+            extra[ex.name] = struct_to_dict(ex.params)
+
+        errors: List[str] = []
+        for component in self.manager.components.values():
+            if callable(getattr(component, 'stop', None)):
+                try:
+                    rn = component.get_resource_name(component.name)
+                    if rn in extra:
+                        try:
+                            await component.stop(extra=extra[rn])  # type: ignore
+                        except TypeError:
+                            await component.stop()  # type: ignore
+                    else:
+                        await component.stop()  # type: ignore
+                except Exception:
+                    LOGGER.exception(f'Failed to stop component named {component.name}')
+                    errors.append(component.name)
+
+        if errors:
+            raise ViamGRPCError(f'Failed to stop components named {", ".join(errors)}')
+        await stream.send_message(StopAllResponse())
