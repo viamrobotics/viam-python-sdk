@@ -27,7 +27,7 @@ from viam.proto.api.robot import (DiscoverComponentsRequest,
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services import ServiceType
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, message_to_struct, struct_to_message
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockSensor
 
@@ -52,29 +52,31 @@ RESOURCE_NAMES = [
     ),
 ]
 
-ARM_STATUS = Status(
+ARM_STATUS = ArmStatus(
+    end_position=Pose(
+        x=1,
+        y=2,
+        z=3,
+        o_x=2,
+        o_y=3,
+        o_z=4,
+        theta=20,
+    ),
+    joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0]),
+    is_moving=False
+)
+
+ARM_STATUS_MSG = Status(
     name=ResourceName(
         namespace='rdk',
         type='component',
         subtype='arm',
         name='arm1'
     ),
-    status=message_to_struct(ArmStatus(
-        end_position=Pose(
-            x=1,
-            y=2,
-            z=3,
-            o_x=2,
-            o_y=3,
-            o_z=4,
-            theta=20,
-        ),
-        joint_positions=JointPositions(values=[0, 0, 0, 0, 0, 0]),
-        is_moving=False
-    ))
+    status=message_to_struct(ARM_STATUS)
 )
 
-CAMERA_STATUS = Status(
+CAMERA_STATUS_MSG = Status(
     name=ResourceName(
         namespace='rdk',
         type='component',
@@ -85,8 +87,8 @@ CAMERA_STATUS = Status(
 )
 
 STATUSES = [
-    ARM_STATUS,
-    CAMERA_STATUS,
+    ARM_STATUS_MSG,
+    CAMERA_STATUS_MSG,
     Status(
         name=ResourceName(
             namespace='rdk',
@@ -227,7 +229,7 @@ class TestRobotService:
                 MockCamera.get_resource_name('camera1')
             ])
             response: GetStatusResponse = await client.GetStatus(request)
-            assert list(response.status) == [ARM_STATUS, CAMERA_STATUS]
+            assert list(response.status) == [ARM_STATUS_MSG, CAMERA_STATUS_MSG]
 
     @pytest.mark.asyncio
     async def test_stop_all(self, service: RobotService):
@@ -371,9 +373,12 @@ class TestRobotClient:
                 MockArm.get_resource_name('arm1'),
                 MockCamera.get_resource_name('camera1')
             ])
-            assert statuses == [ARM_STATUS, CAMERA_STATUS]
+            assert statuses == [ARM_STATUS_MSG, CAMERA_STATUS_MSG]
 
-    @ pytest.mark.asyncio
+            arm_status = statuses[0].status
+            assert struct_to_message(arm_status, ArmStatus()) == ARM_STATUS
+
+    @pytest.mark.asyncio
     async def test_get_service(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())

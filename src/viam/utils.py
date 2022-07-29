@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, SupportsFloat
 
-from google.protobuf.json_format import MessageToDict
+from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
@@ -106,15 +106,26 @@ def resource_names_for_component(
 
 def message_to_struct(message: Message) -> Struct:
     struct = Struct()
-    struct.update(MessageToDict(message, preserving_proto_field_name=True))
+    struct.update(
+        MessageToDict(
+            message,
+            including_default_value_fields=True,
+            preserving_proto_field_name=True,
+        ),
+    )
     return struct
 
 
-def struct_to_dict(struct: Struct) -> Dict[str, Any]:
-    return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
+def struct_to_message(struct: Struct, message: Message) -> Message:
+    dct = struct_to_dict(struct)
+    return ParseDict(dct, message)
 
 
 def dict_to_struct(obj: Dict[str, Any]) -> Struct:
     struct = Struct()
     struct.update(obj)
     return struct
+
+
+def struct_to_dict(struct: Struct) -> Dict[str, Any]:
+    return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
