@@ -1,7 +1,10 @@
-from google.protobuf.struct_pb2 import Struct, ListValue, Value
 import pytest
+from google.protobuf.json_format import ParseError
+from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
-from viam.utils import dict_to_struct, primitive_to_value, struct_to_dict, value_to_primitive
+from viam.proto.api.common import ActuatorStatus, ResourceName
+from viam.utils import (dict_to_struct, message_to_struct, primitive_to_value,
+                        struct_to_dict, struct_to_message, value_to_primitive)
 
 
 def test_primitive_to_value():
@@ -94,6 +97,64 @@ def test_value_to_primitive():
     v = Value(string_value=b'viamtest'.decode())
     prim = value_to_primitive(v)
     assert prim == b'viamtest'.decode()
+
+
+@pytest.mark.parametrize(
+    'input,expected',
+    [
+        (ActuatorStatus(is_moving=False), Struct(fields={'is_moving': Value(bool_value=False)})),
+        (ActuatorStatus(is_moving=True), Struct(fields={'is_moving': Value(bool_value=True)})),
+        (
+            Struct(fields={
+                'foo': Value(string_value='bar'),
+                'one': Value(number_value=1),
+            }),
+            Struct(fields={
+                'foo': Value(string_value='bar'),
+                'one': Value(number_value=1),
+            }),
+        ),
+    ]
+)
+def test_message_to_struct(input, expected):
+    assert message_to_struct(input) == expected
+
+
+def test_message_to_struct_keys():
+    status = ActuatorStatus(is_moving=True)
+    struct = message_to_struct(status)
+    key = list(struct.keys())[0]
+    assert key == 'is_moving'
+
+
+@pytest.mark.parametrize(
+    'input,empty_msg,expected',
+    [
+        (message_to_struct(ActuatorStatus(is_moving=True)), ActuatorStatus(), ActuatorStatus(is_moving=True)),
+        (Struct(fields={'is_moving': Value(bool_value=True)}), ActuatorStatus(), ActuatorStatus(is_moving=True)),
+        (message_to_struct(ActuatorStatus(is_moving=False)), ActuatorStatus(), ActuatorStatus(is_moving=False)),
+        (Struct(fields={'is_moving': Value(bool_value=False)}), ActuatorStatus(), ActuatorStatus(is_moving=False)),
+        (Struct(fields={'isMoving': Value(bool_value=True)}), ActuatorStatus(), ActuatorStatus(is_moving=True)),
+        (Struct(fields={'isMoving': Value(bool_value=False)}), ActuatorStatus(), ActuatorStatus(is_moving=False)),
+        (Struct(
+            fields={
+                'namespace': Value(string_value='rdk'),
+                'type': Value(string_value='component'),
+                'subtype': Value(string_value='arm'),
+                'name': Value(string_value='arm1')
+            }),
+         ResourceName(),
+         ResourceName(namespace='rdk', type='component', subtype='arm', name='arm1')),
+    ]
+)
+def test_struct_to_message(input, empty_msg, expected):
+    assert struct_to_message(input, empty_msg) == expected
+
+
+def test_struct_to_message_error():
+    struct = Struct(fields={'IsMoving': Value(bool_value=True)})
+    with pytest.raises(ParseError):
+        struct_to_message(struct, ActuatorStatus())
 
 
 def test_dict_to_struct():
