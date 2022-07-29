@@ -1,5 +1,3 @@
-from typing import Text
-from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import Struct, ListValue, Value
 import pytest
 
