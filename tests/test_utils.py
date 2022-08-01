@@ -128,14 +128,14 @@ def test_message_to_struct_keys():
 
 
 @pytest.mark.parametrize(
-    'input,empty_msg,expected',
+    'input,msg_type,expected',
     [
-        (message_to_struct(ActuatorStatus(is_moving=True)), ActuatorStatus(), ActuatorStatus(is_moving=True)),
-        (Struct(fields={'is_moving': Value(bool_value=True)}), ActuatorStatus(), ActuatorStatus(is_moving=True)),
-        (message_to_struct(ActuatorStatus(is_moving=False)), ActuatorStatus(), ActuatorStatus(is_moving=False)),
-        (Struct(fields={'is_moving': Value(bool_value=False)}), ActuatorStatus(), ActuatorStatus(is_moving=False)),
-        (Struct(fields={'isMoving': Value(bool_value=True)}), ActuatorStatus(), ActuatorStatus(is_moving=True)),
-        (Struct(fields={'isMoving': Value(bool_value=False)}), ActuatorStatus(), ActuatorStatus(is_moving=False)),
+        (message_to_struct(ActuatorStatus(is_moving=True)), ActuatorStatus, ActuatorStatus(is_moving=True)),
+        (Struct(fields={'is_moving': Value(bool_value=True)}), ActuatorStatus, ActuatorStatus(is_moving=True)),
+        (message_to_struct(ActuatorStatus(is_moving=False)), ActuatorStatus, ActuatorStatus(is_moving=False)),
+        (Struct(fields={'is_moving': Value(bool_value=False)}), ActuatorStatus, ActuatorStatus(is_moving=False)),
+        (Struct(fields={'isMoving': Value(bool_value=True)}), ActuatorStatus, ActuatorStatus(is_moving=True)),
+        (Struct(fields={'isMoving': Value(bool_value=False)}), ActuatorStatus, ActuatorStatus(is_moving=False)),
         (Struct(
             fields={
                 'namespace': Value(string_value='rdk'),
@@ -143,18 +143,18 @@ def test_message_to_struct_keys():
                 'subtype': Value(string_value='arm'),
                 'name': Value(string_value='arm1')
             }),
-         ResourceName(),
+         ResourceName,
          ResourceName(namespace='rdk', type='component', subtype='arm', name='arm1')),
     ]
 )
-def test_struct_to_message(input, empty_msg, expected):
-    assert struct_to_message(input, empty_msg) == expected
+def test_struct_to_message(input, msg_type, expected):
+    assert struct_to_message(input, msg_type) == expected
 
 
 def test_struct_to_message_error():
     struct = Struct(fields={'IsMoving': Value(bool_value=True)})
     with pytest.raises(ParseError):
-        struct_to_message(struct, ActuatorStatus())
+        struct_to_message(struct, ActuatorStatus)
 
 
 def test_dict_to_struct():

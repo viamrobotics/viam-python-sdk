@@ -376,7 +376,7 @@ class TestRobotClient:
             assert statuses == [ARM_STATUS_MSG, CAMERA_STATUS_MSG]
 
             arm_status = statuses[0].status
-            assert struct_to_message(arm_status, ArmStatus()) == ARM_STATUS
+            assert struct_to_message(arm_status, ArmStatus) == ARM_STATUS
 
     @pytest.mark.asyncio
     async def test_get_service(self, service: RobotService):
