@@ -106,7 +106,7 @@ def message_to_struct(message: Message) -> Struct:
     return struct
 
 
-T = TypeVar('T', bound=Message)
+T = TypeVar("T", bound=Message)
 
 
 def struct_to_message(struct: Struct, message_type: Type[T]) -> T:
