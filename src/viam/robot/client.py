@@ -9,18 +9,26 @@ from typing_extensions import Self
 from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
-from viam.errors import (ComponentNotFoundError, ServiceNotImplementedError,
-                         ViamError)
+from viam.errors import ComponentNotFoundError, ServiceNotImplementedError, ViamError
 from viam.proto.api.common import PoseInFrame, ResourceName, Transform
-from viam.proto.api.robot import (DiscoverComponentsRequest,
-                                  DiscoverComponentsResponse, Discovery,
-                                  DiscoveryQuery, FrameSystemConfig,
-                                  FrameSystemConfigRequest,
-                                  FrameSystemConfigResponse, GetStatusRequest,
-                                  GetStatusResponse, ResourceNamesRequest,
-                                  ResourceNamesResponse, RobotServiceStub,
-                                  StopAllRequest, StopExtraParameters,
-                                  TransformPoseRequest, TransformPoseResponse)
+from viam.proto.api.robot import (
+    DiscoverComponentsRequest,
+    DiscoverComponentsResponse,
+    Discovery,
+    DiscoveryQuery,
+    FrameSystemConfig,
+    FrameSystemConfigRequest,
+    FrameSystemConfigResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+    ResourceNamesRequest,
+    ResourceNamesResponse,
+    RobotServiceStub,
+    StopAllRequest,
+    StopExtraParameters,
+    TransformPoseRequest,
+    TransformPoseResponse,
+)
 from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
 from viam.services import ServiceType
@@ -108,8 +116,9 @@ class RobotClient:
         await self.refresh()
 
         if options.refresh_interval > 0:
-            self._refresh_task = asyncio.create_task(self._refresh_every(options.refresh_interval),
-                                                     name=f'{viam._TASK_PREFIX}-robot_refresh_metadata')
+            self._refresh_task = asyncio.create_task(
+                self._refresh_every(options.refresh_interval), name=f"{viam._TASK_PREFIX}-robot_refresh_metadata"
+            )
 
         return self
 
@@ -131,15 +140,15 @@ class RobotClient:
             return
         manager = ResourceManager()
         for rname in resource_names:
-            if rname.type != 'component':
+            if rname.type != "component":
                 continue
-            if rname.subtype == 'remote':
+            if rname.subtype == "remote":
                 continue
             subtype = rname.subtype
             try:
                 manager.register(Registry.lookup(subtype).create_rpc_client(rname.name, self._channel))
             except ComponentNotFoundError:
-                LOGGER.warn(f'Component of type {subtype} is not implemented')
+                LOGGER.warn(f"Component of type {subtype} is not implemented")
         with self._lock:
             self._resource_names = resource_names
             if manager.components != self._manager.components:
@@ -151,7 +160,7 @@ class RobotClient:
             try:
                 await self.refresh()
             except Exception as e:
-                LOGGER.error('Failed to refresh status', exc_info=e)
+                LOGGER.error("Failed to refresh status", exc_info=e)
 
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
@@ -194,8 +203,8 @@ class RobotClient:
         Returns:
             ComponentBase: The component
         """
-        if name.type != 'component':
-            raise ViamError(f'ResourceName does not describe a component: {name}')
+        if name.type != "component":
+            raise ViamError(f"ResourceName does not describe a component: {name}")
         with self._lock:
             return self._manager.get_component(ComponentBase, name.name)
 
@@ -212,7 +221,7 @@ class RobotClient:
             Service: The service
         """
         with self._lock:
-            if service_type.name in [rn.subtype for rn in self._resource_names if rn.type == 'service']:
+            if service_type.name in [rn.subtype for rn in self._resource_names if rn.type == "service"]:
                 return service_type.with_channel(self._channel)
             raise ServiceNotImplementedError(service_type.name)
 
@@ -231,22 +240,22 @@ class RobotClient:
         """
         Cleanly close the underlying connections and stop any periodic tasks
         """
-        LOGGER.debug('Closing RobotClient')
+        LOGGER.debug("Closing RobotClient")
         try:
             self._lock.release()
         except RuntimeError:
             pass
 
         # Cancel all tasks created by VIAM
-        LOGGER.debug('Closing tasks spawned by Viam')
+        LOGGER.debug("Closing tasks spawned by Viam")
         tasks = [task for task in asyncio.all_tasks() if task.get_name().startswith(viam._TASK_PREFIX)]
         for task in tasks:
-            LOGGER.debug(f'Closing task {task.get_name()}')
+            LOGGER.debug(f"Closing task {task.get_name()}")
             task.cancel()
         await asyncio.gather(*tasks, return_exceptions=True)
 
         if self._should_close_channel:
-            LOGGER.debug('Closing gRPC channel to remote robot')
+            LOGGER.debug("Closing gRPC channel to remote robot")
             self._channel.close()
 
     async def __aenter__(self):
@@ -258,10 +267,7 @@ class RobotClient:
     ##########
     # STATUS #
     ##########
-    async def get_status(
-        self,
-        components: Optional[List[ResourceName]] = None
-    ):
+    async def get_status(self, components: Optional[List[ResourceName]] = None):
         """
         Get the status of the robot's components. You can optionally
         provide a list of `ResourceName` for which you want statuses.
@@ -290,10 +296,7 @@ class RobotClient:
         return list(response.frame_system_configs)
 
     async def transform_pose(
-        self,
-        query: PoseInFrame,
-        destination: str,
-        additional_transforms: Optional[List[Transform]] = None
+        self, query: PoseInFrame, destination: str, additional_transforms: Optional[List[Transform]] = None
     ) -> PoseInFrame:
         """
         Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.

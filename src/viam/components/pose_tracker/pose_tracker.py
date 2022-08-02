@@ -10,7 +10,7 @@ class PoseTracker(ComponentBase):
     """
     PoseTracker represents a physical pose or motion tracking device.
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     pose tracker implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """

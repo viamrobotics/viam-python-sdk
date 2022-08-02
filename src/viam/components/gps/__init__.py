@@ -5,14 +5,14 @@ from .gps import GPS, LocalGPS
 from .service import GPSService
 
 __all__ = [
-    'GPS',
-    'LocalGPS',
+    "GPS",
+    "LocalGPS",
 ]
 
 Registry.register(
     ComponentRegistration(
         GPS,
-        'gps',
+        "gps",
         GPSService,
         lambda name, channel: GPSClient(name, channel),
     )

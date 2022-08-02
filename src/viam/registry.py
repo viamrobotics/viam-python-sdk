@@ -9,14 +9,11 @@ from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError, DuplicateComponentError
 from viam.proto.api.robot import Status
 
-Component = TypeVar('Component', bound=ComponentBase)
+Component = TypeVar("Component", bound=ComponentBase)
 
 
 async def default_create_status(component: ComponentBase) -> Status:
-    return Status(
-        name=component.get_resource_name(component.name),
-        status=Struct()
-    )
+    return Status(name=component.get_resource_name(component.name), status=Struct())
 
 
 @dataclass
@@ -29,6 +26,7 @@ class ComponentRegistration(Generic[Component]):
     If creating a custom Component type, you should register the component by creating a `ComponentRegistration` object and registering it
     to the `Registry`.
     """
+
     component_type: Type[Component]
     """The type of the Component to be registered
     """
@@ -96,7 +94,7 @@ class Registry:
         try:
             return cls._COMPONENTS[component_name]
         except KeyError:
-            raise ComponentNotFoundError('component', component_name)
+            raise ComponentNotFoundError("component", component_name)
 
     @classmethod
     @property

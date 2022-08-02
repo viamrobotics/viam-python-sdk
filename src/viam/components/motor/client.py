@@ -2,15 +2,20 @@ from typing import Any, Dict
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.component.motor import (GetFeaturesRequest,
-                                            GetFeaturesResponse,
-                                            GetPositionRequest,
-                                            GetPositionResponse, GoForRequest,
-                                            GoToRequest, IsPoweredRequest,
-                                            IsPoweredResponse,
-                                            MotorServiceStub,
-                                            ResetZeroPositionRequest,
-                                            SetPowerRequest, StopRequest)
+from viam.proto.api.component.motor import (
+    GetFeaturesRequest,
+    GetFeaturesResponse,
+    GetPositionRequest,
+    GetPositionResponse,
+    GoForRequest,
+    GoToRequest,
+    IsPoweredRequest,
+    IsPoweredResponse,
+    MotorServiceStub,
+    ResetZeroPositionRequest,
+    SetPowerRequest,
+    StopRequest,
+)
 
 from .motor import Motor
 
@@ -30,13 +35,11 @@ class MotorClient(Motor):
         await self.client.SetPower(request)
 
     async def go_for(self, rpm: float, revolutions: float):
-        request = GoForRequest(name=self.name, rpm=rpm,
-                               revolutions=revolutions)
+        request = GoForRequest(name=self.name, rpm=rpm, revolutions=revolutions)
         await self.client.GoFor(request)
 
     async def go_to(self, rpm: float, position_revolutions: float):
-        request = GoToRequest(name=self.name, rpm=rpm,
-                              position_revolutions=position_revolutions)
+        request = GoToRequest(name=self.name, rpm=rpm, position_revolutions=position_revolutions)
         await self.client.GoTo(request)
 
     async def reset_zero_position(self, offset: float):

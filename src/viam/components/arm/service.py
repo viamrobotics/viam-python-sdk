@@ -1,16 +1,19 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.arm import (ArmServiceBase,
-                                          GetEndPositionRequest,
-                                          GetEndPositionResponse,
-                                          GetJointPositionsRequest,
-                                          GetJointPositionsResponse,
-                                          MoveToJointPositionsRequest,
-                                          MoveToJointPositionsResponse,
-                                          MoveToPositionRequest,
-                                          MoveToPositionResponse, StopRequest,
-                                          StopResponse)
+from viam.proto.api.component.arm import (
+    ArmServiceBase,
+    GetEndPositionRequest,
+    GetEndPositionResponse,
+    GetJointPositionsRequest,
+    GetJointPositionsResponse,
+    MoveToJointPositionsRequest,
+    MoveToJointPositionsResponse,
+    MoveToPositionRequest,
+    MoveToPositionResponse,
+    StopRequest,
+    StopResponse,
+)
 from viam.utils import struct_to_dict
 
 from .arm import Arm
@@ -23,10 +26,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
 
     RESOURCE_TYPE = Arm
 
-    async def GetEndPosition(
-        self,
-        stream: Stream[GetEndPositionRequest, GetEndPositionResponse]
-    ) -> None:
+    async def GetEndPosition(self, stream: Stream[GetEndPositionRequest, GetEndPositionResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -38,10 +38,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         response = GetEndPositionResponse(pose=position)
         await stream.send_message(response)
 
-    async def MoveToPosition(
-        self,
-        stream: Stream[MoveToPositionRequest, MoveToPositionResponse]
-    ) -> None:
+    async def MoveToPosition(self, stream: Stream[MoveToPositionRequest, MoveToPositionResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -49,18 +46,11 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.move_to_position(
-            request.to,
-            request.world_state,
-            extra=struct_to_dict(request.extra)
-        )
+        await arm.move_to_position(request.to, request.world_state, extra=struct_to_dict(request.extra))
         response = MoveToPositionResponse()
         await stream.send_message(response)
 
-    async def GetJointPositions(
-        self,
-        stream: Stream[GetJointPositionsRequest, GetJointPositionsResponse]
-    ) -> None:
+    async def GetJointPositions(self, stream: Stream[GetJointPositionsRequest, GetJointPositionsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -72,11 +62,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         response = GetJointPositionsResponse(positions=positions)
         await stream.send_message(response)
 
-    async def MoveToJointPositions(
-        self,
-        stream: Stream[MoveToJointPositionsRequest,
-                       MoveToJointPositionsResponse]
-    ) -> None:
+    async def MoveToJointPositions(self, stream: Stream[MoveToJointPositionsRequest, MoveToJointPositionsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -84,10 +70,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.move_to_joint_positions(
-            request.positions,
-            extra=struct_to_dict(request.extra)
-        )
+        await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra))
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)
 

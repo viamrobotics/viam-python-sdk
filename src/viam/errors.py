@@ -5,6 +5,7 @@ class ViamError(Exception):
     """
     Base Viam Error
     """
+
     pass
 
 
@@ -21,8 +22,7 @@ class InsecureConnectionError(ViamError):
     def __init__(self, address: str, authenticated: bool = False) -> None:
         self.address = address
         self.authenticated = authenticated
-        self.message = f'Requested address {self.address} is insecure' + \
-            f'{" and will not send credentials" if self.authenticated else ""}'
+        self.message = f"Requested address {self.address} is insecure" + f'{" and will not send credentials" if self.authenticated else ""}'
         super().__init__(self.message)
 
 
@@ -35,8 +35,7 @@ class DuplicateComponentError(ViamError):
 
     def __init__(self, name: str) -> None:
         self.name = name
-        self.message = 'Cannot add component with ' + \
-            f'duplicate name "{name}" to the registry'
+        self.message = "Cannot add component with " + f'duplicate name "{name}" to the registry'
         super().__init__(self.message)
 
 
@@ -62,8 +61,7 @@ class ComponentNotFoundError(ViamGRPCError):
     def __init__(self, component: str, name: str) -> None:
         self.component = component
         self.name = name
-        self.message = f'No {component} with name "{name}" ' + \
-            'found in the registry'
+        self.message = f'No {component} with name "{name}" ' + "found in the registry"
         self.grpc_code = Status.NOT_FOUND
 
 
@@ -74,7 +72,7 @@ class ServiceNotImplementedError(ViamGRPCError):
 
     def __init__(self, service: str):
         self.service = service
-        self.message = f'Service {service} is not implemented on the Robot'
+        self.message = f"Service {service} is not implemented on the Robot"
         self.grpc_code = Status.UNIMPLEMENTED
 
 

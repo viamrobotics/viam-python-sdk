@@ -1,19 +1,19 @@
 import abc
 from dataclasses import dataclass
 
-from viam.proto.api.component.imu import (Acceleration, AngularVelocity,
-                                          EulerAngles, Magnetometer)
+from viam.proto.api.component.imu import Acceleration, AngularVelocity, EulerAngles, Magnetometer
 
 from ..component_base import ComponentBase
 
 
 @dataclass
-class Orientation():
+class Orientation:
     """
     An object used to express the different parameterizations
     of the orientation of a rigid object or a frame of
     reference in 3D Euclidean space.
     """
+
     euler_angles: EulerAngles
 
 
@@ -21,7 +21,7 @@ class IMU(ComponentBase):
     """
     IMU represents a physical IMU (inertial measurement unit).
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     IMU implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """

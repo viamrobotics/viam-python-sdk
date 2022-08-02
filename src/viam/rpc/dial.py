@@ -8,11 +8,7 @@ from grpclib.const import Cardinality
 from grpclib.metadata import _MetadataLike, Deadline
 from grpclib.stream import _RecvType, _SendType
 
-from viam.proto.rpc.auth import (
-    AuthenticateRequest,
-    AuthServiceStub,
-    Credentials as PBCredentials
-)
+from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub, Credentials as PBCredentials
 from viam.errors import InsecureConnectionError
 
 
@@ -58,7 +54,7 @@ class DialOptions:
         credentials: Optional[Credentials] = None,
         insecure: bool = False,
         allow_insecure_downgrade: bool = False,
-        allow_insecure_with_creds_downgrade=False
+        allow_insecure_with_creds_downgrade=False,
     ) -> None:
         self.auth_entity = auth_entity
         self.credentials = credentials
@@ -68,35 +64,26 @@ class DialOptions:
 
 
 def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
-    query = '(?:.*://)?(?P<host>[^:/ ]+).?(?P<port>[0-9]*).*'
+    query = "(?:.*://)?(?P<host>[^:/ ]+).?(?P<port>[0-9]*).*"
     match = re.search(query, url)
 
     if not match:
         return (None, None)
 
-    host = match.group('host')
+    host = match.group("host")
     try:
-        port = int(match.group('port'))
+        port = int(match.group("port"))
     except ValueError:
         port = None
     return (host, port)
 
 
-async def _get_access_token(
-    channel: Channel,
-    address: str,
-    opts: DialOptions
-) -> str:
-    entity = opts.auth_entity if opts.auth_entity else re.sub(
-        r'^(.*:\/\/)/', '', address)
+async def _get_access_token(channel: Channel, address: str, opts: DialOptions) -> str:
+    entity = opts.auth_entity if opts.auth_entity else re.sub(r"^(.*:\/\/)/", "", address)
     creds = PBCredentials(
-        type=opts.credentials.type if opts.credentials else "",
-        payload=opts.credentials.payload if opts.credentials else ""
+        type=opts.credentials.type if opts.credentials else "", payload=opts.credentials.payload if opts.credentials else ""
     )
-    request = AuthenticateRequest(
-        entity=entity,
-        credentials=creds
-    )
+    request = AuthenticateRequest(entity=entity, credentials=creds)
 
     auth_service = AuthServiceStub(channel=channel)
     response = await auth_service.Authenticate(request)
@@ -115,25 +102,14 @@ class AuthenticatedChannel(Channel):
         *,
         timeout: Optional[float] = None,
         deadline: Optional[Deadline] = None,
-        metadata: Optional[_MetadataLike] = None
+        metadata: Optional[_MetadataLike] = None,
     ) -> Stream[_SendType, _RecvType]:
-        if not metadata and hasattr(self, '_metadata'):
+        if not metadata and hasattr(self, "_metadata"):
             metadata = self._metadata
-        return super().request(
-            name,
-            cardinality,
-            request_type,
-            reply_type,
-            timeout=timeout,
-            deadline=deadline,
-            metadata=metadata
-        )
+        return super().request(name, cardinality, request_type, reply_type, timeout=timeout, deadline=deadline, metadata=metadata)
 
 
-async def dial_direct(
-    address: str,
-    options: Optional[DialOptions] = None
-) -> Channel:
+async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
 
     opts = options if options else DialOptions()
     insecure = opts.insecure
@@ -145,12 +121,10 @@ async def dial_direct(
     if insecure:
         ctx = None
     else:
-        ctx = ssl.create_default_context(
-            purpose=ssl.Purpose.SERVER_AUTH
-        )
+        ctx = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH)
         ctx.minimum_version = ssl.TLSVersion.TLSv1_2
-        ctx.set_ciphers('ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20')
-        ctx.set_alpn_protocols(['h2'])
+        ctx.set_ciphers("ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20")
+        ctx.set_alpn_protocols(["h2"])
 
         # Test if downgrade is required.
         downgrade = False
@@ -159,7 +133,7 @@ async def dial_direct(
                 with ctx.wrap_socket(sock, server_hostname=host) as ssock:
                     _ = ssock.version()
             except ssl.SSLError as e:
-                if e.reason != 'WRONG_VERSION_NUMBER':
+                if e.reason != "WRONG_VERSION_NUMBER":
                     raise e
                 downgrade = True
 
@@ -174,7 +148,7 @@ async def dial_direct(
     if opts.credentials:
         channel = AuthenticatedChannel(host, port, ssl=ctx)
         access_token = await _get_access_token(channel, address, opts)
-        metadata = {"authorization": f'Bearer {access_token}'}
+        metadata = {"authorization": f"Bearer {access_token}"}
         channel._metadata = metadata
     else:
         channel = Channel(host, port, ssl=ctx)

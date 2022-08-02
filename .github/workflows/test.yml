@@ -29,5 +29,8 @@ jobs:
       - name: Install package
         run: poetry install
 
+      - name: Lint
+        run: make lint
+
       - name: Test
-        run: poetry run make test
+        run: make test

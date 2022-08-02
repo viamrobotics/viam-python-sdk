@@ -5,13 +5,13 @@ from .generic import Generic
 from .service import GenericService
 
 __all__ = [
-    'Generic',
+    "Generic",
 ]
 
 Registry.register(
     ComponentRegistration(
         Generic,
-        'generic',
+        "generic",
         GenericService,
         lambda name, channel: GenericClient(name, channel),
     )

@@ -17,12 +17,7 @@ class Base(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def move_straight(
-        self,
-        distance: int,
-        velocity: float,
-        extra: Optional[Dict[str, Any]] = None
-    ):
+    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None):
         """
         Move the base in a straight line the given `distance`, expressed in millimeters,
         at the given `velocity`, expressed in millimeters per second.
@@ -95,4 +90,4 @@ class Base(ComponentBase):
         Returns:
             bool: Whether the base is moving.
         """
-        raise NotSupportedError(f'Base named {self.name} does not support returning whether it is moving')
+        raise NotSupportedError(f"Base named {self.name} does not support returning whether it is moving")

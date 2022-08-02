@@ -31,8 +31,7 @@ _TASK_PREFIX = uuid4().hex
 
 def _log_exceptions(exctype, value, traceback):
     _LOGGER = _getLogger(__name__)
-    _LOGGER.error("[ERROR] Uncaught exception",
-                  exc_info=(exctype, value, traceback))
+    _LOGGER.error("[ERROR] Uncaught exception", exc_info=(exctype, value, traceback))
     sys.__excepthook__(exctype, value, traceback)
 
 
@@ -42,4 +41,4 @@ sys.excepthook = _log_exceptions
 ##################
 # MONKEY PATCHES #
 ##################
-_ResourceName.__hash__ = lambda self: hash(f'{self.namespace}/{self.type}/{self.subtype}/{self.name}')
+_ResourceName.__hash__ = lambda self: hash(f"{self.namespace}/{self.type}/{self.subtype}/{self.name}")

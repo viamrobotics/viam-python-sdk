@@ -3,14 +3,17 @@ from typing import Any, Dict, Optional
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.common import Pose, WorldState
-from viam.proto.api.component.arm import (ArmServiceStub,
-                                          GetEndPositionRequest,
-                                          GetEndPositionResponse,
-                                          GetJointPositionsRequest,
-                                          GetJointPositionsResponse,
-                                          JointPositions,
-                                          MoveToJointPositionsRequest,
-                                          MoveToPositionRequest, StopRequest)
+from viam.proto.api.component.arm import (
+    ArmServiceStub,
+    GetEndPositionRequest,
+    GetEndPositionResponse,
+    GetJointPositionsRequest,
+    GetJointPositionsResponse,
+    JointPositions,
+    MoveToJointPositionsRequest,
+    MoveToPositionRequest,
+    StopRequest,
+)
 from viam.utils import dict_to_struct
 
 from .arm import Arm
@@ -32,8 +35,7 @@ class ArmClient(Arm):
         if extra is None:
             extra = {}
         request = GetEndPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetEndPositionResponse = \
-            await self.client.GetEndPosition(request)
+        response: GetEndPositionResponse = await self.client.GetEndPosition(request)
         return response.pose
 
     async def move_to_position(
@@ -51,8 +53,7 @@ class ArmClient(Arm):
         if extra is None:
             extra = {}
         request = GetJointPositionsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetJointPositionsResponse = \
-            await self.client.GetJointPositions(request)
+        response: GetJointPositionsResponse = await self.client.GetJointPositions(request)
         return response.positions
 
     async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):

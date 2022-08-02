@@ -1,10 +1,15 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.gripper import (GrabRequest, GrabResponse,
-                                              GripperServiceBase, OpenRequest,
-                                              OpenResponse, StopRequest,
-                                              StopResponse)
+from viam.proto.api.component.gripper import (
+    GrabRequest,
+    GrabResponse,
+    GripperServiceBase,
+    OpenRequest,
+    OpenResponse,
+    StopRequest,
+    StopResponse,
+)
 
 from .gripper import Gripper
 
@@ -16,10 +21,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
 
     RESOURCE_TYPE = Gripper
 
-    async def Open(
-        self,
-        stream: Stream[OpenRequest, OpenResponse]
-    ) -> None:
+    async def Open(self, stream: Stream[OpenRequest, OpenResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -31,10 +33,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         response = OpenResponse()
         await stream.send_message(response)
 
-    async def Grab(
-        self,
-        stream: Stream[GrabRequest, GrabResponse]
-    ) -> None:
+    async def Grab(self, stream: Stream[GrabRequest, GrabResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name

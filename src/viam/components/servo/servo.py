@@ -50,4 +50,4 @@ class Servo(ComponentBase):
         Returns:
             bool: Whether the servo is moving.
         """
-        raise NotSupportedError(f'Servo named {self.name} does not support returning whether it is moving')
+        raise NotSupportedError(f"Servo named {self.name} does not support returning whether it is moving")

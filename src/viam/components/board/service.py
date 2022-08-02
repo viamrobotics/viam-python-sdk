@@ -1,20 +1,27 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.board import (BoardServiceBase,
-                                            GetDigitalInterruptValueRequest,
-                                            GetDigitalInterruptValueResponse,
-                                            GetGPIORequest, GetGPIOResponse,
-                                            PWMFrequencyRequest,
-                                            PWMFrequencyResponse, PWMRequest,
-                                            PWMResponse,
-                                            ReadAnalogReaderRequest,
-                                            ReadAnalogReaderResponse,
-                                            SetGPIORequest, SetGPIOResponse,
-                                            SetPWMFrequencyRequest,
-                                            SetPWMFrequencyResponse,
-                                            SetPWMRequest, SetPWMResponse,
-                                            StatusRequest, StatusResponse)
+from viam.proto.api.component.board import (
+    BoardServiceBase,
+    GetDigitalInterruptValueRequest,
+    GetDigitalInterruptValueResponse,
+    GetGPIORequest,
+    GetGPIOResponse,
+    PWMFrequencyRequest,
+    PWMFrequencyResponse,
+    PWMRequest,
+    PWMResponse,
+    ReadAnalogReaderRequest,
+    ReadAnalogReaderResponse,
+    SetGPIORequest,
+    SetGPIOResponse,
+    SetPWMFrequencyRequest,
+    SetPWMFrequencyResponse,
+    SetPWMRequest,
+    SetPWMResponse,
+    StatusRequest,
+    StatusResponse,
+)
 
 from .board import Board
 
@@ -26,10 +33,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
 
     RESOURCE_TYPE = Board
 
-    async def Status(
-        self,
-        stream: Stream[StatusRequest, StatusResponse]
-    ) -> None:
+    async def Status(self, stream: Stream[StatusRequest, StatusResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -41,10 +45,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         response = StatusResponse(status=status)
         await stream.send_message(response)
 
-    async def SetGPIO(
-        self,
-        stream: Stream[SetGPIORequest, SetGPIOResponse]
-    ) -> None:
+    async def SetGPIO(self, stream: Stream[SetGPIORequest, SetGPIOResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -57,10 +58,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         response = SetGPIOResponse()
         await stream.send_message(response)
 
-    async def GetGPIO(
-        self,
-        stream: Stream[GetGPIORequest, GetGPIOResponse]
-    ) -> None:
+    async def GetGPIO(self, stream: Stream[GetGPIORequest, GetGPIOResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -73,10 +71,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         response = GetGPIOResponse(high=high)
         await stream.send_message(response)
 
-    async def PWM(
-        self,
-        stream: Stream[PWMRequest, PWMResponse]
-    ) -> None:
+    async def PWM(self, stream: Stream[PWMRequest, PWMResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -89,10 +84,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         response = PWMResponse(duty_cycle_pct=pwm)
         await stream.send_message(response)
 
-    async def SetPWM(
-        self,
-        stream: Stream[SetPWMRequest, SetPWMResponse]
-    ) -> None:
+    async def SetPWM(self, stream: Stream[SetPWMRequest, SetPWMResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -105,10 +97,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         response = SetPWMResponse()
         await stream.send_message(response)
 
-    async def PWMFrequency(
-        self,
-        stream: Stream[PWMFrequencyRequest, PWMFrequencyResponse]
-    ) -> None:
+    async def PWMFrequency(self, stream: Stream[PWMFrequencyRequest, PWMFrequencyResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -121,10 +110,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         response = PWMFrequencyResponse(frequency_hz=frequency)
         await stream.send_message(response)
 
-    async def SetPWMFrequency(
-        self,
-        stream: Stream[SetPWMFrequencyRequest, SetPWMFrequencyResponse]
-    ) -> None:
+    async def SetPWMFrequency(self, stream: Stream[SetPWMFrequencyRequest, SetPWMFrequencyResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -137,35 +123,26 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         response = SetPWMFrequencyResponse()
         await stream.send_message(response)
 
-    async def ReadAnalogReader(
-        self,
-        stream: Stream[ReadAnalogReaderRequest, ReadAnalogReaderResponse]
-    ) -> None:
+    async def ReadAnalogReader(self, stream: Stream[ReadAnalogReaderRequest, ReadAnalogReaderResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.board_name
         try:
             board = self.get_component(name)
-            analog_reader = await board.analog_reader_by_name(
-                request.analog_reader_name)
+            analog_reader = await board.analog_reader_by_name(request.analog_reader_name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
         value = await analog_reader.read()
         response = ReadAnalogReaderResponse(value=value)
         await stream.send_message(response)
 
-    async def GetDigitalInterruptValue(
-        self,
-        stream: Stream[GetDigitalInterruptValueRequest,
-                       GetDigitalInterruptValueResponse]
-    ) -> None:
+    async def GetDigitalInterruptValue(self, stream: Stream[GetDigitalInterruptValueRequest, GetDigitalInterruptValueResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.board_name
         try:
             board = self.get_component(name)
-            interrupt = await board.digital_interrupt_by_name(
-                request.digital_interrupt_name)
+            interrupt = await board.digital_interrupt_by_name(request.digital_interrupt_name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
         value = await interrupt.value()

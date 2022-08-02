@@ -28,10 +28,7 @@ class Gantry(ComponentBase):
 
     @abc.abstractmethod
     async def move_to_position(
-        self,
-        positions: List[float],
-        world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None
+        self, positions: List[float], world_state: Optional[WorldState] = None, extra: Optional[Dict[str, Any]] = None
     ):
         """
         Move the gantry to a new position.
@@ -68,4 +65,4 @@ class Gantry(ComponentBase):
         Returns:
             bool: Whether the gantry is moving.
         """
-        raise NotSupportedError(f'Gantry named {self.name} does not support returning whether it is moving')
+        raise NotSupportedError(f"Gantry named {self.name} does not support returning whether it is moving")

@@ -8,10 +8,10 @@ from .client import ArmClient
 from .service import ArmService
 
 __all__ = [
-    'Arm',
-    'JointPositions',
-    'Pose',
-    'WorldState',
+    "Arm",
+    "JointPositions",
+    "Pose",
+    "WorldState",
 ]
 
 
@@ -19,19 +19,9 @@ async def create_status(component: Arm) -> Status:
     s = ArmStatus(
         end_position=await component.get_end_position(),
         joint_positions=await component.get_joint_positions(),
-        is_moving=await component.is_moving()
+        is_moving=await component.is_moving(),
     )
-    return Status(
-        name=Arm.get_resource_name(component.name),
-        status=message_to_struct(s)
-    )
+    return Status(name=Arm.get_resource_name(component.name), status=message_to_struct(s))
 
-Registry.register(
-    ComponentRegistration(
-        Arm,
-        'arm',
-        ArmService,
-        lambda name, channel: ArmClient(name, channel),
-        create_status
-    )
-)
+
+Registry.register(ComponentRegistration(Arm, "arm", ArmService, lambda name, channel: ArmClient(name, channel), create_status))

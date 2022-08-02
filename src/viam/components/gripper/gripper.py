@@ -45,4 +45,4 @@ class Gripper(ComponentBase):
         Returns:
             bool: Whether the gripper is moving.
         """
-        raise NotSupportedError(f'Gripper named {self.name} does not support returning whether it is moving')
+        raise NotSupportedError(f"Gripper named {self.name} does not support returning whether it is moving")

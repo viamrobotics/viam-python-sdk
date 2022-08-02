@@ -6,13 +6,16 @@ from PIL.Image import Image
 from viam.components.service_base import ComponentServiceBase
 from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.camera import (CameraServiceBase,
-                                             GetFrameRequest, GetFrameResponse,
-                                             GetPointCloudRequest,
-                                             GetPointCloudResponse,
-                                             GetPropertiesRequest,
-                                             GetPropertiesResponse,
-                                             RenderFrameRequest)
+from viam.proto.api.component.camera import (
+    CameraServiceBase,
+    GetFrameRequest,
+    GetFrameResponse,
+    GetPointCloudRequest,
+    GetPointCloudResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
+    RenderFrameRequest,
+)
 
 from .camera import Camera
 
@@ -24,28 +27,21 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
 
     RESOURCE_TYPE = Camera
 
-    def _get_image_bytes(
-        self,
-        image: Image,
-        mimetype: CameraMimeType
-    ) -> bytes:
+    def _get_image_bytes(self, image: Image, mimetype: CameraMimeType) -> bytes:
         if mimetype == CameraMimeType.RAW:
-            return image.convert('RGBA').tobytes('raw', 'RGBA')
+            return image.convert("RGBA").tobytes("raw", "RGBA")
         elif mimetype == CameraMimeType.JPEG:
             buf = BytesIO()
-            image.save(buf, format='JPEG')
+            image.save(buf, format="JPEG")
             return buf.getvalue()
         elif mimetype == CameraMimeType.PNG:
             buf = BytesIO()
-            image.save(buf, format='PNG')
+            image.save(buf, format="PNG")
             return buf.getvalue()
         else:
-            raise ValueError(f'Cannot encode image to {mimetype}')
+            raise ValueError(f"Cannot encode image to {mimetype}")
 
-    async def GetFrame(
-        self,
-        stream: Stream[GetFrameRequest, GetFrameResponse]
-    ) -> None:
+    async def GetFrame(self, stream: Stream[GetFrameRequest, GetFrameResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -56,7 +52,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         image = await camera.get_frame()
         try:
             try:
-                mimetype = CameraMimeType(request.mime_type or '')
+                mimetype = CameraMimeType(request.mime_type or "")
             except ValueError:
                 mimetype = CameraMimeType.RAW
             if mimetype == CameraMimeType.BEST:
@@ -72,10 +68,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         response.image = img_bytes
         await stream.send_message(response)
 
-    async def RenderFrame(
-        self,
-        stream: Stream[RenderFrameRequest, HttpBody]
-    ) -> None:
+    async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -94,10 +87,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         response = HttpBody(data=img, content_type=mimetype)
         await stream.send_message(response)
 
-    async def GetPointCloud(
-        self,
-        stream: Stream[GetPointCloudRequest, GetPointCloudResponse]
-    ) -> None:
+    async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name

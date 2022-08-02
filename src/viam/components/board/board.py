@@ -16,7 +16,7 @@ class Board(ComponentBase):
     Board represents a physical general purpose compute board that contains various
     components such as analog readers, and digital interrupts.
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     board implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """
@@ -32,6 +32,7 @@ class Board(ComponentBase):
         """
         AnalogReader represents an analog pin reader that resides on a Board.
         """
+
         @abc.abstractmethod
         async def read(self) -> int:
             """

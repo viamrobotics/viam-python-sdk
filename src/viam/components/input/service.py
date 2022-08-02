@@ -8,9 +8,16 @@ import viam
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError, NotSupportedError
 from viam.proto.api.component.inputcontroller import (
-    GetControlsRequest, GetControlsResponse, GetEventsRequest,
-    GetEventsResponse, InputControllerServiceBase, StreamEventsRequest,
-    StreamEventsResponse, TriggerEventRequest, TriggerEventResponse)
+    GetControlsRequest,
+    GetControlsResponse,
+    GetEventsRequest,
+    GetEventsResponse,
+    InputControllerServiceBase,
+    StreamEventsRequest,
+    StreamEventsResponse,
+    TriggerEventRequest,
+    TriggerEventResponse,
+)
 
 from .input import Control, Controller, Event, EventType
 
@@ -25,10 +32,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
 
     RESOURCE_TYPE = Controller
 
-    async def GetControls(
-        self,
-        stream: Stream[GetControlsRequest, GetControlsResponse]
-    ) -> None:
+    async def GetControls(self, stream: Stream[GetControlsRequest, GetControlsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
@@ -40,10 +44,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         response = GetControlsResponse(controls=[c.value for c in controls])
         await stream.send_message(response)
 
-    async def GetEvents(
-        self,
-        stream: Stream[GetEventsRequest, GetEventsResponse]
-    ) -> None:
+    async def GetEvents(self, stream: Stream[GetEventsRequest, GetEventsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
@@ -56,10 +57,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         response = GetEventsResponse(events=pb_events)
         await stream.send_message(response)
 
-    async def StreamEvents(
-        self,
-        stream: Stream[StreamEventsRequest, StreamEventsResponse]
-    ) -> None:
+    async def StreamEvents(self, stream: Stream[StreamEventsRequest, StreamEventsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
@@ -106,7 +104,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
                 except Exception as e:
                     cleanup(e)
 
-            loop.create_task(send_message(), name=f'{viam._TASK_PREFIX}-input_send_event')
+            loop.create_task(send_message(), name=f"{viam._TASK_PREFIX}-input_send_event")
 
         loop.add_reader(pipe_r, read)
 
@@ -132,10 +130,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
                 if len(triggers):
                     controller.register_control_callback(Control(event.control), triggers, None)
 
-    async def TriggerEvent(
-        self,
-        stream: Stream[TriggerEventRequest, TriggerEventResponse]
-    ) -> None:
+    async def TriggerEvent(self, stream: Stream[TriggerEventRequest, TriggerEventResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.controller

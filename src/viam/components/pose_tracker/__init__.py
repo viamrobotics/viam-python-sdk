@@ -5,13 +5,13 @@ from .pose_tracker import PoseTracker
 from .service import PoseTrackerService
 
 __all__ = [
-    'PoseTracker',
+    "PoseTracker",
 ]
 
 Registry.register(
     ComponentRegistration(
         PoseTracker,
-        'pose_tracker',
+        "pose_tracker",
         PoseTrackerService,
         lambda name, channel: PoseTrackerClient(name, channel),
     )

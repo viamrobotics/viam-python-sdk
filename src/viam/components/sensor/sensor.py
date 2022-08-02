@@ -8,7 +8,7 @@ class Sensor(ComponentBase):
     """
     Sensor represents a physical sensing device that can provide measurement readings.
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     sensor implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """

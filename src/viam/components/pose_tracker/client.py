@@ -3,9 +3,7 @@ from typing import Any, Dict, List
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.common import PoseInFrame
-from viam.proto.api.component.posetracker import (GetPosesRequest,
-                                                  GetPosesResponse,
-                                                  PoseTrackerServiceStub)
+from viam.proto.api.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceStub
 
 from .pose_tracker import PoseTracker
 
@@ -26,8 +24,7 @@ class PoseTrackerClient(PoseTracker):
             body_names=body_names,
         )
         response: GetPosesResponse = await self.client.GetPoses(request)
-        return {key: response.body_poses[key]
-                for key in response.body_poses.keys()}
+        return {key: response.body_poses[key] for key in response.body_poses.keys()}
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

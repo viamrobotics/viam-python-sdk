@@ -42,7 +42,7 @@ def primitive_to_value(v: Any) -> Value:
         sv: Dict[str, Value] = {}
         for (key, value) in v.items():
             if not isinstance(key, str):
-                raise TypeError(f'Invalid UTF-8 in string: {key}')
+                raise TypeError(f"Invalid UTF-8 in string: {key}")
             sv[key] = primitive_to_value(value)
         struct = Struct(fields=sv)
         return Value(struct_value=struct)
@@ -54,53 +54,43 @@ def primitive_to_value(v: Any) -> Value:
         return Value(list_value=list_value)
     if isinstance(v, (bytes, bytearray)):
         return Value(string_value=v.decode())
-    raise TypeError(f'Invalid type {type(v)}')
+    raise TypeError(f"Invalid type {type(v)}")
 
 
 def value_to_primitive(value: Value) -> Any:
-    if value.HasField('list_value'):
+    if value.HasField("list_value"):
         return [value_to_primitive(v) for v in value.list_value.values]
-    if value.HasField('struct_value'):
-        return {k: value_to_primitive(v)
-                for (k, v) in value.struct_value.fields.items()}
-    if value.HasField('string_value'):
+    if value.HasField("struct_value"):
+        return {k: value_to_primitive(v) for (k, v) in value.struct_value.fields.items()}
+    if value.HasField("string_value"):
         return value.string_value
-    if value.HasField('number_value'):
+    if value.HasField("number_value"):
         return value.number_value
-    if value.HasField('bool_value'):
+    if value.HasField("bool_value"):
         return value.bool_value
-    if value.HasField('null_value'):
+    if value.HasField("null_value"):
         return value.null_value
     return None
 
 
-def resource_names_for_component(
-    component: ComponentBase
-) -> List[ResourceName]:
+def resource_names_for_component(component: ComponentBase) -> List[ResourceName]:
     rns: List[ResourceName] = []
     for klass in component.__class__.mro():
-        component_type = ''
+        component_type = ""
         for registration in Registry.REGISTERED_COMPONENTS.values():
             if klass is registration.component_type:
                 component_type = registration.name
 
         if not component_type:
             class_name = str(klass)
-            if 'viam.components' not in class_name:
+            if "viam.components" not in class_name:
                 continue
-            if 'ComponentBase' in class_name:
+            if "ComponentBase" in class_name:
                 continue
 
-            component_type = class_name \
-                .split('viam.components.')[1] \
-                .split('.')[0]
+            component_type = class_name.split("viam.components.")[1].split(".")[0]
 
-        rns.append(ResourceName(
-            namespace='rdk',
-            type='component',
-            subtype=component_type,
-            name=component.name
-        ))
+        rns.append(ResourceName(namespace="rdk", type="component", subtype=component_type, name=component.name))
     return rns
 
 
@@ -116,7 +106,7 @@ def message_to_struct(message: Message) -> Struct:
     return struct
 
 
-T = TypeVar('T', bound=Message)
+T = TypeVar("T", bound=Message)
 
 
 def struct_to_message(struct: Struct, message_type: Type[T]) -> T:
