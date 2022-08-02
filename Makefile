@@ -2,7 +2,7 @@ clean:
 	find . -type d -name '__pycache__' | xargs rm -rf
 
 lint:
-	poetry run flake8 --exclude="**/gen/**"
+	poetry run flake8 --exclude=**/gen/**
 
 format:
 	poetry run black --exclude ".*/gen/.*" ./src
@@ -22,7 +22,7 @@ better_imports:
 	touch src/viam/proto/api/__init__.py
 
 test:
-	coverage run -m pytest && coverage html
+	poetry run coverage run -m pytest && coverage html
 
 documentation:
 	cd docs && $(MAKE) clean html
