@@ -90,25 +90,28 @@
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">viam.components.types</span> <span class="kn">import</span> <span class="n">CameraMimeType</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">PointCloudObject</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.service.vision</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AddDetectorRequest</span><span class="p">,</span> <span class="n">Detection</span><span class="p">,</span>
-                                           <span class="n">GetDetectionsRequest</span><span class="p">,</span>
-                                           <span class="n">GetDetectionsResponse</span><span class="p">,</span>
-                                           <span class="n">GetDetectorNamesRequest</span><span class="p">,</span>
-                                           <span class="n">GetDetectorNamesResponse</span><span class="p">,</span>
-                                           <span class="n">GetObjectPointCloudsRequest</span><span class="p">,</span>
-                                           <span class="n">GetObjectPointCloudsResponse</span><span class="p">,</span>
-                                           <span class="n">GetSegmenterNamesRequest</span><span class="p">,</span>
-                                           <span class="n">GetSegmenterNamesResponse</span><span class="p">,</span>
-                                           <span class="n">GetSegmenterParametersRequest</span><span class="p">,</span>
-                                           <span class="n">GetSegmenterParametersResponse</span><span class="p">,</span>
-                                           <span class="n">VisionServiceStub</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.service.vision</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AddDetectorRequest</span><span class="p">,</span>
+    <span class="n">Detection</span><span class="p">,</span>
+    <span class="n">GetDetectionsRequest</span><span class="p">,</span>
+    <span class="n">GetDetectionsResponse</span><span class="p">,</span>
+    <span class="n">GetDetectorNamesRequest</span><span class="p">,</span>
+    <span class="n">GetDetectorNamesResponse</span><span class="p">,</span>
+    <span class="n">GetObjectPointCloudsRequest</span><span class="p">,</span>
+    <span class="n">GetObjectPointCloudsResponse</span><span class="p">,</span>
+    <span class="n">GetSegmenterNamesRequest</span><span class="p">,</span>
+    <span class="n">GetSegmenterNamesResponse</span><span class="p">,</span>
+    <span class="n">GetSegmenterParametersRequest</span><span class="p">,</span>
+    <span class="n">GetSegmenterParametersResponse</span><span class="p">,</span>
+    <span class="n">VisionServiceStub</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span>
 
 
 <div class="viewcode-block" id="DetectorType"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.DetectorType">[docs]</a><span class="k">class</span> <span class="nc">DetectorType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
-    <span class="n">TF_LITE</span> <span class="o">=</span> <span class="s1">&#39;tflite&#39;</span>
-    <span class="n">TENSORFLOW</span> <span class="o">=</span> <span class="s1">&#39;tensorflow&#39;</span>
-    <span class="n">COLOR</span> <span class="o">=</span> <span class="s1">&#39;color&#39;</span></div>
+    <span class="n">TF_LITE</span> <span class="o">=</span> <span class="s2">&quot;tflite&quot;</span>
+    <span class="n">TENSORFLOW</span> <span class="o">=</span> <span class="s2">&quot;tensorflow&quot;</span>
+    <span class="n">COLOR</span> <span class="o">=</span> <span class="s2">&quot;color&quot;</span></div>
 
 
 <div class="viewcode-block" id="DetectorConfig"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.DetectorConfig">[docs]</a><span class="nd">@dataclass</span>
@@ -147,9 +150,7 @@
 <span class="sd">            detector (DetectorConfig): The configuration of the detector to add.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddDetectorRequest</span><span class="p">(</span>
-            <span class="n">detector_name</span><span class="o">=</span><span class="n">detector</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">detector_model_type</span><span class="o">=</span><span class="n">detector</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
-            <span class="n">detector_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">detector</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="n">detector_name</span><span class="o">=</span><span class="n">detector</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">detector_model_type</span><span class="o">=</span><span class="n">detector</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">detector_parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">detector</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
         <span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">AddDetector</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
 
@@ -177,14 +178,10 @@
 <span class="sd">            List[str]: The segmenter names</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetSegmenterNamesRequest</span><span class="p">()</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">GetSegmenterNamesResponse</span> <span class="o">=</span> \
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetSegmenterNames</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetSegmenterNamesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetSegmenterNames</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">segmenter_names</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_segmenter_parameters"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_segmenter_parameters">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_segmenter_parameters</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
+<div class="viewcode-block" id="VisionClient.get_segmenter_parameters"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_segmenter_parameters">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_segmenter_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the parameter fields needed for the given segmenter.</span>
 
@@ -197,16 +194,10 @@
 <span class="sd">                The second item in the tuple is the type of the parameter.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetSegmenterParametersRequest</span><span class="p">(</span><span class="n">segmenter_name</span><span class="o">=</span><span class="n">segmenter_name</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">GetSegmenterParametersResponse</span> <span class="o">=</span> \
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetSegmenterParameters</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetSegmenterParametersResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetSegmenterParameters</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">segmenter_parameters</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_object_point_clouds"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_object_point_clouds">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_point_clouds</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">]:</span>
+<div class="viewcode-block" id="VisionClient.get_object_point_clouds"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_object_point_clouds">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_point_clouds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of the 3D point cloud objects and associated metadata in the latest</span>
 <span class="sd">        picture obtained from the specified 3D camera (using the specified segmenter).</span>
@@ -224,10 +215,9 @@
             <span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span>
             <span class="n">segmenter_name</span><span class="o">=</span><span class="n">segmenter_name</span><span class="p">,</span>
             <span class="n">mime_type</span><span class="o">=</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PCD</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
-            <span class="n">parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="n">parameters</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">parameters</span><span class="p">),</span>
         <span class="p">)</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">GetObjectPointCloudsResponse</span> <span class="o">=</span> \
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetObjectPointClouds</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetObjectPointCloudsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetObjectPointClouds</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span></div></div>
 </pre></div>
 

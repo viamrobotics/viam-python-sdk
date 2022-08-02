@@ -95,11 +95,11 @@
 <div class="viewcode-block" id="ColorFormatter"><a class="viewcode-back" href="../../autoapi/viam/logging/index.html#viam.logging.ColorFormatter">[docs]</a><span class="k">class</span> <span class="nc">ColorFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
 
     <span class="n">MAPPING</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;DEBUG&#39;</span><span class="p">:</span> <span class="mi">37</span><span class="p">,</span>     <span class="c1"># white</span>
-        <span class="s1">&#39;INFO&#39;</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span>      <span class="c1"># cyan</span>
-        <span class="s1">&#39;WARNING&#39;</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>   <span class="c1"># yellow</span>
-        <span class="s1">&#39;ERROR&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span>     <span class="c1"># red</span>
-        <span class="s1">&#39;CRITICAL&#39;</span><span class="p">:</span> <span class="mi">41</span><span class="p">,</span>  <span class="c1"># white on red bg</span>
+        <span class="s2">&quot;DEBUG&quot;</span><span class="p">:</span> <span class="mi">37</span><span class="p">,</span>  <span class="c1"># white</span>
+        <span class="s2">&quot;INFO&quot;</span><span class="p">:</span> <span class="mi">36</span><span class="p">,</span>  <span class="c1"># cyan</span>
+        <span class="s2">&quot;WARNING&quot;</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span>  <span class="c1"># yellow</span>
+        <span class="s2">&quot;ERROR&quot;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span>  <span class="c1"># red</span>
+        <span class="s2">&quot;CRITICAL&quot;</span><span class="p">:</span> <span class="mi">41</span><span class="p">,</span>  <span class="c1"># white on red bg</span>
     <span class="p">}</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patern</span><span class="p">):</span>
@@ -109,7 +109,7 @@
         <span class="n">colored_record</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
         <span class="n">levelname</span> <span class="o">=</span> <span class="n">colored_record</span><span class="o">.</span><span class="n">levelname</span>
         <span class="n">seq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAPPING</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">levelname</span><span class="p">,</span> <span class="mi">37</span><span class="p">)</span>  <span class="c1"># default white</span>
-        <span class="n">colored_levelname</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[33;</span><span class="si">{</span><span class="n">seq</span><span class="si">}</span><span class="s1">m</span><span class="si">{</span><span class="n">levelname</span><span class="si">}</span><span class="se">\x1b</span><span class="s1">[0m&#39;</span>
+        <span class="n">colored_levelname</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[33;</span><span class="si">{</span><span class="n">seq</span><span class="si">}</span><span class="s2">m</span><span class="si">{</span><span class="n">levelname</span><span class="si">}</span><span class="se">\x1b</span><span class="s2">[0m&quot;</span>
         <span class="n">colored_record</span><span class="o">.</span><span class="n">levelname</span> <span class="o">=</span> <span class="n">colored_levelname</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">colored_record</span><span class="p">)</span></div></div>
 
@@ -121,12 +121,7 @@
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">LOG_LEVEL</span><span class="p">)</span>
     <span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
-    <span class="nb">format</span> <span class="o">=</span> <span class="n">ColorFormatter</span><span class="p">(</span>
-        <span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="se">\t\t</span><span class="s1">&#39;</span> <span class="o">+</span>
-        <span class="s1">&#39;</span><span class="si">%(levelname)s</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span>
-        <span class="s1">&#39;</span><span class="si">%(name)s</span><span class="s1"> (</span><span class="si">%(filename)s</span><span class="s1">:</span><span class="si">%(lineno)d</span><span class="s1">)</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">+</span>
-        <span class="s1">&#39;</span><span class="si">%(message)s</span><span class="se">\t</span><span class="s1">&#39;</span>
-    <span class="p">)</span>
+    <span class="nb">format</span> <span class="o">=</span> <span class="n">ColorFormatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="se">\t\t</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%(name)s</span><span class="s2"> (</span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">)</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%(message)s</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="nb">format</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
     <span class="n">LOGGERS</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">logger</span>

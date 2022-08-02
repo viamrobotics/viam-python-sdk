@@ -112,12 +112,7 @@
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Arm.move_to_position"><a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.move_to_position">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
-        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move the end of the arm to the Pose specified in `pose`.</span>
 <span class="sd">        When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.</span>
@@ -165,7 +160,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the arm is moving.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Arm named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> does not support returning whether it is moving&#39;</span><span class="p">)</span></div></div>
+        <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Arm named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not support returning whether it is moving&quot;</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

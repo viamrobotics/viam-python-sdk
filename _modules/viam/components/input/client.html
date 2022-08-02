@@ -95,9 +95,15 @@
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">NotSupportedError</span>
 <span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.inputcontroller</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">GetControlsRequest</span><span class="p">,</span> <span class="n">GetControlsResponse</span><span class="p">,</span> <span class="n">GetEventsRequest</span><span class="p">,</span>
-    <span class="n">GetEventsResponse</span><span class="p">,</span> <span class="n">InputControllerServiceStub</span><span class="p">,</span> <span class="n">StreamEventsRequest</span><span class="p">,</span>
-    <span class="n">StreamEventsResponse</span><span class="p">,</span> <span class="n">TriggerEventRequest</span><span class="p">)</span>
+    <span class="n">GetControlsRequest</span><span class="p">,</span>
+    <span class="n">GetControlsResponse</span><span class="p">,</span>
+    <span class="n">GetEventsRequest</span><span class="p">,</span>
+    <span class="n">GetEventsResponse</span><span class="p">,</span>
+    <span class="n">InputControllerServiceStub</span><span class="p">,</span>
+    <span class="n">StreamEventsRequest</span><span class="p">,</span>
+    <span class="n">StreamEventsResponse</span><span class="p">,</span>
+    <span class="n">TriggerEventRequest</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.input</span> <span class="kn">import</span> <span class="n">Control</span><span class="p">,</span> <span class="n">ControlFunction</span><span class="p">,</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span>
 
@@ -105,8 +111,7 @@
 
 
 <div class="viewcode-block" id="ControllerClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/client/index.html#viam.components.input.client.ControllerClient">[docs]</a><span class="k">class</span> <span class="nc">ControllerClient</span><span class="p">(</span><span class="n">Controller</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;gRPC client for an Input Controller</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;gRPC client for an Input Controller&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
@@ -142,13 +147,13 @@
         <span class="k">def</span> <span class="nf">handle_task_result</span><span class="p">(</span><span class="n">task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">result</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Task </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s1"> returned with result </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Task </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2"> returned with result </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
                 <span class="k">pass</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Exception raised by task = </span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Exception raised by task = </span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
 
-        <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stream_events</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s1">-input_stream_events&#39;</span><span class="p">)</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stream_events</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-input_stream_events&quot;</span><span class="p">)</span>
         <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="n">handle_task_result</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ControllerClient.trigger_event"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/client/index.html#viam.components.input.client.ControllerClient.trigger_event">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">trigger_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
@@ -156,8 +161,8 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">TriggerEvent</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">GRPCError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;does not support triggering events&#39;</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="k">else</span> <span class="kc">False</span><span class="p">):</span>
-                <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Input controller named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> does not support triggering events&#39;</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;does not support triggering events&quot;</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="k">else</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input controller named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not support triggering events&quot;</span><span class="p">)</span></div>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_stream_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream_lock</span><span class="p">:</span>
@@ -174,7 +179,8 @@
                 <span class="n">event</span> <span class="o">=</span> <span class="n">StreamEventsRequest</span><span class="o">.</span><span class="n">Events</span><span class="p">(</span>
                     <span class="n">control</span><span class="o">=</span><span class="n">control</span><span class="p">,</span>
                     <span class="n">events</span><span class="o">=</span><span class="p">[</span><span class="n">et</span> <span class="k">for</span> <span class="p">(</span><span class="n">et</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">],</span>
-                    <span class="n">cancelled_events</span><span class="o">=</span><span class="p">[</span><span class="n">et</span> <span class="k">for</span> <span class="p">(</span><span class="n">et</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">])</span>
+                    <span class="n">cancelled_events</span><span class="o">=</span><span class="p">[</span><span class="n">et</span> <span class="k">for</span> <span class="p">(</span><span class="n">et</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span> <span class="ow">in</span> <span class="n">callbacks</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">],</span>
+                <span class="p">)</span>
                 <span class="n">request</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -195,12 +201,7 @@
 
     <span class="k">def</span> <span class="nf">_send_connection_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connected</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">control</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span>
-                <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">(),</span>
-                <span class="n">event</span><span class="o">=</span><span class="n">EventType</span><span class="o">.</span><span class="n">CONNECT</span> <span class="k">if</span> <span class="n">connected</span> <span class="k">else</span> <span class="n">EventType</span><span class="o">.</span><span class="n">DISCONNECT</span><span class="p">,</span>
-                <span class="n">control</span><span class="o">=</span><span class="n">control</span><span class="p">,</span>
-                <span class="n">value</span><span class="o">=</span><span class="mi">0</span>
-            <span class="p">)</span>
+            <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">(),</span> <span class="n">event</span><span class="o">=</span><span class="n">EventType</span><span class="o">.</span><span class="n">CONNECT</span> <span class="k">if</span> <span class="n">connected</span> <span class="k">else</span> <span class="n">EventType</span><span class="o">.</span><span class="n">DISCONNECT</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="n">control</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_execute_callback</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_execute_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>

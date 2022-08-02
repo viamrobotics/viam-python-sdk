@@ -88,9 +88,7 @@
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">viam.components.generic.client</span> <span class="kn">import</span> <span class="n">do_command</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.component.posetracker</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GetPosesRequest</span><span class="p">,</span>
-                                                  <span class="n">GetPosesResponse</span><span class="p">,</span>
-                                                  <span class="n">PoseTrackerServiceStub</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.posetracker</span> <span class="kn">import</span> <span class="n">GetPosesRequest</span><span class="p">,</span> <span class="n">GetPosesResponse</span><span class="p">,</span> <span class="n">PoseTrackerServiceStub</span>
 
 <span class="kn">from</span> <span class="nn">.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>
 
@@ -111,8 +109,7 @@
             <span class="n">body_names</span><span class="o">=</span><span class="n">body_names</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetPosesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetPoses</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">body_poses</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">body_poses</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span></div>
+        <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">body_poses</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">body_poses</span><span class="o">.</span><span class="n">keys</span><span class="p">()}</span></div>
 
 <div class="viewcode-block" id="PoseTrackerClient.do"><a class="viewcode-back" href="../../../../autoapi/viam/components/pose_tracker/client/index.html#viam.components.pose_tracker.client.PoseTrackerClient.do">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="k">return</span> <span class="k">await</span> <span class="n">do_command</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span></div></div>

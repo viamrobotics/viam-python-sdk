@@ -101,7 +101,7 @@
 <span class="sd">    Board represents a physical general purpose compute board that contains various</span>
 <span class="sd">    components such as analog readers, and digital interrupts.</span>
 
-<span class="sd">    This acts as an abstract base class for any drivers representing specific </span>
+<span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    board implementations. This cannot be used on its own. If the `__init__()` function is</span>
 <span class="sd">    overriden, it must call the `super().__init__()` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -117,6 +117,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        AnalogReader represents an analog pin reader that resides on a Board.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
 <div class="viewcode-block" id="Board.AnalogReader.read"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.AnalogReader.read">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>

@@ -88,11 +88,15 @@
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">viam.components.generic.client</span> <span class="kn">import</span> <span class="n">do_command</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">GeoPoint</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.component.gps</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GPSServiceStub</span><span class="p">,</span> <span class="n">ReadAltitudeRequest</span><span class="p">,</span>
-                                          <span class="n">ReadAltitudeResponse</span><span class="p">,</span>
-                                          <span class="n">ReadLocationRequest</span><span class="p">,</span>
-                                          <span class="n">ReadLocationResponse</span><span class="p">,</span>
-                                          <span class="n">ReadSpeedRequest</span><span class="p">,</span> <span class="n">ReadSpeedResponse</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.gps</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GPSServiceStub</span><span class="p">,</span>
+    <span class="n">ReadAltitudeRequest</span><span class="p">,</span>
+    <span class="n">ReadAltitudeResponse</span><span class="p">,</span>
+    <span class="n">ReadLocationRequest</span><span class="p">,</span>
+    <span class="n">ReadLocationResponse</span><span class="p">,</span>
+    <span class="n">ReadSpeedRequest</span><span class="p">,</span>
+    <span class="n">ReadSpeedResponse</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.gps</span> <span class="kn">import</span> <span class="n">GPS</span>
 
@@ -109,15 +113,13 @@
 
 <div class="viewcode-block" id="GPSClient.read_location"><a class="viewcode-back" href="../../../../autoapi/viam/components/gps/client/index.html#viam.components.gps.client.GPSClient.read_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read_location</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GPS</span><span class="o">.</span><span class="n">Point</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ReadLocationRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">ReadLocationResponse</span> <span class="o">=</span> \
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ReadLocation</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ReadLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ReadLocation</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="n">coordinate</span><span class="p">:</span> <span class="n">GeoPoint</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">coordinate</span>
         <span class="k">return</span> <span class="n">GPS</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">coordinate</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">coordinate</span><span class="o">.</span><span class="n">longitude</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="GPSClient.read_altitude"><a class="viewcode-back" href="../../../../autoapi/viam/components/gps/client/index.html#viam.components.gps.client.GPSClient.read_altitude">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read_altitude</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ReadAltitudeRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">ReadAltitudeResponse</span> <span class="o">=</span> \
-            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ReadAltitude</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ReadAltitudeResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ReadAltitude</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">altitude_meters</span></div>
 
 <div class="viewcode-block" id="GPSClient.read_speed"><a class="viewcode-back" href="../../../../autoapi/viam/components/gps/client/index.html#viam.components.gps.client.GPSClient.read_speed">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">read_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>

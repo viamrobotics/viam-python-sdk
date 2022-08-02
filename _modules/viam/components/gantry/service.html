@@ -86,14 +86,17 @@
 <span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.component.gantry</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GantryServiceBase</span><span class="p">,</span>
-                                             <span class="n">GetLengthsRequest</span><span class="p">,</span>
-                                             <span class="n">GetLengthsResponse</span><span class="p">,</span>
-                                             <span class="n">GetPositionRequest</span><span class="p">,</span>
-                                             <span class="n">GetPositionResponse</span><span class="p">,</span>
-                                             <span class="n">MoveToPositionRequest</span><span class="p">,</span>
-                                             <span class="n">MoveToPositionResponse</span><span class="p">,</span>
-                                             <span class="n">StopRequest</span><span class="p">,</span> <span class="n">StopResponse</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.gantry</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GantryServiceBase</span><span class="p">,</span>
+    <span class="n">GetLengthsRequest</span><span class="p">,</span>
+    <span class="n">GetLengthsResponse</span><span class="p">,</span>
+    <span class="n">GetPositionRequest</span><span class="p">,</span>
+    <span class="n">GetPositionResponse</span><span class="p">,</span>
+    <span class="n">MoveToPositionRequest</span><span class="p">,</span>
+    <span class="n">MoveToPositionResponse</span><span class="p">,</span>
+    <span class="n">StopRequest</span><span class="p">,</span>
+    <span class="n">StopResponse</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.gantry</span> <span class="kn">import</span> <span class="n">Gantry</span>
@@ -106,10 +109,7 @@
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Gantry</span>
 
-<div class="viewcode-block" id="GantryService.GetPosition"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/service/index.html#viam.components.gantry.service.GantryService.GetPosition">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetPosition</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPositionRequest</span><span class="p">,</span> <span class="n">GetPositionResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="GantryService.GetPosition"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/service/index.html#viam.components.gantry.service.GantryService.GetPosition">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPositionRequest</span><span class="p">,</span> <span class="n">GetPositionResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -121,10 +121,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">GetPositionResponse</span><span class="p">(</span><span class="n">positions_mm</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GantryService.MoveToPosition"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/service/index.html#viam.components.gantry.service.GantryService.MoveToPosition">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">MoveToPosition</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">MoveToPositionRequest</span><span class="p">,</span> <span class="n">MoveToPositionResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="GantryService.MoveToPosition"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/service/index.html#viam.components.gantry.service.GantryService.MoveToPosition">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">MoveToPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">MoveToPositionRequest</span><span class="p">,</span> <span class="n">MoveToPositionResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -132,18 +129,11 @@
             <span class="n">gantry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
-        <span class="k">await</span> <span class="n">gantry</span><span class="o">.</span><span class="n">move_to_position</span><span class="p">(</span>
-            <span class="nb">list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">positions_mm</span><span class="p">),</span>
-            <span class="n">request</span><span class="o">.</span><span class="n">world_state</span><span class="p">,</span>
-            <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="k">await</span> <span class="n">gantry</span><span class="o">.</span><span class="n">move_to_position</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">positions_mm</span><span class="p">),</span> <span class="n">request</span><span class="o">.</span><span class="n">world_state</span><span class="p">,</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">))</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">MoveToPositionResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="GantryService.GetLengths"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/service/index.html#viam.components.gantry.service.GantryService.GetLengths">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetLengths</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetLengthsRequest</span><span class="p">,</span> <span class="n">GetLengthsResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="GantryService.GetLengths"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/service/index.html#viam.components.gantry.service.GantryService.GetLengths">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetLengths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetLengthsRequest</span><span class="p">,</span> <span class="n">GetLengthsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>

@@ -93,9 +93,16 @@
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">NotSupportedError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.inputcontroller</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">GetControlsRequest</span><span class="p">,</span> <span class="n">GetControlsResponse</span><span class="p">,</span> <span class="n">GetEventsRequest</span><span class="p">,</span>
-    <span class="n">GetEventsResponse</span><span class="p">,</span> <span class="n">InputControllerServiceBase</span><span class="p">,</span> <span class="n">StreamEventsRequest</span><span class="p">,</span>
-    <span class="n">StreamEventsResponse</span><span class="p">,</span> <span class="n">TriggerEventRequest</span><span class="p">,</span> <span class="n">TriggerEventResponse</span><span class="p">)</span>
+    <span class="n">GetControlsRequest</span><span class="p">,</span>
+    <span class="n">GetControlsResponse</span><span class="p">,</span>
+    <span class="n">GetEventsRequest</span><span class="p">,</span>
+    <span class="n">GetEventsResponse</span><span class="p">,</span>
+    <span class="n">InputControllerServiceBase</span><span class="p">,</span>
+    <span class="n">StreamEventsRequest</span><span class="p">,</span>
+    <span class="n">StreamEventsResponse</span><span class="p">,</span>
+    <span class="n">TriggerEventRequest</span><span class="p">,</span>
+    <span class="n">TriggerEventResponse</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.input</span> <span class="kn">import</span> <span class="n">Control</span><span class="p">,</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">Event</span><span class="p">,</span> <span class="n">EventType</span>
 
@@ -110,10 +117,7 @@
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Controller</span>
 
-<div class="viewcode-block" id="InputControllerService.GetControls"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.GetControls">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetControls</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetControlsRequest</span><span class="p">,</span> <span class="n">GetControlsResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="InputControllerService.GetControls"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.GetControls">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetControls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetControlsRequest</span><span class="p">,</span> <span class="n">GetControlsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">controller</span>
@@ -125,10 +129,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">GetControlsResponse</span><span class="p">(</span><span class="n">controls</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">controls</span><span class="p">])</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="InputControllerService.GetEvents"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.GetEvents">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetEvents</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetEventsRequest</span><span class="p">,</span> <span class="n">GetEventsResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="InputControllerService.GetEvents"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.GetEvents">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetEvents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetEventsRequest</span><span class="p">,</span> <span class="n">GetEventsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">controller</span>
@@ -141,10 +142,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">GetEventsResponse</span><span class="p">(</span><span class="n">events</span><span class="o">=</span><span class="n">pb_events</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="InputControllerService.StreamEvents"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.StreamEvents">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">StreamEvents</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StreamEventsRequest</span><span class="p">,</span> <span class="n">StreamEventsResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="InputControllerService.StreamEvents"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.StreamEvents">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">StreamEvents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StreamEventsRequest</span><span class="p">,</span> <span class="n">StreamEventsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">controller</span>
@@ -191,7 +189,7 @@
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                     <span class="n">cleanup</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
-            <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">send_message</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s1">-input_send_event&#39;</span><span class="p">)</span>
+            <span class="n">loop</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">send_message</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-input_send_event&quot;</span><span class="p">)</span>
 
         <span class="n">loop</span><span class="o">.</span><span class="n">add_reader</span><span class="p">(</span><span class="n">pipe_r</span><span class="p">,</span> <span class="n">read</span><span class="p">)</span>
 
@@ -217,10 +215,7 @@
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">triggers</span><span class="p">):</span>
                     <span class="n">controller</span><span class="o">.</span><span class="n">register_control_callback</span><span class="p">(</span><span class="n">Control</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">control</span><span class="p">),</span> <span class="n">triggers</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="InputControllerService.TriggerEvent"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.TriggerEvent">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">TriggerEvent</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">TriggerEventRequest</span><span class="p">,</span> <span class="n">TriggerEventResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="InputControllerService.TriggerEvent"><a class="viewcode-back" href="../../../../autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.TriggerEvent">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">TriggerEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">TriggerEventRequest</span><span class="p">,</span> <span class="n">TriggerEventResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">controller</span>

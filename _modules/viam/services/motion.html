@@ -87,27 +87,20 @@
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">WorldState</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.service.motion</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GetPoseRequest</span><span class="p">,</span> <span class="n">GetPoseResponse</span><span class="p">,</span>
-                                           <span class="n">MotionServiceStub</span><span class="p">,</span> <span class="n">MoveRequest</span><span class="p">,</span>
-                                           <span class="n">MoveResponse</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.service.motion</span> <span class="kn">import</span> <span class="n">GetPoseRequest</span><span class="p">,</span> <span class="n">GetPoseResponse</span><span class="p">,</span> <span class="n">MotionServiceStub</span><span class="p">,</span> <span class="n">MoveRequest</span><span class="p">,</span> <span class="n">MoveResponse</span>
 
 
 <div class="viewcode-block" id="MotionClient"><a class="viewcode-back" href="../../../autoapi/viam/services/motion/index.html#viam.services.motion.MotionClient">[docs]</a><span class="k">class</span> <span class="nc">MotionClient</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot; Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</span>
+    <span class="sd">&quot;&quot;&quot;Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</span>
 
 <span class="sd">    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the</span>
 <span class="sd">    `world_state` message, the motion planning service will also account for those.</span>
-<span class="sd">     &quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">MotionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
 
-<div class="viewcode-block" id="MotionClient.move"><a class="viewcode-back" href="../../../autoapi/viam/services/motion/index.html#viam.services.motion.MotionClient.move">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
-        <span class="n">destination</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span>
-        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="viewcode-block" id="MotionClient.move"><a class="viewcode-back" href="../../../autoapi/viam/services/motion/index.html#viam.services.motion.MotionClient.move">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move a component on the robot to a given destination, obey any constraints (transforms or obstacles) if supplied in WorldState.</span>
 
@@ -117,19 +110,11 @@
 <span class="sd">            world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the</span>
 <span class="sd">                WorldState message.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveRequest</span><span class="p">(</span>
-            <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
-            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
-            <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span>
-        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveRequest</span><span class="p">(</span><span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span> <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span> <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
 
-<div class="viewcode-block" id="MotionClient.get_pose"><a class="viewcode-back" href="../../../autoapi/viam/services/motion/index.html#viam.services.motion.MotionClient.get_pose">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pose</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
-        <span class="n">destination_frame</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoseInFrame</span><span class="p">:</span>
+<div class="viewcode-block" id="MotionClient.get_pose"><a class="viewcode-back" href="../../../autoapi/viam/services/motion/index.html#viam.services.motion.MotionClient.get_pose">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">destination_frame</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoseInFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the Pose and observer frame for any given component on a robot.</span>
 
@@ -140,10 +125,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            `Pose` (PoseInFrame): Pose of the given component and the frame in which it was observed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPoseRequest</span><span class="p">(</span>
-            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
-            <span class="n">destination_frame</span><span class="o">=</span><span class="n">destination_frame</span>
-        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPoseRequest</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span> <span class="n">destination_frame</span><span class="o">=</span><span class="n">destination_frame</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetPoseResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetPose</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">pose</span></div></div>
 </pre></div>

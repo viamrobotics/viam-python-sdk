@@ -94,18 +94,26 @@
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.components.resource_manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="p">(</span><span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">ServiceNotImplementedError</span><span class="p">,</span>
-                         <span class="n">ViamError</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">ServiceNotImplementedError</span><span class="p">,</span> <span class="n">ViamError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Transform</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.robot</span> <span class="kn">import</span> <span class="p">(</span><span class="n">DiscoverComponentsRequest</span><span class="p">,</span>
-                                  <span class="n">DiscoverComponentsResponse</span><span class="p">,</span> <span class="n">Discovery</span><span class="p">,</span>
-                                  <span class="n">DiscoveryQuery</span><span class="p">,</span> <span class="n">FrameSystemConfig</span><span class="p">,</span>
-                                  <span class="n">FrameSystemConfigRequest</span><span class="p">,</span>
-                                  <span class="n">FrameSystemConfigResponse</span><span class="p">,</span> <span class="n">GetStatusRequest</span><span class="p">,</span>
-                                  <span class="n">GetStatusResponse</span><span class="p">,</span> <span class="n">ResourceNamesRequest</span><span class="p">,</span>
-                                  <span class="n">ResourceNamesResponse</span><span class="p">,</span> <span class="n">RobotServiceStub</span><span class="p">,</span>
-                                  <span class="n">StopAllRequest</span><span class="p">,</span> <span class="n">StopExtraParameters</span><span class="p">,</span>
-                                  <span class="n">TransformPoseRequest</span><span class="p">,</span> <span class="n">TransformPoseResponse</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.robot</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DiscoverComponentsRequest</span><span class="p">,</span>
+    <span class="n">DiscoverComponentsResponse</span><span class="p">,</span>
+    <span class="n">Discovery</span><span class="p">,</span>
+    <span class="n">DiscoveryQuery</span><span class="p">,</span>
+    <span class="n">FrameSystemConfig</span><span class="p">,</span>
+    <span class="n">FrameSystemConfigRequest</span><span class="p">,</span>
+    <span class="n">FrameSystemConfigResponse</span><span class="p">,</span>
+    <span class="n">GetStatusRequest</span><span class="p">,</span>
+    <span class="n">GetStatusResponse</span><span class="p">,</span>
+    <span class="n">ResourceNamesRequest</span><span class="p">,</span>
+    <span class="n">ResourceNamesResponse</span><span class="p">,</span>
+    <span class="n">RobotServiceStub</span><span class="p">,</span>
+    <span class="n">StopAllRequest</span><span class="p">,</span>
+    <span class="n">StopExtraParameters</span><span class="p">,</span>
+    <span class="n">TransformPoseRequest</span><span class="p">,</span>
+    <span class="n">TransformPoseResponse</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial_direct</span>
 <span class="kn">from</span> <span class="nn">viam.services</span> <span class="kn">import</span> <span class="n">ServiceType</span>
@@ -193,8 +201,9 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_refresh_every</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span><span class="p">),</span>
-                                                     <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s1">-robot_refresh_metadata&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_every</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-robot_refresh_metadata&quot;</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -216,15 +225,15 @@
             <span class="k">return</span>
         <span class="n">manager</span> <span class="o">=</span> <span class="n">ResourceManager</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">rname</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s1">&#39;component&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;component&quot;</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">subtype</span> <span class="o">==</span> <span class="s1">&#39;remote&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">subtype</span> <span class="o">==</span> <span class="s2">&quot;remote&quot;</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="n">subtype</span> <span class="o">=</span> <span class="n">rname</span><span class="o">.</span><span class="n">subtype</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">manager</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Registry</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">subtype</span><span class="p">)</span><span class="o">.</span><span class="n">create_rpc_client</span><span class="p">(</span><span class="n">rname</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">))</span>
             <span class="k">except</span> <span class="n">ComponentNotFoundError</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Component of type </span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s1"> is not implemented&#39;</span><span class="p">)</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Component of type </span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s2"> is not implemented&quot;</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="o">=</span> <span class="n">resource_names</span>
             <span class="k">if</span> <span class="n">manager</span><span class="o">.</span><span class="n">components</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">components</span><span class="p">:</span>
@@ -236,7 +245,7 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Failed to refresh status&#39;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Failed to refresh status&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RobotClient.get_component"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Get a component using its ResourceName.</span>
@@ -279,8 +288,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            ComponentBase: The component</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s1">&#39;component&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ViamError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ResourceName does not describe a component: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;component&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ViamError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ResourceName does not describe a component: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
@@ -297,7 +306,7 @@
 <span class="sd">            Service: The service</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">service_type</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">rn</span><span class="o">.</span><span class="n">subtype</span> <span class="k">for</span> <span class="n">rn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="k">if</span> <span class="n">rn</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;service&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">service_type</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">rn</span><span class="o">.</span><span class="n">subtype</span> <span class="k">for</span> <span class="n">rn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="k">if</span> <span class="n">rn</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;service&quot;</span><span class="p">]:</span>
                 <span class="k">return</span> <span class="n">service_type</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">ServiceNotImplementedError</span><span class="p">(</span><span class="n">service_type</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
@@ -316,22 +325,22 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cleanly close the underlying connections and stop any periodic tasks</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Closing RobotClient&#39;</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing RobotClient&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
             <span class="k">pass</span>
 
         <span class="c1"># Cancel all tasks created by VIAM</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Closing tasks spawned by Viam&#39;</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing tasks spawned by Viam&quot;</span><span class="p">)</span>
         <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">task</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">all_tasks</span><span class="p">()</span> <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="p">)]</span>
         <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Closing task </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Closing task </span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">,</span> <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_close_channel</span><span class="p">:</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Closing gRPC channel to remote robot&#39;</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing gRPC channel to remote robot&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="RobotClient.__aenter__"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.__aenter__">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="fm">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -343,10 +352,7 @@
     <span class="c1">##########</span>
     <span class="c1"># STATUS #</span>
     <span class="c1">##########</span>
-<div class="viewcode-block" id="RobotClient.get_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">):</span>
+<div class="viewcode-block" id="RobotClient.get_status"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the status of the robot&#39;s components. You can optionally</span>
 <span class="sd">        provide a list of `ResourceName` for which you want statuses.</span>
@@ -375,10 +381,7 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">frame_system_configs</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RobotClient.transform_pose"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_pose">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">transform_pose</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">query</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span>
-        <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">additional_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">destination</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">additional_transforms</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Transform</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoseInFrame</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.</span>

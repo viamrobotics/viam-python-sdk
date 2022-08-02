@@ -86,15 +86,17 @@
 <span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.component.imu</span> <span class="kn">import</span> <span class="p">(</span><span class="n">IMUServiceBase</span><span class="p">,</span>
-                                          <span class="n">ReadAccelerationRequest</span><span class="p">,</span>
-                                          <span class="n">ReadAccelerationResponse</span><span class="p">,</span>
-                                          <span class="n">ReadAngularVelocityRequest</span><span class="p">,</span>
-                                          <span class="n">ReadAngularVelocityResponse</span><span class="p">,</span>
-                                          <span class="n">ReadMagnetometerRequest</span><span class="p">,</span>
-                                          <span class="n">ReadMagnetometerResponse</span><span class="p">,</span>
-                                          <span class="n">ReadOrientationRequest</span><span class="p">,</span>
-                                          <span class="n">ReadOrientationResponse</span><span class="p">,)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.imu</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">IMUServiceBase</span><span class="p">,</span>
+    <span class="n">ReadAccelerationRequest</span><span class="p">,</span>
+    <span class="n">ReadAccelerationResponse</span><span class="p">,</span>
+    <span class="n">ReadAngularVelocityRequest</span><span class="p">,</span>
+    <span class="n">ReadAngularVelocityResponse</span><span class="p">,</span>
+    <span class="n">ReadMagnetometerRequest</span><span class="p">,</span>
+    <span class="n">ReadMagnetometerResponse</span><span class="p">,</span>
+    <span class="n">ReadOrientationRequest</span><span class="p">,</span>
+    <span class="n">ReadOrientationResponse</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.imu</span> <span class="kn">import</span> <span class="n">IMU</span>
 
@@ -106,10 +108,7 @@
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">IMU</span>
 
-<div class="viewcode-block" id="IMUService.ReadAngularVelocity"><a class="viewcode-back" href="../../../../autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadAngularVelocity">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadAngularVelocity</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadAngularVelocityRequest</span><span class="p">,</span> <span class="n">ReadAngularVelocityResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="IMUService.ReadAngularVelocity"><a class="viewcode-back" href="../../../../autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadAngularVelocity">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadAngularVelocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadAngularVelocityRequest</span><span class="p">,</span> <span class="n">ReadAngularVelocityResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -121,10 +120,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">ReadAngularVelocityResponse</span><span class="p">(</span><span class="n">angular_velocity</span><span class="o">=</span><span class="n">velocity</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="IMUService.ReadOrientation"><a class="viewcode-back" href="../../../../autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadOrientation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadOrientation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadOrientationRequest</span><span class="p">,</span> <span class="n">ReadOrientationResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="IMUService.ReadOrientation"><a class="viewcode-back" href="../../../../autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadOrientation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadOrientation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadOrientationRequest</span><span class="p">,</span> <span class="n">ReadOrientationResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -133,14 +129,10 @@
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="n">orientation</span> <span class="o">=</span> <span class="k">await</span> <span class="n">imu</span><span class="o">.</span><span class="n">read_orientation</span><span class="p">()</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">ReadOrientationResponse</span><span class="p">(</span>
-            <span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="o">.</span><span class="n">euler_angles</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">ReadOrientationResponse</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="n">orientation</span><span class="o">.</span><span class="n">euler_angles</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="IMUService.ReadAcceleration"><a class="viewcode-back" href="../../../../autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadAcceleration">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadAcceleration</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadAccelerationRequest</span><span class="p">,</span> <span class="n">ReadAccelerationResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="IMUService.ReadAcceleration"><a class="viewcode-back" href="../../../../autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadAcceleration">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadAcceleration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadAccelerationRequest</span><span class="p">,</span> <span class="n">ReadAccelerationResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -152,10 +144,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">ReadAccelerationResponse</span><span class="p">(</span><span class="n">acceleration</span><span class="o">=</span><span class="n">acceleration</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="IMUService.ReadMagnetometer"><a class="viewcode-back" href="../../../../autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadMagnetometer">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadMagnetometer</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadMagnetometerRequest</span><span class="p">,</span> <span class="n">ReadMagnetometerResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="IMUService.ReadMagnetometer"><a class="viewcode-back" href="../../../../autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadMagnetometer">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadMagnetometer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadMagnetometerRequest</span><span class="p">,</span> <span class="n">ReadMagnetometerResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>

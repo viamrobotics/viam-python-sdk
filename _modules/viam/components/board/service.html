@@ -86,20 +86,27 @@
 <span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.component.board</span> <span class="kn">import</span> <span class="p">(</span><span class="n">BoardServiceBase</span><span class="p">,</span>
-                                            <span class="n">GetDigitalInterruptValueRequest</span><span class="p">,</span>
-                                            <span class="n">GetDigitalInterruptValueResponse</span><span class="p">,</span>
-                                            <span class="n">GetGPIORequest</span><span class="p">,</span> <span class="n">GetGPIOResponse</span><span class="p">,</span>
-                                            <span class="n">PWMFrequencyRequest</span><span class="p">,</span>
-                                            <span class="n">PWMFrequencyResponse</span><span class="p">,</span> <span class="n">PWMRequest</span><span class="p">,</span>
-                                            <span class="n">PWMResponse</span><span class="p">,</span>
-                                            <span class="n">ReadAnalogReaderRequest</span><span class="p">,</span>
-                                            <span class="n">ReadAnalogReaderResponse</span><span class="p">,</span>
-                                            <span class="n">SetGPIORequest</span><span class="p">,</span> <span class="n">SetGPIOResponse</span><span class="p">,</span>
-                                            <span class="n">SetPWMFrequencyRequest</span><span class="p">,</span>
-                                            <span class="n">SetPWMFrequencyResponse</span><span class="p">,</span>
-                                            <span class="n">SetPWMRequest</span><span class="p">,</span> <span class="n">SetPWMResponse</span><span class="p">,</span>
-                                            <span class="n">StatusRequest</span><span class="p">,</span> <span class="n">StatusResponse</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.board</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BoardServiceBase</span><span class="p">,</span>
+    <span class="n">GetDigitalInterruptValueRequest</span><span class="p">,</span>
+    <span class="n">GetDigitalInterruptValueResponse</span><span class="p">,</span>
+    <span class="n">GetGPIORequest</span><span class="p">,</span>
+    <span class="n">GetGPIOResponse</span><span class="p">,</span>
+    <span class="n">PWMFrequencyRequest</span><span class="p">,</span>
+    <span class="n">PWMFrequencyResponse</span><span class="p">,</span>
+    <span class="n">PWMRequest</span><span class="p">,</span>
+    <span class="n">PWMResponse</span><span class="p">,</span>
+    <span class="n">ReadAnalogReaderRequest</span><span class="p">,</span>
+    <span class="n">ReadAnalogReaderResponse</span><span class="p">,</span>
+    <span class="n">SetGPIORequest</span><span class="p">,</span>
+    <span class="n">SetGPIOResponse</span><span class="p">,</span>
+    <span class="n">SetPWMFrequencyRequest</span><span class="p">,</span>
+    <span class="n">SetPWMFrequencyResponse</span><span class="p">,</span>
+    <span class="n">SetPWMRequest</span><span class="p">,</span>
+    <span class="n">SetPWMResponse</span><span class="p">,</span>
+    <span class="n">StatusRequest</span><span class="p">,</span>
+    <span class="n">StatusResponse</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.board</span> <span class="kn">import</span> <span class="n">Board</span>
 
@@ -111,10 +118,7 @@
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Board</span>
 
-<div class="viewcode-block" id="BoardService.Status"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.Status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Status</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StatusRequest</span><span class="p">,</span> <span class="n">StatusResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.Status"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.Status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StatusRequest</span><span class="p">,</span> <span class="n">StatusResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -126,10 +130,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">StatusResponse</span><span class="p">(</span><span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BoardService.SetGPIO"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.SetGPIO">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">SetGPIO</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">SetGPIORequest</span><span class="p">,</span> <span class="n">SetGPIOResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.SetGPIO"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.SetGPIO">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">SetGPIO</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">SetGPIORequest</span><span class="p">,</span> <span class="n">SetGPIOResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -142,10 +143,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">SetGPIOResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BoardService.GetGPIO"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.GetGPIO">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetGPIO</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetGPIORequest</span><span class="p">,</span> <span class="n">GetGPIOResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.GetGPIO"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.GetGPIO">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetGPIO</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetGPIORequest</span><span class="p">,</span> <span class="n">GetGPIOResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -158,10 +156,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">GetGPIOResponse</span><span class="p">(</span><span class="n">high</span><span class="o">=</span><span class="n">high</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BoardService.PWM"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.PWM">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">PWM</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">PWMRequest</span><span class="p">,</span> <span class="n">PWMResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.PWM"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.PWM">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">PWM</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">PWMRequest</span><span class="p">,</span> <span class="n">PWMResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -174,10 +169,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">PWMResponse</span><span class="p">(</span><span class="n">duty_cycle_pct</span><span class="o">=</span><span class="n">pwm</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BoardService.SetPWM"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.SetPWM">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">SetPWM</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">SetPWMRequest</span><span class="p">,</span> <span class="n">SetPWMResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.SetPWM"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.SetPWM">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">SetPWM</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">SetPWMRequest</span><span class="p">,</span> <span class="n">SetPWMResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -190,10 +182,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">SetPWMResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BoardService.PWMFrequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.PWMFrequency">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">PWMFrequency</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">PWMFrequencyRequest</span><span class="p">,</span> <span class="n">PWMFrequencyResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.PWMFrequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.PWMFrequency">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">PWMFrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">PWMFrequencyRequest</span><span class="p">,</span> <span class="n">PWMFrequencyResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -206,10 +195,7 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">PWMFrequencyResponse</span><span class="p">(</span><span class="n">frequency_hz</span><span class="o">=</span><span class="n">frequency</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BoardService.SetPWMFrequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.SetPWMFrequency">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">SetPWMFrequency</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">SetPWMFrequencyRequest</span><span class="p">,</span> <span class="n">SetPWMFrequencyResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.SetPWMFrequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.SetPWMFrequency">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">SetPWMFrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">SetPWMFrequencyRequest</span><span class="p">,</span> <span class="n">SetPWMFrequencyResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -222,35 +208,26 @@
         <span class="n">response</span> <span class="o">=</span> <span class="n">SetPWMFrequencyResponse</span><span class="p">()</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BoardService.ReadAnalogReader"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.ReadAnalogReader">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadAnalogReader</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadAnalogReaderRequest</span><span class="p">,</span> <span class="n">ReadAnalogReaderResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.ReadAnalogReader"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.ReadAnalogReader">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ReadAnalogReader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ReadAnalogReaderRequest</span><span class="p">,</span> <span class="n">ReadAnalogReaderResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">board_name</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">board</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">analog_reader</span> <span class="o">=</span> <span class="k">await</span> <span class="n">board</span><span class="o">.</span><span class="n">analog_reader_by_name</span><span class="p">(</span>
-                <span class="n">request</span><span class="o">.</span><span class="n">analog_reader_name</span><span class="p">)</span>
+            <span class="n">analog_reader</span> <span class="o">=</span> <span class="k">await</span> <span class="n">board</span><span class="o">.</span><span class="n">analog_reader_by_name</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">analog_reader_name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="n">value</span> <span class="o">=</span> <span class="k">await</span> <span class="n">analog_reader</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">ReadAnalogReaderResponse</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BoardService.GetDigitalInterruptValue"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.GetDigitalInterruptValue">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetDigitalInterruptValue</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetDigitalInterruptValueRequest</span><span class="p">,</span>
-                       <span class="n">GetDigitalInterruptValueResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="BoardService.GetDigitalInterruptValue"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.GetDigitalInterruptValue">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetDigitalInterruptValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetDigitalInterruptValueRequest</span><span class="p">,</span> <span class="n">GetDigitalInterruptValueResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">board_name</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">board</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">interrupt</span> <span class="o">=</span> <span class="k">await</span> <span class="n">board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span>
-                <span class="n">request</span><span class="o">.</span><span class="n">digital_interrupt_name</span><span class="p">)</span>
+            <span class="n">interrupt</span> <span class="o">=</span> <span class="k">await</span> <span class="n">board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">digital_interrupt_name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="n">value</span> <span class="o">=</span> <span class="k">await</span> <span class="n">interrupt</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>

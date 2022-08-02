@@ -94,14 +94,11 @@
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">DuplicateComponentError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.robot</span> <span class="kn">import</span> <span class="n">Status</span>
 
-<span class="n">Component</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;Component&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ComponentBase</span><span class="p">)</span>
+<span class="n">Component</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Component&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ComponentBase</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="default_create_status"><a class="viewcode-back" href="../../autoapi/viam/registry/index.html#viam.registry.default_create_status">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">default_create_status</span><span class="p">(</span><span class="n">component</span><span class="p">:</span> <span class="n">ComponentBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">component</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
-        <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">()</span>
-    <span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">component</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="ComponentRegistration"><a class="viewcode-back" href="../../autoapi/viam/registry/index.html#viam.registry.ComponentRegistration">[docs]</a><span class="nd">@dataclass</span>
@@ -114,6 +111,7 @@
 <span class="sd">    If creating a custom Component type, you should register the component by creating a `ComponentRegistration` object and registering it</span>
 <span class="sd">    to the `Registry`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">component_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Component</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;The type of the Component to be registered</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -181,7 +179,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_COMPONENTS</span><span class="p">[</span><span class="n">component_name</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ComponentNotFoundError</span><span class="p">(</span><span class="s1">&#39;component&#39;</span><span class="p">,</span> <span class="n">component_name</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="n">ComponentNotFoundError</span><span class="p">(</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="n">component_name</span><span class="p">)</span></div>
 
     <span class="nd">@classmethod</span>
     <span class="nd">@property</span>

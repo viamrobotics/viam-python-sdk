@@ -92,7 +92,6 @@
 
 
 <div class="viewcode-block" id="Motor"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor">[docs]</a><span class="k">class</span> <span class="nc">Motor</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
-
 <div class="viewcode-block" id="Motor.Features"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor.Features">[docs]</a>    <span class="nd">@dataclass</span>
     <span class="k">class</span> <span class="nc">Features</span><span class="p">:</span>
         <span class="n">position_reporting</span><span class="p">:</span> <span class="nb">bool</span></div>
@@ -203,7 +202,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the motor is moving.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Motor named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> does not support returning whether it is moving&#39;</span><span class="p">)</span></div></div>
+        <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Motor named </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not support returning whether it is moving&quot;</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

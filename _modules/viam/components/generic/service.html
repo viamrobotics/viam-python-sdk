@@ -88,8 +88,7 @@
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.component.generic</span> <span class="kn">import</span> <span class="p">(</span><span class="n">DoRequest</span><span class="p">,</span> <span class="n">DoResponse</span><span class="p">,</span>
-                                              <span class="n">GenericServiceBase</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.generic</span> <span class="kn">import</span> <span class="n">DoRequest</span><span class="p">,</span> <span class="n">DoResponse</span><span class="p">,</span> <span class="n">GenericServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="c1"># from .generic import Generic</span>
@@ -113,7 +112,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">command</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">NotImplementedError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;`DO` command is unimplemented for component named: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;`DO` command is unimplemented for component named: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">DoResponse</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 </pre></div>

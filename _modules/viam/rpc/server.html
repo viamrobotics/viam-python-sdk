@@ -107,10 +107,7 @@
 <span class="sd">    gRPC Server</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">components</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ComponentBase</span><span class="p">]</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ComponentBase</span><span class="p">]):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the Server with a list of components</span>
 <span class="sd">        to be managed.</span>
@@ -123,29 +120,24 @@
         <span class="n">services</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">SignalingService</span><span class="p">(),</span>
             <span class="n">RobotService</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="bp">self</span><span class="p">),</span>
-            <span class="o">*</span><span class="p">[</span><span class="n">registration</span><span class="o">.</span><span class="n">rpc_service</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">registration</span> <span class="ow">in</span> <span class="n">Registry</span><span class="o">.</span><span class="n">REGISTERED_COMPONENTS</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+            <span class="o">*</span><span class="p">[</span><span class="n">registration</span><span class="o">.</span><span class="n">rpc_service</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">registration</span> <span class="ow">in</span> <span class="n">Registry</span><span class="o">.</span><span class="n">REGISTERED_COMPONENTS</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
         <span class="p">]</span>
         <span class="n">services</span> <span class="o">=</span> <span class="n">ServerReflection</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">services</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="n">GRPCServer</span><span class="p">(</span><span class="n">services</span><span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_grpc_event_handler</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">event</span><span class="p">:</span> <span class="n">RecvRequest</span>
-    <span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_grpc_event_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">RecvRequest</span><span class="p">):</span>
         <span class="n">host</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">port</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">address</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">peer</span><span class="o">.</span><span class="n">addr</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">address</span><span class="p">:</span>
             <span class="n">host</span> <span class="o">=</span> <span class="n">address</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">port</span> <span class="o">=</span> <span class="n">address</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;[gRPC Request] &#39;</span> <span class="o">+</span> \
-              <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">host</span> <span class="ow">or</span> <span class="s2">&quot;xxxx&quot;</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">port</span> <span class="ow">or</span> <span class="s2">&quot;xxxx&quot;</span><span class="si">}</span><span class="s1"> - &#39;</span> <span class="o">+</span> \
-              <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;[gRPC Request] &quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">host</span> <span class="ow">or</span> <span class="s2">&quot;xxxx&quot;</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">port</span> <span class="ow">or</span> <span class="s2">&quot;xxxx&quot;</span><span class="si">}</span><span class="s1"> - &#39;</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Server.serve"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.rpc.server.Server.serve">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+        <span class="n">host</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
         <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">9090</span><span class="p">,</span>
         <span class="n">log_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
     <span class="p">):</span>
@@ -165,15 +157,12 @@
         <span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="n">RecvRequest</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grpc_event_handler</span><span class="p">)</span>
 
         <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">signame</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;SIGINT&#39;</span><span class="p">,</span> <span class="s1">&#39;SIGTERM&#39;</span><span class="p">}:</span>
-            <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span>
-                <span class="nb">getattr</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">signame</span><span class="p">),</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">close</span>
-            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">signame</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;SIGINT&quot;</span><span class="p">,</span> <span class="s2">&quot;SIGTERM&quot;</span><span class="p">}:</span>
+            <span class="n">loop</span><span class="o">.</span><span class="n">add_signal_handler</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">signame</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="n">graceful_exit</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">]):</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Serving on </span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serving on </span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="o">.</span><span class="n">wait_closed</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Server.close"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.rpc.server.Server.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

@@ -86,10 +86,15 @@
 <span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.component.servo</span> <span class="kn">import</span> <span class="p">(</span><span class="n">GetPositionRequest</span><span class="p">,</span>
-                                            <span class="n">GetPositionResponse</span><span class="p">,</span> <span class="n">MoveRequest</span><span class="p">,</span>
-                                            <span class="n">MoveResponse</span><span class="p">,</span> <span class="n">ServoServiceBase</span><span class="p">,</span>
-                                            <span class="n">StopRequest</span><span class="p">,</span> <span class="n">StopResponse</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.servo</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetPositionRequest</span><span class="p">,</span>
+    <span class="n">GetPositionResponse</span><span class="p">,</span>
+    <span class="n">MoveRequest</span><span class="p">,</span>
+    <span class="n">MoveResponse</span><span class="p">,</span>
+    <span class="n">ServoServiceBase</span><span class="p">,</span>
+    <span class="n">StopRequest</span><span class="p">,</span>
+    <span class="n">StopResponse</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.servo</span> <span class="kn">import</span> <span class="n">Servo</span>
 
@@ -101,10 +106,7 @@
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Servo</span>
 
-<div class="viewcode-block" id="ServoService.Move"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/service/index.html#viam.components.servo.service.ServoService.Move">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Move</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">MoveRequest</span><span class="p">,</span> <span class="n">MoveResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ServoService.Move"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/service/index.html#viam.components.servo.service.ServoService.Move">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">MoveRequest</span><span class="p">,</span> <span class="n">MoveResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -115,10 +117,7 @@
         <span class="k">await</span> <span class="n">servo</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">angle_deg</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">MoveResponse</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="ServoService.GetPosition"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/service/index.html#viam.components.servo.service.ServoService.GetPosition">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetPosition</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span>
-        <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPositionRequest</span><span class="p">,</span> <span class="n">GetPositionResponse</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="ServoService.GetPosition"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/service/index.html#viam.components.servo.service.ServoService.GetPosition">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPositionRequest</span><span class="p">,</span> <span class="n">GetPositionResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
