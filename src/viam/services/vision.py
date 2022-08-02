@@ -5,25 +5,28 @@ from typing import Any, Dict, List, Tuple
 from grpclib.client import Channel
 from viam.components.types import CameraMimeType
 from viam.proto.api.common import PointCloudObject
-from viam.proto.api.service.vision import (AddDetectorRequest, Detection,
-                                           GetDetectionsRequest,
-                                           GetDetectionsResponse,
-                                           GetDetectorNamesRequest,
-                                           GetDetectorNamesResponse,
-                                           GetObjectPointCloudsRequest,
-                                           GetObjectPointCloudsResponse,
-                                           GetSegmenterNamesRequest,
-                                           GetSegmenterNamesResponse,
-                                           GetSegmenterParametersRequest,
-                                           GetSegmenterParametersResponse,
-                                           VisionServiceStub)
+from viam.proto.api.service.vision import (
+    AddDetectorRequest,
+    Detection,
+    GetDetectionsRequest,
+    GetDetectionsResponse,
+    GetDetectorNamesRequest,
+    GetDetectorNamesResponse,
+    GetObjectPointCloudsRequest,
+    GetObjectPointCloudsResponse,
+    GetSegmenterNamesRequest,
+    GetSegmenterNamesResponse,
+    GetSegmenterParametersRequest,
+    GetSegmenterParametersResponse,
+    VisionServiceStub,
+)
 from viam.utils import dict_to_struct
 
 
 class DetectorType(str, Enum):
-    TF_LITE = 'tflite'
-    TENSORFLOW = 'tensorflow'
-    COLOR = 'color'
+    TF_LITE = "tflite"
+    TENSORFLOW = "tensorflow"
+    COLOR = "color"
 
 
 @dataclass
@@ -62,9 +65,7 @@ class VisionClient:
             detector (DetectorConfig): The configuration of the detector to add.
         """
         request = AddDetectorRequest(
-            detector_name=detector.name,
-            detector_model_type=detector.type,
-            detector_parameters=dict_to_struct(detector.parameters)
+            detector_name=detector.name, detector_model_type=detector.type, detector_parameters=dict_to_struct(detector.parameters)
         )
         await self.client.AddDetector(request)
 
@@ -92,14 +93,10 @@ class VisionClient:
             List[str]: The segmenter names
         """
         request = GetSegmenterNamesRequest()
-        response: GetSegmenterNamesResponse = \
-            await self.client.GetSegmenterNames(request)
+        response: GetSegmenterNamesResponse = await self.client.GetSegmenterNames(request)
         return list(response.segmenter_names)
 
-    async def get_segmenter_parameters(
-        self,
-        segmenter_name: str
-    ) -> List[Tuple[str, str]]:
+    async def get_segmenter_parameters(self, segmenter_name: str) -> List[Tuple[str, str]]:
         """
         Get the parameter fields needed for the given segmenter.
 
@@ -112,16 +109,10 @@ class VisionClient:
                 The second item in the tuple is the type of the parameter.
         """
         request = GetSegmenterParametersRequest(segmenter_name=segmenter_name)
-        response: GetSegmenterParametersResponse = \
-            await self.client.GetSegmenterParameters(request)
+        response: GetSegmenterParametersResponse = await self.client.GetSegmenterParameters(request)
         return [(x.name, x.type) for x in response.segmenter_parameters]
 
-    async def get_object_point_clouds(
-        self,
-        camera_name: str,
-        segmenter_name: str,
-        parameters: Dict[str, Any]
-    ) -> List[PointCloudObject]:
+    async def get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Dict[str, Any]) -> List[PointCloudObject]:
         """
         Returns a list of the 3D point cloud objects and associated metadata in the latest
         picture obtained from the specified 3D camera (using the specified segmenter).
@@ -139,8 +130,7 @@ class VisionClient:
             camera_name=camera_name,
             segmenter_name=segmenter_name,
             mime_type=CameraMimeType.PCD.value,
-            parameters=dict_to_struct(parameters)
+            parameters=dict_to_struct(parameters),
         )
-        response: GetObjectPointCloudsResponse = \
-            await self.client.GetObjectPointClouds(request)
+        response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request)
         return list(response.objects)

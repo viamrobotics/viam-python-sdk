@@ -7,7 +7,6 @@ from ..component_base import ComponentBase
 
 
 class Motor(ComponentBase):
-
     @dataclass
     class Features:
         position_reporting: bool
@@ -118,4 +117,4 @@ class Motor(ComponentBase):
         Returns:
             bool: Whether the motor is moving.
         """
-        raise NotSupportedError(f'Motor named {self.name} does not support returning whether it is moving')
+        raise NotSupportedError(f"Motor named {self.name} does not support returning whether it is moving")

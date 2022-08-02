@@ -2,15 +2,17 @@ from typing import Any, Dict
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.component.imu import (IMUServiceStub,
-                                          ReadAccelerationRequest,
-                                          ReadAccelerationResponse,
-                                          ReadAngularVelocityRequest,
-                                          ReadAngularVelocityResponse,
-                                          ReadMagnetometerRequest,
-                                          ReadMagnetometerResponse,
-                                          ReadOrientationRequest,
-                                          ReadOrientationResponse)
+from viam.proto.api.component.imu import (
+    IMUServiceStub,
+    ReadAccelerationRequest,
+    ReadAccelerationResponse,
+    ReadAngularVelocityRequest,
+    ReadAngularVelocityResponse,
+    ReadMagnetometerRequest,
+    ReadMagnetometerResponse,
+    ReadOrientationRequest,
+    ReadOrientationResponse,
+)
 
 from .imu import IMU, Acceleration, AngularVelocity, Magnetometer, Orientation
 
@@ -27,26 +29,22 @@ class IMUClient(IMU):
 
     async def read_acceleration(self) -> Acceleration:
         request = ReadAccelerationRequest(name=self.name)
-        response: ReadAccelerationResponse = \
-            await self.client.ReadAcceleration(request)
+        response: ReadAccelerationResponse = await self.client.ReadAcceleration(request)
         return response.acceleration
 
     async def read_angular_velocity(self) -> AngularVelocity:
         request = ReadAngularVelocityRequest(name=self.name)
-        response: ReadAngularVelocityResponse = \
-            await self.client.ReadAngularVelocity(request)
+        response: ReadAngularVelocityResponse = await self.client.ReadAngularVelocity(request)
         return response.angular_velocity
 
     async def read_orientation(self) -> Orientation:
         request = ReadOrientationRequest(name=self.name)
-        response: ReadOrientationResponse = \
-            await self.client.ReadOrientation(request)
+        response: ReadOrientationResponse = await self.client.ReadOrientation(request)
         return Orientation(euler_angles=response.orientation)
 
     async def read_magnetometer(self) -> Magnetometer:
         request = ReadMagnetometerRequest(name=self.name)
-        response: ReadMagnetometerResponse = \
-            await self.client.ReadMagnetometer(request)
+        response: ReadMagnetometerResponse = await self.client.ReadMagnetometer(request)
         return response.magnetometer
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:

@@ -5,14 +5,14 @@ from .client import CameraClient
 from .service import CameraService
 
 __all__ = [
-    'Camera',
-    'IntrinsicParameters',
+    "Camera",
+    "IntrinsicParameters",
 ]
 
 Registry.register(
     ComponentRegistration(
         Camera,
-        'camera',
+        "camera",
         CameraService,
         lambda name, channel: CameraClient(name, channel),
     )

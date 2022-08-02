@@ -4,51 +4,47 @@ from typing import Any, Dict, List, Optional
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.common import BoardStatus
-from viam.proto.api.component.board import (BoardServiceStub,
-                                            GetDigitalInterruptValueRequest,
-                                            GetDigitalInterruptValueResponse,
-                                            GetGPIORequest, GetGPIOResponse,
-                                            PWMFrequencyRequest,
-                                            PWMFrequencyResponse, PWMRequest,
-                                            PWMResponse,
-                                            ReadAnalogReaderRequest,
-                                            ReadAnalogReaderResponse,
-                                            SetGPIORequest,
-                                            SetPWMFrequencyRequest,
-                                            SetPWMRequest, StatusRequest,
-                                            StatusResponse)
+from viam.proto.api.component.board import (
+    BoardServiceStub,
+    GetDigitalInterruptValueRequest,
+    GetDigitalInterruptValueResponse,
+    GetGPIORequest,
+    GetGPIOResponse,
+    PWMFrequencyRequest,
+    PWMFrequencyResponse,
+    PWMRequest,
+    PWMResponse,
+    ReadAnalogReaderRequest,
+    ReadAnalogReaderResponse,
+    SetGPIORequest,
+    SetPWMFrequencyRequest,
+    SetPWMRequest,
+    StatusRequest,
+    StatusResponse,
+)
 
 from .board import Board, PostProcessor
 
 
 class AnalogReaderClient(Board.AnalogReader):
-    def __init__(self, name: str, board: 'BoardClient'):
+    def __init__(self, name: str, board: "BoardClient"):
         self.board = board
         super().__init__(name)
 
     async def read(self) -> int:
-        request = ReadAnalogReaderRequest(
-            board_name=self.board.name,
-            analog_reader_name=self.name
-
-        )
-        response: ReadAnalogReaderResponse = \
-            await self.board.client.ReadAnalogReader(request)
+        request = ReadAnalogReaderRequest(board_name=self.board.name, analog_reader_name=self.name)
+        response: ReadAnalogReaderResponse = await self.board.client.ReadAnalogReader(request)
         return response.value
 
 
 class DigitalInterruptClient(Board.DigitalInterrupt):
-    def __init__(self, name: str, board: 'BoardClient'):
+    def __init__(self, name: str, board: "BoardClient"):
         self.board = board
         super().__init__(name)
 
     async def value(self) -> int:
-        request = GetDigitalInterruptValueRequest(
-            board_name=self.board.name,
-            digital_interrupt_name=self.name
-        )
-        response: GetDigitalInterruptValueResponse = \
-            await self.board.client.GetDigitalInterruptValue(request)
+        request = GetDigitalInterruptValueRequest(board_name=self.board.name, digital_interrupt_name=self.name)
+        response: GetDigitalInterruptValueResponse = await self.board.client.GetDigitalInterruptValue(request)
         return response.value
 
     async def tick(self, high: bool, nanos: int):
@@ -62,7 +58,7 @@ class DigitalInterruptClient(Board.DigitalInterrupt):
 
 
 class GPIOPinClient(Board.GPIOPin):
-    def __init__(self, name: str, board: 'BoardClient'):
+    def __init__(self, name: str, board: "BoardClient"):
         self.board = board
         super().__init__(name)
 
@@ -72,8 +68,7 @@ class GPIOPinClient(Board.GPIOPin):
         return response.high
 
     async def set(self, high: bool):
-        request = SetGPIORequest(name=self.board.name,
-                                 pin=self.name, high=high)
+        request = SetGPIORequest(name=self.board.name, pin=self.name, high=high)
         await self.board.client.SetGPIO(request)
 
     async def get_pwm(self) -> float:
@@ -82,19 +77,16 @@ class GPIOPinClient(Board.GPIOPin):
         return response.duty_cycle_pct
 
     async def set_pwm(self, duty_cycle: float):
-        request = SetPWMRequest(name=self.board.name, pin=self.name,
-                                duty_cycle_pct=duty_cycle)
+        request = SetPWMRequest(name=self.board.name, pin=self.name, duty_cycle_pct=duty_cycle)
         await self.board.client.SetPWM(request)
 
     async def get_pwm_frequency(self) -> int:
         request = PWMFrequencyRequest(name=self.board.name, pin=self.name)
-        response: PWMFrequencyResponse = \
-            await self.board.client.PWMFrequency(request)
+        response: PWMFrequencyResponse = await self.board.client.PWMFrequency(request)
         return response.frequency_hz
 
     async def set_pwm_frequency(self, frequency: int):
-        request = SetPWMFrequencyRequest(
-            name=self.board.name, pin=self.name, frequency_hz=frequency)
+        request = SetPWMFrequencyRequest(name=self.board.name, pin=self.name, frequency_hz=frequency)
         await self.board.client.SetPWMFrequency(request)
 
 
@@ -113,10 +105,7 @@ class BoardClient(Board):
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
         return AnalogReaderClient(name, self)
 
-    async def digital_interrupt_by_name(
-        self,
-        name: str
-    ) -> Board.DigitalInterrupt:
+    async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
         return DigitalInterruptClient(name, self)
 
     async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:

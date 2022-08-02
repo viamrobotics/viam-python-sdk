@@ -10,11 +10,11 @@ LOGGERS: Dict[str, logging.Logger] = {}
 class ColorFormatter(logging.Formatter):
 
     MAPPING = {
-        'DEBUG': 37,     # white
-        'INFO': 36,      # cyan
-        'WARNING': 33,   # yellow
-        'ERROR': 31,     # red
-        'CRITICAL': 41,  # white on red bg
+        "DEBUG": 37,  # white
+        "INFO": 36,  # cyan
+        "WARNING": 33,  # yellow
+        "ERROR": 31,  # red
+        "CRITICAL": 41,  # white on red bg
     }
 
     def __init__(self, patern):
@@ -24,7 +24,7 @@ class ColorFormatter(logging.Formatter):
         colored_record = copy(record)
         levelname = colored_record.levelname
         seq = self.MAPPING.get(levelname, 37)  # default white
-        colored_levelname = f'\x1b[33;{seq}m{levelname}\x1b[0m'
+        colored_levelname = f"\x1b[33;{seq}m{levelname}\x1b[0m"
         colored_record.levelname = colored_levelname
         return super().format(colored_record)
 
@@ -36,12 +36,7 @@ def getLogger(name: str) -> logging.Logger:
     logger = logging.getLogger(name)
     logger.setLevel(LOG_LEVEL)
     handler = logging.StreamHandler()
-    format = ColorFormatter(
-        '%(asctime)s\t\t' +
-        '%(levelname)s\t' +
-        '%(name)s (%(filename)s:%(lineno)d)\t' +
-        '%(message)s\t'
-    )
+    format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
     handler.setFormatter(format)
     logger.addHandler(handler)
     LOGGERS[name] = logger

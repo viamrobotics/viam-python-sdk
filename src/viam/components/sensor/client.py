@@ -2,9 +2,7 @@ from typing import Any, Dict, List
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.component.sensor import (GetReadingsRequest,
-                                             GetReadingsResponse,
-                                             SensorServiceStub)
+from viam.proto.api.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceStub
 from viam.utils import value_to_primitive
 
 from .sensor import Sensor

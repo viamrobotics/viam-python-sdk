@@ -7,7 +7,8 @@ from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.sensor import (
     SensorServiceBase,
-    GetReadingsRequest, GetReadingsResponse,
+    GetReadingsRequest,
+    GetReadingsResponse,
 )
 from viam.utils import primitive_to_value
 
@@ -21,10 +22,7 @@ class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
 
     RESOURCE_TYPE = Sensor
 
-    async def GetReadings(
-        self,
-        stream: Stream[GetReadingsRequest, GetReadingsResponse]
-    ) -> None:
+    async def GetReadings(self, stream: Stream[GetReadingsRequest, GetReadingsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name

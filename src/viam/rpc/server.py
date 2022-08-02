@@ -22,10 +22,7 @@ class Server(ResourceManager):
     gRPC Server
     """
 
-    def __init__(
-        self,
-        components: List[ComponentBase]
-    ):
+    def __init__(self, components: List[ComponentBase]):
         """
         Initialize the Server with a list of components
         to be managed.
@@ -38,29 +35,24 @@ class Server(ResourceManager):
         services = [
             SignalingService(),
             RobotService(manager=self),
-            *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_COMPONENTS.values()]
+            *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_COMPONENTS.values()],
         ]
         services = ServerReflection.extend(services)
         self._server = GRPCServer(services)
 
-    async def _grpc_event_handler(
-        self,
-        event: RecvRequest
-    ):
+    async def _grpc_event_handler(self, event: RecvRequest):
         host = None
         port = None
         address = event.peer.addr()
         if address:
             host = address[0]
             port = address[1]
-        msg = '[gRPC Request] ' + \
-              f'{host or "xxxx"}:{port or "xxxx"} - ' + \
-              f'{event.method_name}'
+        msg = "[gRPC Request] " + f'{host or "xxxx"}:{port or "xxxx"} - ' + f"{event.method_name}"
         LOGGER.info(msg)
 
     async def serve(
         self,
-        host: str = 'localhost',
+        host: str = "localhost",
         port: int = 9090,
         log_level: int = logging.INFO,
     ):
@@ -80,15 +72,12 @@ class Server(ResourceManager):
         listen(self._server, RecvRequest, self._grpc_event_handler)
 
         loop = asyncio.get_running_loop()
-        for signame in {'SIGINT', 'SIGTERM'}:
-            loop.add_signal_handler(
-                getattr(signal, signame),
-                self.close
-            )
+        for signame in {"SIGINT", "SIGTERM"}:
+            loop.add_signal_handler(getattr(signal, signame), self.close)
 
         with graceful_exit([self._server]):
             await self._server.start(host, port)
-            LOGGER.info(f'Serving on {host}:{port}')
+            LOGGER.info(f"Serving on {host}:{port}")
             await self._server.wait_closed()
 
     def close(self):

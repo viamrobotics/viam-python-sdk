@@ -5,13 +5,13 @@ from .sensor import Sensor
 from .service import SensorService
 
 __all__ = [
-    'Sensor',
+    "Sensor",
 ]
 
 Registry.register(
     ComponentRegistration(
         Sensor,
-        'sensor',
+        "sensor",
         SensorService,
         lambda name, channel: SensorClient(name, channel),
     )

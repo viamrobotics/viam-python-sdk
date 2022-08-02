@@ -4,7 +4,7 @@ from .component_base import ComponentBase
 from ..errors import ComponentNotFoundError, DuplicateComponentError
 
 
-ResourceType = TypeVar('ResourceType', bound=ComponentBase)
+ResourceType = TypeVar("ResourceType", bound=ComponentBase)
 
 
 class ResourceManager:
@@ -35,11 +35,7 @@ class ResourceManager:
             raise DuplicateComponentError(component.name)
         self.components[component.name] = component
 
-    def get_component(
-        self,
-        of_type: Type[ResourceType],
-        name: str
-    ) -> ResourceType:
+    def get_component(self, of_type: Type[ResourceType], name: str) -> ResourceType:
         """
         Return a component from the registry.
 
@@ -59,6 +55,6 @@ class ResourceManager:
             return component
 
         class_name = str(of_type)
-        if len(class_name.split('.')) > 2:
-            class_name = class_name.split('.')[2]
+        if len(class_name.split(".")) > 2:
+            class_name = class_name.split(".")[2]
         raise ComponentNotFoundError(class_name, name)

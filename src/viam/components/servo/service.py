@@ -1,10 +1,15 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.servo import (GetPositionRequest,
-                                            GetPositionResponse, MoveRequest,
-                                            MoveResponse, ServoServiceBase,
-                                            StopRequest, StopResponse)
+from viam.proto.api.component.servo import (
+    GetPositionRequest,
+    GetPositionResponse,
+    MoveRequest,
+    MoveResponse,
+    ServoServiceBase,
+    StopRequest,
+    StopResponse,
+)
 
 from .servo import Servo
 
@@ -16,10 +21,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
 
     RESOURCE_TYPE = Servo
 
-    async def Move(
-        self,
-        stream: Stream[MoveRequest, MoveResponse]
-    ) -> None:
+    async def Move(self, stream: Stream[MoveRequest, MoveResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -30,10 +32,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         await servo.move(request.angle_deg)
         await stream.send_message(MoveResponse())
 
-    async def GetPosition(
-        self,
-        stream: Stream[GetPositionRequest, GetPositionResponse]
-    ) -> None:
+    async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name

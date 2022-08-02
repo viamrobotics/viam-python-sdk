@@ -3,6 +3,7 @@ from typing import Any, Dict, cast, TYPE_CHECKING
 from typing_extensions import Self
 
 from viam.proto.api.common import ResourceName
+
 if TYPE_CHECKING:
     from viam.robot.client import RobotClient
 
@@ -26,30 +27,20 @@ class ComponentBase(abc.ABC):
         """
         for klass in cls.mro():
             class_name = str(klass)
-            if 'viam.components' not in class_name:
+            if "viam.components" not in class_name:
                 continue
-            if 'ComponentBase' in class_name:
+            if "ComponentBase" in class_name:
                 continue
 
-            subtype = class_name \
-                .split('viam.components.')[1] \
-                .split('.')[0]
+            subtype = class_name.split("viam.components.")[1].split(".")[0]
 
-            return ResourceName(
-                namespace='rdk',
-                type='component',
-                subtype=subtype,
-                name=name
-            )
+            return ResourceName(namespace="rdk", type="component", subtype=subtype, name=name)
 
         # Getting here should be impossible!
-        raise TypeError(
-            f'Unable to create a ResourceName for {cls} named {name}.' +
-            'This should not be possible. Please file an issue.'
-        )
+        raise TypeError(f"Unable to create a ResourceName for {cls} named {name}." + "This should not be possible. Please file an issue.")
 
     @classmethod
-    def from_robot(cls, robot: 'RobotClient', name: str) -> Self:
+    def from_robot(cls, robot: "RobotClient", name: str) -> Self:
         """Get the component named `name` from the provided robot.
 
         Args:

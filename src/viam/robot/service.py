@@ -6,23 +6,32 @@ from viam import logging
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import MethodNotImplementedError, ViamGRPCError
 from viam.proto.api.common import ResourceName
-from viam.proto.api.robot import (BlockForOperationRequest,
-                                  BlockForOperationResponse,
-                                  CancelOperationRequest,
-                                  CancelOperationResponse,
-                                  DiscoverComponentsRequest,
-                                  DiscoverComponentsResponse,
-                                  FrameSystemConfigRequest,
-                                  FrameSystemConfigResponse,
-                                  GetOperationsRequest, GetOperationsResponse,
-                                  GetStatusRequest, GetStatusResponse,
-                                  ResourceNamesRequest, ResourceNamesResponse,
-                                  ResourceRPCSubtypesRequest,
-                                  ResourceRPCSubtypesResponse,
-                                  RobotServiceBase, Status, StopAllRequest,
-                                  StopAllResponse, StreamStatusRequest,
-                                  StreamStatusResponse, TransformPoseRequest,
-                                  TransformPoseResponse)
+from viam.proto.api.robot import (
+    BlockForOperationRequest,
+    BlockForOperationResponse,
+    CancelOperationRequest,
+    CancelOperationResponse,
+    DiscoverComponentsRequest,
+    DiscoverComponentsResponse,
+    FrameSystemConfigRequest,
+    FrameSystemConfigResponse,
+    GetOperationsRequest,
+    GetOperationsResponse,
+    GetStatusRequest,
+    GetStatusResponse,
+    ResourceNamesRequest,
+    ResourceNamesResponse,
+    ResourceRPCSubtypesRequest,
+    ResourceRPCSubtypesResponse,
+    RobotServiceBase,
+    Status,
+    StopAllRequest,
+    StopAllResponse,
+    StreamStatusRequest,
+    StreamStatusResponse,
+    TransformPoseRequest,
+    TransformPoseResponse,
+)
 from viam.registry import Registry
 from viam.utils import resource_names_for_component, struct_to_dict
 
@@ -30,7 +39,6 @@ LOGGER = logging.getLogger(__name__)
 
 
 class RobotService(RobotServiceBase, ComponentServiceBase):
-
     def _generate_metadata(self) -> List[ResourceName]:
         md: List[ResourceName] = []
 
@@ -39,10 +47,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
 
         return md
 
-    async def _generate_status(
-        self,
-        resource_names: Iterable[ResourceName]
-    ) -> List[Status]:
+    async def _generate_status(self, resource_names: Iterable[ResourceName]) -> List[Status]:
         statuses: List[Status] = []
 
         for component in self.manager.components.values():
@@ -118,7 +123,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
 
         errors: List[str] = []
         for component in self.manager.components.values():
-            if callable(getattr(component, 'stop', None)):
+            if callable(getattr(component, "stop", None)):
                 try:
                     rn = component.get_resource_name(component.name)
                     if rn in extra:
@@ -129,7 +134,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
                     else:
                         await component.stop()  # type: ignore
                 except Exception:
-                    LOGGER.exception(f'Failed to stop component named {component.name}')
+                    LOGGER.exception(f"Failed to stop component named {component.name}")
                     errors.append(component.name)
 
         if errors:

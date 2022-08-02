@@ -9,12 +9,12 @@ class GPS(ComponentBase):
     """
     GPS represents a GPS unit that can report latitude/longitude, altitude, and speed measurements.
 
-    This acts as an abstract base class for any drivers representing specific 
+    This acts as an abstract base class for any drivers representing specific
     GPS implementations. This cannot be used on its own. If the `__init__()` function is
     overriden, it must call the `super().__init__()` function.
     """
 
-    Point = namedtuple('Point', ['lat', 'lng'])
+    Point = namedtuple("Point", ["lat", "lng"])
 
     @abc.abstractmethod
     async def read_location(self) -> Point:

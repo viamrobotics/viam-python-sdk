@@ -1,10 +1,7 @@
 from typing import Any, Dict
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
-from viam.proto.api.component.generic import (
-    GenericServiceStub,
-    DoRequest, DoResponse
-)
+from viam.proto.api.component.generic import GenericServiceStub, DoRequest, DoResponse
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .generic import Generic

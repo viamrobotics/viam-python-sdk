@@ -27,12 +27,7 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def move_to_position(
-        self,
-        pose: Pose,
-        world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None
-    ):
+    async def move_to_position(self, pose: Pose, world_state: Optional[WorldState] = None, extra: Optional[Dict[str, Any]] = None):
         """
         Move the end of the arm to the Pose specified in `pose`.
         When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
@@ -80,4 +75,4 @@ class Arm(ComponentBase):
         Returns:
             bool: Whether the arm is moving.
         """
-        raise NotSupportedError(f'Arm named {self.name} does not support returning whether it is moving')
+        raise NotSupportedError(f"Arm named {self.name} does not support returning whether it is moving")

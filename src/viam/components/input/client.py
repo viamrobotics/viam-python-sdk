@@ -10,9 +10,15 @@ from viam.components.generic.client import do_command
 from viam.errors import NotSupportedError
 from viam.logging import getLogger
 from viam.proto.api.component.inputcontroller import (
-    GetControlsRequest, GetControlsResponse, GetEventsRequest,
-    GetEventsResponse, InputControllerServiceStub, StreamEventsRequest,
-    StreamEventsResponse, TriggerEventRequest)
+    GetControlsRequest,
+    GetControlsResponse,
+    GetEventsRequest,
+    GetEventsResponse,
+    InputControllerServiceStub,
+    StreamEventsRequest,
+    StreamEventsResponse,
+    TriggerEventRequest,
+)
 
 from .input import Control, ControlFunction, Controller, Event, EventType
 
@@ -20,8 +26,7 @@ LOGGER = getLogger(__name__)
 
 
 class ControllerClient(Controller):
-    """gRPC client for an Input Controller
-    """
+    """gRPC client for an Input Controller"""
 
     def __init__(self, name: str, channel: Channel):
         self.channel = channel
@@ -57,13 +62,13 @@ class ControllerClient(Controller):
         def handle_task_result(task: asyncio.Task):
             try:
                 result = task.result()
-                LOGGER.debug(f'Task {task.get_name()} returned with result {result}')
+                LOGGER.debug(f"Task {task.get_name()} returned with result {result}")
             except asyncio.CancelledError:
                 pass
             except Exception:
-                LOGGER.exception('Exception raised by task = %r', task)
+                LOGGER.exception("Exception raised by task = %r", task)
 
-        task = asyncio.create_task(self._stream_events(), name=f'{viam._TASK_PREFIX}-input_stream_events')
+        task = asyncio.create_task(self._stream_events(), name=f"{viam._TASK_PREFIX}-input_stream_events")
         task.add_done_callback(handle_task_result)
 
     async def trigger_event(self, event: Event):
@@ -71,8 +76,8 @@ class ControllerClient(Controller):
         try:
             await self.client.TriggerEvent(request)
         except GRPCError as e:
-            if e.status == Status.UNIMPLEMENTED and ('does not support triggering events' in e.message if e.message else False):
-                raise NotSupportedError(f'Input controller named {self.name} does not support triggering events')
+            if e.status == Status.UNIMPLEMENTED and ("does not support triggering events" in e.message if e.message else False):
+                raise NotSupportedError(f"Input controller named {self.name} does not support triggering events")
 
     async def _stream_events(self):
         with self._stream_lock:
@@ -89,7 +94,8 @@ class ControllerClient(Controller):
                 event = StreamEventsRequest.Events(
                     control=control,
                     events=[et for (et, func) in callbacks.items() if func is not None],
-                    cancelled_events=[et for (et, func) in callbacks.items() if func is None])
+                    cancelled_events=[et for (et, func) in callbacks.items() if func is None],
+                )
                 request.events.append(event)
 
         try:
@@ -110,12 +116,7 @@ class ControllerClient(Controller):
 
     def _send_connection_status(self, connected: bool):
         for control in self.callbacks.keys():
-            event = Event(
-                time=time(),
-                event=EventType.CONNECT if connected else EventType.DISCONNECT,
-                control=control,
-                value=0
-            )
+            event = Event(time=time(), event=EventType.CONNECT if connected else EventType.DISCONNECT, control=control, value=0)
             self._execute_callback(event)
 
     def _execute_callback(self, event: Event):

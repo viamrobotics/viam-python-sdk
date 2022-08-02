@@ -3,10 +3,14 @@ from typing import Any, Dict, Optional
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.common import Vector3
-from viam.proto.api.component.base import (BaseServiceStub,
-                                           MoveStraightRequest,
-                                           SetPowerRequest, SetVelocityRequest,
-                                           SpinRequest, StopRequest)
+from viam.proto.api.component.base import (
+    BaseServiceStub,
+    MoveStraightRequest,
+    SetPowerRequest,
+    SetVelocityRequest,
+    SpinRequest,
+    StopRequest,
+)
 from viam.utils import dict_to_struct
 
 from .base import Base
@@ -22,12 +26,7 @@ class BaseClient(Base):
         self.client = BaseServiceStub(channel)
         super().__init__(name)
 
-    async def move_straight(
-        self,
-        distance: int,
-        velocity: float,
-        extra: Optional[Dict[str, Any]] = None
-    ):
+    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None):
         if extra is None:
             extra = {}
         request = MoveStraightRequest(

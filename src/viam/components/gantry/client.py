@@ -3,13 +3,15 @@ from typing import Any, Dict, List, Optional
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.common import WorldState
-from viam.proto.api.component.gantry import (GantryServiceStub,
-                                             GetLengthsRequest,
-                                             GetLengthsResponse,
-                                             GetPositionRequest,
-                                             GetPositionResponse,
-                                             MoveToPositionRequest,
-                                             StopRequest)
+from viam.proto.api.component.gantry import (
+    GantryServiceStub,
+    GetLengthsRequest,
+    GetLengthsResponse,
+    GetPositionRequest,
+    GetPositionResponse,
+    MoveToPositionRequest,
+    StopRequest,
+)
 from viam.utils import dict_to_struct
 
 from .gantry import Gantry

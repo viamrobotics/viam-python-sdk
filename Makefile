@@ -1,6 +1,12 @@
 clean:
 	find . -type d -name '__pycache__' | xargs rm -rf
 
+lint:
+	poetry run flake8 --exclude="**/gen/**"
+
+format:
+	poetry run black --exclude ".*/gen/.*" ./src
+
 buf:
 	rm -rf src/viam/gen
 	buf generate buf.build/viamrobotics/goutils
