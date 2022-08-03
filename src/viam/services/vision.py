@@ -89,7 +89,7 @@ class VisionClient:
         return list(response.detections)
 
     async def get_detections(self, image: Image, detector_name: str) -> List[Detection]:
-        """Get a list of detections in the next image given a camera and a detector
+        """Get a list of detections in the given image using the specified detector
 
         Args:
             image (Image): The image to get detections from
