@@ -1,8 +1,5 @@
-from io import BytesIO
-
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
-from PIL.Image import Image
 from viam.components.service_base import ComponentServiceBase
 from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
@@ -27,20 +24,6 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
 
     RESOURCE_TYPE = Camera
 
-    def _get_image_bytes(self, image: Image, mimetype: CameraMimeType) -> bytes:
-        if mimetype == CameraMimeType.RAW:
-            return image.convert("RGBA").tobytes("raw", "RGBA")
-        elif mimetype == CameraMimeType.JPEG:
-            buf = BytesIO()
-            image.save(buf, format="JPEG")
-            return buf.getvalue()
-        elif mimetype == CameraMimeType.PNG:
-            buf = BytesIO()
-            image.save(buf, format="PNG")
-            return buf.getvalue()
-        else:
-            raise ValueError(f"Cannot encode image to {mimetype}")
-
     async def GetFrame(self, stream: Stream[GetFrameRequest, GetFrameResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -62,7 +45,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
                 width_px=image.width,
                 height_px=image.height,
             )
-            img_bytes = self._get_image_bytes(image, mimetype)
+            img_bytes = mimetype.encode_image(image)
         finally:
             image.close()
         response.image = img_bytes
@@ -81,7 +64,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             mimetype = CameraMimeType.JPEG
         image = await camera.get_frame()
         try:
-            img = self._get_image_bytes(await camera.get_frame(), mimetype)
+            img = mimetype.encode_image(await camera.get_frame())
         finally:
             image.close()
         response = HttpBody(data=img, content_type=mimetype)

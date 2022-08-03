@@ -3,11 +3,14 @@ from enum import Enum
 from typing import Any, Dict, List, Tuple
 
 from grpclib.client import Channel
+from PIL.Image import Image
 from viam.components.types import CameraMimeType
 from viam.proto.api.common import PointCloudObject
 from viam.proto.api.service.vision import (
     AddDetectorRequest,
     Detection,
+    GetDetectionsFromCameraRequest,
+    GetDetectionsFromCameraResponse,
     GetDetectionsRequest,
     GetDetectionsResponse,
     GetDetectorNamesRequest,
@@ -69,7 +72,7 @@ class VisionClient:
         )
         await self.client.AddDetector(request)
 
-    async def get_detections(self, camera_name: str, detector_name: str) -> List[Detection]:
+    async def get_detections_from_camera(self, camera_name: str, detector_name: str) -> List[Detection]:
         """Get a list of detections in the next image given a camera and a detector
 
         Args:
@@ -81,7 +84,26 @@ class VisionClient:
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
         """
-        request = GetDetectionsRequest(camera_name=camera_name, detector_name=detector_name)
+        request = GetDetectionsFromCameraRequest(camera_name=camera_name, detector_name=detector_name)
+        response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request)
+        return list(response.detections)
+
+    async def get_detections(self, image: Image, detector_name: str) -> List[Detection]:
+        """Get a list of detections in the next image given a camera and a detector
+
+        Args:
+            image (Image): The image to get detections from
+            detector_name (str): The name of the detector to use for detection
+
+        Returns:
+            List[Detection]: A list of 2D bounding boxes, their labels, and the
+            confidence score of the labels, around the found objects in the next 2D image
+            from the given camera, with the given detector applied to it.
+        """
+        mime_type = CameraMimeType.JPEG
+        request = GetDetectionsRequest(
+            image=mime_type.encode_image(image), width=image.width, height=image.height, mime_type=mime_type, detector_name=detector_name
+        )
         response: GetDetectionsResponse = await self.client.GetDetections(request)
         return list(response.detections)
 
