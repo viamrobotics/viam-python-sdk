@@ -5,13 +5,15 @@ from viam.components.gantry.service import GantryService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
-from viam.proto.api.component.gantry import (GantryServiceStub,
-                                             GetLengthsRequest,
-                                             GetLengthsResponse,
-                                             GetPositionRequest,
-                                             GetPositionResponse,
-                                             MoveToPositionRequest,
-                                             StopRequest)
+from viam.proto.api.component.gantry import (
+    GantryServiceStub,
+    GetLengthsRequest,
+    GetLengthsResponse,
+    GetPositionRequest,
+    GetPositionResponse,
+    MoveToPositionRequest,
+    StopRequest,
+)
 from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockGantry
@@ -19,7 +21,7 @@ from .mocks.components import MockGantry
 
 class TestGantry:
 
-    gantry = MockGantry('gantry', [1, 2, 3], [4, 5, 6])
+    gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
 
     @pytest.mark.asyncio
     async def test_get_position(self):
@@ -39,7 +41,7 @@ class TestGantry:
     @pytest.mark.asyncio
     async def test_do(self):
         with pytest.raises(NotImplementedError):
-            await self.gantry.do({'command': 'args'})
+            await self.gantry.do({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_stop(self):
@@ -59,13 +61,7 @@ class TestGantry:
         await self.gantry.move_to_position([1, 2, 3])
         status = await create_status(self.gantry)
         assert status.name == MockGantry.get_resource_name(self.gantry.name)
-        assert status.status == message_to_struct(
-            GantryStatus(
-                lengths_mm=[4, 5, 6],
-                positions_mm=[1, 2, 3],
-                is_moving=True
-            )
-        )
+        assert status.status == message_to_struct(GantryStatus(lengths_mm=[4, 5, 6], positions_mm=[1, 2, 3], is_moving=True))
 
     @pytest.mark.asyncio
     async def test_extra(self):
@@ -77,7 +73,7 @@ class TestGantry:
 
 class TestService:
 
-    gantry = MockGantry('gantry', [1, 2, 3], [4, 5, 6])
+    gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
     manager = ResourceManager([gantry])
     service = GantryService(manager)
 
@@ -93,8 +89,7 @@ class TestService:
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
-            request = MoveToPositionRequest(
-                name=self.gantry.name, positions_mm=[1, 8, 2])
+            request = MoveToPositionRequest(name=self.gantry.name, positions_mm=[1, 8, 2])
             await client.MoveToPosition(request)
             assert self.gantry.position == [1, 8, 2]
 
@@ -128,7 +123,7 @@ class TestService:
 
 class TestClient:
 
-    gantry = MockGantry('gantry', [1, 2, 3], [4, 5, 6])
+    gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
     manager = ResourceManager([gantry])
     service = GantryService(manager)
 
@@ -158,7 +153,7 @@ class TestClient:
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = GantryClient(self.gantry.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({'command': 'args'})
+                await client.do({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_stop(self):

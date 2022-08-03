@@ -14,23 +14,18 @@ from viam.components.camera import Camera, IntrinsicParameters
 from viam.components.gantry import Gantry
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
-from viam.components.imu import (IMU, Acceleration, AngularVelocity,
-                                 EulerAngles, Magnetometer, Orientation)
-from viam.components.input import (Control, ControlFunction, Controller, Event,
-                                   EventType)
+from viam.components.imu import IMU, Acceleration, AngularVelocity, EulerAngles, Magnetometer, Orientation
+from viam.components.input import Control, ControlFunction, Controller, Event, EventType
 from viam.components.motor import Motor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.common import (AnalogStatus, BoardStatus,
-                                   DigitalInterruptStatus, Pose, PoseInFrame,
-                                   Vector3, WorldState)
+from viam.proto.api.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, Pose, PoseInFrame, Vector3, WorldState
 from viam.proto.api.component.arm import JointPositions
 
 
 class ExampleArm(Arm):
-
     def __init__(self, name: str):
         self.position = Pose(
             x=1,
@@ -49,7 +44,8 @@ class ExampleArm(Arm):
         return self.position
 
     async def move_to_position(
-        self, pose: Pose,
+        self,
+        pose: Pose,
         world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
     ):
@@ -71,7 +67,6 @@ class ExampleArm(Arm):
 
 
 class ExampleBase(Base):
-
     def __init__(self, name: str):
         self.position = 0
         self.angle = 0
@@ -82,12 +77,7 @@ class ExampleBase(Base):
         self.angular_vel = Vector3(x=0, y=0, z=0)
         super().__init__(name)
 
-    async def move_straight(
-        self,
-        distance: int,
-        velocity: float,
-        extra: Optional[Dict[str, Any]] = None
-    ):
+    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None):
         if distance == 0 or velocity == 0:
             return await self.stop()
 
@@ -125,7 +115,6 @@ class ExampleBase(Base):
 
 
 class ExampleAnalogReader(Board.AnalogReader):
-
     def __init__(self, name: str, value: int):
         self.value = value
         super().__init__(name)
@@ -135,7 +124,6 @@ class ExampleAnalogReader(Board.AnalogReader):
 
 
 class ExampleDigitalInterrupt(Board.DigitalInterrupt):
-
     def __init__(self, name: str):
         self.high = False
         self.last_tick = 0
@@ -160,7 +148,6 @@ class ExampleDigitalInterrupt(Board.DigitalInterrupt):
 
 
 class ExampleGPIOPin(Board.GPIOPin):
-
     def __init__(self, name: str):
         self.high = False
         self.pwm = 0.0
@@ -187,13 +174,13 @@ class ExampleGPIOPin(Board.GPIOPin):
 
 
 class ExampleBoard(Board):
-
-    def __init__(self,
-                 name: str,
-                 analog_readers: Dict[str, Board.AnalogReader],
-                 digital_interrupts: Dict[str, Board.DigitalInterrupt],
-                 gpio_pins: Dict[str, Board.GPIOPin]
-                 ):
+    def __init__(
+        self,
+        name: str,
+        analog_readers: Dict[str, Board.AnalogReader],
+        digital_interrupts: Dict[str, Board.DigitalInterrupt],
+        gpio_pins: Dict[str, Board.GPIOPin],
+    ):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
         self.gpios = gpio_pins
@@ -203,22 +190,19 @@ class ExampleBoard(Board):
         try:
             return self.analog_readers[name]
         except KeyError:
-            raise ComponentNotFoundError('Board.AnalogReader', name)
+            raise ComponentNotFoundError("Board.AnalogReader", name)
 
-    async def digital_interrupt_by_name(
-        self,
-        name: str
-    ) -> Board.DigitalInterrupt:
+    async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
         try:
             return self.digital_interrupts[name]
         except KeyError:
-            raise ComponentNotFoundError('Board.DigitalInterrupt', name)
+            raise ComponentNotFoundError("Board.DigitalInterrupt", name)
 
     async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:
         try:
             return self.gpios[name]
         except KeyError:
-            raise ComponentNotFoundError('Board.GPIOPin', name)
+            raise ComponentNotFoundError("Board.GPIOPin", name)
 
     async def analog_reader_names(self) -> List[str]:
         return [key for key in self.analog_readers.keys()]
@@ -228,14 +212,8 @@ class ExampleBoard(Board):
 
     async def status(self) -> BoardStatus:
         return BoardStatus(
-            analogs={
-                name: AnalogStatus(value=await analog.read())
-                for (name, analog) in self.analog_readers.items()
-            },
-            digital_interrupts={
-                name: DigitalInterruptStatus(value=await di.value())
-                for (name, di) in self.digital_interrupts.items()
-            }
+            analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
+            digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
         )
 
     async def model_attributes(self) -> Board.Attributes:
@@ -261,14 +239,14 @@ class ExampleCamera(Camera):
 class ExampleController(Controller):
 
     CONTROL_MAP: Dict[int, Control] = {
-        0:   Control.ABSOLUTE_X,
-        1:   Control.ABSOLUTE_Y,
-        2:   Control.ABSOLUTE_Z,
-        3:   Control.ABSOLUTE_RX,
-        4:   Control.ABSOLUTE_RY,
-        5:   Control.ABSOLUTE_RZ,
-        16:  Control.ABSOLUTE_HAT0_X,
-        17:  Control.ABSOLUTE_HAT0_Y,
+        0: Control.ABSOLUTE_X,
+        1: Control.ABSOLUTE_Y,
+        2: Control.ABSOLUTE_Z,
+        3: Control.ABSOLUTE_RX,
+        4: Control.ABSOLUTE_RY,
+        5: Control.ABSOLUTE_RZ,
+        16: Control.ABSOLUTE_HAT0_X,
+        17: Control.ABSOLUTE_HAT0_Y,
         304: Control.BUTTON_SOUTH,
         305: Control.BUTTON_EAST,
         307: Control.BUTTON_WEST,
@@ -288,12 +266,12 @@ class ExampleController(Controller):
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
         self.lock = Lock()
 
-        self.f = open('/dev/input/event0', 'rb')
+        self.f = open("/dev/input/event0", "rb")
         asyncio.get_running_loop().add_reader(self.f, self._read_input)
 
     def _read_input(self):
         data = self.f.read(24)
-        raw = struct.unpack('4IHHI', data)
+        raw = struct.unpack("4IHHI", data)
         if raw[4:] == (0, 0, 0):
             return
         secs = raw[0]
@@ -309,12 +287,7 @@ class ExampleController(Controller):
                 e_type = EventType.BUTTON_PRESS
         if value == 4294967295:
             value = -1
-        event = Event(
-            time=float(((secs*1e9)+nanos)/1e9),
-            control=control,
-            event=e_type,
-            value=value
-        )
+        event = Event(time=float(((secs * 1e9) + nanos) / 1e9), control=control, event=e_type, value=value)
         with self.lock:
             self.last_events[control] = event
 
@@ -357,12 +330,7 @@ class ExampleController(Controller):
         with self.lock:
             return {key: value for (key, value) in self.last_events.items()}
 
-    def register_control_callback(
-        self,
-        control: Control,
-        triggers: List[EventType],
-        function: Optional[ControlFunction]
-    ):
+    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction]):
         with self.lock:
             callbacks = self.callbacks.get(control, {})
             for trigger in triggers:
@@ -375,13 +343,7 @@ class ExampleController(Controller):
 
 
 class ExampleGantry(Gantry):
-
-    def __init__(
-        self,
-        name: str,
-        position: List[float],
-        lengths: List[float]
-    ):
+    def __init__(self, name: str, position: List[float], lengths: List[float]):
         self.position = position
         self.lengths = lengths
         self.is_stopped = True
@@ -410,14 +372,7 @@ class ExampleGantry(Gantry):
 
 
 class ExampleGPS(GPS):
-
-    def __init__(
-        self,
-        name: str,
-        location: GPS.Point,
-        altitude: float,
-        speed: float
-    ):
+    def __init__(self, name: str, location: GPS.Point, altitude: float, speed: float):
         self.location = location
         self.altitude = altitude
         self.speed = speed
@@ -434,7 +389,6 @@ class ExampleGPS(GPS):
 
 
 class ExampleGripper(Gripper):
-
     def __init__(self, name: str):
         self.opened = False
         self.is_stopped = True
@@ -457,39 +411,23 @@ class ExampleGripper(Gripper):
 
 
 class ExampleIMU(IMU):
-
     async def read_acceleration(self) -> Acceleration:
         return Acceleration(
-            x_mm_per_sec_per_sec=random.random(),
-            y_mm_per_sec_per_sec=random.random(),
-            z_mm_per_sec_per_sec=random.random()
+            x_mm_per_sec_per_sec=random.random(), y_mm_per_sec_per_sec=random.random(), z_mm_per_sec_per_sec=random.random()
         )
 
     async def read_angular_velocity(self) -> AngularVelocity:
-        return AngularVelocity(
-            x_degs_per_sec=random.random(),
-            y_degs_per_sec=random.random(),
-            z_degs_per_sec=random.random()
-        )
+        return AngularVelocity(x_degs_per_sec=random.random(), y_degs_per_sec=random.random(), z_degs_per_sec=random.random())
 
     async def read_orientation(self) -> Orientation:
-        angles = EulerAngles(
-            roll_deg=random.random(),
-            pitch_deg=random.random(),
-            yaw_deg=random.random()
-        )
+        angles = EulerAngles(roll_deg=random.random(), pitch_deg=random.random(), yaw_deg=random.random())
         return Orientation(euler_angles=angles)
 
     async def read_magnetometer(self) -> Magnetometer:
-        return Magnetometer(
-            x_gauss=random.random(),
-            y_gauss=random.random(),
-            z_gauss=random.random()
-        )
+        return Magnetometer(x_gauss=random.random(), y_gauss=random.random(), z_gauss=random.random())
 
 
 class ExampleMotor(Motor):
-
     def __init__(self, name: str):
         self.position: float = 0
         self.power = 0
@@ -498,12 +436,12 @@ class ExampleMotor(Motor):
         super().__init__(name)
 
     async def run_continuously(self, rpm: float):
-        rps = rpm/60
+        rps = rpm / 60
         while True:
             await asyncio.sleep(1)
             self.position += rps
 
-    async def set_power(self, power: float):
+    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None):
         self.power = power
         self.powered = power != 0
         if self.powered:
@@ -512,26 +450,26 @@ class ExampleMotor(Motor):
             if self.task:
                 self.task.cancel()
 
-    async def go_for(self, rpm: float, revolutions: float):
+    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None):
         if self.task:
             self.task.cancel()
         target = 0
-        rps = rpm/60
+        rps = rpm / 60
         if rpm > 0:
             target = self.position + revolutions
         if rpm < 0:
             target = self.position - revolutions
         self.powered = True
-        while abs(self.position-target) > 0.01:
+        while abs(self.position - target) > 0.01:
             await asyncio.sleep(1)
             self.position += rps
         self.powered = False
 
-    async def go_to(self, rpm: float, position_revolutions: float):
+    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None):
         if self.task:
             self.task.cancel()
         distance = position_revolutions - self.position
-        rps = rpm/60
+        rps = rpm / 60
         self.powered = True
         while distance > 0:
             await asyncio.sleep(1)
@@ -539,24 +477,23 @@ class ExampleMotor(Motor):
             self.position += rps
         self.powered = False
 
-    async def reset_zero_position(self, offset: float):
-        if (self.position > 0 and offset > 0) \
-                or (self.position < 0 and offset < 0):
+    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None):
+        if (self.position > 0 and offset > 0) or (self.position < 0 and offset < 0):
             self.position = offset
         else:
             self.position += offset
         self.powered = False
 
-    async def get_position(self) -> float:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> float:
         return self.position
 
-    async def get_features(self) -> Motor.Features:
+    async def get_features(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Features:
         return Motor.Features(position_reporting=True)
 
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         await self.set_power(0)
 
-    async def is_powered(self) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool:
         return self.powered
 
     async def is_moving(self):
@@ -564,39 +501,15 @@ class ExampleMotor(Motor):
 
 
 class ExamplePoseTracker(PoseTracker):
-
     async def get_poses(self, body_names: List[str]) -> Dict[str, PoseInFrame]:
         all_poses = {
-            "body1": PoseInFrame(
-                reference_frame='0',
-                pose=Pose(
-                    x=1,
-                    y=2,
-                    z=3,
-                    o_x=2,
-                    o_y=3,
-                    o_z=4,
-                    theta=20
-                )
-            ),
-            "body2": PoseInFrame(
-                reference_frame='0',
-                pose=Pose(
-                    x=3,
-                    y=2,
-                    z=3,
-                    o_x=4,
-                    o_y=3,
-                    o_z=4,
-                    theta=40
-                )
-            )
+            "body1": PoseInFrame(reference_frame="0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)),
+            "body2": PoseInFrame(reference_frame="0", pose=Pose(x=3, y=2, z=3, o_x=4, o_y=3, o_z=4, theta=40)),
         }
         return {k: v for k, v in all_poses.items() if k in body_names}
 
 
 class ExampleSensor(Sensor):
-
     def __init__(self, name: str):
         self.num_readings = random.randint(1, 10)
         super().__init__(name)
@@ -606,7 +519,6 @@ class ExampleSensor(Sensor):
 
 
 class ExampleServo(Servo):
-
     def __init__(self, name: str):
         self.angle = 0
         self.is_stopped = True
