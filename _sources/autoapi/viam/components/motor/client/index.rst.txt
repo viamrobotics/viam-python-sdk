@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the Motor component.
 
-   .. py:method:: set_power(self, power: float)
+   .. py:method:: set_power(self, power: float, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Sets the "percentage" of power the motor should employ between -1 and 1.
@@ -34,7 +34,7 @@ Classes
       :type power: float
 
 
-   .. py:method:: go_for(self, rpm: float, revolutions: float)
+   .. py:method:: go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Spin the motor the specified number of `revolutions` at specified `rpm`.
@@ -49,7 +49,7 @@ Classes
       :type revolutions: float
 
 
-   .. py:method:: go_to(self, rpm: float, position_revolutions: float)
+   .. py:method:: go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Spin the motor to the specified position (provided in revolutions from home/zero),
@@ -63,7 +63,7 @@ Classes
       :type position_revolutions: float
 
 
-   .. py:method:: reset_zero_position(self, offset: float)
+   .. py:method:: reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Set the current position (modified by `offset`) to be the new zero (home) position.
@@ -72,7 +72,7 @@ Classes
       :type offset: float
 
 
-   .. py:method:: get_position(self) -> float
+   .. py:method:: get_position(self, extra: Optional[Dict[str, Any]] = None) -> float
       :async:
 
       Report the position of the motor based on its encoder.
@@ -83,7 +83,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_features(self) -> viam.components.motor.motor.Motor.Features
+   .. py:method:: get_features(self, extra: Optional[Dict[str, Any]] = None) -> viam.components.motor.motor.Motor.Features
       :async:
 
       Report a dictionary mapping optional features to
@@ -93,13 +93,13 @@ Classes
       :rtype: Features
 
 
-   .. py:method:: stop(self)
+   .. py:method:: stop(self, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Stop the motor immediately, without any gradual step down.
 
 
-   .. py:method:: is_powered(self) -> bool
+   .. py:method:: is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool
       :async:
 
       Returns whether or not the motor is currently running.

@@ -83,11 +83,8 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.components.camera.service</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-
-<span class="kn">from</span> <span class="nn">google.api.httpbody_pb2</span> <span class="kn">import</span> <span class="n">HttpBody</span>
+<span></span><span class="kn">from</span> <span class="nn">google.api.httpbody_pb2</span> <span class="kn">import</span> <span class="n">HttpBody</span>
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
-<span class="kn">from</span> <span class="nn">PIL.Image</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.components.types</span> <span class="kn">import</span> <span class="n">CameraMimeType</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
@@ -112,20 +109,6 @@
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Camera</span>
 
-    <span class="k">def</span> <span class="nf">_get_image_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">mimetype</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">mimetype</span> <span class="o">==</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">RAW</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tobytes</span><span class="p">(</span><span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="s2">&quot;RGBA&quot;</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">mimetype</span> <span class="o">==</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">:</span>
-            <span class="n">buf</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
-            <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;JPEG&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="n">mimetype</span> <span class="o">==</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PNG</span><span class="p">:</span>
-            <span class="n">buf</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
-            <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;PNG&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot encode image to </span><span class="si">{</span><span class="n">mimetype</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
 <div class="viewcode-block" id="CameraService.GetFrame"><a class="viewcode-back" href="../../../../autoapi/viam/components/camera/service/index.html#viam.components.camera.service.CameraService.GetFrame">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetFrameRequest</span><span class="p">,</span> <span class="n">GetFrameResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -147,7 +130,7 @@
                 <span class="n">width_px</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
                 <span class="n">height_px</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
             <span class="p">)</span>
-            <span class="n">img_bytes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_image_bytes</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">mimetype</span><span class="p">)</span>
+            <span class="n">img_bytes</span> <span class="o">=</span> <span class="n">mimetype</span><span class="o">.</span><span class="n">encode_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">image</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="n">response</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">img_bytes</span>
@@ -166,7 +149,7 @@
             <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
         <span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_frame</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_image_bytes</span><span class="p">(</span><span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_frame</span><span class="p">(),</span> <span class="n">mimetype</span><span class="p">)</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">mimetype</span><span class="o">.</span><span class="n">encode_image</span><span class="p">(</span><span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_frame</span><span class="p">())</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">image</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">HttpBody</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">img</span><span class="p">,</span> <span class="n">content_type</span><span class="o">=</span><span class="n">mimetype</span><span class="p">)</span>

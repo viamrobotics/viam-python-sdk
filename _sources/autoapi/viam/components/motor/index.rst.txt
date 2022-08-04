@@ -43,7 +43,7 @@ Classes
          
 
 
-   .. py:method:: set_power(self, power: float)
+   .. py:method:: set_power(self, power: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -55,7 +55,7 @@ Classes
       :type power: float
 
 
-   .. py:method:: go_for(self, rpm: float, revolutions: float)
+   .. py:method:: go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -71,7 +71,7 @@ Classes
       :type revolutions: float
 
 
-   .. py:method:: go_to(self, rpm: float, position_revolutions: float)
+   .. py:method:: go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -86,7 +86,7 @@ Classes
       :type position_revolutions: float
 
 
-   .. py:method:: reset_zero_position(self, offset: float)
+   .. py:method:: reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -96,7 +96,7 @@ Classes
       :type offset: float
 
 
-   .. py:method:: get_position(self) -> float
+   .. py:method:: get_position(self, extra: Optional[Dict[str, Any]] = None) -> float
       :abstractmethod:
       :async:
 
@@ -108,7 +108,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_features(self) -> Features
+   .. py:method:: get_features(self, extra: Optional[Dict[str, Any]] = None) -> Features
       :abstractmethod:
       :async:
 
@@ -119,14 +119,14 @@ Classes
       :rtype: Features
 
 
-   .. py:method:: stop(self)
+   .. py:method:: stop(self, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
       Stop the motor immediately, without any gradual step down.
 
 
-   .. py:method:: is_powered(self) -> bool
+   .. py:method:: is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool
       :abstractmethod:
       :async:
 

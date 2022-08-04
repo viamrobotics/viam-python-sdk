@@ -659,7 +659,7 @@
         <li><a href="autoapi/viam/components/camera/camera/index.html#viam.components.camera.camera.Camera">(class in viam.components.camera.camera)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.camera_name">camera_name (viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraRequest.camera_name">camera_name (viam.proto.api.service.vision.GetDetectionsFromCameraRequest attribute)</a>
 
       <ul>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetObjectPointCloudsRequest.camera_name">(viam.proto.api.service.vision.GetObjectPointCloudsRequest attribute)</a>
@@ -861,13 +861,19 @@
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection">Detection (class in viam.proto.api.service.vision)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsResponse.detections">detections (viam.proto.api.service.vision.GetDetectionsResponse property)</a>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraResponse.detections">detections (viam.proto.api.service.vision.GetDetectionsFromCameraResponse property)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsResponse.detections">(viam.proto.api.service.vision.GetDetectionsResponse property)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest.detector_model_type">detector_model_type (viam.proto.api.service.vision.AddDetectorRequest attribute)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest.detector_name">detector_name (viam.proto.api.service.vision.AddDetectorRequest attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraRequest.detector_name">(viam.proto.api.service.vision.GetDetectionsFromCameraRequest attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.detector_name">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
       </ul></li>
@@ -1037,6 +1043,8 @@
 </li>
       <li><a href="autoapi/viam/proto/rpc/examples/echo/index.html#viam.proto.rpc.examples.echo.EchoServiceStub">EchoServiceStub (class in viam.proto.rpc.examples.echo)</a>
 </li>
+      <li><a href="autoapi/viam/components/types/index.html#viam.components.types.CameraMimeType.encode_image">encode_image() (viam.components.types.CameraMimeType method)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/component/arm/index.html#viam.proto.api.component.arm.Status.end_position">end_position (viam.proto.api.component.arm.Status property)</a>
 </li>
       <li><a href="autoapi/viam/proto/rpc/auth/index.html#viam.proto.rpc.auth.AuthenticateRequest.entity">entity (viam.proto.rpc.auth.AuthenticateRequest attribute)</a>
@@ -1147,6 +1155,22 @@
         <li><a href="autoapi/viam/proto/api/component/gantry/index.html#viam.proto.api.component.gantry.MoveToPositionRequest.extra">(viam.proto.api.component.gantry.MoveToPositionRequest property)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/gantry/index.html#viam.proto.api.component.gantry.StopRequest.extra">(viam.proto.api.component.gantry.StopRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GetFeaturesRequest.extra">(viam.proto.api.component.motor.GetFeaturesRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GetPositionRequest.extra">(viam.proto.api.component.motor.GetPositionRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GoForRequest.extra">(viam.proto.api.component.motor.GoForRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GoToRequest.extra">(viam.proto.api.component.motor.GoToRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.IsPoweredRequest.extra">(viam.proto.api.component.motor.IsPoweredRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.ResetZeroPositionRequest.extra">(viam.proto.api.component.motor.ResetZeroPositionRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.SetPowerRequest.extra">(viam.proto.api.component.motor.SetPowerRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.StopRequest.extra">(viam.proto.api.component.motor.StopRequest property)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.StopAllRequest.extra">(viam.proto.api.robot.StopAllRequest property)</a>
 </li>
@@ -1278,6 +1302,8 @@
 </li>
       </ul></li>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detections">get_detections() (viam.services.vision.VisionClient method)</a>
+</li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detections_from_camera">get_detections_from_camera() (viam.services.vision.VisionClient method)</a>
 </li>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detector_names">get_detector_names() (viam.services.vision.VisionClient method)</a>
 </li>
@@ -1425,6 +1451,12 @@
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.GetDetections">GetDetections() (viam.proto.api.service.vision.VisionServiceBase method)</a>
 </li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.GetDetectionsFromCamera">GetDetectionsFromCamera() (viam.proto.api.service.vision.VisionServiceBase method)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraRequest">GetDetectionsFromCameraRequest (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraResponse">GetDetectionsFromCameraResponse (class in viam.proto.api.service.vision)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest">GetDetectionsRequest (class in viam.proto.api.service.vision)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsResponse">GetDetectionsResponse (class in viam.proto.api.service.vision)</a>
@@ -1493,6 +1525,8 @@
       </ul></li>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.GetGPIORequest">GetGPIORequest (class in viam.proto.api.component.board)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.GetGPIOResponse">GetGPIOResponse (class in viam.proto.api.component.board)</a>
 </li>
       <li><a href="autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmService.GetJointPositions">GetJointPositions() (viam.components.arm.service.ArmService method)</a>
@@ -1501,8 +1535,6 @@
         <li><a href="autoapi/viam/proto/api/component/arm/index.html#viam.proto.api.component.arm.ArmServiceBase.GetJointPositions">(viam.proto.api.component.arm.ArmServiceBase method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/arm/index.html#viam.proto.api.component.arm.GetJointPositionsRequest">GetJointPositionsRequest (class in viam.proto.api.component.arm)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/arm/index.html#viam.proto.api.component.arm.GetJointPositionsResponse">GetJointPositionsResponse (class in viam.proto.api.component.arm)</a>
@@ -1856,6 +1888,22 @@
 </li>
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.TriggerEventRequest.HasField">(viam.proto.api.component.inputcontroller.TriggerEventRequest method)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GetFeaturesRequest.HasField">(viam.proto.api.component.motor.GetFeaturesRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GetPositionRequest.HasField">(viam.proto.api.component.motor.GetPositionRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GoForRequest.HasField">(viam.proto.api.component.motor.GoForRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GoToRequest.HasField">(viam.proto.api.component.motor.GoToRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.IsPoweredRequest.HasField">(viam.proto.api.component.motor.IsPoweredRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.ResetZeroPositionRequest.HasField">(viam.proto.api.component.motor.ResetZeroPositionRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.SetPowerRequest.HasField">(viam.proto.api.component.motor.SetPowerRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.StopRequest.HasField">(viam.proto.api.component.motor.StopRequest method)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#viam.proto.api.component.posetracker.GetPosesResponse.BodyPosesEntry.HasField">(viam.proto.api.component.posetracker.GetPosesResponse.BodyPosesEntry method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.Discovery.HasField">(viam.proto.api.robot.Discovery method)</a>
@@ -1956,7 +2004,11 @@
 </li>
       </ul></li>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.Video.height">height (viam.proto.api.component.camera.Video attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.height">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.IntrinsicParameters.height_px">height_px (viam.components.camera.IntrinsicParameters attribute)</a>
 
       <ul>
@@ -2000,6 +2052,8 @@
       <ul>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetMapResponse.image">(viam.proto.api.service.slam.GetMapResponse attribute)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.image">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
+</li>
       </ul></li>
       <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.IMU">IMU (class in viam.components.imu)</a>
 
@@ -2041,10 +2095,10 @@
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.WorldState.interaction_spaces">(viam.proto.api.common.WorldState property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.GetPropertiesResponse.intrinsic_parameters">intrinsic_parameters (viam.proto.api.component.camera.GetPropertiesResponse property)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.GetPropertiesResponse.intrinsic_parameters">intrinsic_parameters (viam.proto.api.component.camera.GetPropertiesResponse property)</a>
+</li>
       <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.IntrinsicParameters">IntrinsicParameters (class in viam.components.camera)</a>
 
       <ul>
@@ -2281,6 +2335,8 @@
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetMapRequest.mime_type">(viam.proto.api.service.slam.GetMapRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetMapResponse.mime_type">(viam.proto.api.service.slam.GetMapResponse attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.mime_type">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetObjectPointCloudsRequest.mime_type">(viam.proto.api.service.vision.GetObjectPointCloudsRequest attribute)</a>
 </li>
@@ -6065,7 +6121,11 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.Video.width">width (viam.proto.api.component.camera.Video attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.width">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.RectangularPrism.width_mm">width_mm (viam.proto.api.common.RectangularPrism attribute)</a>
 </li>
       <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.IntrinsicParameters.width_px">width_px (viam.components.camera.IntrinsicParameters attribute)</a>

@@ -88,11 +88,14 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+<span class="kn">from</span> <span class="nn">PIL.Image</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">from</span> <span class="nn">viam.components.types</span> <span class="kn">import</span> <span class="n">CameraMimeType</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">PointCloudObject</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.service.vision</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AddDetectorRequest</span><span class="p">,</span>
     <span class="n">Detection</span><span class="p">,</span>
+    <span class="n">GetDetectionsFromCameraRequest</span><span class="p">,</span>
+    <span class="n">GetDetectionsFromCameraResponse</span><span class="p">,</span>
     <span class="n">GetDetectionsRequest</span><span class="p">,</span>
     <span class="n">GetDetectionsResponse</span><span class="p">,</span>
     <span class="n">GetDetectorNamesRequest</span><span class="p">,</span>
@@ -154,7 +157,7 @@
         <span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">AddDetector</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VisionClient.get_detections"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detections">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detector_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">]:</span>
+<div class="viewcode-block" id="VisionClient.get_detections_from_camera"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detections_from_camera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections_from_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detector_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;Get a list of detections in the next image given a camera and a detector</span>
 
 <span class="sd">        Args:</span>
@@ -166,7 +169,26 @@
 <span class="sd">            confidence score of the labels, around the found objects in the next 2D image</span>
 <span class="sd">            from the given camera, with the given detector applied to it.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsRequest</span><span class="p">(</span><span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">detector_name</span><span class="o">=</span><span class="n">detector_name</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsFromCameraRequest</span><span class="p">(</span><span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">detector_name</span><span class="o">=</span><span class="n">detector_name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetDetectionsFromCameraResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDetectionsFromCamera</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detections</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VisionClient.get_detections"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detections">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">detector_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get a list of detections in the given image using the specified detector</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            image (Image): The image to get detections from</span>
+<span class="sd">            detector_name (str): The name of the detector to use for detection</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Detection]: A list of 2D bounding boxes, their labels, and the</span>
+<span class="sd">            confidence score of the labels, around the found objects in the next 2D image</span>
+<span class="sd">            from the given camera, with the given detector applied to it.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsRequest</span><span class="p">(</span>
+            <span class="n">image</span><span class="o">=</span><span class="n">mime_type</span><span class="o">.</span><span class="n">encode_image</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">mime_type</span><span class="o">=</span><span class="n">mime_type</span><span class="p">,</span> <span class="n">detector_name</span><span class="o">=</span><span class="n">detector_name</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDetectionsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDetections</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detections</span><span class="p">)</span></div>
 

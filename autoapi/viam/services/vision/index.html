@@ -77,6 +77,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.VisionClient">VisionClient</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_detector_names">get_detector_names</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.add_detector">add_detector</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_detections_from_camera">get_detections_from_camera</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_detections">get_detections</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_segmenter_names">get_segmenter_names</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_segmenter_parameters">get_segmenter_parameters</a></li>
@@ -230,13 +231,35 @@ vision service documentation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.services.vision.VisionClient.get_detections">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_detections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection" title="viam.proto.api.service.vision.Detection"><span class="pre">viam.proto.api.service.vision.Detection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionClient.get_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient.get_detections" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.services.vision.VisionClient.get_detections_from_camera">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_detections_from_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection" title="viam.proto.api.service.vision.Detection"><span class="pre">viam.proto.api.service.vision.Detection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionClient.get_detections_from_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient.get_detections_from_camera" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of detections in the next image given a camera and a detector</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>camera_name</strong> (<em>str</em>) – The name of the camera to use for detection</p></li>
+<li><p><strong>detector_name</strong> (<em>str</em>) – The name of the detector to use for detection</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of 2D bounding boxes, their labels, and the
+confidence score of the labels, around the found objects in the next 2D image
+from the given camera, with the given detector applied to it.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection" title="viam.proto.api.service.vision.Detection">Detection</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.VisionClient.get_detections">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_detections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PIL.Image.Image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection" title="viam.proto.api.service.vision.Detection"><span class="pre">viam.proto.api.service.vision.Detection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionClient.get_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient.get_detections" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of detections in the given image using the specified detector</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>Image</em>) – The image to get detections from</p></li>
 <li><p><strong>detector_name</strong> (<em>str</em>) – The name of the detector to use for detection</p></li>
 </ul>
 </dd>

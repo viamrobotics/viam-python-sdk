@@ -95,7 +95,7 @@ Classes
 .. py:class:: MotorServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetFeaturesRequest(*, name: Text = ...)
+.. py:class:: GetFeaturesRequest(*, name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -109,6 +109,29 @@ Classes
       :annotation: :Text
 
       Name of a motor
+
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: GetFeaturesResponse(*, position_reporting: bool = ...)
@@ -127,7 +150,7 @@ Classes
       Returns true if the motor supports reporting its position
 
 
-.. py:class:: GetPositionRequest(*, name: Text = ...)
+.. py:class:: GetPositionRequest(*, name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -141,6 +164,29 @@ Classes
       :annotation: :Text
 
       Name of a motor
+
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: GetPositionResponse(*, position: float = ...)
@@ -159,7 +205,7 @@ Classes
       Current position of the motor relative to its home
 
 
-.. py:class:: GoForRequest(*, name: Text = ..., rpm: float = ..., revolutions: float = ...)
+.. py:class:: GoForRequest(*, name: Text = ..., rpm: float = ..., revolutions: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -184,6 +230,29 @@ Classes
 
       Number of revolutions relative to motor's start position
 
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
 
 .. py:class:: GoForResponse
 
@@ -196,7 +265,7 @@ Classes
    shown below.
 
 
-.. py:class:: GoToRequest(*, name: Text = ..., rpm: float = ..., position_revolutions: float = ...)
+.. py:class:: GoToRequest(*, name: Text = ..., rpm: float = ..., position_revolutions: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -221,6 +290,29 @@ Classes
 
       Number of revolutions relative to motor's home home/zero
 
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
 
 .. py:class:: GoToResponse
 
@@ -233,7 +325,7 @@ Classes
    shown below.
 
 
-.. py:class:: IsPoweredRequest(*, name: Text = ...)
+.. py:class:: IsPoweredRequest(*, name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -247,6 +339,29 @@ Classes
       :annotation: :Text
 
       Name of a motor
+
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: IsPoweredResponse(*, is_on: bool = ...)
@@ -265,7 +380,7 @@ Classes
       Returns true if the motor is on
 
 
-.. py:class:: ResetZeroPositionRequest(*, name: Text = ..., offset: float = ...)
+.. py:class:: ResetZeroPositionRequest(*, name: Text = ..., offset: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -285,6 +400,29 @@ Classes
 
       Motor position
 
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
 
 .. py:class:: ResetZeroPositionResponse
 
@@ -297,7 +435,7 @@ Classes
    shown below.
 
 
-.. py:class:: SetPowerRequest(*, name: Text = ..., power_pct: float = ...)
+.. py:class:: SetPowerRequest(*, name: Text = ..., power_pct: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -316,6 +454,29 @@ Classes
       :annotation: :float
 
       Percentage of motor's power, between -1 and 1
+
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: SetPowerResponse
@@ -360,7 +521,7 @@ Classes
       Returns true if the motor is moving
 
 
-.. py:class:: StopRequest(*, name: Text = ...)
+.. py:class:: StopRequest(*, name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
 
 
 
@@ -374,6 +535,29 @@ Classes
       :annotation: :Text
 
       Name of a motor
+
+   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: StopResponse
