@@ -1,5 +1,6 @@
 import abc
 from dataclasses import dataclass
+from typing import Any, Dict, Optional
 
 from viam.errors import NotSupportedError
 
@@ -20,7 +21,7 @@ class Motor(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def set_power(self, power: float):
+    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None):
         """
         Sets the "percentage" of power the motor should employ between -1 and 1.
         When `power` is negative, the rotation will be in the backward direction.
@@ -32,7 +33,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def go_for(self, rpm: float, revolutions: float):
+    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None):
         """
         Spin the motor the specified number of `revolutions` at specified `rpm`.
         When `rpm` or `revolutions` is a negative value, the rotation will be in the backward direction.
@@ -47,7 +48,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def go_to(self, rpm: float, position_revolutions: float):
+    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None):
         """
         Spin the motor to the specified position (provided in revolutions from home/zero),
         at the specified speed, in revolutions per minute.
@@ -61,7 +62,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def reset_zero_position(self, offset: float):
+    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None):
         """
         Set the current position (modified by `offset`) to be the new zero (home) position.
 
@@ -71,7 +72,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_position(self) -> float:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> float:
         """
         Report the position of the motor based on its encoder.
         The value returned is the number of revolutions relative to its zero position.
@@ -83,7 +84,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_features(self) -> Features:
+    async def get_features(self, extra: Optional[Dict[str, Any]] = None) -> Features:
         """
         Report a dictionary mapping optional features to
         whether it is supported by this motor.
@@ -94,14 +95,14 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         """
         Stop the motor immediately, without any gradual step down.
         """
         ...
 
     @abc.abstractmethod
-    async def is_powered(self) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool:
         """
         Returns whether or not the motor is currently running.
 

@@ -66,17 +66,26 @@ global___AddDetectorResponse = AddDetectorResponse
 
 class GetDetectionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    CAMERA_NAME_FIELD_NUMBER: builtins.int
+    IMAGE_FIELD_NUMBER: builtins.int
+    WIDTH_FIELD_NUMBER: builtins.int
+    HEIGHT_FIELD_NUMBER: builtins.int
+    MIME_TYPE_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
-    camera_name: typing.Text
-    'name of camera source to use as input'
+    image: builtins.bytes
+    'the image, encoded as bytes'
+    width: builtins.int
+    'the width of the image'
+    height: builtins.int
+    'the height of the image'
+    mime_type: typing.Text
+    'the actual MIME type of image'
     detector_name: typing.Text
     'name of the registered detector to use'
 
-    def __init__(self, *, camera_name: typing.Text=..., detector_name: typing.Text=...) -> None:
+    def __init__(self, *, image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: typing.Text=..., detector_name: typing.Text=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'detector_name', b'detector_name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'width', b'width']) -> None:
         ...
 global___GetDetectionsRequest = GetDetectionsRequest
 
@@ -95,6 +104,38 @@ class GetDetectionsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['detections', b'detections']) -> None:
         ...
 global___GetDetectionsResponse = GetDetectionsResponse
+
+class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CAMERA_NAME_FIELD_NUMBER: builtins.int
+    DETECTOR_NAME_FIELD_NUMBER: builtins.int
+    camera_name: typing.Text
+    'name of camera source to use as input'
+    detector_name: typing.Text
+    'name of the registered detector to use'
+
+    def __init__(self, *, camera_name: typing.Text=..., detector_name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'detector_name', b'detector_name']) -> None:
+        ...
+global___GetDetectionsFromCameraRequest = GetDetectionsFromCameraRequest
+
+class GetDetectionsFromCameraResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DETECTIONS_FIELD_NUMBER: builtins.int
+
+    @property
+    def detections(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]:
+        """the bounding boxes and labels"""
+        pass
+
+    def __init__(self, *, detections: typing.Optional[typing.Iterable[global___Detection]]=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['detections', b'detections']) -> None:
+        ...
+global___GetDetectionsFromCameraResponse = GetDetectionsFromCameraResponse
 
 class Detection(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

@@ -14,23 +14,18 @@ from viam.components.gantry import Gantry
 from viam.components.generic import Generic as GenericComponent
 from viam.components.gps import GPS
 from viam.components.gripper import Gripper
-from viam.components.imu import (IMU, Acceleration, AngularVelocity,
-                                 EulerAngles, Magnetometer, Orientation)
-from viam.components.input import (Control, ControlFunction, Controller, Event,
-                                   EventType)
+from viam.components.imu import IMU, Acceleration, AngularVelocity, EulerAngles, Magnetometer, Orientation
+from viam.components.input import Control, ControlFunction, Controller, Event, EventType
 from viam.components.motor import Motor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.common import (AnalogStatus, BoardStatus,
-                                   DigitalInterruptStatus, Pose, PoseInFrame,
-                                   Vector3, WorldState)
+from viam.proto.api.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, Pose, PoseInFrame, Vector3, WorldState
 
 
 class MockArm(Arm):
-
     def __init__(self, name: str):
         self.position = Pose(
             x=1,
@@ -50,12 +45,7 @@ class MockArm(Arm):
         self.extra = extra
         return self.position
 
-    async def move_to_position(
-        self,
-        pose: Pose,
-        world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None
-    ):
+    async def move_to_position(self, pose: Pose, world_state: Optional[WorldState] = None, extra: Optional[Dict[str, Any]] = None):
         self.position = pose
         self.is_stopped = False
         self.extra = extra
@@ -78,7 +68,6 @@ class MockArm(Arm):
 
 
 class MockBase(Base):
-
     def __init__(self, name: str):
         self.position = 0
         self.angle = 0
@@ -90,12 +79,7 @@ class MockBase(Base):
         self.extra: Optional[Dict[str, Any]] = None
         super().__init__(name)
 
-    async def move_straight(
-        self,
-        distance: int,
-        velocity: float,
-        extra: Optional[Dict[str, Any]] = None
-    ):
+    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None):
         if distance == 0 or velocity == 0:
             return await self.stop()
 
@@ -161,7 +145,6 @@ class MockBase(Base):
 
 
 class MockAnalogReader(Board.AnalogReader):
-
     def __init__(self, name: str, value: int):
         self.value = value
         super().__init__(name)
@@ -171,7 +154,6 @@ class MockAnalogReader(Board.AnalogReader):
 
 
 class MockDigitalInterrupt(Board.DigitalInterrupt):
-
     def __init__(self, name: str):
         self.high = False
         self.last_tick = 0
@@ -196,7 +178,6 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
 
 
 class MockGPIOPin(Board.GPIOPin):
-
     def __init__(self, name: str):
         self.high = False
         self.pwm = 0.0
@@ -223,13 +204,13 @@ class MockGPIOPin(Board.GPIOPin):
 
 
 class MockBoard(Board):
-
-    def __init__(self,
-                 name: str,
-                 analog_readers: Dict[str, Board.AnalogReader],
-                 digital_interrupts: Dict[str, Board.DigitalInterrupt],
-                 gpio_pins: Dict[str, Board.GPIOPin]
-                 ):
+    def __init__(
+        self,
+        name: str,
+        analog_readers: Dict[str, Board.AnalogReader],
+        digital_interrupts: Dict[str, Board.DigitalInterrupt],
+        gpio_pins: Dict[str, Board.GPIOPin],
+    ):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
         self.gpios = gpio_pins
@@ -239,22 +220,19 @@ class MockBoard(Board):
         try:
             return self.analog_readers[name]
         except KeyError:
-            raise ComponentNotFoundError('Board.AnalogReader', name)
+            raise ComponentNotFoundError("Board.AnalogReader", name)
 
-    async def digital_interrupt_by_name(
-        self,
-        name: str
-    ) -> Board.DigitalInterrupt:
+    async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
         try:
             return self.digital_interrupts[name]
         except KeyError:
-            raise ComponentNotFoundError('Board.DigitalInterrupt', name)
+            raise ComponentNotFoundError("Board.DigitalInterrupt", name)
 
     async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:
         try:
             return self.gpios[name]
         except KeyError:
-            raise ComponentNotFoundError('Board.GPIOPin', name)
+            raise ComponentNotFoundError("Board.GPIOPin", name)
 
     async def analog_reader_names(self) -> List[str]:
         return [key for key in self.analog_readers.keys()]
@@ -264,14 +242,8 @@ class MockBoard(Board):
 
     async def status(self) -> BoardStatus:
         return BoardStatus(
-            analogs={
-                name: AnalogStatus(value=await analog.read())
-                for (name, analog) in self.analog_readers.items()
-            },
-            digital_interrupts={
-                name: DigitalInterruptStatus(value=await di.value())
-                for (name, di) in self.digital_interrupts.items()
-            }
+            analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
+            digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
         )
 
     async def model_attributes(self) -> Board.Attributes:
@@ -279,10 +251,9 @@ class MockBoard(Board):
 
 
 class MockCamera(Camera):
-
     def __init__(self, name: str):
-        self.image = Image.new('RGBA', (100, 100), '#AABBCCDD')
-        self.point_cloud = b'THIS IS A POINT CLOUD'
+        self.image = Image.new("RGBA", (100, 100), "#AABBCCDD")
+        self.point_cloud = b"THIS IS A POINT CLOUD"
         self.props = IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
         super().__init__(name)
 
@@ -297,13 +268,7 @@ class MockCamera(Camera):
 
 
 class MockGantry(Gantry):
-
-    def __init__(
-        self,
-        name: str,
-        position: List[float],
-        lengths: List[float]
-    ):
+    def __init__(self, name: str, position: List[float], lengths: List[float]):
         self.position = position
         self.lengths = lengths
         self.is_stopped = True
@@ -337,20 +302,12 @@ class MockGantry(Gantry):
 
 
 class MockGeneric(GenericComponent):
-
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return {key: True for key in command.keys()}
 
 
 class MockGPS(GPS):
-
-    def __init__(
-        self,
-        name: str,
-        location: GPS.Point,
-        altitude: float,
-        speed: float
-    ):
+    def __init__(self, name: str, location: GPS.Point, altitude: float, speed: float):
         self.location = location
         self.altitude = altitude
         self.speed = speed
@@ -367,7 +324,6 @@ class MockGPS(GPS):
 
 
 class MockGripper(Gripper):
-
     def __init__(self, name: str):
         self.opened = False
         self.is_stopped = True
@@ -390,7 +346,6 @@ class MockGripper(Gripper):
 
 
 class MockIMU(IMU):
-
     @dataclass
     class Result:
         acceleration: Acceleration
@@ -398,30 +353,16 @@ class MockIMU(IMU):
         orentation: Orientation
         magnetometer: Magnetometer
 
-    def __init__(self, name: str, result: Result = Result(
-        Acceleration(
-            x_mm_per_sec_per_sec=random(),
-            y_mm_per_sec_per_sec=random(),
-            z_mm_per_sec_per_sec=random()
+    def __init__(
+        self,
+        name: str,
+        result: Result = Result(
+            Acceleration(x_mm_per_sec_per_sec=random(), y_mm_per_sec_per_sec=random(), z_mm_per_sec_per_sec=random()),
+            AngularVelocity(x_degs_per_sec=random(), y_degs_per_sec=random(), z_degs_per_sec=random()),
+            Orientation(euler_angles=EulerAngles(roll_deg=random(), pitch_deg=random(), yaw_deg=random())),
+            Magnetometer(x_gauss=random(), y_gauss=random(), z_gauss=random()),
         ),
-        AngularVelocity(
-            x_degs_per_sec=random(),
-            y_degs_per_sec=random(),
-            z_degs_per_sec=random()
-        ),
-        Orientation(
-            euler_angles=EulerAngles(
-                roll_deg=random(),
-                pitch_deg=random(),
-                yaw_deg=random()
-            )
-        ),
-        Magnetometer(
-            x_gauss=random(),
-            y_gauss=random(),
-            z_gauss=random()
-        )
-    )):
+    ):
         self.acceleration = result.acceleration
         self.angular_velocity = result.angular_velocity
         self.orientation = result.orentation
@@ -442,7 +383,6 @@ class MockIMU(IMU):
 
 
 class MockInputController(Controller):
-
     def __init__(self, name: str):
         super().__init__(name)
         self.events: Dict[Control, Event] = {}
@@ -487,43 +427,51 @@ class MockInputController(Controller):
 
 
 class MockMotor(Motor):
-
     def __init__(self, name: str):
         self.position: float = 0
         self.power = 0
         self.powered = False
+        self.extra = None
         super().__init__(name)
 
-    async def set_power(self, power: float):
+    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None):
         self.power = power
         self.powered = power != 0
+        self.extra = extra
 
-    async def go_for(self, rpm: float, revolutions: float):
+    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None):
         if rpm > 0:
             self.position += revolutions
         if rpm < 0:
             self.position -= revolutions
         self.powered = False
+        self.extra = extra
 
-    async def go_to(self, rpm: float, position_revolutions: float):
+    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None):
         if rpm != 0:
             self.position = position_revolutions
         self.powered = False
+        self.extra = extra
 
-    async def reset_zero_position(self, offset: float):
+    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None):
         self.offset = offset
         self.powered = False
+        self.extra = extra
 
-    async def get_position(self) -> float:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> float:
+        self.extra = extra
         return self.position
 
-    async def get_features(self) -> Motor.Features:
+    async def get_features(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Features:
+        self.extra = extra
         return Motor.Features(position_reporting=True)
 
-    async def stop(self):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None):
         await self.set_power(0)
+        self.extra = extra
 
-    async def is_powered(self) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool:
+        self.extra = extra
         return self.powered
 
     async def is_moving(self) -> bool:
@@ -541,20 +489,11 @@ class MockPose:
     theta: float
 
     def to_pose_in_frame(self, frame_name: str):
-        pose = Pose(
-            x=self.X,
-            y=self.Y,
-            z=self.Z,
-            o_x=self.o_X,
-            o_y=self.o_Y,
-            o_z=self.o_Z,
-            theta=self.theta
-        )
+        pose = Pose(x=self.X, y=self.Y, z=self.Z, o_x=self.o_X, o_y=self.o_Y, o_z=self.o_Z, theta=self.theta)
         return PoseInFrame(reference_frame=frame_name, pose=pose)
 
 
 class MockPoseTracker(PoseTracker):
-
     def __init__(self, name: str, poses: List[MockPose]):
         pose_map: Dict[str, MockPose] = {}
         for idx, pose in enumerate(poses):
@@ -570,10 +509,7 @@ class MockPoseTracker(PoseTracker):
 
 
 class MockSensor(Sensor):
-
-    def __init__(self, name: str, result: List[Any] = [
-        0, {"foo": "bar"}, [1, 8, 2], "Hello world!"
-    ]):
+    def __init__(self, name: str, result: List[Any] = [0, {"foo": "bar"}, [1, 8, 2], "Hello world!"]):
         self.readings = result
         super().__init__(name)
 
@@ -582,7 +518,6 @@ class MockSensor(Sensor):
 
 
 class MockServo(Servo):
-
     def __init__(self, name: str):
         self.angle = 0
         self.is_stopped = True

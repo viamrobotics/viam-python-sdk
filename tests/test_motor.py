@@ -5,39 +5,43 @@ from viam.components.motor import MotorClient, MotorStatus, create_status
 from viam.components.motor.service import MotorService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
-from viam.proto.api.component.motor import (GetFeaturesRequest,
-                                            GetFeaturesResponse,
-                                            GetPositionRequest,
-                                            GetPositionResponse, GoForRequest,
-                                            GoToRequest, IsPoweredRequest,
-                                            IsPoweredResponse,
-                                            MotorServiceStub,
-                                            ResetZeroPositionRequest,
-                                            SetPowerRequest, StopRequest)
-from viam.utils import message_to_struct
+from viam.proto.api.component.motor import (
+    GetFeaturesRequest,
+    GetFeaturesResponse,
+    GetPositionRequest,
+    GetPositionResponse,
+    GoForRequest,
+    GoToRequest,
+    IsPoweredRequest,
+    IsPoweredResponse,
+    MotorServiceStub,
+    ResetZeroPositionRequest,
+    SetPowerRequest,
+    StopRequest,
+)
+from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockMotor
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def motor() -> MockMotor:
-    return MockMotor(name='motor')
+    return MockMotor(name="motor")
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def service(motor: MockMotor) -> MotorService:
     manager = ResourceManager([motor])
     return MotorService(manager)
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def generic_service(motor: MockMotor) -> GenericService:
     manager = ResourceManager([motor])
     return GenericService(manager)
 
 
 class TestMotor:
-
     @pytest.mark.asyncio
     async def test_set_power(self, motor: MockMotor):
         power = 0.32
@@ -109,25 +113,24 @@ class TestMotor:
     @pytest.mark.asyncio
     async def test_do(self, motor: MockMotor):
         with pytest.raises(NotImplementedError):
-            await motor.do({'command': 'args'})
+            await motor.do({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self, motor: MockMotor):
         await motor.set_power(10)
         status = await create_status(motor)
         assert status.name == motor.get_resource_name(motor.name)
-        assert status.status == message_to_struct(
-            MotorStatus(
-                is_powered=True,
-                position=0,
-                position_reporting=True,
-                is_moving=True
-            )
-        )
+        assert status.status == message_to_struct(MotorStatus(is_powered=True, position=0, position_reporting=True, is_moving=True))
+
+    @pytest.mark.asyncio
+    async def test_extra(self, motor: MockMotor):
+        assert motor.extra is None
+        extra = {"foo": "bar", "baz": [1, 2, 3]}
+        await motor.is_powered(extra=extra)
+        assert motor.extra == extra
 
 
 class TestService:
-
     @pytest.mark.asyncio
     async def test_set_power(self, motor: MockMotor, service: MotorService):
         async with ChannelFor([service]) as channel:
@@ -170,19 +173,11 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
 
-            request = GoToRequest(
-                name=motor.name,
-                rpm=30,
-                position_revolutions=20
-            )
+            request = GoToRequest(name=motor.name, rpm=30, position_revolutions=20)
             await client.GoTo(request)
             assert motor.position == 20
 
-            request = GoToRequest(
-                name=motor.name,
-                rpm=-10,
-                position_revolutions=50
-            )
+            request = GoToRequest(name=motor.name, rpm=-10, position_revolutions=50)
             await client.GoTo(request)
             assert motor.position == 50
 
@@ -228,9 +223,19 @@ class TestService:
             response: IsPoweredResponse = await client.IsPowered(request)
             assert response.is_on is False
 
+    @pytest.mark.asyncio
+    async def test_extra(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorServiceStub(channel)
+
+            assert motor.extra is None
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            request = IsPoweredRequest(name=motor.name, extra=dict_to_struct(extra))
+            await client.IsPowered(request)
+            assert motor.extra == extra
+
 
 class TestClient:
-
     @pytest.mark.asyncio
     async def test_set_power(self, motor: MockMotor, service: MotorService):
         async with ChannelFor([service]) as channel:
@@ -320,7 +325,7 @@ class TestClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = MotorClient(motor.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({'command': 'args'})
+                await client.do({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self, motor: MockMotor, service: MotorService):
@@ -328,3 +333,13 @@ class TestClient:
             client = MotorClient(motor.name, channel)
             with pytest.raises(NotSupportedError):
                 await create_status(client)
+
+    @pytest.mark.asyncio
+    async def test_extra(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+
+            assert motor.extra is None
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            await client.is_powered(extra=extra)
+            assert motor.extra == extra
