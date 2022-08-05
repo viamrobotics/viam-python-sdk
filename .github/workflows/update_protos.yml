@@ -35,6 +35,9 @@ jobs:
       - name: Generate better imports
         run: make better_imports
 
+      - name: Format
+        run: make format
+
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v3
         with:
