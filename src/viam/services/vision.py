@@ -100,7 +100,7 @@ class VisionClient:
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
         """
-        mime_type = CameraMimeType.JPEG
+        mime_type = CameraMimeType.PNG
         request = GetDetectionsRequest(
             image=mime_type.encode_image(image), width=image.width, height=image.height, mime_type=mime_type, detector_name=detector_name
         )
