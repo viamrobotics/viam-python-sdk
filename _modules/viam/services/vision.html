@@ -185,7 +185,7 @@
 <span class="sd">            confidence score of the labels, around the found objects in the next 2D image</span>
 <span class="sd">            from the given camera, with the given detector applied to it.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
+        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PNG</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsRequest</span><span class="p">(</span>
             <span class="n">image</span><span class="o">=</span><span class="n">mime_type</span><span class="o">.</span><span class="n">encode_image</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">mime_type</span><span class="o">=</span><span class="n">mime_type</span><span class="p">,</span> <span class="n">detector_name</span><span class="o">=</span><span class="n">detector_name</span>
         <span class="p">)</span>
