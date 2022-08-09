@@ -11,7 +11,7 @@ import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class MoveRequest(google.protobuf.message.Message):
+class PlanAndMoveRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DESTINATION_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
@@ -40,9 +40,9 @@ class MoveRequest(google.protobuf.message.Message):
 
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
         ...
-global___MoveRequest = MoveRequest
+global___PlanAndMoveRequest = PlanAndMoveRequest
 
-class MoveResponse(google.protobuf.message.Message):
+class PlanAndMoveResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUCCESS_FIELD_NUMBER: builtins.int
     success: builtins.bool
@@ -52,7 +52,50 @@ class MoveResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
         ...
-global___MoveResponse = MoveResponse
+global___PlanAndMoveResponse = PlanAndMoveResponse
+
+class MoveSingleComponentRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESTINATION_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    WORLD_STATE_FIELD_NUMBER: builtins.int
+
+    @property
+    def destination(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
+        ...
+
+    @property
+    def component_name(self) -> proto.api.common.v1.common_pb2.ResourceName:
+        ...
+
+    @property
+    def world_state(self) -> proto.api.common.v1.common_pb2.WorldState:
+        ...
+
+    def __init__(self, *, destination: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., component_name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'component_name', b'component_name', 'destination', b'destination', 'world_state', b'world_state']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'component_name', b'component_name', 'destination', b'destination', 'world_state', b'world_state']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
+        ...
+global___MoveSingleComponentRequest = MoveSingleComponentRequest
+
+class MoveSingleComponentResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SUCCESS_FIELD_NUMBER: builtins.int
+    success: builtins.bool
+
+    def __init__(self, *, success: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
+        ...
+global___MoveSingleComponentResponse = MoveSingleComponentResponse
 
 class GetPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

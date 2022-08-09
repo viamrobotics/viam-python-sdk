@@ -3,13 +3,22 @@
 Do not edit manually!
 """
 from .....gen.proto.api.service.motion.v1.motion_grpc import MotionServiceBase, MotionServiceStub
-from .....gen.proto.api.service.motion.v1.motion_pb2 import GetPoseRequest, GetPoseResponse, MoveRequest, MoveResponse
+from .....gen.proto.api.service.motion.v1.motion_pb2 import (
+    GetPoseRequest,
+    GetPoseResponse,
+    MoveSingleComponentRequest,
+    MoveSingleComponentResponse,
+    PlanAndMoveRequest,
+    PlanAndMoveResponse,
+)
 
 __all__ = [
     "MotionServiceBase",
     "MotionServiceStub",
     "GetPoseRequest",
     "GetPoseResponse",
-    "MoveRequest",
-    "MoveResponse",
+    "MoveSingleComponentRequest",
+    "MoveSingleComponentResponse",
+    "PlanAndMoveRequest",
+    "PlanAndMoveResponse",
 ]

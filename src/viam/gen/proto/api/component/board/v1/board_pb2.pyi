@@ -5,6 +5,7 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
+import google.protobuf.struct_pb2
 from ...... import proto
 import typing
 import typing_extensions
@@ -13,12 +14,21 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 class StatusRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___StatusRequest = StatusRequest
 
@@ -45,14 +55,23 @@ class SetGPIORequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
     HIGH_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     pin: typing.Text
     high: builtins.bool
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., high: builtins.bool=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., high: builtins.bool=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['high', b'high', 'name', b'name', 'pin', b'pin']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'high', b'high', 'name', b'name', 'pin', b'pin']) -> None:
         ...
 global___SetGPIORequest = SetGPIORequest
 
@@ -67,13 +86,22 @@ class GetGPIORequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     pin: typing.Text
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'pin', b'pin']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'pin', b'pin']) -> None:
         ...
 global___GetGPIORequest = GetGPIORequest
 
@@ -93,13 +121,22 @@ class PWMRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     pin: typing.Text
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'pin', b'pin']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'pin', b'pin']) -> None:
         ...
 global___PWMRequest = PWMRequest
 
@@ -121,15 +158,24 @@ class SetPWMRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
     DUTY_CYCLE_PCT_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     pin: typing.Text
     duty_cycle_pct: builtins.float
     '0-1'
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., duty_cycle_pct: builtins.float=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., duty_cycle_pct: builtins.float=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['duty_cycle_pct', b'duty_cycle_pct', 'name', b'name', 'pin', b'pin']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['duty_cycle_pct', b'duty_cycle_pct', 'extra', b'extra', 'name', b'name', 'pin', b'pin']) -> None:
         ...
 global___SetPWMRequest = SetPWMRequest
 
@@ -144,13 +190,22 @@ class PWMFrequencyRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     pin: typing.Text
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'pin', b'pin']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'pin', b'pin']) -> None:
         ...
 global___PWMFrequencyRequest = PWMFrequencyRequest
 
@@ -171,14 +226,23 @@ class SetPWMFrequencyRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
     FREQUENCY_HZ_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: typing.Text
     pin: typing.Text
     frequency_hz: builtins.int
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., frequency_hz: builtins.int=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., frequency_hz: builtins.int=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['frequency_hz', b'frequency_hz', 'name', b'name', 'pin', b'pin']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'frequency_hz', b'frequency_hz', 'name', b'name', 'pin', b'pin']) -> None:
         ...
 global___SetPWMFrequencyRequest = SetPWMFrequencyRequest
 
@@ -196,13 +260,22 @@ class ReadAnalogReaderRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BOARD_NAME_FIELD_NUMBER: builtins.int
     ANALOG_READER_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     board_name: typing.Text
     analog_reader_name: typing.Text
 
-    def __init__(self, *, board_name: typing.Text=..., analog_reader_name: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, board_name: typing.Text=..., analog_reader_name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['analog_reader_name', b'analog_reader_name', 'board_name', b'board_name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['analog_reader_name', b'analog_reader_name', 'board_name', b'board_name', 'extra', b'extra']) -> None:
         ...
 global___ReadAnalogReaderRequest = ReadAnalogReaderRequest
 
@@ -225,13 +298,22 @@ class GetDigitalInterruptValueRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BOARD_NAME_FIELD_NUMBER: builtins.int
     DIGITAL_INTERRUPT_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     board_name: typing.Text
     digital_interrupt_name: typing.Text
 
-    def __init__(self, *, board_name: typing.Text=..., digital_interrupt_name: typing.Text=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+        pass
+
+    def __init__(self, *, board_name: typing.Text=..., digital_interrupt_name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['board_name', b'board_name', 'digital_interrupt_name', b'digital_interrupt_name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['board_name', b'board_name', 'digital_interrupt_name', b'digital_interrupt_name', 'extra', b'extra']) -> None:
         ...
 global___GetDigitalInterruptValueRequest = GetDigitalInterruptValueRequest
 
