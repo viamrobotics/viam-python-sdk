@@ -24,10 +24,11 @@ Classes
    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
    `world_state` message, the motion planning service will also account for those.
 
-   .. py:method:: move(self, component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
+   .. py:method:: plan_and_move(self, component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
       :async:
 
-      Move a component on the robot to a given destination, obey any constraints (transforms or obstacles) if supplied in WorldState.
+      Plan and execute a movement to move the component specified to its goal destination.
+
 
       :param component_name: Name of a component on a given robot.
       :type component_name: ResourceName
@@ -36,6 +37,29 @@ Classes
       :param world_state: When supplied, the motion service will create a plan that obeys any contraints expressed in the
                           WorldState message.
       :type world_state: WorldState
+
+      :returns: Whether the move was successful
+      :rtype: bool
+
+
+   .. py:method:: move_single_component(self, component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
+      :async:
+
+      This function will pass through a move command to a component with a `move_to_position` method that takes a `Pose`. `Arm`s are the
+      only component that support this. This method will transform the destination pose, given in an arbitrary frame, into the pose of the
+      arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end to
+      that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.
+
+      :param component_name: Name of a component on a given robot.
+      :type component_name: ResourceName
+      :param destination: The destination to move to, expressed as a `Pose` and the frame in which it was observed.
+      :type destination: PoseInFrame
+      :param world_state: When supplied, the motion service will create a plan that obeys any contraints expressed in the
+                          WorldState message.
+      :type world_state: WorldState
+
+      :returns: Whether the move was successful
+      :rtype: bool
 
 
    .. py:method:: get_pose(self, component_name: viam.proto.api.common.ResourceName, destination_frame: str) -> viam.proto.api.common.PoseInFrame

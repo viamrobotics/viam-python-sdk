@@ -61,7 +61,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.motion.MotionClient">MotionClient</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionClient.move">move</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionClient.plan_and_move">plan_and_move</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionClient.move_single_component">move_single_component</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionClient.get_pose">get_pose</a></li>
 </ul>
 </li>
@@ -132,9 +133,9 @@
 <p>The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
 <cite>world_state</cite> message, the motion planning service will also account for those.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.services.motion.MotionClient.move">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><span class="pre">viam.proto.api.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><span class="pre">viam.proto.api.common.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/services/motion.html#MotionClient.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.MotionClient.move" title="Permalink to this definition"></a></dt>
-<dd><p>Move a component on the robot to a given destination, obey any constraints (transforms or obstacles) if supplied in WorldState.</p>
+<dt class="sig sig-object py" id="viam.services.motion.MotionClient.plan_and_move">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">plan_and_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><span class="pre">viam.proto.api.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><span class="pre">viam.proto.api.common.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/services/motion.html#MotionClient.plan_and_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.MotionClient.plan_and_move" title="Permalink to this definition"></a></dt>
+<dd><p>Plan and execute a movement to move the component specified to its goal destination.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -143,6 +144,37 @@
 <li><p><strong>world_state</strong> (<a class="reference internal" href="../../components/arm/index.html#viam.components.arm.WorldState" title="viam.components.arm.WorldState"><em>WorldState</em></a>) – When supplied, the motion service will create a plan that obeys any contraints expressed in the
 WorldState message.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the move was successful</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.MotionClient.move_single_component">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_single_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><span class="pre">viam.proto.api.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><span class="pre">viam.proto.api.common.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/services/motion.html#MotionClient.move_single_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.MotionClient.move_single_component" title="Permalink to this definition"></a></dt>
+<dd><p>This function will pass through a move command to a component with a <cite>move_to_position</cite> method that takes a <cite>Pose</cite>. <a href="#id1"><span class="problematic" id="id2">`</span></a>Arm`s are the
+only component that support this. This method will transform the destination pose, given in an arbitrary frame, into the pose of the
+arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end to
+that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component_name</strong> (<a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a>) – Name of a component on a given robot.</p></li>
+<li><p><strong>destination</strong> (<a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><em>PoseInFrame</em></a>) – The destination to move to, expressed as a <cite>Pose</cite> and the frame in which it was observed.</p></li>
+<li><p><strong>world_state</strong> (<a class="reference internal" href="../../components/arm/index.html#viam.components.arm.WorldState" title="viam.components.arm.WorldState"><em>WorldState</em></a>) – When supplied, the motion service will create a plan that obeys any contraints expressed in the
+WorldState message.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the move was successful</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
 </dd></dl>
