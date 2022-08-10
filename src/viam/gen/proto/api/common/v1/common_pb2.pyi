@@ -152,6 +152,28 @@ class Pose(google.protobuf.message.Message):
         ...
 global___Pose = Pose
 
+class Orientation(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    O_X_FIELD_NUMBER: builtins.int
+    O_Y_FIELD_NUMBER: builtins.int
+    O_Z_FIELD_NUMBER: builtins.int
+    THETA_FIELD_NUMBER: builtins.int
+    o_x: builtins.float
+    'x component of a vector defining axis of rotation'
+    o_y: builtins.float
+    'y component of a vector defining axis of rotation'
+    o_z: builtins.float
+    'z component of a vector defining axis of rotation'
+    theta: builtins.float
+    'degrees'
+
+    def __init__(self, *, o_x: builtins.float=..., o_y: builtins.float=..., o_z: builtins.float=..., theta: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['o_x', b'o_x', 'o_y', b'o_y', 'o_z', b'o_z', 'theta', b'theta']) -> None:
+        ...
+global___Orientation = Orientation
+
 class PoseInFrame(google.protobuf.message.Message):
     """PoseInFrame contains a pose and the and the reference frame in which it was observed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
