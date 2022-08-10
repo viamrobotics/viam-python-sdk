@@ -3,25 +3,35 @@ import random
 import struct
 from multiprocessing import Lock, Queue
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from PIL import Image
+
 from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera, IntrinsicParameters
 from viam.components.gantry import Gantry
-from viam.components.gps import GPS
 from viam.components.gripper import Gripper
-from viam.components.imu import IMU, Acceleration, AngularVelocity, EulerAngles, Magnetometer, Orientation
 from viam.components.input import Control, ControlFunction, Controller, Event, EventType
 from viam.components.motor import Motor
+from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, Pose, PoseInFrame, Vector3, WorldState
+from viam.proto.api.common import (
+    AnalogStatus,
+    BoardStatus,
+    DigitalInterruptStatus,
+    GeoPoint,
+    Orientation,
+    Pose,
+    PoseInFrame,
+    Vector3,
+    WorldState,
+)
 from viam.proto.api.component.arm import JointPositions
 
 
@@ -371,23 +381,6 @@ class ExampleGantry(Gantry):
         return not self.is_stopped
 
 
-class ExampleGPS(GPS):
-    def __init__(self, name: str, location: GPS.Point, altitude: float, speed: float):
-        self.location = location
-        self.altitude = altitude
-        self.speed = speed
-        super().__init__(name)
-
-    async def read_location(self) -> GPS.Point:
-        return self.location
-
-    async def read_altitude(self) -> float:
-        return self.altitude
-
-    async def read_speed(self) -> float:
-        return self.speed
-
-
 class ExampleGripper(Gripper):
     def __init__(self, name: str):
         self.opened = False
@@ -408,23 +401,6 @@ class ExampleGripper(Gripper):
 
     async def is_moving(self):
         return not self.is_stopped
-
-
-class ExampleIMU(IMU):
-    async def read_acceleration(self) -> Acceleration:
-        return Acceleration(
-            x_mm_per_sec_per_sec=random.random(), y_mm_per_sec_per_sec=random.random(), z_mm_per_sec_per_sec=random.random()
-        )
-
-    async def read_angular_velocity(self) -> AngularVelocity:
-        return AngularVelocity(x_degs_per_sec=random.random(), y_degs_per_sec=random.random(), z_degs_per_sec=random.random())
-
-    async def read_orientation(self) -> Orientation:
-        angles = EulerAngles(roll_deg=random.random(), pitch_deg=random.random(), yaw_deg=random.random())
-        return Orientation(euler_angles=angles)
-
-    async def read_magnetometer(self) -> Magnetometer:
-        return Magnetometer(x_gauss=random.random(), y_gauss=random.random(), z_gauss=random.random())
 
 
 class ExampleMotor(Motor):
@@ -498,6 +474,51 @@ class ExampleMotor(Motor):
 
     async def is_moving(self):
         return self.powered
+
+
+class ExampleMovementSensor(MovementSensor):
+    def __init__(
+        self,
+        name: str,
+        coordinates: GeoPoint,
+        altitude: float,
+        lin_vel: Vector3,
+        ang_vel: Vector3,
+        heading: float,
+        orientation: Orientation,
+        properties: MovementSensor.Properties,
+        accuracy: Mapping[str, float],
+    ):
+        super().__init__(name)
+        self.coordinates = coordinates
+        self.altitude = altitude
+        self.lin_vel = lin_vel
+        self.ang_vel = ang_vel
+        self.heading = heading
+        self.orientation = orientation
+        self.properties = properties
+        self.accuracy = accuracy
+
+    async def get_position(self) -> Tuple[GeoPoint, float]:
+        return (self.coordinates, self.altitude)
+
+    async def get_linear_velocity(self) -> Vector3:
+        return self.lin_vel
+
+    async def get_angular_velocity(self) -> Vector3:
+        return self.ang_vel
+
+    async def get_compass_heading(self) -> float:
+        return self.heading
+
+    async def get_orientation(self) -> Orientation:
+        return self.orientation
+
+    async def get_properties(self) -> MovementSensor.Properties:
+        return self.properties
+
+    async def get_accuracy(self) -> Mapping[str, float]:
+        return self.accuracy
 
 
 class ExamplePoseTracker(PoseTracker):
