@@ -119,7 +119,7 @@ class ExampleAnalogReader(Board.AnalogReader):
         self.value = value
         super().__init__(name)
 
-    async def read(self) -> int:
+    async def read(self, extra: Optional[Dict[str, Any]] = None) -> int:
         return self.value
 
 
@@ -132,7 +132,7 @@ class ExampleDigitalInterrupt(Board.DigitalInterrupt):
         self.post_processors: List[PostProcessor] = []
         super().__init__(name)
 
-    async def value(self) -> int:
+    async def value(self, extra: Optional[Dict[str, Any]] = None) -> int:
         return self.num_ticks
 
     async def tick(self, high: bool, nanos: int):
@@ -154,22 +154,22 @@ class ExampleGPIOPin(Board.GPIOPin):
         self.pwm_freq = 0
         super().__init__(name)
 
-    async def get(self) -> bool:
+    async def get(self, extra: Optional[Dict[str, Any]] = None) -> bool:
         return self.high
 
-    async def set(self, high: bool):
+    async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None):
         self.high = high
 
-    async def get_pwm(self) -> float:
+    async def get_pwm(self, extra: Optional[Dict[str, Any]] = None) -> float:
         return self.pwm
 
-    async def set_pwm(self, duty_cycle: float):
+    async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None):
         self.pwm = duty_cycle
 
-    async def get_pwm_frequency(self) -> int:
+    async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None) -> int:
         return self.pwm_freq
 
-    async def set_pwm_frequency(self, frequency: int):
+    async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None):
         self.pwm_freq = frequency
 
 
@@ -210,7 +210,7 @@ class ExampleBoard(Board):
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
 
-    async def status(self) -> BoardStatus:
+    async def status(self, extra: Optional[Dict[str, Any]] = None) -> BoardStatus:
         return BoardStatus(
             analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
             digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},

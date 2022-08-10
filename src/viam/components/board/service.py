@@ -22,6 +22,7 @@ from viam.proto.api.component.board import (
     StatusRequest,
     StatusResponse,
 )
+from viam.utils import struct_to_dict
 
 from .board import Board
 
@@ -41,7 +42,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             board = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        status = await board.status()
+        status = await board.status(extra=struct_to_dict(request.extra))
         response = StatusResponse(status=status)
         await stream.send_message(response)
 
@@ -54,7 +55,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await pin.set(request.high)
+        await pin.set(request.high, extra=struct_to_dict(request.extra))
         response = SetGPIOResponse()
         await stream.send_message(response)
 
@@ -67,7 +68,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        high = await pin.get()
+        high = await pin.get(extra=struct_to_dict(request.extra))
         response = GetGPIOResponse(high=high)
         await stream.send_message(response)
 
@@ -80,7 +81,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        pwm = await pin.get_pwm()
+        pwm = await pin.get_pwm(extra=struct_to_dict(request.extra))
         response = PWMResponse(duty_cycle_pct=pwm)
         await stream.send_message(response)
 
@@ -93,7 +94,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await pin.set_pwm(request.duty_cycle_pct)
+        await pin.set_pwm(request.duty_cycle_pct, extra=struct_to_dict(request.extra))
         response = SetPWMResponse()
         await stream.send_message(response)
 
@@ -106,7 +107,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        frequency = await pin.get_pwm_frequency()
+        frequency = await pin.get_pwm_frequency(extra=struct_to_dict(request.extra))
         response = PWMFrequencyResponse(frequency_hz=frequency)
         await stream.send_message(response)
 
@@ -119,7 +120,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             pin = await board.gpio_pin_by_name(request.pin)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await pin.set_pwm_frequency(request.frequency_hz)
+        await pin.set_pwm_frequency(request.frequency_hz, extra=struct_to_dict(request.extra))
         response = SetPWMFrequencyResponse()
         await stream.send_message(response)
 
@@ -132,7 +133,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             analog_reader = await board.analog_reader_by_name(request.analog_reader_name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        value = await analog_reader.read()
+        value = await analog_reader.read(extra=struct_to_dict(request.extra))
         response = ReadAnalogReaderResponse(value=value)
         await stream.send_message(response)
 
@@ -145,6 +146,6 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
             interrupt = await board.digital_interrupt_by_name(request.digital_interrupt_name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        value = await interrupt.value()
+        value = await interrupt.value(extra=struct_to_dict(request.extra))
         response = GetDigitalInterruptValueResponse(value=value)
         await stream.send_message(response)

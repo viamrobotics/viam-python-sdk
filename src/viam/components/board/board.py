@@ -1,7 +1,7 @@
 import abc
 from dataclasses import dataclass
 from multiprocessing import Queue
-from typing import Callable, List
+from typing import Any, Callable, Dict, List, Optional
 
 from viam.proto.api.common import BoardStatus
 
@@ -34,7 +34,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def read(self) -> int:
+        async def read(self, extra: Optional[Dict[str, Any]] = None) -> int:
             """
             Read the current value.
 
@@ -51,7 +51,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def value(self) -> int:
+        async def value(self, extra: Optional[Dict[str, Any]] = None) -> int:
             """
             Get the current value of the interrupt,
             which is based on the type of interrupt.
@@ -105,7 +105,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def set(self, high: bool):
+        async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None):
             """
             Set the pin to either low or high.
 
@@ -115,7 +115,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get(self) -> bool:
+        async def get(self, extra: Optional[Dict[str, Any]] = None) -> bool:
             """
             Get the high/low state of the pin.
 
@@ -125,7 +125,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get_pwm(self) -> float:
+        async def get_pwm(self, extra: Optional[Dict[str, Any]] = None) -> float:
             """
             Get the pin's given duty cycle.
 
@@ -135,7 +135,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def set_pwm(self, duty_cycle: float):
+        async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None):
             """
             Set the pin to the given `duty_cycle`.
 
@@ -145,7 +145,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get_pwm_frequency(self) -> int:
+        async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None) -> int:
             """
             Get the PWM frequency of the pin.
 
@@ -155,7 +155,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def set_pwm_frequency(self, frequency: int):
+        async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None):
             """
             Set the pin to the given PWM `frequency` (in Hz).
             When `frequency` is 0, it will use the board's default PWM frequency.
@@ -225,7 +225,7 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def status(self) -> BoardStatus:
+    async def status(self, extra: Optional[Dict[str, Any]] = None) -> BoardStatus:
         """
         Return the current status of the board.
 
