@@ -55,7 +55,7 @@ Attributes
 
       AnalogReader represents an analog pin reader that resides on a Board.
 
-      .. py:method:: read(self) -> int
+      .. py:method:: read(self, extra: Optional[Dict[str, Any]] = None) -> int
          :abstractmethod:
          :async:
 
@@ -74,7 +74,7 @@ Attributes
       when interrupted, calls the added callbacks. Post processors can
       be added to modify what Value it ultimately returns.
 
-      .. py:method:: value(self) -> int
+      .. py:method:: value(self, extra: Optional[Dict[str, Any]] = None) -> int
          :abstractmethod:
          :async:
 
@@ -131,7 +131,7 @@ Attributes
       :param ComponentBase: _description_
       :type ComponentBase: _type_
 
-      .. py:method:: set(self, high: bool)
+      .. py:method:: set(self, high: bool, extra: Optional[Dict[str, Any]] = None)
          :abstractmethod:
          :async:
 
@@ -141,7 +141,7 @@ Attributes
          :type high: bool
 
 
-      .. py:method:: get(self) -> bool
+      .. py:method:: get(self, extra: Optional[Dict[str, Any]] = None) -> bool
          :abstractmethod:
          :async:
 
@@ -151,7 +151,7 @@ Attributes
          :rtype: bool
 
 
-      .. py:method:: get_pwm(self) -> float
+      .. py:method:: get_pwm(self, extra: Optional[Dict[str, Any]] = None) -> float
          :abstractmethod:
          :async:
 
@@ -161,7 +161,7 @@ Attributes
          :rtype: float
 
 
-      .. py:method:: set_pwm(self, duty_cycle: float)
+      .. py:method:: set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None)
          :abstractmethod:
          :async:
 
@@ -171,7 +171,7 @@ Attributes
          :type duty_cycle: float
 
 
-      .. py:method:: get_pwm_frequency(self) -> int
+      .. py:method:: get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None) -> int
          :abstractmethod:
          :async:
 
@@ -181,7 +181,7 @@ Attributes
          :rtype: int
 
 
-      .. py:method:: set_pwm_frequency(self, frequency: int)
+      .. py:method:: set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None)
          :abstractmethod:
          :async:
 
@@ -252,7 +252,7 @@ Attributes
       :rtype: List[str]
 
 
-   .. py:method:: status(self) -> viam.proto.api.common.BoardStatus
+   .. py:method:: status(self, extra: Optional[Dict[str, Any]] = None) -> viam.proto.api.common.BoardStatus
       :abstractmethod:
       :async:
 
