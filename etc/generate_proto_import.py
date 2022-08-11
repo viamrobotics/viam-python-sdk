@@ -67,18 +67,18 @@ def build_dirs(root: str, package: str, modules: List[str]):
     Example:
     We want to the protobuf/grpc definitions from
 
-        viam.gen.proto.api.component.imu_grpc
-        viam.gen.proto.api.component.imu_pb2
+        viam.gen.proto.api.component.arm_grpc
+        viam.gen.proto.api.component.arm_pb2
 
     to be available at
 
-        viam.proto.api.component.imu
+        viam.proto.api.component.arm
 
     This function will take in the directory where to store the new imports,
     the package name, and the modules (files) within that package.
 
     Then, it will create the appropriate directory structure, and a new
-    file for each module type (e.g. "imu" for "imu_grpc" and "imu_pb2").
+    file for each module type (e.g. "arm" for "arm_grpc" and "arm_pb2").
     """
     LOGGER.info(f"Building proto imports for package {package}")
 
