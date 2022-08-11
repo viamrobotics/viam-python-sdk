@@ -112,6 +112,13 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.Geometry.WhichOneof">WhichOneof</a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.common.Orientation">Orientation</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.Orientation.o_x">o_x</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.Orientation.o_y">o_y</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.Orientation.o_z">o_z</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.Orientation.theta">theta</a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.api.common.PointCloudObject">PointCloudObject</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.PointCloudObject.point_cloud">point_cloud</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.api.common.PointCloudObject.geometries">geometries</a></li>
@@ -250,31 +257,34 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Geometry" title="viam.proto.api.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
 <td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.PointCloudObject" title="viam.proto.api.common.PointCloudObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Orientation" title="viam.proto.api.common.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.PointCloudObject" title="viam.proto.api.common.PointCloudObject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a></p></td>
 <td><p>PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Pose" title="viam.proto.api.common.Pose"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pose</span></code></a></p></td>
 <td><p>Pose is a combination of location and orientation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a></p></td>
 <td><p>PoseInFrame contains a pose and the and the reference frame in which it was observed</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.RectangularPrism" title="viam.proto.api.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.RectangularPrism" title="viam.proto.api.common.RectangularPrism"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceName</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Sphere" title="viam.proto.api.common.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Sphere" title="viam.proto.api.common.Sphere"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Transform" title="viam.proto.api.common.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Transform" title="viam.proto.api.common.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a></p></td>
 <td><p>Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.Vector3" title="viam.proto.api.common.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.Vector3" title="viam.proto.api.common.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WorldState</span></code></a></p></td>
 <td><p>WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,</p></td>
 </tr>
 </tbody>
@@ -523,6 +533,39 @@ be raised.</p>
 <dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.common.Orientation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.common.</span></span><span class="sig-name descname"><span class="pre">Orientation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.common.Orientation" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Orientation.o_x">
+<span class="sig-name descname"><span class="pre">o_x</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.api.common.Orientation.o_x" title="Permalink to this definition"></a></dt>
+<dd><p>x component of a vector defining axis of rotation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Orientation.o_y">
+<span class="sig-name descname"><span class="pre">o_y</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.api.common.Orientation.o_y" title="Permalink to this definition"></a></dt>
+<dd><p>y component of a vector defining axis of rotation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Orientation.o_z">
+<span class="sig-name descname"><span class="pre">o_z</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.api.common.Orientation.o_z" title="Permalink to this definition"></a></dt>
+<dd><p>z component of a vector defining axis of rotation</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.common.Orientation.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.api.common.Orientation.theta" title="Permalink to this definition"></a></dt>
+<dd><p>degrees</p>
 </dd></dl>
 
 </dd></dl>

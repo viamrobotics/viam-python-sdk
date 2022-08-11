@@ -136,15 +136,13 @@
 </li>
         <li><a href="autoapi/viam/proto/api/component/generic/index.html#viam.proto.api.component.generic.GenericServiceBase.__mapping__">(viam.proto.api.component.generic.GenericServiceBase method)</a>
 </li>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.GPSServiceBase.__mapping__">(viam.proto.api.component.gps.GPSServiceBase method)</a>
-</li>
         <li><a href="autoapi/viam/proto/api/component/gripper/index.html#viam.proto.api.component.gripper.GripperServiceBase.__mapping__">(viam.proto.api.component.gripper.GripperServiceBase method)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.IMUServiceBase.__mapping__">(viam.proto.api.component.imu.IMUServiceBase method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.InputControllerServiceBase.__mapping__">(viam.proto.api.component.inputcontroller.InputControllerServiceBase method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.MotorServiceBase.__mapping__">(viam.proto.api.component.motor.MotorServiceBase method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase.__mapping__">(viam.proto.api.component.movementsensor.MovementSensorServiceBase method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#viam.proto.api.component.posetracker.PoseTrackerServiceBase.__mapping__">(viam.proto.api.component.posetracker.PoseTrackerServiceBase method)</a>
 </li>
@@ -239,20 +237,14 @@
         <li><a href="autoapi/viam/components/input/input/index.html#viam.components.input.input.Control.ABSOLUTE_Z">(viam.components.input.input.Control attribute)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Acceleration">Acceleration (class in viam.components.imu)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.Acceleration">(class in viam.proto.api.component.imu)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAccelerationResponse.acceleration">acceleration (viam.proto.api.component.imu.ReadAccelerationResponse property)</a>
-</li>
       <li><a href="autoapi/viam/proto/rpc/auth/index.html#viam.proto.rpc.auth.AuthenticateResponse.access_token">access_token (viam.proto.rpc.auth.AuthenticateResponse attribute)</a>
 
       <ul>
         <li><a href="autoapi/viam/proto/rpc/auth/index.html#viam.proto.rpc.auth.AuthenticateToResponse.access_token">(viam.proto.rpc.auth.AuthenticateToResponse attribute)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAccuracyResponse.accuracy_mm">accuracy_mm (viam.proto.api.component.movementsensor.GetAccuracyResponse property)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.ActuatorStatus">ActuatorStatus (class in viam.proto.api.common)</a>
 </li>
       <li><a href="autoapi/viam/components/board/board/index.html#viam.components.board.board.Board.DigitalInterrupt.add_callback">add_callback() (viam.components.board.board.Board.DigitalInterrupt method)</a>
@@ -299,7 +291,7 @@
 </li>
       <li><a href="autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions.allow_insecure_with_creds_downgrade">allow_insecure_with_creds_downgrade (viam.rpc.dial.DialOptions attribute)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadAltitudeResponse.altitude_meters">altitude_meters (viam.proto.api.component.gps.ReadAltitudeResponse attribute)</a>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPositionResponse.altitude_mm">altitude_mm (viam.proto.api.component.movementsensor.GetPositionResponse attribute)</a>
 </li>
       <li><a href="autoapi/viam/components/board/index.html#viam.components.board.Board.analog_reader_by_name">analog_reader_by_name() (viam.components.board.Board method)</a>
 
@@ -309,10 +301,10 @@
         <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.BoardClient.analog_reader_by_name">(viam.components.board.client.BoardClient method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.ReadAnalogReaderRequest.analog_reader_name">analog_reader_name (viam.proto.api.component.board.ReadAnalogReaderRequest attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/board/index.html#viam.components.board.Board.analog_reader_names">analog_reader_names() (viam.components.board.Board method)</a>
 
       <ul>
@@ -339,14 +331,10 @@
         <li><a href="autoapi/viam/proto/api/component/base/index.html#viam.proto.api.component.base.SetVelocityRequest.angular">(viam.proto.api.component.base.SetVelocityRequest property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAngularVelocityResponse.angular_velocity">angular_velocity (viam.proto.api.component.imu.ReadAngularVelocityResponse property)</a>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAngularVelocityResponse.angular_velocity">angular_velocity (viam.proto.api.component.movementsensor.GetAngularVelocityResponse property)</a>
 </li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.AngularVelocity">AngularVelocity (class in viam.components.imu)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.AngularVelocity">(class in viam.proto.api.component.imu)</a>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPropertiesResponse.angular_velocity_supported">angular_velocity_supported (viam.proto.api.component.movementsensor.GetPropertiesResponse attribute)</a>
 </li>
-      </ul></li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/grpc/index.html#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.Answer">Answer() (viam.proto.rpc.webrtc.grpc.SignalingServiceBase method)</a>
 
       <ul>
@@ -725,13 +713,15 @@
         <li><a href="autoapi/viam/rpc/server/index.html#viam.rpc.server.Server.close">(viam.rpc.server.Server method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorType.COLOR">COLOR (viam.services.vision.DetectorType attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/logging/index.html#viam.logging.ColorFormatter">ColorFormatter (class in viam.logging)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/generic/index.html#viam.proto.api.component.generic.DoRequest.command">command (viam.proto.api.component.generic.DoRequest property)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPropertiesResponse.compass_heading_supported">compass_heading_supported (viam.proto.api.component.movementsensor.GetPropertiesResponse attribute)</a>
 </li>
       <li><a href="autoapi/viam/registry/index.html#viam.registry.Component">Component (in module viam.registry)</a>
 </li>
@@ -807,7 +797,7 @@
 </li>
       <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.GetControlsResponse.controls">controls (viam.proto.api.component.inputcontroller.GetControlsResponse property)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadLocationResponse.coordinate">coordinate (viam.proto.api.component.gps.ReadLocationResponse property)</a>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPositionResponse.coordinate">coordinate (viam.proto.api.component.movementsensor.GetPositionResponse property)</a>
 </li>
       <li><a href="autoapi/viam/rpc/server/index.html#viam.rpc.server.Server.create_and_serve">create_and_serve() (viam.rpc.server.Server class method)</a>
 </li>
@@ -921,10 +911,10 @@
 </li>
       <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient">DigitalInterruptClient (class in viam.components.board.client)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.DigitalInterruptStatus">DigitalInterruptStatus (class in viam.proto.api.common)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.DigitalInterruptStatus">DigitalInterruptStatus (class in viam.proto.api.common)</a>
+</li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.CallRequest.disable_trickle">disable_trickle (viam.proto.rpc.webrtc.signaling.CallRequest attribute)</a>
 
       <ul>
@@ -977,13 +967,9 @@
       </ul></li>
       <li><a href="autoapi/viam/components/generic/service/index.html#viam.components.generic.service.GenericService.Do">Do() (viam.components.generic.service.GenericService method)</a>
 </li>
-      <li><a href="autoapi/viam/components/gps/client/index.html#viam.components.gps.client.GPSClient.do">do() (viam.components.gps.client.GPSClient method)</a>
+      <li><a href="autoapi/viam/components/gripper/client/index.html#viam.components.gripper.client.GripperClient.do">do() (viam.components.gripper.client.GripperClient method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/gripper/client/index.html#viam.components.gripper.client.GripperClient.do">(viam.components.gripper.client.GripperClient method)</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/client/index.html#viam.components.imu.client.IMUClient.do">(viam.components.imu.client.IMUClient method)</a>
-</li>
         <li><a href="autoapi/viam/components/input/client/index.html#viam.components.input.client.ControllerClient.do">(viam.components.input.client.ControllerClient method)</a>
 </li>
         <li><a href="autoapi/viam/components/motor/client/index.html#viam.components.motor.client.MotorClient.do">(viam.components.motor.client.MotorClient method)</a>
@@ -1071,18 +1057,6 @@
         <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.CallUpdateRequest.error">(viam.proto.rpc.webrtc.signaling.CallUpdateRequest property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/imu/imu/index.html#viam.components.imu.imu.Orientation.euler_angles">euler_angles (viam.components.imu.imu.Orientation attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Orientation.euler_angles">(viam.components.imu.Orientation attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.EulerAngles">EulerAngles (class in viam.components.imu)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.EulerAngles">(class in viam.proto.api.component.imu)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/components/input/index.html#viam.components.input.Event">Event (class in viam.components.input)</a>
 
       <ul>
@@ -1119,10 +1093,10 @@
         <li><a href="autoapi/viam/components/input/input/index.html#viam.components.input.input.EventType">(class in viam.components.input.input)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.StreamStatusRequest.every">every (viam.proto.api.robot.StreamStatusRequest property)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/index.html#viam.excepthook">excepthook (in module viam)</a>
 </li>
       <li><a href="autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions.external_auth_address">external_auth_address (viam.rpc.dial.DialOptions attribute)</a>
@@ -1297,14 +1271,42 @@
 </li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Geometry">Geometry (class in viam.proto.api.common)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.GeoPoint">GeoPoint (class in viam.proto.api.common)</a>
+      <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.GeoPoint">GeoPoint (class in viam.components.movement_sensor)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.GeoPoint">(class in viam.proto.api.common)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/components/board/board/index.html#viam.components.board.board.Board.GPIOPin.get">get() (viam.components.board.board.Board.GPIOPin method)</a>
 
       <ul>
         <li><a href="autoapi/viam/components/board/index.html#viam.components.board.Board.GPIOPin.get">(viam.components.board.Board.GPIOPin method)</a>
 </li>
         <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient.get">(viam.components.board.client.GPIOPinClient method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_accuracy">get_accuracy() (viam.components.movement_sensor.client.MovementSensorClient method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_accuracy">(viam.components.movement_sensor.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_accuracy">(viam.components.movement_sensor.MovementSensor method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_angular_velocity">get_angular_velocity() (viam.components.movement_sensor.client.MovementSensorClient method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_angular_velocity">(viam.components.movement_sensor.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_angular_velocity">(viam.components.movement_sensor.MovementSensor method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_compass_heading">get_compass_heading() (viam.components.movement_sensor.client.MovementSensorClient method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_compass_heading">(viam.components.movement_sensor.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_compass_heading">(viam.components.movement_sensor.MovementSensor method)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/components/resource_manager/index.html#viam.components.resource_manager.ResourceManager.get_component">get_component() (viam.components.resource_manager.ResourceManager method)</a>
@@ -1379,8 +1381,24 @@
         <li><a href="autoapi/viam/components/gantry/gantry/index.html#viam.components.gantry.gantry.Gantry.get_lengths">(viam.components.gantry.gantry.Gantry method)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_linear_velocity">get_linear_velocity() (viam.components.movement_sensor.client.MovementSensorClient method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_linear_velocity">(viam.components.movement_sensor.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_linear_velocity">(viam.components.movement_sensor.MovementSensor method)</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_object_point_clouds">get_object_point_clouds() (viam.services.vision.VisionClient method)</a>
 </li>
+      <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_orientation">get_orientation() (viam.components.movement_sensor.client.MovementSensorClient method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_orientation">(viam.components.movement_sensor.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_orientation">(viam.components.movement_sensor.MovementSensor method)</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.Camera.get_point_cloud">get_point_cloud() (viam.components.camera.Camera method)</a>
 
       <ul>
@@ -1412,6 +1430,12 @@
 </li>
         <li><a href="autoapi/viam/components/motor/motor/index.html#viam.components.motor.motor.Motor.get_position">(viam.components.motor.motor.Motor method)</a>
 </li>
+        <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_position">(viam.components.movement_sensor.client.MovementSensorClient method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_position">(viam.components.movement_sensor.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_position">(viam.components.movement_sensor.MovementSensor method)</a>
+</li>
         <li><a href="autoapi/viam/components/servo/client/index.html#viam.components.servo.client.ServoClient.get_position">(viam.components.servo.client.ServoClient method)</a>
 </li>
         <li><a href="autoapi/viam/components/servo/index.html#viam.components.servo.Servo.get_position">(viam.components.servo.Servo method)</a>
@@ -1425,6 +1449,12 @@
         <li><a href="autoapi/viam/components/camera/camera/index.html#viam.components.camera.camera.Camera.get_properties">(viam.components.camera.camera.Camera method)</a>
 </li>
         <li><a href="autoapi/viam/components/camera/client/index.html#viam.components.camera.client.CameraClient.get_properties">(viam.components.camera.client.CameraClient method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_properties">(viam.components.movement_sensor.client.MovementSensorClient method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_properties">(viam.components.movement_sensor.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_properties">(viam.components.movement_sensor.MovementSensor method)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/components/board/board/index.html#viam.components.board.board.Board.GPIOPin.get_pwm">get_pwm() (viam.components.board.board.Board.GPIOPin method)</a>
@@ -1443,9 +1473,15 @@
         <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient.get_pwm_frequency">(viam.components.board.client.GPIOPinClient method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/sensor/client/index.html#viam.components.sensor.client.SensorClient.get_readings">get_readings() (viam.components.sensor.client.SensorClient method)</a>
+      <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_readings">get_readings() (viam.components.movement_sensor.client.MovementSensorClient method)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_readings">(viam.components.movement_sensor.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_readings">(viam.components.movement_sensor.MovementSensor method)</a>
+</li>
+        <li><a href="autoapi/viam/components/sensor/client/index.html#viam.components.sensor.client.SensorClient.get_readings">(viam.components.sensor.client.SensorClient method)</a>
+</li>
         <li><a href="autoapi/viam/components/sensor/index.html#viam.components.sensor.Sensor.get_readings">(viam.components.sensor.Sensor method)</a>
 </li>
         <li><a href="autoapi/viam/components/sensor/sensor/index.html#viam.components.sensor.sensor.Sensor.get_readings">(viam.components.sensor.sensor.Sensor method)</a>
@@ -1460,6 +1496,38 @@
       <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_service">get_service() (viam.robot.client.RobotClient method)</a>
 </li>
       <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_status">get_status() (viam.robot.client.RobotClient method)</a>
+</li>
+      <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetAccuracy">GetAccuracy() (viam.components.movement_sensor.service.MovementSensorService method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase.GetAccuracy">(viam.proto.api.component.movementsensor.MovementSensorServiceBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAccuracyRequest">GetAccuracyRequest (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAccuracyResponse">GetAccuracyResponse (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAccuracyResponse.AccuracyMmEntry">GetAccuracyResponse.AccuracyMmEntry (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetAngularVelocity">GetAngularVelocity() (viam.components.movement_sensor.service.MovementSensorService method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase.GetAngularVelocity">(viam.proto.api.component.movementsensor.MovementSensorServiceBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAngularVelocityRequest">GetAngularVelocityRequest (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAngularVelocityResponse">GetAngularVelocityResponse (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetCompassHeading">GetCompassHeading() (viam.components.movement_sensor.service.MovementSensorService method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase.GetCompassHeading">(viam.proto.api.component.movementsensor.MovementSensorServiceBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetCompassHeadingRequest">GetCompassHeadingRequest (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetCompassHeadingResponse">GetCompassHeadingResponse (class in viam.proto.api.component.movementsensor)</a>
 </li>
       <li><a href="autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.GetControls">GetControls() (viam.components.input.service.InputControllerService method)</a>
 
@@ -1515,6 +1583,8 @@
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.InputControllerServiceBase.GetEvents">(viam.proto.api.component.inputcontroller.InputControllerServiceBase method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.GetEventsRequest">GetEventsRequest (class in viam.proto.api.component.inputcontroller)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.GetEventsResponse">GetEventsResponse (class in viam.proto.api.component.inputcontroller)</a>
@@ -1547,8 +1617,6 @@
       </ul></li>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.GetGPIORequest">GetGPIORequest (class in viam.proto.api.component.board)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.GetGPIOResponse">GetGPIOResponse (class in viam.proto.api.component.board)</a>
 </li>
       <li><a href="autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmService.GetJointPositions">GetJointPositions() (viam.components.arm.service.ArmService method)</a>
@@ -1570,6 +1638,16 @@
       <li><a href="autoapi/viam/proto/api/component/gantry/index.html#viam.proto.api.component.gantry.GetLengthsRequest">GetLengthsRequest (class in viam.proto.api.component.gantry)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/gantry/index.html#viam.proto.api.component.gantry.GetLengthsResponse">GetLengthsResponse (class in viam.proto.api.component.gantry)</a>
+</li>
+      <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetLinearVelocity">GetLinearVelocity() (viam.components.movement_sensor.service.MovementSensorService method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase.GetLinearVelocity">(viam.proto.api.component.movementsensor.MovementSensorServiceBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetLinearVelocityRequest">GetLinearVelocityRequest (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetLinearVelocityResponse">GetLinearVelocityResponse (class in viam.proto.api.component.movementsensor)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.NavigationServiceBase.GetLocation">GetLocation() (viam.proto.api.service.navigation.NavigationServiceBase method)</a>
 </li>
@@ -1607,6 +1685,16 @@
 </li>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.GetOperationsResponse">GetOperationsResponse (class in viam.proto.api.robot)</a>
 </li>
+      <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetOrientation">GetOrientation() (viam.components.movement_sensor.service.MovementSensorService method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase.GetOrientation">(viam.proto.api.component.movementsensor.MovementSensorServiceBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetOrientationRequest">GetOrientationRequest (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetOrientationResponse">GetOrientationResponse (class in viam.proto.api.component.movementsensor)</a>
+</li>
       <li><a href="autoapi/viam/components/camera/service/index.html#viam.components.camera.service.CameraService.GetPointCloud">GetPointCloud() (viam.components.camera.service.CameraService method)</a>
 
       <ul>
@@ -1640,11 +1728,15 @@
       <ul>
         <li><a href="autoapi/viam/components/motor/service/index.html#viam.components.motor.service.MotorService.GetPosition">(viam.components.motor.service.MotorService method)</a>
 </li>
+        <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetPosition">(viam.components.movement_sensor.service.MovementSensorService method)</a>
+</li>
         <li><a href="autoapi/viam/components/servo/service/index.html#viam.components.servo.service.ServoService.GetPosition">(viam.components.servo.service.ServoService method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/gantry/index.html#viam.proto.api.component.gantry.GantryServiceBase.GetPosition">(viam.proto.api.component.gantry.GantryServiceBase method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.MotorServiceBase.GetPosition">(viam.proto.api.component.motor.MotorServiceBase method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase.GetPosition">(viam.proto.api.component.movementsensor.MovementSensorServiceBase method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/servo/index.html#viam.proto.api.component.servo.ServoServiceBase.GetPosition">(viam.proto.api.component.servo.ServoServiceBase method)</a>
 </li>
@@ -1656,6 +1748,8 @@
       <ul>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GetPositionRequest">(class in viam.proto.api.component.motor)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPositionRequest">(class in viam.proto.api.component.movementsensor)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/component/servo/index.html#viam.proto.api.component.servo.GetPositionRequest">(class in viam.proto.api.component.servo)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetPositionRequest">(class in viam.proto.api.service.slam)</a>
@@ -1666,6 +1760,8 @@
       <ul>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GetPositionResponse">(class in viam.proto.api.component.motor)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPositionResponse">(class in viam.proto.api.component.movementsensor)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/component/servo/index.html#viam.proto.api.component.servo.GetPositionResponse">(class in viam.proto.api.component.servo)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetPositionResponse">(class in viam.proto.api.service.slam)</a>
@@ -1674,13 +1770,25 @@
       <li><a href="autoapi/viam/components/camera/service/index.html#viam.components.camera.service.CameraService.GetProperties">GetProperties() (viam.components.camera.service.CameraService method)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetProperties">(viam.components.movement_sensor.service.MovementSensorService method)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.CameraServiceBase.GetProperties">(viam.proto.api.component.camera.CameraServiceBase method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase.GetProperties">(viam.proto.api.component.movementsensor.MovementSensorServiceBase method)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.GetPropertiesRequest">GetPropertiesRequest (class in viam.proto.api.component.camera)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPropertiesRequest">(class in viam.proto.api.component.movementsensor)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.GetPropertiesResponse">GetPropertiesResponse (class in viam.proto.api.component.camera)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPropertiesResponse">(class in viam.proto.api.component.movementsensor)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/components/sensor/service/index.html#viam.components.sensor.service.SensorService.GetReadings">GetReadings() (viam.components.sensor.service.SensorService method)</a>
 
       <ul>
@@ -1780,20 +1888,6 @@
 </li>
       </ul></li>
       <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient">GPIOPinClient (class in viam.components.board.client)</a>
-</li>
-      <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.GPS">GPS (class in viam.components.gps)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.GPS">(class in viam.components.gps.gps)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/gps/client/index.html#viam.components.gps.client.GPSClient">GPSClient (class in viam.components.gps.client)</a>
-</li>
-      <li><a href="autoapi/viam/components/gps/service/index.html#viam.components.gps.service.GPSService">GPSService (class in viam.components.gps.service)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.GPSServiceBase">GPSServiceBase (class in viam.proto.api.component.gps)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.GPSServiceStub">GPSServiceStub (class in viam.proto.api.component.gps)</a>
 </li>
       <li><a href="autoapi/viam/components/gripper/client/index.html#viam.components.gripper.client.GripperClient.grab">grab() (viam.components.gripper.client.GripperClient method)</a>
 
@@ -1912,16 +2006,6 @@
 </li>
         <li><a href="autoapi/viam/proto/api/component/generic/index.html#viam.proto.api.component.generic.DoResponse.HasField">(viam.proto.api.component.generic.DoResponse method)</a>
 </li>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadLocationResponse.HasField">(viam.proto.api.component.gps.ReadLocationResponse method)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAccelerationResponse.HasField">(viam.proto.api.component.imu.ReadAccelerationResponse method)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAngularVelocityResponse.HasField">(viam.proto.api.component.imu.ReadAngularVelocityResponse method)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadMagnetometerResponse.HasField">(viam.proto.api.component.imu.ReadMagnetometerResponse method)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadOrientationResponse.HasField">(viam.proto.api.component.imu.ReadOrientationResponse method)</a>
-</li>
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.Event.HasField">(viam.proto.api.component.inputcontroller.Event method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.StreamEventsResponse.HasField">(viam.proto.api.component.inputcontroller.StreamEventsResponse method)</a>
@@ -1943,6 +2027,14 @@
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.SetPowerRequest.HasField">(viam.proto.api.component.motor.SetPowerRequest method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.StopRequest.HasField">(viam.proto.api.component.motor.StopRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAngularVelocityResponse.HasField">(viam.proto.api.component.movementsensor.GetAngularVelocityResponse method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetLinearVelocityResponse.HasField">(viam.proto.api.component.movementsensor.GetLinearVelocityResponse method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetOrientationResponse.HasField">(viam.proto.api.component.movementsensor.GetOrientationResponse method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPositionResponse.HasField">(viam.proto.api.component.movementsensor.GetPositionResponse method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#viam.proto.api.component.posetracker.GetPosesResponse.BodyPosesEntry.HasField">(viam.proto.api.component.posetracker.GetPosesResponse.BodyPosesEntry method)</a>
 </li>
@@ -2097,20 +2189,6 @@
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.image">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.IMU">IMU (class in viam.components.imu)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/imu/index.html#viam.components.imu.imu.IMU">(class in viam.components.imu.imu)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/client/index.html#viam.components.imu.client.IMUClient">IMUClient (class in viam.components.imu.client)</a>
-</li>
-      <li><a href="autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService">IMUService (class in viam.components.imu.service)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.IMUServiceBase">IMUServiceBase (class in viam.proto.api.component.imu)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.IMUServiceStub">IMUServiceStub (class in viam.proto.api.component.imu)</a>
-</li>
       <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetMapRequest.include_robot_marker">include_robot_marker (viam.proto.api.service.slam.GetMapRequest attribute)</a>
 </li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.AnswerRequest.init">init (viam.proto.rpc.webrtc.signaling.AnswerRequest property)</a>
@@ -2137,8 +2215,6 @@
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.WorldState.interaction_spaces">(viam.proto.api.common.WorldState property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.GetPropertiesResponse.intrinsic_parameters">intrinsic_parameters (viam.proto.api.component.camera.GetPropertiesResponse property)</a>
 </li>
       <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.IntrinsicParameters">IntrinsicParameters (class in viam.components.camera)</a>
@@ -2147,6 +2223,8 @@
         <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.IntrinsicParameters">(class in viam.proto.api.component.camera)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.ActuatorStatus.is_moving">is_moving (viam.proto.api.common.ActuatorStatus attribute)</a>
 
       <ul>
@@ -2236,6 +2314,8 @@
       <ul>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.BoardStatus.DigitalInterruptsEntry.key">(viam.proto.api.common.BoardStatus.DigitalInterruptsEntry attribute)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAccuracyResponse.AccuracyMmEntry.key">(viam.proto.api.component.movementsensor.GetAccuracyResponse.AccuracyMmEntry attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#viam.proto.api.component.posetracker.GetPosesResponse.BodyPosesEntry.key">(viam.proto.api.component.posetracker.GetPosesResponse.BodyPosesEntry attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/rpc/webrtc/grpc/index.html#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry.key">(viam.proto.rpc.webrtc.grpc.Metadata.MdEntry attribute)</a>
@@ -2249,8 +2329,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.Webcam.label">label (viam.proto.api.component.camera.Webcam attribute)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.GeoPoint.latitude">latitude (viam.proto.api.common.GeoPoint attribute)</a>
+      <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.GeoPoint.latitude">latitude (viam.components.movement_sensor.GeoPoint attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.GeoPoint.latitude">(viam.proto.api.common.GeoPoint attribute)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.RectangularPrism.length_mm">length_mm (viam.proto.api.common.RectangularPrism attribute)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/gantry/index.html#viam.proto.api.component.gantry.GetLengthsResponse.lengths_mm">lengths_mm (viam.proto.api.component.gantry.GetLengthsResponse property)</a>
@@ -2265,12 +2349,10 @@
         <li><a href="autoapi/viam/proto/api/component/base/index.html#viam.proto.api.component.base.SetVelocityRequest.linear">(viam.proto.api.component.base.SetVelocityRequest property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.LocalGPS">LocalGPS (class in viam.components.gps)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.LocalGPS">(class in viam.components.gps.gps)</a>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetLinearVelocityResponse.linear_velocity">linear_velocity (viam.proto.api.component.movementsensor.GetLinearVelocityResponse property)</a>
 </li>
-      </ul></li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPropertiesResponse.linear_velocity_supported">linear_velocity_supported (viam.proto.api.component.movementsensor.GetPropertiesResponse attribute)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.AddWaypointRequest.location">location (viam.proto.api.service.navigation.AddWaypointRequest property)</a>
 
       <ul>
@@ -2299,8 +2381,12 @@
       </ul></li>
       <li><a href="autoapi/viam/logging/index.html#viam.logging.LOGGERS">LOGGERS (in module viam.logging)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.GeoPoint.longitude">longitude (viam.proto.api.common.GeoPoint attribute)</a>
+      <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.GeoPoint.longitude">longitude (viam.components.movement_sensor.GeoPoint attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.GeoPoint.longitude">(viam.proto.api.common.GeoPoint attribute)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/registry/index.html#viam.registry.Registry.lookup">lookup() (viam.registry.Registry class method)</a>
 </li>
   </ul></td>
@@ -2309,14 +2395,6 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Magnetometer">Magnetometer (class in viam.components.imu)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.Magnetometer">(class in viam.proto.api.component.imu)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadMagnetometerResponse.magnetometer">magnetometer (viam.proto.api.component.imu.ReadMagnetometerResponse property)</a>
-</li>
       <li><a href="autoapi/viam/logging/index.html#viam.logging.ColorFormatter.MAPPING">MAPPING (viam.logging.ColorFormatter attribute)</a>
 </li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/grpc/index.html#viam.proto.rpc.webrtc.grpc.Metadata.md">md (viam.proto.rpc.webrtc.grpc.Metadata property)</a>
@@ -2463,14 +2541,6 @@
 </li>
         <li><a href="autoapi/viam/components/generic/service/index.html#module-viam.components.generic.service">viam.components.generic.service</a>
 </li>
-        <li><a href="autoapi/viam/components/gps/index.html#module-viam.components.gps">viam.components.gps</a>
-</li>
-        <li><a href="autoapi/viam/components/gps/client/index.html#module-viam.components.gps.client">viam.components.gps.client</a>
-</li>
-        <li><a href="autoapi/viam/components/gps/gps/index.html#module-viam.components.gps.gps">viam.components.gps.gps</a>
-</li>
-        <li><a href="autoapi/viam/components/gps/service/index.html#module-viam.components.gps.service">viam.components.gps.service</a>
-</li>
         <li><a href="autoapi/viam/components/gripper/index.html#module-viam.components.gripper">viam.components.gripper</a>
 </li>
         <li><a href="autoapi/viam/components/gripper/client/index.html#module-viam.components.gripper.client">viam.components.gripper.client</a>
@@ -2478,14 +2548,6 @@
         <li><a href="autoapi/viam/components/gripper/gripper/index.html#module-viam.components.gripper.gripper">viam.components.gripper.gripper</a>
 </li>
         <li><a href="autoapi/viam/components/gripper/service/index.html#module-viam.components.gripper.service">viam.components.gripper.service</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/index.html#module-viam.components.imu">viam.components.imu</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/client/index.html#module-viam.components.imu.client">viam.components.imu.client</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/imu/index.html#module-viam.components.imu.imu">viam.components.imu.imu</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/service/index.html#module-viam.components.imu.service">viam.components.imu.service</a>
 </li>
         <li><a href="autoapi/viam/components/input/index.html#module-viam.components.input">viam.components.input</a>
 </li>
@@ -2502,6 +2564,14 @@
         <li><a href="autoapi/viam/components/motor/motor/index.html#module-viam.components.motor.motor">viam.components.motor.motor</a>
 </li>
         <li><a href="autoapi/viam/components/motor/service/index.html#module-viam.components.motor.service">viam.components.motor.service</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#module-viam.components.movement_sensor">viam.components.movement_sensor</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/client/index.html#module-viam.components.movement_sensor.client">viam.components.movement_sensor.client</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#module-viam.components.movement_sensor.movement_sensor">viam.components.movement_sensor.movement_sensor</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/service/index.html#module-viam.components.movement_sensor.service">viam.components.movement_sensor.service</a>
 </li>
         <li><a href="autoapi/viam/components/pose_tracker/index.html#module-viam.components.pose_tracker">viam.components.pose_tracker</a>
 </li>
@@ -2599,14 +2669,6 @@
 </li>
         <li><a href="autoapi/viam/gen/proto/api/component/generic/v1/generic_pb2/index.html#module-viam.gen.proto.api.component.generic.v1.generic_pb2">viam.gen.proto.api.component.generic.v1.generic_pb2</a>
 </li>
-        <li><a href="autoapi/viam/gen/proto/api/component/gps/index.html#module-viam.gen.proto.api.component.gps">viam.gen.proto.api.component.gps</a>
-</li>
-        <li><a href="autoapi/viam/gen/proto/api/component/gps/v1/index.html#module-viam.gen.proto.api.component.gps.v1">viam.gen.proto.api.component.gps.v1</a>
-</li>
-        <li><a href="autoapi/viam/gen/proto/api/component/gps/v1/gps_grpc/index.html#module-viam.gen.proto.api.component.gps.v1.gps_grpc">viam.gen.proto.api.component.gps.v1.gps_grpc</a>
-</li>
-        <li><a href="autoapi/viam/gen/proto/api/component/gps/v1/gps_pb2/index.html#module-viam.gen.proto.api.component.gps.v1.gps_pb2">viam.gen.proto.api.component.gps.v1.gps_pb2</a>
-</li>
         <li><a href="autoapi/viam/gen/proto/api/component/gripper/index.html#module-viam.gen.proto.api.component.gripper">viam.gen.proto.api.component.gripper</a>
 </li>
         <li><a href="autoapi/viam/gen/proto/api/component/gripper/v1/index.html#module-viam.gen.proto.api.component.gripper.v1">viam.gen.proto.api.component.gripper.v1</a>
@@ -2614,14 +2676,6 @@
         <li><a href="autoapi/viam/gen/proto/api/component/gripper/v1/gripper_grpc/index.html#module-viam.gen.proto.api.component.gripper.v1.gripper_grpc">viam.gen.proto.api.component.gripper.v1.gripper_grpc</a>
 </li>
         <li><a href="autoapi/viam/gen/proto/api/component/gripper/v1/gripper_pb2/index.html#module-viam.gen.proto.api.component.gripper.v1.gripper_pb2">viam.gen.proto.api.component.gripper.v1.gripper_pb2</a>
-</li>
-        <li><a href="autoapi/viam/gen/proto/api/component/imu/index.html#module-viam.gen.proto.api.component.imu">viam.gen.proto.api.component.imu</a>
-</li>
-        <li><a href="autoapi/viam/gen/proto/api/component/imu/v1/index.html#module-viam.gen.proto.api.component.imu.v1">viam.gen.proto.api.component.imu.v1</a>
-</li>
-        <li><a href="autoapi/viam/gen/proto/api/component/imu/v1/imu_grpc/index.html#module-viam.gen.proto.api.component.imu.v1.imu_grpc">viam.gen.proto.api.component.imu.v1.imu_grpc</a>
-</li>
-        <li><a href="autoapi/viam/gen/proto/api/component/imu/v1/imu_pb2/index.html#module-viam.gen.proto.api.component.imu.v1.imu_pb2">viam.gen.proto.api.component.imu.v1.imu_pb2</a>
 </li>
         <li><a href="autoapi/viam/gen/proto/api/component/inputcontroller/index.html#module-viam.gen.proto.api.component.inputcontroller">viam.gen.proto.api.component.inputcontroller</a>
 </li>
@@ -2638,6 +2692,14 @@
         <li><a href="autoapi/viam/gen/proto/api/component/motor/v1/motor_grpc/index.html#module-viam.gen.proto.api.component.motor.v1.motor_grpc">viam.gen.proto.api.component.motor.v1.motor_grpc</a>
 </li>
         <li><a href="autoapi/viam/gen/proto/api/component/motor/v1/motor_pb2/index.html#module-viam.gen.proto.api.component.motor.v1.motor_pb2">viam.gen.proto.api.component.motor.v1.motor_pb2</a>
+</li>
+        <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/index.html#module-viam.gen.proto.api.component.movementsensor">viam.gen.proto.api.component.movementsensor</a>
+</li>
+        <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/v1/index.html#module-viam.gen.proto.api.component.movementsensor.v1">viam.gen.proto.api.component.movementsensor.v1</a>
+</li>
+        <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/v1/movementsensor_grpc/index.html#module-viam.gen.proto.api.component.movementsensor.v1.movementsensor_grpc">viam.gen.proto.api.component.movementsensor.v1.movementsensor_grpc</a>
+</li>
+        <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/v1/movementsensor_pb2/index.html#module-viam.gen.proto.api.component.movementsensor.v1.movementsensor_pb2">viam.gen.proto.api.component.movementsensor.v1.movementsensor_pb2</a>
 </li>
         <li><a href="autoapi/viam/gen/proto/api/component/posetracker/index.html#module-viam.gen.proto.api.component.posetracker">viam.gen.proto.api.component.posetracker</a>
 </li>
@@ -2789,15 +2851,13 @@
 </li>
         <li><a href="autoapi/viam/proto/api/component/generic/index.html#module-viam.proto.api.component.generic">viam.proto.api.component.generic</a>
 </li>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#module-viam.proto.api.component.gps">viam.proto.api.component.gps</a>
-</li>
         <li><a href="autoapi/viam/proto/api/component/gripper/index.html#module-viam.proto.api.component.gripper">viam.proto.api.component.gripper</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#module-viam.proto.api.component.imu">viam.proto.api.component.imu</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#module-viam.proto.api.component.inputcontroller">viam.proto.api.component.inputcontroller</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#module-viam.proto.api.component.motor">viam.proto.api.component.motor</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#module-viam.proto.api.component.movementsensor">viam.proto.api.component.movementsensor</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#module-viam.proto.api.component.posetracker">viam.proto.api.component.posetracker</a>
 </li>
@@ -2944,6 +3004,20 @@
         <li><a href="autoapi/viam/components/gantry/gantry/index.html#viam.components.gantry.gantry.Gantry.move_to_position">(viam.components.gantry.gantry.Gantry method)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor">MovementSensor (class in viam.components.movement_sensor)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor">(class in viam.components.movement_sensor.movement_sensor)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient">MovementSensorClient (class in viam.components.movement_sensor.client)</a>
+</li>
+      <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService">MovementSensorService (class in viam.components.movement_sensor.service)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceBase">MovementSensorServiceBase (class in viam.proto.api.component.movementsensor)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.MovementSensorServiceStub">MovementSensorServiceStub (class in viam.proto.api.component.movementsensor)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/component/servo/index.html#viam.proto.api.component.servo.MoveRequest">MoveRequest (class in viam.proto.api.component.servo)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/servo/index.html#viam.proto.api.component.servo.MoveResponse">MoveResponse (class in viam.proto.api.component.servo)</a>
@@ -3061,25 +3135,11 @@
 </li>
         <li><a href="autoapi/viam/proto/api/component/generic/index.html#viam.proto.api.component.generic.DoRequest.name">(viam.proto.api.component.generic.DoRequest attribute)</a>
 </li>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadAltitudeRequest.name">(viam.proto.api.component.gps.ReadAltitudeRequest attribute)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadLocationRequest.name">(viam.proto.api.component.gps.ReadLocationRequest attribute)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadSpeedRequest.name">(viam.proto.api.component.gps.ReadSpeedRequest attribute)</a>
-</li>
         <li><a href="autoapi/viam/proto/api/component/gripper/index.html#viam.proto.api.component.gripper.GrabRequest.name">(viam.proto.api.component.gripper.GrabRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/gripper/index.html#viam.proto.api.component.gripper.OpenRequest.name">(viam.proto.api.component.gripper.OpenRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/gripper/index.html#viam.proto.api.component.gripper.StopRequest.name">(viam.proto.api.component.gripper.StopRequest attribute)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAccelerationRequest.name">(viam.proto.api.component.imu.ReadAccelerationRequest attribute)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAngularVelocityRequest.name">(viam.proto.api.component.imu.ReadAngularVelocityRequest attribute)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadMagnetometerRequest.name">(viam.proto.api.component.imu.ReadMagnetometerRequest attribute)</a>
-</li>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadOrientationRequest.name">(viam.proto.api.component.imu.ReadOrientationRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GetFeaturesRequest.name">(viam.proto.api.component.motor.GetFeaturesRequest attribute)</a>
 </li>
@@ -3096,6 +3156,20 @@
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.SetPowerRequest.name">(viam.proto.api.component.motor.SetPowerRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.StopRequest.name">(viam.proto.api.component.motor.StopRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAccuracyRequest.name">(viam.proto.api.component.movementsensor.GetAccuracyRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAngularVelocityRequest.name">(viam.proto.api.component.movementsensor.GetAngularVelocityRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetCompassHeadingRequest.name">(viam.proto.api.component.movementsensor.GetCompassHeadingRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetLinearVelocityRequest.name">(viam.proto.api.component.movementsensor.GetLinearVelocityRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetOrientationRequest.name">(viam.proto.api.component.movementsensor.GetOrientationRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPositionRequest.name">(viam.proto.api.component.movementsensor.GetPositionRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPropertiesRequest.name">(viam.proto.api.component.movementsensor.GetPropertiesRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#viam.proto.api.component.posetracker.GetPosesRequest.name">(viam.proto.api.component.posetracker.GetPosesRequest attribute)</a>
 </li>
@@ -3153,18 +3227,30 @@
       <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Pose.o_x">o_x (viam.components.arm.Pose attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Orientation.o_x">(viam.components.movement_sensor.Orientation attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Orientation.o_x">(viam.proto.api.common.Orientation attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Pose.o_x">(viam.proto.api.common.Pose attribute)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Pose.o_y">o_y (viam.components.arm.Pose attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Orientation.o_y">(viam.components.movement_sensor.Orientation attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Orientation.o_y">(viam.proto.api.common.Orientation attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Pose.o_y">(viam.proto.api.common.Pose attribute)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Pose.o_z">o_z (viam.components.arm.Pose attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Orientation.o_z">(viam.components.movement_sensor.Orientation attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Orientation.o_z">(viam.proto.api.common.Orientation attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Pose.o_z">(viam.proto.api.common.Pose attribute)</a>
 </li>
       </ul></li>
@@ -3186,14 +3272,14 @@
         <li><a href="autoapi/viam/components/gripper/gripper/index.html#viam.components.gripper.gripper.Gripper.open">(viam.components.gripper.gripper.Gripper method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/gripper/service/index.html#viam.components.gripper.service.GripperService.Open">Open() (viam.components.gripper.service.GripperService method)</a>
 
       <ul>
         <li><a href="autoapi/viam/proto/api/component/gripper/index.html#viam.proto.api.component.gripper.GripperServiceBase.Open">(viam.proto.api.component.gripper.GripperServiceBase method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/gripper/index.html#viam.proto.api.component.gripper.OpenRequest">OpenRequest (class in viam.proto.api.component.gripper)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/gripper/index.html#viam.proto.api.component.gripper.OpenResponse">OpenResponse (class in viam.proto.api.component.gripper)</a>
@@ -3216,13 +3302,15 @@
 </li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse">OptionalWebRTCConfigResponse (class in viam.proto.rpc.webrtc.signaling)</a>
 </li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Orientation">Orientation (class in viam.components.imu)</a>
+      <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Orientation">Orientation (class in viam.components.movement_sensor)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/imu/imu/index.html#viam.components.imu.imu.Orientation">(class in viam.components.imu.imu)</a>
+        <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Orientation">(class in viam.proto.api.common)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadOrientationResponse.orientation">orientation (viam.proto.api.component.imu.ReadOrientationResponse property)</a>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetOrientationResponse.orientation">orientation (viam.proto.api.component.movementsensor.GetOrientationResponse property)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPropertiesResponse.orientation_supported">orientation_supported (viam.proto.api.component.movementsensor.GetPropertiesResponse attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -3268,12 +3356,6 @@
         <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.SetPWMRequest.pin">(viam.proto.api.component.board.SetPWMRequest attribute)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.EulerAngles.pitch_deg">pitch_deg (viam.components.imu.EulerAngles attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.EulerAngles.pitch_deg">(viam.proto.api.component.imu.EulerAngles attribute)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/services/motion/index.html#viam.services.motion.MotionClient.plan_and_move">plan_and_move() (viam.services.motion.MotionClient method)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/motion/index.html#viam.proto.api.service.motion.MotionServiceBase.PlanAndMove">PlanAndMove() (viam.proto.api.service.motion.MotionServiceBase method)</a>
@@ -3284,12 +3366,6 @@
 </li>
       <li><a href="autoapi/viam/components/types/index.html#viam.components.types.CameraMimeType.PNG">PNG (viam.components.types.CameraMimeType attribute)</a>
 </li>
-      <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.GPS.Point">Point (viam.components.gps.GPS attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.GPS.Point">(viam.components.gps.gps.GPS attribute)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.PointCloudObject.point_cloud">point_cloud (viam.proto.api.common.PointCloudObject attribute)</a>
 
       <ul>
@@ -3330,12 +3406,12 @@
         <li><a href="autoapi/viam/components/pose_tracker/pose_tracker/index.html#viam.components.pose_tracker.pose_tracker.PoseTracker">(class in viam.components.pose_tracker.pose_tracker)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/pose_tracker/client/index.html#viam.components.pose_tracker.client.PoseTrackerClient">PoseTrackerClient (class in viam.components.pose_tracker.client)</a>
 </li>
       <li><a href="autoapi/viam/components/pose_tracker/service/index.html#viam.components.pose_tracker.service.PoseTrackerService">PoseTrackerService (class in viam.components.pose_tracker.service)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#viam.proto.api.component.posetracker.PoseTrackerServiceBase">PoseTrackerServiceBase (class in viam.proto.api.component.posetracker)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#viam.proto.api.component.posetracker.PoseTrackerServiceStub">PoseTrackerServiceStub (class in viam.proto.api.component.posetracker)</a>
@@ -3376,6 +3452,8 @@
       </ul></li>
       <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GoToRequest.position_revolutions">position_revolutions (viam.proto.api.component.motor.GoToRequest attribute)</a>
 </li>
+      <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetPropertiesResponse.position_supported">position_supported (viam.proto.api.component.movementsensor.GetPropertiesResponse attribute)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/component/arm/index.html#viam.proto.api.component.arm.GetJointPositionsResponse.positions">positions (viam.proto.api.component.arm.GetJointPositionsResponse property)</a>
 
       <ul>
@@ -3396,6 +3474,12 @@
 </li>
       <li><a href="autoapi/viam/utils/index.html#viam.utils.primitive_to_value">primitive_to_value() (in module viam.utils)</a>
 </li>
+      <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.Properties">Properties (viam.components.movement_sensor.movement_sensor.MovementSensor attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.Properties">(viam.components.movement_sensor.MovementSensor attribute)</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.Webcam.properties">properties (viam.proto.api.component.camera.Webcam property)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.Property">Property (class in viam.proto.api.component.camera)</a>
@@ -3458,100 +3542,6 @@
         <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.AnalogReaderClient.read">(viam.components.board.client.AnalogReaderClient method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/imu/client/index.html#viam.components.imu.client.IMUClient.read_acceleration">read_acceleration() (viam.components.imu.client.IMUClient method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.IMU.read_acceleration">(viam.components.imu.IMU method)</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/imu/index.html#viam.components.imu.imu.IMU.read_acceleration">(viam.components.imu.imu.IMU method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.LocalGPS.read_accuracy">read_accuracy() (viam.components.gps.gps.LocalGPS method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.LocalGPS.read_accuracy">(viam.components.gps.LocalGPS method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/gps/client/index.html#viam.components.gps.client.GPSClient.read_altitude">read_altitude() (viam.components.gps.client.GPSClient method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.GPS.read_altitude">(viam.components.gps.GPS method)</a>
-</li>
-        <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.GPS.read_altitude">(viam.components.gps.gps.GPS method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/client/index.html#viam.components.imu.client.IMUClient.read_angular_velocity">read_angular_velocity() (viam.components.imu.client.IMUClient method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.IMU.read_angular_velocity">(viam.components.imu.IMU method)</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/imu/index.html#viam.components.imu.imu.IMU.read_angular_velocity">(viam.components.imu.imu.IMU method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/gps/client/index.html#viam.components.gps.client.GPSClient.read_location">read_location() (viam.components.gps.client.GPSClient method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.GPS.read_location">(viam.components.gps.GPS method)</a>
-</li>
-        <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.GPS.read_location">(viam.components.gps.gps.GPS method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/client/index.html#viam.components.imu.client.IMUClient.read_magnetometer">read_magnetometer() (viam.components.imu.client.IMUClient method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.IMU.read_magnetometer">(viam.components.imu.IMU method)</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/imu/index.html#viam.components.imu.imu.IMU.read_magnetometer">(viam.components.imu.imu.IMU method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/client/index.html#viam.components.imu.client.IMUClient.read_orientation">read_orientation() (viam.components.imu.client.IMUClient method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.IMU.read_orientation">(viam.components.imu.IMU method)</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/imu/index.html#viam.components.imu.imu.IMU.read_orientation">(viam.components.imu.imu.IMU method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.LocalGPS.read_satellites">read_satellites() (viam.components.gps.gps.LocalGPS method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.LocalGPS.read_satellites">(viam.components.gps.LocalGPS method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/gps/client/index.html#viam.components.gps.client.GPSClient.read_speed">read_speed() (viam.components.gps.client.GPSClient method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.GPS.read_speed">(viam.components.gps.GPS method)</a>
-</li>
-        <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.GPS.read_speed">(viam.components.gps.gps.GPS method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/gps/gps/index.html#viam.components.gps.gps.LocalGPS.read_valid">read_valid() (viam.components.gps.gps.LocalGPS method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/index.html#viam.components.gps.LocalGPS.read_valid">(viam.components.gps.LocalGPS method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadAcceleration">ReadAcceleration() (viam.components.imu.service.IMUService method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.IMUServiceBase.ReadAcceleration">(viam.proto.api.component.imu.IMUServiceBase method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAccelerationRequest">ReadAccelerationRequest (class in viam.proto.api.component.imu)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAccelerationResponse">ReadAccelerationResponse (class in viam.proto.api.component.imu)</a>
-</li>
-      <li><a href="autoapi/viam/components/gps/service/index.html#viam.components.gps.service.GPSService.ReadAltitude">ReadAltitude() (viam.components.gps.service.GPSService method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.GPSServiceBase.ReadAltitude">(viam.proto.api.component.gps.GPSServiceBase method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadAltitudeRequest">ReadAltitudeRequest (class in viam.proto.api.component.gps)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadAltitudeResponse">ReadAltitudeResponse (class in viam.proto.api.component.gps)</a>
-</li>
       <li><a href="autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardService.ReadAnalogReader">ReadAnalogReader() (viam.components.board.service.BoardService method)</a>
 
       <ul>
@@ -3561,16 +3551,6 @@
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.ReadAnalogReaderRequest">ReadAnalogReaderRequest (class in viam.proto.api.component.board)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.ReadAnalogReaderResponse">ReadAnalogReaderResponse (class in viam.proto.api.component.board)</a>
-</li>
-      <li><a href="autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadAngularVelocity">ReadAngularVelocity() (viam.components.imu.service.IMUService method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.IMUServiceBase.ReadAngularVelocity">(viam.proto.api.component.imu.IMUServiceBase method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAngularVelocityRequest">ReadAngularVelocityRequest (class in viam.proto.api.component.imu)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadAngularVelocityResponse">ReadAngularVelocityResponse (class in viam.proto.api.component.imu)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/sensors/index.html#viam.proto.api.service.sensors.Readings">Readings (class in viam.proto.api.service.sensors)</a>
 </li>
@@ -3582,46 +3562,6 @@
         <li><a href="autoapi/viam/proto/api/service/sensors/index.html#viam.proto.api.service.sensors.Readings.readings">(viam.proto.api.service.sensors.Readings property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/gps/service/index.html#viam.components.gps.service.GPSService.ReadLocation">ReadLocation() (viam.components.gps.service.GPSService method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.GPSServiceBase.ReadLocation">(viam.proto.api.component.gps.GPSServiceBase method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadLocationRequest">ReadLocationRequest (class in viam.proto.api.component.gps)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadLocationResponse">ReadLocationResponse (class in viam.proto.api.component.gps)</a>
-</li>
-      <li><a href="autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadMagnetometer">ReadMagnetometer() (viam.components.imu.service.IMUService method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.IMUServiceBase.ReadMagnetometer">(viam.proto.api.component.imu.IMUServiceBase method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadMagnetometerRequest">ReadMagnetometerRequest (class in viam.proto.api.component.imu)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadMagnetometerResponse">ReadMagnetometerResponse (class in viam.proto.api.component.imu)</a>
-</li>
-      <li><a href="autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.ReadOrientation">ReadOrientation() (viam.components.imu.service.IMUService method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.IMUServiceBase.ReadOrientation">(viam.proto.api.component.imu.IMUServiceBase method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadOrientationRequest">ReadOrientationRequest (class in viam.proto.api.component.imu)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.ReadOrientationResponse">ReadOrientationResponse (class in viam.proto.api.component.imu)</a>
-</li>
-      <li><a href="autoapi/viam/components/gps/service/index.html#viam.components.gps.service.GPSService.ReadSpeed">ReadSpeed() (viam.components.gps.service.GPSService method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.GPSServiceBase.ReadSpeed">(viam.proto.api.component.gps.GPSServiceBase method)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadSpeedRequest">ReadSpeedRequest (class in viam.proto.api.component.gps)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadSpeedResponse">ReadSpeedResponse (class in viam.proto.api.component.gps)</a>
-</li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.RectangularPrism">RectangularPrism (class in viam.proto.api.common)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.GeometriesInFrame.reference_frame">reference_frame (viam.proto.api.common.GeometriesInFrame attribute)</a>
@@ -3642,8 +3582,6 @@
         <li><a href="autoapi/viam/registry/index.html#viam.registry.Registry.register">(viam.registry.Registry class method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/input/client/index.html#viam.components.input.client.ControllerClient.register_control_callback">register_control_callback() (viam.components.input.client.ControllerClient method)</a>
 
       <ul>
@@ -3710,6 +3648,8 @@
         <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.resource_names">(viam.robot.client.RobotClient property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/utils/index.html#viam.utils.resource_names_for_component">resource_names_for_component() (in module viam.utils)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes">resource_rpc_subtypes (viam.proto.api.robot.ResourceRPCSubtypesResponse property)</a>
@@ -3727,15 +3667,13 @@
 </li>
         <li><a href="autoapi/viam/components/generic/service/index.html#viam.components.generic.service.GenericService.RESOURCE_TYPE">(viam.components.generic.service.GenericService attribute)</a>
 </li>
-        <li><a href="autoapi/viam/components/gps/service/index.html#viam.components.gps.service.GPSService.RESOURCE_TYPE">(viam.components.gps.service.GPSService attribute)</a>
-</li>
         <li><a href="autoapi/viam/components/gripper/service/index.html#viam.components.gripper.service.GripperService.RESOURCE_TYPE">(viam.components.gripper.service.GripperService attribute)</a>
-</li>
-        <li><a href="autoapi/viam/components/imu/service/index.html#viam.components.imu.service.IMUService.RESOURCE_TYPE">(viam.components.imu.service.IMUService attribute)</a>
 </li>
         <li><a href="autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.RESOURCE_TYPE">(viam.components.input.service.InputControllerService attribute)</a>
 </li>
         <li><a href="autoapi/viam/components/motor/service/index.html#viam.components.motor.service.MotorService.RESOURCE_TYPE">(viam.components.motor.service.MotorService attribute)</a>
+</li>
+        <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.RESOURCE_TYPE">(viam.components.movement_sensor.service.MovementSensorService attribute)</a>
 </li>
         <li><a href="autoapi/viam/components/pose_tracker/service/index.html#viam.components.pose_tracker.service.PoseTrackerService.RESOURCE_TYPE">(viam.components.pose_tracker.service.PoseTrackerService attribute)</a>
 </li>
@@ -3800,12 +3738,6 @@
 </li>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.RobotServiceStub">RobotServiceStub (class in viam.proto.api.robot)</a>
 </li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.EulerAngles.roll_deg">roll_deg (viam.components.imu.EulerAngles attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.EulerAngles.roll_deg">(viam.proto.api.component.imu.EulerAngles attribute)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/registry/index.html#viam.registry.ComponentRegistration.rpc_service">rpc_service (viam.registry.ComponentRegistration attribute)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.GoForRequest.rpm">rpm (viam.proto.api.component.motor.GoForRequest attribute)</a>
@@ -4047,8 +3979,6 @@
       <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.SLAMServiceStub">SLAMServiceStub (class in viam.proto.api.service.slam)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.TransformPoseRequest.source">source (viam.proto.api.robot.TransformPoseRequest property)</a>
-</li>
-      <li><a href="autoapi/viam/proto/api/component/gps/index.html#viam.proto.api.component.gps.ReadSpeedResponse.speed_mm_per_sec">speed_mm_per_sec (viam.proto.api.component.gps.ReadSpeedResponse attribute)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Sphere">Sphere (class in viam.proto.api.common)</a>
 </li>
@@ -4323,6 +4253,10 @@
       <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Pose.theta">theta (viam.components.arm.Pose attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Orientation.theta">(viam.components.movement_sensor.Orientation attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Orientation.theta">(viam.proto.api.common.Orientation attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Pose.theta">(viam.proto.api.common.Pose attribute)</a>
 </li>
       </ul></li>
@@ -4352,14 +4286,14 @@
 </li>
       <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_pose">transform_pose() (viam.robot.client.RobotClient method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.RobotServiceBase.TransformPose">TransformPose() (viam.proto.api.robot.RobotServiceBase method)</a>
 
       <ul>
         <li><a href="autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.TransformPose">(viam.robot.service.RobotService method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.TransformPoseRequest">TransformPoseRequest (class in viam.proto.api.robot)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.TransformPoseResponse">TransformPoseResponse (class in viam.proto.api.robot)</a>
@@ -4465,6 +4399,10 @@
 </li>
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.Event.value">(viam.proto.api.component.inputcontroller.Event attribute)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAccuracyResponse.AccuracyMmEntry.value">(viam.proto.api.component.movementsensor.GetAccuracyResponse.AccuracyMmEntry attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetCompassHeadingResponse.value">(viam.proto.api.component.movementsensor.GetCompassHeadingResponse attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/component/posetracker/index.html#viam.proto.api.component.posetracker.GetPosesResponse.BodyPosesEntry.value">(viam.proto.api.component.posetracker.GetPosesResponse.BodyPosesEntry property)</a>
 </li>
         <li><a href="autoapi/viam/proto/rpc/webrtc/grpc/index.html#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry.value">(viam.proto.rpc.webrtc.grpc.Metadata.MdEntry property)</a>
@@ -4491,6 +4429,8 @@
       <li><a href="autoapi/viam/components/base/index.html#viam.components.base.Vector3">Vector3 (class in viam.components.base)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Vector3">(class in viam.components.movement_sensor)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Vector3">(class in viam.proto.api.common)</a>
 </li>
       </ul></li>
@@ -4684,34 +4624,6 @@
 </li>
       </ul></li>
       <li>
-    viam.components.gps
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/index.html#module-viam.components.gps">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.components.gps.client
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/client/index.html#module-viam.components.gps.client">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.components.gps.gps
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/gps/index.html#module-viam.components.gps.gps">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.components.gps.service
-
-      <ul>
-        <li><a href="autoapi/viam/components/gps/service/index.html#module-viam.components.gps.service">module</a>
-</li>
-      </ul></li>
-      <li>
     viam.components.gripper
 
       <ul>
@@ -4737,34 +4649,6 @@
 
       <ul>
         <li><a href="autoapi/viam/components/gripper/service/index.html#module-viam.components.gripper.service">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.components.imu
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/index.html#module-viam.components.imu">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.components.imu.client
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/client/index.html#module-viam.components.imu.client">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.components.imu.imu
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/imu/index.html#module-viam.components.imu.imu">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.components.imu.service
-
-      <ul>
-        <li><a href="autoapi/viam/components/imu/service/index.html#module-viam.components.imu.service">module</a>
 </li>
       </ul></li>
       <li>
@@ -4821,6 +4705,34 @@
 
       <ul>
         <li><a href="autoapi/viam/components/motor/service/index.html#module-viam.components.motor.service">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.components.movement_sensor
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#module-viam.components.movement_sensor">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.components.movement_sensor.client
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/client/index.html#module-viam.components.movement_sensor.client">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.components.movement_sensor.movement_sensor
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/movement_sensor/index.html#module-viam.components.movement_sensor.movement_sensor">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.components.movement_sensor.service
+
+      <ul>
+        <li><a href="autoapi/viam/components/movement_sensor/service/index.html#module-viam.components.movement_sensor.service">module</a>
 </li>
       </ul></li>
       <li>
@@ -5160,34 +5072,6 @@
 </li>
       </ul></li>
       <li>
-    viam.gen.proto.api.component.gps
-
-      <ul>
-        <li><a href="autoapi/viam/gen/proto/api/component/gps/index.html#module-viam.gen.proto.api.component.gps">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.gen.proto.api.component.gps.v1
-
-      <ul>
-        <li><a href="autoapi/viam/gen/proto/api/component/gps/v1/index.html#module-viam.gen.proto.api.component.gps.v1">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.gen.proto.api.component.gps.v1.gps_grpc
-
-      <ul>
-        <li><a href="autoapi/viam/gen/proto/api/component/gps/v1/gps_grpc/index.html#module-viam.gen.proto.api.component.gps.v1.gps_grpc">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.gen.proto.api.component.gps.v1.gps_pb2
-
-      <ul>
-        <li><a href="autoapi/viam/gen/proto/api/component/gps/v1/gps_pb2/index.html#module-viam.gen.proto.api.component.gps.v1.gps_pb2">module</a>
-</li>
-      </ul></li>
-      <li>
     viam.gen.proto.api.component.gripper
 
       <ul>
@@ -5213,34 +5097,6 @@
 
       <ul>
         <li><a href="autoapi/viam/gen/proto/api/component/gripper/v1/gripper_pb2/index.html#module-viam.gen.proto.api.component.gripper.v1.gripper_pb2">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.gen.proto.api.component.imu
-
-      <ul>
-        <li><a href="autoapi/viam/gen/proto/api/component/imu/index.html#module-viam.gen.proto.api.component.imu">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.gen.proto.api.component.imu.v1
-
-      <ul>
-        <li><a href="autoapi/viam/gen/proto/api/component/imu/v1/index.html#module-viam.gen.proto.api.component.imu.v1">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.gen.proto.api.component.imu.v1.imu_grpc
-
-      <ul>
-        <li><a href="autoapi/viam/gen/proto/api/component/imu/v1/imu_grpc/index.html#module-viam.gen.proto.api.component.imu.v1.imu_grpc">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.gen.proto.api.component.imu.v1.imu_pb2
-
-      <ul>
-        <li><a href="autoapi/viam/gen/proto/api/component/imu/v1/imu_pb2/index.html#module-viam.gen.proto.api.component.imu.v1.imu_pb2">module</a>
 </li>
       </ul></li>
       <li>
@@ -5271,8 +5127,6 @@
         <li><a href="autoapi/viam/gen/proto/api/component/inputcontroller/v1/input_controller_pb2/index.html#module-viam.gen.proto.api.component.inputcontroller.v1.input_controller_pb2">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.gen.proto.api.component.motor
 
@@ -5299,6 +5153,36 @@
 
       <ul>
         <li><a href="autoapi/viam/gen/proto/api/component/motor/v1/motor_pb2/index.html#module-viam.gen.proto.api.component.motor.v1.motor_pb2">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.gen.proto.api.component.movementsensor
+
+      <ul>
+        <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/index.html#module-viam.gen.proto.api.component.movementsensor">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.gen.proto.api.component.movementsensor.v1
+
+      <ul>
+        <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/v1/index.html#module-viam.gen.proto.api.component.movementsensor.v1">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.gen.proto.api.component.movementsensor.v1.movementsensor_grpc
+
+      <ul>
+        <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/v1/movementsensor_grpc/index.html#module-viam.gen.proto.api.component.movementsensor.v1.movementsensor_grpc">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    viam.gen.proto.api.component.movementsensor.v1.movementsensor_pb2
+
+      <ul>
+        <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/v1/movementsensor_pb2/index.html#module-viam.gen.proto.api.component.movementsensor.v1.movementsensor_pb2">module</a>
 </li>
       </ul></li>
       <li>
@@ -5827,24 +5711,10 @@
 </li>
       </ul></li>
       <li>
-    viam.proto.api.component.gps
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/gps/index.html#module-viam.proto.api.component.gps">module</a>
-</li>
-      </ul></li>
-      <li>
     viam.proto.api.component.gripper
 
       <ul>
         <li><a href="autoapi/viam/proto/api/component/gripper/index.html#module-viam.proto.api.component.gripper">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.proto.api.component.imu
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#module-viam.proto.api.component.imu">module</a>
 </li>
       </ul></li>
       <li>
@@ -5859,6 +5729,13 @@
 
       <ul>
         <li><a href="autoapi/viam/proto/api/component/motor/index.html#module-viam.proto.api.component.motor">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.proto.api.component.movementsensor
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#module-viam.proto.api.component.movementsensor">module</a>
 </li>
       </ul></li>
       <li>
@@ -6219,35 +6096,19 @@
       <ul>
         <li><a href="autoapi/viam/components/base/index.html#viam.components.base.Vector3.x">(viam.components.base.Vector3 attribute)</a>
 </li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Vector3.x">(viam.components.movement_sensor.Vector3 attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Pose.x">(viam.proto.api.common.Pose attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Vector3.x">(viam.proto.api.common.Vector3 attribute)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.AngularVelocity.x_degs_per_sec">x_degs_per_sec (viam.components.imu.AngularVelocity attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.AngularVelocity.x_degs_per_sec">(viam.proto.api.component.imu.AngularVelocity attribute)</a>
-</li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Magnetometer.x_gauss">x_gauss (viam.components.imu.Magnetometer attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.Magnetometer.x_gauss">(viam.proto.api.component.imu.Magnetometer attribute)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection.x_max">x_max (viam.proto.api.service.vision.Detection attribute)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection.x_min">x_min (viam.proto.api.service.vision.Detection attribute)</a>
 </li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Acceleration.x_mm_per_sec_per_sec">x_mm_per_sec_per_sec (viam.components.imu.Acceleration attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.Acceleration.x_mm_per_sec_per_sec">(viam.proto.api.component.imu.Acceleration attribute)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -6259,21 +6120,11 @@
       <ul>
         <li><a href="autoapi/viam/components/base/index.html#viam.components.base.Vector3.y">(viam.components.base.Vector3 attribute)</a>
 </li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Vector3.y">(viam.components.movement_sensor.Vector3 attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Pose.y">(viam.proto.api.common.Pose attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Vector3.y">(viam.proto.api.common.Vector3 attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.AngularVelocity.y_degs_per_sec">y_degs_per_sec (viam.components.imu.AngularVelocity attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.AngularVelocity.y_degs_per_sec">(viam.proto.api.component.imu.AngularVelocity attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Magnetometer.y_gauss">y_gauss (viam.components.imu.Magnetometer attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.Magnetometer.y_gauss">(viam.proto.api.component.imu.Magnetometer attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -6282,18 +6133,6 @@
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection.y_min">y_min (viam.proto.api.service.vision.Detection attribute)</a>
 </li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Acceleration.y_mm_per_sec_per_sec">y_mm_per_sec_per_sec (viam.components.imu.Acceleration attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.Acceleration.y_mm_per_sec_per_sec">(viam.proto.api.component.imu.Acceleration attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.EulerAngles.yaw_deg">yaw_deg (viam.components.imu.EulerAngles attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.EulerAngles.yaw_deg">(viam.proto.api.component.imu.EulerAngles attribute)</a>
-</li>
-      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -6305,29 +6144,11 @@
       <ul>
         <li><a href="autoapi/viam/components/base/index.html#viam.components.base.Vector3.z">(viam.components.base.Vector3 attribute)</a>
 </li>
+        <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.Vector3.z">(viam.components.movement_sensor.Vector3 attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Pose.z">(viam.proto.api.common.Pose attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.Vector3.z">(viam.proto.api.common.Vector3 attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.AngularVelocity.z_degs_per_sec">z_degs_per_sec (viam.components.imu.AngularVelocity attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.AngularVelocity.z_degs_per_sec">(viam.proto.api.component.imu.AngularVelocity attribute)</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Magnetometer.z_gauss">z_gauss (viam.components.imu.Magnetometer attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.Magnetometer.z_gauss">(viam.proto.api.component.imu.Magnetometer attribute)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/imu/index.html#viam.components.imu.Acceleration.z_mm_per_sec_per_sec">z_mm_per_sec_per_sec (viam.components.imu.Acceleration attribute)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/proto/api/component/imu/index.html#viam.proto.api.component.imu.Acceleration.z_mm_per_sec_per_sec">(viam.proto.api.component.imu.Acceleration attribute)</a>
 </li>
       </ul></li>
   </ul></td>
