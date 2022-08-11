@@ -1,13 +1,13 @@
 import abc
-from typing import Mapping, Tuple
+from typing import Any, List, Mapping, Tuple
 
 from viam.proto.api.common import GeoPoint, Orientation, Vector3
 from viam.proto.api.component.movementsensor import GetPropertiesResponse
 
-from ..component_base import ComponentBase
+from ..sensor import Sensor
 
 
-class MovementSensor(ComponentBase):
+class MovementSensor(Sensor):
     """MovementSensor reports information about the robot's direction, position and speed.
 
     This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
@@ -78,3 +78,23 @@ class MovementSensor(ComponentBase):
             Dict[str, float]: The accuracy in mm
         """
         ...
+
+    async def get_readings(self) -> List[Any]:
+        """Obtain the measurements/data specific to this sensor.
+
+        Returns:
+            List[Any]: The readings for the MovementSensor. The order is:
+                GeoPoint,
+                Altitude,
+                Linear velocity,
+                Angular velocity,
+                Compass heading,
+                Orientation
+        """
+        return [
+            *(await self.get_position()),
+            await self.get_linear_velocity(),
+            await self.get_angular_velocity(),
+            await self.get_compass_heading(),
+            await self.get_orientation(),
+        ]

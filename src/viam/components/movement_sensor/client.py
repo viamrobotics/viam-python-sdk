@@ -1,4 +1,4 @@
-from typing import Mapping, Tuple
+from typing import Any, List, Mapping, Tuple
 
 from grpclib.client import Channel
 
@@ -65,3 +65,6 @@ class MovementSensorClient(MovementSensor):
         request = GetAccuracyRequest(name=self.name)
         response: GetAccuracyResponse = await self.client.GetAccuracy(request)
         return response.accuracy_mm
+
+    async def get_readings(self) -> List[Any]:
+        return await super().get_readings()

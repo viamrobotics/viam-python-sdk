@@ -101,6 +101,11 @@ class TestMovementSensor:
         value = await movement_sensor.get_accuracy()
         assert value == ACCURACY
 
+    @pytest.mark.asyncio
+    async def test_get_readings(self, movement_sensor: MovementSensor):
+        value = await movement_sensor.get_readings()
+        assert value == [COORDINATE, ALTITUDE, LINEAR_VELOCITY, ANGULAR_VELOCITY, HEADING, ORIENTATION]
+
 
 class TestService:
     @pytest.mark.asyncio
@@ -211,6 +216,13 @@ class TestClient:
             client = MovementSensorClient(movement_sensor.name, channel)
             value = await client.get_accuracy()
             assert value == pytest.approx(ACCURACY)
+
+    @pytest.mark.asyncio
+    async def test_get_readings(self, movement_sensor: MovementSensor, service: MovementSensorService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorClient(movement_sensor.name, channel)
+            value = await client.get_readings()
+            assert value == [COORDINATE, ALTITUDE, LINEAR_VELOCITY, ANGULAR_VELOCITY, HEADING, ORIENTATION]
 
     @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorService, generic_service: GenericService):
