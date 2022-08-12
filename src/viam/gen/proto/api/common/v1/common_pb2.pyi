@@ -224,18 +224,23 @@ class Sphere(google.protobuf.message.Message):
 global___Sphere = Sphere
 
 class RectangularPrism(google.protobuf.message.Message):
+    """RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
+    These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    WIDTH_MM_FIELD_NUMBER: builtins.int
-    LENGTH_MM_FIELD_NUMBER: builtins.int
-    DEPTH_MM_FIELD_NUMBER: builtins.int
-    width_mm: builtins.float
-    length_mm: builtins.float
-    depth_mm: builtins.float
+    DIMS_MM_FIELD_NUMBER: builtins.int
 
-    def __init__(self, *, width_mm: builtins.float=..., length_mm: builtins.float=..., depth_mm: builtins.float=...) -> None:
+    @property
+    def dims_mm(self) -> global___Vector3:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['depth_mm', b'depth_mm', 'length_mm', b'length_mm', 'width_mm', b'width_mm']) -> None:
+    def __init__(self, *, dims_mm: typing.Optional[global___Vector3]=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['dims_mm', b'dims_mm']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['dims_mm', b'dims_mm']) -> None:
         ...
 global___RectangularPrism = RectangularPrism
 
