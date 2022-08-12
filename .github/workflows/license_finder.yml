@@ -30,9 +30,10 @@ jobs:
       - name: Install package
         run: poetry install
 
-      - name: Generate requirements.txt
+      - name: Generate requirements.txt without Viam package
         run: |
-          poetry run pip list --format=freeze > requirements.txt
+          # TODO: make this work with our private packages.
+          poetry run pip list --format=freeze | grep -v "^viam==" > requirements.txt
 
       - name: Run license finder
         run: |
