@@ -4,7 +4,15 @@ from typing import Dict, List, Tuple
 import pytest
 from grpclib.testing import ChannelFor
 from PIL import Image
-from viam.proto.api.common import GeometriesInFrame, Geometry, PointCloudObject, Pose, RectangularPrism
+
+from viam.proto.api.common import (
+    GeometriesInFrame,
+    Geometry,
+    PointCloudObject,
+    Pose,
+    RectangularPrism,
+    Vector3,
+)
 from viam.proto.api.service.vision import VisionServiceBase
 from viam.services.vision import Detection, DetectorConfig, DetectorType, VisionClient
 
@@ -54,7 +62,7 @@ POINT_CLOUDS = [
             geometries=[
                 Geometry(
                     center=Pose(x=282.45238095238096, y=241.66666666666666, z=902.8809523809524, o_z=1.0),
-                    box=RectangularPrism(width_mm=13, length_mm=7, depth_mm=11),
+                    box=RectangularPrism(dims_mm=Vector3(x=13, y=7, z=11)),
                 )
             ],
         ),
@@ -66,7 +74,7 @@ POINT_CLOUDS = [
             geometries=[
                 Geometry(
                     center=Pose(x=-129.84615384615384, y=165.53846153846155, z=511.46153846153845, o_z=1.0),
-                    box=RectangularPrism(width_mm=5.0, length_mm=4.0, depth_mm=7.0),
+                    box=RectangularPrism(dims_mm=Vector3(x=5.0, y=4.0, z=7.0)),
                 )
             ],
         ),
