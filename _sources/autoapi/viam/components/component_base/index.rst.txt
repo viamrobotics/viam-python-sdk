@@ -24,7 +24,7 @@ Classes
    Base component.
    All components must inherit from this class.
 
-   .. py:method:: get_resource_name(cls, name: str) -> viam.proto.api.common.ResourceName
+   .. py:method:: get_resource_name(name: str) -> viam.proto.api.common.ResourceName
       :classmethod:
 
       Get the ResourceName for this component type with the given name
@@ -33,7 +33,7 @@ Classes
       :type name: str
 
 
-   .. py:method:: from_robot(cls, robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 
       Get the component named `name` from the provided robot.
@@ -47,7 +47,7 @@ Classes
       :rtype: Self
 
 
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do(command: Dict[str, Any]) -> Dict[str, Any]
       :abstractmethod:
       :async:
 

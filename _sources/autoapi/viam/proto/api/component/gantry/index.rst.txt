@@ -40,27 +40,27 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetPosition(self, stream: grpclib.server.Stream[proto.api.component.gantry.v1.gantry_pb2.GetPositionRequest, proto.api.component.gantry.v1.gantry_pb2.GetPositionResponse]) -> None
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[proto.api.component.gantry.v1.gantry_pb2.GetPositionRequest, proto.api.component.gantry.v1.gantry_pb2.GetPositionResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: MoveToPosition(self, stream: grpclib.server.Stream[proto.api.component.gantry.v1.gantry_pb2.MoveToPositionRequest, proto.api.component.gantry.v1.gantry_pb2.MoveToPositionResponse]) -> None
+   .. py:method:: MoveToPosition(stream: grpclib.server.Stream[proto.api.component.gantry.v1.gantry_pb2.MoveToPositionRequest, proto.api.component.gantry.v1.gantry_pb2.MoveToPositionResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetLengths(self, stream: grpclib.server.Stream[proto.api.component.gantry.v1.gantry_pb2.GetLengthsRequest, proto.api.component.gantry.v1.gantry_pb2.GetLengthsResponse]) -> None
+   .. py:method:: GetLengths(stream: grpclib.server.Stream[proto.api.component.gantry.v1.gantry_pb2.GetLengthsRequest, proto.api.component.gantry.v1.gantry_pb2.GetLengthsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Stop(self, stream: grpclib.server.Stream[proto.api.component.gantry.v1.gantry_pb2.StopRequest, proto.api.component.gantry.v1.gantry_pb2.StopResponse]) -> None
+   .. py:method:: Stop(stream: grpclib.server.Stream[proto.api.component.gantry.v1.gantry_pb2.StopRequest, proto.api.component.gantry.v1.gantry_pb2.StopResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -82,13 +82,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -116,7 +116,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: lengths_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: lengths_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
       :property:
 
 
@@ -136,13 +136,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -170,7 +170,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
       :property:
 
 
@@ -190,21 +190,21 @@ Classes
 
       
 
-   .. py:method:: positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
       :property:
 
 
-   .. py:method:: world_state(self) -> viam.gen.proto.api.common.v1.common_pb2.WorldState
+   .. py:method:: world_state() -> viam.gen.proto.api.common.v1.common_pb2.WorldState
       :property:
 
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_world_state, b'_world_state', extra, b'extra', world_state, b'world_state']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[_world_state, b'_world_state', extra, b'extra', world_state, b'world_state']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -221,7 +221,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_world_state, b'_world_state']) -> Optional[typing_extensions.Literal[world_state]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[_world_state, b'_world_state']) -> Optional[typing_extensions.Literal[world_state]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -263,11 +263,11 @@ Classes
 
       
 
-   .. py:method:: positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
       :property:
 
 
-   .. py:method:: lengths_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: lengths_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
       :property:
 
 
@@ -287,13 +287,13 @@ Classes
 
       Name of a gantry
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 

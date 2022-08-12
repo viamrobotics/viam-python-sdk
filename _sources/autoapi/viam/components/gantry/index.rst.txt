@@ -38,7 +38,7 @@ Classes
    gantry implementations. This cannot be used on its own. If the `__init__()` function is
    overriden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]
+   .. py:method:: get_position(extra: Optional[Dict[str, Any]] = None) -> List[float]
       :abstractmethod:
       :async:
 
@@ -48,7 +48,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: move_to_position(self, positions: List[float], world_state: Optional[viam.proto.api.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: move_to_position(positions: List[float], world_state: Optional[viam.proto.api.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -62,7 +62,7 @@ Classes
       :type world_state: Optional[WorldState]
 
 
-   .. py:method:: get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]
+   .. py:method:: get_lengths(extra: Optional[Dict[str, Any]] = None) -> List[float]
       :abstractmethod:
       :async:
 
@@ -72,14 +72,14 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: stop(self, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: stop(extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
       Stop all motion of the gantry. It is assumed that the gantry stops immediately.
 
 
-   .. py:method:: is_moving(self) -> bool
+   .. py:method:: is_moving() -> bool
       :async:
 
       Get if the gantry is currently moving.

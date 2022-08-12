@@ -43,32 +43,32 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetEndPosition(self, stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.GetEndPositionRequest, proto.api.component.arm.v1.arm_pb2.GetEndPositionResponse]) -> None
+   .. py:method:: GetEndPosition(stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.GetEndPositionRequest, proto.api.component.arm.v1.arm_pb2.GetEndPositionResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: MoveToPosition(self, stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.MoveToPositionRequest, proto.api.component.arm.v1.arm_pb2.MoveToPositionResponse]) -> None
+   .. py:method:: MoveToPosition(stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.MoveToPositionRequest, proto.api.component.arm.v1.arm_pb2.MoveToPositionResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetJointPositions(self, stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.GetJointPositionsRequest, proto.api.component.arm.v1.arm_pb2.GetJointPositionsResponse]) -> None
+   .. py:method:: GetJointPositions(stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.GetJointPositionsRequest, proto.api.component.arm.v1.arm_pb2.GetJointPositionsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: MoveToJointPositions(self, stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.MoveToJointPositionsRequest, proto.api.component.arm.v1.arm_pb2.MoveToJointPositionsResponse]) -> None
+   .. py:method:: MoveToJointPositions(stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.MoveToJointPositionsRequest, proto.api.component.arm.v1.arm_pb2.MoveToJointPositionsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Stop(self, stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.StopRequest, proto.api.component.arm.v1.arm_pb2.StopResponse]) -> None
+   .. py:method:: Stop(stream: grpclib.server.Stream[proto.api.component.arm.v1.arm_pb2.StopRequest, proto.api.component.arm.v1.arm_pb2.StopResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -90,13 +90,13 @@ Classes
 
       Name of an arm
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -124,14 +124,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: pose(self) -> viam.gen.proto.api.common.v1.common_pb2.Pose
+   .. py:method:: pose() -> viam.gen.proto.api.common.v1.common_pb2.Pose
       :property:
 
       Returns 6d pose of the end effector relative to the base, represented by X,Y,Z coordinates which express
       millimeters and theta, ox, oy, oz coordinates which express an orientation vector
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -164,13 +164,13 @@ Classes
 
       Name of an arm
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -198,13 +198,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: positions(self) -> global___JointPositions
+   .. py:method:: positions() -> global___JointPositions
       :property:
 
       a list JointPositions
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[positions, b'positions']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[positions, b'positions']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -232,7 +232,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
       :property:
 
       A list of joint positions. Rotations values are in degrees, translational values in mm.
@@ -256,20 +256,20 @@ Classes
 
       Name of an arm
 
-   .. py:method:: positions(self) -> global___JointPositions
+   .. py:method:: positions() -> global___JointPositions
       :property:
 
       A list of joint positions
       There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector
 
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra', positions, b'positions']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra', positions, b'positions']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -313,21 +313,21 @@ Classes
 
       Name of an arm
 
-   .. py:method:: to(self) -> viam.gen.proto.api.common.v1.common_pb2.Pose
+   .. py:method:: to() -> viam.gen.proto.api.common.v1.common_pb2.Pose
       :property:
 
 
-   .. py:method:: world_state(self) -> viam.gen.proto.api.common.v1.common_pb2.WorldState
+   .. py:method:: world_state() -> viam.gen.proto.api.common.v1.common_pb2.WorldState
       :property:
 
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_world_state, b'_world_state', extra, b'extra', to, b'to', world_state, b'world_state']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[_world_state, b'_world_state', extra, b'extra', to, b'to', world_state, b'world_state']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -344,7 +344,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_world_state, b'_world_state']) -> Optional[typing_extensions.Literal[world_state]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[_world_state, b'_world_state']) -> Optional[typing_extensions.Literal[world_state]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -386,15 +386,15 @@ Classes
 
       
 
-   .. py:method:: end_position(self) -> viam.gen.proto.api.common.v1.common_pb2.Pose
+   .. py:method:: end_position() -> viam.gen.proto.api.common.v1.common_pb2.Pose
       :property:
 
 
-   .. py:method:: joint_positions(self) -> global___JointPositions
+   .. py:method:: joint_positions() -> global___JointPositions
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[end_position, b'end_position', joint_positions, b'joint_positions']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[end_position, b'end_position', joint_positions, b'joint_positions']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -427,13 +427,13 @@ Classes
 
       Name of an arm
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 

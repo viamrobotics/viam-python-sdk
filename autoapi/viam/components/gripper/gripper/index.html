@@ -17,6 +17,7 @@
         <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
         <script src="../../../../../_static/jquery.js"></script>
         <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
@@ -131,11 +132,11 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.components.gripper.gripper">
-<span id="viam-components-gripper-gripper"></span><h1><a class="reference internal" href="#module-viam.components.gripper.gripper" title="viam.components.gripper.gripper"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper.gripper</span></code></a><a class="headerlink" href="#module-viam.components.gripper.gripper" title="Permalink to this headline"></a></h1>
+<span id="viam-components-gripper-gripper"></span><h1><a class="reference internal" href="#module-viam.components.gripper.gripper" title="viam.components.gripper.gripper"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper.gripper</span></code></a><a class="headerlink" href="#module-viam.components.gripper.gripper" title="Permalink to this heading"></a></h1>
 <section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -156,13 +157,13 @@ gripper implementations. This cannot be used on its own. If the <cite>__init__()
 overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.gripper.gripper.Gripper.open">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/gripper.html#Gripper.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.open" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/gripper.html#Gripper.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.open" title="Permalink to this definition"></a></dt>
 <dd><p>Open the gripper.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.gripper.gripper.Gripper.grab">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/gripper.html#Gripper.grab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.grab" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">grab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/gripper.html#Gripper.grab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.grab" title="Permalink to this definition"></a></dt>
 <dd><p>Instruct the gripper to grab.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -176,13 +177,13 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.gripper.gripper.Gripper.stop">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/gripper.html#Gripper.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.stop" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/gripper.html#Gripper.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.stop" title="Permalink to this definition"></a></dt>
 <dd><p>Stop the gripper. It is assumed the gripper stops immediately.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.gripper.gripper.Gripper.is_moving">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_moving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/gripper.html#Gripper.is_moving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.is_moving" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_moving</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/gripper/gripper.html#Gripper.is_moving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.gripper.gripper.Gripper.is_moving" title="Permalink to this definition"></a></dt>
 <dd><p>Get if the gripper is currently moving.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>

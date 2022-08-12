@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the Gantry component.
 
-   .. py:method:: get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]
+   .. py:method:: get_position(extra: Optional[Dict[str, Any]] = None) -> List[float]
       :async:
 
       Get the position in millimeters.
@@ -32,7 +32,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: move_to_position(self, positions: List[float], world_state: Optional[viam.proto.api.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: move_to_position(positions: List[float], world_state: Optional[viam.proto.api.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Move the gantry to a new position.
@@ -45,7 +45,7 @@ Classes
       :type world_state: Optional[WorldState]
 
 
-   .. py:method:: get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]
+   .. py:method:: get_lengths(extra: Optional[Dict[str, Any]] = None) -> List[float]
       :async:
 
       Get the lengths of the axes of the gantry in millimeters.
@@ -54,13 +54,13 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: stop(self, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: stop(extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Stop all motion of the gantry. It is assumed that the gantry stops immediately.
 
 
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do(command: Dict[str, Any]) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands

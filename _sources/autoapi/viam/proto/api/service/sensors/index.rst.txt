@@ -36,17 +36,17 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetSensors(self, stream: grpclib.server.Stream[proto.api.service.sensors.v1.sensors_pb2.GetSensorsRequest, proto.api.service.sensors.v1.sensors_pb2.GetSensorsResponse]) -> None
+   .. py:method:: GetSensors(stream: grpclib.server.Stream[proto.api.service.sensors.v1.sensors_pb2.GetSensorsRequest, proto.api.service.sensors.v1.sensors_pb2.GetSensorsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetReadings(self, stream: grpclib.server.Stream[proto.api.service.sensors.v1.sensors_pb2.GetReadingsRequest, proto.api.service.sensors.v1.sensors_pb2.GetReadingsResponse]) -> None
+   .. py:method:: GetReadings(stream: grpclib.server.Stream[proto.api.service.sensors.v1.sensors_pb2.GetReadingsRequest, proto.api.service.sensors.v1.sensors_pb2.GetReadingsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -63,7 +63,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: sensor_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
+   .. py:method:: sensor_names() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
       :property:
 
 
@@ -78,7 +78,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: readings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Readings]
+   .. py:method:: readings() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Readings]
       :property:
 
 
@@ -104,7 +104,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: sensor_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
+   .. py:method:: sensor_names() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
       :property:
 
 
@@ -119,15 +119,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: name(self) -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
+   .. py:method:: name() -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
       :property:
 
 
-   .. py:method:: readings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Value]
+   .. py:method:: readings() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Value]
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[name, b'name']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[name, b'name']) -> bool
 
       Checks if a certain field is set for the message.
 

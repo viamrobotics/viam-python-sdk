@@ -43,27 +43,27 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetFrame(self, stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.GetFrameRequest, proto.api.component.camera.v1.camera_pb2.GetFrameResponse]) -> None
+   .. py:method:: GetFrame(stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.GetFrameRequest, proto.api.component.camera.v1.camera_pb2.GetFrameResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: RenderFrame(self, stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.RenderFrameRequest, google.api.httpbody_pb2.HttpBody]) -> None
+   .. py:method:: RenderFrame(stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.RenderFrameRequest, google.api.httpbody_pb2.HttpBody]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetPointCloud(self, stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.GetPointCloudRequest, proto.api.component.camera.v1.camera_pb2.GetPointCloudResponse]) -> None
+   .. py:method:: GetPointCloud(stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.GetPointCloudRequest, proto.api.component.camera.v1.camera_pb2.GetPointCloudResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetProperties(self, stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.GetPropertiesRequest, proto.api.component.camera.v1.camera_pb2.GetPropertiesResponse]) -> None
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.GetPropertiesRequest, proto.api.component.camera.v1.camera_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -190,11 +190,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: intrinsic_parameters(self) -> global___IntrinsicParameters
+   .. py:method:: intrinsic_parameters() -> global___IntrinsicParameters
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[intrinsic_parameters, b'intrinsic_parameters']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[intrinsic_parameters, b'intrinsic_parameters']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -263,13 +263,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: video(self) -> global___Video
+   .. py:method:: video() -> global___Video
       :property:
 
       Camera video properties
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[video, b'video']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[video, b'video']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -354,7 +354,7 @@ Classes
 
       Camera driver status
 
-   .. py:method:: properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]
+   .. py:method:: properties() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]
       :property:
 
       Camera properties
@@ -371,7 +371,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: webcams(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Webcam]
+   .. py:method:: webcams() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Webcam]
       :property:
 
 

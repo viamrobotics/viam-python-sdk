@@ -37,22 +37,22 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Open(self, stream: grpclib.server.Stream[proto.api.component.gripper.v1.gripper_pb2.OpenRequest, proto.api.component.gripper.v1.gripper_pb2.OpenResponse]) -> None
+   .. py:method:: Open(stream: grpclib.server.Stream[proto.api.component.gripper.v1.gripper_pb2.OpenRequest, proto.api.component.gripper.v1.gripper_pb2.OpenResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Grab(self, stream: grpclib.server.Stream[proto.api.component.gripper.v1.gripper_pb2.GrabRequest, proto.api.component.gripper.v1.gripper_pb2.GrabResponse]) -> None
+   .. py:method:: Grab(stream: grpclib.server.Stream[proto.api.component.gripper.v1.gripper_pb2.GrabRequest, proto.api.component.gripper.v1.gripper_pb2.GrabResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Stop(self, stream: grpclib.server.Stream[proto.api.component.gripper.v1.gripper_pb2.StopRequest, proto.api.component.gripper.v1.gripper_pb2.StopResponse]) -> None
+   .. py:method:: Stop(stream: grpclib.server.Stream[proto.api.component.gripper.v1.gripper_pb2.StopRequest, proto.api.component.gripper.v1.gripper_pb2.StopResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 

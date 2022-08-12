@@ -36,7 +36,7 @@ Attributes
 
    gRPC client for an Input Controller
 
-   .. py:method:: get_controls(self) -> List[viam.components.input.input.Control]
+   .. py:method:: get_controls() -> List[viam.components.input.input.Control]
       :async:
 
       Returns a list of Controls provided by the Controller
@@ -45,7 +45,7 @@ Attributes
       :rtype: List[Control]
 
 
-   .. py:method:: get_events(self) -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
+   .. py:method:: get_events() -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
       :async:
 
       Returns the most recent Event for each input
@@ -55,7 +55,7 @@ Attributes
       :rtype: Dict[Control, Event]
 
 
-   .. py:method:: register_control_callback(self, control: viam.components.input.input.Control, triggers: List[viam.components.input.input.EventType], function: Optional[viam.components.input.input.ControlFunction])
+   .. py:method:: register_control_callback(control: viam.components.input.input.Control, triggers: List[viam.components.input.input.EventType], function: Optional[viam.components.input.input.ControlFunction])
 
       Register a function that will fire on given EventTypes for a given
       Control
@@ -70,7 +70,7 @@ Attributes
       :type function: ControlFunction
 
 
-   .. py:method:: trigger_event(self, event: viam.components.input.input.Event)
+   .. py:method:: trigger_event(event: viam.components.input.input.Event)
       :async:
 
       Directly send an Event (such as a button press) from external code
@@ -79,7 +79,7 @@ Attributes
       :type event: Event
 
 
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do(command: Dict[str, Any]) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands

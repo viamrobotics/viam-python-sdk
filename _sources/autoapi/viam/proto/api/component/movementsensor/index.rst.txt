@@ -45,42 +45,42 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetLinearVelocity(self, stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse]) -> None
+   .. py:method:: GetLinearVelocity(stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetAngularVelocity(self, stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityResponse]) -> None
+   .. py:method:: GetAngularVelocity(stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetCompassHeading(self, stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse]) -> None
+   .. py:method:: GetCompassHeading(stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetOrientation(self, stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetOrientationRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse]) -> None
+   .. py:method:: GetOrientation(stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetOrientationRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetPosition(self, stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetPositionRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetPositionResponse]) -> None
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetPositionRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetPositionResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetProperties(self, stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetPropertiesRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse]) -> None
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetPropertiesRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetAccuracy(self, stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetAccuracyRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse]) -> None
+   .. py:method:: GetAccuracy(stream: grpclib.server.Stream[proto.api.component.movementsensor.v1.movementsensor_pb2.GetAccuracyRequest, proto.api.component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -134,7 +134,7 @@ Classes
          
 
 
-   .. py:method:: accuracy_mm(self) -> google.protobuf.internal.containers.ScalarMap[Text, float]
+   .. py:method:: accuracy_mm() -> google.protobuf.internal.containers.ScalarMap[Text, float]
       :property:
 
 
@@ -165,13 +165,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: angular_velocity(self) -> viam.gen.proto.api.common.v1.common_pb2.Vector3
+   .. py:method:: angular_velocity() -> viam.gen.proto.api.common.v1.common_pb2.Vector3
       :property:
 
       angular velocity contains velocity in degrees/s across x/y/z axes
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[angular_velocity, b'angular_velocity']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[angular_velocity, b'angular_velocity']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -248,13 +248,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: linear_velocity(self) -> viam.gen.proto.api.common.v1.common_pb2.Vector3
+   .. py:method:: linear_velocity() -> viam.gen.proto.api.common.v1.common_pb2.Vector3
       :property:
 
       linear velocity contains velocity in mm/s across x/y/z axes
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[linear_velocity, b'linear_velocity']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[linear_velocity, b'linear_velocity']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -298,11 +298,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: orientation(self) -> viam.gen.proto.api.common.v1.common_pb2.Orientation
+   .. py:method:: orientation() -> viam.gen.proto.api.common.v1.common_pb2.Orientation
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[orientation, b'orientation']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[orientation, b'orientation']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -351,11 +351,11 @@ Classes
 
       
 
-   .. py:method:: coordinate(self) -> viam.gen.proto.api.common.v1.common_pb2.GeoPoint
+   .. py:method:: coordinate() -> viam.gen.proto.api.common.v1.common_pb2.GeoPoint
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[coordinate, b'coordinate']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[coordinate, b'coordinate']) -> bool
 
       Checks if a certain field is set for the message.
 

@@ -57,11 +57,11 @@ Classes
 
          
 
-      .. py:method:: value(self) -> global___Strings
+      .. py:method:: value() -> global___Strings
          :property:
 
 
-      .. py:method:: HasField(self, field_name: typing_extensions.Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: typing_extensions.Literal[value, b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -79,7 +79,7 @@ Classes
 
 
 
-   .. py:method:: md(self) -> google.protobuf.internal.containers.MessageMap[Text, global___Strings]
+   .. py:method:: md() -> google.protobuf.internal.containers.MessageMap[Text, global___Strings]
       :property:
 
 
@@ -111,19 +111,19 @@ Classes
    identifier. Servers will drop frames where the stream identifier
    has no association (if a non-header frames are sent).
 
-   .. py:method:: stream(self) -> global___Stream
+   .. py:method:: stream() -> global___Stream
       :property:
 
 
-   .. py:method:: headers(self) -> global___RequestHeaders
+   .. py:method:: headers() -> global___RequestHeaders
       :property:
 
 
-   .. py:method:: message(self) -> global___RequestMessage
+   .. py:method:: message() -> global___RequestMessage
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[headers, b'headers', message, b'message', stream, b'stream', type, b'type']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[headers, b'headers', message, b'message', stream, b'stream', type, b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -140,7 +140,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[type, b'type']) -> Optional[typing_extensions.Literal[headers, message]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[type, b'type']) -> Optional[typing_extensions.Literal[headers, message]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -167,15 +167,15 @@ Classes
 
       
 
-   .. py:method:: metadata(self) -> global___Metadata
+   .. py:method:: metadata() -> global___Metadata
       :property:
 
 
-   .. py:method:: timeout(self) -> google.protobuf.duration_pb2.Duration
+   .. py:method:: timeout() -> google.protobuf.duration_pb2.Duration
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[metadata, b'metadata', timeout, b'timeout']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[metadata, b'metadata', timeout, b'timeout']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -210,11 +210,11 @@ Classes
 
       
 
-   .. py:method:: packet_message(self) -> global___PacketMessage
+   .. py:method:: packet_message() -> global___PacketMessage
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[packet_message, b'packet_message']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[packet_message, b'packet_message']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -241,23 +241,23 @@ Classes
    identifier. Clients will drop frames where the stream identifier
    has no association.
 
-   .. py:method:: stream(self) -> global___Stream
+   .. py:method:: stream() -> global___Stream
       :property:
 
 
-   .. py:method:: headers(self) -> global___ResponseHeaders
+   .. py:method:: headers() -> global___ResponseHeaders
       :property:
 
 
-   .. py:method:: message(self) -> global___ResponseMessage
+   .. py:method:: message() -> global___ResponseMessage
       :property:
 
 
-   .. py:method:: trailers(self) -> global___ResponseTrailers
+   .. py:method:: trailers() -> global___ResponseTrailers
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[headers, b'headers', message, b'message', stream, b'stream', trailers, b'trailers', type, b'type']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[headers, b'headers', message, b'message', stream, b'stream', trailers, b'trailers', type, b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -274,7 +274,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[type, b'type']) -> Optional[typing_extensions.Literal[headers, message, trailers]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[type, b'type']) -> Optional[typing_extensions.Literal[headers, message, trailers]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -297,11 +297,11 @@ Classes
    ResponseHeaders contain custom metadata that are sent to the client
    before any message or trailers (unless only trailers are sent).
 
-   .. py:method:: metadata(self) -> global___Metadata
+   .. py:method:: metadata() -> global___Metadata
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[metadata, b'metadata']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[metadata, b'metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -325,11 +325,11 @@ Classes
 
    ResponseMessage contains the data of a response to a call.
 
-   .. py:method:: packet_message(self) -> global___PacketMessage
+   .. py:method:: packet_message() -> global___PacketMessage
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[packet_message, b'packet_message']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[packet_message, b'packet_message']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -353,15 +353,15 @@ Classes
 
    ResponseTrailers contain the status of a response and any custom metadata.
 
-   .. py:method:: status(self) -> google.rpc.status_pb2.Status
+   .. py:method:: status() -> google.rpc.status_pb2.Status
       :property:
 
 
-   .. py:method:: metadata(self) -> global___Metadata
+   .. py:method:: metadata() -> global___Metadata
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[metadata, b'metadata', status, b'status']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[metadata, b'metadata', status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -398,7 +398,7 @@ Classes
 
    Strings are a series of values.
 
-   .. py:method:: values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
       :property:
 
 
@@ -410,27 +410,27 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Call(self, stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
+   .. py:method:: Call(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: CallUpdate(self, stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
+   .. py:method:: CallUpdate(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Answer(self, stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
+   .. py:method:: Answer(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: OptionalWebRTCConfig(self, stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
+   .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 

@@ -121,7 +121,7 @@ Functions
 
        channel.close()
 
-   .. py:method:: request(self, name: str, cardinality: grpclib.const.Cardinality, request_type: Type[grpclib.stream._SendType], reply_type: Type[grpclib.stream._RecvType], *, timeout: Optional[float] = None, deadline: Optional[grpclib.metadata.Deadline] = None, metadata: Optional[grpclib.metadata._MetadataLike] = None) -> grpclib.client.Stream[grpclib.stream._SendType, grpclib.stream._RecvType]
+   .. py:method:: request(name: str, cardinality: grpclib.const.Cardinality, request_type: Type[grpclib.stream._SendType], reply_type: Type[grpclib.stream._RecvType], *, timeout: Optional[float] = None, deadline: Optional[grpclib.metadata.Deadline] = None, metadata: Optional[grpclib.metadata._MetadataLike] = None) -> grpclib.client.Stream[grpclib.stream._SendType, grpclib.stream._RecvType]
 
 
 

@@ -17,6 +17,7 @@
         <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
@@ -176,9 +177,9 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.components.input">
-<span id="viam-components-input"></span><h1><a class="reference internal" href="#module-viam.components.input" title="viam.components.input"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a><a class="headerlink" href="#module-viam.components.input" title="Permalink to this headline"></a></h1>
+<span id="viam-components-input"></span><h1><a class="reference internal" href="#module-viam.components.input" title="viam.components.input"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a><a class="headerlink" href="#module-viam.components.input" title="Permalink to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input.client</span></code></a></li>
@@ -188,9 +189,9 @@
 </div>
 </section>
 <section id="package-contents">
-<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline"></a></h2>
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -213,7 +214,7 @@
 </table>
 </section>
 <section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline"></a></h3>
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -359,7 +360,7 @@ Could be a single gamepad, or a collection of digitalInterrupts
 and analogReaders, a keyboard, etc.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.input.Controller.get_controls">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_controls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.get_controls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.get_controls" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_controls</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.get_controls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.get_controls" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of Controls provided by the Controller</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -373,7 +374,7 @@ and analogReaders, a keyboard, etc.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.input.Controller.get_events">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><span class="pre">Event</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.get_events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.get_events" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><span class="pre">Event</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.get_events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.get_events" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the most recent Event for each input
 (which should be the current state)</p>
 <dl class="field-list simple">
@@ -388,7 +389,7 @@ and analogReaders, a keyboard, etc.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.input.Controller.register_control_callback">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_control_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">triggers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.EventType" title="viam.components.input.EventType"><span class="pre">EventType</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ControlFunction</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.register_control_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.register_control_callback" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_control_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">control</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">triggers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.EventType" title="viam.components.input.EventType"><span class="pre">EventType</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ControlFunction</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.register_control_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.register_control_callback" title="Permalink to this definition"></a></dt>
 <dd><p>Register a function that will fire on given EventTypes for a given
 Control</p>
 <dl class="field-list simple">
@@ -406,7 +407,7 @@ specific triggers</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.input.Controller.trigger_event">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trigger_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><span class="pre">Event</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.trigger_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.trigger_event" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trigger_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><span class="pre">Event</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.trigger_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.trigger_event" title="Permalink to this definition"></a></dt>
 <dd><p>Directly send an Event (such as a button press) from external code</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -444,12 +445,12 @@ specific triggers</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.input.Event.proto">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.input.Event.proto" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><a class="headerlink" href="#viam.components.input.Event.proto" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.input.Event.from_proto">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.Event" title="viam.proto.api.component.inputcontroller.Event"><span class="pre">viam.proto.api.component.inputcontroller.Event</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Event.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Event.from_proto" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.Event" title="viam.proto.api.component.inputcontroller.Event"><span class="pre">viam.proto.api.component.inputcontroller.Event</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Event.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Event.from_proto" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

@@ -31,7 +31,7 @@ Classes
 
       
 
-   .. py:method:: get_position(self) -> Tuple[viam.proto.api.common.GeoPoint, float]
+   .. py:method:: get_position() -> Tuple[viam.proto.api.common.GeoPoint, float]
       :abstractmethod:
       :async:
 
@@ -41,7 +41,7 @@ Classes
       :rtype: Tuple[GeoPoint, float]
 
 
-   .. py:method:: get_linear_velocity(self) -> viam.proto.api.common.Vector3
+   .. py:method:: get_linear_velocity() -> viam.proto.api.common.Vector3
       :abstractmethod:
       :async:
 
@@ -51,7 +51,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_angular_velocity(self) -> viam.proto.api.common.Vector3
+   .. py:method:: get_angular_velocity() -> viam.proto.api.common.Vector3
       :abstractmethod:
       :async:
 
@@ -61,7 +61,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_compass_heading(self) -> float
+   .. py:method:: get_compass_heading() -> float
       :abstractmethod:
       :async:
 
@@ -71,7 +71,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_orientation(self) -> viam.proto.api.common.Orientation
+   .. py:method:: get_orientation() -> viam.proto.api.common.Orientation
       :abstractmethod:
       :async:
 
@@ -81,7 +81,7 @@ Classes
       :rtype: Orientation
 
 
-   .. py:method:: get_properties(self) -> Properties
+   .. py:method:: get_properties() -> Properties
       :abstractmethod:
       :async:
 
@@ -91,7 +91,7 @@ Classes
       :rtype: Properties
 
 
-   .. py:method:: get_accuracy(self) -> Mapping[str, float]
+   .. py:method:: get_accuracy() -> Mapping[str, float]
       :abstractmethod:
       :async:
 
@@ -101,7 +101,7 @@ Classes
       :rtype: Dict[str, float]
 
 
-   .. py:method:: get_readings(self) -> List[Any]
+   .. py:method:: get_readings() -> List[Any]
       :async:
 
       Obtain the measurements/data specific to this sensor.

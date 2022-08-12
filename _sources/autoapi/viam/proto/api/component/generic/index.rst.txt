@@ -33,12 +33,12 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Do(self, stream: grpclib.server.Stream[proto.api.component.generic.v1.generic_pb2.DoRequest, proto.api.component.generic.v1.generic_pb2.DoResponse]) -> None
+   .. py:method:: Do(stream: grpclib.server.Stream[proto.api.component.generic.v1.generic_pb2.DoRequest, proto.api.component.generic.v1.generic_pb2.DoResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -60,11 +60,11 @@ Classes
 
       
 
-   .. py:method:: command(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: command() -> google.protobuf.struct_pb2.Struct
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[command, b'command']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[command, b'command']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -92,11 +92,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: result(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: result() -> google.protobuf.struct_pb2.Struct
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[result, b'result']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[result, b'result']) -> bool
 
       Checks if a certain field is set for the message.
 

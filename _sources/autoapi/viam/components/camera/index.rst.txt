@@ -39,7 +39,7 @@ Classes
    camera implementations. This cannot be used on its own. If the `__init__()` function is
    overriden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_frame(self) -> PIL.Image.Image
+   .. py:method:: get_frame() -> PIL.Image.Image
       :abstractmethod:
       :async:
 
@@ -50,7 +50,7 @@ Classes
       :rtype: Image
 
 
-   .. py:method:: get_point_cloud(self) -> Tuple[bytes, str]
+   .. py:method:: get_point_cloud() -> Tuple[bytes, str]
       :abstractmethod:
       :async:
 
@@ -65,7 +65,7 @@ Classes
       :rtype: bytes
 
 
-   .. py:method:: get_properties(self) -> viam.proto.api.component.camera.IntrinsicParameters
+   .. py:method:: get_properties() -> viam.proto.api.component.camera.IntrinsicParameters
       :abstractmethod:
       :async:
 

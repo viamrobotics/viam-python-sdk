@@ -60,62 +60,62 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetOperations(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.GetOperationsRequest, proto.api.robot.v1.robot_pb2.GetOperationsResponse]) -> None
+   .. py:method:: GetOperations(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.GetOperationsRequest, proto.api.robot.v1.robot_pb2.GetOperationsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: ResourceNames(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.ResourceNamesRequest, proto.api.robot.v1.robot_pb2.ResourceNamesResponse]) -> None
+   .. py:method:: ResourceNames(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.ResourceNamesRequest, proto.api.robot.v1.robot_pb2.ResourceNamesResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: ResourceRPCSubtypes(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.ResourceRPCSubtypesRequest, proto.api.robot.v1.robot_pb2.ResourceRPCSubtypesResponse]) -> None
+   .. py:method:: ResourceRPCSubtypes(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.ResourceRPCSubtypesRequest, proto.api.robot.v1.robot_pb2.ResourceRPCSubtypesResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: CancelOperation(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.CancelOperationRequest, proto.api.robot.v1.robot_pb2.CancelOperationResponse]) -> None
+   .. py:method:: CancelOperation(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.CancelOperationRequest, proto.api.robot.v1.robot_pb2.CancelOperationResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: BlockForOperation(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.BlockForOperationRequest, proto.api.robot.v1.robot_pb2.BlockForOperationResponse]) -> None
+   .. py:method:: BlockForOperation(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.BlockForOperationRequest, proto.api.robot.v1.robot_pb2.BlockForOperationResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: DiscoverComponents(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.DiscoverComponentsRequest, proto.api.robot.v1.robot_pb2.DiscoverComponentsResponse]) -> None
+   .. py:method:: DiscoverComponents(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.DiscoverComponentsRequest, proto.api.robot.v1.robot_pb2.DiscoverComponentsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: FrameSystemConfig(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.FrameSystemConfigRequest, proto.api.robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
+   .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.FrameSystemConfigRequest, proto.api.robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: TransformPose(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.TransformPoseRequest, proto.api.robot.v1.robot_pb2.TransformPoseResponse]) -> None
+   .. py:method:: TransformPose(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.TransformPoseRequest, proto.api.robot.v1.robot_pb2.TransformPoseResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetStatus(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.GetStatusRequest, proto.api.robot.v1.robot_pb2.GetStatusResponse]) -> None
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.GetStatusRequest, proto.api.robot.v1.robot_pb2.GetStatusResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: StreamStatus(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.StreamStatusRequest, proto.api.robot.v1.robot_pb2.StreamStatusResponse]) -> None
+   .. py:method:: StreamStatus(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.StreamStatusRequest, proto.api.robot.v1.robot_pb2.StreamStatusResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: StopAll(self, stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.StopAllRequest, proto.api.robot.v1.robot_pb2.StopAllResponse]) -> None
+   .. py:method:: StopAll(stream: grpclib.server.Stream[proto.api.robot.v1.robot_pb2.StopAllRequest, proto.api.robot.v1.robot_pb2.StopAllResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -186,7 +186,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: queries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]
+   .. py:method:: queries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]
       :property:
 
 
@@ -201,7 +201,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: discovery(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]
+   .. py:method:: discovery() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]
       :property:
 
 
@@ -216,15 +216,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: query(self) -> global___DiscoveryQuery
+   .. py:method:: query() -> global___DiscoveryQuery
       :property:
 
 
-   .. py:method:: results(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: results() -> google.protobuf.struct_pb2.Struct
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[query, b'query', results, b'results']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[query, b'query', results, b'results']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -281,11 +281,11 @@ Classes
 
       
 
-   .. py:method:: pose_in_parent_frame(self) -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
+   .. py:method:: pose_in_parent_frame() -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[pose_in_parent_frame, b'pose_in_parent_frame']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[pose_in_parent_frame, b'pose_in_parent_frame']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -313,7 +313,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.Transform]
+   .. py:method:: supplemental_transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.Transform]
       :property:
 
       pose information on any additional reference frames that are needed
@@ -331,7 +331,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: frame_system_configs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FrameSystemConfig]
+   .. py:method:: frame_system_configs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FrameSystemConfig]
       :property:
 
 
@@ -357,7 +357,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: operations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Operation]
+   .. py:method:: operations() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Operation]
       :property:
 
 
@@ -372,7 +372,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: resource_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
+   .. py:method:: resource_names() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
       :property:
 
 
@@ -387,7 +387,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: status(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
+   .. py:method:: status() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
       :property:
 
 
@@ -412,15 +412,15 @@ Classes
 
       
 
-   .. py:method:: arguments(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: arguments() -> google.protobuf.struct_pb2.Struct
       :property:
 
 
-   .. py:method:: started(self) -> google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: started() -> google.protobuf.timestamp_pb2.Timestamp
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[arguments, b'arguments', started, b'started']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[arguments, b'arguments', started, b'started']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -459,7 +459,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: resources(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
+   .. py:method:: resources() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
       :property:
 
 
@@ -479,11 +479,11 @@ Classes
 
       
 
-   .. py:method:: subtype(self) -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
+   .. py:method:: subtype() -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[subtype, b'subtype']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[subtype, b'subtype']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -522,7 +522,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: resource_rpc_subtypes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceRPCSubtype]
+   .. py:method:: resource_rpc_subtypes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceRPCSubtype]
       :property:
 
 
@@ -537,15 +537,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: name(self) -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
+   .. py:method:: name() -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
       :property:
 
 
-   .. py:method:: status(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: status() -> google.protobuf.struct_pb2.Struct
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[name, b'name', status, b'status']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[name, b'name', status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -573,7 +573,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: extra(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]
+   .. py:method:: extra() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]
       :property:
 
 
@@ -599,15 +599,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: name(self) -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
+   .. py:method:: name() -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
       :property:
 
 
-   .. py:method:: params(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: params() -> google.protobuf.struct_pb2.Struct
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[name, b'name', params, b'params']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[name, b'name', params, b'params']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -635,17 +635,17 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: resource_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
+   .. py:method:: resource_names() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.ResourceName]
       :property:
 
 
-   .. py:method:: every(self) -> google.protobuf.duration_pb2.Duration
+   .. py:method:: every() -> google.protobuf.duration_pb2.Duration
       :property:
 
       how often to send a new status.
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[every, b'every']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[every, b'every']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -673,7 +673,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: status(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
+   .. py:method:: status() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
       :property:
 
 
@@ -694,21 +694,21 @@ Classes
       the reference frame into which the source pose should be transformed,
       if unset this defaults to the "world" reference frame
 
-   .. py:method:: source(self) -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
+   .. py:method:: source() -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
       :property:
 
       the original pose to transform along with the reference frame in
       which it was observed
 
 
-   .. py:method:: supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.Transform]
+   .. py:method:: supplemental_transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.Transform]
       :property:
 
       pose information on any additional reference frames that are needed
       to perform the transform
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[source, b'source']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[source, b'source']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -736,11 +736,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: pose(self) -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
+   .. py:method:: pose() -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 

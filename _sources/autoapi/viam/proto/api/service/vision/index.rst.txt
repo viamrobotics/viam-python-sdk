@@ -47,42 +47,42 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetDetectorNames(self, stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetDetectorNamesRequest, proto.api.service.vision.v1.vision_pb2.GetDetectorNamesResponse]) -> None
+   .. py:method:: GetDetectorNames(stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetDetectorNamesRequest, proto.api.service.vision.v1.vision_pb2.GetDetectorNamesResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: AddDetector(self, stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.AddDetectorRequest, proto.api.service.vision.v1.vision_pb2.AddDetectorResponse]) -> None
+   .. py:method:: AddDetector(stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.AddDetectorRequest, proto.api.service.vision.v1.vision_pb2.AddDetectorResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetDetectionsFromCamera(self, stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest, proto.api.service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse]) -> None
+   .. py:method:: GetDetectionsFromCamera(stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest, proto.api.service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetDetections(self, stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetDetectionsRequest, proto.api.service.vision.v1.vision_pb2.GetDetectionsResponse]) -> None
+   .. py:method:: GetDetections(stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetDetectionsRequest, proto.api.service.vision.v1.vision_pb2.GetDetectionsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetSegmenterNames(self, stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetSegmenterNamesRequest, proto.api.service.vision.v1.vision_pb2.GetSegmenterNamesResponse]) -> None
+   .. py:method:: GetSegmenterNames(stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetSegmenterNamesRequest, proto.api.service.vision.v1.vision_pb2.GetSegmenterNamesResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetSegmenterParameters(self, stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetSegmenterParametersRequest, proto.api.service.vision.v1.vision_pb2.GetSegmenterParametersResponse]) -> None
+   .. py:method:: GetSegmenterParameters(stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetSegmenterParametersRequest, proto.api.service.vision.v1.vision_pb2.GetSegmenterParametersResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetObjectPointClouds(self, stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetObjectPointCloudsRequest, proto.api.service.vision.v1.vision_pb2.GetObjectPointCloudsResponse]) -> None
+   .. py:method:: GetObjectPointClouds(stream: grpclib.server.Stream[proto.api.service.vision.v1.vision_pb2.GetObjectPointCloudsRequest, proto.api.service.vision.v1.vision_pb2.GetObjectPointCloudsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -109,11 +109,11 @@ Classes
 
       
 
-   .. py:method:: detector_parameters(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: detector_parameters() -> google.protobuf.struct_pb2.Struct
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[detector_parameters, b'detector_parameters']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[detector_parameters, b'detector_parameters']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -182,7 +182,7 @@ Classes
 
       label associated with the detected object
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_x_max, b'_x_max', _x_min, b'_x_min', _y_max, b'_y_max', _y_min, b'_y_min', x_max, b'x_max', x_min, b'x_min', y_max, b'y_max', y_min, b'y_min']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[_x_max, b'_x_max', _x_min, b'_x_min', _y_max, b'_y_max', _y_min, b'_y_min', x_max, b'x_max', x_min, b'x_min', y_max, b'y_max', y_min, b'y_min']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -199,10 +199,10 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_x_max, b'_x_max']) -> Optional[typing_extensions.Literal[x_max]]
-               WhichOneof(self, oneof_group: typing_extensions.Literal[_x_min, b'_x_min']) -> Optional[typing_extensions.Literal[x_min]]
-               WhichOneof(self, oneof_group: typing_extensions.Literal[_y_max, b'_y_max']) -> Optional[typing_extensions.Literal[y_max]]
-               WhichOneof(self, oneof_group: typing_extensions.Literal[_y_min, b'_y_min']) -> Optional[typing_extensions.Literal[y_min]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[_x_max, b'_x_max']) -> Optional[typing_extensions.Literal[x_max]]
+               WhichOneof(oneof_group: typing_extensions.Literal[_x_min, b'_x_min']) -> Optional[typing_extensions.Literal[x_min]]
+               WhichOneof(oneof_group: typing_extensions.Literal[_y_max, b'_y_max']) -> Optional[typing_extensions.Literal[y_max]]
+               WhichOneof(oneof_group: typing_extensions.Literal[_y_min, b'_y_min']) -> Optional[typing_extensions.Literal[y_min]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -249,7 +249,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: detections(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
+   .. py:method:: detections() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
       :property:
 
       the bounding boxes and labels
@@ -302,7 +302,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: detections(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
+   .. py:method:: detections() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
       :property:
 
       the bounding boxes and labels
@@ -330,7 +330,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: detector_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+   .. py:method:: detector_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
       :property:
 
       detectors in the registry
@@ -362,13 +362,13 @@ Classes
 
       Requested MIME type of response
 
-   .. py:method:: parameters(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: parameters() -> google.protobuf.struct_pb2.Struct
       :property:
 
       parameters for the chosen segmenter
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[parameters, b'parameters']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[parameters, b'parameters']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -401,7 +401,7 @@ Classes
 
       Actual MIME type of response
 
-   .. py:method:: objects(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.PointCloudObject]
+   .. py:method:: objects() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.PointCloudObject]
       :property:
 
       List of objects in the scene
@@ -429,7 +429,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: segmenter_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+   .. py:method:: segmenter_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
       :property:
 
       segmenters in the registry
@@ -462,7 +462,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: segmenter_parameters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TypedParameter]
+   .. py:method:: segmenter_parameters() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TypedParameter]
       :property:
 
       parameter names of the segmenter in the request

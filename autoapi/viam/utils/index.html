@@ -17,6 +17,7 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
@@ -84,43 +85,43 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.utils">
-<span id="viam-utils"></span><h1><a class="reference internal" href="#module-viam.utils" title="viam.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.utils</span></code></a><a class="headerlink" href="#module-viam.utils" title="Permalink to this headline"></a></h1>
+<span id="viam-utils"></span><h1><a class="reference internal" href="#module-viam.utils" title="viam.utils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.utils</span></code></a><a class="headerlink" href="#module-viam.utils" title="Permalink to this heading"></a></h1>
 <section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <section id="functions">
-<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.primitive_to_value" title="viam.utils.primitive_to_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primitive_to_value</span></code></a>(v: Any) → google.protobuf.struct_pb2.Value</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.primitive_to_value" title="viam.utils.primitive_to_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primitive_to_value</span></code></a>(→ google.protobuf.struct_pb2.Value)</p></td>
 <td><p>Create a new google.protobuf.struct_pb2.Value</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.value_to_primitive" title="viam.utils.value_to_primitive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_to_primitive</span></code></a>(value: google.protobuf.struct_pb2.Value) → Any</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.value_to_primitive" title="viam.utils.value_to_primitive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_to_primitive</span></code></a>(→ Any)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.resource_names_for_component" title="viam.utils.resource_names_for_component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resource_names_for_component</span></code></a>(component: viam.components.component_base.ComponentBase) → List[viam.proto.api.common.ResourceName]</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.resource_names_for_component" title="viam.utils.resource_names_for_component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resource_names_for_component</span></code></a>(...)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.message_to_struct" title="viam.utils.message_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">message_to_struct</span></code></a>(message: google.protobuf.message.Message) → google.protobuf.struct_pb2.Struct</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.message_to_struct" title="viam.utils.message_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">message_to_struct</span></code></a>(→ google.protobuf.struct_pb2.Struct)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_message" title="viam.utils.struct_to_message"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_message</span></code></a>(struct: google.protobuf.struct_pb2.Struct, message_type: Type[T]) → T</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_message" title="viam.utils.struct_to_message"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_message</span></code></a>(→ T)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.dict_to_struct" title="viam.utils.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(obj: Dict[str, Any]) → google.protobuf.struct_pb2.Struct</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.dict_to_struct" title="viam.utils.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(→ google.protobuf.struct_pb2.Struct)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_dict" title="viam.utils.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(struct: google.protobuf.struct_pb2.Struct) → Dict[str, Any]</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_dict" title="viam.utils.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, Any])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline"></a></h3>
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />

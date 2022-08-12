@@ -24,7 +24,7 @@ Classes
    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
    `world_state` message, the motion planning service will also account for those.
 
-   .. py:method:: plan_and_move(self, component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
+   .. py:method:: plan_and_move(component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
       :async:
 
       Plan and execute a movement to move the component specified to its goal destination.
@@ -42,7 +42,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: move_single_component(self, component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
+   .. py:method:: move_single_component(component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
       :async:
 
       This function will pass through a move command to a component with a `move_to_position` method that takes a `Pose`. `Arm`s are the
@@ -62,7 +62,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: get_pose(self, component_name: viam.proto.api.common.ResourceName, destination_frame: str) -> viam.proto.api.common.PoseInFrame
+   .. py:method:: get_pose(component_name: viam.proto.api.common.ResourceName, destination_frame: str) -> viam.proto.api.common.PoseInFrame
       :async:
 
       Get the Pose and observer frame for any given component on a robot.

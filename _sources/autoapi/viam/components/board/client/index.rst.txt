@@ -26,7 +26,7 @@ Classes
 
    AnalogReader represents an analog pin reader that resides on a Board.
 
-   .. py:method:: read(self, extra: Optional[Dict[str, Any]] = None) -> int
+   .. py:method:: read(extra: Optional[Dict[str, Any]] = None) -> int
       :async:
 
       Read the current value.
@@ -44,7 +44,7 @@ Classes
    when interrupted, calls the added callbacks. Post processors can
    be added to modify what Value it ultimately returns.
 
-   .. py:method:: value(self, extra: Optional[Dict[str, Any]] = None) -> int
+   .. py:method:: value(extra: Optional[Dict[str, Any]] = None) -> int
       :async:
 
       Get the current value of the interrupt,
@@ -54,7 +54,7 @@ Classes
       :rtype: int
 
 
-   .. py:method:: tick(self, high: bool, nanos: int)
+   .. py:method:: tick(high: bool, nanos: int)
       :abstractmethod:
       :async:
 
@@ -69,7 +69,7 @@ Classes
       :type nanos: int
 
 
-   .. py:method:: add_callback(self, queue: multiprocessing.Queue)
+   .. py:method:: add_callback(queue: multiprocessing.Queue)
       :abstractmethod:
       :async:
 
@@ -79,7 +79,7 @@ Classes
       :type queue: Queue
 
 
-   .. py:method:: add_post_processor(self, processor: viam.components.board.board.PostProcessor)
+   .. py:method:: add_post_processor(processor: viam.components.board.board.PostProcessor)
       :abstractmethod:
       :async:
 
@@ -100,7 +100,7 @@ Classes
    :param ComponentBase: _description_
    :type ComponentBase: _type_
 
-   .. py:method:: get(self, extra: Optional[Dict[str, Any]] = None) -> bool
+   .. py:method:: get(extra: Optional[Dict[str, Any]] = None) -> bool
       :async:
 
       Get the high/low state of the pin.
@@ -109,7 +109,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: set(self, high: bool, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: set(high: bool, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Set the pin to either low or high.
@@ -118,7 +118,7 @@ Classes
       :type high: bool
 
 
-   .. py:method:: get_pwm(self, extra: Optional[Dict[str, Any]] = None) -> float
+   .. py:method:: get_pwm(extra: Optional[Dict[str, Any]] = None) -> float
       :async:
 
       Get the pin's given duty cycle.
@@ -127,7 +127,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: set_pwm(duty_cycle: float, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Set the pin to the given `duty_cycle`.
@@ -136,7 +136,7 @@ Classes
       :type duty_cycle: float
 
 
-   .. py:method:: get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None) -> int
+   .. py:method:: get_pwm_frequency(extra: Optional[Dict[str, Any]] = None) -> int
       :async:
 
       Get the PWM frequency of the pin.
@@ -145,7 +145,7 @@ Classes
       :rtype: int
 
 
-   .. py:method:: set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: set_pwm_frequency(frequency: int, extra: Optional[Dict[str, Any]] = None)
       :async:
 
       Set the pin to the given PWM `frequency` (in Hz).
@@ -162,7 +162,7 @@ Classes
 
    gRPC client for the Board component.
 
-   .. py:method:: analog_reader_by_name(self, name: str) -> viam.components.board.board.Board.AnalogReader
+   .. py:method:: analog_reader_by_name(name: str) -> viam.components.board.board.Board.AnalogReader
       :async:
 
       Get an AnalogReader by `name`.
@@ -174,7 +174,7 @@ Classes
       :rtype: AnalogReader
 
 
-   .. py:method:: digital_interrupt_by_name(self, name: str) -> viam.components.board.board.Board.DigitalInterrupt
+   .. py:method:: digital_interrupt_by_name(name: str) -> viam.components.board.board.Board.DigitalInterrupt
       :async:
 
       Get a DigitalInterrupt by `name`.
@@ -186,7 +186,7 @@ Classes
       :rtype: DigitalInterrupt
 
 
-   .. py:method:: gpio_pin_by_name(self, name: str) -> viam.components.board.board.Board.GPIOPin
+   .. py:method:: gpio_pin_by_name(name: str) -> viam.components.board.board.Board.GPIOPin
       :async:
 
       Get a GPIO Pin by `name`.
@@ -198,7 +198,7 @@ Classes
       :rtype: GPIOPin
 
 
-   .. py:method:: analog_reader_names(self) -> List[str]
+   .. py:method:: analog_reader_names() -> List[str]
       :async:
 
       Get the names of all known analog readers.
@@ -207,7 +207,7 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: digital_interrupt_names(self) -> List[str]
+   .. py:method:: digital_interrupt_names() -> List[str]
       :async:
 
       Get the names of all known digital interrupts.
@@ -216,7 +216,7 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: status(self, extra: Optional[Dict[str, Any]] = None) -> viam.proto.api.common.BoardStatus
+   .. py:method:: status(extra: Optional[Dict[str, Any]] = None) -> viam.proto.api.common.BoardStatus
       :async:
 
       Return the current status of the board.
@@ -225,7 +225,7 @@ Classes
       :rtype: BoardStatus
 
 
-   .. py:method:: model_attributes(self) -> viam.components.board.board.Board.Attributes
+   .. py:method:: model_attributes() -> viam.components.board.board.Board.Attributes
       :async:
 
       Get the attributes related to the model of this board.
@@ -234,7 +234,7 @@ Classes
       :rtype: Attributes
 
 
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do(command: Dict[str, Any]) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands

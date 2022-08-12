@@ -37,22 +37,22 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: PlanAndMove(self, stream: grpclib.server.Stream[proto.api.service.motion.v1.motion_pb2.PlanAndMoveRequest, proto.api.service.motion.v1.motion_pb2.PlanAndMoveResponse]) -> None
+   .. py:method:: PlanAndMove(stream: grpclib.server.Stream[proto.api.service.motion.v1.motion_pb2.PlanAndMoveRequest, proto.api.service.motion.v1.motion_pb2.PlanAndMoveResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: MoveSingleComponent(self, stream: grpclib.server.Stream[proto.api.service.motion.v1.motion_pb2.MoveSingleComponentRequest, proto.api.service.motion.v1.motion_pb2.MoveSingleComponentResponse]) -> None
+   .. py:method:: MoveSingleComponent(stream: grpclib.server.Stream[proto.api.service.motion.v1.motion_pb2.MoveSingleComponentRequest, proto.api.service.motion.v1.motion_pb2.MoveSingleComponentResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetPose(self, stream: grpclib.server.Stream[proto.api.service.motion.v1.motion_pb2.GetPoseRequest, proto.api.service.motion.v1.motion_pb2.GetPoseResponse]) -> None
+   .. py:method:: GetPose(stream: grpclib.server.Stream[proto.api.service.motion.v1.motion_pb2.GetPoseRequest, proto.api.service.motion.v1.motion_pb2.GetPoseResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -76,20 +76,20 @@ Classes
       should be provided, if unset this defaults
       to the "world" reference frame
 
-   .. py:method:: component_name(self) -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
+   .. py:method:: component_name() -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
       :property:
 
       the component whose pose is being requested
 
 
-   .. py:method:: supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.Transform]
+   .. py:method:: supplemental_transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.proto.api.common.v1.common_pb2.Transform]
       :property:
 
       pose information on any additional reference frames that are needed
       to compute the component's pose
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[component_name, b'component_name']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[component_name, b'component_name']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -117,11 +117,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: pose(self) -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
+   .. py:method:: pose() -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -149,19 +149,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: destination(self) -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
+   .. py:method:: destination() -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
       :property:
 
 
-   .. py:method:: component_name(self) -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
+   .. py:method:: component_name() -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
       :property:
 
 
-   .. py:method:: world_state(self) -> viam.gen.proto.api.common.v1.common_pb2.WorldState
+   .. py:method:: world_state() -> viam.gen.proto.api.common.v1.common_pb2.WorldState
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_world_state, b'_world_state', component_name, b'component_name', destination, b'destination', world_state, b'world_state']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[_world_state, b'_world_state', component_name, b'component_name', destination, b'destination', world_state, b'world_state']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -178,7 +178,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_world_state, b'_world_state']) -> Optional[typing_extensions.Literal[world_state]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[_world_state, b'_world_state']) -> Optional[typing_extensions.Literal[world_state]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -220,19 +220,19 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: destination(self) -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
+   .. py:method:: destination() -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
       :property:
 
 
-   .. py:method:: component_name(self) -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
+   .. py:method:: component_name() -> viam.gen.proto.api.common.v1.common_pb2.ResourceName
       :property:
 
 
-   .. py:method:: world_state(self) -> viam.gen.proto.api.common.v1.common_pb2.WorldState
+   .. py:method:: world_state() -> viam.gen.proto.api.common.v1.common_pb2.WorldState
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_world_state, b'_world_state', component_name, b'component_name', destination, b'destination', world_state, b'world_state']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[_world_state, b'_world_state', component_name, b'component_name', destination, b'destination', world_state, b'world_state']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -249,7 +249,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_world_state, b'_world_state']) -> Optional[typing_extensions.Literal[world_state]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[_world_state, b'_world_state']) -> Optional[typing_extensions.Literal[world_state]]
 
       Returns the name of the field that is set inside a oneof group.
 

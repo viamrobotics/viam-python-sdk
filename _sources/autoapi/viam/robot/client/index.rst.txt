@@ -70,7 +70,7 @@ Attributes
          The log level to output
 
 
-   .. py:method:: at_address(cls, address: str, options: Options) -> typing_extensions.Self
+   .. py:method:: at_address(address: str, options: Options) -> typing_extensions.Self
       :classmethod:
       :async:
 
@@ -85,7 +85,7 @@ Attributes
       :rtype: Self
 
 
-   .. py:method:: with_channel(cls, channel: grpclib.client.Channel, options: Options) -> typing_extensions.Self
+   .. py:method:: with_channel(channel: grpclib.client.Channel, options: Options) -> typing_extensions.Self
       :classmethod:
       :async:
 
@@ -102,13 +102,13 @@ Attributes
       :rtype: Self
 
 
-   .. py:method:: refresh(self)
+   .. py:method:: refresh()
       :async:
 
       Manually refresh the underlying parts of this robot
 
 
-   .. py:method:: get_component(self, name: viam.proto.api.common.ResourceName) -> viam.components.component_base.ComponentBase
+   .. py:method:: get_component(name: viam.proto.api.common.ResourceName) -> viam.components.component_base.ComponentBase
 
       Get a component using its ResourceName.
 
@@ -160,7 +160,7 @@ Attributes
       :rtype: ComponentBase
 
 
-   .. py:method:: get_service(self, service_type: viam.services.ServiceType[viam.services.types.Service]) -> viam.services.types.Service
+   .. py:method:: get_service(service_type: viam.services.ServiceType[viam.services.types.Service]) -> viam.services.types.Service
 
       Get a service by specifying the `ServiceType`.
 
@@ -173,7 +173,7 @@ Attributes
       :rtype: Service
 
 
-   .. py:method:: resource_names(self) -> List[viam.proto.api.common.ResourceName]
+   .. py:method:: resource_names() -> List[viam.proto.api.common.ResourceName]
       :property:
 
       Get a list of all resource names
@@ -182,21 +182,21 @@ Attributes
       :rtype: List[ResourceName]
 
 
-   .. py:method:: close(self)
+   .. py:method:: close()
       :async:
 
       Cleanly close the underlying connections and stop any periodic tasks
 
 
-   .. py:method:: __aenter__(self)
+   .. py:method:: __aenter__()
       :async:
 
 
-   .. py:method:: __aexit__(self, exc_type, exc_value, traceback)
+   .. py:method:: __aexit__(exc_type, exc_value, traceback)
       :async:
 
 
-   .. py:method:: get_status(self, components: Optional[List[viam.proto.api.common.ResourceName]] = None)
+   .. py:method:: get_status(components: Optional[List[viam.proto.api.common.ResourceName]] = None)
       :async:
 
       Get the status of the robot's components. You can optionally
@@ -207,7 +207,7 @@ Attributes
       :type components: Optional[List[ResourceName]]
 
 
-   .. py:method:: get_frame_system_config(self, additional_transforms: Optional[List[viam.proto.api.common.Transform]] = None) -> List[viam.proto.api.robot.FrameSystemConfig]
+   .. py:method:: get_frame_system_config(additional_transforms: Optional[List[viam.proto.api.common.Transform]] = None) -> List[viam.proto.api.robot.FrameSystemConfig]
       :async:
 
       Get the configuration of the frame system of a given robot.
@@ -215,7 +215,7 @@ Attributes
       Returns (Config): The configuration of a given robot's frame system.
 
 
-   .. py:method:: transform_pose(self, query: viam.proto.api.common.PoseInFrame, destination: str, additional_transforms: Optional[List[viam.proto.api.common.Transform]] = None) -> viam.proto.api.common.PoseInFrame
+   .. py:method:: transform_pose(query: viam.proto.api.common.PoseInFrame, destination: str, additional_transforms: Optional[List[viam.proto.api.common.Transform]] = None) -> viam.proto.api.common.PoseInFrame
       :async:
 
       Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
@@ -226,7 +226,7 @@ Attributes
       :type destination: str
 
 
-   .. py:method:: discover_components(self, queries: List[viam.proto.api.robot.DiscoveryQuery]) -> List[viam.proto.api.robot.Discovery]
+   .. py:method:: discover_components(queries: List[viam.proto.api.robot.DiscoveryQuery]) -> List[viam.proto.api.robot.Discovery]
       :async:
 
       Get the list of discovered component configurations.
@@ -235,7 +235,7 @@ Attributes
       :type queries: List[DiscoveryQuery]
 
 
-   .. py:method:: stop_all(self, extra: Dict[viam.proto.api.common.ResourceName, Dict[str, Any]] = {})
+   .. py:method:: stop_all(extra: Dict[viam.proto.api.common.ResourceName, Dict[str, Any]] = {})
       :async:
 
       Cancel all current and outstanding operations for the robot and stop all actuators and movement

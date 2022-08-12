@@ -33,12 +33,12 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Sync(self, stream: grpclib.server.Stream[proto.api.service.datamanager.v1.data_manager_pb2.SyncRequest, proto.api.service.datamanager.v1.data_manager_pb2.SyncResponse]) -> None
+   .. py:method:: Sync(stream: grpclib.server.Stream[proto.api.service.datamanager.v1.data_manager_pb2.SyncRequest, proto.api.service.datamanager.v1.data_manager_pb2.SyncResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 

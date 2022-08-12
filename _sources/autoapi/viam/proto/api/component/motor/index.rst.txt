@@ -48,47 +48,47 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: SetPower(self, stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.SetPowerRequest, proto.api.component.motor.v1.motor_pb2.SetPowerResponse]) -> None
+   .. py:method:: SetPower(stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.SetPowerRequest, proto.api.component.motor.v1.motor_pb2.SetPowerResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GoFor(self, stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.GoForRequest, proto.api.component.motor.v1.motor_pb2.GoForResponse]) -> None
+   .. py:method:: GoFor(stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.GoForRequest, proto.api.component.motor.v1.motor_pb2.GoForResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GoTo(self, stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.GoToRequest, proto.api.component.motor.v1.motor_pb2.GoToResponse]) -> None
+   .. py:method:: GoTo(stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.GoToRequest, proto.api.component.motor.v1.motor_pb2.GoToResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: ResetZeroPosition(self, stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.ResetZeroPositionRequest, proto.api.component.motor.v1.motor_pb2.ResetZeroPositionResponse]) -> None
+   .. py:method:: ResetZeroPosition(stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.ResetZeroPositionRequest, proto.api.component.motor.v1.motor_pb2.ResetZeroPositionResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetPosition(self, stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.GetPositionRequest, proto.api.component.motor.v1.motor_pb2.GetPositionResponse]) -> None
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.GetPositionRequest, proto.api.component.motor.v1.motor_pb2.GetPositionResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetFeatures(self, stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.GetFeaturesRequest, proto.api.component.motor.v1.motor_pb2.GetFeaturesResponse]) -> None
+   .. py:method:: GetFeatures(stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.GetFeaturesRequest, proto.api.component.motor.v1.motor_pb2.GetFeaturesResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Stop(self, stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.StopRequest, proto.api.component.motor.v1.motor_pb2.StopResponse]) -> None
+   .. py:method:: Stop(stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.StopRequest, proto.api.component.motor.v1.motor_pb2.StopResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: IsPowered(self, stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.IsPoweredRequest, proto.api.component.motor.v1.motor_pb2.IsPoweredResponse]) -> None
+   .. py:method:: IsPowered(stream: grpclib.server.Stream[proto.api.component.motor.v1.motor_pb2.IsPoweredRequest, proto.api.component.motor.v1.motor_pb2.IsPoweredResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -110,13 +110,13 @@ Classes
 
       Name of a motor
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -165,13 +165,13 @@ Classes
 
       Name of a motor
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -230,13 +230,13 @@ Classes
 
       Number of revolutions relative to motor's start position
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -290,13 +290,13 @@ Classes
 
       Number of revolutions relative to motor's home home/zero
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -340,13 +340,13 @@ Classes
 
       Name of a motor
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -400,13 +400,13 @@ Classes
 
       Motor position
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -455,13 +455,13 @@ Classes
 
       Percentage of motor's power, between -1 and 1
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -536,13 +536,13 @@ Classes
 
       Name of a motor
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 

@@ -43,7 +43,7 @@ Classes
 
       
 
-   .. py:method:: move(self, angle: int)
+   .. py:method:: move(angle: int)
       :abstractmethod:
       :async:
 
@@ -53,7 +53,7 @@ Classes
       :type angle: int
 
 
-   .. py:method:: get_position(self) -> int
+   .. py:method:: get_position() -> int
       :abstractmethod:
       :async:
 
@@ -63,14 +63,14 @@ Classes
       :rtype: int
 
 
-   .. py:method:: stop(self)
+   .. py:method:: stop()
       :abstractmethod:
       :async:
 
       Stop the servo. It is assumed that the servo stops immediately.
 
 
-   .. py:method:: is_moving(self) -> bool
+   .. py:method:: is_moving() -> bool
       :async:
 
       Get if the servo is currently moving.

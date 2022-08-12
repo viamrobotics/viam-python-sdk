@@ -38,12 +38,12 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Authenticate(self, stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateRequest, proto.rpc.v1.auth_pb2.AuthenticateResponse]) -> None
+   .. py:method:: Authenticate(stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateRequest, proto.rpc.v1.auth_pb2.AuthenticateResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -57,12 +57,12 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: AuthenticateTo(self, stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateToRequest, proto.rpc.v1.auth_pb2.AuthenticateToResponse]) -> None
+   .. py:method:: AuthenticateTo(stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateToRequest, proto.rpc.v1.auth_pb2.AuthenticateToResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -80,11 +80,11 @@ Classes
 
       
 
-   .. py:method:: credentials(self) -> global___Credentials
+   .. py:method:: credentials() -> global___Credentials
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[credentials, b'credentials']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[credentials, b'credentials']) -> bool
 
       Checks if a certain field is set for the message.
 

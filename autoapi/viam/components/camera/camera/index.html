@@ -17,6 +17,7 @@
         <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
         <script src="../../../../../_static/jquery.js"></script>
         <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
@@ -130,11 +131,11 @@
            <div itemprop="articleBody">
              
   <section id="module-viam.components.camera.camera">
-<span id="viam-components-camera-camera"></span><h1><a class="reference internal" href="#module-viam.components.camera.camera" title="viam.components.camera.camera"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera.camera</span></code></a><a class="headerlink" href="#module-viam.components.camera.camera" title="Permalink to this headline"></a></h1>
+<span id="viam-components-camera-camera"></span><h1><a class="reference internal" href="#module-viam.components.camera.camera" title="viam.components.camera.camera"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera.camera</span></code></a><a class="headerlink" href="#module-viam.components.camera.camera" title="Permalink to this heading"></a></h1>
 <section id="module-contents">
-<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -155,7 +156,7 @@ camera implementations. This cannot be used on its own. If the <cite>__init__()<
 overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.camera.camera.Camera.get_frame">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PIL.Image.Image</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/camera.html#Camera.get_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.camera.Camera.get_frame" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_frame</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">PIL.Image.Image</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/camera.html#Camera.get_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.camera.Camera.get_frame" title="Permalink to this definition"></a></dt>
 <dd><p>Get the next frame from the camera as an Image.
 Be sure to close the image when finished.</p>
 <dl class="field-list simple">
@@ -170,7 +171,7 @@ Be sure to close the image when finished.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.camera.camera.Camera.get_point_cloud">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_point_cloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/camera.html#Camera.get_point_cloud"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.camera.Camera.get_point_cloud" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_point_cloud</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/camera.html#Camera.get_point_cloud"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.camera.Camera.get_point_cloud" title="Permalink to this definition"></a></dt>
 <dd><p>Get the next point cloud from the camera. This will be
 returned as bytes with a mimetype describing
 the structure of the data. The consumer of this call
@@ -189,7 +190,7 @@ str: The mimetype of the pointcloud (e.g. PCD).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.camera.camera.Camera.get_properties">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/api/component/camera/index.html#viam.proto.api.component.camera.IntrinsicParameters" title="viam.proto.api.component.camera.IntrinsicParameters"><span class="pre">viam.proto.api.component.camera.IntrinsicParameters</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/camera.html#Camera.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.camera.Camera.get_properties" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/api/component/camera/index.html#viam.proto.api.component.camera.IntrinsicParameters" title="viam.proto.api.component.camera.IntrinsicParameters"><span class="pre">viam.proto.api.component.camera.IntrinsicParameters</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/camera.html#Camera.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.camera.Camera.get_properties" title="Permalink to this definition"></a></dt>
 <dd><p>Get the camera intrinsic parameters and camera distortion parameters</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>

@@ -49,52 +49,52 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Status(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.StatusRequest, proto.api.component.board.v1.board_pb2.StatusResponse]) -> None
+   .. py:method:: Status(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.StatusRequest, proto.api.component.board.v1.board_pb2.StatusResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: SetGPIO(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.SetGPIORequest, proto.api.component.board.v1.board_pb2.SetGPIOResponse]) -> None
+   .. py:method:: SetGPIO(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.SetGPIORequest, proto.api.component.board.v1.board_pb2.SetGPIOResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetGPIO(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.GetGPIORequest, proto.api.component.board.v1.board_pb2.GetGPIOResponse]) -> None
+   .. py:method:: GetGPIO(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.GetGPIORequest, proto.api.component.board.v1.board_pb2.GetGPIOResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: PWM(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.PWMRequest, proto.api.component.board.v1.board_pb2.PWMResponse]) -> None
+   .. py:method:: PWM(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.PWMRequest, proto.api.component.board.v1.board_pb2.PWMResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: SetPWM(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.SetPWMRequest, proto.api.component.board.v1.board_pb2.SetPWMResponse]) -> None
+   .. py:method:: SetPWM(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.SetPWMRequest, proto.api.component.board.v1.board_pb2.SetPWMResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: PWMFrequency(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.PWMFrequencyRequest, proto.api.component.board.v1.board_pb2.PWMFrequencyResponse]) -> None
+   .. py:method:: PWMFrequency(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.PWMFrequencyRequest, proto.api.component.board.v1.board_pb2.PWMFrequencyResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: SetPWMFrequency(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.SetPWMFrequencyRequest, proto.api.component.board.v1.board_pb2.SetPWMFrequencyResponse]) -> None
+   .. py:method:: SetPWMFrequency(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.SetPWMFrequencyRequest, proto.api.component.board.v1.board_pb2.SetPWMFrequencyResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: ReadAnalogReader(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.ReadAnalogReaderRequest, proto.api.component.board.v1.board_pb2.ReadAnalogReaderResponse]) -> None
+   .. py:method:: ReadAnalogReader(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.ReadAnalogReaderRequest, proto.api.component.board.v1.board_pb2.ReadAnalogReaderResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetDigitalInterruptValue(self, stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.GetDigitalInterruptValueRequest, proto.api.component.board.v1.board_pb2.GetDigitalInterruptValueResponse]) -> None
+   .. py:method:: GetDigitalInterruptValue(stream: grpclib.server.Stream[proto.api.component.board.v1.board_pb2.GetDigitalInterruptValueRequest, proto.api.component.board.v1.board_pb2.GetDigitalInterruptValueResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -119,13 +119,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -179,13 +179,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -239,13 +239,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -299,13 +299,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -357,13 +357,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -422,13 +422,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -482,13 +482,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -542,13 +542,13 @@ Classes
 
       0-1
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -592,13 +592,13 @@ Classes
 
       
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -626,11 +626,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: status(self) -> viam.gen.proto.api.common.v1.common_pb2.BoardStatus
+   .. py:method:: status() -> viam.gen.proto.api.common.v1.common_pb2.BoardStatus
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[status, b'status']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 

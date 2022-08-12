@@ -39,7 +39,7 @@ Attributes
 
       
 
-   .. py:method:: register(self, component: viam.components.component_base.ComponentBase)
+   .. py:method:: register(component: viam.components.component_base.ComponentBase)
 
       Register a new component with the registry.
       Components may not have the same name.
@@ -51,7 +51,7 @@ Attributes
       :type component: ComponentBase
 
 
-   .. py:method:: get_component(self, of_type: Type[ResourceType], name: str) -> ResourceType
+   .. py:method:: get_component(of_type: Type[ResourceType], name: str) -> ResourceType
 
       Return a component from the registry.
 

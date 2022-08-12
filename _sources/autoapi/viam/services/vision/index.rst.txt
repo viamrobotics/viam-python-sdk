@@ -73,7 +73,7 @@ Classes
    Connect to the Vision service, which allows you to access various computer vision algorithms
    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
 
-   .. py:method:: get_detector_names(self) -> List[str]
+   .. py:method:: get_detector_names() -> List[str]
       :async:
 
       Get the list of detectors currently registered in the service.
@@ -82,7 +82,7 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: add_detector(self, detector: DetectorConfig)
+   .. py:method:: add_detector(detector: DetectorConfig)
       :async:
 
       Add a new detector to the service. Returns nothing if successful, and an error if not.
@@ -94,7 +94,7 @@ Classes
       :type detector: DetectorConfig
 
 
-   .. py:method:: get_detections_from_camera(self, camera_name: str, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
+   .. py:method:: get_detections_from_camera(camera_name: str, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
       :async:
 
       Get a list of detections in the next image given a camera and a detector
@@ -110,7 +110,7 @@ Classes
       :rtype: List[Detection]
 
 
-   .. py:method:: get_detections(self, image: PIL.Image.Image, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
+   .. py:method:: get_detections(image: PIL.Image.Image, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -126,7 +126,7 @@ Classes
       :rtype: List[Detection]
 
 
-   .. py:method:: get_segmenter_names(self) -> List[str]
+   .. py:method:: get_segmenter_names() -> List[str]
       :async:
 
       Get the list of segmenters currently registered in the service.
@@ -135,7 +135,7 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: get_segmenter_parameters(self, segmenter_name: str) -> List[Tuple[str, str]]
+   .. py:method:: get_segmenter_parameters(segmenter_name: str) -> List[Tuple[str, str]]
       :async:
 
       Get the parameter fields needed for the given segmenter.
@@ -151,7 +151,7 @@ Classes
       :rtype: List[Tuple[str, str]]
 
 
-   .. py:method:: get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Dict[str, Any]) -> List[viam.proto.api.common.PointCloudObject]
+   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, parameters: Dict[str, Any]) -> List[viam.proto.api.common.PointCloudObject]
       :async:
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest

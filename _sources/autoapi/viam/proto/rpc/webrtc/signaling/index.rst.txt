@@ -52,27 +52,27 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Call(self, stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
+   .. py:method:: Call(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: CallUpdate(self, stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
+   .. py:method:: CallUpdate(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Answer(self, stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
+   .. py:method:: Answer(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: OptionalWebRTCConfig(self, stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
+   .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -91,27 +91,27 @@ Classes
 
       
 
-   .. py:method:: init(self) -> global___AnswerRequestInitStage
+   .. py:method:: init() -> global___AnswerRequestInitStage
       :property:
 
 
-   .. py:method:: update(self) -> global___AnswerRequestUpdateStage
+   .. py:method:: update() -> global___AnswerRequestUpdateStage
       :property:
 
 
-   .. py:method:: done(self) -> global___AnswerRequestDoneStage
+   .. py:method:: done() -> global___AnswerRequestDoneStage
       :property:
 
       done is sent when the requester is done sending information
 
 
-   .. py:method:: error(self) -> global___AnswerRequestErrorStage
+   .. py:method:: error() -> global___AnswerRequestErrorStage
       :property:
 
       error is sent any time before done
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[done, b'done', error, b'error', init, b'init', stage, b'stage', update, b'update']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[done, b'done', error, b'error', init, b'init', stage, b'stage', update, b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -128,7 +128,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[stage, b'stage']) -> Optional[typing_extensions.Literal[init, update, done, error]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[stage, b'stage']) -> Optional[typing_extensions.Literal[init, update, done, error]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -157,11 +157,11 @@ Classes
 
    AnswerRequestErrorStage indicates the exchange has failed with an error.
 
-   .. py:method:: status(self) -> google.rpc.status_pb2.Status
+   .. py:method:: status() -> google.rpc.status_pb2.Status
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[status, b'status']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -191,11 +191,11 @@ Classes
 
       
 
-   .. py:method:: optional_config(self) -> global___WebRTCConfig
+   .. py:method:: optional_config() -> global___WebRTCConfig
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[optional_config, b'optional_config']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[optional_config, b'optional_config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -220,11 +220,11 @@ Classes
    AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to
    the controlled (answerer) side.
 
-   .. py:method:: candidate(self) -> global___ICECandidate
+   .. py:method:: candidate() -> global___ICECandidate
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[candidate, b'candidate']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[candidate, b'candidate']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -253,27 +253,27 @@ Classes
 
       
 
-   .. py:method:: init(self) -> global___AnswerResponseInitStage
+   .. py:method:: init() -> global___AnswerResponseInitStage
       :property:
 
 
-   .. py:method:: update(self) -> global___AnswerResponseUpdateStage
+   .. py:method:: update() -> global___AnswerResponseUpdateStage
       :property:
 
 
-   .. py:method:: done(self) -> global___AnswerResponseDoneStage
+   .. py:method:: done() -> global___AnswerResponseDoneStage
       :property:
 
       done is sent when the answerer is done sending information
 
 
-   .. py:method:: error(self) -> global___AnswerResponseErrorStage
+   .. py:method:: error() -> global___AnswerResponseErrorStage
       :property:
 
       error is sent any time before done
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[done, b'done', error, b'error', init, b'init', stage, b'stage', update, b'update']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[done, b'done', error, b'error', init, b'init', stage, b'stage', update, b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -290,7 +290,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[stage, b'stage']) -> Optional[typing_extensions.Literal[init, update, done, error]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[stage, b'stage']) -> Optional[typing_extensions.Literal[init, update, done, error]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -319,11 +319,11 @@ Classes
 
    AnswerResponseErrorStage indicates the exchange has failed with an error.
 
-   .. py:method:: status(self) -> google.rpc.status_pb2.Status
+   .. py:method:: status() -> google.rpc.status_pb2.Status
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[status, b'status']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -361,11 +361,11 @@ Classes
    AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to
    the controlling side.
 
-   .. py:method:: candidate(self) -> global___ICECandidate
+   .. py:method:: candidate() -> global___ICECandidate
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[candidate, b'candidate']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[candidate, b'candidate']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -413,15 +413,15 @@ Classes
 
       
 
-   .. py:method:: init(self) -> global___CallResponseInitStage
+   .. py:method:: init() -> global___CallResponseInitStage
       :property:
 
 
-   .. py:method:: update(self) -> global___CallResponseUpdateStage
+   .. py:method:: update() -> global___CallResponseUpdateStage
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[init, b'init', stage, b'stage', update, b'update']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[init, b'init', stage, b'stage', update, b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -438,7 +438,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[stage, b'stage']) -> Optional[typing_extensions.Literal[init, update]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[stage, b'stage']) -> Optional[typing_extensions.Literal[init, update]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -474,11 +474,11 @@ Classes
    CallResponseUpdateStage is multiply used to trickle in ICE candidates from
    the controlled (answering) side.
 
-   .. py:method:: candidate(self) -> global___ICECandidate
+   .. py:method:: candidate() -> global___ICECandidate
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[candidate, b'candidate']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[candidate, b'candidate']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -512,15 +512,15 @@ Classes
 
       
 
-   .. py:method:: candidate(self) -> global___ICECandidate
+   .. py:method:: candidate() -> global___ICECandidate
       :property:
 
 
-   .. py:method:: error(self) -> google.rpc.status_pb2.Status
+   .. py:method:: error() -> google.rpc.status_pb2.Status
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[candidate, b'candidate', done, b'done', error, b'error', update, b'update']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[candidate, b'candidate', done, b'done', error, b'error', update, b'update']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -537,7 +537,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[update, b'update']) -> Optional[typing_extensions.Literal[candidate, done, error]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[update, b'update']) -> Optional[typing_extensions.Literal[candidate, done, error]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -587,7 +587,7 @@ Classes
 
       
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_sdp_mid, b'_sdp_mid', _sdpm_line_index, b'_sdpm_line_index', _username_fragment, b'_username_fragment', sdp_mid, b'sdp_mid', sdpm_line_index, b'sdpm_line_index', username_fragment, b'username_fragment']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[_sdp_mid, b'_sdp_mid', _sdpm_line_index, b'_sdpm_line_index', _username_fragment, b'_username_fragment', sdp_mid, b'sdp_mid', sdpm_line_index, b'sdpm_line_index', username_fragment, b'username_fragment']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -604,9 +604,9 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_sdp_mid, b'_sdp_mid']) -> Optional[typing_extensions.Literal[sdp_mid]]
-               WhichOneof(self, oneof_group: typing_extensions.Literal[_sdpm_line_index, b'_sdpm_line_index']) -> Optional[typing_extensions.Literal[sdpm_line_index]]
-               WhichOneof(self, oneof_group: typing_extensions.Literal[_username_fragment, b'_username_fragment']) -> Optional[typing_extensions.Literal[username_fragment]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[_sdp_mid, b'_sdp_mid']) -> Optional[typing_extensions.Literal[sdp_mid]]
+               WhichOneof(oneof_group: typing_extensions.Literal[_sdpm_line_index, b'_sdpm_line_index']) -> Optional[typing_extensions.Literal[sdpm_line_index]]
+               WhichOneof(oneof_group: typing_extensions.Literal[_username_fragment, b'_username_fragment']) -> Optional[typing_extensions.Literal[username_fragment]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -638,7 +638,7 @@ Classes
 
       
 
-   .. py:method:: urls(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+   .. py:method:: urls() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
       :property:
 
 
@@ -658,11 +658,11 @@ Classes
    OptionalWebRTCConfigResponse contains the optional WebRTC config
    to use for the peer connection.
 
-   .. py:method:: config(self) -> global___WebRTCConfig
+   .. py:method:: config() -> global___WebRTCConfig
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[config, b'config']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[config, b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -692,7 +692,7 @@ Classes
       disable_trickle indicates if Trickle ICE should be used. Currently, both
       sides must both respect this setting.
 
-   .. py:method:: additional_ice_servers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ICEServer]
+   .. py:method:: additional_ice_servers() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ICEServer]
       :property:
 
 

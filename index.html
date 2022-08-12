@@ -17,6 +17,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
@@ -89,28 +90,28 @@
 <div class="toctree-wrapper compound">
 </div>
 <section id="viam-python-sdk">
-<h1>Viam Python SDK<a class="headerlink" href="#viam-python-sdk" title="Permalink to this headline"></a></h1>
+<h1>Viam Python SDK<a class="headerlink" href="#viam-python-sdk" title="Permalink to this heading"></a></h1>
 <p><a class="reference external" href="https://python.viam.dev"><img alt="documentation" src="https://img.shields.io/static/v1?label=docs&amp;message=python.viam.dev&amp;color=informational" /></a>
 <img alt="build status" src="https://github.com/viamrobotics/python-sdk/actions/workflows/test.yml/badge.svg" /></p>
 <section id="in-stability-notice">
-<h2>(In)stability Notice<a class="headerlink" href="#in-stability-notice" title="Permalink to this headline"></a></h2>
+<h2>(In)stability Notice<a class="headerlink" href="#in-stability-notice" title="Permalink to this heading"></a></h2>
 <p>This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.</p>
 </section>
 <section id="installation-pre-open-sourcing">
-<h2>Installation - pre open sourcing<a class="headerlink" href="#installation-pre-open-sourcing" title="Permalink to this headline"></a></h2>
+<h2>Installation - pre open sourcing<a class="headerlink" href="#installation-pre-open-sourcing" title="Permalink to this heading"></a></h2>
 <p>To install, you need to be invited to the repository. You will also need a <a class="reference external" href="https://github.com/settings/tokens">GitHub Access Token</a> with <em>repo</em> access.</p>
 <p>Once you have access and a token, you can install the SDK with the command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git</span></code></p>
 <p>This will install the current <code class="docutils literal notranslate"><span class="pre">main</span></code> branch to your project. If you would like a specific branch or commit, you can do so with the command</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git&#64;FULL_COMMIT_HASH</span></code></p>
 <section id="upgrading">
-<h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline"></a></h3>
+<h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this heading"></a></h3>
 <p>Because the SDK is under active development, we suggest that you upgrade the package frequently. To do so, simply run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-U</span></code> option:</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git</span></code></p>
 </section>
 </section>
 <section id="easy-setup-via-app-viam-com">
-<h2>Easy Setup via <span class="xref myst">app.viam.com</span><a class="headerlink" href="#easy-setup-via-app-viam-com" title="Permalink to this headline"></a></h2>
+<h2>Easy Setup via <span class="xref myst">app.viam.com</span><a class="headerlink" href="#easy-setup-via-app-viam-com" title="Permalink to this heading"></a></h2>
 <p>The easiest way to get started writing a client application (that is, one which is not directly responsible for interacting with hardware,
 but rather calls into the viam-server to actuate hardware or read from sensors), is to navigate to the robot page on <span class="xref myst">app.viam.com</span>,
 select the <code class="docutils literal notranslate"><span class="pre">CONNECT</span></code> tab, and copy the boilerplate code from the section labeled <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">SDK</span></code>.</p>
@@ -118,13 +119,13 @@ select the <code class="docutils literal notranslate"><span class="pre">CONNECT<
 that the <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> instance on your robot is alive, and that the computer running the program is able to connect to that instance.</p>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <p>The <a class="reference external" href="https://python.viam.dev/example.html">Example Usage</a> has the info required to access a component, build a custom component, and expose
 custom components as a remote to existing robots.</p>
 <p>Further examples can be found in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory.</p>
 </section>
 <section id="the-do-method">
-<h2>The <code class="docutils literal notranslate"><span class="pre">do</span></code> method<a class="headerlink" href="#the-do-method" title="Permalink to this headline"></a></h2>
+<h2>The <code class="docutils literal notranslate"><span class="pre">do</span></code> method<a class="headerlink" href="#the-do-method" title="Permalink to this heading"></a></h2>
 <p>Every component provided by the SDK includes a generic <code class="docutils literal notranslate"><span class="pre">do</span></code> method which is useful to execute commands that are not already defined on the component.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 </pre></div>
@@ -133,17 +134,17 @@ custom components as a remote to existing robots.</p>
 class. For more details, you can view the documentation for the <code class="docutils literal notranslate"><span class="pre">Generic</span></code> component.</p>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
 <p>Documentation, like this entire project, is under active development, and can be found at <a class="reference external" href="https://python.viam.dev">python.viam.dev</a>.</p>
 </section>
 <hr class="docutils" />
 <section id="development">
-<h2>Development<a class="headerlink" href="#development" title="Permalink to this headline"></a></h2>
+<h2>Development<a class="headerlink" href="#development" title="Permalink to this heading"></a></h2>
 <p>To develop the python SDK, it is strongly encouraged that you use a python environment (<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>, <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a>, <a class="reference external" href="https://github.com/pyenv/pyenv">pyenv</a>, etc.)</p>
 <p>Install the requirements: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">etc/requirements.txt</span></code></p>
 <p><a class="reference external" href="https://www.flake8rules.com"><code class="docutils literal notranslate"><span class="pre">flake8</span></code></a> is our styleguide, and <a class="reference external" href="https://pypi.org/project/autopep8/"><code class="docutils literal notranslate"><span class="pre">autopep8</span></code></a> is used for automatic linting and formatting.</p>
 <section id="adding-new-component-types">
-<h3>Adding new component types<a class="headerlink" href="#adding-new-component-types" title="Permalink to this headline"></a></h3>
+<h3>Adding new component types<a class="headerlink" href="#adding-new-component-types" title="Permalink to this heading"></a></h3>
 <p>The SDK provides a number of abstract base components to start. To add more abstract base components, please make sure you follow these guidelines:</p>
 <ul class="simple">
 <li><p>Create a new directory in <code class="docutils literal notranslate"><span class="pre">viam.components</span></code> with the name of the new component</p></li>

@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the Camera component
 
-   .. py:method:: get_frame(self) -> PIL.Image.Image
+   .. py:method:: get_frame() -> PIL.Image.Image
       :async:
 
       Get the next frame from the camera as an Image.
@@ -33,7 +33,7 @@ Classes
       :rtype: Image
 
 
-   .. py:method:: get_point_cloud(self) -> Tuple[bytes, str]
+   .. py:method:: get_point_cloud() -> Tuple[bytes, str]
       :async:
 
       Get the next point cloud from the camera. This will be
@@ -47,7 +47,7 @@ Classes
       :rtype: bytes
 
 
-   .. py:method:: get_properties(self) -> viam.proto.api.component.camera.IntrinsicParameters
+   .. py:method:: get_properties() -> viam.proto.api.component.camera.IntrinsicParameters
       :async:
 
       Get the camera intrinsic parameters and camera distortion parameters
@@ -56,7 +56,7 @@ Classes
       :rtype: IntrinsicParameters
 
 
-   .. py:method:: do(self, command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do(command: Dict[str, Any]) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands

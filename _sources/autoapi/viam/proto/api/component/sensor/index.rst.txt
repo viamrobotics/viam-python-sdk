@@ -33,12 +33,12 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetReadings(self, stream: grpclib.server.Stream[proto.api.component.sensor.v1.sensor_pb2.GetReadingsRequest, proto.api.component.sensor.v1.sensor_pb2.GetReadingsResponse]) -> None
+   .. py:method:: GetReadings(stream: grpclib.server.Stream[proto.api.component.sensor.v1.sensor_pb2.GetReadingsRequest, proto.api.component.sensor.v1.sensor_pb2.GetReadingsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -71,7 +71,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: readings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Value]
+   .. py:method:: readings() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Value]
       :property:
 
 

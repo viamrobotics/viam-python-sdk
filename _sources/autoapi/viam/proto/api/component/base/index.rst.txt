@@ -41,32 +41,32 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: MoveStraight(self, stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.MoveStraightRequest, proto.api.component.base.v1.base_pb2.MoveStraightResponse]) -> None
+   .. py:method:: MoveStraight(stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.MoveStraightRequest, proto.api.component.base.v1.base_pb2.MoveStraightResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Spin(self, stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.SpinRequest, proto.api.component.base.v1.base_pb2.SpinResponse]) -> None
+   .. py:method:: Spin(stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.SpinRequest, proto.api.component.base.v1.base_pb2.SpinResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: SetPower(self, stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.SetPowerRequest, proto.api.component.base.v1.base_pb2.SetPowerResponse]) -> None
+   .. py:method:: SetPower(stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.SetPowerRequest, proto.api.component.base.v1.base_pb2.SetPowerResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: SetVelocity(self, stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.SetVelocityRequest, proto.api.component.base.v1.base_pb2.SetVelocityResponse]) -> None
+   .. py:method:: SetVelocity(stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.SetVelocityRequest, proto.api.component.base.v1.base_pb2.SetVelocityResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: Stop(self, stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.StopRequest, proto.api.component.base.v1.base_pb2.StopResponse]) -> None
+   .. py:method:: Stop(stream: grpclib.server.Stream[proto.api.component.base.v1.base_pb2.StopRequest, proto.api.component.base.v1.base_pb2.StopResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -98,13 +98,13 @@ Classes
 
       Desired travel velocity in millimeters/second
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -148,25 +148,25 @@ Classes
 
       Name of a base
 
-   .. py:method:: linear(self) -> viam.gen.proto.api.common.v1.common_pb2.Vector3
+   .. py:method:: linear() -> viam.gen.proto.api.common.v1.common_pb2.Vector3
       :property:
 
       Desired linear power percentage as -1 -> 1
 
 
-   .. py:method:: angular(self) -> viam.gen.proto.api.common.v1.common_pb2.Vector3
+   .. py:method:: angular() -> viam.gen.proto.api.common.v1.common_pb2.Vector3
       :property:
 
       Desired angular power percentage % as -1 -> 1
 
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -210,25 +210,25 @@ Classes
 
       Name of a base
 
-   .. py:method:: linear(self) -> viam.gen.proto.api.common.v1.common_pb2.Vector3
+   .. py:method:: linear() -> viam.gen.proto.api.common.v1.common_pb2.Vector3
       :property:
 
       Desired linear velocity in mm per second
 
 
-   .. py:method:: angular(self) -> viam.gen.proto.api.common.v1.common_pb2.Vector3
+   .. py:method:: angular() -> viam.gen.proto.api.common.v1.common_pb2.Vector3
       :property:
 
       Desired angular velocity in degrees per second
 
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -282,13 +282,13 @@ Classes
 
       Desired angular velocity
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -332,13 +332,13 @@ Classes
 
       Name of a base
 
-   .. py:method:: extra(self) -> google.protobuf.struct_pb2.Struct
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
       :property:
 
       Additional arguments to the method
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 

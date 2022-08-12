@@ -95,7 +95,7 @@ Attributes
    If you create a new component type that is not an extension of any of the existing base component types, then you must register said
    component using `Registry.register(...)`.
 
-   .. py:method:: register(cls, registration: ComponentRegistration)
+   .. py:method:: register(registration: ComponentRegistration)
       :classmethod:
 
       Register a Component with the Registry
@@ -106,7 +106,7 @@ Attributes
       :raises DuplicateComponentError: Raised if the Component to register is already in the registry
 
 
-   .. py:method:: lookup(cls, component_name: str) -> ComponentRegistration
+   .. py:method:: lookup(component_name: str) -> ComponentRegistration
       :classmethod:
 
       Lookup and retrieve a registered component by its name
@@ -120,7 +120,7 @@ Attributes
       :rtype: ComponentRegistration
 
 
-   .. py:method:: REGISTERED_COMPONENTS(cls) -> Dict[str, ComponentRegistration]
+   .. py:method:: REGISTERED_COMPONENTS() -> Dict[str, ComponentRegistration]
       :property:
 
       The dictionary of all registered components

@@ -43,7 +43,7 @@ Classes
          
 
 
-   .. py:method:: set_power(self, power: float, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: set_power(power: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -55,7 +55,7 @@ Classes
       :type power: float
 
 
-   .. py:method:: go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: go_for(rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -71,7 +71,7 @@ Classes
       :type revolutions: float
 
 
-   .. py:method:: go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: go_to(rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -86,7 +86,7 @@ Classes
       :type position_revolutions: float
 
 
-   .. py:method:: reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: reset_zero_position(offset: float, extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
@@ -96,7 +96,7 @@ Classes
       :type offset: float
 
 
-   .. py:method:: get_position(self, extra: Optional[Dict[str, Any]] = None) -> float
+   .. py:method:: get_position(extra: Optional[Dict[str, Any]] = None) -> float
       :abstractmethod:
       :async:
 
@@ -108,7 +108,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_features(self, extra: Optional[Dict[str, Any]] = None) -> Features
+   .. py:method:: get_features(extra: Optional[Dict[str, Any]] = None) -> Features
       :abstractmethod:
       :async:
 
@@ -119,14 +119,14 @@ Classes
       :rtype: Features
 
 
-   .. py:method:: stop(self, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: stop(extra: Optional[Dict[str, Any]] = None)
       :abstractmethod:
       :async:
 
       Stop the motor immediately, without any gradual step down.
 
 
-   .. py:method:: is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool
+   .. py:method:: is_powered(extra: Optional[Dict[str, Any]] = None) -> bool
       :abstractmethod:
       :async:
 
@@ -136,7 +136,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: is_moving(self) -> bool
+   .. py:method:: is_moving() -> bool
       :async:
 
       Get if the motor is currently moving.

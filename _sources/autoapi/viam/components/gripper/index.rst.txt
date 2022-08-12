@@ -38,14 +38,14 @@ Classes
    gripper implementations. This cannot be used on its own. If the `__init__()` function is
    overriden, it must call the `super().__init__()` function.
 
-   .. py:method:: open(self)
+   .. py:method:: open()
       :abstractmethod:
       :async:
 
       Open the gripper.
 
 
-   .. py:method:: grab(self) -> bool
+   .. py:method:: grab() -> bool
       :abstractmethod:
       :async:
 
@@ -55,14 +55,14 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: stop(self)
+   .. py:method:: stop()
       :abstractmethod:
       :async:
 
       Stop the gripper. It is assumed the gripper stops immediately.
 
 
-   .. py:method:: is_moving(self) -> bool
+   .. py:method:: is_moving() -> bool
       :async:
 
       Get if the gripper is currently moving.

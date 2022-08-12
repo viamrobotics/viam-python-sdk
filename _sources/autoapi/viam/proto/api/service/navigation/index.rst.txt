@@ -44,37 +44,37 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetMode(self, stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.GetModeRequest, proto.api.service.navigation.v1.navigation_pb2.GetModeResponse]) -> None
+   .. py:method:: GetMode(stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.GetModeRequest, proto.api.service.navigation.v1.navigation_pb2.GetModeResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: SetMode(self, stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.SetModeRequest, proto.api.service.navigation.v1.navigation_pb2.SetModeResponse]) -> None
+   .. py:method:: SetMode(stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.SetModeRequest, proto.api.service.navigation.v1.navigation_pb2.SetModeResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetLocation(self, stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.GetLocationRequest, proto.api.service.navigation.v1.navigation_pb2.GetLocationResponse]) -> None
+   .. py:method:: GetLocation(stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.GetLocationRequest, proto.api.service.navigation.v1.navigation_pb2.GetLocationResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetWaypoints(self, stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.GetWaypointsRequest, proto.api.service.navigation.v1.navigation_pb2.GetWaypointsResponse]) -> None
+   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.GetWaypointsRequest, proto.api.service.navigation.v1.navigation_pb2.GetWaypointsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: AddWaypoint(self, stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.AddWaypointRequest, proto.api.service.navigation.v1.navigation_pb2.AddWaypointResponse]) -> None
+   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.AddWaypointRequest, proto.api.service.navigation.v1.navigation_pb2.AddWaypointResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: RemoveWaypoint(self, stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.RemoveWaypointRequest, proto.api.service.navigation.v1.navigation_pb2.RemoveWaypointResponse]) -> None
+   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[proto.api.service.navigation.v1.navigation_pb2.RemoveWaypointRequest, proto.api.service.navigation.v1.navigation_pb2.RemoveWaypointResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -91,11 +91,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: location(self) -> viam.gen.proto.api.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> viam.gen.proto.api.common.v1.common_pb2.GeoPoint
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[location, b'location']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[location, b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -145,11 +145,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: location(self) -> viam.gen.proto.api.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> viam.gen.proto.api.common.v1.common_pb2.GeoPoint
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[location, b'location']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[location, b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -215,7 +215,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: waypoints(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Waypoint]
+   .. py:method:: waypoints() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Waypoint]
       :property:
 
 
@@ -289,11 +289,11 @@ Classes
 
       
 
-   .. py:method:: location(self) -> viam.gen.proto.api.common.v1.common_pb2.GeoPoint
+   .. py:method:: location() -> viam.gen.proto.api.common.v1.common_pb2.GeoPoint
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[location, b'location']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[location, b'location']) -> bool
 
       Checks if a certain field is set for the message.
 

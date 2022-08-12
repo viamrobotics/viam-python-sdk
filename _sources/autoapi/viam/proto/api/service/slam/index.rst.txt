@@ -35,17 +35,17 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetPosition(self, stream: grpclib.server.Stream[proto.api.service.slam.v1.slam_pb2.GetPositionRequest, proto.api.service.slam.v1.slam_pb2.GetPositionResponse]) -> None
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[proto.api.service.slam.v1.slam_pb2.GetPositionRequest, proto.api.service.slam.v1.slam_pb2.GetPositionResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetMap(self, stream: grpclib.server.Stream[proto.api.service.slam.v1.slam_pb2.GetMapRequest, proto.api.service.slam.v1.slam_pb2.GetMapResponse]) -> None
+   .. py:method:: GetMap(stream: grpclib.server.Stream[proto.api.service.slam.v1.slam_pb2.GetMapRequest, proto.api.service.slam.v1.slam_pb2.GetMapResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -78,14 +78,14 @@ Classes
       Optional parameter for image/jpeg mime_type, defaults to false.
       Tells us whether to include the robot position on the 2D image.
 
-   .. py:method:: camera_position(self) -> viam.gen.proto.api.common.v1.common_pb2.Pose
+   .. py:method:: camera_position() -> viam.gen.proto.api.common.v1.common_pb2.Pose
       :property:
 
       Optional parameter for image/jpeg mime_type, used to project point
       cloud into a 2D image.
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[_camera_position, b'_camera_position', camera_position, b'camera_position']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[_camera_position, b'_camera_position', camera_position, b'camera_position']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -102,7 +102,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[_camera_position, b'_camera_position']) -> Optional[typing_extensions.Literal[camera_position]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[_camera_position, b'_camera_position']) -> Optional[typing_extensions.Literal[camera_position]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -138,11 +138,11 @@ Classes
 
       Actual MIME type of response (image/jpeg or image/pcd)
 
-   .. py:method:: point_cloud(self) -> viam.gen.proto.api.common.v1.common_pb2.PointCloudObject
+   .. py:method:: point_cloud() -> viam.gen.proto.api.common.v1.common_pb2.PointCloudObject
       :property:
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[image, b'image', map, b'map', point_cloud, b'point_cloud']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[image, b'image', map, b'map', point_cloud, b'point_cloud']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -159,7 +159,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(self, oneof_group: typing_extensions.Literal[map, b'map']) -> Optional[typing_extensions.Literal[point_cloud, image]]
+   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[map, b'map']) -> Optional[typing_extensions.Literal[point_cloud, image]]
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -201,13 +201,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: pose(self) -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
+   .. py:method:: pose() -> viam.gen.proto.api.common.v1.common_pb2.PoseInFrame
       :property:
 
       Current position of the robot within the World frame.
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 

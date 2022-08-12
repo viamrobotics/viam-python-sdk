@@ -224,11 +224,11 @@ Attributes
 
       0 or 1 for buttons, -1.0 to +1.0 for axes
 
-   .. py:method:: proto(self)
+   .. py:method:: proto()
       :property:
 
 
-   .. py:method:: from_proto(cls, proto: viam.proto.api.component.inputcontroller.Event) -> typing_extensions.Self
+   .. py:method:: from_proto(proto: viam.proto.api.component.inputcontroller.Event) -> typing_extensions.Self
       :classmethod:
 
 
@@ -246,7 +246,7 @@ Attributes
    Could be a single gamepad, or a collection of digitalInterrupts
    and analogReaders, a keyboard, etc.
 
-   .. py:method:: get_controls(self) -> List[Control]
+   .. py:method:: get_controls() -> List[Control]
       :abstractmethod:
       :async:
 
@@ -256,7 +256,7 @@ Attributes
       :rtype: List[Control]
 
 
-   .. py:method:: get_events(self) -> Dict[Control, Event]
+   .. py:method:: get_events() -> Dict[Control, Event]
       :abstractmethod:
       :async:
 
@@ -267,7 +267,7 @@ Attributes
       :rtype: Dict[Control, Event]
 
 
-   .. py:method:: register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction])
+   .. py:method:: register_control_callback(control: Control, triggers: List[EventType], function: Optional[ControlFunction])
       :abstractmethod:
 
       Register a function that will fire on given EventTypes for a given
@@ -283,7 +283,7 @@ Attributes
       :type function: ControlFunction
 
 
-   .. py:method:: trigger_event(self, event: Event)
+   .. py:method:: trigger_event(event: Event)
       :async:
 
       Directly send an Event (such as a button press) from external code

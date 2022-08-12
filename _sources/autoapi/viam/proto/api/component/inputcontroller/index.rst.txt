@@ -41,27 +41,27 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetControls(self, stream: grpclib.server.Stream[proto.api.component.inputcontroller.v1.input_controller_pb2.GetControlsRequest, proto.api.component.inputcontroller.v1.input_controller_pb2.GetControlsResponse]) -> None
+   .. py:method:: GetControls(stream: grpclib.server.Stream[proto.api.component.inputcontroller.v1.input_controller_pb2.GetControlsRequest, proto.api.component.inputcontroller.v1.input_controller_pb2.GetControlsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: GetEvents(self, stream: grpclib.server.Stream[proto.api.component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, proto.api.component.inputcontroller.v1.input_controller_pb2.GetEventsResponse]) -> None
+   .. py:method:: GetEvents(stream: grpclib.server.Stream[proto.api.component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, proto.api.component.inputcontroller.v1.input_controller_pb2.GetEventsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: StreamEvents(self, stream: grpclib.server.Stream[proto.api.component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, proto.api.component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse]) -> None
+   .. py:method:: StreamEvents(stream: grpclib.server.Stream[proto.api.component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, proto.api.component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: TriggerEvent(self, stream: grpclib.server.Stream[proto.api.component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, proto.api.component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse]) -> None
+   .. py:method:: TriggerEvent(stream: grpclib.server.Stream[proto.api.component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, proto.api.component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse]) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: __mapping__(self) -> Dict[str, grpclib.const.Handler]
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
 
 
 
@@ -99,13 +99,13 @@ Classes
 
       0 or 1 for buttons, -1.0 to +1.0 for axes
 
-   .. py:method:: time(self) -> google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: time() -> google.protobuf.timestamp_pb2.Timestamp
       :property:
 
       Timestamp of event
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[time, b'time']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[time, b'time']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -149,7 +149,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: controls(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+   .. py:method:: controls() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
       :property:
 
       Returns a list of all the controls (buttons and axes) that are
@@ -183,7 +183,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
+   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
       :property:
 
       Returns a list of the most recent event for each control on a given InputController. Effectively provides the current "state" of all
@@ -201,7 +201,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
+   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
       :property:
 
 
@@ -231,14 +231,14 @@ Classes
 
          Name of a control (button or axis)
 
-      .. py:method:: events(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+      .. py:method:: events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
          :property:
 
          Specify which event types to recieve events for
          To Do (FA): Right now this can be an empty list, but we should error in this case as opening a stream with no messages is expensive
 
 
-      .. py:method:: cancelled_events(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+      .. py:method:: cancelled_events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
          :property:
 
          Specify which event types to stop recieving events for
@@ -251,7 +251,7 @@ Classes
 
       Name of an input controller
 
-   .. py:method:: events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StreamEventsRequest]
+   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StreamEventsRequest]
       :property:
 
       A list of Events
@@ -268,13 +268,13 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: event(self) -> global___Event
+   .. py:method:: event() -> global___Event
       :property:
 
       Event for a controller
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[event, b'event']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[event, b'event']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -307,13 +307,13 @@ Classes
 
       Name of an input controller
 
-   .. py:method:: event(self) -> global___Event
+   .. py:method:: event() -> global___Event
       :property:
 
       Digitally assert a given event
 
 
-   .. py:method:: HasField(self, field_name: typing_extensions.Literal[event, b'event']) -> bool
+   .. py:method:: HasField(field_name: typing_extensions.Literal[event, b'event']) -> bool
 
       Checks if a certain field is set for the message.
 

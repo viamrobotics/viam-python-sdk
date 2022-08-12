@@ -17,6 +17,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
@@ -95,14 +96,14 @@
            <div itemprop="articleBody">
              
   <section id="example-usage">
-<h1>Example usage<a class="headerlink" href="#example-usage" title="Permalink to this headline"></a></h1>
+<h1>Example usage<a class="headerlink" href="#example-usage" title="Permalink to this heading"></a></h1>
 <p>The Viam SDK can be used in two ways:</p>
 <ol class="arabic simple">
 <li><p>As a client to connect to a (remote or local) robot</p></li>
 <li><p>To create custom components and provide additional functionality to a robot</p></li>
 </ol>
 <section id="connect-as-a-client">
-<h2>Connect as a client<a class="headerlink" href="#connect-as-a-client" title="Permalink to this headline"></a></h2>
+<h2>Connect as a client<a class="headerlink" href="#connect-as-a-client" title="Permalink to this heading"></a></h2>
 <p>To connect to a robot as a client, you should instantiate an instance of a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -181,7 +182,7 @@
 </div>
 </section>
 <section id="create-custom-components">
-<h2>Create custom components<a class="headerlink" href="#create-custom-components" title="Permalink to this headline"></a></h2>
+<h2>Create custom components<a class="headerlink" href="#create-custom-components" title="Permalink to this heading"></a></h2>
 <p>While the main RDK is written in golang, you can create custom components in python and connect them a robot as a <code class="docutils literal notranslate"><span class="pre">remote</span></code> component. This allows you to extend the functionality of a robot, or even create an entire robot exclusively in python.</p>
 <p>The steps required in creating a custom component and connecting it to a robot are</p>
 <ol class="arabic simple">
@@ -190,7 +191,7 @@
 <li><p>Start the <code class="docutils literal notranslate"><span class="pre">Server</span></code> and register the running server as a remote</p></li>
 </ol>
 <section id="subclass-a-component">
-<h3>Subclass a component<a class="headerlink" href="#subclass-a-component" title="Permalink to this headline"></a></h3>
+<h3>Subclass a component<a class="headerlink" href="#subclass-a-component" title="Permalink to this heading"></a></h3>
 <p>The SDK provides a wide array of components to customize. You can browse through the API Reference to see all of them, but for now we’ll use an <code class="docutils literal notranslate"><span class="pre">Arm</span></code> as an example. Our custom Arm will be extremely simple – it will only save the positions provided to it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -242,7 +243,7 @@
 <p>You can view more component implementations in the <a class="reference external" href="https://github.com/viamrobotics/python-sdk/blob/main/examples/server/v1/components.py">examples</a>.</p>
 </section>
 <section id="register-the-custom-component">
-<h3>Register the custom component<a class="headerlink" href="#register-the-custom-component" title="Permalink to this headline"></a></h3>
+<h3>Register the custom component<a class="headerlink" href="#register-the-custom-component" title="Permalink to this heading"></a></h3>
 <p>Now that we’ve created the custom component, we must register it with a server so that it will be visible to any robots connecting to it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -264,7 +265,7 @@
 </div>
 </section>
 <section id="start-the-server-and-add-it-as-a-remote">
-<h3>Start the Server and add it as a Remote<a class="headerlink" href="#start-the-server-and-add-it-as-a-remote" title="Permalink to this headline"></a></h3>
+<h3>Start the Server and add it as a Remote<a class="headerlink" href="#start-the-server-and-add-it-as-a-remote" title="Permalink to this heading"></a></h3>
 <p>Now that we have a server that knows about our custom Arm component, we need to start the server so it can receive gRPC calls. Once it’s started, we can then register this server as a remote.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># python-server.py</span>
 
