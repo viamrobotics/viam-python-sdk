@@ -50,25 +50,27 @@ class MockArm(Arm):
         self.extra = None
         super().__init__(name)
 
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
+    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
         self.extra = extra
         return self.position
 
-    async def move_to_position(self, pose: Pose, world_state: Optional[WorldState] = None, extra: Optional[Dict[str, Any]] = None):
+    async def move_to_position(
+        self, pose: Pose, world_state: Optional[WorldState] = None, extra: Optional[Dict[str, Any]] = None, **kwargs
+    ):
         self.position = pose
         self.is_stopped = False
         self.extra = extra
 
-    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
+    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> JointPositions:
         self.extra = extra
         return self.joint_positions
 
-    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
+    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.joint_positions = positions
         self.is_stopped = False
         self.extra = extra
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
         self.extra = extra
 
@@ -531,7 +533,7 @@ class MockSensor(Sensor):
         self.readings = result
         super().__init__(name)
 
-    async def get_readings(self) -> Mapping[str, Any]:
+    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
         return self.readings
 
 

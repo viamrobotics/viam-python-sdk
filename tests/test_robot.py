@@ -207,7 +207,7 @@ class TestRobotService:
             await motor.set_power(1)
             assert await motor.is_moving() is True
 
-            async def error_stop(extra: Optional[Dict[str, Any]] = None):
+            async def error_stop(extra: Optional[Dict[str, Any]] = None, **kwargs):
                 raise Exception("Some random error")
 
             arm.stop = error_stop

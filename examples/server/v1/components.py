@@ -536,7 +536,7 @@ class ExampleSensor(Sensor):
         self.num_readings = random.randint(1, 10)
         super().__init__(name)
 
-    async def get_readings(self) -> Mapping[str, Any]:
+    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
         return {"abcdefghij"[idx]: random.random() for idx in range(self.num_readings)}
 
 

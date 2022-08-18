@@ -34,7 +34,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        position = await arm.get_end_position(extra=struct_to_dict(request.extra))
+        position = await self.run_with_operation(arm.get_end_position, extra=struct_to_dict(request.extra))
         response = GetEndPositionResponse(pose=position)
         await stream.send_message(response)
 
@@ -46,7 +46,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.move_to_position(request.to, request.world_state, extra=struct_to_dict(request.extra))
+        await self.run_with_operation(arm.move_to_position, request.to, request.world_state, extra=struct_to_dict(request.extra))
         response = MoveToPositionResponse()
         await stream.send_message(response)
 
@@ -58,7 +58,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        positions = await arm.get_joint_positions(extra=struct_to_dict(request.extra))
+        positions = await self.run_with_operation(arm.get_joint_positions, extra=struct_to_dict(request.extra))
         response = GetJointPositionsResponse(positions=positions)
         await stream.send_message(response)
 
@@ -70,7 +70,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra))
+        await self.run_with_operation(arm.move_to_joint_positions, request.positions, extra=struct_to_dict(request.extra))
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)
 
@@ -82,6 +82,6 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.stop(extra=struct_to_dict(request.extra))
+        await self.run_with_operation(arm.stop, extra=struct_to_dict(request.extra))
         response = StopResponse()
         await stream.send_message(response)
