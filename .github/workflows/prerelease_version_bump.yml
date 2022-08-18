@@ -13,7 +13,9 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.REPO_READ_TOKEN }}
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -31,4 +33,4 @@ jobs:
         uses: EndBug/add-and-commit@v9.0.0
         with:
           default_author: github_actions
-          message: 'Bumping prerelease version to v${{ env.SDK_VERSION }}'
+          message: Bumping prerelease version to v${{ env.SDK_VERSION }} [skip ci]

@@ -13,7 +13,7 @@ jobs:
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: bufbuild/buf-setup-action@v1.3.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
