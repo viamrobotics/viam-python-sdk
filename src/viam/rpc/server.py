@@ -6,6 +6,7 @@ from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
 from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
+
 from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager

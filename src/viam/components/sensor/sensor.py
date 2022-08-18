@@ -14,7 +14,7 @@ class Sensor(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_readings(self) -> Mapping[str, Any]:
+    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
         """
         Obtain the measurements/data specific to this sensor.
 

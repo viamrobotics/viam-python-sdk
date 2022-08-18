@@ -3,9 +3,10 @@ from dataclasses import dataclass
 from threading import Lock
 from typing import Any, Dict, List, Optional
 
-import viam
 from grpclib.client import Channel
 from typing_extensions import Self
+
+import viam
 from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
