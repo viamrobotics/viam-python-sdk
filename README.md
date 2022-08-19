@@ -67,3 +67,7 @@ The SDK provides a number of abstract base components to start. To add more abst
 * If the component needs to be included to the robot/status service, add it in `viam.robot.service`
 * Write tests and add the component to `tests.mocks.components`
 * Add the component to `examples.server.v1.components` and its corresponding concrete type in `examples.server.v1.server`
+
+## License
+Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE) file
+
