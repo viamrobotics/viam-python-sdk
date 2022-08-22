@@ -1,15 +1,16 @@
 from typing import Optional
 
 from grpclib.client import Channel
+
 from viam.proto.api.common import PoseInFrame, ResourceName, WorldState
 from viam.proto.api.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceStub,
+    MoveRequest,
+    MoveResponse,
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
-    PlanAndMoveRequest,
-    PlanAndMoveResponse,
 )
 
 
@@ -23,7 +24,7 @@ class MotionServiceClient:
     def __init__(self, channel: Channel):
         self.client = MotionServiceStub(channel)
 
-    async def plan_and_move(self, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None) -> bool:
+    async def move(self, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None) -> bool:
         """Plan and execute a movement to move the component specified to its goal destination.
 
 
@@ -36,8 +37,8 @@ class MotionServiceClient:
         Returns:
             bool: Whether the move was successful
         """
-        request = PlanAndMoveRequest(destination=destination, component_name=component_name, world_state=world_state)
-        response: PlanAndMoveResponse = await self.client.PlanAndMove(request)
+        request = MoveRequest(destination=destination, component_name=component_name, world_state=world_state)
+        response: MoveResponse = await self.client.Move(request)
         return response.success
 
     async def move_single_component(

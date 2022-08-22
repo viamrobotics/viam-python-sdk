@@ -11,7 +11,7 @@ import typing
 import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class PlanAndMoveRequest(google.protobuf.message.Message):
+class MoveRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DESTINATION_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
@@ -40,9 +40,9 @@ class PlanAndMoveRequest(google.protobuf.message.Message):
 
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
         ...
-global___PlanAndMoveRequest = PlanAndMoveRequest
+global___MoveRequest = MoveRequest
 
-class PlanAndMoveResponse(google.protobuf.message.Message):
+class MoveResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUCCESS_FIELD_NUMBER: builtins.int
     success: builtins.bool
@@ -52,7 +52,7 @@ class PlanAndMoveResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
         ...
-global___PlanAndMoveResponse = PlanAndMoveResponse
+global___MoveResponse = MoveResponse
 
 class MoveSingleComponentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

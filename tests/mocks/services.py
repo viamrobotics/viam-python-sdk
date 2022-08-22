@@ -8,10 +8,10 @@ from viam.proto.api.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceBase,
+    MoveRequest,
+    MoveResponse,
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
-    PlanAndMoveRequest,
-    PlanAndMoveResponse,
 )
 from viam.proto.api.service.sensors import (
     GetReadingsRequest,
@@ -45,20 +45,20 @@ from viam.proto.api.service.vision import (
 class MockMotionService(MotionServiceBase):
     def __init__(
         self,
-        plan_and_move_responses: Dict[str, bool],
+        move_responses: Dict[str, bool],
         move_single_component_responses: Dict[str, bool],
         get_pose_responses: Dict[str, PoseInFrame],
     ):
-        self.plan_and_move_responses = plan_and_move_responses
+        self.move_responses = move_responses
         self.move_single_component_responses = move_single_component_responses
         self.get_pose_responses = get_pose_responses
 
-    async def PlanAndMove(self, stream: Stream[PlanAndMoveRequest, PlanAndMoveResponse]) -> None:
+    async def Move(self, stream: Stream[MoveRequest, MoveResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name: ResourceName = request.component_name
-        success = self.plan_and_move_responses[name.name]
-        response = PlanAndMoveResponse(success=success)
+        success = self.move_responses[name.name]
+        response = MoveResponse(success=success)
         await stream.send_message(response)
 
     async def MoveSingleComponent(self, stream: Stream[MoveSingleComponentRequest, MoveSingleComponentResponse]) -> None:
