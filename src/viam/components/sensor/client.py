@@ -8,7 +8,7 @@ from viam.proto.api.component.sensor import (
     GetReadingsResponse,
     SensorServiceStub,
 )
-from viam.utils import value_to_primitive
+from viam.utils import sensor_readings_value_to_native
 
 from .sensor import Sensor
 
@@ -26,7 +26,7 @@ class SensorClient(Sensor):
     async def get_readings(self) -> Mapping[str, Any]:
         request = GetReadingsRequest(name=self.name)
         response: GetReadingsResponse = await self.client.GetReadings(request)
-        return {key: value_to_primitive(value) for (key, value) in response.readings.items()}
+        return sensor_readings_value_to_native(response.readings)
 
     async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

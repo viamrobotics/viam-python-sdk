@@ -1,11 +1,11 @@
-from typing import Any, Dict, List, SupportsFloat, Type, TypeVar
+from typing import Any, Dict, List, Mapping, SupportsFloat, Type, TypeVar
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
 from viam.components.component_base import ComponentBase
-from viam.proto.api.common import ResourceName
+from viam.proto.api.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.registry import Registry
 
 
@@ -122,3 +122,37 @@ def dict_to_struct(obj: Dict[str, Any]) -> Struct:
 
 def struct_to_dict(struct: Struct) -> Dict[str, Any]:
     return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
+
+
+def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]:
+    prim_readings = dict(readings)
+    for (key, reading) in readings.items():
+        if isinstance(reading, Vector3):
+            prim_readings[key] = {"x": reading.x, "y": reading.y, "z": reading.z, "_type": "vector3"}
+        elif isinstance(reading, GeoPoint):
+            prim_readings[key] = {"lat": reading.latitude, "lng": reading.longitude, "_type": "geopoint"}
+        elif isinstance(reading, Orientation):
+            prim_readings[key] = {
+                "ox": reading.o_x,
+                "oy": reading.o_y,
+                "oz": reading.o_z,
+                "theta": reading.theta,
+                "_type": "orientation_vector_degrees",
+            }
+    return {key: primitive_to_value(value) for (key, value) in prim_readings.items()}
+
+
+def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[str, Any]:
+    prim_readings = {key: value_to_primitive(value) for (key, value) in readings.items()}
+    for (key, reading) in prim_readings.items():
+        if isinstance(reading, Mapping):
+            kind = reading.get("_type", "")
+            if kind == "angular_velocity":
+                prim_readings[key] = Vector3(x=reading["x"], y=reading["y"], z=reading["z"])
+            elif kind == "vector3":
+                prim_readings[key] = Vector3(x=reading["x"], y=reading["y"], z=reading["z"])
+            elif kind == "geopoint":
+                prim_readings[key] = GeoPoint(latitude=reading["lat"], longitude=reading["lng"])
+            elif kind == "orientation_vector_degrees":
+                prim_readings[key] = Orientation(o_x=reading["ox"], o_y=reading["oy"], o_z=reading["oz"], theta=reading["theta"])
+    return prim_readings

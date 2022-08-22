@@ -7,7 +7,7 @@ from viam.proto.api.component.sensor import (
     GetReadingsResponse,
     SensorServiceBase,
 )
-from viam.utils import primitive_to_value
+from viam.utils import sensor_readings_native_to_value
 
 from .sensor import Sensor
 
@@ -28,5 +28,5 @@ class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         readings = await sensor.get_readings()
-        response = GetReadingsResponse(readings={key: primitive_to_value(value) for (key, value) in readings.items()})
+        response = GetReadingsResponse(readings=sensor_readings_native_to_value(readings))
         await stream.send_message(response)
