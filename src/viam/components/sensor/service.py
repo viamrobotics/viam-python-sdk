@@ -1,14 +1,11 @@
-from typing import List
-
-from google.protobuf.struct_pb2 import Value
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.sensor import (
-    SensorServiceBase,
     GetReadingsRequest,
     GetReadingsResponse,
+    SensorServiceBase,
 )
 from viam.utils import primitive_to_value
 
@@ -31,9 +28,5 @@ class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         readings = await sensor.get_readings()
-        v_readings: List[Value] = []
-        for r in readings:
-            v = primitive_to_value(r)
-            v_readings.append(v)
-        response = GetReadingsResponse(readings=v_readings)
+        response = GetReadingsResponse(readings={key: primitive_to_value(value) for (key, value) in readings.items()})
         await stream.send_message(response)

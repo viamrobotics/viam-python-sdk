@@ -13,7 +13,7 @@ from viam.proto.api.service.motion import (
 )
 
 
-class MotionClient:
+class MotionServiceClient:
     """Motion is a Viam service that coordinates motion planning across all of the components in a given robot.
 
     The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the

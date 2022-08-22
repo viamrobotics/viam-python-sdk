@@ -518,11 +518,11 @@ class MockPoseTracker(PoseTracker):
 
 
 class MockSensor(Sensor):
-    def __init__(self, name: str, result: List[Any] = [0, {"foo": "bar"}, [1, 8, 2], "Hello world!"]):
+    def __init__(self, name: str, result: Mapping[str, Any] = {"a": 0, "b": {"foo": "bar"}, "c": [1, 8, 2], "d": "Hello world!"}):
         self.readings = result
         super().__init__(name)
 
-    async def get_readings(self) -> List[Any]:
+    async def get_readings(self) -> Mapping[str, Any]:
         return self.readings
 
 

@@ -1,16 +1,25 @@
 from typing import Dict, List, Tuple
 
 from grpclib.server import Stream
+
 from viam.components.types import CameraMimeType
 from viam.proto.api.common import PointCloudObject, PoseInFrame, ResourceName
 from viam.proto.api.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceBase,
-    PlanAndMoveResponse,
-    PlanAndMoveRequest,
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
+    PlanAndMoveRequest,
+    PlanAndMoveResponse,
+)
+from viam.proto.api.service.sensors import (
+    GetReadingsRequest,
+    GetReadingsResponse,
+    GetSensorsRequest,
+    GetSensorsResponse,
+    Readings,
+    SensorsServiceBase,
 )
 from viam.proto.api.service.vision import (
     AddDetectorRequest,
@@ -66,6 +75,25 @@ class MockMotionService(MotionServiceBase):
         name: ResourceName = request.component_name
         pose = self.get_pose_responses[name.name]
         response = GetPoseResponse(pose=pose)
+        await stream.send_message(response)
+
+
+class MockSensorsService(SensorsServiceBase):
+    def __init__(self, sensors: List[ResourceName], readings: List[Readings]):
+        self.sensors = sensors
+        self.readings = readings
+
+    async def GetSensors(self, stream: Stream[GetSensorsRequest, GetSensorsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = GetSensorsResponse(sensor_names=self.sensors)
+        await stream.send_message(response)
+
+    async def GetReadings(self, stream: Stream[GetReadingsRequest, GetReadingsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.sensors_for_readings: List[ResourceName] = list(request.sensor_names)
+        response = GetReadingsResponse(readings=self.readings)
         await stream.send_message(response)
 
 

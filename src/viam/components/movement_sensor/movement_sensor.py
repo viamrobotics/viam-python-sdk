@@ -1,5 +1,5 @@
 import abc
-from typing import Any, List, Mapping, Tuple
+from typing import Any, Mapping, Tuple
 
 from viam.proto.api.common import GeoPoint, Orientation, Vector3
 from viam.proto.api.component.movementsensor import GetPropertiesResponse
@@ -79,22 +79,26 @@ class MovementSensor(Sensor):
         """
         ...
 
-    async def get_readings(self) -> List[Any]:
+    async def get_readings(self) -> Mapping[str, Any]:
         """Obtain the measurements/data specific to this sensor.
 
         Returns:
-            List[Any]: The readings for the MovementSensor. The order is:
-                GeoPoint,
-                Altitude,
-                Linear velocity,
-                Angular velocity,
-                Compass heading,
-                Orientation
+            Mapping[str, Any]: The readings for the MovementSensor:
+            {
+                position: GeoPoint,
+                altitude: float,
+                linear_velocity: Vector3,
+                angular_velocity: Vector3,
+                compass: float,
+                orientation: Orientation
+            }
         """
-        return [
-            *(await self.get_position()),
-            await self.get_linear_velocity(),
-            await self.get_angular_velocity(),
-            await self.get_compass_heading(),
-            await self.get_orientation(),
-        ]
+        (pos, alt) = await self.get_position()
+        return {
+            "position": pos,
+            "altitude": alt,
+            "linear_velocity": await self.get_linear_velocity(),
+            "angular_velocity": await self.get_angular_velocity(),
+            "compass": await self.get_compass_heading(),
+            "orientation": await self.get_orientation(),
+        }
