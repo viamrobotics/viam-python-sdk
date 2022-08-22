@@ -3,7 +3,8 @@ name: License Finder
 on:
   workflow_dispatch:
   workflow_call:
-  push:
+  pull_request:
+    branches: ['main']
 
 jobs:
   license_finder:
