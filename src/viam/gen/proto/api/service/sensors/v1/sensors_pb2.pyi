@@ -51,6 +51,25 @@ global___GetReadingsRequest = GetReadingsRequest
 
 class Readings(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    class ReadingsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: typing.Text
+
+        @property
+        def value(self) -> google.protobuf.struct_pb2.Value:
+            ...
+
+        def __init__(self, *, key: typing.Text=..., value: typing.Optional[google.protobuf.struct_pb2.Value]=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
     NAME_FIELD_NUMBER: builtins.int
     READINGS_FIELD_NUMBER: builtins.int
 
@@ -59,10 +78,10 @@ class Readings(google.protobuf.message.Message):
         ...
 
     @property
-    def readings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Value]:
+    def readings(self) -> google.protobuf.internal.containers.MessageMap[typing.Text, google.protobuf.struct_pb2.Value]:
         ...
 
-    def __init__(self, *, name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., readings: typing.Optional[typing.Iterable[google.protobuf.struct_pb2.Value]]=...) -> None:
+    def __init__(self, *, name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., readings: typing.Optional[typing.Mapping[typing.Text, google.protobuf.struct_pb2.Value]]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['name', b'name']) -> builtins.bool:

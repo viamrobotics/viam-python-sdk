@@ -1,5 +1,5 @@
 import abc
-from typing import Any, List
+from typing import Any, Mapping
 
 from ..component_base import ComponentBase
 
@@ -14,11 +14,11 @@ class Sensor(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_readings(self) -> List[Any]:
+    async def get_readings(self) -> Mapping[str, Any]:
         """
         Obtain the measurements/data specific to this sensor.
 
         Returns:
-            List[Dict]: The measurements. Can be of any type.
+            Mapping[str, Any]: The measurements. Can be of any type.
         """
         ...

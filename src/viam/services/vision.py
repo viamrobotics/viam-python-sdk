@@ -39,7 +39,7 @@ class DetectorConfig:
     parameters: Dict[str, Any]
 
 
-class VisionClient:
+class VisionServiceClient:
     """
     Connect to the Vision service, which allows you to access various computer vision algorithms
     (like detection, segmentation, tracking, etc) that usually only require a camera or image input.

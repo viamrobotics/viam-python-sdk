@@ -1,16 +1,25 @@
 from typing import Dict, List, Tuple
 
 from grpclib.server import Stream
+
 from viam.components.types import CameraMimeType
 from viam.proto.api.common import PointCloudObject, PoseInFrame, ResourceName
 from viam.proto.api.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceBase,
-    PlanAndMoveResponse,
-    PlanAndMoveRequest,
+    MoveRequest,
+    MoveResponse,
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
+)
+from viam.proto.api.service.sensors import (
+    GetReadingsRequest,
+    GetReadingsResponse,
+    GetSensorsRequest,
+    GetSensorsResponse,
+    Readings,
+    SensorsServiceBase,
 )
 from viam.proto.api.service.vision import (
     AddDetectorRequest,
@@ -36,20 +45,20 @@ from viam.proto.api.service.vision import (
 class MockMotionService(MotionServiceBase):
     def __init__(
         self,
-        plan_and_move_responses: Dict[str, bool],
+        move_responses: Dict[str, bool],
         move_single_component_responses: Dict[str, bool],
         get_pose_responses: Dict[str, PoseInFrame],
     ):
-        self.plan_and_move_responses = plan_and_move_responses
+        self.move_responses = move_responses
         self.move_single_component_responses = move_single_component_responses
         self.get_pose_responses = get_pose_responses
 
-    async def PlanAndMove(self, stream: Stream[PlanAndMoveRequest, PlanAndMoveResponse]) -> None:
+    async def Move(self, stream: Stream[MoveRequest, MoveResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name: ResourceName = request.component_name
-        success = self.plan_and_move_responses[name.name]
-        response = PlanAndMoveResponse(success=success)
+        success = self.move_responses[name.name]
+        response = MoveResponse(success=success)
         await stream.send_message(response)
 
     async def MoveSingleComponent(self, stream: Stream[MoveSingleComponentRequest, MoveSingleComponentResponse]) -> None:
@@ -66,6 +75,25 @@ class MockMotionService(MotionServiceBase):
         name: ResourceName = request.component_name
         pose = self.get_pose_responses[name.name]
         response = GetPoseResponse(pose=pose)
+        await stream.send_message(response)
+
+
+class MockSensorsService(SensorsServiceBase):
+    def __init__(self, sensors: List[ResourceName], readings: List[Readings]):
+        self.sensors = sensors
+        self.readings = readings
+
+    async def GetSensors(self, stream: Stream[GetSensorsRequest, GetSensorsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = GetSensorsResponse(sensor_names=self.sensors)
+        await stream.send_message(response)
+
+    async def GetReadings(self, stream: Stream[GetReadingsRequest, GetReadingsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.sensors_for_readings: List[ResourceName] = list(request.sensor_names)
+        response = GetReadingsResponse(readings=self.readings)
         await stream.send_message(response)
 
 

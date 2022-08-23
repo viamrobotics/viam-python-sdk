@@ -104,7 +104,14 @@ class TestMovementSensor:
     @pytest.mark.asyncio
     async def test_get_readings(self, movement_sensor: MovementSensor):
         value = await movement_sensor.get_readings()
-        assert value == [COORDINATE, ALTITUDE, LINEAR_VELOCITY, ANGULAR_VELOCITY, HEADING, ORIENTATION]
+        assert value == {
+            "position": COORDINATE,
+            "altitude": ALTITUDE,
+            "linear_velocity": LINEAR_VELOCITY,
+            "angular_velocity": ANGULAR_VELOCITY,
+            "compass": HEADING,
+            "orientation": ORIENTATION,
+        }
 
 
 class TestService:
@@ -222,7 +229,14 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
             value = await client.get_readings()
-            assert value == [COORDINATE, ALTITUDE, LINEAR_VELOCITY, ANGULAR_VELOCITY, HEADING, ORIENTATION]
+            assert value == {
+                "position": COORDINATE,
+                "altitude": ALTITUDE,
+                "linear_velocity": LINEAR_VELOCITY,
+                "angular_velocity": ANGULAR_VELOCITY,
+                "compass": HEADING,
+                "orientation": ORIENTATION,
+            }
 
     @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorService, generic_service: GenericService):
