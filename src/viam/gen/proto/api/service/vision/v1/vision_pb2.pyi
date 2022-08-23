@@ -14,8 +14,13 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetDetectorNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
 
-    def __init__(self) -> None:
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
         ...
 global___GetDetectorNamesRequest = GetDetectorNamesRequest
 
@@ -37,9 +42,11 @@ global___GetDetectorNamesResponse = GetDetectorNamesResponse
 
 class AddDetectorRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
     DETECTOR_MODEL_TYPE_FIELD_NUMBER: builtins.int
     DETECTOR_PARAMETERS_FIELD_NUMBER: builtins.int
+    name: typing.Text
     detector_name: typing.Text
     detector_model_type: typing.Text
 
@@ -47,13 +54,13 @@ class AddDetectorRequest(google.protobuf.message.Message):
     def detector_parameters(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, detector_name: typing.Text=..., detector_model_type: typing.Text=..., detector_parameters: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: typing.Text=..., detector_name: typing.Text=..., detector_model_type: typing.Text=..., detector_parameters: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['detector_parameters', b'detector_parameters']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['detector_model_type', b'detector_model_type', 'detector_name', b'detector_name', 'detector_parameters', b'detector_parameters']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['detector_model_type', b'detector_model_type', 'detector_name', b'detector_name', 'detector_parameters', b'detector_parameters', 'name', b'name']) -> None:
         ...
 global___AddDetectorRequest = AddDetectorRequest
 
@@ -66,11 +73,14 @@ global___AddDetectorResponse = AddDetectorResponse
 
 class GetDetectionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     IMAGE_FIELD_NUMBER: builtins.int
     WIDTH_FIELD_NUMBER: builtins.int
     HEIGHT_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
+    'name of the vision service'
     image: builtins.bytes
     'the image, encoded as bytes'
     width: builtins.int
@@ -82,10 +92,10 @@ class GetDetectionsRequest(google.protobuf.message.Message):
     detector_name: typing.Text
     'name of the registered detector to use'
 
-    def __init__(self, *, image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: typing.Text=..., detector_name: typing.Text=...) -> None:
+    def __init__(self, *, name: typing.Text=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: typing.Text=..., detector_name: typing.Text=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'width', b'width']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'name', b'name', 'width', b'width']) -> None:
         ...
 global___GetDetectionsRequest = GetDetectionsRequest
 
@@ -107,17 +117,19 @@ global___GetDetectionsResponse = GetDetectionsResponse
 
 class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
     camera_name: typing.Text
     'name of camera source to use as input'
     detector_name: typing.Text
     'name of the registered detector to use'
 
-    def __init__(self, *, camera_name: typing.Text=..., detector_name: typing.Text=...) -> None:
+    def __init__(self, *, name: typing.Text=..., camera_name: typing.Text=..., detector_name: typing.Text=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'detector_name', b'detector_name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'detector_name', b'detector_name', 'name', b'name']) -> None:
         ...
 global___GetDetectionsFromCameraRequest = GetDetectionsFromCameraRequest
 
@@ -183,8 +195,13 @@ global___Detection = Detection
 
 class GetSegmenterNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
 
-    def __init__(self) -> None:
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
         ...
 global___GetSegmenterNamesRequest = GetSegmenterNamesRequest
 
@@ -206,14 +223,16 @@ global___GetSegmenterNamesResponse = GetSegmenterNamesResponse
 
 class GetSegmenterParametersRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
     segmenter_name: typing.Text
     'Name of the segmentation algo'
 
-    def __init__(self, *, segmenter_name: typing.Text=...) -> None:
+    def __init__(self, *, name: typing.Text=..., segmenter_name: typing.Text=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['segmenter_name', b'segmenter_name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'segmenter_name', b'segmenter_name']) -> None:
         ...
 global___GetSegmenterParametersRequest = GetSegmenterParametersRequest
 
@@ -249,10 +268,12 @@ global___GetSegmenterParametersResponse = GetSegmenterParametersResponse
 
 class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     PARAMETERS_FIELD_NUMBER: builtins.int
+    name: typing.Text
     camera_name: typing.Text
     'Name of a camera'
     segmenter_name: typing.Text
@@ -265,13 +286,13 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
         """parameters for the chosen segmenter"""
         pass
 
-    def __init__(self, *, camera_name: typing.Text=..., segmenter_name: typing.Text=..., mime_type: typing.Text=..., parameters: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: typing.Text=..., camera_name: typing.Text=..., segmenter_name: typing.Text=..., mime_type: typing.Text=..., parameters: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['parameters', b'parameters']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'mime_type', b'mime_type', 'parameters', b'parameters', 'segmenter_name', b'segmenter_name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'mime_type', b'mime_type', 'name', b'name', 'parameters', b'parameters', 'segmenter_name', b'segmenter_name']) -> None:
         ...
 global___GetObjectPointCloudsRequest = GetObjectPointCloudsRequest
 
