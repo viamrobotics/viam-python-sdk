@@ -84,19 +84,16 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.components.sensor.service</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
-
-<span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Value</span>
-<span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
+<span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.sensor</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">SensorServiceBase</span><span class="p">,</span>
     <span class="n">GetReadingsRequest</span><span class="p">,</span>
     <span class="n">GetReadingsResponse</span><span class="p">,</span>
+    <span class="n">SensorServiceBase</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">primitive_to_value</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">sensor_readings_native_to_value</span>
 
 <span class="kn">from</span> <span class="nn">.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
 
@@ -117,11 +114,7 @@
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="n">readings</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sensor</span><span class="o">.</span><span class="n">get_readings</span><span class="p">()</span>
-        <span class="n">v_readings</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Value</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">readings</span><span class="p">:</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">primitive_to_value</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-            <span class="n">v_readings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">GetReadingsResponse</span><span class="p">(</span><span class="n">readings</span><span class="o">=</span><span class="n">v_readings</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">GetReadingsResponse</span><span class="p">(</span><span class="n">readings</span><span class="o">=</span><span class="n">sensor_readings_native_to_value</span><span class="p">(</span><span class="n">readings</span><span class="p">))</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 </pre></div>
 

@@ -136,21 +136,21 @@ Classes
       :rtype: Dict[str, float]
 
 
-   .. py:method:: get_readings() -> List[Any]
+   .. py:method:: get_readings() -> Mapping[str, Any]
       :async:
 
       Obtain the measurements/data specific to this sensor.
 
-      :returns:
-
-                The readings for the MovementSensor. The order is:
-                    GeoPoint,
-                    Altitude,
-                    Linear velocity,
-                    Angular velocity,
-                    Compass heading,
-                    Orientation
-      :rtype: List[Any]
+      :returns: The readings for the MovementSensor:
+                {
+                    position: GeoPoint,
+                    altitude: float,
+                    linear_velocity: Vector3,
+                    angular_velocity: Vector3,
+                    compass: float,
+                    orientation: Orientation
+                }
+      :rtype: Mapping[str, Any]
 
 
 

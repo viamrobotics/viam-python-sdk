@@ -23,13 +23,13 @@ Classes
 
    gRPC client for the Sensor component.
 
-   .. py:method:: get_readings() -> List[Any]
+   .. py:method:: get_readings() -> Mapping[str, Any]
       :async:
 
       Obtain the measurements/data specific to this sensor.
 
       :returns: The measurements. Can be of any type.
-      :rtype: List[Dict]
+      :rtype: Mapping[str, Any]
 
 
    .. py:method:: do(command: Dict[str, Any]) -> Dict[str, Any]

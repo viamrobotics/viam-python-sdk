@@ -117,6 +117,12 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_dict" title="viam.utils.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, Any])</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.sensor_readings_native_to_value" title="viam.utils.sensor_readings_native_to_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sensor_readings_native_to_value</span></code></a>(→ Mapping[str, Any])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.sensor_readings_value_to_native" title="viam.utils.sensor_readings_value_to_native"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sensor_readings_value_to_native</span></code></a>(→ Mapping[str, Any])</p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -194,6 +200,16 @@ Supports primitive types of
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.utils.struct_to_dict">
 <span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">struct_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#struct_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.struct_to_dict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.utils.sensor_readings_native_to_value">
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">sensor_readings_native_to_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">readings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#sensor_readings_native_to_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.sensor_readings_native_to_value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.utils.sensor_readings_value_to_native">
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">sensor_readings_value_to_native</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">readings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Value</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#sensor_readings_value_to_native"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.sensor_readings_value_to_native" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

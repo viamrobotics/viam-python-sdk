@@ -73,7 +73,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.motion.MotionServiceBase">MotionServiceBase</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MotionServiceBase.PlanAndMove">PlanAndMove</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MotionServiceBase.Move">Move</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MotionServiceBase.MoveSingleComponent">MoveSingleComponent</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MotionServiceBase.GetPose">GetPose</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MotionServiceBase.__mapping__">__mapping__</a></li>
@@ -92,6 +92,18 @@
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.GetPoseResponse.HasField">HasField</a></li>
 </ul>
 </li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.motion.MoveRequest">MoveRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveRequest.destination">destination</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveRequest.component_name">component_name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveRequest.world_state">world_state</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveRequest.HasField">HasField</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveRequest.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.motion.MoveResponse">MoveResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveResponse.success">success</a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.motion.MoveSingleComponentRequest">MoveSingleComponentRequest</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveSingleComponentRequest.destination">destination</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveSingleComponentRequest.component_name">component_name</a></li>
@@ -102,18 +114,6 @@
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.motion.MoveSingleComponentResponse">MoveSingleComponentResponse</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.MoveSingleComponentResponse.success">success</a></li>
-</ul>
-</li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveRequest">PlanAndMoveRequest</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveRequest.destination">destination</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveRequest.component_name">component_name</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveRequest.world_state">world_state</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveRequest.HasField">HasField</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveRequest.WhichOneof">WhichOneof</a></li>
-</ul>
-</li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveResponse">PlanAndMoveResponse</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveResponse.success">success</a></li>
 </ul>
 </li>
 </ul>
@@ -195,16 +195,16 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.motion.GetPoseResponse" title="viam.proto.api.service.motion.GetPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPoseResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.motion.MoveRequest" title="viam.proto.api.service.motion.MoveRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.motion.MoveResponse" title="viam.proto.api.service.motion.MoveResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.motion.MoveSingleComponentRequest" title="viam.proto.api.service.motion.MoveSingleComponentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveSingleComponentRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.motion.MoveSingleComponentResponse" title="viam.proto.api.service.motion.MoveSingleComponentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveSingleComponentResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveRequest" title="viam.proto.api.service.motion.PlanAndMoveRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanAndMoveRequest</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.motion.PlanAndMoveResponse" title="viam.proto.api.service.motion.PlanAndMoveResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanAndMoveResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -215,8 +215,8 @@ Do not edit manually!</p>
 <dd><p>Helper class that provides a standard way to create an ABC using
 inheritance.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.MotionServiceBase.PlanAndMove">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PlanAndMove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.motion.v1.motion_pb2.PlanAndMoveRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.motion.v1.motion_pb2.PlanAndMoveResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/motion/v1/motion_grpc.html#MotionServiceBase.PlanAndMove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.motion.MotionServiceBase.PlanAndMove" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MotionServiceBase.Move">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.motion.v1.motion_pb2.MoveRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.motion.v1.motion_pb2.MoveResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/motion/v1/motion_grpc.html#MotionServiceBase.Move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.motion.MotionServiceBase.Move" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -332,6 +332,88 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.motion.</span></span><span class="sig-name descname"><span class="pre">MoveRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.PoseInFrame</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.WorldState</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.motion.MoveRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveRequest.destination">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.PoseInFrame</span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.MoveRequest.destination" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveRequest.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.MoveRequest.component_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveRequest.world_state">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.WorldState</span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.MoveRequest.world_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">destination</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'destination'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.MoveRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">world_state</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.MoveRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.motion.</span></span><span class="sig-name descname"><span class="pre">MoveResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.motion.MoveResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveResponse.success">
+<span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.api.service.motion.MoveResponse.success" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveSingleComponentRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.motion.</span></span><span class="sig-name descname"><span class="pre">MoveSingleComponentRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.PoseInFrame</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.WorldState</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.motion.MoveSingleComponentRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
@@ -409,88 +491,6 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.api.service.motion.MoveSingleComponentResponse.success">
 <span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.api.service.motion.MoveSingleComponentResponse.success" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.PlanAndMoveRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.motion.</span></span><span class="sig-name descname"><span class="pre">PlanAndMoveRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.PoseInFrame</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.WorldState</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.motion.PlanAndMoveRequest" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.PlanAndMoveRequest.destination">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.PoseInFrame</span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.PlanAndMoveRequest.destination" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.PlanAndMoveRequest.component_name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.ResourceName</span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.PlanAndMoveRequest.component_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.PlanAndMoveRequest.world_state">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.WorldState</span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.PlanAndMoveRequest.world_state" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.PlanAndMoveRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">destination</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'destination'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.PlanAndMoveRequest.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.PlanAndMoveRequest.WhichOneof">
-<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">world_state</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.api.service.motion.PlanAndMoveRequest.WhichOneof" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the name of the field that is set inside a oneof group.</p>
-<p>If no field is set, returns None.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The name of the group that is set, or None.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str or None</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.PlanAndMoveResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.motion.</span></span><span class="sig-name descname"><span class="pre">PlanAndMoveResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.motion.PlanAndMoveResponse" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.api.service.motion.PlanAndMoveResponse.success">
-<span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.api.service.motion.PlanAndMoveResponse.success" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

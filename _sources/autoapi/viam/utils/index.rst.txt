@@ -20,6 +20,8 @@ Functions
    viam.utils.struct_to_message
    viam.utils.dict_to_struct
    viam.utils.struct_to_dict
+   viam.utils.sensor_readings_native_to_value
+   viam.utils.sensor_readings_value_to_native
 
 
 
@@ -73,5 +75,11 @@ Attributes
 
 
 .. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, Any]
+
+
+.. py:function:: sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]
+
+
+.. py:function:: sensor_readings_value_to_native(readings: Mapping[str, google.protobuf.struct_pb2.Value]) -> Mapping[str, Any]
 
 

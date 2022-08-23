@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.services.sensors &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="viam.services.types" href="../types/index.html" />
+    <link rel="prev" title="viam.services.motion" href="../motion/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.motion</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.sensors.SensorsServiceClient">SensorsServiceClient</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.SensorsServiceClient.get_sensors">get_sensors</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.sensors.SensorsServiceClient.get_readings">get_readings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/viam/services/sensors/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.services.sensors">
+<span id="viam-services-sensors"></span><h1><a class="reference internal" href="#module-viam.services.sensors" title="viam.services.sensors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a><a class="headerlink" href="#module-viam.services.sensors" title="Permalink to this heading"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.sensors.SensorsServiceClient" title="viam.services.sensors.SensorsServiceClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorsServiceClient</span></code></a></p></td>
+<td><p>Connect to the SensorService, which centralizes all Sensors in a single place</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.sensors.SensorsServiceClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.sensors.</span></span><span class="sig-name descname"><span class="pre">SensorsServiceClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/sensors.html#SensorsServiceClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.SensorsServiceClient" title="Permalink to this definition"></a></dt>
+<dd><p>Connect to the SensorService, which centralizes all Sensors in a single place</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.SensorsServiceClient.get_sensors">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_sensors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/sensors.html#SensorsServiceClient.get_sensors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.SensorsServiceClient.get_sensors" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <a href="#id1"><span class="problematic" id="id2">`</span></a>ResourceName`s of all the <a href="#id3"><span class="problematic" id="id4">`</span></a>Sensor`s conneted to this Robot</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The list of all Sensors</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName">ResourceName</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.sensors.SensorsServiceClient.get_readings">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_readings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/sensors.html#SensorsServiceClient.get_readings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.sensors.SensorsServiceClient.get_readings" title="Permalink to this definition"></a></dt>
+<dd><p>Get the readings from the specific sensors provided</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sensors</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><em>ResourceName</em></a><em>]</em>) – The <a href="#id5"><span class="problematic" id="id6">`</span></a>ResourceName`s of the the <a href="#id7"><span class="problematic" id="id8">`</span></a>Sensor`s to get readings from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The readings from the sensors, mapped by <cite>ResourceName</cite></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Mapping[<a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName">ResourceName</a>, Mapping[str, Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../motion/index.html" class="btn btn-neutral float-left" title="viam.services.motion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../types/index.html" class="btn btn-neutral float-right" title="viam.services.types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

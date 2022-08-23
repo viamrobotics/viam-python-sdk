@@ -160,14 +160,14 @@ sensor implementations. This cannot be used on its own. If the <cite>__init__()<
 overriden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.sensor.Sensor.get_readings">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_readings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/sensor/sensor.html#Sensor.get_readings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.sensor.Sensor.get_readings" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_readings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/sensor/sensor.html#Sensor.get_readings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.sensor.Sensor.get_readings" title="Permalink to this definition"></a></dt>
 <dd><p>Obtain the measurements/data specific to this sensor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The measurements. Can be of any type.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[Dict]</p>
+<dd class="field-even"><p>Mapping[str, Any]</p>
 </dd>
 </dl>
 </dd></dl>

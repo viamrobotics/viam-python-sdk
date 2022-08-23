@@ -1,0 +1,45 @@
+:py:mod:`viam.services.sensors`
+===============================
+
+.. py:module:: viam.services.sensors
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.sensors.SensorsServiceClient
+
+
+
+
+.. py:class:: SensorsServiceClient(channel: grpclib.client.Channel)
+
+   Connect to the SensorService, which centralizes all Sensors in a single place
+
+   .. py:method:: get_sensors() -> List[viam.proto.api.common.ResourceName]
+      :async:
+
+      Get the `ResourceName`s of all the `Sensor`s conneted to this Robot
+
+      :returns: The list of all Sensors
+      :rtype: List[ResourceName]
+
+
+   .. py:method:: get_readings(sensors: List[viam.proto.api.common.ResourceName]) -> Mapping[viam.proto.api.common.ResourceName, Mapping[str, Any]]
+      :async:
+
+      Get the readings from the specific sensors provided
+
+      :param sensors: The `ResourceName`s of the the `Sensor`s to get readings from
+      :type sensors: List[ResourceName]
+
+      :returns: The readings from the sensors, mapped by `ResourceName`
+      :rtype: Mapping[ResourceName, Mapping[str, Any]]
+
+
+

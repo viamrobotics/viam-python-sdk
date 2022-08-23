@@ -12,19 +12,19 @@ Classes
 
 .. autoapisummary::
 
-   viam.services.motion.MotionClient
+   viam.services.motion.MotionServiceClient
 
 
 
 
-.. py:class:: MotionClient(channel: grpclib.client.Channel)
+.. py:class:: MotionServiceClient(channel: grpclib.client.Channel)
 
    Motion is a Viam service that coordinates motion planning across all of the components in a given robot.
 
    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
    `world_state` message, the motion planning service will also account for those.
 
-   .. py:method:: plan_and_move(component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
+   .. py:method:: move(component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
       :async:
 
       Plan and execute a movement to move the component specified to its goal destination.
