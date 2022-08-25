@@ -15,6 +15,8 @@ GET_POSE_RESPONSES = {
     "gantry": PoseInFrame(reference_frame="gantry", pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21)),
 }
 
+MOTION_SERVICE_NAME = "motion1"
+
 
 @pytest.fixture(scope="function")
 def service() -> MockMotionService:
@@ -30,25 +32,25 @@ class TestClient:
     async def test_plan_and_move(self, service: MockMotionService):
         async with ChannelFor([service]) as channel:
             client = MotionServiceClient(channel)
-            success = await client.move(Arm.get_resource_name("arm"), PoseInFrame())
+            success = await client.move(MOTION_SERVICE_NAME, Arm.get_resource_name("arm"), PoseInFrame())
             assert success == MOVE_RESPONSES["arm"]
-            success = await client.move(Gantry.get_resource_name("gantry"), PoseInFrame())
+            success = await client.move(MOTION_SERVICE_NAME, Gantry.get_resource_name("gantry"), PoseInFrame())
             assert success == MOVE_RESPONSES["gantry"]
 
     @pytest.mark.asyncio
     async def test_move_single_component(self, service: MockMotionService):
         async with ChannelFor([service]) as channel:
             client = MotionServiceClient(channel)
-            success = await client.move_single_component(Arm.get_resource_name("arm"), PoseInFrame())
+            success = await client.move_single_component(MOTION_SERVICE_NAME, Arm.get_resource_name("arm"), PoseInFrame())
             assert success == MOVE_SINGLE_COMPONENT_RESPONSES["arm"]
-            success = await client.move_single_component(Gantry.get_resource_name("gantry"), PoseInFrame())
+            success = await client.move_single_component(MOTION_SERVICE_NAME, Gantry.get_resource_name("gantry"), PoseInFrame())
             assert success == MOVE_SINGLE_COMPONENT_RESPONSES["gantry"]
 
     @pytest.mark.asyncio
     async def test_get_pose(self, service: MockMotionService):
         async with ChannelFor([service]) as channel:
             client = MotionServiceClient(channel)
-            pose = await client.get_pose(Arm.get_resource_name("arm"), "x")
+            pose = await client.get_pose(MOTION_SERVICE_NAME, Arm.get_resource_name("arm"), "x")
             assert pose == GET_POSE_RESPONSES["arm"]
-            pose = await client.get_pose(Gantry.get_resource_name("gantry"), "y")
+            pose = await client.get_pose(MOTION_SERVICE_NAME, Gantry.get_resource_name("gantry"), "y")
             assert pose == GET_POSE_RESPONSES["gantry"]

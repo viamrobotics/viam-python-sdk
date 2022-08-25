@@ -48,17 +48,17 @@ class VisionServiceClient:
     def __init__(self, channel: Channel):
         self.client = VisionServiceStub(channel)
 
-    async def get_detector_names(self) -> List[str]:
+    async def get_detector_names(self, name: str) -> List[str]:
         """Get the list of detectors currently registered in the service.
 
         Returns:
             List[str]: The detector names
         """
-        request = GetDetectorNamesRequest()
+        request = GetDetectorNamesRequest(name=name)
         response: GetDetectorNamesResponse = await self.client.GetDetectorNames(request)
         return list(response.detector_names)
 
-    async def add_detector(self, detector: DetectorConfig):
+    async def add_detector(self, name: str, detector: DetectorConfig):
         """Add a new detector to the service. Returns nothing if successful, and an error if not.
         Registers a new detector just as if you had put it in the original "register_detectors" field
         in the robot config. Available types and their parameters can be found in the
@@ -68,11 +68,14 @@ class VisionServiceClient:
             detector (DetectorConfig): The configuration of the detector to add.
         """
         request = AddDetectorRequest(
-            detector_name=detector.name, detector_model_type=detector.type, detector_parameters=dict_to_struct(detector.parameters)
+            name=name,
+            detector_name=detector.name,
+            detector_model_type=detector.type,
+            detector_parameters=dict_to_struct(detector.parameters),
         )
         await self.client.AddDetector(request)
 
-    async def get_detections_from_camera(self, camera_name: str, detector_name: str) -> List[Detection]:
+    async def get_detections_from_camera(self, name: str, camera_name: str, detector_name: str) -> List[Detection]:
         """Get a list of detections in the next image given a camera and a detector
 
         Args:
@@ -84,11 +87,11 @@ class VisionServiceClient:
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
         """
-        request = GetDetectionsFromCameraRequest(camera_name=camera_name, detector_name=detector_name)
+        request = GetDetectionsFromCameraRequest(name=name, camera_name=camera_name, detector_name=detector_name)
         response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request)
         return list(response.detections)
 
-    async def get_detections(self, image: Image, detector_name: str) -> List[Detection]:
+    async def get_detections(self, name: str, image: Image, detector_name: str) -> List[Detection]:
         """Get a list of detections in the given image using the specified detector
 
         Args:
@@ -102,23 +105,28 @@ class VisionServiceClient:
         """
         mime_type = CameraMimeType.PNG
         request = GetDetectionsRequest(
-            image=mime_type.encode_image(image), width=image.width, height=image.height, mime_type=mime_type, detector_name=detector_name
+            name=name,
+            image=mime_type.encode_image(image),
+            width=image.width,
+            height=image.height,
+            mime_type=mime_type,
+            detector_name=detector_name,
         )
         response: GetDetectionsResponse = await self.client.GetDetections(request)
         return list(response.detections)
 
-    async def get_segmenter_names(self) -> List[str]:
+    async def get_segmenter_names(self, name: str) -> List[str]:
         """
         Get the list of segmenters currently registered in the service.
 
         Returns:
             List[str]: The segmenter names
         """
-        request = GetSegmenterNamesRequest()
+        request = GetSegmenterNamesRequest(name=name)
         response: GetSegmenterNamesResponse = await self.client.GetSegmenterNames(request)
         return list(response.segmenter_names)
 
-    async def get_segmenter_parameters(self, segmenter_name: str) -> List[Tuple[str, str]]:
+    async def get_segmenter_parameters(self, name: str, segmenter_name: str) -> List[Tuple[str, str]]:
         """
         Get the parameter fields needed for the given segmenter.
 
@@ -130,11 +138,13 @@ class VisionServiceClient:
                 The first item in the tuple is the name of the parameter.
                 The second item in the tuple is the type of the parameter.
         """
-        request = GetSegmenterParametersRequest(segmenter_name=segmenter_name)
+        request = GetSegmenterParametersRequest(name=name, segmenter_name=segmenter_name)
         response: GetSegmenterParametersResponse = await self.client.GetSegmenterParameters(request)
         return [(x.name, x.type) for x in response.segmenter_parameters]
 
-    async def get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Dict[str, Any]) -> List[PointCloudObject]:
+    async def get_object_point_clouds(
+        self, name: str, camera_name: str, segmenter_name: str, parameters: Dict[str, Any]
+    ) -> List[PointCloudObject]:
         """
         Returns a list of the 3D point cloud objects and associated metadata in the latest
         picture obtained from the specified 3D camera (using the specified segmenter).
@@ -149,6 +159,7 @@ class VisionServiceClient:
             List[PointCloudObject]: The pointcloud objects with metadata
         """
         request = GetObjectPointCloudsRequest(
+            name=name,
             camera_name=camera_name,
             segmenter_name=segmenter_name,
             mime_type=CameraMimeType.PCD.value,

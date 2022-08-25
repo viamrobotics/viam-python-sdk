@@ -19,17 +19,17 @@ class SensorsServiceClient:
     def __init__(self, channel: Channel):
         self.client = SensorsServiceStub(channel)
 
-    async def get_sensors(self) -> List[ResourceName]:
+    async def get_sensors(self, name: str) -> List[ResourceName]:
         """Get the `ResourceName`s of all the `Sensor`s conneted to this Robot
 
         Returns:
             List[ResourceName]: The list of all Sensors
         """
-        request = GetSensorsRequest()
+        request = GetSensorsRequest(name=name)
         response: GetSensorsResponse = await self.client.GetSensors(request)
         return list(response.sensor_names)
 
-    async def get_readings(self, sensors: List[ResourceName]) -> Mapping[ResourceName, Mapping[str, Any]]:
+    async def get_readings(self, name: str, sensors: List[ResourceName]) -> Mapping[ResourceName, Mapping[str, Any]]:
         """Get the readings from the specific sensors provided
 
         Args:
@@ -38,6 +38,6 @@ class SensorsServiceClient:
         Returns:
             Mapping[ResourceName, Mapping[str, Any]]: The readings from the sensors, mapped by `ResourceName`
         """
-        request = GetReadingsRequest(sensor_names=sensors)
+        request = GetReadingsRequest(name=name, sensor_names=sensors)
         response: GetReadingsResponse = await self.client.GetReadings(request)
         return {reading.name: sensor_readings_value_to_native(reading.readings) for reading in response.readings}
