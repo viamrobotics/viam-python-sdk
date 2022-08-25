@@ -16,20 +16,21 @@ from viam.utils import sensor_readings_value_to_native
 class SensorsServiceClient:
     """Connect to the SensorService, which centralizes all Sensors in a single place"""
 
-    def __init__(self, channel: Channel):
+    def __init__(self, name: str, channel: Channel):
         self.client = SensorsServiceStub(channel)
+        self.name = name
 
-    async def get_sensors(self, name: str) -> List[ResourceName]:
+    async def get_sensors(self) -> List[ResourceName]:
         """Get the `ResourceName`s of all the `Sensor`s conneted to this Robot
 
         Returns:
             List[ResourceName]: The list of all Sensors
         """
-        request = GetSensorsRequest(name=name)
+        request = GetSensorsRequest(name=self.name)
         response: GetSensorsResponse = await self.client.GetSensors(request)
         return list(response.sensor_names)
 
-    async def get_readings(self, name: str, sensors: List[ResourceName]) -> Mapping[ResourceName, Mapping[str, Any]]:
+    async def get_readings(self, sensors: List[ResourceName]) -> Mapping[ResourceName, Mapping[str, Any]]:
         """Get the readings from the specific sensors provided
 
         Args:
@@ -38,6 +39,6 @@ class SensorsServiceClient:
         Returns:
             Mapping[ResourceName, Mapping[str, Any]]: The readings from the sensors, mapped by `ResourceName`
         """
-        request = GetReadingsRequest(name=name, sensor_names=sensors)
+        request = GetReadingsRequest(name=self.name, sensor_names=sensors)
         response: GetReadingsResponse = await self.client.GetReadings(request)
         return {reading.name: sensor_readings_value_to_native(reading.readings) for reading in response.readings}

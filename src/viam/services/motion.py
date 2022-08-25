@@ -21,12 +21,11 @@ class MotionServiceClient:
     `world_state` message, the motion planning service will also account for those.
     """
 
-    def __init__(self, channel: Channel):
+    def __init__(self, name: str, channel: Channel):
         self.client = MotionServiceStub(channel)
+        self.name = name
 
-    async def move(
-        self, name: str, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None
-    ) -> bool:
+    async def move(self, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None) -> bool:
         """Plan and execute a movement to move the component specified to its goal destination.
 
 
@@ -39,12 +38,12 @@ class MotionServiceClient:
         Returns:
             bool: Whether the move was successful
         """
-        request = MoveRequest(name=name, destination=destination, component_name=component_name, world_state=world_state)
+        request = MoveRequest(name=self.name, destination=destination, component_name=component_name, world_state=world_state)
         response: MoveResponse = await self.client.Move(request)
         return response.success
 
     async def move_single_component(
-        self, name: str, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None
+        self, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None
     ) -> bool:
         """
         This function will pass through a move command to a component with a `move_to_position` method that takes a `Pose`. `Arm`s are the
@@ -61,11 +60,13 @@ class MotionServiceClient:
         Returns:
             bool: Whether the move was successful
         """
-        request = MoveSingleComponentRequest(name=name, destination=destination, component_name=component_name, world_state=world_state)
+        request = MoveSingleComponentRequest(
+            name=self.name, destination=destination, component_name=component_name, world_state=world_state
+        )
         response: MoveSingleComponentResponse = await self.client.MoveSingleComponent(request)
         return response.success
 
-    async def get_pose(self, name: str, component_name: ResourceName, destination_frame: str) -> PoseInFrame:
+    async def get_pose(self, component_name: ResourceName, destination_frame: str) -> PoseInFrame:
         """
         Get the Pose and observer frame for any given component on a robot.
 
@@ -76,6 +77,6 @@ class MotionServiceClient:
         Returns:
             `Pose` (PoseInFrame): Pose of the given component and the frame in which it was observed.
         """
-        request = GetPoseRequest(name=name, component_name=component_name, destination_frame=destination_frame)
+        request = GetPoseRequest(name=self.name, component_name=component_name, destination_frame=destination_frame)
         response: GetPoseResponse = await self.client.GetPose(request)
         return response.pose
