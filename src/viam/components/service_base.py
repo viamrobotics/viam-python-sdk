@@ -42,7 +42,7 @@ class ComponentServiceBase(Generic[ResourceType], abc.ABC):
     P = ParamSpec("P")
     T = TypeVar("T")
 
-    async def run_with_operation(self, func: Callable[P, Coroutine[Any, Any, T]], *args: P.args, **kwargs: P.kwargs) -> T:
+    async def _run_with_operation(self, func: Callable[P, Coroutine[Any, Any, T]], *args: P.args, **kwargs: P.kwargs) -> T:
         """Run a component function with an `Operation`.
         Running a function with an Operation will allow the function
         to know if/when the calling task was cancelled and take appropriate action

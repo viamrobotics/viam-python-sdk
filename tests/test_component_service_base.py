@@ -30,19 +30,19 @@ async def test_component_service_base():
 
         async def no_return(self):
             component = self.get_component("test")
-            return await self.run_with_operation(component.no_return)
+            return await self._run_with_operation(component.no_return)
 
         async def return_one(self) -> int:
             component = self.get_component("test")
-            return await self.run_with_operation(component.return_one)
+            return await self._run_with_operation(component.return_one)
 
         async def add(self, a: float, b: float) -> float:
             component = self.get_component("test")
-            return await self.run_with_operation(component.add, a, b)
+            return await self._run_with_operation(component.add, a, b)
 
         async def long_running(self) -> bool:
             component = self.get_component("test")
-            return await self.run_with_operation(component.long_running)
+            return await self._run_with_operation(component.long_running)
 
     component = TestComponent("test")
     service = TestService(ResourceManager([component]))
