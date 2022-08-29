@@ -27,10 +27,8 @@ jobs:
 
       - name: Generate docs
         run: |
-          cd examples/server/v1 && make run_server &
+          poetry run python3 -m examples.server.v1.server
           sleep 2
-          cd ../../..
-          pwd
           make documentation
           kill -9 `lsof -i:5000 -t`
 
