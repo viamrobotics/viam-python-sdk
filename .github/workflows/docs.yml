@@ -29,9 +29,9 @@ jobs:
         run: |
           cd examples/server/v1 && make run_server &
           sleep 2
-          cd ../../..
+          popd
           make documentation
-          kill -9 `lsof -i:9090 -t`
+          kill -9 `lsof -i:5000 -t`
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
