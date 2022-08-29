@@ -29,7 +29,8 @@ jobs:
         run: |
           cd examples/server/v1 && make run_server &
           sleep 2
-          popd
+          cd ../../..
+          pwd
           make documentation
           kill -9 `lsof -i:5000 -t`
 
