@@ -11,7 +11,7 @@ on:
 
 jobs:
   generate-docs:
-    if: github.repository_owner == 'viamrobotics'
+    # if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate docs
         run: |
-          poetry run python3 -m examples.server.v1.server
+          poetry run python3 -m examples.server.v1.server &
           sleep 2
           make documentation
           kill -9 `lsof -i:5000 -t`
