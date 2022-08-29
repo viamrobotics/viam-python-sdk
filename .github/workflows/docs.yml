@@ -30,7 +30,7 @@ jobs:
           poetry run python3 -m examples.server.v1.server &
           sleep 2
           make documentation
-          kill -9 `/usr/sbin/lsof -i:5000 -t`
+          kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $2}'`
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
