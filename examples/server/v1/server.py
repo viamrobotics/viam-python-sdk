@@ -77,7 +77,7 @@ async def run():
             my_servo,
         ]
     )
-    await server.serve(log_level=logging.DEBUG)
+    await server.serve(host="0.0.0.0", port=5000, log_level=logging.DEBUG)
 
 
 if __name__ == "__main__":
