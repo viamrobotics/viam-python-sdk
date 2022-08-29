@@ -126,7 +126,62 @@
         <span class="n">dial_options</span><span class="o">=</span><span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
         <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;localhost:9090&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;0.0.0.0:5000&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+<span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;arm&quot;
+ name: &quot;arm0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;base&quot;
+ name: &quot;base0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;board&quot;
+ name: &quot;board&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;camera&quot;
+ name: &quot;camera0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;gantry&quot;
+ name: &quot;gantry0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;gripper&quot;
+ name: &quot;gripper0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;motor&quot;
+ name: &quot;motor0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;movement_sensor&quot;
+ name: &quot;movement_sensor0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;sensor&quot;
+ name: &quot;movement_sensor0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;pose_tracker&quot;
+ name: &quot;pose_tracker0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;sensor&quot;
+ name: &quot;sensor0&quot;,
+ namespace: &quot;rdk&quot;
+ type: &quot;component&quot;
+ subtype: &quot;servo&quot;
+ name: &quot;servo0&quot;]
 </pre></div>
 </div>
 </div>
