@@ -26,7 +26,12 @@ jobs:
         run: poetry install
 
       - name: Generate docs
-        run: make documentation
+        run: |
+          cd examples/server/v1 && make run_server &
+          sleep 2
+          popd
+          make documentation
+          kill -9 `lsof -i:9090 -t`
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
