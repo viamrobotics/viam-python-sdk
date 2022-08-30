@@ -6,8 +6,8 @@ from viam.components.motor.service import MotorService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
 from viam.proto.api.component.motor import (
-    GetFeaturesRequest,
-    GetFeaturesResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetPositionRequest,
     GetPositionResponse,
     GoForRequest,
@@ -193,8 +193,8 @@ class TestService:
     async def test_get_features(self, motor: MockMotor, service: MotorService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
-            request = GetFeaturesRequest(name=motor.name)
-            response: GetFeaturesResponse = await client.GetFeatures(request)
+            request = GetPropertiesRequest(name=motor.name)
+            response: GetPropertiesResponse = await client.GetProperties(request)
             assert response.position_reporting is True
 
     @pytest.mark.asyncio

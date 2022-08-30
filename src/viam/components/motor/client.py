@@ -3,8 +3,8 @@ from typing import Any, Dict, Optional
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
 from viam.proto.api.component.motor import (
-    GetFeaturesRequest,
-    GetFeaturesResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetPositionRequest,
     GetPositionResponse,
     GoForRequest,
@@ -65,8 +65,8 @@ class MotorClient(Motor):
     async def get_features(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Features:
         if extra is None:
             extra = {}
-        request = GetFeaturesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetFeaturesResponse = await self.client.GetFeatures(request)
+        request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetPropertiesResponse = await self.client.GetProperties(request)
         return Motor.Features(position_reporting=response.position_reporting)
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None):
