@@ -183,11 +183,12 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "from viam.services.types import ServiceType\n",
+    "from viam.services.vision import VisionServiceClient\n",
     "\n",
     "async def vision():\n",
-    "    vision_service = robot.get_service(ServiceType.VISION)\n",
-    "    detectors = await vision_service.get_detections(\"camera_1\", \"detector_1\")"
+    "    robot = await connect()\n",
+    "    vision = VisionServiceClient.from_robot(robot)\n",
+    "    detections = await vision.get_detections_from_camera(\"camera_1\", \"detector_1\")"
    ]
   },
   {

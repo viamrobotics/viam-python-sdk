@@ -212,23 +212,12 @@ name: &quot;servo0&quot;
 <p>You can also use the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> to make service calls to the connected robot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.services.types</span> <span class="kn">import</span> <span class="n">ServiceType</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.services.vision</span> <span class="kn">import</span> <span class="n">VisionServiceClient</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">vision</span><span class="p">():</span>
-    <span class="n">vision_service</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">ServiceType</span><span class="o">.</span><span class="n">VISION</span><span class="p">)</span>
-    <span class="n">detectors</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision_service</span><span class="o">.</span><span class="n">get_detections</span><span class="p">(</span><span class="s2">&quot;camera_1&quot;</span><span class="p">,</span> <span class="s2">&quot;detector_1&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="nn">Input In [5],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">viam.services.types</span> <span class="kn">import</span> <span class="n">ServiceType</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">vision</span><span class="p">():</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="n">vision_service</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">ServiceType</span><span class="o">.</span><span class="n">VISION</span><span class="p">)</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;viam.services.types&#39;
+    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+    <span class="n">vision</span> <span class="o">=</span> <span class="n">VisionServiceClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+    <span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_detections_from_camera</span><span class="p">(</span><span class="s2">&quot;camera_1&quot;</span><span class="p">,</span> <span class="s2">&quot;detector_1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -331,7 +320,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/my_cool_arm.py</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">WorldState</span>
 
 
@@ -397,13 +388,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vh/04mycgp163125hlq8k9bkl8w0000gn/T/ipykernel_50114/2037726754.py:15: RuntimeWarning: coroutine &#39;main&#39; was never awaited
-  pass
-RuntimeWarning: Enable tracemalloc to get the object allocation traceback
 </pre></div>
 </div>
 </div>
