@@ -31,8 +31,13 @@ global___Mode = Mode
 
 class GetModeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
 
-    def __init__(self) -> None:
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
         ...
 global___GetModeRequest = GetModeRequest
 
@@ -50,13 +55,15 @@ global___GetModeResponse = GetModeResponse
 
 class SetModeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     MODE_FIELD_NUMBER: builtins.int
+    name: typing.Text
     mode: global___Mode.ValueType
 
-    def __init__(self, *, mode: global___Mode.ValueType=...) -> None:
+    def __init__(self, *, name: typing.Text=..., mode: global___Mode.ValueType=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['mode', b'mode']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['mode', b'mode', 'name', b'name']) -> None:
         ...
 global___SetModeRequest = SetModeRequest
 
@@ -89,8 +96,13 @@ global___Waypoint = Waypoint
 
 class GetLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
 
-    def __init__(self) -> None:
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
         ...
 global___GetLocationRequest = GetLocationRequest
 
@@ -114,8 +126,13 @@ global___GetLocationResponse = GetLocationResponse
 
 class GetWaypointsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
 
-    def __init__(self) -> None:
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
         ...
 global___GetWaypointsRequest = GetWaypointsRequest
 
@@ -136,19 +153,21 @@ global___GetWaypointsResponse = GetWaypointsResponse
 
 class AddWaypointRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     LOCATION_FIELD_NUMBER: builtins.int
+    name: typing.Text
 
     @property
     def location(self) -> proto.api.common.v1.common_pb2.GeoPoint:
         ...
 
-    def __init__(self, *, location: typing.Optional[proto.api.common.v1.common_pb2.GeoPoint]=...) -> None:
+    def __init__(self, *, name: typing.Text=..., location: typing.Optional[proto.api.common.v1.common_pb2.GeoPoint]=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['location', b'location', 'name', b'name']) -> None:
         ...
 global___AddWaypointRequest = AddWaypointRequest
 
@@ -161,13 +180,15 @@ global___AddWaypointResponse = AddWaypointResponse
 
 class RemoveWaypointRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     ID_FIELD_NUMBER: builtins.int
+    name: typing.Text
     id: typing.Text
 
-    def __init__(self, *, id: typing.Text=...) -> None:
+    def __init__(self, *, name: typing.Text=..., id: typing.Text=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name']) -> None:
         ...
 global___RemoveWaypointRequest = RemoveWaypointRequest
 

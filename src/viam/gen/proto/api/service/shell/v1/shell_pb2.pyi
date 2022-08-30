@@ -11,13 +11,15 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class ShellRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     DATA_IN_FIELD_NUMBER: builtins.int
+    name: typing.Text
     data_in: typing.Text
 
-    def __init__(self, *, data_in: typing.Text=...) -> None:
+    def __init__(self, *, name: typing.Text=..., data_in: typing.Text=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['data_in', b'data_in']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['data_in', b'data_in', 'name', b'name']) -> None:
         ...
 global___ShellRequest = ShellRequest
 

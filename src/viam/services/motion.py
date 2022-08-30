@@ -12,17 +12,21 @@ from viam.proto.api.service.motion import (
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
 )
+from viam.services.service_client_base import ServiceClientBase
 
 
-class MotionServiceClient:
+class MotionServiceClient(ServiceClientBase):
     """Motion is a Viam service that coordinates motion planning across all of the components in a given robot.
 
     The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
     `world_state` message, the motion planning service will also account for those.
     """
 
-    def __init__(self, channel: Channel):
+    SERVICE_TYPE = "motion"
+
+    def __init__(self, name: str, channel: Channel):
         self.client = MotionServiceStub(channel)
+        self.name = name
 
     async def move(self, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None) -> bool:
         """Plan and execute a movement to move the component specified to its goal destination.
@@ -37,7 +41,7 @@ class MotionServiceClient:
         Returns:
             bool: Whether the move was successful
         """
-        request = MoveRequest(destination=destination, component_name=component_name, world_state=world_state)
+        request = MoveRequest(name=self.name, destination=destination, component_name=component_name, world_state=world_state)
         response: MoveResponse = await self.client.Move(request)
         return response.success
 
@@ -59,7 +63,9 @@ class MotionServiceClient:
         Returns:
             bool: Whether the move was successful
         """
-        request = MoveSingleComponentRequest(destination=destination, component_name=component_name, world_state=world_state)
+        request = MoveSingleComponentRequest(
+            name=self.name, destination=destination, component_name=component_name, world_state=world_state
+        )
         response: MoveSingleComponentResponse = await self.client.MoveSingleComponent(request)
         return response.success
 
@@ -74,6 +80,6 @@ class MotionServiceClient:
         Returns:
             `Pose` (PoseInFrame): Pose of the given component and the frame in which it was observed.
         """
-        request = GetPoseRequest(component_name=component_name, destination_frame=destination_frame)
+        request = GetPoseRequest(name=self.name, component_name=component_name, destination_frame=destination_frame)
         response: GetPoseResponse = await self.client.GetPose(request)
         return response.pose

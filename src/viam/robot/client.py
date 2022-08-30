@@ -9,7 +9,7 @@ from typing_extensions import Self
 from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
-from viam.errors import ComponentNotFoundError, ServiceNotImplementedError, ViamError
+from viam.errors import ComponentNotFoundError, ViamError
 from viam.proto.api.common import PoseInFrame, ResourceName, Transform
 from viam.proto.api.robot import (
     DiscoverComponentsRequest,
@@ -31,8 +31,6 @@ from viam.proto.api.robot import (
 )
 from viam.registry import Registry
 from viam.rpc.dial import DialOptions, dial_direct
-from viam.services import ServiceType
-from viam.services.types import Service
 from viam.utils import dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
@@ -207,23 +205,6 @@ class RobotClient:
             raise ViamError(f"ResourceName does not describe a component: {name}")
         with self._lock:
             return self._manager.get_component(ComponentBase, name.name)
-
-    def get_service(self, service_type: ServiceType[Service]) -> Service:
-        """Get a service by specifying the `ServiceType`.
-
-        Args:
-            service_type (ServiceType): The service type
-
-        Raises:
-            ServiceNotImplementedError: Raised the service is not implemented or available on the Robot
-
-        Returns:
-            Service: The service
-        """
-        with self._lock:
-            if service_type.name in [rn.subtype for rn in self._resource_names if rn.type == "service"]:
-                return service_type.with_channel(self._channel)
-            raise ServiceNotImplementedError(service_type.name)
 
     @property
     def resource_names(self) -> List[ResourceName]:

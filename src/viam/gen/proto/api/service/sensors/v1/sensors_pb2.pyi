@@ -14,8 +14,13 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetSensorsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: typing.Text
 
-    def __init__(self) -> None:
+    def __init__(self, *, name: typing.Text=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
         ...
 global___GetSensorsRequest = GetSensorsRequest
 
@@ -36,16 +41,18 @@ global___GetSensorsResponse = GetSensorsResponse
 
 class GetReadingsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
     SENSOR_NAMES_FIELD_NUMBER: builtins.int
+    name: typing.Text
 
     @property
     def sensor_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
         ...
 
-    def __init__(self, *, sensor_names: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
+    def __init__(self, *, name: typing.Text=..., sensor_names: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['sensor_names', b'sensor_names']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'sensor_names', b'sensor_names']) -> None:
         ...
 global___GetReadingsRequest = GetReadingsRequest
 
