@@ -91,6 +91,7 @@ def resource_names_for_component(component: ComponentBase) -> List[ResourceName]
             component_type = class_name.split("viam.components.")[1].split(".")[0]
 
         rns.append(ResourceName(namespace="rdk", type="component", subtype=component_type, name=component.name))
+        break
     return rns
 
 
