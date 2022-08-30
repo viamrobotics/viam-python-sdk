@@ -24,14 +24,14 @@ class ServiceClientBase(abc.ABC):
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str = "builtin") -> Self:
-        """Get the component named `name` from the provided robot.
+        """Get the service client named `name` from the provided robot.
 
         Args:
             robot (RobotClient): The robot
-            name (str): The name of the component
+            name (str): The name of the service client
 
         Returns:
-            Self: The component, if it exists on the robot
+            Self: The service client, if it exists on the robot
         """
         resource_name = ResourceName(namespace="rdk", type="service", subtype=cls.SERVICE_TYPE, name=name)
         if resource_name not in robot.resource_names:
