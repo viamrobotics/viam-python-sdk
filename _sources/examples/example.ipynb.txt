@@ -98,7 +98,7 @@
     "        dial_options=DialOptions(insecure=True),\n",
     "        log_level=logging.FATAL\n",
     "    )\n",
-    "    return await RobotClient.at_address('0.0.0.0:9090', options)\n",
+    "    return await RobotClient.at_address('0.0.0.0:5432', options)\n",
     "\n",
     "robot = await connect()\n",
     "print(robot.resource_names)\n",
@@ -123,7 +123,7 @@
     "from viam.rpc.dial import DialOptions, dial_direct\n",
     "\n",
     "async def connect_with_channel() -> RobotClient:\n",
-    "    async with await dial_direct('localhost:9090', DialOptions(insecure=True)) as channel:\n",
+    "    async with await dial_direct('0.0.0.0:5432', DialOptions(insecure=True)) as channel:\n",
     "        return await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=10, log_level=logging.FATAL))"
    ]
   },
