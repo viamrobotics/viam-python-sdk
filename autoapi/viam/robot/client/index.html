@@ -75,7 +75,6 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.with_channel">with_channel</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.refresh">refresh</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_component">get_component</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_service">get_service</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.resource_names">resource_names</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.close">close</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__">__aenter__</a></li>
@@ -302,26 +301,6 @@ different methods:</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase">ComponentBase</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_service">
-<span class="sig-name descname"><span class="pre">get_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">service_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../services/index.html#viam.services.ServiceType" title="viam.services.ServiceType"><span class="pre">viam.services.ServiceType</span></a><span class="p"><span class="pre">[</span></span><span class="pre">viam.services.types.Service</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.types.Service</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_service" title="Permalink to this definition"></a></dt>
-<dd><p>Get a service by specifying the <cite>ServiceType</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>service_type</strong> (<a class="reference internal" href="../../services/index.html#viam.services.ServiceType" title="viam.services.ServiceType"><em>ServiceType</em></a>) – The service type</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.ServiceNotImplementedError" title="viam.errors.ServiceNotImplementedError"><strong>ServiceNotImplementedError</strong></a> – Raised the service is not implemented or available on the Robot</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The service</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Service</p>
 </dd>
 </dl>
 </dd></dl>

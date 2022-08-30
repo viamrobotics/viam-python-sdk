@@ -1,0 +1,46 @@
+:py:mod:`viam.services.service_client_base`
+===========================================
+
+.. py:module:: viam.services.service_client_base
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.service_client_base.ServiceClientBase
+
+
+
+
+.. py:class:: ServiceClientBase(name: str, channel: grpclib.client.Channel)
+
+
+
+   Base service client.
+   All service clients must inherit from this class.
+
+   .. py:attribute:: SERVICE_TYPE
+      :annotation: :ClassVar[str]
+
+      
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str = 'builtin') -> typing_extensions.Self
+      :classmethod:
+
+      Get the service client named `name` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service client
+      :type name: str
+
+      :returns: The service client, if it exists on the robot
+      :rtype: Self
+
+
+

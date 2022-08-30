@@ -156,9 +156,10 @@
 <span class="sd">    Exception raised when a service is not implemented on the Robot</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="n">service</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Service </span><span class="si">{</span><span class="n">service</span><span class="si">}</span><span class="s2"> is not implemented on the Robot&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">service</span><span class="si">}</span><span class="s2"> service named </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is not implemented on the Robot&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span></div>
 
 

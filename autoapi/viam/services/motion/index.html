@@ -62,6 +62,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.motion.MotionServiceClient">MotionServiceClient</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.SERVICE_TYPE">SERVICE_TYPE</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.move">move</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.move_single_component">move_single_component</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.get_pose">get_pose</a></li>
@@ -74,11 +75,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../sensors/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../service_client_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.service_client_base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
@@ -130,10 +130,15 @@
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.motion.MotionServiceClient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.motion.</span></span><span class="sig-name descname"><span class="pre">MotionServiceClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/motion.html#MotionServiceClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.MotionServiceClient" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.motion.</span></span><span class="sig-name descname"><span class="pre">MotionServiceClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/motion.html#MotionServiceClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.MotionServiceClient" title="Permalink to this definition"></a></dt>
 <dd><p>Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</p>
 <p>The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
 <cite>world_state</cite> message, the motion planning service will also account for those.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.motion.MotionServiceClient.SERVICE_TYPE">
+<span class="sig-name descname"><span class="pre">SERVICE_TYPE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">motion</span></em><a class="headerlink" href="#viam.services.motion.MotionServiceClient.SERVICE_TYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.motion.MotionServiceClient.move">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.ResourceName" title="viam.proto.api.common.ResourceName"><span class="pre">viam.proto.api.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PoseInFrame" title="viam.proto.api.common.PoseInFrame"><span class="pre">viam.proto.api.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.WorldState" title="viam.proto.api.common.WorldState"><span class="pre">viam.proto.api.common.WorldState</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/services/motion.html#MotionServiceClient.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.MotionServiceClient.move" title="Permalink to this definition"></a></dt>

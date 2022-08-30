@@ -60,22 +60,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.motion</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="sensors/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="service_client_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.service_client_base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#viam.services.ServiceType">ServiceType</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.services.ServiceType.MOTION">MOTION</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.services.ServiceType.VISION">VISION</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.services.ServiceType.SENSORS">SENSORS</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.services.ServiceType.name">name</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.services.ServiceType.with_channel">with_channel</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -117,75 +103,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.motion</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="sensors/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.types</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="service_client_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.service_client_base</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a></li>
 </ul>
 </div>
-</section>
-<section id="package-contents">
-<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.ServiceType" title="viam.services.ServiceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceType</span></code></a></p></td>
-<td><p>Abstract base class for generic types.</p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.services.ServiceType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.</span></span><span class="sig-name descname"><span class="pre">ServiceType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Service</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/services/types.html#ServiceType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.ServiceType" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract base class for generic types.</p>
-<p>A generic type is typically declared by inheriting from
-this class parameterized with one or more type variables.
-For example, a generic mapping type might be defined as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Mapping</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">KT</span><span class="p">,</span> <span class="n">VT</span><span class="p">]):</span>
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">KT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VT</span><span class="p">:</span>
-        <span class="o">...</span>
-    <span class="c1"># Etc.</span>
-</pre></div>
-</div>
-<p>This class can then be used as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lookup_name</span><span class="p">(</span><span class="n">mapping</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">KT</span><span class="p">,</span> <span class="n">VT</span><span class="p">],</span> <span class="n">key</span><span class="p">:</span> <span class="n">KT</span><span class="p">,</span> <span class="n">default</span><span class="p">:</span> <span class="n">VT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VT</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">mapping</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">default</span>
-</pre></div>
-</div>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.ServiceType.MOTION">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MOTION</span></span><a class="reference internal" href="../../../_modules/viam/services/types.html#ServiceType.MOTION"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.ServiceType.MOTION" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.ServiceType.VISION">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VISION</span></span><a class="reference internal" href="../../../_modules/viam/services/types.html#ServiceType.VISION"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.ServiceType.VISION" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.ServiceType.SENSORS">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SENSORS</span></span><a class="reference internal" href="../../../_modules/viam/services/types.html#ServiceType.SENSORS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.ServiceType.SENSORS" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.ServiceType.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#viam.services.ServiceType.name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.services.ServiceType.with_channel">
-<span class="sig-name descname"><span class="pre">with_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Service</span></span></span><a class="reference internal" href="../../../_modules/viam/services/types.html#ServiceType.with_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.ServiceType.with_channel" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
 </section>
 </section>
 

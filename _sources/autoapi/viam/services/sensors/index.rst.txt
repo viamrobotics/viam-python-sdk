@@ -17,14 +17,21 @@ Classes
 
 
 
-.. py:class:: SensorsServiceClient(channel: grpclib.client.Channel)
+.. py:class:: SensorsServiceClient(name: str, channel: grpclib.client.Channel)
+
+
 
    Connect to the SensorService, which centralizes all Sensors in a single place
+
+   .. py:attribute:: SERVICE_TYPE
+      :annotation: = sensors
+
+      
 
    .. py:method:: get_sensors() -> List[viam.proto.api.common.ResourceName]
       :async:
 
-      Get the `ResourceName`s of all the `Sensor`s conneted to this Robot
+      Get the `ResourceName`s of all the `Sensor`s connected to this Robot
 
       :returns: The list of all Sensors
       :rtype: List[ResourceName]

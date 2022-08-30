@@ -85,33 +85,45 @@
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.NavigationServiceStub">NavigationServiceStub</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.AddWaypointRequest">AddWaypointRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.AddWaypointRequest.name">name</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.AddWaypointRequest.location">location</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.AddWaypointRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.AddWaypointResponse">AddWaypointResponse</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetLocationRequest">GetLocationRequest</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetLocationRequest">GetLocationRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.GetLocationRequest.name">name</a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetLocationResponse">GetLocationResponse</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.GetLocationResponse.location">location</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.GetLocationResponse.HasField">HasField</a></li>
 </ul>
 </li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetModeRequest">GetModeRequest</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetModeRequest">GetModeRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.GetModeRequest.name">name</a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetModeResponse">GetModeResponse</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.GetModeResponse.mode">mode</a></li>
 </ul>
 </li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetWaypointsRequest">GetWaypointsRequest</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetWaypointsRequest">GetWaypointsRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.GetWaypointsRequest.name">name</a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.GetWaypointsResponse">GetWaypointsResponse</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.GetWaypointsResponse.waypoints">waypoints</a></li>
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.RemoveWaypointRequest">RemoveWaypointRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.RemoveWaypointRequest.name">name</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.RemoveWaypointRequest.id">id</a></li>
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.RemoveWaypointResponse">RemoveWaypointResponse</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.navigation.SetModeRequest">SetModeRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.SetModeRequest.name">name</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.navigation.SetModeRequest.mode">mode</a></li>
 </ul>
 </li>
@@ -284,11 +296,16 @@ inheritance.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.AddWaypointRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">AddWaypointRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.GeoPoint</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.AddWaypointRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">AddWaypointRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.gen.proto.api.common.v1.common_pb2.GeoPoint</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.AddWaypointRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.navigation.AddWaypointRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.service.navigation.AddWaypointRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.AddWaypointRequest.location">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.gen.proto.api.common.v1.common_pb2.GeoPoint</span></span></span><a class="headerlink" href="#viam.proto.api.service.navigation.AddWaypointRequest.location" title="Permalink to this definition"></a></dt>
@@ -330,11 +347,16 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.GetLocationRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetLocationRequest</span></span><a class="headerlink" href="#viam.proto.api.service.navigation.GetLocationRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetLocationRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.GetLocationRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.navigation.GetLocationRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.service.navigation.GetLocationRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -376,11 +398,16 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.GetModeRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetModeRequest</span></span><a class="headerlink" href="#viam.proto.api.service.navigation.GetModeRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetModeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.GetModeRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.navigation.GetModeRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.service.navigation.GetModeRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -399,11 +426,16 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.GetWaypointsRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetWaypointsRequest</span></span><a class="headerlink" href="#viam.proto.api.service.navigation.GetWaypointsRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetWaypointsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.GetWaypointsRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.navigation.GetWaypointsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.service.navigation.GetWaypointsRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -422,11 +454,16 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.RemoveWaypointRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">RemoveWaypointRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.RemoveWaypointRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">RemoveWaypointRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.RemoveWaypointRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.navigation.RemoveWaypointRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.service.navigation.RemoveWaypointRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.RemoveWaypointRequest.id">
 <span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.service.navigation.RemoveWaypointRequest.id" title="Permalink to this definition"></a></dt>
@@ -445,11 +482,16 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.SetModeRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">SetModeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Mode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.SetModeRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.navigation.</span></span><span class="sig-name descname"><span class="pre">SetModeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Text</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Mode</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.navigation.SetModeRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.navigation.SetModeRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:Text</span></em><a class="headerlink" href="#viam.proto.api.service.navigation.SetModeRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.api.service.navigation.SetModeRequest.mode">
 <span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="w"> </span><span class="pre">:global___Mode</span></em><a class="headerlink" href="#viam.proto.api.service.navigation.SetModeRequest.mode" title="Permalink to this definition"></a></dt>

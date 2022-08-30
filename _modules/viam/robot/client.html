@@ -95,7 +95,7 @@
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.components.resource_manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">ServiceNotImplementedError</span><span class="p">,</span> <span class="n">ViamError</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">ViamError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Transform</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.robot</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DiscoverComponentsRequest</span><span class="p">,</span>
@@ -117,8 +117,6 @@
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial_direct</span>
-<span class="kn">from</span> <span class="nn">viam.services</span> <span class="kn">import</span> <span class="n">ServiceType</span>
-<span class="kn">from</span> <span class="nn">viam.services.types</span> <span class="kn">import</span> <span class="n">Service</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -293,23 +291,6 @@
             <span class="k">raise</span> <span class="n">ViamError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ResourceName does not describe a component: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="RobotClient.get_service"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_service">[docs]</a>    <span class="k">def</span> <span class="nf">get_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service_type</span><span class="p">:</span> <span class="n">ServiceType</span><span class="p">[</span><span class="n">Service</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Service</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get a service by specifying the `ServiceType`.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            service_type (ServiceType): The service type</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ServiceNotImplementedError: Raised the service is not implemented or available on the Robot</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Service: The service</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">service_type</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="n">rn</span><span class="o">.</span><span class="n">subtype</span> <span class="k">for</span> <span class="n">rn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="k">if</span> <span class="n">rn</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;service&quot;</span><span class="p">]:</span>
-                <span class="k">return</span> <span class="n">service_type</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">ServiceNotImplementedError</span><span class="p">(</span><span class="n">service_type</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">resource_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]:</span>

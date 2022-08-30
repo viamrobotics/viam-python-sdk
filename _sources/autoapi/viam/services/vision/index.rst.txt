@@ -68,10 +68,17 @@ Classes
       
 
 
-.. py:class:: VisionServiceClient(channel: grpclib.client.Channel)
+.. py:class:: VisionServiceClient(name: str, channel: grpclib.client.Channel)
+
+
 
    Connect to the Vision service, which allows you to access various computer vision algorithms
    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
+
+   .. py:attribute:: SERVICE_TYPE
+      :annotation: = vision
+
+      
 
    .. py:method:: get_detector_names() -> List[str]
       :async:

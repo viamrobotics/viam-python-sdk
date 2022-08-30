@@ -1200,10 +1200,10 @@
 </li>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.FrameSystemConfigResponse.frame_system_configs">frame_system_configs (viam.proto.api.robot.FrameSystemConfigResponse property)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.FrameSystemConfig">FrameSystemConfig (class in viam.proto.api.robot)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.RobotServiceBase.FrameSystemConfig">FrameSystemConfig() (viam.proto.api.robot.RobotServiceBase method)</a>
 
       <ul>
@@ -1227,7 +1227,11 @@
 </li>
       </ul></li>
       <li><a href="autoapi/viam/components/component_base/index.html#viam.components.component_base.ComponentBase.from_robot">from_robot() (viam.components.component_base.ComponentBase class method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/services/service_client_base/index.html#viam.services.service_client_base.ServiceClientBase.from_robot">(viam.services.service_client_base.ServiceClientBase class method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -1498,8 +1502,6 @@
 </li>
       <li><a href="autoapi/viam/services/sensors/index.html#viam.services.sensors.SensorsServiceClient.get_sensors">get_sensors() (viam.services.sensors.SensorsServiceClient method)</a>
 </li>
-      <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_service">get_service() (viam.robot.client.RobotClient method)</a>
-</li>
       <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_status">get_status() (viam.robot.client.RobotClient method)</a>
 </li>
       <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetAccuracy">GetAccuracy() (viam.components.movement_sensor.service.MovementSensorService method)</a>
@@ -1582,14 +1584,14 @@
 </li>
       <li><a href="autoapi/viam/proto/api/component/arm/index.html#viam.proto.api.component.arm.GetEndPositionResponse">GetEndPositionResponse (class in viam.proto.api.component.arm)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/input/service/index.html#viam.components.input.service.InputControllerService.GetEvents">GetEvents() (viam.components.input.service.InputControllerService method)</a>
 
       <ul>
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.InputControllerServiceBase.GetEvents">(viam.proto.api.component.inputcontroller.InputControllerServiceBase method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.GetEventsRequest">GetEventsRequest (class in viam.proto.api.component.inputcontroller)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.GetEventsResponse">GetEventsResponse (class in viam.proto.api.component.inputcontroller)</a>
@@ -2936,7 +2938,7 @@
 </li>
         <li><a href="autoapi/viam/services/sensors/index.html#module-viam.services.sensors">viam.services.sensors</a>
 </li>
-        <li><a href="autoapi/viam/services/types/index.html#module-viam.services.types">viam.services.types</a>
+        <li><a href="autoapi/viam/services/service_client_base/index.html#module-viam.services.service_client_base">viam.services.service_client_base</a>
 </li>
         <li><a href="autoapi/viam/services/vision/index.html#module-viam.services.vision">viam.services.vision</a>
 </li>
@@ -2945,12 +2947,6 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="autoapi/viam/services/index.html#viam.services.ServiceType.MOTION">MOTION (viam.services.ServiceType property)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/services/types/index.html#viam.services.types.ServiceType.MOTION">(viam.services.types.ServiceType property)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/proto/api/service/motion/index.html#viam.proto.api.service.motion.MotionServiceBase">MotionServiceBase (class in viam.proto.api.service.motion)</a>
 </li>
       <li><a href="autoapi/viam/services/motion/index.html#viam.services.motion.MotionServiceClient">MotionServiceClient (class in viam.services.motion)</a>
@@ -3218,11 +3214,51 @@
 </li>
         <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.StopExtraParameters.name">(viam.proto.api.robot.StopExtraParameters property)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/service/datamanager/index.html#viam.proto.api.service.datamanager.SyncRequest.name">(viam.proto.api.service.datamanager.SyncRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/motion/index.html#viam.proto.api.service.motion.GetPoseRequest.name">(viam.proto.api.service.motion.GetPoseRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/motion/index.html#viam.proto.api.service.motion.MoveRequest.name">(viam.proto.api.service.motion.MoveRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/motion/index.html#viam.proto.api.service.motion.MoveSingleComponentRequest.name">(viam.proto.api.service.motion.MoveSingleComponentRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.AddWaypointRequest.name">(viam.proto.api.service.navigation.AddWaypointRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.GetLocationRequest.name">(viam.proto.api.service.navigation.GetLocationRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.GetModeRequest.name">(viam.proto.api.service.navigation.GetModeRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.GetWaypointsRequest.name">(viam.proto.api.service.navigation.GetWaypointsRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.RemoveWaypointRequest.name">(viam.proto.api.service.navigation.RemoveWaypointRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.SetModeRequest.name">(viam.proto.api.service.navigation.SetModeRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/sensors/index.html#viam.proto.api.service.sensors.GetReadingsRequest.name">(viam.proto.api.service.sensors.GetReadingsRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/sensors/index.html#viam.proto.api.service.sensors.GetSensorsRequest.name">(viam.proto.api.service.sensors.GetSensorsRequest attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/service/sensors/index.html#viam.proto.api.service.sensors.Readings.name">(viam.proto.api.service.sensors.Readings property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/shell/index.html#viam.proto.api.service.shell.ShellRequest.name">(viam.proto.api.service.shell.ShellRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetMapRequest.name">(viam.proto.api.service.slam.GetMapRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetPositionRequest.name">(viam.proto.api.service.slam.GetPositionRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest.name">(viam.proto.api.service.vision.AddDetectorRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraRequest.name">(viam.proto.api.service.vision.GetDetectionsFromCameraRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.name">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectorNamesRequest.name">(viam.proto.api.service.vision.GetDetectorNamesRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetObjectPointCloudsRequest.name">(viam.proto.api.service.vision.GetObjectPointCloudsRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetSegmenterNamesRequest.name">(viam.proto.api.service.vision.GetSegmenterNamesRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetSegmenterParametersRequest.name">(viam.proto.api.service.vision.GetSegmenterParametersRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.TypedParameter.name">(viam.proto.api.service.vision.TypedParameter attribute)</a>
 </li>
@@ -3231,10 +3267,6 @@
         <li><a href="autoapi/viam/proto/rpc/examples/fileupload/index.html#viam.proto.rpc.examples.fileupload.UploadFileResponse.name">(viam.proto.rpc.examples.fileupload.UploadFileResponse attribute)</a>
 </li>
         <li><a href="autoapi/viam/registry/index.html#viam.registry.ComponentRegistration.name">(viam.registry.ComponentRegistration attribute)</a>
-</li>
-        <li><a href="autoapi/viam/services/index.html#viam.services.ServiceType.name">(viam.services.ServiceType property)</a>
-</li>
-        <li><a href="autoapi/viam/services/types/index.html#viam.services.types.ServiceType.name">(viam.services.types.ServiceType property)</a>
 </li>
         <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorConfig.name">(viam.services.vision.DetectorConfig attribute)</a>
 </li>
@@ -3823,12 +3855,6 @@
 </li>
       <li><a href="autoapi/viam/components/sensor/client/index.html#viam.components.sensor.client.SensorClient">SensorClient (class in viam.components.sensor.client)</a>
 </li>
-      <li><a href="autoapi/viam/services/index.html#viam.services.ServiceType.SENSORS">SENSORS (viam.services.ServiceType property)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/services/types/index.html#viam.services.types.ServiceType.SENSORS">(viam.services.types.ServiceType property)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/components/sensor/service/index.html#viam.components.sensor.service.SensorService">SensorService (class in viam.components.sensor.service)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/sensor/index.html#viam.proto.api.component.sensor.SensorServiceBase">SensorServiceBase (class in viam.proto.api.component.sensor)</a>
@@ -3845,16 +3871,20 @@
 </li>
       <li><a href="autoapi/viam/rpc/server/index.html#viam.rpc.server.Server">Server (class in viam.rpc.server)</a>
 </li>
-      <li><a href="autoapi/viam/services/types/index.html#viam.services.types.Service">Service (in module viam.services.types)</a>
+      <li><a href="autoapi/viam/services/motion/index.html#viam.services.motion.MotionServiceClient.SERVICE_TYPE">SERVICE_TYPE (viam.services.motion.MotionServiceClient attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/services/sensors/index.html#viam.services.sensors.SensorsServiceClient.SERVICE_TYPE">(viam.services.sensors.SensorsServiceClient attribute)</a>
+</li>
+        <li><a href="autoapi/viam/services/service_client_base/index.html#viam.services.service_client_base.ServiceClientBase.SERVICE_TYPE">(viam.services.service_client_base.ServiceClientBase attribute)</a>
+</li>
+        <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.SERVICE_TYPE">(viam.services.vision.VisionServiceClient attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/services/service_client_base/index.html#viam.services.service_client_base.ServiceClientBase">ServiceClientBase (class in viam.services.service_client_base)</a>
 </li>
       <li><a href="autoapi/viam/errors/index.html#viam.errors.ServiceNotImplementedError">ServiceNotImplementedError</a>
 </li>
-      <li><a href="autoapi/viam/services/index.html#viam.services.ServiceType">ServiceType (class in viam.services)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/services/types/index.html#viam.services.types.ServiceType">(class in viam.services.types)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/components/servo/index.html#viam.components.servo.Servo">Servo (class in viam.components.servo)</a>
 
       <ul>
@@ -5997,10 +6027,10 @@
 </li>
       </ul></li>
       <li>
-    viam.services.types
+    viam.services.service_client_base
 
       <ul>
-        <li><a href="autoapi/viam/services/types/index.html#module-viam.services.types">module</a>
+        <li><a href="autoapi/viam/services/service_client_base/index.html#module-viam.services.service_client_base">module</a>
 </li>
       </ul></li>
       <li>
@@ -6025,12 +6055,6 @@
 </li>
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.Property.video">video (viam.proto.api.component.camera.Property property)</a>
 </li>
-      <li><a href="autoapi/viam/services/index.html#viam.services.ServiceType.VISION">VISION (viam.services.ServiceType property)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/services/types/index.html#viam.services.types.ServiceType.VISION">(viam.services.types.ServiceType property)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase">VisionServiceBase (class in viam.proto.api.service.vision)</a>
 </li>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient">VisionServiceClient (class in viam.services.vision)</a>
@@ -6108,13 +6132,7 @@
 </li>
       </ul></li>
       <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.with_channel">with_channel() (viam.robot.client.RobotClient class method)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/services/index.html#viam.services.ServiceType.with_channel">(viam.services.ServiceType method)</a>
 </li>
-        <li><a href="autoapi/viam/services/types/index.html#viam.services.types.ServiceType.with_channel">(viam.services.types.ServiceType method)</a>
-</li>
-      </ul></li>
       <li><a href="autoapi/viam/proto/api/component/arm/index.html#viam.proto.api.component.arm.MoveToPositionRequest.world_state">world_state (viam.proto.api.component.arm.MoveToPositionRequest property)</a>
 
       <ul>
