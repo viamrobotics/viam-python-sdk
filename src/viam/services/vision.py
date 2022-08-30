@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Dict, List, Tuple
 
+
 from grpclib.client import Channel
 from PIL.Image import Image
 from viam.components.types import CameraMimeType
@@ -24,6 +25,7 @@ from viam.proto.api.service.vision import (
     VisionServiceStub,
 )
 from viam.utils import dict_to_struct
+from viam.services.service_client_base import ServiceClientBase
 
 
 class DetectorType(str, Enum):
@@ -39,11 +41,13 @@ class DetectorConfig:
     parameters: Dict[str, Any]
 
 
-class VisionServiceClient:
+class VisionServiceClient(ServiceClientBase):
     """
     Connect to the Vision service, which allows you to access various computer vision algorithms
     (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
     """
+
+    SERVICE_TYPE = "vision"
 
     def __init__(self, name: str, channel: Channel):
         self.client = VisionServiceStub(channel)

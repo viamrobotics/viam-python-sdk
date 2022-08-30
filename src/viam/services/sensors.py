@@ -11,17 +11,20 @@ from viam.proto.api.service.sensors import (
     SensorsServiceStub,
 )
 from viam.utils import sensor_readings_value_to_native
+from viam.services.service_client_base import ServiceClientBase
 
 
-class SensorsServiceClient:
+class SensorsServiceClient(ServiceClientBase):
     """Connect to the SensorService, which centralizes all Sensors in a single place"""
+
+    SERVICE_TYPE = "sensors"
 
     def __init__(self, name: str, channel: Channel):
         self.client = SensorsServiceStub(channel)
         self.name = name
 
     async def get_sensors(self) -> List[ResourceName]:
-        """Get the `ResourceName`s of all the `Sensor`s conneted to this Robot
+        """Get the `ResourceName`s of all the `Sensor`s connected to this Robot
 
         Returns:
             List[ResourceName]: The list of all Sensors
