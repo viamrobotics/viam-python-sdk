@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example usage &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Changelog" href="../changelog.html" />
+    <link rel="prev" title="Viam Python SDK" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#connect-as-a-client">Connect as a client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-custom-components">Create custom components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subclass-a-component">Subclass a component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#register-the-custom-component">Register the custom component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-the-server-and-add-it-as-a-remote">Start the Server and add it as a Remote</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Example usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/example.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="example-usage">
+<h1>Example usage<a class="headerlink" href="#example-usage" title="Permalink to this heading"></a></h1>
+<p>The Viam SDK can be used in two ways:</p>
+<ol class="arabic simple">
+<li><p>As a client to connect to a (remote or local) robot</p></li>
+<li><p>To create custom components and provide additional functionality to a robot</p></li>
+</ol>
+<section id="connect-as-a-client">
+<h2>Connect as a client<a class="headerlink" href="#connect-as-a-client" title="Permalink to this heading"></a></h2>
+<p>To connect to a robot as a client, you should instantiate an instance of a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code></p>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span>
+        <span class="n">dial_options</span><span class="o">=</span><span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;0.0.0.0:9090&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ConnectionRefusedError</span><span class="g g-Whitespace">                    </span>Traceback (most recent call last)
+<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 12&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">options</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="n">dial_options</span><span class="o">=</span><span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;0.0.0.0:9090&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">Input In [2],</span> in <span class="ni">connect</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">options</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="n">dial_options</span><span class="o">=</span><span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">10</span>     <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;0.0.0.0:9090&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+
+<span class="nn">File /__w/viam-python-sdk/viam-python-sdk/src/viam/robot/client.py:90,</span> in <span class="ni">RobotClient.at_address</span><span class="nt">(cls, address, options)</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span> <span class="sd">&quot;&quot;&quot;Create a robot client that is connected to the robot at the provided address.</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">82</span><span class="sd"> Args:</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="sd">     Self: the RobotClient</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span> <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial_direct</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">dial_options</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">90</span> <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">91</span> <span class="n">robot</span><span class="o">.</span><span class="n">_should_close_channel</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">     </span><span class="mi">92</span> <span class="k">return</span> <span class="n">robot</span>
+
+<span class="nn">File /__w/viam-python-sdk/viam-python-sdk/src/viam/robot/client.py:116,</span> in <span class="ni">RobotClient.with_channel</span><span class="nt">(cls, channel, options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">115</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_close_channel</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="ne">--&gt; </span><span class="mi">116</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">118</span> <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">119</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_every</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">refresh_interval</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">viam</span><span class="o">.</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-robot_refresh_metadata&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="p">)</span>
+
+<span class="nn">File /__w/viam-python-sdk/viam-python-sdk/src/viam/robot/client.py:137,</span> in <span class="ni">RobotClient.refresh</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span><span class="sd">     Manually refresh the underlying parts of this robot</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">137</span>     <span class="n">response</span><span class="p">:</span> <span class="n">ResourceNamesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">ResourceNames</span><span class="p">(</span><span class="n">ResourceNamesRequest</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span>     <span class="n">resource_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">resources</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span>     <span class="k">if</span> <span class="n">resource_names</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span><span class="p">:</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-BVXXZUuz-py3.9/lib/python3.9/site-packages/grpclib/client.py:881,</span> in <span class="ni">UnaryUnaryMethod.__call__</span><span class="nt">(self, message, timeout, metadata)</span>
+<span class="g g-Whitespace">    </span><span class="mi">873</span> <span class="sd">&quot;&quot;&quot;Coroutine to perform defined call.</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span><span class="sd"> :param message: message</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span><span class="sd"> :return: message</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span> <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">881</span>     <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>     <span class="n">reply</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">883</span> <span class="k">assert</span> <span class="n">reply</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-BVXXZUuz-py3.9/lib/python3.9/site-packages/grpclib/client.py:241,</span> in <span class="ni">Stream.send_message</span><span class="nt">(self, message, end)</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span> <span class="sd">&quot;&quot;&quot;Coroutine to send message to the server.</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">223</span><span class="sd"> If client sends UNARY request, then you should call this coroutine only</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">238</span><span class="sd"> additional HTTP/2 frame.</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">240</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send_request_done</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">241</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_request</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span> <span class="n">end_stream</span> <span class="o">=</span> <span class="n">end</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cardinality</span><span class="o">.</span><span class="n">client_streaming</span><span class="p">:</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-BVXXZUuz-py3.9/lib/python3.9/site-packages/grpclib/client.py:173,</span> in <span class="ni">Stream.send_request</span><span class="nt">(self, end)</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s1">&#39;Unary request requires a message to be sent &#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>                         <span class="s1">&#39;before ending outgoing stream&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrapper</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">173</span>     <span class="n">protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">__connect__</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="n">stream</span> <span class="o">=</span> <span class="n">protocol</span><span class="o">.</span><span class="n">processor</span><span class="o">.</span><span class="n">connection</span>\
+<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="o">.</span><span class="n">create_stream</span><span class="p">(</span><span class="n">wrapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_wrapper</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>         <span class="p">(</span><span class="s1">&#39;:method&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="p">(</span><span class="s1">&#39;:scheme&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_scheme</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>         <span class="p">(</span><span class="s1">&#39;:path&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method_name</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">181</span>         <span class="p">(</span><span class="s1">&#39;:authority&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_authority</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span>     <span class="p">]</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-BVXXZUuz-py3.9/lib/python3.9/site-packages/grpclib/client.py:728,</span> in <span class="ni">Channel.__connect__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">726</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">727</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">728</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">729</span>     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">730</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">_ChannelState</span><span class="o">.</span><span class="n">TRANSIENT_FAILURE</span>
+
+<span class="nn">File ~/.cache/pypoetry/virtualenvs/viam-BVXXZUuz-py3.9/lib/python3.9/site-packages/grpclib/client.py:711,</span> in <span class="ni">Channel._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>     <span class="n">_</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="o">.</span><span class="n">create_unix_connection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">708</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol_factory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">,</span> <span class="n">ssl</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ssl</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">709</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">711</span>     <span class="n">_</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loop</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">712</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_protocol_factory</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_port</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">713</span>         <span class="n">ssl</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ssl</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span> <span class="k">return</span> <span class="n">protocol</span>
+
+<span class="nn">File /usr/lib/python3.9/asyncio/base_events.py:1056,</span> in <span class="ni">BaseEventLoop.create_connection</span><span class="nt">(self, protocol_factory, host, port, ssl, family, proto, flags, sock, local_addr, server_hostname, ssl_handshake_timeout, happy_eyeballs_delay, interleave)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1054</span> <span class="n">exceptions</span> <span class="o">=</span> <span class="p">[</span><span class="n">exc</span> <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">exceptions</span> <span class="k">for</span> <span class="n">exc</span> <span class="ow">in</span> <span class="n">sub</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1055</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">exceptions</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1056</span>     <span class="k">raise</span> <span class="n">exceptions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1057</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1058</span>     <span class="c1"># If they all have the same str(), raise one.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1059</span>     <span class="n">model</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">exceptions</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="nn">File /usr/lib/python3.9/asyncio/base_events.py:1041,</span> in <span class="ni">BaseEventLoop.create_connection</span><span class="nt">(self, protocol_factory, host, port, ssl, family, proto, flags, sock, local_addr, server_hostname, ssl_handshake_timeout, happy_eyeballs_delay, interleave)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1039</span> <span class="k">for</span> <span class="n">addrinfo</span> <span class="ow">in</span> <span class="n">infos</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1040</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1041</span>         <span class="n">sock</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_sock</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1042</span>             <span class="n">exceptions</span><span class="p">,</span> <span class="n">addrinfo</span><span class="p">,</span> <span class="n">laddr_infos</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1043</span>         <span class="k">break</span>
+<span class="g g-Whitespace">   </span><span class="mi">1044</span>     <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+
+<span class="nn">File /usr/lib/python3.9/asyncio/base_events.py:955,</span> in <span class="ni">BaseEventLoop._connect_sock</span><span class="nt">(self, exceptions, addr_info, local_addr_infos)</span>
+<span class="g g-Whitespace">    </span><span class="mi">953</span>         <span class="k">else</span><span class="p">:</span>  <span class="c1"># all bind attempts failed</span>
+<span class="g g-Whitespace">    </span><span class="mi">954</span>             <span class="k">raise</span> <span class="n">my_exceptions</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">955</span>     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock_connect</span><span class="p">(</span><span class="n">sock</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">956</span>     <span class="k">return</span> <span class="n">sock</span>
+<span class="g g-Whitespace">    </span><span class="mi">957</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+
+<span class="nn">File /usr/lib/python3.9/asyncio/selector_events.py:502,</span> in <span class="ni">BaseSelectorEventLoop.sock_connect</span><span class="nt">(self, sock, address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span> <span class="n">fut</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_future</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock_connect</span><span class="p">(</span><span class="n">fut</span><span class="p">,</span> <span class="n">sock</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">502</span> <span class="k">return</span> <span class="k">await</span> <span class="n">fut</span>
+
+<span class="nn">File /usr/lib/python3.9/asyncio/selector_events.py:537,</span> in <span class="ni">BaseSelectorEventLoop._sock_connect_cb</span><span class="nt">(self, fut, sock, address)</span>
+<span class="g g-Whitespace">    </span><span class="mi">534</span>     <span class="n">err</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">getsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_ERROR</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">535</span>     <span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">536</span>         <span class="c1"># Jump to any except clause below.</span>
+<span class="ne">--&gt; </span><span class="mi">537</span>         <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Connect call failed </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">538</span> <span class="k">except</span> <span class="p">(</span><span class="ne">BlockingIOError</span><span class="p">,</span> <span class="ne">InterruptedError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span>     <span class="c1"># socket is still registered, the callback will be retried later</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span>     <span class="k">pass</span>
+
+<span class="ne">ConnectionRefusedError</span>: [Errno 111] Connect call failed (&#39;0.0.0.0&#39;, 9090)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also create a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> by providing an existing connection</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial_direct</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect_with_channel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">dial_direct</span><span class="p">(</span><span class="s1">&#39;localhost:9090&#39;</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">as</span> <span class="n">channel</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once you have a connected <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code>, you can then obtain the robot’s components by their name</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.camera</span> <span class="kn">import</span> <span class="n">Camera</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+<span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;camera0&quot;</span><span class="p">)</span>
+<span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_frame</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+<span class="c1"># Don&#39;t forget to close the robot when you&#39;re done!</span>
+<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/15a47bb01d686ce08f349b0c05a86d02ce47a786e8431829d3f6de425e1c3eff.png" src="../_images/15a47bb01d686ce08f349b0c05a86d02ce47a786e8431829d3f6de425e1c3eff.png" />
+</div>
+</div>
+<p>You can also use the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> to make service calls to the connected robot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.services.types</span> <span class="kn">import</span> <span class="n">ServiceType</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">vision</span><span class="p">():</span>
+    <span class="n">vision_service</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">ServiceType</span><span class="o">.</span><span class="n">VISION</span><span class="p">)</span>
+    <span class="n">detectors</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision_service</span><span class="o">.</span><span class="n">get_detections</span><span class="p">(</span><span class="s2">&quot;camera_1&quot;</span><span class="p">,</span> <span class="s2">&quot;detector_1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At the end, don’t forget to close the connection</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-custom-components">
+<h2>Create custom components<a class="headerlink" href="#create-custom-components" title="Permalink to this heading"></a></h2>
+<p>While the main RDK is written in golang, you can create custom components in python and connect them to a robot as a <code class="docutils literal notranslate"><span class="pre">remote</span></code> component. This allows you to extend the functionality of a robot, or even create an entire robot exclusively in python.</p>
+<p>The steps required in creating a custom component and connecting it to the RDK are</p>
+<ol class="arabic simple">
+<li><p>Subclass a component and implement desired functions</p></li>
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">rpc.server.Server</span></code> instance and register the custom component</p></li>
+<li><p>Start the <code class="docutils literal notranslate"><span class="pre">Server</span></code> and register the running server as a remote</p></li>
+</ol>
+<section id="subclass-a-component">
+<h3>Subclass a component<a class="headerlink" href="#subclass-a-component" title="Permalink to this heading"></a></h3>
+<p>The SDK provides a wide array of components to customize. You can browse through the API Reference to see all of them, but for now we’ll use an <code class="docutils literal notranslate"><span class="pre">Arm</span></code> as an example. Our custom Arm will be extremely simple – it will only save and return the positions provided to it.</p>
+<p>Let’s start by creating a directory called <code class="docutils literal notranslate"><span class="pre">my-python-robot</span></code>. Inside of that directory, create a file called <code class="docutils literal notranslate"><span class="pre">my_cool_arm.py</span></code>. The contents of <code class="docutils literal notranslate"><span class="pre">my_cool_arm.py</span></code> should be as follows:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #ffffcc }
+.highlight { background: #f8f8f8; }
+.highlight .c { color: #3D7B7B; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #9C6500 } /* Comment.Preproc */
+.highlight .cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #E40000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #008400 } /* Generic.Inserted */
+.highlight .go { color: #717171 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #687822 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #717171; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #767600 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #A45A77 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">WorldState</span>
+
+
+<span class="k">class</span> <span class="nc">MyCoolArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
+    <span class="c1"># Subclass the Viam Arm component and implement the required functions</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Starting position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span>
+            <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">o_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">o_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">o_z</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Starting joint positions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">JointPositions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stoppped</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_end_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stoppped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">pose</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JointPositions</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">:</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stoppped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">positions</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stoppped</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div></div>
+</div>
+<p>You can view more component implementations in the <a class="reference external" href="https://github.com/viamrobotics/python-sdk/blob/main/examples/server/v1/components.py">examples</a>.</p>
+</section>
+<section id="register-the-custom-component">
+<h3>Register the custom component<a class="headerlink" href="#register-the-custom-component" title="Permalink to this heading"></a></h3>
+<p>Now that we’ve created the custom component, we must register it with a server so that it will be visible to any robots connecting to it.</p>
+<p>In the same <code class="docutils literal notranslate"><span class="pre">my-python-robot</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">python_server.py</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/python_server.py</span>
+
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.server</span> <span class="kn">import</span> <span class="n">Server</span>
+
+<span class="kn">from</span> <span class="nn">my_cool_arm</span> <span class="kn">import</span> <span class="n">MyCoolArm</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">([</span><span class="n">MyCoolArm</span><span class="p">(</span><span class="s1">&#39;my-arm&#39;</span><span class="p">)])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/vh/04mycgp163125hlq8k9bkl8w0000gn/T/ipykernel_50114/2037726754.py:15: RuntimeWarning: coroutine &#39;main&#39; was never awaited
+  pass
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="start-the-server-and-add-it-as-a-remote">
+<h3>Start the Server and add it as a Remote<a class="headerlink" href="#start-the-server-and-add-it-as-a-remote" title="Permalink to this heading"></a></h3>
+<p>Now that we have a server that knows about our custom Arm component, we need to start the server so it can receive gRPC calls. Once it’s started, we can then register this server as a remote.</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/python_server.py</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+  <span class="o">...</span>
+  <span class="k">await</span> <span class="n">srv</span><span class="o">.</span><span class="n">serve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>NB</strong>: When you call <code class="docutils literal notranslate"><span class="pre">srv.serve()</span></code>, the default host and port is <code class="docutils literal notranslate"><span class="pre">localhost:9090</span></code>. This can be changed by passing in a <code class="docutils literal notranslate"><span class="pre">host</span></code> and/or <code class="docutils literal notranslate"><span class="pre">port</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">serve</span></code> function.</p>
+<p>To use this custom server as part of a larger robot, you’ll want to add it as a <code class="docutils literal notranslate"><span class="pre">remote</span></code> in the config for your main part.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-cool-python-components&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// The name of the remote, can be anything</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;insecure&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">                    </span><span class="c1">// Whether this connection should use SSL</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;localhost:9090&quot;</span><span class="w">          </span><span class="c1">// The location of the remote robot</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p>And to ensure that the python server starts up with the rest of the robot, you can add it as a process.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;/home/pi/my-python-robot/python_server.py&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>NB</strong>: The <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> starts as a root process, so you may need to switch users to run the python SDK server.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sudo&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;-u&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;pi&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;/home/pi/my-python-robot/python-server.py&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Viam Python SDK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
