@@ -52,7 +52,7 @@ Classes
 .. py:class:: SLAMServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetMapRequest(*, name: Text = ..., mime_type: Text = ..., camera_position: Optional[viam.gen.proto.api.common.v1.common_pb2.Pose] = ..., include_robot_marker: bool = ...)
+.. py:class:: GetMapRequest(*, name: str = ..., mime_type: str = ..., camera_position: proto.api.common.v1.common_pb2.Pose | None = ..., include_robot_marker: bool = ...)
 
 
 
@@ -63,12 +63,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of slam service
 
    .. py:attribute:: mime_type
-      :annotation: :Text
+      :annotation: :str
 
       Requested MIME type of response (image/jpeg or image/pcd)
 
@@ -85,7 +85,7 @@ Classes
       cloud into a 2D image.
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[_camera_position, b'_camera_position', camera_position, b'camera_position']) -> bool
+   .. py:method:: HasField(field_name: Literal[_camera_position, b'_camera_position', camera_position, b'camera_position']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -102,7 +102,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[_camera_position, b'_camera_position']) -> Optional[typing_extensions.Literal[camera_position]]
+   .. py:method:: WhichOneof(oneof_group: Literal[_camera_position, b'_camera_position']) -> typing_extensions.Literal['camera_position'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -118,7 +118,7 @@ Classes
 
 
 
-.. py:class:: GetMapResponse(*, point_cloud: Optional[viam.gen.proto.api.common.v1.common_pb2.PointCloudObject] = ..., image: bytes = ..., mime_type: Text = ...)
+.. py:class:: GetMapResponse(*, point_cloud: proto.api.common.v1.common_pb2.PointCloudObject | None = ..., image: bytes = ..., mime_type: str = ...)
 
 
 
@@ -134,7 +134,7 @@ Classes
       
 
    .. py:attribute:: mime_type
-      :annotation: :Text
+      :annotation: :str
 
       Actual MIME type of response (image/jpeg or image/pcd)
 
@@ -142,7 +142,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[image, b'image', map, b'map', point_cloud, b'point_cloud']) -> bool
+   .. py:method:: HasField(field_name: Literal[image, b'image', map, b'map', point_cloud, b'point_cloud']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -159,7 +159,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[map, b'map']) -> Optional[typing_extensions.Literal[point_cloud, image]]
+   .. py:method:: WhichOneof(oneof_group: Literal[map, b'map']) -> typing_extensions.Literal['point_cloud', 'image'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -175,7 +175,7 @@ Classes
 
 
 
-.. py:class:: GetPositionRequest(*, name: Text = ...)
+.. py:class:: GetPositionRequest(*, name: str = ...)
 
 
 
@@ -186,12 +186,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of slam service
 
 
-.. py:class:: GetPositionResponse(*, pose: Optional[viam.gen.proto.api.common.v1.common_pb2.PoseInFrame] = ...)
+.. py:class:: GetPositionResponse(*, pose: proto.api.common.v1.common_pb2.PoseInFrame | None = ...)
 
 
 
@@ -207,7 +207,7 @@ Classes
       Current position of the robot within the World frame.
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 

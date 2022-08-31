@@ -70,7 +70,7 @@ Classes
 .. py:class:: CameraServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetFrameRequest(*, name: Text = ..., mime_type: Text = ...)
+.. py:class:: GetFrameRequest(*, name: str = ..., mime_type: str = ...)
 
 
 
@@ -81,17 +81,17 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a camera
 
    .. py:attribute:: mime_type
-      :annotation: :Text
+      :annotation: :str
 
       Requested MIME type of response
 
 
-.. py:class:: GetFrameResponse(*, mime_type: Text = ..., image: bytes = ..., width_px: int = ..., height_px: int = ...)
+.. py:class:: GetFrameResponse(*, mime_type: str = ..., image: bytes = ..., width_px: int = ..., height_px: int = ...)
 
 
 
@@ -102,7 +102,7 @@ Classes
    shown below.
 
    .. py:attribute:: mime_type
-      :annotation: :Text
+      :annotation: :str
 
       Actual MIME type of response
 
@@ -122,7 +122,7 @@ Classes
       Height of frame in px
 
 
-.. py:class:: GetPointCloudRequest(*, name: Text = ..., mime_type: Text = ...)
+.. py:class:: GetPointCloudRequest(*, name: str = ..., mime_type: str = ...)
 
 
 
@@ -133,17 +133,17 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a camera
 
    .. py:attribute:: mime_type
-      :annotation: :Text
+      :annotation: :str
 
       Requested MIME type of response
 
 
-.. py:class:: GetPointCloudResponse(*, mime_type: Text = ..., point_cloud: bytes = ...)
+.. py:class:: GetPointCloudResponse(*, mime_type: str = ..., point_cloud: bytes = ...)
 
 
 
@@ -154,7 +154,7 @@ Classes
    shown below.
 
    .. py:attribute:: mime_type
-      :annotation: :Text
+      :annotation: :str
 
       Actual MIME type of response
 
@@ -164,7 +164,7 @@ Classes
       Frame in bytes
 
 
-.. py:class:: GetPropertiesRequest(*, name: Text = ...)
+.. py:class:: GetPropertiesRequest(*, name: str = ...)
 
 
 
@@ -175,12 +175,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a camera
 
 
-.. py:class:: GetPropertiesResponse(*, intrinsic_parameters: Optional[global___IntrinsicParameters] = ...)
+.. py:class:: GetPropertiesResponse(*, intrinsic_parameters: global___IntrinsicParameters | None = ...)
 
 
 
@@ -194,7 +194,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[intrinsic_parameters, b'intrinsic_parameters']) -> bool
+   .. py:method:: HasField(field_name: Literal[intrinsic_parameters, b'intrinsic_parameters']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -253,7 +253,7 @@ Classes
       
 
 
-.. py:class:: Property(*, video: Optional[global___Video] = ...)
+.. py:class:: Property(*, video: global___Video | None = ...)
 
 
 
@@ -269,7 +269,7 @@ Classes
       Camera video properties
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[video, b'video']) -> bool
+   .. py:method:: HasField(field_name: Literal[video, b'video']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -287,7 +287,7 @@ Classes
 
 
 
-.. py:class:: RenderFrameRequest(*, name: Text = ..., mime_type: Text = ...)
+.. py:class:: RenderFrameRequest(*, name: str = ..., mime_type: str = ...)
 
 
 
@@ -298,17 +298,17 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a camera
 
    .. py:attribute:: mime_type
-      :annotation: :Text
+      :annotation: :str
 
       Requested MIME type of response
 
 
-.. py:class:: Video(*, width: int = ..., height: int = ..., frame_format: Text = ...)
+.. py:class:: Video(*, width: int = ..., height: int = ..., frame_format: str = ...)
 
 
 
@@ -329,12 +329,12 @@ Classes
       Video resolution height
 
    .. py:attribute:: frame_format
-      :annotation: :Text
+      :annotation: :str
 
       Video frame format
 
 
-.. py:class:: Webcam(*, label: Text = ..., status: Text = ..., properties: Optional[Iterable[global___Property]] = ...)
+.. py:class:: Webcam(*, label: str = ..., status: str = ..., properties: collections.abc.Iterable[global___Property] | None = ...)
 
 
 
@@ -345,12 +345,12 @@ Classes
    shown below.
 
    .. py:attribute:: label
-      :annotation: :Text
+      :annotation: :str
 
       Camera driver label
 
    .. py:attribute:: status
-      :annotation: :Text
+      :annotation: :str
 
       Camera driver status
 
@@ -361,7 +361,7 @@ Classes
 
 
 
-.. py:class:: Webcams(*, webcams: Optional[Iterable[global___Webcam]] = ...)
+.. py:class:: Webcams(*, webcams: collections.abc.Iterable[global___Webcam] | None = ...)
 
 
 

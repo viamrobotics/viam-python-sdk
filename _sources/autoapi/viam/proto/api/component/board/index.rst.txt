@@ -101,21 +101,19 @@ Classes
 .. py:class:: BoardServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetDigitalInterruptValueRequest(*, board_name: Text = ..., digital_interrupt_name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: GetDigitalInterruptValueRequest(*, board_name: str = ..., digital_interrupt_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
    Digital Interrupt
 
-
-
    .. py:attribute:: board_name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: digital_interrupt_name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -125,7 +123,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -159,7 +157,7 @@ Classes
       
 
 
-.. py:class:: GetGPIORequest(*, name: Text = ..., pin: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: GetGPIORequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -170,12 +168,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: pin
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -185,7 +183,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -219,7 +217,7 @@ Classes
       
 
 
-.. py:class:: PWMFrequencyRequest(*, name: Text = ..., pin: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: PWMFrequencyRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -230,12 +228,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: pin
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -245,7 +243,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -279,7 +277,7 @@ Classes
       
 
 
-.. py:class:: PWMRequest(*, name: Text = ..., pin: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: PWMRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -290,12 +288,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: pin
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -305,7 +303,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -339,21 +337,19 @@ Classes
       0-1
 
 
-.. py:class:: ReadAnalogReaderRequest(*, board_name: Text = ..., analog_reader_name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: ReadAnalogReaderRequest(*, board_name: str = ..., analog_reader_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
    Analog Reader
 
-
-
    .. py:attribute:: board_name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: analog_reader_name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -363,7 +359,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -397,7 +393,7 @@ Classes
       
 
 
-.. py:class:: SetGPIORequest(*, name: Text = ..., pin: Text = ..., high: bool = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: SetGPIORequest(*, name: str = ..., pin: str = ..., high: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -408,12 +404,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: pin
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -428,7 +424,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -457,7 +453,7 @@ Classes
    shown below.
 
 
-.. py:class:: SetPWMFrequencyRequest(*, name: Text = ..., pin: Text = ..., frequency_hz: int = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: SetPWMFrequencyRequest(*, name: str = ..., pin: str = ..., frequency_hz: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -468,12 +464,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: pin
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -488,7 +484,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -517,7 +513,7 @@ Classes
    shown below.
 
 
-.. py:class:: SetPWMRequest(*, name: Text = ..., pin: Text = ..., duty_cycle_pct: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: SetPWMRequest(*, name: str = ..., pin: str = ..., duty_cycle_pct: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -528,12 +524,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: pin
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -548,7 +544,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -577,7 +573,7 @@ Classes
    shown below.
 
 
-.. py:class:: StatusRequest(*, name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: StatusRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -588,7 +584,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -598,7 +594,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -616,7 +612,7 @@ Classes
 
 
 
-.. py:class:: StatusResponse(*, status: Optional[viam.gen.proto.api.common.v1.common_pb2.BoardStatus] = ...)
+.. py:class:: StatusResponse(*, status: proto.api.common.v1.common_pb2.BoardStatus | None = ...)
 
 
 
@@ -630,7 +626,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[status, b'status']) -> bool
+   .. py:method:: HasField(field_name: Literal[status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 

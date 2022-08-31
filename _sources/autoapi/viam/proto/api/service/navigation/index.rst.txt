@@ -81,7 +81,7 @@ Classes
 .. py:class:: NavigationServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: AddWaypointRequest(*, name: Text = ..., location: Optional[viam.gen.proto.api.common.v1.common_pb2.GeoPoint] = ...)
+.. py:class:: AddWaypointRequest(*, name: str = ..., location: proto.api.common.v1.common_pb2.GeoPoint | None = ...)
 
 
 
@@ -92,7 +92,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -100,7 +100,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[location, b'location']) -> bool
+   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -129,7 +129,7 @@ Classes
    shown below.
 
 
-.. py:class:: GetLocationRequest(*, name: Text = ...)
+.. py:class:: GetLocationRequest(*, name: str = ...)
 
 
 
@@ -140,12 +140,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
 
-.. py:class:: GetLocationResponse(*, location: Optional[viam.gen.proto.api.common.v1.common_pb2.GeoPoint] = ...)
+.. py:class:: GetLocationResponse(*, location: proto.api.common.v1.common_pb2.GeoPoint | None = ...)
 
 
 
@@ -159,7 +159,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[location, b'location']) -> bool
+   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -177,7 +177,7 @@ Classes
 
 
 
-.. py:class:: GetModeRequest(*, name: Text = ...)
+.. py:class:: GetModeRequest(*, name: str = ...)
 
 
 
@@ -188,7 +188,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -209,7 +209,7 @@ Classes
       
 
 
-.. py:class:: GetWaypointsRequest(*, name: Text = ...)
+.. py:class:: GetWaypointsRequest(*, name: str = ...)
 
 
 
@@ -220,12 +220,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
 
-.. py:class:: GetWaypointsResponse(*, waypoints: Optional[Iterable[global___Waypoint]] = ...)
+.. py:class:: GetWaypointsResponse(*, waypoints: collections.abc.Iterable[global___Waypoint] | None = ...)
 
 
 
@@ -240,7 +240,7 @@ Classes
 
 
 
-.. py:class:: RemoveWaypointRequest(*, name: Text = ..., id: Text = ...)
+.. py:class:: RemoveWaypointRequest(*, name: str = ..., id: str = ...)
 
 
 
@@ -251,12 +251,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: id
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -272,7 +272,7 @@ Classes
    shown below.
 
 
-.. py:class:: SetModeRequest(*, name: Text = ..., mode: global___Mode = ...)
+.. py:class:: SetModeRequest(*, name: str = ..., mode: global___Mode = ...)
 
 
 
@@ -283,7 +283,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -304,7 +304,7 @@ Classes
    shown below.
 
 
-.. py:class:: Waypoint(*, id: Text = ..., location: Optional[viam.gen.proto.api.common.v1.common_pb2.GeoPoint] = ...)
+.. py:class:: Waypoint(*, id: str = ..., location: proto.api.common.v1.common_pb2.GeoPoint | None = ...)
 
 
 
@@ -315,7 +315,7 @@ Classes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -323,7 +323,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[location, b'location']) -> bool
+   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
 
       Checks if a certain field is set for the message.
 

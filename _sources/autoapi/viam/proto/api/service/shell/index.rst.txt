@@ -45,7 +45,7 @@ Classes
 .. py:class:: ShellServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: ShellRequest(*, name: Text = ..., data_in: Text = ...)
+.. py:class:: ShellRequest(*, name: str = ..., data_in: str = ...)
 
 
 
@@ -56,17 +56,17 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: data_in
-      :annotation: :Text
+      :annotation: :str
 
       
 
 
-.. py:class:: ShellResponse(*, data_out: Text = ..., data_err: Text = ..., eof: bool = ...)
+.. py:class:: ShellResponse(*, data_out: str = ..., data_err: str = ..., eof: bool = ...)
 
 
 
@@ -77,12 +77,12 @@ Classes
    shown below.
 
    .. py:attribute:: data_out
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: data_err
-      :annotation: :Text
+      :annotation: :str
 
       
 

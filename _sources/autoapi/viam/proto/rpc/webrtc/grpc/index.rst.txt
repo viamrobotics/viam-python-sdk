@@ -35,14 +35,14 @@ Classes
 
 
 
-.. py:class:: Metadata(*, md: Optional[Mapping[Text, global___Strings]] = ...)
+.. py:class:: Metadata(*, md: collections.abc.Mapping[builtins.str, global___Strings] | None = ...)
 
 
 
    Metadata is for custom key values provided by a client or server
    during a stream.
 
-   .. py:class:: MdEntry(*, key: Text = ..., value: Optional[global___Strings] = ...)
+   .. py:class:: MdEntry(*, key: str = ..., value: global___Strings | None = ...)
 
 
 
@@ -53,7 +53,7 @@ Classes
       shown below.
 
       .. py:attribute:: key
-         :annotation: :Text
+         :annotation: :str
 
          
 
@@ -61,7 +61,7 @@ Classes
          :property:
 
 
-      .. py:method:: HasField(field_name: typing_extensions.Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -79,7 +79,7 @@ Classes
 
 
 
-   .. py:method:: md() -> google.protobuf.internal.containers.MessageMap[Text, global___Strings]
+   .. py:method:: md() -> google.protobuf.internal.containers.MessageMap[str, global___Strings]
       :property:
 
 
@@ -102,7 +102,7 @@ Classes
       
 
 
-.. py:class:: Request(*, stream: Optional[global___Stream] = ..., headers: Optional[global___RequestHeaders] = ..., message: Optional[global___RequestMessage] = ...)
+.. py:class:: Request(*, stream: global___Stream | None = ..., headers: global___RequestHeaders | None = ..., message: global___RequestMessage | None = ...)
 
 
 
@@ -123,7 +123,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[headers, b'headers', message, b'message', stream, b'stream', type, b'type']) -> bool
+   .. py:method:: HasField(field_name: Literal[headers, b'headers', message, b'message', stream, b'stream', type, b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -140,7 +140,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[type, b'type']) -> Optional[typing_extensions.Literal[headers, message]]
+   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> typing_extensions.Literal['headers', 'message'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -156,14 +156,14 @@ Classes
 
 
 
-.. py:class:: RequestHeaders(*, method: Text = ..., metadata: Optional[global___Metadata] = ..., timeout: Optional[google.protobuf.duration_pb2.Duration] = ...)
+.. py:class:: RequestHeaders(*, method: str = ..., metadata: global___Metadata | None = ..., timeout: google.protobuf.duration_pb2.Duration | None = ...)
 
 
 
    RequestHeaders describe the unary or streaming call to make.
 
    .. py:attribute:: method
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -175,7 +175,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[metadata, b'metadata', timeout, b'timeout']) -> bool
+   .. py:method:: HasField(field_name: Literal[metadata, b'metadata', timeout, b'timeout']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -193,7 +193,7 @@ Classes
 
 
 
-.. py:class:: RequestMessage(*, has_message: bool = ..., packet_message: Optional[global___PacketMessage] = ..., eos: bool = ...)
+.. py:class:: RequestMessage(*, has_message: bool = ..., packet_message: global___PacketMessage | None = ..., eos: bool = ...)
 
 
 
@@ -214,7 +214,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[packet_message, b'packet_message']) -> bool
+   .. py:method:: HasField(field_name: Literal[packet_message, b'packet_message']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -232,7 +232,7 @@ Classes
 
 
 
-.. py:class:: Response(*, stream: Optional[global___Stream] = ..., headers: Optional[global___ResponseHeaders] = ..., message: Optional[global___ResponseMessage] = ..., trailers: Optional[global___ResponseTrailers] = ...)
+.. py:class:: Response(*, stream: global___Stream | None = ..., headers: global___ResponseHeaders | None = ..., message: global___ResponseMessage | None = ..., trailers: global___ResponseTrailers | None = ...)
 
 
 
@@ -257,7 +257,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[headers, b'headers', message, b'message', stream, b'stream', trailers, b'trailers', type, b'type']) -> bool
+   .. py:method:: HasField(field_name: Literal[headers, b'headers', message, b'message', stream, b'stream', trailers, b'trailers', type, b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -274,7 +274,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[type, b'type']) -> Optional[typing_extensions.Literal[headers, message, trailers]]
+   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> typing_extensions.Literal['headers', 'message', 'trailers'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -290,7 +290,7 @@ Classes
 
 
 
-.. py:class:: ResponseHeaders(*, metadata: Optional[global___Metadata] = ...)
+.. py:class:: ResponseHeaders(*, metadata: global___Metadata | None = ...)
 
 
 
@@ -301,7 +301,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[metadata, b'metadata']) -> bool
+   .. py:method:: HasField(field_name: Literal[metadata, b'metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -319,7 +319,7 @@ Classes
 
 
 
-.. py:class:: ResponseMessage(*, packet_message: Optional[global___PacketMessage] = ...)
+.. py:class:: ResponseMessage(*, packet_message: global___PacketMessage | None = ...)
 
 
 
@@ -329,7 +329,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[packet_message, b'packet_message']) -> bool
+   .. py:method:: HasField(field_name: Literal[packet_message, b'packet_message']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -347,7 +347,7 @@ Classes
 
 
 
-.. py:class:: ResponseTrailers(*, status: Optional[google.rpc.status_pb2.Status] = ..., metadata: Optional[global___Metadata] = ...)
+.. py:class:: ResponseTrailers(*, status: google.rpc.status_pb2.Status | None = ..., metadata: global___Metadata | None = ...)
 
 
 
@@ -361,7 +361,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[metadata, b'metadata', status, b'status']) -> bool
+   .. py:method:: HasField(field_name: Literal[metadata, b'metadata', status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -392,13 +392,13 @@ Classes
       
 
 
-.. py:class:: Strings(*, values: Optional[Iterable[Text]] = ...)
+.. py:class:: Strings(*, values: collections.abc.Iterable[builtins.str] | None = ...)
 
 
 
    Strings are a series of values.
 
-   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
       :property:
 
 

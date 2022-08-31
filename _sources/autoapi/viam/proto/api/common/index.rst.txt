@@ -67,7 +67,7 @@ Classes
       Current value of the analog reader of a robot's board
 
 
-.. py:class:: BoardStatus(*, analogs: Optional[Mapping[Text, global___AnalogStatus]] = ..., digital_interrupts: Optional[Mapping[Text, global___DigitalInterruptStatus]] = ...)
+.. py:class:: BoardStatus(*, analogs: collections.abc.Mapping[builtins.str, global___AnalogStatus] | None = ..., digital_interrupts: collections.abc.Mapping[builtins.str, global___DigitalInterruptStatus] | None = ...)
 
 
 
@@ -77,7 +77,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:class:: AnalogsEntry(*, key: Text = ..., value: Optional[global___AnalogStatus] = ...)
+   .. py:class:: AnalogsEntry(*, key: str = ..., value: global___AnalogStatus | None = ...)
 
 
 
@@ -88,7 +88,7 @@ Classes
       shown below.
 
       .. py:attribute:: key
-         :annotation: :Text
+         :annotation: :str
 
          
 
@@ -96,7 +96,7 @@ Classes
          :property:
 
 
-      .. py:method:: HasField(field_name: typing_extensions.Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -114,7 +114,7 @@ Classes
 
 
 
-   .. py:class:: DigitalInterruptsEntry(*, key: Text = ..., value: Optional[global___DigitalInterruptStatus] = ...)
+   .. py:class:: DigitalInterruptsEntry(*, key: str = ..., value: global___DigitalInterruptStatus | None = ...)
 
 
 
@@ -125,7 +125,7 @@ Classes
       shown below.
 
       .. py:attribute:: key
-         :annotation: :Text
+         :annotation: :str
 
          
 
@@ -133,7 +133,7 @@ Classes
          :property:
 
 
-      .. py:method:: HasField(field_name: typing_extensions.Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -151,11 +151,11 @@ Classes
 
 
 
-   .. py:method:: analogs() -> google.protobuf.internal.containers.MessageMap[Text, global___AnalogStatus]
+   .. py:method:: analogs() -> google.protobuf.internal.containers.MessageMap[str, global___AnalogStatus]
       :property:
 
 
-   .. py:method:: digital_interrupts() -> google.protobuf.internal.containers.MessageMap[Text, global___DigitalInterruptStatus]
+   .. py:method:: digital_interrupts() -> google.protobuf.internal.containers.MessageMap[str, global___DigitalInterruptStatus]
       :property:
 
 
@@ -197,7 +197,7 @@ Classes
       
 
 
-.. py:class:: GeometriesInFrame(*, reference_frame: Text = ..., geometries: Optional[Iterable[global___Geometry]] = ...)
+.. py:class:: GeometriesInFrame(*, reference_frame: str = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
 
 
 
@@ -205,7 +205,7 @@ Classes
    observed.
 
    .. py:attribute:: reference_frame
-      :annotation: :Text
+      :annotation: :str
 
       Reference frame of the observer of the geometry
 
@@ -216,7 +216,7 @@ Classes
 
 
 
-.. py:class:: Geometry(*, center: Optional[global___Pose] = ..., sphere: Optional[global___Sphere] = ..., box: Optional[global___RectangularPrism] = ...)
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ...)
 
 
 
@@ -236,7 +236,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[box, b'box', center, b'center', geometry_type, b'geometry_type', sphere, b'sphere']) -> bool
+   .. py:method:: HasField(field_name: Literal[box, b'box', center, b'center', geometry_type, b'geometry_type', sphere, b'sphere']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -253,7 +253,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[geometry_type, b'geometry_type']) -> Optional[typing_extensions.Literal[sphere, box]]
+   .. py:method:: WhichOneof(oneof_group: Literal[geometry_type, b'geometry_type']) -> typing_extensions.Literal['sphere', 'box'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -300,7 +300,7 @@ Classes
       degrees
 
 
-.. py:class:: PointCloudObject(*, point_cloud: bytes = ..., geometries: Optional[global___GeometriesInFrame] = ...)
+.. py:class:: PointCloudObject(*, point_cloud: bytes = ..., geometries: global___GeometriesInFrame | None = ...)
 
 
 
@@ -318,7 +318,7 @@ Classes
       volume of a given geometry
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[geometries, b'geometries']) -> bool
+   .. py:method:: HasField(field_name: Literal[geometries, b'geometries']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -385,14 +385,14 @@ Classes
       degrees
 
 
-.. py:class:: PoseInFrame(*, reference_frame: Text = ..., pose: Optional[global___Pose] = ...)
+.. py:class:: PoseInFrame(*, reference_frame: str = ..., pose: global___Pose | None = ...)
 
 
 
    PoseInFrame contains a pose and the and the reference frame in which it was observed
 
    .. py:attribute:: reference_frame
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -400,7 +400,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -418,7 +418,7 @@ Classes
 
 
 
-.. py:class:: RectangularPrism(*, dims_mm: Optional[global___Vector3] = ...)
+.. py:class:: RectangularPrism(*, dims_mm: global___Vector3 | None = ...)
 
 
 
@@ -429,7 +429,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[dims_mm, b'dims_mm']) -> bool
+   .. py:method:: HasField(field_name: Literal[dims_mm, b'dims_mm']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -447,7 +447,7 @@ Classes
 
 
 
-.. py:class:: ResourceName(*, namespace: Text = ..., type: Text = ..., subtype: Text = ..., name: Text = ...)
+.. py:class:: ResourceName(*, namespace: str = ..., type: str = ..., subtype: str = ..., name: str = ...)
 
 
 
@@ -458,22 +458,22 @@ Classes
    shown below.
 
    .. py:attribute:: namespace
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: type
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: subtype
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -494,7 +494,7 @@ Classes
       
 
 
-.. py:class:: Transform(*, reference_frame: Text = ..., pose_in_observer_frame: Optional[global___PoseInFrame] = ...)
+.. py:class:: Transform(*, reference_frame: str = ..., pose_in_observer_frame: global___PoseInFrame | None = ...)
 
 
 
@@ -503,7 +503,7 @@ Classes
    reference frame as observed within the second reference frame.
 
    .. py:attribute:: reference_frame
-      :annotation: :Text
+      :annotation: :str
 
       the name of a given reference frame
 
@@ -513,7 +513,7 @@ Classes
       the pose of the above reference frame with respect to a different observer reference frame
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[pose_in_observer_frame, b'pose_in_observer_frame']) -> bool
+   .. py:method:: HasField(field_name: Literal[pose_in_observer_frame, b'pose_in_observer_frame']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -557,7 +557,7 @@ Classes
       
 
 
-.. py:class:: WorldState(*, obstacles: Optional[Iterable[global___GeometriesInFrame]] = ..., interaction_spaces: Optional[Iterable[global___GeometriesInFrame]] = ..., transforms: Optional[Iterable[global___Transform]] = ...)
+.. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., interaction_spaces: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
 
 
 

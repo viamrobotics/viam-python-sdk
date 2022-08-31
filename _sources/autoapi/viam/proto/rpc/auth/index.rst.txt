@@ -69,14 +69,14 @@ Classes
 .. py:class:: ExternalAuthServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: AuthenticateRequest(*, entity: Text = ..., credentials: Optional[global___Credentials] = ...)
+.. py:class:: AuthenticateRequest(*, entity: str = ..., credentials: global___Credentials | None = ...)
 
 
 
    An AuthenticateRequest contains the credentials used to authenticate.
 
    .. py:attribute:: entity
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -84,7 +84,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[credentials, b'credentials']) -> bool
+   .. py:method:: HasField(field_name: Literal[credentials, b'credentials']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -102,47 +102,47 @@ Classes
 
 
 
-.. py:class:: AuthenticateResponse(*, access_token: Text = ...)
+.. py:class:: AuthenticateResponse(*, access_token: str = ...)
 
 
 
    An AuthenticateResponse is returned after successful authentication.
 
    .. py:attribute:: access_token
-      :annotation: :Text
+      :annotation: :str
 
       access_token is a JWT where only the expiration should be deemed
       important.
       Future(erd): maybe a refresh_token
 
 
-.. py:class:: AuthenticateToRequest(*, entity: Text = ...)
+.. py:class:: AuthenticateToRequest(*, entity: str = ...)
 
 
 
    An AuthenticateToRequest contains the entity to authenticate to.
 
    .. py:attribute:: entity
-      :annotation: :Text
+      :annotation: :str
 
       
 
 
-.. py:class:: AuthenticateToResponse(*, access_token: Text = ...)
+.. py:class:: AuthenticateToResponse(*, access_token: str = ...)
 
 
 
    An AuthenticateResponse is returned after successful authentication.
 
    .. py:attribute:: access_token
-      :annotation: :Text
+      :annotation: :str
 
       access_token is a JWT where only the expiration should be deemed
       important.
       Future(erd): maybe a refresh_token
 
 
-.. py:class:: Credentials(*, type: Text = ..., payload: Text = ...)
+.. py:class:: Credentials(*, type: str = ..., payload: str = ...)
 
 
 
@@ -153,12 +153,12 @@ Classes
    shown below.
 
    .. py:attribute:: type
-      :annotation: :Text
+      :annotation: :str
 
       type is the type of credentials being used.
 
    .. py:attribute:: payload
-      :annotation: :Text
+      :annotation: :str
 
       payload is an opaque string used that are of the given type above.
 

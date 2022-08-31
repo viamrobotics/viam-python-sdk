@@ -122,7 +122,7 @@ Classes
 .. py:class:: RobotServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: BlockForOperationRequest(*, id: Text = ...)
+.. py:class:: BlockForOperationRequest(*, id: str = ...)
 
 
 
@@ -133,7 +133,7 @@ Classes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -149,7 +149,7 @@ Classes
    shown below.
 
 
-.. py:class:: CancelOperationRequest(*, id: Text = ...)
+.. py:class:: CancelOperationRequest(*, id: str = ...)
 
 
 
@@ -160,7 +160,7 @@ Classes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -176,7 +176,7 @@ Classes
    shown below.
 
 
-.. py:class:: DiscoverComponentsRequest(*, queries: Optional[Iterable[global___DiscoveryQuery]] = ...)
+.. py:class:: DiscoverComponentsRequest(*, queries: collections.abc.Iterable[global___DiscoveryQuery] | None = ...)
 
 
 
@@ -191,7 +191,7 @@ Classes
 
 
 
-.. py:class:: DiscoverComponentsResponse(*, discovery: Optional[Iterable[global___Discovery]] = ...)
+.. py:class:: DiscoverComponentsResponse(*, discovery: collections.abc.Iterable[global___Discovery] | None = ...)
 
 
 
@@ -206,7 +206,7 @@ Classes
 
 
 
-.. py:class:: Discovery(*, query: Optional[global___DiscoveryQuery] = ..., results: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: Discovery(*, query: global___DiscoveryQuery | None = ..., results: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -224,7 +224,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[query, b'query', results, b'results']) -> bool
+   .. py:method:: HasField(field_name: Literal[query, b'query', results, b'results']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -242,26 +242,24 @@ Classes
 
 
 
-.. py:class:: DiscoveryQuery(*, subtype: Text = ..., model: Text = ...)
+.. py:class:: DiscoveryQuery(*, subtype: str = ..., model: str = ...)
 
 
 
    Discovery
 
-
-
    .. py:attribute:: subtype
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: model
-      :annotation: :Text
+      :annotation: :str
 
       
 
 
-.. py:class:: FrameSystemConfig(*, name: Text = ..., pose_in_parent_frame: Optional[viam.gen.proto.api.common.v1.common_pb2.PoseInFrame] = ..., model_json: bytes = ...)
+.. py:class:: FrameSystemConfig(*, name: str = ..., pose_in_parent_frame: proto.api.common.v1.common_pb2.PoseInFrame | None = ..., model_json: bytes = ...)
 
 
 
@@ -272,7 +270,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -285,7 +283,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[pose_in_parent_frame, b'pose_in_parent_frame']) -> bool
+   .. py:method:: HasField(field_name: Literal[pose_in_parent_frame, b'pose_in_parent_frame']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -303,7 +301,7 @@ Classes
 
 
 
-.. py:class:: FrameSystemConfigRequest(*, supplemental_transforms: Optional[Iterable[viam.gen.proto.api.common.v1.common_pb2.Transform]] = ...)
+.. py:class:: FrameSystemConfigRequest(*, supplemental_transforms: collections.abc.Iterable[proto.api.common.v1.common_pb2.Transform] | None = ...)
 
 
 
@@ -321,7 +319,7 @@ Classes
 
 
 
-.. py:class:: FrameSystemConfigResponse(*, frame_system_configs: Optional[Iterable[global___FrameSystemConfig]] = ...)
+.. py:class:: FrameSystemConfigResponse(*, frame_system_configs: collections.abc.Iterable[global___FrameSystemConfig] | None = ...)
 
 
 
@@ -347,7 +345,7 @@ Classes
    shown below.
 
 
-.. py:class:: GetOperationsResponse(*, operations: Optional[Iterable[global___Operation]] = ...)
+.. py:class:: GetOperationsResponse(*, operations: collections.abc.Iterable[global___Operation] | None = ...)
 
 
 
@@ -362,7 +360,7 @@ Classes
 
 
 
-.. py:class:: GetStatusRequest(*, resource_names: Optional[Iterable[viam.gen.proto.api.common.v1.common_pb2.ResourceName]] = ...)
+.. py:class:: GetStatusRequest(*, resource_names: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None = ...)
 
 
 
@@ -377,7 +375,7 @@ Classes
 
 
 
-.. py:class:: GetStatusResponse(*, status: Optional[Iterable[global___Status]] = ...)
+.. py:class:: GetStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
 
 
 
@@ -392,7 +390,7 @@ Classes
 
 
 
-.. py:class:: Operation(*, id: Text = ..., method: Text = ..., arguments: Optional[google.protobuf.struct_pb2.Struct] = ..., started: Optional[google.protobuf.timestamp_pb2.Timestamp] = ...)
+.. py:class:: Operation(*, id: str = ..., method: str = ..., arguments: google.protobuf.struct_pb2.Struct | None = ..., started: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
@@ -403,12 +401,12 @@ Classes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :Text
+      :annotation: :str
 
       
 
    .. py:attribute:: method
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -420,7 +418,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[arguments, b'arguments', started, b'started']) -> bool
+   .. py:method:: HasField(field_name: Literal[arguments, b'arguments', started, b'started']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -449,7 +447,7 @@ Classes
    shown below.
 
 
-.. py:class:: ResourceNamesResponse(*, resources: Optional[Iterable[viam.gen.proto.api.common.v1.common_pb2.ResourceName]] = ...)
+.. py:class:: ResourceNamesResponse(*, resources: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None = ...)
 
 
 
@@ -464,7 +462,7 @@ Classes
 
 
 
-.. py:class:: ResourceRPCSubtype(*, subtype: Optional[viam.gen.proto.api.common.v1.common_pb2.ResourceName] = ..., proto_service: Text = ...)
+.. py:class:: ResourceRPCSubtype(*, subtype: proto.api.common.v1.common_pb2.ResourceName | None = ..., proto_service: str = ...)
 
 
 
@@ -475,7 +473,7 @@ Classes
    shown below.
 
    .. py:attribute:: proto_service
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -483,7 +481,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[subtype, b'subtype']) -> bool
+   .. py:method:: HasField(field_name: Literal[subtype, b'subtype']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -512,7 +510,7 @@ Classes
    shown below.
 
 
-.. py:class:: ResourceRPCSubtypesResponse(*, resource_rpc_subtypes: Optional[Iterable[global___ResourceRPCSubtype]] = ...)
+.. py:class:: ResourceRPCSubtypesResponse(*, resource_rpc_subtypes: collections.abc.Iterable[global___ResourceRPCSubtype] | None = ...)
 
 
 
@@ -527,7 +525,7 @@ Classes
 
 
 
-.. py:class:: Status(*, name: Optional[viam.gen.proto.api.common.v1.common_pb2.ResourceName] = ..., status: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: Status(*, name: proto.api.common.v1.common_pb2.ResourceName | None = ..., status: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -545,7 +543,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[name, b'name', status, b'status']) -> bool
+   .. py:method:: HasField(field_name: Literal[name, b'name', status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -563,7 +561,7 @@ Classes
 
 
 
-.. py:class:: StopAllRequest(*, extra: Optional[Iterable[global___StopExtraParameters]] = ...)
+.. py:class:: StopAllRequest(*, extra: collections.abc.Iterable[global___StopExtraParameters] | None = ...)
 
 
 
@@ -589,7 +587,7 @@ Classes
    shown below.
 
 
-.. py:class:: StopExtraParameters(*, name: Optional[viam.gen.proto.api.common.v1.common_pb2.ResourceName] = ..., params: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: StopExtraParameters(*, name: proto.api.common.v1.common_pb2.ResourceName | None = ..., params: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -607,7 +605,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[name, b'name', params, b'params']) -> bool
+   .. py:method:: HasField(field_name: Literal[name, b'name', params, b'params']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -625,7 +623,7 @@ Classes
 
 
 
-.. py:class:: StreamStatusRequest(*, resource_names: Optional[Iterable[viam.gen.proto.api.common.v1.common_pb2.ResourceName]] = ..., every: Optional[google.protobuf.duration_pb2.Duration] = ...)
+.. py:class:: StreamStatusRequest(*, resource_names: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None = ..., every: google.protobuf.duration_pb2.Duration | None = ...)
 
 
 
@@ -645,7 +643,7 @@ Classes
       how often to send a new status.
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[every, b'every']) -> bool
+   .. py:method:: HasField(field_name: Literal[every, b'every']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -663,7 +661,7 @@ Classes
 
 
 
-.. py:class:: StreamStatusResponse(*, status: Optional[Iterable[global___Status]] = ...)
+.. py:class:: StreamStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
 
 
 
@@ -678,7 +676,7 @@ Classes
 
 
 
-.. py:class:: TransformPoseRequest(*, source: Optional[viam.gen.proto.api.common.v1.common_pb2.PoseInFrame] = ..., destination: Text = ..., supplemental_transforms: Optional[Iterable[viam.gen.proto.api.common.v1.common_pb2.Transform]] = ...)
+.. py:class:: TransformPoseRequest(*, source: proto.api.common.v1.common_pb2.PoseInFrame | None = ..., destination: str = ..., supplemental_transforms: collections.abc.Iterable[proto.api.common.v1.common_pb2.Transform] | None = ...)
 
 
 
@@ -689,7 +687,7 @@ Classes
    shown below.
 
    .. py:attribute:: destination
-      :annotation: :Text
+      :annotation: :str
 
       the reference frame into which the source pose should be transformed,
       if unset this defaults to the "world" reference frame
@@ -708,7 +706,7 @@ Classes
       to perform the transform
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[source, b'source']) -> bool
+   .. py:method:: HasField(field_name: Literal[source, b'source']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -726,7 +724,7 @@ Classes
 
 
 
-.. py:class:: TransformPoseResponse(*, pose: Optional[viam.gen.proto.api.common.v1.common_pb2.PoseInFrame] = ...)
+.. py:class:: TransformPoseResponse(*, pose: proto.api.common.v1.common_pb2.PoseInFrame | None = ...)
 
 
 
@@ -740,7 +738,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 

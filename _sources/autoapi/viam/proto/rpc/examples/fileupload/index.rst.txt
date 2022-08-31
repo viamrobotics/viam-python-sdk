@@ -45,7 +45,7 @@ Classes
 .. py:class:: FileUploadServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: UploadFileRequest(*, name: Text = ..., chunk_data: bytes = ...)
+.. py:class:: UploadFileRequest(*, name: str = ..., chunk_data: bytes = ...)
 
 
 
@@ -56,7 +56,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -65,7 +65,7 @@ Classes
 
       
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[chunk_data, b'chunk_data', data, b'data', name, b'name']) -> bool
+   .. py:method:: HasField(field_name: Literal[chunk_data, b'chunk_data', data, b'data', name, b'name']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -82,7 +82,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: typing_extensions.Literal[data, b'data']) -> Optional[typing_extensions.Literal[name, chunk_data]]
+   .. py:method:: WhichOneof(oneof_group: Literal[data, b'data']) -> typing_extensions.Literal['name', 'chunk_data'] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -98,7 +98,7 @@ Classes
 
 
 
-.. py:class:: UploadFileResponse(*, name: Text = ..., size: int = ...)
+.. py:class:: UploadFileResponse(*, name: str = ..., size: int = ...)
 
 
 
@@ -109,7 +109,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 

@@ -60,7 +60,7 @@ Classes
 .. py:class:: ServoServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetPositionRequest(*, name: Text = ...)
+.. py:class:: GetPositionRequest(*, name: str = ...)
 
 
 
@@ -71,7 +71,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       the name of the servo, as registered
 
@@ -92,7 +92,7 @@ Classes
       the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180
 
 
-.. py:class:: MoveRequest(*, name: Text = ..., angle_deg: int = ...)
+.. py:class:: MoveRequest(*, name: str = ..., angle_deg: int = ...)
 
 
 
@@ -103,7 +103,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       the name of the servo, as registered
 
@@ -145,7 +145,7 @@ Classes
       
 
 
-.. py:class:: StopRequest(*, name: Text = ...)
+.. py:class:: StopRequest(*, name: str = ...)
 
 
 
@@ -156,7 +156,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a servo
 

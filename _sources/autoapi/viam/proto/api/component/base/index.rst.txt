@@ -73,7 +73,7 @@ Classes
 .. py:class:: BaseServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: MoveStraightRequest(*, name: Text = ..., distance_mm: int = ..., mm_per_sec: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: MoveStraightRequest(*, name: str = ..., distance_mm: int = ..., mm_per_sec: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -84,7 +84,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a base
 
@@ -104,7 +104,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -133,7 +133,7 @@ Classes
    shown below.
 
 
-.. py:class:: SetPowerRequest(*, name: Text = ..., linear: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., angular: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: SetPowerRequest(*, name: str = ..., linear: proto.api.common.v1.common_pb2.Vector3 | None = ..., angular: proto.api.common.v1.common_pb2.Vector3 | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -144,7 +144,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a base
 
@@ -166,7 +166,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
+   .. py:method:: HasField(field_name: Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -195,7 +195,7 @@ Classes
    shown below.
 
 
-.. py:class:: SetVelocityRequest(*, name: Text = ..., linear: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., angular: Optional[viam.gen.proto.api.common.v1.common_pb2.Vector3] = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: SetVelocityRequest(*, name: str = ..., linear: proto.api.common.v1.common_pb2.Vector3 | None = ..., angular: proto.api.common.v1.common_pb2.Vector3 | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -206,7 +206,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a base
 
@@ -228,7 +228,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
+   .. py:method:: HasField(field_name: Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -257,7 +257,7 @@ Classes
    shown below.
 
 
-.. py:class:: SpinRequest(*, name: Text = ..., angle_deg: float = ..., degs_per_sec: float = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: SpinRequest(*, name: str = ..., angle_deg: float = ..., degs_per_sec: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -268,7 +268,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a base
 
@@ -288,7 +288,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -317,7 +317,7 @@ Classes
    shown below.
 
 
-.. py:class:: StopRequest(*, name: Text = ..., extra: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -328,7 +328,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of a base
 
@@ -338,7 +338,7 @@ Classes
       Additional arguments to the method
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[extra, b'extra']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 

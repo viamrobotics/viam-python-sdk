@@ -68,7 +68,7 @@ Classes
 .. py:class:: InputControllerServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: Event(*, time: Optional[google.protobuf.timestamp_pb2.Timestamp] = ..., event: Text = ..., control: Text = ..., value: float = ...)
+.. py:class:: Event(*, time: google.protobuf.timestamp_pb2.Timestamp | None = ..., event: str = ..., control: str = ..., value: float = ...)
 
 
 
@@ -79,14 +79,14 @@ Classes
    shown below.
 
    .. py:attribute:: event
-      :annotation: :Text
+      :annotation: :str
 
       ButtonPress, ButtonRelease)
 
       :type: An event type (eg
 
    .. py:attribute:: control
-      :annotation: :Text
+      :annotation: :str
 
       AbsoluteX)
 
@@ -105,7 +105,7 @@ Classes
       Timestamp of event
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[time, b'time']) -> bool
+   .. py:method:: HasField(field_name: Literal[time, b'time']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -123,7 +123,7 @@ Classes
 
 
 
-.. py:class:: GetControlsRequest(*, controller: Text = ...)
+.. py:class:: GetControlsRequest(*, controller: str = ...)
 
 
 
@@ -134,12 +134,12 @@ Classes
    shown below.
 
    .. py:attribute:: controller
-      :annotation: :Text
+      :annotation: :str
 
       Name of an input controller
 
 
-.. py:class:: GetControlsResponse(*, controls: Optional[Iterable[Text]] = ...)
+.. py:class:: GetControlsResponse(*, controls: collections.abc.Iterable[builtins.str] | None = ...)
 
 
 
@@ -149,7 +149,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: controls() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+   .. py:method:: controls() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
       :property:
 
       Returns a list of all the controls (buttons and axes) that are
@@ -157,7 +157,7 @@ Classes
 
 
 
-.. py:class:: GetEventsRequest(*, controller: Text = ...)
+.. py:class:: GetEventsRequest(*, controller: str = ...)
 
 
 
@@ -168,12 +168,12 @@ Classes
    shown below.
 
    .. py:attribute:: controller
-      :annotation: :Text
+      :annotation: :str
 
       Name of an input controller
 
 
-.. py:class:: GetEventsResponse(*, events: Optional[Iterable[global___Event]] = ...)
+.. py:class:: GetEventsResponse(*, events: collections.abc.Iterable[global___Event] | None = ...)
 
 
 
@@ -191,7 +191,7 @@ Classes
 
 
 
-.. py:class:: Status(*, events: Optional[Iterable[global___Event]] = ...)
+.. py:class:: Status(*, events: collections.abc.Iterable[global___Event] | None = ...)
 
 
 
@@ -206,7 +206,7 @@ Classes
 
 
 
-.. py:class:: StreamEventsRequest(*, controller: Text = ..., events: Optional[Iterable[global___StreamEventsRequest]] = ...)
+.. py:class:: StreamEventsRequest(*, controller: str = ..., events: collections.abc.Iterable[global___StreamEventsRequest.Events] | None = ...)
 
 
 
@@ -216,7 +216,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:class:: Events(*, control: Text = ..., events: Optional[Iterable[Text]] = ..., cancelled_events: Optional[Iterable[Text]] = ...)
+   .. py:class:: Events(*, control: str = ..., events: collections.abc.Iterable[builtins.str] | None = ..., cancelled_events: collections.abc.Iterable[builtins.str] | None = ...)
 
 
 
@@ -227,18 +227,18 @@ Classes
       shown below.
 
       .. py:attribute:: control
-         :annotation: :Text
+         :annotation: :str
 
          Name of a control (button or axis)
 
-      .. py:method:: events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+      .. py:method:: events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
          :property:
 
          Specify which event types to recieve events for
          To Do (FA): Right now this can be an empty list, but we should error in this case as opening a stream with no messages is expensive
 
 
-      .. py:method:: cancelled_events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+      .. py:method:: cancelled_events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
          :property:
 
          Specify which event types to stop recieving events for
@@ -247,7 +247,7 @@ Classes
 
 
    .. py:attribute:: controller
-      :annotation: :Text
+      :annotation: :str
 
       Name of an input controller
 
@@ -258,7 +258,7 @@ Classes
 
 
 
-.. py:class:: StreamEventsResponse(*, event: Optional[global___Event] = ...)
+.. py:class:: StreamEventsResponse(*, event: global___Event | None = ...)
 
 
 
@@ -274,7 +274,7 @@ Classes
       Event for a controller
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[event, b'event']) -> bool
+   .. py:method:: HasField(field_name: Literal[event, b'event']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -292,7 +292,7 @@ Classes
 
 
 
-.. py:class:: TriggerEventRequest(*, controller: Text = ..., event: Optional[global___Event] = ...)
+.. py:class:: TriggerEventRequest(*, controller: str = ..., event: global___Event | None = ...)
 
 
 
@@ -303,7 +303,7 @@ Classes
    shown below.
 
    .. py:attribute:: controller
-      :annotation: :Text
+      :annotation: :str
 
       Name of an input controller
 
@@ -313,7 +313,7 @@ Classes
       Digitally assert a given event
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[event, b'event']) -> bool
+   .. py:method:: HasField(field_name: Literal[event, b'event']) -> bool
 
       Checks if a certain field is set for the message.
 

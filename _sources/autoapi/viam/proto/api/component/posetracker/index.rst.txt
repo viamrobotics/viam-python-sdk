@@ -45,7 +45,7 @@ Classes
 .. py:class:: PoseTrackerServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetPosesRequest(*, name: Text = ..., body_names: Optional[Iterable[Text]] = ...)
+.. py:class:: GetPosesRequest(*, name: str = ..., body_names: collections.abc.Iterable[builtins.str] | None = ...)
 
 
 
@@ -56,11 +56,11 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       Name of the pose tracker
 
-   .. py:method:: body_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[Text]
+   .. py:method:: body_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
       :property:
 
       Names of the bodies whose poses are being requested. In the event
@@ -69,7 +69,7 @@ Classes
 
 
 
-.. py:class:: GetPosesResponse(*, body_poses: Optional[Mapping[Text, viam.gen.proto.api.common.v1.common_pb2.PoseInFrame]] = ...)
+.. py:class:: GetPosesResponse(*, body_poses: collections.abc.Mapping[builtins.str, proto.api.common.v1.common_pb2.PoseInFrame] | None = ...)
 
 
 
@@ -79,7 +79,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:class:: BodyPosesEntry(*, key: Text = ..., value: Optional[viam.gen.proto.api.common.v1.common_pb2.PoseInFrame] = ...)
+   .. py:class:: BodyPosesEntry(*, key: str = ..., value: proto.api.common.v1.common_pb2.PoseInFrame | None = ...)
 
 
 
@@ -90,7 +90,7 @@ Classes
       shown below.
 
       .. py:attribute:: key
-         :annotation: :Text
+         :annotation: :str
 
          
 
@@ -98,7 +98,7 @@ Classes
          :property:
 
 
-      .. py:method:: HasField(field_name: typing_extensions.Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -116,7 +116,7 @@ Classes
 
 
 
-   .. py:method:: body_poses() -> google.protobuf.internal.containers.MessageMap[Text, viam.gen.proto.api.common.v1.common_pb2.PoseInFrame]
+   .. py:method:: body_poses() -> google.protobuf.internal.containers.MessageMap[str, viam.gen.proto.api.common.v1.common_pb2.PoseInFrame]
       :property:
 
       Mapping of each body name to the pose representing the center of the body.

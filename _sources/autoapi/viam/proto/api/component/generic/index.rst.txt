@@ -45,7 +45,7 @@ Classes
 .. py:class:: GenericServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: DoRequest(*, name: Text = ..., command: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: DoRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -56,7 +56,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -64,7 +64,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[command, b'command']) -> bool
+   .. py:method:: HasField(field_name: Literal[command, b'command']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -82,7 +82,7 @@ Classes
 
 
 
-.. py:class:: DoResponse(*, result: Optional[google.protobuf.struct_pb2.Struct] = ...)
+.. py:class:: DoResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -96,7 +96,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[result, b'result']) -> bool
+   .. py:method:: HasField(field_name: Literal[result, b'result']) -> bool
 
       Checks if a certain field is set for the message.
 

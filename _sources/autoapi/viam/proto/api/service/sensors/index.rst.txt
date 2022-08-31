@@ -53,7 +53,7 @@ Classes
 .. py:class:: SensorsServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetReadingsRequest(*, name: Text = ..., sensor_names: Optional[Iterable[viam.gen.proto.api.common.v1.common_pb2.ResourceName]] = ...)
+.. py:class:: GetReadingsRequest(*, name: str = ..., sensor_names: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None = ...)
 
 
 
@@ -64,7 +64,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
@@ -73,7 +73,7 @@ Classes
 
 
 
-.. py:class:: GetReadingsResponse(*, readings: Optional[Iterable[global___Readings]] = ...)
+.. py:class:: GetReadingsResponse(*, readings: collections.abc.Iterable[global___Readings] | None = ...)
 
 
 
@@ -88,7 +88,7 @@ Classes
 
 
 
-.. py:class:: GetSensorsRequest(*, name: Text = ...)
+.. py:class:: GetSensorsRequest(*, name: str = ...)
 
 
 
@@ -99,12 +99,12 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :Text
+      :annotation: :str
 
       
 
 
-.. py:class:: GetSensorsResponse(*, sensor_names: Optional[Iterable[viam.gen.proto.api.common.v1.common_pb2.ResourceName]] = ...)
+.. py:class:: GetSensorsResponse(*, sensor_names: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None = ...)
 
 
 
@@ -119,7 +119,7 @@ Classes
 
 
 
-.. py:class:: Readings(*, name: Optional[viam.gen.proto.api.common.v1.common_pb2.ResourceName] = ..., readings: Optional[Mapping[Text, google.protobuf.struct_pb2.Value]] = ...)
+.. py:class:: Readings(*, name: proto.api.common.v1.common_pb2.ResourceName | None = ..., readings: collections.abc.Mapping[builtins.str, google.protobuf.struct_pb2.Value] | None = ...)
 
 
 
@@ -129,7 +129,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:class:: ReadingsEntry(*, key: Text = ..., value: Optional[google.protobuf.struct_pb2.Value] = ...)
+   .. py:class:: ReadingsEntry(*, key: str = ..., value: google.protobuf.struct_pb2.Value | None = ...)
 
 
 
@@ -140,7 +140,7 @@ Classes
       shown below.
 
       .. py:attribute:: key
-         :annotation: :Text
+         :annotation: :str
 
          
 
@@ -148,7 +148,7 @@ Classes
          :property:
 
 
-      .. py:method:: HasField(field_name: typing_extensions.Literal[value, b'value']) -> bool
+      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
          Checks if a certain field is set for the message.
 
@@ -170,11 +170,11 @@ Classes
       :property:
 
 
-   .. py:method:: readings() -> google.protobuf.internal.containers.MessageMap[Text, google.protobuf.struct_pb2.Value]
+   .. py:method:: readings() -> google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
       :property:
 
 
-   .. py:method:: HasField(field_name: typing_extensions.Literal[name, b'name']) -> bool
+   .. py:method:: HasField(field_name: Literal[name, b'name']) -> bool
 
       Checks if a certain field is set for the message.
 
