@@ -76,7 +76,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.go_to">go_to</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.reset_zero_position">reset_zero_position</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.get_position">get_position</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.get_features">get_features</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.get_properties">get_properties</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.stop">stop</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.is_powered">is_powered</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.do">do</a></li>
@@ -233,16 +233,16 @@ This method will raise an exception if position reporting is not supported by th
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.get_features">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../motor/index.html#viam.components.motor.motor.Motor.Features" title="viam.components.motor.motor.Motor.Features"><span class="pre">viam.components.motor.motor.Motor.Features</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/motor/client.html#MotorClient.get_features"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.client.MotorClient.get_features" title="Permalink to this definition"></a></dt>
-<dd><p>Report a dictionary mapping optional features to
+<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.get_properties">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../motor/index.html#viam.components.motor.motor.Motor.Properties" title="viam.components.motor.motor.Motor.Properties"><span class="pre">viam.components.motor.motor.Motor.Properties</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/motor/client.html#MotorClient.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.client.MotorClient.get_properties" title="Permalink to this definition"></a></dt>
+<dd><p>Report a dictionary mapping optional properties to
 whether it is supported by this motor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Map of feature names to supported status.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="../index.html#viam.components.motor.Motor.Features" title="viam.components.motor.Motor.Features">Features</a></p>
+<dd class="field-even"><p><a class="reference internal" href="../index.html#viam.components.motor.Motor.Properties" title="viam.components.motor.Motor.Properties">Properties</a></p>
 </dd>
 </dl>
 </dd></dl>

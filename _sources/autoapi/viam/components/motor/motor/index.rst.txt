@@ -24,7 +24,7 @@ Classes
    Base component.
    All components must inherit from this class.
 
-   .. py:class:: Features
+   .. py:class:: Properties
 
       .. py:attribute:: position_reporting
          :annotation: :bool
@@ -97,15 +97,15 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_features(extra: Optional[Dict[str, Any]] = None) -> Features
+   .. py:method:: get_properties(extra: Optional[Dict[str, Any]] = None) -> Properties
       :abstractmethod:
       :async:
 
-      Report a dictionary mapping optional features to
+      Report a dictionary mapping optional properties to
       whether it is supported by this motor.
 
       :returns: Map of feature names to supported status.
-      :rtype: Features
+      :rtype: Properties
 
 
    .. py:method:: stop(extra: Optional[Dict[str, Any]] = None)

@@ -94,8 +94,8 @@
 
 
 <div class="viewcode-block" id="Motor"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor">[docs]</a><span class="k">class</span> <span class="nc">Motor</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
-<div class="viewcode-block" id="Motor.Features"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor.Features">[docs]</a>    <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">Features</span><span class="p">:</span>
+<div class="viewcode-block" id="Motor.Properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor.Properties">[docs]</a>    <span class="nd">@dataclass</span>
+    <span class="k">class</span> <span class="nc">Properties</span><span class="p">:</span>
         <span class="n">position_reporting</span><span class="p">:</span> <span class="nb">bool</span></div>
 
     <span class="sd">&quot;&quot;&quot;</span>
@@ -169,14 +169,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="Motor.get_features"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor.get_features">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Features</span><span class="p">:</span>
+<div class="viewcode-block" id="Motor.get_properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor.get_properties">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Report a dictionary mapping optional features to</span>
+<span class="sd">        Report a dictionary mapping optional properties to</span>
 <span class="sd">        whether it is supported by this motor.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Features: Map of feature names to supported status.</span>
+<span class="sd">            Properties: Map of feature names to supported status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
