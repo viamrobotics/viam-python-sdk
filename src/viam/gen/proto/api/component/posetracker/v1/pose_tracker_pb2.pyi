@@ -3,30 +3,33 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 from ...... import proto
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetPosesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     BODY_NAMES_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of the pose tracker'
 
     @property
-    def body_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+    def body_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """Names of the bodies whose poses are being requested. In the event
         this parameter is not supplied or is an empty list, all available
         poses are returned
         """
-        pass
 
-    def __init__(self, *, name: typing.Text=..., body_names: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., body_names: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['body_names', b'body_names', 'name', b'name']) -> None:
@@ -40,13 +43,13 @@ class GetPosesResponse(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
-        key: typing.Text
+        key: builtins.str
 
         @property
         def value(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
             ...
 
-        def __init__(self, *, key: typing.Text=..., value: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=...) -> None:
+        def __init__(self, *, key: builtins.str=..., value: proto.api.common.v1.common_pb2.PoseInFrame | None=...) -> None:
             ...
 
         def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
@@ -57,11 +60,10 @@ class GetPosesResponse(google.protobuf.message.Message):
     BODY_POSES_FIELD_NUMBER: builtins.int
 
     @property
-    def body_poses(self) -> google.protobuf.internal.containers.MessageMap[typing.Text, proto.api.common.v1.common_pb2.PoseInFrame]:
+    def body_poses(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, proto.api.common.v1.common_pb2.PoseInFrame]:
         """Mapping of each body name to the pose representing the center of the body."""
-        pass
 
-    def __init__(self, *, body_poses: typing.Optional[typing.Mapping[typing.Text, proto.api.common.v1.common_pb2.PoseInFrame]]=...) -> None:
+    def __init__(self, *, body_poses: collections.abc.Mapping[builtins.str, proto.api.common.v1.common_pb2.PoseInFrame] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['body_poses', b'body_poses']) -> None:

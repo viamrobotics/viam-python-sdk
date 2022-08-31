@@ -5,20 +5,23 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class MoveRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     ANGLE_DEG_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'the name of the servo, as registered'
     angle_deg: builtins.int
     'the degrees by which to rotate the servo. Accepted values are between 0 and 180'
 
-    def __init__(self, *, name: typing.Text=..., angle_deg: builtins.int=...) -> None:
+    def __init__(self, *, name: builtins.str=..., angle_deg: builtins.int=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['angle_deg', b'angle_deg', 'name', b'name']) -> None:
@@ -35,10 +38,10 @@ global___MoveResponse = MoveResponse
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'the name of the servo, as registered'
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -61,10 +64,10 @@ global___GetPositionResponse = GetPositionResponse
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a servo'
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:

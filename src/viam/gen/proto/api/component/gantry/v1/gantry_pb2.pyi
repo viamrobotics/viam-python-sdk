@@ -3,27 +3,30 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
 from ...... import proto
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -41,7 +44,7 @@ class GetPositionResponse(google.protobuf.message.Message):
     def positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         ...
 
-    def __init__(self, *, positions_mm: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
+    def __init__(self, *, positions_mm: collections.abc.Iterable[builtins.float] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['positions_mm', b'positions_mm']) -> None:
@@ -54,7 +57,7 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     POSITIONS_MM_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
     @property
     def positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
@@ -67,9 +70,8 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., positions_mm: typing.Optional[typing.Iterable[builtins.float]]=..., world_state: typing.Optional[proto.api.common.v1.common_pb2.WorldState]=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., positions_mm: collections.abc.Iterable[builtins.float] | None=..., world_state: proto.api.common.v1.common_pb2.WorldState | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
@@ -78,7 +80,7 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'name', b'name', 'positions_mm', b'positions_mm', 'world_state', b'world_state']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing.Optional[typing_extensions.Literal['world_state']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing_extensions.Literal['world_state'] | None:
         ...
 global___MoveToPositionRequest = MoveToPositionRequest
 
@@ -93,14 +95,13 @@ class GetLengthsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -118,7 +119,7 @@ class GetLengthsResponse(google.protobuf.message.Message):
     def lengths_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         ...
 
-    def __init__(self, *, lengths_mm: typing.Optional[typing.Iterable[builtins.float]]=...) -> None:
+    def __init__(self, *, lengths_mm: collections.abc.Iterable[builtins.float] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['lengths_mm', b'lengths_mm']) -> None:
@@ -129,15 +130,14 @@ class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a gantry'
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -169,7 +169,7 @@ class Status(google.protobuf.message.Message):
         ...
     is_moving: builtins.bool
 
-    def __init__(self, *, positions_mm: typing.Optional[typing.Iterable[builtins.float]]=..., lengths_mm: typing.Optional[typing.Iterable[builtins.float]]=..., is_moving: builtins.bool=...) -> None:
+    def __init__(self, *, positions_mm: collections.abc.Iterable[builtins.float] | None=..., lengths_mm: collections.abc.Iterable[builtins.float] | None=..., is_moving: builtins.bool=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving', 'lengths_mm', b'lengths_mm', 'positions_mm', b'positions_mm']) -> None:

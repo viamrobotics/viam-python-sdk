@@ -7,8 +7,11 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import google.protobuf.struct_pb2
 from ...... import proto
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class MoveStraightRequest(google.protobuf.message.Message):
@@ -17,7 +20,7 @@ class MoveStraightRequest(google.protobuf.message.Message):
     DISTANCE_MM_FIELD_NUMBER: builtins.int
     MM_PER_SEC_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a base'
     distance_mm: builtins.int
     'Desired travel distance in millimeters'
@@ -27,9 +30,8 @@ class MoveStraightRequest(google.protobuf.message.Message):
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., distance_mm: builtins.int=..., mm_per_sec: builtins.float=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., distance_mm: builtins.int=..., mm_per_sec: builtins.float=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -52,7 +54,7 @@ class SpinRequest(google.protobuf.message.Message):
     ANGLE_DEG_FIELD_NUMBER: builtins.int
     DEGS_PER_SEC_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a base'
     angle_deg: builtins.float
     'Desired angle'
@@ -62,9 +64,8 @@ class SpinRequest(google.protobuf.message.Message):
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., angle_deg: builtins.float=..., degs_per_sec: builtins.float=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., angle_deg: builtins.float=..., degs_per_sec: builtins.float=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -85,15 +86,14 @@ class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a base'
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -116,25 +116,22 @@ class SetPowerRequest(google.protobuf.message.Message):
     LINEAR_FIELD_NUMBER: builtins.int
     ANGULAR_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a base'
 
     @property
     def linear(self) -> proto.api.common.v1.common_pb2.Vector3:
         """Desired linear power percentage as -1 -> 1"""
-        pass
 
     @property
     def angular(self) -> proto.api.common.v1.common_pb2.Vector3:
         """Desired angular power percentage % as -1 -> 1"""
-        pass
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., linear: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., angular: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., linear: proto.api.common.v1.common_pb2.Vector3 | None=..., angular: proto.api.common.v1.common_pb2.Vector3 | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['angular', b'angular', 'extra', b'extra', 'linear', b'linear']) -> builtins.bool:
@@ -157,25 +154,22 @@ class SetVelocityRequest(google.protobuf.message.Message):
     LINEAR_FIELD_NUMBER: builtins.int
     ANGULAR_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a base'
 
     @property
     def linear(self) -> proto.api.common.v1.common_pb2.Vector3:
         """Desired linear velocity in mm per second"""
-        pass
 
     @property
     def angular(self) -> proto.api.common.v1.common_pb2.Vector3:
         """Desired angular velocity in degrees per second"""
-        pass
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., linear: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., angular: typing.Optional[proto.api.common.v1.common_pb2.Vector3]=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., linear: proto.api.common.v1.common_pb2.Vector3 | None=..., angular: proto.api.common.v1.common_pb2.Vector3 | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['angular', b'angular', 'extra', b'extra', 'linear', b'linear']) -> builtins.bool:

@@ -3,13 +3,18 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 from ...... import proto
+import sys
 import typing
-import typing_extensions
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _Mode:
@@ -23,7 +28,7 @@ class _ModeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeW
     MODE_WAYPOINT: _Mode.ValueType
 
 class Mode(_Mode, metaclass=_ModeEnumTypeWrapper):
-    pass
+    ...
 MODE_UNSPECIFIED: Mode.ValueType
 MODE_MANUAL: Mode.ValueType
 MODE_WAYPOINT: Mode.ValueType
@@ -32,9 +37,9 @@ global___Mode = Mode
 class GetModeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -57,10 +62,10 @@ class SetModeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MODE_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     mode: global___Mode.ValueType
 
-    def __init__(self, *, name: typing.Text=..., mode: global___Mode.ValueType=...) -> None:
+    def __init__(self, *, name: builtins.str=..., mode: global___Mode.ValueType=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['mode', b'mode', 'name', b'name']) -> None:
@@ -78,13 +83,13 @@ class Waypoint(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     LOCATION_FIELD_NUMBER: builtins.int
-    id: typing.Text
+    id: builtins.str
 
     @property
     def location(self) -> proto.api.common.v1.common_pb2.GeoPoint:
         ...
 
-    def __init__(self, *, id: typing.Text=..., location: typing.Optional[proto.api.common.v1.common_pb2.GeoPoint]=...) -> None:
+    def __init__(self, *, id: builtins.str=..., location: proto.api.common.v1.common_pb2.GeoPoint | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
@@ -97,9 +102,9 @@ global___Waypoint = Waypoint
 class GetLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -114,7 +119,7 @@ class GetLocationResponse(google.protobuf.message.Message):
     def location(self) -> proto.api.common.v1.common_pb2.GeoPoint:
         ...
 
-    def __init__(self, *, location: typing.Optional[proto.api.common.v1.common_pb2.GeoPoint]=...) -> None:
+    def __init__(self, *, location: proto.api.common.v1.common_pb2.GeoPoint | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
@@ -127,9 +132,9 @@ global___GetLocationResponse = GetLocationResponse
 class GetWaypointsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -144,7 +149,7 @@ class GetWaypointsResponse(google.protobuf.message.Message):
     def waypoints(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Waypoint]:
         ...
 
-    def __init__(self, *, waypoints: typing.Optional[typing.Iterable[global___Waypoint]]=...) -> None:
+    def __init__(self, *, waypoints: collections.abc.Iterable[global___Waypoint] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['waypoints', b'waypoints']) -> None:
@@ -155,13 +160,13 @@ class AddWaypointRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     LOCATION_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
     @property
     def location(self) -> proto.api.common.v1.common_pb2.GeoPoint:
         ...
 
-    def __init__(self, *, name: typing.Text=..., location: typing.Optional[proto.api.common.v1.common_pb2.GeoPoint]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., location: proto.api.common.v1.common_pb2.GeoPoint | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
@@ -182,10 +187,10 @@ class RemoveWaypointRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     ID_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    id: typing.Text
+    name: builtins.str
+    id: builtins.str
 
-    def __init__(self, *, name: typing.Text=..., id: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., id: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name']) -> None:

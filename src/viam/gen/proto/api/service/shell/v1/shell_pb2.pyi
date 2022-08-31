@@ -5,18 +5,21 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class ShellRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     DATA_IN_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    data_in: typing.Text
+    name: builtins.str
+    data_in: builtins.str
 
-    def __init__(self, *, name: typing.Text=..., data_in: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., data_in: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['data_in', b'data_in', 'name', b'name']) -> None:
@@ -28,11 +31,11 @@ class ShellResponse(google.protobuf.message.Message):
     DATA_OUT_FIELD_NUMBER: builtins.int
     DATA_ERR_FIELD_NUMBER: builtins.int
     EOF_FIELD_NUMBER: builtins.int
-    data_out: typing.Text
-    data_err: typing.Text
+    data_out: builtins.str
+    data_err: builtins.str
     eof: builtins.bool
 
-    def __init__(self, *, data_out: typing.Text=..., data_err: typing.Text=..., eof: builtins.bool=...) -> None:
+    def __init__(self, *, data_out: builtins.str=..., data_err: builtins.str=..., eof: builtins.bool=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['data_err', b'data_err', 'data_out', b'data_out', 'eof', b'eof']) -> None:

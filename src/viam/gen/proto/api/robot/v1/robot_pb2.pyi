@@ -3,6 +3,7 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.duration_pb2
 import google.protobuf.internal.containers
@@ -10,8 +11,11 @@ import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 from ..... import proto
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class FrameSystemConfig(google.protobuf.message.Message):
@@ -19,14 +23,14 @@ class FrameSystemConfig(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     POSE_IN_PARENT_FRAME_FIELD_NUMBER: builtins.int
     MODEL_JSON_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
     @property
     def pose_in_parent_frame(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
         ...
     model_json: builtins.bytes
 
-    def __init__(self, *, name: typing.Text=..., pose_in_parent_frame: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., model_json: builtins.bytes=...) -> None:
+    def __init__(self, *, name: builtins.str=..., pose_in_parent_frame: proto.api.common.v1.common_pb2.PoseInFrame | None=..., model_json: builtins.bytes=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['pose_in_parent_frame', b'pose_in_parent_frame']) -> builtins.bool:
@@ -45,9 +49,8 @@ class FrameSystemConfigRequest(google.protobuf.message.Message):
         """pose information on any additional reference frames that are needed
         to supplement the robot's frame system
         """
-        pass
 
-    def __init__(self, *, supplemental_transforms: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.Transform]]=...) -> None:
+    def __init__(self, *, supplemental_transforms: collections.abc.Iterable[proto.api.common.v1.common_pb2.Transform] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['supplemental_transforms', b'supplemental_transforms']) -> None:
@@ -62,7 +65,7 @@ class FrameSystemConfigResponse(google.protobuf.message.Message):
     def frame_system_configs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FrameSystemConfig]:
         ...
 
-    def __init__(self, *, frame_system_configs: typing.Optional[typing.Iterable[global___FrameSystemConfig]]=...) -> None:
+    def __init__(self, *, frame_system_configs: collections.abc.Iterable[global___FrameSystemConfig] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['frame_system_configs', b'frame_system_configs']) -> None:
@@ -80,8 +83,7 @@ class TransformPoseRequest(google.protobuf.message.Message):
         """the original pose to transform along with the reference frame in
         which it was observed
         """
-        pass
-    destination: typing.Text
+    destination: builtins.str
     'the reference frame into which the source pose should be transformed,\n    if unset this defaults to the "world" reference frame\n    '
 
     @property
@@ -89,9 +91,8 @@ class TransformPoseRequest(google.protobuf.message.Message):
         """pose information on any additional reference frames that are needed
         to perform the transform
         """
-        pass
 
-    def __init__(self, *, source: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=..., destination: typing.Text=..., supplemental_transforms: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.Transform]]=...) -> None:
+    def __init__(self, *, source: proto.api.common.v1.common_pb2.PoseInFrame | None=..., destination: builtins.str=..., supplemental_transforms: collections.abc.Iterable[proto.api.common.v1.common_pb2.Transform] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['source', b'source']) -> builtins.bool:
@@ -109,7 +110,7 @@ class TransformPoseResponse(google.protobuf.message.Message):
     def pose(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
         ...
 
-    def __init__(self, *, pose: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=...) -> None:
+    def __init__(self, *, pose: proto.api.common.v1.common_pb2.PoseInFrame | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
@@ -134,7 +135,7 @@ class ResourceNamesResponse(google.protobuf.message.Message):
     def resources(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
         ...
 
-    def __init__(self, *, resources: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
+    def __init__(self, *, resources: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['resources', b'resources']) -> None:
@@ -149,9 +150,9 @@ class ResourceRPCSubtype(google.protobuf.message.Message):
     @property
     def subtype(self) -> proto.api.common.v1.common_pb2.ResourceName:
         ...
-    proto_service: typing.Text
+    proto_service: builtins.str
 
-    def __init__(self, *, subtype: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., proto_service: typing.Text=...) -> None:
+    def __init__(self, *, subtype: proto.api.common.v1.common_pb2.ResourceName | None=..., proto_service: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['subtype', b'subtype']) -> builtins.bool:
@@ -176,7 +177,7 @@ class ResourceRPCSubtypesResponse(google.protobuf.message.Message):
     def resource_rpc_subtypes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceRPCSubtype]:
         ...
 
-    def __init__(self, *, resource_rpc_subtypes: typing.Optional[typing.Iterable[global___ResourceRPCSubtype]]=...) -> None:
+    def __init__(self, *, resource_rpc_subtypes: collections.abc.Iterable[global___ResourceRPCSubtype] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['resource_rpc_subtypes', b'resource_rpc_subtypes']) -> None:
@@ -189,8 +190,8 @@ class Operation(google.protobuf.message.Message):
     METHOD_FIELD_NUMBER: builtins.int
     ARGUMENTS_FIELD_NUMBER: builtins.int
     STARTED_FIELD_NUMBER: builtins.int
-    id: typing.Text
-    method: typing.Text
+    id: builtins.str
+    method: builtins.str
 
     @property
     def arguments(self) -> google.protobuf.struct_pb2.Struct:
@@ -200,7 +201,7 @@ class Operation(google.protobuf.message.Message):
     def started(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: typing.Text=..., method: typing.Text=..., arguments: typing.Optional[google.protobuf.struct_pb2.Struct]=..., started: typing.Optional[google.protobuf.timestamp_pb2.Timestamp]=...) -> None:
+    def __init__(self, *, id: builtins.str=..., method: builtins.str=..., arguments: google.protobuf.struct_pb2.Struct | None=..., started: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['arguments', b'arguments', 'started', b'started']) -> builtins.bool:
@@ -225,7 +226,7 @@ class GetOperationsResponse(google.protobuf.message.Message):
     def operations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Operation]:
         ...
 
-    def __init__(self, *, operations: typing.Optional[typing.Iterable[global___Operation]]=...) -> None:
+    def __init__(self, *, operations: collections.abc.Iterable[global___Operation] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['operations', b'operations']) -> None:
@@ -235,9 +236,9 @@ global___GetOperationsResponse = GetOperationsResponse
 class CancelOperationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
-    id: typing.Text
+    id: builtins.str
 
-    def __init__(self, *, id: typing.Text=...) -> None:
+    def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
@@ -254,9 +255,9 @@ global___CancelOperationResponse = CancelOperationResponse
 class BlockForOperationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
-    id: typing.Text
+    id: builtins.str
 
-    def __init__(self, *, id: typing.Text=...) -> None:
+    def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
@@ -271,16 +272,14 @@ class BlockForOperationResponse(google.protobuf.message.Message):
 global___BlockForOperationResponse = BlockForOperationResponse
 
 class DiscoveryQuery(google.protobuf.message.Message):
-    """Discovery
-
-    """
+    """Discovery"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUBTYPE_FIELD_NUMBER: builtins.int
     MODEL_FIELD_NUMBER: builtins.int
-    subtype: typing.Text
-    model: typing.Text
+    subtype: builtins.str
+    model: builtins.str
 
-    def __init__(self, *, subtype: typing.Text=..., model: typing.Text=...) -> None:
+    def __init__(self, *, subtype: builtins.str=..., model: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['model', b'model', 'subtype', b'subtype']) -> None:
@@ -300,7 +299,7 @@ class Discovery(google.protobuf.message.Message):
     def results(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, query: typing.Optional[global___DiscoveryQuery]=..., results: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, query: global___DiscoveryQuery | None=..., results: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['query', b'query', 'results', b'results']) -> builtins.bool:
@@ -318,7 +317,7 @@ class DiscoverComponentsRequest(google.protobuf.message.Message):
     def queries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]:
         ...
 
-    def __init__(self, *, queries: typing.Optional[typing.Iterable[global___DiscoveryQuery]]=...) -> None:
+    def __init__(self, *, queries: collections.abc.Iterable[global___DiscoveryQuery] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['queries', b'queries']) -> None:
@@ -333,7 +332,7 @@ class DiscoverComponentsResponse(google.protobuf.message.Message):
     def discovery(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]:
         ...
 
-    def __init__(self, *, discovery: typing.Optional[typing.Iterable[global___Discovery]]=...) -> None:
+    def __init__(self, *, discovery: collections.abc.Iterable[global___Discovery] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['discovery', b'discovery']) -> None:
@@ -353,7 +352,7 @@ class Status(google.protobuf.message.Message):
     def status(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., status: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: proto.api.common.v1.common_pb2.ResourceName | None=..., status: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['name', b'name', 'status', b'status']) -> builtins.bool:
@@ -371,7 +370,7 @@ class GetStatusRequest(google.protobuf.message.Message):
     def resource_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
         ...
 
-    def __init__(self, *, resource_names: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
+    def __init__(self, *, resource_names: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['resource_names', b'resource_names']) -> None:
@@ -386,7 +385,7 @@ class GetStatusResponse(google.protobuf.message.Message):
     def status(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]:
         ...
 
-    def __init__(self, *, status: typing.Optional[typing.Iterable[global___Status]]=...) -> None:
+    def __init__(self, *, status: collections.abc.Iterable[global___Status] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['status', b'status']) -> None:
@@ -405,9 +404,8 @@ class StreamStatusRequest(google.protobuf.message.Message):
     @property
     def every(self) -> google.protobuf.duration_pb2.Duration:
         """how often to send a new status."""
-        pass
 
-    def __init__(self, *, resource_names: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=..., every: typing.Optional[google.protobuf.duration_pb2.Duration]=...) -> None:
+    def __init__(self, *, resource_names: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None=..., every: google.protobuf.duration_pb2.Duration | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['every', b'every']) -> builtins.bool:
@@ -425,7 +423,7 @@ class StreamStatusResponse(google.protobuf.message.Message):
     def status(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]:
         ...
 
-    def __init__(self, *, status: typing.Optional[typing.Iterable[global___Status]]=...) -> None:
+    def __init__(self, *, status: collections.abc.Iterable[global___Status] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['status', b'status']) -> None:
@@ -445,7 +443,7 @@ class StopExtraParameters(google.protobuf.message.Message):
     def params(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., params: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: proto.api.common.v1.common_pb2.ResourceName | None=..., params: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['name', b'name', 'params', b'params']) -> builtins.bool:
@@ -463,7 +461,7 @@ class StopAllRequest(google.protobuf.message.Message):
     def extra(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]:
         ...
 
-    def __init__(self, *, extra: typing.Optional[typing.Iterable[global___StopExtraParameters]]=...) -> None:
+    def __init__(self, *, extra: collections.abc.Iterable[global___StopExtraParameters] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> None:

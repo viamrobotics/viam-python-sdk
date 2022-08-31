@@ -6,8 +6,11 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class SetPowerRequest(google.protobuf.message.Message):
@@ -15,7 +18,7 @@ class SetPowerRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     POWER_PCT_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a motor'
     power_pct: builtins.float
     "Percentage of motor's power, between -1 and 1"
@@ -23,9 +26,8 @@ class SetPowerRequest(google.protobuf.message.Message):
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., power_pct: builtins.float=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., power_pct: builtins.float=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -48,7 +50,7 @@ class GoForRequest(google.protobuf.message.Message):
     RPM_FIELD_NUMBER: builtins.int
     REVOLUTIONS_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a motor'
     rpm: builtins.float
     'Speed of motor travel in rotations per minute'
@@ -58,9 +60,8 @@ class GoForRequest(google.protobuf.message.Message):
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., rpm: builtins.float=..., revolutions: builtins.float=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., rpm: builtins.float=..., revolutions: builtins.float=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -83,7 +84,7 @@ class GoToRequest(google.protobuf.message.Message):
     RPM_FIELD_NUMBER: builtins.int
     POSITION_REVOLUTIONS_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a motor'
     rpm: builtins.float
     'Speed of motor travel in rotations per minute'
@@ -93,9 +94,8 @@ class GoToRequest(google.protobuf.message.Message):
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., rpm: builtins.float=..., position_revolutions: builtins.float=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., rpm: builtins.float=..., position_revolutions: builtins.float=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -117,7 +117,7 @@ class ResetZeroPositionRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     OFFSET_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a motor'
     offset: builtins.float
     'Motor position'
@@ -125,9 +125,8 @@ class ResetZeroPositionRequest(google.protobuf.message.Message):
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., offset: builtins.float=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., offset: builtins.float=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -148,15 +147,14 @@ class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a motor'
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -183,15 +181,14 @@ class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a motor'
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -212,15 +209,14 @@ class IsPoweredRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a motor'
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -247,15 +243,14 @@ class GetFeaturesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a motor'
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:

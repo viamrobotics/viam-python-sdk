@@ -5,20 +5,23 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class Credentials(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TYPE_FIELD_NUMBER: builtins.int
     PAYLOAD_FIELD_NUMBER: builtins.int
-    type: typing.Text
+    type: builtins.str
     'type is the type of credentials being used.'
-    payload: typing.Text
+    payload: builtins.str
     'payload is an opaque string used that are of the given type above.'
 
-    def __init__(self, *, type: typing.Text=..., payload: typing.Text=...) -> None:
+    def __init__(self, *, type: builtins.str=..., payload: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['payload', b'payload', 'type', b'type']) -> None:
@@ -30,13 +33,13 @@ class AuthenticateRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ENTITY_FIELD_NUMBER: builtins.int
     CREDENTIALS_FIELD_NUMBER: builtins.int
-    entity: typing.Text
+    entity: builtins.str
 
     @property
     def credentials(self) -> global___Credentials:
         ...
 
-    def __init__(self, *, entity: typing.Text=..., credentials: typing.Optional[global___Credentials]=...) -> None:
+    def __init__(self, *, entity: builtins.str=..., credentials: global___Credentials | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['credentials', b'credentials']) -> builtins.bool:
@@ -50,10 +53,10 @@ class AuthenticateResponse(google.protobuf.message.Message):
     """An AuthenticateResponse is returned after successful authentication."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ACCESS_TOKEN_FIELD_NUMBER: builtins.int
-    access_token: typing.Text
+    access_token: builtins.str
     'access_token is a JWT where only the expiration should be deemed\n    important.\n    Future(erd): maybe a refresh_token\n    '
 
-    def __init__(self, *, access_token: typing.Text=...) -> None:
+    def __init__(self, *, access_token: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['access_token', b'access_token']) -> None:
@@ -64,9 +67,9 @@ class AuthenticateToRequest(google.protobuf.message.Message):
     """An AuthenticateToRequest contains the entity to authenticate to."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ENTITY_FIELD_NUMBER: builtins.int
-    entity: typing.Text
+    entity: builtins.str
 
-    def __init__(self, *, entity: typing.Text=...) -> None:
+    def __init__(self, *, entity: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['entity', b'entity']) -> None:
@@ -77,10 +80,10 @@ class AuthenticateToResponse(google.protobuf.message.Message):
     """An AuthenticateResponse is returned after successful authentication."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ACCESS_TOKEN_FIELD_NUMBER: builtins.int
-    access_token: typing.Text
+    access_token: builtins.str
     'access_token is a JWT where only the expiration should be deemed\n    important.\n    Future(erd): maybe a refresh_token\n    '
 
-    def __init__(self, *, access_token: typing.Text=...) -> None:
+    def __init__(self, *, access_token: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['access_token', b'access_token']) -> None:

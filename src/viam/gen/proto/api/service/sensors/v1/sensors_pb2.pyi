@@ -3,21 +3,25 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
 from ...... import proto
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetSensorsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -32,7 +36,7 @@ class GetSensorsResponse(google.protobuf.message.Message):
     def sensor_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
         ...
 
-    def __init__(self, *, sensor_names: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
+    def __init__(self, *, sensor_names: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['sensor_names', b'sensor_names']) -> None:
@@ -43,13 +47,13 @@ class GetReadingsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     SENSOR_NAMES_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
     @property
     def sensor_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.ResourceName]:
         ...
 
-    def __init__(self, *, name: typing.Text=..., sensor_names: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.ResourceName]]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., sensor_names: collections.abc.Iterable[proto.api.common.v1.common_pb2.ResourceName] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'sensor_names', b'sensor_names']) -> None:
@@ -63,13 +67,13 @@ class Readings(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
-        key: typing.Text
+        key: builtins.str
 
         @property
         def value(self) -> google.protobuf.struct_pb2.Value:
             ...
 
-        def __init__(self, *, key: typing.Text=..., value: typing.Optional[google.protobuf.struct_pb2.Value]=...) -> None:
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.struct_pb2.Value | None=...) -> None:
             ...
 
         def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
@@ -85,10 +89,10 @@ class Readings(google.protobuf.message.Message):
         ...
 
     @property
-    def readings(self) -> google.protobuf.internal.containers.MessageMap[typing.Text, google.protobuf.struct_pb2.Value]:
+    def readings(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.struct_pb2.Value]:
         ...
 
-    def __init__(self, *, name: typing.Optional[proto.api.common.v1.common_pb2.ResourceName]=..., readings: typing.Optional[typing.Mapping[typing.Text, google.protobuf.struct_pb2.Value]]=...) -> None:
+    def __init__(self, *, name: proto.api.common.v1.common_pb2.ResourceName | None=..., readings: collections.abc.Mapping[builtins.str, google.protobuf.struct_pb2.Value] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['name', b'name']) -> builtins.bool:
@@ -106,7 +110,7 @@ class GetReadingsResponse(google.protobuf.message.Message):
     def readings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Readings]:
         ...
 
-    def __init__(self, *, readings: typing.Optional[typing.Iterable[global___Readings]]=...) -> None:
+    def __init__(self, *, readings: collections.abc.Iterable[global___Readings] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['readings', b'readings']) -> None:

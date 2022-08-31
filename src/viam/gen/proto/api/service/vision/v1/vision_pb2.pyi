@@ -3,21 +3,26 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
 from ...... import proto
+import sys
 import typing
-import typing_extensions
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetDetectorNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -29,11 +34,10 @@ class GetDetectorNamesResponse(google.protobuf.message.Message):
     DETECTOR_NAMES_FIELD_NUMBER: builtins.int
 
     @property
-    def detector_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+    def detector_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """detectors in the registry"""
-        pass
 
-    def __init__(self, *, detector_names: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+    def __init__(self, *, detector_names: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['detector_names', b'detector_names']) -> None:
@@ -46,15 +50,15 @@ class AddDetectorRequest(google.protobuf.message.Message):
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
     DETECTOR_MODEL_TYPE_FIELD_NUMBER: builtins.int
     DETECTOR_PARAMETERS_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    detector_name: typing.Text
-    detector_model_type: typing.Text
+    name: builtins.str
+    detector_name: builtins.str
+    detector_model_type: builtins.str
 
     @property
     def detector_parameters(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, name: typing.Text=..., detector_name: typing.Text=..., detector_model_type: typing.Text=..., detector_parameters: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., detector_name: builtins.str=..., detector_model_type: builtins.str=..., detector_parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['detector_parameters', b'detector_parameters']) -> builtins.bool:
@@ -79,7 +83,7 @@ class GetDetectionsRequest(google.protobuf.message.Message):
     HEIGHT_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'name of the vision service'
     image: builtins.bytes
     'the image, encoded as bytes'
@@ -87,12 +91,12 @@ class GetDetectionsRequest(google.protobuf.message.Message):
     'the width of the image'
     height: builtins.int
     'the height of the image'
-    mime_type: typing.Text
+    mime_type: builtins.str
     'the actual MIME type of image'
-    detector_name: typing.Text
+    detector_name: builtins.str
     'name of the registered detector to use'
 
-    def __init__(self, *, name: typing.Text=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: typing.Text=..., detector_name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: builtins.str=..., detector_name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'name', b'name', 'width', b'width']) -> None:
@@ -106,9 +110,8 @@ class GetDetectionsResponse(google.protobuf.message.Message):
     @property
     def detections(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]:
         """the bounding boxes and labels"""
-        pass
 
-    def __init__(self, *, detections: typing.Optional[typing.Iterable[global___Detection]]=...) -> None:
+    def __init__(self, *, detections: collections.abc.Iterable[global___Detection] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['detections', b'detections']) -> None:
@@ -120,13 +123,13 @@ class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    camera_name: typing.Text
+    name: builtins.str
+    camera_name: builtins.str
     'name of camera source to use as input'
-    detector_name: typing.Text
+    detector_name: builtins.str
     'name of the registered detector to use'
 
-    def __init__(self, *, name: typing.Text=..., camera_name: typing.Text=..., detector_name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., detector_name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'detector_name', b'detector_name', 'name', b'name']) -> None:
@@ -140,9 +143,8 @@ class GetDetectionsFromCameraResponse(google.protobuf.message.Message):
     @property
     def detections(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]:
         """the bounding boxes and labels"""
-        pass
 
-    def __init__(self, *, detections: typing.Optional[typing.Iterable[global___Detection]]=...) -> None:
+    def __init__(self, *, detections: collections.abc.Iterable[global___Detection] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['detections', b'detections']) -> None:
@@ -164,10 +166,10 @@ class Detection(google.protobuf.message.Message):
     y_max: builtins.int
     confidence: builtins.float
     'the confidence of the detection'
-    class_name: typing.Text
+    class_name: builtins.str
     'label associated with the detected object'
 
-    def __init__(self, *, x_min: typing.Optional[builtins.int]=..., y_min: typing.Optional[builtins.int]=..., x_max: typing.Optional[builtins.int]=..., y_max: typing.Optional[builtins.int]=..., confidence: builtins.float=..., class_name: typing.Text=...) -> None:
+    def __init__(self, *, x_min: builtins.int | None=..., y_min: builtins.int | None=..., x_max: builtins.int | None=..., y_max: builtins.int | None=..., confidence: builtins.float=..., class_name: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> builtins.bool:
@@ -177,28 +179,28 @@ class Detection(google.protobuf.message.Message):
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_x_max', b'_x_max']) -> typing.Optional[typing_extensions.Literal['x_max']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_x_max', b'_x_max']) -> typing_extensions.Literal['x_max'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_x_min', b'_x_min']) -> typing.Optional[typing_extensions.Literal['x_min']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_x_min', b'_x_min']) -> typing_extensions.Literal['x_min'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_max', b'_y_max']) -> typing.Optional[typing_extensions.Literal['y_max']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_max', b'_y_max']) -> typing_extensions.Literal['y_max'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_min', b'_y_min']) -> typing.Optional[typing_extensions.Literal['y_min']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_min', b'_y_min']) -> typing_extensions.Literal['y_min'] | None:
         ...
 global___Detection = Detection
 
 class GetSegmenterNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -210,11 +212,10 @@ class GetSegmenterNamesResponse(google.protobuf.message.Message):
     SEGMENTER_NAMES_FIELD_NUMBER: builtins.int
 
     @property
-    def segmenter_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+    def segmenter_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """segmenters in the registry"""
-        pass
 
-    def __init__(self, *, segmenter_names: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+    def __init__(self, *, segmenter_names: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['segmenter_names', b'segmenter_names']) -> None:
@@ -225,11 +226,11 @@ class GetSegmenterParametersRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    segmenter_name: typing.Text
+    name: builtins.str
+    segmenter_name: builtins.str
     'Name of the segmentation algo'
 
-    def __init__(self, *, name: typing.Text=..., segmenter_name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., segmenter_name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'segmenter_name', b'segmenter_name']) -> None:
@@ -240,10 +241,10 @@ class TypedParameter(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    type: typing.Text
+    name: builtins.str
+    type: builtins.str
 
-    def __init__(self, *, name: typing.Text=..., type: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., type: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'type', b'type']) -> None:
@@ -257,9 +258,8 @@ class GetSegmenterParametersResponse(google.protobuf.message.Message):
     @property
     def segmenter_parameters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TypedParameter]:
         """parameter names of the segmenter in the request"""
-        pass
 
-    def __init__(self, *, segmenter_parameters: typing.Optional[typing.Iterable[global___TypedParameter]]=...) -> None:
+    def __init__(self, *, segmenter_parameters: collections.abc.Iterable[global___TypedParameter] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['segmenter_parameters', b'segmenter_parameters']) -> None:
@@ -273,20 +273,19 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     PARAMETERS_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    camera_name: typing.Text
+    name: builtins.str
+    camera_name: builtins.str
     'Name of a camera'
-    segmenter_name: typing.Text
+    segmenter_name: builtins.str
     'Name of the segmentation algorithm'
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Requested MIME type of response'
 
     @property
     def parameters(self) -> google.protobuf.struct_pb2.Struct:
         """parameters for the chosen segmenter"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., camera_name: typing.Text=..., segmenter_name: typing.Text=..., mime_type: typing.Text=..., parameters: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., segmenter_name: builtins.str=..., mime_type: builtins.str=..., parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['parameters', b'parameters']) -> builtins.bool:
@@ -300,15 +299,14 @@ class GetObjectPointCloudsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MIME_TYPE_FIELD_NUMBER: builtins.int
     OBJECTS_FIELD_NUMBER: builtins.int
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Actual MIME type of response'
 
     @property
     def objects(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[proto.api.common.v1.common_pb2.PointCloudObject]:
         """List of objects in the scene"""
-        pass
 
-    def __init__(self, *, mime_type: typing.Text=..., objects: typing.Optional[typing.Iterable[proto.api.common.v1.common_pb2.PointCloudObject]]=...) -> None:
+    def __init__(self, *, mime_type: builtins.str=..., objects: collections.abc.Iterable[proto.api.common.v1.common_pb2.PointCloudObject] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'objects', b'objects']) -> None:

@@ -3,13 +3,17 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.duration_pb2
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.rpc.status_pb2
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class PacketMessage(google.protobuf.message.Message):
@@ -67,7 +71,7 @@ class Request(google.protobuf.message.Message):
     def message(self) -> global___RequestMessage:
         ...
 
-    def __init__(self, *, stream: typing.Optional[global___Stream]=..., headers: typing.Optional[global___RequestHeaders]=..., message: typing.Optional[global___RequestMessage]=...) -> None:
+    def __init__(self, *, stream: global___Stream | None=..., headers: global___RequestHeaders | None=..., message: global___RequestMessage | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'type', b'type']) -> builtins.bool:
@@ -76,7 +80,7 @@ class Request(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'type', b'type']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing.Optional[typing_extensions.Literal['headers', 'message']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing_extensions.Literal['headers', 'message'] | None:
         ...
 global___Request = Request
 
@@ -86,7 +90,7 @@ class RequestHeaders(google.protobuf.message.Message):
     METHOD_FIELD_NUMBER: builtins.int
     METADATA_FIELD_NUMBER: builtins.int
     TIMEOUT_FIELD_NUMBER: builtins.int
-    method: typing.Text
+    method: builtins.str
 
     @property
     def metadata(self) -> global___Metadata:
@@ -96,7 +100,7 @@ class RequestHeaders(google.protobuf.message.Message):
     def timeout(self) -> google.protobuf.duration_pb2.Duration:
         ...
 
-    def __init__(self, *, method: typing.Text=..., metadata: typing.Optional[global___Metadata]=..., timeout: typing.Optional[google.protobuf.duration_pb2.Duration]=...) -> None:
+    def __init__(self, *, method: builtins.str=..., metadata: global___Metadata | None=..., timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata', 'timeout', b'timeout']) -> builtins.bool:
@@ -121,7 +125,7 @@ class RequestMessage(google.protobuf.message.Message):
         ...
     eos: builtins.bool
 
-    def __init__(self, *, has_message: builtins.bool=..., packet_message: typing.Optional[global___PacketMessage]=..., eos: builtins.bool=...) -> None:
+    def __init__(self, *, has_message: builtins.bool=..., packet_message: global___PacketMessage | None=..., eos: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['packet_message', b'packet_message']) -> builtins.bool:
@@ -159,7 +163,7 @@ class Response(google.protobuf.message.Message):
     def trailers(self) -> global___ResponseTrailers:
         ...
 
-    def __init__(self, *, stream: typing.Optional[global___Stream]=..., headers: typing.Optional[global___ResponseHeaders]=..., message: typing.Optional[global___ResponseMessage]=..., trailers: typing.Optional[global___ResponseTrailers]=...) -> None:
+    def __init__(self, *, stream: global___Stream | None=..., headers: global___ResponseHeaders | None=..., message: global___ResponseMessage | None=..., trailers: global___ResponseTrailers | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'trailers', b'trailers', 'type', b'type']) -> builtins.bool:
@@ -168,7 +172,7 @@ class Response(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'trailers', b'trailers', 'type', b'type']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing.Optional[typing_extensions.Literal['headers', 'message', 'trailers']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing_extensions.Literal['headers', 'message', 'trailers'] | None:
         ...
 global___Response = Response
 
@@ -183,7 +187,7 @@ class ResponseHeaders(google.protobuf.message.Message):
     def metadata(self) -> global___Metadata:
         ...
 
-    def __init__(self, *, metadata: typing.Optional[global___Metadata]=...) -> None:
+    def __init__(self, *, metadata: global___Metadata | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata']) -> builtins.bool:
@@ -202,7 +206,7 @@ class ResponseMessage(google.protobuf.message.Message):
     def packet_message(self) -> global___PacketMessage:
         ...
 
-    def __init__(self, *, packet_message: typing.Optional[global___PacketMessage]=...) -> None:
+    def __init__(self, *, packet_message: global___PacketMessage | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['packet_message', b'packet_message']) -> builtins.bool:
@@ -226,7 +230,7 @@ class ResponseTrailers(google.protobuf.message.Message):
     def metadata(self) -> global___Metadata:
         ...
 
-    def __init__(self, *, status: typing.Optional[google.rpc.status_pb2.Status]=..., metadata: typing.Optional[global___Metadata]=...) -> None:
+    def __init__(self, *, status: google.rpc.status_pb2.Status | None=..., metadata: global___Metadata | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata', 'status', b'status']) -> builtins.bool:
@@ -242,10 +246,10 @@ class Strings(google.protobuf.message.Message):
     VALUES_FIELD_NUMBER: builtins.int
 
     @property
-    def values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+    def values(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, values: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+    def __init__(self, *, values: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['values', b'values']) -> None:
@@ -262,13 +266,13 @@ class Metadata(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
-        key: typing.Text
+        key: builtins.str
 
         @property
         def value(self) -> global___Strings:
             ...
 
-        def __init__(self, *, key: typing.Text=..., value: typing.Optional[global___Strings]=...) -> None:
+        def __init__(self, *, key: builtins.str=..., value: global___Strings | None=...) -> None:
             ...
 
         def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
@@ -279,10 +283,10 @@ class Metadata(google.protobuf.message.Message):
     MD_FIELD_NUMBER: builtins.int
 
     @property
-    def md(self) -> google.protobuf.internal.containers.MessageMap[typing.Text, global___Strings]:
+    def md(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___Strings]:
         ...
 
-    def __init__(self, *, md: typing.Optional[typing.Mapping[typing.Text, global___Strings]]=...) -> None:
+    def __init__(self, *, md: collections.abc.Mapping[builtins.str, global___Strings] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['md', b'md']) -> None:

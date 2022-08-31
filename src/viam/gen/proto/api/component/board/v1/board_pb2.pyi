@@ -7,22 +7,24 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import google.protobuf.struct_pb2
 from ...... import proto
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class StatusRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -40,7 +42,7 @@ class StatusResponse(google.protobuf.message.Message):
     def status(self) -> proto.api.common.v1.common_pb2.BoardStatus:
         ...
 
-    def __init__(self, *, status: typing.Optional[proto.api.common.v1.common_pb2.BoardStatus]=...) -> None:
+    def __init__(self, *, status: proto.api.common.v1.common_pb2.BoardStatus | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['status', b'status']) -> builtins.bool:
@@ -56,16 +58,15 @@ class SetGPIORequest(google.protobuf.message.Message):
     PIN_FIELD_NUMBER: builtins.int
     HIGH_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    pin: typing.Text
+    name: builtins.str
+    pin: builtins.str
     high: builtins.bool
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., high: builtins.bool=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., pin: builtins.str=..., high: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -87,15 +88,14 @@ class GetGPIORequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    pin: typing.Text
+    name: builtins.str
+    pin: builtins.str
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., pin: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -122,15 +122,14 @@ class PWMRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    pin: typing.Text
+    name: builtins.str
+    pin: builtins.str
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., pin: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -159,17 +158,16 @@ class SetPWMRequest(google.protobuf.message.Message):
     PIN_FIELD_NUMBER: builtins.int
     DUTY_CYCLE_PCT_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    pin: typing.Text
+    name: builtins.str
+    pin: builtins.str
     duty_cycle_pct: builtins.float
     '0-1'
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., duty_cycle_pct: builtins.float=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., pin: builtins.str=..., duty_cycle_pct: builtins.float=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -191,15 +189,14 @@ class PWMFrequencyRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     PIN_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    pin: typing.Text
+    name: builtins.str
+    pin: builtins.str
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., pin: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -227,16 +224,15 @@ class SetPWMFrequencyRequest(google.protobuf.message.Message):
     PIN_FIELD_NUMBER: builtins.int
     FREQUENCY_HZ_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    name: typing.Text
-    pin: typing.Text
+    name: builtins.str
+    pin: builtins.str
     frequency_hz: builtins.int
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, name: typing.Text=..., pin: typing.Text=..., frequency_hz: builtins.int=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, name: builtins.str=..., pin: builtins.str=..., frequency_hz: builtins.int=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -254,22 +250,19 @@ class SetPWMFrequencyResponse(google.protobuf.message.Message):
 global___SetPWMFrequencyResponse = SetPWMFrequencyResponse
 
 class ReadAnalogReaderRequest(google.protobuf.message.Message):
-    """Analog Reader
-
-    """
+    """Analog Reader"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BOARD_NAME_FIELD_NUMBER: builtins.int
     ANALOG_READER_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    board_name: typing.Text
-    analog_reader_name: typing.Text
+    board_name: builtins.str
+    analog_reader_name: builtins.str
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, board_name: typing.Text=..., analog_reader_name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, board_name: builtins.str=..., analog_reader_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
@@ -292,22 +285,19 @@ class ReadAnalogReaderResponse(google.protobuf.message.Message):
 global___ReadAnalogReaderResponse = ReadAnalogReaderResponse
 
 class GetDigitalInterruptValueRequest(google.protobuf.message.Message):
-    """Digital Interrupt
-
-    """
+    """Digital Interrupt"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BOARD_NAME_FIELD_NUMBER: builtins.int
     DIGITAL_INTERRUPT_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
-    board_name: typing.Text
-    digital_interrupt_name: typing.Text
+    board_name: builtins.str
+    digital_interrupt_name: builtins.str
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
-        pass
 
-    def __init__(self, *, board_name: typing.Text=..., digital_interrupt_name: typing.Text=..., extra: typing.Optional[google.protobuf.struct_pb2.Struct]=...) -> None:
+    def __init__(self, *, board_name: builtins.str=..., digital_interrupt_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:

@@ -3,20 +3,24 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetReadingsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -30,13 +34,13 @@ class GetReadingsResponse(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
-        key: typing.Text
+        key: builtins.str
 
         @property
         def value(self) -> google.protobuf.struct_pb2.Value:
             ...
 
-        def __init__(self, *, key: typing.Text=..., value: typing.Optional[google.protobuf.struct_pb2.Value]=...) -> None:
+        def __init__(self, *, key: builtins.str=..., value: google.protobuf.struct_pb2.Value | None=...) -> None:
             ...
 
         def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
@@ -47,10 +51,10 @@ class GetReadingsResponse(google.protobuf.message.Message):
     READINGS_FIELD_NUMBER: builtins.int
 
     @property
-    def readings(self) -> google.protobuf.internal.containers.MessageMap[typing.Text, google.protobuf.struct_pb2.Value]:
+    def readings(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.struct_pb2.Value]:
         ...
 
-    def __init__(self, *, readings: typing.Optional[typing.Mapping[typing.Text, google.protobuf.struct_pb2.Value]]=...) -> None:
+    def __init__(self, *, readings: collections.abc.Mapping[builtins.str, google.protobuf.struct_pb2.Value] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['readings', b'readings']) -> None:

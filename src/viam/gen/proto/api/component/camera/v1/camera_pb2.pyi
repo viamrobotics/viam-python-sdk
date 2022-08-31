@@ -3,23 +3,27 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetFrameRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a camera'
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Requested MIME type of response'
 
-    def __init__(self, *, name: typing.Text=..., mime_type: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., mime_type: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'name', b'name']) -> None:
@@ -32,7 +36,7 @@ class GetFrameResponse(google.protobuf.message.Message):
     IMAGE_FIELD_NUMBER: builtins.int
     WIDTH_PX_FIELD_NUMBER: builtins.int
     HEIGHT_PX_FIELD_NUMBER: builtins.int
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Actual MIME type of response'
     image: builtins.bytes
     'Frame in bytes'
@@ -41,7 +45,7 @@ class GetFrameResponse(google.protobuf.message.Message):
     height_px: builtins.int
     'Height of frame in px'
 
-    def __init__(self, *, mime_type: typing.Text=..., image: builtins.bytes=..., width_px: builtins.int=..., height_px: builtins.int=...) -> None:
+    def __init__(self, *, mime_type: builtins.str=..., image: builtins.bytes=..., width_px: builtins.int=..., height_px: builtins.int=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['height_px', b'height_px', 'image', b'image', 'mime_type', b'mime_type', 'width_px', b'width_px']) -> None:
@@ -52,12 +56,12 @@ class RenderFrameRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a camera'
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Requested MIME type of response'
 
-    def __init__(self, *, name: typing.Text=..., mime_type: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., mime_type: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'name', b'name']) -> None:
@@ -68,12 +72,12 @@ class GetPointCloudRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a camera'
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Requested MIME type of response'
 
-    def __init__(self, *, name: typing.Text=..., mime_type: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=..., mime_type: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'name', b'name']) -> None:
@@ -84,12 +88,12 @@ class GetPointCloudResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MIME_TYPE_FIELD_NUMBER: builtins.int
     POINT_CLOUD_FIELD_NUMBER: builtins.int
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Actual MIME type of response'
     point_cloud: builtins.bytes
     'Frame in bytes'
 
-    def __init__(self, *, mime_type: typing.Text=..., point_cloud: builtins.bytes=...) -> None:
+    def __init__(self, *, mime_type: builtins.str=..., point_cloud: builtins.bytes=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'point_cloud', b'point_cloud']) -> None:
@@ -99,10 +103,10 @@ global___GetPointCloudResponse = GetPointCloudResponse
 class GetPropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of a camera'
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -117,7 +121,7 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     def intrinsic_parameters(self) -> global___IntrinsicParameters:
         ...
 
-    def __init__(self, *, intrinsic_parameters: typing.Optional[global___IntrinsicParameters]=...) -> None:
+    def __init__(self, *, intrinsic_parameters: global___IntrinsicParameters | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
@@ -135,7 +139,7 @@ class Webcams(google.protobuf.message.Message):
     def webcams(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Webcam]:
         ...
 
-    def __init__(self, *, webcams: typing.Optional[typing.Iterable[global___Webcam]]=...) -> None:
+    def __init__(self, *, webcams: collections.abc.Iterable[global___Webcam] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['webcams', b'webcams']) -> None:
@@ -147,17 +151,16 @@ class Webcam(google.protobuf.message.Message):
     LABEL_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
     PROPERTIES_FIELD_NUMBER: builtins.int
-    label: typing.Text
+    label: builtins.str
     'Camera driver label'
-    status: typing.Text
+    status: builtins.str
     'Camera driver status'
 
     @property
     def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]:
         """Camera properties"""
-        pass
 
-    def __init__(self, *, label: typing.Text=..., status: typing.Text=..., properties: typing.Optional[typing.Iterable[global___Property]]=...) -> None:
+    def __init__(self, *, label: builtins.str=..., status: builtins.str=..., properties: collections.abc.Iterable[global___Property] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['label', b'label', 'properties', b'properties', 'status', b'status']) -> None:
@@ -171,9 +174,8 @@ class Property(google.protobuf.message.Message):
     @property
     def video(self) -> global___Video:
         """Camera video properties"""
-        pass
 
-    def __init__(self, *, video: typing.Optional[global___Video]=...) -> None:
+    def __init__(self, *, video: global___Video | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['video', b'video']) -> builtins.bool:
@@ -192,10 +194,10 @@ class Video(google.protobuf.message.Message):
     'Video resolution width'
     height: builtins.int
     'Video resolution height'
-    frame_format: typing.Text
+    frame_format: builtins.str
     'Video frame format'
 
-    def __init__(self, *, width: builtins.int=..., height: builtins.int=..., frame_format: typing.Text=...) -> None:
+    def __init__(self, *, width: builtins.int=..., height: builtins.int=..., frame_format: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['frame_format', b'frame_format', 'height', b'height', 'width', b'width']) -> None:

@@ -3,21 +3,25 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetControlsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONTROLLER_FIELD_NUMBER: builtins.int
-    controller: typing.Text
+    controller: builtins.str
     'Name of an input controller'
 
-    def __init__(self, *, controller: typing.Text=...) -> None:
+    def __init__(self, *, controller: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['controller', b'controller']) -> None:
@@ -29,13 +33,12 @@ class GetControlsResponse(google.protobuf.message.Message):
     CONTROLS_FIELD_NUMBER: builtins.int
 
     @property
-    def controls(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+    def controls(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """Returns a list of all the controls (buttons and axes) that are
         available to a given Input Controller
         """
-        pass
 
-    def __init__(self, *, controls: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+    def __init__(self, *, controls: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['controls', b'controls']) -> None:
@@ -45,10 +48,10 @@ global___GetControlsResponse = GetControlsResponse
 class GetEventsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONTROLLER_FIELD_NUMBER: builtins.int
-    controller: typing.Text
+    controller: builtins.str
     'Name of an input controller'
 
-    def __init__(self, *, controller: typing.Text=...) -> None:
+    def __init__(self, *, controller: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['controller', b'controller']) -> None:
@@ -64,9 +67,8 @@ class GetEventsResponse(google.protobuf.message.Message):
         """Returns a list of the most recent event for each control on a given InputController. Effectively provides the current "state" of all
         buttons/axes on a given input controller
         """
-        pass
 
-    def __init__(self, *, events: typing.Optional[typing.Iterable[global___Event]]=...) -> None:
+    def __init__(self, *, events: collections.abc.Iterable[global___Event] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['events', b'events']) -> None:
@@ -77,15 +79,14 @@ class TriggerEventRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONTROLLER_FIELD_NUMBER: builtins.int
     EVENT_FIELD_NUMBER: builtins.int
-    controller: typing.Text
+    controller: builtins.str
     'Name of an input controller'
 
     @property
     def event(self) -> global___Event:
         """Digitally assert a given event"""
-        pass
 
-    def __init__(self, *, controller: typing.Text=..., event: typing.Optional[global___Event]=...) -> None:
+    def __init__(self, *, controller: builtins.str=..., event: global___Event | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['event', b'event']) -> builtins.bool:
@@ -112,15 +113,14 @@ class Event(google.protobuf.message.Message):
     @property
     def time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Timestamp of event"""
-        pass
-    event: typing.Text
+    event: builtins.str
     'An event type (eg: ButtonPress, ButtonRelease)'
-    control: typing.Text
+    control: builtins.str
     'A control, can be a button (eg: ButtonSouth) or an axis (eg: AbsoluteX)'
     value: builtins.float
     '0 or 1 for buttons, -1.0 to +1.0 for axes'
 
-    def __init__(self, *, time: typing.Optional[google.protobuf.timestamp_pb2.Timestamp]=..., event: typing.Text=..., control: typing.Text=..., value: builtins.float=...) -> None:
+    def __init__(self, *, time: google.protobuf.timestamp_pb2.Timestamp | None=..., event: builtins.str=..., control: builtins.str=..., value: builtins.float=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['time', b'time']) -> builtins.bool:
@@ -138,39 +138,36 @@ class StreamEventsRequest(google.protobuf.message.Message):
         CONTROL_FIELD_NUMBER: builtins.int
         EVENTS_FIELD_NUMBER: builtins.int
         CANCELLED_EVENTS_FIELD_NUMBER: builtins.int
-        control: typing.Text
+        control: builtins.str
         'Name of a control (button or axis)'
 
         @property
-        def events(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        def events(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
             """Specify which event types to recieve events for
             To Do (FA): Right now this can be an empty list, but we should error in this case as opening a stream with no messages is expensive
             """
-            pass
 
         @property
-        def cancelled_events(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+        def cancelled_events(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
             """Specify which event types to stop recieving events for
             This can be an empty list
             """
-            pass
 
-        def __init__(self, *, control: typing.Text=..., events: typing.Optional[typing.Iterable[typing.Text]]=..., cancelled_events: typing.Optional[typing.Iterable[typing.Text]]=...) -> None:
+        def __init__(self, *, control: builtins.str=..., events: collections.abc.Iterable[builtins.str] | None=..., cancelled_events: collections.abc.Iterable[builtins.str] | None=...) -> None:
             ...
 
         def ClearField(self, field_name: typing_extensions.Literal['cancelled_events', b'cancelled_events', 'control', b'control', 'events', b'events']) -> None:
             ...
     CONTROLLER_FIELD_NUMBER: builtins.int
     EVENTS_FIELD_NUMBER: builtins.int
-    controller: typing.Text
+    controller: builtins.str
     'Name of an input controller'
 
     @property
     def events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StreamEventsRequest.Events]:
         """A list of Events"""
-        pass
 
-    def __init__(self, *, controller: typing.Text=..., events: typing.Optional[typing.Iterable[global___StreamEventsRequest.Events]]=...) -> None:
+    def __init__(self, *, controller: builtins.str=..., events: collections.abc.Iterable[global___StreamEventsRequest.Events] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['controller', b'controller', 'events', b'events']) -> None:
@@ -184,9 +181,8 @@ class StreamEventsResponse(google.protobuf.message.Message):
     @property
     def event(self) -> global___Event:
         """Event for a controller"""
-        pass
 
-    def __init__(self, *, event: typing.Optional[global___Event]=...) -> None:
+    def __init__(self, *, event: global___Event | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['event', b'event']) -> builtins.bool:
@@ -204,7 +200,7 @@ class Status(google.protobuf.message.Message):
     def events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]:
         ...
 
-    def __init__(self, *, events: typing.Optional[typing.Iterable[global___Event]]=...) -> None:
+    def __init__(self, *, events: collections.abc.Iterable[global___Event] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['events', b'events']) -> None:

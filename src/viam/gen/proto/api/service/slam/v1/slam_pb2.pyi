@@ -6,17 +6,20 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
 from ...... import proto
-import typing
-import typing_extensions
+import sys
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of slam service'
 
-    def __init__(self, *, name: typing.Text=...) -> None:
+    def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
@@ -30,9 +33,8 @@ class GetPositionResponse(google.protobuf.message.Message):
     @property
     def pose(self) -> proto.api.common.v1.common_pb2.PoseInFrame:
         """Current position of the robot within the World frame."""
-        pass
 
-    def __init__(self, *, pose: typing.Optional[proto.api.common.v1.common_pb2.PoseInFrame]=...) -> None:
+    def __init__(self, *, pose: proto.api.common.v1.common_pb2.PoseInFrame | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
@@ -48,9 +50,9 @@ class GetMapRequest(google.protobuf.message.Message):
     MIME_TYPE_FIELD_NUMBER: builtins.int
     CAMERA_POSITION_FIELD_NUMBER: builtins.int
     INCLUDE_ROBOT_MARKER_FIELD_NUMBER: builtins.int
-    name: typing.Text
+    name: builtins.str
     'Name of slam service'
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Requested MIME type of response (image/jpeg or image/pcd)'
 
     @property
@@ -58,11 +60,10 @@ class GetMapRequest(google.protobuf.message.Message):
         """Optional parameter for image/jpeg mime_type, used to project point
         cloud into a 2D image.
         """
-        pass
     include_robot_marker: builtins.bool
     'Optional parameter for image/jpeg mime_type, defaults to false.\n    Tells us whether to include the robot position on the 2D image.\n    '
 
-    def __init__(self, *, name: typing.Text=..., mime_type: typing.Text=..., camera_position: typing.Optional[proto.api.common.v1.common_pb2.Pose]=..., include_robot_marker: builtins.bool=...) -> None:
+    def __init__(self, *, name: builtins.str=..., mime_type: builtins.str=..., camera_position: proto.api.common.v1.common_pb2.Pose | None=..., include_robot_marker: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['_camera_position', b'_camera_position', 'camera_position', b'camera_position']) -> builtins.bool:
@@ -71,7 +72,7 @@ class GetMapRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['_camera_position', b'_camera_position', 'camera_position', b'camera_position', 'include_robot_marker', b'include_robot_marker', 'mime_type', b'mime_type', 'name', b'name']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_camera_position', b'_camera_position']) -> typing.Optional[typing_extensions.Literal['camera_position']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_camera_position', b'_camera_position']) -> typing_extensions.Literal['camera_position'] | None:
         ...
 global___GetMapRequest = GetMapRequest
 
@@ -85,10 +86,10 @@ class GetMapResponse(google.protobuf.message.Message):
     def point_cloud(self) -> proto.api.common.v1.common_pb2.PointCloudObject:
         ...
     image: builtins.bytes
-    mime_type: typing.Text
+    mime_type: builtins.str
     'Actual MIME type of response (image/jpeg or image/pcd)'
 
-    def __init__(self, *, point_cloud: typing.Optional[proto.api.common.v1.common_pb2.PointCloudObject]=..., image: builtins.bytes=..., mime_type: typing.Text=...) -> None:
+    def __init__(self, *, point_cloud: proto.api.common.v1.common_pb2.PointCloudObject | None=..., image: builtins.bytes=..., mime_type: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['image', b'image', 'map', b'map', 'point_cloud', b'point_cloud']) -> builtins.bool:
@@ -97,6 +98,6 @@ class GetMapResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['image', b'image', 'map', b'map', 'mime_type', b'mime_type', 'point_cloud', b'point_cloud']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['map', b'map']) -> typing.Optional[typing_extensions.Literal['point_cloud', 'image']]:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['map', b'map']) -> typing_extensions.Literal['point_cloud', 'image'] | None:
         ...
 global___GetMapResponse = GetMapResponse
