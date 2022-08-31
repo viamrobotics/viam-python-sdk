@@ -4,10 +4,10 @@ Do not edit manually!
 """
 from .....gen.proto.api.component.motor.v1.motor_grpc import MotorServiceBase, MotorServiceStub
 from .....gen.proto.api.component.motor.v1.motor_pb2 import (
-    GetFeaturesRequest,
-    GetFeaturesResponse,
     GetPositionRequest,
     GetPositionResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GoForRequest,
     GoForResponse,
     GoToRequest,
@@ -26,10 +26,10 @@ from .....gen.proto.api.component.motor.v1.motor_pb2 import (
 __all__ = [
     "MotorServiceBase",
     "MotorServiceStub",
-    "GetFeaturesRequest",
-    "GetFeaturesResponse",
     "GetPositionRequest",
     "GetPositionResponse",
+    "GetPropertiesRequest",
+    "GetPropertiesResponse",
     "GoForRequest",
     "GoForResponse",
     "GoToRequest",

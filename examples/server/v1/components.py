@@ -463,8 +463,8 @@ class ExampleMotor(Motor):
     async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> float:
         return self.position
 
-    async def get_features(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Features:
-        return Motor.Features(position_reporting=True)
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Properties:
+        return Motor.Properties(position_reporting=True)
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None):
         await self.set_power(0)

@@ -239,7 +239,7 @@ class IsPoweredResponse(google.protobuf.message.Message):
         ...
 global___IsPoweredResponse = IsPoweredResponse
 
-class GetFeaturesRequest(google.protobuf.message.Message):
+class GetPropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
@@ -258,9 +258,9 @@ class GetFeaturesRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
-global___GetFeaturesRequest = GetFeaturesRequest
+global___GetPropertiesRequest = GetPropertiesRequest
 
-class GetFeaturesResponse(google.protobuf.message.Message):
+class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITION_REPORTING_FIELD_NUMBER: builtins.int
     position_reporting: builtins.bool
@@ -271,7 +271,7 @@ class GetFeaturesResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['position_reporting', b'position_reporting']) -> None:
         ...
-global___GetFeaturesResponse = GetFeaturesResponse
+global___GetPropertiesResponse = GetPropertiesResponse
 
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
