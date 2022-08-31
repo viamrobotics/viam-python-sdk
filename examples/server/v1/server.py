@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import sys
 
 from viam.proto.api.common import GeoPoint, Orientation, Vector3
 from viam.rpc.server import Server
@@ -23,7 +24,7 @@ from .components import (
 )
 
 
-async def run():
+async def run(host: str, port: int):
     my_arm = ExampleArm("arm0")
     my_base = ExampleBase("base0")
     my_board = ExampleBoard(
@@ -77,8 +78,15 @@ async def run():
             my_servo,
         ]
     )
-    await server.serve(host="0.0.0.0", port=5000, log_level=logging.DEBUG)
+    await server.serve(host=host, port=port, log_level=logging.DEBUG)
 
 
 if __name__ == "__main__":
-    asyncio.run(run())
+    host = "localhost"
+    port = 9090
+    try:
+        host = sys.argv[1]
+        port = int(sys.argv[2])
+    except (IndexError, ValueError):
+        pass
+    asyncio.run(run(host, port))

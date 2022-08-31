@@ -70,9 +70,10 @@ class ServiceNotImplementedError(ViamGRPCError):
     Exception raised when a service is not implemented on the Robot
     """
 
-    def __init__(self, service: str):
+    def __init__(self, service: str, name: str):
         self.service = service
-        self.message = f"Service {service} is not implemented on the Robot"
+        self.name = name
+        self.message = f"{service} service named {name} is not implemented on the Robot"
         self.grpc_code = Status.UNIMPLEMENTED
 
 

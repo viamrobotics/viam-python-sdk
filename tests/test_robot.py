@@ -35,7 +35,7 @@ from viam.proto.api.robot import (
 )
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
-from viam.services import ServiceType
+from viam.services.vision import VisionServiceClient
 from viam.utils import dict_to_struct, message_to_struct, struct_to_message
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockSensor
@@ -303,8 +303,10 @@ class TestRobotClient:
     async def test_get_service(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
+            client._resource_names.append(ResourceName(namespace="rdk", type="service", subtype="vision", name="vision1"))
             with pytest.raises(ServiceNotImplementedError):
-                client.get_service(ServiceType.VISION)
+                VisionServiceClient.from_robot(client)
+            VisionServiceClient.from_robot(client, "vision1")
 
     @pytest.mark.asyncio
     async def test_get_frame_system_config(self, service: RobotService):

@@ -86,6 +86,8 @@ POINT_CLOUDS = [
     ),
 ]
 
+VISION_SERVICE_NAME = "vision1"
+
 
 @pytest.fixture(scope="function")
 def service() -> VisionServiceBase:
@@ -98,14 +100,14 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_detectors(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(channel)
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             response = await client.get_detector_names()
             assert response == DETECTORS
 
     @pytest.mark.asyncio
     async def test_add_detectors(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(channel)
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             await client.add_detector(DetectorConfig("detector-2", DetectorType.TENSORFLOW, {"foo": "bar"}))
             response = await client.get_detector_names()
             assert response[-1] == "detector-2"
@@ -113,14 +115,14 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_detections_from_camera(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(channel)
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             response = await client.get_detections_from_camera("fake-camera", "fake-detector")
             assert response == DETECTIONS
 
     @pytest.mark.asyncio
     async def test_get_detections(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(channel)
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
             response = await client.get_detections(image, "fake-detector")
             assert response == DETECTIONS
@@ -128,20 +130,20 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_segmenters(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(channel)
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             response = await client.get_segmenter_names()
             assert response == SEGMENTERS
 
     @pytest.mark.asyncio
     async def test_get_segmenter_parameters(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(channel)
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             response = await client.get_segmenter_parameters("segmenter-0")
             assert response == PARAMETERS["segmenter-0"]
 
     @pytest.mark.asyncio
     async def test_get_object_point_clouds(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(channel)
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             response = await client.get_object_point_clouds("camera", "segmenter", {})
             assert response == POINT_CLOUDS
