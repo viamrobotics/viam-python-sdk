@@ -9,7 +9,7 @@ from ..component_base import ComponentBase
 
 class Motor(ComponentBase):
     @dataclass
-    class Features:
+    class Properties:
         position_reporting: bool
 
     """
@@ -84,13 +84,13 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_features(self, extra: Optional[Dict[str, Any]] = None) -> Features:
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None) -> Properties:
         """
-        Report a dictionary mapping optional features to
+        Report a dictionary mapping optional properties to
         whether it is supported by this motor.
 
         Returns:
-            Features: Map of feature names to supported status.
+            Properties: Map of feature names to supported status.
         """
         ...
 

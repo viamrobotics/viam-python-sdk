@@ -6,8 +6,8 @@ from viam.components.motor.service import MotorService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
 from viam.proto.api.component.motor import (
-    GetFeaturesRequest,
-    GetFeaturesResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetPositionRequest,
     GetPositionResponse,
     GoForRequest,
@@ -81,9 +81,9 @@ class TestMotor:
         assert motor.offset == 20
 
     @pytest.mark.asyncio
-    async def test_get_features(self, motor: MockMotor):
-        features = await motor.get_features()
-        assert features.position_reporting is True
+    async def test_get_properties(self, motor: MockMotor):
+        properties = await motor.get_properties()
+        assert properties.position_reporting is True
 
     @pytest.mark.asyncio
     async def test_stop(self, motor: MockMotor):
@@ -190,11 +190,11 @@ class TestService:
             assert motor.offset == 20
 
     @pytest.mark.asyncio
-    async def test_get_features(self, motor: MockMotor, service: MotorService):
+    async def test_get_properties(self, motor: MockMotor, service: MotorService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
-            request = GetFeaturesRequest(name=motor.name)
-            response: GetFeaturesResponse = await client.GetFeatures(request)
+            request = GetPropertiesRequest(name=motor.name)
+            response: GetPropertiesResponse = await client.GetProperties(request)
             assert response.position_reporting is True
 
     @pytest.mark.asyncio
@@ -286,11 +286,11 @@ class TestClient:
             assert motor.offset == 20
 
     @pytest.mark.asyncio
-    async def test_get_features(self, motor: MockMotor, service: MotorService):
+    async def test_get_properties(self, motor: MockMotor, service: MotorService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-            features = await client.get_features()
-            assert features.position_reporting is True
+            properties = await client.get_properties()
+            assert properties.position_reporting is True
 
     @pytest.mark.asyncio
     async def test_stop(self, motor: MockMotor, service: MotorService):

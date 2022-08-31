@@ -2,8 +2,8 @@ from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.motor import (
-    GetFeaturesRequest,
-    GetFeaturesResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetPositionRequest,
     GetPositionResponse,
     GoForRequest,
@@ -87,7 +87,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         position = await motor.get_position(struct_to_dict(request.extra))
         await stream.send_message(GetPositionResponse(position=position))
 
-    async def GetFeatures(self, stream: Stream[GetFeaturesRequest, GetFeaturesResponse]) -> None:
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -95,8 +95,8 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        features = await motor.get_features(struct_to_dict(request.extra))
-        response = GetFeaturesResponse(**features.__dict__)
+        properties = await motor.get_properties(struct_to_dict(request.extra))
+        response = GetPropertiesResponse(**properties.__dict__)
         await stream.send_message(response)
 
     async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:

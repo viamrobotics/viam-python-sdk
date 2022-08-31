@@ -16,7 +16,7 @@ async def create_status(component: Motor) -> Status:
     s = MotorStatus(
         is_powered=await component.is_powered(),
         position=await component.get_position(),
-        position_reporting=(await component.get_features()).position_reporting,
+        position_reporting=(await component.get_properties()).position_reporting,
         is_moving=await component.is_moving(),
     )
     return Status(name=Motor.get_resource_name(component.name), status=message_to_struct(s))

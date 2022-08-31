@@ -426,9 +426,9 @@ class MockMotor(Motor):
         self.extra = extra
         return self.position
 
-    async def get_features(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Features:
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Properties:
         self.extra = extra
-        return Motor.Features(position_reporting=True)
+        return Motor.Properties(position_reporting=True)
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None):
         await self.set_power(0)
