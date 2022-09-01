@@ -5,7 +5,7 @@ from PIL.Image import Image
 
 
 class CameraMimeType(str, Enum):
-    RAW = "image/raw-rgba"
+    RAW = "image/vnd.viam.rgba"
     JPEG = "image/jpeg"
     PNG = "image/png"
     PCD = "pointcloud/pcd"
