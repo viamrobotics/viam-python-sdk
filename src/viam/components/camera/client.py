@@ -30,7 +30,7 @@ class CameraClient(Camera):
         super().__init__(name)
 
     async def get_frame(self) -> Image.Image:
-        request = GetFrameRequest(name=self.name, mime_type=CameraMimeType.BEST)
+        request = GetFrameRequest(name=self.name, mime_type=CameraMimeType.PNG)
         response: GetFrameResponse = await self.client.GetFrame(request)
         mimetype = CameraMimeType(response.mime_type)
         if mimetype == CameraMimeType.RAW:
