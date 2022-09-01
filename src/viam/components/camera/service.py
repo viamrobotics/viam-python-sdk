@@ -38,8 +38,6 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
                 mimetype = CameraMimeType(request.mime_type or "")
             except ValueError:
                 mimetype = CameraMimeType.RAW
-            if mimetype == CameraMimeType.BEST:
-                mimetype = CameraMimeType.RAW
             response = GetFrameResponse(
                 mime_type=mimetype,
                 width_px=image.width,
