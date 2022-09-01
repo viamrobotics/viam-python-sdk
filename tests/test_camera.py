@@ -9,14 +9,17 @@ from viam.components.camera.service import CameraService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.components.types import CameraMimeType
-from viam.proto.api.component.camera import (CameraServiceStub,
-                                             GetFrameRequest, GetFrameResponse,
-                                             GetPointCloudRequest,
-                                             GetPointCloudResponse,
-                                             GetPropertiesRequest,
-                                             GetPropertiesResponse,
-                                             IntrinsicParameters,
-                                             RenderFrameRequest)
+from viam.proto.api.component.camera import (
+    CameraServiceStub,
+    GetFrameRequest,
+    GetFrameResponse,
+    GetPointCloudRequest,
+    GetPointCloudResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
+    IntrinsicParameters,
+    RenderFrameRequest,
+)
 
 from .mocks.components import MockCamera
 
@@ -27,40 +30,39 @@ from .mocks.components import MockCamera
 # ##################################################################### #
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def image() -> Image.Image:
-    return Image.new('RGBA', (100, 100), '#AABBCCDD')
+    return Image.new("RGBA", (100, 100), "#AABBCCDD")
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def point_cloud() -> bytes:
-    return b'THIS IS A POINT CLOUD'
+    return b"THIS IS A POINT CLOUD"
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def properties() -> IntrinsicParameters:
     return IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def camera() -> Camera:
-    return MockCamera('camera')
+    return MockCamera("camera")
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def service(camera: Camera) -> CameraService:
     rm = ResourceManager([camera])
     return CameraService(rm)
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def generic_service(camera: Camera) -> GenericService:
     manager = ResourceManager([camera])
     return GenericService(manager)
 
 
 class TestCamera:
-
     @pytest.mark.asyncio
     async def test_get_frame(self, camera: Camera, image: Image.Image):
         img = await camera.get_frame()
@@ -79,110 +81,72 @@ class TestCamera:
     @pytest.mark.asyncio
     async def test_do(self, camera: Camera):
         with pytest.raises(NotImplementedError):
-            await camera.do({'command': 'args'})
+            await camera.do({"command": "args"})
 
 
 class TestService:
-
     @pytest.mark.asyncio
-    async def test_get_frame(
-        self,
-        service: CameraService,
-        image: Image.Image
-    ):
+    async def test_get_frame(self, service: CameraService, image: Image.Image):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = GetFrameRequest(name='camera')
+            request = GetFrameRequest(name="camera")
             response: GetFrameResponse = await client.GetFrame(request)
-            img = Image.frombytes(
-                'RGBA',
-                (response.width_px, response.height_px),
-                response.image,
-                'raw'
-            )
+            img = Image.frombytes("RGBA", (response.width_px, response.height_px), response.image, "raw")
             assert img == image
 
     @pytest.mark.asyncio
-    async def test_render_frame(
-        self,
-        service: CameraService,
-        image: Image.Image
-    ):
+    async def test_render_frame(self, service: CameraService, image: Image.Image):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = RenderFrameRequest(
-                name='camera', mime_type=CameraMimeType.PNG)
+            request = RenderFrameRequest(name="camera", mime_type=CameraMimeType.PNG)
             response: HttpBody = await client.RenderFrame(request)
             assert response.content_type == CameraMimeType.PNG
             buf = BytesIO(response.data)
-            img = Image.open(buf, formats=['JPEG', 'PNG'])
+            img = Image.open(buf, formats=["JPEG", "PNG"])
             assert img.tobytes() == image.tobytes()
 
     @pytest.mark.asyncio
-    async def test_get_point_cloud(
-        self,
-        service: CameraService,
-        point_cloud: bytes
-    ):
+    async def test_get_point_cloud(self, service: CameraService, point_cloud: bytes):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = GetPointCloudRequest(
-                name='camera', mime_type=CameraMimeType.PCD)
-            response: GetPointCloudResponse = \
-                await client.GetPointCloud(request)
+            request = GetPointCloudRequest(name="camera", mime_type=CameraMimeType.PCD)
+            response: GetPointCloudResponse = await client.GetPointCloud(request)
             assert response.point_cloud == point_cloud
 
     @pytest.mark.asyncio
-    async def test_get_properties(
-        self,
-        service: CameraService,
-        properties: IntrinsicParameters
-    ):
+    async def test_get_properties(self, service: CameraService, properties: IntrinsicParameters):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = GetPropertiesRequest(name='camera')
+            request = GetPropertiesRequest(name="camera")
             response: GetPropertiesResponse = await client.GetProperties(request)
             assert response.intrinsic_parameters == properties
 
 
 class TestClient:
-
     @pytest.mark.asyncio
-    async def test_get_frame(
-        self,
-        service: CameraService,
-        image: Image.Image
-    ):
+    async def test_get_frame(self, service: CameraService, image: Image.Image):
         async with ChannelFor([service]) as channel:
-            camera = CameraClient('camera', channel)
+            camera = CameraClient("camera", channel)
             img = await camera.get_frame()
-            assert img == image
+            assert img.convert("RGBA") == image.convert("RGBA")
 
     @pytest.mark.asyncio
-    async def test_get_point_cloud(
-        self,
-        service: CameraService,
-        point_cloud: bytes
-    ):
+    async def test_get_point_cloud(self, service: CameraService, point_cloud: bytes):
         async with ChannelFor([service]) as channel:
-            camera = CameraClient('camera', channel)
+            camera = CameraClient("camera", channel)
             pc, _ = await camera.get_point_cloud()
             assert pc == point_cloud
 
     @pytest.mark.asyncio
-    async def test_get_properties(
-        self,
-        service: CameraService,
-        properties: IntrinsicParameters
-    ):
+    async def test_get_properties(self, service: CameraService, properties: IntrinsicParameters):
         async with ChannelFor([service]) as channel:
-            camera = CameraClient('camera', channel)
+            camera = CameraClient("camera", channel)
             props = await camera.get_properties()
             assert props == properties
 
     @pytest.mark.asyncio
     async def test_do(self, service: CameraService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
-            client = CameraClient('camera', channel)
+            client = CameraClient("camera", channel)
             with pytest.raises(NotImplementedError):
-                await client.do({'command': 'args'})
+                await client.do({"command": "args"})
