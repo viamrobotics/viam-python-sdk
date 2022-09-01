@@ -124,8 +124,6 @@
                 <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                 <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">RAW</span>
-            <span class="k">if</span> <span class="n">mimetype</span> <span class="o">==</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">BEST</span><span class="p">:</span>
-                <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">RAW</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">GetFrameResponse</span><span class="p">(</span>
                 <span class="n">mime_type</span><span class="o">=</span><span class="n">mimetype</span><span class="p">,</span>
                 <span class="n">width_px</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
