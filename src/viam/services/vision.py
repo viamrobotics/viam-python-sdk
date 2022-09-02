@@ -43,7 +43,7 @@ class VisModelType(str, Enum):
     DETECTOR_TENSORFLOW = "tf_detector"
     DETECTOR_COLOR = "color_detector"
     CLASSIFIER_TFLITE = "tflite_classifier"
-    CLASSIFIER_TF = "tf_classifier"
+    CLASSIFIER_TENSORFLOW = "tf_classifier"
 
 
 @dataclass
