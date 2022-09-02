@@ -39,7 +39,7 @@ from viam.utils import dict_to_struct
 
 
 class VisModelType(str, Enum):
-    DECTOR_TF_LITE = "tflite_detector"
+    DETECTOR_TF_LITE = "tflite_detector"
     DETECTOR_TENSORFLOW = "tf_detector"
     DETECTOR_COLOR = "color_detector"
     CLASSIFIER_TFLITE = "tflite_classifier"
