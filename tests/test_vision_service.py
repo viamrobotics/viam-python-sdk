@@ -16,8 +16,9 @@ from viam.proto.api.common import (
 from viam.proto.api.service.vision import VisionServiceBase
 from viam.services.vision import (
     Detection,
-    DetectorConfig,
-    DetectorType,
+    Classification,
+    VisModelConfig,
+    VisModelType,
     VisionServiceClient,
 )
 
@@ -44,6 +45,14 @@ DETECTIONS = [
         confidence=random(),
         class_name="test-detection-class",
     ),
+]
+CLASSIFIERS = [
+    "classifier-0",
+    "classifier-1",
+]
+CLASSIFICATIONS = [
+    Classification(class_name="test-detection-class", confidence=0.1),
+    Classification(class_name="test-detection-class", confidence=0.82),
 ]
 SEGMENTERS = [
     "segmenter-0",
@@ -92,7 +101,13 @@ VISION_SERVICE_NAME = "vision1"
 @pytest.fixture(scope="function")
 def service() -> VisionServiceBase:
     return MockVisionService(
-        detectors=DETECTORS, detections=DETECTIONS, segmenters=SEGMENTERS, parameters=PARAMETERS, point_clouds=POINT_CLOUDS
+        detectors=DETECTORS,
+        detections=DETECTIONS,
+        classifiers=CLASSIFIERS,
+        classifications=CLASSIFICATIONS,
+        segmenters=SEGMENTERS,
+        parameters=PARAMETERS,
+        point_clouds=POINT_CLOUDS,
     )
 
 
@@ -105,12 +120,20 @@ class TestClient:
             assert response == DETECTORS
 
     @pytest.mark.asyncio
-    async def test_add_detectors(self, service: VisionServiceBase):
+    async def test_add_detector(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            await client.add_detector(DetectorConfig("detector-2", DetectorType.TENSORFLOW, {"foo": "bar"}))
+            await client.add_detector(VisModelConfig("detector-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}))
             response = await client.get_detector_names()
             assert response[-1] == "detector-2"
+
+    @pytest.mark.asyncio
+    async def test_remove_detector(self, service: VisionServiceBase):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            await client.remove_detector("detector-1")
+            response = await client.get_detector_names()
+            assert "detector-1" not in response
 
     @pytest.mark.asyncio
     async def test_get_detections_from_camera(self, service: VisionServiceBase):
@@ -126,6 +149,44 @@ class TestClient:
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
             response = await client.get_detections(image, "fake-detector")
             assert response == DETECTIONS
+
+    @pytest.mark.asyncio
+    async def test_get_classifiers(self, service: VisionServiceBase):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            response = await client.get_classifier_names()
+            assert response == CLASSIFIERS
+
+    @pytest.mark.asyncio
+    async def test_add_classifier(self, service: VisionServiceBase):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            await client.add_classifier(VisModelConfig("classifier-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}))
+            response = await client.get_classifier_names()
+            assert response[-1] == "classifier-2"
+
+    @pytest.mark.asyncio
+    async def test_remove_classifier(self, service: VisionServiceBase):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            await client.remove_classifier("classifier-1")
+            response = await client.get_classifier_names()
+            assert "classifier-1" not in response
+
+    @pytest.mark.asyncio
+    async def test_get_classifications_from_camera(self, service: VisionServiceBase):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            response = await client.get_classifications_from_camera("fake-camera", "fake-classifier", 1)
+            assert response == CLASSIFICATIONS
+
+    @pytest.mark.asyncio
+    async def test_get_classifications(self, service: VisionServiceBase):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            image = Image.new("RGB", (100, 100), "#AABBCCDD")
+            response = await client.get_classifications(image, "fake-classifier")
+            assert response == CLASSIFICATIONS
 
     @pytest.mark.asyncio
     async def test_get_segmenters(self, service: VisionServiceBase):

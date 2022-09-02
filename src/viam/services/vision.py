@@ -1,15 +1,23 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Dict, List, Tuple
-
+from typing import Any, List, Mapping, Tuple
 
 from grpclib.client import Channel
 from PIL.Image import Image
+
 from viam.components.types import CameraMimeType
 from viam.proto.api.common import PointCloudObject
 from viam.proto.api.service.vision import (
+    AddClassifierRequest,
     AddDetectorRequest,
+    Classification,
     Detection,
+    GetClassificationsFromCameraRequest,
+    GetClassificationsFromCameraResponse,
+    GetClassificationsRequest,
+    GetClassificationsResponse,
+    GetClassifierNamesRequest,
+    GetClassifierNamesResponse,
     GetDetectionsFromCameraRequest,
     GetDetectionsFromCameraResponse,
     GetDetectionsRequest,
@@ -22,23 +30,27 @@ from viam.proto.api.service.vision import (
     GetSegmenterNamesResponse,
     GetSegmenterParametersRequest,
     GetSegmenterParametersResponse,
+    RemoveClassifierRequest,
+    RemoveDetectorRequest,
     VisionServiceStub,
 )
-from viam.utils import dict_to_struct
 from viam.services.service_client_base import ServiceClientBase
+from viam.utils import dict_to_struct
 
 
-class DetectorType(str, Enum):
-    TF_LITE = "tflite"
-    TENSORFLOW = "tensorflow"
-    COLOR = "color"
+class VisModelType(str, Enum):
+    DETECTOR_TF_LITE = "tflite_detector"
+    DETECTOR_TENSORFLOW = "tf_detector"
+    DETECTOR_COLOR = "color_detector"
+    CLASSIFIER_TFLITE = "tflite_classifier"
+    CLASSIFIER_TENSORFLOW = "tf_classifier"
 
 
 @dataclass
-class DetectorConfig:
+class VisModelConfig:
     name: str
-    type: DetectorType
-    parameters: Dict[str, Any]
+    type: VisModelType
+    parameters: Mapping[str, Any]
 
 
 class VisionServiceClient(ServiceClientBase):
@@ -63,22 +75,31 @@ class VisionServiceClient(ServiceClientBase):
         response: GetDetectorNamesResponse = await self.client.GetDetectorNames(request)
         return list(response.detector_names)
 
-    async def add_detector(self, detector: DetectorConfig):
+    async def add_detector(self, config: VisModelConfig):
         """Add a new detector to the service. Returns nothing if successful, and an error if not.
-        Registers a new detector just as if you had put it in the original "register_detectors" field
+        Registers a new detector just as if you had put it in the original "register_models" field
         in the robot config. Available types and their parameters can be found in the
         vision service documentation.
 
         Args:
-            detector (DetectorConfig): The configuration of the detector to add.
+            config (VisModelConfig): The configuration of the detector to add.
         """
         request = AddDetectorRequest(
             name=self.name,
-            detector_name=detector.name,
-            detector_model_type=detector.type,
-            detector_parameters=dict_to_struct(detector.parameters),
+            detector_name=config.name,
+            detector_model_type=config.type,
+            detector_parameters=dict_to_struct(config.parameters),
         )
         await self.client.AddDetector(request)
+
+    async def remove_detector(self, detector_name: str):
+        """Remove the detector with the given name from the service. Returns nothing if successful.
+
+        Args:
+            detector_name (str): The name of the detector to remove
+        """
+        request = RemoveDetectorRequest(name=self.name, detector_name=detector_name)
+        await self.client.RemoveDetector(request)
 
     async def get_detections_from_camera(self, camera_name: str, detector_name: str) -> List[Detection]:
         """Get a list of detections in the next image given a camera and a detector
@@ -108,7 +129,7 @@ class VisionServiceClient(ServiceClientBase):
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
         """
-        mime_type = CameraMimeType.PNG
+        mime_type = CameraMimeType.JPEG
         request = GetDetectionsRequest(
             name=self.name,
             image=mime_type.encode_image(image),
@@ -119,6 +140,76 @@ class VisionServiceClient(ServiceClientBase):
         )
         response: GetDetectionsResponse = await self.client.GetDetections(request)
         return list(response.detections)
+
+    async def get_classifier_names(self) -> List[str]:
+        """Get the list of classifiers currently registered to the service
+
+        Returns:
+            List[str]: The list of classifier names
+        """
+        request = GetClassifierNamesRequest(name=self.name)
+        response: GetClassifierNamesResponse = await self.client.GetClassifierNames(request)
+        return list(response.classifier_names)
+
+    async def add_classifier(self, config: VisModelConfig):
+        """Add a classifier to the service.
+
+        Args:
+            config (VisModelConfig): The configuration of the classifier
+        """
+        request = AddClassifierRequest(
+            name=self.name,
+            classifier_name=config.name,
+            classifier_model_type=config.type,
+            classifier_parameters=dict_to_struct(config.parameters),
+        )
+        await self.client.AddClassifier(request)
+
+    async def remove_classifier(self, classifier_name: str):
+        """Remove the classifier with the given name from the service. Returns nothing if successful.
+
+        Args:
+            classifier_name (str): The name of the classifier to remove
+        """
+        request = RemoveClassifierRequest(name=self.name, classifier_name=classifier_name)
+        await self.client.RemoveClassifier(request)
+
+    async def get_classifications_from_camera(self, camera_name: str, classifier_name: str, count: int) -> List[Classification]:
+        """Get a list of classifications in the next image given a camera and a classifier
+
+        Args:
+            camera_name (str): The name of the camera to use for detection
+            classifier_name (str): The name of the classifier to use for classification
+            count (int): The number of classifications desired
+
+        returns:
+            List[Classification]: The list of Classifications
+        """
+        request = GetClassificationsFromCameraRequest(name=self.name, camera_name=camera_name, classifier_name=classifier_name, n=count)
+        response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(request)
+        return list(response.classifications)
+
+    async def get_classifications(self, image: Image, classifier_name: str) -> List[Classification]:
+        """Get a list of detections in the given image using the specified detector
+
+        Args:
+            image (Image): The image to get detections from
+            classifier_name (str): The name of the detector to use for detection
+
+        Returns:
+            List[Classification]: The list of Classifications
+        """
+        mime_type = CameraMimeType.JPEG
+        request = GetClassificationsRequest(
+            name=self.name,
+            image=mime_type.encode_image(image),
+            width=image.width,
+            height=image.height,
+            mime_type=mime_type,
+            classifier_name=classifier_name,
+        )
+        response: GetClassificationsResponse = await self.client.GetClassifications(request)
+        return list(response.classifications)
 
     async def get_segmenter_names(self) -> List[str]:
         """
@@ -147,7 +238,7 @@ class VisionServiceClient(ServiceClientBase):
         response: GetSegmenterParametersResponse = await self.client.GetSegmenterParameters(request)
         return [(x.name, x.type) for x in response.segmenter_parameters]
 
-    async def get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Dict[str, Any]) -> List[PointCloudObject]:
+    async def get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Mapping[str, Any]) -> List[PointCloudObject]:
         """
         Returns a list of the 3D point cloud objects and associated metadata in the latest
         picture obtained from the specified 3D camera (using the specified segmenter).

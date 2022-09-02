@@ -115,7 +115,7 @@ def struct_to_message(struct: Struct, message_type: Type[T]) -> T:
     return ParseDict(dct, message_type())
 
 
-def dict_to_struct(obj: Dict[str, Any]) -> Struct:
+def dict_to_struct(obj: Mapping[str, Any]) -> Struct:
     struct = Struct()
     struct.update(obj)
     return struct

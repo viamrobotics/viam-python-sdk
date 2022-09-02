@@ -75,6 +75,29 @@ class AddDetectorResponse(google.protobuf.message.Message):
         ...
 global___AddDetectorResponse = AddDetectorResponse
 
+class RemoveDetectorRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    DETECTOR_NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+    detector_name: builtins.str
+    'name of detector in registry'
+
+    def __init__(self, *, name: builtins.str=..., detector_name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'name', b'name']) -> None:
+        ...
+global___RemoveDetectorRequest = RemoveDetectorRequest
+
+class RemoveDetectorResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___RemoveDetectorResponse = RemoveDetectorResponse
+
 class GetDetectionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -124,6 +147,7 @@ class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
     name: builtins.str
+    'name of the vision service'
     camera_name: builtins.str
     'name of camera source to use as input'
     detector_name: builtins.str
@@ -194,6 +218,191 @@ class Detection(google.protobuf.message.Message):
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_min', b'_y_min']) -> typing_extensions.Literal['y_min'] | None:
         ...
 global___Detection = Detection
+
+class GetClassifierNamesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetClassifierNamesRequest = GetClassifierNamesRequest
+
+class GetClassifierNamesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLASSIFIER_NAMES_FIELD_NUMBER: builtins.int
+
+    @property
+    def classifier_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, classifier_names: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['classifier_names', b'classifier_names']) -> None:
+        ...
+global___GetClassifierNamesResponse = GetClassifierNamesResponse
+
+class AddClassifierRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    CLASSIFIER_NAME_FIELD_NUMBER: builtins.int
+    CLASSIFIER_MODEL_TYPE_FIELD_NUMBER: builtins.int
+    CLASSIFIER_PARAMETERS_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+    classifier_name: builtins.str
+    'name of classifier to add to registry'
+    classifier_model_type: builtins.str
+    'the type of classifier'
+
+    @property
+    def classifier_parameters(self) -> google.protobuf.struct_pb2.Struct:
+        """additional parameters"""
+
+    def __init__(self, *, name: builtins.str=..., classifier_name: builtins.str=..., classifier_model_type: builtins.str=..., classifier_parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['classifier_parameters', b'classifier_parameters']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['classifier_model_type', b'classifier_model_type', 'classifier_name', b'classifier_name', 'classifier_parameters', b'classifier_parameters', 'name', b'name']) -> None:
+        ...
+global___AddClassifierRequest = AddClassifierRequest
+
+class AddClassifierResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___AddClassifierResponse = AddClassifierResponse
+
+class RemoveClassifierRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    CLASSIFIER_NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+    classifier_name: builtins.str
+    'name of the classifier in registry'
+
+    def __init__(self, *, name: builtins.str=..., classifier_name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['classifier_name', b'classifier_name', 'name', b'name']) -> None:
+        ...
+global___RemoveClassifierRequest = RemoveClassifierRequest
+
+class RemoveClassifierResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___RemoveClassifierResponse = RemoveClassifierResponse
+
+class GetClassificationsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    IMAGE_FIELD_NUMBER: builtins.int
+    WIDTH_FIELD_NUMBER: builtins.int
+    HEIGHT_FIELD_NUMBER: builtins.int
+    MIME_TYPE_FIELD_NUMBER: builtins.int
+    CLASSIFIER_NAME_FIELD_NUMBER: builtins.int
+    N_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+    image: builtins.bytes
+    'the image encoded as bytes'
+    width: builtins.int
+    'the width of the image'
+    height: builtins.int
+    'the height of the image'
+    mime_type: builtins.str
+    'the actual MIME type of image'
+    classifier_name: builtins.str
+    'the name of the registered classifier'
+    n: builtins.int
+    'the number of classifications desired'
+
+    def __init__(self, *, name: builtins.str=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: builtins.str=..., classifier_name: builtins.str=..., n: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['classifier_name', b'classifier_name', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'n', b'n', 'name', b'name', 'width', b'width']) -> None:
+        ...
+global___GetClassificationsRequest = GetClassificationsRequest
+
+class GetClassificationsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLASSIFICATIONS_FIELD_NUMBER: builtins.int
+
+    @property
+    def classifications(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]:
+        ...
+
+    def __init__(self, *, classifications: collections.abc.Iterable[global___Classification] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['classifications', b'classifications']) -> None:
+        ...
+global___GetClassificationsResponse = GetClassificationsResponse
+
+class GetClassificationsFromCameraRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    CAMERA_NAME_FIELD_NUMBER: builtins.int
+    CLASSIFIER_NAME_FIELD_NUMBER: builtins.int
+    N_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+    camera_name: builtins.str
+    'the image encoded as bytes'
+    classifier_name: builtins.str
+    'the name of the registered classifier'
+    n: builtins.int
+    'the number of classifications desired'
+
+    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., classifier_name: builtins.str=..., n: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'classifier_name', b'classifier_name', 'n', b'n', 'name', b'name']) -> None:
+        ...
+global___GetClassificationsFromCameraRequest = GetClassificationsFromCameraRequest
+
+class GetClassificationsFromCameraResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLASSIFICATIONS_FIELD_NUMBER: builtins.int
+
+    @property
+    def classifications(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]:
+        ...
+
+    def __init__(self, *, classifications: collections.abc.Iterable[global___Classification] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['classifications', b'classifications']) -> None:
+        ...
+global___GetClassificationsFromCameraResponse = GetClassificationsFromCameraResponse
+
+class Classification(google.protobuf.message.Message):
+    """the general form of the output from a classifier"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLASS_NAME_FIELD_NUMBER: builtins.int
+    CONFIDENCE_FIELD_NUMBER: builtins.int
+    class_name: builtins.str
+    'the class name'
+    confidence: builtins.float
+    'the confidence score of the classification'
+
+    def __init__(self, *, class_name: builtins.str=..., confidence: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['class_name', b'class_name', 'confidence', b'confidence']) -> None:
+        ...
+global___Classification = Classification
 
 class GetSegmenterNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
