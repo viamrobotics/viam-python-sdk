@@ -80,8 +80,14 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase">VisionServiceBase</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetDetectorNames">GetDetectorNames</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.AddDetector">AddDetector</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.RemoveDetector">RemoveDetector</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetDetectionsFromCamera">GetDetectionsFromCamera</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetDetections">GetDetections</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetClassifierNames">GetClassifierNames</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.AddClassifier">AddClassifier</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.RemoveClassifier">RemoveClassifier</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetClassificationsFromCamera">GetClassificationsFromCamera</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetClassifications">GetClassifications</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetSegmenterNames">GetSegmenterNames</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetSegmenterParameters">GetSegmenterParameters</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceBase.GetObjectPointClouds">GetObjectPointClouds</a></li>
@@ -89,6 +95,15 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceStub">VisionServiceStub</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierRequest">AddClassifierRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierRequest.classifier_name">classifier_name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierRequest.classifier_model_type">classifier_model_type</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierRequest.classifier_parameters">classifier_parameters</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierRequest.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierResponse">AddClassifierResponse</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.AddDetectorRequest">AddDetectorRequest</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.AddDetectorRequest.name">name</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.AddDetectorRequest.detector_name">detector_name</a></li>
@@ -98,6 +113,11 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.AddDetectorResponse">AddDetectorResponse</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.Classification">Classification</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.Classification.class_name">class_name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.Classification.confidence">confidence</a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.Detection">Detection</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.Detection.x_min">x_min</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.Detection.y_min">y_min</a></li>
@@ -107,6 +127,39 @@
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.Detection.class_name">class_name</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.Detection.HasField">HasField</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.Detection.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest">GetClassificationsFromCameraRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.camera_name">camera_name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.classifier_name">classifier_name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.n">n</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraResponse">GetClassificationsFromCameraResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraResponse.classifications">classifications</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest">GetClassificationsRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest.image">image</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest.width">width</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest.height">height</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest.mime_type">mime_type</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest.classifier_name">classifier_name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest.n">n</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsResponse">GetClassificationsResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsResponse.classifications">classifications</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassifierNamesRequest">GetClassifierNamesRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassifierNamesRequest.name">name</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassifierNamesResponse">GetClassifierNamesResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetClassifierNamesResponse.classifier_names">classifier_names</a></li>
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsFromCameraRequest">GetDetectionsFromCameraRequest</a><ul>
@@ -171,6 +224,18 @@
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterParametersResponse.segmenter_parameters">segmenter_parameters</a></li>
 </ul>
 </li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.RemoveClassifierRequest">RemoveClassifierRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.RemoveClassifierRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.RemoveClassifierRequest.classifier_name">classifier_name</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.RemoveClassifierResponse">RemoveClassifierResponse</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.RemoveDetectorRequest">RemoveDetectorRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.RemoveDetectorRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.RemoveDetectorRequest.detector_name">detector_name</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.RemoveDetectorResponse">RemoveDetectorResponse</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.service.vision.TypedParameter">TypedParameter</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.TypedParameter.name">name</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.service.vision.TypedParameter.type">type</a></li>
@@ -244,52 +309,91 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.VisionServiceStub" title="viam.proto.api.service.vision.VisionServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VisionServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierRequest" title="viam.proto.api.service.vision.AddClassifierRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddClassifierRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.AddClassifierResponse" title="viam.proto.api.service.vision.AddClassifierResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddClassifierResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.AddDetectorRequest" title="viam.proto.api.service.vision.AddDetectorRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddDetectorRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.AddDetectorResponse" title="viam.proto.api.service.vision.AddDetectorResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddDetectorResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.Detection" title="viam.proto.api.service.vision.Detection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Detection</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.Classification" title="viam.proto.api.service.vision.Classification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Classification</span></code></a></p></td>
+<td><p>the general form of the output from a classifier</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.Detection" title="viam.proto.api.service.vision.Detection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Detection</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsFromCameraRequest" title="viam.proto.api.service.vision.GetDetectionsFromCameraRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectionsFromCameraRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest" title="viam.proto.api.service.vision.GetClassificationsFromCameraRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassificationsFromCameraRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsFromCameraResponse" title="viam.proto.api.service.vision.GetDetectionsFromCameraResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectionsFromCameraResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsFromCameraResponse" title="viam.proto.api.service.vision.GetClassificationsFromCameraResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassificationsFromCameraResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsRequest" title="viam.proto.api.service.vision.GetDetectionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectionsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsRequest" title="viam.proto.api.service.vision.GetClassificationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassificationsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsResponse" title="viam.proto.api.service.vision.GetDetectionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectionsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetClassificationsResponse" title="viam.proto.api.service.vision.GetClassificationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassificationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectorNamesRequest" title="viam.proto.api.service.vision.GetDetectorNamesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectorNamesRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetClassifierNamesRequest" title="viam.proto.api.service.vision.GetClassifierNamesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassifierNamesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectorNamesResponse" title="viam.proto.api.service.vision.GetDetectorNamesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectorNamesResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetClassifierNamesResponse" title="viam.proto.api.service.vision.GetClassifierNamesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetClassifierNamesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetObjectPointCloudsRequest" title="viam.proto.api.service.vision.GetObjectPointCloudsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetObjectPointCloudsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsFromCameraRequest" title="viam.proto.api.service.vision.GetDetectionsFromCameraRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectionsFromCameraRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetObjectPointCloudsResponse" title="viam.proto.api.service.vision.GetObjectPointCloudsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetObjectPointCloudsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsFromCameraResponse" title="viam.proto.api.service.vision.GetDetectionsFromCameraResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectionsFromCameraResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterNamesRequest" title="viam.proto.api.service.vision.GetSegmenterNamesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSegmenterNamesRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsRequest" title="viam.proto.api.service.vision.GetDetectionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectionsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterNamesResponse" title="viam.proto.api.service.vision.GetSegmenterNamesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSegmenterNamesResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectionsResponse" title="viam.proto.api.service.vision.GetDetectionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectionsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterParametersRequest" title="viam.proto.api.service.vision.GetSegmenterParametersRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSegmenterParametersRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectorNamesRequest" title="viam.proto.api.service.vision.GetDetectorNamesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectorNamesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterParametersResponse" title="viam.proto.api.service.vision.GetSegmenterParametersResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSegmenterParametersResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetDetectorNamesResponse" title="viam.proto.api.service.vision.GetDetectorNamesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDetectorNamesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.TypedParameter" title="viam.proto.api.service.vision.TypedParameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypedParameter</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetObjectPointCloudsRequest" title="viam.proto.api.service.vision.GetObjectPointCloudsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetObjectPointCloudsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetObjectPointCloudsResponse" title="viam.proto.api.service.vision.GetObjectPointCloudsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetObjectPointCloudsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterNamesRequest" title="viam.proto.api.service.vision.GetSegmenterNamesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSegmenterNamesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterNamesResponse" title="viam.proto.api.service.vision.GetSegmenterNamesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSegmenterNamesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterParametersRequest" title="viam.proto.api.service.vision.GetSegmenterParametersRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSegmenterParametersRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.GetSegmenterParametersResponse" title="viam.proto.api.service.vision.GetSegmenterParametersResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSegmenterParametersResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.RemoveClassifierRequest" title="viam.proto.api.service.vision.RemoveClassifierRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveClassifierRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.RemoveClassifierResponse" title="viam.proto.api.service.vision.RemoveClassifierResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveClassifierResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.RemoveDetectorRequest" title="viam.proto.api.service.vision.RemoveDetectorRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveDetectorRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.RemoveDetectorResponse" title="viam.proto.api.service.vision.RemoveDetectorResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveDetectorResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.service.vision.TypedParameter" title="viam.proto.api.service.vision.TypedParameter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypedParameter</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -310,6 +414,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceBase.RemoveDetector">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemoveDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.vision.v1.vision_pb2.RemoveDetectorRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.vision.v1.vision_pb2.RemoveDetectorResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceBase.RemoveDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceBase.RemoveDetector" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceBase.GetDetectionsFromCamera">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDetectionsFromCamera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceBase.GetDetectionsFromCamera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceBase.GetDetectionsFromCamera" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -317,6 +426,31 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceBase.GetDetections">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDetections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetDetectionsRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetDetectionsResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceBase.GetDetections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceBase.GetDetections" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceBase.GetClassifierNames">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetClassifierNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetClassifierNamesRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetClassifierNamesResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceBase.GetClassifierNames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceBase.GetClassifierNames" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceBase.AddClassifier">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.vision.v1.vision_pb2.AddClassifierRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.vision.v1.vision_pb2.AddClassifierResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceBase.AddClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceBase.AddClassifier" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceBase.RemoveClassifier">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemoveClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.vision.v1.vision_pb2.RemoveClassifierRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.vision.v1.vision_pb2.RemoveClassifierResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceBase.RemoveClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceBase.RemoveClassifier" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceBase.GetClassificationsFromCamera">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetClassificationsFromCamera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetClassificationsFromCameraResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceBase.GetClassificationsFromCamera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceBase.GetClassificationsFromCamera" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceBase.GetClassifications">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetClassifications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetClassificationsRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.service.vision.v1.vision_pb2.GetClassificationsResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceBase.GetClassifications"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceBase.GetClassifications" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -345,6 +479,71 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.api.service.vision.VisionServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">VisionServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/service/vision/v1/vision_grpc.html#VisionServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.service.vision.VisionServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.AddClassifierRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">AddClassifierRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.AddClassifierRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.AddClassifierRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.AddClassifierRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the vision service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.AddClassifierRequest.classifier_name">
+<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.AddClassifierRequest.classifier_name" title="Permalink to this definition"></a></dt>
+<dd><p>name of classifier to add to registry</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.AddClassifierRequest.classifier_model_type">
+<span class="sig-name descname"><span class="pre">classifier_model_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.AddClassifierRequest.classifier_model_type" title="Permalink to this definition"></a></dt>
+<dd><p>the type of classifier</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.AddClassifierRequest.classifier_parameters">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">classifier_parameters</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.api.service.vision.AddClassifierRequest.classifier_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>additional parameters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.AddClassifierRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">classifier_parameters</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'classifier_parameters'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.service.vision.AddClassifierRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.AddClassifierResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">AddClassifierResponse</span></span><a class="headerlink" href="#viam.proto.api.service.vision.AddClassifierResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.vision.AddDetectorRequest">
@@ -405,6 +604,24 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.Classification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">Classification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">confidence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.Classification" title="Permalink to this definition"></a></dt>
+<dd><p>the general form of the output from a classifier</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.Classification.class_name">
+<span class="sig-name descname"><span class="pre">class_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.Classification.class_name" title="Permalink to this definition"></a></dt>
+<dd><p>the class name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.Classification.confidence">
+<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.api.service.vision.Classification.confidence" title="Permalink to this definition"></a></dt>
+<dd><p>the confidence score of the classification</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -500,6 +717,147 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsFromCameraRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">GetClassificationsFromCameraRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsFromCameraRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the vision service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsFromCameraRequest.camera_name">
+<span class="sig-name descname"><span class="pre">camera_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.camera_name" title="Permalink to this definition"></a></dt>
+<dd><p>the image encoded as bytes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsFromCameraRequest.classifier_name">
+<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.classifier_name" title="Permalink to this definition"></a></dt>
+<dd><p>the name of the registered classifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsFromCameraRequest.n">
+<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.n" title="Permalink to this definition"></a></dt>
+<dd><p>the number of classifications desired</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsFromCameraResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">GetClassificationsFromCameraResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Classification</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsFromCameraResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsFromCameraResponse.classifications">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">classifications</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Classification</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsFromCameraResponse.classifications" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">GetClassificationsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the vision service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsRequest.image">
+<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsRequest.image" title="Permalink to this definition"></a></dt>
+<dd><p>the image encoded as bytes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsRequest.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsRequest.width" title="Permalink to this definition"></a></dt>
+<dd><p>the width of the image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsRequest.height">
+<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsRequest.height" title="Permalink to this definition"></a></dt>
+<dd><p>the height of the image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsRequest.mime_type">
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsRequest.mime_type" title="Permalink to this definition"></a></dt>
+<dd><p>the actual MIME type of image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsRequest.classifier_name">
+<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsRequest.classifier_name" title="Permalink to this definition"></a></dt>
+<dd><p>the name of the registered classifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsRequest.n">
+<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsRequest.n" title="Permalink to this definition"></a></dt>
+<dd><p>the number of classifications desired</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">GetClassificationsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Classification</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassificationsResponse.classifications">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">classifications</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Classification</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassificationsResponse.classifications" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassifierNamesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">GetClassifierNamesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassifierNamesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassifierNamesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetClassifierNamesRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the vision service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassifierNamesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">GetClassifierNamesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassifierNamesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.GetClassifierNamesResponse.classifier_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">classifier_names</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.api.service.vision.GetClassifierNamesResponse.classifier_names" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.service.vision.GetDetectionsFromCameraRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">GetDetectionsFromCameraRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.GetDetectionsFromCameraRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
@@ -509,7 +867,8 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.api.service.vision.GetDetectionsFromCameraRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.GetDetectionsFromCameraRequest.name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>name of the vision service</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.api.service.vision.GetDetectionsFromCameraRequest.camera_name">
@@ -773,6 +1132,66 @@ shown below.</p>
 <dd><p>parameter names of the segmenter in the request</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.RemoveClassifierRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">RemoveClassifierRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.RemoveClassifierRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.RemoveClassifierRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.RemoveClassifierRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the vision service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.RemoveClassifierRequest.classifier_name">
+<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.RemoveClassifierRequest.classifier_name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the classifier in registry</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.RemoveClassifierResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">RemoveClassifierResponse</span></span><a class="headerlink" href="#viam.proto.api.service.vision.RemoveClassifierResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.RemoveDetectorRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">RemoveDetectorRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.service.vision.RemoveDetectorRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.RemoveDetectorRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.RemoveDetectorRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the vision service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.RemoveDetectorRequest.detector_name">
+<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.service.vision.RemoveDetectorRequest.detector_name" title="Permalink to this definition"></a></dt>
+<dd><p>name of detector in registry</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.api.service.vision.RemoveDetectorResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.service.vision.</span></span><span class="sig-name descname"><span class="pre">RemoveDetectorResponse</span></span><a class="headerlink" href="#viam.proto.api.service.vision.RemoveDetectorResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 <dl class="py class">

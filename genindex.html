@@ -258,6 +258,8 @@
         <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.add_callback">(viam.components.board.client.DigitalInterruptClient method)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.add_classifier">add_classifier() (viam.services.vision.VisionServiceClient method)</a>
+</li>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.add_detector">add_detector() (viam.services.vision.VisionServiceClient method)</a>
 </li>
       <li><a href="autoapi/viam/components/board/board/index.html#viam.components.board.board.Board.DigitalInterrupt.add_post_processor">add_post_processor() (viam.components.board.board.Board.DigitalInterrupt method)</a>
@@ -268,6 +270,12 @@
         <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.add_post_processor">(viam.components.board.client.DigitalInterruptClient method)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.AddClassifier">AddClassifier() (viam.proto.api.service.vision.VisionServiceBase method)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddClassifierRequest">AddClassifierRequest (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddClassifierResponse">AddClassifierResponse (class in viam.proto.api.service.vision)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.AddDetector">AddDetector() (viam.proto.api.service.vision.VisionServiceBase method)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest">AddDetectorRequest (class in viam.proto.api.service.vision)</a>
@@ -306,6 +314,8 @@
       </ul></li>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.ReadAnalogReaderRequest.analog_reader_name">analog_reader_name (viam.proto.api.component.board.ReadAnalogReaderRequest attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/board/index.html#viam.components.board.Board.analog_reader_names">analog_reader_names() (viam.components.board.Board method)</a>
 
       <ul>
@@ -314,8 +324,6 @@
         <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.BoardClient.analog_reader_names">(viam.components.board.client.BoardClient method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.AnalogReaderClient">AnalogReaderClient (class in viam.components.board.client)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.BoardStatus.analogs">analogs (viam.proto.api.common.BoardStatus property)</a>
@@ -656,9 +664,11 @@
         <li><a href="autoapi/viam/components/camera/camera/index.html#viam.components.camera.camera.Camera">(class in viam.components.camera.camera)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraRequest.camera_name">camera_name (viam.proto.api.service.vision.GetDetectionsFromCameraRequest attribute)</a>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.camera_name">camera_name (viam.proto.api.service.vision.GetClassificationsFromCameraRequest attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraRequest.camera_name">(viam.proto.api.service.vision.GetDetectionsFromCameraRequest attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetObjectPointCloudsRequest.camera_name">(viam.proto.api.service.vision.GetObjectPointCloudsRequest attribute)</a>
 </li>
       </ul></li>
@@ -726,18 +736,48 @@
 </li>
       <li><a href="autoapi/viam/proto/api/component/audioinput/index.html#viam.proto.api.component.audioinput.ChunksResponse">ChunksResponse (class in viam.proto.api.component.audioinput)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection.class_name">class_name (viam.proto.api.service.vision.Detection attribute)</a>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Classification.class_name">class_name (viam.proto.api.service.vision.Classification attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection.class_name">(viam.proto.api.service.vision.Detection attribute)</a>
 </li>
+      </ul></li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Classification">Classification (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsFromCameraResponse.classifications">classifications (viam.proto.api.service.vision.GetClassificationsFromCameraResponse property)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsResponse.classifications">(viam.proto.api.service.vision.GetClassificationsResponse property)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddClassifierRequest.classifier_model_type">classifier_model_type (viam.proto.api.service.vision.AddClassifierRequest attribute)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddClassifierRequest.classifier_name">classifier_name (viam.proto.api.service.vision.AddClassifierRequest attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.classifier_name">(viam.proto.api.service.vision.GetClassificationsFromCameraRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsRequest.classifier_name">(viam.proto.api.service.vision.GetClassificationsRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.RemoveClassifierRequest.classifier_name">(viam.proto.api.service.vision.RemoveClassifierRequest attribute)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassifierNamesResponse.classifier_names">classifier_names (viam.proto.api.service.vision.GetClassifierNamesResponse property)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddClassifierRequest.classifier_parameters">classifier_parameters (viam.proto.api.service.vision.AddClassifierRequest property)</a>
+</li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType.CLASSIFIER_TENSORFLOW">CLASSIFIER_TENSORFLOW (viam.services.vision.VisModelType attribute)</a>
+</li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType.CLASSIFIER_TFLITE">CLASSIFIER_TFLITE (viam.services.vision.VisModelType attribute)</a>
+</li>
       <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.close">close() (viam.robot.client.RobotClient method)</a>
 
       <ul>
         <li><a href="autoapi/viam/rpc/server/index.html#viam.rpc.server.Server.close">(viam.rpc.server.Server method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorType.COLOR">COLOR (viam.services.vision.DetectorType attribute)</a>
-</li>
       <li><a href="autoapi/viam/logging/index.html#viam.logging.ColorFormatter">ColorFormatter (class in viam.logging)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/generic/index.html#viam.proto.api.component.generic.DoRequest.command">command (viam.proto.api.component.generic.DoRequest property)</a>
@@ -766,8 +806,12 @@
 </li>
       <li><a href="autoapi/viam/components/service_base/index.html#viam.components.service_base.ComponentServiceBase">ComponentServiceBase (class in viam.components.service_base)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection.confidence">confidence (viam.proto.api.service.vision.Detection attribute)</a>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Classification.confidence">confidence (viam.proto.api.service.vision.Classification attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection.confidence">(viam.proto.api.service.vision.Detection attribute)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.config">config (viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse property)</a>
 </li>
       <li><a href="autoapi/viam/components/input/index.html#viam.components.input.EventType.CONNECT">CONNECT (viam.components.input.EventType attribute)</a>
@@ -884,6 +928,8 @@
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsResponse.detections">(viam.proto.api.service.vision.GetDetectionsResponse property)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType.DETECTOR_COLOR">DETECTOR_COLOR (viam.services.vision.VisModelType attribute)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest.detector_model_type">detector_model_type (viam.proto.api.service.vision.AddDetectorRequest attribute)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest.detector_name">detector_name (viam.proto.api.service.vision.AddDetectorRequest attribute)</a>
@@ -893,14 +939,16 @@
 </li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.detector_name">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.RemoveDetectorRequest.detector_name">(viam.proto.api.service.vision.RemoveDetectorRequest attribute)</a>
+</li>
       </ul></li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectorNamesResponse.detector_names">detector_names (viam.proto.api.service.vision.GetDetectorNamesResponse property)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest.detector_parameters">detector_parameters (viam.proto.api.service.vision.AddDetectorRequest property)</a>
 </li>
-      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorConfig">DetectorConfig (class in viam.services.vision)</a>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType.DETECTOR_TENSORFLOW">DETECTOR_TENSORFLOW (viam.services.vision.VisModelType attribute)</a>
 </li>
-      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorType">DetectorType (class in viam.services.vision)</a>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType.DETECTOR_TF_LITE">DETECTOR_TF_LITE (viam.services.vision.VisModelType attribute)</a>
 </li>
       <li><a href="autoapi/viam/rpc/dial/index.html#viam.rpc.dial.dial_direct">dial_direct() (in module viam.rpc.dial)</a>
 </li>
@@ -934,10 +982,10 @@
 </li>
       <li><a href="autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient">DigitalInterruptClient (class in viam.components.board.client)</a>
 </li>
-      <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.DigitalInterruptStatus">DigitalInterruptStatus (class in viam.proto.api.common)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.DigitalInterruptStatus">DigitalInterruptStatus (class in viam.proto.api.common)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/common/index.html#viam.proto.api.common.RectangularPrism.dims_mm">dims_mm (viam.proto.api.common.RectangularPrism property)</a>
 </li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.CallRequest.disable_trickle">disable_trickle (viam.proto.rpc.webrtc.signaling.CallRequest attribute)</a>
@@ -1332,6 +1380,12 @@
         <li><a href="autoapi/viam/components/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_angular_velocity">(viam.components.movement_sensor.MovementSensor method)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_classifications">get_classifications() (viam.services.vision.VisionServiceClient method)</a>
+</li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_classifications_from_camera">get_classifications_from_camera() (viam.services.vision.VisionServiceClient method)</a>
+</li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_classifier_names">get_classifier_names() (viam.services.vision.VisionServiceClient method)</a>
+</li>
       <li><a href="autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient.get_compass_heading">get_compass_heading() (viam.components.movement_sensor.client.MovementSensorClient method)</a>
 
       <ul>
@@ -1550,6 +1604,24 @@
 </li>
       <li><a href="autoapi/viam/proto/api/component/movementsensor/index.html#viam.proto.api.component.movementsensor.GetAngularVelocityResponse">GetAngularVelocityResponse (class in viam.proto.api.component.movementsensor)</a>
 </li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.GetClassifications">GetClassifications() (viam.proto.api.service.vision.VisionServiceBase method)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.GetClassificationsFromCamera">GetClassificationsFromCamera() (viam.proto.api.service.vision.VisionServiceBase method)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsFromCameraRequest">GetClassificationsFromCameraRequest (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsFromCameraResponse">GetClassificationsFromCameraResponse (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsRequest">GetClassificationsRequest (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsResponse">GetClassificationsResponse (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.GetClassifierNames">GetClassifierNames() (viam.proto.api.service.vision.VisionServiceBase method)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassifierNamesRequest">GetClassifierNamesRequest (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassifierNamesResponse">GetClassifierNamesResponse (class in viam.proto.api.service.vision)</a>
+</li>
       <li><a href="autoapi/viam/components/movement_sensor/service/index.html#viam.components.movement_sensor.service.MovementSensorService.GetCompassHeading">GetCompassHeading() (viam.components.movement_sensor.service.MovementSensorService method)</a>
 
       <ul>
@@ -1596,6 +1668,8 @@
       </ul></li>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.GetDigitalInterruptValueRequest">GetDigitalInterruptValueRequest (class in viam.proto.api.component.board)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/board/index.html#viam.proto.api.component.board.GetDigitalInterruptValueResponse">GetDigitalInterruptValueResponse (class in viam.proto.api.component.board)</a>
 </li>
       <li><a href="autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmService.GetEndPosition">GetEndPosition() (viam.components.arm.service.ArmService method)</a>
@@ -1614,8 +1688,6 @@
         <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.InputControllerServiceBase.GetEvents">(viam.proto.api.component.inputcontroller.InputControllerServiceBase method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.GetEventsRequest">GetEventsRequest (class in viam.proto.api.component.inputcontroller)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/component/inputcontroller/index.html#viam.proto.api.component.inputcontroller.GetEventsResponse">GetEventsResponse (class in viam.proto.api.component.inputcontroller)</a>
@@ -2121,6 +2193,8 @@
 </li>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetPositionResponse.HasField">(viam.proto.api.service.slam.GetPositionResponse method)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddClassifierRequest.HasField">(viam.proto.api.service.vision.AddClassifierRequest method)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest.HasField">(viam.proto.api.service.vision.AddDetectorRequest method)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.Detection.HasField">(viam.proto.api.service.vision.Detection method)</a>
@@ -2183,6 +2257,8 @@
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.Video.height">height (viam.proto.api.component.camera.Video attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsRequest.height">(viam.proto.api.service.vision.GetClassificationsRequest attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.height">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
       </ul></li>
@@ -2228,6 +2304,8 @@
 
       <ul>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetMapResponse.image">(viam.proto.api.service.slam.GetMapResponse attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsRequest.image">(viam.proto.api.service.vision.GetClassificationsRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.image">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
@@ -2512,6 +2590,8 @@
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetMapRequest.mime_type">(viam.proto.api.service.slam.GetMapRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetMapResponse.mime_type">(viam.proto.api.service.slam.GetMapResponse attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsRequest.mime_type">(viam.proto.api.service.vision.GetClassificationsRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.mime_type">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
@@ -3153,6 +3233,12 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.n">n (viam.proto.api.service.vision.GetClassificationsFromCameraRequest attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsRequest.n">(viam.proto.api.service.vision.GetClassificationsRequest attribute)</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/viam/components/servo/index.html#viam.components.servo.Servo.name">name (viam.components.servo.Servo attribute)</a>
 
       <ul>
@@ -3302,7 +3388,15 @@
 </li>
         <li><a href="autoapi/viam/proto/api/service/slam/index.html#viam.proto.api.service.slam.GetPositionRequest.name">(viam.proto.api.service.slam.GetPositionRequest attribute)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddClassifierRequest.name">(viam.proto.api.service.vision.AddClassifierRequest attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.AddDetectorRequest.name">(viam.proto.api.service.vision.AddDetectorRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsFromCameraRequest.name">(viam.proto.api.service.vision.GetClassificationsFromCameraRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsRequest.name">(viam.proto.api.service.vision.GetClassificationsRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassifierNamesRequest.name">(viam.proto.api.service.vision.GetClassifierNamesRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsFromCameraRequest.name">(viam.proto.api.service.vision.GetDetectionsFromCameraRequest attribute)</a>
 </li>
@@ -3316,6 +3410,10 @@
 </li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetSegmenterParametersRequest.name">(viam.proto.api.service.vision.GetSegmenterParametersRequest attribute)</a>
 </li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.RemoveClassifierRequest.name">(viam.proto.api.service.vision.RemoveClassifierRequest attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.RemoveDetectorRequest.name">(viam.proto.api.service.vision.RemoveDetectorRequest attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.TypedParameter.name">(viam.proto.api.service.vision.TypedParameter attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/rpc/examples/fileupload/index.html#viam.proto.rpc.examples.fileupload.UploadFileRequest.name">(viam.proto.rpc.examples.fileupload.UploadFileRequest attribute)</a>
@@ -3324,7 +3422,7 @@
 </li>
         <li><a href="autoapi/viam/registry/index.html#viam.registry.ComponentRegistration.name">(viam.registry.ComponentRegistration attribute)</a>
 </li>
-        <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorConfig.name">(viam.services.vision.DetectorConfig attribute)</a>
+        <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelConfig.name">(viam.services.vision.VisModelConfig attribute)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -3448,7 +3546,7 @@
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetObjectPointCloudsRequest.parameters">parameters (viam.proto.api.service.vision.GetObjectPointCloudsRequest property)</a>
 
       <ul>
-        <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorConfig.parameters">(viam.services.vision.DetectorConfig attribute)</a>
+        <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelConfig.parameters">(viam.services.vision.VisModelConfig attribute)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.StopExtraParameters.params">params (viam.proto.api.robot.StopExtraParameters property)</a>
@@ -3723,6 +3821,22 @@
         <li><a href="autoapi/viam/components/board/board/index.html#viam.components.board.board.Board.Attributes.remote">(viam.components.board.board.Board.Attributes attribute)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.remove_classifier">remove_classifier() (viam.services.vision.VisionServiceClient method)</a>
+</li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.remove_detector">remove_detector() (viam.services.vision.VisionServiceClient method)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.RemoveClassifier">RemoveClassifier() (viam.proto.api.service.vision.VisionServiceBase method)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.RemoveClassifierRequest">RemoveClassifierRequest (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.RemoveClassifierResponse">RemoveClassifierResponse (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceBase.RemoveDetector">RemoveDetector() (viam.proto.api.service.vision.VisionServiceBase method)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.RemoveDetectorRequest">RemoveDetectorRequest (class in viam.proto.api.service.vision)</a>
+</li>
+      <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.RemoveDetectorResponse">RemoveDetectorResponse (class in viam.proto.api.service.vision)</a>
+</li>
       <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.NavigationServiceBase.RemoveWaypoint">RemoveWaypoint() (viam.proto.api.service.navigation.NavigationServiceBase method)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/service/navigation/index.html#viam.proto.api.service.navigation.RemoveWaypointRequest">RemoveWaypointRequest (class in viam.proto.api.service.navigation)</a>
@@ -3753,6 +3867,8 @@
         <li><a href="autoapi/viam/components/motor/motor/index.html#viam.components.motor.motor.Motor.reset_zero_position">(viam.components.motor.motor.Motor method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/motor/service/index.html#viam.components.motor.service.MotorService.ResetZeroPosition">ResetZeroPosition() (viam.components.motor.service.MotorService method)</a>
 
       <ul>
@@ -3763,8 +3879,6 @@
 </li>
       <li><a href="autoapi/viam/proto/api/component/motor/index.html#viam.proto.api.component.motor.ResetZeroPositionResponse">ResetZeroPositionResponse (class in viam.proto.api.component.motor)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.GetStatusRequest.resource_names">resource_names (viam.proto.api.robot.GetStatusRequest property)</a>
 
       <ul>
@@ -4391,10 +4505,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/utils/index.html#viam.utils.T">T (in module viam.utils)</a>
 </li>
-      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorType.TENSORFLOW">TENSORFLOW (viam.services.vision.DetectorType attribute)</a>
-</li>
-      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorType.TF_LITE">TF_LITE (viam.services.vision.DetectorType attribute)</a>
-</li>
       <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Pose.theta">theta (viam.components.arm.Pose attribute)</a>
 
       <ul>
@@ -4431,14 +4541,14 @@
 </li>
       <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.transform_pose">transform_pose() (viam.robot.client.RobotClient method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.RobotServiceBase.TransformPose">TransformPose() (viam.proto.api.robot.RobotServiceBase method)</a>
 
       <ul>
         <li><a href="autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.TransformPose">(viam.robot.service.RobotService method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.TransformPoseRequest">TransformPoseRequest (class in viam.proto.api.robot)</a>
 </li>
       <li><a href="autoapi/viam/proto/api/robot/index.html#viam.proto.api.robot.TransformPoseResponse">TransformPoseResponse (class in viam.proto.api.robot)</a>
@@ -4476,7 +4586,7 @@
 </li>
         <li><a href="autoapi/viam/rpc/dial/index.html#viam.rpc.dial.Credentials.type">(viam.rpc.dial.Credentials attribute)</a>
 </li>
-        <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.DetectorConfig.type">(viam.services.vision.DetectorConfig attribute)</a>
+        <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelConfig.type">(viam.services.vision.VisModelConfig attribute)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.TypedParameter">TypedParameter (class in viam.proto.api.service.vision)</a>
@@ -5339,8 +5449,6 @@
         <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/index.html#module-viam.gen.proto.api.component.movementsensor">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.gen.proto.api.component.movementsensor.v1
 
@@ -5348,6 +5456,8 @@
         <li><a href="autoapi/viam/gen/proto/api/component/movementsensor/v1/index.html#module-viam.gen.proto.api.component.movementsensor.v1">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.gen.proto.api.component.movementsensor.v1.movementsensor_grpc
 
@@ -6174,6 +6284,10 @@
 </li>
       <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.VisionServiceStub">VisionServiceStub (class in viam.proto.api.service.vision)</a>
 </li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelConfig">VisModelConfig (class in viam.services.vision)</a>
+</li>
+      <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType">VisModelType (class in viam.services.vision)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -6235,6 +6349,8 @@
       <li><a href="autoapi/viam/proto/api/component/camera/index.html#viam.proto.api.component.camera.Video.width">width (viam.proto.api.component.camera.Video attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetClassificationsRequest.width">(viam.proto.api.service.vision.GetClassificationsRequest attribute)</a>
+</li>
         <li><a href="autoapi/viam/proto/api/service/vision/index.html#viam.proto.api.service.vision.GetDetectionsRequest.width">(viam.proto.api.service.vision.GetDetectionsRequest attribute)</a>
 </li>
       </ul></li>

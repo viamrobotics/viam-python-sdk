@@ -12,14 +12,14 @@ Classes
 
 .. autoapisummary::
 
-   viam.services.vision.DetectorType
-   viam.services.vision.DetectorConfig
+   viam.services.vision.VisModelType
+   viam.services.vision.VisModelConfig
    viam.services.vision.VisionServiceClient
 
 
 
 
-.. py:class:: DetectorType
+.. py:class:: VisModelType
 
 
 
@@ -34,23 +34,33 @@ Classes
    encoding defaults to sys.getdefaultencoding().
    errors defaults to 'strict'.
 
-   .. py:attribute:: TF_LITE
-      :annotation: = tflite
+   .. py:attribute:: DETECTOR_TF_LITE
+      :annotation: = tflite_detector
 
       
 
-   .. py:attribute:: TENSORFLOW
-      :annotation: = tensorflow
+   .. py:attribute:: DETECTOR_TENSORFLOW
+      :annotation: = tf_detector
 
       
 
-   .. py:attribute:: COLOR
-      :annotation: = color
+   .. py:attribute:: DETECTOR_COLOR
+      :annotation: = color_detector
+
+      
+
+   .. py:attribute:: CLASSIFIER_TFLITE
+      :annotation: = tflite_classifier
+
+      
+
+   .. py:attribute:: CLASSIFIER_TENSORFLOW
+      :annotation: = tf_classifier
 
       
 
 
-.. py:class:: DetectorConfig
+.. py:class:: VisModelConfig
 
    .. py:attribute:: name
       :annotation: :str
@@ -58,12 +68,12 @@ Classes
       
 
    .. py:attribute:: type
-      :annotation: :DetectorType
+      :annotation: :VisModelType
 
       
 
    .. py:attribute:: parameters
-      :annotation: :Dict[str, Any]
+      :annotation: :Mapping[str, Any]
 
       
 
@@ -89,16 +99,25 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: add_detector(detector: DetectorConfig)
+   .. py:method:: add_detector(config: VisModelConfig)
       :async:
 
       Add a new detector to the service. Returns nothing if successful, and an error if not.
-      Registers a new detector just as if you had put it in the original "register_detectors" field
+      Registers a new detector just as if you had put it in the original "register_models" field
       in the robot config. Available types and their parameters can be found in the
       vision service documentation.
 
-      :param detector: The configuration of the detector to add.
-      :type detector: DetectorConfig
+      :param config: The configuration of the detector to add.
+      :type config: VisModelConfig
+
+
+   .. py:method:: remove_detector(detector_name: str)
+      :async:
+
+      Remove the detector with the given name from the service. Returns nothing if successful.
+
+      :param detector_name: The name of the detector to remove
+      :type detector_name: str
 
 
    .. py:method:: get_detections_from_camera(camera_name: str, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
@@ -133,6 +152,63 @@ Classes
       :rtype: List[Detection]
 
 
+   .. py:method:: get_classifier_names() -> List[str]
+      :async:
+
+      Get the list of classifiers currently registered to the service
+
+      :returns: The list of classifier names
+      :rtype: List[str]
+
+
+   .. py:method:: add_classifier(config: VisModelConfig)
+      :async:
+
+      Add a classifier to the service.
+
+      :param config: The configuration of the classifier
+      :type config: VisModelConfig
+
+
+   .. py:method:: remove_classifier(classifier_name: str)
+      :async:
+
+      Remove the classifier with the given name from the service. Returns nothing if successful.
+
+      :param classifier_name: The name of the classifier to remove
+      :type classifier_name: str
+
+
+   .. py:method:: get_classifications_from_camera(camera_name: str, classifier_name: str, count: int) -> List[viam.proto.api.service.vision.Classification]
+      :async:
+
+      Get a list of classifications in the next image given a camera and a classifier
+
+      :param camera_name: The name of the camera to use for detection
+      :type camera_name: str
+      :param classifier_name: The name of the classifier to use for classification
+      :type classifier_name: str
+      :param count: The number of classifications desired
+      :type count: int
+
+      :returns: The list of Classifications
+      :rtype: List[Classification]
+
+
+   .. py:method:: get_classifications(image: PIL.Image.Image, classifier_name: str) -> List[viam.proto.api.service.vision.Classification]
+      :async:
+
+      Get a list of detections in the given image using the specified detector
+
+      :param image: The image to get detections from
+      :type image: Image
+      :param classifier_name: The name of the detector to use for detection
+      :type classifier_name: str
+
+      :returns: The list of Classifications
+      :rtype: List[Classification]
+
+
    .. py:method:: get_segmenter_names() -> List[str]
       :async:
 
@@ -158,7 +234,7 @@ Classes
       :rtype: List[Tuple[str, str]]
 
 
-   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, parameters: Dict[str, Any]) -> List[viam.proto.api.common.PointCloudObject]
+   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, parameters: Mapping[str, Any]) -> List[viam.proto.api.common.PointCloudObject]
       :async:
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest

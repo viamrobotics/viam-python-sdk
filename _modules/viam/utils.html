@@ -201,7 +201,7 @@
     <span class="k">return</span> <span class="n">ParseDict</span><span class="p">(</span><span class="n">dct</span><span class="p">,</span> <span class="n">message_type</span><span class="p">())</span></div>
 
 
-<div class="viewcode-block" id="dict_to_struct"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.dict_to_struct">[docs]</a><span class="k">def</span> <span class="nf">dict_to_struct</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Struct</span><span class="p">:</span>
+<div class="viewcode-block" id="dict_to_struct"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.dict_to_struct">[docs]</a><span class="k">def</span> <span class="nf">dict_to_struct</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Struct</span><span class="p">:</span>
     <span class="n">struct</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
     <span class="n">struct</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">struct</span></div>
