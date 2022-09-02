@@ -22,9 +22,18 @@ from viam.proto.api.service.sensors import (
     SensorsServiceBase,
 )
 from viam.proto.api.service.vision import (
+    AddClassifierRequest,
+    AddClassifierResponse,
     AddDetectorRequest,
     AddDetectorResponse,
+    Classification,
     Detection,
+    GetClassificationsFromCameraRequest,
+    GetClassificationsFromCameraResponse,
+    GetClassificationsRequest,
+    GetClassificationsResponse,
+    GetClassifierNamesRequest,
+    GetClassifierNamesResponse,
     GetDetectionsFromCameraRequest,
     GetDetectionsFromCameraResponse,
     GetDetectionsRequest,
@@ -37,6 +46,10 @@ from viam.proto.api.service.vision import (
     GetSegmenterNamesResponse,
     GetSegmenterParametersRequest,
     GetSegmenterParametersResponse,
+    RemoveClassifierRequest,
+    RemoveClassifierResponse,
+    RemoveDetectorRequest,
+    RemoveDetectorResponse,
     TypedParameter,
     VisionServiceBase,
 )
@@ -102,12 +115,16 @@ class MockVisionService(VisionServiceBase):
         self,
         detectors: List[str],
         detections: List[Detection],
+        classifiers: List[str],
+        classifications: List[Classification],
         segmenters: List[str],
         parameters: Dict[str, List[Tuple[str, str]]],
         point_clouds: List[PointCloudObject],
     ):
         self.detectors = detectors
         self.detections = detections
+        self.classifiers = classifiers
+        self.classifications = classifications
         self.segmenters = segmenters
         self.parameters = parameters
         self.point_clouds = point_clouds
@@ -124,6 +141,12 @@ class MockVisionService(VisionServiceBase):
         self.detectors.append(request.detector_name)
         await stream.send_message(AddDetectorResponse())
 
+    async def RemoveDetector(self, stream: Stream[RemoveDetectorRequest, RemoveDetectorResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.detectors.remove(request.detector_name)
+        await stream.send_message(RemoveDetectorResponse())
+
     async def GetDetectionsFromCamera(self, stream: Stream[GetDetectionsFromCameraRequest, GetDetectionsFromCameraResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -134,6 +157,38 @@ class MockVisionService(VisionServiceBase):
         request = await stream.recv_message()
         assert request is not None
         response = GetDetectionsResponse(detections=self.detections)
+        await stream.send_message(response)
+
+    async def GetClassifierNames(self, stream: Stream[GetClassifierNamesRequest, GetClassifierNamesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = GetClassifierNamesResponse(classifier_names=self.classifiers)
+        await stream.send_message(response)
+
+    async def AddClassifier(self, stream: Stream[AddClassifierRequest, AddClassifierResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.classifiers.append(request.classifier_name)
+        await stream.send_message(AddClassifierResponse())
+
+    async def RemoveClassifier(self, stream: Stream[RemoveClassifierRequest, RemoveClassifierResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.classifiers.remove(request.classifier_name)
+        await stream.send_message(RemoveClassifierResponse())
+
+    async def GetClassificationsFromCamera(
+        self, stream: Stream[GetClassificationsFromCameraRequest, GetClassificationsFromCameraResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = GetClassificationsFromCameraResponse(classifications=self.classifications)
+        await stream.send_message(response)
+
+    async def GetClassifications(self, stream: Stream[GetClassificationsRequest, GetClassificationsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = GetClassificationsResponse(classifications=self.classifications)
         await stream.send_message(response)
 
     async def GetObjectPointClouds(self, stream: Stream[GetObjectPointCloudsRequest, GetObjectPointCloudsResponse]) -> None:
