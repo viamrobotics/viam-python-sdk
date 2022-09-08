@@ -18,9 +18,12 @@ class Camera(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_frame(self) -> Union[Image, RawImage]:
+    async def get_frame(self, mime_type: str) -> Union[Image, RawImage]:
         """Get the next frame from the camera as an Image.
         Be sure to close the image when finished.
+
+        Args:
+            mime_type (str): The desired mime type of the image. This does not guarantee output type
 
         Returns:
             Image | RawImage: The frame

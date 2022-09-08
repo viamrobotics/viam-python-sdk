@@ -271,17 +271,15 @@ class MockBoard(Board):
 class MockCamera(Camera):
     def __init__(self, name: str):
         self.image = Image.new("RGBA", (100, 100), "#AABBCCDD")
-        self.use_raw = False
-        self.raw_mime_type: str = CameraMimeType.RAW
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.props = IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
         super().__init__(name)
 
-    async def get_frame(self) -> Union[Image.Image, RawImage]:
-        if self.use_raw:
+    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
+        if not CameraMimeType.is_supported(mime_type) or mime_type == CameraMimeType.RAW:
             return RawImage(
                 data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
-                mime_type=self.raw_mime_type,
+                mime_type=mime_type,
                 width=self.image.width,
                 height=self.image.height,
             )

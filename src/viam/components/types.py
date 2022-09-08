@@ -44,3 +44,15 @@ class CameraMimeType(str, Enum):
             return buf.getvalue()
         else:
             raise ValueError(f"Cannot encode image to {self}")
+
+    @classmethod
+    def is_supported(cls, mime_type: str) -> bool:
+        """Check if the provided mime_type is supported
+
+        Args:
+            mime_type (str): The mime_type to check
+
+        Returns:
+            bool: Whether the mime_type is supported
+        """
+        return mime_type in set(item.value for item in cls)

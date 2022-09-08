@@ -29,8 +29,8 @@ class CameraClient(Camera):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_frame(self) -> Union[Image.Image, RawImage]:
-        request = GetFrameRequest(name=self.name, mime_type=CameraMimeType.PNG)
+    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
+        request = GetFrameRequest(name=self.name, mime_type=mime_type)
         response: GetFrameResponse = await self.client.GetFrame(request)
         try:
             mimetype = CameraMimeType(response.mime_type)
