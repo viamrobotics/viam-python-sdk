@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from multiprocessing import Queue
 from secrets import choice
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from PIL import Image
 
@@ -19,7 +19,7 @@ from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
-from viam.components.types import CameraMimeType
+from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (
     AnalogStatus,
@@ -271,12 +271,21 @@ class MockBoard(Board):
 class MockCamera(Camera):
     def __init__(self, name: str):
         self.image = Image.new("RGBA", (100, 100), "#AABBCCDD")
+        self.use_raw = False
+        self.raw_mime_type: str = CameraMimeType.RAW
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.props = IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
         super().__init__(name)
 
-    async def get_frame(self) -> Image.Image:
-        return self.image
+    async def get_frame(self) -> Union[Image.Image, RawImage]:
+        if self.use_raw:
+            return RawImage(
+                data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
+                mime_type=self.raw_mime_type,
+                width=self.image.width,
+                height=self.image.height,
+            )
+        return self.image.copy()
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         return self.point_cloud, CameraMimeType.PCD.value

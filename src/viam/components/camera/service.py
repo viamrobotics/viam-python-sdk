@@ -1,7 +1,8 @@
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
+
 from viam.components.service_base import ComponentServiceBase
-from viam.components.types import CameraMimeType
+from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.camera import (
     CameraServiceBase,
@@ -35,11 +36,11 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         image = await camera.get_frame()
         try:
             try:
-                mimetype = CameraMimeType(request.mime_type or "")
+                mimetype = CameraMimeType(request.mime_type)
             except ValueError:
                 mimetype = CameraMimeType.RAW
             response = GetFrameResponse(
-                mime_type=mimetype,
+                mime_type=image.mime_type if isinstance(image, RawImage) else mimetype,
                 width_px=image.width,
                 height_px=image.height,
             )

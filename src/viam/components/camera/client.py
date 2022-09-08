@@ -1,10 +1,10 @@
 from io import BytesIO
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Tuple, Union
 
 from grpclib.client import Channel
 from PIL import Image
 from viam.components.generic.client import do_command
-from viam.components.types import CameraMimeType
+from viam.components.types import CameraMimeType, RawImage
 from viam.proto.api.component.camera import (
     CameraServiceStub,
     GetFrameRequest,
@@ -29,12 +29,16 @@ class CameraClient(Camera):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_frame(self) -> Image.Image:
+    async def get_frame(self) -> Union[Image.Image, RawImage]:
         request = GetFrameRequest(name=self.name, mime_type=CameraMimeType.PNG)
         response: GetFrameResponse = await self.client.GetFrame(request)
-        mimetype = CameraMimeType(response.mime_type)
-        if mimetype == CameraMimeType.RAW:
-            image = Image.frombytes("RGBA", (response.width_px, response.height_px), response.image, "raw")
+        try:
+            mimetype = CameraMimeType(response.mime_type)
+            if mimetype == CameraMimeType.RAW:
+                raise ValueError("Raw mime type should go return a RawImage")
+        except ValueError:
+            # If the mime type is raw or unknown, return a RawImage
+            image = RawImage(response.image, response.mime_type, response.width_px, response.height_px)
             return image
 
         return Image.open(BytesIO(response.image), formats=["JPEG", "PNG"])
