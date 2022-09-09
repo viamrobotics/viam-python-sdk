@@ -92,7 +92,11 @@
 
 
 <div class="viewcode-block" id="RawImage"><a class="viewcode-back" href="../../../autoapi/viam/components/types/index.html#viam.components.types.RawImage">[docs]</a><span class="k">class</span> <span class="nc">RawImage</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A raw bytes representation of an image. When requesting `CameraMimeType.RAW`, the returned type will be this RawImage type.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;A raw bytes representation of an image.</span>
+
+<span class="sd">    When requesting `CameraMimeType.RAW` or if the camera returns a mime type that is not supported,</span>
+<span class="sd">    the returned type will be this RawImage type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span>
     <span class="sd">&quot;&quot;&quot;The raw data of the image&quot;&quot;&quot;</span>

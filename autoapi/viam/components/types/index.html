@@ -135,7 +135,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.types.RawImage" title="viam.components.types.RawImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RawImage</span></code></a></p></td>
-<td><p>A raw bytes representation of an image. When requesting <cite>CameraMimeType.RAW</cite>, the returned type will be this RawImage type.</p></td>
+<td><p>A raw bytes representation of an image.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.components.types.CameraMimeType" title="viam.components.types.CameraMimeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a></p></td>
 <td><p>str(object='') -&gt; str</p></td>
@@ -145,7 +145,9 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.types.RawImage">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.types.</span></span><span class="sig-name descname"><span class="pre">RawImage</span></span><a class="reference internal" href="../../../../_modules/viam/components/types.html#RawImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.types.RawImage" title="Permalink to this definition"></a></dt>
-<dd><p>A raw bytes representation of an image. When requesting <cite>CameraMimeType.RAW</cite>, the returned type will be this RawImage type.</p>
+<dd><p>A raw bytes representation of an image.</p>
+<p>When requesting <cite>CameraMimeType.RAW</cite> or if the camera returns a mime type that is not supported,
+the returned type will be this RawImage type.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.types.RawImage.data">
 <span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.components.types.RawImage.data" title="Permalink to this definition"></a></dt>
