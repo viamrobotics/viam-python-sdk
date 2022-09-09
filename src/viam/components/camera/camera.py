@@ -2,7 +2,7 @@ import abc
 from typing import Tuple, Union
 
 from PIL.Image import Image
-from viam.components.types import RawImage
+from viam.components.types import CameraMimeType, RawImage
 from viam.proto.api.component.camera import IntrinsicParameters
 
 from ..component_base import ComponentBase
@@ -18,7 +18,7 @@ class Camera(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_frame(self, mime_type: str) -> Union[Image, RawImage]:
+    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image, RawImage]:
         """Get the next frame from the camera as an Image.
         Be sure to close the image when finished.
 
