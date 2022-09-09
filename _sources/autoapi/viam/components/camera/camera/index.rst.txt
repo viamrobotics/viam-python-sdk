@@ -25,17 +25,20 @@ Classes
 
    This acts as an abstract base class for any drivers representing specific
    camera implementations. This cannot be used on its own. If the `__init__()` function is
-   overriden, it must call the `super().__init__()` function.
+   overridden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_frame() -> PIL.Image.Image
+   .. py:method:: get_frame(mime_type: str = CameraMimeType.PNG) -> Union[PIL.Image.Image, viam.components.types.RawImage]
       :abstractmethod:
       :async:
 
       Get the next frame from the camera as an Image.
       Be sure to close the image when finished.
 
-      :returns: The frame.
-      :rtype: Image
+      :param mime_type: The desired mime type of the image. This does not guarantee output type
+      :type mime_type: str
+
+      :returns: The frame
+      :rtype: Image | RawImage
 
 
    .. py:method:: get_point_cloud() -> Tuple[bytes, str]

@@ -12,8 +12,41 @@ Classes
 
 .. autoapisummary::
 
+   viam.components.types.RawImage
    viam.components.types.CameraMimeType
 
+
+
+
+.. py:class:: RawImage
+
+
+
+   A raw bytes representation of an image. When requesting `CameraMimeType.RAW`, the returned type will be this RawImage type.
+
+   .. py:attribute:: data
+      :annotation: :bytes
+
+      The raw data of the image
+
+   .. py:attribute:: mime_type
+      :annotation: :str
+
+      The mimetype of the image
+
+   .. py:attribute:: width
+      :annotation: :int
+
+      The width of the image
+
+   .. py:attribute:: height
+      :annotation: :int
+
+      The height of the image
+
+   .. py:method:: close()
+
+      Close the image and release resources. For RawImage, this is a noop.
 
 
 
@@ -33,7 +66,7 @@ Classes
    errors defaults to 'strict'.
 
    .. py:attribute:: RAW
-      :annotation: = image/raw-rgba
+      :annotation: = image/vnd.viam.rgba
 
       
 
@@ -52,7 +85,19 @@ Classes
 
       
 
-   .. py:method:: encode_image(image: PIL.Image.Image) -> bytes
+   .. py:method:: encode_image(image: Union[PIL.Image.Image, RawImage]) -> bytes
+
+
+   .. py:method:: is_supported(mime_type: str) -> bool
+      :classmethod:
+
+      Check if the provided mime_type is supported
+
+      :param mime_type: The mime_type to check
+      :type mime_type: str
+
+      :returns: Whether the mime_type is supported
+      :rtype: bool
 
 
 

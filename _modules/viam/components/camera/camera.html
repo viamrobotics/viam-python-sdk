@@ -85,9 +85,10 @@
              
   <h1>Source code for viam.components.camera.camera</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">PIL.Image</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">viam.components.types</span> <span class="kn">import</span> <span class="n">CameraMimeType</span><span class="p">,</span> <span class="n">RawImage</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.camera</span> <span class="kn">import</span> <span class="n">IntrinsicParameters</span>
 
 <span class="kn">from</span> <span class="nn">..component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
@@ -99,17 +100,19 @@
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    camera implementations. This cannot be used on its own. If the `__init__()` function is</span>
-<span class="sd">    overriden, it must call the `super().__init__()` function.</span>
+<span class="sd">    overridden, it must call the `super().__init__()` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Camera.get_frame"><a class="viewcode-back" href="../../../../autoapi/viam/components/camera/index.html#viam.components.camera.camera.Camera.get_frame">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the next frame from the camera as an Image.</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PNG</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get the next frame from the camera as an Image.</span>
 <span class="sd">        Be sure to close the image when finished.</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            mime_type (str): The desired mime type of the image. This does not guarantee output type</span>
+
 <span class="sd">        Returns:</span>
-<span class="sd">            Image: The frame.</span>
+<span class="sd">            Image | RawImage: The frame</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 

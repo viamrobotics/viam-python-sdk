@@ -64,12 +64,21 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.types</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.types.RawImage">RawImage</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.types.RawImage.data">data</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.types.RawImage.mime_type">mime_type</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.types.RawImage.width">width</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.types.RawImage.height">height</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.types.RawImage.close">close</a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.types.CameraMimeType">CameraMimeType</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.types.CameraMimeType.RAW">RAW</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.types.CameraMimeType.JPEG">JPEG</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.types.CameraMimeType.PNG">PNG</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.types.CameraMimeType.PCD">PCD</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.types.CameraMimeType.encode_image">encode_image</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.types.CameraMimeType.is_supported">is_supported</a></li>
 </ul>
 </li>
 </ul>
@@ -125,11 +134,50 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.types.CameraMimeType" title="viam.components.types.CameraMimeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.types.RawImage" title="viam.components.types.RawImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RawImage</span></code></a></p></td>
+<td><p>A raw bytes representation of an image. When requesting <cite>CameraMimeType.RAW</cite>, the returned type will be this RawImage type.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.types.CameraMimeType" title="viam.components.types.CameraMimeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a></p></td>
 <td><p>str(object='') -&gt; str</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.types.RawImage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.types.</span></span><span class="sig-name descname"><span class="pre">RawImage</span></span><a class="reference internal" href="../../../../_modules/viam/components/types.html#RawImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.types.RawImage" title="Permalink to this definition"></a></dt>
+<dd><p>A raw bytes representation of an image. When requesting <cite>CameraMimeType.RAW</cite>, the returned type will be this RawImage type.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.types.RawImage.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.components.types.RawImage.data" title="Permalink to this definition"></a></dt>
+<dd><p>The raw data of the image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.types.RawImage.mime_type">
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.components.types.RawImage.mime_type" title="Permalink to this definition"></a></dt>
+<dd><p>The mimetype of the image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.types.RawImage.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.components.types.RawImage.width" title="Permalink to this definition"></a></dt>
+<dd><p>The width of the image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.types.RawImage.height">
+<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.components.types.RawImage.height" title="Permalink to this definition"></a></dt>
+<dd><p>The height of the image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.types.RawImage.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/types.html#RawImage.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.types.RawImage.close" title="Permalink to this definition"></a></dt>
+<dd><p>Close the image and release resources. For RawImage, this is a noop.</p>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.types.CameraMimeType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.types.</span></span><span class="sig-name descname"><span class="pre">CameraMimeType</span></span><a class="reference internal" href="../../../../_modules/viam/components/types.html#CameraMimeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.types.CameraMimeType" title="Permalink to this definition"></a></dt>
@@ -144,7 +192,7 @@ encoding defaults to sys.getdefaultencoding().
 errors defaults to ‘strict’.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.types.CameraMimeType.RAW">
-<span class="sig-name descname"><span class="pre">RAW</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">image/raw-rgba</span></em><a class="headerlink" href="#viam.components.types.CameraMimeType.RAW" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">RAW</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">image/vnd.viam.rgba</span></em><a class="headerlink" href="#viam.components.types.CameraMimeType.RAW" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -164,8 +212,25 @@ errors defaults to ‘strict’.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.types.CameraMimeType.encode_image">
-<span class="sig-name descname"><span class="pre">encode_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PIL.Image.Image</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/types.html#CameraMimeType.encode_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.types.CameraMimeType.encode_image" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">encode_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.components.types.RawImage" title="viam.components.types.RawImage"><span class="pre">RawImage</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bytes</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/types.html#CameraMimeType.encode_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.types.CameraMimeType.encode_image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.types.CameraMimeType.is_supported">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_supported</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/types.html#CameraMimeType.is_supported"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.types.CameraMimeType.is_supported" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the provided mime_type is supported</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mime_type</strong> (<em>str</em>) – The mime_type to check</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether the mime_type is supported</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
