@@ -24,7 +24,7 @@ from .components import (
 )
 
 
-async def run(host: str, port: int):
+async def run(host: str, port: int, log_level: int):
     my_arm = ExampleArm("arm0")
     my_base = ExampleBase("base0")
     my_board = ExampleBoard(
@@ -78,15 +78,19 @@ async def run(host: str, port: int):
             my_servo,
         ]
     )
-    await server.serve(host=host, port=port, log_level=logging.DEBUG)
+    await server.serve(host=host, port=port, log_level=log_level)
 
 
 if __name__ == "__main__":
     host = "localhost"
     port = 9090
+    log_level = logging.DEBUG
     try:
         host = sys.argv[1]
         port = int(sys.argv[2])
+        level = sys.argv[3]
+        if level.lower() == "q" or level.lower() == "quiet":
+            log_level = logging.FATAL
     except (IndexError, ValueError):
         pass
-    asyncio.run(run(host, port))
+    asyncio.run(run(host, port, log_level))

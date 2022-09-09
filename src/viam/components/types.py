@@ -6,7 +6,11 @@ from PIL.Image import Image
 
 
 class RawImage(NamedTuple):
-    """A raw bytes representation of an image. When requesting `CameraMimeType.RAW`, the returned type will be this RawImage type."""
+    """A raw bytes representation of an image.
+
+    When requesting `CameraMimeType.RAW` or if the camera returns a mime type that is not supported,
+    the returned type will be this RawImage type.
+    """
 
     data: bytes
     """The raw data of the image"""
