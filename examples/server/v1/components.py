@@ -20,6 +20,7 @@ from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
+from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (
     AnalogStatus,
@@ -236,7 +237,7 @@ class ExampleCamera(Camera):
         self.image = Image.open(p.parent.absolute().joinpath("viam.webp"))
         super().__init__(name)
 
-    async def get_frame(self) -> Image.Image:
+    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Image.Image:
         return self.image.copy()
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from multiprocessing import Queue
 from secrets import choice
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from PIL import Image
 
@@ -19,7 +19,7 @@ from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
-from viam.components.types import CameraMimeType
+from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.common import (
     AnalogStatus,
@@ -275,8 +275,15 @@ class MockCamera(Camera):
         self.props = IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
         super().__init__(name)
 
-    async def get_frame(self) -> Image.Image:
-        return self.image
+    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
+        if not CameraMimeType.is_supported(mime_type) or mime_type == CameraMimeType.RAW:
+            return RawImage(
+                data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
+                mime_type=mime_type,
+                width=self.image.width,
+                height=self.image.height,
+            )
+        return self.image.copy()
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         return self.point_cloud, CameraMimeType.PCD.value

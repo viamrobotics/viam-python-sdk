@@ -1,7 +1,8 @@
 import abc
-from typing import Tuple
+from typing import Tuple, Union
 
 from PIL.Image import Image
+from viam.components.types import CameraMimeType, RawImage
 from viam.proto.api.component.camera import IntrinsicParameters
 
 from ..component_base import ComponentBase
@@ -13,17 +14,19 @@ class Camera(ComponentBase):
 
     This acts as an abstract base class for any drivers representing specific
     camera implementations. This cannot be used on its own. If the `__init__()` function is
-    overriden, it must call the `super().__init__()` function.
+    overridden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
-    async def get_frame(self) -> Image:
-        """
-        Get the next frame from the camera as an Image.
+    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image, RawImage]:
+        """Get the next frame from the camera as an Image.
         Be sure to close the image when finished.
 
+        Args:
+            mime_type (str): The desired mime type of the image. This does not guarantee output type
+
         Returns:
-            Image: The frame.
+            Image | RawImage: The frame
         """
         ...
 
