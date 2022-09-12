@@ -43,7 +43,7 @@ _test_docs:
 	pytest --nbmake "./docs"
 
 test_docs:
-	kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $$2}'`
+	kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $$2}'` || true
 	poetry run python3 -m examples.server.v1.server 0.0.0.0 9091 quiet &
 	poetry run make _test_docs
 	kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $$2}'`
