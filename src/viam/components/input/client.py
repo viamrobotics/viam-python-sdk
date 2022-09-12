@@ -132,5 +132,5 @@ class ControllerClient(Controller):
         if all_callback is not None:
             all_callback(event)
 
-    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

@@ -8,51 +8,54 @@ from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
 from viam.proto.api.common import ActuatorStatus
-from viam.proto.api.component.base import (BaseServiceStub,
-                                           MoveStraightRequest,
-                                           SetPowerRequest, SetVelocityRequest,
-                                           SpinRequest, StopRequest)
+from viam.proto.api.component.base import (
+    BaseServiceStub,
+    MoveStraightRequest,
+    SetPowerRequest,
+    SetVelocityRequest,
+    SpinRequest,
+    StopRequest,
+)
 from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockBase
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def base() -> MockBase:
-    return MockBase(name='base')
+    return MockBase(name="base")
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def service(base: MockBase) -> BaseService:
     manager = ResourceManager([base])
     return BaseService(manager)
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def generic_service(base: MockBase) -> GenericService:
     manager = ResourceManager([base])
     return GenericService(manager)
 
 
 class TestBase:
-
     @pytest.mark.asyncio
     async def test_move_straight(self, base: MockBase):
         distances = [randint(-50, 50) for _ in range(4)]
-        velocities = [random()+1 for _ in range(4)]
+        velocities = [random() + 1 for _ in range(4)]
 
         for (i, (d, v)) in enumerate(zip(distances, velocities)):
             await base.move_straight(d, v)
-            assert base.position == sum(distances[:i+1])
+            assert base.position == sum(distances[: i + 1])
 
     @pytest.mark.asyncio
     async def test_spin(self, base: MockBase):
         angles = [randint(-180, 180) for _ in range(4)]
-        velocities = [random()+1 for _ in range(4)]
+        velocities = [random() + 1 for _ in range(4)]
 
         for (i, (a, v)) in enumerate(zip(angles, velocities)):
             await base.spin(a, v)
-            assert base.angle == sum(angles[:i+1])
+            assert base.angle == sum(angles[: i + 1])
 
     @pytest.mark.asyncio
     async def test_stop(self, base: MockBase):
@@ -109,7 +112,7 @@ class TestBase:
     @pytest.mark.asyncio
     async def test_do(self, base: MockBase):
         with pytest.raises(NotImplementedError):
-            await base.do({'command': 'args'})
+            await base.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self, base: MockBase):
@@ -127,11 +130,10 @@ class TestBase:
 
 
 class TestService:
-
     @pytest.mark.asyncio
     async def test_move_straight(self, base: MockBase, service: BaseService):
         distances = [randint(-50, 50) for _ in range(4)]
-        velocities = [random()+1 for _ in range(4)]
+        velocities = [random() + 1 for _ in range(4)]
 
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
@@ -142,12 +144,12 @@ class TestService:
                     mm_per_sec=v,
                 )
                 await client.MoveStraight(request)
-                assert base.position == sum(distances[:i+1])
+                assert base.position == sum(distances[: i + 1])
 
     @pytest.mark.asyncio
     async def test_spin(self, base: MockBase, service: BaseService):
         angles = [randint(-180, 180) for _ in range(4)]
-        velocities = [random()+1 for _ in range(4)]
+        velocities = [random() + 1 for _ in range(4)]
 
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
@@ -158,7 +160,7 @@ class TestService:
                     degs_per_sec=v,
                 )
                 await client.Spin(request)
-                assert base.angle == sum(angles[:i+1])
+                assert base.angle == sum(angles[: i + 1])
 
     @pytest.mark.asyncio
     async def test_set_power(self, base: MockBase, service: BaseService):
@@ -245,28 +247,27 @@ class TestService:
 
 
 class TestClient:
-
     @pytest.mark.asyncio
     async def test_move_straight(self, base: MockBase, service: BaseService):
         distances = [randint(-50, 50) for _ in range(4)]
-        velocities = [random()+1 for _ in range(4)]
+        velocities = [random() + 1 for _ in range(4)]
 
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
             for (i, (d, v)) in enumerate(zip(distances, velocities)):
                 await client.move_straight(d, v)
-                assert base.position == sum(distances[:i+1])
+                assert base.position == sum(distances[: i + 1])
 
     @pytest.mark.asyncio
     async def test_spin(self, base: MockBase, service: BaseService):
         angles = [randint(-180, 180) for _ in range(4)]
-        velocities = [random()+1 for _ in range(4)]
+        velocities = [random() + 1 for _ in range(4)]
 
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
             for (i, (a, v)) in enumerate(zip(angles, velocities)):
                 await client.spin(a, v)
-                assert base.angle == sum(angles[:i+1])
+                assert base.angle == sum(angles[: i + 1])
 
     @pytest.mark.asyncio
     async def test_set_power(self, base: MockBase, service: BaseService):
@@ -326,7 +327,7 @@ class TestClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = BaseClient(base.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({'command': 'args'})
+                await client.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self, base: MockBase, service: BaseService):

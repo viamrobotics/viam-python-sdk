@@ -110,7 +110,7 @@ class TestBoard:
     @pytest.mark.asyncio
     async def test_do(self, board: MockBoard):
         with pytest.raises(NotImplementedError):
-            await board.do({"command": "args"})
+            await board.do_command({"command": "args"})
 
 
 class TestService:
@@ -399,4 +399,4 @@ class TestGPIOPinClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = BoardClient(board.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({"command": "args"})
+                await client.do_command({"command": "args"})

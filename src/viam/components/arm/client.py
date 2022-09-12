@@ -68,5 +68,5 @@ class ArmClient(Arm):
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request)
 
-    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

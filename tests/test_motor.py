@@ -1,15 +1,16 @@
 import pytest
 from grpclib.testing import ChannelFor
+
 from viam.components.generic.service import GenericService
 from viam.components.motor import MotorClient, MotorStatus, create_status
 from viam.components.motor.service import MotorService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
 from viam.proto.api.component.motor import (
-    GetPropertiesRequest,
-    GetPropertiesResponse,
     GetPositionRequest,
     GetPositionResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GoForRequest,
     GoToRequest,
     IsPoweredRequest,
@@ -113,7 +114,7 @@ class TestMotor:
     @pytest.mark.asyncio
     async def test_do(self, motor: MockMotor):
         with pytest.raises(NotImplementedError):
-            await motor.do({"command": "args"})
+            await motor.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self, motor: MockMotor):
@@ -325,7 +326,7 @@ class TestClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = MotorClient(motor.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({"command": "args"})
+                await client.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self, motor: MockMotor, service: MotorService):

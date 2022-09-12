@@ -4,6 +4,7 @@ import pytest
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.testing import ChannelFor
 from PIL import Image
+
 from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraService
 from viam.components.generic.service import GenericService
@@ -11,8 +12,8 @@ from viam.components.resource_manager import ResourceManager
 from viam.components.types import CameraMimeType, RawImage
 from viam.proto.api.component.camera import (
     CameraServiceStub,
-    GetFrameRequest,
-    GetFrameResponse,
+    GetImageRequest,
+    GetImageResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
@@ -41,8 +42,8 @@ def point_cloud() -> bytes:
 
 
 @pytest.fixture(scope="function")
-def properties() -> IntrinsicParameters:
-    return IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
+def properties() -> Camera.Properties:
+    return Camera.Properties(True, IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6))
 
 
 @pytest.fixture(scope="function")
@@ -65,10 +66,10 @@ def generic_service(camera: Camera) -> GenericService:
 class TestCamera:
     @pytest.mark.asyncio
     async def test_get_frame(self, camera: Camera, image: Image.Image):
-        img = await camera.get_frame(CameraMimeType.PNG)
+        img = await camera.get_image(CameraMimeType.PNG)
         assert img == image
 
-        img = await camera.get_frame(CameraMimeType.RAW)
+        img = await camera.get_image(CameraMimeType.RAW)
         assert isinstance(img, RawImage)
 
     @pytest.mark.asyncio
@@ -77,14 +78,14 @@ class TestCamera:
         assert pc == point_cloud
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, camera: Camera, properties: IntrinsicParameters):
+    async def test_get_properties(self, camera: Camera, properties: Camera.Properties):
         props = await camera.get_properties()
         assert props == properties
 
     @pytest.mark.asyncio
     async def test_do(self, camera: Camera):
         with pytest.raises(NotImplementedError):
-            await camera.do({"command": "args"})
+            await camera.do_command({"command": "args"})
 
 
 class TestService:
@@ -94,21 +95,21 @@ class TestService:
             client = CameraServiceStub(channel)
 
             # Test known mime type
-            request = GetFrameRequest(name="camera", mime_type=CameraMimeType.PNG)
-            response: GetFrameResponse = await client.GetFrame(request)
+            request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG)
+            response: GetImageResponse = await client.GetImage(request)
             img = Image.open(BytesIO(response.image), formats=["PNG"])
             assert img.tobytes() == image.tobytes()
 
             # Test raw mime type
-            request = GetFrameRequest(name="camera", mime_type=CameraMimeType.RAW)
-            response: GetFrameResponse = await client.GetFrame(request)
+            request = GetImageRequest(name="camera", mime_type=CameraMimeType.RAW)
+            response: GetImageResponse = await client.GetImage(request)
             img = Image.frombytes("RGBA", (response.width_px, response.height_px), response.image, "raw")
             assert img == image
             assert response.mime_type == CameraMimeType.RAW
 
             # Test unknown mime type
-            request = GetFrameRequest(name="camera", mime_type="unknown")
-            response: GetFrameResponse = await client.GetFrame(request)
+            request = GetImageRequest(name="camera", mime_type="unknown")
+            response: GetImageResponse = await client.GetImage(request)
             img = Image.frombytes("RGBA", (response.width_px, response.height_px), response.image, "raw")
             assert img == image
             assert response.mime_type == "unknown"
@@ -133,12 +134,13 @@ class TestService:
             assert response.point_cloud == point_cloud
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, service: CameraService, properties: IntrinsicParameters):
+    async def test_get_properties(self, service: CameraService, properties: Camera.Properties):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = GetPropertiesRequest(name="camera")
             response: GetPropertiesResponse = await client.GetProperties(request)
-            assert response.intrinsic_parameters == properties
+            assert response.supports_pcd == properties.supports_pcd
+            assert response.intrinsic_parameters == properties.intrinsic_parameters
 
 
 class TestClient:
@@ -148,13 +150,13 @@ class TestClient:
             client = CameraClient("camera", channel)
 
             # Test known mime type
-            img = await client.get_frame()
+            img = await client.get_image()
             assert isinstance(img, Image.Image)
             assert img.convert("RGBA") == image.convert("RGBA")
             assert img.tobytes() == image.tobytes()
 
             # Test raw mime type
-            img = await client.get_frame(CameraMimeType.RAW)
+            img = await client.get_image(CameraMimeType.RAW)
             assert isinstance(img, RawImage)
             assert img.data == image.tobytes()
             assert img.width == image.width
@@ -162,7 +164,7 @@ class TestClient:
             assert img.mime_type == CameraMimeType.RAW
 
             # Test unknown mime type
-            img = await client.get_frame("unknown")
+            img = await client.get_image("unknown")
             assert isinstance(img, RawImage)
             assert img.data == image.tobytes()
             assert img.width == image.width
@@ -177,7 +179,7 @@ class TestClient:
             assert pc == point_cloud
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, service: CameraService, properties: IntrinsicParameters):
+    async def test_get_properties(self, service: CameraService, properties: Camera.Properties):
         async with ChannelFor([service]) as channel:
             camera = CameraClient("camera", channel)
             props = await camera.get_properties()
@@ -188,4 +190,4 @@ class TestClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = CameraClient("camera", channel)
             with pytest.raises(NotImplementedError):
-                await client.do({"command": "args"})
+                await client.do_command({"command": "args"})

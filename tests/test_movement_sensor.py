@@ -113,6 +113,11 @@ class TestMovementSensor:
             "orientation": ORIENTATION,
         }
 
+    @pytest.mark.asyncio
+    async def test_do(self, movement_sensor: MovementSensor):
+        with pytest.raises(NotImplementedError):
+            await movement_sensor.do_command({"command": "args"})
+
 
 class TestService:
     @pytest.mark.asyncio
@@ -243,4 +248,4 @@ class TestClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({"command": "args"})
+                await client.do_command({"command": "args"})

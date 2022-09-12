@@ -14,7 +14,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class GetFrameRequest(google.protobuf.message.Message):
+class GetImageRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
@@ -28,9 +28,9 @@ class GetFrameRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'name', b'name']) -> None:
         ...
-global___GetFrameRequest = GetFrameRequest
+global___GetImageRequest = GetImageRequest
 
-class GetFrameResponse(google.protobuf.message.Message):
+class GetImageResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MIME_TYPE_FIELD_NUMBER: builtins.int
     IMAGE_FIELD_NUMBER: builtins.int
@@ -50,7 +50,7 @@ class GetFrameResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['height_px', b'height_px', 'image', b'image', 'mime_type', b'mime_type', 'width_px', b'width_px']) -> None:
         ...
-global___GetFrameResponse = GetFrameResponse
+global___GetImageResponse = GetImageResponse
 
 class RenderFrameRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -115,19 +115,22 @@ global___GetPropertiesRequest = GetPropertiesRequest
 
 class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SUPPORTS_PCD_FIELD_NUMBER: builtins.int
     INTRINSIC_PARAMETERS_FIELD_NUMBER: builtins.int
+    supports_pcd: builtins.bool
+    'A boolean property determining whether the camera supports the return of pointcloud data'
 
     @property
     def intrinsic_parameters(self) -> global___IntrinsicParameters:
-        ...
+        """Parameters for doing a perspective of a 3D scene to a 2D plane"""
 
-    def __init__(self, *, intrinsic_parameters: global___IntrinsicParameters | None=...) -> None:
+    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['intrinsic_parameters', b'intrinsic_parameters']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['intrinsic_parameters', b'intrinsic_parameters', 'supports_pcd', b'supports_pcd']) -> None:
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
 

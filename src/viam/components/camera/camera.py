@@ -1,5 +1,5 @@
 import abc
-from typing import Tuple, Union
+from typing import NamedTuple, Tuple, Union
 
 from PIL.Image import Image
 from viam.components.types import CameraMimeType, RawImage
@@ -17,9 +17,18 @@ class Camera(ComponentBase):
     overridden, it must call the `super().__init__()` function.
     """
 
+    class Properties(NamedTuple):
+        """The camera's supported features and settings"""
+
+        supports_pcd: bool
+        """Whether the camera has a valid implementation of `get_point_cloud`"""
+
+        intrinsic_parameters: IntrinsicParameters
+        """The properties of the camera"""
+
     @abc.abstractmethod
-    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image, RawImage]:
-        """Get the next frame from the camera as an Image.
+    async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Union[Image, RawImage]:
+        """Get the next image from the camera as an Image or RawImage.
         Be sure to close the image when finished.
 
         Args:
@@ -46,11 +55,11 @@ class Camera(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self) -> IntrinsicParameters:
+    async def get_properties(self) -> Properties:
         """
         Get the camera intrinsic parameters and camera distortion parameters
 
         Returns:
-            IntrinsicParameters: The properties of the camera
+            Properties: The properties of the camera
         """
         ...

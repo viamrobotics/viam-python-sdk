@@ -1,7 +1,8 @@
-from typing import Any, List, Mapping, Tuple
+from typing import Any, Dict, Mapping, Tuple
 
 from grpclib.client import Channel
 
+from viam.components.generic.client import do_command
 from viam.components.movement_sensor.movement_sensor import MovementSensor
 from viam.proto.api.common import GeoPoint, Orientation, Vector3
 from viam.proto.api.component.movementsensor import (
@@ -66,5 +67,8 @@ class MovementSensorClient(MovementSensor):
         response: GetAccuracyResponse = await self.client.GetAccuracy(request)
         return response.accuracy_mm
 
-    async def get_readings(self) -> List[Any]:
+    async def get_readings(self) -> Mapping[str, Any]:
         return await super().get_readings()
+
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command)

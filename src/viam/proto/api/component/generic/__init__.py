@@ -3,11 +3,11 @@
 Do not edit manually!
 """
 from .....gen.proto.api.component.generic.v1.generic_grpc import GenericServiceBase, GenericServiceStub
-from .....gen.proto.api.component.generic.v1.generic_pb2 import DoRequest, DoResponse
+from .....gen.proto.api.component.generic.v1.generic_pb2 import DoCommandRequest, DoCommandResponse
 
 __all__ = [
     "GenericServiceBase",
     "GenericServiceStub",
-    "DoRequest",
-    "DoResponse",
+    "DoCommandRequest",
+    "DoCommandResponse",
 ]

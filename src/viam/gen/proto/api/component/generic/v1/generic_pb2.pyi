@@ -13,7 +13,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-class DoRequest(google.protobuf.message.Message):
+class DoCommandRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     COMMAND_FIELD_NUMBER: builtins.int
@@ -31,9 +31,9 @@ class DoRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['command', b'command', 'name', b'name']) -> None:
         ...
-global___DoRequest = DoRequest
+global___DoCommandRequest = DoCommandRequest
 
-class DoResponse(google.protobuf.message.Message):
+class DoCommandResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESULT_FIELD_NUMBER: builtins.int
 
@@ -49,4 +49,4 @@ class DoResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['result', b'result']) -> None:
         ...
-global___DoResponse = DoResponse
+global___DoCommandResponse = DoCommandResponse

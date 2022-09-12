@@ -4,8 +4,8 @@ Do not edit manually!
 """
 from .....gen.proto.api.component.camera.v1.camera_grpc import CameraServiceBase, CameraServiceStub
 from .....gen.proto.api.component.camera.v1.camera_pb2 import (
-    GetFrameRequest,
-    GetFrameResponse,
+    GetImageRequest,
+    GetImageResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
@@ -21,8 +21,8 @@ from .....gen.proto.api.component.camera.v1.camera_pb2 import (
 __all__ = [
     "CameraServiceBase",
     "CameraServiceStub",
-    "GetFrameRequest",
-    "GetFrameResponse",
+    "GetImageRequest",
+    "GetImageResponse",
     "GetPointCloudRequest",
     "GetPointCloudResponse",
     "GetPropertiesRequest",
