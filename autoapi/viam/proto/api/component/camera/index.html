@@ -74,7 +74,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.camera.CameraServiceBase">CameraServiceBase</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.CameraServiceBase.GetFrame">GetFrame</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.CameraServiceBase.GetImage">GetImage</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.CameraServiceBase.RenderFrame">RenderFrame</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.CameraServiceBase.GetPointCloud">GetPointCloud</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.CameraServiceBase.GetProperties">GetProperties</a></li>
@@ -82,16 +82,16 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.camera.CameraServiceStub">CameraServiceStub</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameRequest">GetFrameRequest</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameRequest.name">name</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameRequest.mime_type">mime_type</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.camera.GetImageRequest">GetImageRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetImageRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetImageRequest.mime_type">mime_type</a></li>
 </ul>
 </li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameResponse">GetFrameResponse</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameResponse.mime_type">mime_type</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameResponse.image">image</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameResponse.width_px">width_px</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameResponse.height_px">height_px</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.camera.GetImageResponse">GetImageResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetImageResponse.mime_type">mime_type</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetImageResponse.image">image</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetImageResponse.width_px">width_px</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetImageResponse.height_px">height_px</a></li>
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.camera.GetPointCloudRequest">GetPointCloudRequest</a><ul>
@@ -109,6 +109,7 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.camera.GetPropertiesResponse">GetPropertiesResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetPropertiesResponse.supports_pcd">supports_pcd</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetPropertiesResponse.intrinsic_parameters">intrinsic_parameters</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.camera.GetPropertiesResponse.HasField">HasField</a></li>
 </ul>
@@ -227,10 +228,10 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.component.camera.CameraServiceStub" title="viam.proto.api.component.camera.CameraServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameRequest" title="viam.proto.api.component.camera.GetFrameRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFrameRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.component.camera.GetImageRequest" title="viam.proto.api.component.camera.GetImageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetImageRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.component.camera.GetFrameResponse" title="viam.proto.api.component.camera.GetFrameResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetFrameResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.component.camera.GetImageResponse" title="viam.proto.api.component.camera.GetImageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetImageResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.component.camera.GetPointCloudRequest" title="viam.proto.api.component.camera.GetPointCloudRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPointCloudRequest</span></code></a></p></td>
@@ -271,8 +272,8 @@ Do not edit manually!</p>
 <dd><p>Helper class that provides a standard way to create an ABC using
 inheritance.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.CameraServiceBase.GetFrame">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.camera.v1.camera_pb2.GetFrameRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.camera.v1.camera_pb2.GetFrameResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/component/camera/v1/camera_grpc.html#CameraServiceBase.GetFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.component.camera.CameraServiceBase.GetFrame" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.CameraServiceBase.GetImage">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.camera.v1.camera_pb2.GetImageRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.camera.v1.camera_pb2.GetImageResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/component/camera/v1/camera_grpc.html#CameraServiceBase.GetImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.component.camera.CameraServiceBase.GetImage" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -303,54 +304,54 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetFrameRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.camera.</span></span><span class="sig-name descname"><span class="pre">GetFrameRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.camera.GetFrameRequest" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetImageRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.camera.</span></span><span class="sig-name descname"><span class="pre">GetImageRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.camera.GetImageRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetFrameRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetFrameRequest.name" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetImageRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetImageRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a camera</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetFrameRequest.mime_type">
-<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetFrameRequest.mime_type" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetImageRequest.mime_type">
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetImageRequest.mime_type" title="Permalink to this definition"></a></dt>
 <dd><p>Requested MIME type of response</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetFrameResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.camera.</span></span><span class="sig-name descname"><span class="pre">GetFrameResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.camera.GetFrameResponse" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetImageResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.camera.</span></span><span class="sig-name descname"><span class="pre">GetImageResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_px</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.camera.GetImageResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetFrameResponse.mime_type">
-<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetFrameResponse.mime_type" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetImageResponse.mime_type">
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetImageResponse.mime_type" title="Permalink to this definition"></a></dt>
 <dd><p>Actual MIME type of response</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetFrameResponse.image">
-<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetFrameResponse.image" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetImageResponse.image">
+<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetImageResponse.image" title="Permalink to this definition"></a></dt>
 <dd><p>Frame in bytes</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetFrameResponse.width_px">
-<span class="sig-name descname"><span class="pre">width_px</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetFrameResponse.width_px" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetImageResponse.width_px">
+<span class="sig-name descname"><span class="pre">width_px</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetImageResponse.width_px" title="Permalink to this definition"></a></dt>
 <dd><p>Width of frame in px</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetFrameResponse.height_px">
-<span class="sig-name descname"><span class="pre">height_px</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetFrameResponse.height_px" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetImageResponse.height_px">
+<span class="sig-name descname"><span class="pre">height_px</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetImageResponse.height_px" title="Permalink to this definition"></a></dt>
 <dd><p>Height of frame in px</p>
 </dd></dl>
 
@@ -415,15 +416,22 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.api.component.camera.GetPropertiesResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.camera.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intrinsic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___IntrinsicParameters</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.camera.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.camera.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supports_pcd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intrinsic_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___IntrinsicParameters</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.camera.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.api.component.camera.GetPropertiesResponse.supports_pcd">
+<span class="sig-name descname"><span class="pre">supports_pcd</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.api.component.camera.GetPropertiesResponse.supports_pcd" title="Permalink to this definition"></a></dt>
+<dd><p>A boolean property determining whether the camera supports the return of pointcloud data</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.component.camera.GetPropertiesResponse.intrinsic_parameters">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">intrinsic_parameters</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___IntrinsicParameters</span></span></span><a class="headerlink" href="#viam.proto.api.component.camera.GetPropertiesResponse.intrinsic_parameters" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Parameters for doing a perspective of a 3D scene to a 2D plane</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.api.component.camera.GetPropertiesResponse.HasField">

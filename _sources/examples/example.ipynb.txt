@@ -164,7 +164,7 @@
     "\n",
     "robot = await connect()\n",
     "camera = Camera.from_robot(robot, \"camera0\")\n",
-    "image = await camera.get_frame()\n",
+    "image = await camera.get_image()\n",
     "display(image)\n",
     "\n",
     "# Don't forget to close the robot when you're done!\n",

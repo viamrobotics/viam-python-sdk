@@ -32,20 +32,20 @@ Classes
 
 
 
-   Generic component, which represents any type of component that can executs arbitrary commands
+   Generic component, which represents any type of component that can executes arbitrary commands
 
    This acts as an abstract base class for any drivers representing generic components.
-   This cannot be used on its own. If the `__init__()` function is overriden, it must call the `super().__init__()` function.
+   This cannot be used on its own. If the `__init__()` function is overridden, it must call the `super().__init__()` function.
 
    To create a Generic component (an arbitrary component that can process commands), this `Generic` component should be subclassed
-   and the `do` function implemented.
+   and the `do_command` function implemented.
 
    Example:
 
    ```python
    class ComplexComponent(Generic):
 
-       async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+       async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
            result = {key: False for key in command.keys()}
            for (name, args) in command.items():
                if name == 'on':
@@ -77,10 +77,10 @@ Classes
            ...
    ```
 
-   To execute commands, simply call the `do` function with the appropriate parameters
+   To execute commands, simply call the `do_command` function with the appropriate parameters
 
    ```python
-   await component.do({'on': [300, 10]})
+   await component.do_command({'on': [300, 10]})
    component.power  # 1
    await asyncio.sleep(10)
    component.power  # 0

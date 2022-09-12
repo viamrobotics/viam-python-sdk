@@ -31,7 +31,7 @@ Functions
 
    gRPC client for the Generic component.
 
-   .. py:method:: do(command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do_command(command: Dict[str, Any]) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands
@@ -49,7 +49,7 @@ Functions
 .. py:function:: do_command(channel: grpclib.client.Channel, name: str, command: Dict[str, Any]) -> Dict[str, Any]
    :async:
 
-   Convenience method to allow component clients to execut `do` commands
+   Convenience method to allow component clients to execute `do_command` functions
 
    :param channel: A gRPC channel
    :type channel: Channel

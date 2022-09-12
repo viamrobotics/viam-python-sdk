@@ -79,7 +79,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.get_properties">get_properties</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.stop">stop</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.is_powered">is_powered</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.do">do</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.do_command">do_command</a></li>
 </ul>
 </li>
 </ul>
@@ -242,7 +242,7 @@ whether it is supported by this motor.</p>
 <dd class="field-odd"><p>Map of feature names to supported status.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="../index.html#viam.components.motor.Motor.Properties" title="viam.components.motor.Motor.Properties">Properties</a></p>
+<dd class="field-even"><p><a class="reference internal" href="../../camera/camera/index.html#viam.components.camera.camera.Camera.Properties" title="viam.components.camera.camera.Camera.Properties">Properties</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -268,8 +268,8 @@ whether it is supported by this motor.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.do">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/motor/client.html#MotorClient.do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.client.MotorClient.do" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.do_command">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/motor/client.html#MotorClient.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.client.MotorClient.do_command" title="Permalink to this definition"></a></dt>
 <dd><p>Send/Receive arbitrary commands</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

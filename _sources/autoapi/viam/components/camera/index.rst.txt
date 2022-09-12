@@ -39,11 +39,28 @@ Classes
    camera implementations. This cannot be used on its own. If the `__init__()` function is
    overridden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_frame(mime_type: str = CameraMimeType.PNG) -> Union[PIL.Image.Image, viam.components.types.RawImage]
+   .. py:class:: Properties
+
+
+
+      The camera's supported features and settings
+
+      .. py:attribute:: supports_pcd
+         :annotation: :bool
+
+         Whether the camera has a valid implementation of `get_point_cloud`
+
+      .. py:attribute:: intrinsic_parameters
+         :annotation: :viam.proto.api.component.camera.IntrinsicParameters
+
+         The properties of the camera
+
+
+   .. py:method:: get_image(mime_type: str = CameraMimeType.PNG) -> Union[PIL.Image.Image, viam.components.types.RawImage]
       :abstractmethod:
       :async:
 
-      Get the next frame from the camera as an Image.
+      Get the next image from the camera as an Image or RawImage.
       Be sure to close the image when finished.
 
       :param mime_type: The desired mime type of the image. This does not guarantee output type
@@ -68,14 +85,14 @@ Classes
       :rtype: bytes
 
 
-   .. py:method:: get_properties() -> viam.proto.api.component.camera.IntrinsicParameters
+   .. py:method:: get_properties() -> Properties
       :abstractmethod:
       :async:
 
       Get the camera intrinsic parameters and camera distortion parameters
 
       :returns: The properties of the camera
-      :rtype: IntrinsicParameters
+      :rtype: Properties
 
 
 

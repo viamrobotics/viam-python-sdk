@@ -87,7 +87,7 @@
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
 <span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
-<span class="kn">from</span> <span class="nn">viam.proto.api.component.generic</span> <span class="kn">import</span> <span class="n">GenericServiceStub</span><span class="p">,</span> <span class="n">DoRequest</span><span class="p">,</span> <span class="n">DoResponse</span>
+<span class="kn">from</span> <span class="nn">viam.proto.api.component.generic</span> <span class="kn">import</span> <span class="n">GenericServiceStub</span><span class="p">,</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.generic</span> <span class="kn">import</span> <span class="n">Generic</span>
@@ -102,10 +102,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">GenericServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-<div class="viewcode-block" id="GenericClient.do"><a class="viewcode-back" href="../../../../autoapi/viam/components/generic/client/index.html#viam.components.generic.client.GenericClient.do">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">DoRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
+<div class="viewcode-block" id="GenericClient.do_command"><a class="viewcode-back" href="../../../../autoapi/viam/components/generic/client/index.html#viam.components.generic.client.GenericClient.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span><span class="p">:</span> <span class="n">DoResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Do</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">:</span> <span class="n">DoCommandResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">DoCommand</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">GRPCError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
@@ -115,7 +115,7 @@
 
 
 <div class="viewcode-block" id="do_command"><a class="viewcode-back" href="../../../../autoapi/viam/components/generic/client/index.html#viam.components.generic.client.do_command">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;Convenience method to allow component clients to execut `do` commands</span>
+    <span class="sd">&quot;&quot;&quot;Convenience method to allow component clients to execute `do_command` functions</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        channel (Channel): A gRPC channel</span>
@@ -126,7 +126,7 @@
 <span class="sd">        Dict[str, Any]: The result of the executed command</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">GenericClient</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
-    <span class="k">return</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="n">command</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span><span class="n">command</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

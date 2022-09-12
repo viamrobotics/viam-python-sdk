@@ -138,24 +138,24 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.generic.generic.Generic" title="viam.components.generic.generic.Generic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Generic</span></code></a></p></td>
-<td><p>Generic component, which represents any type of component that can executs arbitrary commands</p></td>
+<td><p>Generic component, which represents any type of component that can executes arbitrary commands</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.generic.generic.Generic">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.generic.generic.</span></span><span class="sig-name descname"><span class="pre">Generic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/generic/generic.html#Generic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.generic.generic.Generic" title="Permalink to this definition"></a></dt>
-<dd><p>Generic component, which represents any type of component that can executs arbitrary commands</p>
+<dd><p>Generic component, which represents any type of component that can executes arbitrary commands</p>
 <p>This acts as an abstract base class for any drivers representing generic components.
-This cannot be used on its own. If the <cite>__init__()</cite> function is overriden, it must call the <cite>super().__init__()</cite> function.</p>
+This cannot be used on its own. If the <cite>__init__()</cite> function is overridden, it must call the <cite>super().__init__()</cite> function.</p>
 <p>To create a Generic component (an arbitrary component that can process commands), this <cite>Generic</cite> component should be subclassed
-and the <cite>do</cite> function implemented.</p>
+and the <cite>do_command</cite> function implemented.</p>
 <p>Example:</p>
 <p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
 class ComplexComponent(Generic):</p>
 <blockquote>
 <div><dl>
-<dt>async def do(self, command: Dict[str, Any]) -&gt; Dict[str, Any]:</dt><dd><p>result = {key: False for key in command.keys()}
+<dt>async def do_command(self, command: Dict[str, Any]) -&gt; Dict[str, Any]:</dt><dd><p>result = {key: False for key in command.keys()}
 for (name, args) in command.items():</p>
 <blockquote>
 <div><dl class="simple">
@@ -188,9 +188,9 @@ task.start()</p>
 </dl>
 </div></blockquote>
 <p><a href="#id11"><span class="problematic" id="id12">``</span></a><a href="#id13"><span class="problematic" id="id14">`</span></a></p>
-<p>To execute commands, simply call the <cite>do</cite> function with the appropriate parameters</p>
+<p>To execute commands, simply call the <cite>do_command</cite> function with the appropriate parameters</p>
 <p><code class="docutils literal notranslate"><span class="pre">`python</span>
-<span class="pre">await</span> <span class="pre">component.do({'on':</span> <span class="pre">[300,</span> <span class="pre">10]})</span>
+<span class="pre">await</span> <span class="pre">component.do_command({'on':</span> <span class="pre">[300,</span> <span class="pre">10]})</span>
 <span class="pre">component.power</span>&#160; <span class="pre">#</span> <span class="pre">1</span>
 <span class="pre">await</span> <span class="pre">asyncio.sleep(10)</span>
 <span class="pre">component.power</span>&#160; <span class="pre">#</span> <span class="pre">0</span>

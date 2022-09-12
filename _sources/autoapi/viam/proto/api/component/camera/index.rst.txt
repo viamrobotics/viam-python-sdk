@@ -20,8 +20,8 @@ Classes
 
    viam.proto.api.component.camera.CameraServiceBase
    viam.proto.api.component.camera.CameraServiceStub
-   viam.proto.api.component.camera.GetFrameRequest
-   viam.proto.api.component.camera.GetFrameResponse
+   viam.proto.api.component.camera.GetImageRequest
+   viam.proto.api.component.camera.GetImageResponse
    viam.proto.api.component.camera.GetPointCloudRequest
    viam.proto.api.component.camera.GetPointCloudResponse
    viam.proto.api.component.camera.GetPropertiesRequest
@@ -43,7 +43,7 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetFrame(stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.GetFrameRequest, proto.api.component.camera.v1.camera_pb2.GetFrameResponse]) -> None
+   .. py:method:: GetImage(stream: grpclib.server.Stream[proto.api.component.camera.v1.camera_pb2.GetImageRequest, proto.api.component.camera.v1.camera_pb2.GetImageResponse]) -> None
       :abstractmethod:
       :async:
 
@@ -70,7 +70,7 @@ Classes
 .. py:class:: CameraServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetFrameRequest(*, name: str = ..., mime_type: str = ...)
+.. py:class:: GetImageRequest(*, name: str = ..., mime_type: str = ...)
 
 
 
@@ -91,7 +91,7 @@ Classes
       Requested MIME type of response
 
 
-.. py:class:: GetFrameResponse(*, mime_type: str = ..., image: bytes = ..., width_px: int = ..., height_px: int = ...)
+.. py:class:: GetImageResponse(*, mime_type: str = ..., image: bytes = ..., width_px: int = ..., height_px: int = ...)
 
 
 
@@ -180,7 +180,7 @@ Classes
       Name of a camera
 
 
-.. py:class:: GetPropertiesResponse(*, intrinsic_parameters: global___IntrinsicParameters | None = ...)
+.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ...)
 
 
 
@@ -190,8 +190,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:attribute:: supports_pcd
+      :annotation: :bool
+
+      A boolean property determining whether the camera supports the return of pointcloud data
+
    .. py:method:: intrinsic_parameters() -> global___IntrinsicParameters
       :property:
+
+      Parameters for doing a perspective of a 3D scene to a 2D plane
 
 
    .. py:method:: HasField(field_name: Literal[intrinsic_parameters, b'intrinsic_parameters']) -> bool

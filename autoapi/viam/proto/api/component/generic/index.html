@@ -76,20 +76,20 @@
 <li class="toctree-l8"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.generic.GenericServiceBase">GenericServiceBase</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.GenericServiceBase.Do">Do</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.GenericServiceBase.DoCommand">DoCommand</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.GenericServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.generic.GenericServiceStub">GenericServiceStub</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.generic.DoRequest">DoRequest</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoRequest.name">name</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoRequest.command">command</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoRequest.HasField">HasField</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandRequest">DoCommandRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandRequest.command">command</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandRequest.HasField">HasField</a></li>
 </ul>
 </li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.generic.DoResponse">DoResponse</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoResponse.result">result</a></li>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoResponse.HasField">HasField</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandResponse">DoCommandResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandResponse.result">result</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandResponse.HasField">HasField</a></li>
 </ul>
 </li>
 </ul>
@@ -169,10 +169,10 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.component.generic.GenericServiceStub" title="viam.proto.api.component.generic.GenericServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GenericServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.component.generic.DoRequest" title="viam.proto.api.component.generic.DoRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandRequest" title="viam.proto.api.component.generic.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.component.generic.DoResponse" title="viam.proto.api.component.generic.DoResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.api.component.generic.DoCommandResponse" title="viam.proto.api.component.generic.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -183,8 +183,8 @@ Do not edit manually!</p>
 <dd><p>Helper class that provides a standard way to create an ABC using
 inheritance.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.component.generic.GenericServiceBase.Do">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Do</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.generic.v1.generic_pb2.DoRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.generic.v1.generic_pb2.DoResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/component/generic/v1/generic_grpc.html#GenericServiceBase.Do"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.component.generic.GenericServiceBase.Do" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.generic.GenericServiceBase.DoCommand">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.api.component.generic.v1.generic_pb2.DoCommandRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.api.component.generic.v1.generic_pb2.DoCommandResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/api/component/generic/v1/generic_grpc.html#GenericServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.api.component.generic.GenericServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -200,25 +200,25 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.generic.</span></span><span class="sig-name descname"><span class="pre">DoRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.generic.DoRequest" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoCommandRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.generic.</span></span><span class="sig-name descname"><span class="pre">DoCommandRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.generic.DoCommandRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.component.generic.DoRequest.name" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoCommandRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.api.component.generic.DoCommandRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoRequest.command">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.api.component.generic.DoRequest.command" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoCommandRequest.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.api.component.generic.DoCommandRequest.command" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">command</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'command'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.component.generic.DoRequest.HasField" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoCommandRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">command</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'command'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.component.generic.DoCommandRequest.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -242,20 +242,20 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.generic.</span></span><span class="sig-name descname"><span class="pre">DoResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.generic.DoResponse" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoCommandResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.api.component.generic.</span></span><span class="sig-name descname"><span class="pre">DoCommandResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.api.component.generic.DoCommandResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoResponse.result">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.api.component.generic.DoResponse.result" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoCommandResponse.result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.api.component.generic.DoCommandResponse.result" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoResponse.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">result</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.component.generic.DoResponse.HasField" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.api.component.generic.DoCommandResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">result</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.api.component.generic.DoCommandResponse.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will

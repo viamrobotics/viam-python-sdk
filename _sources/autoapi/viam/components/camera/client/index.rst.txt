@@ -23,10 +23,10 @@ Classes
 
    gRPC client for the Camera component
 
-   .. py:method:: get_frame(mime_type: str = CameraMimeType.PNG) -> Union[PIL.Image.Image, viam.components.types.RawImage]
+   .. py:method:: get_image(mime_type: str = CameraMimeType.PNG) -> Union[PIL.Image.Image, viam.components.types.RawImage]
       :async:
 
-      Get the next frame from the camera as an Image.
+      Get the next image from the camera as an Image or RawImage.
       Be sure to close the image when finished.
 
       :param mime_type: The desired mime type of the image. This does not guarantee output type
@@ -50,16 +50,16 @@ Classes
       :rtype: bytes
 
 
-   .. py:method:: get_properties() -> viam.proto.api.component.camera.IntrinsicParameters
+   .. py:method:: get_properties() -> viam.components.camera.camera.Camera.Properties
       :async:
 
       Get the camera intrinsic parameters and camera distortion parameters
 
       :returns: The properties of the camera
-      :rtype: IntrinsicParameters
+      :rtype: Properties
 
 
-   .. py:method:: do(command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do_command(command: Dict[str, Any]) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands

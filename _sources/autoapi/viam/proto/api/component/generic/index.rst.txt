@@ -20,8 +20,8 @@ Classes
 
    viam.proto.api.component.generic.GenericServiceBase
    viam.proto.api.component.generic.GenericServiceStub
-   viam.proto.api.component.generic.DoRequest
-   viam.proto.api.component.generic.DoResponse
+   viam.proto.api.component.generic.DoCommandRequest
+   viam.proto.api.component.generic.DoCommandResponse
 
 
 
@@ -33,7 +33,7 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Do(stream: grpclib.server.Stream[proto.api.component.generic.v1.generic_pb2.DoRequest, proto.api.component.generic.v1.generic_pb2.DoResponse]) -> None
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[proto.api.component.generic.v1.generic_pb2.DoCommandRequest, proto.api.component.generic.v1.generic_pb2.DoCommandResponse]) -> None
       :abstractmethod:
       :async:
 
@@ -45,7 +45,7 @@ Classes
 .. py:class:: GenericServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: DoRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -82,7 +82,7 @@ Classes
 
 
 
-.. py:class:: DoResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 

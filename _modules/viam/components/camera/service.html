@@ -92,8 +92,8 @@
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.api.component.camera</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CameraServiceBase</span><span class="p">,</span>
-    <span class="n">GetFrameRequest</span><span class="p">,</span>
-    <span class="n">GetFrameResponse</span><span class="p">,</span>
+    <span class="n">GetImageRequest</span><span class="p">,</span>
+    <span class="n">GetImageResponse</span><span class="p">,</span>
     <span class="n">GetPointCloudRequest</span><span class="p">,</span>
     <span class="n">GetPointCloudResponse</span><span class="p">,</span>
     <span class="n">GetPropertiesRequest</span><span class="p">,</span>
@@ -111,7 +111,7 @@
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Camera</span>
 
-<div class="viewcode-block" id="CameraService.GetFrame"><a class="viewcode-back" href="../../../../autoapi/viam/components/camera/service/index.html#viam.components.camera.service.CameraService.GetFrame">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetFrame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetFrameRequest</span><span class="p">,</span> <span class="n">GetFrameResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="CameraService.GetImage"><a class="viewcode-back" href="../../../../autoapi/viam/components/camera/service/index.html#viam.components.camera.service.CameraService.GetImage">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetImage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetImageRequest</span><span class="p">,</span> <span class="n">GetImageResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
@@ -119,13 +119,13 @@
             <span class="n">camera</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_frame</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                 <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">RAW</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">GetFrameResponse</span><span class="p">(</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">GetImageResponse</span><span class="p">(</span>
                 <span class="n">mime_type</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">mime_type</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">)</span> <span class="k">else</span> <span class="n">mimetype</span><span class="p">,</span>
                 <span class="n">width_px</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
                 <span class="n">height_px</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
@@ -148,7 +148,7 @@
             <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
-        <span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_frame</span><span class="p">(</span><span class="n">mimetype</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">mimetype</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">img</span> <span class="o">=</span> <span class="n">mimetype</span><span class="o">.</span><span class="n">encode_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
@@ -177,7 +177,7 @@
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">GetPropertiesResponse</span><span class="p">(</span><span class="n">intrinsic_parameters</span><span class="o">=</span><span class="n">properties</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">GetPropertiesResponse</span><span class="p">(</span><span class="n">supports_pcd</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">supports_pcd</span><span class="p">,</span> <span class="n">intrinsic_parameters</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">intrinsic_parameters</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 </pre></div>
 
