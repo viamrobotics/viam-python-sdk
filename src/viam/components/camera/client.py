@@ -8,8 +8,8 @@ from viam.components.generic.client import do_command
 from viam.components.types import CameraMimeType, RawImage
 from viam.proto.api.component.camera import (
     CameraServiceStub,
-    GetFrameRequest,
-    GetFrameResponse,
+    GetImageRequest,
+    GetImageResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
@@ -29,9 +29,9 @@ class CameraClient(Camera):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
-        request = GetFrameRequest(name=self.name, mime_type=mime_type)
-        response: GetFrameResponse = await self.client.GetFrame(request)
+    async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
+        request = GetImageRequest(name=self.name, mime_type=mime_type)
+        response: GetImageResponse = await self.client.GetImage(request)
         try:
             mimetype = CameraMimeType(response.mime_type)
             if mimetype == CameraMimeType.RAW:

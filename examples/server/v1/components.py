@@ -237,7 +237,7 @@ class ExampleCamera(Camera):
         self.image = Image.open(p.parent.absolute().joinpath("viam.webp"))
         super().__init__(name)
 
-    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Image.Image:
+    async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Image.Image:
         return self.image.copy()
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:

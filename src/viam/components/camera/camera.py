@@ -27,8 +27,8 @@ class Camera(ComponentBase):
         """The properties of the camera"""
 
     @abc.abstractmethod
-    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image, RawImage]:
-        """Get the next frame from the camera as an Image.
+    async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Union[Image, RawImage]:
+        """Get the next image from the camera as an Image or RawImage.
         Be sure to close the image when finished.
 
         Args:

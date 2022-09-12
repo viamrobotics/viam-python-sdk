@@ -277,7 +277,7 @@ class MockCamera(Camera):
         )
         super().__init__(name)
 
-    async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
+    async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
         if not CameraMimeType.is_supported(mime_type) or mime_type == CameraMimeType.RAW:
             return RawImage(
                 data=self.image.convert("RGBA").tobytes("raw", "RGBA"),

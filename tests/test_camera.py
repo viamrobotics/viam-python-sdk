@@ -12,8 +12,8 @@ from viam.components.resource_manager import ResourceManager
 from viam.components.types import CameraMimeType, RawImage
 from viam.proto.api.component.camera import (
     CameraServiceStub,
-    GetFrameRequest,
-    GetFrameResponse,
+    GetImageRequest,
+    GetImageResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
@@ -66,10 +66,10 @@ def generic_service(camera: Camera) -> GenericService:
 class TestCamera:
     @pytest.mark.asyncio
     async def test_get_frame(self, camera: Camera, image: Image.Image):
-        img = await camera.get_frame(CameraMimeType.PNG)
+        img = await camera.get_image(CameraMimeType.PNG)
         assert img == image
 
-        img = await camera.get_frame(CameraMimeType.RAW)
+        img = await camera.get_image(CameraMimeType.RAW)
         assert isinstance(img, RawImage)
 
     @pytest.mark.asyncio
@@ -95,21 +95,21 @@ class TestService:
             client = CameraServiceStub(channel)
 
             # Test known mime type
-            request = GetFrameRequest(name="camera", mime_type=CameraMimeType.PNG)
-            response: GetFrameResponse = await client.GetFrame(request)
+            request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG)
+            response: GetImageResponse = await client.GetImage(request)
             img = Image.open(BytesIO(response.image), formats=["PNG"])
             assert img.tobytes() == image.tobytes()
 
             # Test raw mime type
-            request = GetFrameRequest(name="camera", mime_type=CameraMimeType.RAW)
-            response: GetFrameResponse = await client.GetFrame(request)
+            request = GetImageRequest(name="camera", mime_type=CameraMimeType.RAW)
+            response: GetImageResponse = await client.GetImage(request)
             img = Image.frombytes("RGBA", (response.width_px, response.height_px), response.image, "raw")
             assert img == image
             assert response.mime_type == CameraMimeType.RAW
 
             # Test unknown mime type
-            request = GetFrameRequest(name="camera", mime_type="unknown")
-            response: GetFrameResponse = await client.GetFrame(request)
+            request = GetImageRequest(name="camera", mime_type="unknown")
+            response: GetImageResponse = await client.GetImage(request)
             img = Image.frombytes("RGBA", (response.width_px, response.height_px), response.image, "raw")
             assert img == image
             assert response.mime_type == "unknown"
@@ -150,13 +150,13 @@ class TestClient:
             client = CameraClient("camera", channel)
 
             # Test known mime type
-            img = await client.get_frame()
+            img = await client.get_image()
             assert isinstance(img, Image.Image)
             assert img.convert("RGBA") == image.convert("RGBA")
             assert img.tobytes() == image.tobytes()
 
             # Test raw mime type
-            img = await client.get_frame(CameraMimeType.RAW)
+            img = await client.get_image(CameraMimeType.RAW)
             assert isinstance(img, RawImage)
             assert img.data == image.tobytes()
             assert img.width == image.width
@@ -164,7 +164,7 @@ class TestClient:
             assert img.mime_type == CameraMimeType.RAW
 
             # Test unknown mime type
-            img = await client.get_frame("unknown")
+            img = await client.get_image("unknown")
             assert isinstance(img, RawImage)
             assert img.data == image.tobytes()
             assert img.width == image.width

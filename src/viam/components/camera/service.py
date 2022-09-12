@@ -6,8 +6,8 @@ from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
 from viam.proto.api.component.camera import (
     CameraServiceBase,
-    GetFrameRequest,
-    GetFrameResponse,
+    GetImageRequest,
+    GetImageResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
@@ -25,7 +25,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
 
     RESOURCE_TYPE = Camera
 
-    async def GetFrame(self, stream: Stream[GetFrameRequest, GetFrameResponse]) -> None:
+    async def GetImage(self, stream: Stream[GetImageRequest, GetImageResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -33,13 +33,13 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        image = await camera.get_frame(request.mime_type)
+        image = await camera.get_image(request.mime_type)
         try:
             try:
                 mimetype = CameraMimeType(request.mime_type)
             except ValueError:
                 mimetype = CameraMimeType.RAW
-            response = GetFrameResponse(
+            response = GetImageResponse(
                 mime_type=image.mime_type if isinstance(image, RawImage) else mimetype,
                 width_px=image.width,
                 height_px=image.height,
@@ -62,7 +62,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             mimetype = CameraMimeType(request.mime_type)
         except ValueError:
             mimetype = CameraMimeType.JPEG
-        image = await camera.get_frame(mimetype)
+        image = await camera.get_image(mimetype)
         try:
             img = mimetype.encode_image(image)
         finally:
