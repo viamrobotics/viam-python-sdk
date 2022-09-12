@@ -53,7 +53,7 @@ class ComponentBase(abc.ABC):
         component = robot.get_component(cls.get_resource_name(name))
         return cast(cls, component)
 
-    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         """Send/Receive arbitrary commands
 
         Args:

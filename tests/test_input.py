@@ -4,38 +4,44 @@ from time import time
 
 import pytest
 from grpclib.testing import ChannelFor
+
 from viam.components.generic.service import GenericService
 from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerService
 from viam.components.resource_manager import ResourceManager
 from viam.proto.api.component.inputcontroller import (
-    GetControlsRequest, GetControlsResponse, GetEventsRequest,
-    GetEventsResponse, InputControllerServiceStub, StreamEventsRequest,
-    StreamEventsResponse, TriggerEventRequest)
+    GetControlsRequest,
+    GetControlsResponse,
+    GetEventsRequest,
+    GetEventsResponse,
+    InputControllerServiceStub,
+    StreamEventsRequest,
+    StreamEventsResponse,
+    TriggerEventRequest,
+)
 
 from .mocks.components import MockInputController
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def controller() -> MockInputController:
-    return MockInputController(name='controller')
+    return MockInputController(name="controller")
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def service(controller: MockInputController) -> InputControllerService:
     manager = ResourceManager([controller])
     return InputControllerService(manager)
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def generic_service(controller: MockInputController) -> GenericService:
     manager = ResourceManager([controller])
     return GenericService(manager)
 
 
 class TestInputController:
-
     @pytest.mark.asyncio
     async def test_get_controls(self, controller: MockInputController):
         controls = await controller.get_controls()
@@ -85,7 +91,7 @@ class TestInputController:
     @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController):
         with pytest.raises(NotImplementedError):
-            await controller.do({'command': 'args'})
+            await controller.do_command({"command": "args"})
 
 
 class TestService:
@@ -145,15 +151,17 @@ class TestService:
     @pytest.mark.asyncio
     async def test_stream_events(selc, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
+
             def trigger_event():
                 asyncio.get_running_loop().create_task(
                     controller.trigger_event(Event(time(), EventType.BUTTON_RELEASE, Control.BUTTON_START, 0))
                 )
+
             asyncio.get_running_loop().call_later(0.1, trigger_event)
             client = InputControllerServiceStub(channel)
             request = StreamEventsRequest(
                 controller=controller.name,
-                events=[StreamEventsRequest.Events(control=Control.BUTTON_START, events=[EventType.BUTTON_RELEASE])]
+                events=[StreamEventsRequest.Events(control=Control.BUTTON_START, events=[EventType.BUTTON_RELEASE])],
             )
             async with client.StreamEvents.open(timeout=1) as stream:
                 await stream.send_message(request, end=True)
@@ -230,11 +238,7 @@ class TestClient:
 
             def test_event(event: Event):
                 self.callback_called = True
-                self.event_equal = (
-                    event.control == Control.BUTTON_START
-                    and event.event == EventType.BUTTON_RELEASE
-                    and event.value == 0
-                )
+                self.event_equal = event.control == Control.BUTTON_START and event.event == EventType.BUTTON_RELEASE and event.value == 0
 
             client.register_control_callback(Control.BUTTON_START, [EventType.BUTTON_RELEASE], test_event)
 
@@ -242,6 +246,7 @@ class TestClient:
                 asyncio.get_running_loop().create_task(
                     controller.trigger_event(Event(time(), EventType.BUTTON_RELEASE, Control.BUTTON_START, 0))
                 )
+
             asyncio.get_running_loop().call_later(0.1, trigger_event)
 
             future = datetime.now() + timedelta(seconds=0.2)
@@ -256,4 +261,4 @@ class TestClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = ControllerClient(controller.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({'command': 'args'})
+                await client.do_command({"command": "args"})

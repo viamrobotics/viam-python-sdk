@@ -28,5 +28,5 @@ class SensorClient(Sensor):
         response: GetReadingsResponse = await self.client.GetReadings(request)
         return sensor_readings_value_to_native(response.readings)
 
-    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

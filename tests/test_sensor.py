@@ -27,7 +27,7 @@ class TestSensor:
     @pytest.mark.asyncio
     async def test_do(self):
         with pytest.raises(NotImplementedError):
-            await self.sensor.do({"command": "args"})
+            await self.sensor.do_command({"command": "args"})
 
 
 class TestService:
@@ -67,4 +67,4 @@ class TestClient:
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = SensorClient(self.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({"command": "args"})
+                await client.do_command({"command": "args"})

@@ -82,5 +82,5 @@ class MotorClient(Motor):
         response: IsPoweredResponse = await self.client.IsPowered(request)
         return response.is_on
 
-    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

@@ -1,38 +1,42 @@
 import pytest
 from grpclib.testing import ChannelFor
+
 from viam.components.generic.service import GenericService
 from viam.components.gripper import Gripper, GripperClient, create_status
 from viam.components.gripper.service import GripperService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
 from viam.proto.api.common import ActuatorStatus
-from viam.proto.api.component.gripper import (GrabRequest, GrabResponse,
-                                              GripperServiceStub, OpenRequest,
-                                              StopRequest)
+from viam.proto.api.component.gripper import (
+    GrabRequest,
+    GrabResponse,
+    GripperServiceStub,
+    OpenRequest,
+    StopRequest,
+)
 from viam.utils import message_to_struct
 
 from .mocks.components import MockGripper
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def gripper() -> MockGripper:
-    return MockGripper('gripper')
+    return MockGripper("gripper")
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def service(gripper: Gripper) -> GripperService:
     rm = ResourceManager([gripper])
     return GripperService(rm)
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope="function")
 def generic_service(gripper: Gripper) -> GenericService:
     manager = ResourceManager([gripper])
     return GenericService(manager)
 
 
 class TestGripper:
-
     @pytest.mark.asyncio
     async def test_open(self, gripper: MockGripper):
         await gripper.open()
@@ -62,7 +66,7 @@ class TestGripper:
     @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper):
         with pytest.raises(NotImplementedError):
-            await gripper.do({'command': 'args'})
+            await gripper.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self, gripper: MockGripper):
@@ -73,7 +77,6 @@ class TestGripper:
 
 
 class TestService:
-
     @pytest.mark.asyncio
     async def test_open(self, gripper: MockGripper, service: GripperService):
         async with ChannelFor([service]) as channel:
@@ -107,7 +110,6 @@ class TestService:
 
 
 class TestClient:
-
     @pytest.mark.asyncio
     async def test_open(self, gripper: MockGripper, service: GripperService):
         async with ChannelFor([service]) as channel:
@@ -146,7 +148,7 @@ class TestClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = GripperClient(gripper.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({'command': 'args'})
+                await client.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self, gripper: MockGripper, service: GripperService):

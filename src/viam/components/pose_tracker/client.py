@@ -26,5 +26,5 @@ class PoseTrackerClient(PoseTracker):
         response: GetPosesResponse = await self.client.GetPoses(request)
         return {key: response.body_poses[key] for key in response.body_poses.keys()}
 
-    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

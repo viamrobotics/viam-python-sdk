@@ -41,7 +41,7 @@ class TestGantry:
     @pytest.mark.asyncio
     async def test_do(self):
         with pytest.raises(NotImplementedError):
-            await self.gantry.do({"command": "args"})
+            await self.gantry.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_stop(self):
@@ -153,7 +153,7 @@ class TestClient:
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = GantryClient(self.gantry.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({"command": "args"})
+                await client.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_stop(self):

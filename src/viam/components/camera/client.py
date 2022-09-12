@@ -3,6 +3,7 @@ from typing import Any, Dict, Tuple, Union
 
 from grpclib.client import Channel
 from PIL import Image
+
 from viam.components.generic.client import do_command
 from viam.components.types import CameraMimeType, RawImage
 from viam.proto.api.component.camera import (
@@ -13,7 +14,6 @@ from viam.proto.api.component.camera import (
     GetPointCloudResponse,
     GetPropertiesRequest,
     GetPropertiesResponse,
-    IntrinsicParameters,
 )
 
 from .camera import Camera
@@ -48,9 +48,9 @@ class CameraClient(Camera):
         response: GetPointCloudResponse = await self.client.GetPointCloud(request)
         return (response.point_cloud, response.mime_type)
 
-    async def get_properties(self) -> IntrinsicParameters:
+    async def get_properties(self) -> Camera.Properties:
         response: GetPropertiesResponse = await self.client.GetProperties(GetPropertiesRequest(name=self.name))
-        return response.intrinsic_parameters
+        return Camera.Properties(response.supports_pcd, response.intrinsic_parameters)
 
-    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

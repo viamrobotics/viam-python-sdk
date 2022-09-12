@@ -11,7 +11,7 @@ from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
-from viam.components.camera import Camera, IntrinsicParameters
+from viam.components.camera import Camera
 from viam.components.gantry import Gantry
 from viam.components.gripper import Gripper
 from viam.components.input import Control, ControlFunction, Controller, Event, EventType
@@ -243,7 +243,7 @@ class ExampleCamera(Camera):
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         raise NotImplementedError()
 
-    async def get_properties(self) -> IntrinsicParameters:
+    async def get_properties(self) -> Camera.Properties:
         raise NotImplementedError()
 
 

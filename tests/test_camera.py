@@ -4,6 +4,7 @@ import pytest
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.testing import ChannelFor
 from PIL import Image
+
 from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraService
 from viam.components.generic.service import GenericService
@@ -41,8 +42,8 @@ def point_cloud() -> bytes:
 
 
 @pytest.fixture(scope="function")
-def properties() -> IntrinsicParameters:
-    return IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
+def properties() -> Camera.Properties:
+    return Camera.Properties(True, IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6))
 
 
 @pytest.fixture(scope="function")
@@ -77,14 +78,14 @@ class TestCamera:
         assert pc == point_cloud
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, camera: Camera, properties: IntrinsicParameters):
+    async def test_get_properties(self, camera: Camera, properties: Camera.Properties):
         props = await camera.get_properties()
         assert props == properties
 
     @pytest.mark.asyncio
     async def test_do(self, camera: Camera):
         with pytest.raises(NotImplementedError):
-            await camera.do({"command": "args"})
+            await camera.do_command({"command": "args"})
 
 
 class TestService:
@@ -133,12 +134,13 @@ class TestService:
             assert response.point_cloud == point_cloud
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, service: CameraService, properties: IntrinsicParameters):
+    async def test_get_properties(self, service: CameraService, properties: Camera.Properties):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = GetPropertiesRequest(name="camera")
             response: GetPropertiesResponse = await client.GetProperties(request)
-            assert response.intrinsic_parameters == properties
+            assert response.supports_pcd == properties.supports_pcd
+            assert response.intrinsic_parameters == properties.intrinsic_parameters
 
 
 class TestClient:
@@ -177,7 +179,7 @@ class TestClient:
             assert pc == point_cloud
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, service: CameraService, properties: IntrinsicParameters):
+    async def test_get_properties(self, service: CameraService, properties: Camera.Properties):
         async with ChannelFor([service]) as channel:
             camera = CameraClient("camera", channel)
             props = await camera.get_properties()
@@ -188,4 +190,4 @@ class TestClient:
         async with ChannelFor([service, generic_service]) as channel:
             client = CameraClient("camera", channel)
             with pytest.raises(NotImplementedError):
-                await client.do({"command": "args"})
+                await client.do_command({"command": "args"})

@@ -272,7 +272,9 @@ class MockCamera(Camera):
     def __init__(self, name: str):
         self.image = Image.new("RGBA", (100, 100), "#AABBCCDD")
         self.point_cloud = b"THIS IS A POINT CLOUD"
-        self.props = IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
+        self.props = Camera.Properties(
+            True, IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
+        )
         super().__init__(name)
 
     async def get_frame(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
@@ -288,7 +290,7 @@ class MockCamera(Camera):
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         return self.point_cloud, CameraMimeType.PCD.value
 
-    async def get_properties(self) -> IntrinsicParameters:
+    async def get_properties(self) -> Camera.Properties:
         return self.props
 
 
@@ -327,7 +329,7 @@ class MockGantry(Gantry):
 
 
 class MockGeneric(GenericComponent):
-    async def do(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return {key: True for key in command.keys()}
 
 

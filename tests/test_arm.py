@@ -6,14 +6,17 @@ from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
 from viam.proto.api.common import Pose
-from viam.proto.api.component.arm import (ArmServiceStub,
-                                          GetEndPositionRequest,
-                                          GetEndPositionResponse,
-                                          GetJointPositionsRequest,
-                                          GetJointPositionsResponse,
-                                          JointPositions,
-                                          MoveToJointPositionsRequest,
-                                          MoveToPositionRequest, StopRequest)
+from viam.proto.api.component.arm import (
+    ArmServiceStub,
+    GetEndPositionRequest,
+    GetEndPositionResponse,
+    GetJointPositionsRequest,
+    GetJointPositionsResponse,
+    JointPositions,
+    MoveToJointPositionsRequest,
+    MoveToPositionRequest,
+    StopRequest,
+)
 from viam.utils import dict_to_struct, message_to_struct
 
 from .mocks.components import MockArm
@@ -21,16 +24,8 @@ from .mocks.components import MockArm
 
 class TestArm:
 
-    arm = MockArm(name='arm')
-    pose = Pose(
-        x=5,
-        y=5,
-        z=5,
-        o_x=5,
-        o_y=5,
-        o_z=5,
-        theta=20
-    )
+    arm = MockArm(name="arm")
+    pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
     joint_pos = JointPositions(values=[1, 8, 2])
 
     @pytest.mark.asyncio
@@ -69,20 +64,14 @@ class TestArm:
     @pytest.mark.asyncio
     async def test_do(self):
         with pytest.raises(NotImplementedError):
-            await self.arm.do({'command': 'args'})
+            await self.arm.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self):
         await self.arm.move_to_position(self.pose)
         status = await create_status(self.arm)
         assert status.name == MockArm.get_resource_name(self.arm.name)
-        assert status.status == message_to_struct(
-            ArmStatus(
-                end_position=self.pose,
-                joint_positions=self.joint_pos,
-                is_moving=True
-            )
-        )
+        assert status.status == message_to_struct(ArmStatus(end_position=self.pose, joint_positions=self.joint_pos, is_moving=True))
 
     @pytest.mark.asyncio
     async def test_extra(self):
@@ -92,19 +81,11 @@ class TestArm:
 
 class TestService:
 
-    name = 'arm'
+    name = "arm"
     arm = MockArm(name=name)
     manager = ResourceManager([arm])
     service = ArmService(manager)
-    pose = Pose(
-        x=5,
-        y=5,
-        z=5,
-        o_x=5,
-        o_y=5,
-        o_z=5,
-        theta=20
-    )
+    pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
     joint_pos = JointPositions(values=[1, 8, 2])
 
     @pytest.mark.asyncio
@@ -120,16 +101,14 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
             request = GetEndPositionRequest(name=self.name)
-            response: GetEndPositionResponse = \
-                await client.GetEndPosition(request)
+            response: GetEndPositionResponse = await client.GetEndPosition(request)
             assert response.pose == self.pose
 
     @pytest.mark.asyncio
     async def test_move_to_joint_positions(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
-            request = MoveToJointPositionsRequest(
-                name=self.name, positions=self.joint_pos)
+            request = MoveToJointPositionsRequest(name=self.name, positions=self.joint_pos)
             await client.MoveToJointPositions(request)
             assert self.arm.joint_positions == self.joint_pos
 
@@ -138,8 +117,7 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
             request = GetJointPositionsRequest(name=self.name)
-            response: GetJointPositionsResponse = \
-                await client.GetJointPositions(request)
+            response: GetJointPositionsResponse = await client.GetJointPositions(request)
             assert response.positions == self.joint_pos
 
     @pytest.mark.asyncio
@@ -163,19 +141,11 @@ class TestService:
 
 class TestClient:
 
-    name = 'arm'
+    name = "arm"
     arm = MockArm(name=name)
     manager = ResourceManager([arm])
     service = ArmService(manager)
-    pose = Pose(
-        x=5,
-        y=5,
-        z=5,
-        o_x=5,
-        o_y=5,
-        o_z=5,
-        theta=20
-    )
+    pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
     joint_pos = JointPositions(values=[1, 8, 2])
 
     @pytest.mark.asyncio
@@ -226,7 +196,7 @@ class TestClient:
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = ArmClient(self.name, channel)
             with pytest.raises(NotImplementedError):
-                await client.do({'command': 'args'})
+                await client.do_command({"command": "args"})
 
     @pytest.mark.asyncio
     async def test_status(self):
