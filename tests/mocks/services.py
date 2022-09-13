@@ -1,4 +1,5 @@
-from typing import Dict, List, Tuple
+import json
+from typing import Dict, List, Mapping, Sequence, Union
 
 from grpclib.server import Stream
 
@@ -26,6 +27,8 @@ from viam.proto.api.service.vision import (
     AddClassifierResponse,
     AddDetectorRequest,
     AddDetectorResponse,
+    AddSegmenterRequest,
+    AddSegmenterResponse,
     Classification,
     Detection,
     GetClassificationsFromCameraRequest,
@@ -40,17 +43,18 @@ from viam.proto.api.service.vision import (
     GetDetectionsResponse,
     GetDetectorNamesRequest,
     GetDetectorNamesResponse,
+    GetModelParameterSchemaRequest,
+    GetModelParameterSchemaResponse,
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
     GetSegmenterNamesRequest,
     GetSegmenterNamesResponse,
-    GetSegmenterParametersRequest,
-    GetSegmenterParametersResponse,
     RemoveClassifierRequest,
     RemoveClassifierResponse,
     RemoveDetectorRequest,
     RemoveDetectorResponse,
-    TypedParameter,
+    RemoveSegmenterRequest,
+    RemoveSegmenterResponse,
     VisionServiceBase,
 )
 
@@ -118,16 +122,16 @@ class MockVisionService(VisionServiceBase):
         classifiers: List[str],
         classifications: List[Classification],
         segmenters: List[str],
-        parameters: Dict[str, List[Tuple[str, str]]],
         point_clouds: List[PointCloudObject],
+        model_schema: Mapping[str, Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]],
     ):
         self.detectors = detectors
         self.detections = detections
         self.classifiers = classifiers
         self.classifications = classifications
         self.segmenters = segmenters
-        self.parameters = parameters
         self.point_clouds = point_clouds
+        self.model_schema = model_schema
 
     async def GetDetectorNames(self, stream: Stream[GetDetectorNamesRequest, GetDetectorNamesResponse]) -> None:
         request = await stream.recv_message()
@@ -197,11 +201,11 @@ class MockVisionService(VisionServiceBase):
         response = GetObjectPointCloudsResponse(mime_type=CameraMimeType.PCD.value, objects=self.point_clouds)
         await stream.send_message(response)
 
-    async def GetSegmenterParameters(self, stream: Stream[GetSegmenterParametersRequest, GetSegmenterParametersResponse]) -> None:
+    async def GetModelParameterSchema(self, stream: Stream[GetModelParameterSchemaRequest, GetModelParameterSchemaResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        params = self.parameters[request.segmenter_name]
-        response = GetSegmenterParametersResponse(segmenter_parameters=[TypedParameter(name=_name, type=_type) for _name, _type in params])
+        schema = self.model_schema[request.model_type]
+        response = GetModelParameterSchemaResponse(model_parameter_schema=json.dumps(schema).encode("utf-8"))
         await stream.send_message(response)
 
     async def GetSegmenterNames(self, stream: Stream[GetSegmenterNamesRequest, GetSegmenterNamesResponse]) -> None:
@@ -209,3 +213,15 @@ class MockVisionService(VisionServiceBase):
         assert request is not None
         response = GetSegmenterNamesResponse(segmenter_names=self.segmenters)
         await stream.send_message(response)
+
+    async def AddSegmenter(self, stream: Stream[AddSegmenterRequest, AddSegmenterResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.segmenters.append(request.segmenter_name)
+        await stream.send_message(AddSegmenterResponse())
+
+    async def RemoveSegmenter(self, stream: Stream[RemoveSegmenterRequest, RemoveSegmenterResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.segmenters.remove(request.segmenter_name)
+        await stream.send_message(RemoveSegmenterResponse())

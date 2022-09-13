@@ -1,5 +1,5 @@
 from random import random
-from typing import Dict, List, Tuple
+from typing import Dict, List, Mapping, Sequence, Tuple, Union
 
 import pytest
 from grpclib.testing import ChannelFor
@@ -58,15 +58,27 @@ SEGMENTERS = [
     "segmenter-0",
     "segmenter-1",
 ]
-PARAMETERS: Dict[str, List[Tuple[str, str]]] = {
-    "segmenter-0": [
-        ("parameter-0", "float64"),
-        ("parameter-1", "string"),
-    ],
-    "segmenter-1": [
-        ("parameter-0", "int"),
-        ("parameter-1", "float64"),
-    ],
+MODEL_SCHEMA: Dict[str, Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]] = {
+    VisModelType.CLASSIFIER_TENSORFLOW: {
+        "parameter-0": "float64",
+        "parameter-1": "string",
+    },
+    VisModelType.CLASSIFIER_TFLITE: {
+        "parameter-0": "int",
+        "parameter-1": "string",
+    },
+    VisModelType.DETECTOR_COLOR: {
+        "parameter-0": "int",
+        "parameter-1": "float64",
+    },
+    VisModelType.DETECTOR_TENSORFLOW: {
+        "parameter-0": "string",
+        "parameter-1": "string",
+    },
+    VisModelType.DETECTOR_TF_LITE: {
+        "parameter-0": "string",
+        "parameter-1": "float64",
+    },
 }
 POINT_CLOUDS = [
     PointCloudObject(
@@ -106,8 +118,8 @@ def service() -> VisionServiceBase:
         classifiers=CLASSIFIERS,
         classifications=CLASSIFICATIONS,
         segmenters=SEGMENTERS,
-        parameters=PARAMETERS,
         point_clouds=POINT_CLOUDS,
+        model_schema=MODEL_SCHEMA,
     )
 
 
@@ -196,11 +208,27 @@ class TestClient:
             assert response == SEGMENTERS
 
     @pytest.mark.asyncio
-    async def test_get_segmenter_parameters(self, service: VisionServiceBase):
+    async def test_add_segmenter(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_segmenter_parameters("segmenter-0")
-            assert response == PARAMETERS["segmenter-0"]
+            await client.add_segmenter(VisModelConfig("segmenter-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}))
+            response = await client.get_segmenter_names()
+            assert response[-1] == "segmenter-2"
+
+    @pytest.mark.asyncio
+    async def test_remove_segmenter(self, service: VisionServiceBase):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            await client.remove_segmenter("segmenter-1")
+            response = await client.get_segmenter_names()
+            assert "segmenter-1" not in response
+
+    @pytest.mark.asyncio
+    async def test_get_model_parameters_schema(self, service: VisionServiceBase):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            response = await client.get_model_parameters_schema(VisModelType.DETECTOR_COLOR)
+            assert response == MODEL_SCHEMA[VisModelType.DETECTOR_COLOR]
 
     @pytest.mark.asyncio
     async def test_get_object_point_clouds(self, service: VisionServiceBase):

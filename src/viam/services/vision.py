@@ -1,6 +1,7 @@
+import json
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, List, Mapping, Tuple
+from typing import Any, List, Mapping, Sequence, Union
 
 from grpclib.client import Channel
 from PIL.Image import Image
@@ -10,6 +11,7 @@ from viam.proto.api.common import PointCloudObject
 from viam.proto.api.service.vision import (
     AddClassifierRequest,
     AddDetectorRequest,
+    AddSegmenterRequest,
     Classification,
     Detection,
     GetClassificationsFromCameraRequest,
@@ -24,14 +26,15 @@ from viam.proto.api.service.vision import (
     GetDetectionsResponse,
     GetDetectorNamesRequest,
     GetDetectorNamesResponse,
+    GetModelParameterSchemaRequest,
+    GetModelParameterSchemaResponse,
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
     GetSegmenterNamesRequest,
     GetSegmenterNamesResponse,
-    GetSegmenterParametersRequest,
-    GetSegmenterParametersResponse,
     RemoveClassifierRequest,
     RemoveDetectorRequest,
+    RemoveSegmenterRequest,
     VisionServiceStub,
 )
 from viam.services.service_client_base import ServiceClientBase
@@ -222,32 +225,51 @@ class VisionServiceClient(ServiceClientBase):
         response: GetSegmenterNamesResponse = await self.client.GetSegmenterNames(request)
         return list(response.segmenter_names)
 
-    async def get_segmenter_parameters(self, segmenter_name: str) -> List[Tuple[str, str]]:
-        """
-        Get the parameter fields needed for the given segmenter.
+    async def add_segmenter(self, config: VisModelConfig):
+        """Add a segmenter to the service
 
         Args:
-            segmenter_name (str): The name of the segmenter
+            config (VisModelConfig): The configuration of the segmenter
+        """
+        request = AddSegmenterRequest(
+            name=self.name,
+            segmenter_name=config.name,
+            segmenter_model_type=config.type,
+            segmenter_parameters=dict_to_struct(config.parameters),
+        )
+        await self.client.AddSegmenter(request)
+
+    async def remove_segmenter(self, segmenter_name: str):
+        """Remove the segmenter with the given name from the service. Returns nothing if successful.
+
+        Args:
+            segmenter_name (str): The name of the segmenter to remove
+        """
+        request = RemoveSegmenterRequest(name=self.name, segmenter_name=segmenter_name)
+        await self.client.RemoveSegmenter(request)
+
+    async def get_model_parameters_schema(self, model_type: VisModelType) -> Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]:
+        """
+        Get the parameters needed to add a model to the vision registry.
+
+        Args:
+            model_type (VisModelType): The name of model
 
         Returns:
-            List[Tuple[str, str]]: A list of parameters for the segmenter.
-                The first item in the tuple is the name of the parameter.
-                The second item in the tuple is the type of the parameter.
+            Mapping[str, str | int | float | bool | Sequence | Mapping]: A dictionary representing the parameters as JSONSchema
         """
-        request = GetSegmenterParametersRequest(name=self.name, segmenter_name=segmenter_name)
-        response: GetSegmenterParametersResponse = await self.client.GetSegmenterParameters(request)
-        return [(x.name, x.type) for x in response.segmenter_parameters]
+        request = GetModelParameterSchemaRequest(name=self.name, model_type=model_type)
+        response: GetModelParameterSchemaResponse = await self.client.GetModelParameterSchema(request)
+        return json.loads(response.model_parameter_schema)
 
     async def get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Mapping[str, Any]) -> List[PointCloudObject]:
         """
         Returns a list of the 3D point cloud objects and associated metadata in the latest
         picture obtained from the specified 3D camera (using the specified segmenter).
-        The parameters are the necessary parameters that the given segmenter needs in order to work.
 
         Args:
             camera_name (str): The name of the camera
             segmenter_name (str): The name of the segmenter
-            parameters (Dict[str, Any]): The parameters for the named segmenter
 
         Returns:
             List[PointCloudObject]: The pointcloud objects with metadata
@@ -256,8 +278,7 @@ class VisionServiceClient(ServiceClientBase):
             name=self.name,
             camera_name=camera_name,
             segmenter_name=segmenter_name,
-            mime_type=CameraMimeType.PCD.value,
-            parameters=dict_to_struct(parameters),
+            mime_type=CameraMimeType.PCD,
         )
         response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request)
         return list(response.objects)
