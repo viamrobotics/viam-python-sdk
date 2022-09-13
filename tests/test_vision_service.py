@@ -1,5 +1,5 @@
 from random import random
-from typing import Dict, List, Mapping, Sequence, Tuple, Union
+from typing import Dict, Mapping, Sequence, Union
 
 import pytest
 from grpclib.testing import ChannelFor
