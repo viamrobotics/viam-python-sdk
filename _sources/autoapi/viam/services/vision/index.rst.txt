@@ -218,20 +218,34 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: get_segmenter_parameters(segmenter_name: str) -> List[Tuple[str, str]]
+   .. py:method:: add_segmenter(config: VisModelConfig)
       :async:
 
-      Get the parameter fields needed for the given segmenter.
+      Add a segmenter to the service
 
-      :param segmenter_name: The name of the segmenter
+      :param config: The configuration of the segmenter
+      :type config: VisModelConfig
+
+
+   .. py:method:: remove_segmenter(segmenter_name: str)
+      :async:
+
+      Remove the segmenter with the given name from the service. Returns nothing if successful.
+
+      :param segmenter_name: The name of the segmenter to remove
       :type segmenter_name: str
 
-      :returns:
 
-                A list of parameters for the segmenter.
-                    The first item in the tuple is the name of the parameter.
-                    The second item in the tuple is the type of the parameter.
-      :rtype: List[Tuple[str, str]]
+   .. py:method:: get_model_parameters_schema(model_type: VisModelType) -> Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]
+      :async:
+
+      Get the parameters needed to add a model to the vision registry.
+
+      :param model_type: The name of model
+      :type model_type: VisModelType
+
+      :returns: A dictionary representing the parameters as JSONSchema
+      :rtype: Mapping[str, str | int | float | bool | Sequence | Mapping]
 
 
    .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, parameters: Mapping[str, Any]) -> List[viam.proto.api.common.PointCloudObject]
@@ -239,14 +253,11 @@ Classes
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest
       picture obtained from the specified 3D camera (using the specified segmenter).
-      The parameters are the necessary parameters that the given segmenter needs in order to work.
 
       :param camera_name: The name of the camera
       :type camera_name: str
       :param segmenter_name: The name of the segmenter
       :type segmenter_name: str
-      :param parameters: The parameters for the named segmenter
-      :type parameters: Dict[str, Any]
 
       :returns: The pointcloud objects with metadata
       :rtype: List[PointCloudObject]

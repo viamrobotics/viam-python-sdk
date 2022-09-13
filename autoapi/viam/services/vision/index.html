@@ -91,7 +91,9 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_classifications_from_camera">get_classifications_from_camera</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_classifications">get_classifications</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_segmenter_names">get_segmenter_names</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_segmenter_parameters">get_segmenter_parameters</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.add_segmenter">add_segmenter</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.remove_segmenter">remove_segmenter</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_model_parameters_schema">get_model_parameters_schema</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_object_point_clouds">get_object_point_clouds</a></li>
 </ul>
 </li>
@@ -402,23 +404,40 @@ from the given camera, with the given detector applied to it.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.services.vision.VisionServiceClient.get_segmenter_parameters">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_segmenter_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segmenter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionServiceClient.get_segmenter_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionServiceClient.get_segmenter_parameters" title="Permalink to this definition"></a></dt>
-<dd><p>Get the parameter fields needed for the given segmenter.</p>
+<dt class="sig sig-object py" id="viam.services.vision.VisionServiceClient.add_segmenter">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_segmenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.services.vision.VisModelConfig" title="viam.services.vision.VisModelConfig"><span class="pre">VisModelConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionServiceClient.add_segmenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionServiceClient.add_segmenter" title="Permalink to this definition"></a></dt>
+<dd><p>Add a segmenter to the service</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>segmenter_name</strong> (<em>str</em>) – The name of the segmenter</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>A list of parameters for the segmenter.</dt><dd><p>The first item in the tuple is the name of the parameter.
-The second item in the tuple is the type of the parameter.</p>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#viam.services.vision.VisModelConfig" title="viam.services.vision.VisModelConfig"><em>VisModelConfig</em></a>) – The configuration of the segmenter</p>
 </dd>
 </dl>
-</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.VisionServiceClient.remove_segmenter">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_segmenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segmenter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionServiceClient.remove_segmenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionServiceClient.remove_segmenter" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the segmenter with the given name from the service. Returns nothing if successful.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>segmenter_name</strong> (<em>str</em>) – The name of the segmenter to remove</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.VisionServiceClient.get_model_parameters_schema">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_model_parameters_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.services.vision.VisModelType" title="viam.services.vision.VisModelType"><span class="pre">VisModelType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionServiceClient.get_model_parameters_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionServiceClient.get_model_parameters_schema" title="Permalink to this definition"></a></dt>
+<dd><p>Get the parameters needed to add a model to the vision registry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>model_type</strong> (<a class="reference internal" href="#viam.services.vision.VisModelType" title="viam.services.vision.VisModelType"><em>VisModelType</em></a>) – The name of model</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary representing the parameters as JSONSchema</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>List[Tuple[str, str]]</p>
+<dd class="field-odd"><p>Mapping[str, str | int | float | bool | Sequence | Mapping]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -427,14 +446,12 @@ The second item in the tuple is the type of the parameter.</p>
 <dt class="sig sig-object py" id="viam.services.vision.VisionServiceClient.get_object_point_clouds">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_object_point_clouds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segmenter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/api/common/index.html#viam.proto.api.common.PointCloudObject" title="viam.proto.api.common.PointCloudObject"><span class="pre">viam.proto.api.common.PointCloudObject</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionServiceClient.get_object_point_clouds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionServiceClient.get_object_point_clouds" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of the 3D point cloud objects and associated metadata in the latest
-picture obtained from the specified 3D camera (using the specified segmenter).
-The parameters are the necessary parameters that the given segmenter needs in order to work.</p>
+picture obtained from the specified 3D camera (using the specified segmenter).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>camera_name</strong> (<em>str</em>) – The name of the camera</p></li>
 <li><p><strong>segmenter_name</strong> (<em>str</em>) – The name of the segmenter</p></li>
-<li><p><strong>parameters</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The parameters for the named segmenter</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
