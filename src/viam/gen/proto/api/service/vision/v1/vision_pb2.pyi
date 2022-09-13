@@ -17,6 +17,35 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+class GetModelParameterSchemaRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    MODEL_TYPE_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+    model_type: builtins.str
+    'name of the type of vision model'
+
+    def __init__(self, *, name: builtins.str=..., model_type: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['model_type', b'model_type', 'name', b'name']) -> None:
+        ...
+global___GetModelParameterSchemaRequest = GetModelParameterSchemaRequest
+
+class GetModelParameterSchemaResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MODEL_PARAMETER_SCHEMA_FIELD_NUMBER: builtins.int
+    model_parameter_schema: builtins.bytes
+    'the parameters as JSON bytes of a jsonschema.Schema'
+
+    def __init__(self, *, model_parameter_schema: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['model_parameter_schema', b'model_parameter_schema']) -> None:
+        ...
+global___GetModelParameterSchemaResponse = GetModelParameterSchemaResponse
+
 class GetDetectorNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -431,49 +460,62 @@ class GetSegmenterNamesResponse(google.protobuf.message.Message):
         ...
 global___GetSegmenterNamesResponse = GetSegmenterNamesResponse
 
-class GetSegmenterParametersRequest(google.protobuf.message.Message):
+class AddSegmenterRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    SEGMENTER_NAME_FIELD_NUMBER: builtins.int
+    SEGMENTER_MODEL_TYPE_FIELD_NUMBER: builtins.int
+    SEGMENTER_PARAMETERS_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+    segmenter_name: builtins.str
+    'name of the segmenter'
+    segmenter_model_type: builtins.str
+    'name of the segmenter model'
+
+    @property
+    def segmenter_parameters(self) -> google.protobuf.struct_pb2.Struct:
+        """parameters of the segmenter model"""
+
+    def __init__(self, *, name: builtins.str=..., segmenter_name: builtins.str=..., segmenter_model_type: builtins.str=..., segmenter_parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['segmenter_parameters', b'segmenter_parameters']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'segmenter_model_type', b'segmenter_model_type', 'segmenter_name', b'segmenter_name', 'segmenter_parameters', b'segmenter_parameters']) -> None:
+        ...
+global___AddSegmenterRequest = AddSegmenterRequest
+
+class AddSegmenterResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___AddSegmenterResponse = AddSegmenterResponse
+
+class RemoveSegmenterRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
     name: builtins.str
+    'name of the vision service'
     segmenter_name: builtins.str
-    'Name of the segmentation algo'
+    'name of segmenter in registry'
 
     def __init__(self, *, name: builtins.str=..., segmenter_name: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'segmenter_name', b'segmenter_name']) -> None:
         ...
-global___GetSegmenterParametersRequest = GetSegmenterParametersRequest
+global___RemoveSegmenterRequest = RemoveSegmenterRequest
 
-class TypedParameter(google.protobuf.message.Message):
+class RemoveSegmenterResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
-    name: builtins.str
-    type: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., type: builtins.str=...) -> None:
+    def __init__(self) -> None:
         ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'type', b'type']) -> None:
-        ...
-global___TypedParameter = TypedParameter
-
-class GetSegmenterParametersResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    SEGMENTER_PARAMETERS_FIELD_NUMBER: builtins.int
-
-    @property
-    def segmenter_parameters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TypedParameter]:
-        """parameter names of the segmenter in the request"""
-
-    def __init__(self, *, segmenter_parameters: collections.abc.Iterable[global___TypedParameter] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['segmenter_parameters', b'segmenter_parameters']) -> None:
-        ...
-global___GetSegmenterParametersResponse = GetSegmenterParametersResponse
+global___RemoveSegmenterResponse = RemoveSegmenterResponse
 
 class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -481,7 +523,6 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
-    PARAMETERS_FIELD_NUMBER: builtins.int
     name: builtins.str
     camera_name: builtins.str
     'Name of a camera'
@@ -490,17 +531,10 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     mime_type: builtins.str
     'Requested MIME type of response'
 
-    @property
-    def parameters(self) -> google.protobuf.struct_pb2.Struct:
-        """parameters for the chosen segmenter"""
-
-    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., segmenter_name: builtins.str=..., mime_type: builtins.str=..., parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., segmenter_name: builtins.str=..., mime_type: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['parameters', b'parameters']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'mime_type', b'mime_type', 'name', b'name', 'parameters', b'parameters', 'segmenter_name', b'segmenter_name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'mime_type', b'mime_type', 'name', b'name', 'segmenter_name', b'segmenter_name']) -> None:
         ...
 global___GetObjectPointCloudsRequest = GetObjectPointCloudsRequest
 
