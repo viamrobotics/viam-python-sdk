@@ -31,7 +31,7 @@ It is recommended that you save and run this simple program. Doing so will ensur
 that the `viam-server` instance on your robot is alive, and that the computer running the program is able to connect to that instance.
 
 ## Examples
-The [Example Usage](https://python.viam.dev/example.html) has the info required to access a component, build a custom component, and expose
+The [Example Usage](https://python.viam.dev/examples/example.html) has the info required to access a component, build a custom component, and expose
 custom components as a remote to existing robots.
 
 Further examples can be found in the `examples` directory.
