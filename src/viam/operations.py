@@ -26,10 +26,6 @@ class Operation:
             return self._cancelled
         return False
 
-    def complete(self):
-        if self.is_cancelled():
-            raise asyncio.CancelledError
-
     def __str__(self) -> str:
         return f"Operation {self.id} : {self.method}"
 

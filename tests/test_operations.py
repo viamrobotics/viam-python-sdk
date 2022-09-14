@@ -19,15 +19,3 @@ async def test_is_cancelled():
     # Test that once set, cancelled is not unset
     event.clear()
     assert opid.is_cancelled() is True
-
-
-@pytest.mark.asyncio
-async def test_complete():
-    event = asyncio.Event()
-    opid = Operation("test-opid-0", event)
-
-    opid.complete()  # noop
-
-    event.set()
-    with pytest.raises(asyncio.CancelledError):
-        opid.complete()

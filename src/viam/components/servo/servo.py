@@ -11,13 +11,13 @@ class Servo(ComponentBase):
 
     This acts as an abstract base class for any drivers representing specific
     servo implementations. This cannot be used on its own. If the `__init__()` function is
-    overriden, it must call the `super().__init__()` function.
+    overridden, it must call the `super().__init__()` function.
     """
 
     name: str
 
     @abc.abstractmethod
-    async def move(self, angle: int):
+    async def move(self, angle: int, **kwargs):
         """
         Move the servo to the provided angle.
 
@@ -27,7 +27,7 @@ class Servo(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_position(self) -> int:
+    async def get_position(self, **kwargs) -> int:
         """
         Get the current angle (degrees) of the servo.
 
@@ -37,7 +37,7 @@ class Servo(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self):
+    async def stop(self, **kwargs):
         """
         Stop the servo. It is assumed that the servo stops immediately.
         """
