@@ -37,7 +37,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
             sensor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        velocity = await sensor.get_linear_velocity()
+        velocity = await self._run_with_operation(sensor.get_linear_velocity)
         response = GetLinearVelocityResponse(linear_velocity=velocity)
         await stream.send_message(response)
 
@@ -49,7 +49,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
             sensor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        velocity = await sensor.get_angular_velocity()
+        velocity = await self._run_with_operation(sensor.get_angular_velocity)
         response = GetAngularVelocityResponse(angular_velocity=velocity)
         await stream.send_message(response)
 
@@ -61,7 +61,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
             sensor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        heading = await sensor.get_compass_heading()
+        heading = await self._run_with_operation(sensor.get_compass_heading)
         response = GetCompassHeadingResponse(value=heading)
         await stream.send_message(response)
 
@@ -73,7 +73,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
             sensor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        orientation = await sensor.get_orientation()
+        orientation = await self._run_with_operation(sensor.get_orientation)
         response = GetOrientationResponse(orientation=orientation)
         await stream.send_message(response)
 
@@ -85,7 +85,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
             sensor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        point, alt = await sensor.get_position()
+        point, alt = await self._run_with_operation(sensor.get_position)
         response = GetPositionResponse(coordinate=point, altitude_mm=alt)
         await stream.send_message(response)
 
@@ -97,7 +97,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
             sensor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        response = await sensor.get_properties()
+        response = await self._run_with_operation(sensor.get_properties)
         await stream.send_message(response)
 
     async def GetAccuracy(self, stream: Stream[GetAccuracyRequest, GetAccuracyResponse]) -> None:
@@ -108,6 +108,6 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
             sensor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        accuracy = await sensor.get_accuracy()
+        accuracy = await self._run_with_operation(sensor.get_accuracy)
         response = GetAccuracyResponse(accuracy_mm=accuracy)
         await stream.send_message(response)

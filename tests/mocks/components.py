@@ -282,7 +282,7 @@ class MockCamera(Camera):
         )
         super().__init__(name)
 
-    async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
+    async def get_image(self, mime_type: str = CameraMimeType.PNG, **kwargs) -> Union[Image.Image, RawImage]:
         if not CameraMimeType.is_supported(mime_type) or mime_type == CameraMimeType.RAW:
             return RawImage(
                 data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
@@ -292,10 +292,10 @@ class MockCamera(Camera):
             )
         return self.image.copy()
 
-    async def get_point_cloud(self) -> Tuple[bytes, str]:
+    async def get_point_cloud(self, **kwargs) -> Tuple[bytes, str]:
         return self.point_cloud, CameraMimeType.PCD.value
 
-    async def get_properties(self) -> Camera.Properties:
+    async def get_properties(self, **kwargs) -> Camera.Properties:
         return self.props
 
 
@@ -307,7 +307,7 @@ class MockGantry(Gantry):
         self.extra = None
         super().__init__(name)
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
         self.extra = extra
         return self.position
 
@@ -316,16 +316,17 @@ class MockGantry(Gantry):
         positions: List[float],
         world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
     ):
         self.position = positions
         self.is_stopped = False
         self.extra = extra
 
-    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
         self.extra = extra
         return self.lengths
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.extra = extra
         self.is_stopped = True
 
@@ -334,7 +335,7 @@ class MockGantry(Gantry):
 
 
 class MockGeneric(GenericComponent):
-    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any], **kwargs) -> Dict[str, Any]:
         return {key: True for key in command.keys()}
 
 
@@ -344,16 +345,16 @@ class MockGripper(Gripper):
         self.is_stopped = True
         super().__init__(name)
 
-    async def open(self):
+    async def open(self, **kwargs):
         self.opened = True
         self.is_stopped = False
 
-    async def grab(self) -> bool:
+    async def grab(self, **kwargs) -> bool:
         self.opened = False
         self.is_stopped = False
         return choice([True, False])
 
-    async def stop(self):
+    async def stop(self, **kwargs):
         self.is_stopped = True
 
     async def is_moving(self) -> bool:
@@ -366,7 +367,7 @@ class MockInputController(Controller):
         self.events: Dict[Control, Event] = {}
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
 
-    async def get_controls(self) -> List[Control]:
+    async def get_controls(self, **kwargs) -> List[Control]:
         return [
             Control.ABSOLUTE_X,
             Control.ABSOLUTE_Y,
@@ -391,13 +392,13 @@ class MockInputController(Controller):
             Control.BUTTON_E_STOP,
         ]
 
-    async def get_events(self) -> Dict[Control, Event]:
+    async def get_events(self, **kwargs) -> Dict[Control, Event]:
         return self.events
 
-    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction]):
+    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], **kwargs):
         self.callbacks[control] = {trigger: function for trigger in triggers}
 
-    async def trigger_event(self, event: Event):
+    async def trigger_event(self, event: Event, **kwargs):
         self.events[event.control] = event
         callback = self.callbacks.get(event.control, {}).get(event.event)
         if callback:
@@ -412,12 +413,12 @@ class MockMotor(Motor):
         self.extra = None
         super().__init__(name)
 
-    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None):
+    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.power = power
         self.powered = power != 0
         self.extra = extra
 
-    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None):
+    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if rpm > 0:
             self.position += revolutions
         if rpm < 0:
@@ -425,30 +426,30 @@ class MockMotor(Motor):
         self.powered = False
         self.extra = extra
 
-    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None):
+    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if rpm != 0:
             self.position = position_revolutions
         self.powered = False
         self.extra = extra
 
-    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None):
+    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.offset = offset
         self.powered = False
         self.extra = extra
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> float:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
         self.extra = extra
         return self.position
 
-    async def get_properties(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Properties:
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Motor.Properties:
         self.extra = extra
         return Motor.Properties(position_reporting=True)
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         await self.set_power(0)
         self.extra = extra
 
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
         self.extra = extra
         return self.powered
 
@@ -479,25 +480,25 @@ class MockMovementSensor(MovementSensor):
         self.properties = properties
         self.accuracy = accuracy
 
-    async def get_position(self) -> Tuple[GeoPoint, float]:
+    async def get_position(self, **kwargs) -> Tuple[GeoPoint, float]:
         return (self.coordinates, self.altitude)
 
-    async def get_linear_velocity(self) -> Vector3:
+    async def get_linear_velocity(self, **kwargs) -> Vector3:
         return self.lin_vel
 
-    async def get_angular_velocity(self) -> Vector3:
+    async def get_angular_velocity(self, **kwargs) -> Vector3:
         return self.ang_vel
 
-    async def get_compass_heading(self) -> float:
+    async def get_compass_heading(self, **kwargs) -> float:
         return self.heading
 
-    async def get_orientation(self) -> Orientation:
+    async def get_orientation(self, **kwargs) -> Orientation:
         return self.orientation
 
-    async def get_properties(self) -> MovementSensor.Properties:
+    async def get_properties(self, **kwargs) -> MovementSensor.Properties:
         return self.properties
 
-    async def get_accuracy(self) -> Mapping[str, float]:
+    async def get_accuracy(self, **kwargs) -> Mapping[str, float]:
         return self.accuracy
 
 
@@ -524,7 +525,7 @@ class MockPoseTracker(PoseTracker):
         self.poses_result = pose_map
         self.name = name
 
-    async def get_poses(self, body_names: List[str]) -> Dict[str, PoseInFrame]:
+    async def get_poses(self, body_names: List[str], **kwargs) -> Dict[str, PoseInFrame]:
         result: Dict[str, PoseInFrame] = {}
         for name, pose in self.poses_result.items():
             result[name] = pose.to_pose_in_frame(name)
@@ -546,14 +547,14 @@ class MockServo(Servo):
         self.is_stopped = True
         super().__init__(name)
 
-    async def move(self, angle: int):
+    async def move(self, angle: int, **kwargs):
         self.angle = angle
         self.is_stopped = False
 
-    async def get_position(self) -> int:
+    async def get_position(self, **kwargs) -> int:
         return self.angle
 
-    async def stop(self):
+    async def stop(self, **kwargs):
         self.is_stopped = True
 
     async def is_moving(self) -> bool:
