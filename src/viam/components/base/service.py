@@ -34,7 +34,9 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.move_straight(distance=request.distance_mm, velocity=request.mm_per_sec, extra=struct_to_dict(request.extra))
+        await self._run_with_operation(
+            base.move_straight, distance=request.distance_mm, velocity=request.mm_per_sec, extra=struct_to_dict(request.extra)
+        )
         response = MoveStraightResponse()
         await stream.send_message(response)
 
@@ -46,7 +48,9 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.spin(angle=request.angle_deg, velocity=request.degs_per_sec, extra=struct_to_dict(request.extra))
+        await self._run_with_operation(
+            base.spin, angle=request.angle_deg, velocity=request.degs_per_sec, extra=struct_to_dict(request.extra)
+        )
         response = SpinResponse()
         await stream.send_message(response)
 
@@ -58,7 +62,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.set_power(request.linear, request.angular, struct_to_dict(request.extra))
+        await self._run_with_operation(base.set_power, request.linear, request.angular, struct_to_dict(request.extra))
         response = SetPowerResponse()
         await stream.send_message(response)
 
@@ -70,7 +74,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.set_velocity(request.linear, request.angular, struct_to_dict(request.extra))
+        await self._run_with_operation(base.set_velocity, request.linear, request.angular, struct_to_dict(request.extra))
         await stream.send_message(SetVelocityResponse())
 
     async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:
@@ -81,6 +85,6 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.stop(extra=struct_to_dict(request.extra))
+        await self._run_with_operation(base.stop, extra=struct_to_dict(request.extra))
         response = StopResponse()
         await stream.send_message(response)

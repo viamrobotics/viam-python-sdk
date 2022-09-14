@@ -90,7 +90,7 @@ class MockBase(Base):
         self.extra: Optional[Dict[str, Any]] = None
         super().__init__(name)
 
-    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if distance == 0 or velocity == 0:
             return await self.stop()
 
@@ -108,6 +108,7 @@ class MockBase(Base):
         velocity: float,
         angle: float,
         extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
     ):
         if distance == 0:
             return await self.spin(angle, velocity)
@@ -125,7 +126,7 @@ class MockBase(Base):
         self.stopped = False
         self.extra = extra
 
-    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -137,17 +138,17 @@ class MockBase(Base):
         self.stopped = False
         self.extra = extra
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.linear_vel = linear
         self.angular_vel = angular
         self.extra = extra
 
-    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.linear_pwr = linear
         self.angular_pwr = angular
         self.extra = extra
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.stopped = True
         self.extra = extra
 
@@ -160,7 +161,7 @@ class MockAnalogReader(Board.AnalogReader):
         self.value = value
         super().__init__(name)
 
-    async def read(self, extra: Optional[Dict[str, Any]] = None) -> int:
+    async def read(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         self.extra = extra
         return self.value
 
@@ -174,7 +175,7 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.post_processors: List[PostProcessor] = []
         super().__init__(name)
 
-    async def value(self, extra: Optional[Dict[str, Any]] = None) -> int:
+    async def value(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         self.extra = extra
         return self.num_ticks
 
@@ -197,27 +198,27 @@ class MockGPIOPin(Board.GPIOPin):
         self.pwm_freq = 0
         super().__init__(name)
 
-    async def get(self, extra: Optional[Dict[str, Any]] = None) -> bool:
+    async def get(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
         self.extra = extra
         return self.high
 
-    async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None):
+    async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.high = high
         self.extra = extra
 
-    async def get_pwm(self, extra: Optional[Dict[str, Any]] = None) -> float:
+    async def get_pwm(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
         self.extra = extra
         return self.pwm
 
-    async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None):
+    async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.pwm = duty_cycle
         self.extra = extra
 
-    async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None) -> int:
+    async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         self.extra = extra
         return self.pwm_freq
 
-    async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None):
+    async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.pwm_freq = frequency
         self.extra = extra
 
@@ -259,7 +260,7 @@ class MockBoard(Board):
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
 
-    async def status(self, extra: Optional[Dict[str, Any]] = None) -> BoardStatus:
+    async def status(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> BoardStatus:
         self.extra = extra
         return BoardStatus(
             analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},

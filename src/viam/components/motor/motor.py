@@ -17,11 +17,11 @@ class Motor(ComponentBase):
 
     This acts as an abstract base class for any drivers representing specific
     motor implementations. This cannot be used on its own. If the `__init__()` function is
-    overriden, it must call the `super().__init__()` function.
+    overridden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
-    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None):
+    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Sets the "percentage" of power the motor should employ between -1 and 1.
         When `power` is negative, the rotation will be in the backward direction.
@@ -33,7 +33,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None):
+    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Spin the motor the specified number of `revolutions` at specified `rpm`.
         When `rpm` or `revolutions` is a negative value, the rotation will be in the backward direction.
@@ -48,7 +48,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None):
+    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Spin the motor to the specified position (provided in revolutions from home/zero),
         at the specified speed, in revolutions per minute.
@@ -62,7 +62,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None):
+    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Set the current position (modified by `offset`) to be the new zero (home) position.
 
@@ -72,7 +72,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> float:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
         """
         Report the position of the motor based on its encoder.
         The value returned is the number of revolutions relative to its zero position.
@@ -84,7 +84,7 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, extra: Optional[Dict[str, Any]] = None) -> Properties:
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Properties:
         """
         Report a dictionary mapping optional properties to
         whether it is supported by this motor.
@@ -95,14 +95,14 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Stop the motor immediately, without any gradual step down.
         """
         ...
 
     @abc.abstractmethod
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
         """
         Returns whether or not the motor is currently running.
 
