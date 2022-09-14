@@ -32,7 +32,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        position = await gantry.get_position(extra=struct_to_dict(request.extra))
+        position = await self._run_with_operation(gantry.get_position, extra=struct_to_dict(request.extra))
         response = GetPositionResponse(positions_mm=position)
         await stream.send_message(response)
 
@@ -44,7 +44,9 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await gantry.move_to_position(list(request.positions_mm), request.world_state, struct_to_dict(request.extra))
+        await self._run_with_operation(
+            gantry.move_to_position, list(request.positions_mm), request.world_state, struct_to_dict(request.extra)
+        )
         response = MoveToPositionResponse()
         await stream.send_message(response)
 
@@ -56,7 +58,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        lengths = await gantry.get_lengths(extra=struct_to_dict(request.extra))
+        lengths = await self._run_with_operation(gantry.get_lengths, extra=struct_to_dict(request.extra))
         response = GetLengthsResponse(lengths_mm=lengths)
         await stream.send_message(response)
 
@@ -68,6 +70,6 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await gantry.stop(extra=struct_to_dict(request.extra))
+        await self._run_with_operation(gantry.stop, extra=struct_to_dict(request.extra))
         response = StopResponse()
         await stream.send_message(response)

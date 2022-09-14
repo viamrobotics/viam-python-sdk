@@ -29,7 +29,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
             servo = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await servo.move(request.angle_deg)
+        await self._run_with_operation(servo.move, request.angle_deg)
         await stream.send_message(MoveResponse())
 
     async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
@@ -40,7 +40,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
             servo = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        position = await servo.get_position()
+        position = await self._run_with_operation(servo.get_position)
         resp = GetPositionResponse(position_deg=position)
         await stream.send_message(resp)
 
@@ -52,5 +52,5 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
             servo = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await servo.stop()
+        await self._run_with_operation(servo.stop)
         await stream.send_message(StopResponse())

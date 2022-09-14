@@ -33,7 +33,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        image = await camera.get_image(request.mime_type)
+        image = await self._run_with_operation(camera.get_image, request.mime_type)
         try:
             try:
                 mimetype = CameraMimeType(request.mime_type)
@@ -62,7 +62,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             mimetype = CameraMimeType(request.mime_type)
         except ValueError:
             mimetype = CameraMimeType.JPEG
-        image = await camera.get_image(mimetype)
+        image = await self._run_with_operation(camera.get_image, mimetype)
         try:
             img = mimetype.encode_image(image)
         finally:
@@ -78,7 +78,9 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        pc, mimetype = await camera.get_point_cloud()
+        pc, mimetype = await self._run_with_operation(
+            camera.get_point_cloud,
+        )
         response = GetPointCloudResponse(mime_type=mimetype, point_cloud=pc)
         await stream.send_message(response)
 
@@ -90,6 +92,8 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        properties = await camera.get_properties()
+        properties = await self._run_with_operation(
+            camera.get_properties,
+        )
         response = GetPropertiesResponse(supports_pcd=properties.supports_pcd, intrinsic_parameters=properties.intrinsic_parameters)
         await stream.send_message(response)
