@@ -1,4 +1,3 @@
-import collections
 from dataclasses import dataclass
 from typing import Any, Callable, Coroutine, Dict, Generic, Mapping, Type, TypeVar
 
