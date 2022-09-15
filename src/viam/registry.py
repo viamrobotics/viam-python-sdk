@@ -1,5 +1,6 @@
+import collections
 from dataclasses import dataclass
-from typing import Any, Callable, Coroutine, Dict, Generic, Type, TypeVar
+from typing import Any, Callable, Coroutine, Dict, Generic, Mapping, Type, TypeVar
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
@@ -98,12 +99,12 @@ class Registry:
 
     @classmethod
     @property
-    def REGISTERED_COMPONENTS(cls) -> Dict[str, ComponentRegistration]:
+    def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentRegistration]:
         """The dictionary of all registered components
         - Key: Name of the component type
         - Value: The registration object for the component type
 
         Returns:
-            Dict[str, ComponentRegistration]: All registered components
+            Mapping[str, ComponentRegistration]: All registered components
         """
-        return {k: v for (k, v) in cls._COMPONENTS.items()}
+        return cls._COMPONENTS.copy()
