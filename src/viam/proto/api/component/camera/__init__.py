@@ -4,6 +4,7 @@ Do not edit manually!
 """
 from .....gen.proto.api.component.camera.v1.camera_grpc import CameraServiceBase, CameraServiceStub
 from .....gen.proto.api.component.camera.v1.camera_pb2 import (
+    DistortionParameters,
     GetImageRequest,
     GetImageResponse,
     GetPointCloudRequest,
@@ -21,6 +22,7 @@ from .....gen.proto.api.component.camera.v1.camera_pb2 import (
 __all__ = [
     "CameraServiceBase",
     "CameraServiceStub",
+    "DistortionParameters",
     "GetImageRequest",
     "GetImageResponse",
     "GetPointCloudRequest",

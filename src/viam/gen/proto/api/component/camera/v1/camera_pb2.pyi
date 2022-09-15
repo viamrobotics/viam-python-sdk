@@ -117,6 +117,7 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUPPORTS_PCD_FIELD_NUMBER: builtins.int
     INTRINSIC_PARAMETERS_FIELD_NUMBER: builtins.int
+    DISTORTION_PARAMETERS_FIELD_NUMBER: builtins.int
     supports_pcd: builtins.bool
     'A boolean property determining whether the camera supports the return of pointcloud data'
 
@@ -124,13 +125,17 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     def intrinsic_parameters(self) -> global___IntrinsicParameters:
         """Parameters for doing a perspective of a 3D scene to a 2D plane"""
 
-    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=...) -> None:
+    @property
+    def distortion_parameters(self) -> global___DistortionParameters:
+        """Parameters for modeling lens distortion in cameras"""
+
+    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=..., distortion_parameters: global___DistortionParameters | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['intrinsic_parameters', b'intrinsic_parameters', 'supports_pcd', b'supports_pcd']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters', 'supports_pcd', b'supports_pcd']) -> None:
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
 
@@ -173,18 +178,27 @@ global___Webcam = Webcam
 class Property(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VIDEO_FIELD_NUMBER: builtins.int
+    WIDTH_FIELD_NUMBER: builtins.int
+    HEIGHT_FIELD_NUMBER: builtins.int
+    FRAME_FORMAT_FIELD_NUMBER: builtins.int
 
     @property
     def video(self) -> global___Video:
         """Camera video properties"""
+    width: builtins.int
+    'Video resolution width'
+    height: builtins.int
+    'Video resolution height'
+    frame_format: builtins.str
+    'Video frame format'
 
-    def __init__(self, *, video: global___Video | None=...) -> None:
+    def __init__(self, *, video: global___Video | None=..., width: builtins.int=..., height: builtins.int=..., frame_format: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['video', b'video']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['video', b'video']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['frame_format', b'frame_format', 'height', b'height', 'video', b'video', 'width', b'width']) -> None:
         ...
 global___Property = Property
 
@@ -228,3 +242,20 @@ class IntrinsicParameters(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['center_x_px', b'center_x_px', 'center_y_px', b'center_y_px', 'focal_x_px', b'focal_x_px', 'focal_y_px', b'focal_y_px', 'height_px', b'height_px', 'width_px', b'width_px']) -> None:
         ...
 global___IntrinsicParameters = IntrinsicParameters
+
+class DistortionParameters(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MODEL_FIELD_NUMBER: builtins.int
+    PARAMETERS_FIELD_NUMBER: builtins.int
+    model: builtins.str
+
+    @property
+    def parameters(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        ...
+
+    def __init__(self, *, model: builtins.str=..., parameters: collections.abc.Iterable[builtins.float] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['model', b'model', 'parameters', b'parameters']) -> None:
+        ...
+global___DistortionParameters = DistortionParameters
