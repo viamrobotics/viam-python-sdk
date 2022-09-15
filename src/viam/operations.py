@@ -5,6 +5,12 @@ from uuid import UUID, uuid4
 
 
 class Operation:
+    """An Operation represents a running operation.
+
+    Every request made to a robot's components will create a new Operation on the server. For custom components built with this python-sdk,
+    you should check whether the operation has been cancelled to prevent long-running tasks from leaking.
+    """
+
     id: UUID
     method: str
     time_started: float
