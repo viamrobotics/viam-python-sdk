@@ -28,9 +28,9 @@ jobs:
       - name: Install package
         run: poetry install
 
-      - name: Generate requirements.txt
+      - name: Generate requirements.txt (exclude dev dependencies)
         run: |
-          poetry run pip list --format=freeze > requirements.txt
+          poetry export -f requirements.txt --without-hashes > requirements.txt
 
       - name: Run license finder
         run: |
