@@ -1,0 +1,37 @@
+name: License Finder
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    branches: ['main']
+
+jobs:
+  license_finder:
+    if: github.repository_owner == 'viamrobotics'
+    name: Audit 3rd-Party Licenses
+    runs-on: [x64, qemu-host]
+    container:
+      image: ghcr.io/viamrobotics/canon:amd64-cache
+      options: --platform linux/amd64
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out code in rdk directory
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install package
+        run: poetry install
+
+      - name: Generate requirements.txt (exclude dev dependencies)
+        run: |
+          poetry export -f requirements.txt --without-hashes > requirements.txt
+
+      - name: Run license finder
+        run: |
+          poetry run license_finder --python-version=3
