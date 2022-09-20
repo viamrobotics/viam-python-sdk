@@ -53,6 +53,14 @@ jobs:
           poetry version ${{ inputs.version }}
           echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
 
+      - name: Download Compiled Rust
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: 'viamrobotics/viam-rust-sdk'
+          file: 'libviam-.*'
+          regex: true
+          target: 'src/viam/bin/'
+
       - name: Commit + Push
         uses: EndBug/add-and-commit@v9.0.0
         with:
@@ -98,15 +106,11 @@ jobs:
       - name: Install package
         run: poetry install
 
-      - name: Download
-        uses: dsaltares/fetch-gh-release-asset@master
-        with:
-          repo: 'viamrobotics/viam-rust-sdk'
-          file: 'libviam-${{ matrix.arch }}.${{ matrix.ext }}'
-          target: 'src/viam/rpc/libviam.${{ matrix.ext }}'
-
       - name: Build
         run: poetry build
+
+      - name: Copy
+        run: cp bin/libviam-${{ matrix.arch }}.${{ matrix.ext }} src/viam/rpc/libviam.${{ matrix.ext }}
 
       - name: Rename
         run: mv dist/viam-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-${{ matrix.arch }}${{ matrix.min }}.whl

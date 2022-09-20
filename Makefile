@@ -54,3 +54,7 @@ documentation:
 
 package: clean buf better_imports format test
 	@echo "TODO: Create pip-installable package"
+
+install:
+	poetry install
+	sh etc/postinstall.sh
