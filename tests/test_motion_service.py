@@ -32,25 +32,31 @@ class TestClient:
     async def test_plan_and_move(self, service: MockMotionService):
         async with ChannelFor([service]) as channel:
             client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
-            success = await client.move(Arm.get_resource_name("arm"), PoseInFrame())
+            success = await client.move(Arm.get_resource_name("arm"), PoseInFrame(), extra={"foo": "bar"})
             assert success == MOVE_RESPONSES["arm"]
+            assert service.extra == {"foo": "bar"}
             success = await client.move(Gantry.get_resource_name("gantry"), PoseInFrame())
             assert success == MOVE_RESPONSES["gantry"]
+            assert service.extra == {}
 
     @pytest.mark.asyncio
     async def test_move_single_component(self, service: MockMotionService):
         async with ChannelFor([service]) as channel:
             client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
-            success = await client.move_single_component(Arm.get_resource_name("arm"), PoseInFrame())
+            success = await client.move_single_component(Arm.get_resource_name("arm"), PoseInFrame(), extra={"foo": "bar"})
             assert success == MOVE_SINGLE_COMPONENT_RESPONSES["arm"]
+            assert service.extra == {"foo": "bar"}
             success = await client.move_single_component(Gantry.get_resource_name("gantry"), PoseInFrame())
             assert success == MOVE_SINGLE_COMPONENT_RESPONSES["gantry"]
+            assert service.extra == {}
 
     @pytest.mark.asyncio
     async def test_get_pose(self, service: MockMotionService):
         async with ChannelFor([service]) as channel:
             client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
-            pose = await client.get_pose(Arm.get_resource_name("arm"), "x")
+            pose = await client.get_pose(Arm.get_resource_name("arm"), "x", extra={"foo": "bar"})
             assert pose == GET_POSE_RESPONSES["arm"]
+            assert service.extra == {"foo": "bar"}
             pose = await client.get_pose(Gantry.get_resource_name("gantry"), "y")
             assert pose == GET_POSE_RESPONSES["gantry"]
+            assert service.extra == {}

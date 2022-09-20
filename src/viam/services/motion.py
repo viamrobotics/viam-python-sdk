@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Any, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -13,6 +13,7 @@ from viam.proto.service.motion import (
     MoveSingleComponentResponse,
 )
 from viam.services.service_client_base import ServiceClientBase
+from viam.utils import dict_to_struct
 
 
 class MotionServiceClient(ServiceClientBase):
@@ -28,7 +29,13 @@ class MotionServiceClient(ServiceClientBase):
         self.client = MotionServiceStub(channel)
         self.name = name
 
-    async def move(self, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None) -> bool:
+    async def move(
+        self,
+        component_name: ResourceName,
+        destination: PoseInFrame,
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Mapping[str, Any]] = None,
+    ) -> bool:
         """Plan and execute a movement to move the component specified to its goal destination.
 
 
@@ -41,12 +48,24 @@ class MotionServiceClient(ServiceClientBase):
         Returns:
             bool: Whether the move was successful
         """
-        request = MoveRequest(name=self.name, destination=destination, component_name=component_name, world_state=world_state)
+        if extra is None:
+            extra = {}
+        request = MoveRequest(
+            name=self.name,
+            destination=destination,
+            component_name=component_name,
+            world_state=world_state,
+            extra=dict_to_struct(extra),
+        )
         response: MoveResponse = await self.client.Move(request)
         return response.success
 
     async def move_single_component(
-        self, component_name: ResourceName, destination: PoseInFrame, world_state: Optional[WorldState] = None
+        self,
+        component_name: ResourceName,
+        destination: PoseInFrame,
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Mapping[str, Any]] = None,
     ) -> bool:
         """
         This function will pass through a move command to a component with a `move_to_position` method that takes a `Pose`. `Arm`s are the
@@ -63,13 +82,24 @@ class MotionServiceClient(ServiceClientBase):
         Returns:
             bool: Whether the move was successful
         """
+        if extra is None:
+            extra = {}
         request = MoveSingleComponentRequest(
-            name=self.name, destination=destination, component_name=component_name, world_state=world_state
+            name=self.name,
+            destination=destination,
+            component_name=component_name,
+            world_state=world_state,
+            extra=dict_to_struct(extra),
         )
         response: MoveSingleComponentResponse = await self.client.MoveSingleComponent(request)
         return response.success
 
-    async def get_pose(self, component_name: ResourceName, destination_frame: str) -> PoseInFrame:
+    async def get_pose(
+        self,
+        component_name: ResourceName,
+        destination_frame: str,
+        extra: Optional[Mapping[str, Any]] = None,
+    ) -> PoseInFrame:
         """
         Get the Pose and observer frame for any given component on a robot.
 
@@ -80,6 +110,13 @@ class MotionServiceClient(ServiceClientBase):
         Returns:
             `Pose` (PoseInFrame): Pose of the given component and the frame in which it was observed.
         """
-        request = GetPoseRequest(name=self.name, component_name=component_name, destination_frame=destination_frame)
+        if extra is None:
+            extra = {}
+        request = GetPoseRequest(
+            name=self.name,
+            component_name=component_name,
+            destination_frame=destination_frame,
+            extra=dict_to_struct(extra),
+        )
         response: GetPoseResponse = await self.client.GetPose(request)
         return response.pose
