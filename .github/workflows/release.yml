@@ -35,6 +35,9 @@ jobs:
         # with:
         #   token: ${{ secrets.REPO_READ_TOKEN }}
 
+      - uses: bufbuild/buf-setup-action@v1.8.0
+
+      # TODO: REMOVE
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
@@ -85,6 +88,7 @@ jobs:
         # with:
         #   token: ${{ secrets.REPO_READ_TOKEN }}
 
+      # TODO: REMOVE
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
