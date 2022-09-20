@@ -52,5 +52,9 @@ _documentation:
 documentation:
 	poetry run make _documentation
 
-package: buf better_imports test
+package: clean buf better_imports format test
 	@echo "TODO: Create pip-installable package"
+
+install:
+	poetry install
+	sh etc/postinstall.sh

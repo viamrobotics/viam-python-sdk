@@ -43,10 +43,10 @@ If you are proposing a feature:
 Ready to contribute? Here's how to set up `viam` for local development.
 
 1. Download a copy of `viam` locally.
-2. Install `viam` using `poetry`:
+2. Install `viam` using `make`:
 
     ```console
-    $ poetry install
+    $ make install
     ```
 
 3. Use `git` (or similar) to create a branch for local development and make your changes:
