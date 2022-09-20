@@ -4,8 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'The type of version bump. Select "" for no automatic version change. See https://python-poetry.org/docs/cli/#version'
+        description: 'The type of version bump. Select "-s" for no automatic version change. See https://python-poetry.org/docs/cli/#version'
         type: choice
+        required: true
+        default: '-s'
         options:
         - major
         - minor
@@ -16,6 +18,7 @@ on:
         - prerelease
         - prerelease
         - prerelease
+        - '-s'
 
 jobs:
   prepare:
