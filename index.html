@@ -98,17 +98,15 @@
 <h2>(In)stability Notice<a class="headerlink" href="#in-stability-notice" title="Permalink to this heading"></a></h2>
 <p>This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.</p>
 </section>
-<section id="installation-pre-open-sourcing">
-<h2>Installation - pre open sourcing<a class="headerlink" href="#installation-pre-open-sourcing" title="Permalink to this heading"></a></h2>
-<p>To install, you need to be invited to the repository. You will also need a <a class="reference external" href="https://github.com/settings/tokens">GitHub Access Token</a> with <em>repo</em> access.</p>
-<p>Once you have access and a token, you can install the SDK with the command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git</span></code></p>
+<section id="installation-pre-pypi">
+<h2>Installation - pre PyPI<a class="headerlink" href="#installation-pre-pypi" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/viamrobotics/python-sdk.git</span></code></p>
 <p>This will install the current <code class="docutils literal notranslate"><span class="pre">main</span></code> branch to your project. If you would like a specific branch or commit, you can do so with the command</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git&#64;FULL_COMMIT_HASH</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/viamrobotics/python-sdk.git&#64;FULL_COMMIT_HASH</span></code></p>
 <section id="upgrading">
 <h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this heading"></a></h3>
 <p>Because the SDK is under active development, we suggest that you upgrade the package frequently. To do so, simply run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-U</span></code> option:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">git+https://YOUR_ACCESS_TOKEN&#64;github.com/viamrobotics/python-sdk.git</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">git+https://github.com/viamrobotics/python-sdk.git</span></code></p>
 </section>
 </section>
 <section id="easy-setup-via-app-viam-com">
@@ -141,9 +139,7 @@ class. For more details, you can view the documentation for the <code class="doc
 <hr class="docutils" />
 <section id="development">
 <h2>Development<a class="headerlink" href="#development" title="Permalink to this heading"></a></h2>
-<p>To develop the python SDK, it is strongly encouraged that you use a python environment (<a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>, <a class="reference external" href="https://docs.python.org/3/library/venv.html">venv</a>, <a class="reference external" href="https://github.com/pyenv/pyenv">pyenv</a>, etc.)</p>
-<p>Install the requirements: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">etc/requirements.txt</span></code></p>
-<p><a class="reference external" href="https://www.flake8rules.com"><code class="docutils literal notranslate"><span class="pre">flake8</span></code></a> is our styleguide, and <a class="reference external" href="https://pypi.org/project/autopep8/"><code class="docutils literal notranslate"><span class="pre">autopep8</span></code></a> is used for automatic linting and formatting.</p>
+<p>To develop the python SDK, please see the <a class="reference external" href="https://python.viam.dev/contributing.html">contribution guidelines</a>.</p>
 <section id="adding-new-component-types">
 <h3>Adding new component types<a class="headerlink" href="#adding-new-component-types" title="Permalink to this heading"></a></h3>
 <p>The SDK provides a number of abstract base components to start. To add more abstract base components, please make sure you follow these guidelines:</p>
