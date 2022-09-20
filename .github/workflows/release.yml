@@ -27,11 +27,13 @@ jobs:
     # container:
     #   image: ghcr.io/viamrobotics/canon:amd64
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.bump_version.outputs.version }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.REPO_READ_TOKEN }}
+        # with:
+        #   token: ${{ secrets.REPO_READ_TOKEN }}
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -47,6 +49,7 @@ jobs:
         run: |
           poetry version ${{ inputs.version }}
           echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
+          echo "::set-output name=version::$(poetry version -s)"
 
       - name: Commit + Push
         uses: EndBug/add-and-commit@v9.0.0
@@ -55,6 +58,7 @@ jobs:
           message: Bumping prerelease version to v${{ env.SDK_VERSION }} [skip ci]
 
   build:
+    needs: prepare
     # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
     # runs-on: [self-hosted, x64]
     # container:
@@ -74,8 +78,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.REPO_READ_TOKEN }}
+        # with:
+        #   token: ${{ secrets.REPO_READ_TOKEN }}
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -94,7 +98,7 @@ jobs:
         run: poetry build
 
       - name: Rename
-        run: mv dist/viam-${{ env.SDK_VERSION }}-py3-none-any.whl dist/viam-${{ env.SDK_VERSION }}-py3-none-${{ matrix.arch }}.whl
+        run: mv dist/viam-${{ needs.prepare.outputs.version }}-py3-none-any.whl dist/viam-${{ needs.prepare.outputs.version }}-py3-none-${{ matrix.arch }}.whl
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
