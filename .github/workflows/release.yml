@@ -102,7 +102,7 @@ jobs:
         with:
           repo: 'viamrobotics/viam-rust-sdk'
           file: '${{ matrix.arch }}.${{ matrix.ext }}'
-          target: 'src/viam/rpc/${{ matrix.arch }}.${{ matrix.ext }}'
+          target: 'src/viam/rpc/libviam.${{ matrix.ext }}'
 
       - name: Build
         run: poetry build
