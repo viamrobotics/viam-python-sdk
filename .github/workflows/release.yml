@@ -1,0 +1,103 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The type of version bump. Select "" for no automatic version change. See https://python-poetry.org/docs/cli/#version'
+        required: true
+        default: 'prerelease'
+        type: choice
+        options:
+        - major
+        - minor
+        - patch
+        - premajor
+        - preminor
+        - prepatch
+        - prerelease
+        - prerelease
+        - prerelease
+        - ''
+
+jobs:
+  prepare:
+    # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    # runs-on: [self-hosted, x64]
+    # container:
+    #   image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.REPO_READ_TOKEN }}
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install package
+        run: poetry install
+
+      - name: Clean Buf Format Test
+        run: make clean buf better_imports format test
+
+      - name: Bump Version
+        id: bump_version
+        run: |
+          poetry version ${{ inputs.version }}
+          echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
+
+      - name: Commit + Push
+        uses: EndBug/add-and-commit@v9.0.0
+        with:
+          default_author: github_actions
+          message: Bumping prerelease version to v${{ env.SDK_VERSION }} [skip ci]
+
+  build:
+    # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    # runs-on: [self-hosted, x64]
+    # container:
+    #   image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: libviam-macosx_x86_64
+            ext: dylib
+          - arch: libviam-macosx_arm64
+            ext: dylib
+          - arch: libviam-libviam-manylinux_aarch64
+            ext: so
+          - arch: libviam-libviam-manylinux_x86_64
+            ext: so
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.REPO_READ_TOKEN }}
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install package
+        run: poetry install
+
+      - name: Download
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: 'viamrobotics/viam-rust-sdk'
+          file: '${{ matrix.arch }}.${{ matrix.ext }}'
+          target: 'src/viam/rpc/${{ matrix.arch }}.${{ matrix.ext }}'
+
+      - name: Build
+        run: poetry build
+
+      - name: Rename
+        run: mv dist/viam-${{ env.SDK_VERSION }}-py3-none-any.whl dist/viam-${{ env.SDK_VERSION }}-py3-none-${{ matrix.arch }}.whl
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
