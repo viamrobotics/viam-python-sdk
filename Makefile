@@ -19,14 +19,13 @@ _buf: clean
 	buf generate buf.build/viamrobotics/goutils
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
-	mv src/viam/gen/proto/* src/viam/gen && rm -rf src/viam/gen/proto
 	find src/viam/gen -type d -exec touch {}/__init__.py \;
 
 buf:
 	poetry run make _buf
 
 _better_imports:
-	python3 -m etc.generate_proto_import
+	python3 -m etc.generate_proto_import -v
 	@echo Add init files for specific documented protos
 
 better_imports:
