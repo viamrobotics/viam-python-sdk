@@ -1,0 +1,119 @@
+:py:mod:`viam.gen.app.v1.app_grpc`
+==================================
+
+.. py:module:: viam.gen.app.v1.app_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.app.v1.app_grpc.AppServiceBase
+   viam.gen.app.v1.app_grpc.AppServiceStub
+
+
+
+
+.. py:class:: AppServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: ListOrganizations(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationsRequest, app.v1.app_pb2.ListOrganizationsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: ListLocations(stream: grpclib.server.Stream[app.v1.app_pb2.ListLocationsRequest, app.v1.app_pb2.ListLocationsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: LocationAuth(stream: grpclib.server.Stream[app.v1.app_pb2.LocationAuthRequest, app.v1.app_pb2.LocationAuthResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetRobot(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotRequest, app.v1.app_pb2.GetRobotResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetRobotParts(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartsRequest, app.v1.app_pb2.GetRobotPartsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartRequest, app.v1.app_pb2.GetRobotPartResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetRobotPartLogs(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartLogsRequest, app.v1.app_pb2.GetRobotPartLogsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: TailRobotPartLogs(stream: grpclib.server.Stream[app.v1.app_pb2.TailRobotPartLogsRequest, app.v1.app_pb2.TailRobotPartLogsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetRobotPartHistory(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartHistoryRequest, app.v1.app_pb2.GetRobotPartHistoryResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: UpdateRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotPartRequest, app.v1.app_pb2.UpdateRobotPartResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: NewRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.NewRobotPartRequest, app.v1.app_pb2.NewRobotPartResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: DeleteRobotPart(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotPartRequest, app.v1.app_pb2.DeleteRobotPartResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: MarkPartAsMain(stream: grpclib.server.Stream[app.v1.app_pb2.MarkPartAsMainRequest, app.v1.app_pb2.MarkPartAsMainResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: FindRobots(stream: grpclib.server.Stream[app.v1.app_pb2.FindRobotsRequest, app.v1.app_pb2.FindRobotsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: NewRobot(stream: grpclib.server.Stream[app.v1.app_pb2.NewRobotRequest, app.v1.app_pb2.NewRobotResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: UpdateRobot(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRobotRequest, app.v1.app_pb2.UpdateRobotResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: DeleteRobot(stream: grpclib.server.Stream[app.v1.app_pb2.DeleteRobotRequest, app.v1.app_pb2.DeleteRobotResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: AppServiceStub(channel: grpclib.client.Channel)
+
+

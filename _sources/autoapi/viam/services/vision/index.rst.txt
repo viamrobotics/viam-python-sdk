@@ -120,7 +120,7 @@ Classes
       :type detector_name: str
 
 
-   .. py:method:: get_detections_from_camera(camera_name: str, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
+   .. py:method:: get_detections_from_camera(camera_name: str, detector_name: str) -> List[viam.proto.service.vision.Detection]
       :async:
 
       Get a list of detections in the next image given a camera and a detector
@@ -136,7 +136,7 @@ Classes
       :rtype: List[Detection]
 
 
-   .. py:method:: get_detections(image: PIL.Image.Image, detector_name: str) -> List[viam.proto.api.service.vision.Detection]
+   .. py:method:: get_detections(image: PIL.Image.Image, detector_name: str) -> List[viam.proto.service.vision.Detection]
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -179,7 +179,7 @@ Classes
       :type classifier_name: str
 
 
-   .. py:method:: get_classifications_from_camera(camera_name: str, classifier_name: str, count: int) -> List[viam.proto.api.service.vision.Classification]
+   .. py:method:: get_classifications_from_camera(camera_name: str, classifier_name: str, count: int) -> List[viam.proto.service.vision.Classification]
       :async:
 
       Get a list of classifications in the next image given a camera and a classifier
@@ -195,7 +195,7 @@ Classes
       :rtype: List[Classification]
 
 
-   .. py:method:: get_classifications(image: PIL.Image.Image, classifier_name: str) -> List[viam.proto.api.service.vision.Classification]
+   .. py:method:: get_classifications(image: PIL.Image.Image, classifier_name: str) -> List[viam.proto.service.vision.Classification]
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -248,7 +248,7 @@ Classes
       :rtype: Mapping[str, str | int | float | bool | Sequence | Mapping]
 
 
-   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, parameters: Mapping[str, Any]) -> List[viam.proto.api.common.PointCloudObject]
+   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, parameters: Mapping[str, Any]) -> List[viam.proto.common.PointCloudObject]
       :async:
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest

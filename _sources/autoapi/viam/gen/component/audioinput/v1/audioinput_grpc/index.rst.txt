@@ -1,0 +1,49 @@
+:py:mod:`viam.gen.component.audioinput.v1.audioinput_grpc`
+==========================================================
+
+.. py:module:: viam.gen.component.audioinput.v1.audioinput_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.component.audioinput.v1.audioinput_grpc.AudioInputServiceBase
+   viam.gen.component.audioinput.v1.audioinput_grpc.AudioInputServiceStub
+
+
+
+
+.. py:class:: AudioInputServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Chunks(stream: grpclib.server.Stream[component.audioinput.v1.audioinput_pb2.ChunksRequest, component.audioinput.v1.audioinput_pb2.ChunksResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: Properties(stream: grpclib.server.Stream[component.audioinput.v1.audioinput_pb2.PropertiesRequest, component.audioinput.v1.audioinput_pb2.PropertiesResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: Record(stream: grpclib.server.Stream[component.audioinput.v1.audioinput_pb2.RecordRequest, google.api.httpbody_pb2.HttpBody]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: AudioInputServiceStub(channel: grpclib.client.Channel)
+
+

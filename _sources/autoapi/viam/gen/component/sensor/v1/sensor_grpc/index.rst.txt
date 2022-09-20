@@ -1,0 +1,39 @@
+:py:mod:`viam.gen.component.sensor.v1.sensor_grpc`
+==================================================
+
+.. py:module:: viam.gen.component.sensor.v1.sensor_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.component.sensor.v1.sensor_grpc.SensorServiceBase
+   viam.gen.component.sensor.v1.sensor_grpc.SensorServiceStub
+
+
+
+
+.. py:class:: SensorServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetReadings(stream: grpclib.server.Stream[component.sensor.v1.sensor_pb2.GetReadingsRequest, component.sensor.v1.sensor_pb2.GetReadingsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: SensorServiceStub(channel: grpclib.client.Channel)
+
+

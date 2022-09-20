@@ -1,0 +1,39 @@
+:py:mod:`viam.gen.service.shell.v1.shell_grpc`
+==============================================
+
+.. py:module:: viam.gen.service.shell.v1.shell_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.service.shell.v1.shell_grpc.ShellServiceBase
+   viam.gen.service.shell.v1.shell_grpc.ShellServiceStub
+
+
+
+
+.. py:class:: ShellServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Shell(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.ShellRequest, service.shell.v1.shell_pb2.ShellResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: ShellServiceStub(channel: grpclib.client.Channel)
+
+

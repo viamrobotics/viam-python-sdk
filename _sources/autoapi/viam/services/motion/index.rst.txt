@@ -31,7 +31,7 @@ Classes
 
       
 
-   .. py:method:: move(component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
+   .. py:method:: move(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None) -> bool
       :async:
 
       Plan and execute a movement to move the component specified to its goal destination.
@@ -49,7 +49,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: move_single_component(component_name: viam.proto.api.common.ResourceName, destination: viam.proto.api.common.PoseInFrame, world_state: Optional[viam.proto.api.common.WorldState] = None) -> bool
+   .. py:method:: move_single_component(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None) -> bool
       :async:
 
       This function will pass through a move command to a component with a `move_to_position` method that takes a `Pose`. `Arm`s are the
@@ -69,7 +69,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: get_pose(component_name: viam.proto.api.common.ResourceName, destination_frame: str) -> viam.proto.api.common.PoseInFrame
+   .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str) -> viam.proto.common.PoseInFrame
       :async:
 
       Get the Pose and observer frame for any given component on a robot.

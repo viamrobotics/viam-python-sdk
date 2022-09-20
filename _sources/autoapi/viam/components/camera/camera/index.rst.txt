@@ -39,9 +39,14 @@ Classes
          Whether the camera has a valid implementation of `get_point_cloud`
 
       .. py:attribute:: intrinsic_parameters
-         :annotation: :viam.proto.api.component.camera.IntrinsicParameters
+         :annotation: :viam.proto.component.camera.IntrinsicParameters
 
          The properties of the camera
+
+      .. py:attribute:: distortion_parameters
+         :annotation: :viam.proto.component.camera.DistortionParameters
+
+         The distortion parameters of the camera
 
 
    .. py:method:: get_image(mime_type: str = CameraMimeType.PNG) -> Union[PIL.Image.Image, viam.components.types.RawImage]

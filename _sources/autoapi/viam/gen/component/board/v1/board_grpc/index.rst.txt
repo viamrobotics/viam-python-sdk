@@ -1,0 +1,79 @@
+:py:mod:`viam.gen.component.board.v1.board_grpc`
+================================================
+
+.. py:module:: viam.gen.component.board.v1.board_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.component.board.v1.board_grpc.BoardServiceBase
+   viam.gen.component.board.v1.board_grpc.BoardServiceStub
+
+
+
+
+.. py:class:: BoardServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Status(stream: grpclib.server.Stream[component.board.v1.board_pb2.StatusRequest, component.board.v1.board_pb2.StatusResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: SetGPIO(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetGPIORequest, component.board.v1.board_pb2.SetGPIOResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetGPIO(stream: grpclib.server.Stream[component.board.v1.board_pb2.GetGPIORequest, component.board.v1.board_pb2.GetGPIOResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: PWM(stream: grpclib.server.Stream[component.board.v1.board_pb2.PWMRequest, component.board.v1.board_pb2.PWMResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: SetPWM(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPWMRequest, component.board.v1.board_pb2.SetPWMResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: PWMFrequency(stream: grpclib.server.Stream[component.board.v1.board_pb2.PWMFrequencyRequest, component.board.v1.board_pb2.PWMFrequencyResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: SetPWMFrequency(stream: grpclib.server.Stream[component.board.v1.board_pb2.SetPWMFrequencyRequest, component.board.v1.board_pb2.SetPWMFrequencyResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: ReadAnalogReader(stream: grpclib.server.Stream[component.board.v1.board_pb2.ReadAnalogReaderRequest, component.board.v1.board_pb2.ReadAnalogReaderResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetDigitalInterruptValue(stream: grpclib.server.Stream[component.board.v1.board_pb2.GetDigitalInterruptValueRequest, component.board.v1.board_pb2.GetDigitalInterruptValueResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: BoardServiceStub(channel: grpclib.client.Channel)
+
+

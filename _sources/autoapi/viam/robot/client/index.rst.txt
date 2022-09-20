@@ -108,7 +108,7 @@ Attributes
       Manually refresh the underlying parts of this robot
 
 
-   .. py:method:: get_component(name: viam.proto.api.common.ResourceName) -> viam.components.component_base.ComponentBase
+   .. py:method:: get_component(name: viam.proto.common.ResourceName) -> viam.components.component_base.ComponentBase
 
       Get a component using its ResourceName.
 
@@ -160,7 +160,7 @@ Attributes
       :rtype: ComponentBase
 
 
-   .. py:method:: resource_names() -> List[viam.proto.api.common.ResourceName]
+   .. py:method:: resource_names() -> List[viam.proto.common.ResourceName]
       :property:
 
       Get a list of all resource names
@@ -183,7 +183,7 @@ Attributes
       :async:
 
 
-   .. py:method:: get_status(components: Optional[List[viam.proto.api.common.ResourceName]] = None)
+   .. py:method:: get_status(components: Optional[List[viam.proto.common.ResourceName]] = None)
       :async:
 
       Get the status of the robot's components. You can optionally
@@ -194,7 +194,7 @@ Attributes
       :type components: Optional[List[ResourceName]]
 
 
-   .. py:method:: get_frame_system_config(additional_transforms: Optional[List[viam.proto.api.common.Transform]] = None) -> List[viam.proto.api.robot.FrameSystemConfig]
+   .. py:method:: get_frame_system_config(additional_transforms: Optional[List[viam.proto.common.Transform]] = None) -> List[viam.proto.robot.FrameSystemConfig]
       :async:
 
       Get the configuration of the frame system of a given robot.
@@ -202,7 +202,7 @@ Attributes
       Returns (Config): The configuration of a given robot's frame system.
 
 
-   .. py:method:: transform_pose(query: viam.proto.api.common.PoseInFrame, destination: str, additional_transforms: Optional[List[viam.proto.api.common.Transform]] = None) -> viam.proto.api.common.PoseInFrame
+   .. py:method:: transform_pose(query: viam.proto.common.PoseInFrame, destination: str, additional_transforms: Optional[List[viam.proto.common.Transform]] = None) -> viam.proto.common.PoseInFrame
       :async:
 
       Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
@@ -213,7 +213,7 @@ Attributes
       :type destination: str
 
 
-   .. py:method:: discover_components(queries: List[viam.proto.api.robot.DiscoveryQuery]) -> List[viam.proto.api.robot.Discovery]
+   .. py:method:: discover_components(queries: List[viam.proto.robot.DiscoveryQuery]) -> List[viam.proto.robot.Discovery]
       :async:
 
       Get the list of discovered component configurations.
@@ -222,7 +222,7 @@ Attributes
       :type queries: List[DiscoveryQuery]
 
 
-   .. py:method:: stop_all(extra: Dict[viam.proto.api.common.ResourceName, Dict[str, Any]] = {})
+   .. py:method:: stop_all(extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]] = {})
       :async:
 
       Cancel all current and outstanding operations for the robot and stop all actuators and movement

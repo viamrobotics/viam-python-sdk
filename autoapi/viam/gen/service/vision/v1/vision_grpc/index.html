@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.gen.service.vision.v1.vision_grpc &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../../../" id="documentation_options" src="../../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../../../_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../../../index.html" class="icon icon-home"> Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.gen.service.vision.v1.vision_grpc</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../../../_sources/autoapi/viam/gen/service/vision/v1/vision_grpc/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.gen.service.vision.v1.vision_grpc">
+<span id="viam-gen-service-vision-v1-vision-grpc"></span><h1><a class="reference internal" href="#module-viam.gen.service.vision.v1.vision_grpc" title="viam.gen.service.vision.v1.vision_grpc"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.gen.service.vision.v1.vision_grpc</span></code></a><a class="headerlink" href="#module-viam.gen.service.vision.v1.vision_grpc" title="Permalink to this heading"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase" title="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VisionServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceStub" title="viam.gen.service.vision.v1.vision_grpc.VisionServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VisionServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_grpc.</span></span><span class="sig-name descname"><span class="pre">VisionServiceBase</span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetModelParameterSchema">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetModelParameterSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetModelParameterSchemaRequest" title="viam.gen.service.vision.v1.vision_pb2.GetModelParameterSchemaRequest"><span class="pre">service.vision.v1.vision_pb2.GetModelParameterSchemaRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetModelParameterSchemaResponse" title="viam.gen.service.vision.v1.vision_pb2.GetModelParameterSchemaResponse"><span class="pre">service.vision.v1.vision_pb2.GetModelParameterSchemaResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetModelParameterSchema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetModelParameterSchema" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetDetectorNames">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDetectorNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetDetectorNamesRequest" title="viam.gen.service.vision.v1.vision_pb2.GetDetectorNamesRequest"><span class="pre">service.vision.v1.vision_pb2.GetDetectorNamesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetDetectorNamesResponse" title="viam.gen.service.vision.v1.vision_pb2.GetDetectorNamesResponse"><span class="pre">service.vision.v1.vision_pb2.GetDetectorNamesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetDetectorNames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetDetectorNames" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.AddDetector">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.AddDetectorRequest" title="viam.gen.service.vision.v1.vision_pb2.AddDetectorRequest"><span class="pre">service.vision.v1.vision_pb2.AddDetectorRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.AddDetectorResponse" title="viam.gen.service.vision.v1.vision_pb2.AddDetectorResponse"><span class="pre">service.vision.v1.vision_pb2.AddDetectorResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.AddDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.AddDetector" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.RemoveDetector">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemoveDetector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.RemoveDetectorRequest" title="viam.gen.service.vision.v1.vision_pb2.RemoveDetectorRequest"><span class="pre">service.vision.v1.vision_pb2.RemoveDetectorRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.RemoveDetectorResponse" title="viam.gen.service.vision.v1.vision_pb2.RemoveDetectorResponse"><span class="pre">service.vision.v1.vision_pb2.RemoveDetectorResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.RemoveDetector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.RemoveDetector" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetDetectionsFromCamera">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDetectionsFromCamera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest" title="viam.gen.service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest"><span class="pre">service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse" title="viam.gen.service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse"><span class="pre">service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetDetectionsFromCamera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetDetectionsFromCamera" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetDetections">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDetections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetDetectionsRequest" title="viam.gen.service.vision.v1.vision_pb2.GetDetectionsRequest"><span class="pre">service.vision.v1.vision_pb2.GetDetectionsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetDetectionsResponse" title="viam.gen.service.vision.v1.vision_pb2.GetDetectionsResponse"><span class="pre">service.vision.v1.vision_pb2.GetDetectionsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetDetections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetDetections" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetClassifierNames">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetClassifierNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetClassifierNamesRequest" title="viam.gen.service.vision.v1.vision_pb2.GetClassifierNamesRequest"><span class="pre">service.vision.v1.vision_pb2.GetClassifierNamesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetClassifierNamesResponse" title="viam.gen.service.vision.v1.vision_pb2.GetClassifierNamesResponse"><span class="pre">service.vision.v1.vision_pb2.GetClassifierNamesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetClassifierNames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetClassifierNames" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.AddClassifier">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.AddClassifierRequest" title="viam.gen.service.vision.v1.vision_pb2.AddClassifierRequest"><span class="pre">service.vision.v1.vision_pb2.AddClassifierRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.AddClassifierResponse" title="viam.gen.service.vision.v1.vision_pb2.AddClassifierResponse"><span class="pre">service.vision.v1.vision_pb2.AddClassifierResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.AddClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.AddClassifier" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.RemoveClassifier">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemoveClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.RemoveClassifierRequest" title="viam.gen.service.vision.v1.vision_pb2.RemoveClassifierRequest"><span class="pre">service.vision.v1.vision_pb2.RemoveClassifierRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.RemoveClassifierResponse" title="viam.gen.service.vision.v1.vision_pb2.RemoveClassifierResponse"><span class="pre">service.vision.v1.vision_pb2.RemoveClassifierResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.RemoveClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.RemoveClassifier" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetClassificationsFromCamera">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetClassificationsFromCamera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest" title="viam.gen.service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest"><span class="pre">service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetClassificationsFromCameraResponse" title="viam.gen.service.vision.v1.vision_pb2.GetClassificationsFromCameraResponse"><span class="pre">service.vision.v1.vision_pb2.GetClassificationsFromCameraResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetClassificationsFromCamera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetClassificationsFromCamera" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetClassifications">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetClassifications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetClassificationsRequest" title="viam.gen.service.vision.v1.vision_pb2.GetClassificationsRequest"><span class="pre">service.vision.v1.vision_pb2.GetClassificationsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetClassificationsResponse" title="viam.gen.service.vision.v1.vision_pb2.GetClassificationsResponse"><span class="pre">service.vision.v1.vision_pb2.GetClassificationsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetClassifications"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetClassifications" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetSegmenterNames">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetSegmenterNames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetSegmenterNamesRequest" title="viam.gen.service.vision.v1.vision_pb2.GetSegmenterNamesRequest"><span class="pre">service.vision.v1.vision_pb2.GetSegmenterNamesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetSegmenterNamesResponse" title="viam.gen.service.vision.v1.vision_pb2.GetSegmenterNamesResponse"><span class="pre">service.vision.v1.vision_pb2.GetSegmenterNamesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetSegmenterNames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetSegmenterNames" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.AddSegmenter">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddSegmenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.AddSegmenterRequest" title="viam.gen.service.vision.v1.vision_pb2.AddSegmenterRequest"><span class="pre">service.vision.v1.vision_pb2.AddSegmenterRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.AddSegmenterResponse" title="viam.gen.service.vision.v1.vision_pb2.AddSegmenterResponse"><span class="pre">service.vision.v1.vision_pb2.AddSegmenterResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.AddSegmenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.AddSegmenter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.RemoveSegmenter">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemoveSegmenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.RemoveSegmenterRequest" title="viam.gen.service.vision.v1.vision_pb2.RemoveSegmenterRequest"><span class="pre">service.vision.v1.vision_pb2.RemoveSegmenterRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.RemoveSegmenterResponse" title="viam.gen.service.vision.v1.vision_pb2.RemoveSegmenterResponse"><span class="pre">service.vision.v1.vision_pb2.RemoveSegmenterResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.RemoveSegmenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.RemoveSegmenter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetObjectPointClouds">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetObjectPointClouds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetObjectPointCloudsRequest" title="viam.gen.service.vision.v1.vision_pb2.GetObjectPointCloudsRequest"><span class="pre">service.vision.v1.vision_pb2.GetObjectPointCloudsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetObjectPointCloudsResponse" title="viam.gen.service.vision.v1.vision_pb2.GetObjectPointCloudsResponse"><span class="pre">service.vision.v1.vision_pb2.GetObjectPointCloudsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.GetObjectPointClouds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.GetObjectPointClouds" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.__mapping__">
+<span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_grpc.VisionServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_grpc.</span></span><span class="sig-name descname"><span class="pre">VisionServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/viam/gen/service/vision/v1/vision_grpc.html#VisionServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.gen.service.vision.v1.vision_grpc.VisionServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

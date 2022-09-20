@@ -1,0 +1,54 @@
+:py:mod:`viam.gen.component.gantry.v1.gantry_grpc`
+==================================================
+
+.. py:module:: viam.gen.component.gantry.v1.gantry_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.component.gantry.v1.gantry_grpc.GantryServiceBase
+   viam.gen.component.gantry.v1.gantry_grpc.GantryServiceStub
+
+
+
+
+.. py:class:: GantryServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.GetPositionRequest, component.gantry.v1.gantry_pb2.GetPositionResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: MoveToPosition(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.MoveToPositionRequest, component.gantry.v1.gantry_pb2.MoveToPositionResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetLengths(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.GetLengthsRequest, component.gantry.v1.gantry_pb2.GetLengthsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: Stop(stream: grpclib.server.Stream[component.gantry.v1.gantry_pb2.StopRequest, component.gantry.v1.gantry_pb2.StopResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: GantryServiceStub(channel: grpclib.client.Channel)
+
+

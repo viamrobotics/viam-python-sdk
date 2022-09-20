@@ -113,7 +113,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.registry.default_create_status" title="viam.registry.default_create_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_create_status</span></code></a>(→ viam.proto.api.robot.Status)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.registry.default_create_status" title="viam.registry.default_create_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_create_status</span></code></a>(→ viam.proto.robot.Status)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -139,7 +139,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.registry.default_create_status">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.registry.</span></span><span class="sig-name descname"><span class="pre">default_create_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../proto/api/robot/index.html#viam.proto.api.robot.Status" title="viam.proto.api.robot.Status"><span class="pre">viam.proto.api.robot.Status</span></a></span></span><a class="reference internal" href="../../../_modules/viam/registry.html#default_create_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.registry.default_create_status" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.registry.</span></span><span class="sig-name descname"><span class="pre">default_create_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../proto/robot/index.html#viam.proto.robot.Status" title="viam.proto.robot.Status"><span class="pre">viam.proto.robot.Status</span></a></span></span><a class="reference internal" href="../../../_modules/viam/registry.html#default_create_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.registry.default_create_status" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
@@ -176,7 +176,7 @@ to the <cite>Registry</cite>.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.registry.ComponentRegistration.create_status">
-<span class="sig-name descname"><span class="pre">create_status</span></span><em class="property"><span class="w"> </span><span class="pre">:Callable[[Component],</span> <span class="pre">Coroutine[Any,</span> <span class="pre">Any,</span> <span class="pre">viam.proto.api.robot.Status]]</span></em><a class="headerlink" href="#viam.registry.ComponentRegistration.create_status" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_status</span></span><em class="property"><span class="w"> </span><span class="pre">:Callable[[Component],</span> <span class="pre">Coroutine[Any,</span> <span class="pre">Any,</span> <span class="pre">viam.proto.robot.Status]]</span></em><a class="headerlink" href="#viam.registry.ComponentRegistration.create_status" title="Permalink to this definition"></a></dt>
 <dd><p>A function to create a Status object for this component.</p>
 <p>If the Component does not provide a custom status type, the default implementation can be used.</p>
 </dd></dl>

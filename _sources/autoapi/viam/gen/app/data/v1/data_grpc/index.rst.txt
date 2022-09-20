@@ -1,0 +1,39 @@
+:py:mod:`viam.gen.app.data.v1.data_grpc`
+========================================
+
+.. py:module:: viam.gen.app.data.v1.data_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.app.data.v1.data_grpc.DataServiceBase
+   viam.gen.app.data.v1.data_grpc.DataServiceStub
+
+
+
+
+.. py:class:: DataServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Query(stream: grpclib.server.Stream[app.data.v1.data_pb2.QueryRequest, app.data.v1.data_pb2.QueryResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: DataServiceStub(channel: grpclib.client.Channel)
+
+

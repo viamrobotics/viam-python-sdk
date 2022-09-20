@@ -1,0 +1,49 @@
+:py:mod:`viam.gen.service.motion.v1.motion_grpc`
+================================================
+
+.. py:module:: viam.gen.service.motion.v1.motion_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.service.motion.v1.motion_grpc.MotionServiceBase
+   viam.gen.service.motion.v1.motion_grpc.MotionServiceStub
+
+
+
+
+.. py:class:: MotionServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Move(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.MoveRequest, service.motion.v1.motion_pb2.MoveResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: MoveSingleComponent(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.MoveSingleComponentRequest, service.motion.v1.motion_pb2.MoveSingleComponentResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetPose(stream: grpclib.server.Stream[service.motion.v1.motion_pb2.GetPoseRequest, service.motion.v1.motion_pb2.GetPoseResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: MotionServiceStub(channel: grpclib.client.Channel)
+
+

@@ -28,7 +28,7 @@ Classes
 
       
 
-   .. py:method:: get_sensors() -> List[viam.proto.api.common.ResourceName]
+   .. py:method:: get_sensors() -> List[viam.proto.common.ResourceName]
       :async:
 
       Get the `ResourceName`s of all the `Sensor`s connected to this Robot
@@ -37,7 +37,7 @@ Classes
       :rtype: List[ResourceName]
 
 
-   .. py:method:: get_readings(sensors: List[viam.proto.api.common.ResourceName]) -> Mapping[viam.proto.api.common.ResourceName, Mapping[str, Any]]
+   .. py:method:: get_readings(sensors: List[viam.proto.common.ResourceName]) -> Mapping[viam.proto.common.ResourceName, Mapping[str, Any]]
       :async:
 
       Get the readings from the specific sensors provided

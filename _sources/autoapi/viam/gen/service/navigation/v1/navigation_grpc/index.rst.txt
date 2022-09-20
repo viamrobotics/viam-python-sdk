@@ -1,0 +1,64 @@
+:py:mod:`viam.gen.service.navigation.v1.navigation_grpc`
+========================================================
+
+.. py:module:: viam.gen.service.navigation.v1.navigation_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.service.navigation.v1.navigation_grpc.NavigationServiceBase
+   viam.gen.service.navigation.v1.navigation_grpc.NavigationServiceStub
+
+
+
+
+.. py:class:: NavigationServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetModeRequest, service.navigation.v1.navigation_pb2.GetModeResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: SetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SetModeRequest, service.navigation.v1.navigation_pb2.SetModeResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetLocationRequest, service.navigation.v1.navigation_pb2.GetLocationResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetWaypointsRequest, service.navigation.v1.navigation_pb2.GetWaypointsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddWaypointRequest, service.navigation.v1.navigation_pb2.AddWaypointResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.RemoveWaypointRequest, service.navigation.v1.navigation_pb2.RemoveWaypointResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: NavigationServiceStub(channel: grpclib.client.Channel)
+
+

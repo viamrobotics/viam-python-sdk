@@ -1,0 +1,74 @@
+:py:mod:`viam.gen.component.motor.v1.motor_grpc`
+================================================
+
+.. py:module:: viam.gen.component.motor.v1.motor_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.component.motor.v1.motor_grpc.MotorServiceBase
+   viam.gen.component.motor.v1.motor_grpc.MotorServiceStub
+
+
+
+
+.. py:class:: MotorServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: SetPower(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.SetPowerRequest, component.motor.v1.motor_pb2.SetPowerResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GoFor(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GoForRequest, component.motor.v1.motor_pb2.GoForResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GoTo(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GoToRequest, component.motor.v1.motor_pb2.GoToResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: ResetZeroPosition(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.ResetZeroPositionRequest, component.motor.v1.motor_pb2.ResetZeroPositionResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GetPositionRequest, component.motor.v1.motor_pb2.GetPositionResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GetPropertiesRequest, component.motor.v1.motor_pb2.GetPropertiesResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: Stop(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.StopRequest, component.motor.v1.motor_pb2.StopResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: IsPowered(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.IsPoweredRequest, component.motor.v1.motor_pb2.IsPoweredResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: MotorServiceStub(channel: grpclib.client.Channel)
+
+

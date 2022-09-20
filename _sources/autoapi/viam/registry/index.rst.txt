@@ -39,7 +39,7 @@ Attributes
 
    
 
-.. py:function:: default_create_status(component: viam.components.component_base.ComponentBase) -> viam.proto.api.robot.Status
+.. py:function:: default_create_status(component: viam.components.component_base.ComponentBase) -> viam.proto.robot.Status
    :async:
 
 
@@ -76,7 +76,7 @@ Attributes
       A function that will create the RPC client for this component
 
    .. py:attribute:: create_status
-      :annotation: :Callable[[Component], Coroutine[Any, Any, viam.proto.api.robot.Status]]
+      :annotation: :Callable[[Component], Coroutine[Any, Any, viam.proto.robot.Status]]
 
       A function to create a Status object for this component.
 

@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the MovementSensor component.
 
-   .. py:method:: get_position() -> Tuple[viam.proto.api.common.GeoPoint, float]
+   .. py:method:: get_position() -> Tuple[viam.proto.common.GeoPoint, float]
       :async:
 
       Get the current GeoPoint (latitude, longitude) and altitude (mm)
@@ -32,7 +32,7 @@ Classes
       :rtype: Tuple[GeoPoint, float]
 
 
-   .. py:method:: get_linear_velocity() -> viam.proto.api.common.Vector3
+   .. py:method:: get_linear_velocity() -> viam.proto.common.Vector3
       :async:
 
       Get the current linear velocity as a `Vector3` with x, y, and z axes represented in mm/sec
@@ -41,7 +41,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_angular_velocity() -> viam.proto.api.common.Vector3
+   .. py:method:: get_angular_velocity() -> viam.proto.common.Vector3
       :async:
 
       Get the current angular velocity as a `Vector3` with x, y, and z axes represented in radians/sec
@@ -59,7 +59,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_orientation() -> viam.proto.api.common.Orientation
+   .. py:method:: get_orientation() -> viam.proto.common.Orientation
       :async:
 
       Get the current orientation

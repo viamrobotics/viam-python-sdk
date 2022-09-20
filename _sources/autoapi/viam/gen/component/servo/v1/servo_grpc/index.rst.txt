@@ -1,0 +1,49 @@
+:py:mod:`viam.gen.component.servo.v1.servo_grpc`
+================================================
+
+.. py:module:: viam.gen.component.servo.v1.servo_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.component.servo.v1.servo_grpc.ServoServiceBase
+   viam.gen.component.servo.v1.servo_grpc.ServoServiceStub
+
+
+
+
+.. py:class:: ServoServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Move(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.MoveRequest, component.servo.v1.servo_pb2.MoveResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.GetPositionRequest, component.servo.v1.servo_pb2.GetPositionResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: Stop(stream: grpclib.server.Stream[component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: ServoServiceStub(channel: grpclib.client.Channel)
+
+

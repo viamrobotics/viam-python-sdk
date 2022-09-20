@@ -73,6 +73,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.Properties">Properties</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.supports_pcd">supports_pcd</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.intrinsic_parameters">intrinsic_parameters</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.distortion_parameters">distortion_parameters</a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_image">get_image</a></li>
@@ -87,6 +88,11 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.focal_y_px">focal_y_px</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.center_x_px">center_x_px</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.center_y_px">center_y_px</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.DistortionParameters">DistortionParameters</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.model">model</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.parameters">parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -168,6 +174,9 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.IntrinsicParameters" title="viam.components.camera.IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.DistortionParameters" title="viam.components.camera.DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -189,8 +198,14 @@ overridden, it must call the <cite>super().__init__()</cite> function.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.camera.Camera.Properties.intrinsic_parameters">
-<span class="sig-name descname"><span class="pre">intrinsic_parameters</span></span><em class="property"><span class="w"> </span><span class="pre">:viam.proto.api.component.camera.IntrinsicParameters</span></em><a class="headerlink" href="#viam.components.camera.Camera.Properties.intrinsic_parameters" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">intrinsic_parameters</span></span><em class="property"><span class="w"> </span><span class="pre">:viam.proto.component.camera.IntrinsicParameters</span></em><a class="headerlink" href="#viam.components.camera.Camera.Properties.intrinsic_parameters" title="Permalink to this definition"></a></dt>
 <dd><p>The properties of the camera</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.Camera.Properties.distortion_parameters">
+<span class="sig-name descname"><span class="pre">distortion_parameters</span></span><em class="property"><span class="w"> </span><span class="pre">:viam.proto.component.camera.DistortionParameters</span></em><a class="headerlink" href="#viam.components.camera.Camera.Properties.distortion_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>The distortion parameters of the camera</p>
 </dd></dl>
 
 </dd></dl>
@@ -283,6 +298,25 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.camera.IntrinsicParameters.center_y_px">
 <span class="sig-name descname"><span class="pre">center_y_px</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.components.camera.IntrinsicParameters.center_y_px" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.camera.</span></span><span class="sig-name descname"><span class="pre">DistortionParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.camera.DistortionParameters" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.components.camera.DistortionParameters.model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters.parameters">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.camera.DistortionParameters.parameters" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
