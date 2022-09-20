@@ -91,5 +91,9 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         properties = await camera.get_properties()
-        response = GetPropertiesResponse(supports_pcd=properties.supports_pcd, intrinsic_parameters=properties.intrinsic_parameters)
+        response = GetPropertiesResponse(
+            supports_pcd=properties.supports_pcd,
+            intrinsic_parameters=properties.intrinsic_parameters,
+            distortion_parameters=properties.distortion_parameters,
+        )
         await stream.send_message(response)

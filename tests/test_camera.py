@@ -12,6 +12,7 @@ from viam.components.resource_manager import ResourceManager
 from viam.components.types import CameraMimeType, RawImage
 from viam.proto.component.camera import (
     CameraServiceStub,
+    DistortionParameters,
     GetImageRequest,
     GetImageResponse,
     GetPointCloudRequest,
@@ -43,7 +44,11 @@ def point_cloud() -> bytes:
 
 @pytest.fixture(scope="function")
 def properties() -> Camera.Properties:
-    return Camera.Properties(True, IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6))
+    return Camera.Properties(
+        True,
+        IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
+        DistortionParameters(model="no_distortion"),
+    )
 
 
 @pytest.fixture(scope="function")

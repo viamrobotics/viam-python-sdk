@@ -50,7 +50,7 @@ class CameraClient(Camera):
 
     async def get_properties(self) -> Camera.Properties:
         response: GetPropertiesResponse = await self.client.GetProperties(GetPropertiesRequest(name=self.name))
-        return Camera.Properties(response.supports_pcd, response.intrinsic_parameters)
+        return Camera.Properties(response.supports_pcd, response.intrinsic_parameters, response.distortion_parameters)
 
     async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)
