@@ -27,6 +27,8 @@ jobs:
     # container:
     #   image: ghcr.io/viamrobotics/canon:amd64
     runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.commit.outputs.commit_long_sha }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -62,6 +64,7 @@ jobs:
           target: 'bin/'
 
       - name: Commit + Push
+        id: commit
         uses: EndBug/add-and-commit@v9.0.0
         with:
           default_author: github_actions
@@ -92,7 +95,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-        # with:
+        with:
+          ref: ${{ needs.prepare.outputs.sha }}
         #   token: ${{ secrets.REPO_READ_TOKEN }}
 
       # TODO: REMOVE
