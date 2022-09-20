@@ -71,12 +71,16 @@ jobs:
         include:
           - arch: macosx_x86_64
             ext: dylib
+            min: '_11_0_'
           - arch: macosx_arm64
             ext: dylib
-          - arch: manylinux_aarch64
+            min: '_11_0_'
+          - arch: linux_aarch64
             ext: so
-          - arch: manylinux_x86_64
+            min: ''
+          - arch: linux_x86_64
             ext: so
+            min: ''
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -105,7 +109,7 @@ jobs:
         run: poetry build
 
       - name: Rename
-        run: mv dist/viam-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-${{ matrix.arch }}.whl
+        run: mv dist/viam-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-${{ matrix.arch }}${{ matrix.min }}.whl
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
