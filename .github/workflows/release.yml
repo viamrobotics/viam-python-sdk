@@ -35,8 +35,6 @@ jobs:
         # with:
         #   token: ${{ secrets.REPO_READ_TOKEN }}
 
-      - uses: bufbuild/buf-setup-action@v1.8.0
-
       # TODO: REMOVE
       - uses: actions/setup-python@v4
         with:
@@ -48,8 +46,8 @@ jobs:
       - name: Install package
         run: poetry install
 
-      - name: Clean Buf Format Test
-        run: make clean buf better_imports format test
+      - name: Clean Format Test
+        run: make clean better_imports format test
 
       - name: Bump Version
         id: bump_version
