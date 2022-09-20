@@ -1,5 +1,5 @@
 import json
-from typing import Dict, List, Mapping, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 
 from grpclib.server import Stream
 
@@ -57,6 +57,7 @@ from viam.proto.service.vision import (
     RemoveSegmenterResponse,
     VisionServiceBase,
 )
+from viam.utils import struct_to_dict
 
 
 class MockMotionService(MotionServiceBase):
@@ -69,11 +70,13 @@ class MockMotionService(MotionServiceBase):
         self.move_responses = move_responses
         self.move_single_component_responses = move_single_component_responses
         self.get_pose_responses = get_pose_responses
+        self.extra: Optional[Mapping[str, Any]] = None
 
     async def Move(self, stream: Stream[MoveRequest, MoveResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name: ResourceName = request.component_name
+        self.extra = struct_to_dict(request.extra)
         success = self.move_responses[name.name]
         response = MoveResponse(success=success)
         await stream.send_message(response)
@@ -82,6 +85,7 @@ class MockMotionService(MotionServiceBase):
         request = await stream.recv_message()
         assert request is not None
         name: ResourceName = request.component_name
+        self.extra = struct_to_dict(request.extra)
         success = self.move_single_component_responses[name.name]
         response = MoveSingleComponentResponse(success=success)
         await stream.send_message(response)
@@ -90,6 +94,7 @@ class MockMotionService(MotionServiceBase):
         request = await stream.recv_message()
         assert request is not None
         name: ResourceName = request.component_name
+        self.extra = struct_to_dict(request.extra)
         pose = self.get_pose_responses[name.name]
         response = GetPoseResponse(pose=pose)
         await stream.send_message(response)
