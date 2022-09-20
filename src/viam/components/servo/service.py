@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.servo import (
+from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
     MoveRequest,

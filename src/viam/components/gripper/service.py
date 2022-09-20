@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.gripper import (
+from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
     GripperServiceBase,

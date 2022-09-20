@@ -1,4 +1,4 @@
-from viam.proto.api.robot import Status
+from viam.proto.robot import Status
 from viam.registry import ComponentRegistration, Registry
 from viam.utils import message_to_struct
 

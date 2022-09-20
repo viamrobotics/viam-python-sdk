@@ -10,7 +10,7 @@ from viam.components.camera.service import CameraService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.components.types import CameraMimeType, RawImage
-from viam.proto.api.component.camera import (
+from viam.proto.component.camera import (
     CameraServiceStub,
     GetImageRequest,
     GetImageResponse,

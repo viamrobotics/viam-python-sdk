@@ -4,7 +4,7 @@ from grpclib.server import Stream
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.generic import (
+from viam.proto.component.generic import (
     DoCommandRequest,
     DoCommandResponse,
     GenericServiceBase,

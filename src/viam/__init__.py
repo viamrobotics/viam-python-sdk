@@ -2,7 +2,7 @@ import sys
 from importlib.metadata import PackageNotFoundError, version
 from uuid import uuid4
 
-from viam.proto.api.common import ResourceName as _ResourceName
+from viam.proto.common import ResourceName as _ResourceName
 
 from .logging import getLogger as _getLogger
 

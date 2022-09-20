@@ -10,11 +10,11 @@ from viam.components.arm import Arm
 from viam.components.motor import Motor
 from viam.components.resource_manager import ResourceManager
 from viam.errors import ComponentNotFoundError, ServiceNotImplementedError, ViamError
-from viam.proto.api.common import Pose, PoseInFrame, ResourceName
-from viam.proto.api.component.arm import JointPositions
-from viam.proto.api.component.arm import Status as ArmStatus
-from viam.proto.api.component.motor import Status as MotorStatus
-from viam.proto.api.robot import (
+from viam.proto.common import Pose, PoseInFrame, ResourceName
+from viam.proto.component.arm import JointPositions
+from viam.proto.component.arm import Status as ArmStatus
+from viam.proto.component.motor import Status as MotorStatus
+from viam.proto.robot import (
     DiscoverComponentsRequest,
     DiscoverComponentsResponse,
     Discovery,

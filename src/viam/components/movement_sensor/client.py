@@ -4,8 +4,8 @@ from grpclib.client import Channel
 
 from viam.components.generic.client import do_command
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.proto.api.common import GeoPoint, Orientation, Vector3
-from viam.proto.api.component.movementsensor import (
+from viam.proto.common import GeoPoint, Orientation, Vector3
+from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
     GetAngularVelocityRequest,

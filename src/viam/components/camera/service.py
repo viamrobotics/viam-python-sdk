@@ -4,7 +4,7 @@ from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
 from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.camera import (
+from viam.proto.component.camera import (
     CameraServiceBase,
     GetImageRequest,
     GetImageResponse,

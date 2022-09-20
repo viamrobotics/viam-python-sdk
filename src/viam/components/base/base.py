@@ -2,7 +2,7 @@ import abc
 from typing import Any, Dict, Optional
 
 from viam.errors import NotSupportedError
-from viam.proto.api.common import Vector3
+from viam.proto.common import Vector3
 
 from ..component_base import ComponentBase
 

@@ -1,8 +1,8 @@
 import abc
 from typing import Any, Mapping, Tuple
 
-from viam.proto.api.common import GeoPoint, Orientation, Vector3
-from viam.proto.api.component.movementsensor import GetPropertiesResponse
+from viam.proto.common import GeoPoint, Orientation, Vector3
+from viam.proto.component.movementsensor import GetPropertiesResponse
 
 from ..sensor import Sensor
 

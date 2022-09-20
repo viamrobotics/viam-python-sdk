@@ -1,6 +1,6 @@
 from viam.registry import ComponentRegistration, Registry
-from viam.proto.api.common import ActuatorStatus
-from viam.proto.api.robot import Status
+from viam.proto.common import ActuatorStatus
+from viam.proto.robot import Status
 from viam.utils import message_to_struct
 
 from .base import Base, Vector3

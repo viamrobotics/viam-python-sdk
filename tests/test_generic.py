@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.generic import GenericClient, GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.api.component.generic import (
+from viam.proto.component.generic import (
     DoCommandRequest,
     DoCommandResponse,
     GenericServiceStub,

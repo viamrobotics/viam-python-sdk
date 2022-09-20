@@ -7,8 +7,8 @@ from viam.components.base.service import BaseService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
-from viam.proto.api.common import ActuatorStatus
-from viam.proto.api.component.base import (
+from viam.proto.common import ActuatorStatus
+from viam.proto.component.base import (
     BaseServiceStub,
     MoveStraightRequest,
     SetPowerRequest,

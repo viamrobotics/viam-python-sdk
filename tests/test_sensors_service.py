@@ -1,8 +1,8 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.proto.api.common import GeoPoint, Orientation, ResourceName, Vector3
-from viam.proto.api.service.sensors import Readings
+from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
+from viam.proto.service.sensors import Readings
 from viam.services.sensors import SensorsServiceClient
 from viam.utils import primitive_to_value
 

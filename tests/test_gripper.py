@@ -6,8 +6,8 @@ from viam.components.gripper import Gripper, GripperClient, create_status
 from viam.components.gripper.service import GripperService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
-from viam.proto.api.common import ActuatorStatus
-from viam.proto.api.component.gripper import (
+from viam.proto.common import ActuatorStatus
+from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
     GripperServiceStub,

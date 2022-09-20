@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.arm import Arm
 from viam.components.gantry import Gantry
-from viam.proto.api.common import Pose, PoseInFrame
+from viam.proto.common import Pose, PoseInFrame
 from viam.services.motion import MotionServiceClient
 
 from .mocks.services import MockMotionService

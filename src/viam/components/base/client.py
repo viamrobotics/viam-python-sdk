@@ -2,8 +2,8 @@ from typing import Any, Dict, Optional
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.common import Vector3
-from viam.proto.api.component.base import (
+from viam.proto.common import Vector3
+from viam.proto.component.base import (
     BaseServiceStub,
     MoveStraightRequest,
     SetPowerRequest,

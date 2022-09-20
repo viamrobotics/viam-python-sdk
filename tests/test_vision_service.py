@@ -5,7 +5,7 @@ import pytest
 from grpclib.testing import ChannelFor
 from PIL import Image
 
-from viam.proto.api.common import (
+from viam.proto.common import (
     GeometriesInFrame,
     Geometry,
     PointCloudObject,
@@ -13,7 +13,7 @@ from viam.proto.api.common import (
     RectangularPrism,
     Vector3,
 )
-from viam.proto.api.service.vision import VisionServiceBase
+from viam.proto.service.vision import VisionServiceBase
 from viam.services.vision import (
     Detection,
     Classification,

@@ -3,7 +3,7 @@ from typing import Any, Dict, Mapping
 from grpclib.client import Channel
 
 from viam.components.generic.client import do_command
-from viam.proto.api.component.sensor import (
+from viam.proto.component.sensor import (
     GetReadingsRequest,
     GetReadingsResponse,
     SensorServiceStub,

@@ -21,7 +21,7 @@ from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.common import (
+from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
     DigitalInterruptStatus,

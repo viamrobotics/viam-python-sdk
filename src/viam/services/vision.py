@@ -7,8 +7,8 @@ from grpclib.client import Channel
 from PIL.Image import Image
 
 from viam.components.types import CameraMimeType
-from viam.proto.api.common import PointCloudObject
-from viam.proto.api.service.vision import (
+from viam.proto.common import PointCloudObject
+from viam.proto.service.vision import (
     AddClassifierRequest,
     AddDetectorRequest,
     AddSegmenterRequest,

@@ -2,7 +2,7 @@ from typing import Any, Dict
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.component.gripper import GrabRequest, GrabResponse, GripperServiceStub, OpenRequest, StopRequest
+from viam.proto.component.gripper import GrabRequest, GrabResponse, GripperServiceStub, OpenRequest, StopRequest
 
 from .gripper import Gripper
 

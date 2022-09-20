@@ -2,8 +2,8 @@ from typing import Any, List, Mapping
 
 from grpclib.client import Channel
 
-from viam.proto.api.common import ResourceName
-from viam.proto.api.service.sensors import (
+from viam.proto.common import ResourceName
+from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
     GetSensorsRequest,

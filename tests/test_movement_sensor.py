@@ -8,8 +8,8 @@ from viam.components.movement_sensor import (
     MovementSensorService,
 )
 from viam.components.resource_manager import ResourceManager
-from viam.proto.api.common import GeoPoint, Orientation, Vector3
-from viam.proto.api.component.movementsensor import (
+from viam.proto.common import GeoPoint, Orientation, Vector3
+from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
     GetAngularVelocityRequest,

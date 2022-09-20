@@ -3,7 +3,7 @@ from typing import ClassVar, TYPE_CHECKING
 from typing_extensions import Self
 from grpclib.client import Channel
 from viam.errors import ServiceNotImplementedError
-from viam.proto.api.common import ResourceName
+from viam.proto.common import ResourceName
 
 
 if TYPE_CHECKING:

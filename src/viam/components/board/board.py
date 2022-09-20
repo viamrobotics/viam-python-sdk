@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from multiprocessing import Queue
 from typing import Any, Callable, Dict, List, Optional
 
-from viam.proto.api.common import BoardStatus
+from viam.proto.common import BoardStatus
 
 from ..component_base import ComponentBase
 

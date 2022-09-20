@@ -3,7 +3,7 @@ from typing import NamedTuple, Tuple, Union
 
 from PIL.Image import Image
 from viam.components.types import CameraMimeType, RawImage
-from viam.proto.api.component.camera import IntrinsicParameters
+from viam.proto.component.camera import IntrinsicParameters
 
 from ..component_base import ComponentBase
 

@@ -5,7 +5,7 @@ from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
 from viam.components.component_base import ComponentBase
-from viam.proto.api.common import GeoPoint, Orientation, ResourceName, Vector3
+from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.registry import Registry
 
 

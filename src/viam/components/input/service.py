@@ -7,7 +7,7 @@ from grpclib.server import Stream
 import viam
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError, NotSupportedError
-from viam.proto.api.component.inputcontroller import (
+from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
     GetEventsRequest,

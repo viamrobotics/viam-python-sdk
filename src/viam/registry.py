@@ -7,7 +7,7 @@ from grpclib.client import Channel
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError, DuplicateComponentError
-from viam.proto.api.robot import Status
+from viam.proto.robot import Status
 
 Component = TypeVar("Component", bound=ComponentBase)
 

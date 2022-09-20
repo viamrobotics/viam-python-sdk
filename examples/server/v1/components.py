@@ -22,7 +22,7 @@ from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.common import (
+from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
     DigitalInterruptStatus,
@@ -33,7 +33,7 @@ from viam.proto.api.common import (
     Vector3,
     WorldState,
 )
-from viam.proto.api.component.arm import JointPositions
+from viam.proto.component.arm import JointPositions
 
 
 class ExampleArm(Arm):

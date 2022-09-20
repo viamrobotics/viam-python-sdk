@@ -2,8 +2,8 @@ from typing import Any, Dict, List, Optional
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.common import WorldState
-from viam.proto.api.component.gantry import (
+from viam.proto.common import WorldState
+from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
     GetLengthsResponse,

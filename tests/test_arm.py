@@ -5,8 +5,8 @@ from viam.components.arm.service import ArmService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
-from viam.proto.api.common import Pose
-from viam.proto.api.component.arm import (
+from viam.proto.common import Pose
+from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
     GetEndPositionResponse,
