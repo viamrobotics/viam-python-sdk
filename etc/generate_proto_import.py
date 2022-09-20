@@ -72,7 +72,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
 
     to be available at
 
-        viam.proto.api.component.arm
+        viam.proto.component.arm
 
     This function will take in the directory where to store the new imports,
     the package name, and the modules (files) within that package.
@@ -82,8 +82,13 @@ def build_dirs(root: str, package: str, modules: List[str]):
     """
     LOGGER.info(f"Building proto imports for package {package}")
 
+    IMPORT_LEVEL = 1
+
     # Create new directories
     dir_name = os.path.sep.join(package.split(".")[:-1])
+    if dir_name.split(os.path.sep)[0] == "proto":
+        IMPORT_LEVEL -= 1
+        dir_name = os.path.sep.join(dir_name.split(os.path.sep)[1:])
     dir_name = os.path.join(root, dir_name)
     os.makedirs(dir_name, exist_ok=True)
 
@@ -129,7 +134,7 @@ def build_dirs(root: str, package: str, modules: List[str]):
             f.write("Do not edit manually!\n")
             f.write("'''\n")
             for (imp, cls) in classes.items():
-                f.write(f'from {"."*len(package.split("."))}{PROTO_GEN_PACKAGE}.{package}.{imp} import (\n')
+                f.write(f'from {"."*(len(package.split("."))+IMPORT_LEVEL)}{PROTO_GEN_PACKAGE}.{package}.{imp} import (\n')
                 f.write("    %s\n" % (",\n    ".join(cls)))
                 f.write(")\n")
             f.write("\n__all__ = [\n")
@@ -152,7 +157,7 @@ def run(add_inits: bool = True):
     clean()
     packages = get_packages(GENERATED_PATH.__str__())
     for (package, modules) in packages.items():
-        build_dirs(NEW_IMPORT_PATH.parent.__str__(), package, modules)
+        build_dirs(NEW_IMPORT_PATH.__str__(), package, modules)
     if add_inits:
         add_init_files(NEW_IMPORT_PATH.__str__())
 

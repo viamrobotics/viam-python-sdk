@@ -3,8 +3,8 @@ from typing import Any, Dict, List, Optional
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.common import BoardStatus
-from viam.proto.api.component.board import (
+from viam.proto.common import BoardStatus
+from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
     GetDigitalInterruptValueResponse,

@@ -3,7 +3,7 @@ from grpclib.server import Stream
 from viam.components.movement_sensor.movement_sensor import MovementSensor
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.component.movementsensor import (
+from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
     GetAngularVelocityRequest,

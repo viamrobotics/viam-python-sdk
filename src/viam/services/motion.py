@@ -2,8 +2,8 @@ from typing import Optional
 
 from grpclib.client import Channel
 
-from viam.proto.api.common import PoseInFrame, ResourceName, WorldState
-from viam.proto.api.service.motion import (
+from viam.proto.common import PoseInFrame, ResourceName, WorldState
+from viam.proto.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceStub,

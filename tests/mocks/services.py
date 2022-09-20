@@ -4,8 +4,8 @@ from typing import Dict, List, Mapping, Sequence, Union
 from grpclib.server import Stream
 
 from viam.components.types import CameraMimeType
-from viam.proto.api.common import PointCloudObject, PoseInFrame, ResourceName
-from viam.proto.api.service.motion import (
+from viam.proto.common import PointCloudObject, PoseInFrame, ResourceName
+from viam.proto.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceBase,
@@ -14,7 +14,7 @@ from viam.proto.api.service.motion import (
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
 )
-from viam.proto.api.service.sensors import (
+from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
     GetSensorsRequest,
@@ -22,7 +22,7 @@ from viam.proto.api.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
-from viam.proto.api.service.vision import (
+from viam.proto.service.vision import (
     AddClassifierRequest,
     AddClassifierResponse,
     AddDetectorRequest,

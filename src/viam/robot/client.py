@@ -10,8 +10,8 @@ from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.errors import ComponentNotFoundError, ViamError
-from viam.proto.api.common import PoseInFrame, ResourceName, Transform
-from viam.proto.api.robot import (
+from viam.proto.common import PoseInFrame, ResourceName, Transform
+from viam.proto.robot import (
     DiscoverComponentsRequest,
     DiscoverComponentsResponse,
     Discovery,

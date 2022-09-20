@@ -9,7 +9,7 @@ from viam.components.arm import Arm, JointPositions
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
-from viam.components.camera import Camera, IntrinsicParameters
+from viam.components.camera import Camera, IntrinsicParameters, DistortionParameters
 from viam.components.gantry import Gantry
 from viam.components.generic import Generic as GenericComponent
 from viam.components.gripper import Gripper
@@ -21,7 +21,7 @@ from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.common import (
+from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
     DigitalInterruptStatus,
@@ -273,7 +273,9 @@ class MockCamera(Camera):
         self.image = Image.new("RGBA", (100, 100), "#AABBCCDD")
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.props = Camera.Properties(
-            True, IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6)
+            True,
+            IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
+            DistortionParameters(model="no_distortion"),
         )
         super().__init__(name)
 

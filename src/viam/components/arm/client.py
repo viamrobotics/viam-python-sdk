@@ -2,8 +2,8 @@ from typing import Any, Dict, Optional
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.common import Pose, WorldState
-from viam.proto.api.component.arm import (
+from viam.proto.common import Pose, WorldState
+from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
     GetEndPositionResponse,

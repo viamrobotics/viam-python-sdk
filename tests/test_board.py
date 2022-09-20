@@ -7,8 +7,8 @@ from viam.components.board.service import BoardService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import ComponentNotFoundError
-from viam.proto.api.common import AnalogStatus, BoardStatus, DigitalInterruptStatus
-from viam.proto.api.component.board import (
+from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus
+from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
     GetDigitalInterruptValueResponse,

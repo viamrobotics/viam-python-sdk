@@ -10,7 +10,7 @@ from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.api.component.inputcontroller import (
+from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
     GetEventsRequest,

@@ -2,7 +2,7 @@ import abc
 from typing import Any, Dict, cast, TYPE_CHECKING
 from typing_extensions import Self
 
-from viam.proto.api.common import ResourceName
+from viam.proto.common import ResourceName
 
 if TYPE_CHECKING:
     from viam.robot.client import RobotClient

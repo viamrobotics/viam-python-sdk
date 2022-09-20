@@ -2,8 +2,8 @@ from typing import Any, Dict, List
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.common import PoseInFrame
-from viam.proto.api.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceStub
+from viam.proto.common import PoseInFrame
+from viam.proto.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceStub
 
 from .pose_tracker import PoseTracker
 

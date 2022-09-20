@@ -5,8 +5,8 @@ from grpclib.server import Stream
 from viam import logging
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import MethodNotImplementedError, ViamGRPCError
-from viam.proto.api.common import ResourceName
-from viam.proto.api.robot import (
+from viam.proto.common import ResourceName
+from viam.proto.robot import (
     BlockForOperationRequest,
     BlockForOperationResponse,
     CancelOperationRequest,

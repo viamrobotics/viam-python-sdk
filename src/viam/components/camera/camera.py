@@ -3,7 +3,7 @@ from typing import NamedTuple, Tuple, Union
 
 from PIL.Image import Image
 from viam.components.types import CameraMimeType, RawImage
-from viam.proto.api.component.camera import IntrinsicParameters
+from viam.proto.component.camera import IntrinsicParameters, DistortionParameters
 
 from ..component_base import ComponentBase
 
@@ -25,6 +25,9 @@ class Camera(ComponentBase):
 
         intrinsic_parameters: IntrinsicParameters
         """The properties of the camera"""
+
+        distortion_parameters: DistortionParameters
+        """The distortion parameters of the camera"""
 
     @abc.abstractmethod
     async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Union[Image, RawImage]:

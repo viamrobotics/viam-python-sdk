@@ -9,7 +9,7 @@ import viam
 from viam.components.generic.client import do_command
 from viam.errors import NotSupportedError
 from viam.logging import getLogger
-from viam.proto.api.component.inputcontroller import (
+from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
     GetEventsRequest,

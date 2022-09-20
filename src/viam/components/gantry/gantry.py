@@ -2,7 +2,7 @@ import abc
 from typing import Any, Dict, List, Optional
 
 from viam.errors import NotSupportedError
-from viam.proto.api.common import WorldState
+from viam.proto.common import WorldState
 
 from ..component_base import ComponentBase
 

@@ -1,7 +1,7 @@
 import abc
 from typing import Dict, List
 
-from viam.proto.api.common import PoseInFrame
+from viam.proto.common import PoseInFrame
 
 from ..component_base import ComponentBase
 

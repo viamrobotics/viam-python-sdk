@@ -6,7 +6,7 @@ from viam.components.resource_manager import ResourceManager
 from viam.components.servo import ServoClient, ServoStatus, create_status
 from viam.components.servo.service import ServoService
 from viam.errors import NotSupportedError
-from viam.proto.api.component.servo import (
+from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
     MoveRequest,

@@ -8,7 +8,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from typing_extensions import Self
 from viam.components.component_base import ComponentBase
 from viam.errors import NotSupportedError
-from viam.proto.api.component.inputcontroller import Event as PBEvent
+from viam.proto.component.inputcontroller import Event as PBEvent
 
 
 class EventType(str, Enum):

@@ -5,7 +5,7 @@ from viam.components.gantry.service import GantryService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
-from viam.proto.api.component.gantry import (
+from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
     GetLengthsResponse,

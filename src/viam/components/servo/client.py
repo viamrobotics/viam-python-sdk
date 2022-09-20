@@ -2,7 +2,7 @@ from typing import Any, Dict
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.component.servo import GetPositionRequest, GetPositionResponse, MoveRequest, ServoServiceStub, StopRequest
+from viam.proto.component.servo import GetPositionRequest, GetPositionResponse, MoveRequest, ServoServiceStub, StopRequest
 
 from .servo import Servo
 

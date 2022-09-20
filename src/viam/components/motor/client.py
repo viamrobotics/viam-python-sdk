@@ -2,7 +2,7 @@ from typing import Any, Dict, Optional
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
-from viam.proto.api.component.motor import (
+from viam.proto.component.motor import (
     GetPropertiesRequest,
     GetPropertiesResponse,
     GetPositionRequest,

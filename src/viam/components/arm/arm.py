@@ -2,8 +2,8 @@ import abc
 from typing import Any, Dict, Optional
 
 from viam.errors import NotSupportedError
-from viam.proto.api.common import Pose, WorldState
-from viam.proto.api.component.arm import JointPositions
+from viam.proto.common import Pose, WorldState
+from viam.proto.component.arm import JointPositions
 
 from ..component_base import ComponentBase
 

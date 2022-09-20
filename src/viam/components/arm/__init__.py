@@ -1,5 +1,5 @@
-from viam.proto.api.component.arm import Status as ArmStatus
-from viam.proto.api.robot import Status
+from viam.proto.component.arm import Status as ArmStatus
+from viam.proto.robot import Status
 from viam.registry import ComponentRegistration, Registry
 from viam.utils import message_to_struct
 

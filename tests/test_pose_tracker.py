@@ -5,8 +5,8 @@ from viam.components.generic.service import GenericService
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.api.common import Pose, PoseInFrame
-from viam.proto.api.component.posetracker import (
+from viam.proto.common import Pose, PoseInFrame
+from viam.proto.component.posetracker import (
     GetPosesRequest,
     GetPosesResponse,
     PoseTrackerServiceStub,

@@ -6,7 +6,7 @@ from viam.components.motor import MotorClient, MotorStatus, create_status
 from viam.components.motor.service import MotorService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import NotSupportedError
-from viam.proto.api.component.motor import (
+from viam.proto.component.motor import (
     GetPositionRequest,
     GetPositionResponse,
     GetPropertiesRequest,
