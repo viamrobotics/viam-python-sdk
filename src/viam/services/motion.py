@@ -47,6 +47,13 @@ class MotionServiceClient(ServiceClientBase):
 
         Returns:
             bool: Whether the move was successful
+
+        Note: Frames designated with respect to components can also be used as the `component_name` when calling for a move. This
+        technique allows for planning and moving the frame itself to the `destination`. To do so, simply override the `name` attribute
+        for a given resource with the originating ReferenceFrame. Then pass in the updated resource into the `component_name`. Ex:
+            resource = Arm.get_resource_name("arm")
+            resource.name = "externalFrame"
+            success = await MotionServiceClient.move(resource, ...)
         """
         if extra is None:
             extra = {}
