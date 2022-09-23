@@ -36,7 +36,7 @@ from viam.proto.robot import (
     TransformPoseResponse,
 )
 from viam.registry import Registry
-from viam.rpc.dial import DialOptions, dial_direct
+from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.utils import dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
@@ -90,19 +90,19 @@ class RobotClient:
         Returns:
             Self: the RobotClient
         """
-        channel = await dial_direct(address, options.dial_options)
+        channel = await dial(address, options.dial_options)
         robot = await RobotClient.with_channel(channel, options)
         robot._should_close_channel = True
         return robot
 
     @classmethod
-    async def with_channel(cls, channel: Channel, options: Options) -> Self:
+    async def with_channel(cls, channel: ViamChannel, options: Options) -> Self:
         """Create a robot that is connected to a robot over the given channel.
 
         Any robots created using this method will *NOT* automatically close the channel upon exit.
 
         Args:
-            channel (Channel): The gRPC channel that is connected to a robot
+            channel (ViamChannel): The channel that is connected to a robot, obtained by `viam.rpc.dial`
             options (Options): Options for refreshing. Any connection options will be ignored.
 
         Returns:
@@ -112,7 +112,7 @@ class RobotClient:
 
         self = cls()
         self._channel = channel
-        self._client = RobotServiceStub(self._channel)
+        self._client = RobotServiceStub(self._channel.channel)
         self._manager = ResourceManager()
         self._lock = Lock()
         self._resource_names = []
@@ -126,7 +126,7 @@ class RobotClient:
 
         return self
 
-    _channel: Channel
+    _channel: ViamChannel
     _lock: Lock
     _manager: ResourceManager
     _client: RobotServiceStub
@@ -150,7 +150,7 @@ class RobotClient:
                 continue
             subtype = rname.subtype
             try:
-                manager.register(Registry.lookup(subtype).create_rpc_client(rname.name, self._channel))
+                manager.register(Registry.lookup(subtype).create_rpc_client(rname.name, self._channel.channel))
             except ComponentNotFoundError:
                 LOGGER.warn(f"Component of type {subtype} is not implemented")
         with self._lock:

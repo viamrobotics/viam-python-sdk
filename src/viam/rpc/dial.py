@@ -1,15 +1,26 @@
-from dataclasses import dataclass
+import ctypes
+import pathlib
 import re
 import socket
 import ssl
-from typing import Optional, Tuple, Type
+import sys
+import time
+import warnings
+from dataclasses import dataclass
+from typing import Callable, Literal, NamedTuple, Optional, Tuple, Type, cast
+
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
-from grpclib.metadata import _MetadataLike, Deadline
+from grpclib.metadata import Deadline, _MetadataLike
 from grpclib.stream import _RecvType, _SendType
+from typing_extensions import Self
 
-from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub, Credentials as PBCredentials
-from viam.errors import InsecureConnectionError
+from viam import logging
+from viam.errors import InsecureConnectionError, ViamError
+from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
+from viam.proto.rpc.auth import Credentials as PBCredentials
+
+LOGGER = logging.getLogger(__name__)
 
 
 class RTCConfiguration:
@@ -24,7 +35,7 @@ class DialWebRTCOptions:
 
 @dataclass
 class Credentials:
-    type: str
+    type: Literal["robot-location-secret"]
     payload: str
 
 
@@ -34,19 +45,19 @@ class DialOptions:
     webrtc_options: Optional[DialWebRTCOptions]
     external_auth_address: Optional[str]
 
-    #: Determine if the RPC connection is TLS based. Must be provided to
-    #: establish an insecure connection. Otherwise, a TLS based connection
-    #: will be assumed.
     insecure: bool
+    """Determine if the RPC connection is TLS based. Must be provided to
+    establish an insecure connection. Otherwise, a TLS based connection
+    will be assumed."""
 
-    #: Allow the RPC connection to be downgraded to an insecure connection
-    #: if detected. This is only used when credentials are not present.
     allow_insecure_downgrade: bool
+    """Allow the RPC connection to be downgraded to an insecure connection
+    if detected. This is only used when credentials are not present."""
 
-    #: Allow the RPC connection to be downgraded to an insecure connection
-    #: if detected, even with credentials present. This is generally
-    #: unsafe to use, but can be requested.
     allow_insecure_with_creds_downgrade: bool
+    """Allow the RPC connection to be downgraded to an insecure connection
+    if detected, even with credentials present. This is generally
+    unsafe to use, but can be requested."""
 
     def __init__(
         self,
@@ -109,8 +120,81 @@ class AuthenticatedChannel(Channel):
         return super().request(name, cardinality, request_type, reply_type, timeout=timeout, deadline=deadline, metadata=metadata)
 
 
-async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
+@dataclass
+class ViamChannel:
 
+    channel: Channel
+    release: Callable[[], None]
+
+    def close(self):
+        print(f"start at {time.time()}")
+        self.release()
+        print(f"end at {time.time()}")
+        self.channel.close()
+
+    def __del__(self):
+        self.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self):
+        self.close()
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self):
+        self.close()
+
+
+async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
+    opts = options if options else DialOptions()
+    creds = opts.credentials.payload if opts.credentials else ""
+    insecure = opts.insecure or opts.allow_insecure_with_creds_downgrade or (not creds and opts.allow_insecure_downgrade)
+
+    libname = pathlib.Path(__file__).parent.absolute() / f"libviam.{'dylib' if sys.platform == 'darwin' else 'so'}"
+    c_lib = ctypes.CDLL(libname.__str__())
+    c_lib.init_rust_runtime.argtypes = ()
+    c_lib.init_rust_runtime.restype = ctypes.c_void_p
+
+    c_lib.dial.argtypes = ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p
+    c_lib.dial.restype = ctypes.c_void_p
+
+    c_lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
+    c_lib.free_rust_runtime.restype = None
+
+    c_lib.free_string.argtypes = (ctypes.c_void_p,)
+    c_lib.free_string.restype = None
+
+    ptr = c_lib.init_rust_runtime()
+
+    path_ptr = c_lib.dial(
+        address.encode("utf-8"),
+        creds.encode("utf-8"),
+        insecure,
+        ptr,
+    )
+    path = ctypes.cast(path_ptr, ctypes.c_char_p).value
+
+    if path:
+        LOGGER.info(f"Connecting to socket: {path}")
+        chan = Channel(path=path.decode("utf-8"), ssl=None)
+
+        def release():
+            c_lib.free_string(path_ptr)
+            c_lib.free_rust_runtime(ptr)
+
+        channel = ViamChannel(chan, release)
+        # channel = ViamChannel(chan, lambda: time.sleep(1) and c_lib.free_rust_runtime(ptr))
+        return channel
+
+    c_lib.free_rust_runtime(ptr)
+    raise ViamError(f"Unable to establish a connection to {address}")
+
+
+async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
+    warnings.warn("rpc.dial.dial_direct will be deprecated soon. Use rpc.dial.dial instead.", DeprecationWarning)
     opts = options if options else DialOptions()
     insecure = opts.insecure
 
