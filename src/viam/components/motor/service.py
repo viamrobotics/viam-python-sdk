@@ -40,7 +40,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await self._run_with_operation(motor.set_power, request.power_pct, struct_to_dict(request.extra))
+        await motor.set_power(request.power_pct, struct_to_dict(request.extra))
         await stream.send_message(SetPowerResponse())
 
     async def GoFor(self, stream: Stream[GoForRequest, GoForResponse]) -> None:
@@ -51,7 +51,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await self._run_with_operation(motor.go_for, request.rpm, request.revolutions, struct_to_dict(request.extra))
+        await motor.go_for(request.rpm, request.revolutions, struct_to_dict(request.extra))
         await stream.send_message(GoForResponse())
 
     async def GoTo(self, stream: Stream[GoToRequest, GoToResponse]) -> None:
@@ -62,7 +62,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await self._run_with_operation(motor.go_to, request.rpm, request.position_revolutions, struct_to_dict(request.extra))
+        await motor.go_to(request.rpm, request.position_revolutions, struct_to_dict(request.extra))
         await stream.send_message(GoToResponse())
 
     async def ResetZeroPosition(self, stream: Stream[ResetZeroPositionRequest, ResetZeroPositionResponse]) -> None:
@@ -73,7 +73,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await self._run_with_operation(motor.reset_zero_position, request.offset, struct_to_dict(request.extra))
+        await motor.reset_zero_position(request.offset, struct_to_dict(request.extra))
         await stream.send_message(ResetZeroPositionResponse())
 
     async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
@@ -84,7 +84,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        position = await self._run_with_operation(motor.get_position, struct_to_dict(request.extra))
+        position = await motor.get_position(struct_to_dict(request.extra))
         await stream.send_message(GetPositionResponse(position=position))
 
     async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
@@ -95,7 +95,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        properties = await self._run_with_operation(motor.get_properties, struct_to_dict(request.extra))
+        properties = await motor.get_properties(struct_to_dict(request.extra))
         response = GetPropertiesResponse(**properties.__dict__)
         await stream.send_message(response)
 
@@ -107,7 +107,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await self._run_with_operation(motor.stop, struct_to_dict(request.extra))
+        await motor.stop(struct_to_dict(request.extra))
         response = StopResponse()
         await stream.send_message(response)
 
@@ -119,5 +119,5 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        is_powered = await self._run_with_operation(motor.is_powered, struct_to_dict(request.extra))
+        is_powered = await motor.is_powered(struct_to_dict(request.extra))
         await stream.send_message(IsPoweredResponse(is_on=is_powered))

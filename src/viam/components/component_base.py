@@ -67,7 +67,7 @@ class ComponentBase(abc.ABC):
         Returns:
             Operation: The operation associated with this function
         """
-        return kwargs.get("operation", Operation._noop())
+        return kwargs.get(Operation.ARG_NAME, Operation._noop())
 
     async def do_command(self, command: Dict[str, Any], **kwargs) -> Dict[str, Any]:
         """Send/Receive arbitrary commands

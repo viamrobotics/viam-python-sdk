@@ -3,6 +3,7 @@
 import asyncio
 from typing import Any, Dict, Optional
 from viam.components.arm import Arm, JointPositions, Pose, WorldState
+from viam.operations import run_with_operation
 
 
 class MyCoolArm(Arm):
@@ -28,6 +29,7 @@ class MyCoolArm(Arm):
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
         return self.position
 
+    @run_with_operation
     async def move_to_position(
         self,
         pose: Pose,
@@ -45,7 +47,7 @@ class MyCoolArm(Arm):
             await asyncio.sleep(1)
 
             # Check if the operation is cancelled and, if it is, stop the arm's motion
-            if operation.is_cancelled():
+            if await operation.is_cancelled():
                 await self.stop()
                 break
 
@@ -54,6 +56,7 @@ class MyCoolArm(Arm):
     async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> JointPositions:
         return self.joint_positions
 
+    @run_with_operation
     async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None, **kwargs):
         operation = self.get_operation(kwargs)
 
@@ -65,7 +68,7 @@ class MyCoolArm(Arm):
             await asyncio.sleep(1)
 
             # Check if the operation is cancelled and, if it is, stop the arm's motion
-            if operation.is_cancelled():
+            if await operation.is_cancelled():
                 await self.stop()
                 break
 

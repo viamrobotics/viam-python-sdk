@@ -21,5 +21,5 @@ class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracke
             pose_tracker = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        poses = await self._run_with_operation(pose_tracker.get_poses, list(request.body_names))
+        poses = await pose_tracker.get_poses(list(request.body_names))
         await stream.send_message(GetPosesResponse(body_poses=poses))

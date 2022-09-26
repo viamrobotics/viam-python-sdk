@@ -1,5 +1,7 @@
 import asyncio
+import time
 import pytest
+from viam.operations import run_with_operation
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.components.service_base import ComponentServiceBase
@@ -8,6 +10,9 @@ from viam.components.service_base import ComponentServiceBase
 @pytest.mark.asyncio
 async def test_component_service_base():
     class TestComponent(ComponentBase):
+
+        long_running_task_cancelled = False
+
         async def no_return(self, **kwargs):
             pass
 
@@ -17,12 +22,17 @@ async def test_component_service_base():
         async def add(self, a: float, b: float, **kwargs) -> float:
             return a + b
 
+        @run_with_operation
         async def long_running(self, **kwargs) -> bool:
             operation = self.get_operation(kwargs)
-            for _ in range(1000):
-                if operation.is_cancelled():
-                    return True
-            return False
+            for i in range(5):
+                print(i)
+                time.sleep(0.01)
+                if await operation.is_cancelled():
+                    self.long_running_task_cancelled = True
+                    return self.long_running_task_cancelled
+            self.long_running_task_cancelled = False
+            return self.long_running_task_cancelled
 
     class TestService(ComponentServiceBase[TestComponent]):
 
@@ -30,19 +40,19 @@ async def test_component_service_base():
 
         async def no_return(self):
             component = self.get_component("test")
-            return await self._run_with_operation(component.no_return)
+            return await component.no_return()
 
         async def return_one(self) -> int:
             component = self.get_component("test")
-            return await self._run_with_operation(component.return_one)
+            return await component.return_one()
 
         async def add(self, a: float, b: float) -> float:
             component = self.get_component("test")
-            return await self._run_with_operation(component.add, a, b)
+            return await component.add(a, b)
 
         async def long_running(self) -> bool:
             component = self.get_component("test")
-            return await self._run_with_operation(component.long_running)
+            return await component.long_running()
 
     component = TestComponent("test")
     service = TestService(ResourceManager([component]))
@@ -74,6 +84,9 @@ async def test_component_service_base():
     # Test cancelled when wrapped with operation
     with pytest.raises(asyncio.CancelledError):
         task = asyncio.create_task(service.long_running())
-        task.cancel()
+
+        asyncio.get_event_loop().call_later(0.02, task.cancel)
+
         result = await task
-        assert result is True
+
+    assert component.long_running_task_cancelled is True

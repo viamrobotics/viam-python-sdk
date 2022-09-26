@@ -10,12 +10,12 @@ async def test_is_cancelled():
     opid = Operation("test-opid-0", event)
 
     # Test start condition
-    assert opid.is_cancelled() is False
+    assert await opid.is_cancelled() is False
 
     # Test that setting an event will cancel
     event.set()
-    assert opid.is_cancelled() is True
+    assert await opid.is_cancelled() is True
 
     # Test that once set, cancelled is not unset
     event.clear()
-    assert opid.is_cancelled() is True
+    assert await opid.is_cancelled() is True

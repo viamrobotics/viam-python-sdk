@@ -40,7 +40,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             controller = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        controls = await self._run_with_operation(controller.get_controls)
+        controls = await controller.get_controls()
         response = GetControlsResponse(controls=[c.value for c in controls])
         await stream.send_message(response)
 
@@ -52,7 +52,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             controller = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        events = await self._run_with_operation(controller.get_events)
+        events = await controller.get_events()
         pb_events = [e.proto for e in events.values()]
         response = GetEventsResponse(events=pb_events)
         await stream.send_message(response)
@@ -138,7 +138,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             controller = self.get_component(name)
             pb_event = request.event
             event = Event.from_proto(pb_event)
-            await self._run_with_operation(controller.trigger_event, event)
+            await controller.trigger_event(event)
         except ComponentNotFoundError as e:
             raise e.grpc_error
         except NotSupportedError as e:

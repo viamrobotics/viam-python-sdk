@@ -30,7 +30,7 @@ class GenericService(GenericServiceBase, ComponentServiceBase[ComponentBase]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         try:
-            result = await self._run_with_operation(component.do_command, struct_to_dict(request.command))
+            result = await component.do_command(struct_to_dict(request.command))
         except NotImplementedError:
             raise GRPCError(Status.UNIMPLEMENTED, f"`DO` command is unimplemented for component named: {name}")
         response = DoCommandResponse(result=dict_to_struct(result))
