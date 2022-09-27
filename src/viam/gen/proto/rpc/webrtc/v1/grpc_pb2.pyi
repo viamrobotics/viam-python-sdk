@@ -58,6 +58,7 @@ class Request(google.protobuf.message.Message):
     STREAM_FIELD_NUMBER: builtins.int
     HEADERS_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
+    RST_STREAM_FIELD_NUMBER: builtins.int
 
     @property
     def stream(self) -> global___Stream:
@@ -70,17 +71,18 @@ class Request(google.protobuf.message.Message):
     @property
     def message(self) -> global___RequestMessage:
         ...
+    rst_stream: builtins.bool
 
-    def __init__(self, *, stream: global___Stream | None=..., headers: global___RequestHeaders | None=..., message: global___RequestMessage | None=...) -> None:
+    def __init__(self, *, stream: global___Stream | None=..., headers: global___RequestHeaders | None=..., message: global___RequestMessage | None=..., rst_stream: builtins.bool=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'type', b'type']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing_extensions.Literal['headers', 'message'] | None:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing_extensions.Literal['headers', 'message', 'rst_stream'] | None:
         ...
 global___Request = Request
 
