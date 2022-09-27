@@ -14,7 +14,6 @@ from ....gen.component.camera.v1.camera_pb2 import (
     IntrinsicParameters,
     Property,
     RenderFrameRequest,
-    Video,
     Webcam,
     Webcams,
 )
@@ -32,7 +31,6 @@ __all__ = [
     "IntrinsicParameters",
     "Property",
     "RenderFrameRequest",
-    "Video",
     "Webcam",
     "Webcams",
 ]
