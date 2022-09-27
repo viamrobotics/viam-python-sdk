@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -76,6 +77,71 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.inputcontroller</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase"><code class="docutils literal notranslate"><span class="pre">InputControllerServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase.GetControls"><code class="docutils literal notranslate"><span class="pre">InputControllerServiceBase.GetControls()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase.GetEvents"><code class="docutils literal notranslate"><span class="pre">InputControllerServiceBase.GetEvents()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase.StreamEvents"><code class="docutils literal notranslate"><span class="pre">InputControllerServiceBase.StreamEvents()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase.TriggerEvent"><code class="docutils literal notranslate"><span class="pre">InputControllerServiceBase.TriggerEvent()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">InputControllerServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceStub"><code class="docutils literal notranslate"><span class="pre">InputControllerServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event"><code class="docutils literal notranslate"><span class="pre">Event</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.event"><code class="docutils literal notranslate"><span class="pre">Event.event</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.control"><code class="docutils literal notranslate"><span class="pre">Event.control</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.value"><code class="docutils literal notranslate"><span class="pre">Event.value</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.time"><code class="docutils literal notranslate"><span class="pre">Event.time()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.HasField"><code class="docutils literal notranslate"><span class="pre">Event.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest"><code class="docutils literal notranslate"><span class="pre">GetControlsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.controller"><code class="docutils literal notranslate"><span class="pre">GetControlsRequest.controller</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsResponse"><code class="docutils literal notranslate"><span class="pre">GetControlsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsResponse.controls"><code class="docutils literal notranslate"><span class="pre">GetControlsResponse.controls()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest"><code class="docutils literal notranslate"><span class="pre">GetEventsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.controller"><code class="docutils literal notranslate"><span class="pre">GetEventsRequest.controller</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsResponse"><code class="docutils literal notranslate"><span class="pre">GetEventsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsResponse.events"><code class="docutils literal notranslate"><span class="pre">GetEventsResponse.events()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Status.events"><code class="docutils literal notranslate"><span class="pre">Status.events()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.control"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events.control</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events.events()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events.cancelled_events()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.controller"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.controller</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.events()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.control">control</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.events">events</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events">cancelled_events</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsResponse"><code class="docutils literal notranslate"><span class="pre">StreamEventsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsResponse.event"><code class="docutils literal notranslate"><span class="pre">StreamEventsResponse.event()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsResponse.HasField"><code class="docutils literal notranslate"><span class="pre">StreamEventsResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.controller"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.controller</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.event"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.event()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventResponse"><code class="docutils literal notranslate"><span class="pre">TriggerEventResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase">InputControllerServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase.GetControls">GetControls</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceBase.GetEvents">GetEvents</a></li>
@@ -114,12 +180,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest">StreamEventsRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events">Events</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.control">control</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.events">events</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events">cancelled_events</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events">Events</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.events">events</a></li>
 </ul>

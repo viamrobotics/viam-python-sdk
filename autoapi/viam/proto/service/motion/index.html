@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -72,6 +73,56 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.motion</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.Move"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.Move()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.MoveSingleComponent"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.MoveSingleComponent()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.GetPose"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.GetPose()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.destination_frame"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.destination_frame</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.component_name"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.component_name()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.supplemental_transforms()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse"><code class="docutils literal notranslate"><span class="pre">GetPoseResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse.pose"><code class="docutils literal notranslate"><span class="pre">GetPoseResponse.pose()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPoseResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest"><code class="docutils literal notranslate"><span class="pre">MoveRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.destination"><code class="docutils literal notranslate"><span class="pre">MoveRequest.destination()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.component_name"><code class="docutils literal notranslate"><span class="pre">MoveRequest.component_name()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveRequest.world_state()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveResponse"><code class="docutils literal notranslate"><span class="pre">MoveResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveResponse.success"><code class="docutils literal notranslate"><span class="pre">MoveResponse.success</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.destination"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.destination()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.component_name"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.component_name()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.world_state()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentResponse"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentResponse.success"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentResponse.success</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase">MotionServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.Move">Move</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.MoveSingleComponent">MoveSingleComponent</a></li>

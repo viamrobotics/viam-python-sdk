@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -69,6 +70,58 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.audioinput</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceBase"><code class="docutils literal notranslate"><span class="pre">AudioInputServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceBase.Chunks"><code class="docutils literal notranslate"><span class="pre">AudioInputServiceBase.Chunks()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceBase.Properties"><code class="docutils literal notranslate"><span class="pre">AudioInputServiceBase.Properties()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceBase.Record"><code class="docutils literal notranslate"><span class="pre">AudioInputServiceBase.Record()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">AudioInputServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceStub"><code class="docutils literal notranslate"><span class="pre">AudioInputServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.AudioChunk"><code class="docutils literal notranslate"><span class="pre">AudioChunk</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioChunk.data"><code class="docutils literal notranslate"><span class="pre">AudioChunk.data</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioChunk.length"><code class="docutils literal notranslate"><span class="pre">AudioChunk.length</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.AudioChunkInfo"><code class="docutils literal notranslate"><span class="pre">AudioChunkInfo</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioChunkInfo.sample_format"><code class="docutils literal notranslate"><span class="pre">AudioChunkInfo.sample_format</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioChunkInfo.channels"><code class="docutils literal notranslate"><span class="pre">AudioChunkInfo.channels</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioChunkInfo.sampling_rate"><code class="docutils literal notranslate"><span class="pre">AudioChunkInfo.sampling_rate</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.ChunksRequest"><code class="docutils literal notranslate"><span class="pre">ChunksRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.ChunksRequest.name"><code class="docutils literal notranslate"><span class="pre">ChunksRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.ChunksRequest.sample_format"><code class="docutils literal notranslate"><span class="pre">ChunksRequest.sample_format</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.ChunksResponse"><code class="docutils literal notranslate"><span class="pre">ChunksResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.ChunksResponse.info"><code class="docutils literal notranslate"><span class="pre">ChunksResponse.info()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.ChunksResponse.chunk"><code class="docutils literal notranslate"><span class="pre">ChunksResponse.chunk()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.ChunksResponse.HasField"><code class="docutils literal notranslate"><span class="pre">ChunksResponse.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.ChunksResponse.WhichOneof"><code class="docutils literal notranslate"><span class="pre">ChunksResponse.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesRequest"><code class="docutils literal notranslate"><span class="pre">PropertiesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesRequest.name"><code class="docutils literal notranslate"><span class="pre">PropertiesRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse.channel_count"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.channel_count</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse.sample_rate"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.sample_rate</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse.sample_size"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.sample_size</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse.is_big_endian"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.is_big_endian</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse.is_float"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.is_float</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse.is_interleaved"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.is_interleaved</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse.latency"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.latency()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.PropertiesResponse.HasField"><code class="docutils literal notranslate"><span class="pre">PropertiesResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.RecordRequest"><code class="docutils literal notranslate"><span class="pre">RecordRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.RecordRequest.name"><code class="docutils literal notranslate"><span class="pre">RecordRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.RecordRequest.duration"><code class="docutils literal notranslate"><span class="pre">RecordRequest.duration()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.RecordRequest.HasField"><code class="docutils literal notranslate"><span class="pre">RecordRequest.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceBase">AudioInputServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceBase.Chunks">Chunks</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.audioinput.AudioInputServiceBase.Properties">Properties</a></li>

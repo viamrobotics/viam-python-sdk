@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -68,6 +69,74 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.model</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.ModelServiceBase"><code class="docutils literal notranslate"><span class="pre">ModelServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.ModelServiceBase.Upload"><code class="docutils literal notranslate"><span class="pre">ModelServiceBase.Upload()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.ModelServiceBase.Delete"><code class="docutils literal notranslate"><span class="pre">ModelServiceBase.Delete()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.ModelServiceBase.Deploy"><code class="docutils literal notranslate"><span class="pre">ModelServiceBase.Deploy()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.ModelServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">ModelServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.ModelServiceStub"><code class="docutils literal notranslate"><span class="pre">ModelServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.DeleteMetadata"><code class="docutils literal notranslate"><span class="pre">DeleteMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeleteMetadata.org_id"><code class="docutils literal notranslate"><span class="pre">DeleteMetadata.org_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeleteMetadata.model_name"><code class="docutils literal notranslate"><span class="pre">DeleteMetadata.model_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.DeleteRequest"><code class="docutils literal notranslate"><span class="pre">DeleteRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeleteRequest.metadata"><code class="docutils literal notranslate"><span class="pre">DeleteRequest.metadata()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeleteRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DeleteRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.DeleteResponse"><code class="docutils literal notranslate"><span class="pre">DeleteResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeleteResponse.message"><code class="docutils literal notranslate"><span class="pre">DeleteResponse.message</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeleteResponse.status"><code class="docutils literal notranslate"><span class="pre">DeleteResponse.status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.DeployMetadata"><code class="docutils literal notranslate"><span class="pre">DeployMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeployMetadata.model_name"><code class="docutils literal notranslate"><span class="pre">DeployMetadata.model_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.DeployRequest"><code class="docutils literal notranslate"><span class="pre">DeployRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeployRequest.metadata"><code class="docutils literal notranslate"><span class="pre">DeployRequest.metadata()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeployRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DeployRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.DeployResponse"><code class="docutils literal notranslate"><span class="pre">DeployResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeployResponse.message"><code class="docutils literal notranslate"><span class="pre">DeployResponse.message</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.DeployResponse.status"><code class="docutils literal notranslate"><span class="pre">DeployResponse.status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.FileData"><code class="docutils literal notranslate"><span class="pre">FileData</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.FileData.data"><code class="docutils literal notranslate"><span class="pre">FileData.data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.SyncedModel"><code class="docutils literal notranslate"><span class="pre">SyncedModel</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.SyncedModel.org_id"><code class="docutils literal notranslate"><span class="pre">SyncedModel.org_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.SyncedModel.model_name"><code class="docutils literal notranslate"><span class="pre">SyncedModel.model_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.SyncedModel.associated_dataset"><code class="docutils literal notranslate"><span class="pre">SyncedModel.associated_dataset</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.SyncedModel.blob_path"><code class="docutils literal notranslate"><span class="pre">SyncedModel.blob_path</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.SyncedModel.sync_time"><code class="docutils literal notranslate"><span class="pre">SyncedModel.sync_time()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.SyncedModel.HasField"><code class="docutils literal notranslate"><span class="pre">SyncedModel.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.UploadMetadata"><code class="docutils literal notranslate"><span class="pre">UploadMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadMetadata.org_id"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.org_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadMetadata.model_name"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.model_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadMetadata.associated_dataset"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.associated_dataset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.UploadRequest"><code class="docutils literal notranslate"><span class="pre">UploadRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadRequest.metadata"><code class="docutils literal notranslate"><span class="pre">UploadRequest.metadata()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadRequest.file_contents"><code class="docutils literal notranslate"><span class="pre">UploadRequest.file_contents()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadRequest.HasField"><code class="docutils literal notranslate"><span class="pre">UploadRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">UploadRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.UploadResponse"><code class="docutils literal notranslate"><span class="pre">UploadResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadResponse.message"><code class="docutils literal notranslate"><span class="pre">UploadResponse.message</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.UploadResponse.status"><code class="docutils literal notranslate"><span class="pre">UploadResponse.status</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.model.ModelServiceBase">ModelServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.ModelServiceBase.Upload">Upload</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.model.ModelServiceBase.Delete">Delete</a></li>

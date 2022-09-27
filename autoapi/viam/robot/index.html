@@ -19,6 +19,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -65,6 +66,142 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.RobotServiceBase"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.GetOperations"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetOperations()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.ResourceNames"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.ResourceNames()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.ResourceRPCSubtypes"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.ResourceRPCSubtypes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.CancelOperation"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.CancelOperation()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.BlockForOperation"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.BlockForOperation()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.DiscoverComponents"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.DiscoverComponents()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.FrameSystemConfig"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.FrameSystemConfig()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.TransformPose"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.TransformPose()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetStatus()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.StreamStatus"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.StreamStatus()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.StopAll"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.StopAll()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.RobotServiceStub"><code class="docutils literal notranslate"><span class="pre">RobotServiceStub</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.BlockForOperationRequest"><code class="docutils literal notranslate"><span class="pre">BlockForOperationRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.BlockForOperationRequest.id"><code class="docutils literal notranslate"><span class="pre">BlockForOperationRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.BlockForOperationResponse"><code class="docutils literal notranslate"><span class="pre">BlockForOperationResponse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.CancelOperationRequest"><code class="docutils literal notranslate"><span class="pre">CancelOperationRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.CancelOperationRequest.id"><code class="docutils literal notranslate"><span class="pre">CancelOperationRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.CancelOperationResponse"><code class="docutils literal notranslate"><span class="pre">CancelOperationResponse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.DiscoverComponentsRequest"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.DiscoverComponentsRequest.queries"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsRequest.queries()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.DiscoverComponentsResponse"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsResponse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.DiscoverComponentsResponse.discovery"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsResponse.discovery()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.Discovery"><code class="docutils literal notranslate"><span class="pre">Discovery</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Discovery.query"><code class="docutils literal notranslate"><span class="pre">Discovery.query()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Discovery.results"><code class="docutils literal notranslate"><span class="pre">Discovery.results()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Discovery.HasField"><code class="docutils literal notranslate"><span class="pre">Discovery.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.DiscoveryQuery"><code class="docutils literal notranslate"><span class="pre">DiscoveryQuery</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.DiscoveryQuery.subtype"><code class="docutils literal notranslate"><span class="pre">DiscoveryQuery.subtype</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.DiscoveryQuery.model"><code class="docutils literal notranslate"><span class="pre">DiscoveryQuery.model</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.FrameSystemConfig"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.name"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.name</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.model_json"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.model_json</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.pose_in_parent_frame"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.pose_in_parent_frame()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.HasField"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.FrameSystemConfigRequest"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfigRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigRequest.supplemental_transforms()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.FrameSystemConfigResponse"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigResponse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfigResponse.frame_system_configs"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigResponse.frame_system_configs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.GetOperationsRequest"><code class="docutils literal notranslate"><span class="pre">GetOperationsRequest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.GetOperationsResponse"><code class="docutils literal notranslate"><span class="pre">GetOperationsResponse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetOperationsResponse.operations"><code class="docutils literal notranslate"><span class="pre">GetOperationsResponse.operations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.GetStatusRequest"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetStatusRequest.resource_names"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest.resource_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.GetStatusResponse"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetStatusResponse.status"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse.status()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.Operation"><code class="docutils literal notranslate"><span class="pre">Operation</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.id"><code class="docutils literal notranslate"><span class="pre">Operation.id</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.method"><code class="docutils literal notranslate"><span class="pre">Operation.method</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.arguments"><code class="docutils literal notranslate"><span class="pre">Operation.arguments()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.started"><code class="docutils literal notranslate"><span class="pre">Operation.started()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.HasField"><code class="docutils literal notranslate"><span class="pre">Operation.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceNamesRequest"><code class="docutils literal notranslate"><span class="pre">ResourceNamesRequest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceNamesResponse"><code class="docutils literal notranslate"><span class="pre">ResourceNamesResponse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceNamesResponse.resources"><code class="docutils literal notranslate"><span class="pre">ResourceNamesResponse.resources()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.proto_service"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype.proto_service</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.subtype"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype.subtype()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.HasField"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceRPCSubtypesRequest"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesRequest</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceRPCSubtypesResponse"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse.resource_rpc_subtypes()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Status.name"><code class="docutils literal notranslate"><span class="pre">Status.name()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Status.status"><code class="docutils literal notranslate"><span class="pre">Status.status()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Status.HasField"><code class="docutils literal notranslate"><span class="pre">Status.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.StopAllRequest"><code class="docutils literal notranslate"><span class="pre">StopAllRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopAllRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopAllRequest.extra()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.StopAllResponse"><code class="docutils literal notranslate"><span class="pre">StopAllResponse</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.StopExtraParameters"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopExtraParameters.name"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters.name()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopExtraParameters.params"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters.params()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopExtraParameters.HasField"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.StreamStatusRequest"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusRequest.resource_names"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest.resource_names()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusRequest.every"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest.every()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.StreamStatusResponse"><code class="docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusResponse.status"><code class="docutils literal notranslate"><span class="pre">StreamStatusResponse.status()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.TransformPoseRequest"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.destination"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.destination</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.source"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.source()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.supplemental_transforms()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.robot.TransformPoseResponse"><code class="docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseResponse.pose"><code class="docutils literal notranslate"><span class="pre">TransformPoseResponse.pose()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseResponse.HasField"><code class="docutils literal notranslate"><span class="pre">TransformPoseResponse.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.RobotServiceBase">RobotServiceBase</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.GetOperations">GetOperations</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.RobotServiceBase.ResourceNames">ResourceNames</a></li>

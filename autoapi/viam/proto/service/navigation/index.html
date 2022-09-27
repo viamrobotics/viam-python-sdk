@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -73,6 +74,67 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.navigation</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.GetMode"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetMode()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.SetMode"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.SetMode()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.GetLocation"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetLocation()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.GetWaypoints"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetWaypoints()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.AddWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.AddWaypoint()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.RemoveWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.RemoveWaypoint()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceStub"><code class="docutils literal notranslate"><span class="pre">NavigationServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.AddWaypointRequest"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.AddWaypointRequest.name"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.AddWaypointRequest.location"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest.location()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.AddWaypointRequest.HasField"><code class="docutils literal notranslate"><span class="pre">AddWaypointRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.AddWaypointResponse"><code class="docutils literal notranslate"><span class="pre">AddWaypointResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetLocationRequest"><code class="docutils literal notranslate"><span class="pre">GetLocationRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetLocationRequest.name"><code class="docutils literal notranslate"><span class="pre">GetLocationRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetLocationResponse"><code class="docutils literal notranslate"><span class="pre">GetLocationResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetLocationResponse.location"><code class="docutils literal notranslate"><span class="pre">GetLocationResponse.location()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetLocationResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetLocationResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetModeRequest"><code class="docutils literal notranslate"><span class="pre">GetModeRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetModeRequest.name"><code class="docutils literal notranslate"><span class="pre">GetModeRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetModeResponse"><code class="docutils literal notranslate"><span class="pre">GetModeResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetModeResponse.mode"><code class="docutils literal notranslate"><span class="pre">GetModeResponse.mode</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsRequest"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsResponse"><code class="docutils literal notranslate"><span class="pre">GetWaypointsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsResponse.waypoints"><code class="docutils literal notranslate"><span class="pre">GetWaypointsResponse.waypoints()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest.name"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest.id"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointResponse"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.SetModeRequest"><code class="docutils literal notranslate"><span class="pre">SetModeRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.SetModeRequest.name"><code class="docutils literal notranslate"><span class="pre">SetModeRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.SetModeRequest.mode"><code class="docutils literal notranslate"><span class="pre">SetModeRequest.mode</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.SetModeResponse"><code class="docutils literal notranslate"><span class="pre">SetModeResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.Waypoint"><code class="docutils literal notranslate"><span class="pre">Waypoint</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.Waypoint.id"><code class="docutils literal notranslate"><span class="pre">Waypoint.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.Waypoint.location"><code class="docutils literal notranslate"><span class="pre">Waypoint.location()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.Waypoint.HasField"><code class="docutils literal notranslate"><span class="pre">Waypoint.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase">NavigationServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.GetMode">GetMode</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.SetMode">SetMode</a></li>

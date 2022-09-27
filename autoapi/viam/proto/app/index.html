@@ -19,6 +19,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -74,6 +75,234 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase"><code class="docutils literal notranslate"><span class="pre">AppServiceBase</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListOrganizations"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListOrganizations()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListLocations"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListLocations()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.LocationAuth"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.LocationAuth()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetRobot"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetRobot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetRobotParts"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetRobotParts()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetRobotPart"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetRobotPart()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetRobotPartLogs"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetRobotPartLogs()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.TailRobotPartLogs"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.TailRobotPartLogs()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetRobotPartHistory"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetRobotPartHistory()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UpdateRobotPart"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UpdateRobotPart()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.NewRobotPart"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.NewRobotPart()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.DeleteRobotPart"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.DeleteRobotPart()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.MarkPartAsMain"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.MarkPartAsMain()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.FindRobots"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.FindRobots()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.NewRobot"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.NewRobot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UpdateRobot"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UpdateRobot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.DeleteRobot"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.DeleteRobot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceStub"><code class="docutils literal notranslate"><span class="pre">AppServiceStub</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteRobotPartRequest"><code class="docutils literal notranslate"><span class="pre">DeleteRobotPartRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.DeleteRobotPartRequest.part_id"><code class="docutils literal notranslate"><span class="pre">DeleteRobotPartRequest.part_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteRobotPartResponse"><code class="docutils literal notranslate"><span class="pre">DeleteRobotPartResponse</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteRobotRequest"><code class="docutils literal notranslate"><span class="pre">DeleteRobotRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.DeleteRobotRequest.id"><code class="docutils literal notranslate"><span class="pre">DeleteRobotRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteRobotResponse"><code class="docutils literal notranslate"><span class="pre">DeleteRobotResponse</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.FindRobotsRequest"><code class="docutils literal notranslate"><span class="pre">FindRobotsRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.FindRobotsRequest.location_id"><code class="docutils literal notranslate"><span class="pre">FindRobotsRequest.location_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.FindRobotsResponse"><code class="docutils literal notranslate"><span class="pre">FindRobotsResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.FindRobotsResponse.robots"><code class="docutils literal notranslate"><span class="pre">FindRobotsResponse.robots()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.Fragment"><code class="docutils literal notranslate"><span class="pre">Fragment</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Fragment.id"><code class="docutils literal notranslate"><span class="pre">Fragment.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Fragment.name"><code class="docutils literal notranslate"><span class="pre">Fragment.name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Fragment.organization_owner"><code class="docutils literal notranslate"><span class="pre">Fragment.organization_owner</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Fragment.public"><code class="docutils literal notranslate"><span class="pre">Fragment.public</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Fragment.fragment"><code class="docutils literal notranslate"><span class="pre">Fragment.fragment()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Fragment.HasField"><code class="docutils literal notranslate"><span class="pre">Fragment.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartHistoryRequest"><code class="docutils literal notranslate"><span class="pre">GetRobotPartHistoryRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartHistoryRequest.id"><code class="docutils literal notranslate"><span class="pre">GetRobotPartHistoryRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartHistoryResponse"><code class="docutils literal notranslate"><span class="pre">GetRobotPartHistoryResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartHistoryResponse.history"><code class="docutils literal notranslate"><span class="pre">GetRobotPartHistoryResponse.history()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsRequest"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsRequest.id"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsRequest.errors_only"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest.errors_only</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsResponse"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsResponse.logs"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsResponse.logs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartRequest"><code class="docutils literal notranslate"><span class="pre">GetRobotPartRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartRequest.id"><code class="docutils literal notranslate"><span class="pre">GetRobotPartRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartResponse"><code class="docutils literal notranslate"><span class="pre">GetRobotPartResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartResponse.config_json"><code class="docutils literal notranslate"><span class="pre">GetRobotPartResponse.config_json</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartResponse.part"><code class="docutils literal notranslate"><span class="pre">GetRobotPartResponse.part()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetRobotPartResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartsRequest"><code class="docutils literal notranslate"><span class="pre">GetRobotPartsRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartsRequest.robot_id"><code class="docutils literal notranslate"><span class="pre">GetRobotPartsRequest.robot_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartsResponse"><code class="docutils literal notranslate"><span class="pre">GetRobotPartsResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartsResponse.parts"><code class="docutils literal notranslate"><span class="pre">GetRobotPartsResponse.parts()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotRequest"><code class="docutils literal notranslate"><span class="pre">GetRobotRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotRequest.id"><code class="docutils literal notranslate"><span class="pre">GetRobotRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotResponse"><code class="docutils literal notranslate"><span class="pre">GetRobotResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotResponse.robot"><code class="docutils literal notranslate"><span class="pre">GetRobotResponse.robot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetRobotResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListLocationsRequest"><code class="docutils literal notranslate"><span class="pre">ListLocationsRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.ListLocationsRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">ListLocationsRequest.organization_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListLocationsResponse"><code class="docutils literal notranslate"><span class="pre">ListLocationsResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.ListLocationsResponse.locations"><code class="docutils literal notranslate"><span class="pre">ListLocationsResponse.locations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListOrganizationsRequest"><code class="docutils literal notranslate"><span class="pre">ListOrganizationsRequest</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListOrganizationsResponse"><code class="docutils literal notranslate"><span class="pre">ListOrganizationsResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.ListOrganizationsResponse.organizations"><code class="docutils literal notranslate"><span class="pre">ListOrganizationsResponse.organizations()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.Location"><code class="docutils literal notranslate"><span class="pre">Location</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Location.id"><code class="docutils literal notranslate"><span class="pre">Location.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Location.name"><code class="docutils literal notranslate"><span class="pre">Location.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.LocationAuth"><code class="docutils literal notranslate"><span class="pre">LocationAuth</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LocationAuth.secret"><code class="docutils literal notranslate"><span class="pre">LocationAuth.secret</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.LocationAuthRequest"><code class="docutils literal notranslate"><span class="pre">LocationAuthRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LocationAuthRequest.location_id"><code class="docutils literal notranslate"><span class="pre">LocationAuthRequest.location_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.LocationAuthResponse"><code class="docutils literal notranslate"><span class="pre">LocationAuthResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LocationAuthResponse.auth"><code class="docutils literal notranslate"><span class="pre">LocationAuthResponse.auth()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LocationAuthResponse.HasField"><code class="docutils literal notranslate"><span class="pre">LocationAuthResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.LogEntry"><code class="docutils literal notranslate"><span class="pre">LogEntry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.host"><code class="docutils literal notranslate"><span class="pre">LogEntry.host</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.level"><code class="docutils literal notranslate"><span class="pre">LogEntry.level</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.logger_name"><code class="docutils literal notranslate"><span class="pre">LogEntry.logger_name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.message"><code class="docutils literal notranslate"><span class="pre">LogEntry.message</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.stack"><code class="docutils literal notranslate"><span class="pre">LogEntry.stack</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.time"><code class="docutils literal notranslate"><span class="pre">LogEntry.time()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.caller"><code class="docutils literal notranslate"><span class="pre">LogEntry.caller()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.fields"><code class="docutils literal notranslate"><span class="pre">LogEntry.fields()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.HasField"><code class="docutils literal notranslate"><span class="pre">LogEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.MarkPartAsMainRequest"><code class="docutils literal notranslate"><span class="pre">MarkPartAsMainRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.MarkPartAsMainRequest.part_id"><code class="docutils literal notranslate"><span class="pre">MarkPartAsMainRequest.part_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.MarkPartAsMainResponse"><code class="docutils literal notranslate"><span class="pre">MarkPartAsMainResponse</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.NewRobotPartRequest"><code class="docutils literal notranslate"><span class="pre">NewRobotPartRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.NewRobotPartRequest.robot_id"><code class="docutils literal notranslate"><span class="pre">NewRobotPartRequest.robot_id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.NewRobotPartRequest.part_name"><code class="docutils literal notranslate"><span class="pre">NewRobotPartRequest.part_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.NewRobotPartResponse"><code class="docutils literal notranslate"><span class="pre">NewRobotPartResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.NewRobotPartResponse.part_id"><code class="docutils literal notranslate"><span class="pre">NewRobotPartResponse.part_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.NewRobotRequest"><code class="docutils literal notranslate"><span class="pre">NewRobotRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.NewRobotRequest.name"><code class="docutils literal notranslate"><span class="pre">NewRobotRequest.name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.NewRobotRequest.location"><code class="docutils literal notranslate"><span class="pre">NewRobotRequest.location</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.NewRobotResponse"><code class="docutils literal notranslate"><span class="pre">NewRobotResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.NewRobotResponse.id"><code class="docutils literal notranslate"><span class="pre">NewRobotResponse.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.Organization"><code class="docutils literal notranslate"><span class="pre">Organization</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Organization.id"><code class="docutils literal notranslate"><span class="pre">Organization.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Organization.name"><code class="docutils literal notranslate"><span class="pre">Organization.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.Robot"><code class="docutils literal notranslate"><span class="pre">Robot</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Robot.id"><code class="docutils literal notranslate"><span class="pre">Robot.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Robot.name"><code class="docutils literal notranslate"><span class="pre">Robot.name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Robot.location"><code class="docutils literal notranslate"><span class="pre">Robot.location</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Robot.last_access"><code class="docutils literal notranslate"><span class="pre">Robot.last_access()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Robot.HasField"><code class="docutils literal notranslate"><span class="pre">Robot.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RobotPart"><code class="docutils literal notranslate"><span class="pre">RobotPart</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.id"><code class="docutils literal notranslate"><span class="pre">RobotPart.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.name"><code class="docutils literal notranslate"><span class="pre">RobotPart.name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.dns_name"><code class="docutils literal notranslate"><span class="pre">RobotPart.dns_name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.secret"><code class="docutils literal notranslate"><span class="pre">RobotPart.secret</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.robot"><code class="docutils literal notranslate"><span class="pre">RobotPart.robot</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.location_id"><code class="docutils literal notranslate"><span class="pre">RobotPart.location_id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.main_part"><code class="docutils literal notranslate"><span class="pre">RobotPart.main_part</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.fqdn"><code class="docutils literal notranslate"><span class="pre">RobotPart.fqdn</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.local_fqdn"><code class="docutils literal notranslate"><span class="pre">RobotPart.local_fqdn</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.robot_config"><code class="docutils literal notranslate"><span class="pre">RobotPart.robot_config()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.last_access"><code class="docutils literal notranslate"><span class="pre">RobotPart.last_access()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.user_supplied_info"><code class="docutils literal notranslate"><span class="pre">RobotPart.user_supplied_info()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPart.HasField"><code class="docutils literal notranslate"><span class="pre">RobotPart.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.part"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.part</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.robot"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.robot</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.when"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.when()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.old"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.old()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.HasField"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsRequest"><code class="docutils literal notranslate"><span class="pre">TailRobotPartLogsRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsRequest.id"><code class="docutils literal notranslate"><span class="pre">TailRobotPartLogsRequest.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsRequest.errors_only"><code class="docutils literal notranslate"><span class="pre">TailRobotPartLogsRequest.errors_only</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsResponse"><code class="docutils literal notranslate"><span class="pre">TailRobotPartLogsResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsResponse.logs"><code class="docutils literal notranslate"><span class="pre">TailRobotPartLogsResponse.logs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UpdateRobotPartRequest"><code class="docutils literal notranslate"><span class="pre">UpdateRobotPartRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotPartRequest.id"><code class="docutils literal notranslate"><span class="pre">UpdateRobotPartRequest.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotPartRequest.name"><code class="docutils literal notranslate"><span class="pre">UpdateRobotPartRequest.name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotPartRequest.robot_config"><code class="docutils literal notranslate"><span class="pre">UpdateRobotPartRequest.robot_config()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotPartRequest.HasField"><code class="docutils literal notranslate"><span class="pre">UpdateRobotPartRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UpdateRobotPartResponse"><code class="docutils literal notranslate"><span class="pre">UpdateRobotPartResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotPartResponse.part"><code class="docutils literal notranslate"><span class="pre">UpdateRobotPartResponse.part()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotPartResponse.HasField"><code class="docutils literal notranslate"><span class="pre">UpdateRobotPartResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UpdateRobotRequest"><code class="docutils literal notranslate"><span class="pre">UpdateRobotRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotRequest.id"><code class="docutils literal notranslate"><span class="pre">UpdateRobotRequest.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotRequest.name"><code class="docutils literal notranslate"><span class="pre">UpdateRobotRequest.name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotRequest.location"><code class="docutils literal notranslate"><span class="pre">UpdateRobotRequest.location</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.UpdateRobotResponse"><code class="docutils literal notranslate"><span class="pre">UpdateRobotResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotResponse.robot"><code class="docutils literal notranslate"><span class="pre">UpdateRobotResponse.robot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.UpdateRobotResponse.HasField"><code class="docutils literal notranslate"><span class="pre">UpdateRobotResponse.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AppServiceBase">AppServiceBase</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListOrganizations">ListOrganizations</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListLocations">ListLocations</a></li>

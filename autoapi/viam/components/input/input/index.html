@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -71,6 +72,61 @@
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.input.input.EventType"><code class="docutils literal notranslate"><span class="pre">EventType</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.ALL_EVENTS"><code class="docutils literal notranslate"><span class="pre">EventType.ALL_EVENTS</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.CONNECT"><code class="docutils literal notranslate"><span class="pre">EventType.CONNECT</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.DISCONNECT"><code class="docutils literal notranslate"><span class="pre">EventType.DISCONNECT</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.BUTTON_PRESS"><code class="docutils literal notranslate"><span class="pre">EventType.BUTTON_PRESS</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.BUTTON_RELEASE"><code class="docutils literal notranslate"><span class="pre">EventType.BUTTON_RELEASE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.BUTTON_HOLD"><code class="docutils literal notranslate"><span class="pre">EventType.BUTTON_HOLD</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.BUTTON_CHANGE"><code class="docutils literal notranslate"><span class="pre">EventType.BUTTON_CHANGE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.POSITION_CHANGE_ABSOLUTE"><code class="docutils literal notranslate"><span class="pre">EventType.POSITION_CHANGE_ABSOLUTE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.POSITION_CHANGE_RELATIVE"><code class="docutils literal notranslate"><span class="pre">EventType.POSITION_CHANGE_RELATIVE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.input.input.Control"><code class="docutils literal notranslate"><span class="pre">Control</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.ABSOLUTE_X"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_X</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.ABSOLUTE_Y"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_Y</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.ABSOLUTE_Z"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_Z</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.ABSOLUTE_RX"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_RX</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.ABSOLUTE_RY"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_RY</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.ABSOLUTE_RZ"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_RZ</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.ABSOLUTE_HAT0_X"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_HAT0_X</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.ABSOLUTE_HAT0_Y"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_HAT0_Y</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_SOUTH"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_SOUTH</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_EAST"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_EAST</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_WEST"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_WEST</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_NORTH"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_NORTH</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_LT"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_LT</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_RT"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_RT</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_LT2"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_LT2</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_RT2"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_RT2</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_L_THUMB"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_L_THUMB</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_R_THUMB"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_R_THUMB</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_SELECT"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_SELECT</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_START"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_START</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_MENU"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_MENU</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_RECORD"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_RECORD</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Control.BUTTON_E_STOP"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_E_STOP</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.input.input.Event"><code class="docutils literal notranslate"><span class="pre">Event</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.time"><code class="docutils literal notranslate"><span class="pre">Event.time</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.event"><code class="docutils literal notranslate"><span class="pre">Event.event</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.control"><code class="docutils literal notranslate"><span class="pre">Event.control</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.value"><code class="docutils literal notranslate"><span class="pre">Event.value</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.proto"><code class="docutils literal notranslate"><span class="pre">Event.proto()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.from_proto"><code class="docutils literal notranslate"><span class="pre">Event.from_proto()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.input.input.ControlFunction"><code class="docutils literal notranslate"><span class="pre">ControlFunction</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.input.input.Controller"><code class="docutils literal notranslate"><span class="pre">Controller</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Controller.get_controls"><code class="docutils literal notranslate"><span class="pre">Controller.get_controls()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Controller.get_events"><code class="docutils literal notranslate"><span class="pre">Controller.get_events()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Controller.register_control_callback"><code class="docutils literal notranslate"><span class="pre">Controller.register_control_callback()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Controller.trigger_event"><code class="docutils literal notranslate"><span class="pre">Controller.trigger_event()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.input.input.EventType">EventType</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.ALL_EVENTS">ALL_EVENTS</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.EventType.CONNECT">CONNECT</a></li>

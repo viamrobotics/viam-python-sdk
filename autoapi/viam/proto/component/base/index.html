@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -70,6 +71,59 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.base</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.MoveStraight"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.MoveStraight()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.Spin"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.Spin()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.SetPower"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.SetPower()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.SetVelocity"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.SetVelocity()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.Stop()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.BaseServiceStub"><code class="docutils literal notranslate"><span class="pre">BaseServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.distance_mm"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.distance_mm</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.mm_per_sec"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.mm_per_sec</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.MoveStraightResponse"><code class="docutils literal notranslate"><span class="pre">MoveStraightResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.linear"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.linear()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.angular"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.angular()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetPowerResponse"><code class="docutils literal notranslate"><span class="pre">SetPowerResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.name"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.linear"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.linear()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.angular"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.angular()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetVelocityResponse"><code class="docutils literal notranslate"><span class="pre">SetVelocityResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SpinRequest"><code class="docutils literal notranslate"><span class="pre">SpinRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.name"><code class="docutils literal notranslate"><span class="pre">SpinRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.angle_deg"><code class="docutils literal notranslate"><span class="pre">SpinRequest.angle_deg</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.degs_per_sec"><code class="docutils literal notranslate"><span class="pre">SpinRequest.degs_per_sec</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.extra"><code class="docutils literal notranslate"><span class="pre">SpinRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SpinRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SpinResponse"><code class="docutils literal notranslate"><span class="pre">SpinResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.StopRequest"><code class="docutils literal notranslate"><span class="pre">StopRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.name"><code class="docutils literal notranslate"><span class="pre">StopRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.StopResponse"><code class="docutils literal notranslate"><span class="pre">StopResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase">BaseServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.MoveStraight">MoveStraight</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.Spin">Spin</a></li>

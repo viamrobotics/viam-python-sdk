@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -77,6 +78,97 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.motor</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.SetPower"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.SetPower()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GoFor"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GoFor()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GoTo"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GoTo()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.ResetZeroPosition"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.ResetZeroPosition()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GetPosition()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GetProperties()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.Stop()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.IsPowered"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.IsPowered()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceStub"><code class="docutils literal notranslate"><span class="pre">MotorServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GetPositionResponse"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionResponse.position"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.position</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesResponse"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesResponse.position_reporting"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.position_reporting</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest"><code class="docutils literal notranslate"><span class="pre">GoForRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.name"><code class="docutils literal notranslate"><span class="pre">GoForRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.rpm"><code class="docutils literal notranslate"><span class="pre">GoForRequest.rpm</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.revolutions"><code class="docutils literal notranslate"><span class="pre">GoForRequest.revolutions</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.extra"><code class="docutils literal notranslate"><span class="pre">GoForRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GoForRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoForResponse"><code class="docutils literal notranslate"><span class="pre">GoForResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest"><code class="docutils literal notranslate"><span class="pre">GoToRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.name"><code class="docutils literal notranslate"><span class="pre">GoToRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.rpm"><code class="docutils literal notranslate"><span class="pre">GoToRequest.rpm</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.position_revolutions"><code class="docutils literal notranslate"><span class="pre">GoToRequest.position_revolutions</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.extra"><code class="docutils literal notranslate"><span class="pre">GoToRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GoToRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoToResponse"><code class="docutils literal notranslate"><span class="pre">GoToResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.name"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.extra"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.HasField"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredResponse"><code class="docutils literal notranslate"><span class="pre">IsPoweredResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredResponse.is_on"><code class="docutils literal notranslate"><span class="pre">IsPoweredResponse.is_on</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.offset"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.offset</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionResponse"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.power_pct"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.power_pct</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetPowerResponse"><code class="docutils literal notranslate"><span class="pre">SetPowerResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.is_powered"><code class="docutils literal notranslate"><span class="pre">Status.is_powered</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.position_reporting"><code class="docutils literal notranslate"><span class="pre">Status.position_reporting</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.position"><code class="docutils literal notranslate"><span class="pre">Status.position</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.is_moving"><code class="docutils literal notranslate"><span class="pre">Status.is_moving</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.StopRequest"><code class="docutils literal notranslate"><span class="pre">StopRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.name"><code class="docutils literal notranslate"><span class="pre">StopRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.StopResponse"><code class="docutils literal notranslate"><span class="pre">StopResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase">MotorServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.SetPower">SetPower</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GoFor">GoFor</a></li>

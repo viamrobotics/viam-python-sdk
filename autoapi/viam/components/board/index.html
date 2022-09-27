@@ -19,6 +19,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -68,23 +69,44 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.board.Board">Board</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.Attributes">Attributes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.board.Board"><code class="docutils literal notranslate"><span class="pre">Board</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.Attributes"><code class="docutils literal notranslate"><span class="pre">Board.Attributes</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.Attributes.remote"><code class="docutils literal notranslate"><span class="pre">Board.Attributes.remote</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.AnalogReader"><code class="docutils literal notranslate"><span class="pre">Board.AnalogReader</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.AnalogReader.read"><code class="docutils literal notranslate"><span class="pre">Board.AnalogReader.read()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.value"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.value()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.tick"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.tick()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.add_callback"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.add_callback()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.add_post_processor"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.add_post_processor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.GPIOPin"><code class="docutils literal notranslate"><span class="pre">Board.GPIOPin</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.set"><code class="docutils literal notranslate"><span class="pre">Board.GPIOPin.set()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.get"><code class="docutils literal notranslate"><span class="pre">Board.GPIOPin.get()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.get_pwm"><code class="docutils literal notranslate"><span class="pre">Board.GPIOPin.get_pwm()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.set_pwm"><code class="docutils literal notranslate"><span class="pre">Board.GPIOPin.set_pwm()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.get_pwm_frequency"><code class="docutils literal notranslate"><span class="pre">Board.GPIOPin.get_pwm_frequency()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.set_pwm_frequency"><code class="docutils literal notranslate"><span class="pre">Board.GPIOPin.set_pwm_frequency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.analog_reader_by_name"><code class="docutils literal notranslate"><span class="pre">Board.analog_reader_by_name()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.digital_interrupt_by_name"><code class="docutils literal notranslate"><span class="pre">Board.digital_interrupt_by_name()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.gpio_pin_by_name"><code class="docutils literal notranslate"><span class="pre">Board.gpio_pin_by_name()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.analog_reader_names"><code class="docutils literal notranslate"><span class="pre">Board.analog_reader_names()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.digital_interrupt_names"><code class="docutils literal notranslate"><span class="pre">Board.digital_interrupt_names()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.status"><code class="docutils literal notranslate"><span class="pre">Board.status()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.model_attributes"><code class="docutils literal notranslate"><span class="pre">Board.model_attributes()</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.Attributes.remote">remote</a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.AnalogReader">AnalogReader</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.AnalogReader.read">read</a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt">DigitalInterrupt</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.value">value</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.tick">tick</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.add_callback">add_callback</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt.add_post_processor">add_post_processor</a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.GPIOPin">GPIOPin</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.set">set</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.get">get</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.get_pwm">get_pwm</a></li>
@@ -93,6 +115,13 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.Board.GPIOPin.set_pwm_frequency">set_pwm_frequency</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.board.Board">Board</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.Attributes">Attributes</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.AnalogReader">AnalogReader</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt">DigitalInterrupt</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.GPIOPin">GPIOPin</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.analog_reader_by_name">analog_reader_by_name</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.digital_interrupt_by_name">digital_interrupt_by_name</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.board.Board.gpio_pin_by_name">gpio_pin_by_name</a></li>

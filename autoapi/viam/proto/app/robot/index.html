@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -67,6 +68,248 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.robot</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase.Config"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.Config()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase.Certificate"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.Certificate()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase.Log"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.Log()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase.NeedsRestart"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.NeedsRestart()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceStub"><code class="docutils literal notranslate"><span class="pre">RobotServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AgentInfo"><code class="docutils literal notranslate"><span class="pre">AgentInfo</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AgentInfo.host"><code class="docutils literal notranslate"><span class="pre">AgentInfo.host</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AgentInfo.os"><code class="docutils literal notranslate"><span class="pre">AgentInfo.os</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AgentInfo.version"><code class="docutils literal notranslate"><span class="pre">AgentInfo.version</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AgentInfo.git_revision"><code class="docutils literal notranslate"><span class="pre">AgentInfo.git_revision</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AgentInfo.ips"><code class="docutils literal notranslate"><span class="pre">AgentInfo.ips()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig"><code class="docutils literal notranslate"><span class="pre">AuthConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.handlers"><code class="docutils literal notranslate"><span class="pre">AuthConfig.handlers()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.tls_auth_entities"><code class="docutils literal notranslate"><span class="pre">AuthConfig.tls_auth_entities()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthHandlerConfig"><code class="docutils literal notranslate"><span class="pre">AuthHandlerConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthHandlerConfig.type"><code class="docutils literal notranslate"><span class="pre">AuthHandlerConfig.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthHandlerConfig.config"><code class="docutils literal notranslate"><span class="pre">AuthHandlerConfig.config()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthHandlerConfig.HasField"><code class="docutils literal notranslate"><span class="pre">AuthHandlerConfig.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.CertificateRequest"><code class="docutils literal notranslate"><span class="pre">CertificateRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CertificateRequest.id"><code class="docutils literal notranslate"><span class="pre">CertificateRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.CertificateResponse"><code class="docutils literal notranslate"><span class="pre">CertificateResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CertificateResponse.id"><code class="docutils literal notranslate"><span class="pre">CertificateResponse.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CertificateResponse.tls_certificate"><code class="docutils literal notranslate"><span class="pre">CertificateResponse.tls_certificate</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CertificateResponse.tls_private_key"><code class="docutils literal notranslate"><span class="pre">CertificateResponse.tls_private_key</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig"><code class="docutils literal notranslate"><span class="pre">CloudConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig.id"><code class="docutils literal notranslate"><span class="pre">CloudConfig.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig.fqdn"><code class="docutils literal notranslate"><span class="pre">CloudConfig.fqdn</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig.local_fqdn"><code class="docutils literal notranslate"><span class="pre">CloudConfig.local_fqdn</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig.managed_by"><code class="docutils literal notranslate"><span class="pre">CloudConfig.managed_by</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig.signaling_address"><code class="docutils literal notranslate"><span class="pre">CloudConfig.signaling_address</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig.signaling_insecure"><code class="docutils literal notranslate"><span class="pre">CloudConfig.signaling_insecure</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig.location_secret"><code class="docutils literal notranslate"><span class="pre">CloudConfig.location_secret</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.CloudConfig.secret"><code class="docutils literal notranslate"><span class="pre">CloudConfig.secret</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig"><code class="docutils literal notranslate"><span class="pre">ComponentConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.name"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.namespace"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.namespace</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.type"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.model"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.model</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.frame"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.frame()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.depends_on"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.depends_on()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.service_configs"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.service_configs()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.attributes"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.attributes()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ComponentConfig.HasField"><code class="docutils literal notranslate"><span class="pre">ComponentConfig.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ConfigRequest"><code class="docutils literal notranslate"><span class="pre">ConfigRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ConfigRequest.id"><code class="docutils literal notranslate"><span class="pre">ConfigRequest.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ConfigRequest.agent_info"><code class="docutils literal notranslate"><span class="pre">ConfigRequest.agent_info()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ConfigRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ConfigRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ConfigRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">ConfigRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ConfigResponse"><code class="docutils literal notranslate"><span class="pre">ConfigResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ConfigResponse.config"><code class="docutils literal notranslate"><span class="pre">ConfigResponse.config()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ConfigResponse.HasField"><code class="docutils literal notranslate"><span class="pre">ConfigResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Frame"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Frame.parent"><code class="docutils literal notranslate"><span class="pre">Frame.parent</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Frame.translation"><code class="docutils literal notranslate"><span class="pre">Frame.translation()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Frame.orientation"><code class="docutils literal notranslate"><span class="pre">Frame.orientation()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Frame.HasField"><code class="docutils literal notranslate"><span class="pre">Frame.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.LogRequest"><code class="docutils literal notranslate"><span class="pre">LogRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.LogRequest.id"><code class="docutils literal notranslate"><span class="pre">LogRequest.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.LogRequest.logs"><code class="docutils literal notranslate"><span class="pre">LogRequest.logs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.LogResponse"><code class="docutils literal notranslate"><span class="pre">LogResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartRequest"><code class="docutils literal notranslate"><span class="pre">NeedsRestartRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartRequest.id"><code class="docutils literal notranslate"><span class="pre">NeedsRestartRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartResponse"><code class="docutils literal notranslate"><span class="pre">NeedsRestartResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartResponse.id"><code class="docutils literal notranslate"><span class="pre">NeedsRestartResponse.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartResponse.must_restart"><code class="docutils literal notranslate"><span class="pre">NeedsRestartResponse.must_restart</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartResponse.restart_check_interval"><code class="docutils literal notranslate"><span class="pre">NeedsRestartResponse.restart_check_interval()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartResponse.HasField"><code class="docutils literal notranslate"><span class="pre">NeedsRestartResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.NetworkConfig"><code class="docutils literal notranslate"><span class="pre">NetworkConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NetworkConfig.fqdn"><code class="docutils literal notranslate"><span class="pre">NetworkConfig.fqdn</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NetworkConfig.bind_address"><code class="docutils literal notranslate"><span class="pre">NetworkConfig.bind_address</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NetworkConfig.tls_cert_file"><code class="docutils literal notranslate"><span class="pre">NetworkConfig.tls_cert_file</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.NetworkConfig.tls_key_file"><code class="docutils literal notranslate"><span class="pre">NetworkConfig.tls_key_file</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Orientation"><code class="docutils literal notranslate"><span class="pre">Orientation</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.NoOrientation"><code class="docutils literal notranslate"><span class="pre">Orientation.NoOrientation</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorRadians</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.theta"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorRadians.theta</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.x"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorRadians.x</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.y"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorRadians.y</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.z"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorRadians.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorDegrees</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.theta"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorDegrees.theta</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.x"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorDegrees.x</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.y"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorDegrees.y</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.z"><code class="docutils literal notranslate"><span class="pre">Orientation.OrientationVectorDegrees.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles"><code class="docutils literal notranslate"><span class="pre">Orientation.EulerAngles</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.roll"><code class="docutils literal notranslate"><span class="pre">Orientation.EulerAngles.roll</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.pitch"><code class="docutils literal notranslate"><span class="pre">Orientation.EulerAngles.pitch</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.yaw"><code class="docutils literal notranslate"><span class="pre">Orientation.EulerAngles.yaw</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles"><code class="docutils literal notranslate"><span class="pre">Orientation.AxisAngles</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.theta"><code class="docutils literal notranslate"><span class="pre">Orientation.AxisAngles.theta</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.x"><code class="docutils literal notranslate"><span class="pre">Orientation.AxisAngles.x</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.y"><code class="docutils literal notranslate"><span class="pre">Orientation.AxisAngles.y</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.z"><code class="docutils literal notranslate"><span class="pre">Orientation.AxisAngles.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion"><code class="docutils literal notranslate"><span class="pre">Orientation.Quaternion</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.w"><code class="docutils literal notranslate"><span class="pre">Orientation.Quaternion.w</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.x"><code class="docutils literal notranslate"><span class="pre">Orientation.Quaternion.x</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.y"><code class="docutils literal notranslate"><span class="pre">Orientation.Quaternion.y</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.z"><code class="docutils literal notranslate"><span class="pre">Orientation.Quaternion.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.no_orientation"><code class="docutils literal notranslate"><span class="pre">Orientation.no_orientation()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.vector_radians"><code class="docutils literal notranslate"><span class="pre">Orientation.vector_radians()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.vector_degrees"><code class="docutils literal notranslate"><span class="pre">Orientation.vector_degrees()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.euler_angles"><code class="docutils literal notranslate"><span class="pre">Orientation.euler_angles()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.axis_angles"><code class="docutils literal notranslate"><span class="pre">Orientation.axis_angles()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.quaternion"><code class="docutils literal notranslate"><span class="pre">Orientation.quaternion()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.HasField"><code class="docutils literal notranslate"><span class="pre">Orientation.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Orientation.WhichOneof()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.theta">theta</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.x">x</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.y">y</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.z">z</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.theta">theta</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.x">x</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.y">y</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.z">z</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.roll">roll</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.pitch">pitch</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.yaw">yaw</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.theta">theta</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.x">x</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.y">y</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.z">z</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.w">w</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.x">x</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.y">y</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.z">z</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig"><code class="docutils literal notranslate"><span class="pre">ProcessConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig.id"><code class="docutils literal notranslate"><span class="pre">ProcessConfig.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig.name"><code class="docutils literal notranslate"><span class="pre">ProcessConfig.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig.cwd"><code class="docutils literal notranslate"><span class="pre">ProcessConfig.cwd</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig.one_shot"><code class="docutils literal notranslate"><span class="pre">ProcessConfig.one_shot</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig.log"><code class="docutils literal notranslate"><span class="pre">ProcessConfig.log</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig.args"><code class="docutils literal notranslate"><span class="pre">ProcessConfig.args()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth"><code class="docutils literal notranslate"><span class="pre">RemoteAuth</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials"><code class="docutils literal notranslate"><span class="pre">RemoteAuth.Credentials</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials.type"><code class="docutils literal notranslate"><span class="pre">RemoteAuth.Credentials.type</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials.payload"><code class="docutils literal notranslate"><span class="pre">RemoteAuth.Credentials.payload</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.entity"><code class="docutils literal notranslate"><span class="pre">RemoteAuth.entity</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.credentials"><code class="docutils literal notranslate"><span class="pre">RemoteAuth.credentials()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.HasField"><code class="docutils literal notranslate"><span class="pre">RemoteAuth.HasField()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials.type">type</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials.payload">payload</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig"><code class="docutils literal notranslate"><span class="pre">RemoteConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.name"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.address"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.address</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.managed_by"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.managed_by</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.insecure"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.insecure</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.secret"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.secret</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.frame"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.frame()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.auth"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.auth()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.connection_check_interval"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.connection_check_interval()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.reconnect_interval"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.reconnect_interval()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.service_configs"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.service_configs()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig.HasField"><code class="docutils literal notranslate"><span class="pre">RemoteConfig.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ResourceLevelServiceConfig"><code class="docutils literal notranslate"><span class="pre">ResourceLevelServiceConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ResourceLevelServiceConfig.type"><code class="docutils literal notranslate"><span class="pre">ResourceLevelServiceConfig.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ResourceLevelServiceConfig.attributes"><code class="docutils literal notranslate"><span class="pre">ResourceLevelServiceConfig.attributes()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ResourceLevelServiceConfig.HasField"><code class="docutils literal notranslate"><span class="pre">ResourceLevelServiceConfig.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig"><code class="docutils literal notranslate"><span class="pre">RobotConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.debug"><code class="docutils literal notranslate"><span class="pre">RobotConfig.debug</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.cloud"><code class="docutils literal notranslate"><span class="pre">RobotConfig.cloud()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.remotes"><code class="docutils literal notranslate"><span class="pre">RobotConfig.remotes()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.components"><code class="docutils literal notranslate"><span class="pre">RobotConfig.components()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.processes"><code class="docutils literal notranslate"><span class="pre">RobotConfig.processes()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.services"><code class="docutils literal notranslate"><span class="pre">RobotConfig.services()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.network"><code class="docutils literal notranslate"><span class="pre">RobotConfig.network()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.auth"><code class="docutils literal notranslate"><span class="pre">RobotConfig.auth()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.HasField"><code class="docutils literal notranslate"><span class="pre">RobotConfig.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotConfig.WhichOneof"><code class="docutils literal notranslate"><span class="pre">RobotConfig.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig"><code class="docutils literal notranslate"><span class="pre">ServiceConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig.name"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig.namespace"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.namespace</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig.type"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig.attributes"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.attributes()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig.HasField"><code class="docutils literal notranslate"><span class="pre">ServiceConfig.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Translation"><code class="docutils literal notranslate"><span class="pre">Translation</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Translation.x"><code class="docutils literal notranslate"><span class="pre">Translation.x</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Translation.y"><code class="docutils literal notranslate"><span class="pre">Translation.y</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Translation.z"><code class="docutils literal notranslate"><span class="pre">Translation.z</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase">RobotServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase.Config">Config</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RobotServiceBase.Certificate">Certificate</a></li>
@@ -173,40 +416,11 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Orientation">Orientation</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.NoOrientation">NoOrientation</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians">OrientationVectorRadians</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.theta">theta</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.x">x</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.y">y</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians.z">z</a></li>
-</ul>
-</li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees">OrientationVectorDegrees</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.theta">theta</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.x">x</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.y">y</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees.z">z</a></li>
-</ul>
-</li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles">EulerAngles</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.roll">roll</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.pitch">pitch</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles.yaw">yaw</a></li>
-</ul>
-</li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles">AxisAngles</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.theta">theta</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.x">x</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.y">y</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles.z">z</a></li>
-</ul>
-</li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion">Quaternion</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.w">w</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.x">x</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.y">y</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion.z">z</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorRadians">OrientationVectorRadians</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.OrientationVectorDegrees">OrientationVectorDegrees</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.EulerAngles">EulerAngles</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.AxisAngles">AxisAngles</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.Quaternion">Quaternion</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.no_orientation">no_orientation</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.vector_radians">vector_radians</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Orientation.vector_degrees">vector_degrees</a></li>
@@ -227,11 +441,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth">RemoteAuth</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials">Credentials</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials.type">type</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials.payload">payload</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.Credentials">Credentials</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.entity">entity</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.credentials">credentials</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth.HasField">HasField</a></li>

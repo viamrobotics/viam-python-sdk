@@ -25,7 +25,17 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Query(stream: grpclib.server.Stream[app.data.v1.data_pb2.QueryRequest, app.data.v1.data_pb2.QueryResponse]) -> None
+   .. py:method:: TabularDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.TabularDataByFilterRequest, app.data.v1.data_pb2.TabularDataByFilterResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: BinaryDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.BinaryDataByFilterRequest, app.data.v1.data_pb2.BinaryDataByFilterResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: BinaryDataByIDs(stream: grpclib.server.Stream[app.data.v1.data_pb2.BinaryDataByIDsRequest, app.data.v1.data_pb2.BinaryDataByIDsResponse]) -> None
       :abstractmethod:
       :async:
 

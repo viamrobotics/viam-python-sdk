@@ -102,7 +102,7 @@ Classes
       
 
 
-.. py:class:: Request(*, stream: global___Stream | None = ..., headers: global___RequestHeaders | None = ..., message: global___RequestMessage | None = ...)
+.. py:class:: Request(*, stream: global___Stream | None = ..., headers: global___RequestHeaders | None = ..., message: global___RequestMessage | None = ..., rst_stream: bool = ...)
 
 
 
@@ -110,6 +110,11 @@ Classes
    associated with a stream where the client assigns the stream
    identifier. Servers will drop frames where the stream identifier
    has no association (if a non-header frames are sent).
+
+   .. py:attribute:: rst_stream
+      :annotation: :bool
+
+      
 
    .. py:method:: stream() -> global___Stream
       :property:
@@ -123,7 +128,7 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[headers, b'headers', message, b'message', stream, b'stream', type, b'type']) -> bool
+   .. py:method:: HasField(field_name: Literal[headers, b'headers', message, b'message', rst_stream, b'rst_stream', stream, b'stream', type, b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -140,7 +145,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> typing_extensions.Literal['headers', 'message'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> typing_extensions.Literal['headers', 'message', 'rst_stream'] | None
 
       Returns the name of the field that is set inside a oneof group.
 

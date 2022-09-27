@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -74,6 +75,47 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.sensors</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceBase"><code class="docutils literal notranslate"><span class="pre">SensorsServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceBase.GetSensors"><code class="docutils literal notranslate"><span class="pre">SensorsServiceBase.GetSensors()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceBase.GetReadings"><code class="docutils literal notranslate"><span class="pre">SensorsServiceBase.GetReadings()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">SensorsServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceStub"><code class="docutils literal notranslate"><span class="pre">SensorsServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.sensor_names"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.sensor_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsResponse"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsResponse.readings"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.readings()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsResponse"><code class="docutils literal notranslate"><span class="pre">GetSensorsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsResponse.sensor_names"><code class="docutils literal notranslate"><span class="pre">GetSensorsResponse.sensor_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.Readings"><code class="docutils literal notranslate"><span class="pre">Readings</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.key"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.value"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry.value()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.name"><code class="docutils literal notranslate"><span class="pre">Readings.name()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.readings"><code class="docutils literal notranslate"><span class="pre">Readings.readings()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.HasField"><code class="docutils literal notranslate"><span class="pre">Readings.HasField()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.key">key</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceBase">SensorsServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceBase.GetSensors">GetSensors</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceBase.GetReadings">GetReadings</a></li>
@@ -99,12 +141,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.Readings">Readings</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry">ReadingsEntry</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.key">key</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.value">value</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry">ReadingsEntry</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.readings">readings</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.HasField">HasField</a></li>

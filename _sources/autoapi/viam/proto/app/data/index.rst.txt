@@ -20,13 +20,18 @@ Classes
 
    viam.proto.app.data.DataServiceBase
    viam.proto.app.data.DataServiceStub
-   viam.proto.app.data.BinaryMetadata
+   viam.proto.app.data.BinaryData
+   viam.proto.app.data.BinaryDataByFilterRequest
+   viam.proto.app.data.BinaryDataByFilterResponse
+   viam.proto.app.data.BinaryDataByIDsRequest
+   viam.proto.app.data.BinaryDataByIDsResponse
    viam.proto.app.data.CaptureInterval
-   viam.proto.app.data.FileMetadata
-   viam.proto.app.data.Filters
-   viam.proto.app.data.QueryRequest
-   viam.proto.app.data.QueryResponse
-   viam.proto.app.data.TabularMetadata
+   viam.proto.app.data.CaptureMetadata
+   viam.proto.app.data.DataRequest
+   viam.proto.app.data.Filter
+   viam.proto.app.data.TabularData
+   viam.proto.app.data.TabularDataByFilterRequest
+   viam.proto.app.data.TabularDataByFilterResponse
 
 
 
@@ -38,7 +43,17 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: Query(stream: grpclib.server.Stream[app.data.v1.data_pb2.QueryRequest, app.data.v1.data_pb2.QueryResponse]) -> None
+   .. py:method:: TabularDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.TabularDataByFilterRequest, app.data.v1.data_pb2.TabularDataByFilterResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: BinaryDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.BinaryDataByFilterRequest, app.data.v1.data_pb2.BinaryDataByFilterResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: BinaryDataByIDs(stream: grpclib.server.Stream[app.data.v1.data_pb2.BinaryDataByIDsRequest, app.data.v1.data_pb2.BinaryDataByIDsResponse]) -> None
       :abstractmethod:
       :async:
 
@@ -50,7 +65,7 @@ Classes
 .. py:class:: DataServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: BinaryMetadata(*, id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_name: str = ..., component_type: str = ..., component_model: str = ..., method: str = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ..., file_size_bytes: int = ..., file_id: str = ...)
+.. py:class:: BinaryData(*, id: str = ..., uri: str = ..., binary: bytes = ..., metadata_index: int = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
@@ -63,67 +78,32 @@ Classes
    .. py:attribute:: id
       :annotation: :str
 
-      Result id.
+      
 
-   .. py:attribute:: robot_name
+   .. py:attribute:: uri
       :annotation: :str
 
       
 
-   .. py:attribute:: robot_id
-      :annotation: :str
+   .. py:attribute:: binary
+      :annotation: :bytes
 
       
 
-   .. py:attribute:: part_name
-      :annotation: :str
-
-      
-
-   .. py:attribute:: part_id
-      :annotation: :str
-
-      
-
-   .. py:attribute:: component_name
-      :annotation: :str
-
-      
-
-   .. py:attribute:: component_type
-      :annotation: :str
-
-      
-
-   .. py:attribute:: component_model
-      :annotation: :str
-
-      
-
-   .. py:attribute:: method
-      :annotation: :str
-
-      
-
-   .. py:attribute:: file_size_bytes
+   .. py:attribute:: metadata_index
       :annotation: :int
 
       
 
-   .. py:attribute:: file_id
-      :annotation: :str
-
-      
-
-   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:method:: time_requested() -> google.protobuf.timestamp_pb2.Timestamp
       :property:
 
 
-   .. py:method:: interval() -> global___CaptureInterval
+   .. py:method:: time_received() -> google.protobuf.timestamp_pb2.Timestamp
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[interval, b'interval']) -> bool
+   .. py:method:: HasField(field_name: Literal[time_received, b'time_received', time_requested, b'time_requested']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -141,15 +121,105 @@ Classes
 
 
 
+.. py:class:: BinaryDataByFilterRequest(*, data_request: global___DataRequest | None = ..., include_binary: bool = ..., count_only: bool = ...)
+
+
+
+   BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when by filter
+
+   .. py:attribute:: include_binary
+      :annotation: :bool
+
+      
+
+   .. py:attribute:: count_only
+      :annotation: :bool
+
+      
+
+   .. py:method:: data_request() -> global___DataRequest
+      :property:
+
+
+   .. py:method:: HasField(field_name: Literal[data_request, b'data_request']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: BinaryDataByFilterResponse(*, metadata: collections.abc.Iterable[global___CaptureMetadata] | None = ..., data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
+
+
+
+   BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
+
+   .. py:attribute:: count
+      :annotation: :int
+
+      
+
+   .. py:method:: metadata() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]
+      :property:
+
+
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]
+      :property:
+
+
+
+.. py:class:: BinaryDataByIDsRequest(*, file_ids: collections.abc.Iterable[builtins.str] | None = ..., include_binary: bool = ...)
+
+
+
+   BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
+
+   .. py:attribute:: include_binary
+      :annotation: :bool
+
+      by default
+
+   .. py:method:: file_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+      :property:
+
+
+
+.. py:class:: BinaryDataByIDsResponse(*, metadata: collections.abc.Iterable[global___CaptureMetadata] | None = ..., data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
+
+
+
+   BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
+
+   .. py:attribute:: count
+      :annotation: :int
+
+      
+
+   .. py:method:: metadata() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]
+      :property:
+
+
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]
+      :property:
+
+
+
 .. py:class:: CaptureInterval(*, start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   CaptureInterval describes the start and end time of the capture in this file
 
    .. py:method:: start() -> google.protobuf.timestamp_pb2.Timestamp
       :property:
@@ -177,20 +247,53 @@ Classes
 
 
 
-.. py:class:: FileMetadata(*, id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., sync_time: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_size_bytes: int = ..., file_id: str = ...)
+.. py:class:: CaptureMetadata(*, location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_model: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., mime_type: str = ...)
 
 
 
-   Abstract base class for protocol messages.
+   CaptureMetadata contains information on the settings used for the data capture
 
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   .. py:class:: MethodParametersEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
 
-   .. py:attribute:: id
+
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+      .. py:attribute:: key
+         :annotation: :str
+
+         
+
+      .. py:method:: value() -> google.protobuf.any_pb2.Any
+         :property:
+
+
+      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:attribute:: location_id
       :annotation: :str
 
-      Result id.
+      
 
    .. py:attribute:: robot_name
       :annotation: :str
@@ -212,21 +315,65 @@ Classes
 
       
 
-   .. py:attribute:: file_size_bytes
-      :annotation: :int
-
-      
-
-   .. py:attribute:: file_id
+   .. py:attribute:: component_type
       :annotation: :str
 
       
 
-   .. py:method:: sync_time() -> google.protobuf.timestamp_pb2.Timestamp
+   .. py:attribute:: component_model
+      :annotation: :str
+
+      
+
+   .. py:attribute:: component_name
+      :annotation: :str
+
+      
+
+   .. py:attribute:: method_name
+      :annotation: :str
+
+      
+
+   .. py:attribute:: mime_type
+      :annotation: :str
+
+      
+
+   .. py:method:: method_parameters() -> google.protobuf.internal.containers.MessageMap[str, google.protobuf.any_pb2.Any]
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[sync_time, b'sync_time']) -> bool
+   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+      :property:
+
+
+
+.. py:class:: DataRequest(*, filter: global___Filter | None = ..., skip: int = ..., limit: int = ...)
+
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: skip
+      :annotation: :int
+
+      
+
+   .. py:attribute:: limit
+      :annotation: :int
+
+      
+
+   .. py:method:: filter() -> global___Filter
+      :property:
+
+
+   .. py:method:: HasField(field_name: Literal[filter, b'filter']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -244,7 +391,7 @@ Classes
 
 
 
-.. py:class:: Filters(*, component_name: str = ..., component_type: str = ..., component_model: str = ..., method: str = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_id: str = ..., org_id: str = ..., interval: global___CaptureInterval | None = ...)
+.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., component_model: str = ..., method: str = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_id: str = ..., org_id: str = ..., mime_type: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ...)
 
 
 
@@ -308,6 +455,10 @@ Classes
       :property:
 
 
+   .. py:method:: mime_type() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+      :property:
+
+
    .. py:method:: interval() -> global___CaptureInterval
       :property:
 
@@ -330,37 +481,67 @@ Classes
 
 
 
-.. py:class:: QueryRequest(*, filters: global___Filters | None = ..., type: global___DataType = ..., skip: int = ..., limit: int = ..., count_only: bool = ...)
+.. py:class:: TabularData(*, data: google.protobuf.struct_pb2.Struct | None = ..., metadata_index: int = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
-   QueryRequest specifies filters to get metadata from a particular component, method, robot, location, etc...
+   Abstract base class for protocol messages.
 
-   .. py:attribute:: type
-      :annotation: :global___DataType
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: metadata_index
+      :annotation: :int
 
       
 
-   .. py:attribute:: skip
-      :annotation: :int
+   .. py:method:: data() -> google.protobuf.struct_pb2.Struct
+      :property:
 
-      Skips over the number of specified results.
 
-   .. py:attribute:: limit
-      :annotation: :int
+   .. py:method:: time_requested() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
 
-      Limits the number of results.
+
+   .. py:method:: time_received() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
+
+
+   .. py:method:: HasField(field_name: Literal[data, b'data', time_received, b'time_received', time_requested, b'time_requested']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: TabularDataByFilterRequest(*, data_request: global___DataRequest | None = ..., count_only: bool = ...)
+
+
+
+   TabularDataByFilterRequest requests tabular data based on filter values
 
    .. py:attribute:: count_only
       :annotation: :bool
 
-      Only includes the number of results rather than getting actual data.
+      
 
-   .. py:method:: filters() -> global___Filters
+   .. py:method:: data_request() -> global___DataRequest
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[filters, b'filters']) -> bool
+   .. py:method:: HasField(field_name: Literal[data_request, b'data_request']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -378,132 +559,23 @@ Classes
 
 
 
-.. py:class:: QueryResponse(*, tabular: collections.abc.Iterable[global___TabularMetadata] | None = ..., binary: collections.abc.Iterable[global___BinaryMetadata] | None = ..., file: collections.abc.Iterable[global___FileMetadata] | None = ..., tabular_count: int = ..., binary_count: int = ..., file_count: int = ...)
+.. py:class:: TabularDataByFilterResponse(*, metadata: collections.abc.Iterable[global___CaptureMetadata] | None = ..., data: collections.abc.Iterable[global___TabularData] | None = ..., count: int = ...)
 
 
 
-   Abstract base class for protocol messages.
+   TabularDataByFilterResponse provides the data and metadata of tabular data
 
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:attribute:: tabular_count
+   .. py:attribute:: count
       :annotation: :int
 
       
 
-   .. py:attribute:: binary_count
-      :annotation: :int
-
-      
-
-   .. py:attribute:: file_count
-      :annotation: :int
-
-      
-
-   .. py:method:: tabular() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TabularMetadata]
+   .. py:method:: metadata() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]
       :property:
 
 
-   .. py:method:: binary() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryMetadata]
+   .. py:method:: data() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TabularData]
       :property:
-
-
-   .. py:method:: file() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FileMetadata]
-      :property:
-
-
-
-.. py:class:: TabularMetadata(*, id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_name: str = ..., component_type: str = ..., component_model: str = ..., method: str = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ..., file_size_bytes: int = ..., num_readings: int = ...)
-
-
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:attribute:: id
-      :annotation: :str
-
-      Result id.
-
-   .. py:attribute:: robot_name
-      :annotation: :str
-
-      
-
-   .. py:attribute:: robot_id
-      :annotation: :str
-
-      
-
-   .. py:attribute:: part_name
-      :annotation: :str
-
-      
-
-   .. py:attribute:: part_id
-      :annotation: :str
-
-      
-
-   .. py:attribute:: component_name
-      :annotation: :str
-
-      
-
-   .. py:attribute:: component_type
-      :annotation: :str
-
-      
-
-   .. py:attribute:: component_model
-      :annotation: :str
-
-      
-
-   .. py:attribute:: method
-      :annotation: :str
-
-      
-
-   .. py:attribute:: file_size_bytes
-      :annotation: :int
-
-      
-
-   .. py:attribute:: num_readings
-      :annotation: :int
-
-      
-
-   .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-      :property:
-
-
-   .. py:method:: interval() -> global___CaptureInterval
-      :property:
-
-
-   .. py:method:: HasField(field_name: Literal[interval, b'interval']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
 
 
 

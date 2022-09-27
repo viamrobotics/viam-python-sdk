@@ -19,6 +19,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -69,13 +70,39 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera">Camera</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.Properties">Properties</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera"><code class="docutils literal notranslate"><span class="pre">Camera</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.Properties"><code class="docutils literal notranslate"><span class="pre">Camera.Properties</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.supports_pcd"><code class="docutils literal notranslate"><span class="pre">Camera.Properties.supports_pcd</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.intrinsic_parameters"><code class="docutils literal notranslate"><span class="pre">Camera.Properties.intrinsic_parameters</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.distortion_parameters"><code class="docutils literal notranslate"><span class="pre">Camera.Properties.distortion_parameters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_image"><code class="docutils literal notranslate"><span class="pre">Camera.get_image()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_point_cloud"><code class="docutils literal notranslate"><span class="pre">Camera.get_point_cloud()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_properties"><code class="docutils literal notranslate"><span class="pre">Camera.get_properties()</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.supports_pcd">supports_pcd</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.intrinsic_parameters">intrinsic_parameters</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.camera.Camera.Properties.distortion_parameters">distortion_parameters</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.width_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.width_px</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.height_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.height_px</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.focal_x_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.focal_x_px</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.focal_y_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.focal_y_px</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.center_x_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.center_x_px</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.center_y_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.center_y_px</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.DistortionParameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.model"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.model</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.parameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.parameters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera">Camera</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.Properties">Properties</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_image">get_image</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_point_cloud">get_point_cloud</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_properties">get_properties</a></li>

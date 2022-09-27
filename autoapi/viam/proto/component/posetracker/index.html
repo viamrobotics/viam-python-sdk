@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -79,6 +80,32 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.posetracker</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.posetracker.PoseTrackerServiceBase"><code class="docutils literal notranslate"><span class="pre">PoseTrackerServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.PoseTrackerServiceBase.GetPoses"><code class="docutils literal notranslate"><span class="pre">PoseTrackerServiceBase.GetPoses()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.PoseTrackerServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">PoseTrackerServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.posetracker.PoseTrackerServiceStub"><code class="docutils literal notranslate"><span class="pre">PoseTrackerServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesRequest"><code class="docutils literal notranslate"><span class="pre">GetPosesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPosesRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesRequest.body_names"><code class="docutils literal notranslate"><span class="pre">GetPosesRequest.body_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse"><code class="docutils literal notranslate"><span class="pre">GetPosesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry"><code class="docutils literal notranslate"><span class="pre">GetPosesResponse.BodyPosesEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.key"><code class="docutils literal notranslate"><span class="pre">GetPosesResponse.BodyPosesEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.value"><code class="docutils literal notranslate"><span class="pre">GetPosesResponse.BodyPosesEntry.value()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.HasField"><code class="docutils literal notranslate"><span class="pre">GetPosesResponse.BodyPosesEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.body_poses"><code class="docutils literal notranslate"><span class="pre">GetPosesResponse.body_poses()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.key">key</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.posetracker.PoseTrackerServiceBase">PoseTrackerServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.PoseTrackerServiceBase.GetPoses">GetPoses</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.PoseTrackerServiceBase.__mapping__">__mapping__</a></li>
@@ -91,12 +118,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse">GetPosesResponse</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry">BodyPosesEntry</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.key">key</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.value">value</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.BodyPosesEntry">BodyPosesEntry</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.posetracker.GetPosesResponse.body_poses">body_poses</a></li>
 </ul>
 </li>

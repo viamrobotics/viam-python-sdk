@@ -19,6 +19,7 @@
         <script src="../../../../../../_static/underscore.js"></script>
         <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -73,13 +74,93 @@
 <li class="toctree-l7 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc.grpc</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata">Metadata</a><ul>
-<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry">MdEntry</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata"><code class="docutils literal notranslate"><span class="pre">Metadata</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry"><code class="docutils literal notranslate"><span class="pre">Metadata.MdEntry</span></code></a><ul>
+<li class="toctree-l12"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry.key"><code class="docutils literal notranslate"><span class="pre">Metadata.MdEntry.key</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry.value"><code class="docutils literal notranslate"><span class="pre">Metadata.MdEntry.value()</span></code></a></li>
+<li class="toctree-l12"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry.HasField"><code class="docutils literal notranslate"><span class="pre">Metadata.MdEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.md"><code class="docutils literal notranslate"><span class="pre">Metadata.md()</span></code></a><ul>
 <li class="toctree-l12"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry.key">key</a></li>
 <li class="toctree-l12"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry.value">value</a></li>
 <li class="toctree-l12"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry.HasField">HasField</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.PacketMessage"><code class="docutils literal notranslate"><span class="pre">PacketMessage</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.PacketMessage.data"><code class="docutils literal notranslate"><span class="pre">PacketMessage.data</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.PacketMessage.eom"><code class="docutils literal notranslate"><span class="pre">PacketMessage.eom</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request"><code class="docutils literal notranslate"><span class="pre">Request</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.rst_stream"><code class="docutils literal notranslate"><span class="pre">Request.rst_stream</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.stream"><code class="docutils literal notranslate"><span class="pre">Request.stream()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.headers"><code class="docutils literal notranslate"><span class="pre">Request.headers()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.message"><code class="docutils literal notranslate"><span class="pre">Request.message()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.HasField"><code class="docutils literal notranslate"><span class="pre">Request.HasField()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Request.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestHeaders"><code class="docutils literal notranslate"><span class="pre">RequestHeaders</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestHeaders.method"><code class="docutils literal notranslate"><span class="pre">RequestHeaders.method</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestHeaders.metadata"><code class="docutils literal notranslate"><span class="pre">RequestHeaders.metadata()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestHeaders.timeout"><code class="docutils literal notranslate"><span class="pre">RequestHeaders.timeout()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestHeaders.HasField"><code class="docutils literal notranslate"><span class="pre">RequestHeaders.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestMessage"><code class="docutils literal notranslate"><span class="pre">RequestMessage</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestMessage.has_message"><code class="docutils literal notranslate"><span class="pre">RequestMessage.has_message</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestMessage.eos"><code class="docutils literal notranslate"><span class="pre">RequestMessage.eos</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestMessage.packet_message"><code class="docutils literal notranslate"><span class="pre">RequestMessage.packet_message()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.RequestMessage.HasField"><code class="docutils literal notranslate"><span class="pre">RequestMessage.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Response"><code class="docutils literal notranslate"><span class="pre">Response</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Response.stream"><code class="docutils literal notranslate"><span class="pre">Response.stream()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Response.headers"><code class="docutils literal notranslate"><span class="pre">Response.headers()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Response.message"><code class="docutils literal notranslate"><span class="pre">Response.message()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Response.trailers"><code class="docutils literal notranslate"><span class="pre">Response.trailers()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Response.HasField"><code class="docutils literal notranslate"><span class="pre">Response.HasField()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Response.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Response.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseHeaders"><code class="docutils literal notranslate"><span class="pre">ResponseHeaders</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseHeaders.metadata"><code class="docutils literal notranslate"><span class="pre">ResponseHeaders.metadata()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseHeaders.HasField"><code class="docutils literal notranslate"><span class="pre">ResponseHeaders.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseMessage"><code class="docutils literal notranslate"><span class="pre">ResponseMessage</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseMessage.packet_message"><code class="docutils literal notranslate"><span class="pre">ResponseMessage.packet_message()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseMessage.HasField"><code class="docutils literal notranslate"><span class="pre">ResponseMessage.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseTrailers"><code class="docutils literal notranslate"><span class="pre">ResponseTrailers</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseTrailers.status"><code class="docutils literal notranslate"><span class="pre">ResponseTrailers.status()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseTrailers.metadata"><code class="docutils literal notranslate"><span class="pre">ResponseTrailers.metadata()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.ResponseTrailers.HasField"><code class="docutils literal notranslate"><span class="pre">ResponseTrailers.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Stream"><code class="docutils literal notranslate"><span class="pre">Stream</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Stream.id"><code class="docutils literal notranslate"><span class="pre">Stream.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Strings"><code class="docutils literal notranslate"><span class="pre">Strings</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Strings.values"><code class="docutils literal notranslate"><span class="pre">Strings.values()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.Call"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.Call()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.CallUpdate"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.CallUpdate()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.Answer"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.Answer()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.OptionalWebRTCConfig()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">SignalingServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.SignalingServiceStub"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata">Metadata</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.MdEntry">MdEntry</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Metadata.md">md</a></li>
 </ul>
 </li>
@@ -89,6 +170,7 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request">Request</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.rst_stream">rst_stream</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.stream">stream</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.headers">headers</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.grpc.Request.message">message</a></li>
@@ -331,11 +413,16 @@ transmit over WebRTC data channels.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.Request">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.grpc.</span></span><span class="sig-name descname"><span class="pre">Request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Stream</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RequestHeaders</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RequestMessage</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.Request" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.grpc.</span></span><span class="sig-name descname"><span class="pre">Request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Stream</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RequestHeaders</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RequestMessage</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rst_stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.Request" title="Permalink to this definition"></a></dt>
 <dd><p>A Request is a frame coming from a client. It is always
 associated with a stream where the client assigns the stream
 identifier. Servers will drop frames where the stream identifier
 has no association (if a non-header frames are sent).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.Request.rst_stream">
+<span class="sig-name descname"><span class="pre">rst_stream</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.Request.rst_stream" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.Request.stream">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stream</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___Stream</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.Request.stream" title="Permalink to this definition"></a></dt>
@@ -353,7 +440,7 @@ has no association (if a non-header frames are sent).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.Request.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">headers</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'headers'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">message</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'message'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">stream</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'stream'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'type'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.Request.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">headers</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'headers'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">message</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'message'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">rst_stream</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'rst_stream'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">stream</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'stream'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'type'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.Request.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -376,7 +463,7 @@ be raised.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.grpc.Request.WhichOneof">
-<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'type'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'headers'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'message'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.Request.WhichOneof" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'type'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'headers'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'message'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'rst_stream'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.grpc.Request.WhichOneof" title="Permalink to this definition"></a></dt>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>
 <p>If no field is set, returns None.</p>
 <dl class="field-list simple">

@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -76,6 +77,39 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.slam</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceBase"><code class="docutils literal notranslate"><span class="pre">SLAMServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">SLAMServiceBase.GetPosition()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceBase.GetMap"><code class="docutils literal notranslate"><span class="pre">SLAMServiceBase.GetMap()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">SLAMServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceStub"><code class="docutils literal notranslate"><span class="pre">SLAMServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.GetMapRequest"><code class="docutils literal notranslate"><span class="pre">GetMapRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapRequest.name"><code class="docutils literal notranslate"><span class="pre">GetMapRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapRequest.mime_type"><code class="docutils literal notranslate"><span class="pre">GetMapRequest.mime_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapRequest.include_robot_marker"><code class="docutils literal notranslate"><span class="pre">GetMapRequest.include_robot_marker</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapRequest.camera_position"><code class="docutils literal notranslate"><span class="pre">GetMapRequest.camera_position()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetMapRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">GetMapRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.GetMapResponse"><code class="docutils literal notranslate"><span class="pre">GetMapResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapResponse.image"><code class="docutils literal notranslate"><span class="pre">GetMapResponse.image</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapResponse.mime_type"><code class="docutils literal notranslate"><span class="pre">GetMapResponse.mime_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapResponse.point_cloud"><code class="docutils literal notranslate"><span class="pre">GetMapResponse.point_cloud()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetMapResponse.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetMapResponse.WhichOneof"><code class="docutils literal notranslate"><span class="pre">GetMapResponse.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.GetPositionRequest"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.GetPositionResponse"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetPositionResponse.pose"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.pose()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetPositionResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceBase">SLAMServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceBase.GetPosition">GetPosition</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceBase.GetMap">GetMap</a></li>

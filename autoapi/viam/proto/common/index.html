@@ -19,6 +19,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -65,6 +66,124 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.common</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.ActuatorStatus"><code class="docutils literal notranslate"><span class="pre">ActuatorStatus</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.ActuatorStatus.is_moving"><code class="docutils literal notranslate"><span class="pre">ActuatorStatus.is_moving</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AnalogStatus"><code class="docutils literal notranslate"><span class="pre">AnalogStatus</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.AnalogStatus.value"><code class="docutils literal notranslate"><span class="pre">AnalogStatus.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.BoardStatus"><code class="docutils literal notranslate"><span class="pre">BoardStatus</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.key"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry.key</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.value"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry.value()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry.key</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.value"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry.value()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.analogs"><code class="docutils literal notranslate"><span class="pre">BoardStatus.analogs()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.digital_interrupts"><code class="docutils literal notranslate"><span class="pre">BoardStatus.digital_interrupts()</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.key">key</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.value">value</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.HasField">HasField</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key">key</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.value">value</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptStatus</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus.value"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptStatus.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint"><code class="docutils literal notranslate"><span class="pre">GeoPoint</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoPoint.latitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.latitude</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoPoint.longitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.longitude</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.reference_frame"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.reference_frame</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.geometries"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.geometries()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.center"><code class="docutils literal notranslate"><span class="pre">Geometry.center()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.sphere"><code class="docutils literal notranslate"><span class="pre">Geometry.sphere()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.box"><code class="docutils literal notranslate"><span class="pre">Geometry.box()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.HasField"><code class="docutils literal notranslate"><span class="pre">Geometry.HasField()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Geometry.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Orientation"><code class="docutils literal notranslate"><span class="pre">Orientation</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Orientation.o_x"><code class="docutils literal notranslate"><span class="pre">Orientation.o_x</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Orientation.o_y"><code class="docutils literal notranslate"><span class="pre">Orientation.o_y</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Orientation.o_z"><code class="docutils literal notranslate"><span class="pre">Orientation.o_z</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Orientation.theta"><code class="docutils literal notranslate"><span class="pre">Orientation.theta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PointCloudObject"><code class="docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.point_cloud"><code class="docutils literal notranslate"><span class="pre">PointCloudObject.point_cloud</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.geometries"><code class="docutils literal notranslate"><span class="pre">PointCloudObject.geometries()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.HasField"><code class="docutils literal notranslate"><span class="pre">PointCloudObject.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Pose"><code class="docutils literal notranslate"><span class="pre">Pose</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Pose.x"><code class="docutils literal notranslate"><span class="pre">Pose.x</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Pose.y"><code class="docutils literal notranslate"><span class="pre">Pose.y</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Pose.z"><code class="docutils literal notranslate"><span class="pre">Pose.z</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Pose.o_x"><code class="docutils literal notranslate"><span class="pre">Pose.o_x</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Pose.o_y"><code class="docutils literal notranslate"><span class="pre">Pose.o_y</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Pose.o_z"><code class="docutils literal notranslate"><span class="pre">Pose.o_z</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Pose.theta"><code class="docutils literal notranslate"><span class="pre">Pose.theta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame"><code class="docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.reference_frame"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.reference_frame</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.pose"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.pose()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.HasField"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.RectangularPrism"><code class="docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.RectangularPrism.dims_mm"><code class="docutils literal notranslate"><span class="pre">RectangularPrism.dims_mm()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.RectangularPrism.HasField"><code class="docutils literal notranslate"><span class="pre">RectangularPrism.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.ResourceName"><code class="docutils literal notranslate"><span class="pre">ResourceName</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.ResourceName.namespace"><code class="docutils literal notranslate"><span class="pre">ResourceName.namespace</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.ResourceName.type"><code class="docutils literal notranslate"><span class="pre">ResourceName.type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.ResourceName.subtype"><code class="docutils literal notranslate"><span class="pre">ResourceName.subtype</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.ResourceName.name"><code class="docutils literal notranslate"><span class="pre">ResourceName.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Sphere"><code class="docutils literal notranslate"><span class="pre">Sphere</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Sphere.radius_mm"><code class="docutils literal notranslate"><span class="pre">Sphere.radius_mm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Transform"><code class="docutils literal notranslate"><span class="pre">Transform</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.reference_frame"><code class="docutils literal notranslate"><span class="pre">Transform.reference_frame</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.pose_in_observer_frame"><code class="docutils literal notranslate"><span class="pre">Transform.pose_in_observer_frame()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.HasField"><code class="docutils literal notranslate"><span class="pre">Transform.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Vector3.x"><code class="docutils literal notranslate"><span class="pre">Vector3.x</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Vector3.y"><code class="docutils literal notranslate"><span class="pre">Vector3.y</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Vector3.z"><code class="docutils literal notranslate"><span class="pre">Vector3.z</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.WorldState"><code class="docutils literal notranslate"><span class="pre">WorldState</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.obstacles"><code class="docutils literal notranslate"><span class="pre">WorldState.obstacles()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.interaction_spaces"><code class="docutils literal notranslate"><span class="pre">WorldState.interaction_spaces()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.transforms"><code class="docutils literal notranslate"><span class="pre">WorldState.transforms()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.ActuatorStatus">ActuatorStatus</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.ActuatorStatus.is_moving">is_moving</a></li>
 </ul>
@@ -74,18 +193,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.BoardStatus">BoardStatus</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry">AnalogsEntry</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.key">key</a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.value">value</a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.HasField">HasField</a></li>
-</ul>
-</li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry">DigitalInterruptsEntry</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key">key</a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.value">value</a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry">AnalogsEntry</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry">DigitalInterruptsEntry</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.analogs">analogs</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.digital_interrupts">digital_interrupts</a></li>
 </ul>

@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -68,6 +69,74 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.arm</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.GetEndPosition"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.GetEndPosition()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.MoveToPosition"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.MoveToPosition()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.GetJointPositions"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.GetJointPositions()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.MoveToJointPositions"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.MoveToJointPositions()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.Stop()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">ArmServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceStub"><code class="docutils literal notranslate"><span class="pre">ArmServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.GetEndPositionRequest"><code class="docutils literal notranslate"><span class="pre">GetEndPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetEndPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">GetEndPositionRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetEndPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetEndPositionRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetEndPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetEndPositionRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.GetEndPositionResponse"><code class="docutils literal notranslate"><span class="pre">GetEndPositionResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetEndPositionResponse.pose"><code class="docutils literal notranslate"><span class="pre">GetEndPositionResponse.pose()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetEndPositionResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetEndPositionResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.GetJointPositionsRequest"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetJointPositionsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetJointPositionsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetJointPositionsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.GetJointPositionsResponse"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetJointPositionsResponse.positions"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsResponse.positions()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.GetJointPositionsResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetJointPositionsResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.JointPositions"><code class="docutils literal notranslate"><span class="pre">JointPositions</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.JointPositions.values"><code class="docutils literal notranslate"><span class="pre">JointPositions.values()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest.positions"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.positions()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveToJointPositionsResponse"><code class="docutils literal notranslate"><span class="pre">MoveToJointPositionsResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest.to"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.to()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.world_state()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.MoveToPositionResponse"><code class="docutils literal notranslate"><span class="pre">MoveToPositionResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.Status.is_moving"><code class="docutils literal notranslate"><span class="pre">Status.is_moving</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.Status.end_position"><code class="docutils literal notranslate"><span class="pre">Status.end_position()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.Status.joint_positions"><code class="docutils literal notranslate"><span class="pre">Status.joint_positions()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.Status.HasField"><code class="docutils literal notranslate"><span class="pre">Status.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.StopRequest"><code class="docutils literal notranslate"><span class="pre">StopRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.StopRequest.name"><code class="docutils literal notranslate"><span class="pre">StopRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.StopRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.StopResponse"><code class="docutils literal notranslate"><span class="pre">StopResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase">ArmServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.GetEndPosition">GetEndPosition</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.arm.ArmServiceBase.MoveToPosition">MoveToPosition</a></li>

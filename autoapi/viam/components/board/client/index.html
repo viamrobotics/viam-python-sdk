@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -65,6 +66,37 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.client</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.client.AnalogReaderClient"><code class="docutils literal notranslate"><span class="pre">AnalogReaderClient</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.AnalogReaderClient.read"><code class="docutils literal notranslate"><span class="pre">AnalogReaderClient.read()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.client.DigitalInterruptClient"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptClient</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.DigitalInterruptClient.value"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptClient.value()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.DigitalInterruptClient.tick"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptClient.tick()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.DigitalInterruptClient.add_callback"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptClient.add_callback()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.DigitalInterruptClient.add_post_processor"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptClient.add_post_processor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.client.GPIOPinClient"><code class="docutils literal notranslate"><span class="pre">GPIOPinClient</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.GPIOPinClient.get"><code class="docutils literal notranslate"><span class="pre">GPIOPinClient.get()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.GPIOPinClient.set"><code class="docutils literal notranslate"><span class="pre">GPIOPinClient.set()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.GPIOPinClient.get_pwm"><code class="docutils literal notranslate"><span class="pre">GPIOPinClient.get_pwm()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.GPIOPinClient.set_pwm"><code class="docutils literal notranslate"><span class="pre">GPIOPinClient.set_pwm()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.GPIOPinClient.get_pwm_frequency"><code class="docutils literal notranslate"><span class="pre">GPIOPinClient.get_pwm_frequency()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.GPIOPinClient.set_pwm_frequency"><code class="docutils literal notranslate"><span class="pre">GPIOPinClient.set_pwm_frequency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.client.BoardClient"><code class="docutils literal notranslate"><span class="pre">BoardClient</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.BoardClient.analog_reader_by_name"><code class="docutils literal notranslate"><span class="pre">BoardClient.analog_reader_by_name()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.BoardClient.digital_interrupt_by_name"><code class="docutils literal notranslate"><span class="pre">BoardClient.digital_interrupt_by_name()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.BoardClient.gpio_pin_by_name"><code class="docutils literal notranslate"><span class="pre">BoardClient.gpio_pin_by_name()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.BoardClient.analog_reader_names"><code class="docutils literal notranslate"><span class="pre">BoardClient.analog_reader_names()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.BoardClient.digital_interrupt_names"><code class="docutils literal notranslate"><span class="pre">BoardClient.digital_interrupt_names()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.BoardClient.status"><code class="docutils literal notranslate"><span class="pre">BoardClient.status()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.BoardClient.model_attributes"><code class="docutils literal notranslate"><span class="pre">BoardClient.model_attributes()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.BoardClient.do_command"><code class="docutils literal notranslate"><span class="pre">BoardClient.do_command()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.client.AnalogReaderClient">AnalogReaderClient</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.board.client.AnalogReaderClient.read">read</a></li>
 </ul>

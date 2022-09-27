@@ -19,6 +19,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -64,6 +65,39 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.VisModelType"><code class="docutils literal notranslate"><span class="pre">VisModelType</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_TF_LITE"><code class="docutils literal notranslate"><span class="pre">VisModelType.DETECTOR_TF_LITE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_TENSORFLOW"><code class="docutils literal notranslate"><span class="pre">VisModelType.DETECTOR_TENSORFLOW</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_COLOR"><code class="docutils literal notranslate"><span class="pre">VisModelType.DETECTOR_COLOR</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.CLASSIFIER_TFLITE"><code class="docutils literal notranslate"><span class="pre">VisModelType.CLASSIFIER_TFLITE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.CLASSIFIER_TENSORFLOW"><code class="docutils literal notranslate"><span class="pre">VisModelType.CLASSIFIER_TENSORFLOW</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.VisModelConfig"><code class="docutils literal notranslate"><span class="pre">VisModelConfig</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelConfig.name"><code class="docutils literal notranslate"><span class="pre">VisModelConfig.name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelConfig.type"><code class="docutils literal notranslate"><span class="pre">VisModelConfig.type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelConfig.parameters"><code class="docutils literal notranslate"><span class="pre">VisModelConfig.parameters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.VisionServiceClient"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.SERVICE_TYPE"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.SERVICE_TYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_detector_names"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_detector_names()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.add_detector"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.add_detector()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.remove_detector"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.remove_detector()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_detections_from_camera"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_detections_from_camera()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_detections"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_detections()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_classifier_names"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_classifier_names()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.add_classifier"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.add_classifier()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.remove_classifier"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.remove_classifier()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_classifications_from_camera"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_classifications_from_camera()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_classifications"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_classifications()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_segmenter_names"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_segmenter_names()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.add_segmenter"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.add_segmenter()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.remove_segmenter"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.remove_segmenter()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_model_parameters_schema"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_model_parameters_schema()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionServiceClient.get_object_point_clouds"><code class="docutils literal notranslate"><span class="pre">VisionServiceClient.get_object_point_clouds()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.VisModelType">VisModelType</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_TF_LITE">DETECTOR_TF_LITE</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_TENSORFLOW">DETECTOR_TENSORFLOW</a></li>

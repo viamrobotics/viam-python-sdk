@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -71,6 +72,113 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.board</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.Status"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.Status()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.SetGPIO"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.SetGPIO()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.GetGPIO"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.GetGPIO()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.PWM"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.PWM()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.SetPWM"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.SetPWM()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.PWMFrequency"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.PWMFrequency()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.SetPWMFrequency"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.SetPWMFrequency()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.ReadAnalogReader"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.ReadAnalogReader()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.GetDigitalInterruptValue"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.GetDigitalInterruptValue()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.BoardServiceStub"><code class="docutils literal notranslate"><span class="pre">BoardServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.GetDigitalInterruptValueRequest"><code class="docutils literal notranslate"><span class="pre">GetDigitalInterruptValueRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetDigitalInterruptValueRequest.board_name"><code class="docutils literal notranslate"><span class="pre">GetDigitalInterruptValueRequest.board_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetDigitalInterruptValueRequest.digital_interrupt_name"><code class="docutils literal notranslate"><span class="pre">GetDigitalInterruptValueRequest.digital_interrupt_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetDigitalInterruptValueRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetDigitalInterruptValueRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetDigitalInterruptValueRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetDigitalInterruptValueRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.GetDigitalInterruptValueResponse"><code class="docutils literal notranslate"><span class="pre">GetDigitalInterruptValueResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetDigitalInterruptValueResponse.value"><code class="docutils literal notranslate"><span class="pre">GetDigitalInterruptValueResponse.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.GetGPIORequest"><code class="docutils literal notranslate"><span class="pre">GetGPIORequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetGPIORequest.name"><code class="docutils literal notranslate"><span class="pre">GetGPIORequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetGPIORequest.pin"><code class="docutils literal notranslate"><span class="pre">GetGPIORequest.pin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetGPIORequest.extra"><code class="docutils literal notranslate"><span class="pre">GetGPIORequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetGPIORequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetGPIORequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.GetGPIOResponse"><code class="docutils literal notranslate"><span class="pre">GetGPIOResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.GetGPIOResponse.high"><code class="docutils literal notranslate"><span class="pre">GetGPIOResponse.high</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest.name"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest.pin"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyRequest.pin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest.extra"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyRequest.HasField"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyResponse"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMFrequencyResponse.frequency_hz"><code class="docutils literal notranslate"><span class="pre">PWMFrequencyResponse.frequency_hz</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.PWMRequest"><code class="docutils literal notranslate"><span class="pre">PWMRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMRequest.name"><code class="docutils literal notranslate"><span class="pre">PWMRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMRequest.pin"><code class="docutils literal notranslate"><span class="pre">PWMRequest.pin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMRequest.extra"><code class="docutils literal notranslate"><span class="pre">PWMRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMRequest.HasField"><code class="docutils literal notranslate"><span class="pre">PWMRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.PWMResponse"><code class="docutils literal notranslate"><span class="pre">PWMResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.PWMResponse.duty_cycle_pct"><code class="docutils literal notranslate"><span class="pre">PWMResponse.duty_cycle_pct</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest.board_name"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest.board_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest.analog_reader_name"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest.analog_reader_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest.extra"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderResponse"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.ReadAnalogReaderResponse.value"><code class="docutils literal notranslate"><span class="pre">ReadAnalogReaderResponse.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetGPIORequest"><code class="docutils literal notranslate"><span class="pre">SetGPIORequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetGPIORequest.name"><code class="docutils literal notranslate"><span class="pre">SetGPIORequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetGPIORequest.pin"><code class="docutils literal notranslate"><span class="pre">SetGPIORequest.pin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetGPIORequest.high"><code class="docutils literal notranslate"><span class="pre">SetGPIORequest.high</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetGPIORequest.extra"><code class="docutils literal notranslate"><span class="pre">SetGPIORequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetGPIORequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetGPIORequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetGPIOResponse"><code class="docutils literal notranslate"><span class="pre">SetGPIOResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest.pin"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest.pin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest.frequency_hz"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest.frequency_hz</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPWMFrequencyResponse"><code class="docutils literal notranslate"><span class="pre">SetPWMFrequencyResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPWMRequest"><code class="docutils literal notranslate"><span class="pre">SetPWMRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPWMRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMRequest.pin"><code class="docutils literal notranslate"><span class="pre">SetPWMRequest.pin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMRequest.duty_cycle_pct"><code class="docutils literal notranslate"><span class="pre">SetPWMRequest.duty_cycle_pct</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPWMRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.SetPWMRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetPWMRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPWMResponse"><code class="docutils literal notranslate"><span class="pre">SetPWMResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.StatusRequest"><code class="docutils literal notranslate"><span class="pre">StatusRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusRequest.name"><code class="docutils literal notranslate"><span class="pre">StatusRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusRequest.extra"><code class="docutils literal notranslate"><span class="pre">StatusRequest.extra()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StatusRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.StatusResponse"><code class="docutils literal notranslate"><span class="pre">StatusResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusResponse.status"><code class="docutils literal notranslate"><span class="pre">StatusResponse.status()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusResponse.HasField"><code class="docutils literal notranslate"><span class="pre">StatusResponse.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase">BoardServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.Status">Status</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.SetGPIO">SetGPIO</a></li>

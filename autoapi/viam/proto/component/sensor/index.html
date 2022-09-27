@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -80,6 +81,31 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.sensor</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase"><code class="docutils literal notranslate"><span class="pre">SensorServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.GetReadings"><code class="docutils literal notranslate"><span class="pre">SensorServiceBase.GetReadings()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">SensorServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceStub"><code class="docutils literal notranslate"><span class="pre">SensorServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsRequest"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.ReadingsEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.key"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.ReadingsEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.value"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.ReadingsEntry.value()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.ReadingsEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.readings"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.readings()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.key">key</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase">SensorServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.GetReadings">GetReadings</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.__mapping__">__mapping__</a></li>
@@ -91,12 +117,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse">GetReadingsResponse</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry">ReadingsEntry</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.key">key</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.value">value</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.ReadingsEntry">ReadingsEntry</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.GetReadingsResponse.readings">readings</a></li>
 </ul>
 </li>

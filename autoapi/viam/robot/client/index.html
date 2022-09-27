@@ -19,6 +19,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -63,14 +64,37 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.LOGGER">LOGGER</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient">RobotClient</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.Options">Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.LOGGER"><code class="docutils literal notranslate"><span class="pre">LOGGER</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient"><code class="docutils literal notranslate"><span class="pre">RobotClient</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.Options"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.refresh_interval"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options.refresh_interval</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.dial_options"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options.dial_options</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.log_level"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options.log_level</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.at_address"><code class="docutils literal notranslate"><span class="pre">RobotClient.at_address()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.with_channel"><code class="docutils literal notranslate"><span class="pre">RobotClient.with_channel()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.refresh"><code class="docutils literal notranslate"><span class="pre">RobotClient.refresh()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_component"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_component()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.resource_names"><code class="docutils literal notranslate"><span class="pre">RobotClient.resource_names()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.close"><code class="docutils literal notranslate"><span class="pre">RobotClient.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__"><code class="docutils literal notranslate"><span class="pre">RobotClient.__aenter__()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aexit__"><code class="docutils literal notranslate"><span class="pre">RobotClient.__aexit__()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_status"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_status()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_frame_system_config"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_frame_system_config()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_pose()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.discover_components"><code class="docutils literal notranslate"><span class="pre">RobotClient.discover_components()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.stop_all"><code class="docutils literal notranslate"><span class="pre">RobotClient.stop_all()</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.refresh_interval">refresh_interval</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.dial_options">dial_options</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.log_level">log_level</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.LOGGER">LOGGER</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient">RobotClient</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.Options">Options</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.at_address">at_address</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.with_channel">with_channel</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.refresh">refresh</a></li>

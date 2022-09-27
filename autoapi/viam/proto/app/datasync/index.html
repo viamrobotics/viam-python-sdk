@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -67,6 +68,182 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.datasync</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceBase"><code class="docutils literal notranslate"><span class="pre">DataSyncServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceBase.Upload"><code class="docutils literal notranslate"><span class="pre">DataSyncServiceBase.Upload()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">DataSyncServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceStub"><code class="docutils literal notranslate"><span class="pre">DataSyncServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture"><code class="docutils literal notranslate"><span class="pre">BinaryCapture</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.MethodParametersEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.key"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.MethodParametersEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.value"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.MethodParametersEntry.value()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.HasField"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.MethodParametersEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.org_id"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.org_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.robot_id"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.robot_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.part_id"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.part_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.location_id"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.location_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.component_name"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.component_type"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.component_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.component_model"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.component_model</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.method_name"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.method_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.blob_path"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.blob_path</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.file_id"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.file_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.file_size_bytes"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.file_size_bytes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.session_id"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.session_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.interval"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.interval()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.method_parameters"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.method_parameters()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.tags"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.tags()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.HasField"><code class="docutils literal notranslate"><span class="pre">BinaryCapture.HasField()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.key">key</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval"><code class="docutils literal notranslate"><span class="pre">CaptureInterval</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval.start"><code class="docutils literal notranslate"><span class="pre">CaptureInterval.start()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval.end"><code class="docutils literal notranslate"><span class="pre">CaptureInterval.end()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval.HasField"><code class="docutils literal notranslate"><span class="pre">CaptureInterval.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.MethodParametersEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.key"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.MethodParametersEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.value"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.MethodParametersEntry.value()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.HasField"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.MethodParametersEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.component_type"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.component_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.component_name"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.component_model"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.component_model</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.method_name"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.method_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.type"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.file_extension"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.file_extension</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.session_id"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.session_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.method_parameters"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.method_parameters()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.tags"><code class="docutils literal notranslate"><span class="pre">DataCaptureMetadata.tags()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.key">key</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.FileData"><code class="docutils literal notranslate"><span class="pre">FileData</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.FileData.data"><code class="docutils literal notranslate"><span class="pre">FileData.data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.SensorData"><code class="docutils literal notranslate"><span class="pre">SensorData</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorData.binary"><code class="docutils literal notranslate"><span class="pre">SensorData.binary</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorData.metadata"><code class="docutils literal notranslate"><span class="pre">SensorData.metadata()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorData.struct"><code class="docutils literal notranslate"><span class="pre">SensorData.struct()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorData.HasField"><code class="docutils literal notranslate"><span class="pre">SensorData.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorData.WhichOneof"><code class="docutils literal notranslate"><span class="pre">SensorData.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.SensorMetadata"><code class="docutils literal notranslate"><span class="pre">SensorMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorMetadata.time_requested"><code class="docutils literal notranslate"><span class="pre">SensorMetadata.time_requested()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorMetadata.time_received"><code class="docutils literal notranslate"><span class="pre">SensorMetadata.time_received()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorMetadata.HasField"><code class="docutils literal notranslate"><span class="pre">SensorMetadata.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture"><code class="docutils literal notranslate"><span class="pre">TabularCapture</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry"><code class="docutils literal notranslate"><span class="pre">TabularCapture.MethodParametersEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.key"><code class="docutils literal notranslate"><span class="pre">TabularCapture.MethodParametersEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.value"><code class="docutils literal notranslate"><span class="pre">TabularCapture.MethodParametersEntry.value()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.HasField"><code class="docutils literal notranslate"><span class="pre">TabularCapture.MethodParametersEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.org_id"><code class="docutils literal notranslate"><span class="pre">TabularCapture.org_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.robot_id"><code class="docutils literal notranslate"><span class="pre">TabularCapture.robot_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.part_id"><code class="docutils literal notranslate"><span class="pre">TabularCapture.part_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.location_id"><code class="docutils literal notranslate"><span class="pre">TabularCapture.location_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.component_name"><code class="docutils literal notranslate"><span class="pre">TabularCapture.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.component_type"><code class="docutils literal notranslate"><span class="pre">TabularCapture.component_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.component_model"><code class="docutils literal notranslate"><span class="pre">TabularCapture.component_model</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.method_name"><code class="docutils literal notranslate"><span class="pre">TabularCapture.method_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.blob_path"><code class="docutils literal notranslate"><span class="pre">TabularCapture.blob_path</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.file_id"><code class="docutils literal notranslate"><span class="pre">TabularCapture.file_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.message_count"><code class="docutils literal notranslate"><span class="pre">TabularCapture.message_count</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.file_size_bytes"><code class="docutils literal notranslate"><span class="pre">TabularCapture.file_size_bytes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.session_id"><code class="docutils literal notranslate"><span class="pre">TabularCapture.session_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.interval"><code class="docutils literal notranslate"><span class="pre">TabularCapture.interval()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.column_names"><code class="docutils literal notranslate"><span class="pre">TabularCapture.column_names()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.method_parameters"><code class="docutils literal notranslate"><span class="pre">TabularCapture.method_parameters()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.tags"><code class="docutils literal notranslate"><span class="pre">TabularCapture.tags()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.HasField"><code class="docutils literal notranslate"><span class="pre">TabularCapture.HasField()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.key">key</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata"><code class="docutils literal notranslate"><span class="pre">UploadMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.MethodParametersEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.key"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.MethodParametersEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.value"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.MethodParametersEntry.value()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.HasField"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.MethodParametersEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.part_id"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.part_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.component_type"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.component_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.component_name"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.component_model"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.component_model</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.method_name"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.method_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.type"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.file_name"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.file_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.file_extension"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.file_extension</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.session_id"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.session_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.method_parameters"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.method_parameters()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.tags"><code class="docutils literal notranslate"><span class="pre">UploadMetadata.tags()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.key">key</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.UploadRequest"><code class="docutils literal notranslate"><span class="pre">UploadRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadRequest.metadata"><code class="docutils literal notranslate"><span class="pre">UploadRequest.metadata()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadRequest.sensor_contents"><code class="docutils literal notranslate"><span class="pre">UploadRequest.sensor_contents()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadRequest.file_contents"><code class="docutils literal notranslate"><span class="pre">UploadRequest.file_contents()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadRequest.HasField"><code class="docutils literal notranslate"><span class="pre">UploadRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">UploadRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.UploadResponse"><code class="docutils literal notranslate"><span class="pre">UploadResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadResponse.requests_written"><code class="docutils literal notranslate"><span class="pre">UploadResponse.requests_written</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.UserFile"><code class="docutils literal notranslate"><span class="pre">UserFile</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry"><code class="docutils literal notranslate"><span class="pre">UserFile.MethodParametersEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.key"><code class="docutils literal notranslate"><span class="pre">UserFile.MethodParametersEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.value"><code class="docutils literal notranslate"><span class="pre">UserFile.MethodParametersEntry.value()</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.HasField"><code class="docutils literal notranslate"><span class="pre">UserFile.MethodParametersEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.org_id"><code class="docutils literal notranslate"><span class="pre">UserFile.org_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.robot_id"><code class="docutils literal notranslate"><span class="pre">UserFile.robot_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.part_id"><code class="docutils literal notranslate"><span class="pre">UserFile.part_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.location_id"><code class="docutils literal notranslate"><span class="pre">UserFile.location_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.blob_path"><code class="docutils literal notranslate"><span class="pre">UserFile.blob_path</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.file_id"><code class="docutils literal notranslate"><span class="pre">UserFile.file_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.file_size_bytes"><code class="docutils literal notranslate"><span class="pre">UserFile.file_size_bytes</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.sync_time"><code class="docutils literal notranslate"><span class="pre">UserFile.sync_time()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.method_parameters"><code class="docutils literal notranslate"><span class="pre">UserFile.method_parameters()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.HasField"><code class="docutils literal notranslate"><span class="pre">UserFile.HasField()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.key">key</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceBase">DataSyncServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceBase.Upload">Upload</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceBase.__mapping__">__mapping__</a></li>
@@ -74,12 +251,7 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceStub">DataSyncServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture">BinaryCapture</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry">MethodParametersEntry</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.key">key</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.value">value</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.MethodParametersEntry">MethodParametersEntry</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.org_id">org_id</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.robot_id">robot_id</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.BinaryCapture.part_id">part_id</a></li>
@@ -105,12 +277,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata">DataCaptureMetadata</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry">MethodParametersEntry</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.key">key</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.value">value</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry">MethodParametersEntry</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.component_type">component_type</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.component_name">component_name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata.component_model">component_model</a></li>
@@ -141,12 +308,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture">TabularCapture</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry">MethodParametersEntry</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.key">key</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.value">value</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.MethodParametersEntry">MethodParametersEntry</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.org_id">org_id</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.robot_id">robot_id</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.TabularCapture.part_id">part_id</a></li>
@@ -168,12 +330,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata">UploadMetadata</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry">MethodParametersEntry</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.key">key</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.value">value</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry">MethodParametersEntry</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.part_id">part_id</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.component_type">component_type</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata.component_name">component_name</a></li>
@@ -200,12 +357,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.UserFile">UserFile</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry">MethodParametersEntry</a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.key">key</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.value">value</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry.HasField">HasField</a></li>
-</ul>
-</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.MethodParametersEntry">MethodParametersEntry</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.org_id">org_id</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.robot_id">robot_id</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UserFile.part_id">part_id</a></li>

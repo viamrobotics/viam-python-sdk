@@ -19,6 +19,7 @@
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -77,6 +78,180 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.vision</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetModelParameterSchema"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetModelParameterSchema()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetDetectorNames"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetDetectorNames()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.AddDetector"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.AddDetector()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.RemoveDetector"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.RemoveDetector()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetDetectionsFromCamera"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetDetectionsFromCamera()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetDetections"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetDetections()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetClassifierNames"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetClassifierNames()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.AddClassifier"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.AddClassifier()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.RemoveClassifier"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.RemoveClassifier()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetClassificationsFromCamera"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetClassificationsFromCamera()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetClassifications"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetClassifications()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetSegmenterNames"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetSegmenterNames()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.AddSegmenter"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.AddSegmenter()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.RemoveSegmenter"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.RemoveSegmenter()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetObjectPointClouds"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.GetObjectPointClouds()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">VisionServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceStub"><code class="docutils literal notranslate"><span class="pre">VisionServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.AddClassifierRequest"><code class="docutils literal notranslate"><span class="pre">AddClassifierRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddClassifierRequest.name"><code class="docutils literal notranslate"><span class="pre">AddClassifierRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddClassifierRequest.classifier_name"><code class="docutils literal notranslate"><span class="pre">AddClassifierRequest.classifier_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddClassifierRequest.classifier_model_type"><code class="docutils literal notranslate"><span class="pre">AddClassifierRequest.classifier_model_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddClassifierRequest.classifier_parameters"><code class="docutils literal notranslate"><span class="pre">AddClassifierRequest.classifier_parameters()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddClassifierRequest.HasField"><code class="docutils literal notranslate"><span class="pre">AddClassifierRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.AddClassifierResponse"><code class="docutils literal notranslate"><span class="pre">AddClassifierResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.AddDetectorRequest"><code class="docutils literal notranslate"><span class="pre">AddDetectorRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddDetectorRequest.name"><code class="docutils literal notranslate"><span class="pre">AddDetectorRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddDetectorRequest.detector_name"><code class="docutils literal notranslate"><span class="pre">AddDetectorRequest.detector_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddDetectorRequest.detector_model_type"><code class="docutils literal notranslate"><span class="pre">AddDetectorRequest.detector_model_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddDetectorRequest.detector_parameters"><code class="docutils literal notranslate"><span class="pre">AddDetectorRequest.detector_parameters()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddDetectorRequest.HasField"><code class="docutils literal notranslate"><span class="pre">AddDetectorRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.AddDetectorResponse"><code class="docutils literal notranslate"><span class="pre">AddDetectorResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.AddSegmenterRequest"><code class="docutils literal notranslate"><span class="pre">AddSegmenterRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddSegmenterRequest.name"><code class="docutils literal notranslate"><span class="pre">AddSegmenterRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddSegmenterRequest.segmenter_name"><code class="docutils literal notranslate"><span class="pre">AddSegmenterRequest.segmenter_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddSegmenterRequest.segmenter_model_type"><code class="docutils literal notranslate"><span class="pre">AddSegmenterRequest.segmenter_model_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddSegmenterRequest.segmenter_parameters"><code class="docutils literal notranslate"><span class="pre">AddSegmenterRequest.segmenter_parameters()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.AddSegmenterRequest.HasField"><code class="docutils literal notranslate"><span class="pre">AddSegmenterRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.AddSegmenterResponse"><code class="docutils literal notranslate"><span class="pre">AddSegmenterResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.Classification"><code class="docutils literal notranslate"><span class="pre">Classification</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Classification.class_name"><code class="docutils literal notranslate"><span class="pre">Classification.class_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Classification.confidence"><code class="docutils literal notranslate"><span class="pre">Classification.confidence</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.Detection"><code class="docutils literal notranslate"><span class="pre">Detection</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Detection.x_min"><code class="docutils literal notranslate"><span class="pre">Detection.x_min</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Detection.y_min"><code class="docutils literal notranslate"><span class="pre">Detection.y_min</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Detection.x_max"><code class="docutils literal notranslate"><span class="pre">Detection.x_max</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Detection.y_max"><code class="docutils literal notranslate"><span class="pre">Detection.y_max</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Detection.confidence"><code class="docutils literal notranslate"><span class="pre">Detection.confidence</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Detection.class_name"><code class="docutils literal notranslate"><span class="pre">Detection.class_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Detection.HasField"><code class="docutils literal notranslate"><span class="pre">Detection.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.Detection.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Detection.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest"><code class="docutils literal notranslate"><span class="pre">GetClassificationsFromCameraRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.name"><code class="docutils literal notranslate"><span class="pre">GetClassificationsFromCameraRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.camera_name"><code class="docutils literal notranslate"><span class="pre">GetClassificationsFromCameraRequest.camera_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.classifier_name"><code class="docutils literal notranslate"><span class="pre">GetClassificationsFromCameraRequest.classifier_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.n"><code class="docutils literal notranslate"><span class="pre">GetClassificationsFromCameraRequest.n</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsFromCameraResponse"><code class="docutils literal notranslate"><span class="pre">GetClassificationsFromCameraResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsFromCameraResponse.classifications"><code class="docutils literal notranslate"><span class="pre">GetClassificationsFromCameraResponse.classifications()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsRequest"><code class="docutils literal notranslate"><span class="pre">GetClassificationsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetClassificationsRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsRequest.image"><code class="docutils literal notranslate"><span class="pre">GetClassificationsRequest.image</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsRequest.width"><code class="docutils literal notranslate"><span class="pre">GetClassificationsRequest.width</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsRequest.height"><code class="docutils literal notranslate"><span class="pre">GetClassificationsRequest.height</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsRequest.mime_type"><code class="docutils literal notranslate"><span class="pre">GetClassificationsRequest.mime_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsRequest.classifier_name"><code class="docutils literal notranslate"><span class="pre">GetClassificationsRequest.classifier_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsRequest.n"><code class="docutils literal notranslate"><span class="pre">GetClassificationsRequest.n</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsResponse"><code class="docutils literal notranslate"><span class="pre">GetClassificationsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassificationsResponse.classifications"><code class="docutils literal notranslate"><span class="pre">GetClassificationsResponse.classifications()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetClassifierNamesRequest"><code class="docutils literal notranslate"><span class="pre">GetClassifierNamesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassifierNamesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetClassifierNamesRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetClassifierNamesResponse"><code class="docutils literal notranslate"><span class="pre">GetClassifierNamesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetClassifierNamesResponse.classifier_names"><code class="docutils literal notranslate"><span class="pre">GetClassifierNamesResponse.classifier_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest"><code class="docutils literal notranslate"><span class="pre">GetDetectionsFromCameraRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.name"><code class="docutils literal notranslate"><span class="pre">GetDetectionsFromCameraRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.camera_name"><code class="docutils literal notranslate"><span class="pre">GetDetectionsFromCameraRequest.camera_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.detector_name"><code class="docutils literal notranslate"><span class="pre">GetDetectionsFromCameraRequest.detector_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsFromCameraResponse"><code class="docutils literal notranslate"><span class="pre">GetDetectionsFromCameraResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsFromCameraResponse.detections"><code class="docutils literal notranslate"><span class="pre">GetDetectionsFromCameraResponse.detections()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsRequest"><code class="docutils literal notranslate"><span class="pre">GetDetectionsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetDetectionsRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsRequest.image"><code class="docutils literal notranslate"><span class="pre">GetDetectionsRequest.image</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsRequest.width"><code class="docutils literal notranslate"><span class="pre">GetDetectionsRequest.width</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsRequest.height"><code class="docutils literal notranslate"><span class="pre">GetDetectionsRequest.height</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsRequest.mime_type"><code class="docutils literal notranslate"><span class="pre">GetDetectionsRequest.mime_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsRequest.detector_name"><code class="docutils literal notranslate"><span class="pre">GetDetectionsRequest.detector_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsResponse"><code class="docutils literal notranslate"><span class="pre">GetDetectionsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectionsResponse.detections"><code class="docutils literal notranslate"><span class="pre">GetDetectionsResponse.detections()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetDetectorNamesRequest"><code class="docutils literal notranslate"><span class="pre">GetDetectorNamesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectorNamesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetDetectorNamesRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetDetectorNamesResponse"><code class="docutils literal notranslate"><span class="pre">GetDetectorNamesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetDetectorNamesResponse.detector_names"><code class="docutils literal notranslate"><span class="pre">GetDetectorNamesResponse.detector_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetModelParameterSchemaRequest"><code class="docutils literal notranslate"><span class="pre">GetModelParameterSchemaRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetModelParameterSchemaRequest.name"><code class="docutils literal notranslate"><span class="pre">GetModelParameterSchemaRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetModelParameterSchemaRequest.model_type"><code class="docutils literal notranslate"><span class="pre">GetModelParameterSchemaRequest.model_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetModelParameterSchemaResponse"><code class="docutils literal notranslate"><span class="pre">GetModelParameterSchemaResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetModelParameterSchemaResponse.model_parameter_schema"><code class="docutils literal notranslate"><span class="pre">GetModelParameterSchemaResponse.model_parameter_schema</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetObjectPointCloudsRequest"><code class="docutils literal notranslate"><span class="pre">GetObjectPointCloudsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetObjectPointCloudsRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.camera_name"><code class="docutils literal notranslate"><span class="pre">GetObjectPointCloudsRequest.camera_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.segmenter_name"><code class="docutils literal notranslate"><span class="pre">GetObjectPointCloudsRequest.segmenter_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.mime_type"><code class="docutils literal notranslate"><span class="pre">GetObjectPointCloudsRequest.mime_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetObjectPointCloudsResponse"><code class="docutils literal notranslate"><span class="pre">GetObjectPointCloudsResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetObjectPointCloudsResponse.mime_type"><code class="docutils literal notranslate"><span class="pre">GetObjectPointCloudsResponse.mime_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetObjectPointCloudsResponse.objects"><code class="docutils literal notranslate"><span class="pre">GetObjectPointCloudsResponse.objects()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetSegmenterNamesRequest"><code class="docutils literal notranslate"><span class="pre">GetSegmenterNamesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetSegmenterNamesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetSegmenterNamesRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.GetSegmenterNamesResponse"><code class="docutils literal notranslate"><span class="pre">GetSegmenterNamesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.GetSegmenterNamesResponse.segmenter_names"><code class="docutils literal notranslate"><span class="pre">GetSegmenterNamesResponse.segmenter_names()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.RemoveClassifierRequest"><code class="docutils literal notranslate"><span class="pre">RemoveClassifierRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.RemoveClassifierRequest.name"><code class="docutils literal notranslate"><span class="pre">RemoveClassifierRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.RemoveClassifierRequest.classifier_name"><code class="docutils literal notranslate"><span class="pre">RemoveClassifierRequest.classifier_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.RemoveClassifierResponse"><code class="docutils literal notranslate"><span class="pre">RemoveClassifierResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.RemoveDetectorRequest"><code class="docutils literal notranslate"><span class="pre">RemoveDetectorRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.RemoveDetectorRequest.name"><code class="docutils literal notranslate"><span class="pre">RemoveDetectorRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.RemoveDetectorRequest.detector_name"><code class="docutils literal notranslate"><span class="pre">RemoveDetectorRequest.detector_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.RemoveDetectorResponse"><code class="docutils literal notranslate"><span class="pre">RemoveDetectorResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.RemoveSegmenterRequest"><code class="docutils literal notranslate"><span class="pre">RemoveSegmenterRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.RemoveSegmenterRequest.name"><code class="docutils literal notranslate"><span class="pre">RemoveSegmenterRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.RemoveSegmenterRequest.segmenter_name"><code class="docutils literal notranslate"><span class="pre">RemoveSegmenterRequest.segmenter_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.RemoveSegmenterResponse"><code class="docutils literal notranslate"><span class="pre">RemoveSegmenterResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase">VisionServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetModelParameterSchema">GetModelParameterSchema</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase.GetDetectorNames">GetDetectorNames</a></li>

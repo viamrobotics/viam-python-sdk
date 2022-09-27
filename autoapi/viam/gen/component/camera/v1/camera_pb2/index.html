@@ -19,6 +19,7 @@
         <script src="../../../../../../../_static/underscore.js"></script>
         <script src="../../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -128,13 +129,10 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Property" title="viam.gen.component.camera.v1.camera_pb2.Property"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Property</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Video" title="viam.gen.component.camera.v1.camera_pb2.Video"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Video</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.IntrinsicParameters" title="viam.gen.component.camera.v1.camera_pb2.IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.IntrinsicParameters" title="viam.gen.component.camera.v1.camera_pb2.IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.DistortionParameters" title="viam.gen.component.camera.v1.camera_pb2.DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.DistortionParameters" title="viam.gen.component.camera.v1.camera_pb2.DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -181,13 +179,10 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Property" title="viam.gen.component.camera.v1.camera_pb2.global___Property"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Property</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Video" title="viam.gen.component.camera.v1.camera_pb2.global___Video"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Video</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters" title="viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___IntrinsicParameters</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters" title="viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___IntrinsicParameters</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters" title="viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___DistortionParameters</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters" title="viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___DistortionParameters</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -467,7 +462,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Property">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">Property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">video</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Video</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Property" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">Property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Property" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -490,72 +485,11 @@ shown below.</p>
 <dd><p>Video frame format</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Property.video">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">video</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___Video</span></span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Property.video" title="Permalink to this definition"></a></dt>
-<dd><p>Camera video properties</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Property.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">video</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'video'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Property.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.global___Property">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Property</span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.global___Property" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Video">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">Video</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Video" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Video.width">
-<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Video.width" title="Permalink to this definition"></a></dt>
-<dd><p>Video resolution width</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Video.height">
-<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Video.height" title="Permalink to this definition"></a></dt>
-<dd><p>Video resolution height</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Video.frame_format">
-<span class="sig-name descname"><span class="pre">frame_format</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Video.frame_format" title="Permalink to this definition"></a></dt>
-<dd><p>Video frame format</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.global___Video">
-<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Video</span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.global___Video" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">

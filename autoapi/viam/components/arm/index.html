@@ -19,6 +19,7 @@
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
         <script>let toggleHintShow = 'Click to show';</script>
         <script>let toggleHintHide = 'Click to hide';</script>
         <script>let toggleOpenOnPrint = 'true';</script>
@@ -66,6 +67,35 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm"><code class="docutils literal notranslate"><span class="pre">Arm</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.get_end_position"><code class="docutils literal notranslate"><span class="pre">Arm.get_end_position()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.move_to_position"><code class="docutils literal notranslate"><span class="pre">Arm.move_to_position()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.move_to_joint_positions"><code class="docutils literal notranslate"><span class="pre">Arm.move_to_joint_positions()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.get_joint_positions"><code class="docutils literal notranslate"><span class="pre">Arm.get_joint_positions()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.stop"><code class="docutils literal notranslate"><span class="pre">Arm.stop()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.is_moving"><code class="docutils literal notranslate"><span class="pre">Arm.is_moving()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.JointPositions"><code class="docutils literal notranslate"><span class="pre">JointPositions</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.JointPositions.values"><code class="docutils literal notranslate"><span class="pre">JointPositions.values()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Pose"><code class="docutils literal notranslate"><span class="pre">Pose</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.x"><code class="docutils literal notranslate"><span class="pre">Pose.x</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.y"><code class="docutils literal notranslate"><span class="pre">Pose.y</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.z"><code class="docutils literal notranslate"><span class="pre">Pose.z</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.o_x"><code class="docutils literal notranslate"><span class="pre">Pose.o_x</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.o_y"><code class="docutils literal notranslate"><span class="pre">Pose.o_y</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.o_z"><code class="docutils literal notranslate"><span class="pre">Pose.o_z</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.theta"><code class="docutils literal notranslate"><span class="pre">Pose.theta</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.WorldState"><code class="docutils literal notranslate"><span class="pre">WorldState</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.WorldState.obstacles"><code class="docutils literal notranslate"><span class="pre">WorldState.obstacles()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.WorldState.interaction_spaces"><code class="docutils literal notranslate"><span class="pre">WorldState.interaction_spaces()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.WorldState.transforms"><code class="docutils literal notranslate"><span class="pre">WorldState.transforms()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm">Arm</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.get_end_position">get_end_position</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.move_to_position">move_to_position</a></li>
