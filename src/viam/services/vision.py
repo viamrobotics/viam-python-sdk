@@ -47,6 +47,8 @@ class VisModelType(str, Enum):
     DETECTOR_COLOR = "color_detector"
     CLASSIFIER_TFLITE = "tflite_classifier"
     CLASSIFIER_TENSORFLOW = "tf_classifier"
+    DETECTOR_SEGMENTER = "detector_segmenter"
+    RADIUS_CLUSTERING_SEGMENTER = "radius_clustering_segmenter"
 
 
 @dataclass
