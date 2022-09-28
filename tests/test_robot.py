@@ -1,4 +1,5 @@
 import asyncio
+from glob import glob
 from typing import Any, Dict, Optional
 
 import pytest
@@ -6,6 +7,7 @@ from google.protobuf.struct_pb2 import Struct, Value
 from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
 from grpclib.testing import ChannelFor
+
 from viam.components.arm import Arm
 from viam.components.motor import Motor
 from viam.components.resource_manager import ResourceManager
@@ -15,6 +17,10 @@ from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.component.motor import Status as MotorStatus
 from viam.proto.robot import (
+    BlockForOperationRequest,
+    BlockForOperationResponse,
+    CancelOperationRequest,
+    CancelOperationResponse,
     DiscoverComponentsRequest,
     DiscoverComponentsResponse,
     Discovery,
@@ -22,8 +28,11 @@ from viam.proto.robot import (
     FrameSystemConfig,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
+    GetOperationsRequest,
+    GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    Operation,
     ResourceNamesRequest,
     ResourceNamesResponse,
     RobotServiceStub,
@@ -104,6 +113,10 @@ DISCOVERY_RESPONSE = [
     )
 ]
 
+OPERATION_ID = "abc"
+
+OPERATIONS_RESPONSE = [Operation(id=OPERATION_ID)]
+
 
 @pytest.fixture(scope="function")
 def service() -> RobotService:
@@ -131,11 +144,19 @@ def service() -> RobotService:
         response = DiscoverComponentsResponse(discovery=DISCOVERY_RESPONSE)
         await stream.send_message(response)
 
+    async def GetOperations(stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = GetOperationsResponse(operations=OPERATIONS_RESPONSE)
+        await stream.send_message(response)
+
     manager = ResourceManager(resources)
     service = RobotService(manager)
     service.FrameSystemConfig = Config
     service.TransformPose = TransformPose
     service.DiscoverComponents = DiscoverComponents
+    service.GetOperations = GetOperations
+
     return service
 
 
@@ -328,6 +349,47 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             discoveries = await client.discover_components([DISCOVERY_QUERY])
             assert discoveries == DISCOVERY_RESPONSE
+
+    @pytest.mark.asyncio
+    async def test_get_operations(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            ops = await client.get_operations()
+            assert ops == OPERATIONS_RESPONSE
+
+    @pytest.mark.asyncio
+    async def test_cancel_operation(self, service: RobotService):
+        cancelled = None
+
+        async def CancelOperation(stream: Stream[CancelOperationRequest, CancelOperationResponse]) -> None:
+            request = await stream.recv_message()
+            assert request is not None
+            nonlocal cancelled
+            cancelled = request.id
+            await stream.send_message(CancelOperationResponse())
+
+        service.CancelOperation = CancelOperation
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            await client.cancel_operation(id=OPERATION_ID)
+            assert cancelled == OPERATION_ID
+
+    @pytest.mark.asyncio
+    async def test_block_for_operation(self, service: RobotService):
+        blocked = None
+
+        async def BlockForOperation(stream: Stream[BlockForOperationRequest, BlockForOperationResponse]) -> None:
+            request = await stream.recv_message()
+            assert request is not None
+            nonlocal blocked
+            blocked = request.id
+            await stream.send_message(BlockForOperationResponse())
+
+        service.BlockForOperation = BlockForOperation
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            await client.block_for_operation(id=OPERATION_ID)
+            assert blocked == OPERATION_ID
 
     @pytest.mark.asyncio
     async def test_stop_all(self, service: RobotService):
