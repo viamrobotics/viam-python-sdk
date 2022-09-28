@@ -262,7 +262,7 @@ class VisionServiceClient(ServiceClientBase):
         response: GetModelParameterSchemaResponse = await self.client.GetModelParameterSchema(request)
         return json.loads(response.model_parameter_schema)
 
-    async def get_object_point_clouds(self, camera_name: str, segmenter_name: str, parameters: Mapping[str, Any]) -> List[PointCloudObject]:
+    async def get_object_point_clouds(self, camera_name: str, segmenter_name: str) -> List[PointCloudObject]:
         """
         Returns a list of the 3D point cloud objects and associated metadata in the latest
         picture obtained from the specified 3D camera (using the specified segmenter).
