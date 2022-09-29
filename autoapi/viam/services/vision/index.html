@@ -71,6 +71,8 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_COLOR"><code class="docutils literal notranslate"><span class="pre">VisModelType.DETECTOR_COLOR</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.CLASSIFIER_TFLITE"><code class="docutils literal notranslate"><span class="pre">VisModelType.CLASSIFIER_TFLITE</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.CLASSIFIER_TENSORFLOW"><code class="docutils literal notranslate"><span class="pre">VisModelType.CLASSIFIER_TENSORFLOW</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_SEGMENTER"><code class="docutils literal notranslate"><span class="pre">VisModelType.DETECTOR_SEGMENTER</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.RADIUS_CLUSTERING_SEGMENTER"><code class="docutils literal notranslate"><span class="pre">VisModelType.RADIUS_CLUSTERING_SEGMENTER</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.VisModelConfig"><code class="docutils literal notranslate"><span class="pre">VisModelConfig</span></code></a><ul>
@@ -104,6 +106,8 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_COLOR">DETECTOR_COLOR</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.CLASSIFIER_TFLITE">CLASSIFIER_TFLITE</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.CLASSIFIER_TENSORFLOW">CLASSIFIER_TENSORFLOW</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.DETECTOR_SEGMENTER">DETECTOR_SEGMENTER</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisModelType.RADIUS_CLUSTERING_SEGMENTER">RADIUS_CLUSTERING_SEGMENTER</a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.VisModelConfig">VisModelConfig</a><ul>
@@ -229,6 +233,16 @@ errors defaults to ‘strict’.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.vision.VisModelType.CLASSIFIER_TENSORFLOW">
 <span class="sig-name descname"><span class="pre">CLASSIFIER_TENSORFLOW</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">tf_classifier</span></em><a class="headerlink" href="#viam.services.vision.VisModelType.CLASSIFIER_TENSORFLOW" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.VisModelType.DETECTOR_SEGMENTER">
+<span class="sig-name descname"><span class="pre">DETECTOR_SEGMENTER</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">detector_segmenter</span></em><a class="headerlink" href="#viam.services.vision.VisModelType.DETECTOR_SEGMENTER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.VisModelType.RADIUS_CLUSTERING_SEGMENTER">
+<span class="sig-name descname"><span class="pre">RADIUS_CLUSTERING_SEGMENTER</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">radius_clustering_segmenter</span></em><a class="headerlink" href="#viam.services.vision.VisModelType.RADIUS_CLUSTERING_SEGMENTER" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -478,7 +492,7 @@ from the given camera, with the given detector applied to it.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.vision.VisionServiceClient.get_object_point_clouds">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_object_point_clouds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segmenter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PointCloudObject" title="viam.proto.common.PointCloudObject"><span class="pre">viam.proto.common.PointCloudObject</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionServiceClient.get_object_point_clouds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionServiceClient.get_object_point_clouds" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_object_point_clouds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segmenter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PointCloudObject" title="viam.proto.common.PointCloudObject"><span class="pre">viam.proto.common.PointCloudObject</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision.html#VisionServiceClient.get_object_point_clouds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionServiceClient.get_object_point_clouds" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of the 3D point cloud objects and associated metadata in the latest
 picture obtained from the specified 3D camera (using the specified segmenter).</p>
 <dl class="field-list simple">

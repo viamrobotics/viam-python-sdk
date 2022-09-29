@@ -133,7 +133,9 @@
     <span class="n">DETECTOR_TENSORFLOW</span> <span class="o">=</span> <span class="s2">&quot;tf_detector&quot;</span>
     <span class="n">DETECTOR_COLOR</span> <span class="o">=</span> <span class="s2">&quot;color_detector&quot;</span>
     <span class="n">CLASSIFIER_TFLITE</span> <span class="o">=</span> <span class="s2">&quot;tflite_classifier&quot;</span>
-    <span class="n">CLASSIFIER_TENSORFLOW</span> <span class="o">=</span> <span class="s2">&quot;tf_classifier&quot;</span></div>
+    <span class="n">CLASSIFIER_TENSORFLOW</span> <span class="o">=</span> <span class="s2">&quot;tf_classifier&quot;</span>
+    <span class="n">DETECTOR_SEGMENTER</span> <span class="o">=</span> <span class="s2">&quot;detector_segmenter&quot;</span>
+    <span class="n">RADIUS_CLUSTERING_SEGMENTER</span> <span class="o">=</span> <span class="s2">&quot;radius_clustering_segmenter&quot;</span></div>
 
 
 <div class="viewcode-block" id="VisModelConfig"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisModelConfig">[docs]</a><span class="nd">@dataclass</span>
@@ -349,7 +351,7 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetModelParameterSchemaResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetModelParameterSchema</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">model_parameter_schema</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="VisionServiceClient.get_object_point_clouds"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_object_point_clouds">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_point_clouds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">]:</span>
+<div class="viewcode-block" id="VisionServiceClient.get_object_point_clouds"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_object_point_clouds">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_point_clouds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of the 3D point cloud objects and associated metadata in the latest</span>
 <span class="sd">        picture obtained from the specified 3D camera (using the specified segmenter).</span>

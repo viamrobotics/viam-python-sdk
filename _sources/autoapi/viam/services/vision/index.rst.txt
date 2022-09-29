@@ -59,6 +59,16 @@ Classes
 
       
 
+   .. py:attribute:: DETECTOR_SEGMENTER
+      :annotation: = detector_segmenter
+
+      
+
+   .. py:attribute:: RADIUS_CLUSTERING_SEGMENTER
+      :annotation: = radius_clustering_segmenter
+
+      
+
 
 .. py:class:: VisModelConfig
 
@@ -248,7 +258,7 @@ Classes
       :rtype: Mapping[str, str | int | float | bool | Sequence | Mapping]
 
 
-   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, parameters: Mapping[str, Any]) -> List[viam.proto.common.PointCloudObject]
+   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str) -> List[viam.proto.common.PointCloudObject]
       :async:
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest
