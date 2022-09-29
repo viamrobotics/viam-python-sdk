@@ -254,6 +254,7 @@ class Geometry(google.protobuf.message.Message):
     CENTER_FIELD_NUMBER: builtins.int
     SPHERE_FIELD_NUMBER: builtins.int
     BOX_FIELD_NUMBER: builtins.int
+    LABEL_FIELD_NUMBER: builtins.int
 
     @property
     def center(self) -> global___Pose:
@@ -266,14 +267,16 @@ class Geometry(google.protobuf.message.Message):
     @property
     def box(self) -> global___RectangularPrism:
         ...
+    label: builtins.str
+    'Label of the geometry. If none supplied, will be an empty string.'
 
-    def __init__(self, *, center: global___Pose | None=..., sphere: global___Sphere | None=..., box: global___RectangularPrism | None=...) -> None:
+    def __init__(self, *, center: global___Pose | None=..., sphere: global___Sphere | None=..., box: global___RectangularPrism | None=..., label: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['box', b'box', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['box', b'box', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['box', b'box', 'center', b'center', 'geometry_type', b'geometry_type', 'label', b'label', 'sphere', b'sphere']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing_extensions.Literal['geometry_type', b'geometry_type']) -> typing_extensions.Literal['sphere', 'box'] | None:
