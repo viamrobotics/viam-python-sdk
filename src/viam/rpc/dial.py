@@ -164,7 +164,7 @@ def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
 
     path_ptr = c_lib.dial(
         address.encode("utf-8"),
-        creds.encode("utf-8"),
+        creds.encode("utf-8") if creds else None,
         insecure,
         ptr,
     )
