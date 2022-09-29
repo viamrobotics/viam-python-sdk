@@ -194,6 +194,33 @@ Attributes
       :type components: Optional[List[ResourceName]]
 
 
+   .. py:method:: get_operations() -> List[viam.proto.robot.Operation]
+      :async:
+
+      Get the list of operations currently running on the robot.
+
+      Returns (List[Operation]): The list of operations currently running on a given robot.
+
+
+   .. py:method:: cancel_operation(id: str)
+      :async:
+
+      Cancels the specified operation on the robot.
+
+      :param id: ID of operation to kill.
+      :type id: str
+
+
+   .. py:method:: block_for_operation(id: str)
+      :async:
+
+      Blocks on the specified operation on the robot. This function will only return when the specific operation
+      has finished or has been cancelled.
+
+      :param id: ID of operation to block on.
+      :type id: str
+
+
    .. py:method:: get_frame_system_config(additional_transforms: Optional[List[viam.proto.common.Transform]] = None) -> List[viam.proto.robot.FrameSystemConfig]
       :async:
 

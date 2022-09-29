@@ -81,6 +81,9 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__"><code class="docutils literal notranslate"><span class="pre">RobotClient.__aenter__()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aexit__"><code class="docutils literal notranslate"><span class="pre">RobotClient.__aexit__()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_status"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_status()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_operations"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_operations()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.cancel_operation"><code class="docutils literal notranslate"><span class="pre">RobotClient.cancel_operation()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.block_for_operation"><code class="docutils literal notranslate"><span class="pre">RobotClient.block_for_operation()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_frame_system_config"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_frame_system_config()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_pose()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.discover_components"><code class="docutils literal notranslate"><span class="pre">RobotClient.discover_components()</span></code></a></li>
@@ -104,6 +107,9 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__">__aenter__</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aexit__">__aexit__</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_status">get_status</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_operations">get_operations</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.cancel_operation">cancel_operation</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.block_for_operation">block_for_operation</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_frame_system_config">get_frame_system_config</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_pose">transform_pose</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.discover_components">discover_components</a></li>
@@ -369,6 +375,36 @@ provide a list of <cite>ResourceName</cite> for which you want statuses.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>components</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a><em>]</em><em>]</em>) – Optional list of
 <cite>ResourceName</cite> for components you want statuses.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_operations">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_operations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Operation" title="viam.proto.robot.Operation"><span class="pre">viam.proto.robot.Operation</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_operations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_operations" title="Permalink to this definition"></a></dt>
+<dd><p>Get the list of operations currently running on the robot.</p>
+<p>Returns (List[Operation]): The list of operations currently running on a given robot.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.cancel_operation">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.cancel_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.cancel_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Cancels the specified operation on the robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – ID of operation to kill.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.block_for_operation">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">block_for_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.block_for_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.block_for_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Blocks on the specified operation on the robot. This function will only return when the specific operation
+has finished or has been cancelled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – ID of operation to block on.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -99,6 +99,8 @@
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">ViamError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Transform</span>
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BlockForOperationRequest</span><span class="p">,</span>
+    <span class="n">CancelOperationRequest</span><span class="p">,</span>
     <span class="n">DiscoverComponentsRequest</span><span class="p">,</span>
     <span class="n">DiscoverComponentsResponse</span><span class="p">,</span>
     <span class="n">Discovery</span><span class="p">,</span>
@@ -106,8 +108,11 @@
     <span class="n">FrameSystemConfig</span><span class="p">,</span>
     <span class="n">FrameSystemConfigRequest</span><span class="p">,</span>
     <span class="n">FrameSystemConfigResponse</span><span class="p">,</span>
+    <span class="n">GetOperationsRequest</span><span class="p">,</span>
+    <span class="n">GetOperationsResponse</span><span class="p">,</span>
     <span class="n">GetStatusRequest</span><span class="p">,</span>
     <span class="n">GetStatusResponse</span><span class="p">,</span>
+    <span class="n">Operation</span><span class="p">,</span>
     <span class="n">ResourceNamesRequest</span><span class="p">,</span>
     <span class="n">ResourceNamesResponse</span><span class="p">,</span>
     <span class="n">RobotServiceStub</span><span class="p">,</span>
@@ -348,6 +353,41 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetStatusRequest</span><span class="p">(</span><span class="n">resource_names</span><span class="o">=</span><span class="n">names</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetStatusResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetStatus</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="p">)</span></div>
+
+    <span class="c1">##############</span>
+    <span class="c1"># OPERATIONS #</span>
+    <span class="c1">##############</span>
+
+<div class="viewcode-block" id="RobotClient.get_operations"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_operations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_operations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Operation</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the list of operations currently running on the robot.</span>
+
+<span class="sd">        Returns (List[Operation]): The list of operations currently running on a given robot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetOperationsRequest</span><span class="p">()</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetOperationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetOperations</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">operations</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RobotClient.cancel_operation"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.cancel_operation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">cancel_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cancels the specified operation on the robot.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): ID of operation to kill.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CancelOperationRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">CancelOperation</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RobotClient.block_for_operation"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.block_for_operation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">block_for_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Blocks on the specified operation on the robot. This function will only return when the specific operation</span>
+<span class="sd">        has finished or has been cancelled.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): ID of operation to block on.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">BlockForOperationRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">BlockForOperation</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
 
     <span class="c1">################</span>
     <span class="c1"># FRAME SYSTEM #</span>
