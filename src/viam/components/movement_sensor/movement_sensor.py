@@ -1,4 +1,5 @@
 import abc
+import asyncio
 from typing import Any, Mapping, Tuple
 
 from viam.proto.common import GeoPoint, Orientation, Vector3
@@ -93,12 +94,18 @@ class MovementSensor(Sensor):
                 orientation: Orientation
             }
         """
-        (pos, alt) = await self.get_position()
+        ((pos, alt), lv, av, comp, orient) = await asyncio.gather(
+            self.get_position(),
+            self.get_linear_velocity(),
+            self.get_angular_velocity(),
+            self.get_compass_heading(),
+            self.get_orientation(),
+        )
         return {
             "position": pos,
             "altitude": alt,
-            "linear_velocity": await self.get_linear_velocity(),
-            "angular_velocity": await self.get_angular_velocity(),
-            "compass": await self.get_compass_heading(),
-            "orientation": await self.get_orientation(),
+            "linear_velocity": lv,
+            "angular_velocity": av,
+            "compass": comp,
+            "orientation": orient,
         }

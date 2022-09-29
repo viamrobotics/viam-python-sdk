@@ -1,7 +1,8 @@
 import asyncio
 from dataclasses import dataclass
 from threading import Lock
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
+from grpclib.client import Channel
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -90,13 +91,13 @@ class RobotClient:
         Returns:
             Self: the RobotClient
         """
-        channel = await dial(address, options.dial_options)
+        channel = dial(address, options.dial_options)
         robot = await RobotClient.with_channel(channel, options)
         robot._should_close_channel = True
         return robot
 
     @classmethod
-    async def with_channel(cls, channel: ViamChannel, options: Options) -> Self:
+    async def with_channel(cls, channel: Union[Channel, ViamChannel], options: Options) -> Self:
         """Create a robot that is connected to a robot over the given channel.
 
         Any robots created using this method will *NOT* automatically close the channel upon exit.
@@ -110,9 +111,13 @@ class RobotClient:
         """
         logging.setLevel(options.log_level)
 
+        if isinstance(channel, Channel):
+            channel = ViamChannel(channel, lambda: None)
+
         self = cls()
-        self._channel = channel
-        self._client = RobotServiceStub(self._channel.channel)
+        self._channel = channel.channel
+        self._viam_channel = channel
+        self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
         self._lock = Lock()
         self._resource_names = []
@@ -126,7 +131,8 @@ class RobotClient:
 
         return self
 
-    _channel: ViamChannel
+    _channel: Channel
+    _viam_channel: ViamChannel
     _lock: Lock
     _manager: ResourceManager
     _client: RobotServiceStub
@@ -150,7 +156,7 @@ class RobotClient:
                 continue
             subtype = rname.subtype
             try:
-                manager.register(Registry.lookup(subtype).create_rpc_client(rname.name, self._channel.channel))
+                manager.register(Registry.lookup(subtype).create_rpc_client(rname.name, self._channel))
             except ComponentNotFoundError:
                 LOGGER.warn(f"Component of type {subtype} is not implemented")
         with self._lock:
@@ -243,7 +249,7 @@ class RobotClient:
 
         if self._should_close_channel:
             LOGGER.debug("Closing gRPC channel to remote robot")
-            self._channel.close()
+            self._viam_channel.close()
 
     async def __aenter__(self):
         return self

@@ -4,16 +4,14 @@ import re
 import socket
 import ssl
 import sys
-import time
 import warnings
 from dataclasses import dataclass
-from typing import Callable, Literal, NamedTuple, Optional, Tuple, Type, cast
+from typing import Callable, Literal, Optional, Tuple, Type
 
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
 from grpclib.metadata import Deadline, _MetadataLike
 from grpclib.stream import _RecvType, _SendType
-from typing_extensions import Self
 
 from viam import logging
 from viam.errors import InsecureConnectionError, ViamError
@@ -125,12 +123,13 @@ class ViamChannel:
 
     channel: Channel
     release: Callable[[], None]
+    _closed: bool = False
 
     def close(self):
-        print(f"start at {time.time()}")
-        self.release()
-        print(f"end at {time.time()}")
-        self.channel.close()
+        if not self._closed:
+            self.channel.close()
+            self.release()
+            self._closed = True
 
     def __del__(self):
         self.close()
@@ -141,14 +140,8 @@ class ViamChannel:
     def __exit__(self):
         self.close()
 
-    async def __aenter__(self):
-        return self
 
-    async def __aexit__(self):
-        self.close()
-
-
-async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
+def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     opts = options if options else DialOptions()
     creds = opts.credentials.payload if opts.credentials else ""
     insecure = opts.insecure or opts.allow_insecure_with_creds_downgrade or (not creds and opts.allow_insecure_downgrade)
@@ -158,7 +151,7 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
     c_lib.init_rust_runtime.argtypes = ()
     c_lib.init_rust_runtime.restype = ctypes.c_void_p
 
-    c_lib.dial.argtypes = ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p
+    c_lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
     c_lib.dial.restype = ctypes.c_void_p
 
     c_lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
@@ -186,7 +179,6 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
             c_lib.free_rust_runtime(ptr)
 
         channel = ViamChannel(chan, release)
-        # channel = ViamChannel(chan, lambda: time.sleep(1) and c_lib.free_rust_runtime(ptr))
         return channel
 
     c_lib.free_rust_runtime(ptr)
