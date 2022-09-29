@@ -1,5 +1,4 @@
 import asyncio
-from glob import glob
 from typing import Any, Dict, Optional
 
 import pytest
