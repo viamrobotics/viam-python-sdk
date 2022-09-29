@@ -12,6 +12,8 @@ from viam.components.resource_manager import ResourceManager
 from viam.errors import ComponentNotFoundError, ViamError
 from viam.proto.common import PoseInFrame, ResourceName, Transform
 from viam.proto.robot import (
+    BlockForOperationRequest,
+    CancelOperationRequest,
     DiscoverComponentsRequest,
     DiscoverComponentsResponse,
     Discovery,
@@ -19,8 +21,11 @@ from viam.proto.robot import (
     FrameSystemConfig,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
+    GetOperationsRequest,
+    GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    Operation,
     ResourceNamesRequest,
     ResourceNamesResponse,
     RobotServiceStub,
@@ -261,6 +266,41 @@ class RobotClient:
         request = GetStatusRequest(resource_names=names)
         response: GetStatusResponse = await self._client.GetStatus(request)
         return list(response.status)
+
+    ##############
+    # OPERATIONS #
+    ##############
+
+    async def get_operations(self) -> List[Operation]:
+        """
+        Get the list of operations currently running on the robot.
+
+        Returns (List[Operation]): The list of operations currently running on a given robot.
+        """
+        request = GetOperationsRequest()
+        response: GetOperationsResponse = await self._client.GetOperations(request)
+        return list(response.operations)
+
+    async def cancel_operation(self, id: str):
+        """
+        Cancels the specified operation on the robot.
+
+        Args:
+            id (str): ID of operation to kill.
+        """
+        request = CancelOperationRequest(id=id)
+        await self._client.CancelOperation(request)
+
+    async def block_for_operation(self, id: str):
+        """
+        Blocks on the specified operation on the robot. This function will only return when the specific operation
+        has finished or has been cancelled.
+
+        Args:
+            id (str): ID of operation to block on.
+        """
+        request = BlockForOperationRequest(id=id)
+        await self._client.BlockForOperation(request)
 
     ################
     # FRAME SYSTEM #
