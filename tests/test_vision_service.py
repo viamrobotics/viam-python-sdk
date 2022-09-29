@@ -234,5 +234,5 @@ class TestClient:
     async def test_get_object_point_clouds(self, service: VisionServiceBase):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_object_point_clouds("camera", "segmenter", {})
+            response = await client.get_object_point_clouds("camera", "segmenter")
             assert response == POINT_CLOUDS
