@@ -131,7 +131,7 @@ class Controller(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_controls(self) -> List[Control]:
+    async def get_controls(self, **kwargs) -> List[Control]:
         """
         Returns a list of Controls provided by the Controller
 
@@ -141,7 +141,7 @@ class Controller(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_events(self) -> Dict[Control, Event]:
+    async def get_events(self, **kwargs) -> Dict[Control, Event]:
         """
         Returns the most recent Event for each input
         (which should be the current state)
@@ -152,7 +152,7 @@ class Controller(ComponentBase):
         ...
 
     @abc.abstractmethod
-    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction]):
+    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], **kwargs):
         """
         Register a function that will fire on given EventTypes for a given
         Control
@@ -166,7 +166,7 @@ class Controller(ComponentBase):
         """
         ...
 
-    async def trigger_event(self, event: Event):
+    async def trigger_event(self, event: Event, **kwargs):
         """Directly send an Event (such as a button press) from external code
 
         Args:

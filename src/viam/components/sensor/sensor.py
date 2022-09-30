@@ -10,11 +10,11 @@ class Sensor(ComponentBase):
 
     This acts as an abstract base class for any drivers representing specific
     sensor implementations. This cannot be used on its own. If the `__init__()` function is
-    overriden, it must call the `super().__init__()` function.
+    overridden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
-    async def get_readings(self) -> Mapping[str, Any]:
+    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
         """
         Obtain the measurements/data specific to this sensor.
 
