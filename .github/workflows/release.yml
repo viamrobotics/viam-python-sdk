@@ -16,19 +16,18 @@ on:
         - preminor
         - prepatch
         - prerelease
-        - prerelease
-        - prerelease
         - '-s'
 
 jobs:
   prepare:
-    # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main' && contains(fromJson('["njooma"]'), github.actor)
     # runs-on: [self-hosted, x64]
     # container:
     #   image: ghcr.io/viamrobotics/canon:amd64
     runs-on: ubuntu-latest
     outputs:
       sha: ${{ steps.commit.outputs.commit_long_sha }}
+      version: ${{ steps.bump_version.outputs.version }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -52,14 +51,7 @@ jobs:
         run: |
           poetry version ${{ inputs.version }}
           echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
-
-      - name: Download Compiled Rust
-        uses: dsaltares/fetch-gh-release-asset@master
-        with:
-          repo: 'viamrobotics/viam-rust-sdk'
-          file: 'libviam-.*'
-          regex: true
-          target: 'bin/'
+          echo "::set-output name=version::$(poetry version -s)"
 
       - name: Commit + Push
         id: commit
@@ -121,3 +113,20 @@ jobs:
         with:
           name: dist
           path: dist
+
+  release:
+    needs: [prepare, build]
+    # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    # runs-on: [self-hosted, x64]
+    # container:
+    #   image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ needs.prepare.outputs.version }}
+          files: dist/*
+          draft: true
+          prerelease: ${{ contains(inputs.version, 'pre') }}
