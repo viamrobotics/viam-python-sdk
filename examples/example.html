@@ -51,9 +51,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Example usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#connect-as-a-client">Connect as a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-custom-components">Create custom components</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subclass-a-component">Subclass a component</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#register-the-custom-component">Register the custom component</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#start-the-server-and-add-it-as-a-remote">Start the Server and add it as a Remote</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operations">Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subclass-a-component">1. Subclass a component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#register-the-custom-component">2. Register the custom component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#start-the-server-and-add-it-as-a-remote">3. Start the Server and add it as a Remote</a></li>
 </ul>
 </li>
 </ul>
@@ -243,8 +244,16 @@ name: &quot;servo0&quot;
 <li><p>Create an <code class="docutils literal notranslate"><span class="pre">rpc.server.Server</span></code> instance and register the custom component</p></li>
 <li><p>Start the <code class="docutils literal notranslate"><span class="pre">Server</span></code> and register the running server as a remote</p></li>
 </ol>
+<p>But before we start, we need to cover one additional topic: Operations.</p>
+<section id="operations">
+<h3>Operations<a class="headerlink" href="#operations" title="Permalink to this heading"></a></h3>
+<p>Operations are used by the RDK to keep track of running tasks, and provide a means to query their status and even cancel them. In order for our custom component to respond appropriately to any Operation requests, we must obtain and listen to the Operation in our method calls.</p>
+<p>In order to take advantage of operations, you should wrap the component method with the <code class="docutils literal notranslate"><span class="pre">run_with_operation</span></code> decorator from the <code class="docutils literal notranslate"><span class="pre">viam.operations</span></code> package. Each component has a function, <code class="docutils literal notranslate"><span class="pre">get_operation(kwargs:</span> <span class="pre">Mapping[str,</span> <span class="pre">Any])</span> <span class="pre">-&gt;</span> <span class="pre">Operation</span></code>, that will return an Operation that will tell us if the operation is ever cancelled, allowing us to clean up any long running tasks, close connections, etc.</p>
+<p>It is extremely important that we check the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> status, as this not only prevents any unnecessary resource usage, but also allows us to respond to urgent cancellation requests and stop components’ motion.</p>
+<p>Knowing this, let’s implement a custom component where Operations might come in handy.</p>
+</section>
 <section id="subclass-a-component">
-<h3>Subclass a component<a class="headerlink" href="#subclass-a-component" title="Permalink to this heading"></a></h3>
+<h3>1. Subclass a component<a class="headerlink" href="#subclass-a-component" title="Permalink to this heading"></a></h3>
 <p>The SDK provides a wide array of components to customize. You can browse through the API Reference to see all of them, but for now we’ll use an <code class="docutils literal notranslate"><span class="pre">Arm</span></code> as an example. Our custom Arm will be extremely simple – it will only save and return the positions provided to it.</p>
 <p>Let’s start by creating a directory called <code class="docutils literal notranslate"><span class="pre">my-python-robot</span></code>. Inside of that directory, create a file called <code class="docutils literal notranslate"><span class="pre">my_cool_arm.py</span></code>. The contents of <code class="docutils literal notranslate"><span class="pre">my_cool_arm.py</span></code> should be as follows:</p>
 <div class="cell tag_remove-input docutils container">
@@ -324,8 +333,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/my_cool_arm.py</span>
 
+<span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">WorldState</span>
+<span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">run_with_operation</span>
 
 
 <span class="k">class</span> <span class="nc">MyCoolArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
@@ -345,32 +356,66 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
         <span class="c1"># Starting joint positions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">JointPositions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_stoppped</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_end_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_end_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_stoppped</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="nd">@run_with_operation</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
+        <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">operation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_operation</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">pose</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JointPositions</span><span class="p">:</span>
+        <span class="c1"># Simulate the length of time it takes for the arm to move to its new position</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Check if the operation is cancelled and, if it is, stop the arm&#39;s motion</span>
+            <span class="k">if</span> <span class="k">await</span> <span class="n">operation</span><span class="o">.</span><span class="n">is_cancelled</span><span class="p">():</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+                <span class="k">break</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JointPositions</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">:</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_stoppped</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="nd">@run_with_operation</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">:</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">operation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_operation</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">positions</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_stoppped</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># Simulate the length of time it takes for the arm to move to its new joint position</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Check if the operation is cancelled and, if it is, stop the arm&#39;s motion</span>
+            <span class="k">if</span> <span class="k">await</span> <span class="n">operation</span><span class="o">.</span><span class="n">is_cancelled</span><span class="p">():</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+                <span class="k">break</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
 </pre></div>
 </div></div>
 </div>
 <p>You can view more component implementations in the <a class="reference external" href="https://github.com/viamrobotics/python-sdk/blob/main/examples/server/v1/components.py">examples</a>.</p>
 </section>
 <section id="register-the-custom-component">
-<h3>Register the custom component<a class="headerlink" href="#register-the-custom-component" title="Permalink to this heading"></a></h3>
+<h3>2. Register the custom component<a class="headerlink" href="#register-the-custom-component" title="Permalink to this heading"></a></h3>
 <p>Now that we’ve created the custom component, we must register it with a server so that it will be visible to any robots connecting to it.</p>
 <p>In the same <code class="docutils literal notranslate"><span class="pre">my-python-robot</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">python_server.py</span></code>.</p>
 <div class="cell docutils container">
@@ -396,7 +441,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </section>
 <section id="start-the-server-and-add-it-as-a-remote">
-<h3>Start the Server and add it as a Remote<a class="headerlink" href="#start-the-server-and-add-it-as-a-remote" title="Permalink to this heading"></a></h3>
+<h3>3. Start the Server and add it as a Remote<a class="headerlink" href="#start-the-server-and-add-it-as-a-remote" title="Permalink to this heading"></a></h3>
 <p>Now that we have a server that knows about our custom Arm component, we need to start the server so it can receive gRPC calls. Once it’s started, we can then register this server as a remote.</p>
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/python_server.py</span>
 

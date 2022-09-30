@@ -170,7 +170,7 @@
 <dd><p>Servo represents a physical servo.</p>
 <p>This acts as an abstract base class for any drivers representing specific
 servo implementations. This cannot be used on its own. If the <cite>__init__()</cite> function is
-overriden, it must call the <cite>super().__init__()</cite> function.</p>
+overridden, it must call the <cite>super().__init__()</cite> function.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.servo.Servo.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.components.servo.Servo.name" title="Permalink to this definition"></a></dt>
@@ -178,7 +178,7 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.servo.Servo.move">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/servo/servo.html#Servo.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.servo.Servo.move" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/servo/servo.html#Servo.move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.servo.Servo.move" title="Permalink to this definition"></a></dt>
 <dd><p>Move the servo to the provided angle.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -189,7 +189,7 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.servo.Servo.get_position">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/servo/servo.html#Servo.get_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.servo.Servo.get_position" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/servo/servo.html#Servo.get_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.servo.Servo.get_position" title="Permalink to this definition"></a></dt>
 <dd><p>Get the current angle (degrees) of the servo.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -203,7 +203,7 @@ overriden, it must call the <cite>super().__init__()</cite> function.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.servo.Servo.stop">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/servo/servo.html#Servo.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.servo.Servo.stop" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/servo/servo.html#Servo.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.servo.Servo.stop" title="Permalink to this definition"></a></dt>
 <dd><p>Stop the servo. It is assumed that the servo stops immediately.</p>
 </dd></dl>
 

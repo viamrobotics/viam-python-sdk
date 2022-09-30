@@ -174,7 +174,7 @@ Attributes
    Could be a single gamepad, or a collection of digitalInterrupts
    and analogReaders, a keyboard, etc.
 
-   .. py:method:: get_controls() -> List[Control]
+   .. py:method:: get_controls(**kwargs) -> List[Control]
       :abstractmethod:
       :async:
 
@@ -184,7 +184,7 @@ Attributes
       :rtype: List[Control]
 
 
-   .. py:method:: get_events() -> Dict[Control, Event]
+   .. py:method:: get_events(**kwargs) -> Dict[Control, Event]
       :abstractmethod:
       :async:
 
@@ -195,7 +195,7 @@ Attributes
       :rtype: Dict[Control, Event]
 
 
-   .. py:method:: register_control_callback(control: Control, triggers: List[EventType], function: Optional[ControlFunction])
+   .. py:method:: register_control_callback(control: Control, triggers: List[EventType], function: Optional[ControlFunction], **kwargs)
       :abstractmethod:
 
       Register a function that will fire on given EventTypes for a given
@@ -211,7 +211,7 @@ Attributes
       :type function: ControlFunction
 
 
-   .. py:method:: trigger_event(event: Event)
+   .. py:method:: trigger_event(event: Event, **kwargs)
       :async:
 
       Directly send an Event (such as a button press) from external code

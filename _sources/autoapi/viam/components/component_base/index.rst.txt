@@ -47,7 +47,21 @@ Classes
       :rtype: Self
 
 
-   .. py:method:: do_command(command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the `Operation` associated with the currently running function.
+
+      When writing custom components, you should get the `Operation` by calling this function and check to see if it's cancelled.
+      If the `Operation` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: Operation
+
+
+   .. py:method:: do_command(command: Dict[str, Any], **kwargs) -> Dict[str, Any]
       :abstractmethod:
       :async:
 

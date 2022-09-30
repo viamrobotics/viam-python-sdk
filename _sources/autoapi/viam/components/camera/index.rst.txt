@@ -62,7 +62,7 @@ Classes
          The distortion parameters of the camera
 
 
-   .. py:method:: get_image(mime_type: str = CameraMimeType.PNG) -> Union[PIL.Image.Image, viam.components.types.RawImage]
+   .. py:method:: get_image(mime_type: str = CameraMimeType.PNG, **kwargs) -> Union[PIL.Image.Image, viam.components.types.RawImage]
       :abstractmethod:
       :async:
 
@@ -76,7 +76,7 @@ Classes
       :rtype: Image | RawImage
 
 
-   .. py:method:: get_point_cloud() -> Tuple[bytes, str]
+   .. py:method:: get_point_cloud(**kwargs) -> Tuple[bytes, str]
       :abstractmethod:
       :async:
 
@@ -91,7 +91,7 @@ Classes
       :rtype: bytes
 
 
-   .. py:method:: get_properties() -> Properties
+   .. py:method:: get_properties(**kwargs) -> Properties
       :abstractmethod:
       :async:
 

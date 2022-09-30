@@ -65,12 +65,14 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.component_base.ComponentBase"><code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_resource_name()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ComponentBase.from_robot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_operation"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_operation()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.do_command"><code class="docutils literal notranslate"><span class="pre">ComponentBase.do_command()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.component_base.ComponentBase">ComponentBase</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_resource_name">get_resource_name</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.from_robot">from_robot</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_operation">get_operation</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.do_command">do_command</a></li>
 </ul>
 </li>
@@ -172,8 +174,27 @@ All components must inherit from this class.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/component_base.html#ComponentBase.get_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.component_base.ComponentBase.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <cite>Operation</cite> associated with the currently running function.</p>
+<p>When writing custom components, you should get the <cite>Operation</cite> by calling this function and check to see if it’s cancelled.
+If the <cite>Operation</cite> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.Operation" title="viam.gen.robot.v1.robot_pb2.Operation">Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.do_command">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/component_base.html#ComponentBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.component_base.ComponentBase.do_command" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/component_base.html#ComponentBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.component_base.ComponentBase.do_command" title="Permalink to this definition"></a></dt>
 <dd><p>Send/Receive arbitrary commands</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

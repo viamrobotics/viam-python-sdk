@@ -98,18 +98,18 @@
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    gripper implementations. This cannot be used on its own. If the `__init__()` function is</span>
-<span class="sd">    overriden, it must call the `super().__init__()` function.</span>
+<span class="sd">    overridden, it must call the `super().__init__()` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Gripper.open"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/index.html#viam.components.gripper.gripper.Gripper.open">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open the gripper.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Gripper.grab"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/index.html#viam.components.gripper.gripper.Gripper.grab">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">grab</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">grab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instruct the gripper to grab.</span>
 
@@ -119,7 +119,7 @@
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Gripper.stop"><a class="viewcode-back" href="../../../../autoapi/viam/components/gripper/index.html#viam.components.gripper.gripper.Gripper.stop">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stop the gripper. It is assumed the gripper stops immediately.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

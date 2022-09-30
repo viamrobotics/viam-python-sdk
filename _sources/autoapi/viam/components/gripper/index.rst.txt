@@ -36,16 +36,16 @@ Classes
 
    This acts as an abstract base class for any drivers representing specific
    gripper implementations. This cannot be used on its own. If the `__init__()` function is
-   overriden, it must call the `super().__init__()` function.
+   overridden, it must call the `super().__init__()` function.
 
-   .. py:method:: open()
+   .. py:method:: open(**kwargs)
       :abstractmethod:
       :async:
 
       Open the gripper.
 
 
-   .. py:method:: grab() -> bool
+   .. py:method:: grab(**kwargs) -> bool
       :abstractmethod:
       :async:
 
@@ -55,7 +55,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: stop()
+   .. py:method:: stop(**kwargs)
       :abstractmethod:
       :async:
 

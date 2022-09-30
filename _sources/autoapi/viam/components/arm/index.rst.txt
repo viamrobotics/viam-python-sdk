@@ -39,9 +39,9 @@ Classes
 
    This acts as an abstract base class for any drivers representing specific
    arm implementations. This cannot be used on its own. If the `__init__()` function is
-   overriden, it must call the `super().__init__()` function.
+   overridden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_end_position(extra: Optional[Dict[str, Any]] = None) -> viam.proto.common.Pose
+   .. py:method:: get_end_position(extra: Optional[Dict[str, Any]] = None, **kwargs) -> viam.proto.common.Pose
       :abstractmethod:
       :async:
 
@@ -50,7 +50,7 @@ Classes
       Returns: The location and orientation of the arm described as a Pose.
 
 
-   .. py:method:: move_to_position(pose: viam.proto.common.Pose, world_state: Optional[viam.proto.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: move_to_position(pose: viam.proto.common.Pose, world_state: Optional[viam.proto.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -63,7 +63,7 @@ Classes
       :type world_state: WorldState
 
 
-   .. py:method:: move_to_joint_positions(positions: viam.proto.component.arm.JointPositions, extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: move_to_joint_positions(positions: viam.proto.component.arm.JointPositions, extra: Optional[Dict[str, Any]] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -73,7 +73,7 @@ Classes
       :type positions: JointPositions
 
 
-   .. py:method:: get_joint_positions(extra: Optional[Dict[str, Any]] = None) -> viam.proto.component.arm.JointPositions
+   .. py:method:: get_joint_positions(extra: Optional[Dict[str, Any]] = None, **kwargs) -> viam.proto.component.arm.JointPositions
       :abstractmethod:
       :async:
 
@@ -83,7 +83,7 @@ Classes
       :rtype: JointPositions
 
 
-   .. py:method:: stop(extra: Optional[Dict[str, Any]] = None)
+   .. py:method:: stop(extra: Optional[Dict[str, Any]] = None, **kwargs)
       :abstractmethod:
       :async:
 

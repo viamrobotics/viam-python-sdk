@@ -25,14 +25,14 @@ Classes
 
    This acts as an abstract base class for any drivers representing specific
    servo implementations. This cannot be used on its own. If the `__init__()` function is
-   overriden, it must call the `super().__init__()` function.
+   overridden, it must call the `super().__init__()` function.
 
    .. py:attribute:: name
       :annotation: :str
 
       
 
-   .. py:method:: move(angle: int)
+   .. py:method:: move(angle: int, **kwargs)
       :abstractmethod:
       :async:
 
@@ -42,7 +42,7 @@ Classes
       :type angle: int
 
 
-   .. py:method:: get_position() -> int
+   .. py:method:: get_position(**kwargs) -> int
       :abstractmethod:
       :async:
 
@@ -52,7 +52,7 @@ Classes
       :rtype: int
 
 
-   .. py:method:: stop()
+   .. py:method:: stop(**kwargs)
       :abstractmethod:
       :async:
 

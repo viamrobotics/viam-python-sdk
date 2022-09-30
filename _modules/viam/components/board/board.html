@@ -105,7 +105,7 @@
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    board implementations. This cannot be used on its own. If the `__init__()` function is</span>
-<span class="sd">    overriden, it must call the `super().__init__()` function.</span>
+<span class="sd">    overridden, it must call the `super().__init__()` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Board.Attributes"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.Attributes">[docs]</a>    <span class="nd">@dataclass</span>
@@ -121,7 +121,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Board.AnalogReader.read"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.AnalogReader.read">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Read the current value.</span>
 
@@ -138,7 +138,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Board.DigitalInterrupt.value"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.value">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Get the current value of the interrupt,</span>
 <span class="sd">            which is based on the type of interrupt.</span>
@@ -192,7 +192,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Board.GPIOPin.set"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.set">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Set the pin to either low or high.</span>
 
@@ -202,7 +202,7 @@
             <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Board.GPIOPin.get"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.get">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Get the high/low state of the pin.</span>
 
@@ -212,7 +212,7 @@
             <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Board.GPIOPin.get_pwm"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.get_pwm">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Get the pin&#39;s given duty cycle.</span>
 
@@ -222,7 +222,7 @@
             <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Board.GPIOPin.set_pwm"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.set_pwm">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Set the pin to the given `duty_cycle`.</span>
 
@@ -232,7 +232,7 @@
             <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Board.GPIOPin.get_pwm_frequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.get_pwm_frequency">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Get the PWM frequency of the pin.</span>
 
@@ -242,7 +242,7 @@
             <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Board.GPIOPin.set_pwm_frequency"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.set_pwm_frequency">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frequency</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Set the pin to the given PWM `frequency` (in Hz).</span>
 <span class="sd">            When `frequency` is 0, it will use the board&#39;s default PWM frequency.</span>
@@ -312,13 +312,14 @@
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Board.status"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.status">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BoardStatus</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BoardStatus</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the current status of the board.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            BoardStatus: the status.</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Board.model_attributes"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.model_attributes">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">model_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Attributes</span><span class="p">:</span>

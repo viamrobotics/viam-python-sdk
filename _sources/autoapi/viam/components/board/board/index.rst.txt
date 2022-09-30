@@ -39,7 +39,7 @@ Attributes
 
    This acts as an abstract base class for any drivers representing specific
    board implementations. This cannot be used on its own. If the `__init__()` function is
-   overriden, it must call the `super().__init__()` function.
+   overridden, it must call the `super().__init__()` function.
 
    .. py:class:: Attributes
 
@@ -55,7 +55,7 @@ Attributes
 
       AnalogReader represents an analog pin reader that resides on a Board.
 
-      .. py:method:: read(extra: Optional[Dict[str, Any]] = None) -> int
+      .. py:method:: read(extra: Optional[Dict[str, Any]] = None, **kwargs) -> int
          :abstractmethod:
          :async:
 
@@ -74,7 +74,7 @@ Attributes
       when interrupted, calls the added callbacks. Post processors can
       be added to modify what Value it ultimately returns.
 
-      .. py:method:: value(extra: Optional[Dict[str, Any]] = None) -> int
+      .. py:method:: value(extra: Optional[Dict[str, Any]] = None, **kwargs) -> int
          :abstractmethod:
          :async:
 
@@ -131,7 +131,7 @@ Attributes
       :param ComponentBase: _description_
       :type ComponentBase: _type_
 
-      .. py:method:: set(high: bool, extra: Optional[Dict[str, Any]] = None)
+      .. py:method:: set(high: bool, extra: Optional[Dict[str, Any]] = None, **kwargs)
          :abstractmethod:
          :async:
 
@@ -141,7 +141,7 @@ Attributes
          :type high: bool
 
 
-      .. py:method:: get(extra: Optional[Dict[str, Any]] = None) -> bool
+      .. py:method:: get(extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool
          :abstractmethod:
          :async:
 
@@ -151,7 +151,7 @@ Attributes
          :rtype: bool
 
 
-      .. py:method:: get_pwm(extra: Optional[Dict[str, Any]] = None) -> float
+      .. py:method:: get_pwm(extra: Optional[Dict[str, Any]] = None, **kwargs) -> float
          :abstractmethod:
          :async:
 
@@ -161,7 +161,7 @@ Attributes
          :rtype: float
 
 
-      .. py:method:: set_pwm(duty_cycle: float, extra: Optional[Dict[str, Any]] = None)
+      .. py:method:: set_pwm(duty_cycle: float, extra: Optional[Dict[str, Any]] = None, **kwargs)
          :abstractmethod:
          :async:
 
@@ -171,7 +171,7 @@ Attributes
          :type duty_cycle: float
 
 
-      .. py:method:: get_pwm_frequency(extra: Optional[Dict[str, Any]] = None) -> int
+      .. py:method:: get_pwm_frequency(extra: Optional[Dict[str, Any]] = None, **kwargs) -> int
          :abstractmethod:
          :async:
 
@@ -181,7 +181,7 @@ Attributes
          :rtype: int
 
 
-      .. py:method:: set_pwm_frequency(frequency: int, extra: Optional[Dict[str, Any]] = None)
+      .. py:method:: set_pwm_frequency(frequency: int, extra: Optional[Dict[str, Any]] = None, **kwargs)
          :abstractmethod:
          :async:
 
@@ -252,7 +252,7 @@ Attributes
       :rtype: List[str]
 
 
-   .. py:method:: status(extra: Optional[Dict[str, Any]] = None) -> viam.proto.common.BoardStatus
+   .. py:method:: status(extra: Optional[Dict[str, Any]] = None, **kwargs) -> viam.proto.common.BoardStatus
       :abstractmethod:
       :async:
 
