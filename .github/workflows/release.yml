@@ -103,7 +103,7 @@ jobs:
         run: curl -sL -o src/viam/rpc/libviam.${{ matrix.ext }} https://github.com/viamrobotics/viam-rust-sdk/releases/latest/download/libviam-${{ matrix.arch }}.${{ matrix.ext }}
 
       - name: Build
-        run: poetry build
+        run: poetry build -f wheel
 
       - name: Rename
         run: mv dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-${{ matrix.whl }}.whl
