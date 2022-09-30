@@ -2,7 +2,6 @@ import asyncio
 from dataclasses import dataclass
 from threading import Lock
 from typing import Any, Dict, List, Optional, Union
-from grpclib.client import Channel
 
 from grpclib.client import Channel
 from typing_extensions import Self
