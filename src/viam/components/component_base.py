@@ -1,7 +1,9 @@
 import abc
-from typing import Any, Dict, cast, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict, Mapping, cast
+
 from typing_extensions import Self
 
+from viam.operations import Operation
 from viam.proto.common import ResourceName
 
 if TYPE_CHECKING:
@@ -53,7 +55,21 @@ class ComponentBase(abc.ABC):
         component = robot.get_component(cls.get_resource_name(name))
         return cast(cls, component)
 
-    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    def get_operation(self, kwargs: Mapping[str, Any]) -> Operation:
+        """Get the `Operation` associated with the currently running function.
+
+        When writing custom components, you should get the `Operation` by calling this function and check to see if it's cancelled.
+        If the `Operation` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.).
+
+        Args:
+            kwargs (Mapping[str, Any]): The kwargs object containing the operation
+
+        Returns:
+            Operation: The operation associated with this function
+        """
+        return kwargs.get(Operation.ARG_NAME, Operation._noop())
+
+    async def do_command(self, command: Dict[str, Any], **kwargs) -> Dict[str, Any]:
         """Send/Receive arbitrary commands
 
         Args:

@@ -51,7 +51,7 @@ class ExampleArm(Arm):
         self.is_stopped = True
         super().__init__(name)
 
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
+    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
         return self.position
 
     async def move_to_position(
@@ -59,18 +59,19 @@ class ExampleArm(Arm):
         pose: Pose,
         world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
     ):
         self.is_stopped = False
         self.position = pose
 
-    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
+    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> JointPositions:
         return self.joint_positions
 
-    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
+    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = False
         self.joint_positions = positions
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
 
     async def is_moving(self):
@@ -88,7 +89,7 @@ class ExampleBase(Base):
         self.angular_vel = Vector3(x=0, y=0, z=0)
         super().__init__(name)
 
-    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if distance == 0 or velocity == 0:
             return await self.stop()
 
@@ -99,7 +100,7 @@ class ExampleBase(Base):
 
         self.is_stopped = False
 
-    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -110,15 +111,15 @@ class ExampleBase(Base):
 
         self.is_stopped = False
 
-    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.linear_pwr = linear
-        self.anglular_pwr = angular
+        self.angular_pwr = angular
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.linear_vel = linear
-        self.anglular_vel = angular
+        self.angular_vel = angular
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
 
     async def is_moving(self):
@@ -130,7 +131,7 @@ class ExampleAnalogReader(Board.AnalogReader):
         self.value = value
         super().__init__(name)
 
-    async def read(self, extra: Optional[Dict[str, Any]] = None) -> int:
+    async def read(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         return self.value
 
 
@@ -143,7 +144,7 @@ class ExampleDigitalInterrupt(Board.DigitalInterrupt):
         self.post_processors: List[PostProcessor] = []
         super().__init__(name)
 
-    async def value(self, extra: Optional[Dict[str, Any]] = None) -> int:
+    async def value(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         return self.num_ticks
 
     async def tick(self, high: bool, nanos: int):
@@ -165,22 +166,22 @@ class ExampleGPIOPin(Board.GPIOPin):
         self.pwm_freq = 0
         super().__init__(name)
 
-    async def get(self, extra: Optional[Dict[str, Any]] = None) -> bool:
+    async def get(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
         return self.high
 
-    async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None):
+    async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.high = high
 
-    async def get_pwm(self, extra: Optional[Dict[str, Any]] = None) -> float:
+    async def get_pwm(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
         return self.pwm
 
-    async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None):
+    async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.pwm = duty_cycle
 
-    async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None) -> int:
+    async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         return self.pwm_freq
 
-    async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None):
+    async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.pwm_freq = frequency
 
 
@@ -221,7 +222,7 @@ class ExampleBoard(Board):
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
 
-    async def status(self, extra: Optional[Dict[str, Any]] = None) -> BoardStatus:
+    async def status(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> BoardStatus:
         return BoardStatus(
             analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
             digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
@@ -237,13 +238,13 @@ class ExampleCamera(Camera):
         self.image = Image.open(p.parent.absolute().joinpath("viam.webp"))
         super().__init__(name)
 
-    async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Image.Image:
+    async def get_image(self, mime_type: str = CameraMimeType.PNG, **kwargs) -> Image.Image:
         return self.image.copy()
 
-    async def get_point_cloud(self) -> Tuple[bytes, str]:
+    async def get_point_cloud(self, **kwargs) -> Tuple[bytes, str]:
         raise NotImplementedError()
 
-    async def get_properties(self) -> Camera.Properties:
+    async def get_properties(self, **kwargs) -> Camera.Properties:
         raise NotImplementedError()
 
 
@@ -314,7 +315,7 @@ class ExampleController(Controller):
             if callback:
                 callback(event)
 
-    async def get_controls(self) -> List[Control]:
+    async def get_controls(self, **kwargs) -> List[Control]:
         return [
             Control.ABSOLUTE_X,
             Control.ABSOLUTE_Y,
@@ -337,7 +338,7 @@ class ExampleController(Controller):
             Control.BUTTON_MENU,
         ]
 
-    async def get_events(self) -> Dict[Control, Event]:
+    async def get_events(self, **kwargs) -> Dict[Control, Event]:
         with self.lock:
             return {key: value for (key, value) in self.last_events.items()}
 
@@ -360,7 +361,7 @@ class ExampleGantry(Gantry):
         self.is_stopped = True
         super().__init__(name)
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
         return self.position
 
     async def move_to_position(
@@ -368,14 +369,15 @@ class ExampleGantry(Gantry):
         positions: List[float],
         world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
     ):
         self.position = positions
         self.is_stopped = False
 
-    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
         return self.lengths
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
 
     async def is_moving(self):
@@ -388,16 +390,16 @@ class ExampleGripper(Gripper):
         self.is_stopped = True
         super().__init__(name)
 
-    async def open(self):
+    async def open(self, **kwargs):
         self.opened = True
         self.is_stopped = False
 
-    async def grab(self) -> bool:
+    async def grab(self, **kwargs) -> bool:
         self.opened = False
         self.is_stopped = False
         return random.choice([True, False])
 
-    async def stop(self):
+    async def stop(self, **kwargs):
         self.is_stopped = True
 
     async def is_moving(self):
@@ -418,7 +420,7 @@ class ExampleMotor(Motor):
             await asyncio.sleep(1)
             self.position += rps
 
-    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None):
+    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.power = power
         self.powered = power != 0
         if self.powered:
@@ -427,7 +429,7 @@ class ExampleMotor(Motor):
             if self.task:
                 self.task.cancel()
 
-    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None):
+    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if self.task:
             self.task.cancel()
         target = 0
@@ -442,7 +444,7 @@ class ExampleMotor(Motor):
             self.position += rps
         self.powered = False
 
-    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None):
+    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if self.task:
             self.task.cancel()
         distance = position_revolutions - self.position
@@ -454,23 +456,23 @@ class ExampleMotor(Motor):
             self.position += rps
         self.powered = False
 
-    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None):
+    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if (self.position > 0 and offset > 0) or (self.position < 0 and offset < 0):
             self.position = offset
         else:
             self.position += offset
         self.powered = False
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> float:
+    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
         return self.position
 
-    async def get_properties(self, extra: Optional[Dict[str, Any]] = None) -> Motor.Properties:
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Motor.Properties:
         return Motor.Properties(position_reporting=True)
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         await self.set_power(0)
 
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
         return self.powered
 
     async def is_moving(self):
@@ -500,30 +502,30 @@ class ExampleMovementSensor(MovementSensor):
         self.properties = properties
         self.accuracy = accuracy
 
-    async def get_position(self) -> Tuple[GeoPoint, float]:
+    async def get_position(self, **kwargs) -> Tuple[GeoPoint, float]:
         return (self.coordinates, self.altitude)
 
-    async def get_linear_velocity(self) -> Vector3:
+    async def get_linear_velocity(self, **kwargs) -> Vector3:
         return self.lin_vel
 
-    async def get_angular_velocity(self) -> Vector3:
+    async def get_angular_velocity(self, **kwargs) -> Vector3:
         return self.ang_vel
 
-    async def get_compass_heading(self) -> float:
+    async def get_compass_heading(self, **kwargs) -> float:
         return self.heading
 
-    async def get_orientation(self) -> Orientation:
+    async def get_orientation(self, **kwargs) -> Orientation:
         return self.orientation
 
-    async def get_properties(self) -> MovementSensor.Properties:
+    async def get_properties(self, **kwargs) -> MovementSensor.Properties:
         return self.properties
 
-    async def get_accuracy(self) -> Mapping[str, float]:
+    async def get_accuracy(self, **kwargs) -> Mapping[str, float]:
         return self.accuracy
 
 
 class ExamplePoseTracker(PoseTracker):
-    async def get_poses(self, body_names: List[str]) -> Dict[str, PoseInFrame]:
+    async def get_poses(self, body_names: List[str], **kwargs) -> Dict[str, PoseInFrame]:
         all_poses = {
             "body1": PoseInFrame(reference_frame="0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)),
             "body2": PoseInFrame(reference_frame="0", pose=Pose(x=3, y=2, z=3, o_x=4, o_y=3, o_z=4, theta=40)),
@@ -536,7 +538,7 @@ class ExampleSensor(Sensor):
         self.num_readings = random.randint(1, 10)
         super().__init__(name)
 
-    async def get_readings(self) -> Mapping[str, Any]:
+    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
         return {"abcdefghij"[idx]: random.random() for idx in range(self.num_readings)}
 
 
@@ -546,14 +548,14 @@ class ExampleServo(Servo):
         self.is_stopped = True
         super().__init__(name)
 
-    async def move(self, angle: int):
+    async def move(self, angle: int, **kwargs):
         self.angle = angle
         self.is_stopped = False
 
-    async def get_position(self) -> int:
+    async def get_position(self, **kwargs) -> int:
         return self.angle
 
-    async def stop(self):
+    async def stop(self, **kwargs):
         self.is_stopped = True
 
     async def is_moving(self):

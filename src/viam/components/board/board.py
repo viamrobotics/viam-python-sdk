@@ -18,7 +18,7 @@ class Board(ComponentBase):
 
     This acts as an abstract base class for any drivers representing specific
     board implementations. This cannot be used on its own. If the `__init__()` function is
-    overriden, it must call the `super().__init__()` function.
+    overridden, it must call the `super().__init__()` function.
     """
 
     @dataclass
@@ -34,7 +34,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def read(self, extra: Optional[Dict[str, Any]] = None) -> int:
+        async def read(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
             """
             Read the current value.
 
@@ -51,7 +51,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def value(self, extra: Optional[Dict[str, Any]] = None) -> int:
+        async def value(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
             """
             Get the current value of the interrupt,
             which is based on the type of interrupt.
@@ -105,7 +105,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None):
+        async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None, **kwargs):
             """
             Set the pin to either low or high.
 
@@ -115,7 +115,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get(self, extra: Optional[Dict[str, Any]] = None) -> bool:
+        async def get(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
             """
             Get the high/low state of the pin.
 
@@ -125,7 +125,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get_pwm(self, extra: Optional[Dict[str, Any]] = None) -> float:
+        async def get_pwm(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
             """
             Get the pin's given duty cycle.
 
@@ -135,7 +135,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None):
+        async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
             """
             Set the pin to the given `duty_cycle`.
 
@@ -145,7 +145,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None) -> int:
+        async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
             """
             Get the PWM frequency of the pin.
 
@@ -155,7 +155,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None):
+        async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None, **kwargs):
             """
             Set the pin to the given PWM `frequency` (in Hz).
             When `frequency` is 0, it will use the board's default PWM frequency.
@@ -225,13 +225,14 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def status(self, extra: Optional[Dict[str, Any]] = None) -> BoardStatus:
+    async def status(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> BoardStatus:
         """
         Return the current status of the board.
 
         Returns:
             BoardStatus: the status.
         """
+        ...
 
     @abc.abstractmethod
     async def model_attributes(self) -> Attributes:

@@ -13,11 +13,11 @@ class Base(ComponentBase):
 
     This acts as an abstract base class for any drivers representing specific
     base implementations. This cannot be used on its own. If the `__init__()` function is
-    overriden, it must call the `super().__init__()` function.
+    overridden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
-    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Move the base in a straight line the given `distance`, expressed in millimeters,
         at the given `velocity`, expressed in millimeters per second.
@@ -33,7 +33,7 @@ class Base(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Spin the base in place `angle` degrees, at the given angular `velocity`,
         expressed in degrees per second.
@@ -49,7 +49,7 @@ class Base(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """Set the linear and angular velocity of the Base
         When `linear` is 0, the the base will spin.
         When `angular` is 0, the the base will move in a straight line.
@@ -66,7 +66,7 @@ class Base(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Set the linear and angular velocities of the base.
 
@@ -77,7 +77,7 @@ class Base(ComponentBase):
         """
 
     @abc.abstractmethod
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         """
         Stop the base.
         """

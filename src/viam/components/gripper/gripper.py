@@ -11,18 +11,18 @@ class Gripper(ComponentBase):
 
     This acts as an abstract base class for any drivers representing specific
     gripper implementations. This cannot be used on its own. If the `__init__()` function is
-    overriden, it must call the `super().__init__()` function.
+    overridden, it must call the `super().__init__()` function.
     """
 
     @abc.abstractmethod
-    async def open(self):
+    async def open(self, **kwargs):
         """
         Open the gripper.
         """
         ...
 
     @abc.abstractmethod
-    async def grab(self) -> bool:
+    async def grab(self, **kwargs) -> bool:
         """
         Instruct the gripper to grab.
 
@@ -32,7 +32,7 @@ class Gripper(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self):
+    async def stop(self, **kwargs):
         """
         Stop the gripper. It is assumed the gripper stops immediately.
         """
