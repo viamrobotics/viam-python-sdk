@@ -78,10 +78,10 @@ jobs:
             whl: macosx_11_0_arm64
           - arch: linux_aarch64
             ext: so
-            whl: linux_aarch64
+            whl: manylinux2014_aarch64
           - arch: linux_x86_64
             ext: so
-            whl: linux_x86_64
+            whl: manylinux2014_x86_64
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
