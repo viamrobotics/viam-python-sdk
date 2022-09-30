@@ -52,7 +52,6 @@ jobs:
           poetry version ${{ inputs.version }}
           echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
           echo "::set-output name=version::$(poetry version -s)"
-          git
 
       - name: Commit + Push
         id: commit
