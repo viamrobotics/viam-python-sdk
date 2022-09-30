@@ -52,6 +52,7 @@ jobs:
           poetry version ${{ inputs.version }}
           echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
           echo "::set-output name=version::$(poetry version -s)"
+          git
 
       - name: Commit + Push
         id: commit
@@ -59,6 +60,8 @@ jobs:
         with:
           default_author: github_actions
           message: Bumping version to v${{ env.SDK_VERSION }} [skip ci]
+          tag: 'v${{ env.SDK_VERSION }} --force'
+          tag_push: '--force'
 
   build:
     needs: prepare
@@ -126,7 +129,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ needs.prepare.outputs.version }}
+          tag_name: v${{ needs.prepare.outputs.version }}
           files: dist/*
           draft: true
           prerelease: ${{ contains(inputs.version, 'pre') }}
+          fail_on_unmatched_files: true
