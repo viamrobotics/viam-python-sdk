@@ -60,8 +60,6 @@ jobs:
         with:
           default_author: github_actions
           message: Bumping version to v${{ env.SDK_VERSION }} [skip ci]
-          tag: 'v${{ env.SDK_VERSION }} --force'
-          tag_push: '--force'
 
   build:
     needs: prepare
