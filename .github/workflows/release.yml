@@ -120,8 +120,3 @@ jobs:
           draft: true
           prerelease: ${{ contains(inputs.version, 'pre') }}
           fail_on_unmatched_files: true
-
-      - name: Publish
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
