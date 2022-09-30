@@ -106,7 +106,7 @@ jobs:
         run: poetry build
 
       - name: Rename
-        run: mv dist/viam-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-${{ matrix.whl }}.whl
+        run: mv dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-${{ matrix.whl }}.whl
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
