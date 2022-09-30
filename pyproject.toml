@@ -2,9 +2,12 @@
 name = "viam-sdk"
 version = "0.1.0-beta.0"
 description = "Viam Robotics Python SDK"
-authors = [ "Viam Inc" ]
-license = "None"
+authors = [ "Naveed <naveed@viam.com>" ]
+license = "Apache-2.0"
 readme = "README.md"
+packages = [
+  { include = "viam", from = "src" },
+]
 
   [tool.poetry.dependencies]
   python = ">=3.9,<3.11"
