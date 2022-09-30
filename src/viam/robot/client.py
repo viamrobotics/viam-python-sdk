@@ -111,12 +111,14 @@ class RobotClient:
         """
         logging.setLevel(options.log_level)
 
-        if isinstance(channel, Channel):
-            channel = ViamChannel(channel, lambda: None)
-
         self = cls()
-        self._channel = channel.channel
-        self._viam_channel = channel
+
+        if isinstance(channel, Channel):
+            self._channel = channel
+            self._viam_channel = None
+        else:
+            self._channel = channel.channel
+            self._viam_channel = channel
         self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
         self._lock = Lock()
@@ -132,7 +134,7 @@ class RobotClient:
         return self
 
     _channel: Channel
-    _viam_channel: ViamChannel
+    _viam_channel: Optional[ViamChannel]
     _lock: Lock
     _manager: ResourceManager
     _client: RobotServiceStub
@@ -249,7 +251,10 @@ class RobotClient:
 
         if self._should_close_channel:
             LOGGER.debug("Closing gRPC channel to remote robot")
-            self._viam_channel.close()
+            if self._viam_channel is not None:
+                self._viam_channel.close()
+            else:
+                self._channel.close()
 
     async def __aenter__(self):
         return self
