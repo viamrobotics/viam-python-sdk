@@ -4,7 +4,6 @@ import re
 import socket
 import ssl
 import sys
-import warnings
 from dataclasses import dataclass
 from typing import Callable, Literal, Optional, Tuple, Type
 
@@ -21,55 +20,65 @@ from viam.proto.rpc.auth import Credentials as PBCredentials
 LOGGER = logging.getLogger(__name__)
 
 
-class RTCConfiguration:
-    pass
-
-
-@dataclass
-class DialWebRTCOptions:
-    disable_tricle_ice: bool
-    rtc_config: RTCConfiguration
-
-
 @dataclass
 class Credentials:
+    """Credentials to connect to the robot.
+
+    Currently only supports robot location secret.
+    """
+
     type: Literal["robot-location-secret"]
+    """The type of credential
+    """
+
     payload: str
+    """The credential
+    """
 
 
 class DialOptions:
-    auth_entity: Optional[str]
-    credentials: Optional[Credentials]
-    webrtc_options: Optional[DialWebRTCOptions]
-    external_auth_address: Optional[str]
 
-    insecure: bool
+    disable_webrtc: bool
+    """Bypass Web RTC and connect directly to the robot.
+    """
+
+    auth_entity: Optional[str]
+    """The URL to authenticate against
+    """
+
+    credentials: Optional[Credentials]
+    """Credentials for connecting to the robot
+    """
+
+    insecure: bool = False
     """Determine if the RPC connection is TLS based. Must be provided to
     establish an insecure connection. Otherwise, a TLS based connection
     will be assumed."""
 
-    allow_insecure_downgrade: bool
+    allow_insecure_downgrade: bool = False
     """Allow the RPC connection to be downgraded to an insecure connection
     if detected. This is only used when credentials are not present."""
 
-    allow_insecure_with_creds_downgrade: bool
+    allow_insecure_with_creds_downgrade: bool = False
     """Allow the RPC connection to be downgraded to an insecure connection
     if detected, even with credentials present. This is generally
     unsafe to use, but can be requested."""
 
     def __init__(
         self,
+        disable_webrtc: bool = False,
         auth_entity: Optional[str] = None,
         credentials: Optional[Credentials] = None,
         insecure: bool = False,
         allow_insecure_downgrade: bool = False,
-        allow_insecure_with_creds_downgrade=False,
+        allow_insecure_with_creds_downgrade: bool = False,
     ) -> None:
+        self.disable_webrtc = disable_webrtc
         self.auth_entity = auth_entity
         self.credentials = credentials
         self.insecure = insecure
         self.allow_insecure_downgrade = allow_insecure_downgrade
-        self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade  # noqa: E501
+        self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade
 
 
 def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
@@ -134,15 +143,19 @@ class ViamChannel:
     def __del__(self):
         self.close()
 
-    def __enter__(self):
+    async def __aenter__(self):
         return self
 
-    def __exit__(self):
+    async def __aexit__(self, exc_type, exc_value, traceback):
         self.close()
 
 
-def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
+async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     opts = options if options else DialOptions()
+    if opts.disable_webrtc:
+        channel = await dial_direct(address, options)
+        return ViamChannel(channel, lambda: None)
+
     creds = opts.credentials.payload if opts.credentials else ""
     insecure = opts.insecure or opts.allow_insecure_with_creds_downgrade or (not creds and opts.allow_insecure_downgrade)
 
@@ -186,7 +199,6 @@ def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
 
 
 async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
-    warnings.warn("rpc.dial.dial_direct will be deprecated soon. Use rpc.dial.dial instead.", DeprecationWarning)
     opts = options if options else DialOptions()
     insecure = opts.insecure
 

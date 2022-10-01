@@ -90,7 +90,7 @@ class RobotClient:
         Returns:
             Self: the RobotClient
         """
-        channel = dial(address, options.dial_options)
+        channel = await dial(address, options.dial_options)
         robot = await RobotClient.with_channel(channel, options)
         robot._should_close_channel = True
         return robot
