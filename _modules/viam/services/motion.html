@@ -125,6 +125,12 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Plan and execute a movement to move the component specified to its goal destination.</span>
 
+<span class="sd">        Note: Frames designated with respect to components can also be used as the `component_name` when calling for a move. This</span>
+<span class="sd">        technique allows for planning and moving the frame itself to the `destination`. To do so, simply override the `name` attribute</span>
+<span class="sd">        for a given resource with the originating ReferenceFrame. Then pass in the updated resource into the `component_name`. Ex:</span>
+<span class="sd">            resource = Arm.get_resource_name(&quot;arm&quot;)</span>
+<span class="sd">            resource.name = &quot;externalFrame&quot;</span>
+<span class="sd">            success = await MotionServiceClient.move(resource, ...)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): Name of a component on a given robot.</span>
