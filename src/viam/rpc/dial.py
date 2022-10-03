@@ -246,5 +246,5 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
 
 
 async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
-    warnings.warn("dial_direct is deprecated. Use rpc.dial.dial instead.", DeprecationWarning)
+    warnings.warn("dial_direct is deprecated. Use rpc.dial.dial instead.", DeprecationWarning, stacklevel=2)
     return await _dial_direct(address, options)
