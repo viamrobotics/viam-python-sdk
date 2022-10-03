@@ -24,7 +24,7 @@ To upgrade, simply run the `pip install` command with the `-U` option:
 `pip install -U viam-sdk`
 
 ### Installing from Source
-The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [Rust SDK](https://github.com/viamrobotics/viam-rust-sdk) contains the necessary protocols. Therefore, to build from source, you will need both the Rust SDK and the Rust compiler.
+The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [Rust SDK](https://github.com/viamrobotics/viam-rust-sdk) that contains the necessary protocols. Therefore, to build from source, you will need both the Rust SDK and the Rust compiler.
 
 1. Download/clone this repository
 1. Download/clone the [Rust SDK](https://github.com/viamrobotics/viam-rust-sdk)
@@ -39,9 +39,13 @@ The Viam Python SDK uses native libraries to support communication over WebRTC, 
 1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
 
 
-```
-pip install -U git+https://github.com/viamrobotics/python-sdk.git
-```
+If you do **NOT** need communication over WebRTC (and thus, do not need the native library), the steps are:
+
+1. Download/clone this repository
+1. Run `poetry build` from the `viam-python-sdk` directory
+1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
+1. Ensure that every connection has the option `disable_webrtc` set to `True`: `viam.rpc.dial.DialOptions(disable_webrtc=True)`
+    * For more information about connecting to a robot, see the [documentation](https://python.viam.dev) and [example usage](https://python.viam.dev/examples/example.html)
 
 ## Configure a client application at [app.viam.com](https://app.viam.com)
 

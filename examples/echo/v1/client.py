@@ -7,14 +7,14 @@ from viam.proto.rpc.examples.echo import (
     EchoRequest,
     EchoServiceStub,
 )
-from viam.rpc.dial import Credentials, DialOptions, dial_direct
+from viam.rpc.dial import Credentials, DialOptions, _dial_direct
 
 
 async def echo(msg: str):
     creds = Credentials(type="api-key", payload="supersecretkeyohmy")
     opts = DialOptions(credentials=creds, allow_insecure_with_creds_downgrade=True)
     opts = DialOptions(insecure=True)
-    async with await dial_direct("127.0.0.1:8080", opts) as channel:
+    async with await _dial_direct("127.0.0.1:8080", opts) as channel:
         service = EchoServiceStub(channel)
 
         # Simple Echo

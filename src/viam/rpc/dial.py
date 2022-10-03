@@ -4,6 +4,7 @@ import re
 import socket
 import ssl
 import sys
+import warnings
 from dataclasses import dataclass
 from typing import Callable, Literal, Optional, Tuple, Type
 
@@ -153,7 +154,7 @@ class ViamChannel:
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     opts = options if options else DialOptions()
     if opts.disable_webrtc:
-        channel = await dial_direct(address, options)
+        channel = await _dial_direct(address, options)
         return ViamChannel(channel, lambda: None)
 
     creds = opts.credentials.payload if opts.credentials else ""
@@ -198,7 +199,7 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
     raise ViamError(f"Unable to establish a connection to {address}")
 
 
-async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
+async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
     opts = options if options else DialOptions()
     insecure = opts.insecure
 
@@ -242,3 +243,8 @@ async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Ch
         channel = Channel(host, port, ssl=ctx)
 
     return channel
+
+
+async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
+    warnings.warn("dial_direct is deprecated. Use rpc.dial.dial instead.", DeprecationWarning)
+    return await _dial_direct(address, options)
