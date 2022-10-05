@@ -11,6 +11,7 @@ from ....gen.component.audioinput.v1.audioinput_pb2 import (
     PropertiesRequest,
     PropertiesResponse,
     RecordRequest,
+    SampleFormat,
 )
 
 __all__ = [
@@ -23,4 +24,5 @@ __all__ = [
     "PropertiesRequest",
     "PropertiesResponse",
     "RecordRequest",
+    "SampleFormat",
 ]

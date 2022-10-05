@@ -5,7 +5,7 @@ from typing import NamedTuple, Union
 
 from PIL.Image import Image
 
-from viam.components.audio_input import AudioChunk, AudioChunkInfo
+from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo
 
 
 class RawImage(NamedTuple):

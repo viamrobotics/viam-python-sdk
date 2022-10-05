@@ -4,13 +4,13 @@ from grpclib.client import Channel
 
 from viam.components.generic.client import do_command
 from viam.components.types import Audio
-from viam.gen.component.audioinput.v1.audioinput_pb2 import SampleFormat
 from viam.proto.component.audioinput import (
     AudioInputServiceStub,
     ChunksRequest,
     ChunksResponse,
     PropertiesRequest,
     PropertiesResponse,
+    SampleFormat,
 )
 
 from .audio_input import AudioInput
