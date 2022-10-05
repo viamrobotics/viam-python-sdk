@@ -1,8 +1,11 @@
+from dataclasses import dataclass
 from enum import Enum
 from io import BytesIO
 from typing import NamedTuple, Union
 
 from PIL.Image import Image
+
+from viam.components.audio_input import AudioChunk, AudioChunkInfo
 
 
 class RawImage(NamedTuple):
@@ -60,3 +63,11 @@ class CameraMimeType(str, Enum):
             bool: Whether the mime_type is supported
         """
         return mime_type in set(item.value for item in cls)
+
+
+@dataclass
+class Audio:
+    """A block of audio data containing information about the block and the audio data"""
+
+    info: AudioChunkInfo
+    chunk: AudioChunk

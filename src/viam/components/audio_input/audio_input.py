@@ -1,0 +1,65 @@
+import abc
+from collections.abc import AsyncIterator
+from dataclasses import dataclass
+
+from google.protobuf.duration_pb2 import Duration
+from typing_extensions import Self
+
+from viam.components.types import Audio
+from viam.proto.component.audioinput import PropertiesResponse
+
+from ..component_base import ComponentBase
+
+
+class AudioInput(ComponentBase):
+    @dataclass
+    class Properties:
+        channel_count: int
+        latency: Duration
+        sample_rate: int
+        sample_size: int
+        is_big_endian: bool
+        is_float: bool
+        is_interleaved: bool
+
+        @property
+        def proto(self) -> PropertiesResponse:
+            return PropertiesResponse(
+                channel_count=self.channel_count,
+                latency=self.latency,
+                sample_rate=self.sample_rate,
+                sample_size=self.sample_size,
+                is_big_endian=self.is_big_endian,
+                is_float=self.is_float,
+                is_interleaved=self.is_interleaved,
+            )
+
+        @classmethod
+        def from_proto(cls, proto: PropertiesResponse) -> Self:
+            return cls(
+                channel_count=proto.channel_count,
+                latency=proto.latency,
+                sample_rate=proto.sample_rate,
+                sample_size=proto.sample_size,
+                is_big_endian=proto.is_big_endian,
+                is_float=proto.is_float,
+                is_interleaved=proto.is_interleaved,
+            )
+
+    @abc.abstractmethod
+    async def stream(self) -> AsyncIterator[Audio]:
+        """Stream audio samples from the audio input of the underlying robot
+
+        Returns:
+            MediaStream[Audio]: The stream of audio chunks
+        """
+        ...
+
+    @abc.abstractmethod
+    async def properties(self) -> Properties:
+        """Get the properties of the audio input of the underlying robot
+
+        Returns:
+            Properties: The audio input properties
+        """
+        ...
