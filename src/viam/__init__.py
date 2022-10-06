@@ -10,7 +10,7 @@ from .logging import getLogger as _getLogger
 # VERSIONING #
 ##############
 try:
-    __version__ = version("viam")
+    __version__ = version("viam-sdk")
 except PackageNotFoundError:
     pass
 
