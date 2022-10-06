@@ -97,32 +97,60 @@
 <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE"><img alt="license" src="https://img.shields.io/badge/license-Apache_2.0-blue" /></a></p>
 <section id="in-stability-notice">
 <h2>(In)stability Notice<a class="headerlink" href="#in-stability-notice" title="Permalink to this heading"></a></h2>
-<p>This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.</p>
+<blockquote>
+<div><p><strong>Warning</strong>
+This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.</p>
+</div></blockquote>
 </section>
 <section id="installation-pre-pypi">
 <h2>Installation - pre PyPI<a class="headerlink" href="#installation-pre-pypi" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/viamrobotics/python-sdk.git</span></code></p>
-<p>This will install the current <code class="docutils literal notranslate"><span class="pre">main</span></code> branch to your project. If you would like a specific branch or commit, you can do so with the command</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/viamrobotics/python-sdk.git&#64;FULL_COMMIT_HASH</span></code></p>
+<p>To install the Viam Python SDK from the current <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">viamrobotics</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>To install the the Viam Python SDK from a specific branch or commit, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">viamrobotics</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span><span class="nd">@FULL_COMMIT_HASH</span>
+</pre></div>
+</div>
 <section id="upgrading">
 <h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this heading"></a></h3>
-<p>Because the SDK is under active development, we suggest that you upgrade the package frequently. To do so, simply run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-U</span></code> option:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">git+https://github.com/viamrobotics/python-sdk.git</span></code></p>
+<blockquote>
+<div><p><strong>Note</strong>
+Because the SDK is under active development, we suggest that you upgrade the package frequently.</p>
+</div></blockquote>
+<p>To upgrade, simply run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-U</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">viamrobotics</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
 </section>
 </section>
-<section id="easy-setup-via-app-viam-com">
-<h2>Easy Setup via <span class="xref myst">app.viam.com</span><a class="headerlink" href="#easy-setup-via-app-viam-com" title="Permalink to this heading"></a></h2>
-<p>The easiest way to get started writing a client application (that is, one which is not directly responsible for interacting with hardware,
-but rather calls into the viam-server to actuate hardware or read from sensors), is to navigate to the robot page on <span class="xref myst">app.viam.com</span>,
-select the <code class="docutils literal notranslate"><span class="pre">CONNECT</span></code> tab, and copy the boilerplate code from the section labeled <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">SDK</span></code>.</p>
-<p>It is recommended that you save and run this simple program. Doing so will ensure that the python-sdk is properly installed,
-that the <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> instance on your robot is alive, and that the computer running the program is able to connect to that instance.</p>
+<section id="configure-a-client-application-at-app-viam-com">
+<h2>Configure a client application at <a class="reference external" href="https://app.viam.com">app.viam.com</a><a class="headerlink" href="#configure-a-client-application-at-app-viam-com" title="Permalink to this heading"></a></h2>
+<p>Your client application does not directly interact with your hardware. Instead, your client application makes calls to the viam-server which can then issues commands to your hardware or read from sensors.</p>
+<p>To create a client application, to navigate to <a class="reference external" href="https://app.viam.com">app.viam.com</a>. After you log in, perform these steps:</p>
+<ol class="arabic">
+<li><p>Create a location (for example <code class="docutils literal notranslate"><span class="pre">home</span></code>)</p></li>
+<li><p>Create a robot (for example <code class="docutils literal notranslate"><span class="pre">arduino</span></code>)</p></li>
+<li><p>Follow the steps on the setup tab:</p>
+<ol class="arabic">
+<li><p>Setup Viam App Config on Single Board Computer (SBC)</p></li>
+<li><p>Download and Install Viam Server</p></li>
+<li><p>Wait until the robot shows as connected. If this doesn’t happen try restarting the viam-server:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">viam</span><span class="o">-</span><span class="n">server</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<p>Next, select the <code class="docutils literal notranslate"><span class="pre">CONNECT</span></code> tab in the Viam Web UI, and copy the boilerplate code from the section labeled <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">SDK</span></code>.</p>
+<p>To ensure the installation succeeded and the systems are functional, save and run this simple program. If the program runs successfully, the python-sdk is properly installed, the <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> instance on your robot is alive, and the computer running the program is able to connect to that instance.</p>
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
-<p>The <a class="reference external" href="https://python.viam.dev/examples/example.html">Example Usage</a> has the info required to access a component, build a custom component, and expose
+<p>Read the <a class="reference external" href="https://python.viam.dev/examples/example.html">Example Usage</a> page, to learn how to access a component, build a custom component, and expose
 custom components as a remote to existing robots.</p>
-<p>Further examples can be found in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> directory.</p>
+<p>More examples can be found in the <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">examples</span></code></span> directory.</p>
 </section>
 <section id="the-do-method">
 <h2>The <code class="docutils literal notranslate"><span class="pre">do</span></code> method<a class="headerlink" href="#the-do-method" title="Permalink to this heading"></a></h2>
@@ -130,8 +158,8 @@ custom components as a remote to existing robots.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>If this is not generic enough, you can also create your own custom component by subclassing the <code class="docutils literal notranslate"><span class="pre">viam.components.generic.Generic</span></code> component
-class. For more details, you can view the documentation for the <code class="docutils literal notranslate"><span class="pre">Generic</span></code> component.</p>
+<p>If this is not generic enough, you can also create your own custom component by subclassing the <a class="reference external" href="https://python.viam.dev/autoapi/viam/components/generic/index.html"><code class="docutils literal notranslate"><span class="pre">viam.components.generic.Generic</span></code></a> component
+class. For more details, you can view the documentation for the <a class="reference external" href="https://python.viam.dev/autoapi/viam/components/generic/index.html"><code class="docutils literal notranslate"><span class="pre">Generic</span></code></a> component.</p>
 </section>
 <section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
@@ -140,24 +168,24 @@ class. For more details, you can view the documentation for the <code class="doc
 <hr class="docutils" />
 <section id="development">
 <h2>Development<a class="headerlink" href="#development" title="Permalink to this heading"></a></h2>
-<p>To develop the python SDK, please see the <a class="reference external" href="https://python.viam.dev/contributing.html">contribution guidelines</a>.</p>
+<p>To contribute to the python SDK, please see the <a class="reference external" href="https://python.viam.dev/contributing.html">contribution guidelines</a>.</p>
 <section id="adding-new-component-types">
 <h3>Adding new component types<a class="headerlink" href="#adding-new-component-types" title="Permalink to this heading"></a></h3>
-<p>The SDK provides a number of abstract base components to start. To add more abstract base components, please make sure you follow these guidelines:</p>
-<ul class="simple">
+<p>The SDK provides a number of abstract base components. To add more abstract base components, follow these steps:</p>
+<ol class="arabic simple">
 <li><p>Create a new directory in <code class="docutils literal notranslate"><span class="pre">viam.components</span></code> with the name of the new component</p></li>
-<li><p>Implement 3 new files in the newly created directory:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>, where you should include the imports for the package</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">{COMPONENT}.py</span></code>, which should define the requirements of the component</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">service.py</span></code>, which should implement the gRPC service for this component</p></li>
-</ul>
+<li><p>Create 3 new files in the newly created directory:</p>
+<ol class="arabic simple">
+<li><p>Add all imports for the package in <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p></li>
+<li><p>Define all requirements of the component in <code class="docutils literal notranslate"><span class="pre">{COMPONENT}.py</span></code></p></li>
+<li><p>Implement the gRPC service for the new component in <code class="docutils literal notranslate"><span class="pre">service.py</span></code></p></li>
+</ol>
 </li>
-<li><p>Add the new service in <code class="docutils literal notranslate"><span class="pre">viam.rpc.server</span></code> to expose the gRPC service</p></li>
-<li><p>If the component needs to be included to the robot/status service, add it in <code class="docutils literal notranslate"><span class="pre">viam.robot.service</span></code></p></li>
-<li><p>Write tests and add the component to <code class="docutils literal notranslate"><span class="pre">tests.mocks.components</span></code></p></li>
+<li><p>Add the new service to <a class="reference external" href="https://python.viam.dev/autoapi/viam/rpc/server/index.html"><code class="docutils literal notranslate"><span class="pre">viam.rpc.server</span></code></a> to expose the gRPC service</p></li>
+<li><p>If the component needs to be included in the robot/status service, add it in <a class="reference external" href="https://python.viam.dev/autoapi/viam/robot/service/index.html"><code class="docutils literal notranslate"><span class="pre">viam.robot.service</span></code></a></p></li>
+<li><p>Write tests for the new component and add the component to <code class="docutils literal notranslate"><span class="pre">tests.mocks.components</span></code></p></li>
 <li><p>Add the component to <code class="docutils literal notranslate"><span class="pre">examples.server.v1.components</span></code> and its corresponding concrete type in <code class="docutils literal notranslate"><span class="pre">examples.server.v1.server</span></code></p></li>
-</ul>
+</ol>
 </section>
 </section>
 <section id="license">
