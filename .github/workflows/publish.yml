@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  release:
+  publish:
     if: |
       github.repository_owner == 'viamrobotics'
       && github.ref == 'refs/heads/main'
@@ -19,7 +19,7 @@ jobs:
       - name: Download Release
         uses: dsaltares/fetch-gh-release-asset@master
         with:
-          file: 'viam_sdk.*\\.whl'
+          file: "viam_sdk.*\\.whl"
           regex: true
           target: 'dist/'
 
