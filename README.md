@@ -8,30 +8,44 @@
 > **Warning**
 > This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
 
-## Installation - pre PyPI
+## Installation
+Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86 and aarch64) that you can install via pip
 
-To install the Viam Python SDK from the current `main` branch, use the following command:
+`pip install viam-sdk`
 
-```
-pip install git+https://github.com/viamrobotics/python-sdk.git
-```
-
-To install the the Viam Python SDK from a specific branch or commit, use the following command:
-
-```
-pip install git+https://github.com/viamrobotics/python-sdk.git@FULL_COMMIT_HASH
-```
+If your system is not supported, read further on how to install from source.
 
 ### Upgrading
 
 > **Note**
-> Because the SDK is under active development, we suggest that you upgrade the package frequently. 
- 
-To upgrade, simply run the `pip install` command with the `-U` option:
+> Because the SDK is under active development, we suggest that you upgrade the package frequently.
 
-```
-pip install -U git+https://github.com/viamrobotics/python-sdk.git
-```
+To upgrade, simply run the `pip install` command with the `-U` option:
+`pip install -U viam-sdk`
+
+### Installing from Source
+The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [Rust SDK](https://github.com/viamrobotics/viam-rust-sdk) that contains the necessary protocols. Therefore, to build from source, you will need both the Rust SDK and the Rust compiler.
+
+1. Download/clone this repository
+1. Download/clone the [Rust SDK](https://github.com/viamrobotics/viam-rust-sdk)
+1. [Install Rust](https://www.rust-lang.org/tools/install) if not already available
+1. From the `viam-rust-sdk` directory, run `cargo build`
+    * You can optionally provide the `--release` flag: `cargo build --release`
+1. Find the compiled library in `viam-rust-sdk/target/debug/libviam.*`
+    * If you provided the `--release` flag, the enclosing directory will be `release`: `viam-rust-sdk/target/release/libviam.*`
+    * The extension of the executable will depend on your operating system. For example, on macOS it will be `libviam.dylib`, whereas on Linux it will be `libviam.so`
+1. Copy the compiled library to the directory `viam-python-sdk/src/viam/rpc/`
+1. From the `viam-python-sdk` directory, run `poetry build` to create an installable package
+1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
+
+
+If you do **NOT** need communication over WebRTC (and thus, do not need the native library), the steps are:
+
+1. Download/clone this repository
+1. Run `poetry build` from the `viam-python-sdk` directory
+1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
+1. Ensure that every connection has the option `disable_webrtc` set to `True`: `viam.rpc.dial.DialOptions(disable_webrtc=True)`
+    * For more information about connecting to a robot, see the [documentation](https://python.viam.dev) and [example usage](https://python.viam.dev/examples/example.html)
 
 ## Configure a client application at [app.viam.com](https://app.viam.com)
 
@@ -47,7 +61,7 @@ To create a client application, to navigate to [app.viam.com](https://app.viam.c
    3. Wait until the robot shows as connected. If this doesn't happen try restarting the viam-server:
       ```
       sudo systemctl restart viam-server
-      ```   
+      ```
 
 Next, select the `CONNECT` tab in the Viam Web UI, and copy the boilerplate code from the section labeled `Python SDK`.
 

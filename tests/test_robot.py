@@ -253,6 +253,7 @@ class TestRobotClient:
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             assert client._refresh_task is None
+            await client.close()
 
             client = await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=100))
             assert client._refresh_task is not None
