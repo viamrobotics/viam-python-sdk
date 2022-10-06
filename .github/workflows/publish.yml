@@ -7,7 +7,10 @@ on:
 
 jobs:
   release:
-    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main' && contains(fromJson('["njooma"]'), github.actor)
+    if: |
+      github.repository_owner == 'viamrobotics'
+      && github.ref == 'refs/heads/main'
+      && ((github.event_name == 'workflow_dispatch' && contains(fromJson('["njooma"]'), github.actor)) || github.event_name == 'release')
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
