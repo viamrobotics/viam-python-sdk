@@ -35,7 +35,9 @@ class AudioInputClient(AudioInput):
 
             while True:
                 response = await chunks_stream.recv_message()
-                assert response is not None and response.HasField("chunk")
+                if response is None:
+                    break
+                assert response.HasField("chunk")
                 audio = Audio(info=info, chunk=response.chunk)
                 yield audio
 

@@ -20,6 +20,8 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
     gRPC Service for a generic AudioInput
     """
 
+    RESOURCE_TYPE = AudioInput
+
     async def Chunks(self, stream: Stream[ChunksRequest, ChunksResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -28,13 +30,12 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         except ComponentNotFoundError as e:
             raise e.grpc_error
 
-        chunk_stream = await audio_input.stream()
-
-        first_chunk = await anext(chunk_stream)
+        audio_stream = audio_input.stream()
+        first_chunk = await anext(audio_stream)
         await stream.send_message(ChunksResponse(info=first_chunk.info))
         await stream.send_message(ChunksResponse(chunk=first_chunk.chunk))
 
-        async for audio in chunk_stream:
+        async for audio in audio_stream:
             await stream.send_message(ChunksResponse(chunk=audio.chunk))
 
     async def Properties(self, stream: Stream[PropertiesRequest, PropertiesResponse]) -> None:

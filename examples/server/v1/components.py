@@ -1,13 +1,17 @@
 import asyncio
+from datetime import timedelta
 import random
 import struct
+import wave
 from multiprocessing import Lock, Queue
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
+from collections.abc import AsyncIterator
 
 from PIL import Image
 
 from viam.components.arm import Arm
+from viam.components.audio_input import Audio, AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
@@ -34,6 +38,7 @@ from viam.proto.common import (
     WorldState,
 )
 from viam.proto.component.arm import JointPositions
+from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 
 
 class ExampleArm(Arm):
@@ -76,6 +81,38 @@ class ExampleArm(Arm):
 
     async def is_moving(self):
         return not self.is_stopped
+
+
+class ExampleAudioInput(AudioInput):
+    async def stream(self) -> AsyncIterator[Audio]:
+        p = Path(__file__)
+        wav = wave.open(p.parent.absolute().joinpath("viam.wav").__str__(), "r")
+        while wav:
+            frames = wav.readframes(512)
+            print(len(frames))
+            if not frames:
+                break
+            info = AudioChunkInfo(
+                sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
+                channels=wav.getnchannels(),
+                sampling_rate=wav.getframerate(),
+            )
+            chunk = AudioChunk(data=frames, length=512 * wav.getsampwidth())
+            yield Audio(info, chunk)
+        wav.close()
+
+    async def properties(self) -> AudioInput.Properties:
+        p = Path(__file__)
+        with wave.open(p.parent.absolute().joinpath("viam.wav").__str__(), "r") as wav:
+            return AudioInput.Properties(
+                channel_count=wav.getnchannels(),
+                latency=timedelta(seconds=0.1),
+                sample_rate=wav.getframerate(),
+                sample_size=wav.getsampwidth(),
+                is_big_endian=False,
+                is_float=True,
+                is_interleaved=True,
+            )
 
 
 class ExampleBase(Base):

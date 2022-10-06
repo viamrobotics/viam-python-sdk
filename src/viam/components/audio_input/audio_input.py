@@ -1,6 +1,7 @@
 import abc
 from collections.abc import AsyncIterator
 from dataclasses import dataclass
+from datetime import timedelta
 
 from google.protobuf.duration_pb2 import Duration
 from typing_extensions import Self
@@ -15,7 +16,7 @@ class AudioInput(ComponentBase):
     @dataclass
     class Properties:
         channel_count: int
-        latency: Duration
+        latency: timedelta
         sample_rate: int
         sample_size: int
         is_big_endian: bool
@@ -24,9 +25,11 @@ class AudioInput(ComponentBase):
 
         @property
         def proto(self) -> PropertiesResponse:
+            latency = Duration()
+            latency.FromTimedelta(self.latency)
             return PropertiesResponse(
                 channel_count=self.channel_count,
-                latency=self.latency,
+                latency=latency,
                 sample_rate=self.sample_rate,
                 sample_size=self.sample_size,
                 is_big_endian=self.is_big_endian,
@@ -38,7 +41,7 @@ class AudioInput(ComponentBase):
         def from_proto(cls, proto: PropertiesResponse) -> Self:
             return cls(
                 channel_count=proto.channel_count,
-                latency=proto.latency,
+                latency=proto.latency.ToTimedelta(),
                 sample_rate=proto.sample_rate,
                 sample_size=proto.sample_size,
                 is_big_endian=proto.is_big_endian,
