@@ -1,8 +1,8 @@
 import asyncio
 from datetime import timedelta
+import math
 import random
 import struct
-import wave
 from multiprocessing import Lock, Queue
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
@@ -84,35 +84,55 @@ class ExampleArm(Arm):
 
 
 class ExampleAudioInput(AudioInput):
+    def __init__(self, name: str):
+        super().__init__(name)
+        self.latency = timedelta(milliseconds=20)
+        self.sample_rate = 48_000
+        self.channel_count = 1
+        self.step = 0
+        self.timer = asyncio.get_event_loop().call_later(self.latency.total_seconds(), self.run_task)
+
+    def run_task(self):
+        self.step += 1
+        self.timer = asyncio.get_event_loop().call_later(self.latency.total_seconds(), self.run_task)
+
+    def __del__(self):
+        self.timer.cancel()
+
     async def stream(self) -> AsyncIterator[Audio]:
-        p = Path(__file__)
-        wav = wave.open(p.parent.absolute().joinpath("viam.wav").__str__(), "r")
-        while wav:
-            frames = wav.readframes(512)
-            print(len(frames))
-            if not frames:
-                break
-            info = AudioChunkInfo(
-                sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
-                channels=wav.getnchannels(),
-                sampling_rate=wav.getframerate(),
+        length = self.sample_rate * self.latency.total_seconds()
+        num_chunks = self.sample_rate / length
+        angle = math.pi * 2 / (length * num_chunks)
+        while True:
+            output = bytes()
+            step = int(self.step % num_chunks)
+            for i in range(int(length)):
+                value = int(50 * math.sin(angle * 440 * (float(length * step) + i)))
+                output += bytes(struct.pack("f", value))
+
+            yield Audio(
+                AudioChunkInfo(
+                    sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
+                    channels=self.channel_count,
+                    sampling_rate=self.sample_rate,
+                ),
+                AudioChunk(
+                    data=output,
+                    length=int(length),
+                ),
             )
-            chunk = AudioChunk(data=frames, length=512 * wav.getsampwidth())
-            yield Audio(info, chunk)
-        wav.close()
+            await asyncio.sleep(self.latency.total_seconds())
 
     async def properties(self) -> AudioInput.Properties:
-        p = Path(__file__)
-        with wave.open(p.parent.absolute().joinpath("viam.wav").__str__(), "r") as wav:
-            return AudioInput.Properties(
-                channel_count=wav.getnchannels(),
-                latency=timedelta(seconds=0.1),
-                sample_rate=wav.getframerate(),
-                sample_size=wav.getsampwidth(),
-                is_big_endian=False,
-                is_float=True,
-                is_interleaved=True,
-            )
+        return AudioInput.Properties(
+            channel_count=self.channel_count,
+            latency=self.latency,
+            sample_rate=self.sample_rate,
+            sample_size=2,
+            is_big_endian=False,
+            is_float=False,
+            is_interleaved=True,
+        )
 
 
 class ExampleBase(Base):
