@@ -12,11 +12,10 @@ Classes
 
 .. autoapisummary::
 
-   viam.rpc.dial.RTCConfiguration
-   viam.rpc.dial.DialWebRTCOptions
    viam.rpc.dial.Credentials
    viam.rpc.dial.DialOptions
    viam.rpc.dial.AuthenticatedChannel
+   viam.rpc.dial.ViamChannel
 
 
 
@@ -25,75 +24,77 @@ Functions
 
 .. autoapisummary::
 
+   viam.rpc.dial.dial
    viam.rpc.dial.dial_direct
 
 
 
-.. py:class:: RTCConfiguration
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.rpc.dial.LOGGER
 
 
-.. py:class:: DialWebRTCOptions
+.. py:data:: LOGGER
+   
 
-   .. py:attribute:: disable_tricle_ice
-      :annotation: :bool
-
-      
-
-   .. py:attribute:: rtc_config
-      :annotation: :RTCConfiguration
-
-      
-
+   
 
 .. py:class:: Credentials
 
-   .. py:attribute:: type
-      :annotation: :str
+   Credentials to connect to the robot.
 
-      
+   Currently only supports robot location secret.
+
+   .. py:attribute:: type
+      :annotation: :Literal[robot-location-secret]
+
+      The type of credential
 
    .. py:attribute:: payload
       :annotation: :str
 
-      
+      The credential
 
 
-.. py:class:: DialOptions(auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade=False)
+.. py:class:: DialOptions(disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False)
+
+   .. py:attribute:: disable_webrtc
+      :annotation: :bool
+
+      Bypass Web RTC and connect directly to the robot.
 
    .. py:attribute:: auth_entity
       :annotation: :Optional[str]
 
-      
+      The URL to authenticate against
 
    .. py:attribute:: credentials
       :annotation: :Optional[Credentials]
 
-      
-
-   .. py:attribute:: webrtc_options
-      :annotation: :Optional[DialWebRTCOptions]
-
-      
-
-   .. py:attribute:: external_auth_address
-      :annotation: :Optional[str]
-
-      
+      Credentials for connecting to the robot
 
    .. py:attribute:: insecure
-      :annotation: :bool
+      :annotation: :bool = False
 
-      
+      Determine if the RPC connection is TLS based. Must be provided to
+      establish an insecure connection. Otherwise, a TLS based connection
+      will be assumed.
 
    .. py:attribute:: allow_insecure_downgrade
-      :annotation: :bool
+      :annotation: :bool = False
 
-      
+      Allow the RPC connection to be downgraded to an insecure connection
+      if detected. This is only used when credentials are not present.
 
    .. py:attribute:: allow_insecure_with_creds_downgrade
-      :annotation: :bool
+      :annotation: :bool = False
 
-      
+      Allow the RPC connection to be downgraded to an insecure connection
+      if detected, even with credentials present. This is generally
+      unsafe to use, but can be requested.
 
 
 .. py:class:: AuthenticatedChannel(host: Optional[str] = None, port: Optional[int] = None, *, loop: Optional[asyncio.AbstractEventLoop] = None, path: Optional[str] = None, codec: Optional[grpclib.encoding.base.CodecBase] = None, status_details_codec: Optional[grpclib.encoding.base.StatusDetailsCodecBase] = None, ssl: Union[None, bool, ssl.SSLContext] = None, config: Optional[grpclib.config.Configuration] = None)
@@ -123,6 +124,37 @@ Functions
 
    .. py:method:: request(name: str, cardinality: grpclib.const.Cardinality, request_type: Type[grpclib.stream._SendType], reply_type: Type[grpclib.stream._RecvType], *, timeout: Optional[float] = None, deadline: Optional[grpclib.metadata.Deadline] = None, metadata: Optional[grpclib.metadata._MetadataLike] = None) -> grpclib.client.Stream[grpclib.stream._SendType, grpclib.stream._RecvType]
 
+
+
+.. py:class:: ViamChannel
+
+   .. py:attribute:: channel
+      :annotation: :grpclib.client.Channel
+
+      
+
+   .. py:attribute:: release
+      :annotation: :Callable[[], None]
+
+      
+
+   .. py:method:: close()
+
+
+   .. py:method:: __del__()
+
+
+   .. py:method:: __aenter__()
+      :async:
+
+
+   .. py:method:: __aexit__(exc_type, exc_value, traceback)
+      :async:
+
+
+
+.. py:function:: dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel
+   :async:
 
 
 .. py:function:: dial_direct(address: str, options: Optional[DialOptions] = None) -> grpclib.client.Channel

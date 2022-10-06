@@ -102,26 +102,53 @@
 This is an alpha release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.</p>
 </div></blockquote>
 </section>
-<section id="installation-pre-pypi">
-<h2>Installation - pre PyPI<a class="headerlink" href="#installation-pre-pypi" title="Permalink to this heading"></a></h2>
-<p>To install the Viam Python SDK from the current <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, use the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">viamrobotics</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span>
-</pre></div>
-</div>
-<p>To install the the Viam Python SDK from a specific branch or commit, use the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">viamrobotics</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span><span class="nd">@FULL_COMMIT_HASH</span>
-</pre></div>
-</div>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86 and aarch64) that you can install via pip</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">viam-sdk</span></code></p>
+<p>If your system is not supported, read further on how to install from source.</p>
 <section id="upgrading">
 <h3>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><p><strong>Note</strong>
 Because the SDK is under active development, we suggest that you upgrade the package frequently.</p>
 </div></blockquote>
-<p>To upgrade, simply run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-U</span></code> option:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">viamrobotics</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">sdk</span><span class="o">.</span><span class="n">git</span>
-</pre></div>
-</div>
+<p>To upgrade, simply run the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command with the <code class="docutils literal notranslate"><span class="pre">-U</span></code> option:
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">viam-sdk</span></code></p>
+</section>
+<section id="installing-from-source">
+<h3>Installing from Source<a class="headerlink" href="#installing-from-source" title="Permalink to this heading"></a></h3>
+<p>The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a <a class="reference external" href="https://github.com/viamrobotics/viam-rust-sdk">Rust SDK</a> that contains the necessary protocols. Therefore, to build from source, you will need both the Rust SDK and the Rust compiler.</p>
+<ol class="arabic simple">
+<li><p>Download/clone this repository</p></li>
+<li><p>Download/clone the <a class="reference external" href="https://github.com/viamrobotics/viam-rust-sdk">Rust SDK</a></p></li>
+<li><p><a class="reference external" href="https://www.rust-lang.org/tools/install">Install Rust</a> if not already available</p></li>
+<li><p>From the <code class="docutils literal notranslate"><span class="pre">viam-rust-sdk</span></code> directory, run <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code></p>
+<ul class="simple">
+<li><p>You can optionally provide the <code class="docutils literal notranslate"><span class="pre">--release</span></code> flag: <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span> <span class="pre">--release</span></code></p></li>
+</ul>
+</li>
+<li><p>Find the compiled library in <code class="docutils literal notranslate"><span class="pre">viam-rust-sdk/target/debug/libviam.*</span></code></p>
+<ul class="simple">
+<li><p>If you provided the <code class="docutils literal notranslate"><span class="pre">--release</span></code> flag, the enclosing directory will be <code class="docutils literal notranslate"><span class="pre">release</span></code>: <code class="docutils literal notranslate"><span class="pre">viam-rust-sdk/target/release/libviam.*</span></code></p></li>
+<li><p>The extension of the executable will depend on your operating system. For example, on macOS it will be <code class="docutils literal notranslate"><span class="pre">libviam.dylib</span></code>, whereas on Linux it will be <code class="docutils literal notranslate"><span class="pre">libviam.so</span></code></p></li>
+</ul>
+</li>
+<li><p>Copy the compiled library to the directory <code class="docutils literal notranslate"><span class="pre">viam-python-sdk/src/viam/rpc/</span></code></p></li>
+<li><p>From the <code class="docutils literal notranslate"><span class="pre">viam-python-sdk</span></code> directory, run <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">build</span></code> to create an installable package</p></li>
+<li><p>Find the newly created installable package located in <code class="docutils literal notranslate"><span class="pre">viam-python-sdk/dist/</span></code> and pip install it directly, e.g.: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl</span></code></p></li>
+</ol>
+<p>If you do <strong>NOT</strong> need communication over WebRTC (and thus, do not need the native library), the steps are:</p>
+<ol class="arabic simple">
+<li><p>Download/clone this repository</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">build</span></code> from the <code class="docutils literal notranslate"><span class="pre">viam-python-sdk</span></code> directory</p></li>
+<li><p>Find the newly created installable package located in <code class="docutils literal notranslate"><span class="pre">viam-python-sdk/dist/</span></code> and pip install it directly, e.g.: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl</span></code></p></li>
+<li><p>Ensure that every connection has the option <code class="docutils literal notranslate"><span class="pre">disable_webrtc</span></code> set to <code class="docutils literal notranslate"><span class="pre">True</span></code>: <code class="docutils literal notranslate"><span class="pre">viam.rpc.dial.DialOptions(disable_webrtc=True)</span></code></p>
+<ul class="simple">
+<li><p>For more information about connecting to a robot, see the <a class="reference external" href="https://python.viam.dev">documentation</a> and <a class="reference external" href="https://python.viam.dev/examples/example.html">example usage</a></p></li>
+</ul>
+</li>
+</ol>
 </section>
 </section>
 <section id="configure-a-client-application-at-app-viam-com">

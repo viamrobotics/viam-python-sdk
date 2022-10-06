@@ -64,23 +64,18 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc.dial</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#functions">Functions</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.RTCConfiguration"><code class="docutils literal notranslate"><span class="pre">RTCConfiguration</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.DialWebRTCOptions"><code class="docutils literal notranslate"><span class="pre">DialWebRTCOptions</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialWebRTCOptions.disable_tricle_ice"><code class="docutils literal notranslate"><span class="pre">DialWebRTCOptions.disable_tricle_ice</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialWebRTCOptions.rtc_config"><code class="docutils literal notranslate"><span class="pre">DialWebRTCOptions.rtc_config</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l5"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.LOGGER"><code class="docutils literal notranslate"><span class="pre">LOGGER</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.Credentials"><code class="docutils literal notranslate"><span class="pre">Credentials</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.Credentials.type"><code class="docutils literal notranslate"><span class="pre">Credentials.type</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.Credentials.payload"><code class="docutils literal notranslate"><span class="pre">Credentials.payload</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.DialOptions"><code class="docutils literal notranslate"><span class="pre">DialOptions</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.disable_webrtc"><code class="docutils literal notranslate"><span class="pre">DialOptions.disable_webrtc</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.auth_entity"><code class="docutils literal notranslate"><span class="pre">DialOptions.auth_entity</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.credentials"><code class="docutils literal notranslate"><span class="pre">DialOptions.credentials</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.webrtc_options"><code class="docutils literal notranslate"><span class="pre">DialOptions.webrtc_options</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.external_auth_address"><code class="docutils literal notranslate"><span class="pre">DialOptions.external_auth_address</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.insecure"><code class="docutils literal notranslate"><span class="pre">DialOptions.insecure</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.allow_insecure_downgrade"><code class="docutils literal notranslate"><span class="pre">DialOptions.allow_insecure_downgrade</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.allow_insecure_with_creds_downgrade"><code class="docutils literal notranslate"><span class="pre">DialOptions.allow_insecure_with_creds_downgrade</span></code></a></li>
@@ -90,23 +85,27 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.AuthenticatedChannel.request"><code class="docutils literal notranslate"><span class="pre">AuthenticatedChannel.request()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.dial_direct"><code class="docutils literal notranslate"><span class="pre">dial_direct()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.RTCConfiguration">RTCConfiguration</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.DialWebRTCOptions">DialWebRTCOptions</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialWebRTCOptions.disable_tricle_ice">disable_tricle_ice</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialWebRTCOptions.rtc_config">rtc_config</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.ViamChannel"><code class="docutils literal notranslate"><span class="pre">ViamChannel</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.channel"><code class="docutils literal notranslate"><span class="pre">ViamChannel.channel</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.release"><code class="docutils literal notranslate"><span class="pre">ViamChannel.release</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.close"><code class="docutils literal notranslate"><span class="pre">ViamChannel.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.__del__"><code class="docutils literal notranslate"><span class="pre">ViamChannel.__del__()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.__aenter__"><code class="docutils literal notranslate"><span class="pre">ViamChannel.__aenter__()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.__aexit__"><code class="docutils literal notranslate"><span class="pre">ViamChannel.__aexit__()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.dial"><code class="docutils literal notranslate"><span class="pre">dial()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.dial_direct"><code class="docutils literal notranslate"><span class="pre">dial_direct()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.LOGGER">LOGGER</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.Credentials">Credentials</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.Credentials.type">type</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.Credentials.payload">payload</a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.DialOptions">DialOptions</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.disable_webrtc">disable_webrtc</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.auth_entity">auth_entity</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.credentials">credentials</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.webrtc_options">webrtc_options</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.external_auth_address">external_auth_address</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.insecure">insecure</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.allow_insecure_downgrade">allow_insecure_downgrade</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.allow_insecure_with_creds_downgrade">allow_insecure_with_creds_downgrade</a></li>
@@ -116,6 +115,16 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.AuthenticatedChannel.request">request</a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.ViamChannel">ViamChannel</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.channel">channel</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.release">release</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.close">close</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.__del__">__del__</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.__aenter__">__aenter__</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.ViamChannel.__aexit__">__aexit__</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.dial">dial</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.dial_direct">dial_direct</a></li>
 </ul>
 </li>
@@ -169,20 +178,17 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.dial.RTCConfiguration" title="viam.rpc.dial.RTCConfiguration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RTCConfiguration</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.rpc.dial.DialWebRTCOptions" title="viam.rpc.dial.DialWebRTCOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DialWebRTCOptions</span></code></a></p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.dial.Credentials" title="viam.rpc.dial.Credentials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Credentials</span></code></a></p></td>
-<td><p></p></td>
+<td><p>Credentials to connect to the robot.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.rpc.dial.DialOptions" title="viam.rpc.dial.DialOptions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DialOptions</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.dial.AuthenticatedChannel" title="viam.rpc.dial.AuthenticatedChannel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthenticatedChannel</span></code></a></p></td>
 <td><p>Represents a connection to the server, which can be used with generated</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.rpc.dial.ViamChannel" title="viam.rpc.dial.ViamChannel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamChannel</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -195,83 +201,95 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.dial.dial_direct" title="viam.rpc.dial.dial_direct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dial_direct</span></code></a>(→ grpclib.client.Channel)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.dial.dial" title="viam.rpc.dial.dial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dial</span></code></a>(→ ViamChannel)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.rpc.dial.dial_direct" title="viam.rpc.dial.dial_direct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dial_direct</span></code></a>(→ grpclib.client.Channel)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.rpc.dial.RTCConfiguration">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.dial.</span></span><span class="sig-name descname"><span class="pre">RTCConfiguration</span></span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#RTCConfiguration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.RTCConfiguration" title="Permalink to this definition"></a></dt>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.rpc.dial.LOGGER" title="viam.rpc.dial.LOGGER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOGGER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.rpc.dial.LOGGER">
+<span class="sig-prename descclassname"><span class="pre">viam.rpc.dial.</span></span><span class="sig-name descname"><span class="pre">LOGGER</span></span><a class="headerlink" href="#viam.rpc.dial.LOGGER" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.rpc.dial.DialWebRTCOptions">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.dial.</span></span><span class="sig-name descname"><span class="pre">DialWebRTCOptions</span></span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#DialWebRTCOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.DialWebRTCOptions" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
-<dt class="sig sig-object py" id="viam.rpc.dial.DialWebRTCOptions.disable_tricle_ice">
-<span class="sig-name descname"><span class="pre">disable_tricle_ice</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.rpc.dial.DialWebRTCOptions.disable_tricle_ice" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.rpc.dial.DialWebRTCOptions.rtc_config">
-<span class="sig-name descname"><span class="pre">rtc_config</span></span><em class="property"><span class="w"> </span><span class="pre">:RTCConfiguration</span></em><a class="headerlink" href="#viam.rpc.dial.DialWebRTCOptions.rtc_config" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.rpc.dial.Credentials">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.dial.</span></span><span class="sig-name descname"><span class="pre">Credentials</span></span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#Credentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.Credentials" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
+<dd><p>Credentials to connect to the robot.</p>
+<p>Currently only supports robot location secret.</p>
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.rpc.dial.Credentials.type">
-<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.rpc.dial.Credentials.type" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="w"> </span><span class="pre">:Literal[robot-location-secret]</span></em><a class="headerlink" href="#viam.rpc.dial.Credentials.type" title="Permalink to this definition"></a></dt>
+<dd><p>The type of credential</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.rpc.dial.Credentials.payload">
 <span class="sig-name descname"><span class="pre">payload</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.rpc.dial.Credentials.payload" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The credential</p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.rpc.dial.DialOptions">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.dial.</span></span><span class="sig-name descname"><span class="pre">DialOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth_entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.rpc.dial.Credentials" title="viam.rpc.dial.Credentials"><span class="pre">Credentials</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insecure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_insecure_downgrade</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_insecure_with_creds_downgrade</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#DialOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.DialOptions" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.dial.</span></span><span class="sig-name descname"><span class="pre">DialOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">disable_webrtc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.rpc.dial.Credentials" title="viam.rpc.dial.Credentials"><span class="pre">Credentials</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insecure</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_insecure_downgrade</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_insecure_with_creds_downgrade</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#DialOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.DialOptions" title="Permalink to this definition"></a></dt>
 <dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.disable_webrtc">
+<span class="sig-name descname"><span class="pre">disable_webrtc</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.disable_webrtc" title="Permalink to this definition"></a></dt>
+<dd><p>Bypass Web RTC and connect directly to the robot.</p>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.auth_entity">
 <span class="sig-name descname"><span class="pre">auth_entity</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[str]</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.auth_entity" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The URL to authenticate against</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.credentials">
 <span class="sig-name descname"><span class="pre">credentials</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[Credentials]</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.credentials" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.webrtc_options">
-<span class="sig-name descname"><span class="pre">webrtc_options</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[DialWebRTCOptions]</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.webrtc_options" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.external_auth_address">
-<span class="sig-name descname"><span class="pre">external_auth_address</span></span><em class="property"><span class="w"> </span><span class="pre">:Optional[str]</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.external_auth_address" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Credentials for connecting to the robot</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.insecure">
-<span class="sig-name descname"><span class="pre">insecure</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.insecure" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">insecure</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.insecure" title="Permalink to this definition"></a></dt>
+<dd><p>Determine if the RPC connection is TLS based. Must be provided to
+establish an insecure connection. Otherwise, a TLS based connection
+will be assumed.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.allow_insecure_downgrade">
-<span class="sig-name descname"><span class="pre">allow_insecure_downgrade</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.allow_insecure_downgrade" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">allow_insecure_downgrade</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.allow_insecure_downgrade" title="Permalink to this definition"></a></dt>
+<dd><p>Allow the RPC connection to be downgraded to an insecure connection
+if detected. This is only used when credentials are not present.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.allow_insecure_with_creds_downgrade">
-<span class="sig-name descname"><span class="pre">allow_insecure_with_creds_downgrade</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.allow_insecure_with_creds_downgrade" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">allow_insecure_with_creds_downgrade</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.allow_insecure_with_creds_downgrade" title="Permalink to this definition"></a></dt>
+<dd><p>Allow the RPC connection to be downgraded to an insecure connection
+if detected, even with credentials present. This is generally
+unsafe to use, but can be requested.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -303,6 +321,46 @@ stub classes to perform gRPC calls.</p>
 <dd></dd></dl>
 
 </dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.rpc.dial.ViamChannel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.dial.</span></span><span class="sig-name descname"><span class="pre">ViamChannel</span></span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#ViamChannel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.ViamChannel" title="Permalink to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="viam.rpc.dial.ViamChannel.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><em class="property"><span class="w"> </span><span class="pre">:grpclib.client.Channel</span></em><a class="headerlink" href="#viam.rpc.dial.ViamChannel.channel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.rpc.dial.ViamChannel.release">
+<span class="sig-name descname"><span class="pre">release</span></span><em class="property"><span class="w"> </span><span class="pre">:Callable[[],</span> <span class="pre">None]</span></em><a class="headerlink" href="#viam.rpc.dial.ViamChannel.release" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.dial.ViamChannel.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#ViamChannel.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.ViamChannel.close" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.dial.ViamChannel.__del__">
+<span class="sig-name descname"><span class="pre">__del__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#ViamChannel.__del__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.ViamChannel.__del__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.dial.ViamChannel.__aenter__">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__aenter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#ViamChannel.__aenter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.ViamChannel.__aenter__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.dial.ViamChannel.__aexit__">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__aexit__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exc_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exc_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traceback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#ViamChannel.__aexit__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.ViamChannel.__aexit__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.rpc.dial.dial">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.rpc.dial.</span></span><span class="sig-name descname"><span class="pre">dial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.rpc.dial.DialOptions" title="viam.rpc.dial.DialOptions"><span class="pre">DialOptions</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.rpc.dial.ViamChannel" title="viam.rpc.dial.ViamChannel"><span class="pre">ViamChannel</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#dial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.dial" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.rpc.dial.dial_direct">

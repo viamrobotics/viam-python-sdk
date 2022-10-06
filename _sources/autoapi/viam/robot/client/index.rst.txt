@@ -85,7 +85,7 @@ Attributes
       :rtype: Self
 
 
-   .. py:method:: with_channel(channel: grpclib.client.Channel, options: Options) -> typing_extensions.Self
+   .. py:method:: with_channel(channel: Union[grpclib.client.Channel, viam.rpc.dial.ViamChannel], options: Options) -> typing_extensions.Self
       :classmethod:
       :async:
 
@@ -93,8 +93,8 @@ Attributes
 
       Any robots created using this method will *NOT* automatically close the channel upon exit.
 
-      :param channel: The gRPC channel that is connected to a robot
-      :type channel: Channel
+      :param channel: The channel that is connected to a robot, obtained by `viam.rpc.dial`
+      :type channel: ViamChannel
       :param options: Options for refreshing. Any connection options will be ignored.
       :type options: Options
 
