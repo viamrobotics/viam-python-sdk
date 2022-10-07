@@ -5,6 +5,7 @@ import random
 import struct
 from multiprocessing import Lock, Queue
 from pathlib import Path
+import sys
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 from collections.abc import AsyncIterator
 
@@ -86,7 +87,7 @@ class ExampleArm(Arm):
 class ExampleAudioInput(AudioInput):
     def __init__(self, name: str):
         super().__init__(name)
-        self.latency = timedelta(milliseconds=20)
+        self.latency = timedelta(milliseconds=100)
         self.sample_rate = 48_000
         self.channel_count = 1
         self.step = 0
@@ -107,7 +108,7 @@ class ExampleAudioInput(AudioInput):
             output = bytes()
             step = int(self.step % num_chunks)
             for i in range(int(length)):
-                value = int(50 * math.sin(angle * 440 * (float(length * step) + i)))
+                value = float(10) * math.sin(angle * 440 * (float(length * step) + i))
                 output += bytes(struct.pack("f", value))
 
             yield Audio(
@@ -121,6 +122,7 @@ class ExampleAudioInput(AudioInput):
                     length=int(length),
                 ),
             )
+
             await asyncio.sleep(self.latency.total_seconds())
 
     async def properties(self) -> AudioInput.Properties:
@@ -129,8 +131,8 @@ class ExampleAudioInput(AudioInput):
             latency=self.latency,
             sample_rate=self.sample_rate,
             sample_size=2,
-            is_big_endian=False,
-            is_float=False,
+            is_big_endian=sys.byteorder == "little",
+            is_float=True,
             is_interleaved=True,
         )
 
