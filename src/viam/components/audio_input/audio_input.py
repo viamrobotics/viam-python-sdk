@@ -3,6 +3,9 @@ from collections.abc import AsyncIterator
 from dataclasses import dataclass
 from datetime import timedelta
 
+# from multiprocessing.connection import PipeConnection
+from typing import Callable, Generic, TypeVar
+
 from google.protobuf.duration_pb2 import Duration
 from typing_extensions import Self
 
@@ -10,6 +13,20 @@ from viam.components.types import Audio
 from viam.proto.component.audioinput import PropertiesResponse
 
 from ..component_base import ComponentBase
+
+MediaType = TypeVar("MediaType")
+
+
+class MediaStream(Generic[MediaType]):
+    def __init__(self, next: Callable[[], AsyncIterator[MediaType]]) -> None:
+        super().__init__()
+        self.next = next
+
+    def __aiter__(self):
+        return self
+
+    async def __anext__(self) -> MediaType:
+        return await anext(self.next())
 
 
 class AudioInput(ComponentBase):
@@ -50,7 +67,7 @@ class AudioInput(ComponentBase):
             )
 
     @abc.abstractmethod
-    async def stream(self) -> AsyncIterator[Audio]:
+    async def stream(self) -> MediaStream[Audio]:
         """Stream audio samples from the audio input of the underlying robot
 
         Returns:

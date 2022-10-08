@@ -30,7 +30,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         except ComponentNotFoundError as e:
             raise e.grpc_error
 
-        audio_stream = audio_input.stream()
+        audio_stream = await audio_input.stream()
         first_chunk = await anext(audio_stream)
         await stream.send_message(ChunksResponse(info=first_chunk.info))
         await stream.send_message(ChunksResponse(chunk=first_chunk.chunk))

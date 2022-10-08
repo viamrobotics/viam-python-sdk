@@ -13,7 +13,7 @@ from viam.proto.component.audioinput import (
     SampleFormat,
 )
 
-from .audio_input import AudioInput
+from .audio_input import AudioInput, MediaStream
 
 
 class AudioInputClient(AudioInput):
@@ -26,20 +26,23 @@ class AudioInputClient(AudioInput):
         self.client = AudioInputServiceStub(channel)
         super().__init__(name)
 
-    async def stream(self) -> AsyncIterator[Audio]:
+    async def stream(self) -> MediaStream[Audio]:
         async with self.client.Chunks.open() as chunks_stream:
             await chunks_stream.send_message(ChunksRequest(name=self.name, sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED))
             response: Union[ChunksResponse, None] = await chunks_stream.recv_message()
             assert response is not None and response.HasField("info")
             info = response.info
 
-            while True:
-                response = await chunks_stream.recv_message()
-                if response is None:
-                    break
-                assert response.HasField("chunk")
-                audio = Audio(info=info, chunk=response.chunk)
-                yield audio
+            async def next() -> AsyncIterator[Audio]:
+                while True:
+                    response = await chunks_stream.recv_message()
+                    if response is None:
+                        break
+                    assert response.HasField("chunk")
+                    audio = Audio(info=info, chunk=response.chunk)
+                    yield audio
+
+            return MediaStream(next)
 
     async def properties(self) -> AudioInput.Properties:
         request = PropertiesRequest(name=self.name)
