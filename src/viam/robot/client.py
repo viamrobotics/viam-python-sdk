@@ -90,6 +90,7 @@ class RobotClient:
         Returns:
             Self: the RobotClient
         """
+        logging.setLevel(options.log_level)
         channel = await dial(address, options.dial_options)
         robot = await RobotClient.with_channel(channel, options)
         robot._should_close_channel = True
