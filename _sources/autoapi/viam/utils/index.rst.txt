@@ -7,6 +7,14 @@
 Module Contents
 ---------------
 
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.utils.PointerCounter
+
+
 
 Functions
 ~~~~~~~~~
@@ -81,5 +89,22 @@ Attributes
 
 
 .. py:function:: sensor_readings_value_to_native(readings: Mapping[str, google.protobuf.struct_pb2.Value]) -> Mapping[str, Any]
+
+
+.. py:class:: PointerCounter
+
+   .. py:method:: increment() -> int
+
+
+   .. py:method:: decrement() -> int
+
+
+   .. py:method:: wait() -> None
+      :async:
+
+
+   .. py:method:: count() -> int
+      :property:
+
 
 
