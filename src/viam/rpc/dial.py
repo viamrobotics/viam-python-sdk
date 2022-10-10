@@ -159,7 +159,7 @@ class _Runtime:
 
     _lib: ctypes.CDLL
     _ptr: ctypes.c_void_p
-    _semephore: PointerCounter = PointerCounter()
+    _semaphore: PointerCounter = PointerCounter()
 
     def __new__(cls):
         if not hasattr(cls, "_shared"):
@@ -196,13 +196,13 @@ class _Runtime:
         path = ctypes.cast(path_ptr, ctypes.c_char_p).value
         path = path.decode("utf-8") if path else ""
 
-        self._semephore.increment()
+        self._semaphore.increment()
 
         return (path, path_ptr)
 
     def release(self):
-        self._semephore.decrement()
-        if self._semephore.count == 0:
+        self._semaphore.decrement()
+        if self._semaphore.count == 0:
             self._lib.free_rust_runtime(self._ptr)
 
     def free_str(self, ptr: ctypes.c_void_p):
