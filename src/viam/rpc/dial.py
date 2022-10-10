@@ -4,9 +4,10 @@ import re
 import socket
 import ssl
 import sys
+from typing_extensions import Self
 import warnings
 from dataclasses import dataclass
-from typing import Callable, Literal, Optional, Tuple, Type
+from typing import Callable, ClassVar, Literal, Optional, Tuple, Type
 
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
@@ -151,6 +152,36 @@ class ViamChannel:
         self.close()
 
 
+class _Runtime:
+
+    shared: ClassVar[Self]
+
+    lib: ctypes.CDLL
+    ptr: ctypes.c_void_p
+
+    def __new__(cls):
+        if not hasattr(cls, "shared"):
+            cls.shared = super(_Runtime, cls).__new__(cls)
+
+            libname = pathlib.Path(__file__).parent.absolute() / f"libviam.{'dylib' if sys.platform == 'darwin' else 'so'}"
+            cls.shared.lib = ctypes.CDLL(libname.__str__())
+            cls.shared.lib.init_rust_runtime.argtypes = ()
+            cls.shared.lib.init_rust_runtime.restype = ctypes.c_void_p
+
+            cls.shared.lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
+            cls.shared.lib.dial.restype = ctypes.c_void_p
+
+            cls.shared.lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
+            cls.shared.lib.free_rust_runtime.restype = None
+
+            cls.shared.lib.free_string.argtypes = (ctypes.c_void_p,)
+            cls.shared.lib.free_string.restype = None
+
+            cls.shared.ptr = cls.shared.lib.init_rust_runtime()
+
+        return cls.shared
+
+
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     opts = options if options else DialOptions()
     if opts.disable_webrtc:
@@ -160,27 +191,13 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
     creds = opts.credentials.payload if opts.credentials else ""
     insecure = opts.insecure or opts.allow_insecure_with_creds_downgrade or (not creds and opts.allow_insecure_downgrade)
 
-    libname = pathlib.Path(__file__).parent.absolute() / f"libviam.{'dylib' if sys.platform == 'darwin' else 'so'}"
-    c_lib = ctypes.CDLL(libname.__str__())
-    c_lib.init_rust_runtime.argtypes = ()
-    c_lib.init_rust_runtime.restype = ctypes.c_void_p
+    runtime = _Runtime()
 
-    c_lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
-    c_lib.dial.restype = ctypes.c_void_p
-
-    c_lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
-    c_lib.free_rust_runtime.restype = None
-
-    c_lib.free_string.argtypes = (ctypes.c_void_p,)
-    c_lib.free_string.restype = None
-
-    ptr = c_lib.init_rust_runtime()
-
-    path_ptr = c_lib.dial(
+    path_ptr = runtime.lib.dial(
         address.encode("utf-8"),
         creds.encode("utf-8") if creds else None,
         insecure,
-        ptr,
+        runtime.ptr,
     )
     path = ctypes.cast(path_ptr, ctypes.c_char_p).value
 
@@ -189,13 +206,13 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
         chan = Channel(path=path.decode("utf-8"), ssl=None)
 
         def release():
-            c_lib.free_string(path_ptr)
-            c_lib.free_rust_runtime(ptr)
+            runtime.lib.free_string(path_ptr)
+            runtime.lib.free_rust_runtime(runtime.ptr)
 
         channel = ViamChannel(chan, release)
         return channel
 
-    c_lib.free_rust_runtime(ptr)
+    runtime.lib.free_rust_runtime(runtime.ptr)
     raise ViamError(f"Unable to establish a connection to {address}")
 
 
