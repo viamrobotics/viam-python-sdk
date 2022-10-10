@@ -1,3 +1,4 @@
+from asyncio import Event
 from typing import Any, Dict, List, Mapping, SupportsFloat, Type, TypeVar
 
 from google.protobuf.json_format import MessageToDict, ParseDict
@@ -157,3 +158,29 @@ def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[st
             elif kind == "orientation_vector_degrees":
                 prim_readings[key] = Orientation(o_x=reading["ox"], o_y=reading["oy"], o_z=reading["oz"], theta=reading["theta"])
     return prim_readings
+
+
+class PointerCounter:
+    def __init__(self) -> None:
+        self._event = Event()
+        self._count = 0
+        self._event.set()
+
+    def increment(self) -> int:
+        self._count += 1
+        self._event.clear()
+        return self._count
+
+    def decrement(self) -> int:
+        assert self._count > 0, "Pointer count cannot go below zero"
+        self._count -= 1
+        if self._count == 0:
+            self._event.set()
+        return self._count
+
+    async def wait(self) -> None:
+        await self._event.wait()
+
+    @property
+    def count(self) -> int:
+        return self._count
