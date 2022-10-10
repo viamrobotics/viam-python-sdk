@@ -32,11 +32,11 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
 
         audio_stream = await audio_input.stream()
         first_chunk = await anext(audio_stream)
-        await stream.send_message(ChunksResponse(info=first_chunk.info))
-        await stream.send_message(ChunksResponse(chunk=first_chunk.chunk))
+        await stream.send_message(ChunksResponse(info=first_chunk.info.proto))
+        await stream.send_message(ChunksResponse(chunk=first_chunk.chunk.proto))
 
         async for audio in audio_stream:
-            await stream.send_message(ChunksResponse(chunk=audio.chunk))
+            await stream.send_message(ChunksResponse(chunk=audio.chunk.proto))
 
     async def Properties(self, stream: Stream[PropertiesRequest, PropertiesResponse]) -> None:
         request = await stream.recv_message()

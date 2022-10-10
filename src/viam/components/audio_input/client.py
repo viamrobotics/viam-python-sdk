@@ -1,3 +1,4 @@
+import asyncio
 from typing import Any, AsyncIterator, Dict, Union
 
 from grpclib.client import Channel
@@ -13,7 +14,7 @@ from viam.proto.component.audioinput import (
     SampleFormat,
 )
 
-from .audio_input import AudioInput, MediaStream
+from .audio_input import AudioInput, MediaStream, MediaStreamWithPipe
 
 
 class AudioInputClient(AudioInput):
@@ -27,22 +28,34 @@ class AudioInputClient(AudioInput):
         super().__init__(name)
 
     async def stream(self) -> MediaStream[Audio]:
-        async with self.client.Chunks.open() as chunks_stream:
-            await chunks_stream.send_message(ChunksRequest(name=self.name, sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED))
-            response: Union[ChunksResponse, None] = await chunks_stream.recv_message()
-            assert response is not None and response.HasField("info")
-            info = response.info
+        media_stream = MediaStreamWithPipe()
+        properties = await self.properties()
 
-            async def next() -> AsyncIterator[Audio]:
+        async def read():
+            async with self.client.Chunks.open() as chunks_stream:
+                await chunks_stream.send_message(
+                    ChunksRequest(name=self.name, sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED)
+                )
+                response: Union[ChunksResponse, None] = await chunks_stream.recv_message()
+                assert response is not None and response.HasField("info")
+                info = response.info
+
                 while True:
+                    print("pre response")
                     response = await chunks_stream.recv_message()
+                    print("have response")
                     if response is None:
+                        print("break lmao")
+                        await media_stream.close()
                         break
                     assert response.HasField("chunk")
-                    audio = Audio(info=info, chunk=response.chunk)
-                    yield audio
+                    audio = Audio(info=Audio.Info.from_proto(info), chunk=Audio.Chunk.from_proto(response.chunk))
+                    print("about to send")
+                    media_stream.pipe.send(audio)
 
-            return MediaStream(next)
+        asyncio.create_task(read())
+        print("returning media stream")
+        return media_stream
 
     async def properties(self) -> AudioInput.Properties:
         request = PropertiesRequest(name=self.name)

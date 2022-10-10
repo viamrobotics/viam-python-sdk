@@ -1,11 +1,13 @@
 from dataclasses import dataclass
-from enum import Enum
+from enum import Enum, auto
+import enum
 from io import BytesIO
-from typing import NamedTuple, Union
+from typing import NamedTuple, Type, Union
+from typing_extensions import Self
 
 from PIL.Image import Image
 
-from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo
+from viam.proto.component import audioinput
 
 
 class RawImage(NamedTuple):
@@ -69,5 +71,51 @@ class CameraMimeType(str, Enum):
 class Audio:
     """A block of audio data containing information about the block and the audio data"""
 
-    info: AudioChunkInfo
-    chunk: AudioChunk
+    # class SampleFormat(str, enum.Enum):
+    #     UNSPECIFIED = "SAMPLE_FORMAT_UNSPECIFIED"
+    #     INT16_INTERLEAVED = "SAMPLE_FORMAT_INT16_INTERLEAVED"
+    #     FLOAT32_INTERLEAVED = "SAMPLE_FORMAT_FLOAT32_INTERLEAVED"
+
+    #     # @property
+    #     # def type(self) -> Type:
+    #     #     if self == Audio.SampleFormat.UNSPECIFIED:
+
+    #     @property
+    #     def proto(self) -> audioinput.SampleFormat:
+    #         if self == Audio.SampleFormat.UNSPECIFIED:
+    #             return audioinput.SampleFormat.SAMPLE_FORMAT_UNSPECIFIED
+    #         if self == Audio.SampleFormat.INT16_INTERLEAVED:
+    #             return audioinput.SampleFormat.SAMPLE_FORMAT_INT16_INTERLEAVED
+    #         if self == Audio.SampleFormat.FLOAT32_INTERLEAVED:
+    #             return audioinput.SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED
+    #         raise Exception("SampleFormat not implemented")
+
+    @dataclass
+    class Info:
+        sample_format: audioinput.SampleFormat
+        channels: int
+        sample_rate: int
+
+        @property
+        def proto(self) -> audioinput.AudioChunkInfo:
+            return audioinput.AudioChunkInfo(sample_format=self.sample_format, channels=self.channels, sampling_rate=self.sample_rate)
+
+        @classmethod
+        def from_proto(cls, proto: audioinput.AudioChunkInfo) -> Self:
+            return cls(sample_format=proto.sample_format, channels=proto.channels, sample_rate=proto.sampling_rate)
+
+    @dataclass
+    class Chunk:
+        data: bytes
+        length: int
+
+        @property
+        def proto(self) -> audioinput.AudioChunk:
+            return audioinput.AudioChunk(data=self.data, length=self.length)
+
+        @classmethod
+        def from_proto(cls, proto: audioinput.AudioChunk) -> Self:
+            return cls(data=proto.data, length=proto.length)
+
+    info: Info
+    chunk: Chunk
