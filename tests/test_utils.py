@@ -1,3 +1,4 @@
+import asyncio
 import pytest
 from google.protobuf.json_format import ParseError
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
@@ -10,6 +11,7 @@ from viam.proto.common import (
     Vector3,
 )
 from viam.utils import (
+    PointerCounter,
     dict_to_struct,
     message_to_struct,
     primitive_to_value,
@@ -221,3 +223,26 @@ def test_sensor_readings():
     response = sensor_readings_value_to_native(test)
 
     assert response == expected
+
+
+@pytest.mark.asyncio
+async def test_pointer_counter():
+    counter = PointerCounter()
+
+    assert counter.count == 0
+
+    counter.increment()
+    assert counter.count == 1
+
+    async def final_test():
+        assert counter.count > 0
+        await counter.wait()
+        assert counter.count == 0
+
+    task = asyncio.get_running_loop().create_task(final_test())
+
+    await asyncio.sleep(0)  # Needed to start the final_test task
+
+    counter.decrement()
+
+    await task
