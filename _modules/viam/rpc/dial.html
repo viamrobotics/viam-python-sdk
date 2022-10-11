@@ -291,9 +291,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_semaphore</span><span class="o">.</span><span class="n">decrement</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_semaphore</span><span class="o">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_rust_runtime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ptr</span><span class="p">)</span>
+            <span class="n">_Runtime</span><span class="o">.</span><span class="n">_release</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">free_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ptr</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_string</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_release</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_shared</span>
 
 
 <div class="viewcode-block" id="dial"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.dial">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">dial</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ViamChannel</span><span class="p">:</span>
