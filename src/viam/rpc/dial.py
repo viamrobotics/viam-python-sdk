@@ -204,9 +204,14 @@ class _Runtime:
         self._semaphore.decrement()
         if self._semaphore.count == 0:
             self._lib.free_rust_runtime(self._ptr)
+            _Runtime._release()
 
     def free_str(self, ptr: ctypes.c_void_p):
         self._lib.free_string(ptr)
+
+    @classmethod
+    def _release(cls):
+        del cls._shared
 
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
