@@ -2,6 +2,7 @@ import asyncio
 from typing import Any, AsyncIterator, Dict, Union
 
 from grpclib.client import Channel
+import viam
 
 from viam.components.generic.client import do_command
 from viam.components.types import Audio
@@ -29,7 +30,6 @@ class AudioInputClient(AudioInput):
 
     async def stream(self) -> MediaStream[Audio]:
         media_stream = MediaStreamWithPipe()
-        properties = await self.properties()
 
         async def read():
             async with self.client.Chunks.open() as chunks_stream:
@@ -41,20 +41,15 @@ class AudioInputClient(AudioInput):
                 info = response.info
 
                 while True:
-                    print("pre response")
                     response = await chunks_stream.recv_message()
-                    print("have response")
                     if response is None:
-                        print("break lmao")
                         await media_stream.close()
                         break
                     assert response.HasField("chunk")
                     audio = Audio(info=Audio.Info.from_proto(info), chunk=Audio.Chunk.from_proto(response.chunk))
-                    print("about to send")
                     media_stream.pipe.send(audio)
 
-        asyncio.create_task(read())
-        print("returning media stream")
+        asyncio.create_task(read(), name=f"{viam._TASK_PREFIX}-audio_input_write_stream")
         return media_stream
 
     async def properties(self) -> AudioInput.Properties:

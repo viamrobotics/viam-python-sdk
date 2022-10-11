@@ -51,8 +51,8 @@ class MediaStreamWithPipe(MediaStream[MediaType]):
         asyncio.get_running_loop().add_reader(self._pipe_r, self._set_next)
 
     def _set_next(self):
-        self._media_available.set()
         self._next: MediaType = self._pipe_r.recv()
+        self._media_available.set()
 
     async def next(self) -> MediaType:
         await self._media_available.wait()
@@ -61,14 +61,15 @@ class MediaStreamWithPipe(MediaStream[MediaType]):
         return media
 
     async def close(self):
+        asyncio.get_running_loop().remove_reader(self._pipe_r)
         self.pipe.close()
         self._pipe_r.close()
-        asyncio.get_running_loop().remove_reader(self._pipe_r)
 
     async def __anext__(self) -> MediaType:
         try:
             return await self.next()
         except EOFError:
+            await self.close()
             raise StopAsyncIteration
 
 

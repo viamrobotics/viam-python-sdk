@@ -245,7 +245,7 @@ class RobotClient:
         LOGGER.debug("Closing tasks spawned by Viam")
         tasks = [task for task in asyncio.all_tasks() if task.get_name().startswith(viam._TASK_PREFIX)]
         for task in tasks:
-            LOGGER.debug(f"Closing task {task.get_name()}")
+            LOGGER.debug(f"\tClosing task {task.get_name()}")
             task.cancel()
         await asyncio.gather(*tasks, return_exceptions=True)
 
