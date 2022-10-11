@@ -160,7 +160,7 @@ class RobotClient:
             try:
                 manager.register(Registry.lookup(subtype).create_rpc_client(rname.name, self._channel))
             except ComponentNotFoundError:
-                LOGGER.warn(f"Component of type {subtype} is not implemented")
+                pass
         with self._lock:
             self._resource_names = resource_names
             if manager.components != self._manager.components:
