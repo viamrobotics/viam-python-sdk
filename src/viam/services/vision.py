@@ -6,7 +6,7 @@ from typing import Any, List, Mapping, Sequence, Union
 from grpclib.client import Channel
 from PIL.Image import Image
 
-from viam.components.types import CameraMimeType
+from viam.components.types import CameraMimeType, RawImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import (
     AddClassifierRequest,
@@ -122,7 +122,7 @@ class VisionServiceClient(ServiceClientBase):
         response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request)
         return list(response.detections)
 
-    async def get_detections(self, image: Image, detector_name: str) -> List[Detection]:
+    async def get_detections(self, image: Union[Image, RawImage], detector_name: str) -> List[Detection]:
         """Get a list of detections in the given image using the specified detector
 
         Args:
@@ -194,7 +194,7 @@ class VisionServiceClient(ServiceClientBase):
         response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(request)
         return list(response.classifications)
 
-    async def get_classifications(self, image: Image, classifier_name: str) -> List[Classification]:
+    async def get_classifications(self, image: Union[Image, RawImage], classifier_name: str) -> List[Classification]:
         """Get a list of detections in the given image using the specified detector
 
         Args:

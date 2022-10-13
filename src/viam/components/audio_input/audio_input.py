@@ -1,79 +1,18 @@
 import abc
-import asyncio
-from collections.abc import AsyncIterator
 from dataclasses import dataclass
 from datetime import timedelta
-from multiprocessing import Pipe
-from multiprocessing.connection import Connection
-from os import dup
-
-# from multiprocessing.connection import PipeConnection
-from typing import Callable, Generic, Protocol, TypeVar
 
 from google.protobuf.duration_pb2 import Duration
 from typing_extensions import Self
 
-from viam.components.types import Audio
+from viam.media import MediaSource
+from viam.media.audio import Audio, AudioStream
 from viam.proto.component.audioinput import PropertiesResponse
 
 from ..component_base import ComponentBase
 
-MediaType = TypeVar("MediaType", covariant=True)
 
-
-class MediaReader(Protocol[MediaType]):
-    def read(self) -> MediaType:
-        ...
-
-
-class MediaStream(Protocol[MediaType]):
-    async def next(self) -> MediaType:
-        ...
-
-    async def close(self):
-        ...
-
-    def __aiter__(self):
-        return self
-
-    async def __anext__(self) -> MediaType:
-        return await self.next()
-
-
-AudioReader = MediaReader[Audio]
-AudioStream = MediaStream[Audio]
-
-
-class MediaStreamWithPipe(MediaStream[MediaType]):
-    def __init__(self) -> None:
-        self._pipe_r, self.pipe = Pipe(duplex=False)
-        self._media_available = asyncio.Event()
-        asyncio.get_running_loop().add_reader(self._pipe_r, self._set_next)
-
-    def _set_next(self):
-        self._next: MediaType = self._pipe_r.recv()
-        self._media_available.set()
-
-    async def next(self) -> MediaType:
-        await self._media_available.wait()
-        media = self._next
-        self._media_available.clear()
-        return media
-
-    async def close(self):
-        asyncio.get_running_loop().remove_reader(self._pipe_r)
-        self.pipe.close()
-        self._pipe_r.close()
-
-    async def __anext__(self) -> MediaType:
-        try:
-            return await self.next()
-        except EOFError:
-            await self.close()
-            raise StopAsyncIteration
-
-
-class AudioInput(ComponentBase):
+class AudioInput(ComponentBase, MediaSource[Audio]):
     @dataclass
     class Properties:
         channel_count: int
