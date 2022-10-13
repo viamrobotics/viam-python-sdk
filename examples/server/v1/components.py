@@ -13,7 +13,7 @@ from PIL import Image
 
 from viam.components.arm import Arm
 from viam.components.audio_input import Audio, AudioInput
-from viam.components.audio_input.audio_input import MediaStream
+from viam.components.audio_input.audio_input import MediaStream, MediaStreamWithPipe
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
@@ -108,7 +108,9 @@ class ExampleAudioInput(AudioInput):
         num_chunks = self.sample_rate / length
         angle = math.pi * 2 / (length * num_chunks)
 
-        async def next() -> AsyncIterator[Audio]:
+        audio_stream = MediaStreamWithPipe[Audio]()
+
+        async def read():
             while True:
                 output = bytes()
                 step = int(self.step % num_chunks)
@@ -116,21 +118,34 @@ class ExampleAudioInput(AudioInput):
                     value = float(10) * math.sin(angle * 440 * (float(length * step) + i))
                     output += bytes(struct.pack("f", value))
 
-                yield Audio(
-                    AudioChunkInfo(
+                audio = Audio(
+                    info=Audio.Info(
                         sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
                         channels=self.channel_count,
-                        sampling_rate=self.sample_rate,
+                        sample_rate=self.sample_rate,
                     ),
-                    AudioChunk(
-                        data=output,
-                        length=int(length),
-                    ),
+                    chunk=Audio.Chunk(data=output, length=int(length)),
                 )
+
+                audio_stream.pipe.send(audio)
+
+                # yield Audio(
+                #     AudioChunkInfo(
+                #         sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
+                #         channels=self.channel_count,
+                #         sampling_rate=self.sample_rate,
+                #     ),
+                #     AudioChunk(
+                #         data=output,
+                #         length=int(length),
+                #     ),
+                # )
 
                 await asyncio.sleep(self.latency.total_seconds())
 
-        return MediaStream(next)
+        asyncio.create_task(read(), name="audio_input_write_stream")
+
+        return audio_stream
 
     async def properties(self) -> AudioInput.Properties:
         return AudioInput.Properties(

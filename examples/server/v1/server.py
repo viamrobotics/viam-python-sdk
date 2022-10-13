@@ -27,7 +27,7 @@ from .components import (
 
 async def run(host: str, port: int, log_level: int):
     my_arm = ExampleArm("arm0")
-    my_audio_input = ExampleAudioInput("audio_input0")
+    my_audio_input = ExampleAudioInput("microphone")
     my_base = ExampleBase("base0")
     my_board = ExampleBoard(
         name="board",
