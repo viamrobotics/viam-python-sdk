@@ -9,7 +9,7 @@ from viam.components.arm import Arm, JointPositions
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
-from viam.components.camera import Camera, IntrinsicParameters, DistortionParameters
+from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
 from viam.components.gantry import Gantry
 from viam.components.generic import Generic as GenericComponent
 from viam.components.gripper import Gripper
@@ -19,8 +19,8 @@ from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
-from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
+from viam.media.video import CameraMimeType, RawImage
 from viam.proto.common import (
     AnalogStatus,
     BoardStatus,

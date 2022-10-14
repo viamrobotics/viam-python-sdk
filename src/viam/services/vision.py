@@ -6,7 +6,7 @@ from typing import Any, List, Mapping, Sequence, Union
 from grpclib.client import Channel
 from PIL.Image import Image
 
-from viam.components.types import CameraMimeType, RawImage
+from viam.media.video import CameraMimeType, RawImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import (
     AddClassifierRequest,

@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 
 from grpclib.server import Stream
 
-from viam.components.types import CameraMimeType
+from viam.media.video import CameraMimeType
 from viam.proto.common import PointCloudObject, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
     GetPoseRequest,

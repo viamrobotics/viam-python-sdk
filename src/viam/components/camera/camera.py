@@ -2,7 +2,7 @@ import abc
 from typing import NamedTuple, Tuple, Union
 
 from PIL.Image import Image
-from viam.components.types import CameraMimeType, RawImage
+from viam.media.video import CameraMimeType, RawImage
 from viam.proto.component.camera import IntrinsicParameters, DistortionParameters
 
 from ..component_base import ComponentBase

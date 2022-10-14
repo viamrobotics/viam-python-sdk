@@ -5,7 +5,7 @@ from grpclib.client import Channel
 from PIL import Image
 
 from viam.components.generic.client import do_command
-from viam.components.types import CameraMimeType, RawImage
+from viam.media.video import CameraMimeType, RawImage
 from viam.proto.component.camera import (
     CameraServiceStub,
     GetImageRequest,
