@@ -31,7 +31,7 @@ class AudioInputClient(AudioInput):
         async def read() -> AsyncIterator[Audio]:
             async with self.client.Chunks.open() as chunks_stream:
                 await chunks_stream.send_message(
-                    ChunksRequest(name=self.name, sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED)
+                    ChunksRequest(name=self.name, sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED), end=True
                 )
                 response: Union[ChunksResponse, None] = await chunks_stream.recv_message()
                 assert response is not None and response.HasField("info")

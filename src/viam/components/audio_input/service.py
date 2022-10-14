@@ -1,13 +1,15 @@
+import wave
 from datetime import timedelta
 from io import BytesIO
-import wave
 
-from grpclib import GRPCError, Status
+import grpclib
 from google.api.httpbody_pb2 import HttpBody
+from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
+from viam.gen.component.audioinput.v1.audioinput_pb2 import SampleFormat
 from viam.proto.component.audioinput import (
     AudioInputServiceBase,
     ChunksRequest,
@@ -66,17 +68,23 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
             audio_input = self.get_component(request.name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        properties = await audio_input.get_properties()
         audio_stream = await audio_input.stream()
         first_chunk = await anext(audio_stream)
         num_chunks = int(duration.total_seconds() * float(first_chunk.info.sampling_rate / first_chunk.chunk.length))
 
-        # output = BytesIO()
-        output = "/Users/njooma/Downloads/test.wav"
+        sample_width: int
+        if first_chunk.info.sample_format == SampleFormat.SAMPLE_FORMAT_INT16_INTERLEAVED:
+            sample_width = 2
+        elif first_chunk.info.sample_format == SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED:
+            sample_width = 4
+        else:
+            raise GRPCError(Status.INVALID_ARGUMENT, "Unspecified type of audio buffer")
+
+        output = BytesIO()
         wav_file = wave.open(output, "w")
         wav_file.setnchannels(first_chunk.info.channels)
         wav_file.setframerate(first_chunk.info.sampling_rate)
-        wav_file.setsampwidth(properties.sample_size if properties.sample_size else 2)
+        wav_file.setsampwidth(sample_width)
         try:
             wav_file.writeframes(first_chunk.chunk.data)
             for _ in range(num_chunks - 1):
@@ -84,6 +92,9 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
                 wav_file.writeframes(chunk.chunk.data)
         finally:
             wav_file.close()
+            output.close()
 
-        response = HttpBody()
+        output.seek(0)
+        response = HttpBody(data=output.read(), content_type="audio/wav")
+
         await stream.send_message(response)

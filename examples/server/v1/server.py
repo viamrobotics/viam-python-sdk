@@ -67,18 +67,18 @@ async def run(host: str, port: int, log_level: int):
     my_servo = ExampleServo("servo0")
     server = Server(
         components=[
-            my_arm,
+            # my_arm,
             my_audio_input,
-            my_base,
-            my_board,
-            my_camera,
-            my_gantry,
-            my_gripper,
-            my_motor,
-            my_movement_sensor,
-            my_pose_tracker,
-            my_sensor,
-            my_servo,
+            # my_base,
+            # my_board,
+            # my_camera,
+            # my_gantry,
+            # my_gripper,
+            # my_motor,
+            # my_movement_sensor,
+            # my_pose_tracker,
+            # my_sensor,
+            # my_servo,
         ]
     )
     await server.serve(host=host, port=port, log_level=log_level)

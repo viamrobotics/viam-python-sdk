@@ -90,7 +90,7 @@ class ExampleArm(Arm):
 class ExampleAudioInput(AudioInput):
     def __init__(self, name: str):
         super().__init__(name)
-        self.latency = timedelta(milliseconds=100)
+        self.latency = timedelta(milliseconds=20)
         self.sample_rate = 48_000
         self.channel_count = 1
         self.step = 0
@@ -142,7 +142,7 @@ class ExampleAudioInput(AudioInput):
             channel_count=self.channel_count,
             latency=self.latency,
             sample_rate=self.sample_rate,
-            sample_size=2,
+            sample_size=4,
             is_big_endian=sys.byteorder != "little",
             is_float=True,
             is_interleaved=True,
@@ -308,6 +308,9 @@ class ExampleCamera(Camera):
         p = Path(__file__)
         self.image = Image.open(p.parent.absolute().joinpath("viam.webp"))
         super().__init__(name)
+
+    def __del__(self):
+        self.image.close()
 
     async def get_image(self, mime_type: str = CameraMimeType.PNG, **kwargs) -> Image.Image:
         return self.image.copy()
