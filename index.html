@@ -118,20 +118,20 @@ Because the SDK is under active development, we suggest that you upgrade the pac
 </section>
 <section id="installing-from-source">
 <h3>Installing from Source<a class="headerlink" href="#installing-from-source" title="Permalink to this heading"></a></h3>
-<p>The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a <a class="reference external" href="https://github.com/viamrobotics/viam-rust-sdk">Rust SDK</a> that contains the necessary protocols. Therefore, to build from source, you will need both the Rust SDK and the Rust compiler.</p>
+<p>The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a <a class="reference external" href="https://github.com/viamrobotics/rust-utils">Rust utils repo</a> that contains the necessary protocols. Therefore, to build from source, you will need both the Rust utils and the Rust compiler.</p>
 <ol class="arabic simple">
 <li><p>Download/clone this repository</p></li>
-<li><p>Download/clone the <a class="reference external" href="https://github.com/viamrobotics/viam-rust-sdk">Rust SDK</a></p></li>
+<li><p>Download/clone the <a class="reference external" href="https://github.com/viamrobotics/rust-utils">Rust utils</a></p></li>
 <li><p><a class="reference external" href="https://www.rust-lang.org/tools/install">Install Rust</a> if not already available</p></li>
-<li><p>From the <code class="docutils literal notranslate"><span class="pre">viam-rust-sdk</span></code> directory, run <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code></p>
+<li><p>From the <code class="docutils literal notranslate"><span class="pre">rust-utils</span></code> directory, run <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span></code></p>
 <ul class="simple">
 <li><p>You can optionally provide the <code class="docutils literal notranslate"><span class="pre">--release</span></code> flag: <code class="docutils literal notranslate"><span class="pre">cargo</span> <span class="pre">build</span> <span class="pre">--release</span></code></p></li>
 </ul>
 </li>
-<li><p>Find the compiled library in <code class="docutils literal notranslate"><span class="pre">viam-rust-sdk/target/debug/libviam.*</span></code></p>
+<li><p>Find the compiled library in <code class="docutils literal notranslate"><span class="pre">rust-utils/target/debug/libviam_rust_utils.*</span></code></p>
 <ul class="simple">
-<li><p>If you provided the <code class="docutils literal notranslate"><span class="pre">--release</span></code> flag, the enclosing directory will be <code class="docutils literal notranslate"><span class="pre">release</span></code>: <code class="docutils literal notranslate"><span class="pre">viam-rust-sdk/target/release/libviam.*</span></code></p></li>
-<li><p>The extension of the executable will depend on your operating system. For example, on macOS it will be <code class="docutils literal notranslate"><span class="pre">libviam.dylib</span></code>, whereas on Linux it will be <code class="docutils literal notranslate"><span class="pre">libviam.so</span></code></p></li>
+<li><p>If you provided the <code class="docutils literal notranslate"><span class="pre">--release</span></code> flag, the enclosing directory will be <code class="docutils literal notranslate"><span class="pre">release</span></code>: <code class="docutils literal notranslate"><span class="pre">rust-utils/target/release/libviam_rust_utils.*</span></code></p></li>
+<li><p>The extension of the executable will depend on your operating system. For example, on macOS it will be <code class="docutils literal notranslate"><span class="pre">libviam_rust_utils.dylib</span></code>, whereas on Linux it will be <code class="docutils literal notranslate"><span class="pre">libviam_rust_utils.so</span></code></p></li>
 </ul>
 </li>
 <li><p>Copy the compiled library to the directory <code class="docutils literal notranslate"><span class="pre">viam-python-sdk/src/viam/rpc/</span></code></p></li>
