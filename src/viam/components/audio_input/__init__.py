@@ -1,12 +1,11 @@
 from viam.registry import ComponentRegistration, Registry
 
-from .audio_input import Audio, AudioInput
+from .audio_input import AudioInput
 from .client import AudioInputClient
 from .service import AudioInputService
 
 __all__ = [
     "AudioInput",
-    "Audio",
 ]
 
 

@@ -3,7 +3,8 @@ from typing import Any, AsyncIterator, Dict, Union
 from grpclib.client import Channel
 
 from viam.components.generic.client import do_command
-from viam.components.types import Audio
+from viam.media import MediaStream, MediaStreamWithIterator
+from viam.media.audio import Audio
 from viam.proto.component.audioinput import (
     AudioInputServiceStub,
     ChunksRequest,
@@ -13,7 +14,7 @@ from viam.proto.component.audioinput import (
     SampleFormat,
 )
 
-from .audio_input import AudioInput, MediaStream, MediaStreamWithIterator
+from .audio_input import AudioInput
 
 
 class AudioInputClient(AudioInput):

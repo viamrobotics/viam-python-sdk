@@ -12,8 +12,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from PIL import Image
 
 from viam.components.arm import Arm
-from viam.components.audio_input import Audio, AudioInput
-from viam.components.audio_input.audio_input import AudioStream, MediaStreamWithIterator
+from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
@@ -28,6 +27,8 @@ from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
+from viam.media import MediaStreamWithIterator
+from viam.media.audio import Audio, AudioStream
 from viam.operations import run_with_operation
 from viam.proto.common import (
     AnalogStatus,
