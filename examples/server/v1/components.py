@@ -137,7 +137,7 @@ class ExampleAudioInput(AudioInput):
 
         return MediaStreamWithIterator(read())
 
-    async def properties(self) -> AudioInput.Properties:
+    async def get_properties(self) -> AudioInput.Properties:
         return AudioInput.Properties(
             channel_count=self.channel_count,
             latency=self.latency,

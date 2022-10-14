@@ -47,7 +47,7 @@ class AudioInputClient(AudioInput):
 
         return MediaStreamWithIterator(read())
 
-    async def properties(self) -> AudioInput.Properties:
+    async def get_properties(self) -> AudioInput.Properties:
         request = PropertiesRequest(name=self.name)
         response: PropertiesResponse = await self.client.Properties(request)
         return AudioInput.Properties.from_proto(response)

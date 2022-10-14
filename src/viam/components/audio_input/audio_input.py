@@ -59,7 +59,7 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
         ...
 
     @abc.abstractmethod
-    async def properties(self) -> Properties:
+    async def get_properties(self) -> Properties:
         """Get the properties of the audio input of the underlying robot
 
         Returns:

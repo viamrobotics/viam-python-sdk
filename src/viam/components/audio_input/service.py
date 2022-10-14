@@ -1,3 +1,8 @@
+from datetime import timedelta
+from io import BytesIO
+import wave
+
+from grpclib import GRPCError, Status
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
@@ -45,16 +50,40 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
             audio_input = self.get_component(request.name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        response = (await audio_input.properties()).proto
+        response = (await audio_input.get_properties()).proto
         await stream.send_message(response)
 
     async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:
-        # TODO: Implement this function
         request = await stream.recv_message()
         assert request is not None
+        duration = request.duration.ToTimedelta()
+        if duration.total_seconds() == 0:
+            duration = timedelta(seconds=1)
+        if duration.total_seconds() > 5:
+            raise GRPCError(Status.INVALID_ARGUMENT, "Can only record up to 5 seconds")
+
         try:
             audio_input = self.get_component(request.name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
+        properties = await audio_input.get_properties()
+        audio_stream = await audio_input.stream()
+        first_chunk = await anext(audio_stream)
+        num_chunks = int(duration.total_seconds() * float(first_chunk.info.sampling_rate / first_chunk.chunk.length))
+
+        # output = BytesIO()
+        output = "/Users/njooma/Downloads/test.wav"
+        wav_file = wave.open(output, "w")
+        wav_file.setnchannels(first_chunk.info.channels)
+        wav_file.setframerate(first_chunk.info.sampling_rate)
+        wav_file.setsampwidth(properties.sample_size if properties.sample_size else 2)
+        try:
+            wav_file.writeframes(first_chunk.chunk.data)
+            for _ in range(num_chunks - 1):
+                chunk = await anext(audio_stream)
+                wav_file.writeframes(chunk.chunk.data)
+        finally:
+            wav_file.close()
+
         response = HttpBody()
         await stream.send_message(response)
