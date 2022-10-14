@@ -24,16 +24,16 @@ To upgrade, simply run the `pip install` command with the `-U` option:
 `pip install -U viam-sdk`
 
 ### Installing from Source
-The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [Rust SDK](https://github.com/viamrobotics/viam-rust-sdk) that contains the necessary protocols. Therefore, to build from source, you will need both the Rust SDK and the Rust compiler.
+The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [Rust utils repo](https://github.com/viamrobotics/rust-utils) that contains the necessary protocols. Therefore, to build from source, you will need both the Rust utils and the Rust compiler.
 
 1. Download/clone this repository
-1. Download/clone the [Rust SDK](https://github.com/viamrobotics/viam-rust-sdk)
+1. Download/clone the [Rust utils](https://github.com/viamrobotics/rust-utils)
 1. [Install Rust](https://www.rust-lang.org/tools/install) if not already available
-1. From the `viam-rust-sdk` directory, run `cargo build`
+1. From the `rust-utils` directory, run `cargo build`
     * You can optionally provide the `--release` flag: `cargo build --release`
-1. Find the compiled library in `viam-rust-sdk/target/debug/libviam.*`
-    * If you provided the `--release` flag, the enclosing directory will be `release`: `viam-rust-sdk/target/release/libviam.*`
-    * The extension of the executable will depend on your operating system. For example, on macOS it will be `libviam.dylib`, whereas on Linux it will be `libviam.so`
+1. Find the compiled library in `rust-utils/target/debug/libviam_rust_utils.*`
+    * If you provided the `--release` flag, the enclosing directory will be `release`: `rust-utils/target/release/libviam_rust_utils.*`
+    * The extension of the executable will depend on your operating system. For example, on macOS it will be `libviam_rust_utils.dylib`, whereas on Linux it will be `libviam_rust_utils.so`
 1. Copy the compiled library to the directory `viam-python-sdk/src/viam/rpc/`
 1. From the `viam-python-sdk` directory, run `poetry build` to create an installable package
 1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
