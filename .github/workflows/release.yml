@@ -90,7 +90,7 @@ jobs:
         run: poetry install
 
       - name: Download binary
-        run: curl -sL -o src/viam/rpc/libviam.${{ matrix.ext }} https://github.com/viamrobotics/viam-rust-sdk/releases/latest/download/libviam-${{ matrix.arch }}.${{ matrix.ext }}
+        run: curl -sL -o src/viam/rpc/libviam_rust_utils.${{ matrix.ext }} https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${{ matrix.arch }}.${{ matrix.ext }}
 
       - name: Build
         run: poetry build -f wheel
