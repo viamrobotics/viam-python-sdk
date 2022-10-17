@@ -165,7 +165,7 @@ class _Runtime:
         if not hasattr(cls, "_shared"):
             cls._shared = super(_Runtime, cls).__new__(cls)
 
-            libname = pathlib.Path(__file__).parent.absolute() / f"libviam.{'dylib' if sys.platform == 'darwin' else 'so'}"
+            libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
             cls._shared._lib = ctypes.CDLL(libname.__str__())
             cls._shared._lib.init_rust_runtime.argtypes = ()
             cls._shared._lib.init_rust_runtime.restype = ctypes.c_void_p
