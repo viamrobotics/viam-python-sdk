@@ -5,6 +5,7 @@ import re
 import socket
 import ssl
 import sys
+import threading
 from typing_extensions import Self
 import warnings
 from dataclasses import dataclass
@@ -161,8 +162,11 @@ class _Runtime:
     _lib: ctypes.CDLL
     _ptr: ctypes.c_void_p
     _semaphore: PointerCounter = PointerCounter()
+    _lock: threading.Lock = threading.Lock()
 
     def __new__(cls):
+        cls._lock.acquire()
+        cls._semaphore.increment()
         if not hasattr(cls, "_shared"):
             cls._shared = super(_Runtime, cls).__new__(cls)
 
@@ -181,14 +185,16 @@ class _Runtime:
             cls._shared._lib.free_string.restype = None
 
             cls._shared._ptr = cls._shared._lib.init_rust_runtime()
+            
+        cls._lock.release()
 
         return cls._shared
 
-    def dial(self, address: str, options: DialOptions) -> Tuple[Optional[str], ctypes.c_void_p]:
+    async def dial(self, address: str, options: DialOptions) -> Tuple[Optional[str], ctypes.c_void_p]:
         creds = options.credentials.payload if options.credentials else ""
         insecure = options.insecure or options.allow_insecure_with_creds_downgrade or (not creds and options.allow_insecure_downgrade)
 
-        path_ptr = self._lib.dial(
+        path_ptr = await asyncio.to_thread(self._lib.dial,
             address.encode("utf-8"),
             creds.encode("utf-8") if creds else None,
             insecure,
@@ -197,15 +203,17 @@ class _Runtime:
         path = ctypes.cast(path_ptr, ctypes.c_char_p).value
         path = path.decode("utf-8") if path else ""
 
-        self._semaphore.increment()
+        
 
         return (path, path_ptr)
 
     def release(self):
+        self._lock.acquire()
         self._semaphore.decrement()
         if self._semaphore.count == 0:
             self._lib.free_rust_runtime(self._ptr)
             _Runtime._release()
+        self._lock.release()
 
     def free_str(self, ptr: ctypes.c_void_p):
         self._lib.free_string(ptr)
@@ -217,13 +225,12 @@ class _Runtime:
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     opts = options if options else DialOptions()
+    # ~ await asyncio.sleep(1)
     if opts.disable_webrtc:
         channel = await _dial_direct(address, options)
         return ViamChannel(channel, lambda: None)
-
     runtime = _Runtime()
-
-    path, path_ptr = await asyncio.to_thread(runtime.dial, address, opts)
+    path, path_ptr = await runtime.dial(address, opts)
     if path:
         LOGGER.info(f"Connecting to socket: {path}")
         chan = Channel(path=path, ssl=None)
@@ -235,7 +242,7 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
         channel = ViamChannel(chan, release)
         return channel
 
-    runtime.release()
+    await runtime.release()
     raise ViamError(f"Unable to establish a connection to {address}")
 
 
