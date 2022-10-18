@@ -185,7 +185,7 @@ class _Runtime:
             cls._shared._lib.free_string.restype = None
 
             cls._shared._ptr = cls._shared._lib.init_rust_runtime()
-            
+
         cls._lock.release()
 
         return cls._shared
@@ -194,7 +194,8 @@ class _Runtime:
         creds = options.credentials.payload if options.credentials else ""
         insecure = options.insecure or options.allow_insecure_with_creds_downgrade or (not creds and options.allow_insecure_downgrade)
 
-        path_ptr = await asyncio.to_thread(self._lib.dial,
+        path_ptr = await asyncio.to_thread(
+            self._lib.dial,
             address.encode("utf-8"),
             creds.encode("utf-8") if creds else None,
             insecure,
@@ -202,8 +203,6 @@ class _Runtime:
         )
         path = ctypes.cast(path_ptr, ctypes.c_char_p).value
         path = path.decode("utf-8") if path else ""
-
-        
 
         return (path, path_ptr)
 
