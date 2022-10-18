@@ -1,3 +1,4 @@
+import asyncio
 import ctypes
 import pathlib
 import re
@@ -222,7 +223,7 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
 
     runtime = _Runtime()
 
-    path, path_ptr = runtime.dial(address, opts)
+    path, path_ptr = await asyncio.to_thread(runtime.dial, address, opts)
     if path:
         LOGGER.info(f"Connecting to socket: {path}")
         chan = Channel(path=path, ssl=None)
