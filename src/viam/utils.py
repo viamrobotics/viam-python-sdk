@@ -1,3 +1,4 @@
+import threading
 from asyncio import Event
 from typing import Any, Dict, List, Mapping, SupportsFloat, Type, TypeVar
 
@@ -163,19 +164,24 @@ def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[st
 class PointerCounter:
     def __init__(self) -> None:
         self._event = Event()
+        self._lock = threading.Lock()
         self._count = 0
         self._event.set()
 
     def increment(self) -> int:
+        self._lock.acquire()
         self._count += 1
         self._event.clear()
+        self._lock.release()
         return self._count
 
     def decrement(self) -> int:
+        self._lock.acquire()
         assert self._count > 0, "Pointer count cannot go below zero"
         self._count -= 1
         if self._count == 0:
             self._event.set()
+        self._lock.release()
         return self._count
 
     async def wait(self) -> None:
