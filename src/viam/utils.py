@@ -189,4 +189,5 @@ class PointerCounter:
 
     @property
     def count(self) -> int:
-        return self._count
+        with self._lock:
+            return self._count

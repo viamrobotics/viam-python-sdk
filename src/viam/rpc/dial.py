@@ -168,6 +168,7 @@ class _Runtime:
         cls._lock.acquire()
         cls._semaphore.increment()
         if not hasattr(cls, "_shared"):
+            LOGGER.debug("Creating new viam-rust-utils runtime")
             cls._shared = super(_Runtime, cls).__new__(cls)
 
             libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
@@ -194,6 +195,7 @@ class _Runtime:
         creds = options.credentials.payload if options.credentials else ""
         insecure = options.insecure or options.allow_insecure_with_creds_downgrade or (not creds and options.allow_insecure_downgrade)
 
+        LOGGER.debug(f"Dialing {address} using viam-rust-utils library")
         path_ptr = await asyncio.to_thread(
             self._lib.dial,
             address.encode("utf-8"),
@@ -209,12 +211,17 @@ class _Runtime:
     def release(self):
         self._lock.acquire()
         self._semaphore.decrement()
-        if self._semaphore.count == 0:
+        count = self._semaphore.count
+        if count == 0:
+            LOGGER.debug("Freeing viam-rust-utils runtime")
             self._lib.free_rust_runtime(self._ptr)
             _Runtime._release()
+        else:
+            LOGGER.debug(f"viam-rust-utils runtime still has {count} pointer{'' if count == 1 else 's'}, cannot release")
         self._lock.release()
 
     def free_str(self, ptr: ctypes.c_void_p):
+        LOGGER.debug("Freeing socket string")
         self._lib.free_string(ptr)
 
     @classmethod
