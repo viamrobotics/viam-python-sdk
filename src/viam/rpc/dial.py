@@ -161,8 +161,8 @@ class _Runtime:
 
     _lib: ctypes.CDLL
     _ptr: ctypes.c_void_p
-    _semaphore: PointerCounter = PointerCounter()
-    _lock: threading.Lock = threading.Lock()
+    _semaphore: ClassVar[PointerCounter] = PointerCounter()
+    _lock: ClassVar[threading.Lock] = threading.Lock()
 
     def __new__(cls):
         cls._lock.acquire()
