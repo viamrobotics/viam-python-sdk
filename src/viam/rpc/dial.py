@@ -224,7 +224,6 @@ class _Runtime:
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     opts = options if options else DialOptions()
-    # ~ await asyncio.sleep(1)
     if opts.disable_webrtc:
         channel = await _dial_direct(address, options)
         return ViamChannel(channel, lambda: None)
@@ -241,7 +240,7 @@ async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChann
         channel = ViamChannel(chan, release)
         return channel
 
-    await runtime.release()
+    runtime.release()
     raise ViamError(f"Unable to establish a connection to {address}")
 
 
