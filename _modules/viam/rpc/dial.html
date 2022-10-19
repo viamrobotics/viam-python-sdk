@@ -85,12 +85,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.rpc.dial</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">ctypes</span>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">socket</span>
 <span class="kn">import</span> <span class="nn">ssl</span>
 <span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
@@ -246,9 +248,12 @@
 
     <span class="n">_lib</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span>
     <span class="n">_ptr</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
-    <span class="n">_semaphore</span><span class="p">:</span> <span class="n">PointerCounter</span> <span class="o">=</span> <span class="n">PointerCounter</span><span class="p">()</span>
+    <span class="n">_semaphore</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">PointerCounter</span><span class="p">]</span> <span class="o">=</span> <span class="n">PointerCounter</span><span class="p">()</span>
+    <span class="n">_lock</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">]</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_semaphore</span><span class="o">.</span><span class="n">increment</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;_shared&quot;</span><span class="p">):</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">_shared</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">_Runtime</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
 
@@ -268,13 +273,16 @@
 
             <span class="bp">cls</span><span class="o">.</span><span class="n">_shared</span><span class="o">.</span><span class="n">_ptr</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_shared</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">init_rust_runtime</span><span class="p">()</span>
 
+        <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_shared</span>
 
-    <span class="k">def</span> <span class="nf">dial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">dial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]:</span>
         <span class="n">creds</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">payload</span> <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">credentials</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
         <span class="n">insecure</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">insecure</span> <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">allow_insecure_with_creds_downgrade</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">creds</span> <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">allow_insecure_downgrade</span><span class="p">)</span>
 
-        <span class="n">path_ptr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">dial</span><span class="p">(</span>
+        <span class="n">path_ptr</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">dial</span><span class="p">,</span>
             <span class="n">address</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span>
             <span class="n">creds</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">creds</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">insecure</span><span class="p">,</span>
@@ -283,15 +291,15 @@
         <span class="n">path</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">path_ptr</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">path</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_semaphore</span><span class="o">.</span><span class="n">increment</span><span class="p">()</span>
-
         <span class="k">return</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_ptr</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_semaphore</span><span class="o">.</span><span class="n">decrement</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_semaphore</span><span class="o">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_rust_runtime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ptr</span><span class="p">)</span>
             <span class="n">_Runtime</span><span class="o">.</span><span class="n">_release</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">free_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ptr</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">free_string</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span>
@@ -306,10 +314,8 @@
     <span class="k">if</span> <span class="n">opts</span><span class="o">.</span><span class="n">disable_webrtc</span><span class="p">:</span>
         <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ViamChannel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
-
     <span class="n">runtime</span> <span class="o">=</span> <span class="n">_Runtime</span><span class="p">()</span>
-
-    <span class="n">path</span><span class="p">,</span> <span class="n">path_ptr</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">dial</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+    <span class="n">path</span><span class="p">,</span> <span class="n">path_ptr</span> <span class="o">=</span> <span class="k">await</span> <span class="n">runtime</span><span class="o">.</span><span class="n">dial</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connecting to socket: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">chan</span> <span class="o">=</span> <span class="n">Channel</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">ssl</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
