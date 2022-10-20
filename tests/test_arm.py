@@ -1,5 +1,6 @@
 import pytest
 from grpclib.testing import ChannelFor
+
 from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
 from viam.components.generic.service import GenericService

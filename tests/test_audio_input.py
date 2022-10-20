@@ -1,6 +1,7 @@
 import sys
 from datetime import timedelta
 from typing import Union
+from grpclib import GRPCError
 
 import pytest
 from grpclib.testing import ChannelFor
@@ -8,8 +9,16 @@ from grpclib.testing import ChannelFor
 from viam.components.audio_input import AudioInput, AudioInputClient, AudioInputService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.gen.component.audioinput.v1.audioinput_pb2 import PropertiesRequest, PropertiesResponse
-from viam.proto.component.audioinput import AudioInputServiceStub, SampleFormat, ChunksRequest, ChunksResponse
+from viam.errors import NotSupportedError
+from viam.proto.component.audioinput import (
+    AudioInputServiceStub,
+    ChunksRequest,
+    ChunksResponse,
+    PropertiesRequest,
+    PropertiesResponse,
+    RecordRequest,
+    SampleFormat,
+)
 
 from .mocks.components import MockAudioInput
 
@@ -36,8 +45,8 @@ def service(audio_input: MockAudioInput) -> AudioInputService:
 
 
 @pytest.fixture(scope="function")
-def generic_service(base: MockAudioInput) -> GenericService:
-    manager = ResourceManager([base])
+def generic_service(audio_input: MockAudioInput) -> GenericService:
+    manager = ResourceManager([audio_input])
     return GenericService(manager)
 
 
@@ -86,8 +95,46 @@ class TestService:
                     idx += 1
 
     @pytest.mark.asyncio
-    async def test_properties(selfl, audio_input: AudioInput, service: AudioInputService):
+    async def test_properties(self, audio_input: AudioInput, service: AudioInputService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
             response: PropertiesResponse = await client.Properties(PropertiesRequest(name=audio_input.name))
             assert AudioInput.Properties.from_proto(response) == PROPERTIES
+
+    @pytest.mark.asyncio
+    async def test_record(self, service: AudioInputService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInputServiceStub(channel)
+            with pytest.raises(GRPCError, match=r".*Status.UNIMPLEMENTED.*"):
+                await client.Record(RecordRequest())
+
+
+class TestClient:
+    @pytest.mark.asyncio
+    async def test_stream(self, audio_input: AudioInput, service: AudioInputService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInputClient(audio_input.name, channel)
+
+            idx = 0
+            async for audio in await client.stream():
+                assert audio.info.channels == PROPERTIES.channel_count
+                assert audio.info.sample_format == SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED
+                assert audio.info.sampling_rate == PROPERTIES.sample_rate
+
+                assert audio.chunk.data == f"{idx}".encode("utf-8")
+                assert audio.chunk.length == 182
+
+                idx += 1
+
+    @pytest.mark.asyncio
+    async def test_get_properties(self, audio_input: AudioInput, service: AudioInputService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInputClient(audio_input.name, channel)
+            assert await client.get_properties() == PROPERTIES
+
+    @pytest.mark.asyncio
+    async def test_do(self, audio_input: AudioInput, service: AudioInputService, generic_service: GenericService):
+        async with ChannelFor([service, generic_service]) as channel:
+            client = AudioInputClient(audio_input.name, channel)
+            with pytest.raises(NotImplementedError):
+                await client.do_command({"command": "args"})

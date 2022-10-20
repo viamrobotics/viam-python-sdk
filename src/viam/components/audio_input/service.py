@@ -7,7 +7,7 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ComponentNotFoundError, NotSupportedError
 from viam.gen.component.audioinput.v1.audioinput_pb2 import SampleFormat
 from viam.proto.component.audioinput import (
     AudioInputServiceBase,
@@ -55,7 +55,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         await stream.send_message(response)
 
     async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:
-        raise GRPCError(Status.UNIMPLEMENTED, "Recording audio input is unimplemented")
+        raise NotSupportedError("Recording audio input is not supported").grpc_error
 
         # TODO: Eventually implement recording
         request = await stream.recv_message()
