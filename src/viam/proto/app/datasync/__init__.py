@@ -14,7 +14,6 @@ from ....gen.app.datasync.v1.data_sync_pb2 import (
     UploadMetadata,
     UploadRequest,
     UploadResponse,
-    UserFile,
 )
 
 __all__ = [
@@ -30,5 +29,4 @@ __all__ = [
     "UploadMetadata",
     "UploadRequest",
     "UploadResponse",
-    "UserFile",
 ]
