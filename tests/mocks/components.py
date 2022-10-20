@@ -449,9 +449,9 @@ class MockMotor(Motor):
         await self.set_power(0)
         self.extra = extra
 
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[bool, float]:
         self.extra = extra
-        return self.powered
+        return self.powered, self.power
 
     async def is_moving(self) -> bool:
         return self.powered

@@ -97,12 +97,14 @@ class TestMotor:
     @pytest.mark.asyncio
     async def test_is_powered(self, motor: MockMotor):
         await motor.set_power(10)
-        is_powered = await motor.is_powered()
+        is_powered, power_pct = await motor.is_powered()
         assert is_powered is True
+        assert power_pct == 10
 
         await motor.set_power(0)
-        is_powered = await motor.is_powered()
+        is_powered, power_pct = await motor.is_powered()
         assert is_powered is False
+        assert is_powered == 0
 
     @pytest.mark.asyncio
     async def test_is_moving(self, motor: MockMotor):
@@ -217,12 +219,14 @@ class TestService:
             request = IsPoweredRequest(name=motor.name)
             response: IsPoweredResponse = await client.IsPowered(request)
             assert response.is_on is True
+            assert response.power_pct == 13
 
             sp_request = SetPowerRequest(name=motor.name, power_pct=0)
             await client.SetPower(sp_request)
             request = IsPoweredRequest(name=motor.name)
             response: IsPoweredResponse = await client.IsPowered(request)
             assert response.is_on is False
+            assert response.power_pct == 0
 
     @pytest.mark.asyncio
     async def test_extra(self, motor: MockMotor, service: MotorService):
@@ -307,12 +311,14 @@ class TestClient:
             client = MotorClient(motor.name, channel)
 
             await client.set_power(13)
-            is_on = await client.is_powered()
+            is_on, power_pct = await client.is_powered()
             assert is_on is True
+            assert power_pct == 13
 
             await client.set_power(0)
-            is_on = await client.is_powered()
+            is_on, power_pct = await client.is_powered()
             assert is_on is False
+            assert power_pct == 0
 
     @pytest.mark.asyncio
     async def test_is_moving(self, motor: MockMotor, service: MotorService):

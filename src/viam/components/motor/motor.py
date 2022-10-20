@@ -1,6 +1,6 @@
 import abc
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 from viam.errors import NotSupportedError
 
@@ -102,12 +102,13 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[bool, float]:
         """
         Returns whether or not the motor is currently running.
 
         Returns:
             bool: Indicates whether the motor is currently powered.
+            float: The current power percentage of the motor
         """
         ...
 

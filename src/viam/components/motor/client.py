@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 from grpclib.client import Channel
 from viam.components.generic.client import do_command
@@ -75,12 +75,12 @@ class MotorClient(Motor):
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request)
 
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None) -> bool:
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None) -> Tuple[bool, float]:
         if extra is None:
             extra = {}
         request = IsPoweredRequest(name=self.name, extra=dict_to_struct(extra))
         response: IsPoweredResponse = await self.client.IsPowered(request)
-        return response.is_on
+        return response.is_on, response.power_pct
 
     async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

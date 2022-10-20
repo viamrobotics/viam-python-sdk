@@ -1,3 +1,4 @@
+import asyncio
 from viam.proto.component.motor import Status as MotorStatus
 from viam.proto.robot import Status
 from viam.registry import ComponentRegistration, Registry
@@ -13,11 +14,17 @@ __all__ = [
 
 
 async def create_status(component: Motor) -> Status:
+    ((is_powered, _), position, properties, is_moving) = await asyncio.gather(
+        component.is_powered(),
+        component.get_position(),
+        component.get_properties(),
+        component.is_moving(),
+    )
     s = MotorStatus(
-        is_powered=await component.is_powered(),
-        position=await component.get_position(),
-        position_reporting=(await component.get_properties()).position_reporting,
-        is_moving=await component.is_moving(),
+        is_powered=is_powered,
+        position=position,
+        position_reporting=properties.position_reporting,
+        is_moving=is_moving,
     )
     return Status(name=Motor.get_resource_name(component.name), status=message_to_struct(s))
 
