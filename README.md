@@ -13,7 +13,7 @@ Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), 
 
 `pip install viam-sdk`
 
-If you are using conda as a virtual environment & MacOS version 11 or later, you will need to run `export SYSTEM_VERSION_COMPAT=0` before installing `pip install viam-sdk.` This is because of a bug in how conda tags MacOS 11. [See more](https://github.com/conda-forge/python-feedstock/issues/445)
+If you are using conda as a virtual environment & MacOS version 11 or later, you may need to run `export SYSTEM_VERSION_COMPAT=0` before installing `pip install viam-sdk.` This is because of a bug in how conda tags macOS 11. [See more](https://github.com/conda-forge/python-feedstock/issues/445)
 
 If your system is not supported, read further on how to install from source.
 
