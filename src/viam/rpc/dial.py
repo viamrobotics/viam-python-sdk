@@ -5,11 +5,9 @@ import re
 import socket
 import ssl
 import sys
-import threading
-from typing_extensions import Self
 import warnings
 from dataclasses import dataclass
-from typing import Callable, ClassVar, Literal, Optional, Tuple, Type
+from typing import Callable, Literal, Optional, Tuple, Type
 
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
@@ -20,7 +18,6 @@ from viam import logging
 from viam.errors import InsecureConnectionError, ViamError
 from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
 from viam.proto.rpc.auth import Credentials as PBCredentials
-from viam.utils import PointerCounter
 
 LOGGER = logging.getLogger(__name__)
 
@@ -157,39 +154,26 @@ class ViamChannel:
 
 class _Runtime:
 
-    _shared: ClassVar[Self]
-
     _lib: ctypes.CDLL
     _ptr: ctypes.c_void_p
-    _semaphore: ClassVar[PointerCounter] = PointerCounter()
-    _lock: ClassVar[threading.Lock] = threading.Lock()
 
-    def __new__(cls):
-        cls._lock.acquire()
-        cls._semaphore.increment()
-        if not hasattr(cls, "_shared"):
-            LOGGER.debug("Creating new viam-rust-utils runtime")
-            cls._shared = super(_Runtime, cls).__new__(cls)
+    def __init__(self) -> None:
+        LOGGER.debug("Creating new viam-rust-utils runtime")
+        libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
+        self._lib = ctypes.CDLL(libname.__str__())
+        self._lib.init_rust_runtime.argtypes = ()
+        self._lib.init_rust_runtime.restype = ctypes.c_void_p
 
-            libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
-            cls._shared._lib = ctypes.CDLL(libname.__str__())
-            cls._shared._lib.init_rust_runtime.argtypes = ()
-            cls._shared._lib.init_rust_runtime.restype = ctypes.c_void_p
+        self._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
+        self._lib.dial.restype = ctypes.c_void_p
 
-            cls._shared._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
-            cls._shared._lib.dial.restype = ctypes.c_void_p
+        self._lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
+        self._lib.free_rust_runtime.restype = None
 
-            cls._shared._lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
-            cls._shared._lib.free_rust_runtime.restype = None
+        self._lib.free_string.argtypes = (ctypes.c_void_p,)
+        self._lib.free_string.restype = None
 
-            cls._shared._lib.free_string.argtypes = (ctypes.c_void_p,)
-            cls._shared._lib.free_string.restype = None
-
-            cls._shared._ptr = cls._shared._lib.init_rust_runtime()
-
-        cls._lock.release()
-
-        return cls._shared
+        self._ptr = self._lib.init_rust_runtime()
 
     async def dial(self, address: str, options: DialOptions) -> Tuple[Optional[str], ctypes.c_void_p]:
         creds = options.credentials.payload if options.credentials else ""
@@ -209,24 +193,12 @@ class _Runtime:
         return (path, path_ptr)
 
     def release(self):
-        self._lock.acquire()
-        self._semaphore.decrement()
-        count = self._semaphore.count
-        if count == 0:
-            LOGGER.debug("Freeing viam-rust-utils runtime")
-            self._lib.free_rust_runtime(self._ptr)
-            _Runtime._release()
-        else:
-            LOGGER.debug(f"viam-rust-utils runtime still has {count} pointer{'' if count == 1 else 's'}, cannot release")
-        self._lock.release()
+        LOGGER.debug("Freeing viam-rust-utils runtime")
+        self._lib.free_rust_runtime(self._ptr)
 
     def free_str(self, ptr: ctypes.c_void_p):
         LOGGER.debug("Freeing socket string")
         self._lib.free_string(ptr)
-
-    @classmethod
-    def _release(cls):
-        del cls._shared
 
 
 async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
