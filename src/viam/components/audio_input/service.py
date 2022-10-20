@@ -57,6 +57,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
     async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:
         raise GRPCError(Status.UNIMPLEMENTED, "Recording audio input is unimplemented")
 
+        # TODO: Eventually implement recording
         request = await stream.recv_message()
         assert request is not None
         duration = request.duration.ToTimedelta()
