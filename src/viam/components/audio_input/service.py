@@ -2,7 +2,6 @@ import wave
 from datetime import timedelta
 from io import BytesIO
 
-import grpclib
 from google.api.httpbody_pb2 import HttpBody
 from grpclib import GRPCError, Status
 from grpclib.server import Stream
@@ -56,6 +55,8 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         await stream.send_message(response)
 
     async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:
+        raise GRPCError(Status.UNIMPLEMENTED, "Recording audio input is unimplemented")
+
         request = await stream.recv_message()
         assert request is not None
         duration = request.duration.ToTimedelta()
