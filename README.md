@@ -9,7 +9,7 @@
 > This is an beta release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
 
 ## Installation
-Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86 and aarch64) that you can install via pip
+Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86, aarch64, armv6l) that you can install via pip
 
 `pip install viam-sdk`
 
