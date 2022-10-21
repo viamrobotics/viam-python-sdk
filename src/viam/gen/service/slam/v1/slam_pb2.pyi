@@ -6,6 +6,7 @@ import builtins
 from .... import common
 import google.protobuf.descriptor
 import google.protobuf.message
+import google.protobuf.struct_pb2
 import sys
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
@@ -29,18 +30,23 @@ global___GetPositionRequest = GetPositionRequest
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
 
     @property
     def pose(self) -> common.v1.common_pb2.PoseInFrame:
         """Current position of the robot within the World frame."""
 
-    def __init__(self, *, pose: common.v1.common_pb2.PoseInFrame | None=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, pose: common.v1.common_pb2.PoseInFrame | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'pose', b'pose']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'pose', b'pose']) -> None:
         ...
 global___GetPositionResponse = GetPositionResponse
 

@@ -177,20 +177,20 @@ global___Webcam = Webcam
 
 class Property(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    WIDTH_FIELD_NUMBER: builtins.int
-    HEIGHT_FIELD_NUMBER: builtins.int
+    WIDTH_PX_FIELD_NUMBER: builtins.int
+    HEIGHT_PX_FIELD_NUMBER: builtins.int
     FRAME_FORMAT_FIELD_NUMBER: builtins.int
-    width: builtins.int
-    'Video resolution width'
-    height: builtins.int
-    'Video resolution height'
+    width_px: builtins.int
+    'Video resolution width in px'
+    height_px: builtins.int
+    'Video resolution height in px'
     frame_format: builtins.str
     'Video frame format'
 
-    def __init__(self, *, width: builtins.int=..., height: builtins.int=..., frame_format: builtins.str=...) -> None:
+    def __init__(self, *, width_px: builtins.int=..., height_px: builtins.int=..., frame_format: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['frame_format', b'frame_format', 'height', b'height', 'width', b'width']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['frame_format', b'frame_format', 'height_px', b'height_px', 'width_px', b'width_px']) -> None:
         ...
 global___Property = Property
 

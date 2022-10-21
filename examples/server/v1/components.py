@@ -472,8 +472,8 @@ class ExampleMotor(Motor):
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         await self.set_power(0)
 
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
-        return self.powered
+    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[bool, float]:
+        return self.powered, self.power
 
     async def is_moving(self):
         return self.powered

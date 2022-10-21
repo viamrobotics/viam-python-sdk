@@ -229,13 +229,16 @@ global___IsPoweredRequest = IsPoweredRequest
 class IsPoweredResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     IS_ON_FIELD_NUMBER: builtins.int
+    POWER_PCT_FIELD_NUMBER: builtins.int
     is_on: builtins.bool
     'Returns true if the motor is on'
+    power_pct: builtins.float
+    'Returns power percent (from 0 to 1, or from -1 to 1 for motors that support negative power),\n    based on the last command sent to motor. If the last command was a stop command, this value\n    will be 0.\n    '
 
-    def __init__(self, *, is_on: builtins.bool=...) -> None:
+    def __init__(self, *, is_on: builtins.bool=..., power_pct: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_on', b'is_on']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['is_on', b'is_on', 'power_pct', b'power_pct']) -> None:
         ...
 global___IsPoweredResponse = IsPoweredResponse
 

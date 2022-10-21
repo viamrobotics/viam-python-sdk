@@ -22,6 +22,7 @@ class Robot(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     LOCATION_FIELD_NUMBER: builtins.int
     LAST_ACCESS_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     location: builtins.str
@@ -30,13 +31,17 @@ class Robot(google.protobuf.message.Message):
     def last_access(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., location: builtins.str=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['last_access', b'last_access']) -> builtins.bool:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., location: builtins.str=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'last_access', b'last_access', 'location', b'location', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'last_access', b'last_access']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'last_access', b'last_access', 'location', b'location', 'name', b'name']) -> None:
         ...
 global___Robot = Robot
 
@@ -54,6 +59,7 @@ class RobotPart(google.protobuf.message.Message):
     MAIN_PART_FIELD_NUMBER: builtins.int
     FQDN_FIELD_NUMBER: builtins.int
     LOCAL_FQDN_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     dns_name: builtins.str
@@ -78,13 +84,17 @@ class RobotPart(google.protobuf.message.Message):
     fqdn: builtins.str
     local_fqdn: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=...) -> None:
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['last_access', b'last_access', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> builtins.bool:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'user_supplied_info', b'user_supplied_info']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'last_access', b'last_access', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'user_supplied_info', b'user_supplied_info']) -> None:
         ...
 global___RobotPart = RobotPart
 
@@ -126,13 +136,21 @@ class Organization(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=...) -> None:
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name']) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'name', b'name']) -> None:
         ...
 global___Organization = Organization
 
@@ -155,13 +173,21 @@ class Location(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=...) -> None:
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name']) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'name', b'name']) -> None:
         ...
 global___Location = Location
 
@@ -538,6 +564,7 @@ class Fragment(google.protobuf.message.Message):
     FRAGMENT_FIELD_NUMBER: builtins.int
     ORGANIZATION_OWNER_FIELD_NUMBER: builtins.int
     PUBLIC_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
@@ -547,13 +574,17 @@ class Fragment(google.protobuf.message.Message):
     organization_owner: builtins.str
     public: builtins.bool
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=...) -> None:
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['fragment', b'fragment']) -> builtins.bool:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fragment', b'fragment', 'id', b'id', 'name', b'name', 'organization_owner', b'organization_owner', 'public', b'public']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'organization_owner', b'organization_owner', 'public', b'public']) -> None:
         ...
 global___Fragment = Fragment
 

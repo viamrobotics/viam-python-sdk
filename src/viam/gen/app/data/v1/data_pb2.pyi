@@ -51,7 +51,7 @@ class Filter(google.protobuf.message.Message):
     PART_NAME_FIELD_NUMBER: builtins.int
     PART_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
-    ORG_ID_FIELD_NUMBER: builtins.int
+    ORG_IDS_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     INTERVAL_FIELD_NUMBER: builtins.int
     component_name: builtins.str
@@ -67,7 +67,10 @@ class Filter(google.protobuf.message.Message):
     part_name: builtins.str
     part_id: builtins.str
     location_id: builtins.str
-    org_id: builtins.str
+
+    @property
+    def org_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
 
     @property
     def mime_type(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -77,13 +80,13 @@ class Filter(google.protobuf.message.Message):
     def interval(self) -> global___CaptureInterval:
         ...
 
-    def __init__(self, *, component_name: builtins.str=..., component_type: builtins.str=..., component_model: builtins.str=..., method: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., location_id: builtins.str=..., org_id: builtins.str=..., mime_type: collections.abc.Iterable[builtins.str] | None=..., interval: global___CaptureInterval | None=...) -> None:
+    def __init__(self, *, component_name: builtins.str=..., component_type: builtins.str=..., component_model: builtins.str=..., method: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., location_id: builtins.str=..., org_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: collections.abc.Iterable[builtins.str] | None=..., interval: global___CaptureInterval | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['interval', b'interval']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_model', b'component_model', 'component_name', b'component_name', 'component_type', b'component_type', 'interval', b'interval', 'location_id', b'location_id', 'method', b'method', 'mime_type', b'mime_type', 'org_id', b'org_id', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags', b'tags']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['component_model', b'component_model', 'component_name', b'component_name', 'component_type', b'component_type', 'interval', b'interval', 'location_id', b'location_id', 'method', b'method', 'mime_type', b'mime_type', 'org_ids', b'org_ids', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags', b'tags']) -> None:
         ...
 global___Filter = Filter
 
@@ -109,6 +112,7 @@ class CaptureMetadata(google.protobuf.message.Message):
 
         def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
             ...
+    ORG_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
     ROBOT_NAME_FIELD_NUMBER: builtins.int
     ROBOT_ID_FIELD_NUMBER: builtins.int
@@ -121,6 +125,7 @@ class CaptureMetadata(google.protobuf.message.Message):
     METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
     location_id: builtins.str
     robot_name: builtins.str
     robot_id: builtins.str
@@ -140,10 +145,10 @@ class CaptureMetadata(google.protobuf.message.Message):
         ...
     mime_type: builtins.str
 
-    def __init__(self, *, location_id: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., component_type: builtins.str=..., component_model: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., tags: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
+    def __init__(self, *, org_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., component_type: builtins.str=..., component_model: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., tags: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_model', b'component_model', 'component_name', b'component_name', 'component_type', b'component_type', 'location_id', b'location_id', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags', b'tags']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['component_model', b'component_model', 'component_name', b'component_name', 'component_type', b'component_type', 'location_id', b'location_id', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'org_id', b'org_id', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags', b'tags']) -> None:
         ...
 global___CaptureMetadata = CaptureMetadata
 
@@ -247,32 +252,21 @@ global___TabularData = TabularData
 
 class BinaryData(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ID_FIELD_NUMBER: builtins.int
-    URI_FIELD_NUMBER: builtins.int
     BINARY_FIELD_NUMBER: builtins.int
-    METADATA_INDEX_FIELD_NUMBER: builtins.int
-    TIME_REQUESTED_FIELD_NUMBER: builtins.int
-    TIME_RECEIVED_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    uri: builtins.str
+    METADATA_FIELD_NUMBER: builtins.int
     binary: builtins.bytes
-    metadata_index: builtins.int
 
     @property
-    def time_requested(self) -> google.protobuf.timestamp_pb2.Timestamp:
+    def metadata(self) -> global___BinaryMetadata:
         ...
 
-    @property
-    def time_received(self) -> google.protobuf.timestamp_pb2.Timestamp:
+    def __init__(self, *, binary: builtins.bytes=..., metadata: global___BinaryMetadata | None=...) -> None:
         ...
 
-    def __init__(self, *, id: builtins.str=..., uri: builtins.str=..., binary: builtins.bytes=..., metadata_index: builtins.int=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata']) -> builtins.bool:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['time_received', b'time_received', 'time_requested', b'time_requested']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['binary', b'binary', 'id', b'id', 'metadata_index', b'metadata_index', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['binary', b'binary', 'metadata', b'metadata']) -> None:
         ...
 global___BinaryData = BinaryData
 
@@ -302,23 +296,18 @@ global___BinaryDataByFilterRequest = BinaryDataByFilterRequest
 class BinaryDataByFilterResponse(google.protobuf.message.Message):
     """BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    METADATA_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
     COUNT_FIELD_NUMBER: builtins.int
-
-    @property
-    def metadata(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]:
-        ...
 
     @property
     def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]:
         ...
     count: builtins.int
 
-    def __init__(self, *, metadata: collections.abc.Iterable[global___CaptureMetadata] | None=..., data: collections.abc.Iterable[global___BinaryData] | None=..., count: builtins.int=...) -> None:
+    def __init__(self, *, data: collections.abc.Iterable[global___BinaryData] | None=..., count: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data', 'metadata', b'metadata']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data']) -> None:
         ...
 global___BinaryDataByFilterResponse = BinaryDataByFilterResponse
 
@@ -344,22 +333,53 @@ global___BinaryDataByIDsRequest = BinaryDataByIDsRequest
 class BinaryDataByIDsResponse(google.protobuf.message.Message):
     """BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    METADATA_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
     COUNT_FIELD_NUMBER: builtins.int
-
-    @property
-    def metadata(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]:
-        ...
 
     @property
     def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]:
         ...
     count: builtins.int
 
-    def __init__(self, *, metadata: collections.abc.Iterable[global___CaptureMetadata] | None=..., data: collections.abc.Iterable[global___BinaryData] | None=..., count: builtins.int=...) -> None:
+    def __init__(self, *, data: collections.abc.Iterable[global___BinaryData] | None=..., count: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data', 'metadata', b'metadata']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data']) -> None:
         ...
 global___BinaryDataByIDsResponse = BinaryDataByIDsResponse
+
+class BinaryMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    CAPTURE_METADATA_FIELD_NUMBER: builtins.int
+    TIME_REQUESTED_FIELD_NUMBER: builtins.int
+    TIME_RECEIVED_FIELD_NUMBER: builtins.int
+    FILE_NAME_FIELD_NUMBER: builtins.int
+    FILE_EXT_FIELD_NUMBER: builtins.int
+    URI_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    @property
+    def capture_metadata(self) -> global___CaptureMetadata:
+        ...
+
+    @property
+    def time_requested(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def time_received(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+    file_name: builtins.str
+    file_ext: builtins.str
+    uri: builtins.str
+
+    def __init__(self, *, id: builtins.str=..., capture_metadata: global___CaptureMetadata | None=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=..., file_name: builtins.str=..., file_ext: builtins.str=..., uri: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['capture_metadata', b'capture_metadata', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['capture_metadata', b'capture_metadata', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
+        ...
+global___BinaryMetadata = BinaryMetadata

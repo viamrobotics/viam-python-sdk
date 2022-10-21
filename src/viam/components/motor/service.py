@@ -119,5 +119,5 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        is_powered = await motor.is_powered(struct_to_dict(request.extra))
-        await stream.send_message(IsPoweredResponse(is_on=is_powered))
+        is_powered, power_pct = await motor.is_powered(struct_to_dict(request.extra))
+        await stream.send_message(IsPoweredResponse(is_on=is_powered, power_pct=power_pct))
