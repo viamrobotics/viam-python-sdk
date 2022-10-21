@@ -37,7 +37,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
             raise e.grpc_error
 
         audio_stream = await audio_input.stream()
-        first_chunk = await anext(audio_stream)
+        first_chunk = await audio_stream.__anext__()
         await stream.send_message(ChunksResponse(info=first_chunk.info))
         await stream.send_message(ChunksResponse(chunk=first_chunk.chunk))
 
@@ -71,7 +71,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         except ComponentNotFoundError as e:
             raise e.grpc_error
         audio_stream = await audio_input.stream()
-        first_chunk = await anext(audio_stream)
+        first_chunk = await audio_stream.__anext__()
         num_chunks = int(duration.total_seconds() * float(first_chunk.info.sampling_rate / first_chunk.chunk.length))
 
         sample_width: int
@@ -90,7 +90,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         try:
             wav_file.writeframes(first_chunk.chunk.data)
             for _ in range(num_chunks - 1):
-                chunk = await anext(audio_stream)
+                chunk = await audio_stream.__anext__()
                 wav_file.writeframes(chunk.chunk.data)
         finally:
             wav_file.close()

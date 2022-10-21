@@ -9,7 +9,6 @@ from grpclib.testing import ChannelFor
 from viam.components.audio_input import AudioInput, AudioInputClient, AudioInputService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.errors import NotSupportedError
 from viam.proto.component.audioinput import (
     AudioInputServiceStub,
     ChunksRequest,

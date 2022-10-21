@@ -36,7 +36,7 @@ class MediaStreamWithIterator(MediaStream[MediaType]):
         self._stream = stream
 
     async def next(self) -> MediaType:
-        return await anext(self._stream)
+        return await self._stream.__anext__()
 
     def __aiter__(self):
         return self._stream
