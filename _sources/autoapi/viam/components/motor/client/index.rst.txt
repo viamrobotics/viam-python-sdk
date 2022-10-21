@@ -99,12 +99,13 @@ Classes
       Stop the motor immediately, without any gradual step down.
 
 
-   .. py:method:: is_powered(extra: Optional[Dict[str, Any]] = None) -> bool
+   .. py:method:: is_powered(extra: Optional[Dict[str, Any]] = None) -> Tuple[bool, float]
       :async:
 
       Returns whether or not the motor is currently running.
 
       :returns: Indicates whether the motor is currently powered.
+                float: The current power percentage of the motor
       :rtype: bool
 
 

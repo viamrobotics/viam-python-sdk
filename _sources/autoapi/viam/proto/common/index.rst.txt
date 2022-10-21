@@ -216,11 +216,16 @@ Classes
 
 
 
-.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ...)
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., label: str = ...)
 
 
 
    Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
+
+   .. py:attribute:: label
+      :annotation: :str
+
+      Label of the geometry. If none supplied, will be an empty string.
 
    .. py:method:: center() -> global___Pose
       :property:

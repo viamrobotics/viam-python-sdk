@@ -30,6 +30,7 @@ Classes
    viam.gen.app.data.v1.data_pb2.BinaryDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest
    viam.gen.app.data.v1.data_pb2.BinaryDataByIDsResponse
+   viam.gen.app.data.v1.data_pb2.BinaryMetadata
 
 
 
@@ -52,6 +53,7 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.global___BinaryDataByIDsRequest
    viam.gen.app.data.v1.data_pb2.global___BinaryDataByIDsResponse
+   viam.gen.app.data.v1.data_pb2.global___BinaryMetadata
 
 
 .. py:data:: DESCRIPTOR
@@ -106,7 +108,7 @@ Attributes
 
    
 
-.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., component_model: str = ..., method: str = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_id: str = ..., org_id: str = ..., mime_type: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ...)
+.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., component_model: str = ..., method: str = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_id: str = ..., org_ids: collections.abc.Iterable[builtins.str] | None = ..., mime_type: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ...)
 
 
 
@@ -161,12 +163,11 @@ Attributes
 
       
 
-   .. py:attribute:: org_id
-      :annotation: :str
-
-      
-
    .. py:method:: tags() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+      :property:
+
+
+   .. py:method:: org_ids() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
       :property:
 
 
@@ -201,7 +202,7 @@ Attributes
 
    
 
-.. py:class:: CaptureMetadata(*, location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_model: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., mime_type: str = ...)
+.. py:class:: CaptureMetadata(*, org_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_model: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., mime_type: str = ...)
 
 
 
@@ -243,6 +244,11 @@ Attributes
          :raises ValueError: if the `field_name` is not a member of this message.
 
 
+
+   .. py:attribute:: org_id
+      :annotation: :str
+
+      
 
    .. py:attribute:: location_id
       :annotation: :str
@@ -458,7 +464,7 @@ Attributes
 
    
 
-.. py:class:: BinaryData(*, id: str = ..., uri: str = ..., binary: bytes = ..., metadata_index: int = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: BinaryData(*, binary: bytes = ..., metadata: global___BinaryMetadata | None = ...)
 
 
 
@@ -468,35 +474,16 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: id
-      :annotation: :str
-
-      
-
-   .. py:attribute:: uri
-      :annotation: :str
-
-      
-
    .. py:attribute:: binary
       :annotation: :bytes
 
       
 
-   .. py:attribute:: metadata_index
-      :annotation: :int
-
-      
-
-   .. py:method:: time_requested() -> google.protobuf.timestamp_pb2.Timestamp
+   .. py:method:: metadata() -> global___BinaryMetadata
       :property:
 
 
-   .. py:method:: time_received() -> google.protobuf.timestamp_pb2.Timestamp
-      :property:
-
-
-   .. py:method:: HasField(field_name: Literal[time_received, b'time_received', time_requested, b'time_requested']) -> bool
+   .. py:method:: HasField(field_name: Literal[metadata, b'metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -562,7 +549,7 @@ Attributes
 
    
 
-.. py:class:: BinaryDataByFilterResponse(*, metadata: collections.abc.Iterable[global___CaptureMetadata] | None = ..., data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
+.. py:class:: BinaryDataByFilterResponse(*, data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
 
 
 
@@ -572,10 +559,6 @@ Attributes
       :annotation: :int
 
       
-
-   .. py:method:: metadata() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]
-      :property:
-
 
    .. py:method:: data() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]
       :property:
@@ -608,7 +591,7 @@ Attributes
 
    
 
-.. py:class:: BinaryDataByIDsResponse(*, metadata: collections.abc.Iterable[global___CaptureMetadata] | None = ..., data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
+.. py:class:: BinaryDataByIDsResponse(*, data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
 
 
 
@@ -619,16 +602,77 @@ Attributes
 
       
 
-   .. py:method:: metadata() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]
-      :property:
-
-
    .. py:method:: data() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]
       :property:
 
 
 
 .. py:data:: global___BinaryDataByIDsResponse
+   
+
+   
+
+.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ...)
+
+
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: id
+      :annotation: :str
+
+      
+
+   .. py:attribute:: file_name
+      :annotation: :str
+
+      
+
+   .. py:attribute:: file_ext
+      :annotation: :str
+
+      
+
+   .. py:attribute:: uri
+      :annotation: :str
+
+      
+
+   .. py:method:: capture_metadata() -> global___CaptureMetadata
+      :property:
+
+
+   .. py:method:: time_requested() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
+
+
+   .. py:method:: time_received() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
+
+
+   .. py:method:: HasField(field_name: Literal[capture_metadata, b'capture_metadata', time_received, b'time_received', time_requested, b'time_requested']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___BinaryMetadata
    
 
    

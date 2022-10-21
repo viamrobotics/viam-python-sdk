@@ -270,7 +270,7 @@ Classes
 
 
 
-.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ...)
+.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
@@ -304,7 +304,11 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[fragment, b'fragment']) -> bool
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
+
+
+   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', fragment, b'fragment']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -578,7 +582,7 @@ Classes
 
 
 
-.. py:class:: Location(*, id: str = ..., name: str = ...)
+.. py:class:: Location(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
@@ -597,6 +601,27 @@ Classes
       :annotation: :str
 
       
+
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
+
+
+   .. py:method:: HasField(field_name: Literal[created_on, b'created_on']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: LocationAuth(*, secret: str = ...)
@@ -829,7 +854,7 @@ Classes
       
 
 
-.. py:class:: Organization(*, id: str = ..., name: str = ...)
+.. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
@@ -849,8 +874,29 @@ Classes
 
       
 
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
 
-.. py:class:: Robot(*, id: str = ..., name: str = ..., location: str = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+   .. py:method:: HasField(field_name: Literal[created_on, b'created_on']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: Robot(*, id: str = ..., name: str = ..., location: str = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
@@ -879,7 +925,11 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[last_access, b'last_access']) -> bool
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
+
+
+   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', last_access, b'last_access']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -897,7 +947,7 @@ Classes
 
 
 
-.. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ...)
+.. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
 
@@ -965,7 +1015,11 @@ Classes
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[last_access, b'last_access', robot_config, b'robot_config', user_supplied_info, b'user_supplied_info']) -> bool
+   .. py:method:: created_on() -> google.protobuf.timestamp_pb2.Timestamp
+      :property:
+
+
+   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', last_access, b'last_access', robot_config, b'robot_config', user_supplied_info, b'user_supplied_info']) -> bool
 
       Checks if a certain field is set for the message.
 

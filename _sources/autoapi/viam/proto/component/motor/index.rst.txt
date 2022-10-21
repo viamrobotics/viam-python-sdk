@@ -364,7 +364,7 @@ Classes
 
 
 
-.. py:class:: IsPoweredResponse(*, is_on: bool = ...)
+.. py:class:: IsPoweredResponse(*, is_on: bool = ..., power_pct: float = ...)
 
 
 
@@ -378,6 +378,13 @@ Classes
       :annotation: :bool
 
       Returns true if the motor is on
+
+   .. py:attribute:: power_pct
+      :annotation: :float
+
+      Returns power percent (from 0 to 1, or from -1 to 1 for motors that support negative power),
+      based on the last command sent to motor. If the last command was a stop command, this value
+      will be 0.
 
 
 .. py:class:: ResetZeroPositionRequest(*, name: str = ..., offset: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)

@@ -322,7 +322,7 @@ Attributes
 
    
 
-.. py:class:: Property(*, width: int = ..., height: int = ..., frame_format: str = ...)
+.. py:class:: Property(*, width_px: int = ..., height_px: int = ..., frame_format: str = ...)
 
 
 
@@ -332,15 +332,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: width
+   .. py:attribute:: width_px
       :annotation: :int
 
-      Video resolution width
+      Video resolution width in px
 
-   .. py:attribute:: height
+   .. py:attribute:: height_px
       :annotation: :int
 
-      Video resolution height
+      Video resolution height in px
 
    .. py:attribute:: frame_format
       :annotation: :str

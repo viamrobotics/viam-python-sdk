@@ -64,7 +64,7 @@ Attributes
 
    
 
-.. py:class:: GetPositionResponse(*, pose: common.v1.common_pb2.PoseInFrame | None = ...)
+.. py:class:: GetPositionResponse(*, pose: common.v1.common_pb2.PoseInFrame | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -80,7 +80,13 @@ Attributes
       Current position of the robot within the World frame.
 
 
-   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra', pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 
