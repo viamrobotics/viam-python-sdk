@@ -105,10 +105,11 @@ class ExampleAudioInput(AudioInput):
 
     @run_with_operation
     async def stream(self, **kwargs) -> AudioStream:
+        """Generate and stream a sine wave at 440Hz"""
         operation = self.get_operation(kwargs)
 
-        length = self.sample_rate * self.latency.total_seconds()
-        num_chunks = self.sample_rate / length
+        length = self.sample_rate * self.latency.total_seconds()  # the length of the sample
+        num_chunks = self.sample_rate / length  # the number of chunks needed
         angle = math.pi * 2 / (length * num_chunks)
 
         async def read() -> AsyncIterator[Audio]:
@@ -116,9 +117,9 @@ class ExampleAudioInput(AudioInput):
                 if await operation.is_cancelled():
                     break
                 output = bytes()
-                step = int(self.step % num_chunks)
+                step = int(self.step % num_chunks)  # current location on the sine wave
                 for i in range(int(length)):
-                    value = float(10) * math.sin(angle * 440 * (float(length * step) + i))
+                    value = float(10) * math.sin(angle * 440 * (float(length * step) + i))  # calculate the value at the current location
                     output += bytes(struct.pack("f", value))
 
                 yield Audio(
