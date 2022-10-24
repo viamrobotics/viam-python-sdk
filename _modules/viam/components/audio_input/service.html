@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.audio_input.service &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>viam.components.audio_input.service</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.components.audio_input.service</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">wave</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+
+<span class="kn">from</span> <span class="nn">google.api.httpbody_pb2</span> <span class="kn">import</span> <span class="n">HttpBody</span>
+<span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
+<span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
+
+<span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">NotSupportedError</span>
+<span class="kn">from</span> <span class="nn">viam.gen.component.audioinput.v1.audioinput_pb2</span> <span class="kn">import</span> <span class="n">SampleFormat</span>
+<span class="kn">from</span> <span class="nn">viam.proto.component.audioinput</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AudioInputServiceBase</span><span class="p">,</span>
+    <span class="n">ChunksRequest</span><span class="p">,</span>
+    <span class="n">ChunksResponse</span><span class="p">,</span>
+    <span class="n">PropertiesRequest</span><span class="p">,</span>
+    <span class="n">PropertiesResponse</span><span class="p">,</span>
+    <span class="n">RecordRequest</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">.audio_input</span> <span class="kn">import</span> <span class="n">AudioInput</span>
+
+
+<div class="viewcode-block" id="AudioInputService"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_input/service/index.html#viam.components.audio_input.service.AudioInputService">[docs]</a><span class="k">class</span> <span class="nc">AudioInputService</span><span class="p">(</span><span class="n">AudioInputServiceBase</span><span class="p">,</span> <span class="n">ComponentServiceBase</span><span class="p">[</span><span class="n">AudioInput</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    gRPC Service for a generic AudioInput</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">AudioInput</span>
+
+<div class="viewcode-block" id="AudioInputService.Chunks"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_input/service/index.html#viam.components.audio_input.service.AudioInputService.Chunks">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Chunks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ChunksRequest</span><span class="p">,</span> <span class="n">ChunksResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">audio_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
+
+        <span class="n">audio_stream</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_input</span><span class="o">.</span><span class="n">stream</span><span class="p">()</span>
+        <span class="n">first_chunk</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_stream</span><span class="o">.</span><span class="fm">__anext__</span><span class="p">()</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">ChunksResponse</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">first_chunk</span><span class="o">.</span><span class="n">info</span><span class="p">))</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">ChunksResponse</span><span class="p">(</span><span class="n">chunk</span><span class="o">=</span><span class="n">first_chunk</span><span class="o">.</span><span class="n">chunk</span><span class="p">))</span>
+
+        <span class="k">async</span> <span class="k">for</span> <span class="n">audio</span> <span class="ow">in</span> <span class="n">audio_stream</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">ChunksResponse</span><span class="p">(</span><span class="n">chunk</span><span class="o">=</span><span class="n">audio</span><span class="o">.</span><span class="n">chunk</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="AudioInputService.Properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_input/service/index.html#viam.components.audio_input.service.AudioInputService.Properties">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">PropertiesRequest</span><span class="p">,</span> <span class="n">PropertiesResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">audio_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="p">(</span><span class="k">await</span> <span class="n">audio_input</span><span class="o">.</span><span class="n">get_properties</span><span class="p">())</span><span class="o">.</span><span class="n">proto</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AudioInputService.Record"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_input/service/index.html#viam.components.audio_input.service.AudioInputService.Record">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">RecordRequest</span><span class="p">,</span> <span class="n">HttpBody</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="s2">&quot;Recording audio input is not supported&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grpc_error</span>
+
+        <span class="c1"># TODO: Eventually implement recording</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">duration</span><span class="o">.</span><span class="n">ToTimedelta</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">duration</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">duration</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;Can only record up to 5 seconds&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">audio_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
+        <span class="n">audio_stream</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_input</span><span class="o">.</span><span class="n">stream</span><span class="p">()</span>
+        <span class="n">first_chunk</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_stream</span><span class="o">.</span><span class="fm">__anext__</span><span class="p">()</span>
+        <span class="n">num_chunks</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">duration</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">first_chunk</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">sampling_rate</span> <span class="o">/</span> <span class="n">first_chunk</span><span class="o">.</span><span class="n">chunk</span><span class="o">.</span><span class="n">length</span><span class="p">))</span>
+
+        <span class="n">sample_width</span><span class="p">:</span> <span class="nb">int</span>
+        <span class="k">if</span> <span class="n">first_chunk</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">sample_format</span> <span class="o">==</span> <span class="n">SampleFormat</span><span class="o">.</span><span class="n">SAMPLE_FORMAT_INT16_INTERLEAVED</span><span class="p">:</span>
+            <span class="n">sample_width</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">first_chunk</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">sample_format</span> <span class="o">==</span> <span class="n">SampleFormat</span><span class="o">.</span><span class="n">SAMPLE_FORMAT_FLOAT32_INTERLEAVED</span><span class="p">:</span>
+            <span class="n">sample_width</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span><span class="p">,</span> <span class="s2">&quot;Unspecified type of audio buffer&quot;</span><span class="p">)</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+        <span class="n">wav_file</span> <span class="o">=</span> <span class="n">wave</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+        <span class="n">wav_file</span><span class="o">.</span><span class="n">setnchannels</span><span class="p">(</span><span class="n">first_chunk</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span>
+        <span class="n">wav_file</span><span class="o">.</span><span class="n">setframerate</span><span class="p">(</span><span class="n">first_chunk</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">sampling_rate</span><span class="p">)</span>
+        <span class="n">wav_file</span><span class="o">.</span><span class="n">setsampwidth</span><span class="p">(</span><span class="n">sample_width</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">wav_file</span><span class="o">.</span><span class="n">writeframes</span><span class="p">(</span><span class="n">first_chunk</span><span class="o">.</span><span class="n">chunk</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_chunks</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">chunk</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_stream</span><span class="o">.</span><span class="fm">__anext__</span><span class="p">()</span>
+                <span class="n">wav_file</span><span class="o">.</span><span class="n">writeframes</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">chunk</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">wav_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">output</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">HttpBody</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">output</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">content_type</span><span class="o">=</span><span class="s2">&quot;audio/wav&quot;</span><span class="p">)</span>
+
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

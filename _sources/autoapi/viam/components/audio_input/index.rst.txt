@@ -1,0 +1,104 @@
+:py:mod:`viam.components.audio_input`
+=====================================
+
+.. py:module:: viam.components.audio_input
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   audio_input/index.rst
+   client/index.rst
+   service/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.audio_input.AudioInput
+
+
+
+
+.. py:class:: AudioInput(name: str)
+
+
+
+   Base component.
+   All components must inherit from this class.
+
+   .. py:class:: Properties
+
+      .. py:attribute:: channel_count
+         :annotation: :int
+
+         
+
+      .. py:attribute:: latency
+         :annotation: :datetime.timedelta
+
+         
+
+      .. py:attribute:: sample_rate
+         :annotation: :int
+
+         
+
+      .. py:attribute:: sample_size
+         :annotation: :int
+
+         
+
+      .. py:attribute:: is_big_endian
+         :annotation: :bool
+
+         
+
+      .. py:attribute:: is_float
+         :annotation: :bool
+
+         
+
+      .. py:attribute:: is_interleaved
+         :annotation: :bool
+
+         
+
+      .. py:method:: proto() -> viam.proto.component.audioinput.PropertiesResponse
+         :property:
+
+
+      .. py:method:: from_proto(proto: viam.proto.component.audioinput.PropertiesResponse) -> typing_extensions.Self
+         :classmethod:
+
+
+
+   .. py:method:: stream() -> viam.media.audio.AudioStream
+      :abstractmethod:
+      :async:
+
+      Stream audio samples from the audio input of the underlying robot
+
+      :returns: The stream of audio chunks
+      :rtype: MediaStream[Audio]
+
+
+   .. py:method:: get_properties() -> Properties
+      :abstractmethod:
+      :async:
+
+      Get the properties of the audio input of the underlying robot
+
+      :returns: The audio input properties
+      :rtype: Properties
+
+
+

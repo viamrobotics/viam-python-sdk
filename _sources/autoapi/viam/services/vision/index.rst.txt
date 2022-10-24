@@ -146,7 +146,7 @@ Classes
       :rtype: List[Detection]
 
 
-   .. py:method:: get_detections(image: PIL.Image.Image, detector_name: str) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections(image: Union[PIL.Image.Image, viam.media.video.RawImage], detector_name: str) -> List[viam.proto.service.vision.Detection]
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -205,7 +205,7 @@ Classes
       :rtype: List[Classification]
 
 
-   .. py:method:: get_classifications(image: PIL.Image.Image, classifier_name: str) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications(image: Union[PIL.Image.Image, viam.media.video.RawImage], classifier_name: str) -> List[viam.proto.service.vision.Classification]
       :async:
 
       Get a list of detections in the given image using the specified detector

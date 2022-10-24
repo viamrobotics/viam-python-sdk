@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>viam.components.types &mdash; Viam Python SDK  documentation</title>
+  <title>viam.media.video &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/mystnb.css" type="text/css" />
@@ -75,7 +75,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      <li>viam.components.types</li>
+      <li>viam.media.video</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -84,7 +84,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for viam.components.types</h1><div class="highlight"><pre>
+  <h1>Source code for viam.media.video</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Union</span>
@@ -92,7 +92,7 @@
 <span class="kn">from</span> <span class="nn">PIL.Image</span> <span class="kn">import</span> <span class="n">Image</span>
 
 
-<div class="viewcode-block" id="RawImage"><a class="viewcode-back" href="../../../autoapi/viam/components/types/index.html#viam.components.types.RawImage">[docs]</a><span class="k">class</span> <span class="nc">RawImage</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+<div class="viewcode-block" id="RawImage"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage">[docs]</a><span class="k">class</span> <span class="nc">RawImage</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A raw bytes representation of an image.</span>
 
 <span class="sd">    When requesting `CameraMimeType.RAW` or if the camera returns a mime type that is not supported,</span>
@@ -111,18 +111,18 @@
     <span class="n">height</span><span class="p">:</span> <span class="nb">int</span>
     <span class="sd">&quot;&quot;&quot;The height of the image&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="RawImage.close"><a class="viewcode-back" href="../../../autoapi/viam/components/types/index.html#viam.components.types.RawImage.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="RawImage.close"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Close the image and release resources. For RawImage, this is a noop.&quot;&quot;&quot;</span>
         <span class="k">return</span></div></div>
 
 
-<div class="viewcode-block" id="CameraMimeType"><a class="viewcode-back" href="../../../autoapi/viam/components/types/index.html#viam.components.types.CameraMimeType">[docs]</a><span class="k">class</span> <span class="nc">CameraMimeType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
+<div class="viewcode-block" id="CameraMimeType"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType">[docs]</a><span class="k">class</span> <span class="nc">CameraMimeType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
     <span class="n">RAW</span> <span class="o">=</span> <span class="s2">&quot;image/vnd.viam.rgba&quot;</span>
     <span class="n">JPEG</span> <span class="o">=</span> <span class="s2">&quot;image/jpeg&quot;</span>
     <span class="n">PNG</span> <span class="o">=</span> <span class="s2">&quot;image/png&quot;</span>
     <span class="n">PCD</span> <span class="o">=</span> <span class="s2">&quot;pointcloud/pcd&quot;</span>
 
-<div class="viewcode-block" id="CameraMimeType.encode_image"><a class="viewcode-back" href="../../../autoapi/viam/components/types/index.html#viam.components.types.CameraMimeType.encode_image">[docs]</a>    <span class="k">def</span> <span class="nf">encode_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<div class="viewcode-block" id="CameraMimeType.encode_image"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.encode_image">[docs]</a>    <span class="k">def</span> <span class="nf">encode_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">data</span>
         <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">:</span>
@@ -136,7 +136,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot encode image to </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="CameraMimeType.is_supported"><a class="viewcode-back" href="../../../autoapi/viam/components/types/index.html#viam.components.types.CameraMimeType.is_supported">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="CameraMimeType.is_supported"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.is_supported">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">is_supported</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Check if the provided mime_type is supported</span>
 

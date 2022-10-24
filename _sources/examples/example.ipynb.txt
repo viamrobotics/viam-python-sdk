@@ -124,7 +124,7 @@
    ],
    "source": [
     "from viam.components.camera import Camera\n",
-    "from viam.components.types import CameraMimeType\n",
+    "from viam.media.video import CameraMimeType\n",
     "\n",
     "robot = await connect_with_channel()\n",
     "camera = Camera.from_robot(robot, \"camera0\")\n",

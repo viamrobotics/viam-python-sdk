@@ -1,0 +1,58 @@
+:py:mod:`viam.components.audio_input.client`
+============================================
+
+.. py:module:: viam.components.audio_input.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.audio_input.client.AudioInputClient
+
+
+
+
+.. py:class:: AudioInputClient(name: str, channel: grpclib.client.Channel)
+
+
+
+   gRPC client for the AudioInput component.
+
+   .. py:method:: stream() -> viam.media.MediaStream[viam.media.audio.Audio]
+      :async:
+
+      Stream audio samples from the audio input of the underlying robot
+
+      :returns: The stream of audio chunks
+      :rtype: MediaStream[Audio]
+
+
+   .. py:method:: get_properties() -> viam.components.audio_input.audio_input.AudioInput.Properties
+      :async:
+
+      Get the properties of the audio input of the underlying robot
+
+      :returns: The audio input properties
+      :rtype: Properties
+
+
+   .. py:method:: do_command(command: Dict[str, Any]) -> Dict[str, Any]
+      :async:
+
+      Send/Receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, Any]
+
+      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, Any]
+
+
+

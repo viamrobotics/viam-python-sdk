@@ -1,0 +1,102 @@
+:py:mod:`viam.media`
+====================
+
+.. py:module:: viam.media
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   audio/index.rst
+   media/index.rst
+   video/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.media.MediaReader
+   viam.media.MediaSource
+   viam.media.MediaStream
+   viam.media.MediaStreamWithIterator
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.media.MediaType
+
+
+.. py:class:: MediaReader
+
+
+
+   .. py:method:: read() -> MediaType
+
+
+
+.. py:class:: MediaSource
+
+
+
+   .. py:method:: stream() -> MediaStream[MediaType]
+
+
+
+.. py:class:: MediaStream
+
+
+
+   .. py:method:: next() -> MediaType
+      :async:
+
+
+   .. py:method:: close()
+      :async:
+
+
+   .. py:method:: __aiter__()
+
+
+   .. py:method:: __anext__() -> MediaType
+      :async:
+
+
+
+.. py:class:: MediaStreamWithIterator(stream: collections.abc.AsyncIterator[MediaType])
+
+
+
+   .. py:method:: next() -> MediaType
+      :async:
+
+
+   .. py:method:: __aiter__()
+
+
+   .. py:method:: __anext__() -> MediaType
+      :async:
+
+
+   .. py:method:: close()
+      :async:
+
+
+
+.. py:data:: MediaType
+   
+
+   
+

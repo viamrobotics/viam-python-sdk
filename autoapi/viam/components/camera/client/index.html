@@ -59,6 +59,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../../arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../audio_input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a><ul class="current">
@@ -162,7 +163,7 @@
 <dd><p>gRPC client for the Camera component</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.camera.client.CameraClient.get_image">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CameraMimeType.PNG</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../types/index.html#viam.components.types.RawImage" title="viam.components.types.RawImage"><span class="pre">viam.components.types.RawImage</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/client.html#CameraClient.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.client.CameraClient.get_image" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CameraMimeType.PNG</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../media/video/index.html#viam.media.video.RawImage" title="viam.media.video.RawImage"><span class="pre">viam.media.video.RawImage</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/camera/client.html#CameraClient.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.client.CameraClient.get_image" title="Permalink to this definition"></a></dt>
 <dd><p>Get the next image from the camera as an Image or RawImage.
 Be sure to close the image when finished.</p>
 <dl class="field-list simple">
@@ -173,7 +174,7 @@ Be sure to close the image when finished.</p>
 <dd class="field-even"><p>The frame</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Image | <a class="reference internal" href="../../types/index.html#viam.components.types.RawImage" title="viam.components.types.RawImage">RawImage</a></p>
+<dd class="field-odd"><p>Image | <a class="reference internal" href="../index.html#viam.components.camera.RawImage" title="viam.components.camera.RawImage">RawImage</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -206,7 +207,7 @@ str: The mimetype of the pointcloud (e.g. PCD).</p>
 <dd class="field-odd"><p>The properties of the camera</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="../camera/index.html#viam.components.camera.camera.Camera.Properties" title="viam.components.camera.camera.Camera.Properties">Properties</a></p>
+<dd class="field-even"><p><a class="reference internal" href="../../audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.Properties" title="viam.components.audio_input.audio_input.AudioInput.Properties">Properties</a></p>
 </dd>
 </dl>
 </dd></dl>

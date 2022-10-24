@@ -1,0 +1,43 @@
+:py:mod:`viam.components.audio_input.service`
+=============================================
+
+.. py:module:: viam.components.audio_input.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.audio_input.service.AudioInputService
+
+
+
+
+.. py:class:: AudioInputService(manager: viam.components.resource_manager.ResourceManager)
+
+
+
+   gRPC Service for a generic AudioInput
+
+   .. py:attribute:: RESOURCE_TYPE
+      
+
+      
+
+   .. py:method:: Chunks(stream: grpclib.server.Stream[viam.proto.component.audioinput.ChunksRequest, viam.proto.component.audioinput.ChunksResponse]) -> None
+      :async:
+
+
+   .. py:method:: Properties(stream: grpclib.server.Stream[viam.proto.component.audioinput.PropertiesRequest, viam.proto.component.audioinput.PropertiesResponse]) -> None
+      :async:
+
+
+   .. py:method:: Record(stream: grpclib.server.Stream[viam.proto.component.audioinput.RecordRequest, google.api.httpbody_pb2.HttpBody]) -> None
+      :async:
+
+
+

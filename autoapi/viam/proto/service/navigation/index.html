@@ -117,6 +117,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsResponse.waypoints"><code class="docutils literal notranslate"><span class="pre">GetWaypointsResponse.waypoints()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.Mode"><code class="docutils literal notranslate"><span class="pre">Mode</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest.name"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest.id"><code class="docutils literal notranslate"><span class="pre">RemoveWaypointRequest.id</span></code></a></li>
@@ -178,6 +179,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsResponse.waypoints">waypoints</a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.Mode">Mode</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest">RemoveWaypointRequest</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest.id">id</a></li>
@@ -287,19 +289,22 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsResponse" title="viam.proto.service.navigation.GetWaypointsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWaypointsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest" title="viam.proto.service.navigation.RemoveWaypointRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Mode" title="viam.proto.service.navigation.Mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mode</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest" title="viam.proto.service.navigation.RemoveWaypointRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointResponse" title="viam.proto.service.navigation.RemoveWaypointResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointResponse" title="viam.proto.service.navigation.RemoveWaypointResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.SetModeRequest" title="viam.proto.service.navigation.SetModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.SetModeRequest" title="viam.proto.service.navigation.SetModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.SetModeResponse" title="viam.proto.service.navigation.SetModeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.SetModeResponse" title="viam.proto.service.navigation.SetModeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Waypoint" title="viam.proto.service.navigation.Waypoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Waypoint</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Waypoint" title="viam.proto.service.navigation.Waypoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Waypoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -508,6 +513,11 @@ shown below.</p>
 <dd></dd></dl>
 
 </dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.Mode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.navigation.</span></span><span class="sig-name descname"><span class="pre">Mode</span></span><a class="headerlink" href="#viam.proto.service.navigation.Mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.navigation.RemoveWaypointRequest">

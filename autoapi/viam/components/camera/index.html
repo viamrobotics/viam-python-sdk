@@ -59,6 +59,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../audio_input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a><ul>
@@ -87,6 +88,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.DistortionParameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.model"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.model</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.parameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.parameters()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.width_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.width_px</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.height_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.height_px</span></code></a></li>
@@ -96,9 +102,12 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.center_y_px"><code class="docutils literal notranslate"><span class="pre">IntrinsicParameters.center_y_px</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.DistortionParameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.model"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.model</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.parameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.parameters()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.RawImage"><code class="docutils literal notranslate"><span class="pre">RawImage</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.data"><code class="docutils literal notranslate"><span class="pre">RawImage.data</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.mime_type"><code class="docutils literal notranslate"><span class="pre">RawImage.mime_type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.width"><code class="docutils literal notranslate"><span class="pre">RawImage.width</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.height"><code class="docutils literal notranslate"><span class="pre">RawImage.height</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.close"><code class="docutils literal notranslate"><span class="pre">RawImage.close()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Camera">Camera</a><ul>
@@ -106,6 +115,11 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_image">get_image</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_point_cloud">get_point_cloud</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_properties">get_properties</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.DistortionParameters">DistortionParameters</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.model">model</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.parameters">parameters</a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters">IntrinsicParameters</a><ul>
@@ -117,9 +131,12 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.IntrinsicParameters.center_y_px">center_y_px</a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.DistortionParameters">DistortionParameters</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.model">model</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.parameters">parameters</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.RawImage">RawImage</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.data">data</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.mime_type">mime_type</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.width">width</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.height">height</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.close">close</a></li>
 </ul>
 </li>
 </ul>
@@ -198,11 +215,14 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.Camera" title="viam.components.camera.Camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Camera</span></code></a></p></td>
 <td><p>Camera represents any physical hardware that can capture frames.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.IntrinsicParameters" title="viam.components.camera.IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.DistortionParameters" title="viam.components.camera.DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.DistortionParameters" title="viam.components.camera.DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.IntrinsicParameters" title="viam.components.camera.IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.RawImage" title="viam.components.camera.RawImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RawImage</span></code></a></p></td>
+<td><p>A raw bytes representation of an image.</p></td>
 </tr>
 </tbody>
 </table>
@@ -239,7 +259,7 @@ overridden, it must call the <cite>super().__init__()</cite> function.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.camera.Camera.get_image">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CameraMimeType.PNG</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../types/index.html#viam.components.types.RawImage" title="viam.components.types.RawImage"><span class="pre">viam.components.types.RawImage</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/camera.html#Camera.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.Camera.get_image" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CameraMimeType.PNG</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../media/video/index.html#viam.media.video.RawImage" title="viam.media.video.RawImage"><span class="pre">viam.media.video.RawImage</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/camera.html#Camera.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.Camera.get_image" title="Permalink to this definition"></a></dt>
 <dd><p>Get the next image from the camera as an Image or RawImage.
 Be sure to close the image when finished.</p>
 <dl class="field-list simple">
@@ -250,7 +270,7 @@ Be sure to close the image when finished.</p>
 <dd class="field-even"><p>The frame</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Image | <a class="reference internal" href="../types/index.html#viam.components.types.RawImage" title="viam.components.types.RawImage">RawImage</a></p>
+<dd class="field-odd"><p>Image | <a class="reference internal" href="#viam.components.camera.RawImage" title="viam.components.camera.RawImage">RawImage</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -287,6 +307,25 @@ str: The mimetype of the pointcloud (e.g. PCD).</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.camera.</span></span><span class="sig-name descname"><span class="pre">DistortionParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.camera.DistortionParameters" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.components.camera.DistortionParameters.model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters.parameters">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.camera.DistortionParameters.parameters" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -330,21 +369,40 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.camera.</span></span><span class="sig-name descname"><span class="pre">DistortionParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.camera.DistortionParameters" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<dt class="sig sig-object py" id="viam.components.camera.RawImage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.camera.</span></span><span class="sig-name descname"><span class="pre">RawImage</span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#RawImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.RawImage" title="Permalink to this definition"></a></dt>
+<dd><p>A raw bytes representation of an image.</p>
+<p>When requesting <cite>CameraMimeType.RAW</cite> or if the camera returns a mime type that is not supported,
+the returned type will be this RawImage type.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters.model">
-<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.components.camera.DistortionParameters.model" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="viam.components.camera.RawImage.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.components.camera.RawImage.data" title="Permalink to this definition"></a></dt>
+<dd><p>The raw data of the image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.RawImage.mime_type">
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.components.camera.RawImage.mime_type" title="Permalink to this definition"></a></dt>
+<dd><p>The mimetype of the image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.RawImage.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.components.camera.RawImage.width" title="Permalink to this definition"></a></dt>
+<dd><p>The width of the image</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.RawImage.height">
+<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.components.camera.RawImage.height" title="Permalink to this definition"></a></dt>
+<dd><p>The height of the image</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.components.camera.DistortionParameters.parameters">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.camera.DistortionParameters.parameters" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="viam.components.camera.RawImage.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/video.html#RawImage.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.RawImage.close" title="Permalink to this definition"></a></dt>
+<dd><p>Close the image and release resources. For RawImage, this is a noop.</p>
+</dd></dl>
 
 </dd></dl>
 
