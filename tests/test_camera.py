@@ -9,7 +9,7 @@ from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.components.types import CameraMimeType, RawImage
+from viam.media.video import CameraMimeType, RawImage
 from viam.proto.component.camera import (
     CameraServiceStub,
     DistortionParameters,

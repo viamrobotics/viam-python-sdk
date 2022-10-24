@@ -1,6 +1,10 @@
 import asyncio
+import math
 import random
 import struct
+import sys
+from collections.abc import AsyncIterator
+from datetime import timedelta
 from multiprocessing import Lock, Queue
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
@@ -8,6 +12,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from PIL import Image
 
 from viam.components.arm import Arm
+from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
@@ -20,8 +25,11 @@ from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
-from viam.components.types import CameraMimeType
 from viam.errors import ComponentNotFoundError
+from viam.media import MediaStreamWithIterator
+from viam.media.audio import Audio, AudioStream
+from viam.media.video import CameraMimeType
+from viam.operations import run_with_operation
 from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
@@ -34,6 +42,7 @@ from viam.proto.common import (
     WorldState,
 )
 from viam.proto.component.arm import JointPositions
+from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 
 
 class ExampleArm(Arm):
@@ -76,6 +85,69 @@ class ExampleArm(Arm):
 
     async def is_moving(self):
         return not self.is_stopped
+
+
+class ExampleAudioInput(AudioInput):
+    def __init__(self, name: str):
+        super().__init__(name)
+        self.latency = timedelta(milliseconds=20)
+        self.sample_rate = 48_000
+        self.channel_count = 1
+        self.step = 0
+        self.timer = asyncio.get_event_loop().call_later(self.latency.total_seconds(), self.run_task)
+
+    def run_task(self):
+        self.step += 1
+        self.timer = asyncio.get_event_loop().call_later(self.latency.total_seconds(), self.run_task)
+
+    def __del__(self):
+        self.timer.cancel()
+
+    @run_with_operation
+    async def stream(self, **kwargs) -> AudioStream:
+        """Generate and stream a sine wave at 440Hz"""
+        operation = self.get_operation(kwargs)
+
+        length = self.sample_rate * self.latency.total_seconds()  # the length of the sample
+        num_chunks = self.sample_rate / length  # the number of chunks needed
+        angle = math.pi * 2 / (length * num_chunks)
+
+        async def read() -> AsyncIterator[Audio]:
+            while True:
+                if await operation.is_cancelled():
+                    break
+                output = bytes()
+                step = int(self.step % num_chunks)  # current location on the sine wave
+                for i in range(int(length)):
+                    value = float(10) * math.sin(angle * 440 * (float(length * step) + i))  # calculate the value at the current location
+                    output += bytes(struct.pack("f", value))
+
+                yield Audio(
+                    AudioChunkInfo(
+                        sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
+                        channels=self.channel_count,
+                        sampling_rate=self.sample_rate,
+                    ),
+                    AudioChunk(
+                        data=output,
+                        length=int(length),
+                    ),
+                )
+
+                await asyncio.sleep(self.latency.total_seconds())
+
+        return MediaStreamWithIterator(read())
+
+    async def get_properties(self) -> AudioInput.Properties:
+        return AudioInput.Properties(
+            channel_count=self.channel_count,
+            latency=self.latency,
+            sample_rate=self.sample_rate,
+            sample_size=4,
+            is_big_endian=sys.byteorder != "little",
+            is_float=True,
+            is_interleaved=True,
+        )
 
 
 class ExampleBase(Base):
@@ -237,6 +309,9 @@ class ExampleCamera(Camera):
         p = Path(__file__)
         self.image = Image.open(p.parent.absolute().joinpath("viam.webp"))
         super().__init__(name)
+
+    def __del__(self):
+        self.image.close()
 
     async def get_image(self, mime_type: str = CameraMimeType.PNG, **kwargs) -> Image.Image:
         return self.image.copy()

@@ -1,3 +1,4 @@
+from collections.abc import AsyncIterator
 from dataclasses import dataclass
 from multiprocessing import Queue
 from secrets import choice
@@ -6,10 +7,11 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from PIL import Image
 
 from viam.components.arm import Arm, JointPositions
+from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
-from viam.components.camera import Camera, IntrinsicParameters, DistortionParameters
+from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
 from viam.components.gantry import Gantry
 from viam.components.generic import Generic as GenericComponent
 from viam.components.gripper import Gripper
@@ -19,8 +21,10 @@ from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
-from viam.components.types import CameraMimeType, RawImage
 from viam.errors import ComponentNotFoundError
+from viam.media import MediaStreamWithIterator
+from viam.media.audio import Audio, AudioStream
+from viam.media.video import CameraMimeType, RawImage
 from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
@@ -32,6 +36,7 @@ from viam.proto.common import (
     Vector3,
     WorldState,
 )
+from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 
 
 class MockArm(Arm):
@@ -76,6 +81,29 @@ class MockArm(Arm):
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
+
+
+class MockAudioInput(AudioInput):
+    def __init__(self, name: str, properties: AudioInput.Properties):
+        super().__init__(name)
+        self.properties = properties
+
+    async def stream(self, **kwargs) -> AudioStream:
+        async def read() -> AsyncIterator[Audio]:
+            for i in range(10):
+                yield Audio(
+                    AudioChunkInfo(
+                        sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED,
+                        channels=self.properties.channel_count,
+                        sampling_rate=self.properties.sample_rate,
+                    ),
+                    AudioChunk(data=f"{i}".encode("utf-8"), length=182),
+                )
+
+        return MediaStreamWithIterator(read())
+
+    async def get_properties(self) -> AudioInput.Properties:
+        return self.properties
 
 
 class MockBase(Base):

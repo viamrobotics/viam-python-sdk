@@ -8,6 +8,8 @@ import sys
 from pathlib import Path
 from typing import Dict, List
 
+from google.protobuf.internal.enum_type_wrapper import EnumTypeWrapper
+
 from viam import logging
 
 PACKAGE_PATH = Path(__file__).parent.parent
@@ -109,12 +111,15 @@ def build_dirs(root: str, package: str, modules: List[str]):
         # but `import *` is discouraged
         classes = {}
 
+        def check_class(obj) -> bool:
+            return inspect.isclass(obj) or isinstance(obj, EnumTypeWrapper)
+
         for imp in imports:
             LOGGER.debug(f"\t\tGrabbing classes from {imp}")
             class_names = []
             mod_name = f"viam.{PROTO_GEN_PACKAGE}.{package}.{imp}"
             module = importlib.import_module(mod_name)
-            for name, _ in inspect.getmembers(module, inspect.isclass):
+            for name, _ in inspect.getmembers(module, check_class):
                 class_names.append(name)
 
             if class_names:

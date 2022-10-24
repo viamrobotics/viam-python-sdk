@@ -1,6 +1,6 @@
 from viam.registry import ComponentRegistration, Registry
 
-from .camera import Camera, IntrinsicParameters, DistortionParameters
+from .camera import Camera, DistortionParameters, IntrinsicParameters, RawImage
 from .client import CameraClient
 from .service import CameraService
 
@@ -8,6 +8,7 @@ __all__ = [
     "Camera",
     "IntrinsicParameters",
     "DistortionParameters",
+    "RawImage",
 ]
 
 Registry.register(
