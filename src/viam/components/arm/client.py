@@ -31,11 +31,11 @@ class ArmClient(Arm):
         self.client = ArmServiceStub(channel)
         super().__init__(name)
 
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None) -> Pose:
+    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None) -> Pose:
         if extra is None:
             extra = {}
         request = GetEndPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetEndPositionResponse = await self.client.GetEndPosition(request)
+        response: GetEndPositionResponse = await self.client.GetEndPosition(request, timeout=timeout)
         return response.pose
 
     async def move_to_position(

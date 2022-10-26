@@ -50,7 +50,7 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
             )
 
     @abc.abstractmethod
-    async def stream(self) -> AudioStream:
+    async def stream(self, **kwargs) -> AudioStream:
         """Stream audio samples from the audio input of the underlying robot
 
         Returns:
@@ -59,7 +59,7 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self) -> Properties:
+    async def get_properties(self, **kwargs) -> Properties:
         """Get the properties of the audio input of the underlying robot
 
         Returns:

@@ -23,7 +23,7 @@ async def client():
         print("\n#### ARM ####")
         arm = Arm.from_robot(robot, "arm0")
         await arm.move_to_position(Pose(x=0, y=1, z=2, o_x=3, o_y=4, o_z=5, theta=6))
-        position = await arm.get_end_position()
+        position = await asyncio.wait_for(arm.get_end_position(), 1)
         print(f"Arm position is: {position}")
 
         print("\n#### BASE ####")
