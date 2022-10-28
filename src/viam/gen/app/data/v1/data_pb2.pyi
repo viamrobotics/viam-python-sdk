@@ -271,7 +271,7 @@ class BinaryData(google.protobuf.message.Message):
 global___BinaryData = BinaryData
 
 class BinaryDataByFilterRequest(google.protobuf.message.Message):
-    """BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when by filter"""
+    """BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_REQUEST_FIELD_NUMBER: builtins.int
     INCLUDE_BINARY_FIELD_NUMBER: builtins.int
@@ -383,3 +383,96 @@ class BinaryMetadata(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['capture_metadata', b'capture_metadata', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
         ...
 global___BinaryMetadata = BinaryMetadata
+
+class DeleteTabularDataByFilterRequest(google.protobuf.message.Message):
+    """DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FILTER_FIELD_NUMBER: builtins.int
+
+    @property
+    def filter(self) -> global___Filter:
+        ...
+
+    def __init__(self, *, filter: global___Filter | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> None:
+        ...
+global___DeleteTabularDataByFilterRequest = DeleteTabularDataByFilterRequest
+
+class DeleteTabularDataByFilterResponse(google.protobuf.message.Message):
+    """DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DELETED_COUNT_FIELD_NUMBER: builtins.int
+    deleted_count: builtins.int
+
+    def __init__(self, *, deleted_count: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
+        ...
+global___DeleteTabularDataByFilterResponse = DeleteTabularDataByFilterResponse
+
+class DeleteBinaryDataByFilterRequest(google.protobuf.message.Message):
+    """DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FILTER_FIELD_NUMBER: builtins.int
+
+    @property
+    def filter(self) -> global___Filter:
+        ...
+
+    def __init__(self, *, filter: global___Filter | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> None:
+        ...
+global___DeleteBinaryDataByFilterRequest = DeleteBinaryDataByFilterRequest
+
+class DeleteBinaryDataByFilterResponse(google.protobuf.message.Message):
+    """DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DELETED_COUNT_FIELD_NUMBER: builtins.int
+    deleted_count: builtins.int
+
+    def __init__(self, *, deleted_count: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
+        ...
+global___DeleteBinaryDataByFilterResponse = DeleteBinaryDataByFilterResponse
+
+class DeleteBinaryDataByIDsRequest(google.protobuf.message.Message):
+    """DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FILE_IDS_FIELD_NUMBER: builtins.int
+
+    @property
+    def file_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, file_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['file_ids', b'file_ids']) -> None:
+        ...
+global___DeleteBinaryDataByIDsRequest = DeleteBinaryDataByIDsRequest
+
+class DeleteBinaryDataByIDsResponse(google.protobuf.message.Message):
+    """DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DELETED_COUNT_FIELD_NUMBER: builtins.int
+    deleted_count: builtins.int
+
+    def __init__(self, *, deleted_count: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
+        ...
+global___DeleteBinaryDataByIDsResponse = DeleteBinaryDataByIDsResponse

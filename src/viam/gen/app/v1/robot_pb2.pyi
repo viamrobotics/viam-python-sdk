@@ -103,6 +103,22 @@ class RobotConfig(google.protobuf.message.Message):
         ...
 global___RobotConfig = RobotConfig
 
+class LocationSecret(google.protobuf.message.Message):
+    """Valid location secret that can be used for authentication to the robot."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    SECRET_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    secret: builtins.str
+    'secret payload'
+
+    def __init__(self, *, id: builtins.str=..., secret: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'secret', b'secret']) -> None:
+        ...
+global___LocationSecret = LocationSecret
+
 class CloudConfig(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -113,6 +129,7 @@ class CloudConfig(google.protobuf.message.Message):
     SIGNALING_INSECURE_FIELD_NUMBER: builtins.int
     LOCATION_SECRET_FIELD_NUMBER: builtins.int
     SECRET_FIELD_NUMBER: builtins.int
+    LOCATION_SECRETS_FIELD_NUMBER: builtins.int
     id: builtins.str
     'Robot part id.'
     fqdn: builtins.str
@@ -121,12 +138,18 @@ class CloudConfig(google.protobuf.message.Message):
     signaling_address: builtins.str
     signaling_insecure: builtins.bool
     location_secret: builtins.str
+    'Deprecated use location_secrets'
     secret: builtins.str
+    'Robot part secret'
 
-    def __init__(self, *, id: builtins.str=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., managed_by: builtins.str=..., signaling_address: builtins.str=..., signaling_insecure: builtins.bool=..., location_secret: builtins.str=..., secret: builtins.str=...) -> None:
+    @property
+    def location_secrets(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LocationSecret]:
+        """All valid location secrets."""
+
+    def __init__(self, *, id: builtins.str=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., managed_by: builtins.str=..., signaling_address: builtins.str=..., signaling_insecure: builtins.bool=..., location_secret: builtins.str=..., secret: builtins.str=..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fqdn', b'fqdn', 'id', b'id', 'local_fqdn', b'local_fqdn', 'location_secret', b'location_secret', 'managed_by', b'managed_by', 'secret', b'secret', 'signaling_address', b'signaling_address', 'signaling_insecure', b'signaling_insecure']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['fqdn', b'fqdn', 'id', b'id', 'local_fqdn', b'local_fqdn', 'location_secret', b'location_secret', 'location_secrets', b'location_secrets', 'managed_by', b'managed_by', 'secret', b'secret', 'signaling_address', b'signaling_address', 'signaling_insecure', b'signaling_insecure']) -> None:
         ...
 global___CloudConfig = CloudConfig
 
@@ -224,6 +247,8 @@ class ServiceConfig(google.protobuf.message.Message):
     NAMESPACE_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
+    DEPENDS_ON_FIELD_NUMBER: builtins.int
+    MODEL_FIELD_NUMBER: builtins.int
     name: builtins.str
     namespace: builtins.str
     type: builtins.str
@@ -232,13 +257,18 @@ class ServiceConfig(google.protobuf.message.Message):
     def attributes(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., attributes: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def depends_on(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+    model: builtins.str
+
+    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., attributes: google.protobuf.struct_pb2.Struct | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., model: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'name', b'name', 'namespace', b'namespace', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'depends_on', b'depends_on', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'type', b'type']) -> None:
         ...
 global___ServiceConfig = ServiceConfig
 

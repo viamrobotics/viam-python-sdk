@@ -6,11 +6,13 @@ import builtins
 import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 import sys
-if sys.version_info >= (3, 8):
+import typing
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
@@ -60,6 +62,7 @@ class RobotPart(google.protobuf.message.Message):
     FQDN_FIELD_NUMBER: builtins.int
     LOCAL_FQDN_FIELD_NUMBER: builtins.int
     CREATED_ON_FIELD_NUMBER: builtins.int
+    SECRETS_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     dns_name: builtins.str
@@ -88,13 +91,17 @@ class RobotPart(google.protobuf.message.Message):
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    @property
+    def secrets(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SharedSecret]:
+        """List of secrets allowed for authentication."""
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., secrets: collections.abc.Iterable[global___SharedSecret] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'last_access', b'last_access', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'user_supplied_info', b'user_supplied_info']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']) -> None:
         ...
 global___RobotPart = RobotPart
 
@@ -218,17 +225,125 @@ class ListLocationsResponse(google.protobuf.message.Message):
         ...
 global___ListLocationsResponse = ListLocationsResponse
 
+class CreateLocationSecretRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    location_id: builtins.str
+    'Location ID to create the secret in.'
+
+    def __init__(self, *, location_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id']) -> None:
+        ...
+global___CreateLocationSecretRequest = CreateLocationSecretRequest
+
+class CreateLocationSecretResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    AUTH_FIELD_NUMBER: builtins.int
+
+    @property
+    def auth(self) -> global___LocationAuth:
+        """Location's auth after updates."""
+
+    def __init__(self, *, auth: global___LocationAuth | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['auth', b'auth']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['auth', b'auth']) -> None:
+        ...
+global___CreateLocationSecretResponse = CreateLocationSecretResponse
+
+class DeleteLocationSecretRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    SECRET_ID_FIELD_NUMBER: builtins.int
+    location_id: builtins.str
+    secret_id: builtins.str
+
+    def __init__(self, *, location_id: builtins.str=..., secret_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'secret_id', b'secret_id']) -> None:
+        ...
+global___DeleteLocationSecretRequest = DeleteLocationSecretRequest
+
+class DeleteLocationSecretResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DeleteLocationSecretResponse = DeleteLocationSecretResponse
+
 class LocationAuth(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SECRET_FIELD_NUMBER: builtins.int
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    SECRETS_FIELD_NUMBER: builtins.int
     secret: builtins.str
+    'Deprecated: use secrets field.'
+    location_id: builtins.str
+    'Location ID containing this LocationAuth.'
 
-    def __init__(self, *, secret: builtins.str=...) -> None:
+    @property
+    def secrets(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SharedSecret]:
+        """List of secrets used to authenticate to the Location."""
+
+    def __init__(self, *, secret: builtins.str=..., location_id: builtins.str=..., secrets: collections.abc.Iterable[global___SharedSecret] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['secret', b'secret']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'secret', b'secret', 'secrets', b'secrets']) -> None:
         ...
 global___LocationAuth = LocationAuth
+
+class SharedSecret(google.protobuf.message.Message):
+    """SharedSecret is a secret used for LocationAuth and RobotParts."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    class _State:
+        ValueType = typing.NewType('ValueType', builtins.int)
+        V: typing_extensions.TypeAlias = ValueType
+
+    class _StateEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[SharedSecret._State.ValueType], builtins.type):
+        DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+        STATE_UNSPECIFIED: SharedSecret._State.ValueType
+        STATE_ENABLED: SharedSecret._State.ValueType
+        'Secret is enabled and can be used in authentication.'
+        STATE_DISABLED: SharedSecret._State.ValueType
+        'Secret is disabled and must not be used to authenticate to rpc.'
+
+    class State(_State, metaclass=_StateEnumTypeWrapper):
+        ...
+    STATE_UNSPECIFIED: SharedSecret.State.ValueType
+    STATE_ENABLED: SharedSecret.State.ValueType
+    'Secret is enabled and can be used in authentication.'
+    STATE_DISABLED: SharedSecret.State.ValueType
+    'Secret is disabled and must not be used to authenticate to rpc.'
+    ID_FIELD_NUMBER: builtins.int
+    SECRET_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
+    STATE_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    secret: builtins.str
+    'The payload of the secret. Used during authentication to the rpc framework.'
+
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """Date/time the secret was first created."""
+    state: global___SharedSecret.State.ValueType
+    'State of the shared secret. In most cases it should be enabled. We may support\n    disabling a specific secret while keeping it in the database.\n    '
+
+    def __init__(self, *, id: builtins.str=..., secret: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., state: global___SharedSecret.State.ValueType=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'secret', b'secret', 'state', b'state']) -> None:
+        ...
+global___SharedSecret = SharedSecret
 
 class LocationAuthRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -712,3 +827,55 @@ class MarkPartAsMainResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___MarkPartAsMainResponse = MarkPartAsMainResponse
+
+class CreateRobotPartSecretRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PART_ID_FIELD_NUMBER: builtins.int
+    part_id: builtins.str
+    'Robot Part ID to create the secret in.'
+
+    def __init__(self, *, part_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id']) -> None:
+        ...
+global___CreateRobotPartSecretRequest = CreateRobotPartSecretRequest
+
+class CreateRobotPartSecretResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PART_FIELD_NUMBER: builtins.int
+
+    @property
+    def part(self) -> global___RobotPart:
+        """Location's auth after updates."""
+
+    def __init__(self, *, part: global___RobotPart | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['part', b'part']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['part', b'part']) -> None:
+        ...
+global___CreateRobotPartSecretResponse = CreateRobotPartSecretResponse
+
+class DeleteRobotPartSecretRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PART_ID_FIELD_NUMBER: builtins.int
+    SECRET_ID_FIELD_NUMBER: builtins.int
+    part_id: builtins.str
+    secret_id: builtins.str
+
+    def __init__(self, *, part_id: builtins.str=..., secret_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id', 'secret_id', b'secret_id']) -> None:
+        ...
+global___DeleteRobotPartSecretRequest = DeleteRobotPartSecretRequest
+
+class DeleteRobotPartSecretResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DeleteRobotPartSecretResponse = DeleteRobotPartSecretResponse

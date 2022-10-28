@@ -23,8 +23,20 @@ class DataServiceBase(abc.ABC):
     async def BinaryDataByIDs(self, stream: 'grpclib.server.Stream[app.data.v1.data_pb2.BinaryDataByIDsRequest, app.data.v1.data_pb2.BinaryDataByIDsResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def DeleteTabularDataByFilter(self, stream: 'grpclib.server.Stream[app.data.v1.data_pb2.DeleteTabularDataByFilterRequest, app.data.v1.data_pb2.DeleteTabularDataByFilterResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def DeleteBinaryDataByFilter(self, stream: 'grpclib.server.Stream[app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest, app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
+    async def DeleteBinaryDataByIDs(self, stream: 'grpclib.server.Stream[app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest, app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.app.data.v1.DataService/TabularDataByFilter': grpclib.const.Handler(self.TabularDataByFilter, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.TabularDataByFilterRequest, app.data.v1.data_pb2.TabularDataByFilterResponse), '/viam.app.data.v1.DataService/BinaryDataByFilter': grpclib.const.Handler(self.BinaryDataByFilter, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.BinaryDataByFilterRequest, app.data.v1.data_pb2.BinaryDataByFilterResponse), '/viam.app.data.v1.DataService/BinaryDataByIDs': grpclib.const.Handler(self.BinaryDataByIDs, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.BinaryDataByIDsRequest, app.data.v1.data_pb2.BinaryDataByIDsResponse)}
+        return {'/viam.app.data.v1.DataService/TabularDataByFilter': grpclib.const.Handler(self.TabularDataByFilter, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.TabularDataByFilterRequest, app.data.v1.data_pb2.TabularDataByFilterResponse), '/viam.app.data.v1.DataService/BinaryDataByFilter': grpclib.const.Handler(self.BinaryDataByFilter, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.BinaryDataByFilterRequest, app.data.v1.data_pb2.BinaryDataByFilterResponse), '/viam.app.data.v1.DataService/BinaryDataByIDs': grpclib.const.Handler(self.BinaryDataByIDs, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.BinaryDataByIDsRequest, app.data.v1.data_pb2.BinaryDataByIDsResponse), '/viam.app.data.v1.DataService/DeleteTabularDataByFilter': grpclib.const.Handler(self.DeleteTabularDataByFilter, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.DeleteTabularDataByFilterRequest, app.data.v1.data_pb2.DeleteTabularDataByFilterResponse), '/viam.app.data.v1.DataService/DeleteBinaryDataByFilter': grpclib.const.Handler(self.DeleteBinaryDataByFilter, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest, app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse), '/viam.app.data.v1.DataService/DeleteBinaryDataByIDs': grpclib.const.Handler(self.DeleteBinaryDataByIDs, grpclib.const.Cardinality.UNARY_UNARY, app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest, app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse)}
 
 class DataServiceStub:
 
@@ -32,3 +44,6 @@ class DataServiceStub:
         self.TabularDataByFilter = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.data.v1.DataService/TabularDataByFilter', app.data.v1.data_pb2.TabularDataByFilterRequest, app.data.v1.data_pb2.TabularDataByFilterResponse)
         self.BinaryDataByFilter = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.data.v1.DataService/BinaryDataByFilter', app.data.v1.data_pb2.BinaryDataByFilterRequest, app.data.v1.data_pb2.BinaryDataByFilterResponse)
         self.BinaryDataByIDs = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.data.v1.DataService/BinaryDataByIDs', app.data.v1.data_pb2.BinaryDataByIDsRequest, app.data.v1.data_pb2.BinaryDataByIDsResponse)
+        self.DeleteTabularDataByFilter = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.data.v1.DataService/DeleteTabularDataByFilter', app.data.v1.data_pb2.DeleteTabularDataByFilterRequest, app.data.v1.data_pb2.DeleteTabularDataByFilterResponse)
+        self.DeleteBinaryDataByFilter = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.data.v1.DataService/DeleteBinaryDataByFilter', app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest, app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse)
+        self.DeleteBinaryDataByIDs = grpclib.client.UnaryUnaryMethod(channel, '/viam.app.data.v1.DataService/DeleteBinaryDataByIDs', app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest, app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse)
