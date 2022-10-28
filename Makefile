@@ -15,7 +15,7 @@ format:
 
 _buf: clean
 	rm -rf src/viam/gen
-	buf generate buf.build/viamrobotics/api
+	buf generate buf.build/viamrobotics/api --path common,component,robot,service
 	buf generate buf.build/viamrobotics/goutils
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
