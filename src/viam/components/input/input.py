@@ -94,6 +94,11 @@ class Control(str, Enum):
     BUTTON_RECORD = "ButtonRecord"
     BUTTON_E_STOP = "ButtonEStop"
 
+    # Pedals
+    ABSOLUTE_PEDAL_ACCELERATOR = "AbsolutePedalAccelerator"
+    ABSOLUTE_PEDAL_BRAKE = "AbsolutePedalBrake"
+    ABSOLUTE_PEDAL_CLUTCH = "AbsolutePedalClutch"
+
 
 @dataclass
 class Event:
