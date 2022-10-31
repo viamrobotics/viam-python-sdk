@@ -35,15 +35,12 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             raise e.grpc_error
         image = await camera.get_image(request.mime_type)
         try:
-            try:
-                mimetype = CameraMimeType(request.mime_type)
-            except ValueError:
-                mimetype = CameraMimeType.RAW
-            response = GetImageResponse(
-                mime_type=image.mime_type if isinstance(image, RawImage) else mimetype,
-                width_px=image.width,
-                height_px=image.height,
-            )
+            mimetype, is_lazy = CameraMimeType.extract_from_lazy(request.mime_type)
+            if CameraMimeType.is_supported(mimetype):
+                response_mime = mimetype
+            else:
+                response_mime = request.mime_type
+            response = GetImageResponse(mime_type=response_mime)
             img_bytes = mimetype.encode_image(image)
         finally:
             image.close()

@@ -5,7 +5,7 @@ from grpclib.client import Channel
 from PIL import Image
 
 from viam.components.generic.client import do_command
-from viam.media.video import CameraMimeType, RawImage
+from viam.media.video import CameraMimeType, RawImage, LIBRARY_SUPPORTED_FORMATS
 from viam.proto.component.camera import (
     CameraServiceStub,
     GetImageRequest,
@@ -32,16 +32,11 @@ class CameraClient(Camera):
     async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
         request = GetImageRequest(name=self.name, mime_type=mime_type)
         response: GetImageResponse = await self.client.GetImage(request)
-        try:
-            mimetype = CameraMimeType(response.mime_type)
-            if mimetype == CameraMimeType.RAW:
-                raise ValueError("Raw mime type should go return a RawImage")
-        except ValueError:
-            # If the mime type is raw or unknown, return a RawImage
-            image = RawImage(response.image, response.mime_type, response.width_px, response.height_px)
+        _, is_lazy = CameraMimeType.extract_from_lazy(request.mime_type)
+        if is_lazy or not (CameraMimeType.is_supported(response.mime_type)):
+            image = RawImage(response.image, response.mime_type)
             return image
-
-        return Image.open(BytesIO(response.image), formats=["JPEG", "PNG"])
+        return Image.open(BytesIO(response.image), formats=LIBRARY_SUPPORTED_FORMATS)
 
     async def get_point_cloud(self) -> Tuple[bytes, str]:
         request = GetPointCloudRequest(name=self.name, mime_type=CameraMimeType.PCD)

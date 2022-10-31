@@ -6,6 +6,7 @@ else:
     from typing import AsyncIterator
 
 from dataclasses import dataclass
+from io import BytesIO
 from multiprocessing import Queue
 from secrets import choice
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
@@ -317,12 +318,11 @@ class MockCamera(Camera):
         super().__init__(name)
 
     async def get_image(self, mime_type: str = CameraMimeType.PNG, **kwargs) -> Union[Image.Image, RawImage]:
-        if not CameraMimeType.is_supported(mime_type) or mime_type == CameraMimeType.RAW:
+        mime_type, is_lazy = CameraMimeType.extract_from_lazy(mime_type)
+        if is_lazy or (not CameraMimeType.is_supported(mime_type)):
             return RawImage(
                 data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
                 mime_type=mime_type,
-                width=self.image.width,
-                height=self.image.height,
             )
         return self.image.copy()
 
