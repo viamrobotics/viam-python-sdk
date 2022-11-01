@@ -18,7 +18,13 @@ class Arm(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
+    async def get_end_position(
+        self,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Pose:
         """
         Get the current position of the end of the arm expressed as a Pose.
 
@@ -28,7 +34,13 @@ class Arm(ComponentBase):
 
     @abc.abstractmethod
     async def move_to_position(
-        self, pose: Pose, world_state: Optional[WorldState] = None, extra: Optional[Dict[str, Any]] = None, **kwargs
+        self,
+        pose: Pose,
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
     ):
         """
         Move the end of the arm to the Pose specified in `pose`.
@@ -43,7 +55,14 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def move_to_joint_positions(
+        self,
+        positions: JointPositions,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         """
         Move each joint on the arm to the corresponding angle specified in `positions`.
 
@@ -54,7 +73,13 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> JointPositions:
+    async def get_joint_positions(
+        self,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> JointPositions:
         """
         Get the JointPositions representing the current position of the arm.
 
@@ -64,7 +89,13 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(
+        self,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         """
         Stop all motion of the arm. It is assumed that the arm stops immediately.
         """

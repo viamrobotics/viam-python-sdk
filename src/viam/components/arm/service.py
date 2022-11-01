@@ -34,7 +34,8 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        position = await arm.get_end_position(extra=struct_to_dict(request.extra))
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        position = await arm.get_end_position(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetEndPositionResponse(pose=position)
         await stream.send_message(response)
 
@@ -46,7 +47,8 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.move_to_position(request.to, request.world_state, extra=struct_to_dict(request.extra))
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await arm.move_to_position(request.to, request.world_state, extra=struct_to_dict(request.extra), timeout=timeout)
         response = MoveToPositionResponse()
         await stream.send_message(response)
 
@@ -58,7 +60,8 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        positions = await arm.get_joint_positions(extra=struct_to_dict(request.extra))
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        positions = await arm.get_joint_positions(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetJointPositionsResponse(positions=positions)
         await stream.send_message(response)
 
@@ -70,7 +73,8 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra))
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra), timeout=timeout)
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)
 
@@ -82,6 +86,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.stop(extra=struct_to_dict(request.extra))
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await arm.stop(extra=struct_to_dict(request.extra), timeout=timeout)
         response = StopResponse()
         await stream.send_message(response)

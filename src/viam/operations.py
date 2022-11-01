@@ -1,10 +1,12 @@
 import asyncio
 import functools
 import time
-from typing import Any, Callable, Coroutine, TypeVar
+from typing import Any, Callable, Coroutine, TypeVar, cast
 from uuid import UUID, uuid4
 
 from typing_extensions import Self
+
+import sys
 
 try:
     from typing import ParamSpec
@@ -68,6 +70,8 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
     to know if/when the calling task was cancelled and take appropriate action
     (.e.g. stop long running tasks and exit early).
 
+    If a timeout is provided to the function, the operation will cancel when the timeout is reached.
+
     An example use case is if a gRPC client disconnects after making a request.
     Rather than continue to run a task for a receiver that is no longer there,
     the component can cancel and clean up, saving resources.
@@ -89,10 +93,15 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
         kwarg_names = ", ".join([f"{key}={value}" for (key, value) in kwargs.items()])
         operation = Operation(f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})", event)
         kwargs[Operation.ARG_NAME] = operation
+        timeout = kwargs.get("timeout", None)
+        timeout = cast(float, timeout) if timeout else sys.float_info.max
+        timer = asyncio.get_running_loop().call_later(timeout, event.set)
         try:
             return await asyncio.shield(func(*args, **kwargs))
         except asyncio.CancelledError:
             event.set()
             raise
+        finally:
+            timer.cancel()
 
     return wrapper

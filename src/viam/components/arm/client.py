@@ -31,7 +31,12 @@ class ArmClient(Arm):
         self.client = ArmServiceStub(channel)
         super().__init__(name)
 
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None) -> Pose:
+    async def get_end_position(
+        self,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+    ) -> Pose:
         if extra is None:
             extra = {}
         request = GetEndPositionRequest(name=self.name, extra=dict_to_struct(extra))
@@ -43,30 +48,48 @@ class ArmClient(Arm):
         pose: Pose,
         world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
     ):
         if extra is None:
             extra = {}
         request = MoveToPositionRequest(name=self.name, to=pose, world_state=world_state, extra=dict_to_struct(extra))
-        await self.client.MoveToPosition(request)
+        await self.client.MoveToPosition(request, timeout=timeout)
 
-    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None) -> JointPositions:
+    async def get_joint_positions(
+        self,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+    ) -> JointPositions:
         if extra is None:
             extra = {}
         request = GetJointPositionsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetJointPositionsResponse = await self.client.GetJointPositions(request)
+        response: GetJointPositionsResponse = await self.client.GetJointPositions(request, timeout=timeout)
         return response.positions
 
-    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None):
+    async def move_to_joint_positions(
+        self,
+        positions: JointPositions,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+    ):
         if extra is None:
             extra = {}
         request = MoveToJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
-        await self.client.MoveToJointPositions(request)
+        await self.client.MoveToJointPositions(request, timeout=timeout)
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(
+        self,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+    ):
         if extra is None:
             extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
-        await self.client.Stop(request)
+        await self.client.Stop(request, timeout=timeout)
 
     async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)
