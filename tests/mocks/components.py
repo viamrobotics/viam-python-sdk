@@ -62,7 +62,7 @@ class MockArm(Arm):
         self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> Pose:
+    async def get_end_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Pose:
         self.extra = extra
         self.timeout = timeout
         return self.position
@@ -82,21 +82,21 @@ class MockArm(Arm):
         self.timeout = timeout
 
     async def get_joint_positions(
-        self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> JointPositions:
         self.extra = extra
         self.timeout = timeout
         return self.joint_positions
 
     async def move_to_joint_positions(
-        self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs
+        self, positions: JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ):
         self.joint_positions = positions
         self.is_stopped = False
         self.extra = extra
         self.timeout = timeout
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
         self.extra = extra
         self.timeout = timeout
@@ -145,7 +145,7 @@ class MockBase(Base):
         super().__init__(name)
 
     async def move_straight(
-        self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs
+        self, distance: int, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ):
         if distance == 0 or velocity == 0:
             return await self.stop()
@@ -187,7 +187,7 @@ class MockBase(Base):
         self.timeout = timeout
 
     async def spin(
-        self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs
+        self, angle: float, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ):
         if angle == 0 or velocity == 0:
             return await self.stop()
@@ -202,7 +202,7 @@ class MockBase(Base):
         self.timeout = timeout
 
     async def set_velocity(
-        self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs
+        self, linear: Vector3, angular: Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ):
         self.linear_vel = linear
         self.angular_vel = angular
@@ -210,13 +210,13 @@ class MockBase(Base):
         self.timeout = timeout
 
     async def set_power(
-        self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs
+        self, linear: Vector3, angular: Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ):
         self.linear_pwr = linear
         self.angular_pwr = angular
         self.extra = extra
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.stopped = True
         self.extra = extra
         self.timeout = timeout
@@ -231,7 +231,7 @@ class MockAnalogReader(Board.AnalogReader):
         self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def read(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> int:
+    async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
         self.extra = extra
         self.timeout = timeout
         return self.value
@@ -247,7 +247,7 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def value(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> int:
+    async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
         self.extra = extra
         self.timeout = timeout
         return self.num_ticks
@@ -272,32 +272,32 @@ class MockGPIOPin(Board.GPIOPin):
         self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> bool:
+    async def get(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
         self.extra = extra
         self.timeout = timeout
         return self.high
 
-    async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
+    async def set(self, high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.high = high
         self.extra = extra
         self.timeout = timeout
 
-    async def get_pwm(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> float:
+    async def get_pwm(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
         self.extra = extra
         self.timeout = timeout
         return self.pwm
 
-    async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
+    async def set_pwm(self, duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.pwm = duty_cycle
         self.extra = extra
         self.timeout = timeout
 
-    async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> int:
+    async def get_pwm_frequency(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
         self.extra = extra
         self.timeout = timeout
         return self.pwm_freq
 
-    async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
+    async def set_pwm_frequency(self, frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.pwm_freq = frequency
         self.extra = extra
         self.timeout = timeout
@@ -341,7 +341,7 @@ class MockBoard(Board):
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
 
-    async def status(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
+    async def status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
         self.extra = extra
         self.timeout = timeout
         return BoardStatus(
@@ -393,30 +393,37 @@ class MockGantry(Gantry):
         self.lengths = lengths
         self.is_stopped = True
         self.extra = None
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
+    async def get_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
         self.extra = extra
+        self.timeout = timeout
         return self.position
 
     async def move_to_position(
         self,
         positions: List[float],
         world_state: Optional[WorldState] = None,
+        *,
         extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
         **kwargs,
     ):
         self.position = positions
         self.is_stopped = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
+    async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
         self.extra = extra
+        self.timeout = timeout
         return self.lengths
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.extra = extra
         self.is_stopped = True
+        self.timeout = timeout
 
     async def is_moving(self) -> bool:
         return not self.is_stopped

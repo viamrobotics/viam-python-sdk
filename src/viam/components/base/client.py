@@ -30,8 +30,8 @@ class BaseClient(Base):
         self,
         distance: int,
         velocity: float,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
     ):
         if extra is None:
@@ -48,8 +48,8 @@ class BaseClient(Base):
         self,
         angle: float,
         velocity: float,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
     ):
         if extra is None:
@@ -66,8 +66,8 @@ class BaseClient(Base):
         self,
         linear: Vector3,
         angular: Vector3,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
     ):
         if extra is None:
@@ -84,8 +84,8 @@ class BaseClient(Base):
         self,
         linear: Vector3,
         angular: Vector3,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
     ):
         if extra is None:
@@ -95,8 +95,8 @@ class BaseClient(Base):
 
     async def stop(
         self,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
     ):
         if extra is None:

@@ -1,7 +1,9 @@
 from typing import cast
+
 import pytest
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
+
 from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardService
 from viam.components.generic.service import GenericService
@@ -28,7 +30,12 @@ from viam.proto.component.board import (
 )
 from viam.utils import dict_to_struct
 
-from .mocks.components import MockAnalogReader, MockBoard, MockDigitalInterrupt, MockGPIOPin
+from .mocks.components import (
+    MockAnalogReader,
+    MockBoard,
+    MockDigitalInterrupt,
+    MockGPIOPin,
+)
 
 
 def approx(val: float):
@@ -99,7 +106,7 @@ class TestBoard:
     @pytest.mark.asyncio
     async def test_status(self, board: MockBoard):
         extra = {"foo": "bar", "baz": [1, 2, 3]}
-        status = await board.status(extra, timeout=1.82)
+        status = await board.status(extra=extra, timeout=1.82)
         assert status == BoardStatus(
             analogs={"reader1": AnalogStatus(value=3)},
             digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
@@ -324,7 +331,7 @@ class TestClient:
             client = BoardClient(name=board.name, channel=channel)
 
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            status = await client.status(extra, timeout=1.1)
+            status = await client.status(extra=extra, timeout=1.1)
             assert status == BoardStatus(
                 analogs={"reader1": AnalogStatus(value=3)},
                 digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
@@ -348,7 +355,7 @@ class TestGPIOPinClient:
             client = BoardClient(name=board.name, channel=channel)
             pin = await client.gpio_pin_by_name("pin1")
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await pin.set(True, extra, timeout=1.82)
+            await pin.set(True, extra=extra, timeout=1.82)
 
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.high is True
@@ -361,7 +368,7 @@ class TestGPIOPinClient:
             client = BoardClient(name=board.name, channel=channel)
             pin = await client.gpio_pin_by_name("pin1")
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            high = await pin.get(extra)
+            high = await pin.get(extra=extra)
             assert high is False
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.extra == extra
@@ -373,7 +380,7 @@ class TestGPIOPinClient:
             client = BoardClient(name=board.name, channel=channel)
             pin = await client.gpio_pin_by_name("pin1")
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await pin.set_pwm(12.3, extra, timeout=3.23)
+            await pin.set_pwm(12.3, extra=extra, timeout=3.23)
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.pwm == 12.3
             assert mock_pin.extra == extra
@@ -385,7 +392,7 @@ class TestGPIOPinClient:
             client = BoardClient(name=board.name, channel=channel)
             pin = await client.gpio_pin_by_name("pin1")
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            pwm = await pin.get_pwm(extra, timeout=1.2345)
+            pwm = await pin.get_pwm(extra=extra, timeout=1.2345)
             assert pwm == 0.0
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.extra == extra
@@ -397,7 +404,7 @@ class TestGPIOPinClient:
             client = BoardClient(name=board.name, channel=channel)
             pin = await client.gpio_pin_by_name("pin1")
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await pin.set_pwm_frequency(123, extra, timeout=4.341)
+            await pin.set_pwm_frequency(123, extra=extra, timeout=4.341)
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.pwm_freq == 123
             assert mock_pin.extra == extra
@@ -409,7 +416,7 @@ class TestGPIOPinClient:
             client = BoardClient(name=board.name, channel=channel)
             pin = await client.gpio_pin_by_name("pin1")
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            freq = await pin.get_pwm_frequency(extra)
+            freq = await pin.get_pwm_frequency(extra=extra)
             assert freq == 0
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.extra == extra

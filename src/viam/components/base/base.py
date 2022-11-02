@@ -21,8 +21,8 @@ class Base(ComponentBase):
         self,
         distance: int,
         velocity: float,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
@@ -45,8 +45,8 @@ class Base(ComponentBase):
         self,
         angle: float,
         velocity: float,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
@@ -69,8 +69,8 @@ class Base(ComponentBase):
         self,
         linear: Vector3,
         angular: Vector3,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
@@ -94,8 +94,8 @@ class Base(ComponentBase):
         self,
         linear: Vector3,
         angular: Vector3,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
@@ -111,8 +111,8 @@ class Base(ComponentBase):
     @abc.abstractmethod
     async def stop(
         self,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):

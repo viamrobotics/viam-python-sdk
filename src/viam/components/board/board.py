@@ -7,7 +7,6 @@ from viam.proto.common import BoardStatus
 
 from ..component_base import ComponentBase
 
-
 PostProcessor = Callable[[int], int]
 
 
@@ -34,7 +33,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def read(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> int:
+        async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
             """
             Read the current value.
 
@@ -51,7 +50,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def value(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> int:
+        async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
             """
             Get the current value of the interrupt,
             which is based on the type of interrupt.
@@ -102,7 +101,7 @@ class Board(ComponentBase):
         """
 
         @abc.abstractmethod
-        async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
+        async def set(self, high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
             """
             Set the pin to either low or high.
 
@@ -112,7 +111,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> bool:
+        async def get(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
             """
             Get the high/low state of the pin.
 
@@ -122,7 +121,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get_pwm(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> float:
+        async def get_pwm(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
             """
             Get the pin's given duty cycle.
 
@@ -132,7 +131,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
+        async def set_pwm(self, duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
             """
             Set the pin to the given `duty_cycle`.
 
@@ -142,7 +141,7 @@ class Board(ComponentBase):
             ...
 
         @abc.abstractmethod
-        async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> int:
+        async def get_pwm_frequency(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
             """
             Get the PWM frequency of the pin.
 
@@ -155,8 +154,8 @@ class Board(ComponentBase):
         async def set_pwm_frequency(
             self,
             frequency: int,
-            extra: Optional[Dict[str, Any]] = None,
             *,
+            extra: Optional[Dict[str, Any]] = None,
             timeout: Optional[float] = None,
             **kwargs,
         ):
@@ -229,7 +228,7 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def status(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
+    async def status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
         """
         Return the current status of the board.
 

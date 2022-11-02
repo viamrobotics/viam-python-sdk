@@ -20,8 +20,8 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def get_end_position(
         self,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> Pose:
@@ -37,8 +37,8 @@ class Arm(ComponentBase):
         self,
         pose: Pose,
         world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
@@ -58,8 +58,8 @@ class Arm(ComponentBase):
     async def move_to_joint_positions(
         self,
         positions: JointPositions,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
@@ -75,8 +75,8 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def get_joint_positions(
         self,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ) -> JointPositions:
@@ -91,8 +91,8 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def stop(
         self,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):

@@ -66,7 +66,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await base.set_power(request.linear, request.angular, struct_to_dict(request.extra), timeout=timeout)
+        await base.set_power(request.linear, request.angular, extra=struct_to_dict(request.extra), timeout=timeout)
         response = SetPowerResponse()
         await stream.send_message(response)
 
@@ -79,7 +79,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await base.set_velocity(request.linear, request.angular, struct_to_dict(request.extra), timeout=timeout)
+        await base.set_velocity(request.linear, request.angular, extra=struct_to_dict(request.extra), timeout=timeout)
         await stream.send_message(SetVelocityResponse())
 
     async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:

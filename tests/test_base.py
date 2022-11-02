@@ -125,7 +125,7 @@ class TestBase:
     async def test_extra(self, base: MockBase):
         assert base.extra is None
         extra = {"foo": "bar", "baz": [1, 2, 3]}
-        await base.move_straight(1, 1, extra)
+        await base.move_straight(1, 1, extra=extra)
         assert base.extra == extra
 
 
@@ -346,5 +346,5 @@ class TestClient:
             assert base.extra is None
             client = BaseClient(base.name, channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await client.move_straight(1, 1, extra)
+            await client.move_straight(1, 1, extra=extra)
             assert base.extra == extra
