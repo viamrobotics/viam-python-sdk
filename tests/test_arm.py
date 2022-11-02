@@ -1,4 +1,3 @@
-from typing import Union
 import pytest
 from grpclib.testing import ChannelFor
 
@@ -24,10 +23,6 @@ from viam.utils import dict_to_struct, message_to_struct
 from .mocks.components import MockArm
 
 
-def approx(val: Union[float, int]):
-    return pytest.approx(val, rel=1e-3)
-
-
 class TestArm:
 
     arm = MockArm(name="arm")
@@ -38,33 +33,27 @@ class TestArm:
     async def test_move_to_position(self):
         await self.arm.move_to_position(self.pose)
         assert self.arm.position == self.pose
-        assert self.arm.timeout is None
 
     @pytest.mark.asyncio
     async def test_get_end_position(self):
-        pos = await self.arm.get_end_position(timeout=1.82)
+        pos = await self.arm.get_end_position()
         assert pos == self.pose
-        assert self.arm.timeout == approx(1.82)
 
     @pytest.mark.asyncio
     async def test_move_to_joint_positions(self):
         await self.arm.move_to_joint_positions(self.joint_pos)
         assert self.arm.joint_positions == self.joint_pos
-        assert self.arm.timeout is None
 
     @pytest.mark.asyncio
     async def test_get_joint_positions(self):
         jp = await self.arm.get_joint_positions()
         assert jp == self.joint_pos
-        assert self.arm.timeout is None
 
     @pytest.mark.asyncio
     async def test_stop(self):
         assert self.arm.is_stopped is False
-        assert self.arm.timeout is None
-        await self.arm.stop(timeout=4.4)
+        await self.arm.stop()
         assert self.arm.is_stopped is True
-        assert self.arm.timeout == approx(4.4)
 
     @pytest.mark.asyncio
     async def test_is_moving(self):
@@ -105,9 +94,8 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
             request = MoveToPositionRequest(name=self.name, to=self.pose)
-            await client.MoveToPosition(request, timeout=1.82)
+            await client.MoveToPosition(request)
             assert self.arm.position == self.pose
-            assert self.arm.timeout is approx(1.82)
 
     @pytest.mark.asyncio
     async def test_get_end_position(self):
@@ -116,7 +104,6 @@ class TestService:
             request = GetEndPositionRequest(name=self.name)
             response: GetEndPositionResponse = await client.GetEndPosition(request)
             assert response.pose == self.pose
-            assert self.arm.timeout is None
 
     @pytest.mark.asyncio
     async def test_move_to_joint_positions(self):
@@ -125,26 +112,25 @@ class TestService:
             request = MoveToJointPositionsRequest(name=self.name, positions=self.joint_pos)
             await client.MoveToJointPositions(request)
             assert self.arm.joint_positions == self.joint_pos
-            assert self.arm.timeout is None
 
     @pytest.mark.asyncio
     async def test_get_joint_positions(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
             request = GetJointPositionsRequest(name=self.name)
-            response: GetJointPositionsResponse = await client.GetJointPositions(request, timeout=4.4)
+            response: GetJointPositionsResponse = await client.GetJointPositions(request)
             assert response.positions == self.joint_pos
-            assert self.arm.timeout == approx(4.4)
 
     @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
+            assert self.arm.timeout is None
             client = ArmServiceStub(channel)
             request = StopRequest(name=self.name)
-            await client.Stop(request)
+            await client.Stop(request, timeout=4.4)
             assert self.arm.is_stopped is True
-            assert self.arm.timeout is None
+            assert self.arm.timeout == pytest.approx(4.4, rel=1e-3)
 
     @pytest.mark.asyncio
     async def test_extra(self):
@@ -169,9 +155,8 @@ class TestClient:
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            await client.move_to_position(self.pose, timeout=18.2)
+            await client.move_to_position(self.pose)
             assert self.arm.position == self.pose
-            assert self.arm.timeout == approx(18.2)
 
     @pytest.mark.asyncio
     async def test_get_end_position(self):
@@ -179,7 +164,6 @@ class TestClient:
             client = ArmClient(self.name, channel)
             pos = await client.get_end_position()
             assert pos == self.pose
-            assert self.arm.timeout is None
 
     @pytest.mark.asyncio
     async def test_move_to_joint_positions(self):
@@ -187,24 +171,23 @@ class TestClient:
             client = ArmClient(self.name, channel)
             await client.move_to_joint_positions(self.joint_pos)
             assert self.arm.joint_positions == self.joint_pos
-            assert self.arm.timeout is None
 
     @pytest.mark.asyncio
     async def test_get_joint_positions(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            jp = await client.get_joint_positions(timeout=4.4)
+            jp = await client.get_joint_positions()
             assert jp == self.joint_pos
-            assert self.arm.timeout == approx(4.4)
 
     @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
-            client = ArmClient(self.name, channel)
-            await client.stop()
-            assert self.arm.is_stopped is True
             assert self.arm.timeout is None
+            client = ArmClient(self.name, channel)
+            await client.stop(timeout=1.82)
+            assert self.arm.is_stopped is True
+            assert self.arm.timeout == pytest.approx(1.82, rel=1e-3)
 
     @pytest.mark.asyncio
     async def test_is_moving(self):
