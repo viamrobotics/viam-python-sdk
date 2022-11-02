@@ -66,7 +66,6 @@ class ExampleArm(Arm):
         super().__init__(name)
 
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
-        await asyncio.sleep(3)
         return self.position
 
     async def move_to_position(
