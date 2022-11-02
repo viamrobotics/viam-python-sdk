@@ -23,12 +23,8 @@ from viam.proto.component.camera import (
     RenderFrameRequest,
 )
 
+from . import loose_approx
 from .mocks.components import MockCamera
-
-
-def approx(val: float):
-    return pytest.approx(val, rel=val * 1e-3)
-
 
 # ################################ NB ################################# #
 #   These test values have to be fixtures and must match the values in  #
@@ -102,13 +98,13 @@ class TestCamera:
         assert camera.timeout is None
 
         await camera.get_image(timeout=1.82)
-        assert camera.timeout == approx(1.82)
+        assert camera.timeout == loose_approx(1.82)
 
         await camera.get_point_cloud(timeout=4.4)
-        assert camera.timeout == approx(4.4)
+        assert camera.timeout == loose_approx(4.4)
 
         await camera.get_properties(timeout=7.86)
-        assert camera.timeout == approx(7.86)
+        assert camera.timeout == loose_approx(7.86)
 
 
 class TestService:
@@ -123,7 +119,7 @@ class TestService:
             response: GetImageResponse = await client.GetImage(request, timeout=18.2)
             img = Image.open(BytesIO(response.image), formats=["PNG"])
             assert img.tobytes() == image.tobytes()
-            assert camera.timeout == approx(18.2)
+            assert camera.timeout == loose_approx(18.2)
 
             # Test raw mime type
             request = GetImageRequest(name="camera", mime_type=CameraMimeType.RAW)
@@ -150,7 +146,7 @@ class TestService:
             buf = BytesIO(response.data)
             img = Image.open(buf, formats=["JPEG", "PNG"])
             assert img.tobytes() == image.tobytes()
-            assert camera.timeout == approx(4.4)
+            assert camera.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
     async def test_get_point_cloud(self, camera: MockCamera, service: CameraService, point_cloud: bytes):
@@ -160,7 +156,7 @@ class TestService:
             request = GetPointCloudRequest(name="camera", mime_type=CameraMimeType.PCD)
             response: GetPointCloudResponse = await client.GetPointCloud(request, timeout=7.86)
             assert response.point_cloud == point_cloud
-            assert camera.timeout == approx(7.86)
+            assert camera.timeout == loose_approx(7.86)
 
     @pytest.mark.asyncio
     async def test_get_properties(self, camera: MockCamera, service: CameraService, properties: Camera.Properties):
@@ -171,7 +167,7 @@ class TestService:
             response: GetPropertiesResponse = await client.GetProperties(request, timeout=5.43)
             assert response.supports_pcd == properties.supports_pcd
             assert response.intrinsic_parameters == properties.intrinsic_parameters
-            assert camera.timeout == approx(5.43)
+            assert camera.timeout == loose_approx(5.43)
 
 
 class TestClient:
@@ -186,7 +182,7 @@ class TestClient:
             assert isinstance(img, Image.Image)
             assert img.convert("RGBA") == image.convert("RGBA")
             assert img.tobytes() == image.tobytes()
-            assert camera.timeout == approx(1.82)
+            assert camera.timeout == loose_approx(1.82)
 
             # Test raw mime type
             img = await client.get_image(CameraMimeType.RAW)
@@ -211,7 +207,7 @@ class TestClient:
             client = CameraClient("camera", channel)
             pc, _ = await client.get_point_cloud(timeout=4.4)
             assert pc == point_cloud
-            assert camera.timeout == approx(4.4)
+            assert camera.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
     async def test_get_properties(self, camera: MockCamera, service: CameraService, properties: Camera.Properties):
@@ -220,7 +216,7 @@ class TestClient:
             client = CameraClient("camera", channel)
             props = await client.get_properties(timeout=7.86)
             assert props == properties
-            assert camera.timeout == approx(7.86)
+            assert camera.timeout == loose_approx(7.86)
 
     @pytest.mark.asyncio
     async def test_do(self, service: CameraService, generic_service: GenericService):

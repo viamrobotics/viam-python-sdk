@@ -2,6 +2,7 @@ from random import randint, random
 
 import pytest
 from grpclib.testing import ChannelFor
+
 from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseService
 from viam.components.generic.service import GenericService
@@ -18,6 +19,7 @@ from viam.proto.component.base import (
 )
 from viam.utils import dict_to_struct, message_to_struct
 
+from . import loose_approx
 from .mocks.components import MockBase
 
 
@@ -205,7 +207,7 @@ class TestService:
             assert base.stopped is False
             await client.Stop(StopRequest(name=base.name), timeout=1.82)
             assert base.stopped is True
-            assert base.timeout == pytest.approx(1.82, rel=1e-3)
+            assert base.timeout == loose_approx(1.82)
 
             request = MoveStraightRequest(
                 name=base.name,
@@ -307,7 +309,7 @@ class TestClient:
             assert base.stopped is False
             await client.stop(timeout=4.4)
             assert base.stopped is True
-            assert base.timeout == pytest.approx(4.4, rel=1e-3)
+            assert base.timeout == loose_approx(4.4)
 
             await client.move_straight(1, 1)
             assert base.stopped is False

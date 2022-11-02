@@ -442,19 +442,23 @@ class MockGripper(Gripper):
     def __init__(self, name: str):
         self.opened = False
         self.is_stopped = True
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def open(self, **kwargs):
+    async def open(self, *, timeout: Optional[float] = None, **kwargs):
         self.opened = True
         self.is_stopped = False
+        self.timeout = timeout
 
-    async def grab(self, **kwargs) -> bool:
+    async def grab(self, *, timeout: Optional[float] = None, **kwargs) -> bool:
         self.opened = False
         self.is_stopped = False
+        self.timeout = timeout
         return choice([True, False])
 
-    async def stop(self, **kwargs):
+    async def stop(self, *, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
+        self.timeout = timeout
 
     async def is_moving(self) -> bool:
         return not self.is_stopped

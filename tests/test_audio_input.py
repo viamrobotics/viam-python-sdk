@@ -1,9 +1,9 @@
 import sys
 from datetime import timedelta
 from typing import Union
-from grpclib import GRPCError
 
 import pytest
+from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.audio_input import AudioInput, AudioInputClient, AudioInputService
@@ -19,6 +19,7 @@ from viam.proto.component.audioinput import (
     SampleFormat,
 )
 
+from . import loose_approx
 from .mocks.components import MockAudioInput
 
 PROPERTIES = AudioInput.Properties(
@@ -100,7 +101,7 @@ class TestService:
             client = AudioInputServiceStub(channel)
             response: PropertiesResponse = await client.Properties(PropertiesRequest(name=audio_input.name), timeout=1.82)
             assert AudioInput.Properties.from_proto(response) == PROPERTIES
-            assert audio_input.timeout == pytest.approx(1.82, rel=1e-3)
+            assert audio_input.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
     async def test_record(self, service: AudioInputService):
@@ -133,7 +134,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
             assert await client.get_properties(timeout=4.4) == PROPERTIES
-            assert audio_input.timeout == pytest.approx(4.4, rel=1e-3)
+            assert audio_input.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
     async def test_do(self, audio_input: AudioInput, service: AudioInputService, generic_service: GenericService):

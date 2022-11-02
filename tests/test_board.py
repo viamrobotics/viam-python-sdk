@@ -30,16 +30,13 @@ from viam.proto.component.board import (
 )
 from viam.utils import dict_to_struct
 
+from . import loose_approx
 from .mocks.components import (
     MockAnalogReader,
     MockBoard,
     MockDigitalInterrupt,
     MockGPIOPin,
 )
-
-
-def approx(val: float):
-    return pytest.approx(val, rel=val * 1e-3)
 
 
 @pytest.fixture(scope="function")
@@ -112,7 +109,7 @@ class TestBoard:
             digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
         )
         assert board.extra == extra
-        assert board.timeout == approx(1.82)
+        assert board.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
     async def test_model_attributes(self, board: MockBoard):
@@ -142,7 +139,7 @@ class TestService:
 
             reader = cast(MockAnalogReader, board.analog_readers["reader1"])
             assert reader.extra == extra
-            assert reader.timeout == approx(4.4)
+            assert reader.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
     async def test_get_digital_interrupt_value(self, board: MockBoard, service: BoardService):
@@ -162,7 +159,7 @@ class TestService:
 
             interrupt = cast(MockDigitalInterrupt, board.digital_interrupts["interrupt1"])
             assert interrupt.extra == extra
-            assert interrupt.timeout == approx(18.2)
+            assert interrupt.timeout == loose_approx(18.2)
 
     @pytest.mark.asyncio
     async def test_set_gpio(self, board: MockBoard, service: BoardService):
@@ -176,7 +173,7 @@ class TestService:
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.high is True
             assert pin.extra == extra
-            assert pin.timeout == approx(4.1)
+            assert pin.timeout == loose_approx(4.1)
 
     @pytest.mark.asyncio
     async def test_get_gpio(self, board: MockBoard, service: BoardService):
@@ -194,7 +191,7 @@ class TestService:
 
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.extra == extra
-            assert pin.timeout == approx(1.82)
+            assert pin.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
     async def test_pwm(self, board: MockBoard, service: BoardService):
@@ -208,7 +205,7 @@ class TestService:
 
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.extra == extra
-            assert pin.timeout == approx(7.86)
+            assert pin.timeout == loose_approx(7.86)
 
     @pytest.mark.asyncio
     async def test_set_pwm(self, board: MockBoard, service: BoardService):
@@ -222,7 +219,7 @@ class TestService:
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.pwm == 12.3
             assert pin.extra == extra
-            assert pin.timeout == approx(1.213)
+            assert pin.timeout == loose_approx(1.213)
 
     @pytest.mark.asyncio
     async def test_pwm_frequency(self, board: MockBoard, service: BoardService):
@@ -236,7 +233,7 @@ class TestService:
 
             pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert pin.extra == extra
-            assert pin.timeout == approx(182)
+            assert pin.timeout == loose_approx(182)
 
     @pytest.mark.asyncio
     async def test_set_pwm_freq(self, board: MockBoard, service: BoardService):
@@ -266,7 +263,7 @@ class TestService:
                 digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
             )
             assert board.extra == extra
-            assert board.timeout == approx(5.55)
+            assert board.timeout == loose_approx(5.55)
 
 
 class TestClient:
@@ -337,7 +334,7 @@ class TestClient:
                 digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
             )
             assert board.extra == extra
-            assert board.timeout == approx(1.1)
+            assert board.timeout == loose_approx(1.1)
 
     @pytest.mark.asyncio
     async def test_model_attributes(self, board: MockBoard, service: BoardService):
@@ -360,7 +357,7 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.high is True
             assert mock_pin.extra == extra
-            assert mock_pin.timeout == approx(1.82)
+            assert mock_pin.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
     async def test_get(self, board: MockBoard, service: BoardService):
@@ -384,7 +381,7 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.pwm == 12.3
             assert mock_pin.extra == extra
-            assert mock_pin.timeout == approx(3.23)
+            assert mock_pin.timeout == loose_approx(3.23)
 
     @pytest.mark.asyncio
     async def test_get_pwm(self, board: MockBoard, service: BoardService):
@@ -396,7 +393,7 @@ class TestGPIOPinClient:
             assert pwm == 0.0
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.extra == extra
-            assert mock_pin.timeout == approx(1.2345)
+            assert mock_pin.timeout == loose_approx(1.2345)
 
     @pytest.mark.asyncio
     async def test_set_pwm_frequency(self, board: MockBoard, service: BoardService):
@@ -408,7 +405,7 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.pwm_freq == 123
             assert mock_pin.extra == extra
-            assert mock_pin.timeout == approx(4.341)
+            assert mock_pin.timeout == loose_approx(4.341)
 
     @pytest.mark.asyncio
     async def test_get_pwm_freq(self, board: MockBoard, service: BoardService):
