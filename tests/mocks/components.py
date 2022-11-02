@@ -362,9 +362,13 @@ class MockCamera(Camera):
             IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
             DistortionParameters(model="no_distortion"),
         )
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_image(self, mime_type: str = CameraMimeType.PNG, **kwargs) -> Union[Image.Image, RawImage]:
+    async def get_image(
+        self, mime_type: str = CameraMimeType.PNG, *, timeout: Optional[float] = None, **kwargs
+    ) -> Union[Image.Image, RawImage]:
+        self.timeout = timeout
         if not CameraMimeType.is_supported(mime_type) or mime_type == CameraMimeType.RAW:
             return RawImage(
                 data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
@@ -374,10 +378,12 @@ class MockCamera(Camera):
             )
         return self.image.copy()
 
-    async def get_point_cloud(self, **kwargs) -> Tuple[bytes, str]:
+    async def get_point_cloud(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]:
+        self.timeout = timeout
         return self.point_cloud, CameraMimeType.PCD.value
 
-    async def get_properties(self, **kwargs) -> Camera.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Camera.Properties:
+        self.timeout = timeout
         return self.props
 
 
