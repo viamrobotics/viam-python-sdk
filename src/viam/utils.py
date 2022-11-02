@@ -79,7 +79,7 @@ def resource_names_for_component(component: ComponentBase) -> List[ResourceName]
     rns: List[ResourceName] = []
     for klass in component.__class__.mro():
         component_type = ""
-        for registration in Registry.REGISTERED_COMPONENTS.values():
+        for registration in Registry.REGISTERED_COMPONENTS().values():
             if klass is registration.component_type:
                 component_type = registration.name
 

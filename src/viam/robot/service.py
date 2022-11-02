@@ -51,7 +51,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
         statuses: List[Status] = []
 
         for component in self.manager.components.values():
-            for registration in Registry.REGISTERED_COMPONENTS.values():
+            for registration in Registry.REGISTERED_COMPONENTS().values():
                 if isinstance(component, registration.component_type):
                     if resource_names and component.get_resource_name(component.name) not in resource_names:
                         continue

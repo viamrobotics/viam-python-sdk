@@ -1,4 +1,10 @@
-from collections.abc import AsyncIterator
+import sys
+
+if sys.version_info.minor >= 9:
+    from collections.abc import AsyncIterator
+else:
+    from typing import AsyncIterator
+
 from typing import Protocol, TypeVar
 
 MediaType = TypeVar("MediaType", covariant=True)

@@ -1,4 +1,10 @@
-from collections.abc import AsyncIterator
+import sys
+
+if sys.version_info.minor >= 9:
+    from collections.abc import AsyncIterator
+else:
+    from typing import AsyncIterator
+
 from dataclasses import dataclass
 from multiprocessing import Queue
 from secrets import choice
