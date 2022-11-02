@@ -3,7 +3,12 @@ import math
 import random
 import struct
 import sys
-from collections.abc import AsyncIterator
+
+if sys.version_info.minor >= 9:
+    from collections.abc import AsyncIterator
+else:
+    from typing import AsyncIterator
+
 from datetime import timedelta
 from multiprocessing import Lock, Queue
 from pathlib import Path

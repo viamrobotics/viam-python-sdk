@@ -97,7 +97,6 @@ class Registry:
             raise ComponentNotFoundError("component", component_name)
 
     @classmethod
-    @property
     def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentRegistration]:
         """The dictionary of all registered components
         - Key: Name of the component type

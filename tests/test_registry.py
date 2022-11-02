@@ -21,17 +21,17 @@ class FakeComponentClient(FakeComponent):
 
 
 def test_components_register_themselves_correctly():
-    assert "arm" in Registry.REGISTERED_COMPONENTS
-    assert "base" in Registry.REGISTERED_COMPONENTS
-    assert "board" in Registry.REGISTERED_COMPONENTS
-    assert "camera" in Registry.REGISTERED_COMPONENTS
-    assert "gantry" in Registry.REGISTERED_COMPONENTS
-    assert "gripper" in Registry.REGISTERED_COMPONENTS
-    assert "motor" in Registry.REGISTERED_COMPONENTS
-    assert "movement_sensor" in Registry.REGISTERED_COMPONENTS
-    assert "pose_tracker" in Registry.REGISTERED_COMPONENTS
-    assert "sensor" in Registry.REGISTERED_COMPONENTS
-    assert "servo" in Registry.REGISTERED_COMPONENTS
+    assert "arm" in Registry.REGISTERED_COMPONENTS()
+    assert "base" in Registry.REGISTERED_COMPONENTS()
+    assert "board" in Registry.REGISTERED_COMPONENTS()
+    assert "camera" in Registry.REGISTERED_COMPONENTS()
+    assert "gantry" in Registry.REGISTERED_COMPONENTS()
+    assert "gripper" in Registry.REGISTERED_COMPONENTS()
+    assert "motor" in Registry.REGISTERED_COMPONENTS()
+    assert "movement_sensor" in Registry.REGISTERED_COMPONENTS()
+    assert "pose_tracker" in Registry.REGISTERED_COMPONENTS()
+    assert "sensor" in Registry.REGISTERED_COMPONENTS()
+    assert "servo" in Registry.REGISTERED_COMPONENTS()
 
 
 def test_lookup():
@@ -43,14 +43,14 @@ def test_lookup():
 
 
 def test_registration():
-    assert "fake_component" not in Registry.REGISTERED_COMPONENTS
+    assert "fake_component" not in Registry.REGISTERED_COMPONENTS()
 
     Registry.register(
         ComponentRegistration(
             FakeComponent, "fake_component", FakeComponentService, lambda name, channel: FakeComponentClient(name, channel)
         )
     )
-    assert "fake_component" in Registry.REGISTERED_COMPONENTS
+    assert "fake_component" in Registry.REGISTERED_COMPONENTS()
     component = Registry.lookup("fake_component")
     assert component is not None
 

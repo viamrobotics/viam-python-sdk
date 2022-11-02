@@ -36,7 +36,7 @@ class Server(ResourceManager):
         services = [
             SignalingService(),
             RobotService(manager=self),
-            *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_COMPONENTS.values()],
+            *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_COMPONENTS().values()],
         ]
         services = ServerReflection.extend(services)
         self._server = GRPCServer(services)
