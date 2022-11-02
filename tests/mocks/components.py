@@ -430,7 +430,11 @@ class MockGantry(Gantry):
 
 
 class MockGeneric(GenericComponent):
-    async def do_command(self, command: Dict[str, Any], **kwargs) -> Dict[str, Any]:
+
+    timeout: Optional[float] = None
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        self.timeout = timeout
         return {key: True for key in command.keys()}
 
 
