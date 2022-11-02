@@ -59,6 +59,7 @@ class MockArm(Arm):
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         self.extra = None
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
@@ -81,8 +82,9 @@ class MockArm(Arm):
         self.is_stopped = False
         self.extra = extra
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
+        self.timeout = timeout
         self.extra = extra
 
     async def is_moving(self) -> bool:

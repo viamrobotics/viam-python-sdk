@@ -125,10 +125,12 @@ class TestService:
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
+            assert self.arm.timeout is None
             client = ArmServiceStub(channel)
             request = StopRequest(name=self.name)
-            await client.Stop(request)
+            await client.Stop(request, timeout=4.4)
             assert self.arm.is_stopped is True
+            assert self.arm.timeout == pytest.approx(4.4, rel=1e-3)
 
     @pytest.mark.asyncio
     async def test_extra(self):
@@ -181,9 +183,11 @@ class TestClient:
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.arm.is_stopped is False
+            assert self.arm.timeout is None
             client = ArmClient(self.name, channel)
-            await client.stop()
+            await client.stop(timeout=1.82)
             assert self.arm.is_stopped is True
+            assert self.arm.timeout == pytest.approx(1.82, rel=1e-3)
 
     @pytest.mark.asyncio
     async def test_is_moving(self):
