@@ -1,4 +1,4 @@
-from typing import Any, AsyncIterator, Dict, Union
+from typing import Any, AsyncIterator, Dict, Optional, Union
 
 from grpclib.client import Channel
 
@@ -27,9 +27,9 @@ class AudioInputClient(AudioInput):
         self.client = AudioInputServiceStub(channel)
         super().__init__(name)
 
-    async def stream(self) -> MediaStream[Audio]:
+    async def stream(self, *, timeout: Optional[float] = None) -> MediaStream[Audio]:
         async def read() -> AsyncIterator[Audio]:
-            async with self.client.Chunks.open() as chunks_stream:
+            async with self.client.Chunks.open(timeout=timeout) as chunks_stream:
                 await chunks_stream.send_message(
                     ChunksRequest(name=self.name, sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED), end=True
                 )
@@ -47,9 +47,9 @@ class AudioInputClient(AudioInput):
 
         return MediaStreamWithIterator(read())
 
-    async def get_properties(self) -> AudioInput.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None) -> AudioInput.Properties:
         request = PropertiesRequest(name=self.name)
-        response: PropertiesResponse = await self.client.Properties(request)
+        response: PropertiesResponse = await self.client.Properties(request, timeout=timeout)
         return AudioInput.Properties.from_proto(response)
 
     async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:

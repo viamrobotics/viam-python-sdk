@@ -36,7 +36,8 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         except ComponentNotFoundError as e:
             raise e.grpc_error
 
-        audio_stream = await audio_input.stream()
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        audio_stream = await audio_input.stream(timeout=timeout)
         first_chunk = await audio_stream.__anext__()
         await stream.send_message(ChunksResponse(info=first_chunk.info))
         await stream.send_message(ChunksResponse(chunk=first_chunk.chunk))
@@ -51,7 +52,8 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
             audio_input = self.get_component(request.name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        response = (await audio_input.get_properties()).proto
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        response = (await audio_input.get_properties(timeout=timeout)).proto
         await stream.send_message(response)
 
     async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:

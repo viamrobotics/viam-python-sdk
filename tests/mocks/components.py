@@ -95,6 +95,7 @@ class MockAudioInput(AudioInput):
     def __init__(self, name: str, properties: AudioInput.Properties):
         super().__init__(name)
         self.properties = properties
+        self.timeout: Optional[float] = None
 
     async def stream(self, **kwargs) -> AudioStream:
         async def read() -> AsyncIterator[Audio]:
@@ -110,7 +111,8 @@ class MockAudioInput(AudioInput):
 
         return MediaStreamWithIterator(read())
 
-    async def get_properties(self) -> AudioInput.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None) -> AudioInput.Properties:
+        self.timeout = timeout
         return self.properties
 
 

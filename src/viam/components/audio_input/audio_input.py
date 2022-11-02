@@ -1,6 +1,7 @@
 import abc
 from dataclasses import dataclass
 from datetime import timedelta
+from typing import Optional
 
 from google.protobuf.duration_pb2 import Duration
 from typing_extensions import Self
@@ -50,7 +51,7 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
             )
 
     @abc.abstractmethod
-    async def stream(self, **kwargs) -> AudioStream:
+    async def stream(self, *, timeout: Optional[float] = None, **kwargs) -> AudioStream:
         """Stream audio samples from the audio input of the underlying robot
 
         Returns:
@@ -59,7 +60,7 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, **kwargs) -> Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
         """Get the properties of the audio input of the underlying robot
 
         Returns:

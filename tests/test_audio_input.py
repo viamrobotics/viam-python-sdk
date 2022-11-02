@@ -94,11 +94,13 @@ class TestService:
                     idx += 1
 
     @pytest.mark.asyncio
-    async def test_properties(self, audio_input: AudioInput, service: AudioInputService):
+    async def test_properties(self, audio_input: MockAudioInput, service: AudioInputService):
+        assert audio_input.timeout is None
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
-            response: PropertiesResponse = await client.Properties(PropertiesRequest(name=audio_input.name))
+            response: PropertiesResponse = await client.Properties(PropertiesRequest(name=audio_input.name), timeout=1.82)
             assert AudioInput.Properties.from_proto(response) == PROPERTIES
+            assert audio_input.timeout == pytest.approx(1.82, rel=1e-3)
 
     @pytest.mark.asyncio
     async def test_record(self, service: AudioInputService):
@@ -126,10 +128,12 @@ class TestClient:
                 idx += 1
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, audio_input: AudioInput, service: AudioInputService):
+    async def test_get_properties(self, audio_input: MockAudioInput, service: AudioInputService):
+        assert audio_input.timeout is None
         async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
-            assert await client.get_properties() == PROPERTIES
+            assert await client.get_properties(timeout=4.4) == PROPERTIES
+            assert audio_input.timeout == pytest.approx(4.4, rel=1e-3)
 
     @pytest.mark.asyncio
     async def test_do(self, audio_input: AudioInput, service: AudioInputService, generic_service: GenericService):
