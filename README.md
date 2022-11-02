@@ -1,8 +1,9 @@
 # Viam Python SDK
-[![documentation](https://img.shields.io/static/v1?label=docs&message=python.viam.dev&color=informational)](https://python.viam.dev)
+![PyPI](https://img.shields.io/pypi/v/viam-sdk)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/viam-sdk)
+[![documentation](https://img.shields.io/static/v1?label=docs&message=python.viam.dev&color=lightgray)](https://python.viam.dev)
 ![build status](https://github.com/viamrobotics/python-sdk/actions/workflows/test.yml/badge.svg)
 [![license](https://img.shields.io/badge/license-Apache_2.0-blue)](https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/viam-sdk)
 
 ## (In)stability Notice
 
