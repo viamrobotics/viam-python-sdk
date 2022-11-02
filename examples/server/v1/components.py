@@ -65,14 +65,8 @@ class ExampleArm(Arm):
         self.is_stopped = True
         super().__init__(name)
 
-    @run_with_operation
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
-        operation = self.get_operation(kwargs)
-        print("starting")
-        print(await operation.is_cancelled())
         await asyncio.sleep(3)
-        print("ending")
-        print(await operation.is_cancelled())
         return self.position
 
     async def move_to_position(
