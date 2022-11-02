@@ -52,5 +52,5 @@ class AudioInputClient(AudioInput):
         response: PropertiesResponse = await self.client.Properties(request, timeout=timeout)
         return AudioInput.Properties.from_proto(response)
 
-    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command)
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command, timeout=timeout)

@@ -194,6 +194,7 @@ class TestService:
             client = BaseServiceStub(channel)
 
             assert base.stopped is True
+            assert base.timeout is None
 
             request = MoveStraightRequest(
                 name=base.name,
@@ -202,8 +203,9 @@ class TestService:
             )
             await client.MoveStraight(request)
             assert base.stopped is False
-            await client.Stop(StopRequest(name=base.name))
+            await client.Stop(StopRequest(name=base.name), timeout=1.82)
             assert base.stopped is True
+            assert base.timeout == pytest.approx(1.82, rel=1e-3)
 
             request = MoveStraightRequest(
                 name=base.name,
@@ -295,6 +297,7 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_stop(self, base: MockBase, service: BaseService):
+        assert base.timeout is None
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
 
@@ -302,8 +305,9 @@ class TestClient:
 
             await client.move_straight(1, 1)
             assert base.stopped is False
-            await client.stop()
+            await client.stop(timeout=4.4)
             assert base.stopped is True
+            assert base.timeout == pytest.approx(4.4, rel=1e-3)
 
             await client.move_straight(1, 1)
             assert base.stopped is False

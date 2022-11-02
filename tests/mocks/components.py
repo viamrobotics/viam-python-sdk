@@ -126,6 +126,7 @@ class MockBase(Base):
         self.linear_vel = Vector3(x=0, y=0, z=0)
         self.angular_vel = Vector3(x=0, y=0, z=0)
         self.extra: Optional[Dict[str, Any]] = None
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
     async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
@@ -186,9 +187,10 @@ class MockBase(Base):
         self.angular_pwr = angular
         self.extra = extra
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(self, extra: Optional[Dict[str, Any]] = None, *, timeout: Optional[float] = None, **kwargs):
         self.stopped = True
         self.extra = extra
+        self.timeout = timeout
 
     async def is_moving(self) -> bool:
         return not self.stopped
