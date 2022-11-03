@@ -2,7 +2,7 @@ from typing import Tuple
 from PIL import Image
 from PIL.ImageFile import ImageFile, PyEncoder, PyDecoder, _save as image_save, _safe_read
 
-# Viam has special header prepended to raw RGBA data. The header is composed of a
+# Viam uses a special header prepended to raw RGBA data. The header is composed of a
 # 4-byte magic number followed by a 4-byte line of the width as a uint32 number
 # and another for the height. Credit to Ben Zotto for inventing this formulation
 # https://bzotto.medium.com/introducing-the-rgba-bitmap-file-format-4a8a94329e2c
