@@ -59,23 +59,9 @@ class CameraMimeType(str, Enum):
         if isinstance(image, RawImage):
             return image.data
 
-        if self == CameraMimeType.VIAM_RGBA:
-            data = bytearray()
-            width, height = image.size
-            data.extend(RGBA_MAGIC_NUMBER)
-            data.extend(width.to_bytes(4, byteorder="big"))
-            data.extend(height.to_bytes(4, byteorder="big"))
-            for y in range(height):
-                for x in range(width):
-                    data.extend(image.getpixel((x, y)))
-            return bytes(data)
-        if self == CameraMimeType.JPEG:
+        if self.name in LIBRARY_SUPPORTED_FORMATS:
             buf = BytesIO()
-            image.save(buf, format="JPEG")
-            return buf.getvalue()
-        if self == CameraMimeType.PNG:
-            buf = BytesIO()
-            image.save(buf, format="PNG")
+            image.save(buf, format=self.name)
             return buf.getvalue()
         else:
             raise ValueError(f"Cannot encode image to {self}")

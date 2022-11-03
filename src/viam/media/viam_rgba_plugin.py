@@ -1,4 +1,5 @@
 from typing import Tuple
+from io import BytesIO
 from PIL import Image
 from PIL.ImageFile import ImageFile, PyEncoder, PyDecoder, _save as image_save, _safe_read
 
@@ -24,7 +25,12 @@ class RGBAEncoder(PyEncoder):
     _pushes_fd = True
 
     def encode(self, bufsize):
-        data = self.im.getdata()
+        data_arr = bytearray()
+        width, height = self.im.size
+        for y in range(height):
+            for x in range(width):
+                data_arr.extend(self.im.getpixel((x, y)))
+        data = bytes(data_arr)
 
         return len(data), 0, data
 
