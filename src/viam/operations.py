@@ -1,12 +1,10 @@
 import asyncio
 import functools
 import time
-from typing import Any, Callable, Coroutine, TypeVar, cast
+from typing import Any, Callable, Coroutine, Optional, TypeVar, cast
 from uuid import UUID, uuid4
 
 from typing_extensions import Self
-
-import sys
 
 try:
     from typing import ParamSpec
@@ -94,14 +92,17 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
         operation = Operation(f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})", event)
         kwargs[Operation.ARG_NAME] = operation
         timeout = kwargs.get("timeout", None)
-        timeout = cast(float, timeout) if timeout else sys.float_info.max
-        timer = asyncio.get_running_loop().call_later(timeout, event.set)
+        timer: Optional[asyncio.TimerHandle] = None
+        if timeout:
+            timeout = cast(float, timeout)
+            timer = asyncio.get_running_loop().call_later(timeout, event.set)
         try:
             return await asyncio.shield(func(*args, **kwargs))
         except asyncio.CancelledError:
             event.set()
             raise
         finally:
-            timer.cancel()
+            if timer:
+                timer.cancel()
 
     return wrapper

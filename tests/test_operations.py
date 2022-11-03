@@ -52,3 +52,8 @@ async def test_wrapper():
         result = await task
 
     assert test_obj.long_running_task_cancelled is True
+
+    # Test timed out
+    test_obj.long_running_task_cancelled = False
+    assert test_obj.long_running_task_cancelled is False
+    assert await asyncio.create_task(test_obj.long_running(timeout=0.02)) is True
