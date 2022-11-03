@@ -1,4 +1,4 @@
-from typing import Any, Dict, Mapping
+from typing import Any, Dict, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -23,10 +23,10 @@ class SensorClient(Sensor):
         self.client = SensorServiceStub(channel)
         super().__init__(name)
 
-    async def get_readings(self) -> Mapping[str, Any]:
+    async def get_readings(self, *, timeout: Optional[float] = None) -> Mapping[str, Any]:
         request = GetReadingsRequest(name=self.name)
-        response: GetReadingsResponse = await self.client.GetReadings(request)
+        response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
         return sensor_readings_value_to_native(response.readings)
 
-    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command)
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command, timeout=timeout)
