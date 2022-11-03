@@ -48,7 +48,7 @@ class Server(ResourceManager):
         if address:
             host = address[0]
             port = address[1]
-        msg = "[gRPC Request] " + f'{host or "xxxx"}:{port or "xxxx"} - ' + f"{event.method_name}"
+        msg = f"[gRPC Request] {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}"
         LOGGER.info(msg)
 
     async def serve(

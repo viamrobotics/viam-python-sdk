@@ -10,17 +10,19 @@ from viam.proto.component.generic import (
 )
 from viam.utils import dict_to_struct, struct_to_dict
 
+from . import loose_approx
 from .mocks.components import MockGeneric
 
 
-class TestSensor:
+class TestGeneric:
 
     generic = MockGeneric(name="generic")
 
     @pytest.mark.asyncio
     async def test_do(self):
-        result = await self.generic.do_command({"command": "args"})
+        result = await self.generic.do_command({"command": "args"}, timeout=1.82)
         assert result == {"command": True}
+        assert self.generic.timeout == loose_approx(1.82)
 
 
 class TestService:
@@ -35,9 +37,10 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = GenericServiceStub(channel)
             request = DoCommandRequest(name=self.name, command=dict_to_struct({"command": "args"}))
-            response: DoCommandResponse = await client.DoCommand(request)
+            response: DoCommandResponse = await client.DoCommand(request, timeout=4.4)
             result = struct_to_dict(response.result)
             assert result == {"command": True}
+            assert self.generic.timeout == loose_approx(4.4)
 
 
 class TestClient:
@@ -51,5 +54,6 @@ class TestClient:
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = GenericClient(self.name, channel)
-            result = await client.do_command({"command": "args"})
+            result = await client.do_command({"command": "args"}, timeout=7.86)
             assert result == {"command": True}
+            assert self.generic.timeout == loose_approx(7.86)

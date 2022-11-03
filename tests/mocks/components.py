@@ -59,31 +59,47 @@ class MockArm(Arm):
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         self.extra = None
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
+    async def get_end_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Pose:
         self.extra = extra
+        self.timeout = timeout
         return self.position
 
     async def move_to_position(
-        self, pose: Pose, world_state: Optional[WorldState] = None, extra: Optional[Dict[str, Any]] = None, **kwargs
+        self,
+        pose: Pose,
+        world_state: Optional[WorldState] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
     ):
         self.position = pose
         self.is_stopped = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> JointPositions:
+    async def get_joint_positions(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> JointPositions:
         self.extra = extra
+        self.timeout = timeout
         return self.joint_positions
 
-    async def move_to_joint_positions(self, positions: JointPositions, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def move_to_joint_positions(
+        self, positions: JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
         self.joint_positions = positions
         self.is_stopped = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
         self.extra = extra
+        self.timeout = timeout
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
@@ -93,8 +109,9 @@ class MockAudioInput(AudioInput):
     def __init__(self, name: str, properties: AudioInput.Properties):
         super().__init__(name)
         self.properties = properties
+        self.timeout: Optional[float] = None
 
-    async def stream(self, **kwargs) -> AudioStream:
+    async def stream(self, *, timeout: Optional[float] = None, **kwargs) -> AudioStream:
         async def read() -> AsyncIterator[Audio]:
             for i in range(10):
                 yield Audio(
@@ -106,9 +123,11 @@ class MockAudioInput(AudioInput):
                     AudioChunk(data=f"{i}".encode("utf-8"), length=182),
                 )
 
+        self.timeout = timeout
         return MediaStreamWithIterator(read())
 
-    async def get_properties(self) -> AudioInput.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None) -> AudioInput.Properties:
+        self.timeout = timeout
         return self.properties
 
 
@@ -122,9 +141,12 @@ class MockBase(Base):
         self.linear_vel = Vector3(x=0, y=0, z=0)
         self.angular_vel = Vector3(x=0, y=0, z=0)
         self.extra: Optional[Dict[str, Any]] = None
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def move_straight(
+        self, distance: int, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
         if distance == 0 or velocity == 0:
             return await self.stop()
 
@@ -135,6 +157,7 @@ class MockBase(Base):
 
         self.stopped = False
         self.extra = extra
+        self.timeout = timeout
 
     async def move_arc(
         self,
@@ -142,6 +165,8 @@ class MockBase(Base):
         velocity: float,
         angle: float,
         extra: Optional[Dict[str, Any]] = None,
+        *,
+        timeout: Optional[float] = None,
         **kwargs,
     ):
         if distance == 0:
@@ -159,8 +184,11 @@ class MockBase(Base):
 
         self.stopped = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def spin(
+        self, angle: float, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
         if angle == 0 or velocity == 0:
             return await self.stop()
 
@@ -171,20 +199,27 @@ class MockBase(Base):
 
         self.stopped = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def set_velocity(
+        self, linear: Vector3, angular: Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
         self.linear_vel = linear
         self.angular_vel = angular
         self.extra = extra
+        self.timeout = timeout
 
-    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def set_power(
+        self, linear: Vector3, angular: Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ):
         self.linear_pwr = linear
         self.angular_pwr = angular
         self.extra = extra
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.stopped = True
         self.extra = extra
+        self.timeout = timeout
 
     async def is_moving(self) -> bool:
         return not self.stopped
@@ -193,10 +228,12 @@ class MockBase(Base):
 class MockAnalogReader(Board.AnalogReader):
     def __init__(self, name: str, value: int):
         self.value = value
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def read(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
+    async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
         self.extra = extra
+        self.timeout = timeout
         return self.value
 
 
@@ -207,10 +244,12 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.num_ticks = 0
         self.callbacks: List[Queue] = []
         self.post_processors: List[PostProcessor] = []
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def value(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
+    async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
         self.extra = extra
+        self.timeout = timeout
         return self.num_ticks
 
     async def tick(self, high: bool, nanos: int):
@@ -230,31 +269,38 @@ class MockGPIOPin(Board.GPIOPin):
         self.high = False
         self.pwm = 0.0
         self.pwm_freq = 0
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
+    async def get(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
         self.extra = extra
+        self.timeout = timeout
         return self.high
 
-    async def set(self, high: bool, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def set(self, high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.high = high
         self.extra = extra
+        self.timeout = timeout
 
-    async def get_pwm(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
+    async def get_pwm(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
         self.extra = extra
+        self.timeout = timeout
         return self.pwm
 
-    async def set_pwm(self, duty_cycle: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def set_pwm(self, duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.pwm = duty_cycle
         self.extra = extra
+        self.timeout = timeout
 
-    async def get_pwm_frequency(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
+    async def get_pwm_frequency(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
         self.extra = extra
+        self.timeout = timeout
         return self.pwm_freq
 
-    async def set_pwm_frequency(self, frequency: int, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def set_pwm_frequency(self, frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.pwm_freq = frequency
         self.extra = extra
+        self.timeout = timeout
 
 
 class MockBoard(Board):
@@ -268,6 +314,7 @@ class MockBoard(Board):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
         self.gpios = gpio_pins
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
@@ -294,8 +341,9 @@ class MockBoard(Board):
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
 
-    async def status(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> BoardStatus:
+    async def status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
         self.extra = extra
+        self.timeout = timeout
         return BoardStatus(
             analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
             digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
@@ -314,9 +362,13 @@ class MockCamera(Camera):
             IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
             DistortionParameters(model="no_distortion"),
         )
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_image(self, mime_type: str = CameraMimeType.PNG, **kwargs) -> Union[Image.Image, RawImage]:
+    async def get_image(
+        self, mime_type: str = CameraMimeType.PNG, *, timeout: Optional[float] = None, **kwargs
+    ) -> Union[Image.Image, RawImage]:
+        self.timeout = timeout
         if not CameraMimeType.is_supported(mime_type) or mime_type == CameraMimeType.RAW:
             return RawImage(
                 data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
@@ -326,10 +378,12 @@ class MockCamera(Camera):
             )
         return self.image.copy()
 
-    async def get_point_cloud(self, **kwargs) -> Tuple[bytes, str]:
+    async def get_point_cloud(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]:
+        self.timeout = timeout
         return self.point_cloud, CameraMimeType.PCD.value
 
-    async def get_properties(self, **kwargs) -> Camera.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Camera.Properties:
+        self.timeout = timeout
         return self.props
 
 
@@ -339,37 +393,48 @@ class MockGantry(Gantry):
         self.lengths = lengths
         self.is_stopped = True
         self.extra = None
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
+    async def get_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
         self.extra = extra
+        self.timeout = timeout
         return self.position
 
     async def move_to_position(
         self,
         positions: List[float],
         world_state: Optional[WorldState] = None,
+        *,
         extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
         **kwargs,
     ):
         self.position = positions
         self.is_stopped = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
+    async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
         self.extra = extra
+        self.timeout = timeout
         return self.lengths
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.extra = extra
         self.is_stopped = True
+        self.timeout = timeout
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
 
 class MockGeneric(GenericComponent):
-    async def do_command(self, command: Dict[str, Any], **kwargs) -> Dict[str, Any]:
+
+    timeout: Optional[float] = None
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        self.timeout = timeout
         return {key: True for key in command.keys()}
 
 
@@ -377,19 +442,23 @@ class MockGripper(Gripper):
     def __init__(self, name: str):
         self.opened = False
         self.is_stopped = True
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def open(self, **kwargs):
+    async def open(self, *, timeout: Optional[float] = None, **kwargs):
         self.opened = True
         self.is_stopped = False
+        self.timeout = timeout
 
-    async def grab(self, **kwargs) -> bool:
+    async def grab(self, *, timeout: Optional[float] = None, **kwargs) -> bool:
         self.opened = False
         self.is_stopped = False
+        self.timeout = timeout
         return choice([True, False])
 
-    async def stop(self, **kwargs):
+    async def stop(self, *, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
+        self.timeout = timeout
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
@@ -400,8 +469,10 @@ class MockInputController(Controller):
         super().__init__(name)
         self.events: Dict[Control, Event] = {}
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
+        self.timeout: Optional[float] = None
 
-    async def get_controls(self, **kwargs) -> List[Control]:
+    async def get_controls(self, *, timeout: Optional[float] = None, **kwargs) -> List[Control]:
+        self.timeout = timeout
         return [
             Control.ABSOLUTE_X,
             Control.ABSOLUTE_Y,
@@ -426,14 +497,16 @@ class MockInputController(Controller):
             Control.BUTTON_E_STOP,
         ]
 
-    async def get_events(self, **kwargs) -> Dict[Control, Event]:
+    async def get_events(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]:
+        self.timeout = timeout
         return self.events
 
     def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], **kwargs):
         self.callbacks[control] = {trigger: function for trigger in triggers}
 
-    async def trigger_event(self, event: Event, **kwargs):
+    async def trigger_event(self, event: Event, *, timeout: Optional[float] = None, **kwargs):
         self.events[event.control] = event
+        self.timeout = timeout
         callback = self.callbacks.get(event.control, {}).get(event.event)
         if callback:
             callback(event)
@@ -445,46 +518,109 @@ class MockMotor(Motor):
         self.power = 0
         self.powered = False
         self.extra = None
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def set_power(
+        self,
+        power: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         self.power = power
         self.powered = power != 0
         self.extra = extra
+        self.timeout = timeout
 
-    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def go_for(
+        self,
+        rpm: float,
+        revolutions: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         if rpm > 0:
             self.position += revolutions
         if rpm < 0:
             self.position -= revolutions
         self.powered = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def go_to(
+        self,
+        rpm: float,
+        position_revolutions: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         if rpm != 0:
             self.position = position_revolutions
         self.powered = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def reset_zero_position(
+        self,
+        offset: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         self.offset = offset
         self.powered = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
+    async def get_position(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> float:
         self.extra = extra
+        self.timeout = timeout
         return self.position
 
-    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Motor.Properties:
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Motor.Properties:
         self.extra = extra
+        self.timeout = timeout
         return Motor.Properties(position_reporting=True)
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         await self.set_power(0)
+        self.timeout = timeout
         self.extra = extra
 
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[bool, float]:
+    async def is_powered(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Tuple[bool, float]:
         self.extra = extra
+        self.timeout = timeout
         return self.powered, self.power
 
     async def is_moving(self) -> bool:
@@ -513,26 +649,34 @@ class MockMovementSensor(MovementSensor):
         self.orientation = orientation
         self.properties = properties
         self.accuracy = accuracy
+        self.timeout: Optional[float] = None
 
-    async def get_position(self, **kwargs) -> Tuple[GeoPoint, float]:
+    async def get_position(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[GeoPoint, float]:
+        self.timeout = timeout
         return (self.coordinates, self.altitude)
 
-    async def get_linear_velocity(self, **kwargs) -> Vector3:
+    async def get_linear_velocity(self, *, timeout: Optional[float] = None, **kwargs) -> Vector3:
+        self.timeout = timeout
         return self.lin_vel
 
-    async def get_angular_velocity(self, **kwargs) -> Vector3:
+    async def get_angular_velocity(self, *, timeout: Optional[float] = None, **kwargs) -> Vector3:
+        self.timeout = timeout
         return self.ang_vel
 
-    async def get_compass_heading(self, **kwargs) -> float:
+    async def get_compass_heading(self, *, timeout: Optional[float] = None, **kwargs) -> float:
+        self.timeout = timeout
         return self.heading
 
-    async def get_orientation(self, **kwargs) -> Orientation:
+    async def get_orientation(self, *, timeout: Optional[float] = None, **kwargs) -> Orientation:
+        self.timeout = timeout
         return self.orientation
 
-    async def get_properties(self, **kwargs) -> MovementSensor.Properties:
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> MovementSensor.Properties:
+        self.timeout = timeout
         return self.properties
 
-    async def get_accuracy(self, **kwargs) -> Mapping[str, float]:
+    async def get_accuracy(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]:
+        self.timeout = timeout
         return self.accuracy
 
 
@@ -558,20 +702,24 @@ class MockPoseTracker(PoseTracker):
             pose_map[str(idx)] = pose
         self.poses_result = pose_map
         self.name = name
+        self.timeout: Optional[float] = None
 
-    async def get_poses(self, body_names: List[str], **kwargs) -> Dict[str, PoseInFrame]:
+    async def get_poses(self, body_names: List[str], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, PoseInFrame]:
         result: Dict[str, PoseInFrame] = {}
         for name, pose in self.poses_result.items():
             result[name] = pose.to_pose_in_frame(name)
+        self.timeout = timeout
         return result
 
 
 class MockSensor(Sensor):
     def __init__(self, name: str, result: Mapping[str, Any] = {"a": 0, "b": {"foo": "bar"}, "c": [1, 8, 2], "d": "Hello world!"}):
         self.readings = result
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
+    async def get_readings(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
+        self.timeout = timeout
         return self.readings
 
 
@@ -579,17 +727,21 @@ class MockServo(Servo):
     def __init__(self, name: str):
         self.angle = 0
         self.is_stopped = True
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def move(self, angle: int, **kwargs):
+    async def move(self, angle: int, *, timeout: Optional[float] = None, **kwargs):
         self.angle = angle
         self.is_stopped = False
+        self.timeout = timeout
 
-    async def get_position(self, **kwargs) -> int:
+    async def get_position(self, *, timeout: Optional[float] = None, **kwargs) -> int:
+        self.timeout = timeout
         return self.angle
 
-    async def stop(self, **kwargs):
+    async def stop(self, *, timeout: Optional[float] = None, **kwargs):
         self.is_stopped = True
+        self.timeout = timeout
 
     async def is_moving(self) -> bool:
         return not self.is_stopped

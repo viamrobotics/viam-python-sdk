@@ -40,7 +40,8 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             controller = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        controls = await controller.get_controls()
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        controls = await controller.get_controls(timeout=timeout)
         response = GetControlsResponse(controls=[c.value for c in controls])
         await stream.send_message(response)
 
@@ -52,7 +53,8 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             controller = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        events = await controller.get_events()
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        events = await controller.get_events(timeout=timeout)
         pb_events = [e.proto for e in events.values()]
         response = GetEventsResponse(events=pb_events)
         await stream.send_message(response)
@@ -134,11 +136,12 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
         try:
             controller = self.get_component(name)
             pb_event = request.event
             event = Event.from_proto(pb_event)
-            await controller.trigger_event(event)
+            await controller.trigger_event(event, timeout=timeout)
         except ComponentNotFoundError as e:
             raise e.grpc_error
         except NotSupportedError as e:

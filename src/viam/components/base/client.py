@@ -26,7 +26,14 @@ class BaseClient(Base):
         self.client = BaseServiceStub(channel)
         super().__init__(name)
 
-    async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def move_straight(
+        self,
+        distance: int,
+        velocity: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ):
         if extra is None:
             extra = {}
         request = MoveStraightRequest(
@@ -35,9 +42,16 @@ class BaseClient(Base):
             mm_per_sec=velocity,
             extra=dict_to_struct(extra),
         )
-        await self.client.MoveStraight(request)
+        await self.client.MoveStraight(request, timeout=timeout)
 
-    async def spin(self, angle: float, velocity: float, extra: Optional[Dict[str, Any]] = None):
+    async def spin(
+        self,
+        angle: float,
+        velocity: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ):
         if extra is None:
             extra = {}
         request = SpinRequest(
@@ -46,9 +60,16 @@ class BaseClient(Base):
             degs_per_sec=velocity,
             extra=dict_to_struct(extra),
         )
-        await self.client.Spin(request)
+        await self.client.Spin(request, timeout=timeout)
 
-    async def set_power(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_power(
+        self,
+        linear: Vector3,
+        angular: Vector3,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ):
         if extra is None:
             extra = {}
         request = SetPowerRequest(
@@ -57,19 +78,36 @@ class BaseClient(Base):
             angular=angular,
             extra=dict_to_struct(extra),
         )
-        await self.client.SetPower(request)
+        await self.client.SetPower(request, timeout=timeout)
 
-    async def set_velocity(self, linear: Vector3, angular: Vector3, extra: Optional[Dict[str, Any]] = None):
+    async def set_velocity(
+        self,
+        linear: Vector3,
+        angular: Vector3,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ):
         if extra is None:
             extra = {}
         request = SetVelocityRequest(name=self.name, linear=linear, angular=angular, extra=dict_to_struct(extra))
-        await self.client.SetVelocity(request)
+        await self.client.SetVelocity(request, timeout=timeout)
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ):
         if extra is None:
             extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
-        await self.client.Stop(request)
+        await self.client.Stop(request, timeout=timeout)
 
-    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command)
+    async def do_command(
+        self,
+        command: Dict[str, Any],
+        *,
+        timeout: Optional[float] = None,
+    ) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command, timeout=timeout)

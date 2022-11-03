@@ -12,6 +12,7 @@ from viam.proto.component.sensor import (
 )
 from viam.utils import primitive_to_value
 
+from . import loose_approx
 from .mocks.components import MockSensor
 
 
@@ -21,8 +22,9 @@ class TestSensor:
 
     @pytest.mark.asyncio
     async def test_get_readings(self):
-        readings = await self.sensor.get_readings()
+        readings = await self.sensor.get_readings(timeout=1.23)
         assert readings == {"a": 1, "b": 2, "c": 3}
+        assert self.sensor.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -43,8 +45,9 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = SensorServiceStub(channel)
             request = GetReadingsRequest(name=self.name)
-            result: GetReadingsResponse = await client.GetReadings(request)
+            result: GetReadingsResponse = await client.GetReadings(request, timeout=2.34)
             assert result.readings == {key: primitive_to_value(value) for (key, value) in self.readings.items()}
+            assert self.sensor.timeout == loose_approx(2.34)
 
 
 class TestClient:
@@ -59,8 +62,9 @@ class TestClient:
     async def test_get_readings(self):
         async with ChannelFor([self.service]) as channel:
             client = SensorClient(self.name, channel)
-            value_readings = await client.get_readings()
+            value_readings = await client.get_readings(timeout=3.45)
             assert self.readings == value_readings
+            assert self.sensor.timeout == loose_approx(3.45)
 
     @pytest.mark.asyncio
     async def test_do(self):
