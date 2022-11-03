@@ -32,7 +32,7 @@ class CameraClient(Camera):
     async def get_image(self, mime_type: str = CameraMimeType.PNG) -> Union[Image.Image, RawImage]:
         request = GetImageRequest(name=self.name, mime_type=mime_type)
         response: GetImageResponse = await self.client.GetImage(request)
-        _, is_lazy = CameraMimeType.extract_from_lazy(request.mime_type)
+        _, is_lazy = CameraMimeType.from_lazy(request.mime_type)
         if is_lazy or not (CameraMimeType.is_supported(response.mime_type)):
             image = RawImage(response.image, response.mime_type)
             return image

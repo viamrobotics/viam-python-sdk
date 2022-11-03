@@ -35,7 +35,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             raise e.grpc_error
         image = await camera.get_image(request.mime_type)
         try:
-            mimetype, is_lazy = CameraMimeType.extract_from_lazy(request.mime_type)
+            mimetype, is_lazy = CameraMimeType.from_lazy(request.mime_type)
             if CameraMimeType.is_supported(mimetype):
                 response_mime = mimetype
             else:

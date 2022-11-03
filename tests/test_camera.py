@@ -78,7 +78,7 @@ class TestCamera:
         img = await camera.get_image(CameraMimeType.VIAM_RGBA)
         assert isinstance(img, Image.Image)
 
-        img = await camera.get_image(f"{CameraMimeType.PNG}{LAZY_SUFFIX}")
+        img = await camera.get_image(CameraMimeType.PNG.with_lazy_suffix)
         assert isinstance(img, RawImage)
 
     @pytest.mark.asyncio
@@ -170,7 +170,7 @@ class TestClient:
             assert rgba_bytes == image.copy().convert("RGBA").tobytes()
 
             # Test lazy mime type
-            raw_img = await client.get_image(f"{CameraMimeType.PNG}{LAZY_SUFFIX}")
+            raw_img = await client.get_image(CameraMimeType.PNG.with_lazy_suffix)
             assert isinstance(raw_img, RawImage)
             assert raw_img.data == image.tobytes()
             assert raw_img.mime_type == CameraMimeType.PNG

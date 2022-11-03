@@ -2,6 +2,7 @@ from .viam_rgba_plugin import RGBA_FORMAT_LABEL, RGBA_MAGIC_NUMBER
 from enum import Enum
 from io import BytesIO
 from typing import NamedTuple, Union, Tuple
+from typing_extensions import Self
 from PIL.Image import Image
 
 LAZY_SUFFIX = "+lazy"
@@ -40,7 +41,7 @@ class CameraMimeType(str, Enum):
     UNSUPPORTED = "unsupported"
 
     @classmethod
-    def extract_from_lazy(cls, value: str) -> Tuple["CameraMimeType", bool]:
+    def from_lazy(cls, value: str) -> Tuple[Self, bool]:
         is_lazy = False
         mime_type = value
         if value.endswith(LAZY_SUFFIX):
@@ -49,6 +50,10 @@ class CameraMimeType(str, Enum):
         if not cls.is_supported(value) and not is_lazy:
             mime_type = CameraMimeType(CameraMimeType.UNSUPPORTED)
         return (cls(mime_type), is_lazy)
+
+    @property
+    def with_lazy_suffix(self) -> str:
+        return f"{self.value}{LAZY_SUFFIX}"
 
     def encode_image(self, image: Union[Image, RawImage]) -> bytes:
         if isinstance(image, RawImage):
