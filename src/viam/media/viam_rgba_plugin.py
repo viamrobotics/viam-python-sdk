@@ -1,5 +1,4 @@
 from typing import Tuple
-from io import BytesIO
 from PIL import Image
 from PIL.ImageFile import ImageFile, PyEncoder, PyDecoder, _save as image_save, _safe_read
 

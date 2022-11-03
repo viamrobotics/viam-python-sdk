@@ -1,4 +1,4 @@
-from .viam_rgba_plugin import RGBA_FORMAT_LABEL, RGBA_MAGIC_NUMBER
+from .viam_rgba_plugin import RGBA_FORMAT_LABEL
 from enum import Enum
 from io import BytesIO
 from typing import NamedTuple, Union, Tuple
