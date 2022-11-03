@@ -136,7 +136,7 @@ class Controller(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_controls(self, **kwargs) -> List[Control]:
+    async def get_controls(self, *, timeout: Optional[float] = None, **kwargs) -> List[Control]:
         """
         Returns a list of Controls provided by the Controller
 
@@ -146,7 +146,7 @@ class Controller(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_events(self, **kwargs) -> Dict[Control, Event]:
+    async def get_events(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]:
         """
         Returns the most recent Event for each input
         (which should be the current state)
@@ -171,7 +171,7 @@ class Controller(ComponentBase):
         """
         ...
 
-    async def trigger_event(self, event: Event, **kwargs):
+    async def trigger_event(self, event: Event, *, timeout: Optional[float] = None, **kwargs):
         """Directly send an Event (such as a button press) from external code
 
         Args:

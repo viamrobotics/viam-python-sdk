@@ -38,14 +38,14 @@ class ControllerClient(Controller):
         self._is_stream_ready = False
         super().__init__(name)
 
-    async def get_controls(self) -> List[Control]:
+    async def get_controls(self, *, timeout: Optional[float] = None) -> List[Control]:
         request = GetControlsRequest(controller=self.name)
-        response: GetControlsResponse = await self.client.GetControls(request)
+        response: GetControlsResponse = await self.client.GetControls(request, timeout=timeout)
         return [Control(control) for control in response.controls]
 
-    async def get_events(self) -> Dict[Control, Event]:
+    async def get_events(self, *, timeout: Optional[float] = None) -> Dict[Control, Event]:
         request = GetEventsRequest(controller=self.name)
-        response: GetEventsResponse = await self.client.GetEvents(request)
+        response: GetEventsResponse = await self.client.GetEvents(request, timeout=timeout)
         return {Control(event.control): Event.from_proto(event) for (event) in response.events}
 
     def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction]):
@@ -71,10 +71,10 @@ class ControllerClient(Controller):
         task = asyncio.create_task(self._stream_events(), name=f"{viam._TASK_PREFIX}-input_stream_events")
         task.add_done_callback(handle_task_result)
 
-    async def trigger_event(self, event: Event):
+    async def trigger_event(self, event: Event, *, timeout: Optional[float] = None):
         request = TriggerEventRequest(controller=self.name, event=event.proto)
         try:
-            await self.client.TriggerEvent(request)
+            await self.client.TriggerEvent(request, timeout=timeout)
         except GRPCError as e:
             if e.status == Status.UNIMPLEMENTED and ("does not support triggering events" in e.message if e.message else False):
                 raise NotSupportedError(f"Input controller named {self.name} does not support triggering events")
@@ -132,5 +132,5 @@ class ControllerClient(Controller):
         if all_callback is not None:
             all_callback(event)
 
-    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command)
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command, timeout=timeout)

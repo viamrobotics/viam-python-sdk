@@ -21,6 +21,7 @@ from viam.proto.component.inputcontroller import (
     TriggerEventRequest,
 )
 
+from . import loose_approx
 from .mocks.components import MockInputController
 
 
@@ -44,7 +45,7 @@ def generic_service(controller: MockInputController) -> GenericService:
 class TestInputController:
     @pytest.mark.asyncio
     async def test_get_controls(self, controller: MockInputController):
-        controls = await controller.get_controls()
+        controls = await controller.get_controls(timeout=4.4)
         assert controls == [
             Control.ABSOLUTE_X,
             Control.ABSOLUTE_Y,
@@ -68,19 +69,23 @@ class TestInputController:
             Control.BUTTON_RECORD,
             Control.BUTTON_E_STOP,
         ]
+        assert controller.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController):
-        events = await controller.get_events()
+        events = await controller.get_events(timeout=1.82)
         assert len(events) == 0
+        assert controller.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
     async def test_trigger_event(self, controller: MockInputController):
         assert len(controller.events) == 0
         event = Event(time(), EventType.CONNECT, Control.ABSOLUTE_X, 0)
-        await controller.trigger_event(event)
+        await controller.trigger_event(event, timeout=7.86)
+        assert controller.timeout == loose_approx(7.86)
         events = await controller.get_events()
         assert events[Control.ABSOLUTE_X] == event
+        assert controller.timeout is None
 
     def test_register_control_callback(self, controller: MockInputController):
         assert len(controller.callbacks) == 0
@@ -100,7 +105,7 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
             request = GetControlsRequest(controller=controller.name)
-            response: GetControlsResponse = await client.GetControls(request)
+            response: GetControlsResponse = await client.GetControls(request, timeout=1.23)
             controls = list(response.controls)
             assert controls == [
                 Control.ABSOLUTE_X,
@@ -125,15 +130,17 @@ class TestService:
                 Control.BUTTON_RECORD,
                 Control.BUTTON_E_STOP,
             ]
+            assert controller.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
             request = GetEventsRequest(controller=controller.name)
-            response: GetEventsResponse = await client.GetEvents(request)
+            response: GetEventsResponse = await client.GetEvents(request, timeout=2.34)
             events = list(response.events)
             assert events == list(controller.events.values())
+            assert controller.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
     async def test_trigger_event(self, controller: MockInputController, service: InputControllerService):
@@ -141,12 +148,13 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
             request = TriggerEventRequest(controller=controller.name, event=event.proto)
-            await client.TriggerEvent(request)
+            await client.TriggerEvent(request, timeout=3.45)
             assert controller.events[Control.ABSOLUTE_X].control == event.control
             assert controller.events[Control.ABSOLUTE_X].event == event.event
             assert controller.events[Control.ABSOLUTE_X].value == event.value
             # timestamp nanos conversion can result in differences in the 1e-7 scale
             assert abs(controller.events[Control.ABSOLUTE_X].time - event.time) < 0.000001
+            assert controller.timeout == loose_approx(3.45)
 
     @pytest.mark.asyncio
     async def test_stream_events(selc, controller: MockInputController, service: InputControllerService):
@@ -184,7 +192,7 @@ class TestClient:
     async def test_get_controls(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
-            controls = await client.get_controls()
+            controls = await client.get_controls(timeout=4.56)
             assert controls == [
                 Control.ABSOLUTE_X,
                 Control.ABSOLUTE_Y,
@@ -208,25 +216,28 @@ class TestClient:
                 Control.BUTTON_RECORD,
                 Control.BUTTON_E_STOP,
             ]
+            assert controller.timeout == loose_approx(4.56)
 
     @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
-            events = await client.get_events()
+            events = await client.get_events(timeout=5.67)
             assert events == controller.events
+            assert controller.timeout == loose_approx(5.67)
 
     @pytest.mark.asyncio
     async def test_trigger_event(self, controller: MockInputController, service: InputControllerService):
         event = Event(time(), EventType.CONNECT, Control.ABSOLUTE_X, 0)
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
-            await client.trigger_event(event)
+            await client.trigger_event(event, timeout=6.78)
             assert controller.events[Control.ABSOLUTE_X].control == event.control
             assert controller.events[Control.ABSOLUTE_X].event == event.event
             assert controller.events[Control.ABSOLUTE_X].value == event.value
             # timestamp nanos conversion can result in differences in the 1e-7 scale
             assert abs(controller.events[Control.ABSOLUTE_X].time - event.time) < 0.000001
+            assert controller.timeout == loose_approx(6.78)
 
     @pytest.mark.asyncio
     async def test_register_control_callback(self, controller: MockInputController, service: InputControllerService):

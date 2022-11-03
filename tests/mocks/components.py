@@ -469,8 +469,10 @@ class MockInputController(Controller):
         super().__init__(name)
         self.events: Dict[Control, Event] = {}
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
+        self.timeout: Optional[float] = None
 
-    async def get_controls(self, **kwargs) -> List[Control]:
+    async def get_controls(self, *, timeout: Optional[float] = None, **kwargs) -> List[Control]:
+        self.timeout = timeout
         return [
             Control.ABSOLUTE_X,
             Control.ABSOLUTE_Y,
@@ -495,14 +497,16 @@ class MockInputController(Controller):
             Control.BUTTON_E_STOP,
         ]
 
-    async def get_events(self, **kwargs) -> Dict[Control, Event]:
+    async def get_events(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]:
+        self.timeout = timeout
         return self.events
 
     def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], **kwargs):
         self.callbacks[control] = {trigger: function for trigger in triggers}
 
-    async def trigger_event(self, event: Event, **kwargs):
+    async def trigger_event(self, event: Event, *, timeout: Optional[float] = None, **kwargs):
         self.events[event.control] = event
+        self.timeout = timeout
         callback = self.callbacks.get(event.control, {}).get(event.event)
         if callback:
             callback(event)
