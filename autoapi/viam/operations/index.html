@@ -189,6 +189,7 @@ you should check whether the operation has been cancelled to prevent long-runnin
 Running a function with an Operation will allow the function
 to know if/when the calling task was cancelled and take appropriate action
 (.e.g. stop long running tasks and exit early).</p>
+<p>If a timeout is provided to the function, the operation will cancel when the timeout is reached.</p>
 <p>An example use case is if a gRPC client disconnects after making a request.
 Rather than continue to run a task for a receiver that is no longer there,
 the component can cancel and clean up, saving resources.</p>

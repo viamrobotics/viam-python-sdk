@@ -27,7 +27,7 @@ Classes
    gantry implementations. This cannot be used on its own. If the `__init__()` function is
    overridden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_position(extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]
       :abstractmethod:
       :async:
 
@@ -37,7 +37,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: move_to_position(positions: List[float], world_state: Optional[viam.proto.common.WorldState] = None, extra: Optional[Dict[str, Any]] = None, **kwargs)
+   .. py:method:: move_to_position(positions: List[float], world_state: Optional[viam.proto.common.WorldState] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -51,7 +51,7 @@ Classes
       :type world_state: Optional[WorldState]
 
 
-   .. py:method:: get_lengths(extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]
+   .. py:method:: get_lengths(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]
       :abstractmethod:
       :async:
 
@@ -61,7 +61,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: stop(extra: Optional[Dict[str, Any]] = None, **kwargs)
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 

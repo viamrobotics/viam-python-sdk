@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the Servo component.
 
-   .. py:method:: get_position() -> int
+   .. py:method:: get_position(*, timeout: Optional[float] = None) -> int
       :async:
 
       Get the current angle (degrees) of the servo.
@@ -32,7 +32,7 @@ Classes
       :rtype: int
 
 
-   .. py:method:: move(angle: int)
+   .. py:method:: move(angle: int, *, timeout: Optional[float] = None)
       :async:
 
       Move the servo to the provided angle.
@@ -41,13 +41,13 @@ Classes
       :type angle: int
 
 
-   .. py:method:: stop()
+   .. py:method:: stop(*, timeout: Optional[float] = None)
       :async:
 
       Stop the servo. It is assumed that the servo stops immediately.
 
 
-   .. py:method:: do_command(command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do_command(command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands

@@ -88,6 +88,8 @@ Attributes
    to know if/when the calling task was cancelled and take appropriate action
    (.e.g. stop long running tasks and exit early).
 
+   If a timeout is provided to the function, the operation will cancel when the timeout is reached.
+
    An example use case is if a gRPC client disconnects after making a request.
    Rather than continue to run a task for a receiver that is no longer there,
    the component can cancel and clean up, saving resources.

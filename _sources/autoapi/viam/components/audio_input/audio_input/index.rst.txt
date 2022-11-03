@@ -70,7 +70,7 @@ Classes
 
 
 
-   .. py:method:: stream() -> viam.media.audio.AudioStream
+   .. py:method:: stream(*, timeout: Optional[float] = None, **kwargs) -> viam.media.audio.AudioStream
       :abstractmethod:
       :async:
 
@@ -80,7 +80,7 @@ Classes
       :rtype: MediaStream[Audio]
 
 
-   .. py:method:: get_properties() -> Properties
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties
       :abstractmethod:
       :async:
 

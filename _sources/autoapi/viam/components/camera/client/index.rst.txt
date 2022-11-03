@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the Camera component
 
-   .. py:method:: get_image(mime_type: str = CameraMimeType.PNG) -> Union[PIL.Image.Image, viam.media.video.RawImage]
+   .. py:method:: get_image(mime_type: str = CameraMimeType.PNG, *, timeout: Optional[float] = None) -> Union[PIL.Image.Image, viam.media.video.RawImage]
       :async:
 
       Get the next image from the camera as an Image or RawImage.
@@ -36,7 +36,7 @@ Classes
       :rtype: Image | RawImage
 
 
-   .. py:method:: get_point_cloud() -> Tuple[bytes, str]
+   .. py:method:: get_point_cloud(*, timeout: Optional[float] = None) -> Tuple[bytes, str]
       :async:
 
       Get the next point cloud from the camera. This will be
@@ -50,7 +50,7 @@ Classes
       :rtype: bytes
 
 
-   .. py:method:: get_properties() -> viam.components.camera.camera.Camera.Properties
+   .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.components.camera.camera.Camera.Properties
       :async:
 
       Get the camera intrinsic parameters and camera distortion parameters
@@ -59,7 +59,7 @@ Classes
       :rtype: Properties
 
 
-   .. py:method:: do_command(command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do_command(command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands

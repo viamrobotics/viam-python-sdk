@@ -189,7 +189,7 @@ Attributes
    Could be a single gamepad, or a collection of digitalInterrupts
    and analogReaders, a keyboard, etc.
 
-   .. py:method:: get_controls(**kwargs) -> List[Control]
+   .. py:method:: get_controls(*, timeout: Optional[float] = None, **kwargs) -> List[Control]
       :abstractmethod:
       :async:
 
@@ -199,7 +199,7 @@ Attributes
       :rtype: List[Control]
 
 
-   .. py:method:: get_events(**kwargs) -> Dict[Control, Event]
+   .. py:method:: get_events(*, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]
       :abstractmethod:
       :async:
 
@@ -226,7 +226,7 @@ Attributes
       :type function: ControlFunction
 
 
-   .. py:method:: trigger_event(event: Event, **kwargs)
+   .. py:method:: trigger_event(event: Event, *, timeout: Optional[float] = None, **kwargs)
       :async:
 
       Directly send an Event (such as a button press) from external code

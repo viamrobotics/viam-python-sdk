@@ -32,7 +32,7 @@ Classes
 
       
 
-   .. py:method:: move(angle: int, **kwargs)
+   .. py:method:: move(angle: int, *, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -42,7 +42,7 @@ Classes
       :type angle: int
 
 
-   .. py:method:: get_position(**kwargs) -> int
+   .. py:method:: get_position(*, timeout: Optional[float] = None, **kwargs) -> int
       :abstractmethod:
       :async:
 
@@ -52,7 +52,7 @@ Classes
       :rtype: int
 
 
-   .. py:method:: stop(**kwargs)
+   .. py:method:: stop(*, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 

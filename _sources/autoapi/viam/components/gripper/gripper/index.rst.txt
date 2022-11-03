@@ -27,14 +27,14 @@ Classes
    gripper implementations. This cannot be used on its own. If the `__init__()` function is
    overridden, it must call the `super().__init__()` function.
 
-   .. py:method:: open(**kwargs)
+   .. py:method:: open(*, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 
       Open the gripper.
 
 
-   .. py:method:: grab(**kwargs) -> bool
+   .. py:method:: grab(*, timeout: Optional[float] = None, **kwargs) -> bool
       :abstractmethod:
       :async:
 
@@ -44,7 +44,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: stop(**kwargs)
+   .. py:method:: stop(*, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 

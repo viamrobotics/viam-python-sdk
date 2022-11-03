@@ -86,9 +86,14 @@
              
   <h1>Source code for viam.components.pose_tracker.service</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
+
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.component.posetracker</span> <span class="kn">import</span> <span class="n">GetPosesRequest</span><span class="p">,</span> <span class="n">GetPosesResponse</span><span class="p">,</span> <span class="n">PoseTrackerServiceBase</span>
+<span class="kn">from</span> <span class="nn">viam.proto.component.posetracker</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GetPosesRequest</span><span class="p">,</span>
+    <span class="n">GetPosesResponse</span><span class="p">,</span>
+    <span class="n">PoseTrackerServiceBase</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>
 
@@ -108,7 +113,8 @@
             <span class="n">pose_tracker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
-        <span class="n">poses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">pose_tracker</span><span class="o">.</span><span class="n">get_poses</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">body_names</span><span class="p">))</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">poses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">pose_tracker</span><span class="o">.</span><span class="n">get_poses</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">body_names</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">GetPosesResponse</span><span class="p">(</span><span class="n">body_poses</span><span class="o">=</span><span class="n">poses</span><span class="p">))</span></div></div>
 </pre></div>
 

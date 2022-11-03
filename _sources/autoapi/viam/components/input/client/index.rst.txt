@@ -36,7 +36,7 @@ Attributes
 
    gRPC client for an Input Controller
 
-   .. py:method:: get_controls() -> List[viam.components.input.input.Control]
+   .. py:method:: get_controls(*, timeout: Optional[float] = None) -> List[viam.components.input.input.Control]
       :async:
 
       Returns a list of Controls provided by the Controller
@@ -45,7 +45,7 @@ Attributes
       :rtype: List[Control]
 
 
-   .. py:method:: get_events() -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
+   .. py:method:: get_events(*, timeout: Optional[float] = None) -> Dict[viam.components.input.input.Control, viam.components.input.input.Event]
       :async:
 
       Returns the most recent Event for each input
@@ -70,7 +70,7 @@ Attributes
       :type function: ControlFunction
 
 
-   .. py:method:: trigger_event(event: viam.components.input.input.Event)
+   .. py:method:: trigger_event(event: viam.components.input.input.Event, *, timeout: Optional[float] = None)
       :async:
 
       Directly send an Event (such as a button press) from external code
@@ -79,7 +79,7 @@ Attributes
       :type event: Event
 
 
-   .. py:method:: do_command(command: Dict[str, Any]) -> Dict[str, Any]
+   .. py:method:: do_command(command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]
       :async:
 
       Send/Receive arbitrary commands
