@@ -6,7 +6,6 @@ else:
     from typing import AsyncIterator
 
 from dataclasses import dataclass
-from io import BytesIO
 from multiprocessing import Queue
 from secrets import choice
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
