@@ -1,9 +1,14 @@
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 from grpclib.client import Channel
+
 from viam.components.generic.client import do_command
 from viam.proto.common import PoseInFrame
-from viam.proto.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceStub
+from viam.proto.component.posetracker import (
+    GetPosesRequest,
+    GetPosesResponse,
+    PoseTrackerServiceStub,
+)
 
 from .pose_tracker import PoseTracker
 
@@ -18,13 +23,13 @@ class PoseTrackerClient(PoseTracker):
         self.client = PoseTrackerServiceStub(channel)
         super().__init__(name)
 
-    async def get_poses(self, body_names: List[str]) -> Dict[str, PoseInFrame]:
+    async def get_poses(self, body_names: List[str], *, timeout: Optional[float] = None) -> Dict[str, PoseInFrame]:
         request = GetPosesRequest(
             name=self.name,
             body_names=body_names,
         )
-        response: GetPosesResponse = await self.client.GetPoses(request)
+        response: GetPosesResponse = await self.client.GetPoses(request, timeout=timeout)
         return {key: response.body_poses[key] for key in response.body_poses.keys()}
 
-    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command)
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+        return await do_command(self.channel, self.name, command, timeout=timeout)
