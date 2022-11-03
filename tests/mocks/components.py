@@ -518,46 +518,109 @@ class MockMotor(Motor):
         self.power = 0
         self.powered = False
         self.extra = None
+        self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def set_power(self, power: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def set_power(
+        self,
+        power: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         self.power = power
         self.powered = power != 0
         self.extra = extra
+        self.timeout = timeout
 
-    async def go_for(self, rpm: float, revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def go_for(
+        self,
+        rpm: float,
+        revolutions: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         if rpm > 0:
             self.position += revolutions
         if rpm < 0:
             self.position -= revolutions
         self.powered = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def go_to(self, rpm: float, position_revolutions: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def go_to(
+        self,
+        rpm: float,
+        position_revolutions: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         if rpm != 0:
             self.position = position_revolutions
         self.powered = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def reset_zero_position(
+        self,
+        offset: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         self.offset = offset
         self.powered = False
         self.extra = extra
+        self.timeout = timeout
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> float:
+    async def get_position(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> float:
         self.extra = extra
+        self.timeout = timeout
         return self.position
 
-    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Motor.Properties:
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Motor.Properties:
         self.extra = extra
+        self.timeout = timeout
         return Motor.Properties(position_reporting=True)
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+    async def stop(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         await self.set_power(0)
+        self.timeout = timeout
         self.extra = extra
 
-    async def is_powered(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[bool, float]:
+    async def is_powered(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Tuple[bool, float]:
         self.extra = extra
+        self.timeout = timeout
         return self.powered, self.power
 
     async def is_moving(self) -> bool:
