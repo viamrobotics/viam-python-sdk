@@ -1,4 +1,5 @@
 from grpclib.server import Stream
+
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
 from viam.proto.component.gripper import (
@@ -29,7 +30,8 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
             gripper = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await gripper.open()
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await gripper.open(timeout=timeout)
         response = OpenResponse()
         await stream.send_message(response)
 
@@ -41,7 +43,8 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
             gripper = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        grabbed = await gripper.grab()
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        grabbed = await gripper.grab(timeout=timeout)
         response = GrabResponse(success=grabbed)
         await stream.send_message(response)
 
@@ -52,5 +55,6 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
             gripper = self.get_component(request.name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await gripper.stop()
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await gripper.stop(timeout=timeout)
         await stream.send_message(StopResponse())

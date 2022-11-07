@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
 from viam.proto.component.generic import GenericServiceStub, DoCommandRequest, DoCommandResponse
@@ -16,10 +16,10 @@ class GenericClient(Generic):
         self.client = GenericServiceStub(channel)
         super().__init__(name)
 
-    async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         try:
-            response: DoCommandResponse = await self.client.DoCommand(request)
+            response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         except GRPCError as e:
             if e.status == Status.UNIMPLEMENTED:
                 raise NotImplementedError()
@@ -28,7 +28,7 @@ class GenericClient(Generic):
         return struct_to_dict(response.result)
 
 
-async def do_command(channel: Channel, name: str, command: Dict[str, Any]) -> Dict[str, Any]:
+async def do_command(channel: Channel, name: str, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
     """Convenience method to allow component clients to execute `do_command` functions
 
     Args:
@@ -40,4 +40,4 @@ async def do_command(channel: Channel, name: str, command: Dict[str, Any]) -> Di
         Dict[str, Any]: The result of the executed command
     """
     client = GenericClient(name, channel)
-    return await client.do_command(command)
+    return await client.do_command(command, timeout=timeout)

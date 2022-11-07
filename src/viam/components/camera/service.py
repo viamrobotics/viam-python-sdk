@@ -33,7 +33,9 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        image = await camera.get_image(request.mime_type)
+
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        image = await camera.get_image(request.mime_type, timeout=timeout)
         try:
             mimetype, is_lazy = CameraMimeType.from_lazy(request.mime_type)
             if CameraMimeType.is_supported(mimetype):
@@ -59,7 +61,8 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             mimetype = CameraMimeType(request.mime_type)
         except ValueError:
             mimetype = CameraMimeType.JPEG
-        image = await camera.get_image(mimetype)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        image = await camera.get_image(mimetype, timeout=timeout)
         try:
             img = mimetype.encode_image(image)
         finally:
@@ -75,7 +78,8 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        pc, mimetype = await camera.get_point_cloud()
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        pc, mimetype = await camera.get_point_cloud(timeout=timeout)
         response = GetPointCloudResponse(mime_type=mimetype, point_cloud=pc)
         await stream.send_message(response)
 
@@ -87,7 +91,8 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             camera = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        properties = await camera.get_properties()
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        properties = await camera.get_properties(timeout=timeout)
         response = GetPropertiesResponse(
             supports_pcd=properties.supports_pcd,
             intrinsic_parameters=properties.intrinsic_parameters,

@@ -1,6 +1,7 @@
 from typing import Any, Dict, List, Optional
 
 from grpclib.client import Channel
+
 from viam.components.generic.client import do_command
 from viam.proto.common import WorldState
 from viam.proto.component.gantry import (
@@ -27,36 +28,38 @@ class GantryClient(Gantry):
         self.client = GantryServiceStub(channel)
         super().__init__(name)
 
-    async def get_position(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+    async def get_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]:
         if extra is None:
             extra = {}
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPositionResponse = await self.client.GetPosition(request)
+        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
         return list(response.positions_mm)
 
     async def move_to_position(
         self,
         positions: List[float],
         world_state: Optional[WorldState] = None,
+        *,
         extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
     ):
         if extra is None:
             extra = {}
         request = MoveToPositionRequest(name=self.name, positions_mm=positions, world_state=world_state, extra=dict_to_struct(extra))
-        await self.client.MoveToPosition(request)
+        await self.client.MoveToPosition(request, timeout=timeout)
 
-    async def get_lengths(self, extra: Optional[Dict[str, Any]] = None) -> List[float]:
+    async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]:
         if extra is None:
             extra = {}
         request = GetLengthsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetLengthsResponse = await self.client.GetLengths(request)
+        response: GetLengthsResponse = await self.client.GetLengths(request, timeout=timeout)
         return list(response.lengths_mm)
 
-    async def stop(self, extra: Optional[Dict[str, Any]] = None):
+    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
         if extra is None:
             extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
-        await self.client.Stop(request)
+        await self.client.Stop(request, timeout=timeout)
 
     async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command)

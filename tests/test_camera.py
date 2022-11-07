@@ -24,6 +24,7 @@ from viam.proto.component.camera import (
     RenderFrameRequest,
 )
 
+from . import loose_approx
 from .mocks.components import MockCamera
 
 # ################################ NB ################################# #
@@ -53,7 +54,7 @@ def properties() -> Camera.Properties:
 
 
 @pytest.fixture(scope="function")
-def camera() -> Camera:
+def camera() -> MockCamera:
     return MockCamera("camera")
 
 
@@ -96,18 +97,33 @@ class TestCamera:
         with pytest.raises(NotImplementedError):
             await camera.do_command({"command": "args"})
 
+    @pytest.mark.asyncio
+    async def test_timeout(self, camera: MockCamera):
+        assert camera.timeout is None
+
+        await camera.get_image(timeout=1.82)
+        assert camera.timeout == loose_approx(1.82)
+
+        await camera.get_point_cloud(timeout=4.4)
+        assert camera.timeout == loose_approx(4.4)
+
+        await camera.get_properties(timeout=7.86)
+        assert camera.timeout == loose_approx(7.86)
+
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_get_frame(self, service: CameraService, image: Image.Image):
+    async def test_get_frame(self, camera: MockCamera, service: CameraService, image: Image.Image):
+        assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
 
             # Test known mime type
             request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG)
-            response: GetImageResponse = await client.GetImage(request)
+            response: GetImageResponse = await client.GetImage(request, timeout=18.2)
             img = Image.open(BytesIO(response.image), formats=["PNG"])
             assert img.tobytes() == image.tobytes()
+            assert camera.timeout == loose_approx(18.2)
 
             # Test raw mime type
             request = GetImageRequest(name="camera", mime_type=CameraMimeType.VIAM_RGBA)
@@ -124,44 +140,52 @@ class TestService:
             assert response.mime_type == "unknown"
 
     @pytest.mark.asyncio
-    async def test_render_frame(self, service: CameraService, image: Image.Image):
+    async def test_render_frame(self, camera: MockCamera, service: CameraService, image: Image.Image):
+        assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = RenderFrameRequest(name="camera", mime_type=CameraMimeType.PNG)
-            response: HttpBody = await client.RenderFrame(request)
+            response: HttpBody = await client.RenderFrame(request, timeout=4.4)
             assert response.content_type == CameraMimeType.PNG
             buf = BytesIO(response.data)
             img = Image.open(buf, formats=LIBRARY_SUPPORTED_FORMATS)
             assert img.tobytes() == image.tobytes()
+            assert camera.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
-    async def test_get_point_cloud(self, service: CameraService, point_cloud: bytes):
+    async def test_get_point_cloud(self, camera: MockCamera, service: CameraService, point_cloud: bytes):
+        assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = GetPointCloudRequest(name="camera", mime_type=CameraMimeType.PCD)
-            response: GetPointCloudResponse = await client.GetPointCloud(request)
+            response: GetPointCloudResponse = await client.GetPointCloud(request, timeout=7.86)
             assert response.point_cloud == point_cloud
+            assert camera.timeout == loose_approx(7.86)
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, service: CameraService, properties: Camera.Properties):
+    async def test_get_properties(self, camera: MockCamera, service: CameraService, properties: Camera.Properties):
+        assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = GetPropertiesRequest(name="camera")
-            response: GetPropertiesResponse = await client.GetProperties(request)
+            response: GetPropertiesResponse = await client.GetProperties(request, timeout=5.43)
             assert response.supports_pcd == properties.supports_pcd
             assert response.intrinsic_parameters == properties.intrinsic_parameters
+            assert camera.timeout == loose_approx(5.43)
 
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_frame(self, service: CameraService, image: Image.Image):
+    async def test_get_frame(self, camera: MockCamera, service: CameraService, image: Image.Image):
+        assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
 
             # Test known mime type
-            png_img = await client.get_image()
+            png_img = await client.get_image(timeout=1.82)
             assert isinstance(png_img, Image.Image)
             assert png_img.tobytes() == image.tobytes()
+            assert camera.timeout == loose_approx(1.82)
 
             # Test raw mime type
             rgba_img = await client.get_image(CameraMimeType.VIAM_RGBA)
@@ -182,18 +206,22 @@ class TestClient:
             assert raw_img.mime_type == "unknown"
 
     @pytest.mark.asyncio
-    async def test_get_point_cloud(self, service: CameraService, point_cloud: bytes):
+    async def test_get_point_cloud(self, camera: MockCamera, service: CameraService, point_cloud: bytes):
+        assert camera.timeout is None
         async with ChannelFor([service]) as channel:
-            camera = CameraClient("camera", channel)
-            pc, _ = await camera.get_point_cloud()
+            client = CameraClient("camera", channel)
+            pc, _ = await client.get_point_cloud(timeout=4.4)
             assert pc == point_cloud
+            assert camera.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, service: CameraService, properties: Camera.Properties):
+    async def test_get_properties(self, camera: MockCamera, service: CameraService, properties: Camera.Properties):
+        assert camera.timeout is None
         async with ChannelFor([service]) as channel:
-            camera = CameraClient("camera", channel)
-            props = await camera.get_properties()
+            client = CameraClient("camera", channel)
+            props = await client.get_properties(timeout=7.86)
             assert props == properties
+            assert camera.timeout == loose_approx(7.86)
 
     @pytest.mark.asyncio
     async def test_do(self, service: CameraService, generic_service: GenericService):

@@ -1,5 +1,5 @@
 import abc
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from viam.proto.common import PoseInFrame
 
@@ -16,7 +16,7 @@ class PoseTracker(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_poses(self, body_names: List[str], **kwargs) -> Dict[str, PoseInFrame]:
+    async def get_poses(self, body_names: List[str], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, PoseInFrame]:
         """
         Returns the current pose of each body tracked by the pose tracker.
 

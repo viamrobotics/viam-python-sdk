@@ -12,6 +12,7 @@ from viam.proto.component.posetracker import (
     PoseTrackerServiceStub,
 )
 
+from . import loose_approx
 from .mocks.components import MockPose, MockPoseTracker
 
 POSES = [
@@ -26,9 +27,10 @@ class TestPoseTracker:
 
     @pytest.mark.asyncio
     async def test_get_poses(self):
-        received_poses = await self.mock_pose_tracker.get_poses([])
+        received_poses = await self.mock_pose_tracker.get_poses([], timeout=1.23)
         assert received_poses["0"] == PoseInFrame(reference_frame="0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
         assert received_poses["1"] == PoseInFrame(reference_frame="1", pose=Pose(x=5, y=5, z=5, o_x=5, o_y=3, o_z=4, theta=30))
+        assert self.mock_pose_tracker.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -47,10 +49,11 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = PoseTrackerServiceStub(channel)
             request = GetPosesRequest(name=self.name)
-            response: GetPosesResponse = await client.GetPoses(request)
+            response: GetPosesResponse = await client.GetPoses(request, timeout=2.34)
             received_poses = response.body_poses
             assert received_poses["0"] == PoseInFrame(reference_frame="0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
             assert received_poses["1"] == PoseInFrame(reference_frame="1", pose=Pose(x=5, y=5, z=5, o_x=5, o_y=3, o_z=4, theta=30))
+            assert self.pose_tracker.timeout == loose_approx(2.34)
 
 
 class TestClient:
@@ -64,9 +67,10 @@ class TestClient:
     async def test_get_poses(self):
         async with ChannelFor([self.service]) as channel:
             client = PoseTrackerClient(self.name, channel)
-            received_poses = await client.get_poses([])
+            received_poses = await client.get_poses([], timeout=3.45)
             assert received_poses["0"] == PoseInFrame(reference_frame="0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
             assert received_poses["1"] == PoseInFrame(reference_frame="1", pose=Pose(x=5, y=5, z=5, o_x=5, o_y=3, o_z=4, theta=30))
+            assert self.pose_tracker.timeout == loose_approx(3.45)
 
     @pytest.mark.asyncio
     async def test_do(self):

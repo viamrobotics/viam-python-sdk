@@ -2,6 +2,7 @@ from random import randint, random
 
 import pytest
 from grpclib.testing import ChannelFor
+
 from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseService
 from viam.components.generic.service import GenericService
@@ -18,6 +19,7 @@ from viam.proto.component.base import (
 )
 from viam.utils import dict_to_struct, message_to_struct
 
+from . import loose_approx
 from .mocks.components import MockBase
 
 
@@ -125,7 +127,7 @@ class TestBase:
     async def test_extra(self, base: MockBase):
         assert base.extra is None
         extra = {"foo": "bar", "baz": [1, 2, 3]}
-        await base.move_straight(1, 1, extra)
+        await base.move_straight(1, 1, extra=extra)
         assert base.extra == extra
 
 
@@ -194,6 +196,7 @@ class TestService:
             client = BaseServiceStub(channel)
 
             assert base.stopped is True
+            assert base.timeout is None
 
             request = MoveStraightRequest(
                 name=base.name,
@@ -202,8 +205,9 @@ class TestService:
             )
             await client.MoveStraight(request)
             assert base.stopped is False
-            await client.Stop(StopRequest(name=base.name))
+            await client.Stop(StopRequest(name=base.name), timeout=1.82)
             assert base.stopped is True
+            assert base.timeout == loose_approx(1.82)
 
             request = MoveStraightRequest(
                 name=base.name,
@@ -295,6 +299,7 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_stop(self, base: MockBase, service: BaseService):
+        assert base.timeout is None
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
 
@@ -302,8 +307,9 @@ class TestClient:
 
             await client.move_straight(1, 1)
             assert base.stopped is False
-            await client.stop()
+            await client.stop(timeout=4.4)
             assert base.stopped is True
+            assert base.timeout == loose_approx(4.4)
 
             await client.move_straight(1, 1)
             assert base.stopped is False
@@ -342,5 +348,5 @@ class TestClient:
             assert base.extra is None
             client = BaseClient(base.name, channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await client.move_straight(1, 1, extra)
+            await client.move_straight(1, 1, extra=extra)
             assert base.extra == extra

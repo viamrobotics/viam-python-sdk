@@ -1,5 +1,5 @@
 import abc
-from typing import TYPE_CHECKING, Any, Dict, Mapping, cast
+from typing import TYPE_CHECKING, Any, Dict, Mapping, Optional, cast
 
 from typing_extensions import Self
 
@@ -69,7 +69,7 @@ class ComponentBase(abc.ABC):
         """
         return kwargs.get(Operation.ARG_NAME, Operation._noop())
 
-    async def do_command(self, command: Dict[str, Any], **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
         """Send/Receive arbitrary commands
 
         Args:
