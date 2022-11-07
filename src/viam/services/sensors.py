@@ -1,4 +1,4 @@
-from typing import Any, List, Mapping
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -10,7 +10,7 @@ from viam.proto.service.sensors import (
     GetSensorsResponse,
     SensorsServiceStub,
 )
-from viam.utils import sensor_readings_value_to_native
+from viam.utils import dict_to_struct, sensor_readings_value_to_native
 from viam.services.service_client_base import ServiceClientBase
 
 
@@ -23,17 +23,21 @@ class SensorsServiceClient(ServiceClientBase):
         self.client = SensorsServiceStub(channel)
         self.name = name
 
-    async def get_sensors(self) -> List[ResourceName]:
+    async def get_sensors(self, extra: Optional[Mapping[str, Any]] = None) -> List[ResourceName]:
         """Get the `ResourceName`s of all the `Sensor`s connected to this Robot
 
         Returns:
             List[ResourceName]: The list of all Sensors
         """
-        request = GetSensorsRequest(name=self.name)
+        if extra is None:
+            extra = {}
+        request = GetSensorsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetSensorsResponse = await self.client.GetSensors(request)
         return list(response.sensor_names)
 
-    async def get_readings(self, sensors: List[ResourceName]) -> Mapping[ResourceName, Mapping[str, Any]]:
+    async def get_readings(
+        self, sensors: List[ResourceName], extra: Optional[Mapping[str, Any]] = None
+    ) -> Mapping[ResourceName, Mapping[str, Any]]:
         """Get the readings from the specific sensors provided
 
         Args:
@@ -42,6 +46,8 @@ class SensorsServiceClient(ServiceClientBase):
         Returns:
             Mapping[ResourceName, Mapping[str, Any]]: The readings from the sensors, mapped by `ResourceName`
         """
-        request = GetReadingsRequest(name=self.name, sensor_names=sensors)
+        if extra is None:
+            extra = {}
+        request = GetReadingsRequest(name=self.name, sensor_names=sensors, extra=dict_to_struct(extra))
         response: GetReadingsResponse = await self.client.GetReadings(request)
         return {reading.name: sensor_readings_value_to_native(reading.readings) for reading in response.readings}
