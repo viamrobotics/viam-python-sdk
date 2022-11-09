@@ -21,15 +21,23 @@ class GetModelParameterSchemaRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MODEL_TYPE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     model_type: builtins.str
     'name of the type of vision model'
 
-    def __init__(self, *, name: builtins.str=..., model_type: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., model_type: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['model_type', b'model_type', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'model_type', b'model_type', 'name', b'name']) -> None:
         ...
 global___GetModelParameterSchemaRequest = GetModelParameterSchemaRequest
 
@@ -49,12 +57,20 @@ global___GetModelParameterSchemaResponse = GetModelParameterSchemaResponse
 class GetDetectorNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetDetectorNamesRequest = GetDetectorNamesRequest
 
@@ -79,6 +95,7 @@ class AddDetectorRequest(google.protobuf.message.Message):
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
     DETECTOR_MODEL_TYPE_FIELD_NUMBER: builtins.int
     DETECTOR_PARAMETERS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     detector_name: builtins.str
     detector_model_type: builtins.str
@@ -87,13 +104,17 @@ class AddDetectorRequest(google.protobuf.message.Message):
     def detector_parameters(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, name: builtins.str=..., detector_name: builtins.str=..., detector_model_type: builtins.str=..., detector_parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., detector_name: builtins.str=..., detector_model_type: builtins.str=..., detector_parameters: google.protobuf.struct_pb2.Struct | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['detector_parameters', b'detector_parameters']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['detector_parameters', b'detector_parameters', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['detector_model_type', b'detector_model_type', 'detector_name', b'detector_name', 'detector_parameters', b'detector_parameters', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['detector_model_type', b'detector_model_type', 'detector_name', b'detector_name', 'detector_parameters', b'detector_parameters', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___AddDetectorRequest = AddDetectorRequest
 
@@ -108,15 +129,23 @@ class RemoveDetectorRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     detector_name: builtins.str
     'name of detector in registry'
 
-    def __init__(self, *, name: builtins.str=..., detector_name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., detector_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___RemoveDetectorRequest = RemoveDetectorRequest
 
@@ -135,6 +164,7 @@ class GetDetectionsRequest(google.protobuf.message.Message):
     HEIGHT_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     image: builtins.bytes
@@ -148,10 +178,17 @@ class GetDetectionsRequest(google.protobuf.message.Message):
     detector_name: builtins.str
     'name of the registered detector to use'
 
-    def __init__(self, *, name: builtins.str=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: builtins.str=..., detector_name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: builtins.str=..., detector_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'name', b'name', 'width', b'width']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['detector_name', b'detector_name', 'extra', b'extra', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'name', b'name', 'width', b'width']) -> None:
         ...
 global___GetDetectionsRequest = GetDetectionsRequest
 
@@ -175,6 +212,7 @@ class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     DETECTOR_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     camera_name: builtins.str
@@ -182,10 +220,17 @@ class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
     detector_name: builtins.str
     'name of the registered detector to use'
 
-    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., detector_name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., detector_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'detector_name', b'detector_name', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'detector_name', b'detector_name', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetDetectionsFromCameraRequest = GetDetectionsFromCameraRequest
 
@@ -251,13 +296,21 @@ global___Detection = Detection
 class GetClassifierNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetClassifierNamesRequest = GetClassifierNamesRequest
 
@@ -282,6 +335,7 @@ class AddClassifierRequest(google.protobuf.message.Message):
     CLASSIFIER_NAME_FIELD_NUMBER: builtins.int
     CLASSIFIER_MODEL_TYPE_FIELD_NUMBER: builtins.int
     CLASSIFIER_PARAMETERS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     classifier_name: builtins.str
@@ -293,13 +347,17 @@ class AddClassifierRequest(google.protobuf.message.Message):
     def classifier_parameters(self) -> google.protobuf.struct_pb2.Struct:
         """additional parameters"""
 
-    def __init__(self, *, name: builtins.str=..., classifier_name: builtins.str=..., classifier_model_type: builtins.str=..., classifier_parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., classifier_name: builtins.str=..., classifier_model_type: builtins.str=..., classifier_parameters: google.protobuf.struct_pb2.Struct | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['classifier_parameters', b'classifier_parameters']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['classifier_parameters', b'classifier_parameters', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['classifier_model_type', b'classifier_model_type', 'classifier_name', b'classifier_name', 'classifier_parameters', b'classifier_parameters', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['classifier_model_type', b'classifier_model_type', 'classifier_name', b'classifier_name', 'classifier_parameters', b'classifier_parameters', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___AddClassifierRequest = AddClassifierRequest
 
@@ -314,15 +372,23 @@ class RemoveClassifierRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     CLASSIFIER_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     classifier_name: builtins.str
     'name of the classifier in registry'
 
-    def __init__(self, *, name: builtins.str=..., classifier_name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., classifier_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['classifier_name', b'classifier_name', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['classifier_name', b'classifier_name', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___RemoveClassifierRequest = RemoveClassifierRequest
 
@@ -342,6 +408,7 @@ class GetClassificationsRequest(google.protobuf.message.Message):
     MIME_TYPE_FIELD_NUMBER: builtins.int
     CLASSIFIER_NAME_FIELD_NUMBER: builtins.int
     N_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     image: builtins.bytes
@@ -357,10 +424,17 @@ class GetClassificationsRequest(google.protobuf.message.Message):
     n: builtins.int
     'the number of classifications desired'
 
-    def __init__(self, *, name: builtins.str=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: builtins.str=..., classifier_name: builtins.str=..., n: builtins.int=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: builtins.str=..., classifier_name: builtins.str=..., n: builtins.int=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['classifier_name', b'classifier_name', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'n', b'n', 'name', b'name', 'width', b'width']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['classifier_name', b'classifier_name', 'extra', b'extra', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'n', b'n', 'name', b'name', 'width', b'width']) -> None:
         ...
 global___GetClassificationsRequest = GetClassificationsRequest
 
@@ -385,6 +459,7 @@ class GetClassificationsFromCameraRequest(google.protobuf.message.Message):
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     CLASSIFIER_NAME_FIELD_NUMBER: builtins.int
     N_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     camera_name: builtins.str
@@ -394,10 +469,17 @@ class GetClassificationsFromCameraRequest(google.protobuf.message.Message):
     n: builtins.int
     'the number of classifications desired'
 
-    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., classifier_name: builtins.str=..., n: builtins.int=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., classifier_name: builtins.str=..., n: builtins.int=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'classifier_name', b'classifier_name', 'n', b'n', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'classifier_name', b'classifier_name', 'extra', b'extra', 'n', b'n', 'name', b'name']) -> None:
         ...
 global___GetClassificationsFromCameraRequest = GetClassificationsFromCameraRequest
 
@@ -436,12 +518,20 @@ global___Classification = Classification
 class GetSegmenterNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetSegmenterNamesRequest = GetSegmenterNamesRequest
 
@@ -466,6 +556,7 @@ class AddSegmenterRequest(google.protobuf.message.Message):
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_MODEL_TYPE_FIELD_NUMBER: builtins.int
     SEGMENTER_PARAMETERS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     segmenter_name: builtins.str
@@ -477,13 +568,17 @@ class AddSegmenterRequest(google.protobuf.message.Message):
     def segmenter_parameters(self) -> google.protobuf.struct_pb2.Struct:
         """parameters of the segmenter model"""
 
-    def __init__(self, *, name: builtins.str=..., segmenter_name: builtins.str=..., segmenter_model_type: builtins.str=..., segmenter_parameters: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., segmenter_name: builtins.str=..., segmenter_model_type: builtins.str=..., segmenter_parameters: google.protobuf.struct_pb2.Struct | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['segmenter_parameters', b'segmenter_parameters']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'segmenter_parameters', b'segmenter_parameters']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'segmenter_model_type', b'segmenter_model_type', 'segmenter_name', b'segmenter_name', 'segmenter_parameters', b'segmenter_parameters']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'segmenter_model_type', b'segmenter_model_type', 'segmenter_name', b'segmenter_name', 'segmenter_parameters', b'segmenter_parameters']) -> None:
         ...
 global___AddSegmenterRequest = AddSegmenterRequest
 
@@ -498,15 +593,23 @@ class RemoveSegmenterRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the vision service'
     segmenter_name: builtins.str
     'name of segmenter in registry'
 
-    def __init__(self, *, name: builtins.str=..., segmenter_name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., segmenter_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'segmenter_name', b'segmenter_name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'segmenter_name', b'segmenter_name']) -> None:
         ...
 global___RemoveSegmenterRequest = RemoveSegmenterRequest
 
@@ -523,6 +626,7 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     CAMERA_NAME_FIELD_NUMBER: builtins.int
     SEGMENTER_NAME_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     camera_name: builtins.str
     'Name of a camera'
@@ -531,10 +635,17 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     mime_type: builtins.str
     'Requested MIME type of response'
 
-    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., segmenter_name: builtins.str=..., mime_type: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., segmenter_name: builtins.str=..., mime_type: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'mime_type', b'mime_type', 'name', b'name', 'segmenter_name', b'segmenter_name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'extra', b'extra', 'mime_type', b'mime_type', 'name', b'name', 'segmenter_name', b'segmenter_name']) -> None:
         ...
 global___GetObjectPointCloudsRequest = GetObjectPointCloudsRequest
 

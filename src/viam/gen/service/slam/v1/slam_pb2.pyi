@@ -17,13 +17,21 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of slam service'
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetPositionRequest = GetPositionRequest
 
@@ -56,6 +64,7 @@ class GetMapRequest(google.protobuf.message.Message):
     MIME_TYPE_FIELD_NUMBER: builtins.int
     CAMERA_POSITION_FIELD_NUMBER: builtins.int
     INCLUDE_ROBOT_MARKER_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of slam service'
     mime_type: builtins.str
@@ -69,13 +78,17 @@ class GetMapRequest(google.protobuf.message.Message):
     include_robot_marker: builtins.bool
     'Optional parameter for image/jpeg mime_type, defaults to false.\n    Tells us whether to include the robot position on the 2D image.\n    '
 
-    def __init__(self, *, name: builtins.str=..., mime_type: builtins.str=..., camera_position: common.v1.common_pb2.Pose | None=..., include_robot_marker: builtins.bool=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., mime_type: builtins.str=..., camera_position: common.v1.common_pb2.Pose | None=..., include_robot_marker: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_camera_position', b'_camera_position', 'camera_position', b'camera_position']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_camera_position', b'_camera_position', 'camera_position', b'camera_position', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_camera_position', b'_camera_position', 'camera_position', b'camera_position', 'include_robot_marker', b'include_robot_marker', 'mime_type', b'mime_type', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_camera_position', b'_camera_position', 'camera_position', b'camera_position', 'extra', b'extra', 'include_robot_marker', b'include_robot_marker', 'mime_type', b'mime_type', 'name', b'name']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_camera_position', b'_camera_position']) -> typing_extensions.Literal['camera_position'] | None:

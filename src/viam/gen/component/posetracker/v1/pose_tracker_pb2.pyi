@@ -8,6 +8,7 @@ from .... import common
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import google.protobuf.struct_pb2
 import sys
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
@@ -19,6 +20,7 @@ class GetPosesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     BODY_NAMES_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of the pose tracker'
 
@@ -29,10 +31,17 @@ class GetPosesRequest(google.protobuf.message.Message):
         poses are returned
         """
 
-    def __init__(self, *, name: builtins.str=..., body_names: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., body_names: collections.abc.Iterable[builtins.str] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['body_names', b'body_names', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['body_names', b'body_names', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetPosesRequest = GetPosesRequest
 

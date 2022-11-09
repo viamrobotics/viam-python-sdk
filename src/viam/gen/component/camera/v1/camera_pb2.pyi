@@ -34,21 +34,15 @@ class GetImageResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MIME_TYPE_FIELD_NUMBER: builtins.int
     IMAGE_FIELD_NUMBER: builtins.int
-    WIDTH_PX_FIELD_NUMBER: builtins.int
-    HEIGHT_PX_FIELD_NUMBER: builtins.int
     mime_type: builtins.str
     'Actual MIME type of response'
     image: builtins.bytes
     'Frame in bytes'
-    width_px: builtins.int
-    'Width of frame in px'
-    height_px: builtins.int
-    'Height of frame in px'
 
-    def __init__(self, *, mime_type: builtins.str=..., image: builtins.bytes=..., width_px: builtins.int=..., height_px: builtins.int=...) -> None:
+    def __init__(self, *, mime_type: builtins.str=..., image: builtins.bytes=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['height_px', b'height_px', 'image', b'image', 'mime_type', b'mime_type', 'width_px', b'width_px']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['image', b'image', 'mime_type', b'mime_type']) -> None:
         ...
 global___GetImageResponse = GetImageResponse
 
