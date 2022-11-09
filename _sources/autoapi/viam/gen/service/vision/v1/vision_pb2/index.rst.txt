@@ -99,7 +99,7 @@ Attributes
 
    
 
-.. py:class:: GetModelParameterSchemaRequest(*, name: str = ..., model_type: str = ...)
+.. py:class:: GetModelParameterSchemaRequest(*, name: str = ..., model_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -118,6 +118,29 @@ Attributes
       :annotation: :str
 
       name of the type of vision model
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetModelParameterSchemaRequest
@@ -146,7 +169,7 @@ Attributes
 
    
 
-.. py:class:: GetDetectorNamesRequest(*, name: str = ...)
+.. py:class:: GetDetectorNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -160,6 +183,29 @@ Attributes
       :annotation: :str
 
       
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetDetectorNamesRequest
@@ -189,7 +235,7 @@ Attributes
 
    
 
-.. py:class:: AddDetectorRequest(*, name: str = ..., detector_name: str = ..., detector_model_type: str = ..., detector_parameters: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: AddDetectorRequest(*, name: str = ..., detector_name: str = ..., detector_model_type: str = ..., detector_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -218,7 +264,13 @@ Attributes
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[detector_parameters, b'detector_parameters']) -> bool
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[detector_parameters, b'detector_parameters', extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -257,7 +309,7 @@ Attributes
 
    
 
-.. py:class:: RemoveDetectorRequest(*, name: str = ..., detector_name: str = ...)
+.. py:class:: RemoveDetectorRequest(*, name: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -276,6 +328,29 @@ Attributes
       :annotation: :str
 
       name of detector in registry
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___RemoveDetectorRequest
@@ -299,7 +374,7 @@ Attributes
 
    
 
-.. py:class:: GetDetectionsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., detector_name: str = ...)
+.. py:class:: GetDetectionsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -339,6 +414,29 @@ Attributes
 
       name of the registered detector to use
 
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
 
 .. py:data:: global___GetDetectionsRequest
    
@@ -367,7 +465,7 @@ Attributes
 
    
 
-.. py:class:: GetDetectionsFromCameraRequest(*, name: str = ..., camera_name: str = ..., detector_name: str = ...)
+.. py:class:: GetDetectionsFromCameraRequest(*, name: str = ..., camera_name: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -391,6 +489,29 @@ Attributes
       :annotation: :str
 
       name of the registered detector to use
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetDetectionsFromCameraRequest
@@ -501,7 +622,7 @@ Attributes
 
    
 
-.. py:class:: GetClassifierNamesRequest(*, name: str = ...)
+.. py:class:: GetClassifierNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -515,6 +636,29 @@ Attributes
       :annotation: :str
 
       name of the vision service
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetClassifierNamesRequest
@@ -542,7 +686,7 @@ Attributes
 
    
 
-.. py:class:: AddClassifierRequest(*, name: str = ..., classifier_name: str = ..., classifier_model_type: str = ..., classifier_parameters: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: AddClassifierRequest(*, name: str = ..., classifier_name: str = ..., classifier_model_type: str = ..., classifier_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -573,7 +717,13 @@ Attributes
       additional parameters
 
 
-   .. py:method:: HasField(field_name: Literal[classifier_parameters, b'classifier_parameters']) -> bool
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[classifier_parameters, b'classifier_parameters', extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -612,7 +762,7 @@ Attributes
 
    
 
-.. py:class:: RemoveClassifierRequest(*, name: str = ..., classifier_name: str = ...)
+.. py:class:: RemoveClassifierRequest(*, name: str = ..., classifier_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -631,6 +781,29 @@ Attributes
       :annotation: :str
 
       name of the classifier in registry
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___RemoveClassifierRequest
@@ -654,7 +827,7 @@ Attributes
 
    
 
-.. py:class:: GetClassificationsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., classifier_name: str = ..., n: int = ...)
+.. py:class:: GetClassificationsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., classifier_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -699,6 +872,29 @@ Attributes
 
       the number of classifications desired
 
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
 
 .. py:data:: global___GetClassificationsRequest
    
@@ -725,7 +921,7 @@ Attributes
 
    
 
-.. py:class:: GetClassificationsFromCameraRequest(*, name: str = ..., camera_name: str = ..., classifier_name: str = ..., n: int = ...)
+.. py:class:: GetClassificationsFromCameraRequest(*, name: str = ..., camera_name: str = ..., classifier_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -754,6 +950,29 @@ Attributes
       :annotation: :int
 
       the number of classifications desired
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetClassificationsFromCameraRequest
@@ -803,7 +1022,7 @@ Attributes
 
    
 
-.. py:class:: GetSegmenterNamesRequest(*, name: str = ...)
+.. py:class:: GetSegmenterNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -817,6 +1036,29 @@ Attributes
       :annotation: :str
 
       
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetSegmenterNamesRequest
@@ -846,7 +1088,7 @@ Attributes
 
    
 
-.. py:class:: AddSegmenterRequest(*, name: str = ..., segmenter_name: str = ..., segmenter_model_type: str = ..., segmenter_parameters: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: AddSegmenterRequest(*, name: str = ..., segmenter_name: str = ..., segmenter_model_type: str = ..., segmenter_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -877,7 +1119,13 @@ Attributes
       parameters of the segmenter model
 
 
-   .. py:method:: HasField(field_name: Literal[segmenter_parameters, b'segmenter_parameters']) -> bool
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra', segmenter_parameters, b'segmenter_parameters']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -916,7 +1164,7 @@ Attributes
 
    
 
-.. py:class:: RemoveSegmenterRequest(*, name: str = ..., segmenter_name: str = ...)
+.. py:class:: RemoveSegmenterRequest(*, name: str = ..., segmenter_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -935,6 +1183,29 @@ Attributes
       :annotation: :str
 
       name of segmenter in registry
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___RemoveSegmenterRequest
@@ -958,7 +1229,7 @@ Attributes
 
    
 
-.. py:class:: GetObjectPointCloudsRequest(*, name: str = ..., camera_name: str = ..., segmenter_name: str = ..., mime_type: str = ...)
+.. py:class:: GetObjectPointCloudsRequest(*, name: str = ..., camera_name: str = ..., segmenter_name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -987,6 +1258,29 @@ Attributes
       :annotation: :str
 
       Requested MIME type of response
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetObjectPointCloudsRequest

@@ -91,7 +91,7 @@ Attributes
 
    
 
-.. py:class:: GetModeRequest(*, name: str = ...)
+.. py:class:: GetModeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -105,6 +105,29 @@ Attributes
       :annotation: :str
 
       
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetModeRequest
@@ -133,7 +156,7 @@ Attributes
 
    
 
-.. py:class:: SetModeRequest(*, name: str = ..., mode: global___Mode = ...)
+.. py:class:: SetModeRequest(*, name: str = ..., mode: global___Mode = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -152,6 +175,29 @@ Attributes
       :annotation: :global___Mode
 
       
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___SetModeRequest
@@ -217,7 +263,7 @@ Attributes
 
    
 
-.. py:class:: GetLocationRequest(*, name: str = ...)
+.. py:class:: GetLocationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -231,6 +277,29 @@ Attributes
       :annotation: :str
 
       
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetLocationRequest
@@ -275,7 +344,7 @@ Attributes
 
    
 
-.. py:class:: GetWaypointsRequest(*, name: str = ...)
+.. py:class:: GetWaypointsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -289,6 +358,29 @@ Attributes
       :annotation: :str
 
       
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetWaypointsRequest
@@ -316,7 +408,7 @@ Attributes
 
    
 
-.. py:class:: AddWaypointRequest(*, name: str = ..., location: common.v1.common_pb2.GeoPoint | None = ...)
+.. py:class:: AddWaypointRequest(*, name: str = ..., location: common.v1.common_pb2.GeoPoint | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -335,7 +427,13 @@ Attributes
       :property:
 
 
-   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra', location, b'location']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -374,7 +472,7 @@ Attributes
 
    
 
-.. py:class:: RemoveWaypointRequest(*, name: str = ..., id: str = ...)
+.. py:class:: RemoveWaypointRequest(*, name: str = ..., id: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -393,6 +491,29 @@ Attributes
       :annotation: :str
 
       
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___RemoveWaypointRequest
