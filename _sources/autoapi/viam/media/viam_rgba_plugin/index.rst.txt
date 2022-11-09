@@ -1,0 +1,108 @@
+:py:mod:`viam.media.viam_rgba_plugin`
+=====================================
+
+.. py:module:: viam.media.viam_rgba_plugin
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.media.viam_rgba_plugin.RGBAEncoder
+   viam.media.viam_rgba_plugin.RGBAImage
+   viam.media.viam_rgba_plugin.RGBADecoder
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.media.viam_rgba_plugin.RGBA_MAGIC_NUMBER
+   viam.media.viam_rgba_plugin.RGBA_FORMAT_LABEL
+   viam.media.viam_rgba_plugin.RGBA_HEADER_LENGTH
+
+
+.. py:data:: RGBA_MAGIC_NUMBER
+   
+
+   
+
+.. py:data:: RGBA_FORMAT_LABEL
+   :annotation: = VIAM_RGBA
+
+   
+
+.. py:data:: RGBA_HEADER_LENGTH
+   :annotation: = 12
+
+   
+
+.. py:class:: RGBAEncoder(mode, *args)
+
+
+
+   Python implementation of a format encoder. Override this class and
+   add the decoding logic in the :meth:`encode` method.
+
+   See :ref:`Writing Your Own File Codec in Python<file-codecs-py>`
+
+   .. py:attribute:: ENCODER_NAME
+      
+
+      
+
+   .. py:method:: encode(bufsize)
+
+      Override to perform the encoding process.
+
+      :param bufsize: Buffer size.
+      :returns: A tuple of ``(bytes encoded, errcode, bytes)``.
+          If finished with encoding return 1 for the error code.
+          Err codes are from :data:`.ImageFile.ERRORS`.
+
+
+
+.. py:class:: RGBAImage(fp=None, filename=None)
+
+
+
+   Base class for image file format handlers.
+
+   .. py:attribute:: format
+      :annotation: :str
+
+      
+
+   .. py:attribute:: format_description
+      :annotation: = Viam's Raw RGBA Format
+
+      
+
+
+.. py:class:: RGBADecoder(mode, *args)
+
+
+
+   Python implementation of a format decoder. Override this class and
+   add the decoding logic in the :meth:`decode` method.
+
+   See :ref:`Writing Your Own File Codec in Python<file-codecs-py>`
+
+   .. py:method:: decode(buffer) -> Tuple[int, int]
+
+      Override to perform the decoding process.
+
+      :param buffer: A bytes object with the data to be decoded.
+      :returns: A tuple of ``(bytes consumed, errcode)``.
+          If finished with decoding return -1 for the bytes consumed.
+          Err codes are from :data:`.ImageFile.ERRORS`.
+
+
+

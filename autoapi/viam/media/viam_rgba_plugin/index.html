@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.media.viam_rgba_plugin &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.viam_rgba_plugin</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/viam/media/viam_rgba_plugin/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.media.viam_rgba_plugin">
+<span id="viam-media-viam-rgba-plugin"></span><h1><a class="reference internal" href="#module-viam.media.viam_rgba_plugin" title="viam.media.viam_rgba_plugin"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.viam_rgba_plugin</span></code></a><a class="headerlink" href="#module-viam.media.viam_rgba_plugin" title="Permalink to this heading"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBAEncoder" title="viam.media.viam_rgba_plugin.RGBAEncoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGBAEncoder</span></code></a></p></td>
+<td><p>Python implementation of a format encoder. Override this class and</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBAImage" title="viam.media.viam_rgba_plugin.RGBAImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGBAImage</span></code></a></p></td>
+<td><p>Base class for image file format handlers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBADecoder" title="viam.media.viam_rgba_plugin.RGBADecoder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGBADecoder</span></code></a></p></td>
+<td><p>Python implementation of a format decoder. Override this class and</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBA_MAGIC_NUMBER" title="viam.media.viam_rgba_plugin.RGBA_MAGIC_NUMBER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGBA_MAGIC_NUMBER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBA_FORMAT_LABEL" title="viam.media.viam_rgba_plugin.RGBA_FORMAT_LABEL"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGBA_FORMAT_LABEL</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBA_HEADER_LENGTH" title="viam.media.viam_rgba_plugin.RGBA_HEADER_LENGTH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGBA_HEADER_LENGTH</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBA_MAGIC_NUMBER">
+<span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBA_MAGIC_NUMBER</span></span><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBA_MAGIC_NUMBER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBA_FORMAT_LABEL">
+<span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBA_FORMAT_LABEL</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">VIAM_RGBA</span></em><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBA_FORMAT_LABEL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBA_HEADER_LENGTH">
+<span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBA_HEADER_LENGTH</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">12</span></em><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBA_HEADER_LENGTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAEncoder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBAEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/viam_rgba_plugin.html#RGBAEncoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAEncoder" title="Permalink to this definition"></a></dt>
+<dd><p>Python implementation of a format encoder. Override this class and
+add the decoding logic in the <a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBAEncoder.encode" title="viam.media.viam_rgba_plugin.RGBAEncoder.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">encode()</span></code></a> method.</p>
+<p>See <span class="xref std std-ref">Writing Your Own File Codec in Python</span></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAEncoder.ENCODER_NAME">
+<span class="sig-name descname"><span class="pre">ENCODER_NAME</span></span><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAEncoder.ENCODER_NAME" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAEncoder.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bufsize</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/viam_rgba_plugin.html#RGBAEncoder.encode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAEncoder.encode" title="Permalink to this definition"></a></dt>
+<dd><p>Override to perform the encoding process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>bufsize</strong> – Buffer size.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple of <code class="docutils literal notranslate"><span class="pre">(bytes</span> <span class="pre">encoded,</span> <span class="pre">errcode,</span> <span class="pre">bytes)</span></code>.
+If finished with encoding return 1 for the error code.
+Err codes are from <code class="xref py py-data docutils literal notranslate"><span class="pre">ImageFile.ERRORS</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAImage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBAImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/viam_rgba_plugin.html#RGBAImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAImage" title="Permalink to this definition"></a></dt>
+<dd><p>Base class for image file format handlers.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAImage.format">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAImage.format" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAImage.format_description">
+<span class="sig-name descname"><span class="pre">format_description</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">Viam's</span> <span class="pre">Raw</span> <span class="pre">RGBA</span> <span class="pre">Format</span></em><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAImage.format_description" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBADecoder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBADecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/viam_rgba_plugin.html#RGBADecoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBADecoder" title="Permalink to this definition"></a></dt>
+<dd><p>Python implementation of a format decoder. Override this class and
+add the decoding logic in the <a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBADecoder.decode" title="viam.media.viam_rgba_plugin.RGBADecoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">decode()</span></code></a> method.</p>
+<p>See <span class="xref std std-ref">Writing Your Own File Codec in Python</span></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBADecoder.decode">
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/media/viam_rgba_plugin.html#RGBADecoder.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBADecoder.decode" title="Permalink to this definition"></a></dt>
+<dd><p>Override to perform the decoding process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>buffer</strong> – A bytes object with the data to be decoded.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple of <code class="docutils literal notranslate"><span class="pre">(bytes</span> <span class="pre">consumed,</span> <span class="pre">errcode)</span></code>.
+If finished with decoding return -1 for the bytes consumed.
+Err codes are from <code class="xref py py-data docutils literal notranslate"><span class="pre">ImageFile.ERRORS</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

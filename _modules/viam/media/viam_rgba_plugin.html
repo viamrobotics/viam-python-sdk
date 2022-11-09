@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.media.viam_rgba_plugin &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="../../../_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">viam.media.viam_rgba_plugin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.media.viam_rgba_plugin</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">PIL.ImageFile</span> <span class="kn">import</span> <span class="n">ImageFile</span><span class="p">,</span> <span class="n">PyEncoder</span><span class="p">,</span> <span class="n">PyDecoder</span><span class="p">,</span> <span class="n">_save</span> <span class="k">as</span> <span class="n">image_save</span><span class="p">,</span> <span class="n">_safe_read</span>
+
+<span class="c1"># Viam uses a special header prepended to raw RGBA data. The header is composed of a</span>
+<span class="c1"># 4-byte magic number followed by a 4-byte line of the width as a uint32 number</span>
+<span class="c1"># and another for the height. Credit to Ben Zotto for inventing this formulation</span>
+<span class="c1"># https://bzotto.medium.com/introducing-the-rgba-bitmap-file-format-4a8a94329e2c</span>
+
+<span class="n">RGBA_MAGIC_NUMBER</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="n">RGBA_FORMAT_LABEL</span> <span class="o">=</span> <span class="s2">&quot;VIAM_RGBA&quot;</span>
+
+<span class="n">RGBA_HEADER_LENGTH</span> <span class="o">=</span> <span class="mi">12</span>
+
+
+<span class="k">def</span> <span class="nf">_accept</span><span class="p">(</span><span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">prefix</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">RGBA_MAGIC_NUMBER</span>
+
+
+<div class="viewcode-block" id="RGBAEncoder"><a class="viewcode-back" href="../../../autoapi/viam/media/viam_rgba_plugin/index.html#viam.media.viam_rgba_plugin.RGBAEncoder">[docs]</a><span class="k">class</span> <span class="nc">RGBAEncoder</span><span class="p">(</span><span class="n">PyEncoder</span><span class="p">):</span>
+    <span class="n">ENCODER_NAME</span> <span class="o">=</span> <span class="n">RGBA_FORMAT_LABEL</span>
+
+    <span class="n">_pushes_fd</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="RGBAEncoder.encode"><a class="viewcode-back" href="../../../autoapi/viam/media/viam_rgba_plugin/index.html#viam.media.viam_rgba_plugin.RGBAEncoder.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bufsize</span><span class="p">):</span>
+        <span class="n">data_arr</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">im</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+                <span class="n">data_arr</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">data_arr</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_save_rgba</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">RGBA_MAGIC_NUMBER</span><span class="p">)</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">width</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">))</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">height</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">))</span>
+
+    <span class="n">image_save</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="p">[(</span><span class="n">RGBAEncoder</span><span class="o">.</span><span class="n">ENCODER_NAME</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))])</span>
+
+
+<div class="viewcode-block" id="RGBAImage"><a class="viewcode-back" href="../../../autoapi/viam/media/viam_rgba_plugin/index.html#viam.media.viam_rgba_plugin.RGBAImage">[docs]</a><span class="k">class</span> <span class="nc">RGBAImage</span><span class="p">(</span><span class="n">ImageFile</span><span class="p">):</span>
+
+    <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">RGBA_FORMAT_LABEL</span>
+    <span class="n">format_description</span> <span class="o">=</span> <span class="s2">&quot;Viam&#39;s Raw RGBA Format&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">RGBA_HEADER_LENGTH</span><span class="p">)</span>
+
+        <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">12</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;RGBA&quot;</span>
+
+        <span class="c1"># data descriptor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tile</span> <span class="o">=</span> <span class="p">[(</span><span class="n">RGBAEncoder</span><span class="o">.</span><span class="n">ENCODER_NAME</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span> <span class="n">RGBA_HEADER_LENGTH</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))]</span></div>
+
+
+<div class="viewcode-block" id="RGBADecoder"><a class="viewcode-back" href="../../../autoapi/viam/media/viam_rgba_plugin/index.html#viam.media.viam_rgba_plugin.RGBADecoder">[docs]</a><span class="k">class</span> <span class="nc">RGBADecoder</span><span class="p">(</span><span class="n">PyDecoder</span><span class="p">):</span>
+    <span class="n">_pulls_fd</span> <span class="o">=</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="RGBADecoder.decode"><a class="viewcode-back" href="../../../autoapi/viam/media/viam_rgba_plugin/index.html#viam.media.viam_rgba_plugin.RGBADecoder.decode">[docs]</a>    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">im</span><span class="o">.</span><span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_as_raw</span><span class="p">(</span><span class="n">_safe_read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">,</span> <span class="n">width</span> <span class="o">*</span> <span class="n">height</span> <span class="o">*</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span></div></div>
+
+
+<span class="c1"># Register Viam&#39;s custom RGBA format so that it can be read using Image.open</span>
+<span class="n">Image</span><span class="o">.</span><span class="n">register_open</span><span class="p">(</span><span class="n">RGBAImage</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">RGBAImage</span><span class="p">,</span> <span class="n">_accept</span><span class="p">)</span>
+<span class="n">Image</span><span class="o">.</span><span class="n">register_save</span><span class="p">(</span><span class="n">RGBAImage</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="n">_save_rgba</span><span class="p">)</span>
+<span class="n">Image</span><span class="o">.</span><span class="n">register_mime</span><span class="p">(</span><span class="n">RGBAImage</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="s2">&quot;image/vnd.viam.rgba&quot;</span><span class="p">)</span>
+<span class="n">Image</span><span class="o">.</span><span class="n">register_extension</span><span class="p">(</span><span class="n">RGBAImage</span><span class="o">.</span><span class="n">format</span><span class="p">,</span> <span class="s2">&quot;.viam.rgba&quot;</span><span class="p">)</span>
+<span class="n">Image</span><span class="o">.</span><span class="n">register_encoder</span><span class="p">(</span><span class="n">RGBAEncoder</span><span class="o">.</span><span class="n">ENCODER_NAME</span><span class="p">,</span> <span class="n">RGBAEncoder</span><span class="p">)</span>
+<span class="n">Image</span><span class="o">.</span><span class="n">register_decoder</span><span class="p">(</span><span class="n">RGBA_FORMAT_LABEL</span><span class="p">,</span> <span class="n">RGBADecoder</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

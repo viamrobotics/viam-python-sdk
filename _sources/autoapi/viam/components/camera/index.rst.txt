@@ -170,8 +170,12 @@ Classes
 
    A raw bytes representation of an image.
 
-   When requesting `CameraMimeType.RAW` or if the camera returns a mime type that is not supported,
-   the returned type will be this RawImage type.
+   A RawImage should be returned instead of a PIL Image instance under one of
+   the following conditions
+
+   1) The requested mime type has the LAZY_SUFFIX string appended to it
+   2) The requested mime type is not supported for decoding/encoding by Viam's
+   Python SDK
 
    .. py:attribute:: data
       :annotation: :bytes
@@ -182,16 +186,6 @@ Classes
       :annotation: :str
 
       The mimetype of the image
-
-   .. py:attribute:: width
-      :annotation: :int
-
-      The width of the image
-
-   .. py:attribute:: height
-      :annotation: :int
-
-      The height of the image
 
    .. py:method:: close()
 

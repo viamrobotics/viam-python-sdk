@@ -105,12 +105,44 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.video.LAZY_SUFFIX" title="viam.media.video.LAZY_SUFFIX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LAZY_SUFFIX</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.video.LIBRARY_SUPPORTED_FORMATS" title="viam.media.video.LIBRARY_SUPPORTED_FORMATS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LIBRARY_SUPPORTED_FORMATS</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.media.video.LAZY_SUFFIX">
+<span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">LAZY_SUFFIX</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">+lazy</span></em><a class="headerlink" href="#viam.media.video.LAZY_SUFFIX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.media.video.LIBRARY_SUPPORTED_FORMATS">
+<span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">LIBRARY_SUPPORTED_FORMATS</span></span><a class="headerlink" href="#viam.media.video.LIBRARY_SUPPORTED_FORMATS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.video.RawImage">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">RawImage</span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#RawImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.RawImage" title="Permalink to this definition"></a></dt>
 <dd><p>A raw bytes representation of an image.</p>
-<p>When requesting <cite>CameraMimeType.RAW</cite> or if the camera returns a mime type that is not supported,
-the returned type will be this RawImage type.</p>
+<p>A RawImage should be returned instead of a PIL Image instance under one of
+the following conditions</p>
+<ol class="arabic simple">
+<li><p>The requested mime type has the LAZY_SUFFIX string appended to it</p></li>
+</ol>
+<p>2) The requested mime type is not supported for decoding/encoding by Viam’s
+Python SDK</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.media.video.RawImage.data">
 <span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.media.video.RawImage.data" title="Permalink to this definition"></a></dt>
@@ -121,18 +153,6 @@ the returned type will be this RawImage type.</p>
 <dt class="sig sig-object py" id="viam.media.video.RawImage.mime_type">
 <span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.media.video.RawImage.mime_type" title="Permalink to this definition"></a></dt>
 <dd><p>The mimetype of the image</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.video.RawImage.width">
-<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.media.video.RawImage.width" title="Permalink to this definition"></a></dt>
-<dd><p>The width of the image</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.video.RawImage.height">
-<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.media.video.RawImage.height" title="Permalink to this definition"></a></dt>
-<dd><p>The height of the image</p>
 </dd></dl>
 
 <dl class="py method">
@@ -156,8 +176,8 @@ or repr(object).
 encoding defaults to sys.getdefaultencoding().
 errors defaults to ‘strict’.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.media.video.CameraMimeType.RAW">
-<span class="sig-name descname"><span class="pre">RAW</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">image/vnd.viam.rgba</span></em><a class="headerlink" href="#viam.media.video.CameraMimeType.RAW" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.media.video.CameraMimeType.VIAM_RGBA">
+<span class="sig-name descname"><span class="pre">VIAM_RGBA</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">image/vnd.viam.rgba</span></em><a class="headerlink" href="#viam.media.video.CameraMimeType.VIAM_RGBA" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -173,6 +193,21 @@ errors defaults to ‘strict’.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.media.video.CameraMimeType.PCD">
 <span class="sig-name descname"><span class="pre">PCD</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">pointcloud/pcd</span></em><a class="headerlink" href="#viam.media.video.CameraMimeType.PCD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.video.CameraMimeType.UNSUPPORTED">
+<span class="sig-name descname"><span class="pre">UNSUPPORTED</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">unsupported</span></em><a class="headerlink" href="#viam.media.video.CameraMimeType.UNSUPPORTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.video.CameraMimeType.from_lazy">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_lazy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">typing_extensions.Self</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#CameraMimeType.from_lazy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.CameraMimeType.from_lazy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.video.CameraMimeType.with_lazy_suffix">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_lazy_suffix</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#viam.media.video.CameraMimeType.with_lazy_suffix" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

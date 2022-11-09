@@ -124,15 +124,12 @@
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="n">mimetype</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">RAW</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">GetImageResponse</span><span class="p">(</span>
-                <span class="n">mime_type</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">mime_type</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">)</span> <span class="k">else</span> <span class="n">mimetype</span><span class="p">,</span>
-                <span class="n">width_px</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
-                <span class="n">height_px</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
-            <span class="p">)</span>
+            <span class="n">mimetype</span><span class="p">,</span> <span class="n">is_lazy</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_lazy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">is_supported</span><span class="p">(</span><span class="n">mimetype</span><span class="p">):</span>
+                <span class="n">response_mime</span> <span class="o">=</span> <span class="n">mimetype</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">response_mime</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">mime_type</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">GetImageResponse</span><span class="p">(</span><span class="n">mime_type</span><span class="o">=</span><span class="n">response_mime</span><span class="p">)</span>
             <span class="n">img_bytes</span> <span class="o">=</span> <span class="n">mimetype</span><span class="o">.</span><span class="n">encode_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">image</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
