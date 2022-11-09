@@ -1,5 +1,5 @@
 import abc
-from typing import Optional
+from typing import Any, Dict, Optional
 
 from viam.components.component_base import ComponentBase
 from viam.errors import NotSupportedError
@@ -15,14 +15,26 @@ class Gripper(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def open(self, *, timeout: Optional[float] = None, **kwargs):
+    async def open(
+        self, 
+        *, 
+        timeout: Optional[float] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
         """
         Open the gripper.
         """
         ...
 
     @abc.abstractmethod
-    async def grab(self, *, timeout: Optional[float] = None, **kwargs) -> bool:
+    async def grab(
+        self,
+        *, 
+        timeout: Optional[float] = None,
+        extra: Optional[Dict[str, Any]] = None, 
+        **kwargs,
+    ) -> bool:
         """
         Instruct the gripper to grab.
 
@@ -32,7 +44,13 @@ class Gripper(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self, *, timeout: Optional[float] = None, **kwargs):
+    async def stop(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
         """
         Stop the gripper. It is assumed the gripper stops immediately.
         """

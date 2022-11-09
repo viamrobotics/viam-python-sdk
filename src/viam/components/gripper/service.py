@@ -11,6 +11,7 @@ from viam.proto.component.gripper import (
     StopRequest,
     StopResponse,
 )
+from viam.utils import struct_to_dict
 
 from .gripper import Gripper
 
@@ -31,7 +32,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gripper.open(timeout=timeout)
+        await gripper.open(timeout=timeout, extra=struct_to_dict(request.extra))
         response = OpenResponse()
         await stream.send_message(response)
 
@@ -44,7 +45,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        grabbed = await gripper.grab(timeout=timeout)
+        grabbed = await gripper.grab(timeout=timeout, extra=struct_to_dict(request.extra))
         response = GrabResponse(success=grabbed)
         await stream.send_message(response)
 
@@ -56,5 +57,5 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gripper.stop(timeout=timeout)
+        await gripper.stop(timeout=timeout, extra=struct_to_dict(request.extra))
         await stream.send_message(StopResponse())
