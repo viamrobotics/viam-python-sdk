@@ -9,6 +9,7 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
+import google.protobuf.struct_pb2
 import sys
 import typing
 if sys.version_info >= (3, 10):
@@ -37,12 +38,20 @@ global___Mode = Mode
 class GetModeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetModeRequest = GetModeRequest
 
@@ -62,13 +71,21 @@ class SetModeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MODE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     mode: global___Mode.ValueType
 
-    def __init__(self, *, name: builtins.str=..., mode: global___Mode.ValueType=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., mode: global___Mode.ValueType=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['mode', b'mode', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'mode', b'mode', 'name', b'name']) -> None:
         ...
 global___SetModeRequest = SetModeRequest
 
@@ -102,12 +119,20 @@ global___Waypoint = Waypoint
 class GetLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetLocationRequest = GetLocationRequest
 
@@ -132,12 +157,20 @@ global___GetLocationResponse = GetLocationResponse
 class GetWaypointsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetWaypointsRequest = GetWaypointsRequest
 
@@ -160,19 +193,24 @@ class AddWaypointRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     LOCATION_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
     @property
     def location(self) -> common.v1.common_pb2.GeoPoint:
         ...
 
-    def __init__(self, *, name: builtins.str=..., location: common.v1.common_pb2.GeoPoint | None=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., location: common.v1.common_pb2.GeoPoint | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'location', b'location']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'location', b'location', 'name', b'name']) -> None:
         ...
 global___AddWaypointRequest = AddWaypointRequest
 
@@ -187,13 +225,21 @@ class RemoveWaypointRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     ID_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     id: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., id: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., id: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'id', b'id', 'name', b'name']) -> None:
         ...
 global___RemoveWaypointRequest = RemoveWaypointRequest
 

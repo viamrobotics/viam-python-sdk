@@ -5,6 +5,7 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
+import google.protobuf.struct_pb2
 import sys
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
@@ -15,12 +16,20 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 class OpenRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___OpenRequest = OpenRequest
 
@@ -34,37 +43,61 @@ global___OpenResponse = OpenResponse
 class GrabRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GrabRequest = GrabRequest
 
 class GrabResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUCCESS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     success: builtins.bool
 
-    def __init__(self, *, success: builtins.bool=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
+    def __init__(self, *, success: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'success', b'success']) -> None:
         ...
 global___GrabResponse = GrabResponse
 
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of a gripper'
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___StopRequest = StopRequest
 
