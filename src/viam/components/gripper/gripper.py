@@ -16,8 +16,8 @@ class Gripper(ComponentBase):
 
     @abc.abstractmethod
     async def open(
-        self, 
-        *, 
+        self,
+        *,
         timeout: Optional[float] = None,
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
@@ -30,9 +30,9 @@ class Gripper(ComponentBase):
     @abc.abstractmethod
     async def grab(
         self,
-        *, 
+        *,
         timeout: Optional[float] = None,
-        extra: Optional[Dict[str, Any]] = None, 
+        extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ) -> bool:
         """

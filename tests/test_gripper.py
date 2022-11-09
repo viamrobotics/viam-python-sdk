@@ -81,7 +81,7 @@ class TestGripper:
 
     @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper):
-        assert len(gripper.extra) == 0
+        assert gripper.extra is None
         extra = {"foo": "bar", "baz": [1, 2, 3]}
         await gripper.open(timeout=1.1, extra=extra)
         assert gripper.extra == extra
@@ -125,7 +125,7 @@ class TestService:
     @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper, service: GripperService):
         async with ChannelFor([service]) as channel:
-            assert len(gripper.extra) == 0
+            assert gripper.extra is None
             client = GripperServiceStub(channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
             request = OpenRequest(name=gripper.name, extra=dict_to_struct(extra))
@@ -187,9 +187,8 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper, service: GripperService):
         async with ChannelFor([service]) as channel:
-            assert len(gripper.extra) == 0
+            assert gripper.extra is None
             client = GripperClient(gripper.name, channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await gripper.open(timeout=1.1, extra=extra)
+            await client.open(timeout=1.1, extra=extra)
             assert gripper.extra == extra
-

@@ -26,15 +26,21 @@ class GripperClient(Gripper):
         super().__init__(name)
 
     async def open(self, *, timeout: Optional[float] = None, extra: Optional[Dict[str, Any]] = None):
+        if extra is None:
+            extra = {}
         request = OpenRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Open(request, timeout=timeout)
 
     async def grab(self, *, timeout: Optional[float] = None, extra: Optional[Dict[str, Any]] = None) -> bool:
+        if extra is None:
+            extra = {}
         request = GrabRequest(name=self.name, extra=dict_to_struct(extra))
         response: GrabResponse = await self.client.Grab(request, timeout=timeout)
         return response.success
 
     async def stop(self, *, timeout: Optional[float] = None, extra: Optional[Dict[str, Any]] = None):
+        if extra is None:
+            extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request, timeout=timeout)
 
