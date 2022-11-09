@@ -18,8 +18,8 @@ class Gripper(ComponentBase):
     async def open(
         self,
         *,
-        timeout: Optional[float] = None,
         extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
         **kwargs,
     ):
         """
@@ -31,8 +31,8 @@ class Gripper(ComponentBase):
     async def grab(
         self,
         *,
-        timeout: Optional[float] = None,
         extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
         **kwargs,
     ) -> bool:
         """
@@ -47,8 +47,8 @@ class Gripper(ComponentBase):
     async def stop(
         self,
         *,
-        timeout: Optional[float] = None,
         extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
         **kwargs,
     ):
         """

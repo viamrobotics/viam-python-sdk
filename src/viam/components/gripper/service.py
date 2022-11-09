@@ -32,7 +32,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gripper.open(timeout=timeout, extra=struct_to_dict(request.extra))
+        await gripper.open(extra=struct_to_dict(request.extra), timeout=timeout)
         response = OpenResponse()
         await stream.send_message(response)
 
@@ -45,7 +45,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        grabbed = await gripper.grab(timeout=timeout, extra=struct_to_dict(request.extra))
+        grabbed = await gripper.grab(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GrabResponse(success=grabbed)
         await stream.send_message(response)
 
@@ -57,5 +57,5 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gripper.stop(timeout=timeout, extra=struct_to_dict(request.extra))
+        await gripper.stop(extra=struct_to_dict(request.extra), timeout=timeout)
         await stream.send_message(StopResponse())
