@@ -62,8 +62,14 @@ class TestClient:
     async def test_get_sensors(self, service: MockSensorsService):
         async with ChannelFor([service]) as channel:
             client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
+            extra = {"foo": "get_sensors"}
+            sensors = await client.get_sensors(extra=extra)
+            assert sensors == SENSORS
+            assert service.extra == extra
+
             sensors = await client.get_sensors()
             assert sensors == SENSORS
+            assert service.extra == {}
 
     @pytest.mark.asyncio
     async def test_get_readings(self, service: MockSensorsService):
@@ -73,7 +79,8 @@ class TestClient:
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor1"),
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor2"),
             ]
-            readings = await client.get_readings(sensors)
+            extra = {"foo": "get_readings"}
+            readings = await client.get_readings(sensors, extra=extra)
             assert readings == {
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor0"): {"a": ANGVEL},
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor1"): {"b": VEC3},
@@ -81,3 +88,4 @@ class TestClient:
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor3"): {"d": ORIENTATION},
             }
             assert service.sensors_for_readings == sensors
+            assert service.extra == extra
