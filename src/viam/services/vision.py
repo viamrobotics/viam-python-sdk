@@ -1,10 +1,11 @@
 import json
 from dataclasses import dataclass
 from enum import Enum
+from io import BytesIO
 from typing import Any, List, Mapping, Optional, Sequence, Union
 
 from grpclib.client import Channel
-from PIL.Image import Image
+from viam.media.viam_rgba_plugin import Image
 
 from viam.media.video import CameraMimeType, RawImage
 from viam.proto.common import PointCloudObject
@@ -136,7 +137,7 @@ class VisionServiceClient(ServiceClientBase):
         return list(response.detections)
 
     async def get_detections(
-        self, image: Union[Image, RawImage], detector_name: str, extra: Optional[Mapping[str, Any]] = None
+        self, image: Union[Image.Image, RawImage], detector_name: str, extra: Optional[Mapping[str, Any]] = None
     ) -> List[Detection]:
         """Get a list of detections in the given image using the specified detector
 
@@ -152,6 +153,9 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         mime_type = CameraMimeType.JPEG
+        if isinstance(image, RawImage):
+            image = Image.open(BytesIO(image.data), formats=[mime_type.name])
+
         request = GetDetectionsRequest(
             name=self.name,
             image=mime_type.encode_image(image),
@@ -226,7 +230,7 @@ class VisionServiceClient(ServiceClientBase):
         return list(response.classifications)
 
     async def get_classifications(
-        self, image: Union[Image, RawImage], classifier_name: str, extra: Optional[Mapping[str, Any]] = None
+        self, image: Union[Image.Image, RawImage], classifier_name: str, extra: Optional[Mapping[str, Any]] = None
     ) -> List[Classification]:
         """Get a list of detections in the given image using the specified detector
 
@@ -240,6 +244,9 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         mime_type = CameraMimeType.JPEG
+        if isinstance(image, RawImage):
+            image = Image.open(BytesIO(image.data), formats=[mime_type.name])
+
         request = GetClassificationsRequest(
             name=self.name,
             image=mime_type.encode_image(image),
