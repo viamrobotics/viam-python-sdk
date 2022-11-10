@@ -100,7 +100,7 @@ Classes
 
       
 
-   .. py:method:: get_detector_names() -> List[str]
+   .. py:method:: get_detector_names(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]
       :async:
 
       Get the list of detectors currently registered in the service.
@@ -109,7 +109,7 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: add_detector(config: VisModelConfig)
+   .. py:method:: add_detector(config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Add a new detector to the service. Returns nothing if successful, and an error if not.
@@ -121,7 +121,7 @@ Classes
       :type config: VisModelConfig
 
 
-   .. py:method:: remove_detector(detector_name: str)
+   .. py:method:: remove_detector(detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Remove the detector with the given name from the service. Returns nothing if successful.
@@ -130,7 +130,7 @@ Classes
       :type detector_name: str
 
 
-   .. py:method:: get_detections_from_camera(camera_name: str, detector_name: str) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections_from_camera(camera_name: str, detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :async:
 
       Get a list of detections in the next image given a camera and a detector
@@ -146,7 +146,7 @@ Classes
       :rtype: List[Detection]
 
 
-   .. py:method:: get_detections(image: Union[PIL.Image.Image, viam.media.video.RawImage], detector_name: str) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -162,7 +162,7 @@ Classes
       :rtype: List[Detection]
 
 
-   .. py:method:: get_classifier_names() -> List[str]
+   .. py:method:: get_classifier_names(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]
       :async:
 
       Get the list of classifiers currently registered to the service
@@ -171,7 +171,7 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: add_classifier(config: VisModelConfig)
+   .. py:method:: add_classifier(config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Add a classifier to the service.
@@ -180,7 +180,7 @@ Classes
       :type config: VisModelConfig
 
 
-   .. py:method:: remove_classifier(classifier_name: str)
+   .. py:method:: remove_classifier(classifier_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Remove the classifier with the given name from the service. Returns nothing if successful.
@@ -189,7 +189,7 @@ Classes
       :type classifier_name: str
 
 
-   .. py:method:: get_classifications_from_camera(camera_name: str, classifier_name: str, count: int) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications_from_camera(camera_name: str, classifier_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :async:
 
       Get a list of classifications in the next image given a camera and a classifier
@@ -205,7 +205,7 @@ Classes
       :rtype: List[Classification]
 
 
-   .. py:method:: get_classifications(image: Union[PIL.Image.Image, viam.media.video.RawImage], classifier_name: str) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], classifier_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -219,7 +219,7 @@ Classes
       :rtype: List[Classification]
 
 
-   .. py:method:: get_segmenter_names() -> List[str]
+   .. py:method:: get_segmenter_names(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]
       :async:
 
       Get the list of segmenters currently registered in the service.
@@ -228,7 +228,7 @@ Classes
       :rtype: List[str]
 
 
-   .. py:method:: add_segmenter(config: VisModelConfig)
+   .. py:method:: add_segmenter(config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Add a segmenter to the service
@@ -237,7 +237,7 @@ Classes
       :type config: VisModelConfig
 
 
-   .. py:method:: remove_segmenter(segmenter_name: str)
+   .. py:method:: remove_segmenter(segmenter_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Remove the segmenter with the given name from the service. Returns nothing if successful.
@@ -246,7 +246,7 @@ Classes
       :type segmenter_name: str
 
 
-   .. py:method:: get_model_parameters_schema(model_type: VisModelType) -> Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]
+   .. py:method:: get_model_parameters_schema(model_type: VisModelType, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]
       :async:
 
       Get the parameters needed to add a model to the vision registry.
@@ -258,7 +258,7 @@ Classes
       :rtype: Mapping[str, str | int | float | bool | Sequence | Mapping]
 
 
-   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str) -> List[viam.proto.common.PointCloudObject]
+   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
       :async:
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest
