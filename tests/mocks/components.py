@@ -71,8 +71,8 @@ class MockArm(Arm):
         self,
         pose: Pose,
         world_state: Optional[WorldState] = None,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
@@ -164,8 +164,8 @@ class MockBase(Base):
         distance: int,
         velocity: float,
         angle: float,
-        extra: Optional[Dict[str, Any]] = None,
         *,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
