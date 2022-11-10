@@ -14,7 +14,7 @@ from viam.proto.component.gripper import (
     OpenRequest,
     StopRequest,
 )
-from viam.utils import message_to_struct
+from viam.utils import dict_to_struct, message_to_struct
 
 from . import loose_approx
 from .mocks.components import MockGripper
@@ -79,6 +79,13 @@ class TestGripper:
         assert status.name == gripper.get_resource_name(gripper.name)
         assert status.status == message_to_struct(ActuatorStatus(is_moving=True))
 
+    @pytest.mark.asyncio
+    async def test_extra(self, gripper: MockGripper):
+        assert gripper.extra is None
+        extra = {"foo": "bar", "baz": [1, 2, 3]}
+        await gripper.open(timeout=1.1, extra=extra)
+        assert gripper.extra == extra
+
 
 class TestService:
     @pytest.mark.asyncio
@@ -114,6 +121,16 @@ class TestService:
             await client.Stop(request, timeout=7.89)
             assert gripper.is_stopped is True
             assert gripper.timeout == loose_approx(7.89)
+
+    @pytest.mark.asyncio
+    async def test_extra(self, gripper: MockGripper, service: GripperService):
+        async with ChannelFor([service]) as channel:
+            assert gripper.extra is None
+            client = GripperServiceStub(channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            request = OpenRequest(name=gripper.name, extra=dict_to_struct(extra))
+            await client.Open(request)
+            assert gripper.extra == extra
 
 
 class TestClient:
@@ -166,3 +183,12 @@ class TestClient:
             client = GripperClient(gripper.name, channel)
             with pytest.raises(NotSupportedError):
                 await create_status(client)
+
+    @pytest.mark.asyncio
+    async def test_extra(self, gripper: MockGripper, service: GripperService):
+        async with ChannelFor([service]) as channel:
+            assert gripper.extra is None
+            client = GripperClient(gripper.name, channel)
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            await client.open(timeout=1.1, extra=extra)
+            assert gripper.extra == extra
