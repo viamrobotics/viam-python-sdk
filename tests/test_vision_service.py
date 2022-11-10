@@ -13,7 +13,6 @@ from viam.proto.common import (
     RectangularPrism,
     Vector3,
 )
-from viam.proto.service.vision import VisionServiceBase
 from viam.services.vision import (
     Detection,
     Classification,
@@ -22,6 +21,7 @@ from viam.services.vision import (
     VisionServiceClient,
 )
 
+from . import loose_approx
 from .mocks.services import MockVisionService
 
 DETECTORS = [
@@ -111,7 +111,7 @@ VISION_SERVICE_NAME = "vision1"
 
 
 @pytest.fixture(scope="function")
-def service() -> VisionServiceBase:
+def service() -> MockVisionService:
     return MockVisionService(
         detectors=DETECTORS,
         detections=DETECTIONS,
@@ -125,114 +125,153 @@ def service() -> VisionServiceBase:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_detectors(self, service: VisionServiceBase):
+    async def test_get_detectors(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_detector_names()
+            extra = {"foo": "get_detectors"}
+            assert service.timeout is None
+            timeout = 1.3
+            response = await client.get_detector_names(extra=extra, timeout=timeout)
             assert response == DETECTORS
+            assert service.extra == extra
+            assert service.timeout == loose_approx(timeout)
 
     @pytest.mark.asyncio
-    async def test_add_detector(self, service: VisionServiceBase):
+    async def test_add_detector(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            await client.add_detector(VisModelConfig("detector-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}))
+            extra = {"foo": "add_detector"}
+            await client.add_detector(VisModelConfig("detector-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}), extra=extra)
+            assert service.extra == extra
             response = await client.get_detector_names()
             assert response[-1] == "detector-2"
+            assert service.extra == {}
 
     @pytest.mark.asyncio
-    async def test_remove_detector(self, service: VisionServiceBase):
+    async def test_remove_detector(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            await client.remove_detector("detector-1")
+            extra = {"foo": "remove_detector"}
+            await client.remove_detector("detector-1", extra=extra)
+            assert service.extra == extra
             response = await client.get_detector_names()
             assert "detector-1" not in response
+            assert service.extra == {}
 
     @pytest.mark.asyncio
-    async def test_get_detections_from_camera(self, service: VisionServiceBase):
+    async def test_get_detections_from_camera(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_detections_from_camera("fake-camera", "fake-detector")
+            extra = {"foo": "get_detections_from_camera"}
+            response = await client.get_detections_from_camera("fake-camera", "fake-detector", extra=extra)
             assert response == DETECTIONS
+            assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_detections(self, service: VisionServiceBase):
+    async def test_get_detections(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
-            response = await client.get_detections(image, "fake-detector")
+            extra = {"foo": "get_detections"}
+            response = await client.get_detections(image, "fake-detector", extra=extra)
             assert response == DETECTIONS
+            assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_classifiers(self, service: VisionServiceBase):
+    async def test_get_classifiers(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_classifier_names()
+            extra = {"foo": "get_classifiers"}
+            response = await client.get_classifier_names(extra=extra)
             assert response == CLASSIFIERS
+            assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_add_classifier(self, service: VisionServiceBase):
+    async def test_add_classifier(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            await client.add_classifier(VisModelConfig("classifier-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}))
+            extra = {"foo": "add_classifier"}
+            await client.add_classifier(VisModelConfig("classifier-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}), extra=extra)
+            assert service.extra == extra
             response = await client.get_classifier_names()
             assert response[-1] == "classifier-2"
+            assert service.extra == {}
 
     @pytest.mark.asyncio
-    async def test_remove_classifier(self, service: VisionServiceBase):
+    async def test_remove_classifier(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            await client.remove_classifier("classifier-1")
+            extra = {"foo": "remove_classifier"}
+            await client.remove_classifier("classifier-1", extra=extra)
+            assert service.extra == extra
             response = await client.get_classifier_names()
             assert "classifier-1" not in response
+            assert service.extra == {}
 
     @pytest.mark.asyncio
-    async def test_get_classifications_from_camera(self, service: VisionServiceBase):
+    async def test_get_classifications_from_camera(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_classifications_from_camera("fake-camera", "fake-classifier", 1)
+            extra = {"foo": "get_classifications_from_camera"}
+            response = await client.get_classifications_from_camera("fake-camera", "fake-classifier", 1, extra=extra)
             assert response == CLASSIFICATIONS
+            assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_classifications(self, service: VisionServiceBase):
+    async def test_get_classifications(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
-            response = await client.get_classifications(image, "fake-classifier")
+            extra = {"foo": "get_classifications"}
+            response = await client.get_classifications(image, "fake-classifier", extra=extra)
             assert response == CLASSIFICATIONS
+            assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_segmenters(self, service: VisionServiceBase):
+    async def test_get_segmenters(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_segmenter_names()
+            extra = {"foo": "get_segmenter_names"}
+            response = await client.get_segmenter_names(extra=extra)
             assert response == SEGMENTERS
+            assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_add_segmenter(self, service: VisionServiceBase):
+    async def test_add_segmenter(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            await client.add_segmenter(VisModelConfig("segmenter-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}))
+            extra = {"foo": "add_segmenter"}
+            await client.add_segmenter(VisModelConfig("segmenter-2", VisModelType.DETECTOR_TENSORFLOW, {"foo": "bar"}), extra=extra)
+            assert service.extra == extra
             response = await client.get_segmenter_names()
             assert response[-1] == "segmenter-2"
+            assert service.extra == {}
 
     @pytest.mark.asyncio
-    async def test_remove_segmenter(self, service: VisionServiceBase):
+    async def test_remove_segmenter(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            await client.remove_segmenter("segmenter-1")
+            extra = {"foo": "remove_segmenter"}
+            await client.remove_segmenter("segmenter-1", extra=extra)
+            assert service.extra == extra
             response = await client.get_segmenter_names()
             assert "segmenter-1" not in response
+            assert service.extra == {}
 
     @pytest.mark.asyncio
-    async def test_get_model_parameters_schema(self, service: VisionServiceBase):
+    async def test_get_model_parameters_schema(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_model_parameters_schema(VisModelType.DETECTOR_COLOR)
+            extra = {"foo": "get_model_parameters_schema"}
+            response = await client.get_model_parameters_schema(VisModelType.DETECTOR_COLOR, extra=extra)
             assert response == MODEL_SCHEMA[VisModelType.DETECTOR_COLOR]
+            assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_object_point_clouds(self, service: VisionServiceBase):
+    async def test_get_object_point_clouds(self, service: MockVisionService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
-            response = await client.get_object_point_clouds("camera", "segmenter")
+            extra = {"foo": "get_object_point_clouds"}
+            response = await client.get_object_point_clouds("camera", "segmenter", extra=extra)
             assert response == POINT_CLOUDS
+            assert service.extra == extra

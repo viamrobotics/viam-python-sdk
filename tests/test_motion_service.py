@@ -6,6 +6,7 @@ from viam.components.gantry import Gantry
 from viam.proto.common import Pose, PoseInFrame
 from viam.services.motion import MotionServiceClient
 
+from . import loose_approx
 from .mocks.services import MockMotionService
 
 MOVE_RESPONSES = {"arm": False, "gantry": True}
@@ -32,12 +33,16 @@ class TestClient:
     async def test_plan_and_move(self, service: MockMotionService):
         async with ChannelFor([service]) as channel:
             client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
-            success = await client.move(Arm.get_resource_name("arm"), PoseInFrame(), extra={"foo": "bar"})
+            assert service.timeout is None
+            timeout = 1.4
+            success = await client.move(Arm.get_resource_name("arm"), PoseInFrame(), extra={"foo": "bar"}, timeout=timeout)
             assert success == MOVE_RESPONSES["arm"]
             assert service.extra == {"foo": "bar"}
+            assert service.timeout == loose_approx(timeout)
             success = await client.move(Gantry.get_resource_name("gantry"), PoseInFrame())
             assert success == MOVE_RESPONSES["gantry"]
             assert service.extra == {}
+            assert service.timeout is None
 
     @pytest.mark.asyncio
     async def test_move_single_component(self, service: MockMotionService):
