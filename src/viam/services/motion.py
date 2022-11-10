@@ -34,7 +34,9 @@ class MotionServiceClient(ServiceClientBase):
         component_name: ResourceName,
         destination: PoseInFrame,
         world_state: Optional[WorldState] = None,
+        *,
         extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> bool:
         """Plan and execute a movement to move the component specified to its goal destination.
 
@@ -63,7 +65,7 @@ class MotionServiceClient(ServiceClientBase):
             world_state=world_state,
             extra=dict_to_struct(extra),
         )
-        response: MoveResponse = await self.client.Move(request)
+        response: MoveResponse = await self.client.Move(request, timeout=timeout)
         return response.success
 
     async def move_single_component(
@@ -71,7 +73,9 @@ class MotionServiceClient(ServiceClientBase):
         component_name: ResourceName,
         destination: PoseInFrame,
         world_state: Optional[WorldState] = None,
+        *,
         extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> bool:
         """
         This function will pass through a move command to a component with a `move_to_position` method that takes a `Pose`. `Arm`s are the
@@ -97,14 +101,16 @@ class MotionServiceClient(ServiceClientBase):
             world_state=world_state,
             extra=dict_to_struct(extra),
         )
-        response: MoveSingleComponentResponse = await self.client.MoveSingleComponent(request)
+        response: MoveSingleComponentResponse = await self.client.MoveSingleComponent(request, timeout=timeout)
         return response.success
 
     async def get_pose(
         self,
         component_name: ResourceName,
         destination_frame: str,
+        *,
         extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> PoseInFrame:
         """
         Get the Pose and observer frame for any given component on a robot.
@@ -124,5 +130,5 @@ class MotionServiceClient(ServiceClientBase):
             destination_frame=destination_frame,
             extra=dict_to_struct(extra),
         )
-        response: GetPoseResponse = await self.client.GetPose(request)
+        response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
         return response.pose

@@ -6,6 +6,7 @@ from viam.proto.service.sensors import Readings
 from viam.services.sensors import SensorsServiceClient
 from viam.utils import primitive_to_value
 
+from . import loose_approx
 from .mocks.services import MockSensorsService
 
 SENSORS = [
@@ -63,13 +64,17 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
             extra = {"foo": "get_sensors"}
-            sensors = await client.get_sensors(extra=extra)
+            assert service.timeout is None
+            timeout = 1.1
+            sensors = await client.get_sensors(extra=extra, timeout=timeout)
             assert sensors == SENSORS
             assert service.extra == extra
+            assert service.timeout == loose_approx(timeout)
 
             sensors = await client.get_sensors()
             assert sensors == SENSORS
             assert service.extra == {}
+            assert service.timeout is None
 
     @pytest.mark.asyncio
     async def test_get_readings(self, service: MockSensorsService):

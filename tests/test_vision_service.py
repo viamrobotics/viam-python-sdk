@@ -21,6 +21,7 @@ from viam.services.vision import (
     VisionServiceClient,
 )
 
+from . import loose_approx
 from .mocks.services import MockVisionService
 
 DETECTORS = [
@@ -128,9 +129,12 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_detectors"}
-            response = await client.get_detector_names(extra=extra)
+            assert service.timeout is None
+            timeout = 1.3
+            response = await client.get_detector_names(extra=extra, timeout=timeout)
             assert response == DETECTORS
             assert service.extra == extra
+            assert service.timeout == loose_approx(timeout)
 
     @pytest.mark.asyncio
     async def test_add_detector(self, service: MockVisionService):

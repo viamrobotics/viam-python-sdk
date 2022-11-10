@@ -71,7 +71,7 @@ class VisionServiceClient(ServiceClientBase):
         self.client = VisionServiceStub(channel)
         self.name = name
 
-    async def get_detector_names(self, extra: Optional[Mapping[str, Any]] = None) -> List[str]:
+    async def get_detector_names(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]:
         """Get the list of detectors currently registered in the service.
 
         Returns:
@@ -80,10 +80,10 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         request = GetDetectorNamesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetDetectorNamesResponse = await self.client.GetDetectorNames(request)
+        response: GetDetectorNamesResponse = await self.client.GetDetectorNames(request, timeout=timeout)
         return list(response.detector_names)
 
-    async def add_detector(self, config: VisModelConfig, extra: Optional[Mapping[str, Any]] = None):
+    async def add_detector(self, config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None):
         """Add a new detector to the service. Returns nothing if successful, and an error if not.
         Registers a new detector just as if you had put it in the original "register_models" field
         in the robot config. Available types and their parameters can be found in the
@@ -101,9 +101,9 @@ class VisionServiceClient(ServiceClientBase):
             detector_parameters=dict_to_struct(config.parameters),
             extra=dict_to_struct(extra),
         )
-        await self.client.AddDetector(request)
+        await self.client.AddDetector(request, timeout=timeout)
 
-    async def remove_detector(self, detector_name: str, extra: Optional[Mapping[str, Any]] = None):
+    async def remove_detector(self, detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None):
         """Remove the detector with the given name from the service. Returns nothing if successful.
 
         Args:
@@ -112,10 +112,10 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         request = RemoveDetectorRequest(name=self.name, detector_name=detector_name, extra=dict_to_struct(extra))
-        await self.client.RemoveDetector(request)
+        await self.client.RemoveDetector(request, timeout=timeout)
 
     async def get_detections_from_camera(
-        self, camera_name: str, detector_name: str, extra: Optional[Mapping[str, Any]] = None
+        self, camera_name: str, detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> List[Detection]:
         """Get a list of detections in the next image given a camera and a detector
 
@@ -133,11 +133,16 @@ class VisionServiceClient(ServiceClientBase):
         request = GetDetectionsFromCameraRequest(
             name=self.name, camera_name=camera_name, detector_name=detector_name, extra=dict_to_struct(extra)
         )
-        response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request)
+        response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request, timeout=timeout)
         return list(response.detections)
 
     async def get_detections(
-        self, image: Union[Image.Image, RawImage], detector_name: str, extra: Optional[Mapping[str, Any]] = None
+        self,
+        image: Union[Image.Image, RawImage],
+        detector_name: str,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> List[Detection]:
         """Get a list of detections in the given image using the specified detector
 
@@ -165,10 +170,10 @@ class VisionServiceClient(ServiceClientBase):
             detector_name=detector_name,
             extra=dict_to_struct(extra),
         )
-        response: GetDetectionsResponse = await self.client.GetDetections(request)
+        response: GetDetectionsResponse = await self.client.GetDetections(request, timeout=timeout)
         return list(response.detections)
 
-    async def get_classifier_names(self, extra: Optional[Mapping[str, Any]] = None) -> List[str]:
+    async def get_classifier_names(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]:
         """Get the list of classifiers currently registered to the service
 
         Returns:
@@ -177,10 +182,10 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         request = GetClassifierNamesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetClassifierNamesResponse = await self.client.GetClassifierNames(request)
+        response: GetClassifierNamesResponse = await self.client.GetClassifierNames(request, timeout=timeout)
         return list(response.classifier_names)
 
-    async def add_classifier(self, config: VisModelConfig, extra: Optional[Mapping[str, Any]] = None):
+    async def add_classifier(self, config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None):
         """Add a classifier to the service.
 
         Args:
@@ -195,9 +200,9 @@ class VisionServiceClient(ServiceClientBase):
             classifier_parameters=dict_to_struct(config.parameters),
             extra=dict_to_struct(extra),
         )
-        await self.client.AddClassifier(request)
+        await self.client.AddClassifier(request, timeout=timeout)
 
-    async def remove_classifier(self, classifier_name: str, extra: Optional[Mapping[str, Any]] = None):
+    async def remove_classifier(self, classifier_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None):
         """Remove the classifier with the given name from the service. Returns nothing if successful.
 
         Args:
@@ -206,10 +211,16 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         request = RemoveClassifierRequest(name=self.name, classifier_name=classifier_name, extra=dict_to_struct(extra))
-        await self.client.RemoveClassifier(request)
+        await self.client.RemoveClassifier(request, timeout=timeout)
 
     async def get_classifications_from_camera(
-        self, camera_name: str, classifier_name: str, count: int, extra: Optional[Mapping[str, Any]] = None
+        self,
+        camera_name: str,
+        classifier_name: str,
+        count: int,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> List[Classification]:
         """Get a list of classifications in the next image given a camera and a classifier
 
@@ -226,11 +237,16 @@ class VisionServiceClient(ServiceClientBase):
         request = GetClassificationsFromCameraRequest(
             name=self.name, camera_name=camera_name, classifier_name=classifier_name, n=count, extra=dict_to_struct(extra)
         )
-        response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(request)
+        response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(request, timeout=timeout)
         return list(response.classifications)
 
     async def get_classifications(
-        self, image: Union[Image.Image, RawImage], classifier_name: str, extra: Optional[Mapping[str, Any]] = None
+        self,
+        image: Union[Image.Image, RawImage],
+        classifier_name: str,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> List[Classification]:
         """Get a list of detections in the given image using the specified detector
 
@@ -256,10 +272,10 @@ class VisionServiceClient(ServiceClientBase):
             classifier_name=classifier_name,
             extra=dict_to_struct(extra),
         )
-        response: GetClassificationsResponse = await self.client.GetClassifications(request)
+        response: GetClassificationsResponse = await self.client.GetClassifications(request, timeout=timeout)
         return list(response.classifications)
 
-    async def get_segmenter_names(self, extra: Optional[Mapping[str, Any]] = None) -> List[str]:
+    async def get_segmenter_names(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]:
         """
         Get the list of segmenters currently registered in the service.
 
@@ -269,10 +285,10 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         request = GetSegmenterNamesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetSegmenterNamesResponse = await self.client.GetSegmenterNames(request)
+        response: GetSegmenterNamesResponse = await self.client.GetSegmenterNames(request, timeout=timeout)
         return list(response.segmenter_names)
 
-    async def add_segmenter(self, config: VisModelConfig, extra: Optional[Mapping[str, Any]] = None):
+    async def add_segmenter(self, config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None):
         """Add a segmenter to the service
 
         Args:
@@ -287,9 +303,9 @@ class VisionServiceClient(ServiceClientBase):
             segmenter_parameters=dict_to_struct(config.parameters),
             extra=dict_to_struct(extra),
         )
-        await self.client.AddSegmenter(request)
+        await self.client.AddSegmenter(request, timeout=timeout)
 
-    async def remove_segmenter(self, segmenter_name: str, extra: Optional[Mapping[str, Any]] = None):
+    async def remove_segmenter(self, segmenter_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None):
         """Remove the segmenter with the given name from the service. Returns nothing if successful.
 
         Args:
@@ -298,10 +314,10 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         request = RemoveSegmenterRequest(name=self.name, segmenter_name=segmenter_name, extra=dict_to_struct(extra))
-        await self.client.RemoveSegmenter(request)
+        await self.client.RemoveSegmenter(request, timeout=timeout)
 
     async def get_model_parameters_schema(
-        self, model_type: VisModelType, extra: Optional[Mapping[str, Any]] = None
+        self, model_type: VisModelType, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]:
         """
         Get the parameters needed to add a model to the vision registry.
@@ -315,11 +331,11 @@ class VisionServiceClient(ServiceClientBase):
         if extra is None:
             extra = {}
         request = GetModelParameterSchemaRequest(name=self.name, model_type=model_type, extra=dict_to_struct(extra))
-        response: GetModelParameterSchemaResponse = await self.client.GetModelParameterSchema(request)
+        response: GetModelParameterSchemaResponse = await self.client.GetModelParameterSchema(request, timeout=timeout)
         return json.loads(response.model_parameter_schema)
 
     async def get_object_point_clouds(
-        self, camera_name: str, segmenter_name: str, extra: Optional[Mapping[str, Any]] = None
+        self, camera_name: str, segmenter_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> List[PointCloudObject]:
         """
         Returns a list of the 3D point cloud objects and associated metadata in the latest
@@ -341,5 +357,5 @@ class VisionServiceClient(ServiceClientBase):
             mime_type=CameraMimeType.PCD,
             extra=dict_to_struct(extra),
         )
-        response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request)
+        response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout)
         return list(response.objects)
