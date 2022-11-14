@@ -86,11 +86,13 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
     @functools.wraps(func)
     async def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
         event = asyncio.Event()
-        func_name = func.__qualname__
-        arg_names = ", ".join([str(a) for a in args])
-        kwarg_names = ", ".join([f"{key}={value}" for (key, value) in kwargs.items()])
-        operation = Operation(f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})", event)
-        kwargs[Operation.ARG_NAME] = operation
+        operation = kwargs.get(Operation.ARG_NAME)
+        if operation is None:
+            func_name = func.__qualname__
+            arg_names = ", ".join([str(a) for a in args])
+            kwarg_names = ", ".join([f"{key}={value}" for (key, value) in kwargs.items()])
+            operation = Operation(f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})", event)
+            kwargs[Operation.ARG_NAME] = operation
         timeout = kwargs.get("timeout", None)
         timer: Optional[asyncio.TimerHandle] = None
         if timeout:
