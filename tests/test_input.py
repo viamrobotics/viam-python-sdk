@@ -20,6 +20,7 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
+from viam.utils import dict_to_struct
 
 from . import loose_approx
 from .mocks.components import MockInputController
@@ -45,7 +46,8 @@ def generic_service(controller: MockInputController) -> GenericService:
 class TestInputController:
     @pytest.mark.asyncio
     async def test_get_controls(self, controller: MockInputController):
-        controls = await controller.get_controls(timeout=4.4)
+        extra = {"foo": "get_detectors"}
+        controls = await controller.get_controls(extra=extra, timeout=4.4)
         assert controls == [
             Control.ABSOLUTE_X,
             Control.ABSOLUTE_Y,
@@ -69,12 +71,15 @@ class TestInputController:
             Control.BUTTON_RECORD,
             Control.BUTTON_E_STOP,
         ]
+        assert controller.extra == extra
         assert controller.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController):
-        events = await controller.get_events(timeout=1.82)
+        extra = {"foo": "get_events"}
+        events = await controller.get_events(extra=extra, timeout=1.82)
         assert len(events) == 0
+        assert controller.extra == extra
         assert controller.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
@@ -85,13 +90,18 @@ class TestInputController:
         assert controller.timeout == loose_approx(7.86)
         events = await controller.get_events()
         assert events[Control.ABSOLUTE_X] == event
+        assert controller.extra is None
         assert controller.timeout is None
 
     def test_register_control_callback(self, controller: MockInputController):
         assert len(controller.callbacks) == 0
-        controller.register_control_callback(Control.ABSOLUTE_X, [EventType.BUTTON_PRESS, EventType.BUTTON_RELEASE], lambda ev: print(ev))
+        extra = {"foo": "register_control_callback"}
+        controller.register_control_callback(
+            Control.ABSOLUTE_X, [EventType.BUTTON_PRESS, EventType.BUTTON_RELEASE], lambda ev: print(ev), extra=extra
+        )
         assert len(controller.callbacks) == 1
         assert len(controller.callbacks[Control.ABSOLUTE_X]) == 2
+        assert controller.reg_extra == extra
 
     @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController):
@@ -104,7 +114,8 @@ class TestService:
     async def test_get_controls(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
-            request = GetControlsRequest(controller=controller.name)
+            extra = {"foo": "get_controls"}
+            request = GetControlsRequest(controller=controller.name, extra=dict_to_struct(extra))
             response: GetControlsResponse = await client.GetControls(request, timeout=1.23)
             controls = list(response.controls)
             assert controls == [
@@ -130,16 +141,19 @@ class TestService:
                 Control.BUTTON_RECORD,
                 Control.BUTTON_E_STOP,
             ]
+            assert controller.extra == extra
             assert controller.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
-            request = GetEventsRequest(controller=controller.name)
+            extra = {"foo": "get_events"}
+            request = GetEventsRequest(controller=controller.name, extra=dict_to_struct(extra))
             response: GetEventsResponse = await client.GetEvents(request, timeout=2.34)
             events = list(response.events)
             assert events == list(controller.events.values())
+            assert controller.extra == extra
             assert controller.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
@@ -154,6 +168,7 @@ class TestService:
             assert controller.events[Control.ABSOLUTE_X].value == event.value
             # timestamp nanos conversion can result in differences in the 1e-7 scale
             assert abs(controller.events[Control.ABSOLUTE_X].time - event.time) < 0.000001
+            assert controller.extra == {}
             assert controller.timeout == loose_approx(3.45)
 
     @pytest.mark.asyncio
@@ -167,9 +182,11 @@ class TestService:
 
             asyncio.get_running_loop().call_later(0.1, trigger_event)
             client = InputControllerServiceStub(channel)
+            extra = {"foo": "stream_events"}
             request = StreamEventsRequest(
                 controller=controller.name,
                 events=[StreamEventsRequest.Events(control=Control.BUTTON_START, events=[EventType.BUTTON_RELEASE])],
+                extra=dict_to_struct(extra),
             )
             async with client.StreamEvents.open(timeout=1) as stream:
                 await stream.send_message(request, end=True)
@@ -185,6 +202,7 @@ class TestService:
             await controller.trigger_event(Event(time(), EventType.BUTTON_RELEASE, Control.BUTTON_START, 0))
             await asyncio.sleep(0.1)
             assert controller.callbacks[Control.BUTTON_START][EventType.BUTTON_RELEASE] is None
+            assert controller.reg_extra == extra
 
 
 class TestClient:
@@ -192,7 +210,8 @@ class TestClient:
     async def test_get_controls(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
-            controls = await client.get_controls(timeout=4.56)
+            extra = {"foo": "get_controls"}
+            controls = await client.get_controls(extra=extra, timeout=4.56)
             assert controls == [
                 Control.ABSOLUTE_X,
                 Control.ABSOLUTE_Y,
@@ -216,14 +235,17 @@ class TestClient:
                 Control.BUTTON_RECORD,
                 Control.BUTTON_E_STOP,
             ]
+            assert controller.extra == extra
             assert controller.timeout == loose_approx(4.56)
 
     @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
-            events = await client.get_events(timeout=5.67)
+            extra = {"foo": "get_events"}
+            events = await client.get_events(extra=extra, timeout=5.67)
             assert events == controller.events
+            assert controller.extra == extra
             assert controller.timeout == loose_approx(5.67)
 
     @pytest.mark.asyncio
@@ -238,6 +260,7 @@ class TestClient:
             # timestamp nanos conversion can result in differences in the 1e-7 scale
             assert abs(controller.events[Control.ABSOLUTE_X].time - event.time) < 0.000001
             assert controller.timeout == loose_approx(6.78)
+            assert controller.extra == {}
 
     @pytest.mark.asyncio
     async def test_register_control_callback(self, controller: MockInputController, service: InputControllerService):
@@ -251,7 +274,8 @@ class TestClient:
                 self.callback_called = True
                 self.event_equal = event.control == Control.BUTTON_START and event.event == EventType.BUTTON_RELEASE and event.value == 0
 
-            client.register_control_callback(Control.BUTTON_START, [EventType.BUTTON_RELEASE], test_event)
+            extra = {"foo": "register_control_callback"}
+            client.register_control_callback(Control.BUTTON_START, [EventType.BUTTON_RELEASE], test_event, extra=extra)
 
             def trigger_event():
                 asyncio.get_running_loop().create_task(
@@ -259,13 +283,14 @@ class TestClient:
                 )
 
             asyncio.get_running_loop().call_later(0.1, trigger_event)
-
             future = datetime.now() + timedelta(seconds=0.2)
             while datetime.now() < future:
                 await asyncio.sleep(0.1)
 
             assert self.callback_called is True
             assert self.event_equal is True
+            assert controller.extra is None
+            assert controller.reg_extra == extra
 
     @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController, service: InputControllerService, generic_service: GenericService):

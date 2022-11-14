@@ -473,8 +473,11 @@ class MockInputController(Controller):
         self.events: Dict[Control, Event] = {}
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
         self.timeout: Optional[float] = None
+        self.extra = None
+        self.reg_extra = None
 
-    async def get_controls(self, *, timeout: Optional[float] = None, **kwargs) -> List[Control]:
+    async def get_controls(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Control]:
+        self.extra = extra
         self.timeout = timeout
         return [
             Control.ABSOLUTE_X,
@@ -500,15 +503,27 @@ class MockInputController(Controller):
             Control.BUTTON_E_STOP,
         ]
 
-    async def get_events(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]:
+    async def get_events(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Dict[Control, Event]:
+        self.extra = extra
         self.timeout = timeout
         return self.events
 
-    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], **kwargs):
+    def register_control_callback(
+        self,
+        control: Control,
+        triggers: List[EventType],
+        function: Optional[ControlFunction],
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
         self.callbacks[control] = {trigger: function for trigger in triggers}
+        self.reg_extra = extra
 
-    async def trigger_event(self, event: Event, *, timeout: Optional[float] = None, **kwargs):
+    async def trigger_event(self, event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.events[event.control] = event
+        self.extra = extra
         self.timeout = timeout
         callback = self.callbacks.get(event.control, {}).get(event.event)
         if callback:

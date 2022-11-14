@@ -2,7 +2,7 @@ import abc
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from typing_extensions import Self
@@ -136,7 +136,7 @@ class Controller(ComponentBase):
     """
 
     @abc.abstractmethod
-    async def get_controls(self, *, timeout: Optional[float] = None, **kwargs) -> List[Control]:
+    async def get_controls(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Control]:
         """
         Returns a list of Controls provided by the Controller
 
@@ -146,7 +146,9 @@ class Controller(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_events(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]:
+    async def get_events(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Dict[Control, Event]:
         """
         Returns the most recent Event for each input
         (which should be the current state)
@@ -157,7 +159,15 @@ class Controller(ComponentBase):
         ...
 
     @abc.abstractmethod
-    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], **kwargs):
+    def register_control_callback(
+        self,
+        control: Control,
+        triggers: List[EventType],
+        function: Optional[ControlFunction],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
         """
         Register a function that will fire on given EventTypes for a given
         Control
@@ -171,7 +181,7 @@ class Controller(ComponentBase):
         """
         ...
 
-    async def trigger_event(self, event: Event, *, timeout: Optional[float] = None, **kwargs):
+    async def trigger_event(self, event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         """Directly send an Event (such as a button press) from external code
 
         Args:
