@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the Sensor component.
 
-   .. py:method:: get_readings(*, timeout: Optional[float] = None) -> Mapping[str, Any]
+   .. py:method:: get_readings(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]
       :async:
 
       Obtain the measurements/data specific to this sensor.
