@@ -60,7 +60,7 @@ Classes
 .. py:class:: ServoServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetPositionRequest(*, name: str = ...)
+.. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -74,6 +74,29 @@ Classes
       :annotation: :str
 
       the name of the servo, as registered
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: GetPositionResponse(*, position_deg: int = ...)
@@ -92,7 +115,7 @@ Classes
       the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180
 
 
-.. py:class:: MoveRequest(*, name: str = ..., angle_deg: int = ...)
+.. py:class:: MoveRequest(*, name: str = ..., angle_deg: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -111,6 +134,29 @@ Classes
       :annotation: :int
 
       the degrees by which to rotate the servo. Accepted values are between 0 and 180
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: MoveResponse
@@ -145,7 +191,7 @@ Classes
       
 
 
-.. py:class:: StopRequest(*, name: str = ...)
+.. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -159,6 +205,29 @@ Classes
       :annotation: :str
 
       Name of a servo
+
+   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
+      :property:
+
+      Additional arguments to the method
+
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: StopResponse
