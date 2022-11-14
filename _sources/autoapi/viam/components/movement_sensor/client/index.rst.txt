@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the MovementSensor component.
 
-   .. py:method:: get_position(*, timeout: Optional[float] = None) -> Tuple[viam.proto.common.GeoPoint, float]
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[viam.proto.common.GeoPoint, float]
       :async:
 
       Get the current GeoPoint (latitude, longitude) and altitude (mm)
@@ -32,7 +32,7 @@ Classes
       :rtype: Tuple[GeoPoint, float]
 
 
-   .. py:method:: get_linear_velocity(*, timeout: Optional[float] = None) -> viam.proto.common.Vector3
+   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Vector3
       :async:
 
       Get the current linear velocity as a `Vector3` with x, y, and z axes represented in mm/sec
@@ -41,7 +41,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_angular_velocity(*, timeout: Optional[float] = None) -> viam.proto.common.Vector3
+   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Vector3
       :async:
 
       Get the current angular velocity as a `Vector3` with x, y, and z axes represented in radians/sec
@@ -50,7 +50,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_compass_heading(*, timeout: Optional[float] = None) -> float
+   .. py:method:: get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> float
       :async:
 
       Get the current compass heading in degrees
@@ -59,7 +59,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_orientation(*, timeout: Optional[float] = None) -> viam.proto.common.Orientation
+   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Orientation
       :async:
 
       Get the current orientation
@@ -68,7 +68,7 @@ Classes
       :rtype: Orientation
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Properties
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Properties
       :async:
 
       Get the supported properties of this sensor
@@ -77,7 +77,7 @@ Classes
       :rtype: Properties
 
 
-   .. py:method:: get_accuracy(*, timeout: Optional[float] = None) -> Mapping[str, float]
+   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, float]
       :async:
 
       Get the accuracy of the various sensors
@@ -86,7 +86,7 @@ Classes
       :rtype: Dict[str, float]
 
 
-   .. py:method:: get_readings(*, timeout: Optional[float] = None) -> Mapping[str, Any]
+   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]
       :async:
 
       Obtain the measurements/data specific to this sensor.

@@ -31,7 +31,7 @@ Classes
 
       
 
-   .. py:method:: get_position(*, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.proto.common.GeoPoint, float]
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.proto.common.GeoPoint, float]
       :abstractmethod:
       :async:
 
@@ -41,7 +41,7 @@ Classes
       :rtype: Tuple[GeoPoint, float]
 
 
-   .. py:method:: get_linear_velocity(*, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Vector3
+   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Vector3
       :abstractmethod:
       :async:
 
@@ -51,7 +51,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_angular_velocity(*, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Vector3
+   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Vector3
       :abstractmethod:
       :async:
 
@@ -61,7 +61,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_compass_heading(*, timeout: Optional[float] = None, **kwargs) -> float
+   .. py:method:: get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
       :abstractmethod:
       :async:
 
@@ -71,7 +71,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_orientation(*, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Orientation
+   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Orientation
       :abstractmethod:
       :async:
 
@@ -81,7 +81,7 @@ Classes
       :rtype: Orientation
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties
       :abstractmethod:
       :async:
 
@@ -91,7 +91,7 @@ Classes
       :rtype: Properties
 
 
-   .. py:method:: get_accuracy(*, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]
+   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]
       :abstractmethod:
       :async:
 
@@ -101,7 +101,7 @@ Classes
       :rtype: Dict[str, float]
 
 
-   .. py:method:: get_readings(*, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]
+   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]
       :async:
 
       Obtain the measurements/data specific to this sensor.
