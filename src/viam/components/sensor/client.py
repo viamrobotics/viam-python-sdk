@@ -8,7 +8,7 @@ from viam.proto.component.sensor import (
     GetReadingsResponse,
     SensorServiceStub,
 )
-from viam.utils import sensor_readings_value_to_native
+from viam.utils import dict_to_struct, sensor_readings_value_to_native
 
 from .sensor import Sensor
 
@@ -23,8 +23,10 @@ class SensorClient(Sensor):
         self.client = SensorServiceStub(channel)
         super().__init__(name)
 
-    async def get_readings(self, *, timeout: Optional[float] = None) -> Mapping[str, Any]:
-        request = GetReadingsRequest(name=self.name)
+    async def get_readings(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]:
+        if extra is None:
+            extra = {}
+        request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
         return sensor_readings_value_to_native(response.readings)
 

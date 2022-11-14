@@ -718,10 +718,14 @@ class MockPoseTracker(PoseTracker):
 class MockSensor(Sensor):
     def __init__(self, name: str, result: Mapping[str, Any] = {"a": 0, "b": {"foo": "bar"}, "c": [1, 8, 2], "d": "Hello world!"}):
         self.readings = result
+        self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_readings(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
+    async def get_readings(
+        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, Any]:
+        self.extra = extra
         self.timeout = timeout
         return self.readings
 
