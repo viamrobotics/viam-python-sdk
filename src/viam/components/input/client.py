@@ -3,6 +3,7 @@ from threading import Lock
 from time import time
 from typing import Any, Dict, List, Optional
 from grpclib import GRPCError, Status
+from google.protobuf.struct_pb2 import Struct
 
 from grpclib.client import Channel
 import viam
@@ -19,6 +20,7 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
+from viam.utils import dict_to_struct
 
 from .input import Control, ControlFunction, Controller, Event, EventType
 
@@ -36,19 +38,29 @@ class ControllerClient(Controller):
         self._stream_lock = Lock()
         self._is_streaming = False
         self._is_stream_ready = False
+        self._callback_extra: Struct = dict_to_struct({})
         super().__init__(name)
 
-    async def get_controls(self, *, timeout: Optional[float] = None) -> List[Control]:
-        request = GetControlsRequest(controller=self.name)
+    async def get_controls(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Control]:
+        if extra is None:
+            extra = {}
+        request = GetControlsRequest(controller=self.name, extra=dict_to_struct(extra))
         response: GetControlsResponse = await self.client.GetControls(request, timeout=timeout)
         return [Control(control) for control in response.controls]
 
-    async def get_events(self, *, timeout: Optional[float] = None) -> Dict[Control, Event]:
-        request = GetEventsRequest(controller=self.name)
+    async def get_events(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Dict[Control, Event]:
+        if extra is None:
+            extra = {}
+        request = GetEventsRequest(controller=self.name, extra=dict_to_struct(extra))
         response: GetEventsResponse = await self.client.GetEvents(request, timeout=timeout)
         return {Control(event.control): Event.from_proto(event) for (event) in response.events}
 
-    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction]):
+    def register_control_callback(
+        self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], extra: Optional[Dict[str, Any]] = None
+    ):
+        if extra is None:
+            extra = {}
+        self._callback_extra = dict_to_struct(extra)
         with self._lock:
             callbacks = self.callbacks.get(control, {})
             for trigger in triggers:
@@ -71,8 +83,10 @@ class ControllerClient(Controller):
         task = asyncio.create_task(self._stream_events(), name=f"{viam._TASK_PREFIX}-input_stream_events")
         task.add_done_callback(handle_task_result)
 
-    async def trigger_event(self, event: Event, *, timeout: Optional[float] = None):
-        request = TriggerEventRequest(controller=self.name, event=event.proto)
+    async def trigger_event(self, event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
+        if extra is None:
+            extra = {}
+        request = TriggerEventRequest(controller=self.name, event=event.proto, extra=dict_to_struct(extra))
         try:
             await self.client.TriggerEvent(request, timeout=timeout)
         except GRPCError as e:
@@ -88,7 +102,7 @@ class ControllerClient(Controller):
         if not self.callbacks:
             return
 
-        request = StreamEventsRequest(controller=self.name, events=[])
+        request = StreamEventsRequest(controller=self.name, events=[], extra=self._callback_extra)
         with self._lock:
             for (control, callbacks) in self.callbacks.items():
                 event = StreamEventsRequest.Events(
