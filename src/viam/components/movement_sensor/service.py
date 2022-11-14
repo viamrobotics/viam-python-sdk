@@ -20,6 +20,7 @@ from viam.proto.component.movementsensor import (
     GetPropertiesResponse,
     MovementSensorServiceBase,
 )
+from viam.utils import struct_to_dict
 
 
 class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[MovementSensor]):
@@ -38,7 +39,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        velocity = await sensor.get_linear_velocity(timeout=timeout)
+        velocity = await sensor.get_linear_velocity(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetLinearVelocityResponse(linear_velocity=velocity)
         await stream.send_message(response)
 
@@ -51,7 +52,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        velocity = await sensor.get_angular_velocity(timeout=timeout)
+        velocity = await sensor.get_angular_velocity(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetAngularVelocityResponse(angular_velocity=velocity)
         await stream.send_message(response)
 
@@ -64,7 +65,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        heading = await sensor.get_compass_heading(timeout=timeout)
+        heading = await sensor.get_compass_heading(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetCompassHeadingResponse(value=heading)
         await stream.send_message(response)
 
@@ -77,7 +78,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        orientation = await sensor.get_orientation(timeout=timeout)
+        orientation = await sensor.get_orientation(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetOrientationResponse(orientation=orientation)
         await stream.send_message(response)
 
@@ -90,7 +91,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        point, alt = await sensor.get_position(timeout=timeout)
+        point, alt = await sensor.get_position(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetPositionResponse(coordinate=point, altitude_mm=alt)
         await stream.send_message(response)
 
@@ -103,7 +104,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = await sensor.get_properties(timeout=timeout)
+        response = await sensor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout)
         await stream.send_message(response)
 
     async def GetAccuracy(self, stream: Stream[GetAccuracyRequest, GetAccuracyResponse]) -> None:
@@ -115,6 +116,6 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        accuracy = await sensor.get_accuracy(timeout=timeout)
+        accuracy = await sensor.get_accuracy(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetAccuracyResponse(accuracy_mm=accuracy)
         await stream.send_message(response)

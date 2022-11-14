@@ -652,33 +652,47 @@ class MockMovementSensor(MovementSensor):
         self.orientation = orientation
         self.properties = properties
         self.accuracy = accuracy
+        self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
 
-    async def get_position(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[GeoPoint, float]:
+    async def get_position(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[GeoPoint, float]:
+        self.extra = extra
         self.timeout = timeout
         return (self.coordinates, self.altitude)
 
-    async def get_linear_velocity(self, *, timeout: Optional[float] = None, **kwargs) -> Vector3:
+    async def get_linear_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
+        self.extra = extra
         self.timeout = timeout
         return self.lin_vel
 
-    async def get_angular_velocity(self, *, timeout: Optional[float] = None, **kwargs) -> Vector3:
+    async def get_angular_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
+        self.extra = extra
         self.timeout = timeout
         return self.ang_vel
 
-    async def get_compass_heading(self, *, timeout: Optional[float] = None, **kwargs) -> float:
+    async def get_compass_heading(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+        self.extra = extra
         self.timeout = timeout
         return self.heading
 
-    async def get_orientation(self, *, timeout: Optional[float] = None, **kwargs) -> Orientation:
+    async def get_orientation(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Orientation:
+        self.extra = extra
         self.timeout = timeout
         return self.orientation
 
-    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> MovementSensor.Properties:
+    async def get_properties(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> MovementSensor.Properties:
+        self.extra = extra
         self.timeout = timeout
         return self.properties
 
-    async def get_accuracy(self, *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]:
+    async def get_accuracy(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, float]:
+        self.extra = extra
         self.timeout = timeout
         return self.accuracy
 
