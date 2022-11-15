@@ -29,7 +29,7 @@ class CameraClient(Camera):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_image(self, mime_type: str = CameraMimeType.PNG, *, timeout: Optional[float] = None) -> Union[Image.Image, RawImage]:
+    async def get_image(self, mime_type: str = CameraMimeType.JPEG, *, timeout: Optional[float] = None) -> Union[Image.Image, RawImage]:
         request = GetImageRequest(name=self.name, mime_type=mime_type)
         response: GetImageResponse = await self.client.GetImage(request, timeout=timeout)
         _, is_lazy = CameraMimeType.from_lazy(request.mime_type)
