@@ -366,7 +366,7 @@ class MockCamera(Camera):
         super().__init__(name)
 
     async def get_image(
-        self, mime_type: str = CameraMimeType.PNG, timeout: Optional[float] = None, **kwargs
+        self, mime_type: str = CameraMimeType.JPEG, timeout: Optional[float] = None, **kwargs
     ) -> Union[Image.Image, RawImage]:
         self.timeout = timeout
         mime_type, is_lazy = CameraMimeType.from_lazy(mime_type)
