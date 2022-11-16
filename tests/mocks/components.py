@@ -773,18 +773,22 @@ class MockServo(Servo):
         self.angle = 0
         self.is_stopped = True
         self.timeout: Optional[float] = None
+        self.extra: Optional[Mapping[str, Any]] = None
         super().__init__(name)
 
-    async def move(self, angle: int, *, timeout: Optional[float] = None, **kwargs):
+    async def move(self, angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = extra
         self.angle = angle
         self.is_stopped = False
         self.timeout = timeout
 
-    async def get_position(self, *, timeout: Optional[float] = None, **kwargs) -> int:
+    async def get_position(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+        self.extra = extra
         self.timeout = timeout
         return self.angle
 
-    async def stop(self, *, timeout: Optional[float] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = extra
         self.is_stopped = True
         self.timeout = timeout
 
