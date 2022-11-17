@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the PoseTracker component.
 
-   .. py:method:: get_poses(body_names: List[str], *, timeout: Optional[float] = None) -> Dict[str, viam.proto.common.PoseInFrame]
+   .. py:method:: get_poses(body_names: List[str], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Dict[str, viam.proto.common.PoseInFrame]
       :async:
 
       Returns the current pose of each body tracked by the pose tracker.

@@ -38,7 +38,7 @@ Classes
    pose tracker implementations. This cannot be used on its own. If the `__init__()` function is
    overridden, it must call the `super().__init__()` function.
 
-   .. py:method:: get_poses(body_names: List[str], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, viam.proto.common.PoseInFrame]
+   .. py:method:: get_poses(body_names: List[str], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Dict[str, viam.proto.common.PoseInFrame]
       :abstractmethod:
       :async:
 
