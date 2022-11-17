@@ -23,7 +23,8 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - id: get-members
+      - name: Get members
+        id: get-members
         uses: garnertb/get-team-members@v1
         with:
           org: viamrobotics
@@ -31,7 +32,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # print results
-      - run: "echo ${{ steps.get-members.outputs.members }}"
+      - name: Print members
+        run: "echo ${{ steps.get-members.outputs.members }}"
         shell: bash
 
       - name: Install Poetry
