@@ -735,12 +735,21 @@ class MockPoseTracker(PoseTracker):
         self.poses_result = pose_map
         self.name = name
         self.timeout: Optional[float] = None
+        self.extra: Optional[Mapping[str, Any]] = None
 
-    async def get_poses(self, body_names: List[str], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, PoseInFrame]:
+    async def get_poses(
+        self,
+        body_names: List[str],
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Dict[str, PoseInFrame]:
         result: Dict[str, PoseInFrame] = {}
         for name, pose in self.poses_result.items():
             result[name] = pose.to_pose_in_frame(name)
         self.timeout = timeout
+        self.extra = extra
         return result
 
 
@@ -764,18 +773,22 @@ class MockServo(Servo):
         self.angle = 0
         self.is_stopped = True
         self.timeout: Optional[float] = None
+        self.extra: Optional[Mapping[str, Any]] = None
         super().__init__(name)
 
-    async def move(self, angle: int, *, timeout: Optional[float] = None, **kwargs):
+    async def move(self, angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = extra
         self.angle = angle
         self.is_stopped = False
         self.timeout = timeout
 
-    async def get_position(self, *, timeout: Optional[float] = None, **kwargs) -> int:
+    async def get_position(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+        self.extra = extra
         self.timeout = timeout
         return self.angle
 
-    async def stop(self, *, timeout: Optional[float] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = extra
         self.is_stopped = True
         self.timeout = timeout
 

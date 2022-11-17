@@ -7,6 +7,7 @@ from viam.proto.component.posetracker import (
     GetPosesResponse,
     PoseTrackerServiceBase,
 )
+from viam.utils import struct_to_dict
 
 from .pose_tracker import PoseTracker
 
@@ -27,5 +28,5 @@ class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracke
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        poses = await pose_tracker.get_poses(list(request.body_names), timeout=timeout)
+        poses = await pose_tracker.get_poses(list(request.body_names), extra=struct_to_dict(request.extra), timeout=timeout)
         await stream.send_message(GetPosesResponse(body_poses=poses))

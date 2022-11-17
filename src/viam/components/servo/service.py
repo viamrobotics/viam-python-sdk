@@ -11,6 +11,7 @@ from viam.proto.component.servo import (
     StopRequest,
     StopResponse,
 )
+from viam.utils import struct_to_dict
 
 from .servo import Servo
 
@@ -31,7 +32,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await servo.move(request.angle_deg, timeout=timeout)
+        await servo.move(request.angle_deg, extra=struct_to_dict(request.extra), timeout=timeout)
         await stream.send_message(MoveResponse())
 
     async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
@@ -43,7 +44,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        position = await servo.get_position(timeout=timeout)
+        position = await servo.get_position(extra=struct_to_dict(request.extra), timeout=timeout)
         resp = GetPositionResponse(position_deg=position)
         await stream.send_message(resp)
 
@@ -56,5 +57,5 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await servo.stop(timeout=timeout)
+        await servo.stop(extra=struct_to_dict(request.extra), timeout=timeout)
         await stream.send_message(StopResponse())
