@@ -23,12 +23,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: Checkout PR 2
-        if: github.event_name == 'pull_request_target'
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
       - name: Get members
         id: get-members
         uses: garnertb/get-team-members@v1
