@@ -20,7 +20,7 @@ on:
 
 jobs:
   prepare:
-    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main' && contains(fromJson('["njooma"]'), github.actor)
+    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main')
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
@@ -28,6 +28,19 @@ jobs:
       sha: ${{ steps.commit.outputs.commit_long_sha }}
       version: ${{ steps.bump_version.outputs.version }}
     steps:
+      - name: Check if organization member
+        id: is_organization_member
+        uses: jamessingleton/is-organization-member@1.0.1
+        with:
+          organization: viamrobotics
+          username: ${{ github.actor }}
+          token:  ${{ secrets.GITHUB_TOKEN }}
+
+      - name: cancelling
+        uses: andymckay/cancel-action@0.2
+        if: |
+          steps.is_organization_member.outputs.result == 'false'
+
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
