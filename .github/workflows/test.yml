@@ -23,17 +23,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - id: get-members
-        uses: garnertb/get-team-members@v1
-        with:
-          org: viamrobotics
-          team_slug: sdk-netcode
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      # print results
-      - run: "echo ${{ steps.get-members.outputs.members }}"
-        shell: bash
-
       - name: Install Poetry
         uses: snok/install-poetry@v1
 
