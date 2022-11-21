@@ -42,10 +42,10 @@ jobs:
           team_slug: sdk-netcode
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cancel if not team member
+      - name: cancelling
         uses: andymckay/cancel-action@0.2
         if: |
-          !contains(steps.get-members.outputs.members, github.actor)
+          contains(fromJson(${{ steps.get-members.outputs.members }}), github.actor)
 
       - name: Checkout Code
         uses: actions/checkout@v3
