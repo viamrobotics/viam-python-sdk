@@ -15,19 +15,24 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
 
     steps:
-      - name: Check if organization member
-        id: is_organization_member
-        if: github.event_name == 'workflow_dispatch'
-        uses: jamessingleton/is-organization-member@1.0.1
+      - name: Install the gh cli
+        uses: dev-hanz-ops/install-gh-cli-action@v0.1.0
+
+      - name: Install jq
+        run: apt install jq -y
+
+      - name: Get SDK/NetCode team members
+        id: get-members
+        uses: garnertb/get-team-members@v1
         with:
-          organization: viamrobotics
-          username: ${{ github.actor }}
-          token:  ${{ secrets.GITHUB_TOKEN }}
+          org: viamrobotics
+          team_slug: sdk-netcode
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: cancelling
         uses: andymckay/cancel-action@0.2
         if: |
-          github.event_name == 'workflow_dispatch' && steps.is_organization_member.outputs.result == 'false'
+          github.event_name == 'workflow_dispatch' && contains(fromJson(${{ steps.get-members.outputs.members }}), github.actor)
 
       - name: Download Release
         uses: dsaltares/fetch-gh-release-asset@master
