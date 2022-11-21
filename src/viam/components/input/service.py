@@ -18,9 +18,10 @@ from viam.proto.component.inputcontroller import (
     TriggerEventRequest,
     TriggerEventResponse,
 )
+from viam.utils import struct_to_dict
+
 
 from .input import Control, Controller, Event, EventType
-
 
 LOGGER = viam.logging.getLogger(__name__)
 
@@ -41,7 +42,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        controls = await controller.get_controls(timeout=timeout)
+        controls = await controller.get_controls(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetControlsResponse(controls=[c.value for c in controls])
         await stream.send_message(response)
 
@@ -54,7 +55,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        events = await controller.get_events(timeout=timeout)
+        events = await controller.get_events(extra=struct_to_dict(request.extra), timeout=timeout)
         pb_events = [e.proto for e in events.values()]
         response = GetEventsResponse(events=pb_events)
         await stream.send_message(response)
@@ -85,11 +86,21 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         for event in request.events:
             triggers = [EventType(et) for et in event.events]
             if len(triggers):
-                controller.register_control_callback(Control(event.control), triggers, ctrlFunc)
+                controller.register_control_callback(
+                    Control(event.control),
+                    triggers,
+                    ctrlFunc,
+                    extra=struct_to_dict(request.extra),
+                )
 
             cancelled_triggers = [EventType(et) for et in event.cancelled_events]
             if len(cancelled_triggers):
-                controller.register_control_callback(Control(event.control), cancelled_triggers, None)
+                controller.register_control_callback(
+                    Control(event.control),
+                    cancelled_triggers,
+                    None,
+                    extra=struct_to_dict(request.extra),
+                )
 
         # Asynchronously wait for messages to come over the read pipe and run the READ function whenever the pipe is ready.
         def read():
@@ -130,7 +141,12 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             for event in request.events:
                 triggers = [EventType(et) for et in event.events]
                 if len(triggers):
-                    controller.register_control_callback(Control(event.control), triggers, None)
+                    controller.register_control_callback(
+                        Control(event.control),
+                        triggers,
+                        None,
+                        extra=struct_to_dict(request.extra),
+                    )
 
     async def TriggerEvent(self, stream: Stream[TriggerEventRequest, TriggerEventResponse]) -> None:
         request = await stream.recv_message()
@@ -141,7 +157,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             controller = self.get_component(name)
             pb_event = request.event
             event = Event.from_proto(pb_event)
-            await controller.trigger_event(event, timeout=timeout)
+            await controller.trigger_event(event, extra=struct_to_dict(request.extra), timeout=timeout)
         except ComponentNotFoundError as e:
             raise e.grpc_error
         except NotSupportedError as e:

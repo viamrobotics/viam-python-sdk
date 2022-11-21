@@ -395,7 +395,7 @@ class ExampleController(Controller):
             if callback:
                 callback(event)
 
-    async def get_controls(self, **kwargs) -> List[Control]:
+    async def get_controls(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Control]:
         return [
             Control.ABSOLUTE_X,
             Control.ABSOLUTE_Y,
@@ -418,7 +418,7 @@ class ExampleController(Controller):
             Control.BUTTON_MENU,
         ]
 
-    async def get_events(self, **kwargs) -> Dict[Control, Event]:
+    async def get_events(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[Control, Event]:
         with self.lock:
             return {key: value for (key, value) in self.last_events.items()}
 

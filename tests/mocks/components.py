@@ -473,8 +473,11 @@ class MockInputController(Controller):
         self.events: Dict[Control, Event] = {}
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
         self.timeout: Optional[float] = None
+        self.extra = None
+        self.reg_extra = None
 
-    async def get_controls(self, *, timeout: Optional[float] = None, **kwargs) -> List[Control]:
+    async def get_controls(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Control]:
+        self.extra = extra
         self.timeout = timeout
         return [
             Control.ABSOLUTE_X,
@@ -500,15 +503,27 @@ class MockInputController(Controller):
             Control.BUTTON_E_STOP,
         ]
 
-    async def get_events(self, *, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]:
+    async def get_events(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Dict[Control, Event]:
+        self.extra = extra
         self.timeout = timeout
         return self.events
 
-    def register_control_callback(self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], **kwargs):
+    def register_control_callback(
+        self,
+        control: Control,
+        triggers: List[EventType],
+        function: Optional[ControlFunction],
+        extra: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ):
         self.callbacks[control] = {trigger: function for trigger in triggers}
+        self.reg_extra = extra
 
-    async def trigger_event(self, event: Event, *, timeout: Optional[float] = None, **kwargs):
+    async def trigger_event(self, event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         self.events[event.control] = event
+        self.extra = extra
         self.timeout = timeout
         callback = self.callbacks.get(event.control, {}).get(event.event)
         if callback:
@@ -720,12 +735,21 @@ class MockPoseTracker(PoseTracker):
         self.poses_result = pose_map
         self.name = name
         self.timeout: Optional[float] = None
+        self.extra: Optional[Mapping[str, Any]] = None
 
-    async def get_poses(self, body_names: List[str], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, PoseInFrame]:
+    async def get_poses(
+        self,
+        body_names: List[str],
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Dict[str, PoseInFrame]:
         result: Dict[str, PoseInFrame] = {}
         for name, pose in self.poses_result.items():
             result[name] = pose.to_pose_in_frame(name)
         self.timeout = timeout
+        self.extra = extra
         return result
 
 
@@ -749,18 +773,22 @@ class MockServo(Servo):
         self.angle = 0
         self.is_stopped = True
         self.timeout: Optional[float] = None
+        self.extra: Optional[Mapping[str, Any]] = None
         super().__init__(name)
 
-    async def move(self, angle: int, *, timeout: Optional[float] = None, **kwargs):
+    async def move(self, angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = extra
         self.angle = angle
         self.is_stopped = False
         self.timeout = timeout
 
-    async def get_position(self, *, timeout: Optional[float] = None, **kwargs) -> int:
+    async def get_position(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+        self.extra = extra
         self.timeout = timeout
         return self.angle
 
-    async def stop(self, *, timeout: Optional[float] = None, **kwargs):
+    async def stop(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = extra
         self.is_stopped = True
         self.timeout = timeout
 

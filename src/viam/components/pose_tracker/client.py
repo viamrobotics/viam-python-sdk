@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -9,6 +9,7 @@ from viam.proto.component.posetracker import (
     GetPosesResponse,
     PoseTrackerServiceStub,
 )
+from viam.utils import dict_to_struct
 
 from .pose_tracker import PoseTracker
 
@@ -23,11 +24,16 @@ class PoseTrackerClient(PoseTracker):
         self.client = PoseTrackerServiceStub(channel)
         super().__init__(name)
 
-    async def get_poses(self, body_names: List[str], *, timeout: Optional[float] = None) -> Dict[str, PoseInFrame]:
-        request = GetPosesRequest(
-            name=self.name,
-            body_names=body_names,
-        )
+    async def get_poses(
+        self,
+        body_names: List[str],
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> Dict[str, PoseInFrame]:
+        if extra is None:
+            extra = {}
+        request = GetPosesRequest(name=self.name, body_names=body_names, extra=dict_to_struct(extra))
         response: GetPosesResponse = await self.client.GetPoses(request, timeout=timeout)
         return {key: response.body_poses[key] for key in response.body_poses.keys()}
 

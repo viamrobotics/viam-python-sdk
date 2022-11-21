@@ -13,7 +13,7 @@ from viam.proto.component.servo import (
     ServoServiceStub,
     StopRequest,
 )
-from viam.utils import message_to_struct
+from viam.utils import dict_to_struct, message_to_struct
 
 from . import loose_approx
 from .mocks.components import MockServo
@@ -26,22 +26,25 @@ class TestServo:
 
     @pytest.mark.asyncio
     async def test_move(self):
-        await self.servo.move(self.pos, timeout=1.23)
+        await self.servo.move(self.pos, timeout=1.23, extra={"foo": "move"})
         assert self.servo.angle == self.pos
         assert self.servo.timeout == loose_approx(1.23)
+        assert self.servo.extra == {"foo": "move"}
 
     @pytest.mark.asyncio
     async def test_get_position(self):
-        new_pos = await self.servo.get_position(timeout=2.34)
+        new_pos = await self.servo.get_position(timeout=2.34, extra={"foo": "get_position"})
         assert new_pos == self.pos
         assert self.servo.timeout == loose_approx(2.34)
+        assert self.servo.extra == {"foo": "get_position"}
 
     @pytest.mark.asyncio
     async def test_stop(self):
         assert self.servo.is_stopped is False
-        await self.servo.stop(timeout=3.45)
+        await self.servo.stop(timeout=3.45, extra={"foo": "stop"})
         assert self.servo.is_stopped is True
         assert self.servo.timeout == loose_approx(3.45)
+        assert self.servo.extra == {"foo": "stop"}
 
     @pytest.mark.asyncio
     async def test_is_moving(self):
@@ -75,29 +78,32 @@ class TestService:
     async def test_move(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
-            request = MoveRequest(name=self.name, angle_deg=self.pos)
+            request = MoveRequest(name=self.name, angle_deg=self.pos, extra=dict_to_struct({"foo": "move"}))
             await client.Move(request, timeout=1.23)
             assert self.servo.angle == self.pos
             assert self.servo.timeout == loose_approx(1.23)
+            assert self.servo.extra == {"foo": "move"}
 
     @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
-            request = GetPositionRequest(name=self.name)
+            request = GetPositionRequest(name=self.name, extra=dict_to_struct({"foo": "get_position"}))
             response: GetPositionResponse = await client.GetPosition(request, timeout=2.34)
             assert response.position_deg == self.pos
             assert self.servo.timeout == loose_approx(2.34)
+            assert self.servo.extra == {"foo": "get_position"}
 
     @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.servo.is_stopped is False
             client = ServoServiceStub(channel)
-            request = StopRequest(name=self.name)
+            request = StopRequest(name=self.name, extra=dict_to_struct({"foo": "stop"}))
             await client.Stop(request, timeout=3.45)
             assert self.servo.is_stopped is True
             assert self.servo.timeout == loose_approx(3.45)
+            assert self.servo.extra == {"foo": "stop"}
 
 
 class TestClient:
@@ -112,26 +118,29 @@ class TestClient:
     async def test_move(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.servo.name, channel)
-            await client.move(self.pos, timeout=1.23)
+            await client.move(self.pos, timeout=1.23, extra={"foo": "move"})
             assert self.servo.angle == self.pos
             assert self.servo.timeout == loose_approx(1.23)
+            assert self.servo.extra == {"foo": "move"}
 
     @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.servo.name, channel)
-            new_pos = await client.get_position(timeout=2.34)
+            new_pos = await client.get_position(timeout=2.34, extra={"foo": "get_position"})
             assert new_pos == self.pos
             assert self.servo.timeout == loose_approx(2.34)
+            assert self.servo.extra == {"foo": "get_position"}
 
     @pytest.mark.asyncio
     async def test_stop(self):
         async with ChannelFor([self.service]) as channel:
             assert self.servo.is_stopped is False
             client = ServoClient(self.name, channel)
-            await client.stop(timeout=3.45)
+            await client.stop(timeout=3.45, extra={"foo": "stop"})
             assert self.servo.is_stopped is True
             assert self.servo.timeout == loose_approx(3.45)
+            assert self.servo.extra == {"foo": "stop"}
 
     @pytest.mark.asyncio
     async def test_is_moving(self):
