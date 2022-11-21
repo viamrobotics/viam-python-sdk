@@ -29,10 +29,10 @@ jobs:
           team_slug: sdk-netcode
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: cancelling
+      - name: Cancel if not team member
         uses: andymckay/cancel-action@0.2
         if: |
-          github.event_name == 'workflow_dispatch' && contains(fromJson(${{ steps.get-members.outputs.members }}), github.actor)
+          github.event_name == 'workflow_dispatch' && !contains(steps.get-members.outputs.members, github.actor)
 
       - name: Download Release
         uses: dsaltares/fetch-gh-release-asset@master
