@@ -55,14 +55,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
+
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: command() -> google.protobuf.struct_pb2.Struct
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[command, b'command']) -> bool
 
@@ -92,8 +92,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: result() -> google.protobuf.struct_pb2.Struct
-      :property:
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
 
 
    .. py:method:: HasField(field_name: Literal[result, b'result']) -> bool

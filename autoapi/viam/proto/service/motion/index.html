@@ -7,8 +7,7 @@
   <title>viam.proto.service.motion &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -81,25 +75,25 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.component_name"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.supplemental_transforms</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.destination_frame"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.destination_frame</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.component_name"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.component_name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.supplemental_transforms()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse"><code class="docutils literal notranslate"><span class="pre">GetPoseResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse.pose"><code class="docutils literal notranslate"><span class="pre">GetPoseResponse.pose()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse.pose"><code class="docutils literal notranslate"><span class="pre">GetPoseResponse.pose</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPoseResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest"><code class="docutils literal notranslate"><span class="pre">MoveRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.destination"><code class="docutils literal notranslate"><span class="pre">MoveRequest.destination</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.component_name"><code class="docutils literal notranslate"><span class="pre">MoveRequest.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveRequest.world_state</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.destination"><code class="docutils literal notranslate"><span class="pre">MoveRequest.destination()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.component_name"><code class="docutils literal notranslate"><span class="pre">MoveRequest.component_name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveRequest.world_state()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveRequest.HasField()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveRequest.WhichOneof()</span></code></a></li>
 </ul>
@@ -109,11 +103,11 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.destination"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.destination</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.component_name"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.world_state</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.destination"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.destination()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.component_name"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.component_name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.world_state()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.HasField()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentRequest.WhichOneof()</span></code></a></li>
 </ul>
@@ -131,11 +125,11 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub">MotionServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest">GetPoseRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.name">name</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.destination_frame">destination_frame</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.component_name">component_name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.supplemental_transforms">supplemental_transforms</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.name">name</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.destination_frame">destination_frame</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -145,11 +139,11 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest">MoveRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.destination">destination</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.component_name">component_name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.world_state">world_state</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.HasField">HasField</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.WhichOneof">WhichOneof</a></li>
 </ul>
@@ -159,11 +153,11 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest">MoveSingleComponentRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.destination">destination</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.component_name">component_name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.world_state">world_state</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.HasField">HasField</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest.WhichOneof">WhichOneof</a></li>
 </ul>
@@ -298,6 +292,25 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseRequest.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.GetPoseRequest.component_name" title="Permalink to this definition"></a></dt>
+<dd><p>the component whose pose is being requested</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseRequest.supplemental_transforms">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supplemental_transforms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.GetPoseRequest.supplemental_transforms" title="Permalink to this definition"></a></dt>
+<dd><p>pose information on any additional reference frames that are needed
+to compute the component’s pose</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.motion.GetPoseRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.motion.GetPoseRequest.name" title="Permalink to this definition"></a></dt>
@@ -309,25 +322,6 @@ shown below.</p>
 <dd><p>the reference frame in which the component’s pose
 should be provided, if unset this defaults
 to the “world” reference frame</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseRequest.component_name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></span></span><a class="headerlink" href="#viam.proto.service.motion.GetPoseRequest.component_name" title="Permalink to this definition"></a></dt>
-<dd><p>the component whose pose is being requested</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseRequest.supplemental_transforms">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supplemental_transforms</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.service.motion.GetPoseRequest.supplemental_transforms" title="Permalink to this definition"></a></dt>
-<dd><p>pose information on any additional reference frames that are needed
-to compute the component’s pose</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.service.motion.GetPoseRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -362,9 +356,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseResponse.pose">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></span></span><a class="headerlink" href="#viam.proto.service.motion.GetPoseResponse.pose" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></em><a class="headerlink" href="#viam.proto.service.motion.GetPoseResponse.pose" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -399,31 +393,31 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.destination">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.destination" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.component_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.world_state">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">viam.gen.common.v1.common_pb2.WorldState</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.world_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.destination">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.destination" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.component_name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.component_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.world_state">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">viam.gen.common.v1.common_pb2.WorldState</span></a></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.world_state" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.HasField">
@@ -492,31 +486,31 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.destination">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.destination" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.component_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.world_state">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">viam.gen.common.v1.common_pb2.WorldState</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.world_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.destination">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.destination" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.component_name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.component_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.world_state">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">viam.gen.common.v1.common_pb2.WorldState</span></a></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.world_state" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentRequest.HasField">

@@ -69,16 +69,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of an arm
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -113,12 +112,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: pose() -> viam.gen.common.v1.common_pb2.Pose
-      :property:
+   .. py:property:: pose
+      :type: viam.gen.common.v1.common_pb2.Pose
 
       Returns 6d pose of the end effector relative to the base, represented by X,Y,Z coordinates which express
       millimeters and theta, ox, oy, oz coordinates which express an orientation vector
-
 
    .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
 
@@ -153,13 +151,12 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-      :property:
+   .. py:property:: values
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       A list of joint positions. Rotations values are in degrees, translational values in mm.
       The numbers are ordered spatially from the base toward the end effector
       This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
-
 
 
 .. py:data:: global___JointPositions
@@ -177,16 +174,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of an arm
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -221,11 +217,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: positions() -> global___JointPositions
-      :property:
+   .. py:property:: positions
+      :type: global___JointPositions
 
       a list JointPositions
-
 
    .. py:method:: HasField(field_name: Literal[positions, b'positions']) -> bool
 
@@ -260,24 +255,23 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: to
+      :type: viam.gen.common.v1.common_pb2.Pose
+
+
+   .. py:property:: world_state
+      :type: viam.gen.common.v1.common_pb2.WorldState
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of an arm
-
-   .. py:method:: to() -> viam.gen.common.v1.common_pb2.Pose
-      :property:
-
-
-   .. py:method:: world_state() -> viam.gen.common.v1.common_pb2.WorldState
-      :property:
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[_world_state, b'_world_state', extra, b'extra', to, b'to', world_state, b'world_state']) -> bool
 
@@ -343,23 +337,21 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :annotation: :str
-
-      Name of an arm
-
-   .. py:method:: positions() -> global___JointPositions
-      :property:
+   .. py:property:: positions
+      :type: global___JointPositions
 
       A list of joint positions
       There should be 1 entry in the list per joint DOF, ordered spatially from the base toward the end effector
 
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
+   .. py:attribute:: name
+      :annotation: :str
+
+      Name of an arm
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra', positions, b'positions']) -> bool
 
@@ -410,16 +402,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of an arm
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -470,18 +461,18 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: end_position
+      :type: viam.gen.common.v1.common_pb2.Pose
+
+
+   .. py:property:: joint_positions
+      :type: global___JointPositions
+
+
    .. py:attribute:: is_moving
       :annotation: :bool
 
       
-
-   .. py:method:: end_position() -> viam.gen.common.v1.common_pb2.Pose
-      :property:
-
-
-   .. py:method:: joint_positions() -> global___JointPositions
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[end_position, b'end_position', joint_positions, b'joint_positions']) -> bool
 

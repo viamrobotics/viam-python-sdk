@@ -196,8 +196,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: queries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]
-      :property:
+   .. py:property:: queries
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DiscoveryQuery]
 
 
 
@@ -211,8 +211,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: discovery() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]
-      :property:
+   .. py:property:: discovery
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Discovery]
 
 
 
@@ -226,12 +226,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: query() -> global___DiscoveryQuery
-      :property:
+   .. py:property:: query
+      :type: global___DiscoveryQuery
 
 
-   .. py:method:: results() -> google.protobuf.struct_pb2.Struct
-      :property:
+   .. py:property:: results
+      :type: google.protobuf.struct_pb2.Struct
 
 
    .. py:method:: HasField(field_name: Literal[query, b'query', results, b'results']) -> bool
@@ -279,6 +279,10 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: pose_in_parent_frame
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
+
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -288,10 +292,6 @@ Classes
       :annotation: :bytes
 
       
-
-   .. py:method:: pose_in_parent_frame() -> viam.gen.common.v1.common_pb2.PoseInFrame
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[pose_in_parent_frame, b'pose_in_parent_frame']) -> bool
 
@@ -321,12 +321,11 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: supplemental_transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
-      :property:
+   .. py:property:: supplemental_transforms
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
 
       pose information on any additional reference frames that are needed
       to supplement the robot's frame system
-
 
 
 .. py:class:: FrameSystemConfigResponse(*, frame_system_configs: collections.abc.Iterable[global___FrameSystemConfig] | None = ...)
@@ -339,8 +338,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: frame_system_configs() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FrameSystemConfig]
-      :property:
+   .. py:property:: frame_system_configs
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FrameSystemConfig]
 
 
 
@@ -365,8 +364,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: operations() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Operation]
-      :property:
+   .. py:property:: operations
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Operation]
 
 
 
@@ -380,8 +379,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: resource_names() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
-      :property:
+   .. py:property:: resource_names
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
 
 
 
@@ -395,8 +394,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: status() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
-      :property:
+   .. py:property:: status
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
 
 
 
@@ -410,6 +409,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: arguments
+      :type: google.protobuf.struct_pb2.Struct
+
+
+   .. py:property:: started
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
    .. py:attribute:: id
       :annotation: :str
 
@@ -419,14 +426,6 @@ Classes
       :annotation: :str
 
       
-
-   .. py:method:: arguments() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-
-   .. py:method:: started() -> google.protobuf.timestamp_pb2.Timestamp
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[arguments, b'arguments', started, b'started']) -> bool
 
@@ -467,8 +466,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: resources() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
-      :property:
+   .. py:property:: resources
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
 
 
 
@@ -482,14 +481,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: subtype
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+
    .. py:attribute:: proto_service
       :annotation: :str
 
       
-
-   .. py:method:: subtype() -> viam.gen.common.v1.common_pb2.ResourceName
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[subtype, b'subtype']) -> bool
 
@@ -530,8 +529,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: resource_rpc_subtypes() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceRPCSubtype]
-      :property:
+   .. py:property:: resource_rpc_subtypes
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceRPCSubtype]
 
 
 
@@ -545,12 +544,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: name() -> viam.gen.common.v1.common_pb2.ResourceName
-      :property:
+   .. py:property:: name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
 
 
-   .. py:method:: status() -> google.protobuf.struct_pb2.Struct
-      :property:
+   .. py:property:: status
+      :type: google.protobuf.struct_pb2.Struct
 
 
    .. py:method:: HasField(field_name: Literal[name, b'name', status, b'status']) -> bool
@@ -581,8 +580,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: extra() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]
-      :property:
+   .. py:property:: extra
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StopExtraParameters]
 
 
 
@@ -607,12 +606,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: name() -> viam.gen.common.v1.common_pb2.ResourceName
-      :property:
+   .. py:property:: name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
 
 
-   .. py:method:: params() -> google.protobuf.struct_pb2.Struct
-      :property:
+   .. py:property:: params
+      :type: google.protobuf.struct_pb2.Struct
 
 
    .. py:method:: HasField(field_name: Literal[name, b'name', params, b'params']) -> bool
@@ -643,15 +642,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: resource_names() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
-      :property:
+   .. py:property:: resource_names
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
 
 
-   .. py:method:: every() -> google.protobuf.duration_pb2.Duration
-      :property:
+   .. py:property:: every
+      :type: google.protobuf.duration_pb2.Duration
 
       how often to send a new status.
-
 
    .. py:method:: HasField(field_name: Literal[every, b'every']) -> bool
 
@@ -681,8 +679,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: status() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
-      :property:
+   .. py:property:: status
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Status]
 
 
 
@@ -696,25 +694,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: source
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
+
+      the original pose to transform along with the reference frame in
+      which it was observed
+
+   .. py:property:: supplemental_transforms
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
+
+      pose information on any additional reference frames that are needed
+      to perform the transform
+
    .. py:attribute:: destination
       :annotation: :str
 
       the reference frame into which the source pose should be transformed,
       if unset this defaults to the "world" reference frame
-
-   .. py:method:: source() -> viam.gen.common.v1.common_pb2.PoseInFrame
-      :property:
-
-      the original pose to transform along with the reference frame in
-      which it was observed
-
-
-   .. py:method:: supplemental_transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
-      :property:
-
-      pose information on any additional reference frames that are needed
-      to perform the transform
-
 
    .. py:method:: HasField(field_name: Literal[source, b'source']) -> bool
 
@@ -744,8 +740,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: pose() -> viam.gen.common.v1.common_pb2.PoseInFrame
-      :property:
+   .. py:property:: pose
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
 
 
    .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool

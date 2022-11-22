@@ -7,8 +7,7 @@
   <title>viam.components.audio_input.audio_input &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -66,6 +60,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput"><code class="docutils literal notranslate"><span class="pre">AudioInput</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.proto</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.channel_count"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.channel_count</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.latency"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.latency</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.sample_rate"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.sample_rate</span></code></a></li>
@@ -73,12 +68,12 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_big_endian"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_big_endian</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_float"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_float</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_interleaved"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.is_interleaved</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.proto()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.from_proto"><code class="docutils literal notranslate"><span class="pre">AudioInput.Properties.from_proto()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.stream"><code class="docutils literal notranslate"><span class="pre">AudioInput.stream()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.get_properties"><code class="docutils literal notranslate"><span class="pre">AudioInput.get_properties()</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto">proto</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.channel_count">channel_count</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.latency">latency</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.sample_rate">sample_rate</a></li>
@@ -86,7 +81,6 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_big_endian">is_big_endian</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_float">is_float</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_interleaved">is_interleaved</a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto">proto</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.audio_input.audio_input.AudioInput.Properties.from_proto">from_proto</a></li>
 </ul>
 </li>
@@ -185,7 +179,12 @@ All components must inherit from this class.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Properties</span></span><a class="reference internal" href="../../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput.Properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties.proto">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/component/audioinput/index.html#viam.proto.component.audioinput.PropertiesResponse" title="viam.proto.component.audioinput.PropertiesResponse"><span class="pre">viam.proto.component.audioinput.PropertiesResponse</span></a></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties.channel_count">
 <span class="sig-name descname"><span class="pre">channel_count</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.channel_count" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -218,11 +217,6 @@ All components must inherit from this class.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties.is_interleaved">
 <span class="sig-name descname"><span class="pre">is_interleaved</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.is_interleaved" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.audio_input.audio_input.AudioInput.Properties.proto">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/component/audioinput/index.html#viam.proto.component.audioinput.PropertiesResponse" title="viam.proto.component.audioinput.PropertiesResponse"><span class="pre">viam.proto.component.audioinput.PropertiesResponse</span></a></span></span><a class="headerlink" href="#viam.components.audio_input.audio_input.AudioInput.Properties.proto" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

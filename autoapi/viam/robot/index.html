@@ -7,8 +7,7 @@
   <title>viam.robot &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -93,16 +87,16 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.CancelOperationResponse"><code class="docutils literal notranslate"><span class="pre">CancelOperationResponse</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.DiscoverComponentsRequest"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsRequest</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.DiscoverComponentsRequest.queries"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsRequest.queries()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.DiscoverComponentsRequest.queries"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsRequest.queries</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.DiscoverComponentsResponse"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsResponse</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.DiscoverComponentsResponse.discovery"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsResponse.discovery()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.DiscoverComponentsResponse.discovery"><code class="docutils literal notranslate"><span class="pre">DiscoverComponentsResponse.discovery</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.Discovery"><code class="docutils literal notranslate"><span class="pre">Discovery</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Discovery.query"><code class="docutils literal notranslate"><span class="pre">Discovery.query()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Discovery.results"><code class="docutils literal notranslate"><span class="pre">Discovery.results()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Discovery.query"><code class="docutils literal notranslate"><span class="pre">Discovery.query</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Discovery.results"><code class="docutils literal notranslate"><span class="pre">Discovery.results</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.Discovery.HasField"><code class="docutils literal notranslate"><span class="pre">Discovery.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -112,93 +106,93 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.FrameSystemConfig"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.pose_in_parent_frame"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.pose_in_parent_frame</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.name"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.name</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.model_json"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.model_json</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.pose_in_parent_frame"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.pose_in_parent_frame()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.HasField"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.FrameSystemConfigRequest"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigRequest</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfigRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigRequest.supplemental_transforms()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfigRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigRequest.supplemental_transforms</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.FrameSystemConfigResponse"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigResponse</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfigResponse.frame_system_configs"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigResponse.frame_system_configs()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfigResponse.frame_system_configs"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigResponse.frame_system_configs</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.GetOperationsRequest"><code class="docutils literal notranslate"><span class="pre">GetOperationsRequest</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.GetOperationsResponse"><code class="docutils literal notranslate"><span class="pre">GetOperationsResponse</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetOperationsResponse.operations"><code class="docutils literal notranslate"><span class="pre">GetOperationsResponse.operations()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetOperationsResponse.operations"><code class="docutils literal notranslate"><span class="pre">GetOperationsResponse.operations</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.GetStatusRequest"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetStatusRequest.resource_names"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest.resource_names()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetStatusRequest.resource_names"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest.resource_names</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.GetStatusResponse"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetStatusResponse.status"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse.status()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.GetStatusResponse.status"><code class="docutils literal notranslate"><span class="pre">GetStatusResponse.status</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.Operation"><code class="docutils literal notranslate"><span class="pre">Operation</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.arguments"><code class="docutils literal notranslate"><span class="pre">Operation.arguments</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.started"><code class="docutils literal notranslate"><span class="pre">Operation.started</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.id"><code class="docutils literal notranslate"><span class="pre">Operation.id</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.method"><code class="docutils literal notranslate"><span class="pre">Operation.method</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.arguments"><code class="docutils literal notranslate"><span class="pre">Operation.arguments()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.started"><code class="docutils literal notranslate"><span class="pre">Operation.started()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.HasField"><code class="docutils literal notranslate"><span class="pre">Operation.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceNamesRequest"><code class="docutils literal notranslate"><span class="pre">ResourceNamesRequest</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceNamesResponse"><code class="docutils literal notranslate"><span class="pre">ResourceNamesResponse</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceNamesResponse.resources"><code class="docutils literal notranslate"><span class="pre">ResourceNamesResponse.resources()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceNamesResponse.resources"><code class="docutils literal notranslate"><span class="pre">ResourceNamesResponse.resources</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.subtype"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype.subtype</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.proto_service"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype.proto_service</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.subtype"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype.subtype()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.HasField"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtype.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceRPCSubtypesRequest"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesRequest</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceRPCSubtypesResponse"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse.resource_rpc_subtypes()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse.resource_rpc_subtypes</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Status.name"><code class="docutils literal notranslate"><span class="pre">Status.name()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Status.status"><code class="docutils literal notranslate"><span class="pre">Status.status()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Status.name"><code class="docutils literal notranslate"><span class="pre">Status.name</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Status.status"><code class="docutils literal notranslate"><span class="pre">Status.status</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.Status.HasField"><code class="docutils literal notranslate"><span class="pre">Status.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.StopAllRequest"><code class="docutils literal notranslate"><span class="pre">StopAllRequest</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopAllRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopAllRequest.extra()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopAllRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopAllRequest.extra</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.StopAllResponse"><code class="docutils literal notranslate"><span class="pre">StopAllResponse</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.StopExtraParameters"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopExtraParameters.name"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters.name()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopExtraParameters.params"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters.params()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopExtraParameters.name"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters.name</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopExtraParameters.params"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters.params</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.StopExtraParameters.HasField"><code class="docutils literal notranslate"><span class="pre">StopExtraParameters.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.StreamStatusRequest"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusRequest.resource_names"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest.resource_names()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusRequest.every"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest.every()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusRequest.resource_names"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest.resource_names</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusRequest.every"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest.every</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StreamStatusRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.StreamStatusResponse"><code class="docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusResponse.status"><code class="docutils literal notranslate"><span class="pre">StreamStatusResponse.status()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.StreamStatusResponse.status"><code class="docutils literal notranslate"><span class="pre">StreamStatusResponse.status</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.TransformPoseRequest"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.source"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.source</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.supplemental_transforms</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.destination"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.destination</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.source"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.source()</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.supplemental_transforms()</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.TransformPoseResponse"><code class="docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseResponse.pose"><code class="docutils literal notranslate"><span class="pre">TransformPoseResponse.pose()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseResponse.pose"><code class="docutils literal notranslate"><span class="pre">TransformPoseResponse.pose</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseResponse.HasField"><code class="docutils literal notranslate"><span class="pre">TransformPoseResponse.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -248,9 +242,9 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.FrameSystemConfig">FrameSystemConfig</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.pose_in_parent_frame">pose_in_parent_frame</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.name">name</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.model_json">model_json</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.pose_in_parent_frame">pose_in_parent_frame</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.FrameSystemConfig.HasField">HasField</a></li>
 </ul>
 </li>
@@ -276,10 +270,10 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.Operation">Operation</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.id">id</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.method">method</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.arguments">arguments</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.started">started</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.id">id</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.method">method</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.Operation.HasField">HasField</a></li>
 </ul>
 </li>
@@ -289,8 +283,8 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype">ResourceRPCSubtype</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.proto_service">proto_service</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.subtype">subtype</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.proto_service">proto_service</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.ResourceRPCSubtype.HasField">HasField</a></li>
 </ul>
 </li>
@@ -327,9 +321,9 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#viam.robot.TransformPoseRequest">TransformPoseRequest</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.destination">destination</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.source">source</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.supplemental_transforms">supplemental_transforms</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.destination">destination</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#viam.robot.TransformPoseRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -615,9 +609,9 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.DiscoverComponentsRequest.queries">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queries</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___DiscoveryQuery</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.DiscoverComponentsRequest.queries" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">queries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___DiscoveryQuery</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.DiscoverComponentsRequest.queries" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -629,9 +623,9 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.DiscoverComponentsResponse.discovery">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discovery</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Discovery</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.DiscoverComponentsResponse.discovery" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discovery</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Discovery</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.DiscoverComponentsResponse.discovery" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -643,14 +637,14 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.Discovery.query">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">query</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___DiscoveryQuery</span></span></span><a class="headerlink" href="#viam.robot.Discovery.query" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DiscoveryQuery</span></em><a class="headerlink" href="#viam.robot.Discovery.query" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.Discovery.results">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">results</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.robot.Discovery.results" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">results</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.robot.Discovery.results" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -701,6 +695,11 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.robot.FrameSystemConfig.pose_in_parent_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose_in_parent_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></em><a class="headerlink" href="#viam.robot.FrameSystemConfig.pose_in_parent_frame" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.robot.FrameSystemConfig.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.robot.FrameSystemConfig.name" title="Permalink to this definition"></a></dt>
@@ -709,11 +708,6 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.robot.FrameSystemConfig.model_json">
 <span class="sig-name descname"><span class="pre">model_json</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.robot.FrameSystemConfig.model_json" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.FrameSystemConfig.pose_in_parent_frame">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose_in_parent_frame</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></span></span><a class="headerlink" href="#viam.robot.FrameSystemConfig.pose_in_parent_frame" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -748,9 +742,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.FrameSystemConfigRequest.supplemental_transforms">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supplemental_transforms</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.FrameSystemConfigRequest.supplemental_transforms" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supplemental_transforms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.FrameSystemConfigRequest.supplemental_transforms" title="Permalink to this definition"></a></dt>
 <dd><p>pose information on any additional reference frames that are needed
 to supplement the robot’s frame system</p>
 </dd></dl>
@@ -764,9 +758,9 @@ to supplement the robot’s frame system</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.FrameSystemConfigResponse.frame_system_configs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame_system_configs</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FrameSystemConfig</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.FrameSystemConfigResponse.frame_system_configs" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame_system_configs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FrameSystemConfig</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.FrameSystemConfigResponse.frame_system_configs" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -787,9 +781,9 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.GetOperationsResponse.operations">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">operations</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Operation</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.GetOperationsResponse.operations" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">operations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Operation</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.GetOperationsResponse.operations" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -801,9 +795,9 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.GetStatusRequest.resource_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.GetStatusRequest.resource_names" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.GetStatusRequest.resource_names" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -815,9 +809,9 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.GetStatusResponse.status">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Status</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.GetStatusResponse.status" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Status</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.GetStatusResponse.status" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -829,6 +823,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.robot.Operation.arguments">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">arguments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.robot.Operation.arguments" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.robot.Operation.started">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">started</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.robot.Operation.started" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.robot.Operation.id">
 <span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.robot.Operation.id" title="Permalink to this definition"></a></dt>
@@ -837,16 +841,6 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.robot.Operation.method">
 <span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.robot.Operation.method" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.Operation.arguments">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">arguments</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.robot.Operation.arguments" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.Operation.started">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">started</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></span></span><a class="headerlink" href="#viam.robot.Operation.started" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -890,9 +884,9 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.ResourceNamesResponse.resources">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resources</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.ResourceNamesResponse.resources" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resources</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.ResourceNamesResponse.resources" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -904,14 +898,14 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.robot.ResourceRPCSubtype.subtype">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.robot.ResourceRPCSubtype.subtype" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.robot.ResourceRPCSubtype.proto_service">
 <span class="sig-name descname"><span class="pre">proto_service</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.robot.ResourceRPCSubtype.proto_service" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.ResourceRPCSubtype.subtype">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subtype</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></span></span><a class="headerlink" href="#viam.robot.ResourceRPCSubtype.subtype" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -955,9 +949,9 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_rpc_subtypes</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceRPCSubtype</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_rpc_subtypes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceRPCSubtype</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -969,14 +963,14 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.Status.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></span></span><a class="headerlink" href="#viam.robot.Status.name" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.robot.Status.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.Status.status">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.robot.Status.status" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.robot.Status.status" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1011,9 +1005,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.StopAllRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___StopExtraParameters</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.StopAllRequest.extra" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___StopExtraParameters</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.StopAllRequest.extra" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1034,14 +1028,14 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.StopExtraParameters.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></span></span><a class="headerlink" href="#viam.robot.StopExtraParameters.name" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.robot.StopExtraParameters.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.StopExtraParameters.params">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">params</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.robot.StopExtraParameters.params" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.robot.StopExtraParameters.params" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1076,14 +1070,14 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.StreamStatusRequest.resource_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.StreamStatusRequest.resource_names" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.StreamStatusRequest.resource_names" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.StreamStatusRequest.every">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">every</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.duration_pb2.Duration</span></span></span><a class="headerlink" href="#viam.robot.StreamStatusRequest.every" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">every</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.duration_pb2.Duration</span></em><a class="headerlink" href="#viam.robot.StreamStatusRequest.every" title="Permalink to this definition"></a></dt>
 <dd><p>how often to send a new status.</p>
 </dd></dl>
 
@@ -1119,9 +1113,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.StreamStatusResponse.status">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Status</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.StreamStatusResponse.status" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Status</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.StreamStatusResponse.status" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1133,25 +1127,25 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.robot.TransformPoseRequest.source">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></em><a class="headerlink" href="#viam.robot.TransformPoseRequest.source" title="Permalink to this definition"></a></dt>
+<dd><p>the original pose to transform along with the reference frame in
+which it was observed</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.robot.TransformPoseRequest.supplemental_transforms">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supplemental_transforms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.TransformPoseRequest.supplemental_transforms" title="Permalink to this definition"></a></dt>
+<dd><p>pose information on any additional reference frames that are needed
+to perform the transform</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.robot.TransformPoseRequest.destination">
 <span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.robot.TransformPoseRequest.destination" title="Permalink to this definition"></a></dt>
 <dd><p>the reference frame into which the source pose should be transformed,
 if unset this defaults to the “world” reference frame</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.TransformPoseRequest.source">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">source</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></span></span><a class="headerlink" href="#viam.robot.TransformPoseRequest.source" title="Permalink to this definition"></a></dt>
-<dd><p>the original pose to transform along with the reference frame in
-which it was observed</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.TransformPoseRequest.supplemental_transforms">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">supplemental_transforms</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.TransformPoseRequest.supplemental_transforms" title="Permalink to this definition"></a></dt>
-<dd><p>pose information on any additional reference frames that are needed
-to perform the transform</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1186,9 +1180,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.robot.TransformPoseResponse.pose">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></span></span><a class="headerlink" href="#viam.robot.TransformPoseResponse.pose" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></em><a class="headerlink" href="#viam.robot.TransformPoseResponse.pose" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

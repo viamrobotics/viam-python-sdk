@@ -7,8 +7,7 @@
   <title>viam.proto.component.motor &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -91,8 +85,8 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceStub"><code class="docutils literal notranslate"><span class="pre">MotorServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -101,8 +95,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -111,26 +105,26 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest"><code class="docutils literal notranslate"><span class="pre">GoForRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.extra"><code class="docutils literal notranslate"><span class="pre">GoForRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.name"><code class="docutils literal notranslate"><span class="pre">GoForRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.rpm"><code class="docutils literal notranslate"><span class="pre">GoForRequest.rpm</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.revolutions"><code class="docutils literal notranslate"><span class="pre">GoForRequest.revolutions</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.extra"><code class="docutils literal notranslate"><span class="pre">GoForRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GoForRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoForResponse"><code class="docutils literal notranslate"><span class="pre">GoForResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest"><code class="docutils literal notranslate"><span class="pre">GoToRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.extra"><code class="docutils literal notranslate"><span class="pre">GoToRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.name"><code class="docutils literal notranslate"><span class="pre">GoToRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.rpm"><code class="docutils literal notranslate"><span class="pre">GoToRequest.rpm</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.position_revolutions"><code class="docutils literal notranslate"><span class="pre">GoToRequest.position_revolutions</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.extra"><code class="docutils literal notranslate"><span class="pre">GoToRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GoToRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoToResponse"><code class="docutils literal notranslate"><span class="pre">GoToResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.extra"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.name"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.extra"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.HasField"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -140,17 +134,17 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.offset"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.offset</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionResponse"><code class="docutils literal notranslate"><span class="pre">ResetZeroPositionResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.power_pct"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.power_pct</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -163,8 +157,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.StopRequest"><code class="docutils literal notranslate"><span class="pre">StopRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.name"><code class="docutils literal notranslate"><span class="pre">StopRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -183,8 +177,8 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceStub">MotorServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest">GetPositionRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPositionRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -193,8 +187,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest">GetPropertiesRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GetPropertiesRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -203,26 +197,26 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest">GoForRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.rpm">rpm</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.revolutions">revolutions</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoForRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoForResponse">GoForResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest">GoToRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.rpm">rpm</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.position_revolutions">position_revolutions</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.GoToRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoToResponse">GoToResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest">IsPoweredRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -232,17 +226,17 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest">ResetZeroPositionRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.offset">offset</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.ResetZeroPositionResponse">ResetZeroPositionResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest">SetPowerRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.power_pct">power_pct</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetPowerRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -255,8 +249,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.StopRequest">StopRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.StopRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -447,16 +441,16 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.GetPositionRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.GetPositionRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.GetPositionRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.GetPositionRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a motor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.motor.GetPositionRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.motor.GetPositionRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -506,16 +500,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.GetPropertiesRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.GetPropertiesRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.GetPropertiesRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.GetPropertiesRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a motor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.motor.GetPropertiesRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.motor.GetPropertiesRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -565,6 +559,12 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.GoForRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.GoForRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.GoForRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.GoForRequest.name" title="Permalink to this definition"></a></dt>
@@ -581,12 +581,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.motor.GoForRequest.revolutions">
 <span class="sig-name descname"><span class="pre">revolutions</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.component.motor.GoForRequest.revolutions" title="Permalink to this definition"></a></dt>
 <dd><p>Number of revolutions relative to motor’s start position</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.motor.GoForRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.motor.GoForRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -630,6 +624,12 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.GoToRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.GoToRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.GoToRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.GoToRequest.name" title="Permalink to this definition"></a></dt>
@@ -646,12 +646,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.motor.GoToRequest.position_revolutions">
 <span class="sig-name descname"><span class="pre">position_revolutions</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.component.motor.GoToRequest.position_revolutions" title="Permalink to this definition"></a></dt>
 <dd><p>Number of revolutions relative to motor’s home home/zero</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.motor.GoToRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.motor.GoToRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -695,16 +689,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.IsPoweredRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.IsPoweredRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.IsPoweredRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.IsPoweredRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a motor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.motor.IsPoweredRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.motor.IsPoweredRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -762,6 +756,12 @@ will be 0.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.ResetZeroPositionRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.ResetZeroPositionRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.ResetZeroPositionRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.ResetZeroPositionRequest.name" title="Permalink to this definition"></a></dt>
@@ -772,12 +772,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.motor.ResetZeroPositionRequest.offset">
 <span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.component.motor.ResetZeroPositionRequest.offset" title="Permalink to this definition"></a></dt>
 <dd><p>Motor position</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.motor.ResetZeroPositionRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.motor.ResetZeroPositionRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -821,6 +815,12 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.SetPowerRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.SetPowerRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.SetPowerRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.SetPowerRequest.name" title="Permalink to this definition"></a></dt>
@@ -831,12 +831,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.motor.SetPowerRequest.power_pct">
 <span class="sig-name descname"><span class="pre">power_pct</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.component.motor.SetPowerRequest.power_pct" title="Permalink to this definition"></a></dt>
 <dd><p>Percentage of motor’s power, between -1 and 1</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.motor.SetPowerRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.motor.SetPowerRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -913,16 +907,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.StopRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.StopRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.motor.StopRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.StopRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a motor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.motor.StopRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.motor.StopRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">

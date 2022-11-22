@@ -7,8 +7,7 @@
   <title>viam.proto.common &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -75,24 +69,24 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.BoardStatus"><code class="docutils literal notranslate"><span class="pre">BoardStatus</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.value"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry.value</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.key"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry.key</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.value"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry.value()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">BoardStatus.AnalogsEntry.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.value"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry.value</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry.key</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.value"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry.value()</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">BoardStatus.DigitalInterruptsEntry.HasField()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.analogs"><code class="docutils literal notranslate"><span class="pre">BoardStatus.analogs()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.digital_interrupts"><code class="docutils literal notranslate"><span class="pre">BoardStatus.digital_interrupts()</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.key">key</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.analogs"><code class="docutils literal notranslate"><span class="pre">BoardStatus.analogs</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.BoardStatus.digital_interrupts"><code class="docutils literal notranslate"><span class="pre">BoardStatus.digital_interrupts</span></code></a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.value">value</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.key">key</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.AnalogsEntry.HasField">HasField</a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key">key</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.value">value</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key">key</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.HasField">HasField</a></li>
 </ul>
 </li>
@@ -108,15 +102,15 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.geometries"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.geometries</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.reference_frame"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.reference_frame</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.geometries"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.geometries()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.center"><code class="docutils literal notranslate"><span class="pre">Geometry.center</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.sphere"><code class="docutils literal notranslate"><span class="pre">Geometry.sphere</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.box"><code class="docutils literal notranslate"><span class="pre">Geometry.box</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.label"><code class="docutils literal notranslate"><span class="pre">Geometry.label</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.center"><code class="docutils literal notranslate"><span class="pre">Geometry.center()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.sphere"><code class="docutils literal notranslate"><span class="pre">Geometry.sphere()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.box"><code class="docutils literal notranslate"><span class="pre">Geometry.box()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.HasField"><code class="docutils literal notranslate"><span class="pre">Geometry.HasField()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Geometry.WhichOneof()</span></code></a></li>
 </ul>
@@ -129,8 +123,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PointCloudObject"><code class="docutils literal notranslate"><span class="pre">PointCloudObject</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.geometries"><code class="docutils literal notranslate"><span class="pre">PointCloudObject.geometries</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.point_cloud"><code class="docutils literal notranslate"><span class="pre">PointCloudObject.point_cloud</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.geometries"><code class="docutils literal notranslate"><span class="pre">PointCloudObject.geometries()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.HasField"><code class="docutils literal notranslate"><span class="pre">PointCloudObject.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -145,13 +139,13 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame"><code class="docutils literal notranslate"><span class="pre">PoseInFrame</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.pose"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.pose</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.reference_frame"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.reference_frame</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.pose"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.pose()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.HasField"><code class="docutils literal notranslate"><span class="pre">PoseInFrame.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.RectangularPrism"><code class="docutils literal notranslate"><span class="pre">RectangularPrism</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.RectangularPrism.dims_mm"><code class="docutils literal notranslate"><span class="pre">RectangularPrism.dims_mm()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.RectangularPrism.dims_mm"><code class="docutils literal notranslate"><span class="pre">RectangularPrism.dims_mm</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.RectangularPrism.HasField"><code class="docutils literal notranslate"><span class="pre">RectangularPrism.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -167,8 +161,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Transform"><code class="docutils literal notranslate"><span class="pre">Transform</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.pose_in_observer_frame"><code class="docutils literal notranslate"><span class="pre">Transform.pose_in_observer_frame</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.reference_frame"><code class="docutils literal notranslate"><span class="pre">Transform.reference_frame</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.pose_in_observer_frame"><code class="docutils literal notranslate"><span class="pre">Transform.pose_in_observer_frame()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.HasField"><code class="docutils literal notranslate"><span class="pre">Transform.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -179,9 +173,9 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.WorldState"><code class="docutils literal notranslate"><span class="pre">WorldState</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.obstacles"><code class="docutils literal notranslate"><span class="pre">WorldState.obstacles()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.interaction_spaces"><code class="docutils literal notranslate"><span class="pre">WorldState.interaction_spaces()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.transforms"><code class="docutils literal notranslate"><span class="pre">WorldState.transforms()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.obstacles"><code class="docutils literal notranslate"><span class="pre">WorldState.obstacles</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.interaction_spaces"><code class="docutils literal notranslate"><span class="pre">WorldState.interaction_spaces</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.transforms"><code class="docutils literal notranslate"><span class="pre">WorldState.transforms</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.ActuatorStatus">ActuatorStatus</a><ul>
@@ -209,15 +203,15 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame">GeometriesInFrame</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.reference_frame">reference_frame</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.geometries">geometries</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.reference_frame">reference_frame</a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Geometry">Geometry</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.label">label</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.center">center</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.sphere">sphere</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.box">box</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.label">label</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.HasField">HasField</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.WhichOneof">WhichOneof</a></li>
 </ul>
@@ -230,8 +224,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PointCloudObject">PointCloudObject</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.point_cloud">point_cloud</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.geometries">geometries</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.point_cloud">point_cloud</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PointCloudObject.HasField">HasField</a></li>
 </ul>
 </li>
@@ -246,8 +240,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.PoseInFrame">PoseInFrame</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.reference_frame">reference_frame</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.pose">pose</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.reference_frame">reference_frame</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.PoseInFrame.HasField">HasField</a></li>
 </ul>
 </li>
@@ -268,8 +262,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Transform">Transform</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.reference_frame">reference_frame</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.pose_in_observer_frame">pose_in_observer_frame</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.reference_frame">reference_frame</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Transform.HasField">HasField</a></li>
 </ul>
 </li>
@@ -433,14 +427,14 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.BoardStatus.AnalogsEntry.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___AnalogStatus</span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.AnalogsEntry.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.BoardStatus.AnalogsEntry.key">
 <span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.AnalogsEntry.key" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.BoardStatus.AnalogsEntry.value">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___AnalogStatus</span></span></span><a class="headerlink" href="#viam.proto.common.BoardStatus.AnalogsEntry.value" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -475,14 +469,14 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.BoardStatus.DigitalInterruptsEntry.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DigitalInterruptStatus</span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.BoardStatus.DigitalInterruptsEntry.key">
 <span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.BoardStatus.DigitalInterruptsEntry.value">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___DigitalInterruptStatus</span></span></span><a class="headerlink" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.value" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -510,14 +504,14 @@ be raised.</p>
 
 </dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.common.BoardStatus.analogs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analogs</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">global___AnalogStatus</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.BoardStatus.analogs" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analogs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">global___AnalogStatus</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.analogs" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.common.BoardStatus.digital_interrupts">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupts</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">global___DigitalInterruptStatus</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.BoardStatus.digital_interrupts" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">global___DigitalInterruptStatus</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.digital_interrupts" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -561,16 +555,16 @@ shown below.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GeometriesInFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GeometriesInFrame" title="Permalink to this definition"></a></dt>
 <dd><p>GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
 observed.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.GeometriesInFrame.geometries">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.GeometriesInFrame.geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Dimensional type</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.GeometriesInFrame.reference_frame">
 <span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.GeometriesInFrame.reference_frame" title="Permalink to this definition"></a></dt>
 <dd><p>Reference frame of the observer of the geometry</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.GeometriesInFrame.geometries">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometries</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.GeometriesInFrame.geometries" title="Permalink to this definition"></a></dt>
-<dd><p>Dimensional type</p>
 </dd></dl>
 
 </dd></dl>
@@ -579,27 +573,27 @@ observed.</p>
 <dt class="sig sig-object py" id="viam.proto.common.Geometry">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">Geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Pose</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Sphere</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RectangularPrism</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Geometry" title="Permalink to this definition"></a></dt>
 <dd><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.Geometry.center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Pose</span></em><a class="headerlink" href="#viam.proto.common.Geometry.center" title="Permalink to this definition"></a></dt>
+<dd><p>Pose of a gemetries center point</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.Geometry.sphere">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sphere</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Sphere</span></em><a class="headerlink" href="#viam.proto.common.Geometry.sphere" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.Geometry.box">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">box</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___RectangularPrism</span></em><a class="headerlink" href="#viam.proto.common.Geometry.box" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Geometry.label">
 <span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.Geometry.label" title="Permalink to this definition"></a></dt>
 <dd><p>Label of the geometry. If none supplied, will be an empty string.</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.Geometry.center">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___Pose</span></span></span><a class="headerlink" href="#viam.proto.common.Geometry.center" title="Permalink to this definition"></a></dt>
-<dd><p>Pose of a gemetries center point</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.Geometry.sphere">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sphere</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___Sphere</span></span></span><a class="headerlink" href="#viam.proto.common.Geometry.sphere" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.Geometry.box">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">box</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___RectangularPrism</span></span></span><a class="headerlink" href="#viam.proto.common.Geometry.box" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.common.Geometry.HasField">
@@ -685,16 +679,16 @@ shown below.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">PointCloudObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_cloud</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___GeometriesInFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.PointCloudObject" title="Permalink to this definition"></a></dt>
 <dd><p>PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
 repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.PointCloudObject.geometries">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___GeometriesInFrame</span></em><a class="headerlink" href="#viam.proto.common.PointCloudObject.geometries" title="Permalink to this definition"></a></dt>
+<dd><p>volume of a given geometry</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.PointCloudObject.point_cloud">
 <span class="sig-name descname"><span class="pre">point_cloud</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.common.PointCloudObject.point_cloud" title="Permalink to this definition"></a></dt>
 <dd><p>image frame expressed in bytes</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.PointCloudObject.geometries">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometries</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___GeometriesInFrame</span></span></span><a class="headerlink" href="#viam.proto.common.PointCloudObject.geometries" title="Permalink to this definition"></a></dt>
-<dd><p>volume of a given geometry</p>
 </dd></dl>
 
 <dl class="py method">
@@ -781,14 +775,14 @@ is circled, the Roll will correct itself to remain in-line.</p>
 <dt class="sig sig-object py" id="viam.proto.common.PoseInFrame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">PoseInFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Pose</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.PoseInFrame" title="Permalink to this definition"></a></dt>
 <dd><p>PoseInFrame contains a pose and the and the reference frame in which it was observed</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.PoseInFrame.pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Pose</span></em><a class="headerlink" href="#viam.proto.common.PoseInFrame.pose" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.PoseInFrame.reference_frame">
 <span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.PoseInFrame.reference_frame" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.PoseInFrame.pose">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___Pose</span></span></span><a class="headerlink" href="#viam.proto.common.PoseInFrame.pose" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -821,9 +815,9 @@ be raised.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">RectangularPrism</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Vector3</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.RectangularPrism" title="Permalink to this definition"></a></dt>
 <dd><p>RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
 These dimensions are with respect to the referenceframe in which the RectangularPrism is defined</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.common.RectangularPrism.dims_mm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dims_mm</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___Vector3</span></span></span><a class="headerlink" href="#viam.proto.common.RectangularPrism.dims_mm" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dims_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Vector3</span></em><a class="headerlink" href="#viam.proto.common.RectangularPrism.dims_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -900,16 +894,16 @@ shown below.</p>
 <dd><p>Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
 frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
 reference frame as observed within the second reference frame.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.Transform.pose_in_observer_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose_in_observer_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PoseInFrame</span></em><a class="headerlink" href="#viam.proto.common.Transform.pose_in_observer_frame" title="Permalink to this definition"></a></dt>
+<dd><p>the pose of the above reference frame with respect to a different observer reference frame</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Transform.reference_frame">
 <span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.Transform.reference_frame" title="Permalink to this definition"></a></dt>
 <dd><p>the name of a given reference frame</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.Transform.pose_in_observer_frame">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose_in_observer_frame</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___PoseInFrame</span></span></span><a class="headerlink" href="#viam.proto.common.Transform.pose_in_observer_frame" title="Permalink to this definition"></a></dt>
-<dd><p>the pose of the above reference frame with respect to a different observer reference frame</p>
 </dd></dl>
 
 <dl class="py method">
@@ -967,22 +961,22 @@ shown below.</p>
 <dd><p>WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
 they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
 given reference frame and a new target reference frame.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.common.WorldState.obstacles">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obstacles</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.WorldState.obstacles" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obstacles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.WorldState.obstacles" title="Permalink to this definition"></a></dt>
 <dd><p>a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional</p>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.common.WorldState.interaction_spaces">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interaction_spaces</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.WorldState.interaction_spaces" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interaction_spaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.WorldState.interaction_spaces" title="Permalink to this definition"></a></dt>
 <dd><p>a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
 this field is optional</p>
 </dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.common.WorldState.transforms">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transforms</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Transform</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.common.WorldState.transforms" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transforms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Transform</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.WorldState.transforms" title="Permalink to this definition"></a></dt>
 <dd><p>a list of Transforms needed to transform a pose from one reference frame to another; this field is optional</p>
 </dd></dl>
 

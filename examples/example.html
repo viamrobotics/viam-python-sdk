@@ -7,8 +7,7 @@
   <title>Example usage &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -127,7 +121,7 @@
 </div>
 <p>You can also create a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> by providing an existing connection</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial</span>
@@ -142,6 +136,11 @@
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
 type: &quot;component&quot;
@@ -195,6 +194,7 @@ name: &quot;servo0&quot;
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <p>Once you have a connected <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code>, you can then obtain the robot’s components by their name</p>
 <div class="cell tag_hide-output docutils container">
@@ -214,9 +214,15 @@ name: &quot;servo0&quot;
 </div>
 </div>
 <div class="cell tag_hide-output tag_remove-input docutils container">
+<details class="hide above-output">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell outputs</span>
+<span class="expanded">Hide code cell outputs</span>
+</summary>
 <div class="cell_output docutils container">
 <img alt="../_images/942fd3e1b0447021e5c19e0a0db6fe1551482233879b5c2d27c6880b66b0a115.png" src="../_images/942fd3e1b0447021e5c19e0a0db6fe1551482233879b5c2d27c6880b66b0a115.png" />
 </div>
+</details>
 </div>
 <p>You can also use the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> to make service calls to the connected robot.</p>
 <div class="cell docutils container">

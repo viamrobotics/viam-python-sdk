@@ -65,6 +65,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -79,12 +84,6 @@ Attributes
       :annotation: :float
 
       Desired travel velocity in millimeters/second
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -135,6 +134,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -149,12 +153,6 @@ Attributes
       :annotation: :float
 
       Desired angular velocity
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -205,16 +203,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of a base
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -265,28 +262,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: linear
+      :type: viam.gen.common.v1.common_pb2.Vector3
+
+      Desired linear power percentage as -1 -> 1
+
+   .. py:property:: angular
+      :type: viam.gen.common.v1.common_pb2.Vector3
+
+      Desired angular power percentage % as -1 -> 1
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of a base
-
-   .. py:method:: linear() -> viam.gen.common.v1.common_pb2.Vector3
-      :property:
-
-      Desired linear power percentage as -1 -> 1
-
-
-   .. py:method:: angular() -> viam.gen.common.v1.common_pb2.Vector3
-      :property:
-
-      Desired angular power percentage % as -1 -> 1
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
 
@@ -337,28 +331,25 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: linear
+      :type: viam.gen.common.v1.common_pb2.Vector3
+
+      Desired linear velocity in mm per second
+
+   .. py:property:: angular
+      :type: viam.gen.common.v1.common_pb2.Vector3
+
+      Desired angular velocity in degrees per second
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of a base
-
-   .. py:method:: linear() -> viam.gen.common.v1.common_pb2.Vector3
-      :property:
-
-      Desired linear velocity in mm per second
-
-
-   .. py:method:: angular() -> viam.gen.common.v1.common_pb2.Vector3
-      :property:
-
-      Desired angular velocity in degrees per second
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[angular, b'angular', extra, b'extra', linear, b'linear']) -> bool
 

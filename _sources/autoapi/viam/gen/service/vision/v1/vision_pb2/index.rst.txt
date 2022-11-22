@@ -109,6 +109,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -118,12 +123,6 @@ Attributes
       :annotation: :str
 
       name of the type of vision model
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -179,16 +178,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -223,11 +221,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: detector_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-      :property:
+   .. py:property:: detector_names
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       detectors in the registry
-
 
 
 .. py:data:: global___GetDetectorNamesResponse
@@ -245,6 +242,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: detector_parameters
+      :type: google.protobuf.struct_pb2.Struct
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -259,16 +265,6 @@ Attributes
       :annotation: :str
 
       
-
-   .. py:method:: detector_parameters() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[detector_parameters, b'detector_parameters', extra, b'extra']) -> bool
 
@@ -319,6 +315,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -328,12 +329,6 @@ Attributes
       :annotation: :str
 
       name of detector in registry
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -384,6 +379,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -413,12 +413,6 @@ Attributes
       :annotation: :str
 
       name of the registered detector to use
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -453,11 +447,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: detections() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
-      :property:
+   .. py:property:: detections
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
 
       the bounding boxes and labels
-
 
 
 .. py:data:: global___GetDetectionsResponse
@@ -475,6 +468,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -489,12 +487,6 @@ Attributes
       :annotation: :str
 
       name of the registered detector to use
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -529,11 +521,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: detections() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
-      :property:
+   .. py:property:: detections
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]
 
       the bounding boxes and labels
-
 
 
 .. py:data:: global___GetDetectionsFromCameraResponse
@@ -632,16 +623,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       name of the vision service
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -676,8 +666,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: classifier_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-      :property:
+   .. py:property:: classifier_names
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 
@@ -696,6 +686,16 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: classifier_parameters
+      :type: google.protobuf.struct_pb2.Struct
+
+      additional parameters
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -710,18 +710,6 @@ Attributes
       :annotation: :str
 
       the type of classifier
-
-   .. py:method:: classifier_parameters() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      additional parameters
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[classifier_parameters, b'classifier_parameters', extra, b'extra']) -> bool
 
@@ -772,6 +760,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -781,12 +774,6 @@ Attributes
       :annotation: :str
 
       name of the classifier in registry
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -837,6 +824,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -872,12 +864,6 @@ Attributes
 
       the number of classifications desired
 
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
-
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
@@ -911,8 +897,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: classifications() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
-      :property:
+   .. py:property:: classifications
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
 
 
 
@@ -930,6 +916,11 @@ Attributes
    Protocol message classes are almost always generated by the protocol
    compiler.  These generated types subclass Message and implement the methods
    shown below.
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
 
    .. py:attribute:: name
       :annotation: :str
@@ -950,12 +941,6 @@ Attributes
       :annotation: :int
 
       the number of classifications desired
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -990,8 +975,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: classifications() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
-      :property:
+   .. py:property:: classifications
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]
 
 
 
@@ -1032,16 +1017,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -1076,11 +1060,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: segmenter_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-      :property:
+   .. py:property:: segmenter_names
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       segmenters in the registry
-
 
 
 .. py:data:: global___GetSegmenterNamesResponse
@@ -1098,6 +1081,16 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: segmenter_parameters
+      :type: google.protobuf.struct_pb2.Struct
+
+      parameters of the segmenter model
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -1112,18 +1105,6 @@ Attributes
       :annotation: :str
 
       name of the segmenter model
-
-   .. py:method:: segmenter_parameters() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      parameters of the segmenter model
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra', segmenter_parameters, b'segmenter_parameters']) -> bool
 
@@ -1174,6 +1155,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -1183,12 +1169,6 @@ Attributes
       :annotation: :str
 
       name of segmenter in registry
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -1239,6 +1219,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -1258,12 +1243,6 @@ Attributes
       :annotation: :str
 
       Requested MIME type of response
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -1298,16 +1277,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: objects
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.PointCloudObject]
+
+      List of objects in the scene
+
    .. py:attribute:: mime_type
       :annotation: :str
 
       Actual MIME type of response
-
-   .. py:method:: objects() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.PointCloudObject]
-      :property:
-
-      List of objects in the scene
-
 
 
 .. py:data:: global___GetObjectPointCloudsResponse

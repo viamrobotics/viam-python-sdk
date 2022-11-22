@@ -77,16 +77,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -116,8 +115,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: lengths_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-      :property:
+   .. py:property:: lengths_mm
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
 
@@ -131,16 +130,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -170,8 +168,8 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-      :property:
+   .. py:property:: positions_mm
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
 
 
@@ -185,24 +183,23 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: positions_mm
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+
+   .. py:property:: world_state
+      :type: viam.gen.common.v1.common_pb2.WorldState
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-      :property:
-
-
-   .. py:method:: world_state() -> viam.gen.common.v1.common_pb2.WorldState
-      :property:
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[_world_state, b'_world_state', extra, b'extra', world_state, b'world_state']) -> bool
 
@@ -258,18 +255,18 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: positions_mm
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+
+   .. py:property:: lengths_mm
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+
    .. py:attribute:: is_moving
       :annotation: :bool
 
       
-
-   .. py:method:: positions_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-      :property:
-
-
-   .. py:method:: lengths_mm() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-      :property:
-
 
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
@@ -282,16 +279,15 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of a gantry
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 

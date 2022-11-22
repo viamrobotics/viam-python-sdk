@@ -52,14 +52,14 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+      .. py:property:: value
+         :type: global___Strings
+
+
       .. py:attribute:: key
          :annotation: :str
 
          
-
-      .. py:method:: value() -> global___Strings
-         :property:
-
 
       .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
@@ -79,8 +79,8 @@ Classes
 
 
 
-   .. py:method:: md() -> google.protobuf.internal.containers.MessageMap[str, global___Strings]
-      :property:
+   .. py:property:: md
+      :type: google.protobuf.internal.containers.MessageMap[str, global___Strings]
 
 
 
@@ -111,22 +111,22 @@ Classes
    identifier. Servers will drop frames where the stream identifier
    has no association (if a non-header frames are sent).
 
+   .. py:property:: stream
+      :type: global___Stream
+
+
+   .. py:property:: headers
+      :type: global___RequestHeaders
+
+
+   .. py:property:: message
+      :type: global___RequestMessage
+
+
    .. py:attribute:: rst_stream
       :annotation: :bool
 
       
-
-   .. py:method:: stream() -> global___Stream
-      :property:
-
-
-   .. py:method:: headers() -> global___RequestHeaders
-      :property:
-
-
-   .. py:method:: message() -> global___RequestMessage
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[headers, b'headers', message, b'message', rst_stream, b'rst_stream', stream, b'stream', type, b'type']) -> bool
 
@@ -167,18 +167,18 @@ Classes
 
    RequestHeaders describe the unary or streaming call to make.
 
+   .. py:property:: metadata
+      :type: global___Metadata
+
+
+   .. py:property:: timeout
+      :type: google.protobuf.duration_pb2.Duration
+
+
    .. py:attribute:: method
       :annotation: :str
 
       
-
-   .. py:method:: metadata() -> global___Metadata
-      :property:
-
-
-   .. py:method:: timeout() -> google.protobuf.duration_pb2.Duration
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[metadata, b'metadata', timeout, b'timeout']) -> bool
 
@@ -205,6 +205,10 @@ Classes
    A RequestMessage contains individual gRPC messages and a potential
    end-of-stream (EOS) marker.
 
+   .. py:property:: packet_message
+      :type: global___PacketMessage
+
+
    .. py:attribute:: has_message
       :annotation: :bool
 
@@ -214,10 +218,6 @@ Classes
       :annotation: :bool
 
       
-
-   .. py:method:: packet_message() -> global___PacketMessage
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[packet_message, b'packet_message']) -> bool
 
@@ -246,20 +246,20 @@ Classes
    identifier. Clients will drop frames where the stream identifier
    has no association.
 
-   .. py:method:: stream() -> global___Stream
-      :property:
+   .. py:property:: stream
+      :type: global___Stream
 
 
-   .. py:method:: headers() -> global___ResponseHeaders
-      :property:
+   .. py:property:: headers
+      :type: global___ResponseHeaders
 
 
-   .. py:method:: message() -> global___ResponseMessage
-      :property:
+   .. py:property:: message
+      :type: global___ResponseMessage
 
 
-   .. py:method:: trailers() -> global___ResponseTrailers
-      :property:
+   .. py:property:: trailers
+      :type: global___ResponseTrailers
 
 
    .. py:method:: HasField(field_name: Literal[headers, b'headers', message, b'message', stream, b'stream', trailers, b'trailers', type, b'type']) -> bool
@@ -302,8 +302,8 @@ Classes
    ResponseHeaders contain custom metadata that are sent to the client
    before any message or trailers (unless only trailers are sent).
 
-   .. py:method:: metadata() -> global___Metadata
-      :property:
+   .. py:property:: metadata
+      :type: global___Metadata
 
 
    .. py:method:: HasField(field_name: Literal[metadata, b'metadata']) -> bool
@@ -330,8 +330,8 @@ Classes
 
    ResponseMessage contains the data of a response to a call.
 
-   .. py:method:: packet_message() -> global___PacketMessage
-      :property:
+   .. py:property:: packet_message
+      :type: global___PacketMessage
 
 
    .. py:method:: HasField(field_name: Literal[packet_message, b'packet_message']) -> bool
@@ -358,12 +358,12 @@ Classes
 
    ResponseTrailers contain the status of a response and any custom metadata.
 
-   .. py:method:: status() -> google.rpc.status_pb2.Status
-      :property:
+   .. py:property:: status
+      :type: google.rpc.status_pb2.Status
 
 
-   .. py:method:: metadata() -> global___Metadata
-      :property:
+   .. py:property:: metadata
+      :type: global___Metadata
 
 
    .. py:method:: HasField(field_name: Literal[metadata, b'metadata', status, b'status']) -> bool
@@ -403,8 +403,8 @@ Classes
 
    Strings are a series of values.
 
-   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-      :property:
+   .. py:property:: values
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
 

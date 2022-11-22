@@ -7,8 +7,7 @@
   <title>viam.proto.component.camera &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -82,8 +76,8 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.CameraServiceStub"><code class="docutils literal notranslate"><span class="pre">CameraServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.DistortionParameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.DistortionParameters.parameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.parameters</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.DistortionParameters.model"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.model</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.DistortionParameters.parameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.parameters()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.GetImageRequest"><code class="docutils literal notranslate"><span class="pre">GetImageRequest</span></code></a><ul>
@@ -111,9 +105,9 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.intrinsic_parameters"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.intrinsic_parameters</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.distortion_parameters"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.distortion_parameters</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.supports_pcd"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.supports_pcd</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.intrinsic_parameters"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.intrinsic_parameters()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.distortion_parameters"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.distortion_parameters()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -138,13 +132,13 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.Webcam"><code class="docutils literal notranslate"><span class="pre">Webcam</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.properties"><code class="docutils literal notranslate"><span class="pre">Webcam.properties</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.label"><code class="docutils literal notranslate"><span class="pre">Webcam.label</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.status"><code class="docutils literal notranslate"><span class="pre">Webcam.status</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.properties"><code class="docutils literal notranslate"><span class="pre">Webcam.properties()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.Webcams"><code class="docutils literal notranslate"><span class="pre">Webcams</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcams.webcams"><code class="docutils literal notranslate"><span class="pre">Webcams.webcams()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcams.webcams"><code class="docutils literal notranslate"><span class="pre">Webcams.webcams</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.CameraServiceBase">CameraServiceBase</a><ul>
@@ -157,8 +151,8 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.CameraServiceStub">CameraServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.DistortionParameters">DistortionParameters</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.DistortionParameters.model">model</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.DistortionParameters.parameters">parameters</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.DistortionParameters.model">model</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.GetImageRequest">GetImageRequest</a><ul>
@@ -186,9 +180,9 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse">GetPropertiesResponse</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.supports_pcd">supports_pcd</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.intrinsic_parameters">intrinsic_parameters</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.distortion_parameters">distortion_parameters</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.supports_pcd">supports_pcd</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.GetPropertiesResponse.HasField">HasField</a></li>
 </ul>
 </li>
@@ -213,9 +207,9 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.Webcam">Webcam</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.properties">properties</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.label">label</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.status">status</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.properties">properties</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.Webcams">Webcams</a><ul>
@@ -378,14 +372,14 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.camera.DistortionParameters.parameters">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.camera.DistortionParameters.parameters" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.camera.DistortionParameters.model">
 <span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.camera.DistortionParameters.model" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.camera.DistortionParameters.parameters">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.camera.DistortionParameters.parameters" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -496,22 +490,22 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.camera.GetPropertiesResponse.intrinsic_parameters">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">intrinsic_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___IntrinsicParameters</span></em><a class="headerlink" href="#viam.proto.component.camera.GetPropertiesResponse.intrinsic_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Parameters for doing a perspective of a 3D scene to a 2D plane</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.camera.GetPropertiesResponse.distortion_parameters">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distortion_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DistortionParameters</span></em><a class="headerlink" href="#viam.proto.component.camera.GetPropertiesResponse.distortion_parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Parameters for modeling lens distortion in cameras</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.camera.GetPropertiesResponse.supports_pcd">
 <span class="sig-name descname"><span class="pre">supports_pcd</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.component.camera.GetPropertiesResponse.supports_pcd" title="Permalink to this definition"></a></dt>
 <dd><p>A boolean property determining whether the camera supports the return of pointcloud data</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.camera.GetPropertiesResponse.intrinsic_parameters">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">intrinsic_parameters</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___IntrinsicParameters</span></span></span><a class="headerlink" href="#viam.proto.component.camera.GetPropertiesResponse.intrinsic_parameters" title="Permalink to this definition"></a></dt>
-<dd><p>Parameters for doing a perspective of a 3D scene to a 2D plane</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.camera.GetPropertiesResponse.distortion_parameters">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distortion_parameters</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___DistortionParameters</span></span></span><a class="headerlink" href="#viam.proto.component.camera.GetPropertiesResponse.distortion_parameters" title="Permalink to this definition"></a></dt>
-<dd><p>Parameters for modeling lens distortion in cameras</p>
 </dd></dl>
 
 <dl class="py method">
@@ -633,6 +627,12 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.camera.Webcam.properties">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Property</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.camera.Webcam.properties" title="Permalink to this definition"></a></dt>
+<dd><p>Camera properties</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.camera.Webcam.label">
 <span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.camera.Webcam.label" title="Permalink to this definition"></a></dt>
@@ -645,12 +645,6 @@ shown below.</p>
 <dd><p>Camera driver status</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.camera.Webcam.properties">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">properties</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Property</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.camera.Webcam.properties" title="Permalink to this definition"></a></dt>
-<dd><p>Camera properties</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -660,9 +654,9 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.camera.Webcams.webcams">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">webcams</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Webcam</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.camera.Webcams.webcams" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">webcams</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Webcam</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.camera.Webcams.webcams" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

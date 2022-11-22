@@ -55,16 +55,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -99,8 +98,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: sensor_names() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
-      :property:
+   .. py:property:: sensor_names
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
 
 
 
@@ -119,20 +118,19 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: sensor_names
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: sensor_names() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
-      :property:
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -177,14 +175,14 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+      .. py:property:: value
+         :type: google.protobuf.struct_pb2.Value
+
+
       .. py:attribute:: key
          :annotation: :str
 
          
-
-      .. py:method:: value() -> google.protobuf.struct_pb2.Value
-         :property:
-
 
       .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
@@ -204,12 +202,12 @@ Attributes
 
 
 
-   .. py:method:: name() -> viam.gen.common.v1.common_pb2.ResourceName
-      :property:
+   .. py:property:: name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
 
 
-   .. py:method:: readings() -> google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
-      :property:
+   .. py:property:: readings
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
 
 
    .. py:method:: HasField(field_name: Literal[name, b'name']) -> bool
@@ -245,8 +243,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: readings() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Readings]
-      :property:
+   .. py:property:: readings
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Readings]
 
 
 

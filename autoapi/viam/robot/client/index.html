@@ -7,8 +7,7 @@
   <title>viam.robot.client &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../_static/doctools.js"></script>
         <script src="../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -72,11 +66,11 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.log_level"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options.log_level</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.resource_names"><code class="docutils literal notranslate"><span class="pre">RobotClient.resource_names</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.at_address"><code class="docutils literal notranslate"><span class="pre">RobotClient.at_address()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.with_channel"><code class="docutils literal notranslate"><span class="pre">RobotClient.with_channel()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.refresh"><code class="docutils literal notranslate"><span class="pre">RobotClient.refresh()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_component"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_component()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.resource_names"><code class="docutils literal notranslate"><span class="pre">RobotClient.resource_names()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.close"><code class="docutils literal notranslate"><span class="pre">RobotClient.close()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__"><code class="docutils literal notranslate"><span class="pre">RobotClient.__aenter__()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aexit__"><code class="docutils literal notranslate"><span class="pre">RobotClient.__aexit__()</span></code></a></li>
@@ -98,11 +92,11 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.LOGGER">LOGGER</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.robot.client.RobotClient">RobotClient</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.Options">Options</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.resource_names">resource_names</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.at_address">at_address</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.with_channel">with_channel</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.refresh">refresh</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_component">get_component</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.resource_names">resource_names</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.close">close</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__">__aenter__</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aexit__">__aexit__</a></li>
@@ -234,6 +228,20 @@ If not set, the robot will not be refreshed automatically</p>
 
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.resource_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.client.RobotClient.resource_names" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of all resource names</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The list of resource names</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.at_address">
 <em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">at_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><span class="pre">Options</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.at_address"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.at_address" title="Permalink to this definition"></a></dt>
@@ -332,20 +340,6 @@ different methods:</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase">ComponentBase</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.robot.client.RobotClient.resource_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.robot.client.RobotClient.resource_names" title="Permalink to this definition"></a></dt>
-<dd><p>Get a list of all resource names</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The list of resource names</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a>]</p>
 </dd>
 </dl>
 </dd></dl>

@@ -57,28 +57,27 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: destination
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
+
+
+   .. py:property:: component_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+
+   .. py:property:: world_state
+      :type: viam.gen.common.v1.common_pb2.WorldState
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: destination() -> viam.gen.common.v1.common_pb2.PoseInFrame
-      :property:
-
-
-   .. py:method:: component_name() -> viam.gen.common.v1.common_pb2.ResourceName
-      :property:
-
-
-   .. py:method:: world_state() -> viam.gen.common.v1.common_pb2.WorldState
-      :property:
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[_world_state, b'_world_state', component_name, b'component_name', destination, b'destination', extra, b'extra', world_state, b'world_state']) -> bool
 
@@ -149,28 +148,27 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: destination
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
+
+
+   .. py:property:: component_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+
+   .. py:property:: world_state
+      :type: viam.gen.common.v1.common_pb2.WorldState
+
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       
-
-   .. py:method:: destination() -> viam.gen.common.v1.common_pb2.PoseInFrame
-      :property:
-
-
-   .. py:method:: component_name() -> viam.gen.common.v1.common_pb2.ResourceName
-      :property:
-
-
-   .. py:method:: world_state() -> viam.gen.common.v1.common_pb2.WorldState
-      :property:
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[_world_state, b'_world_state', component_name, b'component_name', destination, b'destination', extra, b'extra', world_state, b'world_state']) -> bool
 
@@ -241,6 +239,22 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: component_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      the component whose pose is being requested
+
+   .. py:property:: supplemental_transforms
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
+
+      pose information on any additional reference frames that are needed
+      to compute the component's pose
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -252,25 +266,6 @@ Attributes
       the reference frame in which the component's pose
       should be provided, if unset this defaults
       to the "world" reference frame
-
-   .. py:method:: component_name() -> viam.gen.common.v1.common_pb2.ResourceName
-      :property:
-
-      the component whose pose is being requested
-
-
-   .. py:method:: supplemental_transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.Transform]
-      :property:
-
-      pose information on any additional reference frames that are needed
-      to compute the component's pose
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[component_name, b'component_name', extra, b'extra']) -> bool
 
@@ -305,8 +300,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: pose() -> viam.gen.common.v1.common_pb2.PoseInFrame
-      :property:
+   .. py:property:: pose
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
 
 
    .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool

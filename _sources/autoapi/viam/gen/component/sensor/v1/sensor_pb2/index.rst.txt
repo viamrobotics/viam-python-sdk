@@ -49,16 +49,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of a sensor
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -103,14 +102,14 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+      .. py:property:: value
+         :type: google.protobuf.struct_pb2.Value
+
+
       .. py:attribute:: key
          :annotation: :str
 
          
-
-      .. py:method:: value() -> google.protobuf.struct_pb2.Value
-         :property:
-
 
       .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
@@ -130,8 +129,8 @@ Attributes
 
 
 
-   .. py:method:: readings() -> google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
-      :property:
+   .. py:property:: readings
+      :type: google.protobuf.internal.containers.MessageMap[str, google.protobuf.struct_pb2.Value]
 
 
 

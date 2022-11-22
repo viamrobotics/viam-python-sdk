@@ -220,22 +220,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: intrinsic_parameters
+      :type: global___IntrinsicParameters
+
+      Parameters for doing a perspective of a 3D scene to a 2D plane
+
+   .. py:property:: distortion_parameters
+      :type: global___DistortionParameters
+
+      Parameters for modeling lens distortion in cameras
+
    .. py:attribute:: supports_pcd
       :annotation: :bool
 
       A boolean property determining whether the camera supports the return of pointcloud data
-
-   .. py:method:: intrinsic_parameters() -> global___IntrinsicParameters
-      :property:
-
-      Parameters for doing a perspective of a 3D scene to a 2D plane
-
-
-   .. py:method:: distortion_parameters() -> global___DistortionParameters
-      :property:
-
-      Parameters for modeling lens distortion in cameras
-
 
    .. py:method:: HasField(field_name: Literal[distortion_parameters, b'distortion_parameters', intrinsic_parameters, b'intrinsic_parameters']) -> bool
 
@@ -270,8 +268,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: webcams() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Webcam]
-      :property:
+   .. py:property:: webcams
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Webcam]
 
 
 
@@ -290,6 +288,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: properties
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]
+
+      Camera properties
+
    .. py:attribute:: label
       :annotation: :str
 
@@ -299,12 +302,6 @@ Attributes
       :annotation: :str
 
       Camera driver status
-
-   .. py:method:: properties() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]
-      :property:
-
-      Camera properties
-
 
 
 .. py:data:: global___Webcam
@@ -399,14 +396,14 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: parameters
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+
    .. py:attribute:: model
       :annotation: :str
 
       
-
-   .. py:method:: parameters() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-      :property:
-
 
 
 .. py:data:: global___DistortionParameters

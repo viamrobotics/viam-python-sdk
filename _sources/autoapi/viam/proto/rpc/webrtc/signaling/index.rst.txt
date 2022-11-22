@@ -86,30 +86,28 @@ Classes
    AnswerRequest is the SDP offer that the controlling side is making via the answering
    stream.
 
+   .. py:property:: init
+      :type: global___AnswerRequestInitStage
+
+
+   .. py:property:: update
+      :type: global___AnswerRequestUpdateStage
+
+
+   .. py:property:: done
+      :type: global___AnswerRequestDoneStage
+
+      done is sent when the requester is done sending information
+
+   .. py:property:: error
+      :type: global___AnswerRequestErrorStage
+
+      error is sent any time before done
+
    .. py:attribute:: uuid
       :annotation: :str
 
       
-
-   .. py:method:: init() -> global___AnswerRequestInitStage
-      :property:
-
-
-   .. py:method:: update() -> global___AnswerRequestUpdateStage
-      :property:
-
-
-   .. py:method:: done() -> global___AnswerRequestDoneStage
-      :property:
-
-      done is sent when the requester is done sending information
-
-
-   .. py:method:: error() -> global___AnswerRequestErrorStage
-      :property:
-
-      error is sent any time before done
-
 
    .. py:method:: HasField(field_name: Literal[done, b'done', error, b'error', init, b'init', stage, b'stage', update, b'update']) -> bool
 
@@ -157,8 +155,8 @@ Classes
 
    AnswerRequestErrorStage indicates the exchange has failed with an error.
 
-   .. py:method:: status() -> google.rpc.status_pb2.Status
-      :property:
+   .. py:property:: status
+      :type: google.rpc.status_pb2.Status
 
 
    .. py:method:: HasField(field_name: Literal[status, b'status']) -> bool
@@ -186,14 +184,14 @@ Classes
    AnswerRequestInitStage is the first and a one time stage that represents the
    callers initial SDP request to the controlled (answerer) side.
 
+   .. py:property:: optional_config
+      :type: global___WebRTCConfig
+
+
    .. py:attribute:: sdp
       :annotation: :str
 
       
-
-   .. py:method:: optional_config() -> global___WebRTCConfig
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[optional_config, b'optional_config']) -> bool
 
@@ -220,8 +218,8 @@ Classes
    AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to
    the controlled (answerer) side.
 
-   .. py:method:: candidate() -> global___ICECandidate
-      :property:
+   .. py:property:: candidate
+      :type: global___ICECandidate
 
 
    .. py:method:: HasField(field_name: Literal[candidate, b'candidate']) -> bool
@@ -248,30 +246,28 @@ Classes
 
    AnswerResponse is the SDP answer that an answerer responds with.
 
+   .. py:property:: init
+      :type: global___AnswerResponseInitStage
+
+
+   .. py:property:: update
+      :type: global___AnswerResponseUpdateStage
+
+
+   .. py:property:: done
+      :type: global___AnswerResponseDoneStage
+
+      done is sent when the answerer is done sending information
+
+   .. py:property:: error
+      :type: global___AnswerResponseErrorStage
+
+      error is sent any time before done
+
    .. py:attribute:: uuid
       :annotation: :str
 
       
-
-   .. py:method:: init() -> global___AnswerResponseInitStage
-      :property:
-
-
-   .. py:method:: update() -> global___AnswerResponseUpdateStage
-      :property:
-
-
-   .. py:method:: done() -> global___AnswerResponseDoneStage
-      :property:
-
-      done is sent when the answerer is done sending information
-
-
-   .. py:method:: error() -> global___AnswerResponseErrorStage
-      :property:
-
-      error is sent any time before done
-
 
    .. py:method:: HasField(field_name: Literal[done, b'done', error, b'error', init, b'init', stage, b'stage', update, b'update']) -> bool
 
@@ -319,8 +315,8 @@ Classes
 
    AnswerResponseErrorStage indicates the exchange has failed with an error.
 
-   .. py:method:: status() -> google.rpc.status_pb2.Status
-      :property:
+   .. py:property:: status
+      :type: google.rpc.status_pb2.Status
 
 
    .. py:method:: HasField(field_name: Literal[status, b'status']) -> bool
@@ -361,8 +357,8 @@ Classes
    AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to
    the controlling side.
 
-   .. py:method:: candidate() -> global___ICECandidate
-      :property:
+   .. py:property:: candidate
+      :type: global___ICECandidate
 
 
    .. py:method:: HasField(field_name: Literal[candidate, b'candidate']) -> bool
@@ -408,18 +404,18 @@ Classes
 
    CallResponse is the SDP answer that the controlled side responds with.
 
+   .. py:property:: init
+      :type: global___CallResponseInitStage
+
+
+   .. py:property:: update
+      :type: global___CallResponseUpdateStage
+
+
    .. py:attribute:: uuid
       :annotation: :str
 
       
-
-   .. py:method:: init() -> global___CallResponseInitStage
-      :property:
-
-
-   .. py:method:: update() -> global___CallResponseUpdateStage
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[init, b'init', stage, b'stage', update, b'update']) -> bool
 
@@ -474,8 +470,8 @@ Classes
    CallResponseUpdateStage is multiply used to trickle in ICE candidates from
    the controlled (answering) side.
 
-   .. py:method:: candidate() -> global___ICECandidate
-      :property:
+   .. py:property:: candidate
+      :type: global___ICECandidate
 
 
    .. py:method:: HasField(field_name: Literal[candidate, b'candidate']) -> bool
@@ -502,6 +498,14 @@ Classes
 
    CallUpdateRequest updates the call with additional info to the controlled side.
 
+   .. py:property:: candidate
+      :type: global___ICECandidate
+
+
+   .. py:property:: error
+      :type: google.rpc.status_pb2.Status
+
+
    .. py:attribute:: uuid
       :annotation: :str
 
@@ -511,14 +515,6 @@ Classes
       :annotation: :bool
 
       
-
-   .. py:method:: candidate() -> global___ICECandidate
-      :property:
-
-
-   .. py:method:: error() -> google.rpc.status_pb2.Status
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[candidate, b'candidate', done, b'done', error, b'error', update, b'update']) -> bool
 
@@ -628,6 +624,10 @@ Classes
 
    ICEServer describes an ICE server.
 
+   .. py:property:: urls
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
    .. py:attribute:: username
       :annotation: :str
 
@@ -637,10 +637,6 @@ Classes
       :annotation: :str
 
       
-
-   .. py:method:: urls() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-      :property:
-
 
 
 .. py:class:: OptionalWebRTCConfigRequest
@@ -658,8 +654,8 @@ Classes
    OptionalWebRTCConfigResponse contains the optional WebRTC config
    to use for the peer connection.
 
-   .. py:method:: config() -> global___WebRTCConfig
-      :property:
+   .. py:property:: config
+      :type: global___WebRTCConfig
 
 
    .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
@@ -686,14 +682,14 @@ Classes
 
    WebRTCConfig represents parts of a WebRTC config.
 
+   .. py:property:: additional_ice_servers
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ICEServer]
+
+
    .. py:attribute:: disable_trickle
       :annotation: :bool
 
       disable_trickle indicates if Trickle ICE should be used. Currently, both
       sides must both respect this setting.
-
-   .. py:method:: additional_ice_servers() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ICEServer]
-      :property:
-
 
 

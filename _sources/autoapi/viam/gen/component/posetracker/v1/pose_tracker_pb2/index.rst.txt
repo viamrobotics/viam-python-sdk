@@ -49,24 +49,22 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: name
-      :annotation: :str
-
-      Name of the pose tracker
-
-   .. py:method:: body_names() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-      :property:
+   .. py:property:: body_names
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Names of the bodies whose poses are being requested. In the event
       this parameter is not supplied or is an empty list, all available
       poses are returned
 
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
 
+   .. py:attribute:: name
+      :annotation: :str
+
+      Name of the pose tracker
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -111,14 +109,14 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+      .. py:property:: value
+         :type: viam.gen.common.v1.common_pb2.PoseInFrame
+
+
       .. py:attribute:: key
          :annotation: :str
 
          
-
-      .. py:method:: value() -> viam.gen.common.v1.common_pb2.PoseInFrame
-         :property:
-
 
       .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
@@ -138,11 +136,10 @@ Attributes
 
 
 
-   .. py:method:: body_poses() -> google.protobuf.internal.containers.MessageMap[str, viam.gen.common.v1.common_pb2.PoseInFrame]
-      :property:
+   .. py:property:: body_poses
+      :type: google.protobuf.internal.containers.MessageMap[str, viam.gen.common.v1.common_pb2.PoseInFrame]
 
       Mapping of each body name to the pose representing the center of the body.
-
 
 
 .. py:data:: global___GetPosesResponse

@@ -141,12 +141,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: info() -> global___AudioChunkInfo
-      :property:
+   .. py:property:: info
+      :type: global___AudioChunkInfo
 
 
-   .. py:method:: chunk() -> global___AudioChunk
-      :property:
+   .. py:property:: chunk
+      :type: global___AudioChunk
 
 
    .. py:method:: HasField(field_name: Literal[chunk, b'chunk', info, b'info', type, b'type']) -> bool
@@ -208,6 +208,10 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: latency
+      :type: google.protobuf.duration_pb2.Duration
+
+
    .. py:attribute:: channel_count
       :annotation: :int
 
@@ -238,10 +242,6 @@ Classes
 
       
 
-   .. py:method:: latency() -> google.protobuf.duration_pb2.Duration
-      :property:
-
-
    .. py:method:: HasField(field_name: Literal[latency, b'latency']) -> bool
 
       Checks if a certain field is set for the message.
@@ -270,14 +270,14 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: duration
+      :type: google.protobuf.duration_pb2.Duration
+
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of an audio input
-
-   .. py:method:: duration() -> google.protobuf.duration_pb2.Duration
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[duration, b'duration']) -> bool
 

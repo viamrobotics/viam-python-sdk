@@ -70,6 +70,14 @@ Attributes
          The log level to output
 
 
+   .. py:property:: resource_names
+      :type: List[viam.proto.common.ResourceName]
+
+      Get a list of all resource names
+
+      :returns: The list of resource names
+      :rtype: List[ResourceName]
+
    .. py:method:: at_address(address: str, options: Options) -> typing_extensions.Self
       :classmethod:
       :async:
@@ -158,15 +166,6 @@ Attributes
 
       :returns: The component
       :rtype: ComponentBase
-
-
-   .. py:method:: resource_names() -> List[viam.proto.common.ResourceName]
-      :property:
-
-      Get a list of all resource names
-
-      :returns: The list of resource names
-      :rtype: List[ResourceName]
 
 
    .. py:method:: close()

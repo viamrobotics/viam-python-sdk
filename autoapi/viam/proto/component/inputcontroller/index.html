@@ -7,8 +7,7 @@
   <title>viam.proto.component.inputcontroller &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -86,64 +80,64 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceStub"><code class="docutils literal notranslate"><span class="pre">InputControllerServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event"><code class="docutils literal notranslate"><span class="pre">Event</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.time"><code class="docutils literal notranslate"><span class="pre">Event.time</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.event"><code class="docutils literal notranslate"><span class="pre">Event.event</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.control"><code class="docutils literal notranslate"><span class="pre">Event.control</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.value"><code class="docutils literal notranslate"><span class="pre">Event.value</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.time"><code class="docutils literal notranslate"><span class="pre">Event.time()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.HasField"><code class="docutils literal notranslate"><span class="pre">Event.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest"><code class="docutils literal notranslate"><span class="pre">GetControlsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetControlsRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.controller"><code class="docutils literal notranslate"><span class="pre">GetControlsRequest.controller</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetControlsRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetControlsRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsResponse"><code class="docutils literal notranslate"><span class="pre">GetControlsResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsResponse.controls"><code class="docutils literal notranslate"><span class="pre">GetControlsResponse.controls()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsResponse.controls"><code class="docutils literal notranslate"><span class="pre">GetControlsResponse.controls</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest"><code class="docutils literal notranslate"><span class="pre">GetEventsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetEventsRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.controller"><code class="docutils literal notranslate"><span class="pre">GetEventsRequest.controller</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetEventsRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetEventsRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsResponse"><code class="docutils literal notranslate"><span class="pre">GetEventsResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsResponse.events"><code class="docutils literal notranslate"><span class="pre">GetEventsResponse.events()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsResponse.events"><code class="docutils literal notranslate"><span class="pre">GetEventsResponse.events</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Status.events"><code class="docutils literal notranslate"><span class="pre">Status.events()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Status.events"><code class="docutils literal notranslate"><span class="pre">Status.events</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events.events</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events.cancelled_events</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.control"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events.control</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events.events()</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.Events.cancelled_events()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.events</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.extra"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.controller"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.controller</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.events"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.events()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.extra"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StreamEventsRequest.HasField()</span></code></a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.control">control</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.events">events</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events">cancelled_events</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.control">control</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsResponse"><code class="docutils literal notranslate"><span class="pre">StreamEventsResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsResponse.event"><code class="docutils literal notranslate"><span class="pre">StreamEventsResponse.event()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsResponse.event"><code class="docutils literal notranslate"><span class="pre">StreamEventsResponse.event</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsResponse.HasField"><code class="docutils literal notranslate"><span class="pre">StreamEventsResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.event"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.event</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.extra"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.controller"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.controller</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.event"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.event()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.extra"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TriggerEventRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -158,16 +152,16 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.InputControllerServiceStub">InputControllerServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event">Event</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.time">time</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.event">event</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.control">control</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.value">value</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.time">time</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.Event.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest">GetControlsRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetControlsRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -176,8 +170,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest">GetEventsRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.GetEventsRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -191,9 +185,9 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest">StreamEventsRequest</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events">Events</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.events">events</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.StreamEventsRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -203,9 +197,9 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest">TriggerEventRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.event">event</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.controller">controller</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.inputcontroller.TriggerEventRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -356,6 +350,12 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.Event.time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.Event.time" title="Permalink to this definition"></a></dt>
+<dd><p>Timestamp of event</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.Event.event">
 <span class="sig-name descname"><span class="pre">event</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.Event.event" title="Permalink to this definition"></a></dt>
@@ -385,12 +385,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.Event.value">
 <span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.Event.value" title="Permalink to this definition"></a></dt>
 <dd><p>0 or 1 for buttons, -1.0 to +1.0 for axes</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.Event.time">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.Event.time" title="Permalink to this definition"></a></dt>
-<dd><p>Timestamp of event</p>
 </dd></dl>
 
 <dl class="py method">
@@ -425,16 +419,16 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.GetControlsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.GetControlsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.GetControlsRequest.controller">
 <span class="sig-name descname"><span class="pre">controller</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.GetControlsRequest.controller" title="Permalink to this definition"></a></dt>
 <dd><p>Name of an input controller</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.GetControlsRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.GetControlsRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -469,9 +463,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.GetControlsResponse.controls">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">controls</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.GetControlsResponse.controls" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">controls</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.GetControlsResponse.controls" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of all the controls (buttons and axes) that are
 available to a given Input Controller</p>
 </dd></dl>
@@ -485,16 +479,16 @@ available to a given Input Controller</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.GetEventsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.GetEventsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.GetEventsRequest.controller">
 <span class="sig-name descname"><span class="pre">controller</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.GetEventsRequest.controller" title="Permalink to this definition"></a></dt>
 <dd><p>Name of an input controller</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.GetEventsRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.GetEventsRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -529,9 +523,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.GetEventsResponse.events">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Event</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.GetEventsResponse.events" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Event</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.GetEventsResponse.events" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of the most recent event for each control on a given InputController. Effectively provides the current “state” of all
 buttons/axes on a given input controller</p>
 </dd></dl>
@@ -545,9 +539,9 @@ buttons/axes on a given input controller</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.Status.events">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Event</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.Status.events" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Event</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.Status.events" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -566,43 +560,43 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.Events.events">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.events" title="Permalink to this definition"></a></dt>
+<dd><p>Specify which event types to recieve events for</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancelled_events</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events" title="Permalink to this definition"></a></dt>
+<dd><p>Specify which event types to stop recieving events for
+This can be an empty list</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.Events.control">
 <span class="sig-name descname"><span class="pre">control</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.control" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a control (button or axis)</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.Events.events">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.events" title="Permalink to this definition"></a></dt>
-<dd><p>Specify which event types to recieve events for</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancelled_events</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.Events.cancelled_events" title="Permalink to this definition"></a></dt>
-<dd><p>Specify which event types to stop recieving events for
-This can be an empty list</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.events">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___StreamEventsRequest</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.events" title="Permalink to this definition"></a></dt>
+<dd><p>A list of Events</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.controller">
 <span class="sig-name descname"><span class="pre">controller</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.controller" title="Permalink to this definition"></a></dt>
 <dd><p>Name of an input controller</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.events">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___StreamEventsRequest</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.events" title="Permalink to this definition"></a></dt>
-<dd><p>A list of Events</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -637,9 +631,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.StreamEventsResponse.event">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___Event</span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsResponse.event" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Event</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.StreamEventsResponse.event" title="Permalink to this definition"></a></dt>
 <dd><p>Event for a controller</p>
 </dd></dl>
 
@@ -675,22 +669,22 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.TriggerEventRequest.event">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Event</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.TriggerEventRequest.event" title="Permalink to this definition"></a></dt>
+<dd><p>Digitally assert a given event</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.TriggerEventRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.TriggerEventRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.inputcontroller.TriggerEventRequest.controller">
 <span class="sig-name descname"><span class="pre">controller</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.inputcontroller.TriggerEventRequest.controller" title="Permalink to this definition"></a></dt>
 <dd><p>Name of an input controller</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.TriggerEventRequest.event">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">event</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">global___Event</span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.TriggerEventRequest.event" title="Permalink to this definition"></a></dt>
-<dd><p>Digitally assert a given event</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.inputcontroller.TriggerEventRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.inputcontroller.TriggerEventRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">

@@ -87,14 +87,14 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+      .. py:property:: value
+         :type: global___AnalogStatus
+
+
       .. py:attribute:: key
          :annotation: :str
 
          
-
-      .. py:method:: value() -> global___AnalogStatus
-         :property:
-
 
       .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
@@ -124,14 +124,14 @@ Classes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+      .. py:property:: value
+         :type: global___DigitalInterruptStatus
+
+
       .. py:attribute:: key
          :annotation: :str
 
          
-
-      .. py:method:: value() -> global___DigitalInterruptStatus
-         :property:
-
 
       .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
 
@@ -151,12 +151,12 @@ Classes
 
 
 
-   .. py:method:: analogs() -> google.protobuf.internal.containers.MessageMap[str, global___AnalogStatus]
-      :property:
+   .. py:property:: analogs
+      :type: google.protobuf.internal.containers.MessageMap[str, global___AnalogStatus]
 
 
-   .. py:method:: digital_interrupts() -> google.protobuf.internal.containers.MessageMap[str, global___DigitalInterruptStatus]
-      :property:
+   .. py:property:: digital_interrupts
+      :type: google.protobuf.internal.containers.MessageMap[str, global___DigitalInterruptStatus]
 
 
 
@@ -204,16 +204,15 @@ Classes
    GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
    observed.
 
+   .. py:property:: geometries
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
+
+      Dimensional type
+
    .. py:attribute:: reference_frame
       :annotation: :str
 
       Reference frame of the observer of the geometry
-
-   .. py:method:: geometries() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
-      :property:
-
-      Dimensional type
-
 
 
 .. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., label: str = ...)
@@ -222,24 +221,23 @@ Classes
 
    Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
 
+   .. py:property:: center
+      :type: global___Pose
+
+      Pose of a gemetries center point
+
+   .. py:property:: sphere
+      :type: global___Sphere
+
+
+   .. py:property:: box
+      :type: global___RectangularPrism
+
+
    .. py:attribute:: label
       :annotation: :str
 
       Label of the geometry. If none supplied, will be an empty string.
-
-   .. py:method:: center() -> global___Pose
-      :property:
-
-      Pose of a gemetries center point
-
-
-   .. py:method:: sphere() -> global___Sphere
-      :property:
-
-
-   .. py:method:: box() -> global___RectangularPrism
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[box, b'box', center, b'center', geometry_type, b'geometry_type', sphere, b'sphere']) -> bool
 
@@ -312,16 +310,15 @@ Classes
    PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
    repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud
 
+   .. py:property:: geometries
+      :type: global___GeometriesInFrame
+
+      volume of a given geometry
+
    .. py:attribute:: point_cloud
       :annotation: :bytes
 
       image frame expressed in bytes
-
-   .. py:method:: geometries() -> global___GeometriesInFrame
-      :property:
-
-      volume of a given geometry
-
 
    .. py:method:: HasField(field_name: Literal[geometries, b'geometries']) -> bool
 
@@ -396,14 +393,14 @@ Classes
 
    PoseInFrame contains a pose and the and the reference frame in which it was observed
 
+   .. py:property:: pose
+      :type: global___Pose
+
+
    .. py:attribute:: reference_frame
       :annotation: :str
 
       
-
-   .. py:method:: pose() -> global___Pose
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
 
@@ -430,8 +427,8 @@ Classes
    RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
    These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
 
-   .. py:method:: dims_mm() -> global___Vector3
-      :property:
+   .. py:property:: dims_mm
+      :type: global___Vector3
 
 
    .. py:method:: HasField(field_name: Literal[dims_mm, b'dims_mm']) -> bool
@@ -507,16 +504,15 @@ Classes
    frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
    reference frame as observed within the second reference frame.
 
+   .. py:property:: pose_in_observer_frame
+      :type: global___PoseInFrame
+
+      the pose of the above reference frame with respect to a different observer reference frame
+
    .. py:attribute:: reference_frame
       :annotation: :str
 
       the name of a given reference frame
-
-   .. py:method:: pose_in_observer_frame() -> global___PoseInFrame
-      :property:
-
-      the pose of the above reference frame with respect to a different observer reference frame
-
 
    .. py:method:: HasField(field_name: Literal[pose_in_observer_frame, b'pose_in_observer_frame']) -> bool
 
@@ -570,23 +566,20 @@ Classes
    they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
    given reference frame and a new target reference frame.
 
-   .. py:method:: obstacles() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
-      :property:
+   .. py:property:: obstacles
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
       a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
 
-
-   .. py:method:: interaction_spaces() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
-      :property:
+   .. py:property:: interaction_spaces
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
       a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
       this field is optional
 
-
-   .. py:method:: transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
-      :property:
+   .. py:property:: transforms
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
 
       a list of Transforms needed to transform a pose from one reference frame to another; this field is optional
-
 
 

@@ -7,8 +7,7 @@
   <title>viam.components.input.input &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -115,11 +109,11 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.input.input.Event"><code class="docutils literal notranslate"><span class="pre">Event</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.proto"><code class="docutils literal notranslate"><span class="pre">Event.proto</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.time"><code class="docutils literal notranslate"><span class="pre">Event.time</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.event"><code class="docutils literal notranslate"><span class="pre">Event.event</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.control"><code class="docutils literal notranslate"><span class="pre">Event.control</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.value"><code class="docutils literal notranslate"><span class="pre">Event.value</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.proto"><code class="docutils literal notranslate"><span class="pre">Event.proto()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.from_proto"><code class="docutils literal notranslate"><span class="pre">Event.from_proto()</span></code></a></li>
 </ul>
 </li>
@@ -173,11 +167,11 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.input.input.Event">Event</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.proto">proto</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.time">time</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.event">event</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.control">control</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.value">value</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.proto">proto</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.input.Event.from_proto">from_proto</a></li>
 </ul>
 </li>
@@ -482,7 +476,12 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.input.input.Event">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.input.input.</span></span><span class="sig-name descname"><span class="pre">Event</span></span><a class="reference internal" href="../../../../../_modules/viam/components/input/input.html#Event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.input.Event" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="viam.components.input.input.Event.proto">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><a class="headerlink" href="#viam.components.input.input.Event.proto" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.input.input.Event.time">
 <span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.components.input.input.Event.time" title="Permalink to this definition"></a></dt>
 <dd><p>seconds since epoch</p>
@@ -503,11 +502,6 @@
 <span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.components.input.input.Event.value" title="Permalink to this definition"></a></dt>
 <dd><p>0 or 1 for buttons, -1.0 to +1.0 for axes</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.input.input.Event.proto">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><a class="headerlink" href="#viam.components.input.input.Event.proto" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.input.input.Event.from_proto">

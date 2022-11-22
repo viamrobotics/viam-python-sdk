@@ -219,6 +219,9 @@ Attributes
 
 .. py:class:: Event
 
+   .. py:property:: proto
+
+
    .. py:attribute:: time
       :annotation: :float
 
@@ -238,10 +241,6 @@ Attributes
       :annotation: :float
 
       0 or 1 for buttons, -1.0 to +1.0 for axes
-
-   .. py:method:: proto()
-      :property:
-
 
    .. py:method:: from_proto(proto: viam.proto.component.inputcontroller.Event) -> typing_extensions.Self
       :classmethod:

@@ -7,8 +7,7 @@
   <title>viam.proto.service.sensors &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -82,38 +76,38 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceStub"><code class="docutils literal notranslate"><span class="pre">SensorsServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.sensor_names"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.sensor_names</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.sensor_names"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.sensor_names()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetReadingsRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsResponse"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsResponse.readings"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.readings()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsResponse.readings"><code class="docutils literal notranslate"><span class="pre">GetReadingsResponse.readings</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetSensorsRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsResponse"><code class="docutils literal notranslate"><span class="pre">GetSensorsResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsResponse.sensor_names"><code class="docutils literal notranslate"><span class="pre">GetSensorsResponse.sensor_names()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsResponse.sensor_names"><code class="docutils literal notranslate"><span class="pre">GetSensorsResponse.sensor_names</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.Readings"><code class="docutils literal notranslate"><span class="pre">Readings</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.value"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry.value</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.key"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry.key</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.value"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry.value()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">Readings.ReadingsEntry.HasField()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.name"><code class="docutils literal notranslate"><span class="pre">Readings.name()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.readings"><code class="docutils literal notranslate"><span class="pre">Readings.readings()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.name"><code class="docutils literal notranslate"><span class="pre">Readings.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.readings"><code class="docutils literal notranslate"><span class="pre">Readings.readings</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.Readings.HasField"><code class="docutils literal notranslate"><span class="pre">Readings.HasField()</span></code></a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.key">key</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.value">value</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.key">key</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.sensors.Readings.ReadingsEntry.HasField">HasField</a></li>
 </ul>
 </li>
@@ -127,9 +121,9 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.SensorsServiceStub">SensorsServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest">GetReadingsRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.sensor_names">sensor_names</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetReadingsRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -138,8 +132,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest">GetSensorsRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.sensors.GetSensorsRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -270,21 +264,21 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.sensors.GetReadingsRequest.sensor_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sensor_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.sensors.GetReadingsRequest.sensor_names" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.sensors.GetReadingsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.sensors.GetReadingsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.GetReadingsRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.sensors.GetReadingsRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.sensors.GetReadingsRequest.sensor_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sensor_names</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.service.sensors.GetReadingsRequest.sensor_names" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.sensors.GetReadingsRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.service.sensors.GetReadingsRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.GetReadingsRequest.HasField">
@@ -318,9 +312,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.GetReadingsResponse.readings">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readings</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Readings</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.service.sensors.GetReadingsResponse.readings" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Readings</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.sensors.GetReadingsResponse.readings" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -332,16 +326,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.sensors.GetSensorsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.sensors.GetSensorsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.GetSensorsRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.sensors.GetSensorsRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.sensors.GetSensorsRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.service.sensors.GetSensorsRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.GetSensorsRequest.HasField">
@@ -375,9 +369,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.GetSensorsResponse.sensor_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sensor_names</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.service.sensors.GetSensorsResponse.sensor_names" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sensor_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.sensors.GetSensorsResponse.sensor_names" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -396,14 +390,14 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.sensors.Readings.ReadingsEntry.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Value</span></em><a class="headerlink" href="#viam.proto.service.sensors.Readings.ReadingsEntry.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.Readings.ReadingsEntry.key">
 <span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.sensors.Readings.ReadingsEntry.key" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.service.sensors.Readings.ReadingsEntry.value">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Value</span></span></span><a class="headerlink" href="#viam.proto.service.sensors.Readings.ReadingsEntry.value" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -431,14 +425,14 @@ be raised.</p>
 
 </dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.Readings.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></span></span><a class="headerlink" href="#viam.proto.service.sensors.Readings.name" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.sensors.Readings.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.service.sensors.Readings.readings">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readings</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Value</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.service.sensors.Readings.readings" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Value</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.sensors.Readings.readings" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

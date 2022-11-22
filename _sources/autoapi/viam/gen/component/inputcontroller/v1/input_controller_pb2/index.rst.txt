@@ -65,16 +65,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: controller
       :annotation: :str
 
       Name of an input controller
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -109,12 +108,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: controls() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-      :property:
+   .. py:property:: controls
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       Returns a list of all the controls (buttons and axes) that are
       available to a given Input Controller
-
 
 
 .. py:data:: global___GetControlsResponse
@@ -132,16 +130,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: controller
       :annotation: :str
 
       Name of an input controller
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -176,12 +173,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
-      :property:
+   .. py:property:: events
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
 
       Returns a list of the most recent event for each control on a given InputController. Effectively provides the current "state" of all
       buttons/axes on a given input controller
-
 
 
 .. py:data:: global___GetEventsResponse
@@ -199,22 +195,20 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: event
+      :type: global___Event
+
+      Digitally assert a given event
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: controller
       :annotation: :str
 
       Name of an input controller
-
-   .. py:method:: event() -> global___Event
-      :property:
-
-      Digitally assert a given event
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[event, b'event', extra, b'extra']) -> bool
 
@@ -265,6 +259,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: time
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      Timestamp of event
+
    .. py:attribute:: event
       :annotation: :str
 
@@ -285,12 +284,6 @@ Attributes
       :annotation: :float
 
       0 or 1 for buttons, -1.0 to +1.0 for axes
-
-   .. py:method:: time() -> google.protobuf.timestamp_pb2.Timestamp
-      :property:
-
-      Timestamp of event
-
 
    .. py:method:: HasField(field_name: Literal[time, b'time']) -> bool
 
@@ -335,41 +328,37 @@ Attributes
       compiler.  These generated types subclass Message and implement the methods
       shown below.
 
+      .. py:property:: events
+         :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+         Specify which event types to recieve events for
+
+      .. py:property:: cancelled_events
+         :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+         Specify which event types to stop recieving events for
+         This can be an empty list
+
       .. py:attribute:: control
          :annotation: :str
 
          Name of a control (button or axis)
 
-      .. py:method:: events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-         :property:
 
-         Specify which event types to recieve events for
+   .. py:property:: events
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StreamEventsRequest]
 
+      A list of Events
 
-      .. py:method:: cancelled_events() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-         :property:
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
 
-         Specify which event types to stop recieving events for
-         This can be an empty list
-
-
+      Additional arguments to the method
 
    .. py:attribute:: controller
       :annotation: :str
 
       Name of an input controller
-
-   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StreamEventsRequest]
-      :property:
-
-      A list of Events
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -404,11 +393,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: event() -> global___Event
-      :property:
+   .. py:property:: event
+      :type: global___Event
 
       Event for a controller
-
 
    .. py:method:: HasField(field_name: Literal[event, b'event']) -> bool
 
@@ -443,8 +431,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: events() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
-      :property:
+   .. py:property:: events
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]
 
 
 

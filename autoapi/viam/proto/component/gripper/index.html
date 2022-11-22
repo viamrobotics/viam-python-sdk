@@ -7,8 +7,7 @@
   <title>viam.proto.component.gripper &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -84,27 +78,27 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub"><code class="docutils literal notranslate"><span class="pre">GripperServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest"><code class="docutils literal notranslate"><span class="pre">GrabRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest.extra"><code class="docutils literal notranslate"><span class="pre">GrabRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest.name"><code class="docutils literal notranslate"><span class="pre">GrabRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest.extra"><code class="docutils literal notranslate"><span class="pre">GrabRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GrabRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse"><code class="docutils literal notranslate"><span class="pre">GrabResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.extra"><code class="docutils literal notranslate"><span class="pre">GrabResponse.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.success"><code class="docutils literal notranslate"><span class="pre">GrabResponse.success</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.extra"><code class="docutils literal notranslate"><span class="pre">GrabResponse.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GrabResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest"><code class="docutils literal notranslate"><span class="pre">OpenRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest.extra"><code class="docutils literal notranslate"><span class="pre">OpenRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest.name"><code class="docutils literal notranslate"><span class="pre">OpenRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest.extra"><code class="docutils literal notranslate"><span class="pre">OpenRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest.HasField"><code class="docutils literal notranslate"><span class="pre">OpenRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.OpenResponse"><code class="docutils literal notranslate"><span class="pre">OpenResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest"><code class="docutils literal notranslate"><span class="pre">StopRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest.name"><code class="docutils literal notranslate"><span class="pre">StopRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -118,27 +112,27 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceStub">GripperServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest">GrabRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse">GrabResponse</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.success">success</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.success">success</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest">OpenRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.OpenResponse">OpenResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest">StopRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.StopRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -273,14 +267,14 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.GrabRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gripper.GrabRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.GrabRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.gripper.GrabRequest.name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gripper.GrabRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.gripper.GrabRequest.extra" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -315,14 +309,14 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.GrabResponse.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gripper.GrabResponse.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.GrabResponse.success">
 <span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.component.gripper.GrabResponse.success" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gripper.GrabResponse.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.gripper.GrabResponse.extra" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -357,14 +351,14 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.OpenRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gripper.OpenRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.OpenRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.gripper.OpenRequest.name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gripper.OpenRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.gripper.OpenRequest.extra" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -408,16 +402,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.StopRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gripper.StopRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.StopRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.gripper.StopRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a gripper</p>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gripper.StopRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.gripper.StopRequest.extra" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.StopRequest.HasField">

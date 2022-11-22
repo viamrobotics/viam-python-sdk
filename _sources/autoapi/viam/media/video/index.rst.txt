@@ -81,6 +81,10 @@ Attributes
    encoding defaults to sys.getdefaultencoding().
    errors defaults to 'strict'.
 
+   .. py:property:: with_lazy_suffix
+      :type: str
+
+
    .. py:attribute:: VIAM_RGBA
       :annotation: = image/vnd.viam.rgba
 
@@ -108,10 +112,6 @@ Attributes
 
    .. py:method:: from_lazy(value: str) -> Tuple[typing_extensions.Self, bool]
       :classmethod:
-
-
-   .. py:method:: with_lazy_suffix() -> str
-      :property:
 
 
    .. py:method:: encode_image(image: Union[PIL.Image.Image, RawImage]) -> bytes

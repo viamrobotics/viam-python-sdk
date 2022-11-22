@@ -53,16 +53,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
       Name of slam service
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -97,17 +96,15 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: pose() -> viam.gen.common.v1.common_pb2.PoseInFrame
-      :property:
+   .. py:property:: pose
+      :type: viam.gen.common.v1.common_pb2.PoseInFrame
 
       Current position of the robot within the World frame.
 
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
 
       Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra', pose, b'pose']) -> bool
 
@@ -142,6 +139,17 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: camera_position
+      :type: viam.gen.common.v1.common_pb2.Pose
+
+      Optional parameter for image/jpeg mime_type, used to project point
+      cloud into a 2D image.
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :annotation: :str
 
@@ -157,19 +165,6 @@ Attributes
 
       Optional parameter for image/jpeg mime_type, defaults to false.
       Tells us whether to include the robot position on the 2D image.
-
-   .. py:method:: camera_position() -> viam.gen.common.v1.common_pb2.Pose
-      :property:
-
-      Optional parameter for image/jpeg mime_type, used to project point
-      cloud into a 2D image.
-
-
-   .. py:method:: extra() -> google.protobuf.struct_pb2.Struct
-      :property:
-
-      Additional arguments to the method
-
 
    .. py:method:: HasField(field_name: Literal[_camera_position, b'_camera_position', camera_position, b'camera_position', extra, b'extra']) -> bool
 
@@ -219,6 +214,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: point_cloud
+      :type: viam.gen.common.v1.common_pb2.PointCloudObject
+
+
    .. py:attribute:: image
       :annotation: :bytes
 
@@ -228,10 +227,6 @@ Attributes
       :annotation: :str
 
       Actual MIME type of response (image/jpeg or image/pcd)
-
-   .. py:method:: point_cloud() -> viam.gen.common.v1.common_pb2.PointCloudObject
-      :property:
-
 
    .. py:method:: HasField(field_name: Literal[image, b'image', map, b'map', point_cloud, b'point_cloud']) -> bool
 

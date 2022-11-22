@@ -7,8 +7,7 @@
   <title>viam.proto.component.movementsensor &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -91,8 +85,8 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub"><code class="docutils literal notranslate"><span class="pre">MovementSensorServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest"><code class="docutils literal notranslate"><span class="pre">GetAccuracyRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetAccuracyRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest.name"><code class="docutils literal notranslate"><span class="pre">GetAccuracyRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetAccuracyRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetAccuracyRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -102,7 +96,7 @@
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.AccuracyMmEntry.value"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.AccuracyMmEntry.value</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.accuracy_mm"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.accuracy_mm()</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.accuracy_mm"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.accuracy_mm</span></code></a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.AccuracyMmEntry.key">key</a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.AccuracyMmEntry.value">value</a></li>
 </ul>
@@ -110,19 +104,19 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.name"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityResponse"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityResponse.angular_velocity"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityResponse.angular_velocity()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityResponse.angular_velocity"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityResponse.angular_velocity</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest"><code class="docutils literal notranslate"><span class="pre">GetCompassHeadingRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetCompassHeadingRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.name"><code class="docutils literal notranslate"><span class="pre">GetCompassHeadingRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetCompassHeadingRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetCompassHeadingRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -131,42 +125,42 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.name"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityResponse"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityResponse.linear_velocity"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityResponse.linear_velocity()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityResponse.linear_velocity"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityResponse.linear_velocity</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetLinearVelocityResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest"><code class="docutils literal notranslate"><span class="pre">GetOrientationRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetOrientationRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest.name"><code class="docutils literal notranslate"><span class="pre">GetOrientationRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetOrientationRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetOrientationRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationResponse"><code class="docutils literal notranslate"><span class="pre">GetOrientationResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationResponse.orientation"><code class="docutils literal notranslate"><span class="pre">GetOrientationResponse.orientation()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationResponse.orientation"><code class="docutils literal notranslate"><span class="pre">GetOrientationResponse.orientation</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetOrientationResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse.coordinate"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.coordinate</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse.altitude_mm"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.altitude_mm</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse.coordinate"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.coordinate()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -191,8 +185,8 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.MovementSensorServiceStub">MovementSensorServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest">GetAccuracyRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -202,8 +196,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest">GetAngularVelocityRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -213,8 +207,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest">GetCompassHeadingRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -223,8 +217,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest">GetLinearVelocityRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -234,8 +228,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest">GetOrientationRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetOrientationRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -245,20 +239,20 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest">GetPositionRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse">GetPositionResponse</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse.altitude_mm">altitude_mm</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse.coordinate">coordinate</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse.altitude_mm">altitude_mm</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPositionResponse.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest">GetPropertiesRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -441,16 +435,16 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a movement sensor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -504,9 +498,9 @@ shown below.</p>
 
 </dd></dl>
 
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse.accuracy_mm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">accuracy_mm</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.ScalarMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.accuracy_mm" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">accuracy_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.ScalarMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.accuracy_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -518,16 +512,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAngularVelocityRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAngularVelocityRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a movement sensor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAngularVelocityRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -562,9 +556,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAngularVelocityResponse.angular_velocity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angular_velocity</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetAngularVelocityResponse.angular_velocity" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angular_velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAngularVelocityResponse.angular_velocity" title="Permalink to this definition"></a></dt>
 <dd><p>angular velocity contains velocity in degrees/s across x/y/z axes</p>
 </dd></dl>
 
@@ -600,16 +594,16 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetCompassHeadingRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetCompassHeadingRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a movement sensor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetCompassHeadingRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetCompassHeadingRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -660,16 +654,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetLinearVelocityRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetLinearVelocityRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a movement sensor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetLinearVelocityRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetLinearVelocityRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -704,9 +698,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetLinearVelocityResponse.linear_velocity">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linear_velocity</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetLinearVelocityResponse.linear_velocity" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linear_velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetLinearVelocityResponse.linear_velocity" title="Permalink to this definition"></a></dt>
 <dd><p>linear velocity contains velocity in mm/s across x/y/z axes</p>
 </dd></dl>
 
@@ -742,16 +736,16 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetOrientationRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetOrientationRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetOrientationRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetOrientationRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a movement sensor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetOrientationRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetOrientationRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -786,9 +780,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetOrientationResponse.orientation">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orientation</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Orientation" title="viam.gen.common.v1.common_pb2.Orientation"><span class="pre">viam.gen.common.v1.common_pb2.Orientation</span></a></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetOrientationResponse.orientation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orientation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Orientation" title="viam.gen.common.v1.common_pb2.Orientation"><span class="pre">viam.gen.common.v1.common_pb2.Orientation</span></a></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetOrientationResponse.orientation" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -823,16 +817,16 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPositionRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetPositionRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPositionRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetPositionRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a movement sensor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPositionRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetPositionRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -867,14 +861,14 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPositionResponse.coordinate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">coordinate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetPositionResponse.coordinate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPositionResponse.altitude_mm">
 <span class="sig-name descname"><span class="pre">altitude_mm</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetPositionResponse.altitude_mm" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPositionResponse.coordinate">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">coordinate</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetPositionResponse.coordinate" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -909,16 +903,16 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPropertiesRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetPropertiesRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPropertiesRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetPropertiesRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a movement sensor</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetPropertiesRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetPropertiesRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">

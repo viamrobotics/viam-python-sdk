@@ -110,13 +110,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:method:: values() -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
-      :property:
+   .. py:property:: values
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
       A list of joint positions. Rotations values are in degrees, translational values in mm.
       The numbers are ordered spatially from the base toward the end effector
       This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
-
 
 
 .. py:class:: Pose(*, x: float = ..., y: float = ..., z: float = ..., o_x: float = ..., o_y: float = ..., o_z: float = ..., theta: float = ...)
@@ -176,23 +175,20 @@ Classes
    they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
    given reference frame and a new target reference frame.
 
-   .. py:method:: obstacles() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
-      :property:
+   .. py:property:: obstacles
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
       a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
 
-
-   .. py:method:: interaction_spaces() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
-      :property:
+   .. py:property:: interaction_spaces
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
       a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
       this field is optional
 
-
-   .. py:method:: transforms() -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
-      :property:
+   .. py:property:: transforms
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
 
       a list of Transforms needed to transform a pose from one reference frame to another; this field is optional
-
 
 

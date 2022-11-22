@@ -7,8 +7,7 @@
   <title>viam.proto.component.base &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -81,44 +75,44 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.BaseServiceStub"><code class="docutils literal notranslate"><span class="pre">BaseServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.distance_mm"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.distance_mm</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.mm_per_sec"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.mm_per_sec</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveStraightRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.MoveStraightResponse"><code class="docutils literal notranslate"><span class="pre">MoveStraightResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.linear"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.linear</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.angular"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.angular</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.name"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.linear"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.linear()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.angular"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.angular()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetPowerRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetPowerResponse"><code class="docutils literal notranslate"><span class="pre">SetPowerResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.linear"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.linear</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.angular"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.angular</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.name"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.linear"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.linear()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.angular"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.angular()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetVelocityRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetVelocityResponse"><code class="docutils literal notranslate"><span class="pre">SetVelocityResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SpinRequest"><code class="docutils literal notranslate"><span class="pre">SpinRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.extra"><code class="docutils literal notranslate"><span class="pre">SpinRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.name"><code class="docutils literal notranslate"><span class="pre">SpinRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.angle_deg"><code class="docutils literal notranslate"><span class="pre">SpinRequest.angle_deg</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.degs_per_sec"><code class="docutils literal notranslate"><span class="pre">SpinRequest.degs_per_sec</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.extra"><code class="docutils literal notranslate"><span class="pre">SpinRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SpinRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SpinResponse"><code class="docutils literal notranslate"><span class="pre">SpinResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.StopRequest"><code class="docutils literal notranslate"><span class="pre">StopRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.name"><code class="docutils literal notranslate"><span class="pre">StopRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -134,44 +128,44 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.BaseServiceStub">BaseServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest">MoveStraightRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.distance_mm">distance_mm</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.mm_per_sec">mm_per_sec</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.MoveStraightRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.MoveStraightResponse">MoveStraightResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest">SetPowerRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.linear">linear</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.angular">angular</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetPowerRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetPowerResponse">SetPowerResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest">SetVelocityRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.linear">linear</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.angular">angular</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SetVelocityRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SetVelocityResponse">SetVelocityResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SpinRequest">SpinRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.angle_deg">angle_deg</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.degs_per_sec">degs_per_sec</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.SpinRequest.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.SpinResponse">SpinResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.base.StopRequest">StopRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.StopRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -333,6 +327,12 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.MoveStraightRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.base.MoveStraightRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.base.MoveStraightRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.base.MoveStraightRequest.name" title="Permalink to this definition"></a></dt>
@@ -349,12 +349,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.base.MoveStraightRequest.mm_per_sec">
 <span class="sig-name descname"><span class="pre">mm_per_sec</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.component.base.MoveStraightRequest.mm_per_sec" title="Permalink to this definition"></a></dt>
 <dd><p>Desired travel velocity in millimeters/second</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.MoveStraightRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.base.MoveStraightRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -398,28 +392,28 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.SetPowerRequest.linear">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linear</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></em><a class="headerlink" href="#viam.proto.component.base.SetPowerRequest.linear" title="Permalink to this definition"></a></dt>
+<dd><p>Desired linear power percentage as -1 -&gt; 1</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.SetPowerRequest.angular">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></em><a class="headerlink" href="#viam.proto.component.base.SetPowerRequest.angular" title="Permalink to this definition"></a></dt>
+<dd><p>Desired angular power percentage % as -1 -&gt; 1</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.SetPowerRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.base.SetPowerRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.base.SetPowerRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.base.SetPowerRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a base</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.SetPowerRequest.linear">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linear</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></span></span><a class="headerlink" href="#viam.proto.component.base.SetPowerRequest.linear" title="Permalink to this definition"></a></dt>
-<dd><p>Desired linear power percentage as -1 -&gt; 1</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.SetPowerRequest.angular">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angular</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></span></span><a class="headerlink" href="#viam.proto.component.base.SetPowerRequest.angular" title="Permalink to this definition"></a></dt>
-<dd><p>Desired angular power percentage % as -1 -&gt; 1</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.SetPowerRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.base.SetPowerRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -463,28 +457,28 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.SetVelocityRequest.linear">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linear</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></em><a class="headerlink" href="#viam.proto.component.base.SetVelocityRequest.linear" title="Permalink to this definition"></a></dt>
+<dd><p>Desired linear velocity in mm per second</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.SetVelocityRequest.angular">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></em><a class="headerlink" href="#viam.proto.component.base.SetVelocityRequest.angular" title="Permalink to this definition"></a></dt>
+<dd><p>Desired angular velocity in degrees per second</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.SetVelocityRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.base.SetVelocityRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.base.SetVelocityRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.base.SetVelocityRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a base</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.SetVelocityRequest.linear">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linear</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></span></span><a class="headerlink" href="#viam.proto.component.base.SetVelocityRequest.linear" title="Permalink to this definition"></a></dt>
-<dd><p>Desired linear velocity in mm per second</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.SetVelocityRequest.angular">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">angular</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></span></span><a class="headerlink" href="#viam.proto.component.base.SetVelocityRequest.angular" title="Permalink to this definition"></a></dt>
-<dd><p>Desired angular velocity in degrees per second</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.SetVelocityRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.base.SetVelocityRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -528,6 +522,12 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.SpinRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.base.SpinRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.base.SpinRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.base.SpinRequest.name" title="Permalink to this definition"></a></dt>
@@ -544,12 +544,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.base.SpinRequest.degs_per_sec">
 <span class="sig-name descname"><span class="pre">degs_per_sec</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.component.base.SpinRequest.degs_per_sec" title="Permalink to this definition"></a></dt>
 <dd><p>Desired angular velocity</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.SpinRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.base.SpinRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
@@ -593,16 +587,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.base.StopRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.base.StopRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.base.StopRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.base.StopRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a base</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.base.StopRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.base.StopRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">

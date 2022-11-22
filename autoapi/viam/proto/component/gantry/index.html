@@ -7,8 +7,7 @@
   <title>viam.proto.component.gantry &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../../_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
@@ -20,11 +19,6 @@
         <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
         <script src="../../../../../_static/sphinx_highlight.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="../../../../../_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -83,44 +77,44 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub"><code class="docutils literal notranslate"><span class="pre">GantryServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest"><code class="docutils literal notranslate"><span class="pre">GetLengthsRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetLengthsRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetLengthsRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetLengthsRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetLengthsRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsResponse"><code class="docutils literal notranslate"><span class="pre">GetLengthsResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsResponse.lengths_mm"><code class="docutils literal notranslate"><span class="pre">GetLengthsResponse.lengths_mm()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsResponse.lengths_mm"><code class="docutils literal notranslate"><span class="pre">GetLengthsResponse.lengths_mm</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPositionRequest.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionResponse"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionResponse.positions_mm"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.positions_mm()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionResponse.positions_mm"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.positions_mm</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.positions_mm</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.world_state</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.positions_mm()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.world_state()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.HasField()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionResponse"><code class="docutils literal notranslate"><span class="pre">MoveToPositionResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.positions_mm"><code class="docutils literal notranslate"><span class="pre">Status.positions_mm</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.lengths_mm"><code class="docutils literal notranslate"><span class="pre">Status.lengths_mm</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.is_moving"><code class="docutils literal notranslate"><span class="pre">Status.is_moving</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.positions_mm"><code class="docutils literal notranslate"><span class="pre">Status.positions_mm()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.lengths_mm"><code class="docutils literal notranslate"><span class="pre">Status.lengths_mm()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest"><code class="docutils literal notranslate"><span class="pre">StopRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest.name"><code class="docutils literal notranslate"><span class="pre">StopRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopRequest.extra()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -135,8 +129,8 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceStub">GantryServiceStub</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest">GetLengthsRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetLengthsRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -145,8 +139,8 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest">GetPositionRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -155,24 +149,24 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest">MoveToPositionRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm">positions_mm</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.world_state">world_state</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.HasField">HasField</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.WhichOneof">WhichOneof</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionResponse">MoveToPositionResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.Status">Status</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.is_moving">is_moving</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.positions_mm">positions_mm</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.lengths_mm">lengths_mm</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.Status.is_moving">is_moving</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest">StopRequest</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.StopRequest.HasField">HasField</a></li>
 </ul>
 </li>
@@ -323,16 +317,16 @@ inheritance.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GetLengthsRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gantry.GetLengthsRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GetLengthsRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.gantry.GetLengthsRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.GetLengthsRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.gantry.GetLengthsRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GetLengthsRequest.HasField">
@@ -366,9 +360,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GetLengthsResponse.lengths_mm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lengths_mm</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.gantry.GetLengthsResponse.lengths_mm" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lengths_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.gantry.GetLengthsResponse.lengths_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -380,16 +374,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GetPositionRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gantry.GetPositionRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GetPositionRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.gantry.GetPositionRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.GetPositionRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.gantry.GetPositionRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GetPositionRequest.HasField">
@@ -423,9 +417,9 @@ be raised.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py method">
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GetPositionResponse.positions_mm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions_mm</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.gantry.GetPositionResponse.positions_mm" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.gantry.GetPositionResponse.positions_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -437,26 +431,26 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.positions_mm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.world_state">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">viam.gen.common.v1.common_pb2.WorldState</span></a></em><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.world_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.positions_mm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions_mm</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.world_state">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">viam.gen.common.v1.common_pb2.WorldState</span></a></span></span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.world_state" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.HasField">
@@ -520,19 +514,19 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.Status.positions_mm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.gantry.Status.positions_mm" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.Status.lengths_mm">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lengths_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.gantry.Status.lengths_mm" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.Status.is_moving">
 <span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.component.gantry.Status.is_moving" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.Status.positions_mm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions_mm</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.gantry.Status.positions_mm" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.Status.lengths_mm">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lengths_mm</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.proto.component.gantry.Status.lengths_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -544,16 +538,16 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.StopRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gantry.StopRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.StopRequest.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.gantry.StopRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a gantry</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.StopRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="headerlink" href="#viam.proto.component.gantry.StopRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
 </dd></dl>
 
 <dl class="py method">
