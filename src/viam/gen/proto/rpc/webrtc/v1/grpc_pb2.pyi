@@ -16,6 +16,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class PacketMessage(google.protobuf.message.Message):
     """A PacketMessage is used to packetize large messages (> 64KiB) to be able to safely
     transmit over WebRTC data channels.
@@ -33,6 +34,7 @@ class PacketMessage(google.protobuf.message.Message):
         ...
 global___PacketMessage = PacketMessage
 
+@typing_extensions.final
 class Stream(google.protobuf.message.Message):
     """A Stream represents an instance of a gRPC stream between
     a client and a server.
@@ -48,6 +50,7 @@ class Stream(google.protobuf.message.Message):
         ...
 global___Stream = Stream
 
+@typing_extensions.final
 class Request(google.protobuf.message.Message):
     """A Request is a frame coming from a client. It is always
     associated with a stream where the client assigns the stream
@@ -86,6 +89,7 @@ class Request(google.protobuf.message.Message):
         ...
 global___Request = Request
 
+@typing_extensions.final
 class RequestHeaders(google.protobuf.message.Message):
     """RequestHeaders describe the unary or streaming call to make."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -112,6 +116,7 @@ class RequestHeaders(google.protobuf.message.Message):
         ...
 global___RequestHeaders = RequestHeaders
 
+@typing_extensions.final
 class RequestMessage(google.protobuf.message.Message):
     """A RequestMessage contains individual gRPC messages and a potential
     end-of-stream (EOS) marker.
@@ -137,6 +142,7 @@ class RequestMessage(google.protobuf.message.Message):
         ...
 global___RequestMessage = RequestMessage
 
+@typing_extensions.final
 class Response(google.protobuf.message.Message):
     """A Response is a frame coming from a server. It is always
     associated with a stream where the client assigns the stream
@@ -178,6 +184,7 @@ class Response(google.protobuf.message.Message):
         ...
 global___Response = Response
 
+@typing_extensions.final
 class ResponseHeaders(google.protobuf.message.Message):
     """ResponseHeaders contain custom metadata that are sent to the client
     before any message or trailers (unless only trailers are sent).
@@ -199,6 +206,7 @@ class ResponseHeaders(google.protobuf.message.Message):
         ...
 global___ResponseHeaders = ResponseHeaders
 
+@typing_extensions.final
 class ResponseMessage(google.protobuf.message.Message):
     """ResponseMessage contains the data of a response to a call."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -218,6 +226,7 @@ class ResponseMessage(google.protobuf.message.Message):
         ...
 global___ResponseMessage = ResponseMessage
 
+@typing_extensions.final
 class ResponseTrailers(google.protobuf.message.Message):
     """ResponseTrailers contain the status of a response and any custom metadata."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -242,6 +251,7 @@ class ResponseTrailers(google.protobuf.message.Message):
         ...
 global___ResponseTrailers = ResponseTrailers
 
+@typing_extensions.final
 class Strings(google.protobuf.message.Message):
     """Strings are a series of values."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -258,12 +268,14 @@ class Strings(google.protobuf.message.Message):
         ...
 global___Strings = Strings
 
+@typing_extensions.final
 class Metadata(google.protobuf.message.Message):
     """Metadata is for custom key values provided by a client or server
     during a stream.
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class MdEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int

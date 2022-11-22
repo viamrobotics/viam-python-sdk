@@ -13,6 +13,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class SetPowerRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -37,6 +38,7 @@ class SetPowerRequest(google.protobuf.message.Message):
         ...
 global___SetPowerRequest = SetPowerRequest
 
+@typing_extensions.final
 class SetPowerResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -44,6 +46,7 @@ class SetPowerResponse(google.protobuf.message.Message):
         ...
 global___SetPowerResponse = SetPowerResponse
 
+@typing_extensions.final
 class GoForRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -71,6 +74,7 @@ class GoForRequest(google.protobuf.message.Message):
         ...
 global___GoForRequest = GoForRequest
 
+@typing_extensions.final
 class GoForResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -78,6 +82,7 @@ class GoForResponse(google.protobuf.message.Message):
         ...
 global___GoForResponse = GoForResponse
 
+@typing_extensions.final
 class GoToRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -105,6 +110,7 @@ class GoToRequest(google.protobuf.message.Message):
         ...
 global___GoToRequest = GoToRequest
 
+@typing_extensions.final
 class GoToResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -112,6 +118,7 @@ class GoToResponse(google.protobuf.message.Message):
         ...
 global___GoToResponse = GoToResponse
 
+@typing_extensions.final
 class ResetZeroPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -136,6 +143,7 @@ class ResetZeroPositionRequest(google.protobuf.message.Message):
         ...
 global___ResetZeroPositionRequest = ResetZeroPositionRequest
 
+@typing_extensions.final
 class ResetZeroPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -143,6 +151,7 @@ class ResetZeroPositionResponse(google.protobuf.message.Message):
         ...
 global___ResetZeroPositionResponse = ResetZeroPositionResponse
 
+@typing_extensions.final
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -164,6 +173,7 @@ class GetPositionRequest(google.protobuf.message.Message):
         ...
 global___GetPositionRequest = GetPositionRequest
 
+@typing_extensions.final
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITION_FIELD_NUMBER: builtins.int
@@ -177,6 +187,7 @@ class GetPositionResponse(google.protobuf.message.Message):
         ...
 global___GetPositionResponse = GetPositionResponse
 
+@typing_extensions.final
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -198,6 +209,7 @@ class StopRequest(google.protobuf.message.Message):
         ...
 global___StopRequest = StopRequest
 
+@typing_extensions.final
 class StopResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -205,6 +217,7 @@ class StopResponse(google.protobuf.message.Message):
         ...
 global___StopResponse = StopResponse
 
+@typing_extensions.final
 class IsPoweredRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -226,6 +239,7 @@ class IsPoweredRequest(google.protobuf.message.Message):
         ...
 global___IsPoweredRequest = IsPoweredRequest
 
+@typing_extensions.final
 class IsPoweredResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     IS_ON_FIELD_NUMBER: builtins.int
@@ -242,6 +256,7 @@ class IsPoweredResponse(google.protobuf.message.Message):
         ...
 global___IsPoweredResponse = IsPoweredResponse
 
+@typing_extensions.final
 class GetPropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -263,6 +278,7 @@ class GetPropertiesRequest(google.protobuf.message.Message):
         ...
 global___GetPropertiesRequest = GetPropertiesRequest
 
+@typing_extensions.final
 class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITION_REPORTING_FIELD_NUMBER: builtins.int
@@ -276,6 +292,7 @@ class GetPropertiesResponse(google.protobuf.message.Message):
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
 
+@typing_extensions.final
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     IS_POWERED_FIELD_NUMBER: builtins.int
