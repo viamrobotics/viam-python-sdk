@@ -14,15 +14,15 @@ class Camera(ComponentBase):
     Camera represents any physical hardware that can capture frames.
 
     This acts as an abstract base class for any drivers representing specific
-    camera implementations. This cannot be used on its own. If the `__init__()` function is
-    overridden, it must call the `super().__init__()` function.
+    camera implementations. This cannot be used on its own. If the ``__init__()`` function is
+    overridden, it must call the ``super().__init__()`` function.
     """
 
     class Properties(NamedTuple):
         """The camera's supported features and settings"""
 
         supports_pcd: bool
-        """Whether the camera has a valid implementation of `get_point_cloud`"""
+        """Whether the camera has a valid implementation of ``get_point_cloud``"""
 
         intrinsic_parameters: IntrinsicParameters
         """The properties of the camera"""

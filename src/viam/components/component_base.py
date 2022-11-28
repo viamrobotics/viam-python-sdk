@@ -43,7 +43,7 @@ class ComponentBase(abc.ABC):
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:
-        """Get the component named `name` from the provided robot.
+        """Get the component named ``name`` from the provided robot.
 
         Args:
             robot (RobotClient): The robot
@@ -56,10 +56,10 @@ class ComponentBase(abc.ABC):
         return cast(cls, component)
 
     def get_operation(self, kwargs: Mapping[str, Any]) -> Operation:
-        """Get the `Operation` associated with the currently running function.
+        """Get the ``Operation`` associated with the currently running function.
 
-        When writing custom components, you should get the `Operation` by calling this function and check to see if it's cancelled.
-        If the `Operation` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.).
+        When writing custom components, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+        If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.).
 
         Args:
             kwargs (Mapping[str, Any]): The kwargs object containing the operation

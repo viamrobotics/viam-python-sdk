@@ -124,7 +124,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         # HACK: Keep the stream open when this function returns.
         # When the StreamEvents function returns, the Stream is closed. But we don't want the stream to close because we still need
         # to send events to any clients who have registered callbacks.
-        # By setting `stream._cancel_done` to `True`, this tricks grpclib into thinking it already closed the stream, so it doesn't
+        # By setting ``stream._cancel_done`` to ``True``, this tricks grpclib into thinking it already closed the stream, so it doesn't
         # perform any cleanup (like removing the stream). We eventually do want to actually close this stream, so we undo this hack
         # every time we send a message. That way, the trailing metadata is sent when either the server closes or the client disconnects.
         stream._cancel_done = True

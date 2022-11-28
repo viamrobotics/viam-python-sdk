@@ -29,7 +29,7 @@ class GenericClient(Generic):
 
 
 async def do_command(channel: Channel, name: str, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
-    """Convenience method to allow component clients to execute `do_command` functions
+    """Convenience method to allow component clients to execute ``do_command`` functions
 
     Args:
         channel (Channel): A gRPC channel
