@@ -59,7 +59,8 @@ class ComponentBase(abc.ABC):
         """Get the ``Operation`` associated with the currently running function.
 
         When writing custom components, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
-        If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.).
+        If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+        ).
 
         Args:
             kwargs (Mapping[str, Any]): The kwargs object containing the operation
