@@ -182,7 +182,7 @@ class TestClient:
             client = CameraClient("camera", channel)
 
             # Test known mime type
-            png_img = await client.get_image(timeout=1.82)
+            png_img = await client.get_image(timeout=1.82, mime_type=CameraMimeType.PNG)
             assert isinstance(png_img, Image.Image)
             assert png_img.tobytes() == image.tobytes()
             assert camera.timeout == loose_approx(1.82)
