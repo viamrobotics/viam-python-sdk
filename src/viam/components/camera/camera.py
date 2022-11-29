@@ -3,7 +3,7 @@ from typing import NamedTuple, Optional, Tuple, Union
 
 from PIL.Image import Image
 
-from viam.media.video import CameraMimeType, RawImage
+from viam.media.video import RawImage
 from viam.proto.component.camera import DistortionParameters, IntrinsicParameters
 
 from ..component_base import ComponentBase

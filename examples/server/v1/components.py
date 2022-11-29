@@ -33,7 +33,6 @@ from viam.components.servo import Servo
 from viam.errors import ComponentNotFoundError
 from viam.media import MediaStreamWithIterator
 from viam.media.audio import Audio, AudioStream
-from viam.media.video import CameraMimeType
 from viam.operations import run_with_operation
 from viam.proto.common import (
     AnalogStatus,
