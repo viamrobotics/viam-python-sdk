@@ -1,9 +1,10 @@
 import asyncio
 import functools
 import time
-from typing import Any, Callable, Coroutine, Optional, TypeVar, cast
+from typing import Any, Callable, Coroutine, Dict, Optional, TypeVar, cast
 from uuid import UUID, uuid4
 
+from grpclib.metadata import _Metadata
 from typing_extensions import Self
 
 try:
@@ -60,6 +61,21 @@ class Operation:
 
 P = ParamSpec("P")
 T = TypeVar("T")
+
+METADATA_KEY = "opid"
+
+
+def kwargs_from_metadata(metadata: Optional[_Metadata]) -> Dict[str, Any]:
+    if metadata is None:
+        return {}
+
+    operation = metadata.get(METADATA_KEY)
+    if operation is None:
+        return {}
+
+    # TODO: decode the operation
+
+    return {Operation.ARG_NAME: operation}
 
 
 def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P, Coroutine[Any, Any, T]]:
