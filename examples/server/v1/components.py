@@ -318,7 +318,7 @@ class ExampleCamera(Camera):
     def __del__(self):
         self.image.close()
 
-    async def get_image(self, mime_type: str = CameraMimeType.JPEG, **kwargs) -> Image.Image:
+    async def get_image(self, mime_type: str = "", **kwargs) -> Image.Image:
         return self.image.copy()
 
     async def get_point_cloud(self, **kwargs) -> Tuple[bytes, str]:

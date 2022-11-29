@@ -31,7 +31,7 @@ class Camera(ComponentBase):
         """The distortion parameters of the camera"""
 
     @abc.abstractmethod
-    async def get_image(self, mime_type: str = CameraMimeType.JPEG, *, timeout: Optional[float] = None, **kwargs) -> Union[Image, RawImage]:
+    async def get_image(self, mime_type: str = "", *, timeout: Optional[float] = None, **kwargs) -> Union[Image, RawImage]:
         """Get the next image from the camera as an Image or RawImage.
         Be sure to close the image when finished.
 
