@@ -24,7 +24,7 @@ class SensorsServiceClient(ServiceClientBase):
         self.name = name
 
     async def get_sensors(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[ResourceName]:
-        """Get the ``ResourceName``s of all the ``Sensor``s connected to this Robot
+        """Get the ``ResourceName`` of all the ``Sensor`` resources connected to this Robot
 
         Returns:
             List[ResourceName]: The list of all Sensors
@@ -41,7 +41,7 @@ class SensorsServiceClient(ServiceClientBase):
         """Get the readings from the specific sensors provided
 
         Args:
-            sensors (List[ResourceName]): The ``ResourceName``s of the the ``Sensor``s to get readings from
+            sensors (List[ResourceName]): The ``ResourceName`` of the the ``Sensor`` resources to get readings from
 
         Returns:
             Mapping[ResourceName, Mapping[str, Any]]: The readings from the sensors, mapped by ``ResourceName``

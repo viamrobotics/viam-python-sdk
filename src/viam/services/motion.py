@@ -42,7 +42,8 @@ class MotionServiceClient(ServiceClientBase):
 
         Note: Frames designated with respect to components can also be used as the ``component_name`` when calling for a move. This
         technique allows for planning and moving the frame itself to the ``destination``. To do so, simply override the ``name`` attribute
-        for a given resource with the originating ReferenceFrame. Then pass in the updated resource into the ``component_name``. Ex:
+        for a given resource with the originating ReferenceFrame. Then pass in the updated resource into the ``component_name``. Ex::
+
             resource = Arm.get_resource_name("arm")
             resource.name = "externalFrame"
             success = await MotionServiceClient.move(resource, ...)
@@ -78,10 +79,10 @@ class MotionServiceClient(ServiceClientBase):
         timeout: Optional[float] = None,
     ) -> bool:
         """
-        This function will pass through a move command to a component with a ``move_to_position`` method that takes a ``Pose``. ``Arm``s are the
-        only component that support this. This method will transform the destination pose, given in an arbitrary frame, into the pose of the
-        arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end to
-        that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.
+        This function will pass through a move command to a component with a ``move_to_position`` method that takes a ``Pose``. ``Arm`` is
+        the only component that support this. This method will transform the destination pose, given in an arbitrary frame, into the pose of
+        the arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end
+        to that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.
 
         Args:
             component_name (ResourceName): Name of a component on a given robot.
