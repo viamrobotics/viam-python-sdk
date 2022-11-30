@@ -7,6 +7,7 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import google.protobuf.timestamp_pb2
 import google.rpc.status_pb2
 import sys
 import typing
@@ -228,19 +229,27 @@ class AnswerRequestInitStage(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
     OPTIONAL_CONFIG_FIELD_NUMBER: builtins.int
+    DEADLINE_FIELD_NUMBER: builtins.int
     sdp: builtins.str
 
     @property
     def optional_config(self) -> global___WebRTCConfig:
         ...
 
-    def __init__(self, *, sdp: builtins.str=..., optional_config: global___WebRTCConfig | None=...) -> None:
+    @property
+    def deadline(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['optional_config', b'optional_config']) -> builtins.bool:
+    def __init__(self, *, sdp: builtins.str=..., optional_config: global___WebRTCConfig | None=..., deadline: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['optional_config', b'optional_config', 'sdp', b'sdp']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config', 'sdp', b'sdp']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_deadline', b'_deadline']) -> typing_extensions.Literal['deadline'] | None:
         ...
 global___AnswerRequestInitStage = AnswerRequestInitStage
 
