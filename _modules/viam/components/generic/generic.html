@@ -87,56 +87,53 @@
 <span class="sd">    Generic component, which represents any type of component that can executes arbitrary commands</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing generic components.</span>
-<span class="sd">    This cannot be used on its own. If the `__init__()` function is overridden, it must call the `super().__init__()` function.</span>
+<span class="sd">    This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.</span>
 
-<span class="sd">    To create a Generic component (an arbitrary component that can process commands), this `Generic` component should be subclassed</span>
-<span class="sd">    and the `do_command` function implemented.</span>
+<span class="sd">    To create a Generic component (an arbitrary component that can process commands), this ``Generic`` component should be subclassed</span>
+<span class="sd">    and the ``do_command`` function implemented.</span>
 
-<span class="sd">    Example:</span>
+<span class="sd">    Example::</span>
 
-<span class="sd">    ```python</span>
-<span class="sd">    class ComplexComponent(Generic):</span>
+<span class="sd">        class ComplexComponent(Generic):</span>
 
-<span class="sd">        async def do_command(self, command: Dict[str, Any]) -&gt; Dict[str, Any]:</span>
-<span class="sd">            result = {key: False for key in command.keys()}</span>
-<span class="sd">            for (name, args) in command.items():</span>
-<span class="sd">                if name == &#39;on&#39;:</span>
-<span class="sd">                    self.on(*args)</span>
-<span class="sd">                    result[name] = True</span>
-<span class="sd">                if name == &#39;set_frequency&#39;:</span>
-<span class="sd">                    self.set_frequency(*args)</span>
-<span class="sd">                    result[name] = True</span>
-<span class="sd">                if name == &#39;get_frequency&#39;:</span>
-<span class="sd">                    result[name] = self.frequency</span>
-<span class="sd">                if name == &#39;complex_command&#39;:</span>
-<span class="sd">                    self.complex_command(*args)</span>
-<span class="sd">                    result[name] = True</span>
-<span class="sd">            return result</span>
+<span class="sd">            async def do_command(self, command: Dict[str, Any]) -&gt; Dict[str, Any]:</span>
+<span class="sd">                result = {key: False for key in command.keys()}</span>
+<span class="sd">                for (name, args) in command.items():</span>
+<span class="sd">                    if name == &#39;on&#39;:</span>
+<span class="sd">                        self.on(*args)</span>
+<span class="sd">                        result[name] = True</span>
+<span class="sd">                    if name == &#39;set_frequency&#39;:</span>
+<span class="sd">                        self.set_frequency(*args)</span>
+<span class="sd">                        result[name] = True</span>
+<span class="sd">                    if name == &#39;get_frequency&#39;:</span>
+<span class="sd">                        result[name] = self.frequency</span>
+<span class="sd">                    if name == &#39;complex_command&#39;:</span>
+<span class="sd">                        self.complex_command(*args)</span>
+<span class="sd">                        result[name] = True</span>
+<span class="sd">                return result</span>
 
-<span class="sd">        def set_frequency(self, frequency: int):</span>
-<span class="sd">            self.frequency = frequency</span>
+<span class="sd">            def set_frequency(self, frequency: int):</span>
+<span class="sd">                self.frequency = frequency</span>
 
-<span class="sd">        def on(self, frequency: int, duration: int):</span>
-<span class="sd">            self.frequency = frequency</span>
-<span class="sd">            self.power = 1</span>
-<span class="sd">            task = threading.Timer(duration, self.off)</span>
-<span class="sd">            task.start()</span>
+<span class="sd">            def on(self, frequency: int, duration: int):</span>
+<span class="sd">                self.frequency = frequency</span>
+<span class="sd">                self.power = 1</span>
+<span class="sd">                task = threading.Timer(duration, self.off)</span>
+<span class="sd">                task.start()</span>
 
-<span class="sd">        def off(self):</span>
-<span class="sd">            self.power = 0</span>
+<span class="sd">            def off(self):</span>
+<span class="sd">                self.power = 0</span>
 
-<span class="sd">        def complex_command(self, arg1, arg2, arg3):</span>
-<span class="sd">            ...</span>
-<span class="sd">    ```</span>
+<span class="sd">            def complex_command(self, arg1, arg2, arg3):</span>
+<span class="sd">                ...</span>
 
-<span class="sd">    To execute commands, simply call the `do_command` function with the appropriate parameters</span>
+<span class="sd">    To execute commands, simply call the ``do_command`` function with the appropriate parameters.</span>
+<span class="sd">    ::</span>
 
-<span class="sd">    ```python</span>
-<span class="sd">    await component.do_command({&#39;on&#39;: [300, 10]})</span>
-<span class="sd">    component.power  # 1</span>
-<span class="sd">    await asyncio.sleep(10)</span>
-<span class="sd">    component.power  # 0</span>
-<span class="sd">    ```</span>
+<span class="sd">        await component.do_command({&#39;on&#39;: [300, 10]})</span>
+<span class="sd">        component.power  # 1</span>
+<span class="sd">        await asyncio.sleep(10)</span>
+<span class="sd">        component.power  # 0</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 </pre></div>
 

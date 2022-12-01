@@ -119,7 +119,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot.service</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
@@ -192,17 +191,17 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.robot.client.</span></span><span class="sig-name descname"><span class="pre">RobotClient</span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient" title="Permalink to this definition"></a></dt>
 <dd><p>gRPC client for a Robot. This class should be used for all interactions with a robot.</p>
 <p>There are 2 ways to instantiate a robot client:</p>
-<blockquote>
-<div><p>RobotClient.at_address(…)</p>
-<p>RobotClient.with_channel(…)</p>
-</div></blockquote>
-<p>You can use the client standalone or within a context</p>
-<blockquote>
-<div><p>robot = await RobotClient.at_address(…)</p>
-<p>async with await RobotClient.with_channel(…) as robot: …</p>
-</div></blockquote>
-<p>You must <cite>close()</cite> the robot to release resources.</p>
-<p>Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using <cite>with_channel</cite> are
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can use the client standalone or within a context:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">as</span> <span class="n">robot</span><span class="p">:</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>You must <code class="docutils literal notranslate"><span class="pre">close()</span></code> the robot to release resources.</p>
+<p>Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using <code class="docutils literal notranslate"><span class="pre">with_channel</span></code> are
 not automatically closed.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options">
@@ -270,7 +269,7 @@ If not set, the robot will not be refreshed automatically</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>channel</strong> (<a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.ViamChannel" title="viam.rpc.dial.ViamChannel"><em>ViamChannel</em></a>) – The channel that is connected to a robot, obtained by <cite>viam.rpc.dial</cite></p></li>
+<li><p><strong>channel</strong> (<a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.ViamChannel" title="viam.rpc.dial.ViamChannel"><em>ViamChannel</em></a>) – The channel that is connected to a robot, obtained by <code class="docutils literal notranslate"><span class="pre">viam.rpc.dial</span></code></p></li>
 <li><p><strong>options</strong> (<a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><em>Options</em></a>) – Options for refreshing. Any connection options will be ignored.</p></li>
 </ul>
 </dd>
@@ -293,35 +292,39 @@ If not set, the robot will not be refreshed automatically</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_component">
 <span class="sig-name descname"><span class="pre">get_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_component" title="Permalink to this definition"></a></dt>
 <dd><p>Get a component using its ResourceName.</p>
-<p>This function should not be used except in specific cases. The method <cite>Component.from_robot(…)</cite> is the preferred method
+<p>This function should not be used except in specific cases. The method <code class="docutils literal notranslate"><span class="pre">Component.from_robot(...)</span></code> is the preferred method
 for obtaining components.</p>
-<blockquote>
-<div><p><cite>arm = Arm.from_robot(robot=robot, name=’my_arm’)</cite></p>
-</div></blockquote>
-<p>Because this function returns a generic <cite>ComponentBase</cite> rather than the specific
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_arm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Because this function returns a generic <code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code> rather than the specific
 component type, it will be necessary to cast the returned component to the desired component. This can be done using a few
 different methods:</p>
 <ul>
-<li><p>Assertion</p>
-<blockquote>
-<div><p>arm = robot.get_component(Arm.get_resource_name(‘my_arm’))</p>
-<p>assert isinstance(arm, Arm)</p>
-<p>end_pos = await arm.get_end_position()</p>
-</div></blockquote>
+<li><p>Assertion:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s1">&#39;my_arm&#39;</span><span class="p">))</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arm</span><span class="p">,</span> <span class="n">Arm</span><span class="p">)</span>
+<span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
+</pre></div>
+</div>
 </li>
-<li><p>Explicit cast</p>
-<blockquote>
-<div><p>from typing import cast</p>
-<p>arm = robot.get_component(Arm.get_resource_name(‘my_arm’))</p>
-<p>arm = cast(Arm, arm)</p>
-<p>end_pos = await arm.get_end_position()</p>
-</div></blockquote>
+<li><p>Explicit cast:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
+<span class="n">arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s1">&#39;my_arm&#39;</span><span class="p">))</span>
+<span class="n">arm</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Arm</span><span class="p">,</span> <span class="n">arm</span><span class="p">)</span>
+<span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
+</pre></div>
+</div>
 </li>
-<li><p>Declare type on variable assignment.
-- Note: If using an IDE, a type error may be shown which can be ignored.</p>
+<li><p>Declare type on variable assignment.</p>
 <blockquote>
-<div><p>arm: Arm = robot.get_component(Arm.get_resource_name(‘my_arm’))  # type: ignore</p>
-<p>end_pos = await arm.get_end_position()</p>
+<div><ul class="simple">
+<li><p>Note: If using an IDE, a type error may be shown which can be ignored.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span><span class="p">:</span> <span class="n">Arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s1">&#39;my_arm&#39;</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
+<span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
+</pre></div>
+</div>
 </div></blockquote>
 </li>
 </ul>
@@ -364,11 +367,11 @@ different methods:</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_status">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_status" title="Permalink to this definition"></a></dt>
 <dd><p>Get the status of the robot’s components. You can optionally
-provide a list of <cite>ResourceName</cite> for which you want statuses.</p>
+provide a list of <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code> for which you want statuses.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>components</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a><em>]</em><em>]</em>) – Optional list of
-<cite>ResourceName</cite> for components you want statuses.</p>
+<code class="docutils literal notranslate"><span class="pre">ResourceName</span></code> for components you want statuses.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -441,8 +444,8 @@ has finished or has been cancelled.</p>
 <dd><p>Cancel all current and outstanding operations for the robot and stop all actuators and movement</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>extra</strong> (<em>Dict</em><em>[</em><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a><em>, </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Any extra parameters to pass to the components’ <cite>stop</cite> methods, keyed on the
-component’s <cite>ResourceName</cite></p>
+<dd class="field-odd"><p><strong>extra</strong> (<em>Dict</em><em>[</em><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a><em>, </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Any extra parameters to pass to the components’ <code class="docutils literal notranslate"><span class="pre">stop</span></code> methods, keyed on the
+component’s <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code></p>
 </dd>
 </dl>
 </dd></dl>

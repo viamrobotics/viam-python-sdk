@@ -93,8 +93,8 @@
 <span class="sd">    Base represents a physical base of a robot.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
-<span class="sd">    base implementations. This cannot be used on its own. If the `__init__()` function is</span>
-<span class="sd">    overridden, it must call the `super().__init__()` function.</span>
+<span class="sd">    base implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
+<span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Base.move_straight"><a class="viewcode-back" href="../../../../autoapi/viam/components/base/index.html#viam.components.base.base.Base.move_straight">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
@@ -108,9 +108,9 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Move the base in a straight line the given `distance`, expressed in millimeters,</span>
-<span class="sd">        at the given `velocity`, expressed in millimeters per second.</span>
-<span class="sd">        When `distance` or `velocity` is 0, the base will stop.</span>
+<span class="sd">        Move the base in a straight line the given ``distance``, expressed in millimeters,</span>
+<span class="sd">        at the given ``velocity``, expressed in millimeters per second.</span>
+<span class="sd">        When ``distance`` or ``velocity`` is 0, the base will stop.</span>
 <span class="sd">        This method blocks until completed or cancelled.</span>
 
 <span class="sd">        Args:</span>
@@ -132,9 +132,9 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Spin the base in place `angle` degrees, at the given angular `velocity`,</span>
+<span class="sd">        Spin the base in place ``angle`` degrees, at the given angular ``velocity``,</span>
 <span class="sd">        expressed in degrees per second.</span>
-<span class="sd">        When `velocity` is 0, the base will stop.</span>
+<span class="sd">        When ``velocity`` is 0, the base will stop.</span>
 <span class="sd">        This method blocks until completed or cancelled.</span>
 
 <span class="sd">        Args:</span>
@@ -156,10 +156,10 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set the linear and angular velocity of the Base</span>
-<span class="sd">        When `linear` is 0, the the base will spin.</span>
-<span class="sd">        When `angular` is 0, the the base will move in a straight line.</span>
-<span class="sd">        When both `linear` and `angular` are 0, the base will stop.</span>
-<span class="sd">        When `linear` and `angular` are both nonzero, the base will move in an arc,</span>
+<span class="sd">        When ``linear`` is 0, the the base will spin.</span>
+<span class="sd">        When ``angular`` is 0, the the base will move in a straight line.</span>
+<span class="sd">        When both ``linear`` and ``angular`` are 0, the base will stop.</span>
+<span class="sd">        When ``linear`` and ``angular`` are both nonzero, the base will move in an arc,</span>
 <span class="sd">        with a tighter radius if angular power is greater than linear power.</span>
 
 <span class="sd">        Args:</span>

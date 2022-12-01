@@ -101,7 +101,7 @@
     <span class="sd">&quot;&quot;&quot;Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</span>
 
 <span class="sd">    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the</span>
-<span class="sd">    `world_state` message, the motion planning service will also account for those.</span>
+<span class="sd">    ``world_state`` message, the motion planning service will also account for those.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SERVICE_TYPE</span> <span class="o">=</span> <span class="s2">&quot;motion&quot;</span>
@@ -121,16 +121,17 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Plan and execute a movement to move the component specified to its goal destination.</span>
 
-<span class="sd">        Note: Frames designated with respect to components can also be used as the `component_name` when calling for a move. This</span>
-<span class="sd">        technique allows for planning and moving the frame itself to the `destination`. To do so, simply override the `name` attribute</span>
-<span class="sd">        for a given resource with the originating ReferenceFrame. Then pass in the updated resource into the `component_name`. Ex:</span>
+<span class="sd">        Note: Frames designated with respect to components can also be used as the ``component_name`` when calling for a move. This</span>
+<span class="sd">        technique allows for planning and moving the frame itself to the ``destination``. To do so, simply override the ``name`` attribute</span>
+<span class="sd">        for a given resource with the originating ReferenceFrame. Then pass in the updated resource into the ``component_name``. Ex::</span>
+
 <span class="sd">            resource = Arm.get_resource_name(&quot;arm&quot;)</span>
 <span class="sd">            resource.name = &quot;externalFrame&quot;</span>
 <span class="sd">            success = await MotionServiceClient.move(resource, ...)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): Name of a component on a given robot.</span>
-<span class="sd">            destination (PoseInFrame): The destination to move to, expressed as a `Pose` and the frame in which it was observed.</span>
+<span class="sd">            destination (PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.</span>
 <span class="sd">            world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the</span>
 <span class="sd">                WorldState message.</span>
 
@@ -159,14 +160,14 @@
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This function will pass through a move command to a component with a `move_to_position` method that takes a `Pose`. `Arm`s are the</span>
-<span class="sd">        only component that support this. This method will transform the destination pose, given in an arbitrary frame, into the pose of the</span>
-<span class="sd">        arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end to</span>
-<span class="sd">        that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.</span>
+<span class="sd">        This function will pass through a move command to a component with a ``move_to_position`` method that takes a ``Pose``. ``Arm`` is</span>
+<span class="sd">        the only component that support this. This method will transform the destination pose, given in an arbitrary frame, into the pose of</span>
+<span class="sd">        the arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end</span>
+<span class="sd">        to that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): Name of a component on a given robot.</span>
-<span class="sd">            destination (PoseInFrame): The destination to move to, expressed as a `Pose` and the frame in which it was observed.</span>
+<span class="sd">            destination (PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.</span>
 <span class="sd">            world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the</span>
 <span class="sd">                WorldState message.</span>
 
@@ -201,7 +202,7 @@
 <span class="sd">            destination_frame (str): Name of the desired reference frame.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            `Pose` (PoseInFrame): Pose of the given component and the frame in which it was observed.</span>
+<span class="sd">            ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>

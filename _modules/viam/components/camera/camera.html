@@ -95,15 +95,15 @@
 <span class="sd">    Camera represents any physical hardware that can capture frames.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
-<span class="sd">    camera implementations. This cannot be used on its own. If the `__init__()` function is</span>
-<span class="sd">    overridden, it must call the `super().__init__()` function.</span>
+<span class="sd">    camera implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
+<span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Camera.Properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/camera/index.html#viam.components.camera.camera.Camera.Properties">[docs]</a>    <span class="k">class</span> <span class="nc">Properties</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The camera&#39;s supported features and settings&quot;&quot;&quot;</span>
 
         <span class="n">supports_pcd</span><span class="p">:</span> <span class="nb">bool</span>
-        <span class="sd">&quot;&quot;&quot;Whether the camera has a valid implementation of `get_point_cloud`&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Whether the camera has a valid implementation of ``get_point_cloud``&quot;&quot;&quot;</span>
 
         <span class="n">intrinsic_parameters</span><span class="p">:</span> <span class="n">IntrinsicParameters</span>
         <span class="sd">&quot;&quot;&quot;The properties of the camera&quot;&quot;&quot;</span>

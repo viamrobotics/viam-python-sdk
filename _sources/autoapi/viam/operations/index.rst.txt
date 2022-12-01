@@ -83,7 +83,7 @@ Attributes
 
 .. py:function:: run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P, Coroutine[Any, Any, T]]
 
-   Run a component function with an `Operation`.
+   Run a component function with an ``Operation``.
    Running a function with an Operation will allow the function
    to know if/when the calling task was cancelled and take appropriate action
    (.e.g. stop long running tasks and exit early).
@@ -95,8 +95,8 @@ Attributes
    the component can cancel and clean up, saving resources.
 
    :param func: The function to be called with an Operation.
-                This function MUST accept `**kwargs`
-                or a parameter whose name is equal the value of `Operation.ARG_NAME`
+                This function MUST accept ``**kwargs``
+                or a parameter whose name is equal the value of ``Operation.ARG_NAME``
    :type func: Callable[..., Coroutine[Any, Any, T]]
 
    :returns: The return of the function

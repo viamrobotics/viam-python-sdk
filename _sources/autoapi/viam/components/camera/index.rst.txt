@@ -38,8 +38,8 @@ Classes
    Camera represents any physical hardware that can capture frames.
 
    This acts as an abstract base class for any drivers representing specific
-   camera implementations. This cannot be used on its own. If the `__init__()` function is
-   overridden, it must call the `super().__init__()` function.
+   camera implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
 
    .. py:class:: Properties
 
@@ -50,7 +50,7 @@ Classes
       .. py:attribute:: supports_pcd
          :annotation: :bool
 
-         Whether the camera has a valid implementation of `get_point_cloud`
+         Whether the camera has a valid implementation of ``get_point_cloud``
 
       .. py:attribute:: intrinsic_parameters
          :annotation: :viam.proto.component.camera.IntrinsicParameters

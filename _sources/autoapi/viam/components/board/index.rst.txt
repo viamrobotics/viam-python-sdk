@@ -36,8 +36,8 @@ Classes
    components such as analog readers, and digital interrupts.
 
    This acts as an abstract base class for any drivers representing specific
-   board implementations. This cannot be used on its own. If the `__init__()` function is
-   overridden, it must call the `super().__init__()` function.
+   board implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
 
    .. py:class:: Attributes
 
@@ -94,7 +94,7 @@ Classes
          :type high: bool
          :param nanos: Nanoseconds from an arbitrary point in time,
                        but always increasing and always needs to be accurate.
-                       Using `time.time_ns()` would be acceptable.
+                       Using ``time.time_ns()`` would be acceptable.
          :type nanos: int
 
 
@@ -102,7 +102,7 @@ Classes
          :abstractmethod:
          :async:
 
-         Add a callback to be sent the low/high value on `tick()`.
+         Add a callback to be sent the low/high value on ``tick()``.
 
          :param queue: The receiving queue.
          :type queue: Queue
@@ -113,7 +113,7 @@ Classes
          :async:
 
          Add a post processor that should be used to modify what
-         is returned by `self.value()`
+         is returned by ``self.value()``
 
          :param processor: The post processor to add.
          :type processor: PostProcessor
@@ -160,7 +160,7 @@ Classes
          :abstractmethod:
          :async:
 
-         Set the pin to the given `duty_cycle`.
+         Set the pin to the given ``duty_cycle``.
 
          :param duty_cycle: The duty cycle.
          :type duty_cycle: float
@@ -180,8 +180,8 @@ Classes
          :abstractmethod:
          :async:
 
-         Set the pin to the given PWM `frequency` (in Hz).
-         When `frequency` is 0, it will use the board's default PWM frequency.
+         Set the pin to the given PWM ``frequency`` (in Hz).
+         When ``frequency`` is 0, it will use the board's default PWM frequency.
 
          :param frequency: The frequency, in Hz.
          :type frequency: int
@@ -192,7 +192,7 @@ Classes
       :abstractmethod:
       :async:
 
-      Get an AnalogReader by `name`.
+      Get an AnalogReader by ``name``.
 
       :param name: Name of the analog reader to be retrieved.
       :type name: str
@@ -205,7 +205,7 @@ Classes
       :abstractmethod:
       :async:
 
-      Get a DigitalInterrupt by `name`.
+      Get a DigitalInterrupt by ``name``.
 
       :param name: Name of the digital interrupt.
       :type name: str
@@ -218,7 +218,7 @@ Classes
       :abstractmethod:
       :async:
 
-      Get a GPIO Pin by `name`.
+      Get a GPIO Pin by ``name``.
 
       :param name: Name of the GPIO pin.
       :type name: str

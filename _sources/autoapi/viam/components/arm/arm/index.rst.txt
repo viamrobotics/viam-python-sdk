@@ -24,8 +24,8 @@ Classes
    Arm represents a physical robot arm that exists in three-dimensional space.
 
    This acts as an abstract base class for any drivers representing specific
-   arm implementations. This cannot be used on its own. If the `__init__()` function is
-   overridden, it must call the `super().__init__()` function.
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
 
    .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Pose
       :abstractmethod:
@@ -40,12 +40,12 @@ Classes
       :abstractmethod:
       :async:
 
-      Move the end of the arm to the Pose specified in `pose`.
-      When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
+      Move the end of the arm to the Pose specified in ``pose``.
+      When obstacles are specified in ``world_state``, the motion plan of the arm will avoid them.
 
       :param pose: The destination Pose for the arm.
       :type pose: Pose
-      :param world_state: The obstacles for the arm to avoid on its way to `pose`.
+      :param world_state: The obstacles for the arm to avoid on its way to ``pose``.
       :type world_state: WorldState
 
 
@@ -53,9 +53,9 @@ Classes
       :abstractmethod:
       :async:
 
-      Move each joint on the arm to the corresponding angle specified in `positions`.
+      Move each joint on the arm to the corresponding angle specified in ``positions``.
 
-      :param positions: The destination `JointPositions` for the arm.
+      :param positions: The destination ``JointPositions`` for the arm.
       :type positions: JointPositions
 
 

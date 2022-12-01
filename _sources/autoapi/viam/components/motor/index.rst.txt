@@ -48,7 +48,7 @@ Classes
       :async:
 
       Sets the "percentage" of power the motor should employ between -1 and 1.
-      When `power` is negative, the rotation will be in the backward direction.
+      When ``power`` is negative, the rotation will be in the backward direction.
 
       :param power: Power between -1 and 1
                     (negative implies backwards).
@@ -59,9 +59,9 @@ Classes
       :abstractmethod:
       :async:
 
-      Spin the motor the specified number of `revolutions` at specified `rpm`.
-      When `rpm` or `revolutions` is a negative value, the rotation will be in the backward direction.
-      Note: if both `rpm` and `revolutions` are negative, the motor will spin in the forward direction.
+      Spin the motor the specified number of ``revolutions`` at specified ``rpm``.
+      When ``rpm`` or ``revolutions`` is a negative value, the rotation will be in the backward direction.
+      Note: if both ``rpm`` and ``revolutions`` are negative, the motor will spin in the forward direction.
 
       :param rpm: Speed at which the motor should move in rotations per minute
                   (negative implies backwards).
@@ -77,7 +77,7 @@ Classes
 
       Spin the motor to the specified position (provided in revolutions from home/zero),
       at the specified speed, in revolutions per minute.
-      Regardless of the directionality of the `rpm` this function will move
+      Regardless of the directionality of the ``rpm`` this function will move
       the motor towards the specified position.
 
       :param rpm: Speed at which the motor should rotate (absolute value).
@@ -90,7 +90,7 @@ Classes
       :abstractmethod:
       :async:
 
-      Set the current position (modified by `offset`) to be the new zero (home) position.
+      Set the current position (modified by ``offset``) to be the new zero (home) position.
 
       :param offset: The offset from the current position to new home/zero position.
       :type offset: float

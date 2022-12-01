@@ -134,7 +134,7 @@
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">_noop</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Obtain a noop Operation.</span>
-<span class="sd">        This operation will always return `False` for `is_cancelled()`</span>
+<span class="sd">        This operation will always return ``False`` for ``is_cancelled()``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="s2">&quot;noop-operation&quot;</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">())</span></div>
 
@@ -144,7 +144,7 @@
 
 
 <div class="viewcode-block" id="run_with_operation"><a class="viewcode-back" href="../../autoapi/viam/operations/index.html#viam.operations.run_with_operation">[docs]</a><span class="k">def</span> <span class="nf">run_with_operation</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">T</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="n">P</span><span class="p">,</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">T</span><span class="p">]]:</span>
-    <span class="sd">&quot;&quot;&quot;Run a component function with an `Operation`.</span>
+    <span class="sd">&quot;&quot;&quot;Run a component function with an ``Operation``.</span>
 <span class="sd">    Running a function with an Operation will allow the function</span>
 <span class="sd">    to know if/when the calling task was cancelled and take appropriate action</span>
 <span class="sd">    (.e.g. stop long running tasks and exit early).</span>
@@ -157,8 +157,8 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        func (Callable[..., Coroutine[Any, Any, T]]): The function to be called with an Operation.</span>
-<span class="sd">                                                      This function MUST accept `**kwargs`</span>
-<span class="sd">                                                      or a parameter whose name is equal the value of `Operation.ARG_NAME`</span>
+<span class="sd">                                                      This function MUST accept ``**kwargs``</span>
+<span class="sd">                                                      or a parameter whose name is equal the value of ``Operation.ARG_NAME``</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        T: The return of the function</span>

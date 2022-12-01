@@ -97,8 +97,8 @@
 <span class="sd">    components such as analog readers, and digital interrupts.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
-<span class="sd">    board implementations. This cannot be used on its own. If the `__init__()` function is</span>
-<span class="sd">    overridden, it must call the `super().__init__()` function.</span>
+<span class="sd">    board implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
+<span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Board.Attributes"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.Attributes">[docs]</a>    <span class="nd">@dataclass</span>
@@ -151,14 +151,14 @@
 <span class="sd">                high (bool): If the signal of the interrupt is high.</span>
 <span class="sd">                nanos (int): Nanoseconds from an arbitrary point in time,</span>
 <span class="sd">                    but always increasing and always needs to be accurate.</span>
-<span class="sd">                    Using `time.time_ns()` would be acceptable.</span>
+<span class="sd">                    Using ``time.time_ns()`` would be acceptable.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Board.DigitalInterrupt.add_callback"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.add_callback">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Add a callback to be sent the low/high value on `tick()`.</span>
+<span class="sd">            Add a callback to be sent the low/high value on ``tick()``.</span>
 
 <span class="sd">            Args:</span>
 <span class="sd">                queue (Queue): The receiving queue.</span>
@@ -169,7 +169,7 @@
         <span class="k">async</span> <span class="k">def</span> <span class="nf">add_post_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor</span><span class="p">:</span> <span class="n">PostProcessor</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Add a post processor that should be used to modify what</span>
-<span class="sd">            is returned by `self.value()`</span>
+<span class="sd">            is returned by ``self.value()``</span>
 
 <span class="sd">            Args:</span>
 <span class="sd">                processor (PostProcessor): The post processor to add.</span>
@@ -214,7 +214,7 @@
 <div class="viewcode-block" id="Board.GPIOPin.set_pwm"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.GPIOPin.set_pwm">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">set_pwm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">duty_cycle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to the given `duty_cycle`.</span>
+<span class="sd">            Set the pin to the given ``duty_cycle``.</span>
 
 <span class="sd">            Args:</span>
 <span class="sd">                duty_cycle (float): The duty cycle.</span>
@@ -241,8 +241,8 @@
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Set the pin to the given PWM `frequency` (in Hz).</span>
-<span class="sd">            When `frequency` is 0, it will use the board&#39;s default PWM frequency.</span>
+<span class="sd">            Set the pin to the given PWM ``frequency`` (in Hz).</span>
+<span class="sd">            When ``frequency`` is 0, it will use the board&#39;s default PWM frequency.</span>
 
 <span class="sd">            Args:</span>
 <span class="sd">                frequency (int): The frequency, in Hz.</span>
@@ -252,7 +252,7 @@
 <div class="viewcode-block" id="Board.analog_reader_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.analog_reader_by_name">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalogReader</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get an AnalogReader by `name`.</span>
+<span class="sd">        Get an AnalogReader by ``name``.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the analog reader to be retrieved.</span>
@@ -265,7 +265,7 @@
 <div class="viewcode-block" id="Board.digital_interrupt_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.digital_interrupt_by_name">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">digital_interrupt_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DigitalInterrupt</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a DigitalInterrupt by `name`.</span>
+<span class="sd">        Get a DigitalInterrupt by ``name``.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the digital interrupt.</span>
@@ -278,7 +278,7 @@
 <div class="viewcode-block" id="Board.gpio_pin_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.gpio_pin_by_name">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">gpio_pin_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GPIOPin</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get a GPIO Pin by `name`.</span>
+<span class="sd">        Get a GPIO Pin by ``name``.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the GPIO pin.</span>

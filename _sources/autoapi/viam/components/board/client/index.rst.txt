@@ -65,7 +65,7 @@ Classes
       :type high: bool
       :param nanos: Nanoseconds from an arbitrary point in time,
                     but always increasing and always needs to be accurate.
-                    Using `time.time_ns()` would be acceptable.
+                    Using ``time.time_ns()`` would be acceptable.
       :type nanos: int
 
 
@@ -73,7 +73,7 @@ Classes
       :abstractmethod:
       :async:
 
-      Add a callback to be sent the low/high value on `tick()`.
+      Add a callback to be sent the low/high value on ``tick()``.
 
       :param queue: The receiving queue.
       :type queue: Queue
@@ -84,7 +84,7 @@ Classes
       :async:
 
       Add a post processor that should be used to modify what
-      is returned by `self.value()`
+      is returned by ``self.value()``
 
       :param processor: The post processor to add.
       :type processor: PostProcessor
@@ -127,7 +127,7 @@ Classes
    .. py:method:: set_pwm(duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
-      Set the pin to the given `duty_cycle`.
+      Set the pin to the given ``duty_cycle``.
 
       :param duty_cycle: The duty cycle.
       :type duty_cycle: float
@@ -145,8 +145,8 @@ Classes
    .. py:method:: set_pwm_frequency(frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
-      Set the pin to the given PWM `frequency` (in Hz).
-      When `frequency` is 0, it will use the board's default PWM frequency.
+      Set the pin to the given PWM ``frequency`` (in Hz).
+      When ``frequency`` is 0, it will use the board's default PWM frequency.
 
       :param frequency: The frequency, in Hz.
       :type frequency: int
@@ -162,7 +162,7 @@ Classes
    .. py:method:: analog_reader_by_name(name: str) -> viam.components.board.board.Board.AnalogReader
       :async:
 
-      Get an AnalogReader by `name`.
+      Get an AnalogReader by ``name``.
 
       :param name: Name of the analog reader to be retrieved.
       :type name: str
@@ -174,7 +174,7 @@ Classes
    .. py:method:: digital_interrupt_by_name(name: str) -> viam.components.board.board.Board.DigitalInterrupt
       :async:
 
-      Get a DigitalInterrupt by `name`.
+      Get a DigitalInterrupt by ``name``.
 
       :param name: Name of the digital interrupt.
       :type name: str
@@ -186,7 +186,7 @@ Classes
    .. py:method:: gpio_pin_by_name(name: str) -> viam.components.board.board.Board.GPIOPin
       :async:
 
-      Get a GPIO Pin by `name`.
+      Get a GPIO Pin by ``name``.
 
       :param name: Name of the GPIO pin.
       :type name: str

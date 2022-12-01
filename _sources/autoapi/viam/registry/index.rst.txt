@@ -52,8 +52,8 @@ Attributes
    This object is generic over the component, and it includes various functionality for the component, such as creating its RPC client
    or status.
 
-   If creating a custom Component type, you should register the component by creating a `ComponentRegistration` object and registering it
-   to the `Registry`.
+   If creating a custom Component type, you should register the component by creating a ``ComponentRegistration`` object and registering it
+   to the ``Registry``.
 
    .. py:attribute:: component_type
       :annotation: :Type[Component]
@@ -68,7 +68,7 @@ Attributes
    .. py:attribute:: rpc_service
       :annotation: :Type[viam.components.service_base.ComponentServiceBase]
 
-      The RPC service of the component. This must extend from `ComponentServiceBase`
+      The RPC service of the component. This must extend from ``ComponentServiceBase``
 
    .. py:attribute:: create_rpc_client
       :annotation: :Callable[[str, grpclib.client.Channel], Component]
@@ -93,7 +93,7 @@ Attributes
    pre-registered (e.g. Arm, Motor).
 
    If you create a new component type that is not an extension of any of the existing base component types, then you must register said
-   component using `Registry.register(...)`.
+   component using ``Registry.register(...)``.
 
    .. py:method:: register(registration: ComponentRegistration)
       :classmethod:

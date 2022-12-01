@@ -24,7 +24,7 @@ Classes
    MovementSensor reports information about the robot's direction, position and speed.
 
    This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
-   This cannot be used on its own. If the `__init__()` function is overridden, it must call the `super().__init__()` function.
+   This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
 
    .. py:attribute:: Properties
       
@@ -45,7 +45,7 @@ Classes
       :abstractmethod:
       :async:
 
-      Get the current linear velocity as a `Vector3` with x, y, and z axes represented in mm/sec
+      Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in mm/sec
 
       :returns: The linear velocity in mm/sec
       :rtype: Vector3
@@ -55,7 +55,7 @@ Classes
       :abstractmethod:
       :async:
 
-      Get the current angular velocity as a `Vector3` with x, y, and z axes represented in radians/sec
+      Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in radians/sec
 
       :returns: The angular velocity in rad/sec
       :rtype: Vector3

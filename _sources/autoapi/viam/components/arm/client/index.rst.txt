@@ -23,7 +23,7 @@ Classes
 
    gRPC client for an Arm component.
 
-   Used to communicate with an existing `Arm` implementation over gRPC.
+   Used to communicate with an existing ``Arm`` implementation over gRPC.
 
    .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Pose
       :async:
@@ -36,12 +36,12 @@ Classes
    .. py:method:: move_to_position(pose: viam.proto.common.Pose, world_state: Optional[viam.proto.common.WorldState] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
-      Move the end of the arm to the Pose specified in `pose`.
-      When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
+      Move the end of the arm to the Pose specified in ``pose``.
+      When obstacles are specified in ``world_state``, the motion plan of the arm will avoid them.
 
       :param pose: The destination Pose for the arm.
       :type pose: Pose
-      :param world_state: The obstacles for the arm to avoid on its way to `pose`.
+      :param world_state: The obstacles for the arm to avoid on its way to ``pose``.
       :type world_state: WorldState
 
 
@@ -57,9 +57,9 @@ Classes
    .. py:method:: move_to_joint_positions(positions: viam.proto.component.arm.JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
-      Move each joint on the arm to the corresponding angle specified in `positions`.
+      Move each joint on the arm to the corresponding angle specified in ``positions``.
 
-      :param positions: The destination `JointPositions` for the arm.
+      :param positions: The destination ``JointPositions`` for the arm.
       :type positions: JointPositions
 
 

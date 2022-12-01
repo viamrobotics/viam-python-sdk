@@ -24,8 +24,8 @@ Classes
    Sensor represents a physical sensing device that can provide measurement readings.
 
    This acts as an abstract base class for any drivers representing specific
-   sensor implementations. This cannot be used on its own. If the `__init__()` function is
-   overridden, it must call the `super().__init__()` function.
+   sensor implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
 
    .. py:method:: get_readings(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]
       :abstractmethod:

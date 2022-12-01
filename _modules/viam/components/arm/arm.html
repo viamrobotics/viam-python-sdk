@@ -94,8 +94,8 @@
 <span class="sd">    Arm represents a physical robot arm that exists in three-dimensional space.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
-<span class="sd">    arm implementations. This cannot be used on its own. If the `__init__()` function is</span>
-<span class="sd">    overridden, it must call the `super().__init__()` function.</span>
+<span class="sd">    arm implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
+<span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Arm.get_end_position"><a class="viewcode-back" href="../../../../autoapi/viam/components/arm/index.html#viam.components.arm.arm.Arm.get_end_position">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
@@ -124,14 +124,14 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Move the end of the arm to the Pose specified in `pose`.</span>
-<span class="sd">        When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.</span>
+<span class="sd">        Move the end of the arm to the Pose specified in ``pose``.</span>
+<span class="sd">        When obstacles are specified in ``world_state``, the motion plan of the arm will avoid them.</span>
 
 <span class="sd">        Args:</span>
 
 <span class="sd">            pose (Pose): The destination Pose for the arm.</span>
 
-<span class="sd">            world_state (WorldState): The obstacles for the arm to avoid on its way to `pose`.</span>
+<span class="sd">            world_state (WorldState): The obstacles for the arm to avoid on its way to ``pose``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -145,11 +145,11 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Move each joint on the arm to the corresponding angle specified in `positions`.</span>
+<span class="sd">        Move each joint on the arm to the corresponding angle specified in ``positions``.</span>
 
 <span class="sd">        Args:</span>
 
-<span class="sd">            positions (JointPositions): The destination `JointPositions` for the arm.</span>
+<span class="sd">            positions (JointPositions): The destination ``JointPositions`` for the arm.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 

@@ -260,7 +260,7 @@ is a proxy to some real hardware interrupt or for tests.</p>
 <li><p><strong>high</strong> (<em>bool</em>) – If the signal of the interrupt is high.</p></li>
 <li><p><strong>nanos</strong> (<em>int</em>) – Nanoseconds from an arbitrary point in time,
 but always increasing and always needs to be accurate.
-Using <cite>time.time_ns()</cite> would be acceptable.</p></li>
+Using <code class="docutils literal notranslate"><span class="pre">time.time_ns()</span></code> would be acceptable.</p></li>
 </ul>
 </dd>
 </dl>
@@ -269,7 +269,7 @@ Using <cite>time.time_ns()</cite> would be acceptable.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.board.client.DigitalInterruptClient.add_callback">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">multiprocessing.Queue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/client.html#DigitalInterruptClient.add_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.client.DigitalInterruptClient.add_callback" title="Permalink to this definition"></a></dt>
-<dd><p>Add a callback to be sent the low/high value on <cite>tick()</cite>.</p>
+<dd><p>Add a callback to be sent the low/high value on <code class="docutils literal notranslate"><span class="pre">tick()</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>queue</strong> (<em>Queue</em>) – The receiving queue.</p>
@@ -281,7 +281,7 @@ Using <cite>time.time_ns()</cite> would be acceptable.</p></li>
 <dt class="sig sig-object py" id="viam.components.board.client.DigitalInterruptClient.add_post_processor">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_post_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.components.board.board.PostProcessor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/client.html#DigitalInterruptClient.add_post_processor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.client.DigitalInterruptClient.add_post_processor" title="Permalink to this definition"></a></dt>
 <dd><p>Add a post processor that should be used to modify what
-is returned by <cite>self.value()</cite></p>
+is returned by <code class="docutils literal notranslate"><span class="pre">self.value()</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>processor</strong> (<em>PostProcessor</em>) – The post processor to add.</p>
@@ -337,7 +337,7 @@ is returned by <cite>self.value()</cite></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.board.client.GPIOPinClient.set_pwm">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_pwm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty_cycle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/client.html#GPIOPinClient.set_pwm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.client.GPIOPinClient.set_pwm" title="Permalink to this definition"></a></dt>
-<dd><p>Set the pin to the given <cite>duty_cycle</cite>.</p>
+<dd><p>Set the pin to the given <code class="docutils literal notranslate"><span class="pre">duty_cycle</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>duty_cycle</strong> (<em>float</em>) – The duty cycle.</p>
@@ -362,8 +362,8 @@ is returned by <cite>self.value()</cite></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.board.client.GPIOPinClient.set_pwm_frequency">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_pwm_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/client.html#GPIOPinClient.set_pwm_frequency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.client.GPIOPinClient.set_pwm_frequency" title="Permalink to this definition"></a></dt>
-<dd><p>Set the pin to the given PWM <cite>frequency</cite> (in Hz).
-When <cite>frequency</cite> is 0, it will use the board’s default PWM frequency.</p>
+<dd><p>Set the pin to the given PWM <code class="docutils literal notranslate"><span class="pre">frequency</span></code> (in Hz).
+When <code class="docutils literal notranslate"><span class="pre">frequency</span></code> is 0, it will use the board’s default PWM frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>frequency</strong> (<em>int</em>) – The frequency, in Hz.</p>
@@ -380,7 +380,7 @@ When <cite>frequency</cite> is 0, it will use the board’s default PWM frequenc
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.board.client.BoardClient.analog_reader_by_name">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analog_reader_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../board/index.html#viam.components.board.board.Board.AnalogReader" title="viam.components.board.board.Board.AnalogReader"><span class="pre">viam.components.board.board.Board.AnalogReader</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/board/client.html#BoardClient.analog_reader_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.client.BoardClient.analog_reader_by_name" title="Permalink to this definition"></a></dt>
-<dd><p>Get an AnalogReader by <cite>name</cite>.</p>
+<dd><p>Get an AnalogReader by <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the analog reader to be retrieved.</p>
@@ -397,7 +397,7 @@ When <cite>frequency</cite> is 0, it will use the board’s default PWM frequenc
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.board.client.BoardClient.digital_interrupt_by_name">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupt_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../board/index.html#viam.components.board.board.Board.DigitalInterrupt" title="viam.components.board.board.Board.DigitalInterrupt"><span class="pre">viam.components.board.board.Board.DigitalInterrupt</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/board/client.html#BoardClient.digital_interrupt_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.client.BoardClient.digital_interrupt_by_name" title="Permalink to this definition"></a></dt>
-<dd><p>Get a DigitalInterrupt by <cite>name</cite>.</p>
+<dd><p>Get a DigitalInterrupt by <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the digital interrupt.</p>
@@ -414,7 +414,7 @@ When <cite>frequency</cite> is 0, it will use the board’s default PWM frequenc
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.board.client.BoardClient.gpio_pin_by_name">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">gpio_pin_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../board/index.html#viam.components.board.board.Board.GPIOPin" title="viam.components.board.board.Board.GPIOPin"><span class="pre">viam.components.board.board.Board.GPIOPin</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/board/client.html#BoardClient.gpio_pin_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.client.BoardClient.gpio_pin_by_name" title="Permalink to this definition"></a></dt>
-<dd><p>Get a GPIO Pin by <cite>name</cite>.</p>
+<dd><p>Get a GPIO Pin by <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the GPIO pin.</p>

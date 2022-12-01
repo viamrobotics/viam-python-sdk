@@ -205,7 +205,7 @@
         <span class="c1"># HACK: Keep the stream open when this function returns.</span>
         <span class="c1"># When the StreamEvents function returns, the Stream is closed. But we don&#39;t want the stream to close because we still need</span>
         <span class="c1"># to send events to any clients who have registered callbacks.</span>
-        <span class="c1"># By setting `stream._cancel_done` to `True`, this tricks grpclib into thinking it already closed the stream, so it doesn&#39;t</span>
+        <span class="c1"># By setting ``stream._cancel_done`` to ``True``, this tricks grpclib into thinking it already closed the stream, so it doesn&#39;t</span>
         <span class="c1"># perform any cleanup (like removing the stream). We eventually do want to actually close this stream, so we undo this hack</span>
         <span class="c1"># every time we send a message. That way, the trailing metadata is sent when either the server closes or the client disconnects.</span>
         <span class="n">stream</span><span class="o">.</span><span class="n">_cancel_done</span> <span class="o">=</span> <span class="kc">True</span>

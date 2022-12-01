@@ -35,8 +35,8 @@ Classes
    Gantry represents a physical Gantry and can be used for controlling gantries of N axes.
 
    This acts as an abstract base class for any drivers representing specific
-   gantry implementations. This cannot be used on its own. If the `__init__()` function is
-   overridden, it must call the `super().__init__()` function.
+   gantry implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
 
    .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]
       :abstractmethod:
@@ -58,7 +58,7 @@ Classes
                         in millimeters.
       :type positions: List[float]
       :param world_state: Object describing
-                          obstacles for the gantry to avoid on its way to `positions`.
+                          obstacles for the gantry to avoid on its way to ``positions``.
       :type world_state: Optional[WorldState]
 
 

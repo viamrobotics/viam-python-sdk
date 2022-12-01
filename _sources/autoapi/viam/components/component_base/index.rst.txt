@@ -36,7 +36,7 @@ Classes
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 
-      Get the component named `name` from the provided robot.
+      Get the component named ``name`` from the provided robot.
 
       :param robot: The robot
       :type robot: RobotClient
@@ -49,10 +49,11 @@ Classes
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
 
-      Get the `Operation` associated with the currently running function.
+      Get the ``Operation`` associated with the currently running function.
 
-      When writing custom components, you should get the `Operation` by calling this function and check to see if it's cancelled.
-      If the `Operation` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.).
+      When writing custom components, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
 
       :param kwargs: The kwargs object containing the operation
       :type kwargs: Mapping[str, Any]
