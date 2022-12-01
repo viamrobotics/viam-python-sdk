@@ -1,9 +1,10 @@
 import asyncio
 import time
+from uuid import UUID
 
 import pytest
 
-from viam.operations import Operation, run_with_operation
+from viam.operations import METADATA_KEY, Operation, run_with_operation
 
 
 @pytest.mark.asyncio
@@ -57,3 +58,20 @@ async def test_wrapper():
     test_obj.long_running_task_cancelled = False
     assert test_obj.long_running_task_cancelled is False
     assert await asyncio.create_task(test_obj.long_running(timeout=0.02)) is True
+
+
+@pytest.mark.asyncio
+async def test_wrapper_with_metadata():
+    test_metadata_opid = "11111111-1111-1111-1111-111111111111"
+
+    class TestWrapperClass:
+        @run_with_operation
+        async def run(self, **kwargs) -> bool:
+            operation: Operation = kwargs.get(Operation.ARG_NAME, Operation._noop())
+            assert operation.id == UUID(test_metadata_opid)
+            return False
+
+    test_obj = TestWrapperClass()
+    metadata = {METADATA_KEY: test_metadata_opid}
+    result = await test_obj.run(metadata=metadata)
+    assert result is False
