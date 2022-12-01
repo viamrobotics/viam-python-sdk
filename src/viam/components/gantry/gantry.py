@@ -12,8 +12,8 @@ class Gantry(ComponentBase):
     Gantry represents a physical Gantry and can be used for controlling gantries of N axes.
 
     This acts as an abstract base class for any drivers representing specific
-    gantry implementations. This cannot be used on its own. If the `__init__()` function is
-    overridden, it must call the `super().__init__()` function.
+    gantry implementations. This cannot be used on its own. If the ``__init__()`` function is
+    overridden, it must call the ``super().__init__()`` function.
     """
 
     @abc.abstractmethod
@@ -43,7 +43,7 @@ class Gantry(ComponentBase):
             positions (List[float]): List of positions for the axes to move to,
                 in millimeters.
             world_state (Optional[WorldState]): Object describing
-                obstacles for the gantry to avoid on its way to `positions`.
+                obstacles for the gantry to avoid on its way to ``positions``.
         """
         ...
 

@@ -23,8 +23,8 @@ class ComponentRegistration(Generic[Component]):
     This object is generic over the component, and it includes various functionality for the component, such as creating its RPC client
     or status.
 
-    If creating a custom Component type, you should register the component by creating a `ComponentRegistration` object and registering it
-    to the `Registry`.
+    If creating a custom Component type, you should register the component by creating a ``ComponentRegistration`` object and registering it
+    to the ``Registry``.
     """
 
     component_type: Type[Component]
@@ -36,7 +36,7 @@ class ComponentRegistration(Generic[Component]):
     """
 
     rpc_service: Type[ComponentServiceBase]
-    """The RPC service of the component. This must extend from `ComponentServiceBase`
+    """The RPC service of the component. This must extend from ``ComponentServiceBase``
     """
 
     create_rpc_client: Callable[[str, Channel], Component]
@@ -59,7 +59,7 @@ class Registry:
     pre-registered (e.g. Arm, Motor).
 
     If you create a new component type that is not an extension of any of the existing base component types, then you must register said
-    component using `Registry.register(...)`.
+    component using ``Registry.register(...)``.
     """
 
     _COMPONENTS: Dict[str, ComponentRegistration] = {}

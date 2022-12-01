@@ -16,8 +16,8 @@ class Board(ComponentBase):
     components such as analog readers, and digital interrupts.
 
     This acts as an abstract base class for any drivers representing specific
-    board implementations. This cannot be used on its own. If the `__init__()` function is
-    overridden, it must call the `super().__init__()` function.
+    board implementations. This cannot be used on its own. If the ``__init__()`` function is
+    overridden, it must call the ``super().__init__()`` function.
     """
 
     @dataclass
@@ -70,14 +70,14 @@ class Board(ComponentBase):
                 high (bool): If the signal of the interrupt is high.
                 nanos (int): Nanoseconds from an arbitrary point in time,
                     but always increasing and always needs to be accurate.
-                    Using `time.time_ns()` would be acceptable.
+                    Using ``time.time_ns()`` would be acceptable.
             """
             ...
 
         @abc.abstractmethod
         async def add_callback(self, queue: Queue):
             """
-            Add a callback to be sent the low/high value on `tick()`.
+            Add a callback to be sent the low/high value on ``tick()``.
 
             Args:
                 queue (Queue): The receiving queue.
@@ -88,7 +88,7 @@ class Board(ComponentBase):
         async def add_post_processor(self, processor: PostProcessor):
             """
             Add a post processor that should be used to modify what
-            is returned by `self.value()`
+            is returned by ``self.value()``
 
             Args:
                 processor (PostProcessor): The post processor to add.
@@ -133,7 +133,7 @@ class Board(ComponentBase):
         @abc.abstractmethod
         async def set_pwm(self, duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
             """
-            Set the pin to the given `duty_cycle`.
+            Set the pin to the given ``duty_cycle``.
 
             Args:
                 duty_cycle (float): The duty cycle.
@@ -160,8 +160,8 @@ class Board(ComponentBase):
             **kwargs,
         ):
             """
-            Set the pin to the given PWM `frequency` (in Hz).
-            When `frequency` is 0, it will use the board's default PWM frequency.
+            Set the pin to the given PWM ``frequency`` (in Hz).
+            When ``frequency`` is 0, it will use the board's default PWM frequency.
 
             Args:
                 frequency (int): The frequency, in Hz.
@@ -171,7 +171,7 @@ class Board(ComponentBase):
     @abc.abstractmethod
     async def analog_reader_by_name(self, name: str) -> AnalogReader:
         """
-        Get an AnalogReader by `name`.
+        Get an AnalogReader by ``name``.
 
         Args:
             name (str): Name of the analog reader to be retrieved.
@@ -184,7 +184,7 @@ class Board(ComponentBase):
     @abc.abstractmethod
     async def digital_interrupt_by_name(self, name: str) -> DigitalInterrupt:
         """
-        Get a DigitalInterrupt by `name`.
+        Get a DigitalInterrupt by ``name``.
 
         Args:
             name (str): Name of the digital interrupt.
@@ -197,7 +197,7 @@ class Board(ComponentBase):
     @abc.abstractmethod
     async def gpio_pin_by_name(self, name: str) -> GPIOPin:
         """
-        Get a GPIO Pin by `name`.
+        Get a GPIO Pin by ``name``.
 
         Args:
             name (str): Name of the GPIO pin.

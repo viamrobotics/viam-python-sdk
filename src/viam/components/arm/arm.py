@@ -13,8 +13,8 @@ class Arm(ComponentBase):
     Arm represents a physical robot arm that exists in three-dimensional space.
 
     This acts as an abstract base class for any drivers representing specific
-    arm implementations. This cannot be used on its own. If the `__init__()` function is
-    overridden, it must call the `super().__init__()` function.
+    arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+    overridden, it must call the ``super().__init__()`` function.
     """
 
     @abc.abstractmethod
@@ -43,14 +43,14 @@ class Arm(ComponentBase):
         **kwargs,
     ):
         """
-        Move the end of the arm to the Pose specified in `pose`.
-        When obstacles are specified in `world_state`, the motion plan of the arm will avoid them.
+        Move the end of the arm to the Pose specified in ``pose``.
+        When obstacles are specified in ``world_state``, the motion plan of the arm will avoid them.
 
         Args:
 
             pose (Pose): The destination Pose for the arm.
 
-            world_state (WorldState): The obstacles for the arm to avoid on its way to `pose`.
+            world_state (WorldState): The obstacles for the arm to avoid on its way to ``pose``.
         """
         ...
 
@@ -64,11 +64,11 @@ class Arm(ComponentBase):
         **kwargs,
     ):
         """
-        Move each joint on the arm to the corresponding angle specified in `positions`.
+        Move each joint on the arm to the corresponding angle specified in ``positions``.
 
         Args:
 
-            positions (JointPositions): The destination `JointPositions` for the arm.
+            positions (JointPositions): The destination ``JointPositions`` for the arm.
         """
         ...
 

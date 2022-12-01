@@ -45,19 +45,19 @@ LOGGER = logging.getLogger(__name__)
 class RobotClient:
     """gRPC client for a Robot. This class should be used for all interactions with a robot.
 
-    There are 2 ways to instantiate a robot client:
+    There are 2 ways to instantiate a robot client::
 
-        RobotClient.at_address(...)\n
+        RobotClient.at_address(...)
         RobotClient.with_channel(...)
 
-    You can use the client standalone or within a context
+    You can use the client standalone or within a context::
 
-        robot = await RobotClient.at_address(...)\n
+        robot = await RobotClient.at_address(...)
         async with await RobotClient.with_channel(...) as robot: ...
 
-    You must `close()` the robot to release resources.
+    You must ``close()`` the robot to release resources.
 
-    Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using `with_channel` are
+    Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using ``with_channel`` are
     not automatically closed.
     """
 
@@ -103,7 +103,7 @@ class RobotClient:
         Any robots created using this method will *NOT* automatically close the channel upon exit.
 
         Args:
-            channel (ViamChannel): The channel that is connected to a robot, obtained by `viam.rpc.dial`
+            channel (ViamChannel): The channel that is connected to a robot, obtained by ``viam.rpc.dial``
             options (Options): Options for refreshing. Any connection options will be ignored.
 
         Returns:
@@ -177,33 +177,36 @@ class RobotClient:
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
 
-        This function should not be used except in specific cases. The method `Component.from_robot(...)` is the preferred method
+        This function should not be used except in specific cases. The method ``Component.from_robot(...)`` is the preferred method
         for obtaining components.
+        ::
 
-            `arm = Arm.from_robot(robot=robot, name='my_arm')`
+            arm = Arm.from_robot(robot=robot, name='my_arm')
 
-        Because this function returns a generic `ComponentBase` rather than the specific
+        Because this function returns a generic ``ComponentBase`` rather than the specific
         component type, it will be necessary to cast the returned component to the desired component. This can be done using a few
         different methods:
 
-        - Assertion
+        - Assertion::
 
-            arm = robot.get_component(Arm.get_resource_name('my_arm'))\n
-            assert isinstance(arm, Arm)\n
-            end_pos = await arm.get_end_position()\n
+            arm = robot.get_component(Arm.get_resource_name('my_arm'))
+            assert isinstance(arm, Arm)
+            end_pos = await arm.get_end_position()
 
-        - Explicit cast
+        - Explicit cast::
 
-            from typing import cast\n\n
-            arm = robot.get_component(Arm.get_resource_name('my_arm'))\n
-            arm = cast(Arm, arm)\n
-            end_pos = await arm.get_end_position()\n
+            from typing import cast
+            arm = robot.get_component(Arm.get_resource_name('my_arm'))
+            arm = cast(Arm, arm)
+            end_pos = await arm.get_end_position()
 
         - Declare type on variable assignment.
-          - Note: If using an IDE, a type error may be shown which can be ignored.
 
-            arm: Arm = robot.get_component(Arm.get_resource_name('my_arm'))  # type: ignore\n
-            end_pos = await arm.get_end_position()\n
+            - Note: If using an IDE, a type error may be shown which can be ignored.
+            ::
+
+                arm: Arm = robot.get_component(Arm.get_resource_name('my_arm'))  # type: ignore
+                end_pos = await arm.get_end_position()
 
         Args:
             name (ResourceName): The component's name
@@ -268,11 +271,11 @@ class RobotClient:
     async def get_status(self, components: Optional[List[ResourceName]] = None):
         """
         Get the status of the robot's components. You can optionally
-        provide a list of `ResourceName` for which you want statuses.
+        provide a list of ``ResourceName`` for which you want statuses.
 
         Args:
             components (Optional[List[ResourceName]]): Optional list of
-                `ResourceName` for components you want statuses.
+                ``ResourceName`` for components you want statuses.
         """
         names = components if components is not None else []
         request = GetStatusRequest(resource_names=names)
@@ -373,8 +376,8 @@ class RobotClient:
         Cancel all current and outstanding operations for the robot and stop all actuators and movement
 
         Args:
-            extra (Dict[ResourceName, Dict[str, Any]]): Any extra parameters to pass to the components' `stop` methods, keyed on the
-                                                        component's `ResourceName`
+            extra (Dict[ResourceName, Dict[str, Any]]): Any extra parameters to pass to the components' ``stop`` methods, keyed on the
+                                                        component's ``ResourceName``
 
         """
         ep: List[StopExtraParameters] = []

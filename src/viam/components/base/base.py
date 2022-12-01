@@ -12,8 +12,8 @@ class Base(ComponentBase):
     Base represents a physical base of a robot.
 
     This acts as an abstract base class for any drivers representing specific
-    base implementations. This cannot be used on its own. If the `__init__()` function is
-    overridden, it must call the `super().__init__()` function.
+    base implementations. This cannot be used on its own. If the ``__init__()`` function is
+    overridden, it must call the ``super().__init__()`` function.
     """
 
     @abc.abstractmethod
@@ -27,9 +27,9 @@ class Base(ComponentBase):
         **kwargs,
     ):
         """
-        Move the base in a straight line the given `distance`, expressed in millimeters,
-        at the given `velocity`, expressed in millimeters per second.
-        When `distance` or `velocity` is 0, the base will stop.
+        Move the base in a straight line the given ``distance``, expressed in millimeters,
+        at the given ``velocity``, expressed in millimeters per second.
+        When ``distance`` or ``velocity`` is 0, the base will stop.
         This method blocks until completed or cancelled.
 
         Args:
@@ -51,9 +51,9 @@ class Base(ComponentBase):
         **kwargs,
     ):
         """
-        Spin the base in place `angle` degrees, at the given angular `velocity`,
+        Spin the base in place ``angle`` degrees, at the given angular ``velocity``,
         expressed in degrees per second.
-        When `velocity` is 0, the base will stop.
+        When ``velocity`` is 0, the base will stop.
         This method blocks until completed or cancelled.
 
         Args:
@@ -75,10 +75,10 @@ class Base(ComponentBase):
         **kwargs,
     ):
         """Set the linear and angular velocity of the Base
-        When `linear` is 0, the the base will spin.
-        When `angular` is 0, the the base will move in a straight line.
-        When both `linear` and `angular` are 0, the base will stop.
-        When `linear` and `angular` are both nonzero, the base will move in an arc,
+        When ``linear`` is 0, the the base will spin.
+        When ``angular`` is 0, the the base will move in a straight line.
+        When both ``linear`` and ``angular`` are 0, the base will stop.
+        When ``linear`` and ``angular`` are both nonzero, the base will move in an arc,
         with a tighter radius if angular power is greater than linear power.
 
         Args:

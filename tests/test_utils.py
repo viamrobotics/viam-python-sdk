@@ -192,7 +192,7 @@ def test_struct_to_message_error():
 def test_dict_to_struct():
     expected = {"a": 1, "b": "2", "c": [3, 4, 5], "d": True, "e": {"1": 2, "3": "4", "5": [6, 7, 8], "9": False}}
 
-    # Just testing that this doesn't error, since this calls `primitive_to_value`
+    # Just testing that this doesn't error, since this calls ``primitive_to_value``
     _ = dict_to_struct(expected)
 
     # Unsupported type

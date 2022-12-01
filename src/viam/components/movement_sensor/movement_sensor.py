@@ -12,7 +12,7 @@ class MovementSensor(Sensor):
     """MovementSensor reports information about the robot's direction, position and speed.
 
     This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
-    This cannot be used on its own. If the `__init__()` function is overridden, it must call the `super().__init__()` function.
+    This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
     """
 
     Properties = GetPropertiesResponse
@@ -30,7 +30,7 @@ class MovementSensor(Sensor):
 
     @abc.abstractmethod
     async def get_linear_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
-        """Get the current linear velocity as a `Vector3` with x, y, and z axes represented in mm/sec
+        """Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in mm/sec
 
         Returns:
             Vector3: The linear velocity in mm/sec
@@ -39,7 +39,7 @@ class MovementSensor(Sensor):
 
     @abc.abstractmethod
     async def get_angular_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
-        """Get the current angular velocity as a `Vector3` with x, y, and z axes represented in radians/sec
+        """Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in radians/sec
 
         Returns:
             Vector3: The angular velocity in rad/sec

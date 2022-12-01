@@ -24,7 +24,7 @@ class ServiceClientBase(abc.ABC):
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str = "builtin") -> Self:
-        """Get the service client named `name` from the provided robot.
+        """Get the service client named ``name`` from the provided robot.
 
         Args:
             robot (RobotClient): The robot

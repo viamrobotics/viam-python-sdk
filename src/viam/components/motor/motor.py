@@ -16,8 +16,8 @@ class Motor(ComponentBase):
     Motor represents a physical motor.
 
     This acts as an abstract base class for any drivers representing specific
-    motor implementations. This cannot be used on its own. If the `__init__()` function is
-    overridden, it must call the `super().__init__()` function.
+    motor implementations. This cannot be used on its own. If the ``__init__()`` function is
+    overridden, it must call the ``super().__init__()`` function.
     """
 
     @abc.abstractmethod
@@ -31,7 +31,7 @@ class Motor(ComponentBase):
     ):
         """
         Sets the "percentage" of power the motor should employ between -1 and 1.
-        When `power` is negative, the rotation will be in the backward direction.
+        When ``power`` is negative, the rotation will be in the backward direction.
 
         Args:
             power (float): Power between -1 and 1
@@ -50,9 +50,9 @@ class Motor(ComponentBase):
         **kwargs,
     ):
         """
-        Spin the motor the specified number of `revolutions` at specified `rpm`.
-        When `rpm` or `revolutions` is a negative value, the rotation will be in the backward direction.
-        Note: if both `rpm` and `revolutions` are negative, the motor will spin in the forward direction.
+        Spin the motor the specified number of ``revolutions`` at specified ``rpm``.
+        When ``rpm`` or ``revolutions`` is a negative value, the rotation will be in the backward direction.
+        Note: if both ``rpm`` and ``revolutions`` are negative, the motor will spin in the forward direction.
 
         Args:
             rpm (float): Speed at which the motor should move in rotations per minute
@@ -75,7 +75,7 @@ class Motor(ComponentBase):
         """
         Spin the motor to the specified position (provided in revolutions from home/zero),
         at the specified speed, in revolutions per minute.
-        Regardless of the directionality of the `rpm` this function will move
+        Regardless of the directionality of the ``rpm`` this function will move
         the motor towards the specified position.
 
         Args:
@@ -94,7 +94,7 @@ class Motor(ComponentBase):
         **kwargs,
     ):
         """
-        Set the current position (modified by `offset`) to be the new zero (home) position.
+        Set the current position (modified by ``offset``) to be the new zero (home) position.
 
         Args:
             offset (float): The offset from the current position to new home/zero position.

@@ -204,7 +204,7 @@ class TestRobotService:
 
             assert await motor.is_moving() is False
 
-            # Test passing extra where component's `stop` function doesn't take extra
+            # Test passing extra where component's ``stop`` function doesn't take extra
             await arm.move_to_position(Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))
             assert await arm.is_moving() is True
             await motor.set_power(1)
@@ -267,7 +267,7 @@ class TestRobotClient:
             assert client._refresh_task is not None and client._refresh_task.cancelled() is False
 
             await client.close()
-            assert client._channel._connected is True  # Robots created with `with_channel` do not close Channels automatically
+            assert client._channel._connected is True  # Robots created with ``with_channel`` do not close Channels automatically
             with pytest.raises(asyncio.CancelledError):
                 await client._refresh_task
 

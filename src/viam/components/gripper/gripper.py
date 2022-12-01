@@ -10,8 +10,8 @@ class Gripper(ComponentBase):
     Gripper represents a physical robotic gripper.
 
     This acts as an abstract base class for any drivers representing specific
-    gripper implementations. This cannot be used on its own. If the `__init__()` function is
-    overridden, it must call the `super().__init__()` function.
+    gripper implementations. This cannot be used on its own. If the ``__init__()`` function is
+    overridden, it must call the ``super().__init__()`` function.
     """
 
     @abc.abstractmethod

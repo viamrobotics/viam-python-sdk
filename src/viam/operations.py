@@ -53,7 +53,7 @@ class Operation:
     @classmethod
     def _noop(cls) -> Self:
         """Obtain a noop Operation.
-        This operation will always return `False` for `is_cancelled()`
+        This operation will always return ``False`` for ``is_cancelled()``
         """
         return cls("noop-operation", asyncio.Event())
 
@@ -63,7 +63,7 @@ T = TypeVar("T")
 
 
 def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P, Coroutine[Any, Any, T]]:
-    """Run a component function with an `Operation`.
+    """Run a component function with an ``Operation``.
     Running a function with an Operation will allow the function
     to know if/when the calling task was cancelled and take appropriate action
     (.e.g. stop long running tasks and exit early).
@@ -76,8 +76,8 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
 
     Args:
         func (Callable[..., Coroutine[Any, Any, T]]): The function to be called with an Operation.
-                                                      This function MUST accept `**kwargs`
-                                                      or a parameter whose name is equal the value of `Operation.ARG_NAME`
+                                                      This function MUST accept ``**kwargs``
+                                                      or a parameter whose name is equal the value of ``Operation.ARG_NAME``
 
     Returns:
         T: The return of the function
