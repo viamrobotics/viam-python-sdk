@@ -1,10 +1,9 @@
 import asyncio
 import functools
 import time
-from typing import Any, Callable, Coroutine, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Coroutine, Mapping, Optional, TypeVar, cast
 from uuid import UUID, uuid4
 
-from grpclib.metadata import _Metadata
 from typing_extensions import Self
 
 try:
@@ -28,8 +27,8 @@ class Operation:
     _cancel_event: asyncio.Event
     _cancelled: bool
 
-    def __init__(self, method: str, cancel_event: asyncio.Event) -> None:
-        self.id = uuid4()
+    def __init__(self, method: str, cancel_event: asyncio.Event, opid: Optional[UUID] = None) -> None:
+        self.id = uuid4() if opid is None else opid
         self.method = method
         self.time_started = time.time()
         self._cancel_event = cancel_event
@@ -65,17 +64,15 @@ T = TypeVar("T")
 METADATA_KEY = "opid"
 
 
-def kwargs_from_metadata(metadata: Optional[_Metadata]) -> Dict[str, Any]:
+def opid_from_metadata(metadata: Optional[Mapping[str, str]]) -> Optional[UUID]:
     if metadata is None:
-        return {}
+        return None
 
-    operation = metadata.get(METADATA_KEY)
-    if operation is None:
-        return {}
+    opid = metadata.get(METADATA_KEY)
+    if opid is None:
+        return None
 
-    # TODO: decode the operation
-
-    return {Operation.ARG_NAME: operation}
+    return UUID(opid)
 
 
 def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P, Coroutine[Any, Any, T]]:
@@ -102,13 +99,13 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
     @functools.wraps(func)
     async def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
         event = asyncio.Event()
-        operation = kwargs.get(Operation.ARG_NAME)
-        if operation is None:
-            func_name = func.__qualname__
-            arg_names = ", ".join([str(a) for a in args])
-            kwarg_names = ", ".join([f"{key}={value}" for (key, value) in kwargs.items()])
-            operation = Operation(f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})", event)
-            kwargs[Operation.ARG_NAME] = operation
+        func_name = func.__qualname__
+        arg_names = ", ".join([str(a) for a in args])
+        kwarg_names = ", ".join([f"{key}={value}" for (key, value) in kwargs.items()])
+        method = f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})"
+        opid = opid_from_metadata(kwargs.get("metadata"))
+        operation = Operation(method, event, opid=opid)
+        kwargs[Operation.ARG_NAME] = operation
         timeout = kwargs.get("timeout", None)
         timer: Optional[asyncio.TimerHandle] = None
         if timeout:
