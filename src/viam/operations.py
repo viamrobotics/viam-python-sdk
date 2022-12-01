@@ -103,7 +103,7 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
         arg_names = ", ".join([str(a) for a in args])
         kwarg_names = ", ".join([f"{key}={value}" for (key, value) in kwargs.items()])
         method = f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})"
-        opid = opid_from_metadata(kwargs.get("metadata"))
+        opid = opid_from_metadata(kwargs.get("metadata"))  # type: ignore
         operation = Operation(method, event, opid=opid)
         kwargs[Operation.ARG_NAME] = operation
         timeout = kwargs.get("timeout", None)
