@@ -105,7 +105,10 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.run_with_operation" title="viam.operations.run_with_operation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_with_operation</span></code></a>(→ Callable[P, Coroutine[Any, Any, T]])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.opid_from_metadata" title="viam.operations.opid_from_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">opid_from_metadata</span></code></a>(→ Optional[uuid.UUID])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.operations.run_with_operation" title="viam.operations.run_with_operation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_with_operation</span></code></a>(→ Callable[P, Coroutine[Any, Any, T]])</p></td>
 <td><p>Run a component function with an <code class="docutils literal notranslate"><span class="pre">Operation</span></code>.</p></td>
 </tr>
 </tbody>
@@ -125,11 +128,14 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.operations.T" title="viam.operations.T"><code class="xref py py-obj docutils literal notranslate"><span class="pre">T</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.METADATA_KEY" title="viam.operations.METADATA_KEY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">METADATA_KEY</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.operations.Operation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.operations.</span></span><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">asyncio.Event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/operations.html#Operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.operations.Operation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.operations.</span></span><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cancel_event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">asyncio.Event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">uuid.UUID</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/operations.html#Operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.operations.Operation" title="Permalink to this definition"></a></dt>
 <dd><p>An Operation represents a running operation.</p>
 <p>Every request made to a robot’s components will create a new Operation on the server. For custom components built with this python-sdk,
 you should check whether the operation has been cancelled to prevent long-running tasks from leaking.</p>
@@ -174,6 +180,16 @@ you should check whether the operation has been cancelled to prevent long-runnin
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.operations.T">
 <span class="sig-prename descclassname"><span class="pre">viam.operations.</span></span><span class="sig-name descname"><span class="pre">T</span></span><a class="headerlink" href="#viam.operations.T" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.operations.METADATA_KEY">
+<span class="sig-prename descclassname"><span class="pre">viam.operations.</span></span><span class="sig-name descname"><span class="pre">METADATA_KEY</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">opid</span></em><a class="headerlink" href="#viam.operations.METADATA_KEY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.operations.opid_from_metadata">
+<span class="sig-prename descclassname"><span class="pre">viam.operations.</span></span><span class="sig-name descname"><span class="pre">opid_from_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">uuid.UUID</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/operations.html#opid_from_metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.operations.opid_from_metadata" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

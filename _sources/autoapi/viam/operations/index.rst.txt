@@ -21,6 +21,7 @@ Functions
 
 .. autoapisummary::
 
+   viam.operations.opid_from_metadata
    viam.operations.run_with_operation
 
 
@@ -32,9 +33,10 @@ Attributes
 
    viam.operations.P
    viam.operations.T
+   viam.operations.METADATA_KEY
 
 
-.. py:class:: Operation(method: str, cancel_event: asyncio.Event)
+.. py:class:: Operation(method: str, cancel_event: asyncio.Event, opid: Optional[uuid.UUID] = None)
 
    An Operation represents a running operation.
 
@@ -80,6 +82,14 @@ Attributes
    
 
    
+
+.. py:data:: METADATA_KEY
+   :annotation: = opid
+
+   
+
+.. py:function:: opid_from_metadata(metadata: Optional[Mapping[str, str]]) -> Optional[uuid.UUID]
+
 
 .. py:function:: run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P, Coroutine[Any, Any, T]]
 
