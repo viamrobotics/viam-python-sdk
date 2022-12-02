@@ -1,4 +1,5 @@
 from grpclib.server import Stream
+
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ComponentNotFoundError
 from viam.proto.component.arm import (
@@ -35,7 +36,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        position = await arm.get_end_position(extra=struct_to_dict(request.extra), timeout=timeout)
+        position = await arm.get_end_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetEndPositionResponse(pose=position)
         await stream.send_message(response)
 
@@ -48,7 +49,9 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await arm.move_to_position(request.to, request.world_state, extra=struct_to_dict(request.extra), timeout=timeout)
+        await arm.move_to_position(
+            request.to, request.world_state, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+        )
         response = MoveToPositionResponse()
         await stream.send_message(response)
 
@@ -61,7 +64,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        positions = await arm.get_joint_positions(extra=struct_to_dict(request.extra), timeout=timeout)
+        positions = await arm.get_joint_positions(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetJointPositionsResponse(positions=positions)
         await stream.send_message(response)
 
@@ -74,7 +77,7 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra), timeout=timeout)
+        await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = MoveToJointPositionsResponse()
         await stream.send_message(response)
 
@@ -87,6 +90,6 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await arm.stop(extra=struct_to_dict(request.extra), timeout=timeout)
+        await arm.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StopResponse()
         await stream.send_message(response)
