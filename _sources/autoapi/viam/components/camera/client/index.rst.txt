@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the Camera component
 
-   .. py:method:: get_image(mime_type: str = CameraMimeType.PNG, *, timeout: Optional[float] = None) -> Union[PIL.Image.Image, viam.media.video.RawImage]
+   .. py:method:: get_image(mime_type: str = '', *, timeout: Optional[float] = None) -> Union[PIL.Image.Image, viam.media.video.RawImage]
       :async:
 
       Get the next image from the camera as an Image or RawImage.
