@@ -83,6 +83,7 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
+
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">MethodNotImplementedError</span><span class="p">,</span> <span class="n">ViamGRPCError</span>
@@ -98,6 +99,8 @@
     <span class="n">FrameSystemConfigResponse</span><span class="p">,</span>
     <span class="n">GetOperationsRequest</span><span class="p">,</span>
     <span class="n">GetOperationsResponse</span><span class="p">,</span>
+    <span class="n">GetSessionsRequest</span><span class="p">,</span>
+    <span class="n">GetSessionsResponse</span><span class="p">,</span>
     <span class="n">GetStatusRequest</span><span class="p">,</span>
     <span class="n">GetStatusResponse</span><span class="p">,</span>
     <span class="n">ResourceNamesRequest</span><span class="p">,</span>
@@ -105,6 +108,10 @@
     <span class="n">ResourceRPCSubtypesRequest</span><span class="p">,</span>
     <span class="n">ResourceRPCSubtypesResponse</span><span class="p">,</span>
     <span class="n">RobotServiceBase</span><span class="p">,</span>
+    <span class="n">SendSessionHeartbeatRequest</span><span class="p">,</span>
+    <span class="n">SendSessionHeartbeatResponse</span><span class="p">,</span>
+    <span class="n">StartSessionRequest</span><span class="p">,</span>
+    <span class="n">StartSessionResponse</span><span class="p">,</span>
     <span class="n">Status</span><span class="p">,</span>
     <span class="n">StopAllRequest</span><span class="p">,</span>
     <span class="n">StopAllResponse</span><span class="p">,</span>
@@ -220,7 +227,16 @@
 
         <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ViamGRPCError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Failed to stop components named </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">StopAllResponse</span><span class="p">())</span></div></div>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">StopAllResponse</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="RobotService.GetSessions"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.GetSessions">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetSessions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetSessionsRequest</span><span class="p">,</span> <span class="n">GetSessionsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">MethodNotImplementedError</span><span class="p">(</span><span class="s2">&quot;GetSessions&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grpc_error</span></div>
+
+<div class="viewcode-block" id="RobotService.StartSession"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.StartSession">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">StartSession</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StartSessionRequest</span><span class="p">,</span> <span class="n">StartSessionResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">MethodNotImplementedError</span><span class="p">(</span><span class="s2">&quot;StartSession&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grpc_error</span></div>
+
+<div class="viewcode-block" id="RobotService.SendSessionHeartbeat"><a class="viewcode-back" href="../../../autoapi/viam/robot/service/index.html#viam.robot.service.RobotService.SendSessionHeartbeat">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">SendSessionHeartbeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">SendSessionHeartbeatRequest</span><span class="p">,</span> <span class="n">SendSessionHeartbeatResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">MethodNotImplementedError</span><span class="p">(</span><span class="s2">&quot;SendSessionHeartbeat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grpc_error</span></div></div>
 </pre></div>
 
            </div>

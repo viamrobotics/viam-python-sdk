@@ -30,6 +30,11 @@ Classes
       :async:
 
 
+   .. py:method:: GetSessions(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetSessionsRequest, robot.v1.robot_pb2.GetSessionsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
    .. py:method:: ResourceNames(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceNamesRequest, robot.v1.robot_pb2.ResourceNamesResponse]) -> None
       :abstractmethod:
       :async:
@@ -76,6 +81,16 @@ Classes
 
 
    .. py:method:: StopAll(stream: grpclib.server.Stream[robot.v1.robot_pb2.StopAllRequest, robot.v1.robot_pb2.StopAllResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: StartSession(stream: grpclib.server.Stream[robot.v1.robot_pb2.StartSessionRequest, robot.v1.robot_pb2.StartSessionResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: SendSessionHeartbeat(stream: grpclib.server.Stream[robot.v1.robot_pb2.SendSessionHeartbeatRequest, robot.v1.robot_pb2.SendSessionHeartbeatResponse]) -> None
       :abstractmethod:
       :async:
 

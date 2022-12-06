@@ -95,8 +95,10 @@
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage</span></code></a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.optional_config</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.deadline"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.deadline</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.sdp"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.sdp</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.HasField()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.WhichOneof"><code class="docutils literal notranslate"><span class="pre">AnswerRequestInitStage.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage"><code class="docutils literal notranslate"><span class="pre">AnswerRequestUpdateStage</span></code></a><ul>
@@ -214,8 +216,10 @@
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage">AnswerRequestInitStage</a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config">optional_config</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.deadline">deadline</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.sdp">sdp</a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField">HasField</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.WhichOneof">WhichOneof</a></li>
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage">AnswerRequestUpdateStage</a><ul>
@@ -597,12 +601,17 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequestInitStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___WebRTCConfig</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">AnswerRequestInitStage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sdp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optional_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___WebRTCConfig</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deadline</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage" title="Permalink to this definition"></a></dt>
 <dd><p>AnswerRequestInitStage is the first and a one time stage that represents the
 callers initial SDP request to the controlled (answerer) side.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">optional_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___WebRTCConfig</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.optional_config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.deadline">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deadline</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.deadline" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -612,7 +621,7 @@ callers initial SDP request to the controlled (answerer) side.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">optional_config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'optional_config'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_deadline</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_deadline'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">deadline</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'deadline'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">optional_config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'optional_config'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -629,6 +638,27 @@ be raised.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_deadline</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_deadline'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'deadline'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
 </dd></dl>

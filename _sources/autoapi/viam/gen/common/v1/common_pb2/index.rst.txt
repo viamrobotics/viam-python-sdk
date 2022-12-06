@@ -63,6 +63,8 @@ Attributes
    viam.gen.common.v1.common_pb2.global___Transform
    viam.gen.common.v1.common_pb2.global___WorldState
    viam.gen.common.v1.common_pb2.global___ActuatorStatus
+   viam.gen.common.v1.common_pb2.SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER
+   viam.gen.common.v1.common_pb2.safety_heartbeat_monitored
 
 
 .. py:data:: DESCRIPTOR
@@ -698,4 +700,16 @@ Attributes
    
 
    
+
+.. py:data:: SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER
+   :annotation: :int
+
+   
+
+.. py:data:: safety_heartbeat_monitored
+   :annotation: :google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, bool]
+
+   safety_heartbeat_monitored is used on methods to signify that if a session is in use
+   and the session was the last to call this method, the resource associated with the
+   method will be stopped.
 

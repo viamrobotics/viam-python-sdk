@@ -63,6 +63,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetOperations"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetOperations()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetSessions"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetSessions()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.ResourceNames"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.ResourceNames()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.ResourceRPCSubtypes"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.ResourceRPCSubtypes()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.CancelOperation"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.CancelOperation()</span></code></a></li>
@@ -73,6 +74,8 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StreamStatus"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.StreamStatus()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StopAll"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.StopAll()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StartSession"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.StartSession()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.SendSessionHeartbeat"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.SendSessionHeartbeat()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -126,6 +129,11 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetOperationsResponse.operations"><code class="docutils literal notranslate"><span class="pre">GetOperationsResponse.operations</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetSessionsRequest"><code class="docutils literal notranslate"><span class="pre">GetSessionsRequest</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetSessionsResponse"><code class="docutils literal notranslate"><span class="pre">GetSessionsResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetSessionsResponse.sessions"><code class="docutils literal notranslate"><span class="pre">GetSessionsResponse.sessions</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetStatusRequest"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetStatusRequest.resource_names"><code class="docutils literal notranslate"><span class="pre">GetStatusRequest.resource_names</span></code></a></li>
 </ul>
@@ -139,9 +147,20 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.started"><code class="docutils literal notranslate"><span class="pre">Operation.started</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.id"><code class="docutils literal notranslate"><span class="pre">Operation.id</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.method"><code class="docutils literal notranslate"><span class="pre">Operation.method</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.session_id"><code class="docutils literal notranslate"><span class="pre">Operation.session_id</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.HasField"><code class="docutils literal notranslate"><span class="pre">Operation.HasField()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Operation.WhichOneof()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo"><code class="docutils literal notranslate"><span class="pre">PeerConnectionInfo</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.type"><code class="docutils literal notranslate"><span class="pre">PeerConnectionInfo.type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.remote_address"><code class="docutils literal notranslate"><span class="pre">PeerConnectionInfo.remote_address</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.local_address"><code class="docutils literal notranslate"><span class="pre">PeerConnectionInfo.local_address</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.HasField"><code class="docutils literal notranslate"><span class="pre">PeerConnectionInfo.HasField()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.WhichOneof"><code class="docutils literal notranslate"><span class="pre">PeerConnectionInfo.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.PeerConnectionType"><code class="docutils literal notranslate"><span class="pre">PeerConnectionType</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ResourceNamesRequest"><code class="docutils literal notranslate"><span class="pre">ResourceNamesRequest</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ResourceNamesResponse"><code class="docutils literal notranslate"><span class="pre">ResourceNamesResponse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.ResourceNamesResponse.resources"><code class="docutils literal notranslate"><span class="pre">ResourceNamesResponse.resources</span></code></a></li>
@@ -156,6 +175,28 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ResourceRPCSubtypesRequest"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesRequest</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ResourceRPCSubtypesResponse"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes"><code class="docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse.resource_rpc_subtypes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatRequest"><code class="docutils literal notranslate"><span class="pre">SendSessionHeartbeatRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatRequest.id"><code class="docutils literal notranslate"><span class="pre">SendSessionHeartbeatRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatResponse"><code class="docutils literal notranslate"><span class="pre">SendSessionHeartbeatResponse</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Session"><code class="docutils literal notranslate"><span class="pre">Session</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Session.peer_connection_info"><code class="docutils literal notranslate"><span class="pre">Session.peer_connection_info</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Session.id"><code class="docutils literal notranslate"><span class="pre">Session.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Session.HasField"><code class="docutils literal notranslate"><span class="pre">Session.HasField()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Session.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Session.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.StartSessionRequest"><code class="docutils literal notranslate"><span class="pre">StartSessionRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StartSessionRequest.resume"><code class="docutils literal notranslate"><span class="pre">StartSessionRequest.resume</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.StartSessionResponse"><code class="docutils literal notranslate"><span class="pre">StartSessionResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StartSessionResponse.heartbeat_window"><code class="docutils literal notranslate"><span class="pre">StartSessionResponse.heartbeat_window</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StartSessionResponse.id"><code class="docutils literal notranslate"><span class="pre">StartSessionResponse.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StartSessionResponse.HasField"><code class="docutils literal notranslate"><span class="pre">StartSessionResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
@@ -199,6 +240,7 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase">RobotServiceBase</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetOperations">GetOperations</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetSessions">GetSessions</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.ResourceNames">ResourceNames</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.ResourceRPCSubtypes">ResourceRPCSubtypes</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.CancelOperation">CancelOperation</a></li>
@@ -209,6 +251,8 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetStatus">GetStatus</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StreamStatus">StreamStatus</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StopAll">StopAll</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StartSession">StartSession</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.SendSessionHeartbeat">SendSessionHeartbeat</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -262,6 +306,11 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetOperationsResponse.operations">operations</a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetSessionsRequest">GetSessionsRequest</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetSessionsResponse">GetSessionsResponse</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetSessionsResponse.sessions">sessions</a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetStatusRequest">GetStatusRequest</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetStatusRequest.resource_names">resource_names</a></li>
 </ul>
@@ -275,9 +324,20 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.started">started</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.id">id</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.method">method</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.session_id">session_id</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.HasField">HasField</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Operation.WhichOneof">WhichOneof</a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo">PeerConnectionInfo</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.type">type</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.remote_address">remote_address</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.local_address">local_address</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.HasField">HasField</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.PeerConnectionType">PeerConnectionType</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ResourceNamesRequest">ResourceNamesRequest</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ResourceNamesResponse">ResourceNamesResponse</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.ResourceNamesResponse.resources">resources</a></li>
@@ -292,6 +352,28 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ResourceRPCSubtypesRequest">ResourceRPCSubtypesRequest</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.ResourceRPCSubtypesResponse">ResourceRPCSubtypesResponse</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes">resource_rpc_subtypes</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatRequest">SendSessionHeartbeatRequest</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatRequest.id">id</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatResponse">SendSessionHeartbeatResponse</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Session">Session</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Session.peer_connection_info">peer_connection_info</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Session.id">id</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Session.HasField">HasField</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.Session.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.StartSessionRequest">StartSessionRequest</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StartSessionRequest.resume">resume</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.StartSessionResponse">StartSessionResponse</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StartSessionResponse.heartbeat_window">heartbeat_window</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StartSessionResponse.id">id</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StartSessionResponse.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.Status">Status</a><ul>
@@ -431,6 +513,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.GetOperationsResponse" title="viam.proto.robot.GetOperationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOperationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.GetSessionsRequest" title="viam.proto.robot.GetSessionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSessionsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.GetSessionsResponse" title="viam.proto.robot.GetSessionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSessionsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.GetStatusRequest" title="viam.proto.robot.GetStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetStatusRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -439,6 +527,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.Operation" title="viam.proto.robot.Operation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Operation</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.PeerConnectionInfo" title="viam.proto.robot.PeerConnectionInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PeerConnectionInfo</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.PeerConnectionType" title="viam.proto.robot.PeerConnectionType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PeerConnectionType</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.ResourceNamesRequest" title="viam.proto.robot.ResourceNamesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceNamesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -455,28 +549,43 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.ResourceRPCSubtypesResponse" title="viam.proto.robot.ResourceRPCSubtypesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCSubtypesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.Status" title="viam.proto.robot.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatRequest" title="viam.proto.robot.SendSessionHeartbeatRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendSessionHeartbeatRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.StopAllRequest" title="viam.proto.robot.StopAllRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopAllRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.SendSessionHeartbeatResponse" title="viam.proto.robot.SendSessionHeartbeatResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SendSessionHeartbeatResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.StopAllResponse" title="viam.proto.robot.StopAllResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopAllResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.Session" title="viam.proto.robot.Session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Session</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.StopExtraParameters" title="viam.proto.robot.StopExtraParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopExtraParameters</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.StartSessionRequest" title="viam.proto.robot.StartSessionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StartSessionRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.StreamStatusRequest" title="viam.proto.robot.StreamStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.StartSessionResponse" title="viam.proto.robot.StartSessionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StartSessionResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.StreamStatusResponse" title="viam.proto.robot.StreamStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.Status" title="viam.proto.robot.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.TransformPoseRequest" title="viam.proto.robot.TransformPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.StopAllRequest" title="viam.proto.robot.StopAllRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopAllRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.TransformPoseResponse" title="viam.proto.robot.TransformPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.StopAllResponse" title="viam.proto.robot.StopAllResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopAllResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.StopExtraParameters" title="viam.proto.robot.StopExtraParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopExtraParameters</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.StreamStatusRequest" title="viam.proto.robot.StreamStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.StreamStatusResponse" title="viam.proto.robot.StreamStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.TransformPoseRequest" title="viam.proto.robot.TransformPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.TransformPoseResponse" title="viam.proto.robot.TransformPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -489,6 +598,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.GetOperations">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetOperations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetOperationsRequest" title="viam.gen.robot.v1.robot_pb2.GetOperationsRequest"><span class="pre">robot.v1.robot_pb2.GetOperationsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetOperationsResponse" title="viam.gen.robot.v1.robot_pb2.GetOperationsResponse"><span class="pre">robot.v1.robot_pb2.GetOperationsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.GetOperations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.GetOperations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.GetSessions">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetSessions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetSessionsRequest" title="viam.gen.robot.v1.robot_pb2.GetSessionsRequest"><span class="pre">robot.v1.robot_pb2.GetSessionsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetSessionsResponse" title="viam.gen.robot.v1.robot_pb2.GetSessionsResponse"><span class="pre">robot.v1.robot_pb2.GetSessionsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.GetSessions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.GetSessions" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -539,6 +653,16 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.StopAll">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StopAll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.StopAllRequest" title="viam.gen.robot.v1.robot_pb2.StopAllRequest"><span class="pre">robot.v1.robot_pb2.StopAllRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.StopAllResponse" title="viam.gen.robot.v1.robot_pb2.StopAllResponse"><span class="pre">robot.v1.robot_pb2.StopAllResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.StopAll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.StopAll" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.StartSession">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StartSession</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.StartSessionRequest" title="viam.gen.robot.v1.robot_pb2.StartSessionRequest"><span class="pre">robot.v1.robot_pb2.StartSessionRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.StartSessionResponse" title="viam.gen.robot.v1.robot_pb2.StartSessionResponse"><span class="pre">robot.v1.robot_pb2.StartSessionResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.StartSession"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.StartSession" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.SendSessionHeartbeat">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SendSessionHeartbeat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.SendSessionHeartbeatRequest" title="viam.gen.robot.v1.robot_pb2.SendSessionHeartbeatRequest"><span class="pre">robot.v1.robot_pb2.SendSessionHeartbeatRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.SendSessionHeartbeatResponse" title="viam.gen.robot.v1.robot_pb2.SendSessionHeartbeatResponse"><span class="pre">robot.v1.robot_pb2.SendSessionHeartbeatResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.SendSessionHeartbeat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.SendSessionHeartbeat" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -786,6 +910,29 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.GetSessionsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetSessionsRequest</span></span><a class="headerlink" href="#viam.proto.robot.GetSessionsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.GetSessionsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetSessionsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sessions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Session</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.GetSessionsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.GetSessionsResponse.sessions">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sessions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Session</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.GetSessionsResponse.sessions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.robot.GetStatusRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetStatusRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.GetStatusRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
@@ -815,7 +962,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.robot.Operation">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">started</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.Operation" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">Operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arguments</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">started</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.Operation" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -840,9 +987,14 @@ shown below.</p>
 <span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.Operation.method" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.Operation.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.Operation.session_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.Operation.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">arguments</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'arguments'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">started</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'started'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.Operation.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_session_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_session_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">arguments</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'arguments'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">session_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'session_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">started</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'started'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.Operation.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -863,7 +1015,103 @@ be raised.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.Operation.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_session_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_session_id'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'session_id'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.robot.Operation.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.PeerConnectionInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">PeerConnectionInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PeerConnectionType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remote_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.PeerConnectionInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.PeerConnectionInfo.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="w"> </span><span class="pre">:global___PeerConnectionType</span></em><a class="headerlink" href="#viam.proto.robot.PeerConnectionInfo.type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.PeerConnectionInfo.remote_address">
+<span class="sig-name descname"><span class="pre">remote_address</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.PeerConnectionInfo.remote_address" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.PeerConnectionInfo.local_address">
+<span class="sig-name descname"><span class="pre">local_address</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.PeerConnectionInfo.local_address" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.PeerConnectionInfo.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_local_address</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_local_address'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_remote_address</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_remote_address'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">local_address</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'local_address'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">remote_address</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'remote_address'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.PeerConnectionInfo.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.PeerConnectionInfo.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_local_address</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_local_address'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'local_address'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.robot.PeerConnectionInfo.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_remote_address</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_remote_address'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'remote_address'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.PeerConnectionType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">PeerConnectionType</span></span><a class="headerlink" href="#viam.proto.robot.PeerConnectionType" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.robot.ResourceNamesRequest">
@@ -950,6 +1198,150 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_rpc_subtypes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___ResourceRPCSubtype</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.ResourceRPCSubtypesResponse.resource_rpc_subtypes" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.SendSessionHeartbeatRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">SendSessionHeartbeatRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.SendSessionHeartbeatRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.SendSessionHeartbeatRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.SendSessionHeartbeatRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.SendSessionHeartbeatResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">SendSessionHeartbeatResponse</span></span><a class="headerlink" href="#viam.proto.robot.SendSessionHeartbeatResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.Session">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">Session</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peer_connection_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PeerConnectionInfo</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.Session" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.Session.peer_connection_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">peer_connection_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PeerConnectionInfo</span></em><a class="headerlink" href="#viam.proto.robot.Session.peer_connection_info" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.Session.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.Session.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.Session.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_peer_connection_info</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_peer_connection_info'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">peer_connection_info</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'peer_connection_info'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.Session.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.Session.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_peer_connection_info</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_peer_connection_info'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'peer_connection_info'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.robot.Session.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.StartSessionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">StartSessionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resume</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.StartSessionRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.StartSessionRequest.resume">
+<span class="sig-name descname"><span class="pre">resume</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.StartSessionRequest.resume" title="Permalink to this definition"></a></dt>
+<dd><p>resume can be used to attempt to continue a stream after a disconnection event. If
+a session is not found, a new one will be created and returned.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.StartSessionResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">StartSessionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heartbeat_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.duration_pb2.Duration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.StartSessionResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.StartSessionResponse.heartbeat_window">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">heartbeat_window</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.duration_pb2.Duration</span></em><a class="headerlink" href="#viam.proto.robot.StartSessionResponse.heartbeat_window" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.StartSessionResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.StartSessionResponse.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.StartSessionResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">heartbeat_window</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'heartbeat_window'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.StartSessionResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
