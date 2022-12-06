@@ -17,7 +17,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class ICECandidate(google.protobuf.message.Message):
     """ICECandidate represents an ICE candidate.
     From https://github.com/pion/webrtc/blob/5f6baf73255598a7b4a7c9400bb0381acc9aa3dc/icecandidateinit.go
@@ -54,7 +53,6 @@ class ICECandidate(google.protobuf.message.Message):
         ...
 global___ICECandidate = ICECandidate
 
-@typing_extensions.final
 class CallRequest(google.protobuf.message.Message):
     """CallRequest is the SDP offer that the controlling side is making."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -71,7 +69,6 @@ class CallRequest(google.protobuf.message.Message):
         ...
 global___CallRequest = CallRequest
 
-@typing_extensions.final
 class CallResponseInitStage(google.protobuf.message.Message):
     """CallResponseInitStage is the first and a one time stage that represents
     the initial response to starting a call.
@@ -87,7 +84,6 @@ class CallResponseInitStage(google.protobuf.message.Message):
         ...
 global___CallResponseInitStage = CallResponseInitStage
 
-@typing_extensions.final
 class CallResponseUpdateStage(google.protobuf.message.Message):
     """CallResponseUpdateStage is multiply used to trickle in ICE candidates from
     the controlled (answering) side.
@@ -109,7 +105,6 @@ class CallResponseUpdateStage(google.protobuf.message.Message):
         ...
 global___CallResponseUpdateStage = CallResponseUpdateStage
 
-@typing_extensions.final
 class CallResponse(google.protobuf.message.Message):
     """CallResponse is the SDP answer that the controlled side responds with."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -139,7 +134,6 @@ class CallResponse(google.protobuf.message.Message):
         ...
 global___CallResponse = CallResponse
 
-@typing_extensions.final
 class CallUpdateRequest(google.protobuf.message.Message):
     """CallUpdateRequest updates the call with additional info to the controlled side."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -171,7 +165,6 @@ class CallUpdateRequest(google.protobuf.message.Message):
         ...
 global___CallUpdateRequest = CallUpdateRequest
 
-@typing_extensions.final
 class CallUpdateResponse(google.protobuf.message.Message):
     """CallUpdateResponse contains nothing in response to a call update."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -180,7 +173,6 @@ class CallUpdateResponse(google.protobuf.message.Message):
         ...
 global___CallUpdateResponse = CallUpdateResponse
 
-@typing_extensions.final
 class ICEServer(google.protobuf.message.Message):
     """ICEServer describes an ICE server."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -201,7 +193,6 @@ class ICEServer(google.protobuf.message.Message):
         ...
 global___ICEServer = ICEServer
 
-@typing_extensions.final
 class WebRTCConfig(google.protobuf.message.Message):
     """WebRTCConfig represents parts of a WebRTC config."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -221,7 +212,6 @@ class WebRTCConfig(google.protobuf.message.Message):
         ...
 global___WebRTCConfig = WebRTCConfig
 
-@typing_extensions.final
 class AnswerRequestInitStage(google.protobuf.message.Message):
     """AnswerRequestInitStage is the first and a one time stage that represents the
     callers initial SDP request to the controlled (answerer) side.
@@ -253,7 +243,6 @@ class AnswerRequestInitStage(google.protobuf.message.Message):
         ...
 global___AnswerRequestInitStage = AnswerRequestInitStage
 
-@typing_extensions.final
 class AnswerRequestUpdateStage(google.protobuf.message.Message):
     """AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to
     the controlled (answerer) side.
@@ -275,7 +264,6 @@ class AnswerRequestUpdateStage(google.protobuf.message.Message):
         ...
 global___AnswerRequestUpdateStage = AnswerRequestUpdateStage
 
-@typing_extensions.final
 class AnswerRequestDoneStage(google.protobuf.message.Message):
     """AnswerRequestDoneStage indicates the controller is done responding with candidates."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -284,7 +272,6 @@ class AnswerRequestDoneStage(google.protobuf.message.Message):
         ...
 global___AnswerRequestDoneStage = AnswerRequestDoneStage
 
-@typing_extensions.final
 class AnswerRequestErrorStage(google.protobuf.message.Message):
     """AnswerRequestErrorStage indicates the exchange has failed with an error."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -304,7 +291,6 @@ class AnswerRequestErrorStage(google.protobuf.message.Message):
         ...
 global___AnswerRequestErrorStage = AnswerRequestErrorStage
 
-@typing_extensions.final
 class AnswerRequest(google.protobuf.message.Message):
     """AnswerRequest is the SDP offer that the controlling side is making via the answering
     stream.
@@ -346,7 +332,6 @@ class AnswerRequest(google.protobuf.message.Message):
         ...
 global___AnswerRequest = AnswerRequest
 
-@typing_extensions.final
 class AnswerResponseInitStage(google.protobuf.message.Message):
     """AnswerResponseInitStage is the first and a one time stage that represents the
     answerers initial SDP response to the controlling side.
@@ -362,7 +347,6 @@ class AnswerResponseInitStage(google.protobuf.message.Message):
         ...
 global___AnswerResponseInitStage = AnswerResponseInitStage
 
-@typing_extensions.final
 class AnswerResponseUpdateStage(google.protobuf.message.Message):
     """AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to
     the controlling side.
@@ -384,7 +368,6 @@ class AnswerResponseUpdateStage(google.protobuf.message.Message):
         ...
 global___AnswerResponseUpdateStage = AnswerResponseUpdateStage
 
-@typing_extensions.final
 class AnswerResponseDoneStage(google.protobuf.message.Message):
     """AnswerResponseDoneStage indicates the answerer is done responding with candidates."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -393,7 +376,6 @@ class AnswerResponseDoneStage(google.protobuf.message.Message):
         ...
 global___AnswerResponseDoneStage = AnswerResponseDoneStage
 
-@typing_extensions.final
 class AnswerResponseErrorStage(google.protobuf.message.Message):
     """AnswerResponseErrorStage indicates the exchange has failed with an error."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -413,7 +395,6 @@ class AnswerResponseErrorStage(google.protobuf.message.Message):
         ...
 global___AnswerResponseErrorStage = AnswerResponseErrorStage
 
-@typing_extensions.final
 class AnswerResponse(google.protobuf.message.Message):
     """AnswerResponse is the SDP answer that an answerer responds with."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -453,7 +434,6 @@ class AnswerResponse(google.protobuf.message.Message):
         ...
 global___AnswerResponse = AnswerResponse
 
-@typing_extensions.final
 class OptionalWebRTCConfigRequest(google.protobuf.message.Message):
     """OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config
     to use for the peer connection.
@@ -464,7 +444,6 @@ class OptionalWebRTCConfigRequest(google.protobuf.message.Message):
         ...
 global___OptionalWebRTCConfigRequest = OptionalWebRTCConfigRequest
 
-@typing_extensions.final
 class OptionalWebRTCConfigResponse(google.protobuf.message.Message):
     """OptionalWebRTCConfigResponse contains the optional WebRTC config
     to use for the peer connection.

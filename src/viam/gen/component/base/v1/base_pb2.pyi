@@ -14,7 +14,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class MoveStraightRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -42,7 +41,6 @@ class MoveStraightRequest(google.protobuf.message.Message):
         ...
 global___MoveStraightRequest = MoveStraightRequest
 
-@typing_extensions.final
 class MoveStraightResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -50,7 +48,6 @@ class MoveStraightResponse(google.protobuf.message.Message):
         ...
 global___MoveStraightResponse = MoveStraightResponse
 
-@typing_extensions.final
 class SpinRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -78,7 +75,6 @@ class SpinRequest(google.protobuf.message.Message):
         ...
 global___SpinRequest = SpinRequest
 
-@typing_extensions.final
 class SpinResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -86,7 +82,6 @@ class SpinResponse(google.protobuf.message.Message):
         ...
 global___SpinResponse = SpinResponse
 
-@typing_extensions.final
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -108,7 +103,6 @@ class StopRequest(google.protobuf.message.Message):
         ...
 global___StopRequest = StopRequest
 
-@typing_extensions.final
 class StopResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -116,7 +110,6 @@ class StopResponse(google.protobuf.message.Message):
         ...
 global___StopResponse = StopResponse
 
-@typing_extensions.final
 class SetPowerRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -148,7 +141,6 @@ class SetPowerRequest(google.protobuf.message.Message):
         ...
 global___SetPowerRequest = SetPowerRequest
 
-@typing_extensions.final
 class SetPowerResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -156,7 +148,6 @@ class SetPowerResponse(google.protobuf.message.Message):
         ...
 global___SetPowerResponse = SetPowerResponse
 
-@typing_extensions.final
 class SetVelocityRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -188,7 +179,6 @@ class SetVelocityRequest(google.protobuf.message.Message):
         ...
 global___SetVelocityRequest = SetVelocityRequest
 
-@typing_extensions.final
 class SetVelocityResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 

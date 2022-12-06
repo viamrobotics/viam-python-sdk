@@ -35,7 +35,6 @@ MODE_MANUAL: Mode.ValueType
 MODE_WAYPOINT: Mode.ValueType
 global___Mode = Mode
 
-@typing_extensions.final
 class GetModeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -56,7 +55,6 @@ class GetModeRequest(google.protobuf.message.Message):
         ...
 global___GetModeRequest = GetModeRequest
 
-@typing_extensions.final
 class GetModeResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODE_FIELD_NUMBER: builtins.int
@@ -69,7 +67,6 @@ class GetModeResponse(google.protobuf.message.Message):
         ...
 global___GetModeResponse = GetModeResponse
 
-@typing_extensions.final
 class SetModeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -92,7 +89,6 @@ class SetModeRequest(google.protobuf.message.Message):
         ...
 global___SetModeRequest = SetModeRequest
 
-@typing_extensions.final
 class SetModeResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -100,7 +96,6 @@ class SetModeResponse(google.protobuf.message.Message):
         ...
 global___SetModeResponse = SetModeResponse
 
-@typing_extensions.final
 class Waypoint(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -121,7 +116,6 @@ class Waypoint(google.protobuf.message.Message):
         ...
 global___Waypoint = Waypoint
 
-@typing_extensions.final
 class GetLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -142,7 +136,6 @@ class GetLocationRequest(google.protobuf.message.Message):
         ...
 global___GetLocationRequest = GetLocationRequest
 
-@typing_extensions.final
 class GetLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_FIELD_NUMBER: builtins.int
@@ -161,7 +154,6 @@ class GetLocationResponse(google.protobuf.message.Message):
         ...
 global___GetLocationResponse = GetLocationResponse
 
-@typing_extensions.final
 class GetWaypointsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -182,7 +174,6 @@ class GetWaypointsRequest(google.protobuf.message.Message):
         ...
 global___GetWaypointsRequest = GetWaypointsRequest
 
-@typing_extensions.final
 class GetWaypointsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WAYPOINTS_FIELD_NUMBER: builtins.int
@@ -198,7 +189,6 @@ class GetWaypointsResponse(google.protobuf.message.Message):
         ...
 global___GetWaypointsResponse = GetWaypointsResponse
 
-@typing_extensions.final
 class AddWaypointRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -224,7 +214,6 @@ class AddWaypointRequest(google.protobuf.message.Message):
         ...
 global___AddWaypointRequest = AddWaypointRequest
 
-@typing_extensions.final
 class AddWaypointResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -232,7 +221,6 @@ class AddWaypointResponse(google.protobuf.message.Message):
         ...
 global___AddWaypointResponse = AddWaypointResponse
 
-@typing_extensions.final
 class RemoveWaypointRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -255,7 +243,6 @@ class RemoveWaypointRequest(google.protobuf.message.Message):
         ...
 global___RemoveWaypointRequest = RemoveWaypointRequest
 
-@typing_extensions.final
 class RemoveWaypointResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 

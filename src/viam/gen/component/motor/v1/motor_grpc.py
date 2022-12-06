@@ -4,6 +4,7 @@ import grpclib.const
 import grpclib.client
 if typing.TYPE_CHECKING:
     import grpclib.server
+from .... import common
 import google.api.annotations_pb2
 import google.protobuf.struct_pb2
 from .... import component

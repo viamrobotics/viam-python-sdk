@@ -16,7 +16,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class GetSensorsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -37,7 +36,6 @@ class GetSensorsRequest(google.protobuf.message.Message):
         ...
 global___GetSensorsRequest = GetSensorsRequest
 
-@typing_extensions.final
 class GetSensorsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SENSOR_NAMES_FIELD_NUMBER: builtins.int
@@ -53,7 +51,6 @@ class GetSensorsResponse(google.protobuf.message.Message):
         ...
 global___GetSensorsResponse = GetSensorsResponse
 
-@typing_extensions.final
 class GetReadingsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -79,11 +76,9 @@ class GetReadingsRequest(google.protobuf.message.Message):
         ...
 global___GetReadingsRequest = GetReadingsRequest
 
-@typing_extensions.final
 class Readings(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
     class ReadingsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -123,7 +118,6 @@ class Readings(google.protobuf.message.Message):
         ...
 global___Readings = Readings
 
-@typing_extensions.final
 class GetReadingsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     READINGS_FIELD_NUMBER: builtins.int

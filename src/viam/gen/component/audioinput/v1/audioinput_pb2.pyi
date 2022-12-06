@@ -32,7 +32,6 @@ SAMPLE_FORMAT_INT16_INTERLEAVED: SampleFormat.ValueType
 SAMPLE_FORMAT_FLOAT32_INTERLEAVED: SampleFormat.ValueType
 global___SampleFormat = SampleFormat
 
-@typing_extensions.final
 class RecordRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -54,7 +53,6 @@ class RecordRequest(google.protobuf.message.Message):
         ...
 global___RecordRequest = RecordRequest
 
-@typing_extensions.final
 class AudioChunkInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SAMPLE_FORMAT_FIELD_NUMBER: builtins.int
@@ -72,7 +70,6 @@ class AudioChunkInfo(google.protobuf.message.Message):
         ...
 global___AudioChunkInfo = AudioChunkInfo
 
-@typing_extensions.final
 class AudioChunk(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
@@ -89,7 +86,6 @@ class AudioChunk(google.protobuf.message.Message):
         ...
 global___AudioChunk = AudioChunk
 
-@typing_extensions.final
 class ChunksRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -106,7 +102,6 @@ class ChunksRequest(google.protobuf.message.Message):
         ...
 global___ChunksRequest = ChunksRequest
 
-@typing_extensions.final
 class ChunksResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INFO_FIELD_NUMBER: builtins.int
@@ -133,7 +128,6 @@ class ChunksResponse(google.protobuf.message.Message):
         ...
 global___ChunksResponse = ChunksResponse
 
-@typing_extensions.final
 class PropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -147,7 +141,6 @@ class PropertiesRequest(google.protobuf.message.Message):
         ...
 global___PropertiesRequest = PropertiesRequest
 
-@typing_extensions.final
 class PropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CHANNEL_COUNT_FIELD_NUMBER: builtins.int

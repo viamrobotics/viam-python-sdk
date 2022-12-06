@@ -16,7 +16,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -37,7 +36,6 @@ class GetPositionRequest(google.protobuf.message.Message):
         ...
 global___GetPositionRequest = GetPositionRequest
 
-@typing_extensions.final
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITIONS_MM_FIELD_NUMBER: builtins.int
@@ -53,7 +51,6 @@ class GetPositionResponse(google.protobuf.message.Message):
         ...
 global___GetPositionResponse = GetPositionResponse
 
-@typing_extensions.final
 class MoveToPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -87,7 +84,6 @@ class MoveToPositionRequest(google.protobuf.message.Message):
         ...
 global___MoveToPositionRequest = MoveToPositionRequest
 
-@typing_extensions.final
 class MoveToPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -95,7 +91,6 @@ class MoveToPositionResponse(google.protobuf.message.Message):
         ...
 global___MoveToPositionResponse = MoveToPositionResponse
 
-@typing_extensions.final
 class GetLengthsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -116,7 +111,6 @@ class GetLengthsRequest(google.protobuf.message.Message):
         ...
 global___GetLengthsRequest = GetLengthsRequest
 
-@typing_extensions.final
 class GetLengthsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LENGTHS_MM_FIELD_NUMBER: builtins.int
@@ -132,7 +126,6 @@ class GetLengthsResponse(google.protobuf.message.Message):
         ...
 global___GetLengthsResponse = GetLengthsResponse
 
-@typing_extensions.final
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -154,7 +147,6 @@ class StopRequest(google.protobuf.message.Message):
         ...
 global___StopRequest = StopRequest
 
-@typing_extensions.final
 class StopResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -162,7 +154,6 @@ class StopResponse(google.protobuf.message.Message):
         ...
 global___StopResponse = StopResponse
 
-@typing_extensions.final
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITIONS_MM_FIELD_NUMBER: builtins.int

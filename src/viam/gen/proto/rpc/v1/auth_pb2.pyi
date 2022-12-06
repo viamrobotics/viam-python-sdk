@@ -12,7 +12,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class Credentials(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TYPE_FIELD_NUMBER: builtins.int
@@ -29,7 +28,6 @@ class Credentials(google.protobuf.message.Message):
         ...
 global___Credentials = Credentials
 
-@typing_extensions.final
 class AuthenticateRequest(google.protobuf.message.Message):
     """An AuthenticateRequest contains the credentials used to authenticate."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -51,7 +49,6 @@ class AuthenticateRequest(google.protobuf.message.Message):
         ...
 global___AuthenticateRequest = AuthenticateRequest
 
-@typing_extensions.final
 class AuthenticateResponse(google.protobuf.message.Message):
     """An AuthenticateResponse is returned after successful authentication."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -66,7 +63,6 @@ class AuthenticateResponse(google.protobuf.message.Message):
         ...
 global___AuthenticateResponse = AuthenticateResponse
 
-@typing_extensions.final
 class AuthenticateToRequest(google.protobuf.message.Message):
     """An AuthenticateToRequest contains the entity to authenticate to."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -80,7 +76,6 @@ class AuthenticateToRequest(google.protobuf.message.Message):
         ...
 global___AuthenticateToRequest = AuthenticateToRequest
 
-@typing_extensions.final
 class AuthenticateToResponse(google.protobuf.message.Message):
     """An AuthenticateResponse is returned after successful authentication."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
