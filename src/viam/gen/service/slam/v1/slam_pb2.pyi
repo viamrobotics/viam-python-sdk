@@ -14,7 +14,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -36,7 +35,6 @@ class GetPositionRequest(google.protobuf.message.Message):
         ...
 global___GetPositionRequest = GetPositionRequest
 
-@typing_extensions.final
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSE_FIELD_NUMBER: builtins.int
@@ -60,7 +58,6 @@ class GetPositionResponse(google.protobuf.message.Message):
         ...
 global___GetPositionResponse = GetPositionResponse
 
-@typing_extensions.final
 class GetMapRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -98,7 +95,6 @@ class GetMapRequest(google.protobuf.message.Message):
         ...
 global___GetMapRequest = GetMapRequest
 
-@typing_extensions.final
 class GetMapResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POINT_CLOUD_FIELD_NUMBER: builtins.int

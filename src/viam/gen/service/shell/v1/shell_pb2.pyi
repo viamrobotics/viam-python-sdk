@@ -13,7 +13,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class ShellRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -36,7 +35,6 @@ class ShellRequest(google.protobuf.message.Message):
         ...
 global___ShellRequest = ShellRequest
 
-@typing_extensions.final
 class ShellResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_OUT_FIELD_NUMBER: builtins.int

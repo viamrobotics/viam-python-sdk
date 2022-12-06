@@ -2,6 +2,7 @@ import asyncio
 from typing import Any, Dict, Iterable, List
 
 from grpclib.server import Stream
+
 from viam import logging
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import MethodNotImplementedError, ViamGRPCError
@@ -17,6 +18,8 @@ from viam.proto.robot import (
     FrameSystemConfigResponse,
     GetOperationsRequest,
     GetOperationsResponse,
+    GetSessionsRequest,
+    GetSessionsResponse,
     GetStatusRequest,
     GetStatusResponse,
     ResourceNamesRequest,
@@ -24,6 +27,10 @@ from viam.proto.robot import (
     ResourceRPCSubtypesRequest,
     ResourceRPCSubtypesResponse,
     RobotServiceBase,
+    SendSessionHeartbeatRequest,
+    SendSessionHeartbeatResponse,
+    StartSessionRequest,
+    StartSessionResponse,
     Status,
     StopAllRequest,
     StopAllResponse,
@@ -140,3 +147,12 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
         if errors:
             raise ViamGRPCError(f'Failed to stop components named {", ".join(errors)}')
         await stream.send_message(StopAllResponse())
+
+    async def GetSessions(self, stream: Stream[GetSessionsRequest, GetSessionsResponse]) -> None:
+        raise MethodNotImplementedError("GetSessions").grpc_error
+
+    async def StartSession(self, stream: Stream[StartSessionRequest, StartSessionResponse]) -> None:
+        raise MethodNotImplementedError("StartSession").grpc_error
+
+    async def SendSessionHeartbeat(self, stream: Stream[SendSessionHeartbeatRequest, SendSessionHeartbeatResponse]) -> None:
+        raise MethodNotImplementedError("SendSessionHeartbeat").grpc_error

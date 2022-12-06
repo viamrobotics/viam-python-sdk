@@ -16,7 +16,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class MoveRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -55,7 +54,6 @@ class MoveRequest(google.protobuf.message.Message):
         ...
 global___MoveRequest = MoveRequest
 
-@typing_extensions.final
 class MoveResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUCCESS_FIELD_NUMBER: builtins.int
@@ -68,7 +66,6 @@ class MoveResponse(google.protobuf.message.Message):
         ...
 global___MoveResponse = MoveResponse
 
-@typing_extensions.final
 class MoveSingleComponentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -107,7 +104,6 @@ class MoveSingleComponentRequest(google.protobuf.message.Message):
         ...
 global___MoveSingleComponentRequest = MoveSingleComponentRequest
 
-@typing_extensions.final
 class MoveSingleComponentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUCCESS_FIELD_NUMBER: builtins.int
@@ -120,7 +116,6 @@ class MoveSingleComponentResponse(google.protobuf.message.Message):
         ...
 global___MoveSingleComponentResponse = MoveSingleComponentResponse
 
-@typing_extensions.final
 class GetPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -156,7 +151,6 @@ class GetPoseRequest(google.protobuf.message.Message):
         ...
 global___GetPoseRequest = GetPoseRequest
 
-@typing_extensions.final
 class GetPoseResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSE_FIELD_NUMBER: builtins.int

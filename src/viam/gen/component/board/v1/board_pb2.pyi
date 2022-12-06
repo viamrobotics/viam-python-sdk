@@ -14,7 +14,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class StatusRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -35,7 +34,6 @@ class StatusRequest(google.protobuf.message.Message):
         ...
 global___StatusRequest = StatusRequest
 
-@typing_extensions.final
 class StatusResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     STATUS_FIELD_NUMBER: builtins.int
@@ -54,7 +52,6 @@ class StatusResponse(google.protobuf.message.Message):
         ...
 global___StatusResponse = StatusResponse
 
-@typing_extensions.final
 class SetGPIORequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -79,7 +76,6 @@ class SetGPIORequest(google.protobuf.message.Message):
         ...
 global___SetGPIORequest = SetGPIORequest
 
-@typing_extensions.final
 class SetGPIOResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -87,7 +83,6 @@ class SetGPIOResponse(google.protobuf.message.Message):
         ...
 global___SetGPIOResponse = SetGPIOResponse
 
-@typing_extensions.final
 class GetGPIORequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -110,7 +105,6 @@ class GetGPIORequest(google.protobuf.message.Message):
         ...
 global___GetGPIORequest = GetGPIORequest
 
-@typing_extensions.final
 class GetGPIOResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     HIGH_FIELD_NUMBER: builtins.int
@@ -123,7 +117,6 @@ class GetGPIOResponse(google.protobuf.message.Message):
         ...
 global___GetGPIOResponse = GetGPIOResponse
 
-@typing_extensions.final
 class PWMRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -146,7 +139,6 @@ class PWMRequest(google.protobuf.message.Message):
         ...
 global___PWMRequest = PWMRequest
 
-@typing_extensions.final
 class PWMResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DUTY_CYCLE_PCT_FIELD_NUMBER: builtins.int
@@ -160,7 +152,6 @@ class PWMResponse(google.protobuf.message.Message):
         ...
 global___PWMResponse = PWMResponse
 
-@typing_extensions.final
 class SetPWMRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -186,7 +177,6 @@ class SetPWMRequest(google.protobuf.message.Message):
         ...
 global___SetPWMRequest = SetPWMRequest
 
-@typing_extensions.final
 class SetPWMResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -194,7 +184,6 @@ class SetPWMResponse(google.protobuf.message.Message):
         ...
 global___SetPWMResponse = SetPWMResponse
 
-@typing_extensions.final
 class PWMFrequencyRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -217,7 +206,6 @@ class PWMFrequencyRequest(google.protobuf.message.Message):
         ...
 global___PWMFrequencyRequest = PWMFrequencyRequest
 
-@typing_extensions.final
 class PWMFrequencyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FREQUENCY_HZ_FIELD_NUMBER: builtins.int
@@ -230,7 +218,6 @@ class PWMFrequencyResponse(google.protobuf.message.Message):
         ...
 global___PWMFrequencyResponse = PWMFrequencyResponse
 
-@typing_extensions.final
 class SetPWMFrequencyRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -255,7 +242,6 @@ class SetPWMFrequencyRequest(google.protobuf.message.Message):
         ...
 global___SetPWMFrequencyRequest = SetPWMFrequencyRequest
 
-@typing_extensions.final
 class SetPWMFrequencyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -263,7 +249,6 @@ class SetPWMFrequencyResponse(google.protobuf.message.Message):
         ...
 global___SetPWMFrequencyResponse = SetPWMFrequencyResponse
 
-@typing_extensions.final
 class ReadAnalogReaderRequest(google.protobuf.message.Message):
     """Analog Reader"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -287,7 +272,6 @@ class ReadAnalogReaderRequest(google.protobuf.message.Message):
         ...
 global___ReadAnalogReaderRequest = ReadAnalogReaderRequest
 
-@typing_extensions.final
 class ReadAnalogReaderResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -300,7 +284,6 @@ class ReadAnalogReaderResponse(google.protobuf.message.Message):
         ...
 global___ReadAnalogReaderResponse = ReadAnalogReaderResponse
 
-@typing_extensions.final
 class GetDigitalInterruptValueRequest(google.protobuf.message.Message):
     """Digital Interrupt"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -324,7 +307,6 @@ class GetDigitalInterruptValueRequest(google.protobuf.message.Message):
         ...
 global___GetDigitalInterruptValueRequest = GetDigitalInterruptValueRequest
 
-@typing_extensions.final
 class GetDigitalInterruptValueResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int

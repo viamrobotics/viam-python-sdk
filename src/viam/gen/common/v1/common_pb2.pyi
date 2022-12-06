@@ -5,7 +5,9 @@ The following is a list of messages that are used across multiple resource subty
 import builtins
 import collections.abc
 import google.protobuf.descriptor
+import google.protobuf.descriptor_pb2
 import google.protobuf.internal.containers
+import google.protobuf.internal.extension_dict
 import google.protobuf.message
 import sys
 if sys.version_info >= (3, 8):
@@ -14,7 +16,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class ResourceName(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAMESPACE_FIELD_NUMBER: builtins.int
@@ -33,11 +34,9 @@ class ResourceName(google.protobuf.message.Message):
         ...
 global___ResourceName = ResourceName
 
-@typing_extensions.final
 class BoardStatus(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
     class AnalogsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -57,7 +56,6 @@ class BoardStatus(google.protobuf.message.Message):
         def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
             ...
 
-    @typing_extensions.final
     class DigitalInterruptsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -94,7 +92,6 @@ class BoardStatus(google.protobuf.message.Message):
         ...
 global___BoardStatus = BoardStatus
 
-@typing_extensions.final
 class AnalogStatus(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -108,7 +105,6 @@ class AnalogStatus(google.protobuf.message.Message):
         ...
 global___AnalogStatus = AnalogStatus
 
-@typing_extensions.final
 class DigitalInterruptStatus(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -122,7 +118,6 @@ class DigitalInterruptStatus(google.protobuf.message.Message):
         ...
 global___DigitalInterruptStatus = DigitalInterruptStatus
 
-@typing_extensions.final
 class Pose(google.protobuf.message.Message):
     """Pose is a combination of location and orientation.
     Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
@@ -163,7 +158,6 @@ class Pose(google.protobuf.message.Message):
         ...
 global___Pose = Pose
 
-@typing_extensions.final
 class Orientation(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     O_X_FIELD_NUMBER: builtins.int
@@ -186,7 +180,6 @@ class Orientation(google.protobuf.message.Message):
         ...
 global___Orientation = Orientation
 
-@typing_extensions.final
 class PoseInFrame(google.protobuf.message.Message):
     """PoseInFrame contains a pose and the and the reference frame in which it was observed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -208,7 +201,6 @@ class PoseInFrame(google.protobuf.message.Message):
         ...
 global___PoseInFrame = PoseInFrame
 
-@typing_extensions.final
 class Vector3(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     X_FIELD_NUMBER: builtins.int
@@ -225,7 +217,6 @@ class Vector3(google.protobuf.message.Message):
         ...
 global___Vector3 = Vector3
 
-@typing_extensions.final
 class Sphere(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RADIUS_MM_FIELD_NUMBER: builtins.int
@@ -238,7 +229,6 @@ class Sphere(google.protobuf.message.Message):
         ...
 global___Sphere = Sphere
 
-@typing_extensions.final
 class RectangularPrism(google.protobuf.message.Message):
     """RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
     These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
@@ -260,7 +250,6 @@ class RectangularPrism(google.protobuf.message.Message):
         ...
 global___RectangularPrism = RectangularPrism
 
-@typing_extensions.final
 class Geometry(google.protobuf.message.Message):
     """Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -296,7 +285,6 @@ class Geometry(google.protobuf.message.Message):
         ...
 global___Geometry = Geometry
 
-@typing_extensions.final
 class GeometriesInFrame(google.protobuf.message.Message):
     """GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
     observed.
@@ -318,7 +306,6 @@ class GeometriesInFrame(google.protobuf.message.Message):
         ...
 global___GeometriesInFrame = GeometriesInFrame
 
-@typing_extensions.final
 class PointCloudObject(google.protobuf.message.Message):
     """PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
     repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud
@@ -343,7 +330,6 @@ class PointCloudObject(google.protobuf.message.Message):
         ...
 global___PointCloudObject = PointCloudObject
 
-@typing_extensions.final
 class GeoPoint(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LATITUDE_FIELD_NUMBER: builtins.int
@@ -358,7 +344,6 @@ class GeoPoint(google.protobuf.message.Message):
         ...
 global___GeoPoint = GeoPoint
 
-@typing_extensions.final
 class Transform(google.protobuf.message.Message):
     """Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
     frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
@@ -384,7 +369,6 @@ class Transform(google.protobuf.message.Message):
         ...
 global___Transform = Transform
 
-@typing_extensions.final
 class WorldState(google.protobuf.message.Message):
     """WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
     they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
@@ -416,7 +400,6 @@ class WorldState(google.protobuf.message.Message):
         ...
 global___WorldState = WorldState
 
-@typing_extensions.final
 class ActuatorStatus(google.protobuf.message.Message):
     """ActuatorStatus is a generic status for resources that only need to return actuator status."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -429,3 +412,6 @@ class ActuatorStatus(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
         ...
 global___ActuatorStatus = ActuatorStatus
+SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER: builtins.int
+safety_heartbeat_monitored: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, builtins.bool]
+'safety_heartbeat_monitored is used on methods to signify that if a session is in use\nand the session was the last to call this method, the resource associated with the\nmethod will be stopped.\n'

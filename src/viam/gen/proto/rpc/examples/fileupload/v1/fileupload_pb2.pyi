@@ -12,7 +12,6 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
 class UploadFileRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -33,7 +32,6 @@ class UploadFileRequest(google.protobuf.message.Message):
         ...
 global___UploadFileRequest = UploadFileRequest
 
-@typing_extensions.final
 class UploadFileResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
