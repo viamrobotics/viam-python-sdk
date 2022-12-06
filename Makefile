@@ -47,6 +47,9 @@ test_docs:
 	poetry run make _test_docs
 	kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $$2}'`
 
+tox:
+	poetry run tox
+
 _documentation:
 	cd docs && $(MAKE) clean html
 
