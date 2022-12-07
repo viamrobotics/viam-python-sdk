@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.proto.rpc.examples.echoresource &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="viam.proto.rpc.examples.fileupload" href="../fileupload/index.html" />
+    <link rel="prev" title="viam.proto.rpc.examples.echo" href="../echo/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../../../index.html" class="icon icon-home"> Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../common/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.common</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../component/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.robot</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc</span></code></a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.examples</span></code></a><ul class="current">
+<li class="toctree-l6 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l7"><a class="reference internal" href="../echo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.examples.echo</span></code></a></li>
+<li class="toctree-l7 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.examples.echoresource</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase"><code class="docutils literal notranslate"><span class="pre">EchoResourceServiceBase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResource"><code class="docutils literal notranslate"><span class="pre">EchoResourceServiceBase.EchoResource()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResourceMultiple"><code class="docutils literal notranslate"><span class="pre">EchoResourceServiceBase.EchoResourceMultiple()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResourceBiDi"><code class="docutils literal notranslate"><span class="pre">EchoResourceServiceBase.EchoResourceBiDi()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">EchoResourceServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceStub"><code class="docutils literal notranslate"><span class="pre">EchoResourceServiceStub</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest"><code class="docutils literal notranslate"><span class="pre">EchoResourceBiDiRequest</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest.name"><code class="docutils literal notranslate"><span class="pre">EchoResourceBiDiRequest.name</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest.message"><code class="docutils literal notranslate"><span class="pre">EchoResourceBiDiRequest.message</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse"><code class="docutils literal notranslate"><span class="pre">EchoResourceBiDiResponse</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse.message"><code class="docutils literal notranslate"><span class="pre">EchoResourceBiDiResponse.message</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest"><code class="docutils literal notranslate"><span class="pre">EchoResourceMultipleRequest</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest.name"><code class="docutils literal notranslate"><span class="pre">EchoResourceMultipleRequest.name</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest.message"><code class="docutils literal notranslate"><span class="pre">EchoResourceMultipleRequest.message</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse"><code class="docutils literal notranslate"><span class="pre">EchoResourceMultipleResponse</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse.message"><code class="docutils literal notranslate"><span class="pre">EchoResourceMultipleResponse.message</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest"><code class="docutils literal notranslate"><span class="pre">EchoResourceRequest</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest.name"><code class="docutils literal notranslate"><span class="pre">EchoResourceRequest.name</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest.message"><code class="docutils literal notranslate"><span class="pre">EchoResourceRequest.message</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceResponse"><code class="docutils literal notranslate"><span class="pre">EchoResourceResponse</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceResponse.message"><code class="docutils literal notranslate"><span class="pre">EchoResourceResponse.message</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase">EchoResourceServiceBase</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResource">EchoResource</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResourceMultiple">EchoResourceMultiple</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResourceBiDi">EchoResourceBiDi</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.__mapping__">__mapping__</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceStub">EchoResourceServiceStub</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest">EchoResourceBiDiRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest.message">message</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse">EchoResourceBiDiResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse.message">message</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest">EchoResourceMultipleRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest.message">message</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse">EchoResourceMultipleResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse.message">message</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest">EchoResourceRequest</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest.name">name</a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest.message">message</a></li>
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceResponse">EchoResourceResponse</a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceResponse.message">message</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="../fileupload/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.examples.fileupload</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../webrtc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.webrtc</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.examples</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.examples.echoresource</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../../_sources/autoapi/viam/proto/rpc/examples/echoresource/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.proto.rpc.examples.echoresource">
+<span id="viam-proto-rpc-examples-echoresource"></span><h1><a class="reference internal" href="#module-viam.proto.rpc.examples.echoresource" title="viam.proto.rpc.examples.echoresource"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc.examples.echoresource</span></code></a><a class="headerlink" href="#module-viam.proto.rpc.examples.echoresource" title="Permalink to this heading"></a></h1>
+<p>&#64;generated by Viam.
+Do not edit manually!</p>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase" title="viam.proto.rpc.examples.echoresource.EchoResourceServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResourceServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceStub" title="viam.proto.rpc.examples.echoresource.EchoResourceServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResourceServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest" title="viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResourceBiDiRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse" title="viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResourceBiDiResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest" title="viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResourceMultipleRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse" title="viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResourceMultipleResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest" title="viam.proto.rpc.examples.echoresource.EchoResourceRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResourceRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echoresource.EchoResourceResponse" title="viam.proto.rpc.examples.echoresource.EchoResourceResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResourceResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echoresource.</span></span><span class="sig-name descname"><span class="pre">EchoResourceServiceBase</span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echoresource/v1/echoresource_grpc.html#EchoResourceServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResource">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EchoResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echoresource/v1/echoresource_grpc.html#EchoResourceServiceBase.EchoResource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResource" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResourceMultiple">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EchoResourceMultiple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceMultipleRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceMultipleResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echoresource/v1/echoresource_grpc.html#EchoResourceServiceBase.EchoResourceMultiple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResourceMultiple" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResourceBiDi">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EchoResourceBiDi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceBiDiRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceBiDiResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echoresource/v1/echoresource_grpc.html#EchoResourceServiceBase.EchoResourceBiDi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.EchoResourceBiDi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.__mapping__">
+<span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echoresource/v1/echoresource_grpc.html#EchoResourceServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echoresource.</span></span><span class="sig-name descname"><span class="pre">EchoResourceServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echoresource/v1/echoresource_grpc.html#EchoResourceServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echoresource.</span></span><span class="sig-name descname"><span class="pre">EchoResourceBiDiRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echoresource.</span></span><span class="sig-name descname"><span class="pre">EchoResourceBiDiResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echoresource.</span></span><span class="sig-name descname"><span class="pre">EchoResourceMultipleRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echoresource.</span></span><span class="sig-name descname"><span class="pre">EchoResourceMultipleResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceMultipleResponse.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echoresource.</span></span><span class="sig-name descname"><span class="pre">EchoResourceRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceRequest.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceRequest.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echoresource.</span></span><span class="sig-name descname"><span class="pre">EchoResourceResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echoresource.EchoResourceResponse.message">
+<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.rpc.examples.echoresource.EchoResourceResponse.message" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../echo/index.html" class="btn btn-neutral float-left" title="viam.proto.rpc.examples.echo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../fileupload/index.html" class="btn btn-neutral float-right" title="viam.proto.rpc.examples.fileupload" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
