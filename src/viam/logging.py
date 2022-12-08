@@ -2,6 +2,7 @@ from copy import copy
 import logging
 from logging import DEBUG, INFO, WARN, WARNING, ERROR, FATAL  # noqa: F401
 from typing import Dict
+import sys
 
 LOG_LEVEL = INFO
 LOGGERS: Dict[str, logging.Logger] = {}
@@ -35,10 +36,18 @@ def getLogger(name: str) -> logging.Logger:
         return logger
     logger = logging.getLogger(name)
     logger.setLevel(LOG_LEVEL)
-    handler = logging.StreamHandler()
     format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
+
+    handler = logging.StreamHandler(stream=sys.stdout)
     handler.setFormatter(format)
+    handler.setLevel(level=LOG_LEVEL)
     logger.addHandler(handler)
+
+    err_handler = logging.StreamHandler(stream=sys.stderr)
+    err_handler.setFormatter(format)
+    err_handler.setLevel(level=logging.ERROR)
+    logger.addHandler(err_handler)
+
     LOGGERS[name] = logger
     return logger
 
