@@ -41,6 +41,8 @@ def getLogger(name: str) -> logging.Logger:
     handler = logging.StreamHandler(stream=sys.stdout)
     handler.setFormatter(format)
     handler.setLevel(level=LOG_LEVEL)
+    # filter out logs at error level or above
+    handler.addFilter(filter=lambda record: (record.levelno < logging.ERROR))
     logger.addHandler(handler)
 
     err_handler = logging.StreamHandler(stream=sys.stderr)
