@@ -38,24 +38,26 @@ PEER_CONNECTION_TYPE_WEBRTC: PeerConnectionType.ValueType
 global___PeerConnectionType = PeerConnectionType
 
 class FrameSystemConfig(google.protobuf.message.Message):
+    """this is an experimental API message"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    POSE_IN_PARENT_FRAME_FIELD_NUMBER: builtins.int
-    MODEL_JSON_FIELD_NUMBER: builtins.int
-    name: builtins.str
+    FRAME_FIELD_NUMBER: builtins.int
+    KINEMATICS_FIELD_NUMBER: builtins.int
 
     @property
-    def pose_in_parent_frame(self) -> common.v1.common_pb2.PoseInFrame:
-        ...
-    model_json: builtins.bytes
-
-    def __init__(self, *, name: builtins.str=..., pose_in_parent_frame: common.v1.common_pb2.PoseInFrame | None=..., model_json: builtins.bytes=...) -> None:
+    def frame(self) -> common.v1.common_pb2.Transform:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose_in_parent_frame', b'pose_in_parent_frame']) -> builtins.bool:
+    @property
+    def kinematics(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['model_json', b'model_json', 'name', b'name', 'pose_in_parent_frame', b'pose_in_parent_frame']) -> None:
+    def __init__(self, *, frame: common.v1.common_pb2.Transform | None=..., kinematics: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['frame', b'frame', 'kinematics', b'kinematics']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['frame', b'frame', 'kinematics', b'kinematics']) -> None:
         ...
 global___FrameSystemConfig = FrameSystemConfig
 

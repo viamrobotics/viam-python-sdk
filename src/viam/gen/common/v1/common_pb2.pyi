@@ -352,6 +352,7 @@ class Transform(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     POSE_IN_OBSERVER_FRAME_FIELD_NUMBER: builtins.int
+    PHYSICAL_OBJECT_FIELD_NUMBER: builtins.int
     reference_frame: builtins.str
     'the name of a given reference frame'
 
@@ -359,13 +360,20 @@ class Transform(google.protobuf.message.Message):
     def pose_in_observer_frame(self) -> global___PoseInFrame:
         """the pose of the above reference frame with respect to a different observer reference frame"""
 
-    def __init__(self, *, reference_frame: builtins.str=..., pose_in_observer_frame: global___PoseInFrame | None=...) -> None:
+    @property
+    def physical_object(self) -> global___Geometry:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
+    def __init__(self, *, reference_frame: builtins.str=..., pose_in_observer_frame: global___PoseInFrame | None=..., physical_object: global___Geometry | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_physical_object', b'_physical_object']) -> typing_extensions.Literal['physical_object'] | None:
         ...
 global___Transform = Transform
 
@@ -385,13 +393,13 @@ class WorldState(google.protobuf.message.Message):
 
     @property
     def interaction_spaces(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]:
-        """a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+        """a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
         this field is optional
         """
 
     @property
     def transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]:
-        """a list of Transforms needed to transform a pose from one reference frame to another; this field is optional"""
+        """a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional"""
 
     def __init__(self, *, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None=..., interaction_spaces: collections.abc.Iterable[global___GeometriesInFrame] | None=..., transforms: collections.abc.Iterable[global___Transform] | None=...) -> None:
         ...
