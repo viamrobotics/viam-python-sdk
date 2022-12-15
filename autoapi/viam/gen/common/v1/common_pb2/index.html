@@ -809,7 +809,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.Transform">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">Transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose_in_observer_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PoseInFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.Transform" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.common.v1.common_pb2.</span></span><span class="sig-name descname"><span class="pre">Transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose_in_observer_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PoseInFrame</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physical_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Geometry</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.Transform" title="Permalink to this definition"></a></dt>
 <dd><p>Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
 frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
 reference frame as observed within the second reference frame.</p>
@@ -819,6 +819,11 @@ reference frame as observed within the second reference frame.</p>
 <dd><p>the pose of the above reference frame with respect to a different observer reference frame</p>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.Transform.physical_object">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">physical_object</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Geometry</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.Transform.physical_object" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.Transform.reference_frame">
 <span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.Transform.reference_frame" title="Permalink to this definition"></a></dt>
@@ -827,7 +832,7 @@ reference frame as observed within the second reference frame.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.Transform.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">pose_in_observer_frame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose_in_observer_frame'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.Transform.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_physical_object</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_physical_object'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">physical_object</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'physical_object'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pose_in_observer_frame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose_in_observer_frame'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.Transform.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -844,6 +849,27 @@ be raised.</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.Transform.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_physical_object</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_physical_object'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'physical_object'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.common.v1.common_pb2.Transform.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
 </dd></dl>
@@ -870,14 +896,14 @@ given reference frame and a new target reference frame.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.WorldState.interaction_spaces">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interaction_spaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.WorldState.interaction_spaces" title="Permalink to this definition"></a></dt>
-<dd><p>a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+<dd><p>a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
 this field is optional</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.common.v1.common_pb2.WorldState.transforms">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transforms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Transform</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.common.v1.common_pb2.WorldState.transforms" title="Permalink to this definition"></a></dt>
-<dd><p>a list of Transforms needed to transform a pose from one reference frame to another; this field is optional</p>
+<dd><p>a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional</p>
 </dd></dl>
 
 </dd></dl>

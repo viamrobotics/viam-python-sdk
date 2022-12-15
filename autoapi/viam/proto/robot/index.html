@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="viam.proto.rpc" href="../rpc/index.html" />
-    <link rel="prev" title="viam.proto.component.servo" href="../component/servo/index.html" /> 
+    <link rel="prev" title="viam.proto.component.testecho" href="../component/testecho/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -110,9 +110,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.pose_in_parent_frame"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.pose_in_parent_frame</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.name"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.name</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.model_json"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.model_json</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.frame"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.frame</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.kinematics"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.kinematics</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.HasField"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfig.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -287,9 +286,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig">FrameSystemConfig</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.pose_in_parent_frame">pose_in_parent_frame</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.name">name</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.model_json">model_json</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.frame">frame</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.kinematics">kinematics</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig.HasField">HasField</a></li>
 </ul>
 </li>
@@ -499,7 +497,7 @@ Do not edit manually!</p>
 <td><p>Discovery</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.FrameSystemConfig" title="viam.proto.robot.FrameSystemConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameSystemConfig</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>this is an experimental API message</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.FrameSystemConfigRequest" title="viam.proto.robot.FrameSystemConfigRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameSystemConfigRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -811,29 +809,21 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.robot.FrameSystemConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">FrameSystemConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose_in_parent_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">common.v1.common_pb2.PoseInFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">FrameSystemConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">common.v1.common_pb2.Transform</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinematics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig" title="Permalink to this definition"></a></dt>
+<dd><p>this is an experimental API message</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.robot.FrameSystemConfig.pose_in_parent_frame">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose_in_parent_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">viam.gen.common.v1.common_pb2.PoseInFrame</span></a></em><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig.pose_in_parent_frame" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.robot.FrameSystemConfig.frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform" title="viam.gen.common.v1.common_pb2.Transform"><span class="pre">viam.gen.common.v1.common_pb2.Transform</span></a></em><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig.frame" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.robot.FrameSystemConfig.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig.name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.robot.FrameSystemConfig.model_json">
-<span class="sig-name descname"><span class="pre">model_json</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig.model_json" title="Permalink to this definition"></a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.robot.FrameSystemConfig.kinematics">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig.kinematics" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.FrameSystemConfig.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">pose_in_parent_frame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose_in_parent_frame'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">frame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'frame'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">kinematics</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'kinematics'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.robot.FrameSystemConfig.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -1607,7 +1597,7 @@ be raised.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../component/servo/index.html" class="btn btn-neutral float-left" title="viam.proto.component.servo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../component/testecho/index.html" class="btn btn-neutral float-left" title="viam.proto.component.testecho" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../rpc/index.html" class="btn btn-neutral float-right" title="viam.proto.rpc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

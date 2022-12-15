@@ -613,7 +613,7 @@ Attributes
 
    
 
-.. py:class:: Transform(*, reference_frame: str = ..., pose_in_observer_frame: global___PoseInFrame | None = ...)
+.. py:class:: Transform(*, reference_frame: str = ..., pose_in_observer_frame: global___PoseInFrame | None = ..., physical_object: global___Geometry | None = ...)
 
 
 
@@ -626,12 +626,16 @@ Attributes
 
       the pose of the above reference frame with respect to a different observer reference frame
 
+   .. py:property:: physical_object
+      :type: global___Geometry
+
+
    .. py:attribute:: reference_frame
       :annotation: :str
 
       the name of a given reference frame
 
-   .. py:method:: HasField(field_name: Literal[pose_in_observer_frame, b'pose_in_observer_frame']) -> bool
+   .. py:method:: HasField(field_name: Literal[_physical_object, b'_physical_object', physical_object, b'physical_object', pose_in_observer_frame, b'pose_in_observer_frame']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -646,6 +650,21 @@ Attributes
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_physical_object, b'_physical_object']) -> typing_extensions.Literal['physical_object'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -670,13 +689,13 @@ Attributes
    .. py:property:: interaction_spaces
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
-      a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+      a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
       this field is optional
 
    .. py:property:: transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
 
-      a list of Transforms needed to transform a pose from one reference frame to another; this field is optional
+      a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
 
 
 .. py:data:: global___WorldState

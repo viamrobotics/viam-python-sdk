@@ -373,14 +373,14 @@ given reference frame and a new target reference frame.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.components.arm.WorldState.interaction_spaces">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interaction_spaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.components.arm.WorldState.interaction_spaces" title="Permalink to this definition"></a></dt>
-<dd><p>a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+<dd><p>a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
 this field is optional</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.components.arm.WorldState.transforms">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transforms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Transform</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.components.arm.WorldState.transforms" title="Permalink to this definition"></a></dt>
-<dd><p>a list of Transforms needed to transform a pose from one reference frame to another; this field is optional</p>
+<dd><p>a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional</p>
 </dd></dl>
 
 </dd></dl>

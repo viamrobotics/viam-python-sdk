@@ -183,12 +183,12 @@ Classes
    .. py:property:: interaction_spaces
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
-      a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+      a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
       this field is optional
 
    .. py:property:: transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
 
-      a list of Transforms needed to transform a pose from one reference frame to another; this field is optional
+      a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
 
 

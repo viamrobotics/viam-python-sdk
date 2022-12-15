@@ -105,16 +105,16 @@
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
-<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from viam import logging
+from viam.robot.client import RobotClient
+from viam.rpc.dial import DialOptions
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span>
-        <span class="n">dial_options</span><span class="o">=</span><span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-        <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;localhost:9091&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+async def connect() -&gt; RobotClient:
+    options = RobotClient.Options(
+        dial_options=DialOptions(insecure=True, disable_webrtc=True),
+        log_level=logging.FATAL
+    )
+    return await RobotClient.at_address(&#39;localhost:9091&#39;, options)
 </pre></div>
 </div>
 </div>
@@ -122,17 +122,17 @@
 <p>You can also create a <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> by providing an existing connection</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input above-output-prompt docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
-<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from viam import logging
+from viam.robot.client import RobotClient
+from viam.rpc.dial import DialOptions, dial
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">connect_with_channel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="s1">&#39;localhost:9091&#39;</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">as</span> <span class="n">channel</span><span class="p">:</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span><span class="p">))</span>
+async def connect_with_channel() -&gt; RobotClient:
+    async with await dial(&#39;localhost:9091&#39;, DialOptions(insecure=True, disable_webrtc=True)) as channel:
+        return await RobotClient.with_channel(channel, RobotClient.Options(refresh_interval=10, log_level=logging.FATAL))
 
-<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
-<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+robot = await connect_with_channel()
+print(robot.resource_names)
+await robot.close()
 </pre></div>
 </div>
 </div>
@@ -199,16 +199,16 @@ name: &quot;servo0&quot;
 <p>Once you have a connected <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code>, you can then obtain the robot’s components by their name</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.camera</span> <span class="kn">import</span> <span class="n">Camera</span>
-<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from viam.components.camera import Camera
+from viam.media.video import CameraMimeType
 
-<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
-<span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">,</span> <span class="s2">&quot;camera0&quot;</span><span class="p">)</span>
-<span class="n">image</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">)</span>
-<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;foo.png&quot;</span><span class="p">)</span>
+robot = await connect_with_channel()
+camera = Camera.from_robot(robot, &quot;camera0&quot;)
+image = await camera.get_image(CameraMimeType.JPEG)
+image.save(&quot;foo.png&quot;)
 
-<span class="c1"># Don&#39;t forget to close the robot when you&#39;re done!</span>
-<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+# Don&#39;t forget to close the robot when you&#39;re done!
+await robot.close()
 </pre></div>
 </div>
 </div>
@@ -227,12 +227,12 @@ name: &quot;servo0&quot;
 <p>You can also use the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> to make service calls to the connected robot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.services.vision</span> <span class="kn">import</span> <span class="n">VisionServiceClient</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from viam.services.vision import VisionServiceClient
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">vision</span><span class="p">():</span>
-    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
-    <span class="n">vision</span> <span class="o">=</span> <span class="n">VisionServiceClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
-    <span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_detections_from_camera</span><span class="p">(</span><span class="s2">&quot;camera_1&quot;</span><span class="p">,</span> <span class="s2">&quot;detector_1&quot;</span><span class="p">)</span>
+async def vision():
+    robot = await connect_with_channel()
+    vision = VisionServiceClient.from_robot(robot)
+    detections = await vision.get_detections_from_camera(&quot;camera_1&quot;, &quot;detector_1&quot;)
 </pre></div>
 </div>
 </div>
@@ -240,8 +240,8 @@ name: &quot;servo0&quot;
 <p>At the end, don’t forget to close the connection</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>async def cleanup():
+    await robot.close()
 </pre></div>
 </div>
 </div>
@@ -432,21 +432,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>In the same <code class="docutils literal notranslate"><span class="pre">my-python-robot</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">python_server.py</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/python_server.py</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># my-python-robot/python_server.py
 
-<span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">from</span> <span class="nn">viam.rpc.server</span> <span class="kn">import</span> <span class="n">Server</span>
+import asyncio
+from viam.rpc.server import Server
 
-<span class="kn">from</span> <span class="nn">my_cool_arm</span> <span class="kn">import</span> <span class="n">MyCoolArm</span>
+from my_cool_arm import MyCoolArm
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">([</span><span class="n">MyCoolArm</span><span class="p">(</span><span class="s1">&#39;my-arm&#39;</span><span class="p">)])</span>
+async def main():
+    srv = Server([MyCoolArm(&#39;my-arm&#39;)])
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="k">pass</span>
+if __name__ == &#39;__main__&#39;:
+    try:
+        asyncio.run(main())
+    except:
+        pass
 </pre></div>
 </div>
 </div>
