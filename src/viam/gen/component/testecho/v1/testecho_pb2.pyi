@@ -13,7 +13,7 @@ else:
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing_extensions.final
-class EchoResourceRequest(google.protobuf.message.Message):
+class EchoRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -25,10 +25,10 @@ class EchoResourceRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
         ...
-global___EchoResourceRequest = EchoResourceRequest
+global___EchoRequest = EchoRequest
 
 @typing_extensions.final
-class EchoResourceResponse(google.protobuf.message.Message):
+class EchoResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
@@ -38,10 +38,10 @@ class EchoResourceResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
         ...
-global___EchoResourceResponse = EchoResourceResponse
+global___EchoResponse = EchoResponse
 
 @typing_extensions.final
-class EchoResourceMultipleRequest(google.protobuf.message.Message):
+class EchoMultipleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -53,10 +53,10 @@ class EchoResourceMultipleRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
         ...
-global___EchoResourceMultipleRequest = EchoResourceMultipleRequest
+global___EchoMultipleRequest = EchoMultipleRequest
 
 @typing_extensions.final
-class EchoResourceMultipleResponse(google.protobuf.message.Message):
+class EchoMultipleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
@@ -66,10 +66,10 @@ class EchoResourceMultipleResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
         ...
-global___EchoResourceMultipleResponse = EchoResourceMultipleResponse
+global___EchoMultipleResponse = EchoMultipleResponse
 
 @typing_extensions.final
-class EchoResourceBiDiRequest(google.protobuf.message.Message):
+class EchoBiDiRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -81,10 +81,10 @@ class EchoResourceBiDiRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
         ...
-global___EchoResourceBiDiRequest = EchoResourceBiDiRequest
+global___EchoBiDiRequest = EchoBiDiRequest
 
 @typing_extensions.final
-class EchoResourceBiDiResponse(google.protobuf.message.Message):
+class EchoBiDiResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
@@ -94,4 +94,25 @@ class EchoResourceBiDiResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
         ...
-global___EchoResourceBiDiResponse = EchoResourceBiDiResponse
+global___EchoBiDiResponse = EchoBiDiResponse
+
+@typing_extensions.final
+class StopRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___StopRequest = StopRequest
+
+@typing_extensions.final
+class StopResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___StopResponse = StopResponse

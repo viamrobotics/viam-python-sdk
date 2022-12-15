@@ -16,6 +16,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class GetControlsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONTROLLER_FIELD_NUMBER: builtins.int
@@ -37,6 +38,7 @@ class GetControlsRequest(google.protobuf.message.Message):
         ...
 global___GetControlsRequest = GetControlsRequest
 
+@typing_extensions.final
 class GetControlsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONTROLS_FIELD_NUMBER: builtins.int
@@ -54,6 +56,7 @@ class GetControlsResponse(google.protobuf.message.Message):
         ...
 global___GetControlsResponse = GetControlsResponse
 
+@typing_extensions.final
 class GetEventsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONTROLLER_FIELD_NUMBER: builtins.int
@@ -75,6 +78,7 @@ class GetEventsRequest(google.protobuf.message.Message):
         ...
 global___GetEventsRequest = GetEventsRequest
 
+@typing_extensions.final
 class GetEventsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     EVENTS_FIELD_NUMBER: builtins.int
@@ -92,6 +96,7 @@ class GetEventsResponse(google.protobuf.message.Message):
         ...
 global___GetEventsResponse = GetEventsResponse
 
+@typing_extensions.final
 class TriggerEventRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONTROLLER_FIELD_NUMBER: builtins.int
@@ -118,6 +123,7 @@ class TriggerEventRequest(google.protobuf.message.Message):
         ...
 global___TriggerEventRequest = TriggerEventRequest
 
+@typing_extensions.final
 class TriggerEventResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -125,6 +131,7 @@ class TriggerEventResponse(google.protobuf.message.Message):
         ...
 global___TriggerEventResponse = TriggerEventResponse
 
+@typing_extensions.final
 class Event(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TIME_FIELD_NUMBER: builtins.int
@@ -152,9 +159,11 @@ class Event(google.protobuf.message.Message):
         ...
 global___Event = Event
 
+@typing_extensions.final
 class StreamEventsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class Events(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         CONTROL_FIELD_NUMBER: builtins.int
@@ -202,6 +211,7 @@ class StreamEventsRequest(google.protobuf.message.Message):
         ...
 global___StreamEventsRequest = StreamEventsRequest
 
+@typing_extensions.final
 class StreamEventsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     EVENT_FIELD_NUMBER: builtins.int
@@ -220,6 +230,7 @@ class StreamEventsResponse(google.protobuf.message.Message):
         ...
 global___StreamEventsResponse = StreamEventsResponse
 
+@typing_extensions.final
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     EVENTS_FIELD_NUMBER: builtins.int

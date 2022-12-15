@@ -11,7 +11,7 @@ from viam.components.arm import Arm
 from viam.components.motor import Motor
 from viam.components.resource_manager import ResourceManager
 from viam.errors import ComponentNotFoundError, ServiceNotImplementedError, ViamError
-from viam.proto.common import Pose, PoseInFrame, ResourceName
+from viam.proto.common import Pose, PoseInFrame, ResourceName, Transform
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.component.motor import Status as MotorStatus
@@ -85,14 +85,16 @@ STATUSES = [
 
 CONFIG_RESPONSE = [
     FrameSystemConfig(
-        name="config0",
-        pose_in_parent_frame=PoseInFrame(reference_frame="reference0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)),
-        model_json=b"some fake json",
+        frame=Transform(
+            reference_frame="frame0",
+            pose_in_observer_frame=PoseInFrame(reference_frame="reference0", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)),
+        )
     ),
     FrameSystemConfig(
-        name="config1",
-        pose_in_parent_frame=PoseInFrame(reference_frame="reference1", pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21)),
-        model_json=b"some fake json part 2",
+        frame=Transform(
+            reference_frame="frame1",
+            pose_in_observer_frame=PoseInFrame(reference_frame="reference1", pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21)),
+        )
     ),
 ]
 

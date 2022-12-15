@@ -17,6 +17,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class GetModelParameterSchemaRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -41,6 +42,7 @@ class GetModelParameterSchemaRequest(google.protobuf.message.Message):
         ...
 global___GetModelParameterSchemaRequest = GetModelParameterSchemaRequest
 
+@typing_extensions.final
 class GetModelParameterSchemaResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODEL_PARAMETER_SCHEMA_FIELD_NUMBER: builtins.int
@@ -54,6 +56,7 @@ class GetModelParameterSchemaResponse(google.protobuf.message.Message):
         ...
 global___GetModelParameterSchemaResponse = GetModelParameterSchemaResponse
 
+@typing_extensions.final
 class GetDetectorNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -74,6 +77,7 @@ class GetDetectorNamesRequest(google.protobuf.message.Message):
         ...
 global___GetDetectorNamesRequest = GetDetectorNamesRequest
 
+@typing_extensions.final
 class GetDetectorNamesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DETECTOR_NAMES_FIELD_NUMBER: builtins.int
@@ -89,6 +93,7 @@ class GetDetectorNamesResponse(google.protobuf.message.Message):
         ...
 global___GetDetectorNamesResponse = GetDetectorNamesResponse
 
+@typing_extensions.final
 class AddDetectorRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -118,6 +123,7 @@ class AddDetectorRequest(google.protobuf.message.Message):
         ...
 global___AddDetectorRequest = AddDetectorRequest
 
+@typing_extensions.final
 class AddDetectorResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -125,6 +131,7 @@ class AddDetectorResponse(google.protobuf.message.Message):
         ...
 global___AddDetectorResponse = AddDetectorResponse
 
+@typing_extensions.final
 class RemoveDetectorRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -149,6 +156,7 @@ class RemoveDetectorRequest(google.protobuf.message.Message):
         ...
 global___RemoveDetectorRequest = RemoveDetectorRequest
 
+@typing_extensions.final
 class RemoveDetectorResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -156,6 +164,7 @@ class RemoveDetectorResponse(google.protobuf.message.Message):
         ...
 global___RemoveDetectorResponse = RemoveDetectorResponse
 
+@typing_extensions.final
 class GetDetectionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -192,6 +201,7 @@ class GetDetectionsRequest(google.protobuf.message.Message):
         ...
 global___GetDetectionsRequest = GetDetectionsRequest
 
+@typing_extensions.final
 class GetDetectionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DETECTIONS_FIELD_NUMBER: builtins.int
@@ -207,6 +217,7 @@ class GetDetectionsResponse(google.protobuf.message.Message):
         ...
 global___GetDetectionsResponse = GetDetectionsResponse
 
+@typing_extensions.final
 class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -234,6 +245,7 @@ class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
         ...
 global___GetDetectionsFromCameraRequest = GetDetectionsFromCameraRequest
 
+@typing_extensions.final
 class GetDetectionsFromCameraResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DETECTIONS_FIELD_NUMBER: builtins.int
@@ -249,6 +261,7 @@ class GetDetectionsFromCameraResponse(google.protobuf.message.Message):
         ...
 global___GetDetectionsFromCameraResponse = GetDetectionsFromCameraResponse
 
+@typing_extensions.final
 class Detection(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     X_MIN_FIELD_NUMBER: builtins.int
@@ -293,6 +306,7 @@ class Detection(google.protobuf.message.Message):
         ...
 global___Detection = Detection
 
+@typing_extensions.final
 class GetClassifierNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -314,6 +328,7 @@ class GetClassifierNamesRequest(google.protobuf.message.Message):
         ...
 global___GetClassifierNamesRequest = GetClassifierNamesRequest
 
+@typing_extensions.final
 class GetClassifierNamesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLASSIFIER_NAMES_FIELD_NUMBER: builtins.int
@@ -329,6 +344,7 @@ class GetClassifierNamesResponse(google.protobuf.message.Message):
         ...
 global___GetClassifierNamesResponse = GetClassifierNamesResponse
 
+@typing_extensions.final
 class AddClassifierRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -361,6 +377,7 @@ class AddClassifierRequest(google.protobuf.message.Message):
         ...
 global___AddClassifierRequest = AddClassifierRequest
 
+@typing_extensions.final
 class AddClassifierResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -368,6 +385,7 @@ class AddClassifierResponse(google.protobuf.message.Message):
         ...
 global___AddClassifierResponse = AddClassifierResponse
 
+@typing_extensions.final
 class RemoveClassifierRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -392,6 +410,7 @@ class RemoveClassifierRequest(google.protobuf.message.Message):
         ...
 global___RemoveClassifierRequest = RemoveClassifierRequest
 
+@typing_extensions.final
 class RemoveClassifierResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -399,6 +418,7 @@ class RemoveClassifierResponse(google.protobuf.message.Message):
         ...
 global___RemoveClassifierResponse = RemoveClassifierResponse
 
+@typing_extensions.final
 class GetClassificationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -438,6 +458,7 @@ class GetClassificationsRequest(google.protobuf.message.Message):
         ...
 global___GetClassificationsRequest = GetClassificationsRequest
 
+@typing_extensions.final
 class GetClassificationsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLASSIFICATIONS_FIELD_NUMBER: builtins.int
@@ -453,6 +474,7 @@ class GetClassificationsResponse(google.protobuf.message.Message):
         ...
 global___GetClassificationsResponse = GetClassificationsResponse
 
+@typing_extensions.final
 class GetClassificationsFromCameraRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -483,6 +505,7 @@ class GetClassificationsFromCameraRequest(google.protobuf.message.Message):
         ...
 global___GetClassificationsFromCameraRequest = GetClassificationsFromCameraRequest
 
+@typing_extensions.final
 class GetClassificationsFromCameraResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLASSIFICATIONS_FIELD_NUMBER: builtins.int
@@ -498,6 +521,7 @@ class GetClassificationsFromCameraResponse(google.protobuf.message.Message):
         ...
 global___GetClassificationsFromCameraResponse = GetClassificationsFromCameraResponse
 
+@typing_extensions.final
 class Classification(google.protobuf.message.Message):
     """the general form of the output from a classifier"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -515,6 +539,7 @@ class Classification(google.protobuf.message.Message):
         ...
 global___Classification = Classification
 
+@typing_extensions.final
 class GetSegmenterNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -535,6 +560,7 @@ class GetSegmenterNamesRequest(google.protobuf.message.Message):
         ...
 global___GetSegmenterNamesRequest = GetSegmenterNamesRequest
 
+@typing_extensions.final
 class GetSegmenterNamesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SEGMENTER_NAMES_FIELD_NUMBER: builtins.int
@@ -550,6 +576,7 @@ class GetSegmenterNamesResponse(google.protobuf.message.Message):
         ...
 global___GetSegmenterNamesResponse = GetSegmenterNamesResponse
 
+@typing_extensions.final
 class AddSegmenterRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -582,6 +609,7 @@ class AddSegmenterRequest(google.protobuf.message.Message):
         ...
 global___AddSegmenterRequest = AddSegmenterRequest
 
+@typing_extensions.final
 class AddSegmenterResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -589,6 +617,7 @@ class AddSegmenterResponse(google.protobuf.message.Message):
         ...
 global___AddSegmenterResponse = AddSegmenterResponse
 
+@typing_extensions.final
 class RemoveSegmenterRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -613,6 +642,7 @@ class RemoveSegmenterRequest(google.protobuf.message.Message):
         ...
 global___RemoveSegmenterRequest = RemoveSegmenterRequest
 
+@typing_extensions.final
 class RemoveSegmenterResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -620,6 +650,7 @@ class RemoveSegmenterResponse(google.protobuf.message.Message):
         ...
 global___RemoveSegmenterResponse = RemoveSegmenterResponse
 
+@typing_extensions.final
 class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -649,6 +680,7 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
         ...
 global___GetObjectPointCloudsRequest = GetObjectPointCloudsRequest
 
+@typing_extensions.final
 class GetObjectPointCloudsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MIME_TYPE_FIELD_NUMBER: builtins.int

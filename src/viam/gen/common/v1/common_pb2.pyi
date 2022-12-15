@@ -16,6 +16,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class ResourceName(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAMESPACE_FIELD_NUMBER: builtins.int
@@ -34,9 +35,11 @@ class ResourceName(google.protobuf.message.Message):
         ...
 global___ResourceName = ResourceName
 
+@typing_extensions.final
 class BoardStatus(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class AnalogsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -56,6 +59,7 @@ class BoardStatus(google.protobuf.message.Message):
         def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
             ...
 
+    @typing_extensions.final
     class DigitalInterruptsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -92,6 +96,7 @@ class BoardStatus(google.protobuf.message.Message):
         ...
 global___BoardStatus = BoardStatus
 
+@typing_extensions.final
 class AnalogStatus(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -105,6 +110,7 @@ class AnalogStatus(google.protobuf.message.Message):
         ...
 global___AnalogStatus = AnalogStatus
 
+@typing_extensions.final
 class DigitalInterruptStatus(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -118,6 +124,7 @@ class DigitalInterruptStatus(google.protobuf.message.Message):
         ...
 global___DigitalInterruptStatus = DigitalInterruptStatus
 
+@typing_extensions.final
 class Pose(google.protobuf.message.Message):
     """Pose is a combination of location and orientation.
     Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
@@ -158,6 +165,7 @@ class Pose(google.protobuf.message.Message):
         ...
 global___Pose = Pose
 
+@typing_extensions.final
 class Orientation(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     O_X_FIELD_NUMBER: builtins.int
@@ -180,6 +188,7 @@ class Orientation(google.protobuf.message.Message):
         ...
 global___Orientation = Orientation
 
+@typing_extensions.final
 class PoseInFrame(google.protobuf.message.Message):
     """PoseInFrame contains a pose and the and the reference frame in which it was observed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -201,6 +210,7 @@ class PoseInFrame(google.protobuf.message.Message):
         ...
 global___PoseInFrame = PoseInFrame
 
+@typing_extensions.final
 class Vector3(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     X_FIELD_NUMBER: builtins.int
@@ -217,6 +227,7 @@ class Vector3(google.protobuf.message.Message):
         ...
 global___Vector3 = Vector3
 
+@typing_extensions.final
 class Sphere(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RADIUS_MM_FIELD_NUMBER: builtins.int
@@ -229,6 +240,7 @@ class Sphere(google.protobuf.message.Message):
         ...
 global___Sphere = Sphere
 
+@typing_extensions.final
 class RectangularPrism(google.protobuf.message.Message):
     """RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
     These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
@@ -250,6 +262,7 @@ class RectangularPrism(google.protobuf.message.Message):
         ...
 global___RectangularPrism = RectangularPrism
 
+@typing_extensions.final
 class Geometry(google.protobuf.message.Message):
     """Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -285,6 +298,7 @@ class Geometry(google.protobuf.message.Message):
         ...
 global___Geometry = Geometry
 
+@typing_extensions.final
 class GeometriesInFrame(google.protobuf.message.Message):
     """GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
     observed.
@@ -306,6 +320,7 @@ class GeometriesInFrame(google.protobuf.message.Message):
         ...
 global___GeometriesInFrame = GeometriesInFrame
 
+@typing_extensions.final
 class PointCloudObject(google.protobuf.message.Message):
     """PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
     repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud
@@ -330,6 +345,7 @@ class PointCloudObject(google.protobuf.message.Message):
         ...
 global___PointCloudObject = PointCloudObject
 
+@typing_extensions.final
 class GeoPoint(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LATITUDE_FIELD_NUMBER: builtins.int
@@ -344,6 +360,7 @@ class GeoPoint(google.protobuf.message.Message):
         ...
 global___GeoPoint = GeoPoint
 
+@typing_extensions.final
 class Transform(google.protobuf.message.Message):
     """Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
     frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
@@ -352,6 +369,7 @@ class Transform(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     REFERENCE_FRAME_FIELD_NUMBER: builtins.int
     POSE_IN_OBSERVER_FRAME_FIELD_NUMBER: builtins.int
+    PHYSICAL_OBJECT_FIELD_NUMBER: builtins.int
     reference_frame: builtins.str
     'the name of a given reference frame'
 
@@ -359,16 +377,24 @@ class Transform(google.protobuf.message.Message):
     def pose_in_observer_frame(self) -> global___PoseInFrame:
         """the pose of the above reference frame with respect to a different observer reference frame"""
 
-    def __init__(self, *, reference_frame: builtins.str=..., pose_in_observer_frame: global___PoseInFrame | None=...) -> None:
+    @property
+    def physical_object(self) -> global___Geometry:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
+    def __init__(self, *, reference_frame: builtins.str=..., pose_in_observer_frame: global___PoseInFrame | None=..., physical_object: global___Geometry | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_physical_object', b'_physical_object']) -> typing_extensions.Literal['physical_object'] | None:
         ...
 global___Transform = Transform
 
+@typing_extensions.final
 class WorldState(google.protobuf.message.Message):
     """WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
     they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
@@ -385,13 +411,13 @@ class WorldState(google.protobuf.message.Message):
 
     @property
     def interaction_spaces(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]:
-        """a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured fom;
+        """a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
         this field is optional
         """
 
     @property
     def transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]:
-        """a list of Transforms needed to transform a pose from one reference frame to another; this field is optional"""
+        """a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional"""
 
     def __init__(self, *, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None=..., interaction_spaces: collections.abc.Iterable[global___GeometriesInFrame] | None=..., transforms: collections.abc.Iterable[global___Transform] | None=...) -> None:
         ...
@@ -400,6 +426,7 @@ class WorldState(google.protobuf.message.Message):
         ...
 global___WorldState = WorldState
 
+@typing_extensions.final
 class ActuatorStatus(google.protobuf.message.Message):
     """ActuatorStatus is a generic status for resources that only need to return actuator status."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

@@ -12,6 +12,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class EchoRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -24,6 +25,7 @@ class EchoRequest(google.protobuf.message.Message):
         ...
 global___EchoRequest = EchoRequest
 
+@typing_extensions.final
 class EchoResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -36,6 +38,7 @@ class EchoResponse(google.protobuf.message.Message):
         ...
 global___EchoResponse = EchoResponse
 
+@typing_extensions.final
 class EchoMultipleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -48,6 +51,7 @@ class EchoMultipleRequest(google.protobuf.message.Message):
         ...
 global___EchoMultipleRequest = EchoMultipleRequest
 
+@typing_extensions.final
 class EchoMultipleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -60,6 +64,7 @@ class EchoMultipleResponse(google.protobuf.message.Message):
         ...
 global___EchoMultipleResponse = EchoMultipleResponse
 
+@typing_extensions.final
 class EchoBiDiRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -72,6 +77,7 @@ class EchoBiDiRequest(google.protobuf.message.Message):
         ...
 global___EchoBiDiRequest = EchoBiDiRequest
 
+@typing_extensions.final
 class EchoBiDiResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
