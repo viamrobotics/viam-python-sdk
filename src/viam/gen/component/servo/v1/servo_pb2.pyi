@@ -13,6 +13,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class MoveRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -37,6 +38,7 @@ class MoveRequest(google.protobuf.message.Message):
         ...
 global___MoveRequest = MoveRequest
 
+@typing_extensions.final
 class MoveResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -44,6 +46,7 @@ class MoveResponse(google.protobuf.message.Message):
         ...
 global___MoveResponse = MoveResponse
 
+@typing_extensions.final
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -65,6 +68,7 @@ class GetPositionRequest(google.protobuf.message.Message):
         ...
 global___GetPositionRequest = GetPositionRequest
 
+@typing_extensions.final
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITION_DEG_FIELD_NUMBER: builtins.int
@@ -78,6 +82,7 @@ class GetPositionResponse(google.protobuf.message.Message):
         ...
 global___GetPositionResponse = GetPositionResponse
 
+@typing_extensions.final
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -99,6 +104,7 @@ class StopRequest(google.protobuf.message.Message):
         ...
 global___StopRequest = StopRequest
 
+@typing_extensions.final
 class StopResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -106,6 +112,7 @@ class StopResponse(google.protobuf.message.Message):
         ...
 global___StopResponse = StopResponse
 
+@typing_extensions.final
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITION_DEG_FIELD_NUMBER: builtins.int

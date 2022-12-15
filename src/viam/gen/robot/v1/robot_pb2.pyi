@@ -37,28 +37,32 @@ PEER_CONNECTION_TYPE_GRPC: PeerConnectionType.ValueType
 PEER_CONNECTION_TYPE_WEBRTC: PeerConnectionType.ValueType
 global___PeerConnectionType = PeerConnectionType
 
+@typing_extensions.final
 class FrameSystemConfig(google.protobuf.message.Message):
+    """this is an experimental API message"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    POSE_IN_PARENT_FRAME_FIELD_NUMBER: builtins.int
-    MODEL_JSON_FIELD_NUMBER: builtins.int
-    name: builtins.str
+    FRAME_FIELD_NUMBER: builtins.int
+    KINEMATICS_FIELD_NUMBER: builtins.int
 
     @property
-    def pose_in_parent_frame(self) -> common.v1.common_pb2.PoseInFrame:
-        ...
-    model_json: builtins.bytes
-
-    def __init__(self, *, name: builtins.str=..., pose_in_parent_frame: common.v1.common_pb2.PoseInFrame | None=..., model_json: builtins.bytes=...) -> None:
+    def frame(self) -> common.v1.common_pb2.Transform:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose_in_parent_frame', b'pose_in_parent_frame']) -> builtins.bool:
+    @property
+    def kinematics(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['model_json', b'model_json', 'name', b'name', 'pose_in_parent_frame', b'pose_in_parent_frame']) -> None:
+    def __init__(self, *, frame: common.v1.common_pb2.Transform | None=..., kinematics: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['frame', b'frame', 'kinematics', b'kinematics']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['frame', b'frame', 'kinematics', b'kinematics']) -> None:
         ...
 global___FrameSystemConfig = FrameSystemConfig
 
+@typing_extensions.final
 class FrameSystemConfigRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUPPLEMENTAL_TRANSFORMS_FIELD_NUMBER: builtins.int
@@ -76,6 +80,7 @@ class FrameSystemConfigRequest(google.protobuf.message.Message):
         ...
 global___FrameSystemConfigRequest = FrameSystemConfigRequest
 
+@typing_extensions.final
 class FrameSystemConfigResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAME_SYSTEM_CONFIGS_FIELD_NUMBER: builtins.int
@@ -91,6 +96,7 @@ class FrameSystemConfigResponse(google.protobuf.message.Message):
         ...
 global___FrameSystemConfigResponse = FrameSystemConfigResponse
 
+@typing_extensions.final
 class TransformPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SOURCE_FIELD_NUMBER: builtins.int
@@ -121,6 +127,7 @@ class TransformPoseRequest(google.protobuf.message.Message):
         ...
 global___TransformPoseRequest = TransformPoseRequest
 
+@typing_extensions.final
 class TransformPoseResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSE_FIELD_NUMBER: builtins.int
@@ -139,6 +146,7 @@ class TransformPoseResponse(google.protobuf.message.Message):
         ...
 global___TransformPoseResponse = TransformPoseResponse
 
+@typing_extensions.final
 class ResourceNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -146,6 +154,7 @@ class ResourceNamesRequest(google.protobuf.message.Message):
         ...
 global___ResourceNamesRequest = ResourceNamesRequest
 
+@typing_extensions.final
 class ResourceNamesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESOURCES_FIELD_NUMBER: builtins.int
@@ -161,6 +170,7 @@ class ResourceNamesResponse(google.protobuf.message.Message):
         ...
 global___ResourceNamesResponse = ResourceNamesResponse
 
+@typing_extensions.final
 class ResourceRPCSubtype(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUBTYPE_FIELD_NUMBER: builtins.int
@@ -181,6 +191,7 @@ class ResourceRPCSubtype(google.protobuf.message.Message):
         ...
 global___ResourceRPCSubtype = ResourceRPCSubtype
 
+@typing_extensions.final
 class ResourceRPCSubtypesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -188,6 +199,7 @@ class ResourceRPCSubtypesRequest(google.protobuf.message.Message):
         ...
 global___ResourceRPCSubtypesRequest = ResourceRPCSubtypesRequest
 
+@typing_extensions.final
 class ResourceRPCSubtypesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESOURCE_RPC_SUBTYPES_FIELD_NUMBER: builtins.int
@@ -203,6 +215,7 @@ class ResourceRPCSubtypesResponse(google.protobuf.message.Message):
         ...
 global___ResourceRPCSubtypesResponse = ResourceRPCSubtypesResponse
 
+@typing_extensions.final
 class Operation(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -235,6 +248,7 @@ class Operation(google.protobuf.message.Message):
         ...
 global___Operation = Operation
 
+@typing_extensions.final
 class GetOperationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -242,6 +256,7 @@ class GetOperationsRequest(google.protobuf.message.Message):
         ...
 global___GetOperationsRequest = GetOperationsRequest
 
+@typing_extensions.final
 class GetOperationsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     OPERATIONS_FIELD_NUMBER: builtins.int
@@ -257,6 +272,7 @@ class GetOperationsResponse(google.protobuf.message.Message):
         ...
 global___GetOperationsResponse = GetOperationsResponse
 
+@typing_extensions.final
 class CancelOperationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -269,6 +285,7 @@ class CancelOperationRequest(google.protobuf.message.Message):
         ...
 global___CancelOperationRequest = CancelOperationRequest
 
+@typing_extensions.final
 class CancelOperationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -276,6 +293,7 @@ class CancelOperationResponse(google.protobuf.message.Message):
         ...
 global___CancelOperationResponse = CancelOperationResponse
 
+@typing_extensions.final
 class BlockForOperationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -288,6 +306,7 @@ class BlockForOperationRequest(google.protobuf.message.Message):
         ...
 global___BlockForOperationRequest = BlockForOperationRequest
 
+@typing_extensions.final
 class BlockForOperationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -295,6 +314,7 @@ class BlockForOperationResponse(google.protobuf.message.Message):
         ...
 global___BlockForOperationResponse = BlockForOperationResponse
 
+@typing_extensions.final
 class PeerConnectionInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TYPE_FIELD_NUMBER: builtins.int
@@ -322,6 +342,7 @@ class PeerConnectionInfo(google.protobuf.message.Message):
         ...
 global___PeerConnectionInfo = PeerConnectionInfo
 
+@typing_extensions.final
 class Session(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -345,6 +366,7 @@ class Session(google.protobuf.message.Message):
         ...
 global___Session = Session
 
+@typing_extensions.final
 class GetSessionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -352,6 +374,7 @@ class GetSessionsRequest(google.protobuf.message.Message):
         ...
 global___GetSessionsRequest = GetSessionsRequest
 
+@typing_extensions.final
 class GetSessionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SESSIONS_FIELD_NUMBER: builtins.int
@@ -367,6 +390,7 @@ class GetSessionsResponse(google.protobuf.message.Message):
         ...
 global___GetSessionsResponse = GetSessionsResponse
 
+@typing_extensions.final
 class DiscoveryQuery(google.protobuf.message.Message):
     """Discovery"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -382,6 +406,7 @@ class DiscoveryQuery(google.protobuf.message.Message):
         ...
 global___DiscoveryQuery = DiscoveryQuery
 
+@typing_extensions.final
 class Discovery(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     QUERY_FIELD_NUMBER: builtins.int
@@ -405,6 +430,7 @@ class Discovery(google.protobuf.message.Message):
         ...
 global___Discovery = Discovery
 
+@typing_extensions.final
 class DiscoverComponentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     QUERIES_FIELD_NUMBER: builtins.int
@@ -420,6 +446,7 @@ class DiscoverComponentsRequest(google.protobuf.message.Message):
         ...
 global___DiscoverComponentsRequest = DiscoverComponentsRequest
 
+@typing_extensions.final
 class DiscoverComponentsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DISCOVERY_FIELD_NUMBER: builtins.int
@@ -435,6 +462,7 @@ class DiscoverComponentsResponse(google.protobuf.message.Message):
         ...
 global___DiscoverComponentsResponse = DiscoverComponentsResponse
 
+@typing_extensions.final
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -458,6 +486,7 @@ class Status(google.protobuf.message.Message):
         ...
 global___Status = Status
 
+@typing_extensions.final
 class GetStatusRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESOURCE_NAMES_FIELD_NUMBER: builtins.int
@@ -473,6 +502,7 @@ class GetStatusRequest(google.protobuf.message.Message):
         ...
 global___GetStatusRequest = GetStatusRequest
 
+@typing_extensions.final
 class GetStatusResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     STATUS_FIELD_NUMBER: builtins.int
@@ -488,6 +518,7 @@ class GetStatusResponse(google.protobuf.message.Message):
         ...
 global___GetStatusResponse = GetStatusResponse
 
+@typing_extensions.final
 class StreamStatusRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESOURCE_NAMES_FIELD_NUMBER: builtins.int
@@ -511,6 +542,7 @@ class StreamStatusRequest(google.protobuf.message.Message):
         ...
 global___StreamStatusRequest = StreamStatusRequest
 
+@typing_extensions.final
 class StreamStatusResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     STATUS_FIELD_NUMBER: builtins.int
@@ -526,6 +558,7 @@ class StreamStatusResponse(google.protobuf.message.Message):
         ...
 global___StreamStatusResponse = StreamStatusResponse
 
+@typing_extensions.final
 class StopExtraParameters(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -549,6 +582,7 @@ class StopExtraParameters(google.protobuf.message.Message):
         ...
 global___StopExtraParameters = StopExtraParameters
 
+@typing_extensions.final
 class StopAllRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     EXTRA_FIELD_NUMBER: builtins.int
@@ -564,6 +598,7 @@ class StopAllRequest(google.protobuf.message.Message):
         ...
 global___StopAllRequest = StopAllRequest
 
+@typing_extensions.final
 class StopAllResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -571,6 +606,7 @@ class StopAllResponse(google.protobuf.message.Message):
         ...
 global___StopAllResponse = StopAllResponse
 
+@typing_extensions.final
 class StartSessionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESUME_FIELD_NUMBER: builtins.int
@@ -584,6 +620,7 @@ class StartSessionRequest(google.protobuf.message.Message):
         ...
 global___StartSessionRequest = StartSessionRequest
 
+@typing_extensions.final
 class StartSessionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -604,6 +641,7 @@ class StartSessionResponse(google.protobuf.message.Message):
         ...
 global___StartSessionResponse = StartSessionResponse
 
+@typing_extensions.final
 class SendSessionHeartbeatRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -616,6 +654,7 @@ class SendSessionHeartbeatRequest(google.protobuf.message.Message):
         ...
 global___SendSessionHeartbeatRequest = SendSessionHeartbeatRequest
 
+@typing_extensions.final
 class SendSessionHeartbeatResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 

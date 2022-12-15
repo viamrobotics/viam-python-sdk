@@ -14,6 +14,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class GetImageRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -30,6 +31,7 @@ class GetImageRequest(google.protobuf.message.Message):
         ...
 global___GetImageRequest = GetImageRequest
 
+@typing_extensions.final
 class GetImageResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MIME_TYPE_FIELD_NUMBER: builtins.int
@@ -46,6 +48,7 @@ class GetImageResponse(google.protobuf.message.Message):
         ...
 global___GetImageResponse = GetImageResponse
 
+@typing_extensions.final
 class RenderFrameRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -62,6 +65,7 @@ class RenderFrameRequest(google.protobuf.message.Message):
         ...
 global___RenderFrameRequest = RenderFrameRequest
 
+@typing_extensions.final
 class GetPointCloudRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -78,6 +82,7 @@ class GetPointCloudRequest(google.protobuf.message.Message):
         ...
 global___GetPointCloudRequest = GetPointCloudRequest
 
+@typing_extensions.final
 class GetPointCloudResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MIME_TYPE_FIELD_NUMBER: builtins.int
@@ -94,6 +99,7 @@ class GetPointCloudResponse(google.protobuf.message.Message):
         ...
 global___GetPointCloudResponse = GetPointCloudResponse
 
+@typing_extensions.final
 class GetPropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -107,6 +113,7 @@ class GetPropertiesRequest(google.protobuf.message.Message):
         ...
 global___GetPropertiesRequest = GetPropertiesRequest
 
+@typing_extensions.final
 class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUPPORTS_PCD_FIELD_NUMBER: builtins.int
@@ -133,6 +140,7 @@ class GetPropertiesResponse(google.protobuf.message.Message):
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
 
+@typing_extensions.final
 class Webcams(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WEBCAMS_FIELD_NUMBER: builtins.int
@@ -148,6 +156,7 @@ class Webcams(google.protobuf.message.Message):
         ...
 global___Webcams = Webcams
 
+@typing_extensions.final
 class Webcam(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LABEL_FIELD_NUMBER: builtins.int
@@ -169,6 +178,7 @@ class Webcam(google.protobuf.message.Message):
         ...
 global___Webcam = Webcam
 
+@typing_extensions.final
 class Property(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WIDTH_PX_FIELD_NUMBER: builtins.int
@@ -188,6 +198,7 @@ class Property(google.protobuf.message.Message):
         ...
 global___Property = Property
 
+@typing_extensions.final
 class IntrinsicParameters(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WIDTH_PX_FIELD_NUMBER: builtins.int
@@ -210,6 +221,7 @@ class IntrinsicParameters(google.protobuf.message.Message):
         ...
 global___IntrinsicParameters = IntrinsicParameters
 
+@typing_extensions.final
 class DistortionParameters(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODEL_FIELD_NUMBER: builtins.int

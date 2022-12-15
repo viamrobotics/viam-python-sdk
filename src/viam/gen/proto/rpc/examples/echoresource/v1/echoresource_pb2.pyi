@@ -12,6 +12,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class EchoResourceRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -26,6 +27,7 @@ class EchoResourceRequest(google.protobuf.message.Message):
         ...
 global___EchoResourceRequest = EchoResourceRequest
 
+@typing_extensions.final
 class EchoResourceResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -38,6 +40,7 @@ class EchoResourceResponse(google.protobuf.message.Message):
         ...
 global___EchoResourceResponse = EchoResourceResponse
 
+@typing_extensions.final
 class EchoResourceMultipleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -52,6 +55,7 @@ class EchoResourceMultipleRequest(google.protobuf.message.Message):
         ...
 global___EchoResourceMultipleRequest = EchoResourceMultipleRequest
 
+@typing_extensions.final
 class EchoResourceMultipleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -64,6 +68,7 @@ class EchoResourceMultipleResponse(google.protobuf.message.Message):
         ...
 global___EchoResourceMultipleResponse = EchoResourceMultipleResponse
 
+@typing_extensions.final
 class EchoResourceBiDiRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -78,6 +83,7 @@ class EchoResourceBiDiRequest(google.protobuf.message.Message):
         ...
 global___EchoResourceBiDiRequest = EchoResourceBiDiRequest
 
+@typing_extensions.final
 class EchoResourceBiDiResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int

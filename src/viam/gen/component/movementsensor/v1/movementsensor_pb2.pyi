@@ -16,6 +16,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class GetLinearVelocityRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -37,6 +38,7 @@ class GetLinearVelocityRequest(google.protobuf.message.Message):
         ...
 global___GetLinearVelocityRequest = GetLinearVelocityRequest
 
+@typing_extensions.final
 class GetLinearVelocityResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LINEAR_VELOCITY_FIELD_NUMBER: builtins.int
@@ -55,6 +57,7 @@ class GetLinearVelocityResponse(google.protobuf.message.Message):
         ...
 global___GetLinearVelocityResponse = GetLinearVelocityResponse
 
+@typing_extensions.final
 class GetAngularVelocityRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -76,6 +79,7 @@ class GetAngularVelocityRequest(google.protobuf.message.Message):
         ...
 global___GetAngularVelocityRequest = GetAngularVelocityRequest
 
+@typing_extensions.final
 class GetAngularVelocityResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ANGULAR_VELOCITY_FIELD_NUMBER: builtins.int
@@ -94,6 +98,7 @@ class GetAngularVelocityResponse(google.protobuf.message.Message):
         ...
 global___GetAngularVelocityResponse = GetAngularVelocityResponse
 
+@typing_extensions.final
 class GetCompassHeadingRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -115,6 +120,7 @@ class GetCompassHeadingRequest(google.protobuf.message.Message):
         ...
 global___GetCompassHeadingRequest = GetCompassHeadingRequest
 
+@typing_extensions.final
 class GetCompassHeadingResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -128,6 +134,7 @@ class GetCompassHeadingResponse(google.protobuf.message.Message):
         ...
 global___GetCompassHeadingResponse = GetCompassHeadingResponse
 
+@typing_extensions.final
 class GetOrientationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -149,6 +156,7 @@ class GetOrientationRequest(google.protobuf.message.Message):
         ...
 global___GetOrientationRequest = GetOrientationRequest
 
+@typing_extensions.final
 class GetOrientationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORIENTATION_FIELD_NUMBER: builtins.int
@@ -167,6 +175,7 @@ class GetOrientationResponse(google.protobuf.message.Message):
         ...
 global___GetOrientationResponse = GetOrientationResponse
 
+@typing_extensions.final
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -188,6 +197,7 @@ class GetPositionRequest(google.protobuf.message.Message):
         ...
 global___GetPositionRequest = GetPositionRequest
 
+@typing_extensions.final
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     COORDINATE_FIELD_NUMBER: builtins.int
@@ -208,6 +218,7 @@ class GetPositionResponse(google.protobuf.message.Message):
         ...
 global___GetPositionResponse = GetPositionResponse
 
+@typing_extensions.final
 class GetPropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -229,6 +240,7 @@ class GetPropertiesRequest(google.protobuf.message.Message):
         ...
 global___GetPropertiesRequest = GetPropertiesRequest
 
+@typing_extensions.final
 class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LINEAR_VELOCITY_SUPPORTED_FIELD_NUMBER: builtins.int
@@ -249,6 +261,7 @@ class GetPropertiesResponse(google.protobuf.message.Message):
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
 
+@typing_extensions.final
 class GetAccuracyRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -270,9 +283,11 @@ class GetAccuracyRequest(google.protobuf.message.Message):
         ...
 global___GetAccuracyRequest = GetAccuracyRequest
 
+@typing_extensions.final
 class GetAccuracyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
+    @typing_extensions.final
     class AccuracyMmEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int

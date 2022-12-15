@@ -13,6 +13,7 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class OpenRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -33,6 +34,7 @@ class OpenRequest(google.protobuf.message.Message):
         ...
 global___OpenRequest = OpenRequest
 
+@typing_extensions.final
 class OpenResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -40,6 +42,7 @@ class OpenResponse(google.protobuf.message.Message):
         ...
 global___OpenResponse = OpenResponse
 
+@typing_extensions.final
 class GrabRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -60,6 +63,7 @@ class GrabRequest(google.protobuf.message.Message):
         ...
 global___GrabRequest = GrabRequest
 
+@typing_extensions.final
 class GrabResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUCCESS_FIELD_NUMBER: builtins.int
@@ -80,6 +84,7 @@ class GrabResponse(google.protobuf.message.Message):
         ...
 global___GrabResponse = GrabResponse
 
+@typing_extensions.final
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -101,6 +106,7 @@ class StopRequest(google.protobuf.message.Message):
         ...
 global___StopRequest = StopRequest
 
+@typing_extensions.final
 class StopResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
