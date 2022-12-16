@@ -76,7 +76,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.PoseInFrame
+   .. py:method:: get_pose(component_name: viam.proto.common.ResourceName, destination_frame: str, supplemental_transforms: Optional[List[viam.proto.common.Transform]] = [], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.PoseInFrame
       :async:
 
       Get the Pose and observer frame for any given component on a robot.
@@ -85,6 +85,8 @@ Classes
       :type component_name: ResourceName
       :param destination_frame: Name of the desired reference frame.
       :type destination_frame: str
+      :param supplemental_transforms: Transforms used to augment the robot's frame while calculating pose.
+      :type supplemental_transforms: Optional[List[Transforms]]
 
       :returns: Pose of the given component and the frame in which it was observed.
       :rtype: ``Pose`` (PoseInFrame)
