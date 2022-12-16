@@ -1,8 +1,8 @@
-from typing import Any, Mapping, Optional
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import PoseInFrame, ResourceName, WorldState
+from viam.proto.common import PoseInFrame, ResourceName, WorldState, Transform
 from viam.proto.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
@@ -109,6 +109,7 @@ class MotionServiceClient(ServiceClientBase):
         self,
         component_name: ResourceName,
         destination_frame: str,
+        supplemental_transforms: Optional[List[Transform]] = [],
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -119,6 +120,7 @@ class MotionServiceClient(ServiceClientBase):
         Args:
             component_name (ResourceName): Name of a component on a robot.
             destination_frame (str): Name of the desired reference frame.
+            supplemental_transforms (Optional[List[Transforms]]): Transforms used to augment the robot's frame while calculating pose.
 
         Returns:
             ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.
@@ -129,6 +131,7 @@ class MotionServiceClient(ServiceClientBase):
             name=self.name,
             component_name=component_name,
             destination_frame=destination_frame,
+            supplemental_transforms=supplemental_transforms,
             extra=dict_to_struct(extra),
         )
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
