@@ -132,7 +132,7 @@ class TestMotor:
         await motor.set_power(10)
         status = await create_status(motor)
         assert status.name == motor.get_resource_name(motor.name)
-        assert status.status == message_to_struct(MotorStatus(is_powered=True, position=0, position_reporting=True, is_moving=True))
+        assert status.status == message_to_struct(MotorStatus(is_powered=True, position=0, is_moving=True))
 
     @pytest.mark.asyncio
     async def test_extra(self, motor: MockMotor):
