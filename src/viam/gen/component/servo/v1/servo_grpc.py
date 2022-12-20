@@ -23,8 +23,12 @@ class ServoServiceBase(abc.ABC):
     async def Stop(self, stream: 'grpclib.server.Stream[component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def IsMoving(self, stream: 'grpclib.server.Stream[component.servo.v1.servo_pb2.IsMovingRequest, component.servo.v1.servo_pb2.IsMovingResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.servo.v1.ServoService/Move': grpclib.const.Handler(self.Move, grpclib.const.Cardinality.UNARY_UNARY, component.servo.v1.servo_pb2.MoveRequest, component.servo.v1.servo_pb2.MoveResponse), '/viam.component.servo.v1.ServoService/GetPosition': grpclib.const.Handler(self.GetPosition, grpclib.const.Cardinality.UNARY_UNARY, component.servo.v1.servo_pb2.GetPositionRequest, component.servo.v1.servo_pb2.GetPositionResponse), '/viam.component.servo.v1.ServoService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse)}
+        return {'/viam.component.servo.v1.ServoService/Move': grpclib.const.Handler(self.Move, grpclib.const.Cardinality.UNARY_UNARY, component.servo.v1.servo_pb2.MoveRequest, component.servo.v1.servo_pb2.MoveResponse), '/viam.component.servo.v1.ServoService/GetPosition': grpclib.const.Handler(self.GetPosition, grpclib.const.Cardinality.UNARY_UNARY, component.servo.v1.servo_pb2.GetPositionRequest, component.servo.v1.servo_pb2.GetPositionResponse), '/viam.component.servo.v1.ServoService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse), '/viam.component.servo.v1.ServoService/IsMoving': grpclib.const.Handler(self.IsMoving, grpclib.const.Cardinality.UNARY_UNARY, component.servo.v1.servo_pb2.IsMovingRequest, component.servo.v1.servo_pb2.IsMovingResponse)}
 
 class ServoServiceStub:
 
@@ -32,3 +36,4 @@ class ServoServiceStub:
         self.Move = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.servo.v1.ServoService/Move', component.servo.v1.servo_pb2.MoveRequest, component.servo.v1.servo_pb2.MoveResponse)
         self.GetPosition = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.servo.v1.ServoService/GetPosition', component.servo.v1.servo_pb2.GetPositionRequest, component.servo.v1.servo_pb2.GetPositionResponse)
         self.Stop = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.servo.v1.ServoService/Stop', component.servo.v1.servo_pb2.StopRequest, component.servo.v1.servo_pb2.StopResponse)
+        self.IsMoving = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.servo.v1.ServoService/IsMoving', component.servo.v1.servo_pb2.IsMovingRequest, component.servo.v1.servo_pb2.IsMovingResponse)

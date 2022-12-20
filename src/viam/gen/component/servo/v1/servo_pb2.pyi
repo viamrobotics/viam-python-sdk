@@ -126,3 +126,29 @@ class Status(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving', 'position_deg', b'position_deg']) -> None:
         ...
 global___Status = Status
+
+@typing_extensions.final
+class IsMovingRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___IsMovingRequest = IsMovingRequest
+
+@typing_extensions.final
+class IsMovingResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IS_MOVING_FIELD_NUMBER: builtins.int
+    is_moving: builtins.bool
+
+    def __init__(self, *, is_moving: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
+        ...
+global___IsMovingResponse = IsMovingResponse

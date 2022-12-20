@@ -296,21 +296,44 @@ global___GetPropertiesResponse = GetPropertiesResponse
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     IS_POWERED_FIELD_NUMBER: builtins.int
-    POSITION_REPORTING_FIELD_NUMBER: builtins.int
     POSITION_FIELD_NUMBER: builtins.int
     IS_MOVING_FIELD_NUMBER: builtins.int
     is_powered: builtins.bool
     'Returns true if the motor is powered'
-    position_reporting: builtins.bool
-    'Returns true if the motor has position support'
     position: builtins.float
     'Returns current position of the motor relative to its home'
     is_moving: builtins.bool
     'Returns true if the motor is moving'
 
-    def __init__(self, *, is_powered: builtins.bool=..., position_reporting: builtins.bool=..., position: builtins.float=..., is_moving: builtins.bool=...) -> None:
+    def __init__(self, *, is_powered: builtins.bool=..., position: builtins.float=..., is_moving: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving', 'is_powered', b'is_powered', 'position', b'position', 'position_reporting', b'position_reporting']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving', 'is_powered', b'is_powered', 'position', b'position']) -> None:
         ...
 global___Status = Status
+
+@typing_extensions.final
+class IsMovingRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___IsMovingRequest = IsMovingRequest
+
+@typing_extensions.final
+class IsMovingResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IS_MOVING_FIELD_NUMBER: builtins.int
+    is_moving: builtins.bool
+
+    def __init__(self, *, is_moving: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
+        ...
+global___IsMovingResponse = IsMovingResponse
