@@ -14,6 +14,8 @@ from viam.proto.component.arm import (
     MoveToPositionResponse,
     StopRequest,
     StopResponse,
+    IsMovingRequest,
+    IsMovingResponse,
 )
 from viam.utils import struct_to_dict
 
@@ -92,4 +94,16 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await arm.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StopResponse()
+        await stream.send_message(response)
+
+    async def IsMoving(self, stream: Stream[IsMovingRequest, IsMovingResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            arm = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        await arm.is_moving()
+        response = IsMovingResponse()
         await stream.send_message(response)

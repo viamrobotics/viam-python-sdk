@@ -10,6 +10,8 @@ from viam.proto.component.gripper import (
     OpenResponse,
     StopRequest,
     StopResponse,
+    IsMovingRequest,
+    IsMovingResponse,
 )
 from viam.utils import struct_to_dict
 
@@ -59,3 +61,15 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gripper.stop(extra=struct_to_dict(request.extra), timeout=timeout)
         await stream.send_message(StopResponse())
+
+    async def IsMoving(self, stream: Stream[IsMovingRequest, IsMovingResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            gripper = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        await gripper.is_moving()
+        response = IsMovingResponse()
+        await stream.send_message(response)

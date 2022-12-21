@@ -12,6 +12,8 @@ from viam.proto.component.gantry import (
     MoveToPositionResponse,
     StopRequest,
     StopResponse,
+    IsMovingRequest,
+    IsMovingResponse,
 )
 from viam.utils import struct_to_dict
 
@@ -75,4 +77,16 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gantry.stop(extra=struct_to_dict(request.extra), timeout=timeout)
         response = StopResponse()
+        await stream.send_message(response)
+
+    async def IsMoving(self, stream: Stream[IsMovingRequest, IsMovingResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            gantry = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        await gantry.is_moving()
+        response = IsMovingResponse()
         await stream.send_message(response)
