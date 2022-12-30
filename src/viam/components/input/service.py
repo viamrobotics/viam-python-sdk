@@ -42,7 +42,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        controls = await controller.get_controls(extra=struct_to_dict(request.extra), timeout=timeout)
+        controls = await controller.get_controls(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetControlsResponse(controls=[c.value for c in controls])
         await stream.send_message(response)
 
@@ -55,7 +55,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        events = await controller.get_events(extra=struct_to_dict(request.extra), timeout=timeout)
+        events = await controller.get_events(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         pb_events = [e.proto for e in events.values()]
         response = GetEventsResponse(events=pb_events)
         await stream.send_message(response)
@@ -157,7 +157,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             controller = self.get_component(name)
             pb_event = request.event
             event = Event.from_proto(pb_event)
-            await controller.trigger_event(event, extra=struct_to_dict(request.extra), timeout=timeout)
+            await controller.trigger_event(event, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         except ComponentNotFoundError as e:
             raise e.grpc_error
         except NotSupportedError as e:

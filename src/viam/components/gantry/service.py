@@ -34,7 +34,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        position = await gantry.get_position(extra=struct_to_dict(request.extra), timeout=timeout)
+        position = await gantry.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetPositionResponse(positions_mm=position)
         await stream.send_message(response)
 
@@ -47,7 +47,9 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gantry.move_to_position(list(request.positions_mm), request.world_state, extra=struct_to_dict(request.extra), timeout=timeout)
+        await gantry.move_to_position(
+            list(request.positions_mm), request.world_state, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+        )
         response = MoveToPositionResponse()
         await stream.send_message(response)
 
@@ -60,7 +62,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        lengths = await gantry.get_lengths(extra=struct_to_dict(request.extra), timeout=timeout)
+        lengths = await gantry.get_lengths(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetLengthsResponse(lengths_mm=lengths)
         await stream.send_message(response)
 
@@ -73,6 +75,6 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gantry.stop(extra=struct_to_dict(request.extra), timeout=timeout)
+        await gantry.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StopResponse()
         await stream.send_message(response)

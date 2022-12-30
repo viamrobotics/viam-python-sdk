@@ -28,6 +28,6 @@ class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        readings = await sensor.get_readings(extra=struct_to_dict(request.extra), timeout=timeout)
+        readings = await sensor.get_readings(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetReadingsResponse(readings=sensor_readings_native_to_value(readings))
         await stream.send_message(response)
