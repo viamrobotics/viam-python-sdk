@@ -28,5 +28,7 @@ class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracke
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        poses = await pose_tracker.get_poses(list(request.body_names), extra=struct_to_dict(request.extra), timeout=timeout)
+        poses = await pose_tracker.get_poses(
+            list(request.body_names), extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+        )
         await stream.send_message(GetPosesResponse(body_poses=poses))

@@ -43,7 +43,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        status = await board.status(extra=struct_to_dict(request.extra), timeout=timeout)
+        status = await board.status(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StatusResponse(status=status)
         await stream.send_message(response)
 
@@ -57,7 +57,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await pin.set(request.high, extra=struct_to_dict(request.extra), timeout=timeout)
+        await pin.set(request.high, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = SetGPIOResponse()
         await stream.send_message(response)
 
@@ -71,7 +71,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        high = await pin.get(extra=struct_to_dict(request.extra), timeout=timeout)
+        high = await pin.get(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetGPIOResponse(high=high)
         await stream.send_message(response)
 
@@ -85,7 +85,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        pwm = await pin.get_pwm(extra=struct_to_dict(request.extra), timeout=timeout)
+        pwm = await pin.get_pwm(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = PWMResponse(duty_cycle_pct=pwm)
         await stream.send_message(response)
 
@@ -99,7 +99,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await pin.set_pwm(request.duty_cycle_pct, extra=struct_to_dict(request.extra), timeout=timeout)
+        await pin.set_pwm(request.duty_cycle_pct, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = SetPWMResponse()
         await stream.send_message(response)
 
@@ -113,7 +113,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        frequency = await pin.get_pwm_frequency(extra=struct_to_dict(request.extra), timeout=timeout)
+        frequency = await pin.get_pwm_frequency(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = PWMFrequencyResponse(frequency_hz=frequency)
         await stream.send_message(response)
 
@@ -127,7 +127,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await pin.set_pwm_frequency(request.frequency_hz, extra=struct_to_dict(request.extra), timeout=timeout)
+        await pin.set_pwm_frequency(request.frequency_hz, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = SetPWMFrequencyResponse()
         await stream.send_message(response)
 
@@ -141,7 +141,7 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        value = await analog_reader.read(extra=struct_to_dict(request.extra), timeout=timeout)
+        value = await analog_reader.read(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = ReadAnalogReaderResponse(value=value)
         await stream.send_message(response)
 
@@ -155,6 +155,6 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        value = await interrupt.value(extra=struct_to_dict(request.extra), timeout=timeout)
+        value = await interrupt.value(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetDigitalInterruptValueResponse(value=value)
         await stream.send_message(response)

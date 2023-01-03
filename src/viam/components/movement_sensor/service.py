@@ -39,7 +39,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        velocity = await sensor.get_linear_velocity(extra=struct_to_dict(request.extra), timeout=timeout)
+        velocity = await sensor.get_linear_velocity(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetLinearVelocityResponse(linear_velocity=velocity)
         await stream.send_message(response)
 
@@ -52,7 +52,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        velocity = await sensor.get_angular_velocity(extra=struct_to_dict(request.extra), timeout=timeout)
+        velocity = await sensor.get_angular_velocity(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetAngularVelocityResponse(angular_velocity=velocity)
         await stream.send_message(response)
 
@@ -65,7 +65,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        heading = await sensor.get_compass_heading(extra=struct_to_dict(request.extra), timeout=timeout)
+        heading = await sensor.get_compass_heading(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetCompassHeadingResponse(value=heading)
         await stream.send_message(response)
 
@@ -78,7 +78,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        orientation = await sensor.get_orientation(extra=struct_to_dict(request.extra), timeout=timeout)
+        orientation = await sensor.get_orientation(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetOrientationResponse(orientation=orientation)
         await stream.send_message(response)
 
@@ -91,7 +91,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        point, alt = await sensor.get_position(extra=struct_to_dict(request.extra), timeout=timeout)
+        point, alt = await sensor.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetPositionResponse(coordinate=point, altitude_mm=alt)
         await stream.send_message(response)
 
@@ -104,7 +104,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = await sensor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout)
+        response = await sensor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(response)
 
     async def GetAccuracy(self, stream: Stream[GetAccuracyRequest, GetAccuracyResponse]) -> None:
@@ -116,6 +116,6 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        accuracy = await sensor.get_accuracy(extra=struct_to_dict(request.extra), timeout=timeout)
+        accuracy = await sensor.get_accuracy(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetAccuracyResponse(accuracy_mm=accuracy)
         await stream.send_message(response)

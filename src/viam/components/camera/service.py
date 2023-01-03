@@ -35,7 +35,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             raise e.grpc_error
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        image = await camera.get_image(request.mime_type, timeout=timeout)
+        image = await camera.get_image(request.mime_type, timeout=timeout, metadata=stream.metadata)
         try:
             mimetype, is_lazy = CameraMimeType.from_lazy(request.mime_type)
             if CameraMimeType.is_supported(mimetype):
@@ -62,7 +62,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         except ValueError:
             mimetype = CameraMimeType.JPEG
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        image = await camera.get_image(mimetype, timeout=timeout)
+        image = await camera.get_image(mimetype, timeout=timeout, metadata=stream.metadata)
         try:
             img = mimetype.encode_image(image)
         finally:
@@ -79,7 +79,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        pc, mimetype = await camera.get_point_cloud(timeout=timeout)
+        pc, mimetype = await camera.get_point_cloud(timeout=timeout, metadata=stream.metadata)
         response = GetPointCloudResponse(mime_type=mimetype, point_cloud=pc)
         await stream.send_message(response)
 
@@ -92,7 +92,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         except ComponentNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        properties = await camera.get_properties(timeout=timeout)
+        properties = await camera.get_properties(timeout=timeout, metadata=stream.metadata)
         response = GetPropertiesResponse(
             supports_pcd=properties.supports_pcd,
             intrinsic_parameters=properties.intrinsic_parameters,
