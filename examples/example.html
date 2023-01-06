@@ -441,6 +441,7 @@ from my_cool_arm import MyCoolArm
 
 async def main():
     srv = Server([MyCoolArm(&#39;my-arm&#39;)])
+    await srv.serve()
 
 if __name__ == &#39;__main__&#39;:
     try:
