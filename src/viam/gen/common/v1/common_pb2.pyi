@@ -241,6 +241,21 @@ class Sphere(google.protobuf.message.Message):
 global___Sphere = Sphere
 
 @typing_extensions.final
+class Capsule(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RADIUS_MM_FIELD_NUMBER: builtins.int
+    LENGTH_MM_FIELD_NUMBER: builtins.int
+    radius_mm: builtins.float
+    length_mm: builtins.float
+
+    def __init__(self, *, radius_mm: builtins.float=..., length_mm: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['length_mm', b'length_mm', 'radius_mm', b'radius_mm']) -> None:
+        ...
+global___Capsule = Capsule
+
+@typing_extensions.final
 class RectangularPrism(google.protobuf.message.Message):
     """RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
     These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
@@ -269,11 +284,12 @@ class Geometry(google.protobuf.message.Message):
     CENTER_FIELD_NUMBER: builtins.int
     SPHERE_FIELD_NUMBER: builtins.int
     BOX_FIELD_NUMBER: builtins.int
+    CAPSULE_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
 
     @property
     def center(self) -> global___Pose:
-        """Pose of a gemetries center point"""
+        """Pose of a geometries center point"""
 
     @property
     def sphere(self) -> global___Sphere:
@@ -282,19 +298,23 @@ class Geometry(google.protobuf.message.Message):
     @property
     def box(self) -> global___RectangularPrism:
         ...
+
+    @property
+    def capsule(self) -> global___Capsule:
+        ...
     label: builtins.str
     'Label of the geometry. If none supplied, will be an empty string.'
 
-    def __init__(self, *, center: global___Pose | None=..., sphere: global___Sphere | None=..., box: global___RectangularPrism | None=..., label: builtins.str=...) -> None:
+    def __init__(self, *, center: global___Pose | None=..., sphere: global___Sphere | None=..., box: global___RectangularPrism | None=..., capsule: global___Capsule | None=..., label: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['box', b'box', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['box', b'box', 'center', b'center', 'geometry_type', b'geometry_type', 'label', b'label', 'sphere', b'sphere']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'label', b'label', 'sphere', b'sphere']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['geometry_type', b'geometry_type']) -> typing_extensions.Literal['sphere', 'box'] | None:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['geometry_type', b'geometry_type']) -> typing_extensions.Literal['sphere', 'box', 'capsule'] | None:
         ...
 global___Geometry = Geometry
 
