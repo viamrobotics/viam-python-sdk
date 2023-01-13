@@ -2,8 +2,6 @@ import abc
 from dataclasses import dataclass
 from typing import Any, Dict, Optional, Tuple
 
-from viam.errors import NotSupportedError
-
 from ..component_base import ComponentBase
 
 
@@ -166,6 +164,7 @@ class Motor(ComponentBase):
         """
         ...
 
+    @abc.abstractmethod
     async def is_moving(self) -> bool:
         """
         Get if the motor is currently moving.
@@ -173,4 +172,4 @@ class Motor(ComponentBase):
         Returns:
             bool: Whether the motor is moving.
         """
-        raise NotSupportedError(f"Motor named {self.name} does not support returning whether it is moving")
+        ...

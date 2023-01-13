@@ -76,3 +76,6 @@ class MyCoolArm(Arm):
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True
+
+    async def is_moving(self) -> bool:
+        return not self.is_stopped

@@ -8,6 +8,8 @@ from viam.proto.component.gantry import (
     GetLengthsResponse,
     GetPositionRequest,
     GetPositionResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveToPositionRequest,
     MoveToPositionResponse,
     StopRequest,
@@ -77,4 +79,16 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gantry.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StopResponse()
+        await stream.send_message(response)
+
+    async def IsMoving(self, stream: Stream[IsMovingRequest, IsMovingResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            gantry = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        is_moving = await gantry.is_moving()
+        response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)

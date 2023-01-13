@@ -1,8 +1,6 @@
 import abc
 from typing import Any, Mapping, Optional
 
-from viam.errors import NotSupportedError
-
 from ..component_base import ComponentBase
 
 
@@ -44,6 +42,7 @@ class Servo(ComponentBase):
         """
         ...
 
+    @abc.abstractmethod
     async def is_moving(self) -> bool:
         """
         Get if the servo is currently moving.
@@ -51,4 +50,4 @@ class Servo(ComponentBase):
         Returns:
             bool: Whether the servo is moving.
         """
-        raise NotSupportedError(f"Servo named {self.name} does not support returning whether it is moving")
+        ...

@@ -5,6 +5,8 @@ from viam.errors import ComponentNotFoundError
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveRequest,
     MoveResponse,
     ServoServiceBase,
@@ -59,3 +61,14 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await servo.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(StopResponse())
+
+    async def IsMoving(self, stream: Stream[IsMovingRequest, IsMovingResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            servo = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        is_moving = await servo.is_moving()
+        await stream.send_message(IsMovingResponse(is_moving=is_moving))

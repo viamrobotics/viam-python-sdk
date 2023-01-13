@@ -79,7 +79,7 @@ STATUSES = [
     CAMERA_STATUS_MSG,
     Status(
         name=ResourceName(namespace="rdk", type="component", subtype="motor", name="motor1"),
-        status=message_to_struct(MotorStatus(is_powered=False, position=0, position_reporting=True, is_moving=False)),
+        status=message_to_struct(MotorStatus(is_powered=False, position=0, is_moving=False)),
     ),
 ]
 

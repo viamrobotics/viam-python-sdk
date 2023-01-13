@@ -5,12 +5,13 @@ from viam.components.generic.service import GenericService
 from viam.components.gripper import Gripper, GripperClient, create_status
 from viam.components.gripper.service import GripperService
 from viam.components.resource_manager import ResourceManager
-from viam.errors import NotSupportedError
 from viam.proto.common import ActuatorStatus
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
     GripperServiceStub,
+    IsMovingRequest,
+    IsMovingResponse,
     OpenRequest,
     StopRequest,
 )
@@ -123,6 +124,16 @@ class TestService:
             assert gripper.timeout == loose_approx(7.89)
 
     @pytest.mark.asyncio
+    async def test_is_moving(self, gripper: MockGripper, service: GripperService):
+        async with ChannelFor([service]) as channel:
+            assert gripper.is_stopped is True
+            gripper.is_stopped = False
+            client = GripperServiceStub(channel)
+            request = IsMovingRequest(name=gripper.name)
+            response: IsMovingResponse = await client.IsMoving(request)
+            assert response.is_moving is True
+
+    @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper, service: GripperService):
         async with ChannelFor([service]) as channel:
             assert gripper.extra is None
@@ -166,9 +177,10 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_is_moving(self, gripper: MockGripper, service: GripperService):
         async with ChannelFor([service]) as channel:
+            assert gripper.is_stopped is True
+            gripper.is_stopped = False
             client = GripperClient(gripper.name, channel)
-            with pytest.raises(NotSupportedError):
-                await client.is_moving()
+            assert await client.is_moving() is True
 
     @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper, service: GripperService, generic_service: GenericService):
@@ -176,13 +188,6 @@ class TestClient:
             client = GripperClient(gripper.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do_command({"command": "args"})
-
-    @pytest.mark.asyncio
-    async def test_status(self, gripper: MockGripper, service: GripperService):
-        async with ChannelFor([service]) as channel:
-            client = GripperClient(gripper.name, channel)
-            with pytest.raises(NotSupportedError):
-                await create_status(client)
 
     @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper, service: GripperService):

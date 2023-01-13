@@ -6,6 +6,8 @@ from ....gen.component.servo.v1.servo_grpc import ServoServiceBase, ServoService
 from ....gen.component.servo.v1.servo_pb2 import (
     GetPositionRequest,
     GetPositionResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveRequest,
     MoveResponse,
     Status,
@@ -18,6 +20,8 @@ __all__ = [
     "ServoServiceStub",
     "GetPositionRequest",
     "GetPositionResponse",
+    "IsMovingRequest",
+    "IsMovingResponse",
     "MoveRequest",
     "MoveResponse",
     "Status",

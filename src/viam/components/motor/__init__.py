@@ -14,16 +14,14 @@ __all__ = [
 
 
 async def create_status(component: Motor) -> Status:
-    ((is_powered, _), position, properties, is_moving) = await asyncio.gather(
+    ((is_powered, _), position, is_moving) = await asyncio.gather(
         component.is_powered(),
         component.get_position(),
-        component.get_properties(),
         component.is_moving(),
     )
     s = MotorStatus(
         is_powered=is_powered,
         position=position,
-        position_reporting=properties.position_reporting,
         is_moving=is_moving,
     )
     return Status(name=Motor.get_resource_name(component.name), status=message_to_struct(s))

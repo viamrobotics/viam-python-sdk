@@ -5,7 +5,6 @@ from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.errors import NotSupportedError
 from viam.proto.common import Pose
 from viam.proto.component.arm import (
     ArmServiceStub,
@@ -13,6 +12,8 @@ from viam.proto.component.arm import (
     GetEndPositionResponse,
     GetJointPositionsRequest,
     GetJointPositionsResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     JointPositions,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
@@ -134,6 +135,16 @@ class TestService:
             assert self.arm.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
+    async def test_is_moving(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.arm.is_stopped is True
+            self.arm.is_stopped = False
+            client = ArmServiceStub(channel)
+            request = IsMovingRequest(name=self.arm.name)
+            response: IsMovingResponse = await client.IsMoving(request)
+            assert response.is_moving is True
+
+    @pytest.mark.asyncio
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -194,8 +205,9 @@ class TestClient:
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            with pytest.raises(NotSupportedError):
-                await client.is_moving()
+            assert self.arm.is_stopped is True
+            self.arm.is_stopped = False
+            assert await client.is_moving() is True
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -203,13 +215,6 @@ class TestClient:
             client = ArmClient(self.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do_command({"command": "args"})
-
-    @pytest.mark.asyncio
-    async def test_status(self):
-        async with ChannelFor([self.service]) as channel:
-            client = ArmClient(self.name, channel)
-            with pytest.raises(NotSupportedError):
-                await create_status(client)
 
     @pytest.mark.asyncio
     async def test_extra(self):

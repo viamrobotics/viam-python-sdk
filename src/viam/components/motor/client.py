@@ -1,14 +1,17 @@
 from typing import Any, Dict, Optional, Tuple
 
 from grpclib.client import Channel
+
 from viam.components.generic.client import do_command
 from viam.proto.component.motor import (
-    GetPropertiesRequest,
-    GetPropertiesResponse,
     GetPositionRequest,
     GetPositionResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GoForRequest,
     GoToRequest,
+    IsMovingRequest,
+    IsMovingResponse,
     IsPoweredRequest,
     IsPoweredResponse,
     MotorServiceStub,
@@ -127,6 +130,13 @@ class MotorClient(Motor):
         request = IsPoweredRequest(name=self.name, extra=dict_to_struct(extra))
         response: IsPoweredResponse = await self.client.IsPowered(request, timeout=timeout)
         return response.is_on, response.power_pct
+
+    async def is_moving(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool:
+        if extra is None:
+            extra = {}
+        request = IsMovingRequest(name=self.name)
+        response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
+        return response.is_moving
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
         return await do_command(self.channel, self.name, command, timeout=timeout)

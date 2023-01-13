@@ -31,8 +31,12 @@ class BaseServiceBase(abc.ABC):
     async def Stop(self, stream: 'grpclib.server.Stream[component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def IsMoving(self, stream: 'grpclib.server.Stream[component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.base.v1.BaseService/MoveStraight': grpclib.const.Handler(self.MoveStraight, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.MoveStraightRequest, component.base.v1.base_pb2.MoveStraightResponse), '/viam.component.base.v1.BaseService/Spin': grpclib.const.Handler(self.Spin, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SpinRequest, component.base.v1.base_pb2.SpinResponse), '/viam.component.base.v1.BaseService/SetPower': grpclib.const.Handler(self.SetPower, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse), '/viam.component.base.v1.BaseService/SetVelocity': grpclib.const.Handler(self.SetVelocity, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse), '/viam.component.base.v1.BaseService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse)}
+        return {'/viam.component.base.v1.BaseService/MoveStraight': grpclib.const.Handler(self.MoveStraight, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.MoveStraightRequest, component.base.v1.base_pb2.MoveStraightResponse), '/viam.component.base.v1.BaseService/Spin': grpclib.const.Handler(self.Spin, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SpinRequest, component.base.v1.base_pb2.SpinResponse), '/viam.component.base.v1.BaseService/SetPower': grpclib.const.Handler(self.SetPower, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse), '/viam.component.base.v1.BaseService/SetVelocity': grpclib.const.Handler(self.SetVelocity, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse), '/viam.component.base.v1.BaseService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse), '/viam.component.base.v1.BaseService/IsMoving': grpclib.const.Handler(self.IsMoving, grpclib.const.Cardinality.UNARY_UNARY, component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse)}
 
 class BaseServiceStub:
 
@@ -42,3 +46,4 @@ class BaseServiceStub:
         self.SetPower = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/SetPower', component.base.v1.base_pb2.SetPowerRequest, component.base.v1.base_pb2.SetPowerResponse)
         self.SetVelocity = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/SetVelocity', component.base.v1.base_pb2.SetVelocityRequest, component.base.v1.base_pb2.SetVelocityResponse)
         self.Stop = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/Stop', component.base.v1.base_pb2.StopRequest, component.base.v1.base_pb2.StopResponse)
+        self.IsMoving = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.base.v1.BaseService/IsMoving', component.base.v1.base_pb2.IsMovingRequest, component.base.v1.base_pb2.IsMovingResponse)
