@@ -5,7 +5,6 @@ from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.errors import NotSupportedError
 from viam.proto.common import Pose
 from viam.proto.component.arm import (
     ArmServiceStub,

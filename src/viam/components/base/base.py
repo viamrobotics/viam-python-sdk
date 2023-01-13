@@ -1,7 +1,6 @@
 import abc
 from typing import Any, Dict, Optional
 
-from viam.errors import NotSupportedError
 from viam.proto.common import Vector3
 
 from ..component_base import ComponentBase
@@ -121,6 +120,7 @@ class Base(ComponentBase):
         """
         ...
 
+    @abc.abstractmethod
     async def is_moving(self) -> bool:
         """
         Get if the base is currently moving.
@@ -128,4 +128,4 @@ class Base(ComponentBase):
         Returns:
             bool: Whether the base is moving.
         """
-        raise NotSupportedError(f"Base named {self.name} does not support returning whether it is moving")
+        ...

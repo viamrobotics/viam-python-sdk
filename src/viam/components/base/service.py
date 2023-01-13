@@ -105,6 +105,6 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
             base = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await base.is_moving()
-        response = IsMovingResponse()
+        is_moving = await base.is_moving()
+        response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)

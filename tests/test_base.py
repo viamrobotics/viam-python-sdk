@@ -7,10 +7,11 @@ from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.errors import NotSupportedError
 from viam.proto.common import ActuatorStatus
 from viam.proto.component.base import (
     BaseServiceStub,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveStraightRequest,
     SetPowerRequest,
     SetVelocityRequest,
@@ -240,6 +241,16 @@ class TestService:
             assert base.stopped is True
 
     @pytest.mark.asyncio
+    async def test_is_moving(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            assert base.stopped is True
+            base.stopped = False
+            client = BaseServiceStub(channel)
+            request = IsMovingRequest(name=base.name)
+            response: IsMovingResponse = await client.IsMoving(request)
+            assert response.is_moving is True
+
+    @pytest.mark.asyncio
     async def test_extra(self, base: MockBase, service: BaseService):
         async with ChannelFor([service]) as channel:
             assert base.extra is None
@@ -324,9 +335,10 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_is_moving(self, base: MockBase, service: BaseService):
         async with ChannelFor([service]) as channel:
+            assert base.stopped is True
+            base.stopped = False
             client = BaseClient(base.name, channel)
-            with pytest.raises(NotSupportedError):
-                await client.is_moving()
+            assert await client.is_moving() is True
 
     @pytest.mark.asyncio
     async def test_do(self, base: MockBase, service: BaseService, generic_service: GenericService):
@@ -334,13 +346,6 @@ class TestClient:
             client = BaseClient(base.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do_command({"command": "args"})
-
-    @pytest.mark.asyncio
-    async def test_status(self, base: MockBase, service: BaseService):
-        async with ChannelFor([service]) as channel:
-            client = BaseClient(base.name, channel)
-            with pytest.raises(NotSupportedError):
-                await create_status(client)
 
     @pytest.mark.asyncio
     async def test_extra(self, base: MockBase, service: BaseService):
