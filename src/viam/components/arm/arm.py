@@ -1,7 +1,6 @@
 import abc
 from typing import Any, Dict, Optional
 
-from viam.errors import NotSupportedError
 from viam.proto.common import Pose, WorldState
 from viam.proto.component.arm import JointPositions
 
@@ -101,6 +100,7 @@ class Arm(ComponentBase):
         """
         ...
 
+    @abc.abstractmethod
     async def is_moving(self) -> bool:
         """
         Get if the arm is currently moving.
@@ -108,4 +108,4 @@ class Arm(ComponentBase):
         Returns:
             bool: Whether the arm is moving.
         """
-        raise NotSupportedError(f"Arm named {self.name} does not support returning whether it is moving")
+        ...

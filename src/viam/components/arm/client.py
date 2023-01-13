@@ -1,6 +1,7 @@
 from typing import Any, Dict, Optional
 
 from grpclib.client import Channel
+
 from viam.components.generic.client import do_command
 from viam.proto.common import Pose, WorldState
 from viam.proto.component.arm import (
@@ -9,6 +10,8 @@ from viam.proto.component.arm import (
     GetEndPositionResponse,
     GetJointPositionsRequest,
     GetJointPositionsResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     JointPositions,
     MoveToJointPositionsRequest,
     MoveToPositionRequest,
@@ -90,6 +93,13 @@ class ArmClient(Arm):
             extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request, timeout=timeout)
+
+    async def is_moving(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool:
+        if extra is None:
+            extra = {}
+        request = IsMovingRequest(name=self.name)
+        response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
+        return response.is_moving
 
     async def do_command(
         self,

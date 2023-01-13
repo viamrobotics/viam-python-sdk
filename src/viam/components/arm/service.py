@@ -104,6 +104,6 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
             arm = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await arm.is_moving()
-        response = IsMovingResponse()
+        is_moving = await arm.is_moving()
+        response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
