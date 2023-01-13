@@ -40,6 +40,8 @@ from ...gen.robot.v1.robot_pb2 import (
     StopExtraParameters,
     StreamStatusRequest,
     StreamStatusResponse,
+    TransformPCDRequest,
+    TransformPCDResponse,
     TransformPoseRequest,
     TransformPoseResponse,
 )
@@ -83,6 +85,8 @@ __all__ = [
     "StopExtraParameters",
     "StreamStatusRequest",
     "StreamStatusResponse",
+    "TransformPCDRequest",
+    "TransformPCDResponse",
     "TransformPoseRequest",
     "TransformPoseResponse",
 ]

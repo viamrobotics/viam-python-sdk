@@ -51,6 +51,7 @@ async def run(host: str, port: int, log_level: int):
         15,
         Vector3(x=1, y=2, z=3),
         Vector3(x=1, y=2, z=3),
+        Vector3(x=1, y=2, z=3),
         182,
         Orientation(o_x=1, o_y=2, o_z=3, theta=5),
         MovementSensor.Properties(

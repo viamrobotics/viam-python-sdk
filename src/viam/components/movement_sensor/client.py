@@ -12,6 +12,8 @@ from viam.proto.component.movementsensor import (
     GetAngularVelocityResponse,
     GetCompassHeadingRequest,
     GetCompassHeadingResponse,
+    GetLinearAccelerationRequest,
+    GetLinearAccelerationResponse,
     GetLinearVelocityRequest,
     GetLinearVelocityResponse,
     GetOrientationRequest,
@@ -53,6 +55,13 @@ class MovementSensorClient(MovementSensor):
         request = GetAngularVelocityRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetAngularVelocityResponse = await self.client.GetAngularVelocity(request, timeout=timeout)
         return response.angular_velocity
+
+    async def get_linear_acceleration(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Vector3:
+        if extra is None:
+            extra = {}
+        request = GetLinearAccelerationRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetLinearAccelerationResponse = await self.client.GetLinearAcceleration(request, timeout=timeout)
+        return response.linear_acceleration
 
     async def get_compass_heading(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> float:
         if extra is None:

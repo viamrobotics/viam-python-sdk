@@ -248,16 +248,18 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     ORIENTATION_SUPPORTED_FIELD_NUMBER: builtins.int
     POSITION_SUPPORTED_FIELD_NUMBER: builtins.int
     COMPASS_HEADING_SUPPORTED_FIELD_NUMBER: builtins.int
+    LINEAR_ACCELERATION_SUPPORTED_FIELD_NUMBER: builtins.int
     linear_velocity_supported: builtins.bool
     angular_velocity_supported: builtins.bool
     orientation_supported: builtins.bool
     position_supported: builtins.bool
     compass_heading_supported: builtins.bool
+    linear_acceleration_supported: builtins.bool
 
-    def __init__(self, *, linear_velocity_supported: builtins.bool=..., angular_velocity_supported: builtins.bool=..., orientation_supported: builtins.bool=..., position_supported: builtins.bool=..., compass_heading_supported: builtins.bool=...) -> None:
+    def __init__(self, *, linear_velocity_supported: builtins.bool=..., angular_velocity_supported: builtins.bool=..., orientation_supported: builtins.bool=..., position_supported: builtins.bool=..., compass_heading_supported: builtins.bool=..., linear_acceleration_supported: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['angular_velocity_supported', b'angular_velocity_supported', 'compass_heading_supported', b'compass_heading_supported', 'linear_velocity_supported', b'linear_velocity_supported', 'orientation_supported', b'orientation_supported', 'position_supported', b'position_supported']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['angular_velocity_supported', b'angular_velocity_supported', 'compass_heading_supported', b'compass_heading_supported', 'linear_acceleration_supported', b'linear_acceleration_supported', 'linear_velocity_supported', b'linear_velocity_supported', 'orientation_supported', b'orientation_supported', 'position_supported', b'position_supported']) -> None:
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
 
@@ -312,3 +314,44 @@ class GetAccuracyResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['accuracy_mm', b'accuracy_mm']) -> None:
         ...
 global___GetAccuracyResponse = GetAccuracyResponse
+
+@typing_extensions.final
+class GetLinearAccelerationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of a movement sensor'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___GetLinearAccelerationRequest = GetLinearAccelerationRequest
+
+@typing_extensions.final
+class GetLinearAccelerationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LINEAR_ACCELERATION_FIELD_NUMBER: builtins.int
+
+    @property
+    def linear_acceleration(self) -> common.v1.common_pb2.Vector3:
+        ...
+
+    def __init__(self, *, linear_acceleration: common.v1.common_pb2.Vector3 | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['linear_acceleration', b'linear_acceleration']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['linear_acceleration', b'linear_acceleration']) -> None:
+        ...
+global___GetLinearAccelerationResponse = GetLinearAccelerationResponse

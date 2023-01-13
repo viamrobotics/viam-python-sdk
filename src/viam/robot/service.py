@@ -36,6 +36,8 @@ from viam.proto.robot import (
     StopAllResponse,
     StreamStatusRequest,
     StreamStatusResponse,
+    TransformPCDRequest,
+    TransformPCDResponse,
     TransformPoseRequest,
     TransformPoseResponse,
 )
@@ -156,3 +158,6 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
 
     async def SendSessionHeartbeat(self, stream: Stream[SendSessionHeartbeatRequest, SendSessionHeartbeatResponse]) -> None:
         raise MethodNotImplementedError("SendSessionHeartbeat").grpc_error
+
+    async def TransformPCD(self, stream: Stream[TransformPCDRequest, TransformPCDResponse]) -> None:
+        raise MethodNotImplementedError("TransformPCD").grpc_error

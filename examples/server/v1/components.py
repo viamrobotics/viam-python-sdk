@@ -566,6 +566,7 @@ class ExampleMovementSensor(MovementSensor):
         altitude: float,
         lin_vel: Vector3,
         ang_vel: Vector3,
+        lin_acc: Vector3,
         heading: float,
         orientation: Orientation,
         properties: MovementSensor.Properties,
@@ -576,6 +577,7 @@ class ExampleMovementSensor(MovementSensor):
         self.altitude = altitude
         self.lin_vel = lin_vel
         self.ang_vel = ang_vel
+        self.lin_acc = lin_acc
         self.heading = heading
         self.orientation = orientation
         self.properties = properties
@@ -589,6 +591,9 @@ class ExampleMovementSensor(MovementSensor):
 
     async def get_angular_velocity(self, **kwargs) -> Vector3:
         return self.ang_vel
+
+    async def get_linear_acceleration(self, **kwargs) -> Vector3:
+        return self.lin_acc
 
     async def get_compass_heading(self, **kwargs) -> float:
         return self.heading

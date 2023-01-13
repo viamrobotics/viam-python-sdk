@@ -16,6 +16,8 @@ from viam.proto.component.movementsensor import (
     GetAngularVelocityResponse,
     GetCompassHeadingRequest,
     GetCompassHeadingResponse,
+    GetLinearAccelerationRequest,
+    GetLinearAccelerationResponse,
     GetLinearVelocityRequest,
     GetLinearVelocityResponse,
     GetOrientationRequest,
@@ -35,6 +37,7 @@ COORDINATE = GeoPoint(latitude=40.664679865782624, longitude=-73.97668056188789)
 ALTITUDE = 15
 LINEAR_VELOCITY = Vector3(x=1, y=2, z=3)
 ANGULAR_VELOCITY = Vector3(x=1, y=2, z=3)
+LINEAR_ACCELERATION = Vector3(x=1, y=2, z=3)
 HEADING = 182
 ORIENTATION = Orientation(o_x=1, o_y=2, o_z=3, theta=5)
 PROPERTIES = MovementSensor.Properties(
@@ -51,7 +54,16 @@ EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
 @pytest.fixture(scope="function")
 def movement_sensor() -> MovementSensor:
     return MockMovementSensor(
-        "movement_sensor", COORDINATE, ALTITUDE, LINEAR_VELOCITY, ANGULAR_VELOCITY, HEADING, ORIENTATION, PROPERTIES, ACCURACY
+        "movement_sensor",
+        COORDINATE,
+        ALTITUDE,
+        LINEAR_VELOCITY,
+        ANGULAR_VELOCITY,
+        LINEAR_ACCELERATION,
+        HEADING,
+        ORIENTATION,
+        PROPERTIES,
+        ACCURACY,
     )
 
 
@@ -81,6 +93,13 @@ class TestMovementSensor:
         assert movement_sensor.extra is None
         value = await movement_sensor.get_linear_velocity(extra=EXTRA_PARAMS)
         assert value == LINEAR_VELOCITY
+        assert movement_sensor.extra == EXTRA_PARAMS
+
+    @pytest.mark.asyncio
+    async def test_get_linear_acceleration(self, movement_sensor: MockMovementSensor):
+        assert movement_sensor.extra is None
+        value = await movement_sensor.get_linear_acceleration(extra=EXTRA_PARAMS)
+        assert value == LINEAR_ACCELERATION
         assert movement_sensor.extra == EXTRA_PARAMS
 
     @pytest.mark.asyncio
@@ -127,6 +146,7 @@ class TestMovementSensor:
             "altitude": ALTITUDE,
             "linear_velocity": LINEAR_VELOCITY,
             "angular_velocity": ANGULAR_VELOCITY,
+            "linear_acceleration": LINEAR_ACCELERATION,
             "compass": HEADING,
             "orientation": ORIENTATION,
         }
@@ -144,6 +164,9 @@ class TestMovementSensor:
 
         await movement_sensor.get_angular_velocity(timeout=3.45)
         assert movement_sensor.timeout == loose_approx(3.45)
+
+        await movement_sensor.get_linear_acceleration(timeout=9.01)
+        assert movement_sensor.timeout == loose_approx(9.01)
 
         await movement_sensor.get_compass_heading(timeout=4.56)
         assert movement_sensor.timeout == loose_approx(4.56)
@@ -200,6 +223,17 @@ class TestService:
             assert response.angular_velocity == ANGULAR_VELOCITY
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(3.45)
+
+    @pytest.mark.asyncio
+    async def test_get_linear_acceleration(self, movement_sensor: MockMovementSensor, service: MovementSensorService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorServiceStub(channel)
+            request = GetLinearAccelerationRequest(name=movement_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
+            assert movement_sensor.extra is None
+            response: GetLinearAccelerationResponse = await client.GetLinearAcceleration(request, timeout=2.34)
+            assert response.linear_acceleration == LINEAR_ACCELERATION
+            assert movement_sensor.extra == EXTRA_PARAMS
+            assert movement_sensor.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
     async def test_get_compass_heading(self, movement_sensor: MockMovementSensor, service: MovementSensorService):
@@ -277,6 +311,16 @@ class TestClient:
             assert movement_sensor.timeout == loose_approx(3.45)
 
     @pytest.mark.asyncio
+    async def test_get_linear_acceleration(self, movement_sensor: MockMovementSensor, service: MovementSensorService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorClient(movement_sensor.name, channel)
+            assert movement_sensor.extra is None
+            value = await client.get_linear_acceleration(extra=EXTRA_PARAMS, timeout=2.34)
+            assert value == LINEAR_ACCELERATION
+            assert movement_sensor.extra == EXTRA_PARAMS
+            assert movement_sensor.timeout == loose_approx(2.34)
+
+    @pytest.mark.asyncio
     async def test_get_compass_heading(self, movement_sensor: MockMovementSensor, service: MovementSensorService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
@@ -327,6 +371,7 @@ class TestClient:
                 "altitude": ALTITUDE,
                 "linear_velocity": LINEAR_VELOCITY,
                 "angular_velocity": ANGULAR_VELOCITY,
+                "linear_acceleration": LINEAR_ACCELERATION,
                 "compass": HEADING,
                 "orientation": ORIENTATION,
             }

@@ -10,6 +10,8 @@ from viam.proto.component.movementsensor import (
     GetAngularVelocityResponse,
     GetCompassHeadingRequest,
     GetCompassHeadingResponse,
+    GetLinearAccelerationRequest,
+    GetLinearAccelerationResponse,
     GetLinearVelocityRequest,
     GetLinearVelocityResponse,
     GetOrientationRequest,
@@ -54,6 +56,19 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         velocity = await sensor.get_angular_velocity(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetAngularVelocityResponse(angular_velocity=velocity)
+        await stream.send_message(response)
+
+    async def GetLinearAcceleration(self, stream: Stream[GetLinearAccelerationRequest, GetLinearAccelerationResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            sensor = self.get_component(name)
+        except ComponentNotFoundError as e:
+            raise e.grpc_error
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        acceleration = await sensor.get_linear_acceleration(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = GetLinearAccelerationResponse(linear_acceleration=acceleration)
         await stream.send_message(response)
 
     async def GetCompassHeading(self, stream: Stream[GetCompassHeadingRequest, GetCompassHeadingResponse]) -> None:

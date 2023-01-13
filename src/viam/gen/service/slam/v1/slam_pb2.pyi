@@ -124,3 +124,100 @@ class GetMapResponse(google.protobuf.message.Message):
     def WhichOneof(self, oneof_group: typing_extensions.Literal['map', b'map']) -> typing_extensions.Literal['point_cloud', 'image'] | None:
         ...
 global___GetMapResponse = GetMapResponse
+
+@typing_extensions.final
+class GetPositionNewRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of slam service'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetPositionNewRequest = GetPositionNewRequest
+
+@typing_extensions.final
+class GetPositionNewResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POSE_FIELD_NUMBER: builtins.int
+    COMPONENT_REFERENCE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+
+    @property
+    def pose(self) -> common.v1.common_pb2.Pose:
+        """Current position of the specified component in the SLAM Map"""
+    component_reference: builtins.str
+    'This is usually the name of the camera that is in the SLAM config'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional information in the response"""
+
+    def __init__(self, *, pose: common.v1.common_pb2.Pose | None=..., component_reference: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'pose', b'pose']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['component_reference', b'component_reference', 'extra', b'extra', 'pose', b'pose']) -> None:
+        ...
+global___GetPositionNewResponse = GetPositionNewResponse
+
+@typing_extensions.final
+class GetPointCloudMapRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of slam service'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetPointCloudMapRequest = GetPointCloudMapRequest
+
+@typing_extensions.final
+class GetPointCloudMapResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POINT_CLOUD_PCD_FIELD_NUMBER: builtins.int
+    point_cloud_pcd: builtins.bytes
+    'pointclouds are returned as a set of bytes in the standard PCD format\n    https://pointclouds.org/documentation/tutorials/pcd_file_format.html\n    '
+
+    def __init__(self, *, point_cloud_pcd: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['point_cloud_pcd', b'point_cloud_pcd']) -> None:
+        ...
+global___GetPointCloudMapResponse = GetPointCloudMapResponse
+
+@typing_extensions.final
+class GetInternalStateRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of slam service'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetInternalStateRequest = GetInternalStateRequest
+
+@typing_extensions.final
+class GetInternalStateResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INTERNAL_STATE_FIELD_NUMBER: builtins.int
+    internal_state: builtins.bytes
+    'Internal state of the SLAM algorithm required to continue mapping/localization'
+
+    def __init__(self, *, internal_state: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['internal_state', b'internal_state']) -> None:
+        ...
+global___GetInternalStateResponse = GetInternalStateResponse

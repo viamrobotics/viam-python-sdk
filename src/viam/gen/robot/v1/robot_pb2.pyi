@@ -147,6 +147,39 @@ class TransformPoseResponse(google.protobuf.message.Message):
 global___TransformPoseResponse = TransformPoseResponse
 
 @typing_extensions.final
+class TransformPCDRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POINT_CLOUD_PCD_FIELD_NUMBER: builtins.int
+    SOURCE_FIELD_NUMBER: builtins.int
+    DESTINATION_FIELD_NUMBER: builtins.int
+    point_cloud_pcd: builtins.bytes
+    'the point clouds to transform. This should be in the PCD format\n    encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html\n    '
+    source: builtins.str
+    'the reference frame of the point cloud.'
+    destination: builtins.str
+    'the reference frame into which the source data should be transformed, if unset this defaults to the "world" reference frame.\n    Do not move the robot between the generation of the initial pointcloud and the receipt\n    of the transformed pointcloud because that will make the transformations inaccurate\n    '
+
+    def __init__(self, *, point_cloud_pcd: builtins.bytes=..., source: builtins.str=..., destination: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['destination', b'destination', 'point_cloud_pcd', b'point_cloud_pcd', 'source', b'source']) -> None:
+        ...
+global___TransformPCDRequest = TransformPCDRequest
+
+@typing_extensions.final
+class TransformPCDResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POINT_CLOUD_PCD_FIELD_NUMBER: builtins.int
+    point_cloud_pcd: builtins.bytes
+
+    def __init__(self, *, point_cloud_pcd: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['point_cloud_pcd', b'point_cloud_pcd']) -> None:
+        ...
+global___TransformPCDResponse = TransformPCDResponse
+
+@typing_extensions.final
 class ResourceNamesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
