@@ -80,6 +80,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GetProperties()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.IsPowered"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.IsPowered()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -122,6 +123,14 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoToResponse"><code class="docutils literal notranslate"><span class="pre">GoToResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsMovingRequest"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsMovingRequest.name"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsMovingResponse"><code class="docutils literal notranslate"><span class="pre">IsMovingResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsMovingResponse.is_moving"><code class="docutils literal notranslate"><span class="pre">IsMovingResponse.is_moving</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.extra"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.name"><code class="docutils literal notranslate"><span class="pre">IsPoweredRequest.name</span></code></a></li>
@@ -151,7 +160,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetPowerResponse"><code class="docutils literal notranslate"><span class="pre">SetPowerResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.is_powered"><code class="docutils literal notranslate"><span class="pre">Status.is_powered</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.position_reporting"><code class="docutils literal notranslate"><span class="pre">Status.position_reporting</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.position"><code class="docutils literal notranslate"><span class="pre">Status.position</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.is_moving"><code class="docutils literal notranslate"><span class="pre">Status.is_moving</span></code></a></li>
 </ul>
@@ -172,6 +180,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GetProperties">GetProperties</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.Stop">Stop</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.IsPowered">IsPowered</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.IsMoving">IsMoving</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -214,6 +223,14 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.GoToResponse">GoToResponse</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsMovingRequest">IsMovingRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsMovingRequest.name">name</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsMovingResponse">IsMovingResponse</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsMovingResponse.is_moving">is_moving</a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest">IsPoweredRequest</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest.name">name</a></li>
@@ -243,7 +260,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetPowerResponse">SetPowerResponse</a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.Status">Status</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.is_powered">is_powered</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.position_reporting">position_reporting</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.position">position</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.is_moving">is_moving</a></li>
 </ul>
@@ -349,6 +365,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.motor.GoToResponse" title="viam.proto.component.motor.GoToResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GoToResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.motor.IsMovingRequest" title="viam.proto.component.motor.IsMovingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.motor.IsMovingResponse" title="viam.proto.component.motor.IsMovingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.motor.IsPoweredRequest" title="viam.proto.component.motor.IsPoweredRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsPoweredRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -421,6 +443,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.motor.MotorServiceBase.IsPowered">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsPowered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.IsPoweredRequest" title="viam.gen.component.motor.v1.motor_pb2.IsPoweredRequest"><span class="pre">component.motor.v1.motor_pb2.IsPoweredRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.IsPoweredResponse" title="viam.gen.component.motor.v1.motor_pb2.IsPoweredResponse"><span class="pre">component.motor.v1.motor_pb2.IsPoweredResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#MotorServiceBase.IsPowered"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.MotorServiceBase.IsPowered" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.motor.MotorServiceBase.IsMoving">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsMoving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.IsMovingRequest" title="viam.gen.component.motor.v1.motor_pb2.IsMovingRequest"><span class="pre">component.motor.v1.motor_pb2.IsMovingRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.IsMovingResponse" title="viam.gen.component.motor.v1.motor_pb2.IsMovingResponse"><span class="pre">component.motor.v1.motor_pb2.IsMovingResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#MotorServiceBase.IsMoving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.MotorServiceBase.IsMoving" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -684,6 +711,34 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.motor.IsMovingRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.motor.</span></span><span class="sig-name descname"><span class="pre">IsMovingRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.motor.IsMovingRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.motor.IsMovingRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.motor.IsMovingRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.motor.IsMovingResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.motor.</span></span><span class="sig-name descname"><span class="pre">IsMovingResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_moving</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.motor.IsMovingResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.motor.IsMovingResponse.is_moving">
+<span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.component.motor.IsMovingResponse.is_moving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.motor.IsPoweredRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.motor.</span></span><span class="sig-name descname"><span class="pre">IsPoweredRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.motor.IsPoweredRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
@@ -870,7 +925,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.motor.Status">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.motor.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_powered</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_reporting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_moving</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.motor.Status" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.motor.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_powered</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_moving</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.motor.Status" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -879,12 +934,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.motor.Status.is_powered">
 <span class="sig-name descname"><span class="pre">is_powered</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.component.motor.Status.is_powered" title="Permalink to this definition"></a></dt>
 <dd><p>Returns true if the motor is powered</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.component.motor.Status.position_reporting">
-<span class="sig-name descname"><span class="pre">position_reporting</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.component.motor.Status.position_reporting" title="Permalink to this definition"></a></dt>
-<dd><p>Returns true if the motor has position support</p>
 </dd></dl>
 
 <dl class="py attribute">

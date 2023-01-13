@@ -73,6 +73,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.Open"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.Open()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.Grab"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.Grab()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.Stop()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">GripperServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -87,6 +88,14 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.extra"><code class="docutils literal notranslate"><span class="pre">GrabResponse.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.success"><code class="docutils literal notranslate"><span class="pre">GrabResponse.success</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GrabResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingRequest"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingRequest.name"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingResponse"><code class="docutils literal notranslate"><span class="pre">IsMovingResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingResponse.is_moving"><code class="docutils literal notranslate"><span class="pre">IsMovingResponse.is_moving</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest"><code class="docutils literal notranslate"><span class="pre">OpenRequest</span></code></a><ul>
@@ -107,6 +116,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.Open">Open</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.Grab">Grab</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.Stop">Stop</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.IsMoving">IsMoving</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GripperServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -121,6 +131,14 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.success">success</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingRequest">IsMovingRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingRequest.name">name</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingResponse">IsMovingResponse</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gripper.IsMovingResponse.is_moving">is_moving</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest">OpenRequest</a><ul>
@@ -215,6 +233,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.gripper.GrabResponse" title="viam.proto.component.gripper.GrabResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GrabResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.gripper.IsMovingRequest" title="viam.proto.component.gripper.IsMovingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.gripper.IsMovingResponse" title="viam.proto.component.gripper.IsMovingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.gripper.OpenRequest" title="viam.proto.component.gripper.OpenRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OpenRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -247,6 +271,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gripper.GripperServiceBase.Stop">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.StopRequest" title="viam.gen.component.gripper.v1.gripper_pb2.StopRequest"><span class="pre">component.gripper.v1.gripper_pb2.StopRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.StopResponse" title="viam.gen.component.gripper.v1.gripper_pb2.StopResponse"><span class="pre">component.gripper.v1.gripper_pb2.StopResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gripper/v1/gripper_grpc.html#GripperServiceBase.Stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gripper.GripperServiceBase.Stop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.GripperServiceBase.IsMoving">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsMoving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsMovingRequest" title="viam.gen.component.gripper.v1.gripper_pb2.IsMovingRequest"><span class="pre">component.gripper.v1.gripper_pb2.IsMovingRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsMovingResponse" title="viam.gen.component.gripper.v1.gripper_pb2.IsMovingResponse"><span class="pre">component.gripper.v1.gripper_pb2.IsMovingResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gripper/v1/gripper_grpc.html#GripperServiceBase.IsMoving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gripper.GripperServiceBase.IsMoving" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -342,6 +371,34 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsMovingRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gripper.</span></span><span class="sig-name descname"><span class="pre">IsMovingRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gripper.IsMovingRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsMovingRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.gripper.IsMovingRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsMovingResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gripper.</span></span><span class="sig-name descname"><span class="pre">IsMovingResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_moving</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gripper.IsMovingResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gripper.IsMovingResponse.is_moving">
+<span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.component.gripper.IsMovingResponse.is_moving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

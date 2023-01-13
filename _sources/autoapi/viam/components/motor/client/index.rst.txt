@@ -109,6 +109,15 @@ Classes
       :rtype: bool
 
 
+   .. py:method:: is_moving(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool
+      :async:
+
+      Get if the motor is currently moving.
+
+      :returns: Whether the motor is moving.
+      :rtype: bool
+
+
    .. py:method:: do_command(command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]
       :async:
 

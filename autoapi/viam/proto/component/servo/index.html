@@ -79,6 +79,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.Move"><code class="docutils literal notranslate"><span class="pre">ServoServiceBase.Move()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">ServoServiceBase.GetPosition()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">ServoServiceBase.Stop()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">ServoServiceBase.IsMoving()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">ServoServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -91,6 +92,14 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.servo.GetPositionResponse"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.GetPositionResponse.position_deg"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.position_deg</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.servo.IsMovingRequest"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.IsMovingRequest.name"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.servo.IsMovingResponse"><code class="docutils literal notranslate"><span class="pre">IsMovingResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.IsMovingResponse.is_moving"><code class="docutils literal notranslate"><span class="pre">IsMovingResponse.is_moving</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.servo.MoveRequest"><code class="docutils literal notranslate"><span class="pre">MoveRequest</span></code></a><ul>
@@ -117,6 +126,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.Move">Move</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.GetPosition">GetPosition</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.Stop">Stop</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.IsMoving">IsMoving</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.ServoServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -129,6 +139,14 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.servo.GetPositionResponse">GetPositionResponse</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.GetPositionResponse.position_deg">position_deg</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.servo.IsMovingRequest">IsMovingRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.IsMovingRequest.name">name</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.servo.IsMovingResponse">IsMovingResponse</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.servo.IsMovingResponse.is_moving">is_moving</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.servo.MoveRequest">MoveRequest</a><ul>
@@ -223,6 +241,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.servo.GetPositionResponse" title="viam.proto.component.servo.GetPositionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.servo.IsMovingRequest" title="viam.proto.component.servo.IsMovingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.servo.IsMovingResponse" title="viam.proto.component.servo.IsMovingResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.servo.MoveRequest" title="viam.proto.component.servo.MoveRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -258,6 +282,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.servo.ServoServiceBase.Stop">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/servo/v1/servo_pb2/index.html#viam.gen.component.servo.v1.servo_pb2.StopRequest" title="viam.gen.component.servo.v1.servo_pb2.StopRequest"><span class="pre">component.servo.v1.servo_pb2.StopRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/servo/v1/servo_pb2/index.html#viam.gen.component.servo.v1.servo_pb2.StopResponse" title="viam.gen.component.servo.v1.servo_pb2.StopResponse"><span class="pre">component.servo.v1.servo_pb2.StopResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/servo/v1/servo_grpc.html#ServoServiceBase.Stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.servo.ServoServiceBase.Stop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.servo.ServoServiceBase.IsMoving">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsMoving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/servo/v1/servo_pb2/index.html#viam.gen.component.servo.v1.servo_pb2.IsMovingRequest" title="viam.gen.component.servo.v1.servo_pb2.IsMovingRequest"><span class="pre">component.servo.v1.servo_pb2.IsMovingRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/servo/v1/servo_pb2/index.html#viam.gen.component.servo.v1.servo_pb2.IsMovingResponse" title="viam.gen.component.servo.v1.servo_pb2.IsMovingResponse"><span class="pre">component.servo.v1.servo_pb2.IsMovingResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/servo/v1/servo_grpc.html#ServoServiceBase.IsMoving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.servo.ServoServiceBase.IsMoving" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -328,6 +357,34 @@ shown below.</p>
 <span class="sig-name descname"><span class="pre">position_deg</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.component.servo.GetPositionResponse.position_deg" title="Permalink to this definition"></a></dt>
 <dd><p>the degrees from neutral by which the servo is currently rotated. Values are between 0 and 180</p>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.servo.IsMovingRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.servo.</span></span><span class="sig-name descname"><span class="pre">IsMovingRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.servo.IsMovingRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.servo.IsMovingRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.component.servo.IsMovingRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.servo.IsMovingResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.servo.</span></span><span class="sig-name descname"><span class="pre">IsMovingResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_moving</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.servo.IsMovingResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.servo.IsMovingResponse.is_moving">
+<span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.component.servo.IsMovingResponse.is_moving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

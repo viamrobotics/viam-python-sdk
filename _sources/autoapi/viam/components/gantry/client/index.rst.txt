@@ -60,6 +60,15 @@ Classes
       Stop all motion of the gantry. It is assumed that the gantry stops immediately.
 
 
+   .. py:method:: is_moving(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool
+      :async:
+
+      Get if the gantry is currently moving.
+
+      :returns: Whether the gantry is moving.
+      :rtype: bool
+
+
    .. py:method:: do_command(command: Dict[str, Any]) -> Dict[str, Any]
       :async:
 
