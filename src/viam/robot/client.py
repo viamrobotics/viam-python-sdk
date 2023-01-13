@@ -347,6 +347,9 @@ class RobotClient:
         response: TransformPoseResponse = await self._client.TransformPose(request)
         return response.pose
 
+    async def transform_point_cloud(self):
+        raise NotImplementedError()
+
     #######################
     # COMPONENT DISCOVERY #
     #######################
