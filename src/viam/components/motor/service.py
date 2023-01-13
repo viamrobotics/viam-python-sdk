@@ -140,6 +140,6 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
             motor = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await motor.is_moving()
-        response = IsMovingResponse()
+        is_moving = await motor.is_moving()
+        response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
