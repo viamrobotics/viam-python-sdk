@@ -70,6 +70,6 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
             gripper = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await gripper.is_moving()
-        response = IsMovingResponse()
+        is_moving = await gripper.is_moving()
+        response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)

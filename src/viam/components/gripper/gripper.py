@@ -2,7 +2,6 @@ import abc
 from typing import Any, Dict, Optional
 
 from viam.components.component_base import ComponentBase
-from viam.errors import NotSupportedError
 
 
 class Gripper(ComponentBase):
@@ -56,6 +55,7 @@ class Gripper(ComponentBase):
         """
         ...
 
+    @abc.abstractmethod
     async def is_moving(self) -> bool:
         """
         Get if the gripper is currently moving.
@@ -63,4 +63,4 @@ class Gripper(ComponentBase):
         Returns:
             bool: Whether the gripper is moving.
         """
-        raise NotSupportedError(f"Gripper named {self.name} does not support returning whether it is moving")
+        ...
