@@ -5,13 +5,14 @@ from viam.components.gantry import GantryClient, GantryStatus, create_status
 from viam.components.gantry.service import GantryService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.errors import NotSupportedError
 from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
     GetLengthsResponse,
     GetPositionRequest,
     GetPositionResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveToPositionRequest,
     StopRequest,
 )
@@ -133,6 +134,16 @@ class TestService:
             assert self.gantry.timeout == loose_approx(1.1)
 
     @pytest.mark.asyncio
+    async def test_is_moving(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.gantry.is_stopped is True
+            self.gantry.is_stopped = False
+            client = GantryServiceStub(channel)
+            request = IsMovingRequest(name=self.gantry.name)
+            response: IsMovingResponse = await client.IsMoving(request)
+            assert response.is_moving is True
+
+    @pytest.mark.asyncio
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             assert self.gantry.extra is None or len(self.gantry.extra) == 0
@@ -192,16 +203,10 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
+            assert self.gantry.is_stopped is True
+            self.gantry.is_stopped = False
             client = GantryClient(self.gantry.name, channel)
-            with pytest.raises(NotSupportedError):
-                await client.is_moving()
-
-    @pytest.mark.asyncio
-    async def test_status(self):
-        async with ChannelFor([self.service]) as channel:
-            client = GantryClient(self.gantry.name, channel)
-            with pytest.raises(NotSupportedError):
-                await create_status(client)
+            assert await client.is_moving() is True
 
     @pytest.mark.asyncio
     async def test_extra(self):

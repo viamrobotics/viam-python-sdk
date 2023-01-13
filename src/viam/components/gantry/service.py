@@ -8,12 +8,12 @@ from viam.proto.component.gantry import (
     GetLengthsResponse,
     GetPositionRequest,
     GetPositionResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveToPositionRequest,
     MoveToPositionResponse,
     StopRequest,
     StopResponse,
-    IsMovingRequest,
-    IsMovingResponse,
 )
 from viam.utils import struct_to_dict
 
@@ -87,6 +87,6 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
             gantry = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await gantry.is_moving()
-        response = IsMovingResponse()
+        is_moving = await gantry.is_moving()
+        response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)

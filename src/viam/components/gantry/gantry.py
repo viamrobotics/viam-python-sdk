@@ -1,7 +1,6 @@
 import abc
 from typing import Any, Dict, List, Optional
 
-from viam.errors import NotSupportedError
 from viam.proto.common import WorldState
 
 from ..component_base import ComponentBase
@@ -64,6 +63,7 @@ class Gantry(ComponentBase):
         """
         ...
 
+    @abc.abstractmethod
     async def is_moving(self) -> bool:
         """
         Get if the gantry is currently moving.
@@ -71,4 +71,4 @@ class Gantry(ComponentBase):
         Returns:
             bool: Whether the gantry is moving.
         """
-        raise NotSupportedError(f"Gantry named {self.name} does not support returning whether it is moving")
+        ...
