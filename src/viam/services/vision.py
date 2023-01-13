@@ -341,6 +341,20 @@ class VisionServiceClient(ServiceClientBase):
         Returns a list of the 3D point cloud objects and associated metadata in the latest
         picture obtained from the specified 3D camera (using the specified segmenter).
 
+        To deserialize the returned information into a numpy array, use the Open3D library.
+        ::
+
+            import numpy as np
+            import open3d as o3d
+
+            object_point_clouds = await vision.get_object_point_clouds(camera_name, segmenter_name)
+
+            # write the first object point cloud into a temporary file
+            with open("/tmp/pointcloud_data.pcd", "wb") as f:
+                f.write(object_point_clouds[0].point_cloud)
+            pcd = o3d.io.read_point_cloud("/tmp/pointcloud_data.pcd")
+            points = np.asarray(pcd.points)
+
         Args:
             camera_name (str): The name of the camera
             segmenter_name (str): The name of the segmenter
