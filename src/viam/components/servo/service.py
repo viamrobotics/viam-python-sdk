@@ -5,13 +5,13 @@ from viam.errors import ComponentNotFoundError
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveRequest,
     MoveResponse,
     ServoServiceBase,
     StopRequest,
     StopResponse,
-    IsMovingRequest,
-    IsMovingResponse,
 )
 from viam.utils import struct_to_dict
 
@@ -70,5 +70,5 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
             servo = self.get_component(name)
         except ComponentNotFoundError as e:
             raise e.grpc_error
-        await servo.is_moving()
-        await stream.send_message(IsMovingResponse())
+        is_moving = await servo.is_moving()
+        await stream.send_message(IsMovingResponse(is_moving=is_moving))

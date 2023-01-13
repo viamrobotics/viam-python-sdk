@@ -5,10 +5,11 @@ from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.components.servo import ServoClient, ServoStatus, create_status
 from viam.components.servo.service import ServoService
-from viam.errors import NotSupportedError
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveRequest,
     ServoServiceStub,
     StopRequest,
@@ -105,6 +106,16 @@ class TestService:
             assert self.servo.timeout == loose_approx(3.45)
             assert self.servo.extra == {"foo": "stop"}
 
+    @pytest.mark.asyncio
+    async def test_is_moving(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.servo.is_stopped is True
+            self.servo.is_stopped = False
+            client = ServoServiceStub(channel)
+            request = IsMovingRequest(name=self.servo.name)
+            response: IsMovingResponse = await client.IsMoving(request)
+            assert response.is_moving is True
+
 
 class TestClient:
 
@@ -146,8 +157,9 @@ class TestClient:
     async def test_is_moving(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.name, channel)
-            with pytest.raises(NotSupportedError):
-                await client.is_moving()
+            assert self.servo.is_stopped is True
+            self.servo.is_stopped = False
+            assert await client.is_moving() is True
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -155,10 +167,3 @@ class TestClient:
             client = ServoClient(self.name, channel)
             with pytest.raises(NotImplementedError):
                 await client.do_command({"command": "args"})
-
-    @pytest.mark.asyncio
-    async def test_status(self):
-        async with ChannelFor([self.service]) as channel:
-            client = ServoClient(self.name, channel)
-            with pytest.raises(NotSupportedError):
-                await create_status(client)
