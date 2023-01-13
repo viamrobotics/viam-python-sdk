@@ -47,6 +47,17 @@ class MovementSensor(Sensor):
         ...
 
     @abc.abstractmethod
+    async def get_linear_acceleration(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Vector3:
+        """Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in mm/sec^2
+
+        Returns:
+            Vector3: The linear acceleration in mm/sec^2
+        """
+        ...
+
+    @abc.abstractmethod
     async def get_compass_heading(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
         """Get the current compass heading in degrees
 
@@ -98,10 +109,11 @@ class MovementSensor(Sensor):
                 orientation: Orientation
             }
         """
-        ((pos, alt), lv, av, comp, orient) = await asyncio.gather(
+        ((pos, alt), lv, av, la, comp, orient) = await asyncio.gather(
             self.get_position(extra=extra, timeout=timeout),
             self.get_linear_velocity(extra=extra, timeout=timeout),
             self.get_angular_velocity(extra=extra, timeout=timeout),
+            self.get_linear_acceleration(extra=extra, timeout=timeout),
             self.get_compass_heading(extra=extra, timeout=timeout),
             self.get_orientation(extra=extra, timeout=timeout),
         )
@@ -110,6 +122,7 @@ class MovementSensor(Sensor):
             "altitude": alt,
             "linear_velocity": lv,
             "angular_velocity": av,
+            "linear_acceleration": la,
             "compass": comp,
             "orientation": orient,
         }

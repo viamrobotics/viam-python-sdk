@@ -651,6 +651,7 @@ class MockMovementSensor(MovementSensor):
         altitude: float,
         lin_vel: Vector3,
         ang_vel: Vector3,
+        lin_acc: Vector3,
         heading: float,
         orientation: Orientation,
         properties: MovementSensor.Properties,
@@ -661,6 +662,7 @@ class MockMovementSensor(MovementSensor):
         self.altitude = altitude
         self.lin_vel = lin_vel
         self.ang_vel = ang_vel
+        self.lin_acc = lin_acc
         self.heading = heading
         self.orientation = orientation
         self.properties = properties
@@ -684,6 +686,13 @@ class MockMovementSensor(MovementSensor):
         self.extra = extra
         self.timeout = timeout
         return self.ang_vel
+
+    async def get_linear_acceleration(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Vector3:
+        self.extra = extra
+        self.timeout = timeout
+        return self.lin_acc
 
     async def get_compass_heading(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
         self.extra = extra
