@@ -71,6 +71,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.DiscoverComponents"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.DiscoverComponents()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.FrameSystemConfig"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.FrameSystemConfig()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.TransformPose"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.TransformPose()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.TransformPCD"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.TransformPCD()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetStatus"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetStatus()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StreamStatus"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.StreamStatus()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StopAll"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.StopAll()</span></code></a></li>
@@ -225,6 +226,16 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StreamStatusResponse.status"><code class="docutils literal notranslate"><span class="pre">StreamStatusResponse.status</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest"><code class="docutils literal notranslate"><span class="pre">TransformPCDRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest.point_cloud_pcd"><code class="docutils literal notranslate"><span class="pre">TransformPCDRequest.point_cloud_pcd</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest.source"><code class="docutils literal notranslate"><span class="pre">TransformPCDRequest.source</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest.destination"><code class="docutils literal notranslate"><span class="pre">TransformPCDRequest.destination</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.TransformPCDResponse"><code class="docutils literal notranslate"><span class="pre">TransformPCDResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPCDResponse.point_cloud_pcd"><code class="docutils literal notranslate"><span class="pre">TransformPCDResponse.point_cloud_pcd</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.TransformPoseRequest"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPoseRequest.source"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.source</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPoseRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">TransformPoseRequest.supplemental_transforms</span></code></a></li>
@@ -247,6 +258,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.DiscoverComponents">DiscoverComponents</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.FrameSystemConfig">FrameSystemConfig</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.TransformPose">TransformPose</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.TransformPCD">TransformPCD</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetStatus">GetStatus</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StreamStatus">StreamStatus</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StopAll">StopAll</a></li>
@@ -399,6 +411,16 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.StreamStatusResponse">StreamStatusResponse</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.StreamStatusResponse.status">status</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest">TransformPCDRequest</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest.point_cloud_pcd">point_cloud_pcd</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest.source">source</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest.destination">destination</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.TransformPCDResponse">TransformPCDResponse</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.TransformPCDResponse.point_cloud_pcd">point_cloud_pcd</a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.TransformPoseRequest">TransformPoseRequest</a><ul>
@@ -580,6 +602,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.StreamStatusResponse" title="viam.proto.robot.StreamStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamStatusResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.TransformPCDRequest" title="viam.proto.robot.TransformPCDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPCDRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.TransformPCDResponse" title="viam.proto.robot.TransformPCDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPCDResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.TransformPoseRequest" title="viam.proto.robot.TransformPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -636,6 +664,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.TransformPose">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TransformPose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.TransformPoseRequest" title="viam.gen.robot.v1.robot_pb2.TransformPoseRequest"><span class="pre">robot.v1.robot_pb2.TransformPoseRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.TransformPoseResponse" title="viam.gen.robot.v1.robot_pb2.TransformPoseResponse"><span class="pre">robot.v1.robot_pb2.TransformPoseResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.TransformPose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.TransformPose" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.TransformPCD">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TransformPCD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.TransformPCDRequest" title="viam.gen.robot.v1.robot_pb2.TransformPCDRequest"><span class="pre">robot.v1.robot_pb2.TransformPCDRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.TransformPCDResponse" title="viam.gen.robot.v1.robot_pb2.TransformPCDResponse"><span class="pre">robot.v1.robot_pb2.TransformPCDResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.TransformPCD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.TransformPCD" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1495,6 +1528,50 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.robot.StreamStatusResponse.status">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Status</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.StreamStatusResponse.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.TransformPCDRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">TransformPCDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_cloud_pcd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.TransformPCDRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.TransformPCDRequest.point_cloud_pcd">
+<span class="sig-name descname"><span class="pre">point_cloud_pcd</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.robot.TransformPCDRequest.point_cloud_pcd" title="Permalink to this definition"></a></dt>
+<dd><p>the point clouds to transform. This should be in the PCD format
+encoded into bytes: <a class="reference external" href="https://pointclouds.org/documentation/tutorials/pcd_file_format.html">https://pointclouds.org/documentation/tutorials/pcd_file_format.html</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.TransformPCDRequest.source">
+<span class="sig-name descname"><span class="pre">source</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.TransformPCDRequest.source" title="Permalink to this definition"></a></dt>
+<dd><p>the reference frame of the point cloud.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.TransformPCDRequest.destination">
+<span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.robot.TransformPCDRequest.destination" title="Permalink to this definition"></a></dt>
+<dd><p>the reference frame into which the source data should be transformed, if unset this defaults to the “world” reference frame.
+Do not move the robot between the generation of the initial pointcloud and the receipt
+of the transformed pointcloud because that will make the transformations inaccurate</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.TransformPCDResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">TransformPCDResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_cloud_pcd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.TransformPCDResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.TransformPCDResponse.point_cloud_pcd">
+<span class="sig-name descname"><span class="pre">point_cloud_pcd</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.robot.TransformPCDResponse.point_cloud_pcd" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

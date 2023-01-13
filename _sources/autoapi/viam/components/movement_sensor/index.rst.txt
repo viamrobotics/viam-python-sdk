@@ -96,6 +96,16 @@ Classes
       :rtype: Vector3
 
 
+   .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Vector3
+      :abstractmethod:
+      :async:
+
+      Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in mm/sec^2
+
+      :returns: The linear acceleration in mm/sec^2
+      :rtype: Vector3
+
+
    .. py:method:: get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
       :abstractmethod:
       :async:

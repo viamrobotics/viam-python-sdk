@@ -73,6 +73,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_position"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_position()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_linear_velocity"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_linear_velocity()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_angular_velocity"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_angular_velocity()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_linear_acceleration"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_linear_acceleration()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_compass_heading"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_compass_heading()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_orientation"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_orientation()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_properties"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_properties()</span></code></a></li>
@@ -85,6 +86,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_position">get_position</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_linear_velocity">get_linear_velocity</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_angular_velocity">get_angular_velocity</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_linear_acceleration">get_linear_acceleration</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_compass_heading">get_compass_heading</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_orientation">get_orientation</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_properties">get_properties</a></li>
@@ -207,6 +209,20 @@ This cannot be used on its own. If the <code class="docutils literal notranslate
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The angular velocity in rad/sec</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="../../base/index.html#viam.components.base.Vector3" title="viam.components.base.Vector3">Vector3</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.movement_sensor.movement_sensor.MovementSensor.get_linear_acceleration">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_linear_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Vector3" title="viam.proto.common.Vector3"><span class="pre">viam.proto.common.Vector3</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/movement_sensor/movement_sensor.html#MovementSensor.get_linear_acceleration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_linear_acceleration" title="Permalink to this definition"></a></dt>
+<dd><p>Get the current linear acceleration as a <code class="docutils literal notranslate"><span class="pre">Vector3</span></code> with x, y, and z axes represented in mm/sec^2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The linear acceleration in mm/sec^2</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="../../base/index.html#viam.components.base.Vector3" title="viam.components.base.Vector3">Vector3</a></p>

@@ -111,6 +111,12 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.TransformPoseResponse" title="viam.gen.robot.v1.robot_pb2.TransformPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPoseResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.TransformPCDRequest" title="viam.gen.robot.v1.robot_pb2.TransformPCDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPCDRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.TransformPCDResponse" title="viam.gen.robot.v1.robot_pb2.TransformPCDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TransformPCDResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.ResourceNamesRequest" title="viam.gen.robot.v1.robot_pb2.ResourceNamesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceNamesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -246,6 +252,12 @@ isort:skip_file</p>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___TransformPoseResponse" title="viam.gen.robot.v1.robot_pb2.global___TransformPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TransformPoseResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___TransformPCDRequest" title="viam.gen.robot.v1.robot_pb2.global___TransformPCDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TransformPCDRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___TransformPCDResponse" title="viam.gen.robot.v1.robot_pb2.global___TransformPCDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TransformPCDResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___ResourceNamesRequest" title="viam.gen.robot.v1.robot_pb2.global___ResourceNamesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ResourceNamesRequest</span></code></a></p></td>
@@ -558,6 +570,60 @@ be raised.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___TransformPoseResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___TransformPoseResponse</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___TransformPoseResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.TransformPCDRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">TransformPCDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_cloud_pcd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.TransformPCDRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.TransformPCDRequest.point_cloud_pcd">
+<span class="sig-name descname"><span class="pre">point_cloud_pcd</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.TransformPCDRequest.point_cloud_pcd" title="Permalink to this definition"></a></dt>
+<dd><p>the point clouds to transform. This should be in the PCD format
+encoded into bytes: <a class="reference external" href="https://pointclouds.org/documentation/tutorials/pcd_file_format.html">https://pointclouds.org/documentation/tutorials/pcd_file_format.html</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.TransformPCDRequest.source">
+<span class="sig-name descname"><span class="pre">source</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.TransformPCDRequest.source" title="Permalink to this definition"></a></dt>
+<dd><p>the reference frame of the point cloud.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.TransformPCDRequest.destination">
+<span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.TransformPCDRequest.destination" title="Permalink to this definition"></a></dt>
+<dd><p>the reference frame into which the source data should be transformed, if unset this defaults to the “world” reference frame.
+Do not move the robot between the generation of the initial pointcloud and the receipt
+of the transformed pointcloud because that will make the transformations inaccurate</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___TransformPCDRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___TransformPCDRequest</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___TransformPCDRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.TransformPCDResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">TransformPCDResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_cloud_pcd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.TransformPCDResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.TransformPCDResponse.point_cloud_pcd">
+<span class="sig-name descname"><span class="pre">point_cloud_pcd</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.TransformPCDResponse.point_cloud_pcd" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___TransformPCDResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___TransformPCDResponse</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___TransformPCDResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">

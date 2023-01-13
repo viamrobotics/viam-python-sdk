@@ -135,6 +135,12 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse" title="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetAccuracyResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest" title="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLinearAccelerationRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse" title="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetLinearAccelerationResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -189,6 +195,12 @@ isort:skip_file</p>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetAccuracyResponse" title="viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetAccuracyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetAccuracyResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationRequest" title="viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetLinearAccelerationRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationResponse" title="viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetLinearAccelerationResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -690,7 +702,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.movementsensor.v1.movementsensor_pb2.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_velocity_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass_heading_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.movementsensor.v1.movementsensor_pb2.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_velocity_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass_heading_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_acceleration_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -718,6 +730,11 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse.compass_heading_supported">
 <span class="sig-name descname"><span class="pre">compass_heading_supported</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse.compass_heading_supported" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse.linear_acceleration_supported">
+<span class="sig-name descname"><span class="pre">linear_acceleration_supported</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse.linear_acceleration_supported" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -812,6 +829,97 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetAccuracyResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.component.movementsensor.v1.movementsensor_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetAccuracyResponse</span></span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetAccuracyResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.movementsensor.v1.movementsensor_pb2.</span></span><span class="sig-name descname"><span class="pre">GetLinearAccelerationRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of a movement sensor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.movementsensor.v1.movementsensor_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetLinearAccelerationRequest</span></span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.movementsensor.v1.movementsensor_pb2.</span></span><span class="sig-name descname"><span class="pre">GetLinearAccelerationResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">common.v1.common_pb2.Vector3</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse.linear_acceleration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linear_acceleration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Vector3" title="viam.gen.common.v1.common_pb2.Vector3"><span class="pre">viam.gen.common.v1.common_pb2.Vector3</span></a></em><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse.linear_acceleration" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">linear_acceleration</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'linear_acceleration'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.movementsensor.v1.movementsensor_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetLinearAccelerationResponse</span></span><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearAccelerationResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
