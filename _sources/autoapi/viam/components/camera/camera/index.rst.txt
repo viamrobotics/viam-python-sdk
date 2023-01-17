@@ -73,6 +73,20 @@ Classes
       should encode the bytes into the formatted suggested
       by the mimetype.
 
+      To deserialize the returned information into a numpy array, use the Open3D library.
+      ::
+
+          import numpy as np
+          import open3d as o3d
+
+          data, _ = await camera.get_point_cloud()
+
+          # write the point cloud into a temporary file
+          with open("/tmp/pointcloud_data.pcd", "wb") as f:
+              f.write(data)
+          pcd = o3d.io.read_point_cloud("/tmp/pointcloud_data.pcd")
+          points = np.asarray(pcd.points)
+
       :returns: The pointcloud data.
                 str: The mimetype of the pointcloud (e.g. PCD).
       :rtype: bytes

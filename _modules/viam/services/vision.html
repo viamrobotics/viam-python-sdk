@@ -422,6 +422,20 @@
 <span class="sd">        Returns a list of the 3D point cloud objects and associated metadata in the latest</span>
 <span class="sd">        picture obtained from the specified 3D camera (using the specified segmenter).</span>
 
+<span class="sd">        To deserialize the returned information into a numpy array, use the Open3D library.</span>
+<span class="sd">        ::</span>
+
+<span class="sd">            import numpy as np</span>
+<span class="sd">            import open3d as o3d</span>
+
+<span class="sd">            object_point_clouds = await vision.get_object_point_clouds(camera_name, segmenter_name)</span>
+
+<span class="sd">            # write the first object point cloud into a temporary file</span>
+<span class="sd">            with open(&quot;/tmp/pointcloud_data.pcd&quot;, &quot;wb&quot;) as f:</span>
+<span class="sd">                f.write(object_point_clouds[0].point_cloud)</span>
+<span class="sd">            pcd = o3d.io.read_point_cloud(&quot;/tmp/pointcloud_data.pcd&quot;)</span>
+<span class="sd">            points = np.asarray(pcd.points)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            camera_name (str): The name of the camera</span>
 <span class="sd">            segmenter_name (str): The name of the segmenter</span>
