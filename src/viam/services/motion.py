@@ -41,12 +41,11 @@ class MotionServiceClient(ServiceClientBase):
         """Plan and execute a movement to move the component specified to its goal destination.
 
         Note: Frames designated with respect to components can also be used as the ``component_name`` when calling for a move. This
-        technique allows for planning and moving the frame itself to the ``destination``. To do so, simply override the ``name`` attribute
-        for a given resource with the originating ReferenceFrame. Then pass in the updated resource into the ``component_name``. Ex::
+        technique allows for planning and moving the frame itself to the ``destination``. To do so, simply create a resource name with
+        originating ReferenceFrame's name. Then pass in the resource name into ``component_name``. Ex::
 
-            resource = Arm.get_resource_name("arm")
-            resource.name = "externalFrame"
-            success = await MotionServiceClient.move(resource, ...)
+            resource_name = Arm.get_resource_name("externalFrame")
+            success = await MotionServiceClient.move(resource_name, ...)
 
         Args:
             component_name (ResourceName): Name of a component on a given robot.
@@ -109,13 +108,19 @@ class MotionServiceClient(ServiceClientBase):
         self,
         component_name: ResourceName,
         destination_frame: str,
-        supplemental_transforms: Optional[List[Transform]] = [],
+        supplemental_transforms: Optional[List[Transform]] = None,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
     ) -> PoseInFrame:
         """
-        Get the Pose and observer frame for any given component on a robot.
+        Get the Pose and observer frame for any given component on a robot. A ``component_name`` can be created like this::
+
+            component_name = Arm.get_resource_name("arm")
+
+        Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work
+        (``Base``, ``Gripper``, etc).
+
 
         Args:
             component_name (ResourceName): Name of a component on a robot.
@@ -125,6 +130,8 @@ class MotionServiceClient(ServiceClientBase):
         Returns:
             ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.
         """
+        if supplemental_transforms is None:
+            supplemental_transforms = []
         if extra is None:
             extra = {}
         request = GetPoseRequest(
@@ -136,3 +143,6 @@ class MotionServiceClient(ServiceClientBase):
         )
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
         return response.pose
+
+    class Pose:
+        pass
