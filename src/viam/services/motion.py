@@ -118,7 +118,7 @@ class MotionServiceClient(ServiceClientBase):
 
             component_name = Arm.get_resource_name("arm")
 
-        Note that the example uses the Arm class, but any component class that inherits from ``ComponentBase`` will work
+        Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work
         (``Base``, ``Gripper``, etc).
 
 
@@ -143,3 +143,6 @@ class MotionServiceClient(ServiceClientBase):
         )
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
         return response.pose
+
+    class Pose:
+        pass
