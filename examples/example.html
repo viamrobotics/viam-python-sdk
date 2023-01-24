@@ -252,9 +252,9 @@ async def vision():
 <p>While the main RDK is written in golang, you can create custom components in python and connect them to a robot as a <code class="docutils literal notranslate"><span class="pre">remote</span></code> component. This allows you to extend the functionality of a robot, or even create an entire robot exclusively in python.</p>
 <p>The steps required in creating a custom component and connecting it to the RDK are</p>
 <ol class="arabic simple">
-<li><p>Subclass a component and implement desired functions</p></li>
-<li><p>Create an <code class="docutils literal notranslate"><span class="pre">rpc.server.Server</span></code> instance and register the custom component</p></li>
-<li><p>Start the <code class="docutils literal notranslate"><span class="pre">Server</span></code> and register the running server as a remote</p></li>
+<li><p><strong>Subclass a component and implement desired functions</strong>. This will be your custom component.</p></li>
+<li><p><strong>Create an <code class="docutils literal notranslate"><span class="pre">rpc.server.Server</span></code> instance and register the custom component</strong>. This is the <code class="docutils literal notranslate"><span class="pre">RPC</span></code> server that enables communication with your custom component.</p></li>
+<li><p><strong>Start the <code class="docutils literal notranslate"><span class="pre">Server</span></code> and register the running server as a remote</strong>. Registering this <code class="docutils literal notranslate"><span class="pre">RPC</span></code> server as a remote allows the RDK to communicate with the server.</p></li>
 </ol>
 <p>But before we start, we need to cover one additional topic: Operations.</p>
 <section id="operations">
@@ -431,11 +431,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </section>
 <section id="register-the-custom-component">
 <h3>2. Register the custom component<a class="headerlink" href="#register-the-custom-component" title="Permalink to this heading"></a></h3>
-<p>Now that we’ve created the custom component, we must register it with a server so that it will be visible to any robots connecting to it.</p>
-<p>In the same <code class="docutils literal notranslate"><span class="pre">my-python-robot</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">python_server.py</span></code>.</p>
+<p>Now that we’ve created the custom component, we must register it so that it will be visible to any robots connecting to it. This is done by creating an <code class="docutils literal notranslate"><span class="pre">RPC</span></code> server and adding <code class="docutils literal notranslate"><span class="pre">MyCoolArm</span></code> as a connected component. This <code class="docutils literal notranslate"><span class="pre">RPC</span></code> server will receive gRPC requests from the Viam Server or any other connections and forward those requests to your custom component.</p>
+<p>In the same <code class="docutils literal notranslate"><span class="pre">my-python-robot</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># my-python-robot/python_server.py
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># my-python-robot/main.py
 
 import asyncio
 from viam.rpc.server import Server
@@ -459,7 +459,7 @@ if __name__ == &#39;__main__&#39;:
 <section id="start-the-server-and-add-it-as-a-remote">
 <h3>3. Start the Server and add it as a Remote<a class="headerlink" href="#start-the-server-and-add-it-as-a-remote" title="Permalink to this heading"></a></h3>
 <p>Now that we have a server that knows about our custom Arm component, we need to start the server so it can receive gRPC calls. Once it’s started, we can then register this server as a remote.</p>
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/python_server.py</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/main.py</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
   <span class="o">...</span>
@@ -484,7 +484,7 @@ if __name__ == &#39;__main__&#39;:
 <span class="w">    </span><span class="nt">&quot;log&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;/home/pi/my-python-robot/python_server.py&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;/home/pi/my-python-robot/main.py&quot;</span><span class="w"></span>
 <span class="w">    </span><span class="p">]</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">]</span><span class="w"></span>
@@ -500,7 +500,7 @@ if __name__ == &#39;__main__&#39;:
 <span class="w">      </span><span class="s2">&quot;-u&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="s2">&quot;pi&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="s2">&quot;/home/pi/my-python-robot/python-server.py&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;/home/pi/my-python-robot/main.py&quot;</span><span class="w"></span>
 <span class="w">    </span><span class="p">]</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">]</span><span class="w"></span>

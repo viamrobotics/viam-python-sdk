@@ -232,6 +232,7 @@
    ]
   },
   {
+   "attachments": {},
    "cell_type": "markdown",
    "metadata": {},
    "source": [
@@ -240,9 +241,9 @@
     "While the main RDK is written in golang, you can create custom components in python and connect them to a robot as a `remote` component. This allows you to extend the functionality of a robot, or even create an entire robot exclusively in python.\n",
     "\n",
     "The steps required in creating a custom component and connecting it to the RDK are\n",
-    "1. Subclass a component and implement desired functions\n",
-    "2. Create an `rpc.server.Server` instance and register the custom component\n",
-    "3. Start the `Server` and register the running server as a remote\n",
+    "1. **Subclass a component and implement desired functions**. This will be your custom component.\n",
+    "1. **Create an `rpc.server.Server` instance and register the custom component**. This is the `RPC` server that enables communication with your custom component.\n",
+    "1. **Start the `Server` and register the running server as a remote**. Registering this `RPC` server as a remote allows the RDK to communicate with the server.\n",
     "\n",
     "But before we start, we need to cover one additional topic: Operations.\n",
     "\n",
@@ -457,14 +458,15 @@
    ]
   },
   {
+   "attachments": {},
    "cell_type": "markdown",
    "metadata": {},
    "source": [
     "### 2. Register the custom component\n",
     "\n",
-    "Now that we've created the custom component, we must register it with a server so that it will be visible to any robots connecting to it.\n",
+    "Now that we've created the custom component, we must register it so that it will be visible to any robots connecting to it. This is done by creating an `RPC` server and adding `MyCoolArm` as a connected component. This `RPC` server will receive gRPC requests from the Viam Server or any other connections and forward those requests to your custom component.\n",
     "\n",
-    "In the same `my-python-robot` directory, create a new file called `python_server.py`."
+    "In the same `my-python-robot` directory, create a new file called `main.py`."
    ]
   },
   {
@@ -483,7 +485,7 @@
     }
    ],
    "source": [
-    "# my-python-robot/python_server.py\n",
+    "# my-python-robot/main.py\n",
     "\n",
     "import asyncio\n",
     "from viam.rpc.server import Server\n",
@@ -502,6 +504,7 @@
    ]
   },
   {
+   "attachments": {},
    "cell_type": "markdown",
    "metadata": {},
    "source": [
@@ -510,7 +513,7 @@
     "Now that we have a server that knows about our custom Arm component, we need to start the server so it can receive gRPC calls. Once it's started, we can then register this server as a remote.\n",
     "\n",
     "```python3\n",
-    "# my-python-robot/python_server.py\n",
+    "# my-python-robot/main.py\n",
     "\n",
     "async def main():\n",
     "  ...\n",
@@ -537,7 +540,7 @@
     "    \"log\": true,\n",
     "    \"name\": \"python\",\n",
     "    \"args\": [\n",
-    "      \"/home/pi/my-python-robot/python_server.py\"\n",
+    "      \"/home/pi/my-python-robot/main.py\"\n",
     "    ]\n",
     "  }\n",
     "]\n",
@@ -554,7 +557,7 @@
     "      \"-u\",\n",
     "      \"pi\",\n",
     "      \"python\",\n",
-    "      \"/home/pi/my-python-robot/python-server.py\"\n",
+    "      \"/home/pi/my-python-robot/main.py\"\n",
     "    ]\n",
     "  }\n",
     "]\n",
