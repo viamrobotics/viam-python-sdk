@@ -23,8 +23,12 @@ class MotionServiceBase(abc.ABC):
     async def GetPose(self, stream: 'grpclib.server.Stream[service.motion.v1.motion_pb2.GetPoseRequest, service.motion.v1.motion_pb2.GetPoseResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def ExportPointCloud(self, stream: 'grpclib.server.Stream[service.motion.v1.motion_pb2.ExportPointCloudRequest, service.motion.v1.motion_pb2.ExportPointCloudResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.service.motion.v1.MotionService/Move': grpclib.const.Handler(self.Move, grpclib.const.Cardinality.UNARY_UNARY, service.motion.v1.motion_pb2.MoveRequest, service.motion.v1.motion_pb2.MoveResponse), '/viam.service.motion.v1.MotionService/MoveSingleComponent': grpclib.const.Handler(self.MoveSingleComponent, grpclib.const.Cardinality.UNARY_UNARY, service.motion.v1.motion_pb2.MoveSingleComponentRequest, service.motion.v1.motion_pb2.MoveSingleComponentResponse), '/viam.service.motion.v1.MotionService/GetPose': grpclib.const.Handler(self.GetPose, grpclib.const.Cardinality.UNARY_UNARY, service.motion.v1.motion_pb2.GetPoseRequest, service.motion.v1.motion_pb2.GetPoseResponse)}
+        return {'/viam.service.motion.v1.MotionService/Move': grpclib.const.Handler(self.Move, grpclib.const.Cardinality.UNARY_UNARY, service.motion.v1.motion_pb2.MoveRequest, service.motion.v1.motion_pb2.MoveResponse), '/viam.service.motion.v1.MotionService/MoveSingleComponent': grpclib.const.Handler(self.MoveSingleComponent, grpclib.const.Cardinality.UNARY_UNARY, service.motion.v1.motion_pb2.MoveSingleComponentRequest, service.motion.v1.motion_pb2.MoveSingleComponentResponse), '/viam.service.motion.v1.MotionService/GetPose': grpclib.const.Handler(self.GetPose, grpclib.const.Cardinality.UNARY_UNARY, service.motion.v1.motion_pb2.GetPoseRequest, service.motion.v1.motion_pb2.GetPoseResponse), '/viam.service.motion.v1.MotionService/ExportPointCloud': grpclib.const.Handler(self.ExportPointCloud, grpclib.const.Cardinality.UNARY_UNARY, service.motion.v1.motion_pb2.ExportPointCloudRequest, service.motion.v1.motion_pb2.ExportPointCloudResponse)}
 
 class MotionServiceStub:
 
@@ -32,3 +36,4 @@ class MotionServiceStub:
         self.Move = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.motion.v1.MotionService/Move', service.motion.v1.motion_pb2.MoveRequest, service.motion.v1.motion_pb2.MoveResponse)
         self.MoveSingleComponent = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.motion.v1.MotionService/MoveSingleComponent', service.motion.v1.motion_pb2.MoveSingleComponentRequest, service.motion.v1.motion_pb2.MoveSingleComponentResponse)
         self.GetPose = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.motion.v1.MotionService/GetPose', service.motion.v1.motion_pb2.GetPoseRequest, service.motion.v1.motion_pb2.GetPoseResponse)
+        self.ExportPointCloud = grpclib.client.UnaryUnaryMethod(channel, '/viam.service.motion.v1.MotionService/ExportPointCloud', service.motion.v1.motion_pb2.ExportPointCloudRequest, service.motion.v1.motion_pb2.ExportPointCloudResponse)

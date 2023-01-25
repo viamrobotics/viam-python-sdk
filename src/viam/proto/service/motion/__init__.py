@@ -4,6 +4,8 @@ Do not edit manually!
 """
 from ....gen.service.motion.v1.motion_grpc import MotionServiceBase, MotionServiceStub
 from ....gen.service.motion.v1.motion_pb2 import (
+    ExportPointCloudRequest,
+    ExportPointCloudResponse,
     GetPoseRequest,
     GetPoseResponse,
     MoveRequest,
@@ -15,6 +17,8 @@ from ....gen.service.motion.v1.motion_pb2 import (
 __all__ = [
     "MotionServiceBase",
     "MotionServiceStub",
+    "ExportPointCloudRequest",
+    "ExportPointCloudResponse",
     "GetPoseRequest",
     "GetPoseResponse",
     "MoveRequest",

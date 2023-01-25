@@ -174,3 +174,45 @@ class GetPoseResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> None:
         ...
 global___GetPoseResponse = GetPoseResponse
+
+@typing_extensions.final
+class ExportPointCloudRequest(google.protobuf.message.Message):
+    """RenderPointCloudRequest requests a worldstate and extra struct to render as pointcloud"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    WORLD_STATE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+
+    @property
+    def world_state(self) -> common.v1.common_pb2.WorldState:
+        ...
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, world_state: common.v1.common_pb2.WorldState | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'world_state', b'world_state']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing_extensions.Literal['world_state'] | None:
+        ...
+global___ExportPointCloudRequest = ExportPointCloudRequest
+
+@typing_extensions.final
+class ExportPointCloudResponse(google.protobuf.message.Message):
+    """RenderPointCloudResponse returns a pointcloud representation of the worldstate in bytes"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    WORLD_STATE_PCD_FIELD_NUMBER: builtins.int
+    world_state_pcd: builtins.bytes
+
+    def __init__(self, *, world_state_pcd: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['world_state_pcd', b'world_state_pcd']) -> None:
+        ...
+global___ExportPointCloudResponse = ExportPointCloudResponse
