@@ -69,9 +69,6 @@ Next, select the `CODE SAMPLE` tab in the Viam Web UI, and copy the boilerplate 
 
 To ensure the installation succeeded and the systems are functional, save and run this simple program. If the program runs successfully, the python-sdk is properly installed, the `viam-server` instance on your robot is alive, and the computer running the program is able to connect to that instance.
 
-> **Note**
-> Connecting to the viam-server can be done using either WebRTC (default) or direct connection. Currently, connecting over WebRTC is guaranteed on the local network. WebRTC for remote connections, however, is not guaranteed and may fail indeterminately.
-
 ## Examples
 Read the [Example Usage](https://python.viam.dev/examples/example.html) page, to learn how to access a component, build a custom component, and expose
 custom components as a remote to existing robots.
