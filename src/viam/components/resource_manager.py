@@ -1,8 +1,9 @@
 from typing import Dict, List, Type, TypeVar
 
-from .component_base import ComponentBase
-from ..errors import ComponentNotFoundError, DuplicateComponentError
+from viam.proto.common import ResourceName
 
+from ..errors import DuplicateComponentError, ResourceNotFoundError
+from .component_base import ComponentBase
 
 ResourceType = TypeVar("ResourceType", bound=ComponentBase)
 
@@ -12,7 +13,7 @@ class ResourceManager:
     Registry containing all components registered to this server.
     """
 
-    components: Dict[str, ComponentBase]
+    components: Dict[ResourceName, ComponentBase]
 
     def __init__(self, components: List[ComponentBase] = []) -> None:
         self.components = {}
@@ -31,11 +32,20 @@ class ResourceManager:
         Args:
             component (ComponentBase): The component to register
         """
-        if component.name in self.components:
-            raise DuplicateComponentError(component.name)
-        self.components[component.name] = component
+        rnames: Dict[ResourceName, ComponentBase] = {}
+        for subtype in component.__class__.mro():
+            if subtype is ComponentBase:
+                continue
+            if hasattr(subtype, "get_resource_name"):
+                rn = subtype.get_resource_name(component.name)  # type: ignore
+                rnames[rn] = component
 
-    def get_component(self, of_type: Type[ResourceType], name: str) -> ResourceType:
+        if rnames.keys() & self.components.keys():
+            raise DuplicateComponentError(component.name)
+
+        self.components.update(rnames)
+
+    def get_component(self, of_type: Type[ResourceType], name: ResourceName) -> ResourceType:
         """
         Return a component from the registry.
 
@@ -54,7 +64,10 @@ class ResourceManager:
         if component and isinstance(component, of_type):
             return component
 
-        class_name = str(of_type)
-        if len(class_name.split(".")) > 2:
-            class_name = class_name.split(".")[2]
-        raise ComponentNotFoundError(class_name, name)
+        raise ResourceNotFoundError(name.subtype, name.name)
+
+    def _component_by_name_only(self, name: str) -> ComponentBase:
+        for rname, component in self.components.items():
+            if rname.name == name:
+                return component
+        raise ResourceNotFoundError("component", name)

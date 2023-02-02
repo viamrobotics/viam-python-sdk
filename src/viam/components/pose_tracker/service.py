@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.component.posetracker import (
     GetPosesRequest,
     GetPosesResponse,
@@ -25,7 +25,7 @@ class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracke
         name = request.name
         try:
             pose_tracker = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         poses = await pose_tracker.get_poses(

@@ -2,7 +2,7 @@ from grpclib.server import Stream
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -38,7 +38,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         velocity = await sensor.get_linear_velocity(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -51,7 +51,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         velocity = await sensor.get_angular_velocity(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -64,7 +64,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         acceleration = await sensor.get_linear_acceleration(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -77,7 +77,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         heading = await sensor.get_compass_heading(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -90,7 +90,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         orientation = await sensor.get_orientation(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -103,7 +103,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         point, alt = await sensor.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -116,7 +116,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         response = await sensor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -128,7 +128,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         accuracy = await sensor.get_accuracy(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)

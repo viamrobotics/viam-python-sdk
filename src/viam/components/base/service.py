@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.component.base import (
     BaseServiceBase,
     MoveStraightRequest,
@@ -34,7 +34,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         name = request.name
         try:
             base = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.move_straight(
@@ -53,7 +53,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         name = request.name
         try:
             base = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.spin(
@@ -72,7 +72,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         name = request.name
         try:
             base = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.set_power(
@@ -87,7 +87,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         name = request.name
         try:
             base = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.set_velocity(
@@ -101,7 +101,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         name = request.name
         try:
             base = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -114,7 +114,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         name = request.name
         try:
             base = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await base.is_moving()
         response = IsMovingResponse(is_moving=is_moving)

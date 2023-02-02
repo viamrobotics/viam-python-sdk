@@ -8,7 +8,7 @@ from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
 from viam.components.component_base import ComponentBase
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
-from viam.registry import Registry
+from viam.resource.registry import Registry, Subtype
 
 
 def primitive_to_value(v: Any) -> Value:
@@ -77,23 +77,30 @@ def value_to_primitive(value: Value) -> Any:
 
 def resource_names_for_component(component: ComponentBase) -> List[ResourceName]:
     rns: List[ResourceName] = []
+
     for klass in component.__class__.mro():
-        component_type = ""
+        # component_type = None
         for registration in Registry.REGISTERED_COMPONENTS().values():
             if klass is registration.component_type:
-                component_type = registration.name
+                subtype: Subtype = registration.component_type.SUBTYPE
+                rns.append(
+                    ResourceName(
+                        namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=component.name
+                    )
+                )
+                # component_type = registration.component_type.SUBTYPE
 
-        if not component_type:
-            class_name = str(klass)
-            if "viam.components" not in class_name:
-                continue
-            if "ComponentBase" in class_name:
-                continue
+        # if not component_type:
+        #     class_name = str(klass)
+        #     if "viam.components" not in class_name:
+        #         continue
+        #     if "ComponentBase" in class_name:
+        #         continue
 
-            component_type = class_name.split("viam.components.")[1].split(".")[0]
+        #     component_type = class_name.split("viam.components.")[1].split(".")[0]
+        #     rns.append(ResourceName(namespace="rdk", type="component", subtype=component_type, name=component.name))
 
-        rns.append(ResourceName(namespace="rdk", type="component", subtype=component_type, name=component.name))
-        break
+        # break
     return rns
 
 

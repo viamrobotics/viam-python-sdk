@@ -6,8 +6,10 @@ from grpclib.client import Channel
 
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError, DuplicateComponentError
+from viam.errors import DuplicateComponentError, ResourceNotFoundError
 from viam.proto.robot import Status
+
+from .types import Subtype
 
 Component = TypeVar("Component", bound=ComponentBase)
 
@@ -29,10 +31,6 @@ class ComponentRegistration(Generic[Component]):
 
     component_type: Type[Component]
     """The type of the Component to be registered
-    """
-
-    name: str
-    """The name of the Component type
     """
 
     rpc_service: Type[ComponentServiceBase]
@@ -62,10 +60,10 @@ class Registry:
     component using ``Registry.register(...)``.
     """
 
-    _COMPONENTS: Dict[str, ComponentRegistration] = {}
+    _COMPONENTS: Dict[Subtype, ComponentRegistration] = {}
 
     @classmethod
-    def register(cls, registration: ComponentRegistration):
+    def register(cls, registration: ComponentRegistration[Component]):
         """Register a Component with the Registry
 
         Args:
@@ -74,12 +72,12 @@ class Registry:
         Raises:
             DuplicateComponentError: Raised if the Component to register is already in the registry
         """
-        if registration.name in cls._COMPONENTS:
-            raise DuplicateComponentError(registration.name)
-        cls._COMPONENTS[registration.name] = registration
+        if registration.component_type.SUBTYPE in cls._COMPONENTS:
+            raise DuplicateComponentError(str(registration.component_type.SUBTYPE))
+        cls._COMPONENTS[registration.component_type.SUBTYPE] = registration
 
     @classmethod
-    def lookup(cls, component_name: str) -> ComponentRegistration:
+    def lookup(cls, subtype: Subtype) -> ComponentRegistration:
         """Lookup and retrieve a registered component by its name
 
         Args:
@@ -92,12 +90,12 @@ class Registry:
             ComponentRegistration: The registration object of the component
         """
         try:
-            return cls._COMPONENTS[component_name]
+            return cls._COMPONENTS[subtype]
         except KeyError:
-            raise ComponentNotFoundError("component", component_name)
+            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentRegistration]:
+    def REGISTERED_COMPONENTS(cls) -> Mapping[Subtype, ComponentRegistration]:
         """The dictionary of all registered components
         - Key: Name of the component type
         - Value: The registration object for the component type

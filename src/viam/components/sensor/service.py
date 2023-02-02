@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.component.sensor import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -25,7 +25,7 @@ class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
         name = request.name
         try:
             sensor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         readings = await sensor.get_readings(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)

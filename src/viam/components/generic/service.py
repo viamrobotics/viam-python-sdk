@@ -3,7 +3,7 @@ from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.component.generic import (
     DoCommandRequest,
     DoCommandResponse,
@@ -27,7 +27,7 @@ class GenericService(GenericServiceBase, ComponentServiceBase[ComponentBase]):
         name = request.name
         try:
             component = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         try:
             timeout = stream.deadline.time_remaining() if stream.deadline else None

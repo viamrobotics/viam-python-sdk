@@ -1,7 +1,8 @@
 import abc
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Final, Optional
 
 from viam.components.component_base import ComponentBase
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 
 class Gripper(ComponentBase):
@@ -12,6 +13,8 @@ class Gripper(ComponentBase):
     gripper implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper")
 
     @abc.abstractmethod
     async def open(

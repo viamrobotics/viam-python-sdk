@@ -10,7 +10,7 @@ from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
 from viam.components.motor import Motor
 from viam.components.resource_manager import ResourceManager
-from viam.errors import ComponentNotFoundError, ServiceNotImplementedError, ViamError
+from viam.errors import ResourceNotFoundError, ServiceNotImplementedError, ViamError
 from viam.proto.common import Pose, PoseInFrame, ResourceName, Transform
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
@@ -185,9 +185,9 @@ class TestRobotService:
         async with ChannelFor([service]) as channel:
             client = RobotServiceStub(channel)
 
-            arm = service.manager.get_component(Arm, "arm1")
+            arm = service.manager.get_component(Arm, Arm.get_resource_name("arm1"))
             assert isinstance(arm, MockArm)
-            motor = service.manager.get_component(Motor, "motor1")
+            motor = service.manager.get_component(Motor, Motor.get_resource_name("motor1"))
             assert isinstance(motor, MockMotor)
 
             # Test one with extra, one without
@@ -290,7 +290,7 @@ class TestRobotClient:
             component = client.get_component(MockArm.get_resource_name("arm1"))
             assert isinstance(component, Arm)
 
-            with pytest.raises(ComponentNotFoundError):
+            with pytest.raises(ResourceNotFoundError):
                 client.get_component(MockArm.get_resource_name("arm2"))
 
             with pytest.raises(ViamError):
@@ -306,7 +306,7 @@ class TestRobotClient:
             component = MockArm.from_robot(client, "arm1")
             assert isinstance(component, Arm)
 
-            with pytest.raises(ComponentNotFoundError):
+            with pytest.raises(ResourceNotFoundError):
                 MockArm.from_robot(client, "arm2")
 
     @pytest.mark.asyncio
@@ -398,9 +398,9 @@ class TestRobotClient:
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
 
-            arm = service.manager.get_component(Arm, "arm1")
+            arm = service.manager.get_component(Arm, Arm.get_resource_name("arm1"))
             assert isinstance(arm, MockArm)
-            motor = service.manager.get_component(Motor, "motor1")
+            motor = service.manager.get_component(Motor, Motor.get_resource_name("motor1"))
             assert isinstance(motor, MockMotor)
 
             await arm.move_to_position(Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20))

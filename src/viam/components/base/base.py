@@ -1,7 +1,8 @@
 import abc
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Final, Optional
 
 from viam.proto.common import Vector3
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
 
@@ -14,6 +15,8 @@ class Base(ComponentBase):
     base implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base")
 
     @abc.abstractmethod
     async def move_straight(

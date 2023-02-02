@@ -1,15 +1,20 @@
 import asyncio
 import time
+
 import pytest
-from viam.operations import run_with_operation
+
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.components.service_base import ComponentServiceBase
+from viam.operations import run_with_operation
+from viam.resource.types import Subtype
 
 
 @pytest.mark.asyncio
 async def test_cancellation_propagation():
     class TestComponent(ComponentBase):
+
+        SUBTYPE = Subtype("test", "test", "test")
 
         long_running_task_cancelled = False
 

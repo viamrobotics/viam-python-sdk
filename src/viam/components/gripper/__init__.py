@@ -1,5 +1,5 @@
 from viam.components.gantry.gantry import Gantry
-from viam.registry import ComponentRegistration, Registry
+from viam.resource.registry import ComponentRegistration, Registry
 from viam.proto.common import ActuatorStatus
 from viam.proto.robot import Status
 from viam.utils import message_to_struct
@@ -18,6 +18,4 @@ async def create_status(component: Gripper) -> Status:
     return Status(name=Gripper.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register(
-    ComponentRegistration(Gripper, "gripper", GripperService, lambda name, channel: GripperClient(name, channel), create_status)
-)
+Registry.register(ComponentRegistration(Gripper, GripperService, lambda name, channel: GripperClient(name, channel), create_status))
