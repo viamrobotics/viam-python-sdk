@@ -79,7 +79,6 @@ def resource_names_for_component(component: ComponentBase) -> List[ResourceName]
     rns: List[ResourceName] = []
 
     for klass in component.__class__.mro():
-        # component_type = None
         for registration in Registry.REGISTERED_COMPONENTS().values():
             if klass is registration.component_type:
                 subtype: Subtype = registration.component_type.SUBTYPE
@@ -88,19 +87,6 @@ def resource_names_for_component(component: ComponentBase) -> List[ResourceName]
                         namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=component.name
                     )
                 )
-                # component_type = registration.component_type.SUBTYPE
-
-        # if not component_type:
-        #     class_name = str(klass)
-        #     if "viam.components" not in class_name:
-        #         continue
-        #     if "ComponentBase" in class_name:
-        #         continue
-
-        #     component_type = class_name.split("viam.components.")[1].split(".")[0]
-        #     rns.append(ResourceName(namespace="rdk", type="component", subtype=component_type, name=component.name))
-
-        # break
     return rns
 
 
