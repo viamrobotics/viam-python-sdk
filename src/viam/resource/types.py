@@ -19,7 +19,7 @@ class Subtype:
     """
 
     resource_subtype: str
-    """The subtype of the component e.g. `servo`, `arm`, `vision`
+    """The subtype of the resource e.g. `servo`, `arm`, `vision`
     """
 
     def __init__(self, namespace: str, resource_type: str, resource_subtype: str):
@@ -28,7 +28,7 @@ class Subtype:
         self.resource_subtype = resource_subtype.lower()
 
     def __str__(self) -> str:
-        return f"{self.namespace}/{self.resource_type}/{self.resource_subtype}"
+        return f"{self.namespace}:{self.resource_type}:{self.resource_subtype}"
 
     def __repr__(self) -> str:
         return f"<viam.resource.types.Subtype {str(self)} at {hex(id(self))}>"

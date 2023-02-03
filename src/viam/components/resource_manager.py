@@ -2,7 +2,7 @@ from typing import Dict, List, Type, TypeVar
 
 from viam.proto.common import ResourceName
 
-from ..errors import DuplicateComponentError, ResourceNotFoundError
+from ..errors import DuplicateResourceError, ResourceNotFoundError
 from .component_base import ComponentBase
 
 ResourceType = TypeVar("ResourceType", bound=ComponentBase)
@@ -41,7 +41,7 @@ class ResourceManager:
                 rnames[rn] = component
 
         if rnames.keys() & self.components.keys():
-            raise DuplicateComponentError(component.name)
+            raise DuplicateResourceError(component.name)
 
         self.components.update(rnames)
 

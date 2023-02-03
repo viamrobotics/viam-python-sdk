@@ -6,7 +6,7 @@ from grpclib.client import Channel
 
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import DuplicateComponentError, ResourceNotFoundError
+from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.proto.robot import Status
 
 from .types import Subtype
@@ -73,7 +73,7 @@ class Registry:
             DuplicateComponentError: Raised if the Component to register is already in the registry
         """
         if registration.component_type.SUBTYPE in cls._COMPONENTS:
-            raise DuplicateComponentError(str(registration.component_type.SUBTYPE))
+            raise DuplicateResourceError(str(registration.component_type.SUBTYPE))
         cls._COMPONENTS[registration.component_type.SUBTYPE] = registration
 
     @classmethod

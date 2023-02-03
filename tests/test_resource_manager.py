@@ -1,7 +1,7 @@
 import pytest
 
 from viam.components.resource_manager import ResourceManager
-from viam.errors import ResourceNotFoundError, DuplicateComponentError
+from viam.errors import ResourceNotFoundError, DuplicateResourceError
 
 from .mocks.components import MockArm, MockServo
 
@@ -31,7 +31,7 @@ class TestRegistration:
         manager = ResourceManager([servo1, servo2])
 
         # No duplicate name/subtype allowed
-        with pytest.raises(DuplicateComponentError):
+        with pytest.raises(DuplicateResourceError):
             manager.register(MockServo(name="servo2"))
 
         # No error because name/subtype is different

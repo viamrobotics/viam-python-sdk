@@ -4,7 +4,7 @@ from grpclib.client import Channel
 from viam.components.arm import Arm
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import DuplicateComponentError, ResourceNotFoundError
+from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.resource.registry import ComponentRegistration, Registry
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
@@ -53,7 +53,7 @@ def test_registration():
     component = Registry.lookup(FakeComponent.SUBTYPE)
     assert component is not None
 
-    with pytest.raises(DuplicateComponentError):
+    with pytest.raises(DuplicateResourceError):
         Registry.register(
             ComponentRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
         )
