@@ -88,7 +88,7 @@
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">NotSupportedError</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span><span class="p">,</span> <span class="n">NotSupportedError</span>
 <span class="kn">from</span> <span class="nn">viam.gen.component.audioinput.v1.audioinput_pb2</span> <span class="kn">import</span> <span class="n">SampleFormat</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.audioinput</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AudioInputServiceBase</span><span class="p">,</span>
@@ -114,7 +114,7 @@
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">audio_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">ResourceNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
 
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
@@ -131,7 +131,7 @@
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">audio_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">ResourceNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="n">response</span> <span class="o">=</span> <span class="p">(</span><span class="k">await</span> <span class="n">audio_input</span><span class="o">.</span><span class="n">get_properties</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">))</span><span class="o">.</span><span class="n">proto</span>
@@ -151,7 +151,7 @@
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">audio_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">ComponentNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">ResourceNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="n">audio_stream</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_input</span><span class="o">.</span><span class="n">stream</span><span class="p">()</span>
         <span class="n">first_chunk</span> <span class="o">=</span> <span class="k">await</span> <span class="n">audio_stream</span><span class="o">.</span><span class="fm">__anext__</span><span class="p">()</span>

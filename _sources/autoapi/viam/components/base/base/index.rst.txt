@@ -27,6 +27,11 @@ Classes
    base implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
+   .. py:attribute:: SUBTYPE
+      :annotation: :Final
+
+      
+
    .. py:method:: move_straight(distance: int, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:

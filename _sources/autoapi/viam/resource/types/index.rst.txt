@@ -1,0 +1,88 @@
+:py:mod:`viam.resource.types`
+=============================
+
+.. py:module:: viam.resource.types
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.resource.types.Subtype
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.resource.types.RESOURCE_NAMESPACE_RDK
+   viam.resource.types.RESOURCE_TYPE_COMPONENT
+   viam.resource.types.RESOURCE_TYPE_SERVICE
+
+
+.. py:data:: RESOURCE_NAMESPACE_RDK
+   :annotation: = rdk
+
+   
+
+.. py:data:: RESOURCE_TYPE_COMPONENT
+   :annotation: = component
+
+   
+
+.. py:data:: RESOURCE_TYPE_SERVICE
+   :annotation: = service
+
+   
+
+.. py:class:: Subtype(namespace: str, resource_type: str, resource_subtype: str)
+
+   Represents a known component/service (resource) API
+
+   .. py:attribute:: namespace
+      :annotation: :str
+
+      The namespace of the resource
+
+   .. py:attribute:: resource_type
+      :annotation: :str
+
+      The type of the resource, e.g. `component` or `service`
+
+   .. py:attribute:: resource_subtype
+      :annotation: :str
+
+      The subtype of the resource e.g. `servo`, `arm`, `vision`
+
+   .. py:method:: __str__() -> str
+
+      Return str(self).
+
+
+   .. py:method:: __repr__() -> str
+
+      Return repr(self).
+
+
+   .. py:method:: __hash__() -> int
+
+      Return hash(self).
+
+
+   .. py:method:: __eq__(other: Subtype) -> bool
+
+      Return self==value.
+
+
+   .. py:method:: from_resource_name(resource_name: viam.proto.common.ResourceName) -> typing_extensions.Self
+      :classmethod:
+
+
+

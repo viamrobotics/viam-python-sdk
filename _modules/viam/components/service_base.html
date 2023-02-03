@@ -82,10 +82,11 @@
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Type</span>
 
+<span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.components.resource_manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span><span class="p">,</span> <span class="n">ResourceType</span>
 
 
-<div class="viewcode-block" id="ComponentServiceBase"><a class="viewcode-back" href="../../../autoapi/viam/components/service_base/index.html#viam.components.service_base.ComponentServiceBase">[docs]</a><span class="k">class</span> <span class="nc">ComponentServiceBase</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">],</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
+<div class="viewcode-block" id="ComponentServiceBase"><a class="viewcode-back" href="../../../autoapi/viam/components/service_base/index.html#viam.components.service_base.ComponentServiceBase">[docs]</a><span class="k">class</span> <span class="nc">ComponentServiceBase</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">]):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base component service.</span>
 <span class="sd">    All component services must inherit from this class.</span>
@@ -111,7 +112,9 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            ResourceType: The component</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RESOURCE_TYPE</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div></div>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">RESOURCE_TYPE</span> <span class="o">==</span> <span class="n">ComponentBase</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">_component_by_name_only</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RESOURCE_TYPE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">RESOURCE_TYPE</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>  <span class="c1"># type: ignore</span></div></div>
 </pre></div>
 
            </div>

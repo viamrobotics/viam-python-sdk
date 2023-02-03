@@ -57,6 +57,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.component_base.ComponentBase"><code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ComponentBase.SUBTYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.name"><code class="docutils literal notranslate"><span class="pre">ComponentBase.name</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_resource_name"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_resource_name()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ComponentBase.from_robot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_operation"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_operation()</span></code></a></li>
@@ -64,6 +66,8 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.component_base.ComponentBase">ComponentBase</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.SUBTYPE">SUBTYPE</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.name">name</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_resource_name">get_resource_name</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.from_robot">from_robot</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_operation">get_operation</a></li>
@@ -136,6 +140,16 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.component_base.</span></span><span class="sig-name descname"><span class="pre">ComponentBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/component_base.html#ComponentBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.component_base.ComponentBase" title="Permalink to this definition"></a></dt>
 <dd><p>Base component.
 All components must inherit from this class.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="w"> </span><span class="pre">:ClassVar[viam.resource.types.Subtype]</span></em><a class="headerlink" href="#viam.components.component_base.ComponentBase.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.components.component_base.ComponentBase.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.get_resource_name">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/component_base.html#ComponentBase.get_resource_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.component_base.ComponentBase.get_resource_name" title="Permalink to this definition"></a></dt>

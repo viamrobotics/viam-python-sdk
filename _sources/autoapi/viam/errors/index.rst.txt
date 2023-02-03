@@ -33,12 +33,12 @@ Module Contents
       Explanation of the error
 
 
-.. py:exception:: DuplicateComponentError(name: str)
+.. py:exception:: DuplicateResourceError(name: str)
 
 
 
-   Exception raised when attempting to register a component
-   with the same name as an existing component already in
+   Exception raised when attempting to register a resource
+   with the same name as an existing resource already in
    the registry
 
 
@@ -53,11 +53,11 @@ Module Contents
 
 
 
-.. py:exception:: ComponentNotFoundError(component: str, name: str)
+.. py:exception:: ResourceNotFoundError(resource: str, name: str)
 
 
 
-   Exception raised when a component is not found in the registry
+   Exception raised when a resource is not found in the registry
 
 
 .. py:exception:: ServiceNotImplementedError(service: str, name: str)

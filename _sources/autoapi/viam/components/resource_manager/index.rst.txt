@@ -35,7 +35,7 @@ Attributes
    Registry containing all components registered to this server.
 
    .. py:attribute:: components
-      :annotation: :Dict[str, viam.components.component_base.ComponentBase]
+      :annotation: :Dict[viam.proto.common.ResourceName, viam.components.component_base.ComponentBase]
 
       
 
@@ -51,7 +51,7 @@ Attributes
       :type component: ComponentBase
 
 
-   .. py:method:: get_component(of_type: Type[ResourceType], name: str) -> ResourceType
+   .. py:method:: get_component(of_type: Type[ResourceType], name: viam.proto.common.ResourceName) -> ResourceType
 
       Return a component from the registry.
 

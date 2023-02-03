@@ -1,7 +1,7 @@
-:py:mod:`viam.registry`
-=======================
+:py:mod:`viam.resource.registry`
+================================
 
-.. py:module:: viam.registry
+.. py:module:: viam.resource.registry
 
 
 Module Contents
@@ -12,8 +12,8 @@ Classes
 
 .. autoapisummary::
 
-   viam.registry.ComponentRegistration
-   viam.registry.Registry
+   viam.resource.registry.ComponentRegistration
+   viam.resource.registry.Registry
 
 
 
@@ -22,7 +22,7 @@ Functions
 
 .. autoapisummary::
 
-   viam.registry.default_create_status
+   viam.resource.registry.default_create_status
 
 
 
@@ -31,7 +31,7 @@ Attributes
 
 .. autoapisummary::
 
-   viam.registry.Component
+   viam.resource.registry.Component
 
 
 .. py:data:: Component
@@ -59,11 +59,6 @@ Attributes
       :annotation: :Type[Component]
 
       The type of the Component to be registered
-
-   .. py:attribute:: name
-      :annotation: :str
-
-      The name of the Component type
 
    .. py:attribute:: rpc_service
       :annotation: :Type[viam.components.service_base.ComponentServiceBase]
@@ -95,7 +90,7 @@ Attributes
    If you create a new component type that is not an extension of any of the existing base component types, then you must register said
    component using ``Registry.register(...)``.
 
-   .. py:method:: register(registration: ComponentRegistration)
+   .. py:method:: register(registration: ComponentRegistration[Component])
       :classmethod:
 
       Register a Component with the Registry
@@ -106,7 +101,7 @@ Attributes
       :raises DuplicateComponentError: Raised if the Component to register is already in the registry
 
 
-   .. py:method:: lookup(component_name: str) -> ComponentRegistration
+   .. py:method:: lookup(subtype: viam.resource.types.Subtype) -> ComponentRegistration
       :classmethod:
 
       Lookup and retrieve a registered component by its name
@@ -120,7 +115,7 @@ Attributes
       :rtype: ComponentRegistration
 
 
-   .. py:method:: REGISTERED_COMPONENTS() -> Mapping[str, ComponentRegistration]
+   .. py:method:: REGISTERED_COMPONENTS() -> Mapping[viam.resource.types.Subtype, ComponentRegistration]
       :classmethod:
 
       The dictionary of all registered components

@@ -58,6 +58,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.arm.Arm"><code class="docutils literal notranslate"><span class="pre">Arm</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.arm.Arm.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Arm.SUBTYPE</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.arm.Arm.get_end_position"><code class="docutils literal notranslate"><span class="pre">Arm.get_end_position()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.arm.Arm.move_to_position"><code class="docutils literal notranslate"><span class="pre">Arm.move_to_position()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.arm.Arm.move_to_joint_positions"><code class="docutils literal notranslate"><span class="pre">Arm.move_to_joint_positions()</span></code></a></li>
@@ -67,6 +68,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.arm.arm.Arm">Arm</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.arm.Arm.SUBTYPE">SUBTYPE</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.arm.Arm.get_end_position">get_end_position</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.arm.Arm.move_to_position">move_to_position</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.arm.arm.Arm.move_to_joint_positions">move_to_joint_positions</a></li>
@@ -162,6 +164,11 @@
 <p>This acts as an abstract base class for any drivers representing specific
 arm implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
 overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.arm.arm.Arm.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="w"> </span><span class="pre">:Final</span></em><a class="headerlink" href="#viam.components.arm.arm.Arm.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.arm.Arm.get_end_position">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_end_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.Pose" title="viam.proto.common.Pose"><span class="pre">viam.proto.common.Pose</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/arm/arm.html#Arm.get_end_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.arm.Arm.get_end_position" title="Permalink to this definition"></a></dt>

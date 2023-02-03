@@ -60,6 +60,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base"><code class="docutils literal notranslate"><span class="pre">Base</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Base.SUBTYPE</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.move_straight"><code class="docutils literal notranslate"><span class="pre">Base.move_straight()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.spin"><code class="docutils literal notranslate"><span class="pre">Base.spin()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.set_power"><code class="docutils literal notranslate"><span class="pre">Base.set_power()</span></code></a></li>
@@ -69,6 +70,7 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.base.base.Base">Base</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.SUBTYPE">SUBTYPE</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.move_straight">move_straight</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.spin">spin</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.set_power">set_power</a></li>
@@ -162,6 +164,11 @@
 <p>This acts as an abstract base class for any drivers representing specific
 base implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
 overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.base.Base.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="w"> </span><span class="pre">:Final</span></em><a class="headerlink" href="#viam.components.base.base.Base.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.base.base.Base.move_straight">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.move_straight"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.move_straight" title="Permalink to this definition"></a></dt>

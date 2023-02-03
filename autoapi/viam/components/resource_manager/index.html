@@ -157,7 +157,7 @@
 <dd><p>Registry containing all components registered to this server.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.resource_manager.ResourceManager.components">
-<span class="sig-name descname"><span class="pre">components</span></span><em class="property"><span class="w"> </span><span class="pre">:Dict[str,</span> <span class="pre">viam.components.component_base.ComponentBase]</span></em><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.components" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">components</span></span><em class="property"><span class="w"> </span><span class="pre">:Dict[viam.proto.common.ResourceName,</span> <span class="pre">viam.components.component_base.ComponentBase]</span></em><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.components" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -167,7 +167,7 @@
 Components may not have the same name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateComponentError" title="viam.errors.DuplicateComponentError"><strong>DuplicateComponentError</strong></a> – Error if attempting to register component
+<dd class="field-odd"><p><strong>DuplicateComponentError</strong> – Error if attempting to register component
 with the name of an existing component</p>
 </dd>
 <dt class="field-even">Parameters</dt>
@@ -178,7 +178,7 @@ with the name of an existing component</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.resource_manager.ResourceManager.get_component">
-<span class="sig-name descname"><span class="pre">get_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">of_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ResourceType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ResourceType</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/resource_manager.html#ResourceManager.get_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.get_component" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">of_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ResourceType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ResourceType</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/resource_manager.html#ResourceManager.get_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.get_component" title="Permalink to this definition"></a></dt>
 <dd><p>Return a component from the registry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -188,7 +188,7 @@ with the name of an existing component</p>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.ComponentNotFoundError" title="viam.errors.ComponentNotFoundError"><strong>ComponentNotFoundError</strong></a> – Error if component with the given type
+<dd class="field-even"><p><strong>ComponentNotFoundError</strong> – Error if component with the given type
 and name does not exist in the registry</p>
 </dd>
 <dt class="field-odd">Returns</dt>

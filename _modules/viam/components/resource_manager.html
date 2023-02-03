@@ -81,9 +81,10 @@
   <h1>Source code for viam.components.resource_manager</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
 
-<span class="kn">from</span> <span class="nn">.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span> <span class="nn">..errors</span> <span class="kn">import</span> <span class="n">ComponentNotFoundError</span><span class="p">,</span> <span class="n">DuplicateComponentError</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 
+<span class="kn">from</span> <span class="nn">..errors</span> <span class="kn">import</span> <span class="n">DuplicateResourceError</span><span class="p">,</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span> <span class="nn">.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 
 <span class="n">ResourceType</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;ResourceType&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ComponentBase</span><span class="p">)</span>
 
@@ -93,7 +94,7 @@
 <span class="sd">    Registry containing all components registered to this server.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">components</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]</span>
+    <span class="n">components</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ComponentBase</span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="p">{}</span>
@@ -112,11 +113,20 @@
 <span class="sd">        Args:</span>
 <span class="sd">            component (ComponentBase): The component to register</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">component</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">DuplicateComponentError</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="p">[</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span></div>
+        <span class="n">rnames</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">subtype</span> <span class="ow">in</span> <span class="n">component</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">mro</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">subtype</span> <span class="ow">is</span> <span class="n">ComponentBase</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subtype</span><span class="p">,</span> <span class="s2">&quot;get_resource_name&quot;</span><span class="p">):</span>
+                <span class="n">rn</span> <span class="o">=</span> <span class="n">subtype</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
+                <span class="n">rnames</span><span class="p">[</span><span class="n">rn</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span>
 
-<div class="viewcode-block" id="ResourceManager.get_component"><a class="viewcode-back" href="../../../autoapi/viam/components/resource_manager/index.html#viam.components.resource_manager.ResourceManager.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">of_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceType</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">rnames</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">DuplicateResourceError</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rnames</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ResourceManager.get_component"><a class="viewcode-back" href="../../../autoapi/viam/components/resource_manager/index.html#viam.components.resource_manager.ResourceManager.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">of_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceType</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a component from the registry.</span>
 
@@ -135,10 +145,13 @@
         <span class="k">if</span> <span class="n">component</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">of_type</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">component</span>
 
-        <span class="n">class_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">of_type</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">class_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="n">class_name</span> <span class="o">=</span> <span class="n">class_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
-        <span class="k">raise</span> <span class="n">ComponentNotFoundError</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div></div>
+        <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">subtype</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_component_by_name_only</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">rname</span><span class="p">,</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">component</span>
+        <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
