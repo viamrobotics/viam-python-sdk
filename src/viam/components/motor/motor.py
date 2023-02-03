@@ -1,6 +1,8 @@
 import abc
 from dataclasses import dataclass
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Final, Optional, Tuple
+
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
 
@@ -17,6 +19,8 @@ class Motor(ComponentBase):
     motor implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor")
 
     @abc.abstractmethod
     async def set_power(

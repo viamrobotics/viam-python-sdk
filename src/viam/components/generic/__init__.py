@@ -1,4 +1,4 @@
-from viam.registry import ComponentRegistration, Registry
+from viam.resource.registry import ComponentRegistration, Registry
 
 from .client import GenericClient
 from .generic import Generic
@@ -11,7 +11,6 @@ __all__ = [
 Registry.register(
     ComponentRegistration(
         Generic,
-        "generic",
         GenericService,
         lambda name, channel: GenericClient(name, channel),
     )

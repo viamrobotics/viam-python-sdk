@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.component.motor import (
     GetPropertiesRequest,
     GetPropertiesResponse,
@@ -40,7 +40,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.set_power(request.power_pct, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -52,7 +52,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.go_for(request.rpm, request.revolutions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -64,7 +64,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.go_to(
@@ -78,7 +78,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.reset_zero_position(request.offset, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -90,7 +90,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         position = await motor.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -102,7 +102,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         properties = await motor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -115,7 +115,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -128,7 +128,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         is_powered, power_pct = await motor.is_powered(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -140,7 +140,7 @@ class MotorService(MotorServiceBase, ComponentServiceBase[Motor]):
         name = request.name
         try:
             motor = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await motor.is_moving()
         response = IsMovingResponse(is_moving=is_moving)

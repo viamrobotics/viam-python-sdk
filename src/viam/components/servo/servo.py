@@ -1,5 +1,7 @@
 import abc
-from typing import Any, Mapping, Optional
+from typing import Any, Final, Mapping, Optional
+
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
 
@@ -13,7 +15,7 @@ class Servo(ComponentBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    name: str
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "servo")
 
     @abc.abstractmethod
     async def move(self, angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):

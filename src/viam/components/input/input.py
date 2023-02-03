@@ -2,13 +2,15 @@ import abc
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, Final, List, Optional
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from typing_extensions import Self
+
 from viam.components.component_base import ComponentBase
 from viam.errors import NotSupportedError
 from viam.proto.component.inputcontroller import Event as PBEvent
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 
 class EventType(str, Enum):
@@ -134,6 +136,8 @@ class Controller(ComponentBase):
     Could be a single gamepad, or a collection of digitalInterrupts
     and analogReaders, a keyboard, etc.
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "input_controller")
 
     @abc.abstractmethod
     async def get_controls(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Control]:

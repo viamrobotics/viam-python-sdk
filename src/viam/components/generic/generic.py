@@ -1,3 +1,7 @@
+from typing import Final
+
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+
 from ..component_base import ComponentBase
 
 
@@ -54,3 +58,5 @@ class Generic(ComponentBase):
         await asyncio.sleep(10)
         component.power  # 0
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "generic")

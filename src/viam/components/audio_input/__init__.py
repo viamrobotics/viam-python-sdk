@@ -1,4 +1,4 @@
-from viam.registry import ComponentRegistration, Registry
+from viam.resource.registry import ComponentRegistration, Registry
 
 from .audio_input import AudioInput
 from .client import AudioInputClient
@@ -12,7 +12,6 @@ __all__ = [
 Registry.register(
     ComponentRegistration(
         AudioInput,
-        "audio_input",
         AudioInputService,
         lambda name, channel: AudioInputClient(name, channel),
     )

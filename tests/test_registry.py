@@ -1,14 +1,16 @@
 import pytest
 from grpclib.client import Channel
 
+from viam.components.arm import Arm
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError, DuplicateComponentError
-from viam.registry import ComponentRegistration, Registry
+from viam.errors import DuplicateResourceError, ResourceNotFoundError
+from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 
 class FakeComponent(ComponentBase):
-    pass
+    SUBTYPE = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "fake")
 
 
 class FakeComponentService(ComponentServiceBase[FakeComponent]):
@@ -21,42 +23,37 @@ class FakeComponentClient(FakeComponent):
 
 
 def test_components_register_themselves_correctly():
-    assert "arm" in Registry.REGISTERED_COMPONENTS()
-    assert "base" in Registry.REGISTERED_COMPONENTS()
-    assert "board" in Registry.REGISTERED_COMPONENTS()
-    assert "camera" in Registry.REGISTERED_COMPONENTS()
-    assert "gantry" in Registry.REGISTERED_COMPONENTS()
-    assert "gripper" in Registry.REGISTERED_COMPONENTS()
-    assert "motor" in Registry.REGISTERED_COMPONENTS()
-    assert "movement_sensor" in Registry.REGISTERED_COMPONENTS()
-    assert "pose_tracker" in Registry.REGISTERED_COMPONENTS()
-    assert "sensor" in Registry.REGISTERED_COMPONENTS()
-    assert "servo" in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_input") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gantry") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "pose_tracker") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor") in Registry.REGISTERED_COMPONENTS()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "servo") in Registry.REGISTERED_COMPONENTS()
 
 
 def test_lookup():
-    with pytest.raises(ComponentNotFoundError):
-        Registry.lookup("fake_component")
+    with pytest.raises(ResourceNotFoundError):
+        Registry.lookup(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "fake"))
 
-    component = Registry.lookup("arm")
-    assert component.name == "arm"
+    component = Registry.lookup(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm"))
+    assert component.component_type.SUBTYPE == Arm.SUBTYPE
 
 
 def test_registration():
-    assert "fake_component" not in Registry.REGISTERED_COMPONENTS()
+    assert FakeComponent.SUBTYPE not in Registry.REGISTERED_COMPONENTS()
 
-    Registry.register(
-        ComponentRegistration(
-            FakeComponent, "fake_component", FakeComponentService, lambda name, channel: FakeComponentClient(name, channel)
-        )
-    )
-    assert "fake_component" in Registry.REGISTERED_COMPONENTS()
-    component = Registry.lookup("fake_component")
+    Registry.register(ComponentRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel)))
+    assert FakeComponent.SUBTYPE in Registry.REGISTERED_COMPONENTS()
+    component = Registry.lookup(FakeComponent.SUBTYPE)
     assert component is not None
 
-    with pytest.raises(DuplicateComponentError):
+    with pytest.raises(DuplicateResourceError):
         Registry.register(
-            ComponentRegistration(
-                FakeComponent, "fake_component", FakeComponentService, lambda name, channel: FakeComponentClient(name, channel)
-            )
+            ComponentRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
         )

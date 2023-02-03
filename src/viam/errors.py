@@ -26,16 +26,16 @@ class InsecureConnectionError(ViamError):
         super().__init__(self.message)
 
 
-class DuplicateComponentError(ViamError):
+class DuplicateResourceError(ViamError):
     """
-    Exception raised when attempting to register a component
-    with the same name as an existing component already in
+    Exception raised when attempting to register a resource
+    with the same name as an existing resource already in
     the registry
     """
 
     def __init__(self, name: str) -> None:
         self.name = name
-        self.message = "Cannot add component with " + f'duplicate name "{name}" to the registry'
+        self.message = f'Cannot add resource with duplicate name "{name}" to the registry'
         super().__init__(self.message)
 
 
@@ -53,15 +53,15 @@ class ViamGRPCError(ViamError):
         return GRPCError(self.grpc_code, self.message)
 
 
-class ComponentNotFoundError(ViamGRPCError):
+class ResourceNotFoundError(ViamGRPCError):
     """
-    Exception raised when a component is not found in the registry
+    Exception raised when a resource is not found in the registry
     """
 
-    def __init__(self, component: str, name: str) -> None:
-        self.component = component
+    def __init__(self, resource: str, name: str) -> None:
+        self.resource = resource
         self.name = name
-        self.message = f'No {component} with name "{name}" ' + "found in the registry"
+        self.message = f'No {resource} with name "{name}" ' + "found in the registry"
         self.grpc_code = Status.NOT_FOUND
 
 

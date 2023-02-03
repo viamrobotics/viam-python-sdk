@@ -59,7 +59,9 @@ def get_packages(root: str) -> Dict[str, List[str]]:
             rel_path = rel_path.replace(os.path.sep, ".")
             packages[rel_path] = list(set([".".join(f.split(".")[:-1]) for f in filenames if "__init__.py" not in f]))
             LOGGER.debug(f"Packages at path {rel_path}: {packages[rel_path]}")
-    return packages
+    common = packages["common"]
+    del packages["common"]
+    return {**{"common": common}, **packages}  # Always have the common package first
 
 
 def build_dirs(root: str, package: str, modules: List[str]):

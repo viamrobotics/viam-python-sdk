@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.component.gantry import (
     GantryServiceBase,
     GetLengthsRequest,
@@ -33,7 +33,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         name = request.name
         try:
             gantry = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         position = await gantry.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -46,7 +46,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         name = request.name
         try:
             gantry = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gantry.move_to_position(
@@ -61,7 +61,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         name = request.name
         try:
             gantry = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         lengths = await gantry.get_lengths(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -74,7 +74,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         name = request.name
         try:
             gantry = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gantry.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -87,7 +87,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         name = request.name
         try:
             gantry = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await gantry.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
