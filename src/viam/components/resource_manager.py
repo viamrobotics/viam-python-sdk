@@ -31,9 +31,39 @@ class ResourceManager:
         Args:
             component (ComponentBase): The component to register
         """
-        if component.name in self.components:
-            raise DuplicateComponentError(component.name)
-        self.components[component.name] = component
+        if ":" in component.name:
+            component.remote, tempName = component.name.split(':')
+        else:
+            tempName = component.name
+
+        if tempName in self.components:
+            original_name = self.components.get(tempName, None)
+            if original_name.remote is not component.remote:
+                self.components[original_name.remote + ":" + tempName] = self.components.pop(tempName)
+                tempName = component.name
+            else:
+                raise DuplicateComponentError(component.name)
+        
+        self.components[tempName] = component
+
+        # if component.name in self.components:
+        #     original_name = self.components.get(component.name, None)
+        #     if original_name.remote:
+        #             self.components[original_name.remote + ":" + original_name.name] = self.components.pop(original_name.name)
+        #     else:
+        #         raise DuplicateComponentError(component.name)
+
+        # if ":" in component.name:
+        #     component.remote, tempName = component.name.split(':')
+        #     if tempName in self.components:
+        #         original_name = self.components.get(tempName, None)
+        #         if original_name.remote:
+        #             original_name.name = original_name.remote + ":" + tempName
+        #             self.components[original_name.name] = self.components.pop(tempName)
+        #     else:
+        #         component.name = tempName
+
+        # self.components[component.name] = component
 
     def get_component(self, of_type: Type[ResourceType], name: str) -> ResourceType:
         """
