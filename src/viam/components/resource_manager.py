@@ -44,7 +44,7 @@ class ResourceManager:
                 tempName = component.name
             else:
                 raise DuplicateComponentError(component.name)
-        
+
         self.components[tempName] = component
 
     def get_component(self, of_type: Type[ResourceType], name: str) -> ResourceType:

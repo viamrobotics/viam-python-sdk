@@ -43,7 +43,7 @@ class TestRegistration:
         remote1_servo2 = MockServo(name="remote1:servo2")
         remote2_servo2 = MockServo(name="remote2:servo2")
         remote2_servo3 = MockServo(name="remote2:servo3")
-        
+
         manager = ResourceManager([])
         manager.register(servo1)
         manager.register(remote1_servo1)
