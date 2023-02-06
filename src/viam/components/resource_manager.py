@@ -37,10 +37,10 @@ class ResourceManager:
             tempName = component.name
 
         if tempName in self.components:
-            original_name = self.components.get(tempName, None)
-            if original_name.remote is not component.remote:
-                if original_name.remote:
-                    self.components[original_name.remote + ":" + tempName] = self.components.pop(tempName)
+            original = self.components.get(tempName, None)
+            if original.remote is not component.remote:
+                if original.remote:
+                    self.components[original.remote + ":" + tempName] = self.components.pop(tempName)
                 tempName = component.name
             else:
                 raise DuplicateComponentError(component.name)
