@@ -7,7 +7,7 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError, NotSupportedError
+from viam.errors import ResourceNotFoundError, NotSupportedError
 from viam.gen.component.audioinput.v1.audioinput_pb2 import SampleFormat
 from viam.proto.component.audioinput import (
     AudioInputServiceBase,
@@ -33,7 +33,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         assert request is not None
         try:
             audio_input = self.get_component(request.name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -50,7 +50,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         assert request is not None
         try:
             audio_input = self.get_component(request.name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         response = (await audio_input.get_properties(timeout=timeout, metadata=stream.metadata)).proto
@@ -70,7 +70,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
 
         try:
             audio_input = self.get_component(request.name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         audio_stream = await audio_input.stream()
         first_chunk = await audio_stream.__anext__()

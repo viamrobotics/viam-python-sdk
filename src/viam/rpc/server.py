@@ -10,7 +10,7 @@ from grpclib.utils import graceful_exit
 from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
-from viam.registry import Registry
+from viam.resource.registry import Registry
 from viam.robot.service import RobotService
 
 from .signaling import SignalingService

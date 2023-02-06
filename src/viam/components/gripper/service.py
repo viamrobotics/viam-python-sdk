@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
@@ -31,7 +31,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         name = request.name
         try:
             gripper = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gripper.open(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -44,7 +44,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         name = request.name
         try:
             gripper = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         grabbed = await gripper.grab(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -56,7 +56,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         assert request is not None
         try:
             gripper = self.get_component(request.name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gripper.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -68,7 +68,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         name = request.name
         try:
             gripper = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await gripper.is_moving()
         response = IsMovingResponse(is_moving=is_moving)

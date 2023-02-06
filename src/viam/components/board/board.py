@@ -1,9 +1,10 @@
 import abc
 from dataclasses import dataclass
 from multiprocessing import Queue
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, Final, List, Optional
 
 from viam.proto.common import BoardStatus
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
 
@@ -19,6 +20,8 @@ class Board(ComponentBase):
     board implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board")
 
     @dataclass
     class Attributes:

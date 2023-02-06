@@ -1,6 +1,8 @@
 import abc
 from typing import Any, Mapping, Optional
 
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+
 from ..component_base import ComponentBase
 
 
@@ -12,6 +14,8 @@ class Sensor(ComponentBase):
     sensor implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
+    SUBTYPE = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor")
 
     @abc.abstractmethod
     async def get_readings(

@@ -1,8 +1,9 @@
 import abc
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Final, Optional
 
 from viam.proto.common import Pose, WorldState
 from viam.proto.component.arm import JointPositions
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
 
@@ -15,6 +16,8 @@ class Arm(ComponentBase):
     arm implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")
 
     @abc.abstractmethod
     async def get_end_position(

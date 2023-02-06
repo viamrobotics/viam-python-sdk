@@ -8,7 +8,7 @@ from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus
 from viam.proto.component.board import (
     BoardServiceStub,
@@ -68,7 +68,7 @@ def generic_service(board: MockBoard) -> GenericService:
 class TestBoard:
     @pytest.mark.asyncio
     async def test_analog_reader_by_name(self, board: MockBoard):
-        with pytest.raises(ComponentNotFoundError):
+        with pytest.raises(ResourceNotFoundError):
             await board.analog_reader_by_name("does not exist")
 
         reader = await board.analog_reader_by_name("reader1")
@@ -76,7 +76,7 @@ class TestBoard:
 
     @pytest.mark.asyncio
     async def test_digital_interrupt_by_name(self, board: MockBoard):
-        with pytest.raises(ComponentNotFoundError):
+        with pytest.raises(ResourceNotFoundError):
             await board.digital_interrupt_by_name("does not exist")
 
         interrupt = await board.digital_interrupt_by_name("interrupt1")
@@ -84,7 +84,7 @@ class TestBoard:
 
     @pytest.mark.asyncio
     async def test_gpio_pin_by_name(self, board: MockBoard):
-        with pytest.raises(ComponentNotFoundError):
+        with pytest.raises(ResourceNotFoundError):
             await board.digital_interrupt_by_name("does not exist")
 
         pin = await board.gpio_pin_by_name("pin1")

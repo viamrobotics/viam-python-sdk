@@ -1,10 +1,11 @@
 import abc
-from typing import TYPE_CHECKING, Any, Dict, Mapping, Optional, cast
+from typing import TYPE_CHECKING, Any, ClassVar, Dict, Mapping, Optional, cast
 
 from typing_extensions import Self
 
 from viam.operations import Operation
 from viam.proto.common import ResourceName
+from viam.resource.types import Subtype
 
 if TYPE_CHECKING:
     from viam.robot.client import RobotClient
@@ -15,6 +16,10 @@ class ComponentBase(abc.ABC):
     Base component.
     All components must inherit from this class.
     """
+
+    SUBTYPE: ClassVar[Subtype]
+
+    name: str
 
     def __init__(self, name: str):
         self.name = name
@@ -28,19 +33,12 @@ class ComponentBase(abc.ABC):
         Args:
             name (str): The name of the Component
         """
-        for klass in cls.mro():
-            class_name = str(klass)
-            if "viam.components" not in class_name:
-                continue
-            if "ComponentBase" in class_name:
-                continue
-
-            subtype = class_name.split("viam.components.")[1].split(".")[0]
-
-            return ResourceName(namespace="rdk", type="component", subtype=subtype, name=name)
-
-        # Getting here should be impossible!
-        raise TypeError(f"Unable to create a ResourceName for {cls} named {name}." + "This should not be possible. Please file an issue.")
+        return ResourceName(
+            namespace=cls.SUBTYPE.namespace,
+            type=cls.SUBTYPE.resource_type,
+            subtype=cls.SUBTYPE.resource_subtype,
+            name=name,
+        )
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:

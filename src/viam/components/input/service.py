@@ -6,7 +6,7 @@ from h2.exceptions import StreamClosedError
 from grpclib.server import Stream
 import viam
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError, NotSupportedError
+from viam.errors import ResourceNotFoundError, NotSupportedError
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -39,7 +39,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         name = request.controller
         try:
             controller = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         controls = await controller.get_controls(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -52,7 +52,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         name = request.controller
         try:
             controller = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         events = await controller.get_events(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -66,7 +66,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
         name = request.controller
         try:
             controller = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
 
         loop = asyncio.get_running_loop()
@@ -158,7 +158,7 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
             pb_event = request.event
             event = Event.from_proto(pb_event)
             await controller.trigger_event(event, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         except NotSupportedError as e:
             raise e.grpc_error

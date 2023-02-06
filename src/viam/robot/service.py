@@ -41,7 +41,7 @@ from viam.proto.robot import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
-from viam.registry import Registry
+from viam.resource.registry import Registry
 from viam.utils import resource_names_for_component, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)

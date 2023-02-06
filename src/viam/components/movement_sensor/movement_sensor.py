@@ -1,9 +1,10 @@
 import abc
 import asyncio
-from typing import Any, Dict, Mapping, Optional, Tuple
+from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from viam.proto.common import GeoPoint, Orientation, Vector3
 from viam.proto.component.movementsensor import GetPropertiesResponse
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..sensor import Sensor
 
@@ -14,6 +15,8 @@ class MovementSensor(Sensor):
     This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
     This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor")
 
     Properties = GetPropertiesResponse
 

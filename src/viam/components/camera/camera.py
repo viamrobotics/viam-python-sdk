@@ -1,10 +1,11 @@
 import abc
-from typing import NamedTuple, Optional, Tuple, Union
+from typing import Final, NamedTuple, Optional, Tuple, Union
 
 from PIL.Image import Image
 
 from viam.media.video import RawImage
 from viam.proto.component.camera import DistortionParameters, IntrinsicParameters
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
 
@@ -17,6 +18,8 @@ class Camera(ComponentBase):
     camera implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera")
 
     class Properties(NamedTuple):
         """The camera's supported features and settings"""

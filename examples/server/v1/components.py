@@ -30,7 +30,7 @@ from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.media import MediaStreamWithIterator
 from viam.media.audio import Audio, AudioStream
 from viam.operations import run_with_operation
@@ -278,19 +278,19 @@ class ExampleBoard(Board):
         try:
             return self.analog_readers[name]
         except KeyError:
-            raise ComponentNotFoundError("Board.AnalogReader", name)
+            raise ResourceNotFoundError("Board.AnalogReader", name)
 
     async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
         try:
             return self.digital_interrupts[name]
         except KeyError:
-            raise ComponentNotFoundError("Board.DigitalInterrupt", name)
+            raise ResourceNotFoundError("Board.DigitalInterrupt", name)
 
     async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:
         try:
             return self.gpios[name]
         except KeyError:
-            raise ComponentNotFoundError("Board.GPIOPin", name)
+            raise ResourceNotFoundError("Board.GPIOPin", name)
 
     async def analog_reader_names(self) -> List[str]:
         return [key for key in self.analog_readers.keys()]

@@ -10,7 +10,7 @@ import viam
 from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
-from viam.errors import ComponentNotFoundError, ViamError
+from viam.errors import ResourceNotFoundError, ViamError
 from viam.proto.common import PoseInFrame, ResourceName, Transform
 from viam.proto.robot import (
     BlockForOperationRequest,
@@ -35,7 +35,7 @@ from viam.proto.robot import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
-from viam.registry import Registry
+from viam.resource.registry import Registry, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.utils import dict_to_struct
 
@@ -156,10 +156,9 @@ class RobotClient:
                 continue
             if rname.subtype == "remote":
                 continue
-            subtype = rname.subtype
             try:
-                manager.register(Registry.lookup(subtype).create_rpc_client(rname.name, self._channel))
-            except ComponentNotFoundError:
+                manager.register(Registry.lookup(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel))
+            except ResourceNotFoundError:
                 pass
         with self._lock:
             self._resource_names = resource_names
@@ -221,7 +220,7 @@ class RobotClient:
         if name.type != "component":
             raise ViamError(f"ResourceName does not describe a component: {name}")
         with self._lock:
-            return self._manager.get_component(ComponentBase, name.name)
+            return self._manager.get_component(ComponentBase, name)
 
     @property
     def resource_names(self) -> List[ResourceName]:

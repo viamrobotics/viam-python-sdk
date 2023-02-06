@@ -2,7 +2,7 @@ from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ComponentNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.media.video import CameraMimeType, RawImage
 from viam.proto.component.camera import (
     CameraServiceBase,
@@ -31,7 +31,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         name = request.name
         try:
             camera = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -55,7 +55,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         name = request.name
         try:
             camera = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         try:
             mimetype = CameraMimeType(request.mime_type)
@@ -76,7 +76,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         name = request.name
         try:
             camera = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         pc, mimetype = await camera.get_point_cloud(timeout=timeout, metadata=stream.metadata)
@@ -89,7 +89,7 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         name = request.name
         try:
             camera = self.get_component(name)
-        except ComponentNotFoundError as e:
+        except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         properties = await camera.get_properties(timeout=timeout, metadata=stream.metadata)
