@@ -23,7 +23,6 @@ class ComponentBase(abc.ABC):
 
     def __init__(self, name: str):
         self.name = name
-        self.remote = None
 
     @classmethod
     def get_resource_name(cls, name: str) -> ResourceName:
