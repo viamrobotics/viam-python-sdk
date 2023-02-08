@@ -14,9 +14,11 @@ class ResourceManager:
     """
 
     components: Dict[ResourceName, ComponentBase]
+    _short_to_long_name: Dict[str, ResourceName]
 
     def __init__(self, components: List[ComponentBase] = []) -> None:
         self.components = {}
+        self._short_to_long_name = {}
         for component in components:
             self.register(component)
 
@@ -39,6 +41,12 @@ class ResourceManager:
             if hasattr(subtype, "get_resource_name"):
                 rn = subtype.get_resource_name(component.name)  # type: ignore
                 rnames[rn] = component
+            if rn.name.__contains__(":"):
+                short_name = rn.name.split(":")[-1]
+                if short_name in self._short_to_long_name and rn not in self._short_to_long_name[short_name]:
+                    self._short_to_long_name[short_name].append(rn)
+                elif short_name not in self._short_to_long_name:
+                    self._short_to_long_name[short_name] = [rn]
 
         if rnames.keys() & self.components.keys():
             raise DuplicateResourceError(component.name)
@@ -64,6 +72,9 @@ class ResourceManager:
         if component and isinstance(component, of_type):
             return component
 
+        if name.name in self._short_to_long_name and len(self._short_to_long_name[name.name]) == 1:
+            component = self.components.get(self._short_to_long_name[name.name][0], None)
+            return component
         raise ResourceNotFoundError(name.subtype, name.name)
 
     def _component_by_name_only(self, name: str) -> ComponentBase:
