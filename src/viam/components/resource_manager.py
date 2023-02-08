@@ -26,6 +26,7 @@ class ResourceManager:
         """
         Register a new component with the registry.
         Components may not have the same name.
+        If a component is remote, save a short name version.
 
         Raises:
             DuplicateComponentError: Error if attempting to register component
@@ -56,6 +57,7 @@ class ResourceManager:
     def get_component(self, of_type: Type[ResourceType], name: ResourceName) -> ResourceType:
         """
         Return a component from the registry.
+        If a unique short name version is given, return a remote component with the name.
 
         Args:
             of_type (Type[ResourceType]): The type of the component
