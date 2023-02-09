@@ -14,7 +14,7 @@ class ResourceManager:
     """
 
     components: Dict[ResourceName, ComponentBase]
-    _short_to_long_name: Dict[str, ResourceName]
+    _short_to_long_name: Dict[str, List[ResourceName]]
 
     def __init__(self, components: List[ComponentBase] = []) -> None:
         self.components = {}
@@ -42,7 +42,7 @@ class ResourceManager:
             if hasattr(subtype, "get_resource_name"):
                 rn = subtype.get_resource_name(component.name)  # type: ignore
                 rnames[rn] = component
-            if rn.name.__contains__(":"):
+            if ":" in rn.name:
                 short_name = rn.name.split(":")[-1]
                 if short_name in self._short_to_long_name and rn not in self._short_to_long_name[short_name]:
                     self._short_to_long_name[short_name].append(rn)

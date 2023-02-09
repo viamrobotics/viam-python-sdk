@@ -65,7 +65,9 @@ class TestGetComponent:
         r1_arm = MockArm(name="remote1:arm")
         r2_arm = MockArm(name="remote2:arm")
         r2_arm2 = MockArm(name="remote2:arm1")
-        manager = ResourceManager([servo, r1_servo, r1_arm, r2_arm, r2_arm2])
+        r32_arm = MockArm(name="remote3:remote2:arm")
+        r321_arm3 = MockArm(name="remote3:remote2:remote1:arm3")
+        manager = ResourceManager([servo, r1_servo, r1_arm, r2_arm, r2_arm2, r32_arm, r321_arm3])
 
         component = manager.get_component(MockServo, MockServo.get_resource_name("servo"))
         assert component.name == "servo"
@@ -77,9 +79,14 @@ class TestGetComponent:
         component = manager.get_component(MockArm, MockArm.get_resource_name("remote2:arm1"))
         assert component.name == "remote2:arm1"
 
+        component = manager.get_component(MockArm, MockArm.get_resource_name("arm3"))
+        assert component.name == "remote3:remote2:remote1:arm3"
+
         with pytest.raises(ResourceNotFoundError):
             component = manager.get_component(MockArm, MockArm.get_resource_name("arm"))
         component = manager.get_component(MockArm, MockArm.get_resource_name("remote1:arm"))
         assert component.name == "remote1:arm"
         component = manager.get_component(MockArm, MockArm.get_resource_name("remote2:arm"))
         assert component.name == "remote2:arm"
+        component = manager.get_component(MockArm, MockArm.get_resource_name("remote3:remote2:arm"))
+        assert component.name == "remote3:remote2:arm"
