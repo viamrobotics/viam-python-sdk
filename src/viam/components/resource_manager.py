@@ -26,7 +26,7 @@ class ResourceManager:
         """
         Register a new component with the registry.
         Components may not have the same name.
-        If a component is remote, save a short name version.
+        If a component is remote and the short name is unique, save a short name version.
 
         Raises:
             DuplicateComponentError: Error if attempting to register component
