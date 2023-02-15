@@ -42,6 +42,7 @@ class ResourceManager:
             if hasattr(subtype, "get_resource_name"):
                 rn = subtype.get_resource_name(component.name)  # type: ignore
                 rnames[rn] = component
+        for rn in rnames:
             if ":" in rn.name:
                 short_name = rn.name.split(":")[-1]
                 if short_name in self._short_to_long_name and rn not in self._short_to_long_name[short_name]:
@@ -75,8 +76,7 @@ class ResourceManager:
             return component
 
         if name.name in self._short_to_long_name and len(self._short_to_long_name[name.name]) == 1:
-            component = self.components.get(self._short_to_long_name[name.name][0], None)
-            return component
+            return self.get_component(of_type, self._short_to_long_name[name.name][0])
         raise ResourceNotFoundError(name.subtype, name.name)
 
     def _component_by_name_only(self, name: str) -> ComponentBase:
