@@ -8,7 +8,7 @@ __all__ = [
     "Generic",
 ]
 
-Registry.register(
+Registry.register_subtype(
     ComponentRegistration(
         Generic,
         GenericService,

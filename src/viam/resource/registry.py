@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Any, Callable, Coroutine, Dict, Generic, Mapping, Type, TypeVar
+from threading import Lock
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
@@ -9,7 +10,7 @@ from viam.components.service_base import ComponentServiceBase
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.proto.robot import Status
 
-from .types import Subtype
+from .types import Subtype, Model, ComponentCreator
 
 Component = TypeVar("Component", bound=ComponentBase)
 
@@ -60,21 +61,41 @@ class Registry:
     component using ``Registry.register(...)``.
     """
 
-    _COMPONENTS: Dict[Subtype, ComponentRegistration] = {}
+    _SUBTYPES: Dict[Subtype, ComponentRegistration] = {}
+    _COMPONENTS: Dict[str, ComponentCreator]
+    _lock: Lock = Lock()
 
     @classmethod
-    def register(cls, registration: ComponentRegistration[Component]):
-        """Register a Component with the Registry
+    def register_subtype(cls, registration: ComponentRegistration[Component]):
+        """Register a Subtype with the Registry
 
         Args:
-            registration (ComponentRegistration): Object containing registration data for the component
+            registration (ComponentRegistration): Object containing registration data for the subtype
 
         Raises:
-            DuplicateComponentError: Raised if the Component to register is already in the registry
+            DuplicateResourceError: Raised if the Subtype to register is already in the registry
         """
-        if registration.component_type.SUBTYPE in cls._COMPONENTS:
-            raise DuplicateResourceError(str(registration.component_type.SUBTYPE))
-        cls._COMPONENTS[registration.component_type.SUBTYPE] = registration
+        with cls._lock:
+            if registration.component_type.SUBTYPE in cls._SUBTYPES:
+                raise DuplicateResourceError(str(registration.component_type.SUBTYPE))
+            cls._SUBTYPES[registration.component_type.SUBTYPE] = registration
+
+    @classmethod
+    def register_component(cls, subtype: Subtype, model: Model, component: ComponentCreator):
+        """Register a specific ```Model``` for the specific ```Subtype``` with the Registry
+
+        Args:
+            subtype (Subtype): The Subtype of the component
+            model (Model): The Model of the component
+            component (ComponentCreator): A function that can create a component given a mapping of dependencies (```ResourceName``` to
+                                          ```ComponentBase```)
+
+        Raises:
+            ResourceNotFoundError: _description_
+
+        Returns:
+            _type_: _description_
+        """
 
     @classmethod
     def lookup(cls, subtype: Subtype) -> ComponentRegistration:
@@ -89,18 +110,20 @@ class Registry:
         Returns:
             ComponentRegistration: The registration object of the component
         """
-        try:
-            return cls._COMPONENTS[subtype]
-        except KeyError:
-            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+        with cls._lock:
+            try:
+                return cls._SUBTYPES[subtype]
+            except KeyError:
+                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def REGISTERED_COMPONENTS(cls) -> Mapping[Subtype, ComponentRegistration]:
-        """The dictionary of all registered components
-        - Key: Name of the component type
-        - Value: The registration object for the component type
+    def REGISTERED_RESOURCES(cls) -> Mapping[Subtype, ComponentRegistration]:
+        """The dictionary of all registered resources
+        - Key: Subtype of the resource
+        - Value: The registration object for the resource
 
         Returns:
-            Mapping[str, ComponentRegistration]: All registered components
+            Mapping[Subtype, ComponentRegistration]: All registered resources
         """
-        return cls._COMPONENTS.copy()
+        with cls._lock:
+            return cls._SUBTYPES.copy()

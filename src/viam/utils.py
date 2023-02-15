@@ -92,7 +92,7 @@ def resource_names_for_component(component: ComponentBase) -> List[ResourceName]
     rns: List[ResourceName] = []
 
     for klass in component.__class__.mro():
-        for registration in Registry.REGISTERED_COMPONENTS().values():
+        for registration in Registry.REGISTERED_RESOURCES().values():
             if klass is registration.component_type:
                 subtype: Subtype = registration.component_type.SUBTYPE
                 rns.append(
