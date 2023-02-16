@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, TypeAlias
 
 from typing_extensions import Self
 
+from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 
 if TYPE_CHECKING:
@@ -125,9 +126,9 @@ class Model:
 
 def resource_name_from_string(string: str) -> ResourceName:
     parts = string.split(":")
-    if len(parts) != 4:
+    if len(parts) < 4:
         raise TypeError(f"{string} is not a valid ResourceName")
-    return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=parts[3])
+    return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=":".join(parts[3:]))
 
 
-ComponentCreator: TypeAlias = Callable[[Mapping[ResourceName, ComponentBase]], ComponentBase]
+ComponentCreator: TypeAlias = Callable[[Mapping[ResourceName, "ComponentBase"], ComponentConfig], "ComponentBase"]

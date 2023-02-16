@@ -39,9 +39,9 @@ def test_components_register_themselves_correctly():
 
 def test_lookup():
     with pytest.raises(ResourceNotFoundError):
-        Registry.lookup(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "fake"))
+        Registry.lookup_subtype(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "fake"))
 
-    component = Registry.lookup(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm"))
+    component = Registry.lookup_subtype(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm"))
     assert component.component_type.SUBTYPE == Arm.SUBTYPE
 
 
@@ -52,7 +52,7 @@ def test_registration():
         ComponentRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
     )
     assert FakeComponent.SUBTYPE in Registry.REGISTERED_RESOURCES()
-    component = Registry.lookup(FakeComponent.SUBTYPE)
+    component = Registry.lookup_subtype(FakeComponent.SUBTYPE)
     assert component is not None
 
     with pytest.raises(DuplicateResourceError):

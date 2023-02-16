@@ -1,9 +1,11 @@
-from typing import Protocol, List
-from typing_extensions import Self
+from typing import Mapping, Protocol, runtime_checkable
 
 from viam.components.component_base import ComponentBase
+from viam.proto.app.robot import ComponentConfig
+from viam.proto.common import ResourceName
 
 
-class ModularComponent(Protocol):
-    def new(self, dependencies: List[ComponentBase]) -> Self:
+@runtime_checkable
+class Reconfigurable(Protocol):
+    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]):
         ...
