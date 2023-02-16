@@ -213,7 +213,7 @@ class GetInternalStateResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INTERNAL_STATE_FIELD_NUMBER: builtins.int
     internal_state: builtins.bytes
-    'Internal state of the SLAM algorithm required to continue mapping/localization'
+    'A chunk of the internal state of the SLAM algorithm required to continue\n    mapping/localization\n    '
 
     def __init__(self, *, internal_state: builtins.bytes=...) -> None:
         ...
@@ -221,3 +221,59 @@ class GetInternalStateResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['internal_state', b'internal_state']) -> None:
         ...
 global___GetInternalStateResponse = GetInternalStateResponse
+
+@typing_extensions.final
+class GetPointCloudMapStreamRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of slam service'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetPointCloudMapStreamRequest = GetPointCloudMapStreamRequest
+
+@typing_extensions.final
+class GetPointCloudMapStreamResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POINT_CLOUD_PCD_CHUNK_FIELD_NUMBER: builtins.int
+    point_cloud_pcd_chunk: builtins.bytes
+    'One chunk of the PointCloud.\n    For a given GetPointCloudMapStream request,\n    concatinating all\n    GetPointCloudMapStreamResponse.point_cloud_pcd_chunk\n    values in the order received result in\n    the complete pointcloud in standard PCD format.\n    https://pointclouds.org/documentation/tutorials/pcd_file_format.html\n    '
+
+    def __init__(self, *, point_cloud_pcd_chunk: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['point_cloud_pcd_chunk', b'point_cloud_pcd_chunk']) -> None:
+        ...
+global___GetPointCloudMapStreamResponse = GetPointCloudMapStreamResponse
+
+@typing_extensions.final
+class GetInternalStateStreamRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of slam service'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetInternalStateStreamRequest = GetInternalStateStreamRequest
+
+@typing_extensions.final
+class GetInternalStateStreamResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INTERNAL_STATE_CHUNK_FIELD_NUMBER: builtins.int
+    internal_state_chunk: builtins.bytes
+    'Chunk of the internal state of the SLAM algorithm required to continue\n    mapping/localization\n    '
+
+    def __init__(self, *, internal_state_chunk: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['internal_state_chunk', b'internal_state_chunk']) -> None:
+        ...
+global___GetInternalStateStreamResponse = GetInternalStateStreamResponse
