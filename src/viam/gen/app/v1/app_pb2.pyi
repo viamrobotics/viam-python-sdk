@@ -214,20 +214,22 @@ class OrganizationInvite(google.protobuf.message.Message):
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     EMAIL_FIELD_NUMBER: builtins.int
     CREATED_ON_FIELD_NUMBER: builtins.int
+    ROBOT_COUNT_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     email: builtins.str
 
     @property
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
+    robot_count: builtins.int
 
-    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., robot_count: builtins.int=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'email', b'email', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'email', b'email', 'organization_id', b'organization_id', 'robot_count', b'robot_count']) -> None:
         ...
 global___OrganizationInvite = OrganizationInvite
 
@@ -549,6 +551,7 @@ class Location(google.protobuf.message.Message):
     AUTH_FIELD_NUMBER: builtins.int
     ORGANIZATIONS_FIELD_NUMBER: builtins.int
     CREATED_ON_FIELD_NUMBER: builtins.int
+    ROBOT_COUNT_FIELD_NUMBER: builtins.int
     id: builtins.str
     'Location ID.'
     name: builtins.str
@@ -567,14 +570,16 @@ class Location(google.protobuf.message.Message):
     @property
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Location creation timestamp."""
+    robot_count: builtins.int
+    ''
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., parent_location_id: builtins.str=..., auth: global___LocationAuth | None=..., organizations: collections.abc.Iterable[global___LocationOrganization] | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., parent_location_id: builtins.str=..., auth: global___LocationAuth | None=..., organizations: collections.abc.Iterable[global___LocationOrganization] | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., robot_count: builtins.int=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['auth', b'auth', 'created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['auth', b'auth', 'created_on', b'created_on', 'id', b'id', 'name', b'name', 'organizations', b'organizations', 'parent_location_id', b'parent_location_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['auth', b'auth', 'created_on', b'created_on', 'id', b'id', 'name', b'name', 'organizations', b'organizations', 'parent_location_id', b'parent_location_id', 'robot_count', b'robot_count']) -> None:
         ...
 global___Location = Location
 
@@ -958,6 +963,47 @@ class GetRobotRequest(google.protobuf.message.Message):
 global___GetRobotRequest = GetRobotRequest
 
 @typing_extensions.final
+class GetRoverRentalRobotsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___GetRoverRentalRobotsRequest = GetRoverRentalRobotsRequest
+
+@typing_extensions.final
+class RoverRentalRobot(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ROBOT_ID_FIELD_NUMBER: builtins.int
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    ROBOT_NAME_FIELD_NUMBER: builtins.int
+    robot_id: builtins.str
+    location_id: builtins.str
+    robot_name: builtins.str
+
+    def __init__(self, *, robot_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'robot_id', b'robot_id', 'robot_name', b'robot_name']) -> None:
+        ...
+global___RoverRentalRobot = RoverRentalRobot
+
+@typing_extensions.final
+class GetRoverRentalRobotsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ROBOTS_FIELD_NUMBER: builtins.int
+
+    @property
+    def robots(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RoverRentalRobot]:
+        ...
+
+    def __init__(self, *, robots: collections.abc.Iterable[global___RoverRentalRobot] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['robots', b'robots']) -> None:
+        ...
+global___GetRoverRentalRobotsResponse = GetRoverRentalRobotsResponse
+
+@typing_extensions.final
 class GetRobotResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOT_FIELD_NUMBER: builtins.int
@@ -1296,7 +1342,9 @@ class Fragment(google.protobuf.message.Message):
     CREATED_ON_FIELD_NUMBER: builtins.int
     ORGANIZATION_NAME_FIELD_NUMBER: builtins.int
     READONLY_FIELD_NUMBER: builtins.int
-    USE_COUNT_FIELD_NUMBER: builtins.int
+    ROBOT_PART_COUNT_FIELD_NUMBER: builtins.int
+    ORGANIZATION_COUNT_FIELD_NUMBER: builtins.int
+    ONLY_USED_BY_OWNER_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
@@ -1311,15 +1359,20 @@ class Fragment(google.protobuf.message.Message):
         ...
     organization_name: builtins.str
     readonly: builtins.bool
-    use_count: builtins.int
+    robot_part_count: builtins.int
+    'number of robot parts using this fragment'
+    organization_count: builtins.int
+    'number of organizations using this fragment'
+    only_used_by_owner: builtins.bool
+    'whether the organization(s) using this fragment is the same as the fragment org'
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., readonly: builtins.bool=..., use_count: builtins.int=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., readonly: builtins.bool=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'readonly', b'readonly', 'use_count', b'use_count']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'readonly', b'readonly', 'robot_part_count', b'robot_part_count']) -> None:
         ...
 global___Fragment = Fragment
 
@@ -1432,20 +1485,25 @@ class UpdateFragmentRequest(google.protobuf.message.Message):
     ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
+    PUBLIC_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
     @property
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
+    public: builtins.bool
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., public: builtins.bool | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_public', b'_public', 'config', b'config', 'public', b'public']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['config', b'config', 'id', b'id', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_public', b'_public', 'config', b'config', 'id', b'id', 'name', b'name', 'public', b'public']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_public', b'_public']) -> typing_extensions.Literal['public'] | None:
         ...
 global___UpdateFragmentRequest = UpdateFragmentRequest
 
@@ -1623,6 +1681,27 @@ class MarkPartAsMainResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___MarkPartAsMainResponse = MarkPartAsMainResponse
+
+@typing_extensions.final
+class MarkPartForRestartRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PART_ID_FIELD_NUMBER: builtins.int
+    part_id: builtins.str
+
+    def __init__(self, *, part_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id']) -> None:
+        ...
+global___MarkPartForRestartRequest = MarkPartForRestartRequest
+
+@typing_extensions.final
+class MarkPartForRestartResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___MarkPartForRestartResponse = MarkPartForRestartResponse
 
 @typing_extensions.final
 class CreateRobotPartSecretRequest(google.protobuf.message.Message):

@@ -9,6 +9,7 @@ import google.protobuf.descriptor_pb2
 import google.protobuf.internal.containers
 import google.protobuf.internal.extension_dict
 import google.protobuf.message
+import google.protobuf.struct_pb2
 import sys
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
@@ -422,7 +423,6 @@ class WorldState(google.protobuf.message.Message):
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     OBSTACLES_FIELD_NUMBER: builtins.int
-    INTERACTION_SPACES_FIELD_NUMBER: builtins.int
     TRANSFORMS_FIELD_NUMBER: builtins.int
 
     @property
@@ -430,19 +430,13 @@ class WorldState(google.protobuf.message.Message):
         """a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional"""
 
     @property
-    def interaction_spaces(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]:
-        """a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
-        this field is optional
-        """
-
-    @property
     def transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]:
         """a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional"""
 
-    def __init__(self, *, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None=..., interaction_spaces: collections.abc.Iterable[global___GeometriesInFrame] | None=..., transforms: collections.abc.Iterable[global___Transform] | None=...) -> None:
+    def __init__(self, *, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None=..., transforms: collections.abc.Iterable[global___Transform] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['interaction_spaces', b'interaction_spaces', 'obstacles', b'obstacles', 'transforms', b'transforms']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles', 'transforms', b'transforms']) -> None:
         ...
 global___WorldState = WorldState
 
@@ -459,6 +453,48 @@ class ActuatorStatus(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
         ...
 global___ActuatorStatus = ActuatorStatus
+
+@typing_extensions.final
+class DoCommandRequest(google.protobuf.message.Message):
+    """DoCommandRequest represents a generic DoCommand input"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    COMMAND_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    @property
+    def command(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: builtins.str=..., command: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['command', b'command']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['command', b'command', 'name', b'name']) -> None:
+        ...
+global___DoCommandRequest = DoCommandRequest
+
+@typing_extensions.final
+class DoCommandResponse(google.protobuf.message.Message):
+    """DoCommandResponse represents a generic DoCommand output"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESULT_FIELD_NUMBER: builtins.int
+
+    @property
+    def result(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, result: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['result', b'result']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['result', b'result']) -> None:
+        ...
+global___DoCommandResponse = DoCommandResponse
 SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER: builtins.int
 safety_heartbeat_monitored: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, builtins.bool]
 'safety_heartbeat_monitored is used on methods to signify that if a session is in use\nand the session was the last to call this method, the resource associated with the\nmethod will be stopped.\n'
