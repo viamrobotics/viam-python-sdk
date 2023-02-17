@@ -1,4 +1,5 @@
 from typing import Dict, List, Type, TypeVar
+from threading import Lock
 
 from viam.proto.common import ResourceName
 
@@ -15,8 +16,10 @@ class ResourceManager:
 
     components: Dict[ResourceName, ComponentBase]
     _short_to_long_name: Dict[str, List[ResourceName]]
+    _lock: Lock
 
     def __init__(self, components: List[ComponentBase] = []) -> None:
+        self._lock = Lock()
         self.components = {}
         self._short_to_long_name = {}
         for component in components:
@@ -53,7 +56,8 @@ class ResourceManager:
         if rnames.keys() & self.components.keys():
             raise DuplicateResourceError(component.name)
 
-        self.components.update(rnames)
+        with self._lock:
+            self.components.update(rnames)
 
     def get_component(self, of_type: Type[ResourceType], name: ResourceName) -> ResourceType:
         """
@@ -71,13 +75,18 @@ class ResourceManager:
         Returns:
             ResourceType: The component
         """
-        component = self.components.get(name, None)
-        if component and isinstance(component, of_type):
-            return component
+        with self._lock:
+            component = self.components.get(name, None)
+            if component and isinstance(component, of_type):
+                return component
 
-        if name.name in self._short_to_long_name and len(self._short_to_long_name[name.name]) == 1:
-            return self.get_component(of_type, self._short_to_long_name[name.name][0])
-        raise ResourceNotFoundError(name.subtype, name.name)
+            if name.name in self._short_to_long_name and len(self._short_to_long_name[name.name]) == 1:
+                return self.get_component(of_type, self._short_to_long_name[name.name][0])
+            raise ResourceNotFoundError(name.subtype, name.name)
+
+    def remove_component(self, name: ResourceName):
+        with self._lock:
+            del self.components[name]
 
     def _component_by_name_only(self, name: str) -> ComponentBase:
         for rname, component in self.components.items():

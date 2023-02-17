@@ -5,7 +5,7 @@ from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
-from viam.proto.module import AddResourceRequest, ReconfigureResourceRequest
+from viam.proto.module import AddResourceRequest, ReconfigureResourceRequest, RemoveResourceRequest
 from viam.resource.registry import Registry
 from viam.resource.types import (
     RESOURCE_TYPE_COMPONENT,
@@ -16,7 +16,7 @@ from viam.resource.types import (
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 
-from .types import Reconfigurable
+from .types import Reconfigurable, Stoppable
 
 
 class Module:
@@ -72,6 +72,15 @@ class Module:
         if isinstance(resource, Reconfigurable):
             resource.reconfigure(config, dependencies)
         else:
+            if isinstance(resource, Stoppable):
+                resource.stop()
             add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
-            del self.resources.components[rn]
+            self.resources.remove_component(rn)
             self.add_resource(add_request)
+
+    def remove_resource(self, request: RemoveResourceRequest):
+        rn = resource_name_from_string(request.name)
+        resource = self.resources.get_component(ComponentBase, rn)
+        if isinstance(resource, Stoppable):
+            resource.stop()
+        self.resources.remove_component(rn)
