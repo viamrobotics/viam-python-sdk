@@ -95,9 +95,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">components</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]</span>
+    <span class="n">_short_to_long_name</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]]</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ComponentBase</span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">components</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
 
@@ -105,6 +107,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Register a new component with the registry.</span>
 <span class="sd">        Components may not have the same name.</span>
+<span class="sd">        If a component is remote and the short name is unique, save a short name version.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            DuplicateComponentError: Error if attempting to register component</span>
@@ -120,6 +123,13 @@
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">subtype</span><span class="p">,</span> <span class="s2">&quot;get_resource_name&quot;</span><span class="p">):</span>
                 <span class="n">rn</span> <span class="o">=</span> <span class="n">subtype</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
                 <span class="n">rnames</span><span class="p">[</span><span class="n">rn</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span>
+        <span class="k">for</span> <span class="n">rn</span> <span class="ow">in</span> <span class="n">rnames</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;:&quot;</span> <span class="ow">in</span> <span class="n">rn</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                <span class="n">short_name</span> <span class="o">=</span> <span class="n">rn</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">short_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span> <span class="ow">and</span> <span class="n">rn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span><span class="p">[</span><span class="n">short_name</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span><span class="p">[</span><span class="n">short_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">short_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span><span class="p">[</span><span class="n">short_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">rn</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">rnames</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="k">raise</span> <span class="n">DuplicateResourceError</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -129,6 +139,7 @@
 <div class="viewcode-block" id="ResourceManager.get_component"><a class="viewcode-back" href="../../../autoapi/viam/components/resource_manager/index.html#viam.components.resource_manager.ResourceManager.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">of_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceType</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a component from the registry.</span>
+<span class="sd">        If a unique short name version is given, return a remote component with the name.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            of_type (Type[ResourceType]): The type of the component</span>
@@ -145,6 +156,8 @@
         <span class="k">if</span> <span class="n">component</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">of_type</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">component</span>
 
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span><span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">of_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_short_to_long_name</span><span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
         <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">subtype</span><span class="p">,</span> <span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_component_by_name_only</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>

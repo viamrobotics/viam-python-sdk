@@ -164,7 +164,8 @@
 <dt class="sig sig-object py" id="viam.components.resource_manager.ResourceManager.register">
 <span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/resource_manager.html#ResourceManager.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.register" title="Permalink to this definition"></a></dt>
 <dd><p>Register a new component with the registry.
-Components may not have the same name.</p>
+Components may not have the same name.
+If a component is remote and the short name is unique, save a short name version.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><strong>DuplicateComponentError</strong> – Error if attempting to register component
@@ -179,7 +180,8 @@ with the name of an existing component</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.resource_manager.ResourceManager.get_component">
 <span class="sig-name descname"><span class="pre">get_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">of_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ResourceType</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ResourceType</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/resource_manager.html#ResourceManager.get_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.get_component" title="Permalink to this definition"></a></dt>
-<dd><p>Return a component from the registry.</p>
+<dd><p>Return a component from the registry.
+If a unique short name version is given, return a remote component with the name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

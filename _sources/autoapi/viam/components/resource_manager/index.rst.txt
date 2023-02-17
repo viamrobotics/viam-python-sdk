@@ -43,6 +43,7 @@ Attributes
 
       Register a new component with the registry.
       Components may not have the same name.
+      If a component is remote and the short name is unique, save a short name version.
 
       :raises DuplicateComponentError: Error if attempting to register component
           with the name of an existing component
@@ -54,6 +55,7 @@ Attributes
    .. py:method:: get_component(of_type: Type[ResourceType], name: viam.proto.common.ResourceName) -> ResourceType
 
       Return a component from the registry.
+      If a unique short name version is given, return a remote component with the name.
 
       :param of_type: The type of the component
       :type of_type: Type[ResourceType]
