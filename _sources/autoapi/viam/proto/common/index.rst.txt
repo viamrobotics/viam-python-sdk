@@ -23,6 +23,8 @@ Classes
    viam.proto.common.BoardStatus
    viam.proto.common.Capsule
    viam.proto.common.DigitalInterruptStatus
+   viam.proto.common.DoCommandRequest
+   viam.proto.common.DoCommandResponse
    viam.proto.common.GeoPoint
    viam.proto.common.GeometriesInFrame
    viam.proto.common.Geometry
@@ -196,6 +198,67 @@ Classes
       :annotation: :int
 
       Current value of the digital interrupt of a robot's board
+
+
+.. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
+
+
+
+   DoCommandRequest represents a generic DoCommand input
+
+   .. py:property:: command
+      :type: google.protobuf.struct_pb2.Struct
+
+
+   .. py:attribute:: name
+      :annotation: :str
+
+      
+
+   .. py:method:: HasField(field_name: Literal[command, b'command']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
+
+
+
+   DoCommandResponse represents a generic DoCommand output
+
+   .. py:property:: result
+      :type: google.protobuf.struct_pb2.Struct
+
+
+   .. py:method:: HasField(field_name: Literal[result, b'result']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: GeoPoint(*, latitude: float = ..., longitude: float = ...)
@@ -603,7 +666,7 @@ Classes
       
 
 
-.. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., interaction_spaces: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
+.. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
 
 
 
@@ -615,12 +678,6 @@ Classes
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
       a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
-
-   .. py:property:: interaction_spaces
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
-
-      a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
-      this field is optional
 
    .. py:property:: transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]

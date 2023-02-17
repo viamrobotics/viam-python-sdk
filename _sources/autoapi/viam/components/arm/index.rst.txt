@@ -173,7 +173,7 @@ Classes
       degrees
 
 
-.. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., interaction_spaces: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
+.. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
 
 
 
@@ -185,12 +185,6 @@ Classes
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
 
       a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
-
-   .. py:property:: interaction_spaces
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
-
-      a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
-      this field is optional
 
    .. py:property:: transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]

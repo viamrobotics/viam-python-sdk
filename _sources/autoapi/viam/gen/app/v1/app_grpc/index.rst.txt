@@ -130,6 +130,11 @@ Classes
       :async:
 
 
+   .. py:method:: GetRoverRentalRobots(stream: grpclib.server.Stream[app.v1.app_pb2.GetRoverRentalRobotsRequest, app.v1.app_pb2.GetRoverRentalRobotsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
    .. py:method:: GetRobotParts(stream: grpclib.server.Stream[app.v1.app_pb2.GetRobotPartsRequest, app.v1.app_pb2.GetRobotPartsResponse]) -> None
       :abstractmethod:
       :async:
@@ -171,6 +176,11 @@ Classes
 
 
    .. py:method:: MarkPartAsMain(stream: grpclib.server.Stream[app.v1.app_pb2.MarkPartAsMainRequest, app.v1.app_pb2.MarkPartAsMainResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: MarkPartForRestart(stream: grpclib.server.Stream[app.v1.app_pb2.MarkPartForRestartRequest, app.v1.app_pb2.MarkPartForRestartResponse]) -> None
       :abstractmethod:
       :async:
 

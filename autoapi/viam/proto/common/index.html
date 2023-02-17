@@ -102,6 +102,17 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus.value"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptStatus.value</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DoCommandRequest"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandRequest.command"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.command</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandRequest.name"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.name</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DoCommandResponse"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandResponse.result"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.result</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandResponse.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint"><code class="docutils literal notranslate"><span class="pre">GeoPoint</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoPoint.latitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.latitude</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoPoint.longitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.longitude</span></code></a></li>
@@ -183,7 +194,6 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.WorldState"><code class="docutils literal notranslate"><span class="pre">WorldState</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.obstacles"><code class="docutils literal notranslate"><span class="pre">WorldState.obstacles</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.interaction_spaces"><code class="docutils literal notranslate"><span class="pre">WorldState.interaction_spaces</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.transforms"><code class="docutils literal notranslate"><span class="pre">WorldState.transforms</span></code></a></li>
 </ul>
 </li>
@@ -209,6 +219,17 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus">DigitalInterruptStatus</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus.value">value</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DoCommandRequest">DoCommandRequest</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandRequest.command">command</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandRequest.name">name</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandRequest.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DoCommandResponse">DoCommandResponse</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandResponse.result">result</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandResponse.HasField">HasField</a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint">GeoPoint</a><ul>
@@ -292,7 +313,6 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.WorldState">WorldState</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.obstacles">obstacles</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.interaction_spaces">interaction_spaces</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.WorldState.transforms">transforms</a></li>
 </ul>
 </li>
@@ -367,6 +387,12 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus" title="viam.proto.common.DigitalInterruptStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DigitalInterruptStatus</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandRequest" title="viam.proto.common.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
+<td><p>DoCommandRequest represents a generic DoCommand input</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandResponse" title="viam.proto.common.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
+<td><p>DoCommandResponse represents a generic DoCommand output</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -568,6 +594,79 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.common.DigitalInterruptStatus.value">
 <span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.common.DigitalInterruptStatus.value" title="Permalink to this definition"></a></dt>
 <dd><p>Current value of the digital interrupt of a robot’s board</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.DoCommandRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">DoCommandRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.DoCommandRequest" title="Permalink to this definition"></a></dt>
+<dd><p>DoCommandRequest represents a generic DoCommand input</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.DoCommandRequest.command">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">command</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.common.DoCommandRequest.command" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.common.DoCommandRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.DoCommandRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.DoCommandRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">command</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'command'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.DoCommandRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.DoCommandResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">DoCommandResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.DoCommandResponse" title="Permalink to this definition"></a></dt>
+<dd><p>DoCommandResponse represents a generic DoCommand output</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.DoCommandResponse.result">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.common.DoCommandResponse.result" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.DoCommandResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">result</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.DoCommandResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -1029,7 +1128,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.WorldState">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">WorldState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interaction_spaces</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Transform</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.WorldState" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">WorldState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Transform</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.WorldState" title="Permalink to this definition"></a></dt>
 <dd><p>WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
 they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
 given reference frame and a new target reference frame.</p>
@@ -1037,13 +1136,6 @@ given reference frame and a new target reference frame.</p>
 <dt class="sig sig-object py" id="viam.proto.common.WorldState.obstacles">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obstacles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.WorldState.obstacles" title="Permalink to this definition"></a></dt>
 <dd><p>a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.common.WorldState.interaction_spaces">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">interaction_spaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___GeometriesInFrame</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.WorldState.interaction_spaces" title="Permalink to this definition"></a></dt>
-<dd><p>a list of spaces the robot is allowed to operate within expressed as a geometry and the reference frame it is measured from;
-this field is optional</p>
 </dd></dl>
 
 <dl class="py property">
