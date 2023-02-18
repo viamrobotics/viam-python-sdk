@@ -79,6 +79,16 @@ class RobotClient:
         The log level to output
         """
 
+        check_connected_time: int = 10
+        """
+        The frequency (in seconds) at which to check if the robot is still connected 
+        """
+
+        reconnect_every: int = 1
+        """
+        The frequency (in seconds) at which to attempt to reconnect a disconnected robot
+        """
+
     @classmethod
     async def at_address(cls, address: str, options: Options) -> Self:
         """Create a robot client that is connected to the robot at the provided address.
@@ -94,6 +104,7 @@ class RobotClient:
         channel = await dial(address, options.dial_options)
         robot = await RobotClient.with_channel(channel, options)
         robot._should_close_channel = True
+        robot._address = address
         return robot
 
     @classmethod
@@ -119,17 +130,25 @@ class RobotClient:
         else:
             self._channel = channel.channel
             self._viam_channel = channel
+        self._connected = True
         self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
         self._lock = Lock()
         self._resource_names = []
         self._should_close_channel = False
+        self._options = options
         await self.refresh()
 
         if options.refresh_interval > 0:
             self._refresh_task = asyncio.create_task(
                 self._refresh_every(options.refresh_interval), name=f"{viam._TASK_PREFIX}-robot_refresh_metadata"
             )
+
+        if options.check_connected_time > 0 and options.reconnect_every > 0:
+            self._check_connection = asyncio.create_task(
+                    self._check_connection(options.check_connected_time, options.reconnect_every),
+                    name=f"{viam._TASK_PREFIX}-robot_check_connection"
+                    )
 
         return self
 
@@ -138,7 +157,11 @@ class RobotClient:
     _lock: Lock
     _manager: ResourceManager
     _client: RobotServiceStub
+    _connected: bool
     _refresh_task: Optional[asyncio.Task] = None
+    _address: Optional[str] = None
+    _options: Optional[Options] = None
+    _check_connection_task: Optional[asyncio.Task] = None
     _resource_names: List[ResourceName]
     _should_close_channel: bool
 
@@ -172,6 +195,52 @@ class RobotClient:
                 await self.refresh()
             except Exception as e:
                 LOGGER.error("Failed to refresh status", exc_info=e)
+
+    async def _check_connection(self, check_every: int, reconnect_every: int):
+        while True:
+            if self._connected:
+                wait_time = check_every
+            else:
+                wait_time = reconnect_every
+
+            await asyncio.sleep(wait_time)
+
+            if not self._address:
+                # this isn't set at the time the robot is created, and is unavailable to
+                # that function. We set it as soon as possible but a disconnect in the time
+                # between is theoretically possible, so we don't want to exit this loop if
+                # the address doesn't exist.
+                LOGGER.debug("Unable to connect; address is not known.")
+                continue
+
+            if not self._connected:
+                try:
+                    channel = await dial(self._address, self._options.dial_options)
+                    if isinstance(channel, Channel):
+                        self._channel = channel
+                        self._viam_channel = None
+                    else:
+                        self._channel = channel.channel
+                        self._viam_channel = channel
+                    LOGGER.debug("Successfully reconnected robot")
+                except Exception as e:
+                    LOGGER.debug(f"Failed to reconnect, trying again in {wait_time}", exc_info=e)
+                continue
+
+            outer_error = None
+            # failure to grab resources could be for spurious, non-networking reasons. Try three times just to be safe.
+            for attempt in range(3):
+                try:
+                    _: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
+                    outer_error = None
+                    break
+                except Exception as e:
+                    outer_error = e
+                    continue
+
+            if outer_error:
+                LOGGER.error(f"Lost connection, attempting to reconnect to {self._address} every {reconnect_every} seconds", exc_info=outer_error)
+                self._connected = False
 
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
