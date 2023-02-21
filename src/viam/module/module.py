@@ -5,7 +5,13 @@ from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
-from viam.proto.module import AddResourceRequest, ReconfigureResourceRequest, RemoveResourceRequest
+from viam.proto.module import (
+    AddResourceRequest,
+    ReadyRequest,
+    ReadyResponse,
+    ReconfigureResourceRequest,
+    RemoveResourceRequest,
+)
 from viam.resource.registry import Registry
 from viam.resource.types import (
     RESOURCE_TYPE_COMPONENT,
@@ -21,19 +27,32 @@ from .types import Reconfigurable, Stoppable
 
 class Module:
 
+    _parent_address: str
     parent: RobotClient
     resources: ResourceManager
 
     def __init__(self, address: str) -> None:
+        self._parent_address = address
         self.parent = asyncio.run(
             RobotClient.at_address(
-                address,
+                self._parent_address,
                 RobotClient.Options(
                     dial_options=DialOptions(disable_webrtc=True, allow_insecure_with_creds_downgrade=True),
                 ),
             )
         )
         self.resources = ResourceManager()
+
+    def _connect(self, address: str):
+        if address != self.parent._channel._path:
+            self.parent = asyncio.run(
+                RobotClient.at_address(
+                    address,
+                    RobotClient.Options(
+                        dial_options=DialOptions(disable_webrtc=True, allow_insecure_with_creds_downgrade=True),
+                    ),
+                )
+            )
 
     # def add_model(self, subtype: Subtype, model: Model):
     #     if subtype not in Registry.REGISTERED_RESOURCES():
@@ -84,3 +103,6 @@ class Module:
         if isinstance(resource, Stoppable):
             resource.stop()
         self.resources.remove_component(rn)
+
+    def ready(self, request: ReadyRequest) -> ReadyResponse:
+        return ReadyResponse()

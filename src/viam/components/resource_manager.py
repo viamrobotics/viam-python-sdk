@@ -85,6 +85,11 @@ class ResourceManager:
             raise ResourceNotFoundError(name.subtype, name.name)
 
     def remove_component(self, name: ResourceName):
+        """Remove the component with the specified ```ResourceName```.
+
+        Args:
+            name (ResourceName): The ResourceName of the component
+        """
         with self._lock:
             del self.components[name]
 
