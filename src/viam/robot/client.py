@@ -81,12 +81,12 @@ class RobotClient:
 
         check_connection_interval: int = 10
         """
-        The frequency (in seconds) at which to check if the robot is still connected
+        The frequency (in seconds) at which to check if the robot is still connected. 0 (zero) signifies no connection checks
         """
 
         attempt_reconnect_interval: int = 1
         """
-        The frequency (in seconds) at which to attempt to reconnect a disconnected robot
+        The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts
         """
 
     @classmethod
@@ -218,6 +218,9 @@ class RobotClient:
                     exc_info=connection_error,
                 )
                 self._connected = False
+
+            if reconnect_every <= 0:
+                continue
 
             while not self._connected:
                 try:
