@@ -199,63 +199,27 @@ class RobotClient:
 
     async def _check_connection(self, check_every: int, reconnect_every: int):
         while True:
-            # await asyncio.sleep(check_every)
-            # print("Checking connection!!!!!!!!!!!!!")
+            await asyncio.sleep(check_every)
 
-            # # Failure to grab resources could be for spurious, non-networking reasons. Try three times just to be safe.
-            # connection_error = None
-            # for attempt in range(3):
-            #     try:
-            #         _: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest(), timeout=1)
-            #         print("SUCCESSFUL CONNECTION ESTABLISHED")
-            #         connection_error = None
-            #         break
-            #     except Exception as e:
-            #         print("NAH WE GOT AN ERROR FAM")
-            #         connection_error = e
-            #         await asyncio.sleep(0.1)
-            # if connection_error:
-            #     LOGGER.error(
-            #         f"Lost connection to robot, attempting to reconnect to {self._address} every {reconnect_every} "
-            #         + f"second{'s' if reconnect_every != 0 else ''})",
-            #         exc_info=connection_error,
-            #     )
-            #     self._connected = False
+            # Failure to grab resources could be for spurious, non-networking reasons. Try three times just to be safe.
+            connection_error = None
+            for attempt in range(3):
+                try:
+                    _: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest(), timeout=1)
+                    connection_error = None
+                    break
+                except Exception as e:
+                    connection_error = e
+                    await asyncio.sleep(0.1)
+            if connection_error:
+                LOGGER.error(
+                    f"Lost connection to robot, attempting to reconnect to {self._address} every {reconnect_every} "
+                    + f"second{'s' if reconnect_every != 0 else ''})",
+                    exc_info=connection_error,
+                )
+                self._connected = False
 
-            # while not self._connected:
-            #     try:
-            #         channel = await dial(self._address, self._options.dial_options)
-            #         if isinstance(channel, Channel):
-            #             self._channel = channel
-            #             self._viam_channel = None
-            #         else:
-            #             self._channel = channel.channel
-            #             self._viam_channel = channel
-            #         print("CONNECTED, ABOUT TO REFRESH")
-            #         await self.refresh()
-            #         print("REFRESHED")
-            #         self._connected = True
-            #         LOGGER.debug("Successfully reconnected robot")
-            #     except Exception as e:
-            #         LOGGER.debug(f"Failed to reconnect, trying again in {reconnect_every}", exc_info=e)
-            #         await asyncio.sleep(reconnect_every)
-
-            if self._connected:
-                wait_time = check_every
-            else:
-                wait_time = reconnect_every
-
-            await asyncio.sleep(wait_time)
-
-            if not self._address:
-                # this isn't set at the time the robot is created, and is unavailable to
-                # that function. We set it as soon as possible but a disconnect in the time
-                # between is theoretically possible, so we don't want to exit this loop if
-                # the address doesn't exist.
-                LOGGER.debug("Unable to connect; address is not known.")
-                continue
-
-            if not self._connected:
+            while not self._connected:
                 try:
                     channel = await dial(self._address, self._options.dial_options)
                     if isinstance(channel, Channel):
@@ -264,27 +228,14 @@ class RobotClient:
                     else:
                         self._channel = channel.channel
                         self._viam_channel = channel
+                    self._client = RobotServiceStub(self._channel)
+
+                    await self.refresh()
+                    self._connected = True
                     LOGGER.debug("Successfully reconnected robot")
                 except Exception as e:
-                    LOGGER.debug(f"Failed to reconnect, trying again in {wait_time}", exc_info=e)
-                continue
-
-            outer_error = None
-            # failure to grab resources could be for spurious, non-networking reasons. Try three times just to be safe.
-            for attempt in range(3):
-                try:
-                    _: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
-                    outer_error = None
-                    break
-                except Exception as e:
-                    outer_error = e
-                    continue
-
-            if outer_error:
-                LOGGER.error(
-                    f"Lost connection, attempting to reconnect to {self._address} every {reconnect_every} seconds", exc_info=outer_error
-                )
-                self._connected = False
+                    LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}", exc_info=e)
+                    await asyncio.sleep(reconnect_every)
 
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
