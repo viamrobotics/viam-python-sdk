@@ -81,7 +81,7 @@ class RobotClient:
 
         check_connected_time: int = 10
         """
-        The frequency (in seconds) at which to check if the robot is still connected 
+        The frequency (in seconds) at which to check if the robot is still connected
         """
 
         reconnect_every: int = 1
@@ -239,7 +239,8 @@ class RobotClient:
                     continue
 
             if outer_error:
-                LOGGER.error(f"Lost connection, attempting to reconnect to {self._address} every {reconnect_every} seconds", exc_info=outer_error)
+                LOGGER.error(f"Lost connection, attempting to reconnect to {self._address} every {reconnect_every} seconds",
+                             exc_info=outer_error)
                 self._connected = False
 
     def get_component(self, name: ResourceName) -> ComponentBase:
