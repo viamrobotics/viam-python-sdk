@@ -79,6 +79,16 @@ class RobotClient:
         The log level to output
         """
 
+        check_connection_interval: int = 10
+        """
+        The frequency (in seconds) at which to check if the robot is still connected. 0 (zero) signifies no connection checks
+        """
+
+        attempt_reconnect_interval: int = 1
+        """
+        The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts
+        """
+
     @classmethod
     async def at_address(cls, address: str, options: Options) -> Self:
         """Create a robot client that is connected to the robot at the provided address.
@@ -94,6 +104,7 @@ class RobotClient:
         channel = await dial(address, options.dial_options)
         robot = await RobotClient.with_channel(channel, options)
         robot._should_close_channel = True
+        robot._address = address
         return robot
 
     @classmethod
@@ -119,16 +130,25 @@ class RobotClient:
         else:
             self._channel = channel.channel
             self._viam_channel = channel
+        self._connected = True
         self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
         self._lock = Lock()
         self._resource_names = []
         self._should_close_channel = False
+        self._options = options
+        self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
         await self.refresh()
 
         if options.refresh_interval > 0:
             self._refresh_task = asyncio.create_task(
                 self._refresh_every(options.refresh_interval), name=f"{viam._TASK_PREFIX}-robot_refresh_metadata"
+            )
+
+        if options.check_connection_interval > 0:
+            self._check_connection_task = asyncio.create_task(
+                self._check_connection(options.check_connection_interval, options.attempt_reconnect_interval),
+                name=f"{viam._TASK_PREFIX}-robot_check_connection",
             )
 
         return self
@@ -138,7 +158,11 @@ class RobotClient:
     _lock: Lock
     _manager: ResourceManager
     _client: RobotServiceStub
+    _connected: bool
+    _address: str
+    _options: Options
     _refresh_task: Optional[asyncio.Task] = None
+    _check_connection_task: Optional[asyncio.Task] = None
     _resource_names: List[ResourceName]
     _should_close_channel: bool
 
@@ -172,6 +196,49 @@ class RobotClient:
                 await self.refresh()
             except Exception as e:
                 LOGGER.error("Failed to refresh status", exc_info=e)
+
+    async def _check_connection(self, check_every: int, reconnect_every: int):
+        while True:
+            await asyncio.sleep(check_every)
+
+            # Failure to grab resources could be for spurious, non-networking reasons. Try three times just to be safe.
+            connection_error = None
+            for attempt in range(3):
+                try:
+                    _: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest(), timeout=1)
+                    connection_error = None
+                    break
+                except Exception as e:
+                    connection_error = e
+                    await asyncio.sleep(0.1)
+            if connection_error:
+                LOGGER.error(
+                    f"Lost connection to robot, attempting to reconnect to {self._address} every {reconnect_every} "
+                    + f"second{'s' if reconnect_every != 0 else ''})",
+                    exc_info=connection_error,
+                )
+                self._connected = False
+
+            if reconnect_every <= 0:
+                continue
+
+            while not self._connected:
+                try:
+                    channel = await dial(self._address, self._options.dial_options)
+                    if isinstance(channel, Channel):
+                        self._channel = channel
+                        self._viam_channel = None
+                    else:
+                        self._channel = channel.channel
+                        self._viam_channel = channel
+                    self._client = RobotServiceStub(self._channel)
+
+                    await self.refresh()
+                    self._connected = True
+                    LOGGER.debug("Successfully reconnected robot")
+                except Exception as e:
+                    LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}", exc_info=e)
+                    await asyncio.sleep(reconnect_every)
 
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
