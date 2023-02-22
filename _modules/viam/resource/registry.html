@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,7 +71,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">viam.resource.registry</li>
       <li class="wy-breadcrumbs-aside">
@@ -101,7 +105,7 @@
 
 <div class="viewcode-block" id="ComponentRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.ComponentRegistration">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ComponentRegistration</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">Component</span><span class="p">]):</span>
-    <span class="sd">&quot;&quot;&quot;An object representing a component to be registered.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An object representing a component to be registered.</span>
 
 <span class="sd">    This object is generic over the component, and it includes various functionality for the component, such as creating its RPC client</span>
 <span class="sd">    or status.</span>
@@ -111,26 +115,26 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">component_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Component</span><span class="p">]</span>
-    <span class="sd">&quot;&quot;&quot;The type of the Component to be registered</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The type of the Component to be registered</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">rpc_service</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ComponentServiceBase</span><span class="p">]</span>
-    <span class="sd">&quot;&quot;&quot;The RPC service of the component. This must extend from ``ComponentServiceBase``</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The RPC service of the component. This must extend from ``ComponentServiceBase``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">create_rpc_client</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Channel</span><span class="p">],</span> <span class="n">Component</span><span class="p">]</span>
-    <span class="sd">&quot;&quot;&quot;A function that will create the RPC client for this component</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function that will create the RPC client for this component</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">create_status</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Component</span><span class="p">],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Status</span><span class="p">]]</span> <span class="o">=</span> <span class="n">default_create_status</span>
-    <span class="sd">&quot;&quot;&quot;A function to create a Status object for this component.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function to create a Status object for this component.</span>
 
 <span class="sd">    If the Component does not provide a custom status type, the default implementation can be used.</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="Registry"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry">[docs]</a><span class="k">class</span> <span class="nc">Registry</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;The global registry of robotic parts.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The global registry of robotic parts.</span>
 
 <span class="sd">    **NB** The Registry should almost never be used directly</span>
 
@@ -145,7 +149,7 @@
 
 <div class="viewcode-block" id="Registry.register"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">registration</span><span class="p">:</span> <span class="n">ComponentRegistration</span><span class="p">[</span><span class="n">Component</span><span class="p">]):</span>
-        <span class="sd">&quot;&quot;&quot;Register a Component with the Registry</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a Component with the Registry</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            registration (ComponentRegistration): Object containing registration data for the component</span>
@@ -159,7 +163,7 @@
 
 <div class="viewcode-block" id="Registry.lookup"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.lookup">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">lookup</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="n">Subtype</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentRegistration</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Lookup and retrieve a registered component by its name</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lookup and retrieve a registered component by its name</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (str): The name of the component</span>
@@ -177,7 +181,7 @@
 
 <div class="viewcode-block" id="Registry.REGISTERED_COMPONENTS"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.REGISTERED_COMPONENTS">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">REGISTERED_COMPONENTS</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Subtype</span><span class="p">,</span> <span class="n">ComponentRegistration</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;The dictionary of all registered components</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The dictionary of all registered components</span>
 <span class="sd">        - Key: Name of the component type</span>
 <span class="sd">        - Value: The registration object for the component type</span>
 

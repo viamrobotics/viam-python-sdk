@@ -74,7 +74,7 @@ Attributes
 
 
 .. py:data:: DESCRIPTOR
-   :annotation: :google.protobuf.descriptor.FileDescriptor
+   :type: google.protobuf.descriptor.FileDescriptor
 
    
 
@@ -89,28 +89,27 @@ Attributes
    shown below.
 
    .. py:attribute:: namespace
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: type
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: subtype
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___ResourceName
-   
 
    
 
@@ -139,7 +138,7 @@ Attributes
 
 
       .. py:attribute:: key
-         :annotation: :str
+         :type: str
 
          
 
@@ -176,7 +175,7 @@ Attributes
 
 
       .. py:attribute:: key
-         :annotation: :str
+         :type: str
 
          
 
@@ -208,7 +207,6 @@ Attributes
 
 
 .. py:data:: global___BoardStatus
-   
 
    
 
@@ -223,13 +221,12 @@ Attributes
    shown below.
 
    .. py:attribute:: value
-      :annotation: :int
+      :type: int
 
       Current value of the analog reader of a robot's board
 
 
 .. py:data:: global___AnalogStatus
-   
 
    
 
@@ -244,13 +241,12 @@ Attributes
    shown below.
 
    .. py:attribute:: value
-      :annotation: :int
+      :type: int
 
       Current value of the digital interrupt of a robot's board
 
 
 .. py:data:: global___DigitalInterruptStatus
-   
 
    
 
@@ -268,43 +264,42 @@ Attributes
    is circled, the Roll will correct itself to remain in-line.
 
    .. py:attribute:: x
-      :annotation: :float
+      :type: float
 
       millimeters from the origin
 
    .. py:attribute:: y
-      :annotation: :float
+      :type: float
 
       millimeters from the origin
 
    .. py:attribute:: z
-      :annotation: :float
+      :type: float
 
       millimeters from the origin
 
    .. py:attribute:: o_x
-      :annotation: :float
+      :type: float
 
       z component of a vector defining axis of rotation
 
    .. py:attribute:: o_y
-      :annotation: :float
+      :type: float
 
       x component of a vector defining axis of rotation
 
    .. py:attribute:: o_z
-      :annotation: :float
+      :type: float
 
       y component of a vector defining axis of rotation
 
    .. py:attribute:: theta
-      :annotation: :float
+      :type: float
 
       degrees
 
 
 .. py:data:: global___Pose
-   
 
    
 
@@ -319,28 +314,27 @@ Attributes
    shown below.
 
    .. py:attribute:: o_x
-      :annotation: :float
+      :type: float
 
       x component of a vector defining axis of rotation
 
    .. py:attribute:: o_y
-      :annotation: :float
+      :type: float
 
       y component of a vector defining axis of rotation
 
    .. py:attribute:: o_z
-      :annotation: :float
+      :type: float
 
       z component of a vector defining axis of rotation
 
    .. py:attribute:: theta
-      :annotation: :float
+      :type: float
 
       degrees
 
 
 .. py:data:: global___Orientation
-   
 
    
 
@@ -355,7 +349,7 @@ Attributes
 
 
    .. py:attribute:: reference_frame
-      :annotation: :str
+      :type: str
 
       
 
@@ -378,7 +372,6 @@ Attributes
 
 
 .. py:data:: global___PoseInFrame
-   
 
    
 
@@ -393,23 +386,22 @@ Attributes
    shown below.
 
    .. py:attribute:: x
-      :annotation: :float
+      :type: float
 
       
 
    .. py:attribute:: y
-      :annotation: :float
+      :type: float
 
       
 
    .. py:attribute:: z
-      :annotation: :float
+      :type: float
 
       
 
 
 .. py:data:: global___Vector3
-   
 
    
 
@@ -424,13 +416,12 @@ Attributes
    shown below.
 
    .. py:attribute:: radius_mm
-      :annotation: :float
+      :type: float
 
       
 
 
 .. py:data:: global___Sphere
-   
 
    
 
@@ -445,18 +436,17 @@ Attributes
    shown below.
 
    .. py:attribute:: radius_mm
-      :annotation: :float
+      :type: float
 
       
 
    .. py:attribute:: length_mm
-      :annotation: :float
+      :type: float
 
       
 
 
 .. py:data:: global___Capsule
-   
 
    
 
@@ -490,7 +480,6 @@ Attributes
 
 
 .. py:data:: global___RectangularPrism
-   
 
    
 
@@ -518,7 +507,7 @@ Attributes
 
 
    .. py:attribute:: label
-      :annotation: :str
+      :type: str
 
       Label of the geometry. If none supplied, will be an empty string.
 
@@ -556,7 +545,6 @@ Attributes
 
 
 .. py:data:: global___Geometry
-   
 
    
 
@@ -573,13 +561,12 @@ Attributes
       Dimensional type
 
    .. py:attribute:: reference_frame
-      :annotation: :str
+      :type: str
 
       Reference frame of the observer of the geometry
 
 
 .. py:data:: global___GeometriesInFrame
-   
 
    
 
@@ -596,7 +583,7 @@ Attributes
       volume of a given geometry
 
    .. py:attribute:: point_cloud
-      :annotation: :bytes
+      :type: bytes
 
       image frame expressed in bytes
 
@@ -619,7 +606,6 @@ Attributes
 
 
 .. py:data:: global___PointCloudObject
-   
 
    
 
@@ -634,18 +620,17 @@ Attributes
    shown below.
 
    .. py:attribute:: latitude
-      :annotation: :float
+      :type: float
 
       
 
    .. py:attribute:: longitude
-      :annotation: :float
+      :type: float
 
       
 
 
 .. py:data:: global___GeoPoint
-   
 
    
 
@@ -667,7 +652,7 @@ Attributes
 
 
    .. py:attribute:: reference_frame
-      :annotation: :str
+      :type: str
 
       the name of a given reference frame
 
@@ -705,7 +690,6 @@ Attributes
 
 
 .. py:data:: global___Transform
-   
 
    
 
@@ -729,7 +713,6 @@ Attributes
 
 
 .. py:data:: global___WorldState
-   
 
    
 
@@ -740,13 +723,12 @@ Attributes
    ActuatorStatus is a generic status for resources that only need to return actuator status.
 
    .. py:attribute:: is_moving
-      :annotation: :bool
+      :type: bool
 
       
 
 
 .. py:data:: global___ActuatorStatus
-   
 
    
 
@@ -761,7 +743,7 @@ Attributes
 
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
@@ -784,7 +766,6 @@ Attributes
 
 
 .. py:data:: global___DoCommandRequest
-   
 
    
 
@@ -817,17 +798,16 @@ Attributes
 
 
 .. py:data:: global___DoCommandResponse
-   
 
    
 
 .. py:data:: SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER
-   :annotation: :int
+   :type: int
 
    
 
 .. py:data:: safety_heartbeat_monitored
-   :annotation: :google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, bool]
+   :type: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, bool]
 
    safety_heartbeat_monitored is used on methods to signify that if a session is in use
    and the session was the last to call this method, the resource associated with the

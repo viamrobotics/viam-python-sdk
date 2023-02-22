@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.proto.service.vision &mdash; Viam Python SDK  documentation</title>
@@ -31,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -505,7 +509,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service</span></code></a></li>
       <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.vision</span></code></li>
@@ -527,10 +531,6 @@ Do not edit manually!</p>
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.vision.VisionServiceBase" title="viam.proto.service.vision.VisionServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VisionServiceBase</span></code></a></p></td>
 <td><p>Helper class that provides a standard way to create an ABC using</p></td>
@@ -749,19 +749,19 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddClassifierRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddClassifierRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddClassifierRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddClassifierRequest.classifier_name">
-<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddClassifierRequest.classifier_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddClassifierRequest.classifier_name" title="Permalink to this definition"></a></dt>
 <dd><p>name of classifier to add to registry</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddClassifierRequest.classifier_model_type">
-<span class="sig-name descname"><span class="pre">classifier_model_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddClassifierRequest.classifier_model_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">classifier_model_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddClassifierRequest.classifier_model_type" title="Permalink to this definition"></a></dt>
 <dd><p>the type of classifier</p>
 </dd></dl>
 
@@ -773,16 +773,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -819,17 +819,17 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddDetectorRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddDetectorRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddDetectorRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddDetectorRequest.detector_name">
-<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddDetectorRequest.detector_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddDetectorRequest.detector_name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddDetectorRequest.detector_model_type">
-<span class="sig-name descname"><span class="pre">detector_model_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddDetectorRequest.detector_model_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">detector_model_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddDetectorRequest.detector_model_type" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -840,16 +840,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -887,19 +887,19 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddSegmenterRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddSegmenterRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddSegmenterRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddSegmenterRequest.segmenter_name">
-<span class="sig-name descname"><span class="pre">segmenter_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddSegmenterRequest.segmenter_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">segmenter_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddSegmenterRequest.segmenter_name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the segmenter</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.AddSegmenterRequest.segmenter_model_type">
-<span class="sig-name descname"><span class="pre">segmenter_model_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddSegmenterRequest.segmenter_model_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">segmenter_model_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.AddSegmenterRequest.segmenter_model_type" title="Permalink to this definition"></a></dt>
 <dd><p>name of the segmenter model</p>
 </dd></dl>
 
@@ -911,16 +911,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -943,13 +943,13 @@ shown below.</p>
 <dd><p>the general form of the output from a classifier</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.Classification.class_name">
-<span class="sig-name descname"><span class="pre">class_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.Classification.class_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">class_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.Classification.class_name" title="Permalink to this definition"></a></dt>
 <dd><p>the class name</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.Classification.confidence">
-<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.service.vision.Classification.confidence" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.service.vision.Classification.confidence" title="Permalink to this definition"></a></dt>
 <dd><p>the confidence score of the classification</p>
 </dd></dl>
 
@@ -964,34 +964,34 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.Detection.x_min">
-<span class="sig-name descname"><span class="pre">x_min</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.x_min" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">x_min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.x_min" title="Permalink to this definition"></a></dt>
 <dd><p>the four corners of the box</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.Detection.y_min">
-<span class="sig-name descname"><span class="pre">y_min</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.y_min" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">y_min</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.y_min" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.Detection.x_max">
-<span class="sig-name descname"><span class="pre">x_max</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.x_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">x_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.x_max" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.Detection.y_max">
-<span class="sig-name descname"><span class="pre">y_max</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.y_max" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">y_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.y_max" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.Detection.confidence">
-<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.confidence" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">confidence</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.confidence" title="Permalink to this definition"></a></dt>
 <dd><p>the confidence of the detection</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.Detection.class_name">
-<span class="sig-name descname"><span class="pre">class_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.class_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">class_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.Detection.class_name" title="Permalink to this definition"></a></dt>
 <dd><p>label associated with the detected object</p>
 </dd></dl>
 
@@ -1003,16 +1003,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1030,16 +1030,16 @@ be raised.</p>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>
 <p>If no field is set, returns None.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The name of the group that is set, or None.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str or None</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
@@ -1062,25 +1062,25 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsFromCameraRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsFromCameraRequest.camera_name">
-<span class="sig-name descname"><span class="pre">camera_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.camera_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">camera_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.camera_name" title="Permalink to this definition"></a></dt>
 <dd><p>the image encoded as bytes</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsFromCameraRequest.classifier_name">
-<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.classifier_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.classifier_name" title="Permalink to this definition"></a></dt>
 <dd><p>the name of the registered classifier</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsFromCameraRequest.n">
-<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.n" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsFromCameraRequest.n" title="Permalink to this definition"></a></dt>
 <dd><p>the number of classifications desired</p>
 </dd></dl>
 
@@ -1092,16 +1092,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1138,43 +1138,43 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsRequest.image">
-<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.image" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.image" title="Permalink to this definition"></a></dt>
 <dd><p>the image encoded as bytes</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsRequest.width">
-<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.width" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.width" title="Permalink to this definition"></a></dt>
 <dd><p>the width of the image</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsRequest.height">
-<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.height" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.height" title="Permalink to this definition"></a></dt>
 <dd><p>the height of the image</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsRequest.mime_type">
-<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.mime_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.mime_type" title="Permalink to this definition"></a></dt>
 <dd><p>the actual MIME type of image</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsRequest.classifier_name">
-<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.classifier_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.classifier_name" title="Permalink to this definition"></a></dt>
 <dd><p>the name of the registered classifier</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassificationsRequest.n">
-<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.n" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassificationsRequest.n" title="Permalink to this definition"></a></dt>
 <dd><p>the number of classifications desired</p>
 </dd></dl>
 
@@ -1186,16 +1186,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1232,7 +1232,7 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetClassifierNamesRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassifierNamesRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetClassifierNamesRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
@@ -1244,16 +1244,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1290,19 +1290,19 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsFromCameraRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsFromCameraRequest.camera_name">
-<span class="sig-name descname"><span class="pre">camera_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.camera_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">camera_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.camera_name" title="Permalink to this definition"></a></dt>
 <dd><p>name of camera source to use as input</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsFromCameraRequest.detector_name">
-<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.detector_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsFromCameraRequest.detector_name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the registered detector to use</p>
 </dd></dl>
 
@@ -1314,16 +1314,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1361,37 +1361,37 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsRequest.image">
-<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.image" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.image" title="Permalink to this definition"></a></dt>
 <dd><p>the image, encoded as bytes</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsRequest.width">
-<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.width" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.width" title="Permalink to this definition"></a></dt>
 <dd><p>the width of the image</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsRequest.height">
-<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.height" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.height" title="Permalink to this definition"></a></dt>
 <dd><p>the height of the image</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsRequest.mime_type">
-<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.mime_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.mime_type" title="Permalink to this definition"></a></dt>
 <dd><p>the actual MIME type of image</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectionsRequest.detector_name">
-<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.detector_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectionsRequest.detector_name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the registered detector to use</p>
 </dd></dl>
 
@@ -1403,16 +1403,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1450,7 +1450,7 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetDetectorNamesRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectorNamesRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetDetectorNamesRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1461,16 +1461,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1508,13 +1508,13 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetModelParameterSchemaRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetModelParameterSchemaRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetModelParameterSchemaRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetModelParameterSchemaRequest.model_type">
-<span class="sig-name descname"><span class="pre">model_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetModelParameterSchemaRequest.model_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">model_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetModelParameterSchemaRequest.model_type" title="Permalink to this definition"></a></dt>
 <dd><p>name of the type of vision model</p>
 </dd></dl>
 
@@ -1526,16 +1526,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1552,7 +1552,7 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetModelParameterSchemaResponse.model_parameter_schema">
-<span class="sig-name descname"><span class="pre">model_parameter_schema</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.service.vision.GetModelParameterSchemaResponse.model_parameter_schema" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">model_parameter_schema</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.proto.service.vision.GetModelParameterSchemaResponse.model_parameter_schema" title="Permalink to this definition"></a></dt>
 <dd><p>the parameters as JSON bytes of a jsonschema.Schema</p>
 </dd></dl>
 
@@ -1573,24 +1573,24 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetObjectPointCloudsRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetObjectPointCloudsRequest.camera_name">
-<span class="sig-name descname"><span class="pre">camera_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.camera_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">camera_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.camera_name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of a camera</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetObjectPointCloudsRequest.segmenter_name">
-<span class="sig-name descname"><span class="pre">segmenter_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.segmenter_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">segmenter_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.segmenter_name" title="Permalink to this definition"></a></dt>
 <dd><p>Name of the segmentation algorithm</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetObjectPointCloudsRequest.mime_type">
-<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.mime_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsRequest.mime_type" title="Permalink to this definition"></a></dt>
 <dd><p>Requested MIME type of response</p>
 </dd></dl>
 
@@ -1602,16 +1602,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1634,7 +1634,7 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetObjectPointCloudsResponse.mime_type">
-<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsResponse.mime_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetObjectPointCloudsResponse.mime_type" title="Permalink to this definition"></a></dt>
 <dd><p>Actual MIME type of response</p>
 </dd></dl>
 
@@ -1655,7 +1655,7 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.GetSegmenterNamesRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetSegmenterNamesRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.GetSegmenterNamesRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1666,16 +1666,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1713,13 +1713,13 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.RemoveClassifierRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveClassifierRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveClassifierRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.RemoveClassifierRequest.classifier_name">
-<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveClassifierRequest.classifier_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">classifier_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveClassifierRequest.classifier_name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the classifier in registry</p>
 </dd></dl>
 
@@ -1731,16 +1731,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1772,13 +1772,13 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.RemoveDetectorRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveDetectorRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveDetectorRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.RemoveDetectorRequest.detector_name">
-<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveDetectorRequest.detector_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">detector_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveDetectorRequest.detector_name" title="Permalink to this definition"></a></dt>
 <dd><p>name of detector in registry</p>
 </dd></dl>
 
@@ -1790,16 +1790,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1831,13 +1831,13 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.RemoveSegmenterRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveSegmenterRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveSegmenterRequest.name" title="Permalink to this definition"></a></dt>
 <dd><p>name of the vision service</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.service.vision.RemoveSegmenterRequest.segmenter_name">
-<span class="sig-name descname"><span class="pre">segmenter_name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveSegmenterRequest.segmenter_name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">segmenter_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.vision.RemoveSegmenterRequest.segmenter_name" title="Permalink to this definition"></a></dt>
 <dd><p>name of segmenter in registry</p>
 </dd></dl>
 
@@ -1849,16 +1849,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>

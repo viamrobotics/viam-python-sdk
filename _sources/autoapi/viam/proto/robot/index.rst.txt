@@ -164,7 +164,7 @@ Classes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
@@ -191,7 +191,7 @@ Classes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
@@ -280,12 +280,12 @@ Classes
    Discovery
 
    .. py:attribute:: subtype
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: model
-      :annotation: :str
+      :type: str
 
       
 
@@ -455,17 +455,17 @@ Classes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: method
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: session_id
-      :annotation: :str
+      :type: str
 
       
 
@@ -513,17 +513,17 @@ Classes
    shown below.
 
    .. py:attribute:: type
-      :annotation: :global___PeerConnectionType
+      :type: global___PeerConnectionType
 
       
 
    .. py:attribute:: remote_address
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: local_address
-      :annotation: :str
+      :type: str
 
       
 
@@ -607,7 +607,7 @@ Classes
 
 
    .. py:attribute:: proto_service
-      :annotation: :str
+      :type: str
 
       
 
@@ -666,7 +666,7 @@ Classes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
@@ -697,7 +697,7 @@ Classes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
@@ -745,7 +745,7 @@ Classes
    shown below.
 
    .. py:attribute:: resume
-      :annotation: :str
+      :type: str
 
       resume can be used to attempt to continue a stream after a disconnection event. If
       a session is not found, a new one will be created and returned.
@@ -766,7 +766,7 @@ Classes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
@@ -949,18 +949,18 @@ Classes
    shown below.
 
    .. py:attribute:: point_cloud_pcd
-      :annotation: :bytes
+      :type: bytes
 
       the point clouds to transform. This should be in the PCD format
       encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html
 
    .. py:attribute:: source
-      :annotation: :str
+      :type: str
 
       the reference frame of the point cloud.
 
    .. py:attribute:: destination
-      :annotation: :str
+      :type: str
 
       the reference frame into which the source data should be transformed, if unset this defaults to the "world" reference frame.
       Do not move the robot between the generation of the initial pointcloud and the receipt
@@ -978,7 +978,7 @@ Classes
    shown below.
 
    .. py:attribute:: point_cloud_pcd
-      :annotation: :bytes
+      :type: bytes
 
       
 
@@ -1006,7 +1006,7 @@ Classes
       to perform the transform
 
    .. py:attribute:: destination
-      :annotation: :str
+      :type: str
 
       the reference frame into which the source pose should be transformed,
       if unset this defaults to the "world" reference frame

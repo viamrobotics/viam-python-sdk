@@ -48,23 +48,23 @@ Classes
       The camera's supported features and settings
 
       .. py:attribute:: supports_pcd
-         :annotation: :bool
+         :type: bool
 
          Whether the camera has a valid implementation of ``get_point_cloud``
 
       .. py:attribute:: intrinsic_parameters
-         :annotation: :viam.proto.component.camera.IntrinsicParameters
+         :type: viam.proto.component.camera.IntrinsicParameters
 
          The properties of the camera
 
       .. py:attribute:: distortion_parameters
-         :annotation: :viam.proto.component.camera.DistortionParameters
+         :type: viam.proto.component.camera.DistortionParameters
 
          The distortion parameters of the camera
 
 
    .. py:attribute:: SUBTYPE
-      :annotation: :Final
+      :type: Final
 
       
 
@@ -137,7 +137,7 @@ Classes
 
 
    .. py:attribute:: model
-      :annotation: :str
+      :type: str
 
       
 
@@ -153,32 +153,32 @@ Classes
    shown below.
 
    .. py:attribute:: width_px
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: height_px
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: focal_x_px
-      :annotation: :float
+      :type: float
 
       
 
    .. py:attribute:: focal_y_px
-      :annotation: :float
+      :type: float
 
       
 
    .. py:attribute:: center_x_px
-      :annotation: :float
+      :type: float
 
       
 
    .. py:attribute:: center_y_px
-      :annotation: :float
+      :type: float
 
       
 
@@ -197,12 +197,12 @@ Classes
    Python SDK
 
    .. py:attribute:: data
-      :annotation: :bytes
+      :type: bytes
 
       The raw data of the image
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       The mimetype of the image
 

@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,7 +71,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">viam.media.video</li>
       <li class="wy-breadcrumbs-aside">
@@ -93,7 +97,7 @@
 
 
 <div class="viewcode-block" id="RawImage"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage">[docs]</a><span class="k">class</span> <span class="nc">RawImage</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A raw bytes representation of an image.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A raw bytes representation of an image.</span>
 
 <span class="sd">    A RawImage should be returned instead of a PIL Image instance under one of</span>
 <span class="sd">    the following conditions</span>
@@ -104,13 +108,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span>
-    <span class="sd">&quot;&quot;&quot;The raw data of the image&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The raw data of the image&quot;&quot;&quot;</span>
 
     <span class="n">mime_type</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="sd">&quot;&quot;&quot;The mimetype of the image&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The mimetype of the image&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RawImage.close"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Close the image and release resources. For RawImage, this is a noop.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the image and release resources. For RawImage, this is a noop.&quot;&quot;&quot;</span>
         <span class="k">return</span></div></div>
 
 
@@ -149,7 +153,7 @@
 
 <div class="viewcode-block" id="CameraMimeType.is_supported"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.is_supported">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">is_supported</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Check if the provided mime_type is supported</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if the provided mime_type is supported</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            mime_type (str): The mime_type to check</span>

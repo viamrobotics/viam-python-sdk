@@ -229,7 +229,7 @@ Attributes
 
 
 .. py:data:: DESCRIPTOR
-   :annotation: :google.protobuf.descriptor.FileDescriptor
+   :type: google.protobuf.descriptor.FileDescriptor
 
    
 
@@ -252,17 +252,17 @@ Attributes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: location
-      :annotation: :str
+      :type: str
 
       
 
@@ -285,7 +285,6 @@ Attributes
 
 
 .. py:data:: global___Robot
-   
 
    
 
@@ -321,48 +320,48 @@ Attributes
       List of secrets allowed for authentication.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: dns_name
-      :annotation: :str
+      :type: str
 
       dns_name part name used for fqdn and local fqdn. Anytime the Name is updated this should be sanitized and updated as well.
 
    .. py:attribute:: secret
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: robot
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location
       changes.
 
    .. py:attribute:: main_part
-      :annotation: :bool
+      :type: bool
 
       
 
    .. py:attribute:: fqdn
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: local_fqdn
-      :annotation: :str
+      :type: str
 
       
 
@@ -385,7 +384,6 @@ Attributes
 
 
 .. py:data:: global___RobotPart
-   
 
    
 
@@ -408,12 +406,12 @@ Attributes
 
 
    .. py:attribute:: part
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: robot
-      :annotation: :str
+      :type: str
 
       
 
@@ -436,7 +434,6 @@ Attributes
 
 
 .. py:data:: global___RobotPartHistoryEntry
-   
 
    
 
@@ -452,7 +449,6 @@ Attributes
 
 
 .. py:data:: global___ListOrganizationsRequest
-   
 
    
 
@@ -471,12 +467,12 @@ Attributes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
@@ -499,7 +495,6 @@ Attributes
 
 
 .. py:data:: global___Organization
-   
 
    
 
@@ -522,7 +517,7 @@ Attributes
 
 
    .. py:attribute:: user_id
-      :annotation: :str
+      :type: str
 
       
 
@@ -545,7 +540,6 @@ Attributes
 
 
 .. py:data:: global___OrganizationMember
-   
 
    
 
@@ -565,7 +559,6 @@ Attributes
 
 
 .. py:data:: global___ListOrganizationsResponse
-   
 
    
 
@@ -584,17 +577,17 @@ Attributes
 
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: email
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: robot_count
-      :annotation: :int
+      :type: int
 
       
 
@@ -617,7 +610,6 @@ Attributes
 
 
 .. py:data:: global___OrganizationInvite
-   
 
    
 
@@ -632,13 +624,12 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___CreateOrganizationRequest
-   
 
    
 
@@ -675,7 +666,6 @@ Attributes
 
 
 .. py:data:: global___CreateOrganizationResponse
-   
 
    
 
@@ -690,13 +680,12 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___GetOrganizationRequest
-   
 
    
 
@@ -733,7 +722,6 @@ Attributes
 
 
 .. py:data:: global___GetOrganizationResponse
-   
 
    
 
@@ -748,18 +736,17 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___UpdateOrganizationRequest
-   
 
    
 
@@ -796,7 +783,6 @@ Attributes
 
 
 .. py:data:: global___UpdateOrganizationResponse
-   
 
    
 
@@ -811,13 +797,12 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DeleteOrganizationRequest
-   
 
    
 
@@ -833,7 +818,6 @@ Attributes
 
 
 .. py:data:: global___DeleteOrganizationResponse
-   
 
    
 
@@ -848,13 +832,12 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___ListOrganizationMembersRequest
-   
 
    
 
@@ -877,13 +860,12 @@ Attributes
 
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___ListOrganizationMembersResponse
-   
 
    
 
@@ -898,18 +880,17 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: email
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___CreateOrganizationInviteRequest
-   
 
    
 
@@ -946,7 +927,6 @@ Attributes
 
 
 .. py:data:: global___CreateOrganizationInviteResponse
-   
 
    
 
@@ -961,18 +941,17 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: email
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DeleteOrganizationInviteRequest
-   
 
    
 
@@ -988,7 +967,6 @@ Attributes
 
 
 .. py:data:: global___DeleteOrganizationInviteResponse
-   
 
    
 
@@ -1003,18 +981,17 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: email
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___ResendOrganizationInviteRequest
-   
 
    
 
@@ -1051,7 +1028,6 @@ Attributes
 
 
 .. py:data:: global___ResendOrganizationInviteResponse
-   
 
    
 
@@ -1066,18 +1042,17 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: user_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DeleteOrganizationMemberRequest
-   
 
    
 
@@ -1093,7 +1068,6 @@ Attributes
 
 
 .. py:data:: global___DeleteOrganizationMemberResponse
-   
 
    
 
@@ -1104,18 +1078,17 @@ Attributes
    Location
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       Organization ID the location is shared with.
 
    .. py:attribute:: primary
-      :annotation: :bool
+      :type: bool
 
       Whether the organization is the primary owner or not.
 
 
 .. py:data:: global___LocationOrganization
-   
 
    
 
@@ -1135,20 +1108,19 @@ Attributes
       List of secrets used to authenticate to the Location.
 
    .. py:attribute:: secret
-      :annotation: :str
+      :type: str
 
       use secrets field.
 
       :type: Deprecated
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       Location ID containing this LocationAuth.
 
 
 .. py:data:: global___LocationAuth
-   
 
    
 
@@ -1178,22 +1150,22 @@ Attributes
       Location creation timestamp.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       Location ID.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Location name.
 
    .. py:attribute:: parent_location_id
-      :annotation: :str
+      :type: str
 
       Location ID of the parent location.
 
    .. py:attribute:: robot_count
-      :annotation: :int
+      :type: int
 
       
 
@@ -1216,7 +1188,6 @@ Attributes
 
 
 .. py:data:: global___Location
-   
 
    
 
@@ -1237,32 +1208,32 @@ Attributes
       Date/time the secret was first created.
 
    .. py:attribute:: STATE_UNSPECIFIED
-      :annotation: :SharedSecret
+      :type: SharedSecret
 
       
 
    .. py:attribute:: STATE_ENABLED
-      :annotation: :SharedSecret
+      :type: SharedSecret
 
       Secret is enabled and can be used in authentication.
 
    .. py:attribute:: STATE_DISABLED
-      :annotation: :SharedSecret
+      :type: SharedSecret
 
       Secret is disabled and must not be used to authenticate to rpc.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: secret
-      :annotation: :str
+      :type: str
 
       The payload of the secret. Used during authentication to the rpc framework.
 
    .. py:attribute:: state
-      :annotation: :global___SharedSecret.State.ValueType
+      :type: global___SharedSecret.State.ValueType
 
       State of the shared secret. In most cases it should be enabled. We may support
       disabling a specific secret while keeping it in the database.
@@ -1286,7 +1257,6 @@ Attributes
 
 
 .. py:data:: global___SharedSecret
-   
 
    
 
@@ -1301,17 +1271,17 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       Organization ID to create the location under.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of the location.
 
    .. py:attribute:: parent_location_id
-      :annotation: :str
+      :type: str
 
       The new parent location to move the location under.
 
@@ -1349,7 +1319,6 @@ Attributes
 
 
 .. py:data:: global___CreateLocationRequest
-   
 
    
 
@@ -1387,7 +1356,6 @@ Attributes
 
 
 .. py:data:: global___CreateLocationResponse
-   
 
    
 
@@ -1402,13 +1370,12 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       Location ID of location to get.
 
 
 .. py:data:: global___GetLocationRequest
-   
 
    
 
@@ -1446,7 +1413,6 @@ Attributes
 
 
 .. py:data:: global___GetLocationResponse
-   
 
    
 
@@ -1461,17 +1427,17 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       Location ID of location to update.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       The new to be updated on location.
 
    .. py:attribute:: parent_location_id
-      :annotation: :str
+      :type: str
 
       The new parent location to move the location under.
 
@@ -1510,7 +1476,6 @@ Attributes
 
 
 .. py:data:: global___UpdateLocationRequest
-   
 
    
 
@@ -1548,7 +1513,6 @@ Attributes
 
 
 .. py:data:: global___UpdateLocationResponse
-   
 
    
 
@@ -1563,13 +1527,12 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       Location ID of location to delete.
 
 
 .. py:data:: global___DeleteLocationRequest
-   
 
    
 
@@ -1585,7 +1548,6 @@ Attributes
 
 
 .. py:data:: global___DeleteLocationResponse
-   
 
    
 
@@ -1600,13 +1562,12 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       Organization ID under which to list all locations.
 
 
 .. py:data:: global___ListLocationsRequest
-   
 
    
 
@@ -1621,18 +1582,17 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       Location ID to be shared.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       Organization ID to share the location with.
 
 
 .. py:data:: global___ShareLocationRequest
-   
 
    
 
@@ -1648,7 +1608,6 @@ Attributes
 
 
 .. py:data:: global___ShareLocationResponse
-   
 
    
 
@@ -1663,18 +1622,17 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       Location ID to be unshared.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       Organization ID to unshare the location with.
 
 
 .. py:data:: global___UnshareLocationRequest
-   
 
    
 
@@ -1690,7 +1648,6 @@ Attributes
 
 
 .. py:data:: global___UnshareLocationResponse
-   
 
    
 
@@ -1710,7 +1667,6 @@ Attributes
 
 
 .. py:data:: global___ListLocationsResponse
-   
 
    
 
@@ -1725,13 +1681,12 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       Location ID to create the secret in.
 
 
 .. py:data:: global___CreateLocationSecretRequest
-   
 
    
 
@@ -1769,7 +1724,6 @@ Attributes
 
 
 .. py:data:: global___CreateLocationSecretResponse
-   
 
    
 
@@ -1784,18 +1738,17 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: secret_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DeleteLocationSecretRequest
-   
 
    
 
@@ -1811,7 +1764,6 @@ Attributes
 
 
 .. py:data:: global___DeleteLocationSecretResponse
-   
 
    
 
@@ -1826,13 +1778,12 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___LocationAuthRequest
-   
 
    
 
@@ -1869,7 +1820,6 @@ Attributes
 
 
 .. py:data:: global___LocationAuthResponse
-   
 
    
 
@@ -1884,13 +1834,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___GetRobotRequest
-   
 
    
 
@@ -1906,7 +1855,6 @@ Attributes
 
 
 .. py:data:: global___GetRoverRentalRobotsRequest
-   
 
    
 
@@ -1921,23 +1869,22 @@ Attributes
    shown below.
 
    .. py:attribute:: robot_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: robot_name
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___RoverRentalRobot
-   
 
    
 
@@ -1957,7 +1904,6 @@ Attributes
 
 
 .. py:data:: global___GetRoverRentalRobotsResponse
-   
 
    
 
@@ -1994,7 +1940,6 @@ Attributes
 
 
 .. py:data:: global___GetRobotResponse
-   
 
    
 
@@ -2009,13 +1954,12 @@ Attributes
    shown below.
 
    .. py:attribute:: robot_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___GetRobotPartsRequest
-   
 
    
 
@@ -2035,7 +1979,6 @@ Attributes
 
 
 .. py:data:: global___GetRobotPartsResponse
-   
 
    
 
@@ -2050,13 +1993,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___GetRobotPartRequest
-   
 
    
 
@@ -2075,7 +2017,7 @@ Attributes
 
 
    .. py:attribute:: config_json
-      :annotation: :str
+      :type: str
 
       
 
@@ -2098,7 +2040,6 @@ Attributes
 
 
 .. py:data:: global___GetRobotPartResponse
-   
 
    
 
@@ -2113,22 +2054,22 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: errors_only
-      :annotation: :bool
+      :type: bool
 
       
 
    .. py:attribute:: filter
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: page_token
-      :annotation: :str
+      :type: str
 
       
 
@@ -2167,7 +2108,6 @@ Attributes
 
 
 .. py:data:: global___GetRobotPartLogsRequest
-   
 
    
 
@@ -2194,27 +2134,27 @@ Attributes
 
 
    .. py:attribute:: host
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: level
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: logger_name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: message
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: stack
-      :annotation: :str
+      :type: str
 
       
 
@@ -2237,7 +2177,6 @@ Attributes
 
 
 .. py:data:: global___LogEntry
-   
 
    
 
@@ -2256,13 +2195,12 @@ Attributes
 
 
    .. py:attribute:: next_page_token
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___GetRobotPartLogsResponse
-   
 
    
 
@@ -2277,17 +2215,17 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: errors_only
-      :annotation: :bool
+      :type: bool
 
       
 
    .. py:attribute:: filter
-      :annotation: :str
+      :type: str
 
       
 
@@ -2325,7 +2263,6 @@ Attributes
 
 
 .. py:data:: global___TailRobotPartLogsRequest
-   
 
    
 
@@ -2345,7 +2282,6 @@ Attributes
 
 
 .. py:data:: global___TailRobotPartLogsResponse
-   
 
    
 
@@ -2360,13 +2296,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___GetRobotPartHistoryRequest
-   
 
    
 
@@ -2386,7 +2321,6 @@ Attributes
 
 
 .. py:data:: global___GetRobotPartHistoryResponse
-   
 
    
 
@@ -2405,12 +2339,12 @@ Attributes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
@@ -2433,7 +2367,6 @@ Attributes
 
 
 .. py:data:: global___UpdateRobotPartRequest
-   
 
    
 
@@ -2470,7 +2403,6 @@ Attributes
 
 
 .. py:data:: global___UpdateRobotPartResponse
-   
 
    
 
@@ -2485,18 +2417,17 @@ Attributes
    shown below.
 
    .. py:attribute:: robot_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: part_name
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___NewRobotPartRequest
-   
 
    
 
@@ -2511,13 +2442,12 @@ Attributes
    shown below.
 
    .. py:attribute:: part_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___NewRobotPartResponse
-   
 
    
 
@@ -2532,13 +2462,12 @@ Attributes
    shown below.
 
    .. py:attribute:: part_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DeleteRobotPartRequest
-   
 
    
 
@@ -2554,7 +2483,6 @@ Attributes
 
 
 .. py:data:: global___DeleteRobotPartResponse
-   
 
    
 
@@ -2577,47 +2505,47 @@ Attributes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: organization_owner
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: public
-      :annotation: :bool
+      :type: bool
 
       
 
    .. py:attribute:: organization_name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: readonly
-      :annotation: :bool
+      :type: bool
 
       
 
    .. py:attribute:: robot_part_count
-      :annotation: :int
+      :type: int
 
       number of robot parts using this fragment
 
    .. py:attribute:: organization_count
-      :annotation: :int
+      :type: int
 
       number of organizations using this fragment
 
    .. py:attribute:: only_used_by_owner
-      :annotation: :bool
+      :type: bool
 
       whether the organization(s) using this fragment is the same as the fragment org
 
@@ -2640,7 +2568,6 @@ Attributes
 
 
 .. py:data:: global___Fragment
-   
 
    
 
@@ -2655,18 +2582,17 @@ Attributes
    shown below.
 
    .. py:attribute:: organization_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: show_public
-      :annotation: :bool
+      :type: bool
 
       
 
 
 .. py:data:: global___ListFragmentsRequest
-   
 
    
 
@@ -2686,7 +2612,6 @@ Attributes
 
 
 .. py:data:: global___ListFragmentsResponse
-   
 
    
 
@@ -2701,13 +2626,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___GetFragmentRequest
-   
 
    
 
@@ -2744,7 +2668,6 @@ Attributes
 
 
 .. py:data:: global___GetFragmentResponse
-   
 
    
 
@@ -2763,7 +2686,7 @@ Attributes
 
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
@@ -2786,7 +2709,6 @@ Attributes
 
 
 .. py:data:: global___CreateFragmentRequest
-   
 
    
 
@@ -2823,7 +2745,6 @@ Attributes
 
 
 .. py:data:: global___CreateFragmentResponse
-   
 
    
 
@@ -2842,17 +2763,17 @@ Attributes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: public
-      :annotation: :bool
+      :type: bool
 
       
 
@@ -2890,7 +2811,6 @@ Attributes
 
 
 .. py:data:: global___UpdateFragmentRequest
-   
 
    
 
@@ -2927,7 +2847,6 @@ Attributes
 
 
 .. py:data:: global___UpdateFragmentResponse
-   
 
    
 
@@ -2942,13 +2861,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DeleteFragmentRequest
-   
 
    
 
@@ -2964,7 +2882,6 @@ Attributes
 
 
 .. py:data:: global___DeleteFragmentResponse
-   
 
    
 
@@ -2979,13 +2896,12 @@ Attributes
    shown below.
 
    .. py:attribute:: location_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___ListRobotsRequest
-   
 
    
 
@@ -3005,7 +2921,6 @@ Attributes
 
 
 .. py:data:: global___ListRobotsResponse
-   
 
    
 
@@ -3020,18 +2935,17 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: location
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___NewRobotRequest
-   
 
    
 
@@ -3046,13 +2960,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___NewRobotResponse
-   
 
    
 
@@ -3067,23 +2980,22 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: location
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___UpdateRobotRequest
-   
 
    
 
@@ -3120,7 +3032,6 @@ Attributes
 
 
 .. py:data:: global___UpdateRobotResponse
-   
 
    
 
@@ -3135,13 +3046,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DeleteRobotRequest
-   
 
    
 
@@ -3157,7 +3067,6 @@ Attributes
 
 
 .. py:data:: global___DeleteRobotResponse
-   
 
    
 
@@ -3172,13 +3081,12 @@ Attributes
    shown below.
 
    .. py:attribute:: part_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___MarkPartAsMainRequest
-   
 
    
 
@@ -3194,7 +3102,6 @@ Attributes
 
 
 .. py:data:: global___MarkPartAsMainResponse
-   
 
    
 
@@ -3209,13 +3116,12 @@ Attributes
    shown below.
 
    .. py:attribute:: part_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___MarkPartForRestartRequest
-   
 
    
 
@@ -3231,7 +3137,6 @@ Attributes
 
 
 .. py:data:: global___MarkPartForRestartResponse
-   
 
    
 
@@ -3246,13 +3151,12 @@ Attributes
    shown below.
 
    .. py:attribute:: part_id
-      :annotation: :str
+      :type: str
 
       Robot Part ID to create the secret in.
 
 
 .. py:data:: global___CreateRobotPartSecretRequest
-   
 
    
 
@@ -3290,7 +3194,6 @@ Attributes
 
 
 .. py:data:: global___CreateRobotPartSecretResponse
-   
 
    
 
@@ -3305,18 +3208,17 @@ Attributes
    shown below.
 
    .. py:attribute:: part_id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: secret_id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DeleteRobotPartSecretRequest
-   
 
    
 
@@ -3332,7 +3234,6 @@ Attributes
 
 
 .. py:data:: global___DeleteRobotPartSecretResponse
-   
 
    
 

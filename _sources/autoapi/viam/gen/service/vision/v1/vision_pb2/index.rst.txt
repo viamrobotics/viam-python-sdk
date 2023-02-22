@@ -95,7 +95,7 @@ Attributes
 
 
 .. py:data:: DESCRIPTOR
-   :annotation: :google.protobuf.descriptor.FileDescriptor
+   :type: google.protobuf.descriptor.FileDescriptor
 
    
 
@@ -115,12 +115,12 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: model_type
-      :annotation: :str
+      :type: str
 
       name of the type of vision model
 
@@ -143,7 +143,6 @@ Attributes
 
 
 .. py:data:: global___GetModelParameterSchemaRequest
-   
 
    
 
@@ -158,13 +157,12 @@ Attributes
    shown below.
 
    .. py:attribute:: model_parameter_schema
-      :annotation: :bytes
+      :type: bytes
 
       the parameters as JSON bytes of a jsonschema.Schema
 
 
 .. py:data:: global___GetModelParameterSchemaResponse
-   
 
    
 
@@ -184,7 +182,7 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
@@ -207,7 +205,6 @@ Attributes
 
 
 .. py:data:: global___GetDetectorNamesRequest
-   
 
    
 
@@ -228,7 +225,6 @@ Attributes
 
 
 .. py:data:: global___GetDetectorNamesResponse
-   
 
    
 
@@ -252,17 +248,17 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: detector_name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: detector_model_type
-      :annotation: :str
+      :type: str
 
       
 
@@ -285,7 +281,6 @@ Attributes
 
 
 .. py:data:: global___AddDetectorRequest
-   
 
    
 
@@ -301,7 +296,6 @@ Attributes
 
 
 .. py:data:: global___AddDetectorResponse
-   
 
    
 
@@ -321,12 +315,12 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: detector_name
-      :annotation: :str
+      :type: str
 
       name of detector in registry
 
@@ -349,7 +343,6 @@ Attributes
 
 
 .. py:data:: global___RemoveDetectorRequest
-   
 
    
 
@@ -365,7 +358,6 @@ Attributes
 
 
 .. py:data:: global___RemoveDetectorResponse
-   
 
    
 
@@ -385,32 +377,32 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: image
-      :annotation: :bytes
+      :type: bytes
 
       the image, encoded as bytes
 
    .. py:attribute:: width
-      :annotation: :int
+      :type: int
 
       the width of the image
 
    .. py:attribute:: height
-      :annotation: :int
+      :type: int
 
       the height of the image
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       the actual MIME type of image
 
    .. py:attribute:: detector_name
-      :annotation: :str
+      :type: str
 
       name of the registered detector to use
 
@@ -433,7 +425,6 @@ Attributes
 
 
 .. py:data:: global___GetDetectionsRequest
-   
 
    
 
@@ -454,7 +445,6 @@ Attributes
 
 
 .. py:data:: global___GetDetectionsResponse
-   
 
    
 
@@ -474,17 +464,17 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: camera_name
-      :annotation: :str
+      :type: str
 
       name of camera source to use as input
 
    .. py:attribute:: detector_name
-      :annotation: :str
+      :type: str
 
       name of the registered detector to use
 
@@ -507,7 +497,6 @@ Attributes
 
 
 .. py:data:: global___GetDetectionsFromCameraRequest
-   
 
    
 
@@ -528,7 +517,6 @@ Attributes
 
 
 .. py:data:: global___GetDetectionsFromCameraResponse
-   
 
    
 
@@ -543,32 +531,32 @@ Attributes
    shown below.
 
    .. py:attribute:: x_min
-      :annotation: :int
+      :type: int
 
       the four corners of the box
 
    .. py:attribute:: y_min
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: x_max
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: y_max
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: confidence
-      :annotation: :float
+      :type: float
 
       the confidence of the detection
 
    .. py:attribute:: class_name
-      :annotation: :str
+      :type: str
 
       label associated with the detected object
 
@@ -609,7 +597,6 @@ Attributes
 
 
 .. py:data:: global___Detection
-   
 
    
 
@@ -629,7 +616,7 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
@@ -652,7 +639,6 @@ Attributes
 
 
 .. py:data:: global___GetClassifierNamesRequest
-   
 
    
 
@@ -672,7 +658,6 @@ Attributes
 
 
 .. py:data:: global___GetClassifierNamesResponse
-   
 
    
 
@@ -697,17 +682,17 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: classifier_name
-      :annotation: :str
+      :type: str
 
       name of classifier to add to registry
 
    .. py:attribute:: classifier_model_type
-      :annotation: :str
+      :type: str
 
       the type of classifier
 
@@ -730,7 +715,6 @@ Attributes
 
 
 .. py:data:: global___AddClassifierRequest
-   
 
    
 
@@ -746,7 +730,6 @@ Attributes
 
 
 .. py:data:: global___AddClassifierResponse
-   
 
    
 
@@ -766,12 +749,12 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: classifier_name
-      :annotation: :str
+      :type: str
 
       name of the classifier in registry
 
@@ -794,7 +777,6 @@ Attributes
 
 
 .. py:data:: global___RemoveClassifierRequest
-   
 
    
 
@@ -810,7 +792,6 @@ Attributes
 
 
 .. py:data:: global___RemoveClassifierResponse
-   
 
    
 
@@ -830,37 +811,37 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: image
-      :annotation: :bytes
+      :type: bytes
 
       the image encoded as bytes
 
    .. py:attribute:: width
-      :annotation: :int
+      :type: int
 
       the width of the image
 
    .. py:attribute:: height
-      :annotation: :int
+      :type: int
 
       the height of the image
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       the actual MIME type of image
 
    .. py:attribute:: classifier_name
-      :annotation: :str
+      :type: str
 
       the name of the registered classifier
 
    .. py:attribute:: n
-      :annotation: :int
+      :type: int
 
       the number of classifications desired
 
@@ -883,7 +864,6 @@ Attributes
 
 
 .. py:data:: global___GetClassificationsRequest
-   
 
    
 
@@ -903,7 +883,6 @@ Attributes
 
 
 .. py:data:: global___GetClassificationsResponse
-   
 
    
 
@@ -923,22 +902,22 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: camera_name
-      :annotation: :str
+      :type: str
 
       the image encoded as bytes
 
    .. py:attribute:: classifier_name
-      :annotation: :str
+      :type: str
 
       the name of the registered classifier
 
    .. py:attribute:: n
-      :annotation: :int
+      :type: int
 
       the number of classifications desired
 
@@ -961,7 +940,6 @@ Attributes
 
 
 .. py:data:: global___GetClassificationsFromCameraRequest
-   
 
    
 
@@ -981,7 +959,6 @@ Attributes
 
 
 .. py:data:: global___GetClassificationsFromCameraResponse
-   
 
    
 
@@ -992,18 +969,17 @@ Attributes
    the general form of the output from a classifier
 
    .. py:attribute:: class_name
-      :annotation: :str
+      :type: str
 
       the class name
 
    .. py:attribute:: confidence
-      :annotation: :float
+      :type: float
 
       the confidence score of the classification
 
 
 .. py:data:: global___Classification
-   
 
    
 
@@ -1023,7 +999,7 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
@@ -1046,7 +1022,6 @@ Attributes
 
 
 .. py:data:: global___GetSegmenterNamesRequest
-   
 
    
 
@@ -1067,7 +1042,6 @@ Attributes
 
 
 .. py:data:: global___GetSegmenterNamesResponse
-   
 
    
 
@@ -1092,17 +1066,17 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: segmenter_name
-      :annotation: :str
+      :type: str
 
       name of the segmenter
 
    .. py:attribute:: segmenter_model_type
-      :annotation: :str
+      :type: str
 
       name of the segmenter model
 
@@ -1125,7 +1099,6 @@ Attributes
 
 
 .. py:data:: global___AddSegmenterRequest
-   
 
    
 
@@ -1141,7 +1114,6 @@ Attributes
 
 
 .. py:data:: global___AddSegmenterResponse
-   
 
    
 
@@ -1161,12 +1133,12 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: segmenter_name
-      :annotation: :str
+      :type: str
 
       name of segmenter in registry
 
@@ -1189,7 +1161,6 @@ Attributes
 
 
 .. py:data:: global___RemoveSegmenterRequest
-   
 
    
 
@@ -1205,7 +1176,6 @@ Attributes
 
 
 .. py:data:: global___RemoveSegmenterResponse
-   
 
    
 
@@ -1225,22 +1195,22 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: camera_name
-      :annotation: :str
+      :type: str
 
       Name of a camera
 
    .. py:attribute:: segmenter_name
-      :annotation: :str
+      :type: str
 
       Name of the segmentation algorithm
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       Requested MIME type of response
 
@@ -1263,7 +1233,6 @@ Attributes
 
 
 .. py:data:: global___GetObjectPointCloudsRequest
-   
 
    
 
@@ -1283,13 +1252,12 @@ Attributes
       List of objects in the scene
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       Actual MIME type of response
 
 
 .. py:data:: global___GetObjectPointCloudsResponse
-   
 
    
 

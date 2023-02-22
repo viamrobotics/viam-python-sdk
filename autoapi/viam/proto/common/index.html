@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.proto.common &mdash; Viam Python SDK  documentation</title>
@@ -31,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -347,7 +351,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
       <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.common</span></code></li>
       <li class="wy-breadcrumbs-aside">
@@ -368,10 +372,6 @@ Do not edit manually!</p>
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.ActuatorStatus" title="viam.proto.common.ActuatorStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActuatorStatus</span></code></a></p></td>
 <td><p>ActuatorStatus is a generic status for resources that only need to return actuator status.</p></td>
@@ -441,7 +441,7 @@ Do not edit manually!</p>
 <dd><p>ActuatorStatus is a generic status for resources that only need to return actuator status.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.ActuatorStatus.is_moving">
-<span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="w"> </span><span class="pre">:bool</span></em><a class="headerlink" href="#viam.proto.common.ActuatorStatus.is_moving" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">is_moving</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.common.ActuatorStatus.is_moving" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -455,7 +455,7 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.AnalogStatus.value">
-<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.common.AnalogStatus.value" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.common.AnalogStatus.value" title="Permalink to this definition"></a></dt>
 <dd><p>Current value of the analog reader of a robot’s board</p>
 </dd></dl>
 
@@ -482,7 +482,7 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.BoardStatus.AnalogsEntry.key">
-<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.AnalogsEntry.key" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.AnalogsEntry.key" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -493,16 +493,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -524,7 +524,7 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.BoardStatus.DigitalInterruptsEntry.key">
-<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.BoardStatus.DigitalInterruptsEntry.key" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -535,16 +535,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -573,12 +573,12 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Capsule.radius_mm">
-<span class="sig-name descname"><span class="pre">radius_mm</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Capsule.radius_mm" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">radius_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Capsule.radius_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Capsule.length_mm">
-<span class="sig-name descname"><span class="pre">length_mm</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Capsule.length_mm" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">length_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Capsule.length_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -592,7 +592,7 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.DigitalInterruptStatus.value">
-<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="w"> </span><span class="pre">:int</span></em><a class="headerlink" href="#viam.proto.common.DigitalInterruptStatus.value" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.common.DigitalInterruptStatus.value" title="Permalink to this definition"></a></dt>
 <dd><p>Current value of the digital interrupt of a robot’s board</p>
 </dd></dl>
 
@@ -609,7 +609,7 @@ shown below.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.DoCommandRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.DoCommandRequest.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.DoCommandRequest.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -620,16 +620,16 @@ shown below.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -654,16 +654,16 @@ be raised.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -680,12 +680,12 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.GeoPoint.latitude">
-<span class="sig-name descname"><span class="pre">latitude</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.latitude" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">latitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.latitude" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.GeoPoint.longitude">
-<span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.longitude" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.GeoPoint.longitude" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -703,7 +703,7 @@ observed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.GeometriesInFrame.reference_frame">
-<span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.GeometriesInFrame.reference_frame" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.GeometriesInFrame.reference_frame" title="Permalink to this definition"></a></dt>
 <dd><p>Reference frame of the observer of the geometry</p>
 </dd></dl>
 
@@ -736,7 +736,7 @@ observed.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Geometry.label">
-<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.Geometry.label" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.Geometry.label" title="Permalink to this definition"></a></dt>
 <dd><p>Label of the geometry. If none supplied, will be an empty string.</p>
 </dd></dl>
 
@@ -748,16 +748,16 @@ observed.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -769,16 +769,16 @@ be raised.</p>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>
 <p>If no field is set, returns None.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The name of the group that is set, or None.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str or None</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
@@ -795,25 +795,25 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Orientation.o_x">
-<span class="sig-name descname"><span class="pre">o_x</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Orientation.o_x" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">o_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Orientation.o_x" title="Permalink to this definition"></a></dt>
 <dd><p>x component of a vector defining axis of rotation</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Orientation.o_y">
-<span class="sig-name descname"><span class="pre">o_y</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Orientation.o_y" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">o_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Orientation.o_y" title="Permalink to this definition"></a></dt>
 <dd><p>y component of a vector defining axis of rotation</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Orientation.o_z">
-<span class="sig-name descname"><span class="pre">o_z</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Orientation.o_z" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">o_z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Orientation.o_z" title="Permalink to this definition"></a></dt>
 <dd><p>z component of a vector defining axis of rotation</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Orientation.theta">
-<span class="sig-name descname"><span class="pre">theta</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Orientation.theta" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">theta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Orientation.theta" title="Permalink to this definition"></a></dt>
 <dd><p>degrees</p>
 </dd></dl>
 
@@ -832,7 +832,7 @@ repeated list of geometries which respresents the center point and geometry of e
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.PointCloudObject.point_cloud">
-<span class="sig-name descname"><span class="pre">point_cloud</span></span><em class="property"><span class="w"> </span><span class="pre">:bytes</span></em><a class="headerlink" href="#viam.proto.common.PointCloudObject.point_cloud" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">point_cloud</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.proto.common.PointCloudObject.point_cloud" title="Permalink to this definition"></a></dt>
 <dd><p>image frame expressed in bytes</p>
 </dd></dl>
 
@@ -844,16 +844,16 @@ repeated list of geometries which respresents the center point and geometry of e
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -874,43 +874,43 @@ second being defined by the origin, the rx, ry, rz point and the local Z axis. T
 is circled, the Roll will correct itself to remain in-line.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Pose.x">
-<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Pose.x" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Pose.x" title="Permalink to this definition"></a></dt>
 <dd><p>millimeters from the origin</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Pose.y">
-<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Pose.y" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Pose.y" title="Permalink to this definition"></a></dt>
 <dd><p>millimeters from the origin</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Pose.z">
-<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Pose.z" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Pose.z" title="Permalink to this definition"></a></dt>
 <dd><p>millimeters from the origin</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Pose.o_x">
-<span class="sig-name descname"><span class="pre">o_x</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Pose.o_x" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">o_x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Pose.o_x" title="Permalink to this definition"></a></dt>
 <dd><p>z component of a vector defining axis of rotation</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Pose.o_y">
-<span class="sig-name descname"><span class="pre">o_y</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Pose.o_y" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">o_y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Pose.o_y" title="Permalink to this definition"></a></dt>
 <dd><p>x component of a vector defining axis of rotation</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Pose.o_z">
-<span class="sig-name descname"><span class="pre">o_z</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Pose.o_z" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">o_z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Pose.o_z" title="Permalink to this definition"></a></dt>
 <dd><p>y component of a vector defining axis of rotation</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Pose.theta">
-<span class="sig-name descname"><span class="pre">theta</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Pose.theta" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">theta</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Pose.theta" title="Permalink to this definition"></a></dt>
 <dd><p>degrees</p>
 </dd></dl>
 
@@ -927,7 +927,7 @@ is circled, the Roll will correct itself to remain in-line.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.PoseInFrame.reference_frame">
-<span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.PoseInFrame.reference_frame" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.PoseInFrame.reference_frame" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -938,16 +938,16 @@ is circled, the Roll will correct itself to remain in-line.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -973,16 +973,16 @@ These dimensions are with respect to the referenceframe in which the Rectangular
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -999,22 +999,22 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.ResourceName.namespace">
-<span class="sig-name descname"><span class="pre">namespace</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.ResourceName.namespace" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">namespace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.ResourceName.namespace" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.ResourceName.type">
-<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.ResourceName.type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.ResourceName.type" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.ResourceName.subtype">
-<span class="sig-name descname"><span class="pre">subtype</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.ResourceName.subtype" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">subtype</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.ResourceName.subtype" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.ResourceName.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.ResourceName.name" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.ResourceName.name" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1028,7 +1028,7 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Sphere.radius_mm">
-<span class="sig-name descname"><span class="pre">radius_mm</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Sphere.radius_mm" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">radius_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Sphere.radius_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1052,7 +1052,7 @@ reference frame as observed within the second reference frame.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Transform.reference_frame">
-<span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.proto.common.Transform.reference_frame" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">reference_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.common.Transform.reference_frame" title="Permalink to this definition"></a></dt>
 <dd><p>the name of a given reference frame</p>
 </dd></dl>
 
@@ -1064,16 +1064,16 @@ reference frame as observed within the second reference frame.</p>
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
 be raised.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether a value has been set for the named field.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
@@ -1085,16 +1085,16 @@ be raised.</p>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>
 <p>If no field is set, returns None.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The name of the group that is set, or None.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str or None</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
@@ -1111,17 +1111,17 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Vector3.x">
-<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Vector3.x" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Vector3.x" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Vector3.y">
-<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Vector3.y" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Vector3.y" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.common.Vector3.z">
-<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.proto.common.Vector3.z" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">z</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Vector3.z" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

@@ -105,7 +105,7 @@ Classes
       error is sent any time before done
 
    .. py:attribute:: uuid
-      :annotation: :str
+      :type: str
 
       
 
@@ -193,7 +193,7 @@ Classes
 
 
    .. py:attribute:: sdp
-      :annotation: :str
+      :type: str
 
       
 
@@ -284,7 +284,7 @@ Classes
       error is sent any time before done
 
    .. py:attribute:: uuid
-      :annotation: :str
+      :type: str
 
       
 
@@ -364,7 +364,7 @@ Classes
    answerers initial SDP response to the controlling side.
 
    .. py:attribute:: sdp
-      :annotation: :str
+      :type: str
 
       
 
@@ -405,12 +405,12 @@ Classes
    CallRequest is the SDP offer that the controlling side is making.
 
    .. py:attribute:: sdp
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: disable_trickle
-      :annotation: :bool
+      :type: bool
 
       when disable_trickle is true, the init stage will be the only stage
       to be received in the response and the caller can expect the SDP
@@ -432,7 +432,7 @@ Classes
 
 
    .. py:attribute:: uuid
-      :annotation: :str
+      :type: str
 
       
 
@@ -477,7 +477,7 @@ Classes
    the initial response to starting a call.
 
    .. py:attribute:: sdp
-      :annotation: :str
+      :type: str
 
       
 
@@ -526,12 +526,12 @@ Classes
 
 
    .. py:attribute:: uuid
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: done
-      :annotation: :bool
+      :type: bool
 
       
 
@@ -583,22 +583,22 @@ Classes
    From https://github.com/pion/webrtc/blob/5f6baf73255598a7b4a7c9400bb0381acc9aa3dc/icecandidateinit.go
 
    .. py:attribute:: candidate
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: sdp_mid
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: sdpm_line_index
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: username_fragment
-      :annotation: :str
+      :type: str
 
       
 
@@ -648,12 +648,12 @@ Classes
 
 
    .. py:attribute:: username
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: credential
-      :annotation: :str
+      :type: str
 
       
 
@@ -706,7 +706,7 @@ Classes
 
 
    .. py:attribute:: disable_trickle
-      :annotation: :bool
+      :type: bool
 
       disable_trickle indicates if Trickle ICE should be used. Currently, both
       sides must both respect this setting.

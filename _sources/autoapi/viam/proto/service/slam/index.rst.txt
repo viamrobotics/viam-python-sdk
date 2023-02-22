@@ -98,7 +98,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
@@ -114,7 +114,7 @@ Classes
    shown below.
 
    .. py:attribute:: internal_state
-      :annotation: :bytes
+      :type: bytes
 
       A chunk of the internal state of the SLAM algorithm required to continue
       mapping/localization
@@ -131,7 +131,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
@@ -147,7 +147,7 @@ Classes
    shown below.
 
    .. py:attribute:: internal_state_chunk
-      :annotation: :bytes
+      :type: bytes
 
       Chunk of the internal state of the SLAM algorithm required to continue
       mapping/localization
@@ -175,17 +175,17 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       Requested MIME type of response (image/jpeg or image/pcd)
 
    .. py:attribute:: include_robot_marker
-      :annotation: :bool
+      :type: bool
 
       Optional parameter for image/jpeg mime_type, defaults to false.
       Tells us whether to include the robot position on the 2D image.
@@ -238,12 +238,12 @@ Classes
 
 
    .. py:attribute:: image
-      :annotation: :bytes
+      :type: bytes
 
       
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       Actual MIME type of response (image/jpeg or image/pcd)
 
@@ -291,7 +291,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
@@ -307,7 +307,7 @@ Classes
    shown below.
 
    .. py:attribute:: point_cloud_pcd
-      :annotation: :bytes
+      :type: bytes
 
       pointclouds are returned as a set of bytes in the standard PCD format
       https://pointclouds.org/documentation/tutorials/pcd_file_format.html
@@ -324,7 +324,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
@@ -340,7 +340,7 @@ Classes
    shown below.
 
    .. py:attribute:: point_cloud_pcd_chunk
-      :annotation: :bytes
+      :type: bytes
 
       One chunk of the PointCloud.
       For a given GetPointCloudMapStream request,
@@ -362,7 +362,7 @@ Classes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
@@ -388,7 +388,7 @@ Classes
       Additional information in the response
 
    .. py:attribute:: component_reference
-      :annotation: :str
+      :type: str
 
       This is usually the name of the camera that is in the SLAM config
 
@@ -426,7 +426,7 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.resource.registry &mdash; Viam Python SDK  documentation</title>
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,7 +72,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.registry</span></code></li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/autoapi/viam/resource/registry/index.rst.txt" rel="nofollow"> View page source</a>
@@ -86,10 +90,6 @@
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentRegistration</span></code></a></p></td>
 <td><p>An object representing a component to be registered.</p></td>
@@ -103,10 +103,6 @@
 <section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.registry.default_create_status" title="viam.resource.registry.default_create_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_create_status</span></code></a>(→ viam.proto.robot.Status)</p></td>
 <td><p></p></td>
@@ -117,10 +113,6 @@
 <section id="attributes">
 <h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.registry.Component" title="viam.resource.registry.Component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Component</span></code></a></p></td>
 <td><p></p></td>
@@ -147,25 +139,25 @@ or status.</p>
 to the <code class="docutils literal notranslate"><span class="pre">Registry</span></code>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration.component_type">
-<span class="sig-name descname"><span class="pre">component_type</span></span><em class="property"><span class="w"> </span><span class="pre">:Type[Component]</span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.component_type" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">component_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.component_type" title="Permalink to this definition"></a></dt>
 <dd><p>The type of the Component to be registered</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration.rpc_service">
-<span class="sig-name descname"><span class="pre">rpc_service</span></span><em class="property"><span class="w"> </span><span class="pre">:Type[viam.components.service_base.ComponentServiceBase]</span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.rpc_service" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">rpc_service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../components/service_base/index.html#viam.components.service_base.ComponentServiceBase" title="viam.components.service_base.ComponentServiceBase"><span class="pre">viam.components.service_base.ComponentServiceBase</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.rpc_service" title="Permalink to this definition"></a></dt>
 <dd><p>The RPC service of the component. This must extend from <code class="docutils literal notranslate"><span class="pre">ComponentServiceBase</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration.create_rpc_client">
-<span class="sig-name descname"><span class="pre">create_rpc_client</span></span><em class="property"><span class="w"> </span><span class="pre">:Callable[[str,</span> <span class="pre">grpclib.client.Channel],</span> <span class="pre">Component]</span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.create_rpc_client" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_rpc_client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.client.Channel</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.create_rpc_client" title="Permalink to this definition"></a></dt>
 <dd><p>A function that will create the RPC client for this component</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration.create_status">
-<span class="sig-name descname"><span class="pre">create_status</span></span><em class="property"><span class="w"> </span><span class="pre">:Callable[[Component],</span> <span class="pre">Coroutine[Any,</span> <span class="pre">Any,</span> <span class="pre">viam.proto.robot.Status]]</span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.create_status" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">create_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Coroutine</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Status" title="viam.proto.robot.Status"><span class="pre">viam.proto.robot.Status</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.create_status" title="Permalink to this definition"></a></dt>
 <dd><p>A function to create a Status object for this component.</p>
 <p>If the Component does not provide a custom status type, the default implementation can be used.</p>
 </dd></dl>
@@ -186,10 +178,10 @@ component using <code class="docutils literal notranslate"><span class="pre">Reg
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.register" title="Permalink to this definition"></a></dt>
 <dd><p>Register a Component with the Registry</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>registration</strong> (<a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><em>ComponentRegistration</em></a>) – Object containing registration data for the component</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>DuplicateComponentError</strong> – Raised if the Component to register is already in the registry</p>
 </dd>
 </dl>
@@ -200,16 +192,16 @@ component using <code class="docutils literal notranslate"><span class="pre">Reg
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.lookup" title="Permalink to this definition"></a></dt>
 <dd><p>Lookup and retrieve a registered component by its name</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>component_name</strong> (<em>str</em>) – The name of the component</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ComponentNotFoundError</strong> – Raised if the component type is not registered</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The registration object of the component</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration">ComponentRegistration</a></p>
 </dd>
 </dl>
@@ -222,10 +214,10 @@ component using <code class="docutils literal notranslate"><span class="pre">Reg
 - Key: Name of the component type
 - Value: The registration object for the component type</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>All registered components</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Mapping[str, <a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration">ComponentRegistration</a>]</p>
 </dd>
 </dl>

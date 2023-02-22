@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.components.resource_manager &mdash; Viam Python SDK  documentation</title>
@@ -31,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -103,7 +107,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
       <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.resource_manager</span></code></li>
       <li class="wy-breadcrumbs-aside">
@@ -122,10 +126,6 @@
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceManager</span></code></a></p></td>
 <td><p>Registry containing all components registered to this server.</p></td>
@@ -136,10 +136,6 @@
 <section id="attributes">
 <h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.resource_manager.ResourceType" title="viam.components.resource_manager.ResourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceType</span></code></a></p></td>
 <td><p></p></td>
@@ -157,7 +153,7 @@
 <dd><p>Registry containing all components registered to this server.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.resource_manager.ResourceManager.components">
-<span class="sig-name descname"><span class="pre">components</span></span><em class="property"><span class="w"> </span><span class="pre">:Dict[viam.proto.common.ResourceName,</span> <span class="pre">viam.components.component_base.ComponentBase]</span></em><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.components" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">components</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.components" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -167,11 +163,11 @@
 Components may not have the same name.
 If a component is remote and the short name is unique, save a short name version.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>DuplicateComponentError</strong> – Error if attempting to register component
 with the name of an existing component</p>
 </dd>
-<dt class="field-even">Parameters</dt>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>component</strong> (<a class="reference internal" href="../component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><em>ComponentBase</em></a>) – The component to register</p>
 </dd>
 </dl>
@@ -183,20 +179,20 @@ with the name of an existing component</p>
 <dd><p>Return a component from the registry.
 If a unique short name version is given, return a remote component with the name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>of_type</strong> (<em>Type</em><em>[</em><em>ResourceType</em><em>]</em>) – The type of the component</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – The name of the component</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ComponentNotFoundError</strong> – Error if component with the given type
 and name does not exist in the registry</p>
 </dd>
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The component</p>
 </dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>ResourceType</p>
 </dd>
 </dl>

@@ -38,7 +38,6 @@ Attributes
 
 
 .. py:data:: LOGGER
-   
 
    
 
@@ -49,12 +48,12 @@ Attributes
    Currently only supports robot location secret.
 
    .. py:attribute:: type
-      :annotation: :Literal[robot-location-secret]
+      :type: Literal[robot-location-secret]
 
       The type of credential
 
    .. py:attribute:: payload
-      :annotation: :str
+      :type: str
 
       The credential
 
@@ -62,35 +61,38 @@ Attributes
 .. py:class:: DialOptions(disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False)
 
    .. py:attribute:: disable_webrtc
-      :annotation: :bool
+      :type: bool
 
       Bypass Web RTC and connect directly to the robot.
 
    .. py:attribute:: auth_entity
-      :annotation: :Optional[str]
+      :type: Optional[str]
 
       The URL to authenticate against
 
    .. py:attribute:: credentials
-      :annotation: :Optional[Credentials]
+      :type: Optional[Credentials]
 
       Credentials for connecting to the robot
 
    .. py:attribute:: insecure
-      :annotation: :bool = False
+      :type: bool
+      :value: False
 
       Determine if the RPC connection is TLS based. Must be provided to
       establish an insecure connection. Otherwise, a TLS based connection
       will be assumed.
 
    .. py:attribute:: allow_insecure_downgrade
-      :annotation: :bool = False
+      :type: bool
+      :value: False
 
       Allow the RPC connection to be downgraded to an insecure connection
       if detected. This is only used when credentials are not present.
 
    .. py:attribute:: allow_insecure_with_creds_downgrade
-      :annotation: :bool = False
+      :type: bool
+      :value: False
 
       Allow the RPC connection to be downgraded to an insecure connection
       if detected, even with credentials present. This is generally
@@ -129,12 +131,12 @@ Attributes
 .. py:class:: ViamChannel
 
    .. py:attribute:: channel
-      :annotation: :grpclib.client.Channel
+      :type: grpclib.client.Channel
 
       
 
    .. py:attribute:: release
-      :annotation: :Callable[[], None]
+      :type: Callable[[], None]
 
       
 

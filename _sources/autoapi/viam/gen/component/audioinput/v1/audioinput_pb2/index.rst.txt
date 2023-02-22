@@ -50,7 +50,7 @@ Attributes
 
 
 .. py:data:: DESCRIPTOR
-   :annotation: :google.protobuf.descriptor.FileDescriptor
+   :type: google.protobuf.descriptor.FileDescriptor
 
    
 
@@ -60,22 +60,21 @@ Attributes
 
 
 .. py:data:: SAMPLE_FORMAT_UNSPECIFIED
-   :annotation: :SampleFormat
+   :type: SampleFormat
 
    
 
 .. py:data:: SAMPLE_FORMAT_INT16_INTERLEAVED
-   :annotation: :SampleFormat
+   :type: SampleFormat
 
    
 
 .. py:data:: SAMPLE_FORMAT_FLOAT32_INTERLEAVED
-   :annotation: :SampleFormat
+   :type: SampleFormat
 
    
 
 .. py:data:: global___SampleFormat
-   
 
    
 
@@ -94,7 +93,7 @@ Attributes
 
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of an audio input
 
@@ -117,7 +116,6 @@ Attributes
 
 
 .. py:data:: global___RecordRequest
-   
 
    
 
@@ -132,23 +130,22 @@ Attributes
    shown below.
 
    .. py:attribute:: sample_format
-      :annotation: :global___SampleFormat
+      :type: global___SampleFormat
 
       Actual sample encoding format of the response
 
    .. py:attribute:: channels
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: sampling_rate
-      :annotation: :int
+      :type: int
 
       
 
 
 .. py:data:: global___AudioChunkInfo
-   
 
    
 
@@ -163,20 +160,19 @@ Attributes
    shown below.
 
    .. py:attribute:: data
-      :annotation: :bytes
+      :type: bytes
 
       Data is PCM data that is organized according to the sample format
       along with its possible interleaving. Data in each format is
       Little Endian.
 
    .. py:attribute:: length
-      :annotation: :int
+      :type: int
 
       Length is the number of samples
 
 
 .. py:data:: global___AudioChunk
-   
 
    
 
@@ -191,18 +187,17 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of an audio input
 
    .. py:attribute:: sample_format
-      :annotation: :global___SampleFormat
+      :type: global___SampleFormat
 
       Requested sample encoding format of the response
 
 
 .. py:data:: global___ChunksRequest
-   
 
    
 
@@ -258,7 +253,6 @@ Attributes
 
 
 .. py:data:: global___ChunksResponse
-   
 
    
 
@@ -273,13 +267,12 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of an audio input
 
 
 .. py:data:: global___PropertiesRequest
-   
 
    
 
@@ -298,32 +291,32 @@ Attributes
 
 
    .. py:attribute:: channel_count
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: sample_rate
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: sample_size
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: is_big_endian
-      :annotation: :bool
+      :type: bool
 
       
 
    .. py:attribute:: is_float
-      :annotation: :bool
+      :type: bool
 
       
 
    .. py:attribute:: is_interleaved
-      :annotation: :bool
+      :type: bool
 
       
 
@@ -346,7 +339,6 @@ Attributes
 
 
 .. py:data:: global___PropertiesResponse
-   
 
    
 

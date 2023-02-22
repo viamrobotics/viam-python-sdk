@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,7 +71,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">viam.rpc.dial</li>
       <li class="wy-breadcrumbs-aside">
@@ -105,45 +109,45 @@
 
 <div class="viewcode-block" id="Credentials"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.Credentials">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">Credentials</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Credentials to connect to the robot.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Credentials to connect to the robot.</span>
 
 <span class="sd">    Currently only supports robot location secret.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nb">type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot-location-secret&quot;</span><span class="p">]</span>
-    <span class="sd">&quot;&quot;&quot;The type of credential</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The type of credential</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">payload</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="sd">&quot;&quot;&quot;The credential</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The credential</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="DialOptions"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions">[docs]</a><span class="k">class</span> <span class="nc">DialOptions</span><span class="p">:</span>
 
     <span class="n">disable_webrtc</span><span class="p">:</span> <span class="nb">bool</span>
-    <span class="sd">&quot;&quot;&quot;Bypass Web RTC and connect directly to the robot.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bypass Web RTC and connect directly to the robot.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">auth_entity</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
-    <span class="sd">&quot;&quot;&quot;The URL to authenticate against</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The URL to authenticate against</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">credentials</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Credentials</span><span class="p">]</span>
-    <span class="sd">&quot;&quot;&quot;Credentials for connecting to the robot</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Credentials for connecting to the robot</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">insecure</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="sd">&quot;&quot;&quot;Determine if the RPC connection is TLS based. Must be provided to</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine if the RPC connection is TLS based. Must be provided to</span>
 <span class="sd">    establish an insecure connection. Otherwise, a TLS based connection</span>
 <span class="sd">    will be assumed.&quot;&quot;&quot;</span>
 
     <span class="n">allow_insecure_downgrade</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="sd">&quot;&quot;&quot;Allow the RPC connection to be downgraded to an insecure connection</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Allow the RPC connection to be downgraded to an insecure connection</span>
 <span class="sd">    if detected. This is only used when credentials are not present.&quot;&quot;&quot;</span>
 
     <span class="n">allow_insecure_with_creds_downgrade</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="sd">&quot;&quot;&quot;Allow the RPC connection to be downgraded to an insecure connection</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Allow the RPC connection to be downgraded to an insecure connection</span>
 <span class="sd">    if detected, even with credentials present. This is generally</span>
 <span class="sd">    unsafe to use, but can be requested.&quot;&quot;&quot;</span>
 
@@ -240,7 +244,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Creating new viam-rust-utils runtime&quot;</span><span class="p">)</span>
-        <span class="n">libname</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;libviam_rust_utils.</span><span class="si">{</span><span class="s1">&#39;dylib&#39;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span> <span class="k">else</span> <span class="s1">&#39;so&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">libname</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;libviam_rust_utils.</span><span class="si">{</span><span class="s1">&#39;dylib&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">&#39;darwin&#39;</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;so&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">libname</span><span class="o">.</span><span class="fm">__str__</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">init_rust_runtime</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">init_rust_runtime</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>

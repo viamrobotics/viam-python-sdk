@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.operations &mdash; Viam Python SDK  documentation</title>
@@ -29,11 +29,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -68,7 +72,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.operations</span></code></li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/autoapi/viam/operations/index.rst.txt" rel="nofollow"> View page source</a>
@@ -86,10 +90,6 @@
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.Operation" title="viam.operations.Operation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Operation</span></code></a></p></td>
 <td><p>An Operation represents a running operation.</p></td>
@@ -100,10 +100,6 @@
 <section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.opid_from_metadata" title="viam.operations.opid_from_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">opid_from_metadata</span></code></a>(→ Optional[uuid.UUID])</p></td>
 <td><p></p></td>
@@ -117,10 +113,6 @@
 <section id="attributes">
 <h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.operations.P" title="viam.operations.P"><code class="xref py py-obj docutils literal notranslate"><span class="pre">P</span></code></a></p></td>
 <td><p></p></td>
@@ -141,22 +133,22 @@
 you should check whether the operation has been cancelled to prevent long-running tasks from leaking.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.operations.Operation.ARG_NAME">
-<span class="sig-name descname"><span class="pre">ARG_NAME</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">viam_operation</span></em><a class="headerlink" href="#viam.operations.Operation.ARG_NAME" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ARG_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'viam_operation'</span></em><a class="headerlink" href="#viam.operations.Operation.ARG_NAME" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.operations.Operation.id">
-<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="w"> </span><span class="pre">:uuid.UUID</span></em><a class="headerlink" href="#viam.operations.Operation.id" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">uuid.UUID</span></em><a class="headerlink" href="#viam.operations.Operation.id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.operations.Operation.method">
-<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="w"> </span><span class="pre">:str</span></em><a class="headerlink" href="#viam.operations.Operation.method" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.operations.Operation.method" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.operations.Operation.time_started">
-<span class="sig-name descname"><span class="pre">time_started</span></span><em class="property"><span class="w"> </span><span class="pre">:float</span></em><a class="headerlink" href="#viam.operations.Operation.time_started" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">time_started</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.operations.Operation.time_started" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -184,7 +176,7 @@ you should check whether the operation has been cancelled to prevent long-runnin
 
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.operations.METADATA_KEY">
-<span class="sig-prename descclassname"><span class="pre">viam.operations.</span></span><span class="sig-name descname"><span class="pre">METADATA_KEY</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">opid</span></em><a class="headerlink" href="#viam.operations.METADATA_KEY" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">viam.operations.</span></span><span class="sig-name descname"><span class="pre">METADATA_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'opid'</span></em><a class="headerlink" href="#viam.operations.METADATA_KEY" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -204,15 +196,15 @@ to know if/when the calling task was cancelled and take appropriate action
 Rather than continue to run a task for a receiver that is no longer there,
 the component can cancel and clean up, saving resources.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>func</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><em>Coroutine</em><em>[</em><em>Any</em><em>, </em><em>Any</em><em>, </em><em>T</em><em>]</em><em>]</em>) – The function to be called with an Operation.
 This function MUST accept <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>
 or a parameter whose name is equal the value of <code class="docutils literal notranslate"><span class="pre">Operation.ARG_NAME</span></code></p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The return of the function</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>T</p>
 </dd>
 </dl>

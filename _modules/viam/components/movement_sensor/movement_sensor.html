@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,7 +71,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">viam.components.movement_sensor.movement_sensor</li>
       <li class="wy-breadcrumbs-aside">
@@ -91,7 +95,7 @@
 
 
 <div class="viewcode-block" id="MovementSensor"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor">[docs]</a><span class="k">class</span> <span class="nc">MovementSensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;MovementSensor reports information about the robot&#39;s direction, position and speed.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;MovementSensor reports information about the robot&#39;s direction, position and speed.</span>
 
 <span class="sd">    This acts as an abstract base class for any sensors that can provide data regarding the robot&#39;s direction, position, and speed.</span>
 <span class="sd">    This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.</span>
@@ -105,7 +109,7 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">GeoPoint</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get the current GeoPoint (latitude, longitude) and altitude (mm)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current GeoPoint (latitude, longitude) and altitude (mm)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[GeoPoint, float]: The current lat/long, along with the altitude in mm</span>
@@ -114,7 +118,7 @@
 
 <div class="viewcode-block" id="MovementSensor.get_linear_velocity"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_linear_velocity">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_linear_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in mm/sec</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in mm/sec</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector3: The linear velocity in mm/sec</span>
@@ -123,7 +127,7 @@
 
 <div class="viewcode-block" id="MovementSensor.get_angular_velocity"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_angular_velocity">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_angular_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in radians/sec</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in radians/sec</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector3: The angular velocity in rad/sec</span>
@@ -134,7 +138,7 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_linear_acceleration</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in mm/sec^2</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in mm/sec^2</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector3: The linear acceleration in mm/sec^2</span>
@@ -143,7 +147,7 @@
 
 <div class="viewcode-block" id="MovementSensor.get_compass_heading"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_compass_heading">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_compass_heading</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get the current compass heading in degrees</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current compass heading in degrees</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The compass heading in degrees</span>
@@ -152,7 +156,7 @@
 
 <div class="viewcode-block" id="MovementSensor.get_orientation"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_orientation">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Orientation</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get the current orientation</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current orientation</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Orientation: The orientation</span>
@@ -161,7 +165,7 @@
 
 <div class="viewcode-block" id="MovementSensor.get_properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_properties">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Get the supported properties of this sensor</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the supported properties of this sensor</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Properties: The properties</span>
@@ -172,7 +176,7 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_accuracy</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get the accuracy of the various sensors</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the accuracy of the various sensors</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Dict[str, float]: The accuracy in mm</span>
@@ -180,7 +184,7 @@
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="MovementSensor.get_readings"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_readings">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Obtain the measurements/data specific to this sensor.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain the measurements/data specific to this sensor.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The readings for the MovementSensor:</span>

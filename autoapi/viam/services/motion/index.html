@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.services.motion &mdash; Viam Python SDK  documentation</title>
@@ -31,11 +31,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -103,7 +107,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
       <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.motion</span></code></li>
       <li class="wy-breadcrumbs-aside">
@@ -122,10 +126,6 @@
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.motion.MotionServiceClient" title="viam.services.motion.MotionServiceClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MotionServiceClient</span></code></a></p></td>
 <td><p>Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</p></td>
@@ -145,7 +145,7 @@
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.motion.MotionServiceClient.SERVICE_TYPE">
-<span class="sig-name descname"><span class="pre">SERVICE_TYPE</span></span><em class="property"><span class="w"> </span><span class="pre">=</span> <span class="pre">motion</span></em><a class="headerlink" href="#viam.services.motion.MotionServiceClient.SERVICE_TYPE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SERVICE_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'motion'</span></em><a class="headerlink" href="#viam.services.motion.MotionServiceClient.SERVICE_TYPE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -160,7 +160,7 @@ originating ReferenceFrame’s name. Then pass in the resource name into <code c
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>component_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – Name of a component on a given robot.</p></li>
 <li><p><strong>destination</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><em>PoseInFrame</em></a>) – The destination to move to, expressed as a <code class="docutils literal notranslate"><span class="pre">Pose</span></code> and the frame in which it was observed.</p></li>
@@ -168,10 +168,10 @@ originating ReferenceFrame’s name. Then pass in the resource name into <code c
 WorldState message.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether the move was successful</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -185,7 +185,7 @@ the only component that support this. This method will transform the destination
 the arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end
 to that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>component_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – Name of a component on a given robot.</p></li>
 <li><p><strong>destination</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><em>PoseInFrame</em></a>) – The destination to move to, expressed as a <code class="docutils literal notranslate"><span class="pre">Pose</span></code> and the frame in which it was observed.</p></li>
@@ -193,10 +193,10 @@ to that pose, then you must manually adjust the given destination by the transfo
 WorldState message.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Whether the move was successful</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
@@ -212,17 +212,17 @@ WorldState message.</p></li>
 <p>Note that the example uses the <code class="docutils literal notranslate"><span class="pre">Arm</span></code> class, but any component class that inherits from <code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code> will work
 (<code class="docutils literal notranslate"><span class="pre">Base</span></code>, <code class="docutils literal notranslate"><span class="pre">Gripper</span></code>, etc).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>component_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – Name of a component on a robot.</p></li>
 <li><p><strong>destination_frame</strong> (<em>str</em>) – Name of the desired reference frame.</p></li>
 <li><p><strong>supplemental_transforms</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>Transforms</em><em>]</em><em>]</em>) – Transforms used to augment the robot’s frame while calculating pose.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Pose of the given component and the frame in which it was observed.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Pose</span></code> (PoseInFrame)</p>
 </dd>
 </dl>

@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,7 +71,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">viam.services.vision</li>
       <li class="wy-breadcrumbs-aside">
@@ -141,7 +145,7 @@
 
 
 <div class="viewcode-block" id="VisionServiceClient"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient">[docs]</a><span class="k">class</span> <span class="nc">VisionServiceClient</span><span class="p">(</span><span class="n">ServiceClientBase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Connect to the Vision service, which allows you to access various computer vision algorithms</span>
 <span class="sd">    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -153,7 +157,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
 <div class="viewcode-block" id="VisionServiceClient.get_detector_names"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_detector_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detector_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get the list of detectors currently registered in the service.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the list of detectors currently registered in the service.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The detector names</span>
@@ -165,7 +169,7 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detector_names</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionServiceClient.add_detector"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.add_detector">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_detector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">VisModelConfig</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add a new detector to the service. Returns nothing if successful, and an error if not.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a new detector to the service. Returns nothing if successful, and an error if not.</span>
 <span class="sd">        Registers a new detector just as if you had put it in the original &quot;register_models&quot; field</span>
 <span class="sd">        in the robot config. Available types and their parameters can be found in the</span>
 <span class="sd">        vision service documentation.</span>
@@ -185,7 +189,7 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">AddDetector</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionServiceClient.remove_detector"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.remove_detector">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_detector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detector_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Remove the detector with the given name from the service. Returns nothing if successful.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the detector with the given name from the service. Returns nothing if successful.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            detector_name (str): The name of the detector to remove</span>
@@ -198,7 +202,7 @@
 <div class="viewcode-block" id="VisionServiceClient.get_detections_from_camera"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_detections_from_camera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections_from_camera</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">detector_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get a list of detections in the next image given a camera and a detector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of detections in the next image given a camera and a detector</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            camera_name (str): The name of the camera to use for detection</span>
@@ -225,7 +229,7 @@
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get a list of detections in the given image using the specified detector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of detections in the given image using the specified detector</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            image (Image): The image to get detections from</span>
@@ -255,7 +259,7 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detections</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionServiceClient.get_classifier_names"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_classifier_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_classifier_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get the list of classifiers currently registered to the service</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the list of classifiers currently registered to the service</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[str]: The list of classifier names</span>
@@ -267,7 +271,7 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">classifier_names</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionServiceClient.add_classifier"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.add_classifier">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_classifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">VisModelConfig</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add a classifier to the service.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a classifier to the service.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            config (VisModelConfig): The configuration of the classifier</span>
@@ -284,7 +288,7 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">AddClassifier</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionServiceClient.remove_classifier"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.remove_classifier">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_classifier</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classifier_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Remove the classifier with the given name from the service. Returns nothing if successful.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the classifier with the given name from the service. Returns nothing if successful.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            classifier_name (str): The name of the classifier to remove</span>
@@ -303,7 +307,7 @@
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Classification</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get a list of classifications in the next image given a camera and a classifier</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of classifications in the next image given a camera and a classifier</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            camera_name (str): The name of the camera to use for detection</span>
@@ -329,7 +333,7 @@
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Classification</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;Get a list of detections in the given image using the specified detector</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of detections in the given image using the specified detector</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            image (Image): The image to get detections from</span>
@@ -357,7 +361,7 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">classifications</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionServiceClient.get_segmenter_names"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_segmenter_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_segmenter_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the list of segmenters currently registered in the service.</span>
 
 <span class="sd">        Returns:</span>
@@ -370,7 +374,7 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">segmenter_names</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionServiceClient.add_segmenter"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.add_segmenter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_segmenter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">VisModelConfig</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Add a segmenter to the service</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a segmenter to the service</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            config (VisModelConfig): The configuration of the segmenter</span>
@@ -387,7 +391,7 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">AddSegmenter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionServiceClient.remove_segmenter"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.remove_segmenter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_segmenter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Remove the segmenter with the given name from the service. Returns nothing if successful.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the segmenter with the given name from the service. Returns nothing if successful.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            segmenter_name (str): The name of the segmenter to remove</span>
@@ -400,7 +404,7 @@
 <div class="viewcode-block" id="VisionServiceClient.get_model_parameters_schema"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_model_parameters_schema">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_model_parameters_schema</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">model_type</span><span class="p">:</span> <span class="n">VisModelType</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">]]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the parameters needed to add a model to the vision registry.</span>
 
 <span class="sd">        Args:</span>
@@ -418,7 +422,7 @@
 <div class="viewcode-block" id="VisionServiceClient.get_object_point_clouds"><a class="viewcode-back" href="../../../autoapi/viam/services/vision/index.html#viam.services.vision.VisionServiceClient.get_object_point_clouds">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_point_clouds</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">segmenter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of the 3D point cloud objects and associated metadata in the latest</span>
 <span class="sd">        picture obtained from the specified 3D camera (using the specified segmenter).</span>
 

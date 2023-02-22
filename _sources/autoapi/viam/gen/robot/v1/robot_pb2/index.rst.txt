@@ -114,7 +114,7 @@ Attributes
 
 
 .. py:data:: DESCRIPTOR
-   :annotation: :google.protobuf.descriptor.FileDescriptor
+   :type: google.protobuf.descriptor.FileDescriptor
 
    
 
@@ -124,22 +124,21 @@ Attributes
 
 
 .. py:data:: PEER_CONNECTION_TYPE_UNSPECIFIED
-   :annotation: :PeerConnectionType
+   :type: PeerConnectionType
 
    
 
 .. py:data:: PEER_CONNECTION_TYPE_GRPC
-   :annotation: :PeerConnectionType
+   :type: PeerConnectionType
 
    
 
 .. py:data:: PEER_CONNECTION_TYPE_WEBRTC
-   :annotation: :PeerConnectionType
+   :type: PeerConnectionType
 
    
 
 .. py:data:: global___PeerConnectionType
-   
 
    
 
@@ -176,7 +175,6 @@ Attributes
 
 
 .. py:data:: global___FrameSystemConfig
-   
 
    
 
@@ -198,7 +196,6 @@ Attributes
 
 
 .. py:data:: global___FrameSystemConfigRequest
-   
 
    
 
@@ -218,7 +215,6 @@ Attributes
 
 
 .. py:data:: global___FrameSystemConfigResponse
-   
 
    
 
@@ -245,7 +241,7 @@ Attributes
       to perform the transform
 
    .. py:attribute:: destination
-      :annotation: :str
+      :type: str
 
       the reference frame into which the source pose should be transformed,
       if unset this defaults to the "world" reference frame
@@ -269,7 +265,6 @@ Attributes
 
 
 .. py:data:: global___TransformPoseRequest
-   
 
    
 
@@ -306,7 +301,6 @@ Attributes
 
 
 .. py:data:: global___TransformPoseResponse
-   
 
    
 
@@ -321,18 +315,18 @@ Attributes
    shown below.
 
    .. py:attribute:: point_cloud_pcd
-      :annotation: :bytes
+      :type: bytes
 
       the point clouds to transform. This should be in the PCD format
       encoded into bytes: https://pointclouds.org/documentation/tutorials/pcd_file_format.html
 
    .. py:attribute:: source
-      :annotation: :str
+      :type: str
 
       the reference frame of the point cloud.
 
    .. py:attribute:: destination
-      :annotation: :str
+      :type: str
 
       the reference frame into which the source data should be transformed, if unset this defaults to the "world" reference frame.
       Do not move the robot between the generation of the initial pointcloud and the receipt
@@ -340,7 +334,6 @@ Attributes
 
 
 .. py:data:: global___TransformPCDRequest
-   
 
    
 
@@ -355,13 +348,12 @@ Attributes
    shown below.
 
    .. py:attribute:: point_cloud_pcd
-      :annotation: :bytes
+      :type: bytes
 
       
 
 
 .. py:data:: global___TransformPCDResponse
-   
 
    
 
@@ -377,7 +369,6 @@ Attributes
 
 
 .. py:data:: global___ResourceNamesRequest
-   
 
    
 
@@ -397,7 +388,6 @@ Attributes
 
 
 .. py:data:: global___ResourceNamesResponse
-   
 
    
 
@@ -416,7 +406,7 @@ Attributes
 
 
    .. py:attribute:: proto_service
-      :annotation: :str
+      :type: str
 
       
 
@@ -439,7 +429,6 @@ Attributes
 
 
 .. py:data:: global___ResourceRPCSubtype
-   
 
    
 
@@ -455,7 +444,6 @@ Attributes
 
 
 .. py:data:: global___ResourceRPCSubtypesRequest
-   
 
    
 
@@ -475,7 +463,6 @@ Attributes
 
 
 .. py:data:: global___ResourceRPCSubtypesResponse
-   
 
    
 
@@ -498,17 +485,17 @@ Attributes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: method
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: session_id
-      :annotation: :str
+      :type: str
 
       
 
@@ -546,7 +533,6 @@ Attributes
 
 
 .. py:data:: global___Operation
-   
 
    
 
@@ -562,7 +548,6 @@ Attributes
 
 
 .. py:data:: global___GetOperationsRequest
-   
 
    
 
@@ -582,7 +567,6 @@ Attributes
 
 
 .. py:data:: global___GetOperationsResponse
-   
 
    
 
@@ -597,13 +581,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___CancelOperationRequest
-   
 
    
 
@@ -619,7 +602,6 @@ Attributes
 
 
 .. py:data:: global___CancelOperationResponse
-   
 
    
 
@@ -634,13 +616,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___BlockForOperationRequest
-   
 
    
 
@@ -656,7 +637,6 @@ Attributes
 
 
 .. py:data:: global___BlockForOperationResponse
-   
 
    
 
@@ -671,17 +651,17 @@ Attributes
    shown below.
 
    .. py:attribute:: type
-      :annotation: :global___PeerConnectionType
+      :type: global___PeerConnectionType
 
       
 
    .. py:attribute:: remote_address
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: local_address
-      :annotation: :str
+      :type: str
 
       
 
@@ -720,7 +700,6 @@ Attributes
 
 
 .. py:data:: global___PeerConnectionInfo
-   
 
    
 
@@ -739,7 +718,7 @@ Attributes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
@@ -777,7 +756,6 @@ Attributes
 
 
 .. py:data:: global___Session
-   
 
    
 
@@ -793,7 +771,6 @@ Attributes
 
 
 .. py:data:: global___GetSessionsRequest
-   
 
    
 
@@ -813,7 +790,6 @@ Attributes
 
 
 .. py:data:: global___GetSessionsResponse
-   
 
    
 
@@ -824,18 +800,17 @@ Attributes
    Discovery
 
    .. py:attribute:: subtype
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: model
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___DiscoveryQuery
-   
 
    
 
@@ -876,7 +851,6 @@ Attributes
 
 
 .. py:data:: global___Discovery
-   
 
    
 
@@ -896,7 +870,6 @@ Attributes
 
 
 .. py:data:: global___DiscoverComponentsRequest
-   
 
    
 
@@ -916,7 +889,6 @@ Attributes
 
 
 .. py:data:: global___DiscoverComponentsResponse
-   
 
    
 
@@ -957,7 +929,6 @@ Attributes
 
 
 .. py:data:: global___Status
-   
 
    
 
@@ -977,7 +948,6 @@ Attributes
 
 
 .. py:data:: global___GetStatusRequest
-   
 
    
 
@@ -997,7 +967,6 @@ Attributes
 
 
 .. py:data:: global___GetStatusResponse
-   
 
    
 
@@ -1039,7 +1008,6 @@ Attributes
 
 
 .. py:data:: global___StreamStatusRequest
-   
 
    
 
@@ -1059,7 +1027,6 @@ Attributes
 
 
 .. py:data:: global___StreamStatusResponse
-   
 
    
 
@@ -1100,7 +1067,6 @@ Attributes
 
 
 .. py:data:: global___StopExtraParameters
-   
 
    
 
@@ -1120,7 +1086,6 @@ Attributes
 
 
 .. py:data:: global___StopAllRequest
-   
 
    
 
@@ -1136,7 +1101,6 @@ Attributes
 
 
 .. py:data:: global___StopAllResponse
-   
 
    
 
@@ -1151,14 +1115,13 @@ Attributes
    shown below.
 
    .. py:attribute:: resume
-      :annotation: :str
+      :type: str
 
       resume can be used to attempt to continue a stream after a disconnection event. If
       a session is not found, a new one will be created and returned.
 
 
 .. py:data:: global___StartSessionRequest
-   
 
    
 
@@ -1177,7 +1140,7 @@ Attributes
 
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
@@ -1200,7 +1163,6 @@ Attributes
 
 
 .. py:data:: global___StartSessionResponse
-   
 
    
 
@@ -1215,13 +1177,12 @@ Attributes
    shown below.
 
    .. py:attribute:: id
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___SendSessionHeartbeatRequest
-   
 
    
 
@@ -1237,7 +1198,6 @@ Attributes
 
 
 .. py:data:: global___SendSessionHeartbeatResponse
-   
 
    
 

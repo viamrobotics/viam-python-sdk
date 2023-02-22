@@ -69,7 +69,7 @@ Attributes
 
 
 .. py:data:: DESCRIPTOR
-   :annotation: :google.protobuf.descriptor.FileDescriptor
+   :type: google.protobuf.descriptor.FileDescriptor
 
    
 
@@ -89,12 +89,12 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of a motor
 
    .. py:attribute:: power_pct
-      :annotation: :float
+      :type: float
 
       Percentage of motor's power, between -1 and 1
 
@@ -117,7 +117,6 @@ Attributes
 
 
 .. py:data:: global___SetPowerRequest
-   
 
    
 
@@ -133,7 +132,6 @@ Attributes
 
 
 .. py:data:: global___SetPowerResponse
-   
 
    
 
@@ -153,17 +151,17 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of a motor
 
    .. py:attribute:: rpm
-      :annotation: :float
+      :type: float
 
       Speed of motor travel in rotations per minute
 
    .. py:attribute:: revolutions
-      :annotation: :float
+      :type: float
 
       Number of revolutions relative to motor's start position
 
@@ -186,7 +184,6 @@ Attributes
 
 
 .. py:data:: global___GoForRequest
-   
 
    
 
@@ -202,7 +199,6 @@ Attributes
 
 
 .. py:data:: global___GoForResponse
-   
 
    
 
@@ -222,17 +218,17 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of a motor
 
    .. py:attribute:: rpm
-      :annotation: :float
+      :type: float
 
       Speed of motor travel in rotations per minute
 
    .. py:attribute:: position_revolutions
-      :annotation: :float
+      :type: float
 
       Number of revolutions relative to motor's home home/zero
 
@@ -255,7 +251,6 @@ Attributes
 
 
 .. py:data:: global___GoToRequest
-   
 
    
 
@@ -271,7 +266,6 @@ Attributes
 
 
 .. py:data:: global___GoToResponse
-   
 
    
 
@@ -291,12 +285,12 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of a motor
 
    .. py:attribute:: offset
-      :annotation: :float
+      :type: float
 
       Motor position
 
@@ -319,7 +313,6 @@ Attributes
 
 
 .. py:data:: global___ResetZeroPositionRequest
-   
 
    
 
@@ -335,7 +328,6 @@ Attributes
 
 
 .. py:data:: global___ResetZeroPositionResponse
-   
 
    
 
@@ -355,7 +347,7 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of a motor
 
@@ -378,7 +370,6 @@ Attributes
 
 
 .. py:data:: global___GetPositionRequest
-   
 
    
 
@@ -393,13 +384,12 @@ Attributes
    shown below.
 
    .. py:attribute:: position
-      :annotation: :float
+      :type: float
 
       Current position of the motor relative to its home
 
 
 .. py:data:: global___GetPositionResponse
-   
 
    
 
@@ -419,7 +409,7 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of a motor
 
@@ -442,7 +432,6 @@ Attributes
 
 
 .. py:data:: global___StopRequest
-   
 
    
 
@@ -458,7 +447,6 @@ Attributes
 
 
 .. py:data:: global___StopResponse
-   
 
    
 
@@ -478,7 +466,7 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of a motor
 
@@ -501,7 +489,6 @@ Attributes
 
 
 .. py:data:: global___IsPoweredRequest
-   
 
    
 
@@ -516,12 +503,12 @@ Attributes
    shown below.
 
    .. py:attribute:: is_on
-      :annotation: :bool
+      :type: bool
 
       Returns true if the motor is on
 
    .. py:attribute:: power_pct
-      :annotation: :float
+      :type: float
 
       Returns power percent (from 0 to 1, or from -1 to 1 for motors that support negative power),
       based on the last command sent to motor. If the last command was a stop command, this value
@@ -529,7 +516,6 @@ Attributes
 
 
 .. py:data:: global___IsPoweredResponse
-   
 
    
 
@@ -549,7 +535,7 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of a motor
 
@@ -572,7 +558,6 @@ Attributes
 
 
 .. py:data:: global___GetPropertiesRequest
-   
 
    
 
@@ -587,13 +572,12 @@ Attributes
    shown below.
 
    .. py:attribute:: position_reporting
-      :annotation: :bool
+      :type: bool
 
       Returns true if the motor supports reporting its position
 
 
 .. py:data:: global___GetPropertiesResponse
-   
 
    
 
@@ -608,23 +592,22 @@ Attributes
    shown below.
 
    .. py:attribute:: is_powered
-      :annotation: :bool
+      :type: bool
 
       Returns true if the motor is powered
 
    .. py:attribute:: position
-      :annotation: :float
+      :type: float
 
       Returns current position of the motor relative to its home
 
    .. py:attribute:: is_moving
-      :annotation: :bool
+      :type: bool
 
       Returns true if the motor is moving
 
 
 .. py:data:: global___Status
-   
 
    
 
@@ -639,13 +622,12 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
 
 .. py:data:: global___IsMovingRequest
-   
 
    
 
@@ -660,13 +642,12 @@ Attributes
    shown below.
 
    .. py:attribute:: is_moving
-      :annotation: :bool
+      :type: bool
 
       
 
 
 .. py:data:: global___IsMovingResponse
-   
 
    
 

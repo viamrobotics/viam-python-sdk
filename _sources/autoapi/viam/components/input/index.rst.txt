@@ -46,138 +46,137 @@ Attributes
    Control identifies the input (specific Axis or Button) of a controller.
 
    .. py:attribute:: ABSOLUTE_X
-      :annotation: = AbsoluteX
+      :value: 'AbsoluteX'
 
       
 
    .. py:attribute:: ABSOLUTE_Y
-      :annotation: = AbsoluteY
+      :value: 'AbsoluteY'
 
       
 
    .. py:attribute:: ABSOLUTE_Z
-      :annotation: = AbsoluteZ
+      :value: 'AbsoluteZ'
 
       
 
    .. py:attribute:: ABSOLUTE_RX
-      :annotation: = AbsoluteRX
+      :value: 'AbsoluteRX'
 
       
 
    .. py:attribute:: ABSOLUTE_RY
-      :annotation: = AbsoluteRY
+      :value: 'AbsoluteRY'
 
       
 
    .. py:attribute:: ABSOLUTE_RZ
-      :annotation: = AbsoluteRZ
+      :value: 'AbsoluteRZ'
 
       
 
    .. py:attribute:: ABSOLUTE_HAT0_X
-      :annotation: = AbsoluteHat0X
+      :value: 'AbsoluteHat0X'
 
       
 
    .. py:attribute:: ABSOLUTE_HAT0_Y
-      :annotation: = AbsoluteHat0Y
+      :value: 'AbsoluteHat0Y'
 
       
 
    .. py:attribute:: BUTTON_SOUTH
-      :annotation: = ButtonSouth
+      :value: 'ButtonSouth'
 
       
 
    .. py:attribute:: BUTTON_EAST
-      :annotation: = ButtonEast
+      :value: 'ButtonEast'
 
       
 
    .. py:attribute:: BUTTON_WEST
-      :annotation: = ButtonWest
+      :value: 'ButtonWest'
 
       
 
    .. py:attribute:: BUTTON_NORTH
-      :annotation: = ButtonNorth
+      :value: 'ButtonNorth'
 
       
 
    .. py:attribute:: BUTTON_LT
-      :annotation: = ButtonLT
+      :value: 'ButtonLT'
 
       
 
    .. py:attribute:: BUTTON_RT
-      :annotation: = ButtonRT
+      :value: 'ButtonRT'
 
       
 
    .. py:attribute:: BUTTON_LT2
-      :annotation: = ButtonLT2
+      :value: 'ButtonLT2'
 
       
 
    .. py:attribute:: BUTTON_RT2
-      :annotation: = ButtonRT2
+      :value: 'ButtonRT2'
 
       
 
    .. py:attribute:: BUTTON_L_THUMB
-      :annotation: = ButtonLThumb
+      :value: 'ButtonLThumb'
 
       
 
    .. py:attribute:: BUTTON_R_THUMB
-      :annotation: = ButtonRThumb
+      :value: 'ButtonRThumb'
 
       
 
    .. py:attribute:: BUTTON_SELECT
-      :annotation: = ButtonSelect
+      :value: 'ButtonSelect'
 
       
 
    .. py:attribute:: BUTTON_START
-      :annotation: = ButtonStart
+      :value: 'ButtonStart'
 
       
 
    .. py:attribute:: BUTTON_MENU
-      :annotation: = ButtonMenu
+      :value: 'ButtonMenu'
 
       
 
    .. py:attribute:: BUTTON_RECORD
-      :annotation: = ButtonRecord
+      :value: 'ButtonRecord'
 
       
 
    .. py:attribute:: BUTTON_E_STOP
-      :annotation: = ButtonEStop
+      :value: 'ButtonEStop'
 
       
 
    .. py:attribute:: ABSOLUTE_PEDAL_ACCELERATOR
-      :annotation: = AbsolutePedalAccelerator
+      :value: 'AbsolutePedalAccelerator'
 
       
 
    .. py:attribute:: ABSOLUTE_PEDAL_BRAKE
-      :annotation: = AbsolutePedalBrake
+      :value: 'AbsolutePedalBrake'
 
       
 
    .. py:attribute:: ABSOLUTE_PEDAL_CLUTCH
-      :annotation: = AbsolutePedalClutch
+      :value: 'AbsolutePedalClutch'
 
       
 
 
 .. py:data:: ControlFunction
-   
 
    
 
@@ -190,7 +189,7 @@ Attributes
    and analogReaders, a keyboard, etc.
 
    .. py:attribute:: SUBTYPE
-      :annotation: :Final
+      :type: Final
 
       
 
@@ -247,22 +246,22 @@ Attributes
 
 
    .. py:attribute:: time
-      :annotation: :float
+      :type: float
 
       seconds since epoch
 
    .. py:attribute:: event
-      :annotation: :EventType
+      :type: EventType
 
       
 
    .. py:attribute:: control
-      :annotation: :Control
+      :type: Control
 
       
 
    .. py:attribute:: value
-      :annotation: :float
+      :type: float
 
       0 or 1 for buttons, -1.0 to +1.0 for axes
 
@@ -278,47 +277,47 @@ Attributes
    Represents the type of input event.
 
    .. py:attribute:: ALL_EVENTS
-      :annotation: = AllEvents
+      :value: 'AllEvents'
 
       Callbacks registered for this event will be called in ADDITION to other registered event callbacks.
 
    .. py:attribute:: CONNECT
-      :annotation: = Connect
+      :value: 'Connect'
 
       Sent at controller initialization, and on reconnects.
 
    .. py:attribute:: DISCONNECT
-      :annotation: = Disconnect
+      :value: 'Disconnect'
 
       If unplugged, or wireless/network times out.
 
    .. py:attribute:: BUTTON_PRESS
-      :annotation: = ButtonPress
+      :value: 'ButtonPress'
 
       Typical key press.
 
    .. py:attribute:: BUTTON_RELEASE
-      :annotation: = ButtonRelease
+      :value: 'ButtonRelease'
 
       Key release.
 
    .. py:attribute:: BUTTON_HOLD
-      :annotation: = ButtonHold
+      :value: 'ButtonHold'
 
       Key is held down. This wil likely be a repeated event.
 
    .. py:attribute:: BUTTON_CHANGE
-      :annotation: = ButtonChange
+      :value: 'ButtonChange'
 
       Both up and down for convenience during registration, not typically emitted.
 
    .. py:attribute:: POSITION_CHANGE_ABSOLUTE
-      :annotation: = PositionChangeAbs
+      :value: 'PositionChangeAbs'
 
       Absolute position is reported via Value, a la joysticks.
 
    .. py:attribute:: POSITION_CHANGE_RELATIVE
-      :annotation: = PositionChangeRel
+      :value: 'PositionChangeRel'
 
       Relative position is reported via Value, a la mice, or simulating axes with up/down buttons.
 

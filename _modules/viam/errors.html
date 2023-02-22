@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,7 +71,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
       <li class="breadcrumb-item active">viam.errors</li>
       <li class="wy-breadcrumbs-aside">
@@ -83,7 +87,7 @@
 
 
 <div class="viewcode-block" id="ViamError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ViamError">[docs]</a><span class="k">class</span> <span class="nc">ViamError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base Viam Error</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -91,7 +95,7 @@
 
 
 <div class="viewcode-block" id="InsecureConnectionError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.InsecureConnectionError">[docs]</a><span class="k">class</span> <span class="nc">InsecureConnectionError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when establishing an insecure connection</span>
 
 <span class="sd">    Attributes:</span>
@@ -103,12 +107,12 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">authenticated</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">address</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="o">=</span> <span class="n">authenticated</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Requested address </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2"> is insecure&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot; and will not send credentials&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Requested address </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="si">}</span><span class="s2"> is insecure&quot;</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot; and will not send credentials&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="DuplicateResourceError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.DuplicateResourceError">[docs]</a><span class="k">class</span> <span class="nc">DuplicateResourceError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when attempting to register a resource</span>
 <span class="sd">    with the same name as an existing resource already in</span>
 <span class="sd">    the registry</span>
@@ -121,7 +125,7 @@
 
 
 <div class="viewcode-block" id="ViamGRPCError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ViamGRPCError">[docs]</a><span class="k">class</span> <span class="nc">ViamGRPCError</span><span class="p">(</span><span class="n">ViamError</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised if it could happen as a part of GRPC calls.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -135,7 +139,7 @@
 
 
 <div class="viewcode-block" id="ResourceNotFoundError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ResourceNotFoundError">[docs]</a><span class="k">class</span> <span class="nc">ResourceNotFoundError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when a resource is not found in the registry</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -147,7 +151,7 @@
 
 
 <div class="viewcode-block" id="ServiceNotImplementedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.ServiceNotImplementedError">[docs]</a><span class="k">class</span> <span class="nc">ServiceNotImplementedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when a service is not implemented on the Robot</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -159,7 +163,7 @@
 
 
 <div class="viewcode-block" id="MethodNotImplementedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.MethodNotImplementedError">[docs]</a><span class="k">class</span> <span class="nc">MethodNotImplementedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when specific methods are unimplemented.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -169,7 +173,7 @@
 
 
 <div class="viewcode-block" id="NotSupportedError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.NotSupportedError">[docs]</a><span class="k">class</span> <span class="nc">NotSupportedError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exception raised when specific component functionality is not supported</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 

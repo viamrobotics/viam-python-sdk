@@ -166,17 +166,17 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: classifier_name
-      :annotation: :str
+      :type: str
 
       name of classifier to add to registry
 
    .. py:attribute:: classifier_model_type
-      :annotation: :str
+      :type: str
 
       the type of classifier
 
@@ -229,17 +229,17 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: detector_name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: detector_model_type
-      :annotation: :str
+      :type: str
 
       
 
@@ -293,17 +293,17 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: segmenter_name
-      :annotation: :str
+      :type: str
 
       name of the segmenter
 
    .. py:attribute:: segmenter_model_type
-      :annotation: :str
+      :type: str
 
       name of the segmenter model
 
@@ -343,12 +343,12 @@ Classes
    the general form of the output from a classifier
 
    .. py:attribute:: class_name
-      :annotation: :str
+      :type: str
 
       the class name
 
    .. py:attribute:: confidence
-      :annotation: :float
+      :type: float
 
       the confidence score of the classification
 
@@ -364,32 +364,32 @@ Classes
    shown below.
 
    .. py:attribute:: x_min
-      :annotation: :int
+      :type: int
 
       the four corners of the box
 
    .. py:attribute:: y_min
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: x_max
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: y_max
-      :annotation: :int
+      :type: int
 
       
 
    .. py:attribute:: confidence
-      :annotation: :float
+      :type: float
 
       the confidence of the detection
 
    .. py:attribute:: class_name
-      :annotation: :str
+      :type: str
 
       label associated with the detected object
 
@@ -445,22 +445,22 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: camera_name
-      :annotation: :str
+      :type: str
 
       the image encoded as bytes
 
    .. py:attribute:: classifier_name
-      :annotation: :str
+      :type: str
 
       the name of the registered classifier
 
    .. py:attribute:: n
-      :annotation: :int
+      :type: int
 
       the number of classifications desired
 
@@ -513,37 +513,37 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: image
-      :annotation: :bytes
+      :type: bytes
 
       the image encoded as bytes
 
    .. py:attribute:: width
-      :annotation: :int
+      :type: int
 
       the width of the image
 
    .. py:attribute:: height
-      :annotation: :int
+      :type: int
 
       the height of the image
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       the actual MIME type of image
 
    .. py:attribute:: classifier_name
-      :annotation: :str
+      :type: str
 
       the name of the registered classifier
 
    .. py:attribute:: n
-      :annotation: :int
+      :type: int
 
       the number of classifications desired
 
@@ -596,7 +596,7 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
@@ -649,17 +649,17 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: camera_name
-      :annotation: :str
+      :type: str
 
       name of camera source to use as input
 
    .. py:attribute:: detector_name
-      :annotation: :str
+      :type: str
 
       name of the registered detector to use
 
@@ -713,32 +713,32 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: image
-      :annotation: :bytes
+      :type: bytes
 
       the image, encoded as bytes
 
    .. py:attribute:: width
-      :annotation: :int
+      :type: int
 
       the width of the image
 
    .. py:attribute:: height
-      :annotation: :int
+      :type: int
 
       the height of the image
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       the actual MIME type of image
 
    .. py:attribute:: detector_name
-      :annotation: :str
+      :type: str
 
       name of the registered detector to use
 
@@ -792,7 +792,7 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
@@ -846,12 +846,12 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: model_type
-      :annotation: :str
+      :type: str
 
       name of the type of vision model
 
@@ -884,7 +884,7 @@ Classes
    shown below.
 
    .. py:attribute:: model_parameter_schema
-      :annotation: :bytes
+      :type: bytes
 
       the parameters as JSON bytes of a jsonschema.Schema
 
@@ -905,22 +905,22 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: camera_name
-      :annotation: :str
+      :type: str
 
       Name of a camera
 
    .. py:attribute:: segmenter_name
-      :annotation: :str
+      :type: str
 
       Name of the segmentation algorithm
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       Requested MIME type of response
 
@@ -958,7 +958,7 @@ Classes
       List of objects in the scene
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       Actual MIME type of response
 
@@ -979,7 +979,7 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
@@ -1033,12 +1033,12 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: classifier_name
-      :annotation: :str
+      :type: str
 
       name of the classifier in registry
 
@@ -1087,12 +1087,12 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: detector_name
-      :annotation: :str
+      :type: str
 
       name of detector in registry
 
@@ -1141,12 +1141,12 @@ Classes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       name of the vision service
 
    .. py:attribute:: segmenter_name
-      :annotation: :str
+      :type: str
 
       name of segmenter in registry
 

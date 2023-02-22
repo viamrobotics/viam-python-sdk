@@ -59,7 +59,7 @@ Attributes
 
 
 .. py:data:: DESCRIPTOR
-   :annotation: :google.protobuf.descriptor.FileDescriptor
+   :type: google.protobuf.descriptor.FileDescriptor
 
    
 
@@ -79,7 +79,7 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
@@ -102,7 +102,6 @@ Attributes
 
 
 .. py:data:: global___GetPositionRequest
-   
 
    
 
@@ -145,7 +144,6 @@ Attributes
 
 
 .. py:data:: global___GetPositionResponse
-   
 
    
 
@@ -171,17 +169,17 @@ Attributes
       Additional arguments to the method
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       Requested MIME type of response (image/jpeg or image/pcd)
 
    .. py:attribute:: include_robot_marker
-      :annotation: :bool
+      :type: bool
 
       Optional parameter for image/jpeg mime_type, defaults to false.
       Tells us whether to include the robot position on the 2D image.
@@ -220,7 +218,6 @@ Attributes
 
 
 .. py:data:: global___GetMapRequest
-   
 
    
 
@@ -239,12 +236,12 @@ Attributes
 
 
    .. py:attribute:: image
-      :annotation: :bytes
+      :type: bytes
 
       
 
    .. py:attribute:: mime_type
-      :annotation: :str
+      :type: str
 
       Actual MIME type of response (image/jpeg or image/pcd)
 
@@ -282,7 +279,6 @@ Attributes
 
 
 .. py:data:: global___GetMapResponse
-   
 
    
 
@@ -297,13 +293,12 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
 
 .. py:data:: global___GetPositionNewRequest
-   
 
    
 
@@ -328,7 +323,7 @@ Attributes
       Additional information in the response
 
    .. py:attribute:: component_reference
-      :annotation: :str
+      :type: str
 
       This is usually the name of the camera that is in the SLAM config
 
@@ -351,7 +346,6 @@ Attributes
 
 
 .. py:data:: global___GetPositionNewResponse
-   
 
    
 
@@ -366,13 +360,12 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
 
 .. py:data:: global___GetPointCloudMapRequest
-   
 
    
 
@@ -387,14 +380,13 @@ Attributes
    shown below.
 
    .. py:attribute:: point_cloud_pcd
-      :annotation: :bytes
+      :type: bytes
 
       pointclouds are returned as a set of bytes in the standard PCD format
       https://pointclouds.org/documentation/tutorials/pcd_file_format.html
 
 
 .. py:data:: global___GetPointCloudMapResponse
-   
 
    
 
@@ -409,13 +401,12 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
 
 .. py:data:: global___GetInternalStateRequest
-   
 
    
 
@@ -430,14 +421,13 @@ Attributes
    shown below.
 
    .. py:attribute:: internal_state
-      :annotation: :bytes
+      :type: bytes
 
       A chunk of the internal state of the SLAM algorithm required to continue
       mapping/localization
 
 
 .. py:data:: global___GetInternalStateResponse
-   
 
    
 
@@ -452,13 +442,12 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
 
 .. py:data:: global___GetPointCloudMapStreamRequest
-   
 
    
 
@@ -473,7 +462,7 @@ Attributes
    shown below.
 
    .. py:attribute:: point_cloud_pcd_chunk
-      :annotation: :bytes
+      :type: bytes
 
       One chunk of the PointCloud.
       For a given GetPointCloudMapStream request,
@@ -485,7 +474,6 @@ Attributes
 
 
 .. py:data:: global___GetPointCloudMapStreamResponse
-   
 
    
 
@@ -500,13 +488,12 @@ Attributes
    shown below.
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       Name of slam service
 
 
 .. py:data:: global___GetInternalStateStreamRequest
-   
 
    
 
@@ -521,14 +508,13 @@ Attributes
    shown below.
 
    .. py:attribute:: internal_state_chunk
-      :annotation: :bytes
+      :type: bytes
 
       Chunk of the internal state of the SLAM algorithm required to continue
       mapping/localization
 
 
 .. py:data:: global___GetInternalStateStreamResponse
-   
 
    
 

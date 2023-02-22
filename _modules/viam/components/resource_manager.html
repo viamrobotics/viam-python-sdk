@@ -28,11 +28,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> Viam Python SDK
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,7 +71,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
       <li class="breadcrumb-item active">viam.components.resource_manager</li>
       <li class="wy-breadcrumbs-aside">
@@ -90,7 +94,7 @@
 
 
 <div class="viewcode-block" id="ResourceManager"><a class="viewcode-back" href="../../../autoapi/viam/components/resource_manager/index.html#viam.components.resource_manager.ResourceManager">[docs]</a><span class="k">class</span> <span class="nc">ResourceManager</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Registry containing all components registered to this server.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -104,7 +108,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ResourceManager.register"><a class="viewcode-back" href="../../../autoapi/viam/components/resource_manager/index.html#viam.components.resource_manager.ResourceManager.register">[docs]</a>    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">ComponentBase</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Register a new component with the registry.</span>
 <span class="sd">        Components may not have the same name.</span>
 <span class="sd">        If a component is remote and the short name is unique, save a short name version.</span>
@@ -137,7 +141,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rnames</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ResourceManager.get_component"><a class="viewcode-back" href="../../../autoapi/viam/components/resource_manager/index.html#viam.components.resource_manager.ResourceManager.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">of_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceType</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a component from the registry.</span>
 <span class="sd">        If a unique short name version is given, return a remote component with the name.</span>
 

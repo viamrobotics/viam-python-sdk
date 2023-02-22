@@ -35,37 +35,37 @@ Classes
    errors defaults to 'strict'.
 
    .. py:attribute:: DETECTOR_TF_LITE
-      :annotation: = tflite_detector
+      :value: 'tflite_detector'
 
       
 
    .. py:attribute:: DETECTOR_TENSORFLOW
-      :annotation: = tf_detector
+      :value: 'tf_detector'
 
       
 
    .. py:attribute:: DETECTOR_COLOR
-      :annotation: = color_detector
+      :value: 'color_detector'
 
       
 
    .. py:attribute:: CLASSIFIER_TFLITE
-      :annotation: = tflite_classifier
+      :value: 'tflite_classifier'
 
       
 
    .. py:attribute:: CLASSIFIER_TENSORFLOW
-      :annotation: = tf_classifier
+      :value: 'tf_classifier'
 
       
 
    .. py:attribute:: DETECTOR_SEGMENTER
-      :annotation: = detector_segmenter
+      :value: 'detector_segmenter'
 
       
 
    .. py:attribute:: RADIUS_CLUSTERING_SEGMENTER
-      :annotation: = radius_clustering_segmenter
+      :value: 'radius_clustering_segmenter'
 
       
 
@@ -73,17 +73,17 @@ Classes
 .. py:class:: VisModelConfig
 
    .. py:attribute:: name
-      :annotation: :str
+      :type: str
 
       
 
    .. py:attribute:: type
-      :annotation: :VisModelType
+      :type: VisModelType
 
       
 
    .. py:attribute:: parameters
-      :annotation: :Mapping[str, Any]
+      :type: Mapping[str, Any]
 
       
 
@@ -96,7 +96,7 @@ Classes
    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
 
    .. py:attribute:: SERVICE_TYPE
-      :annotation: = vision
+      :value: 'vision'
 
       
 

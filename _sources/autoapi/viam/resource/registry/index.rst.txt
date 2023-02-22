@@ -35,7 +35,6 @@ Attributes
 
 
 .. py:data:: Component
-   
 
    
 
@@ -56,22 +55,22 @@ Attributes
    to the ``Registry``.
 
    .. py:attribute:: component_type
-      :annotation: :Type[Component]
+      :type: Type[Component]
 
       The type of the Component to be registered
 
    .. py:attribute:: rpc_service
-      :annotation: :Type[viam.components.service_base.ComponentServiceBase]
+      :type: Type[viam.components.service_base.ComponentServiceBase]
 
       The RPC service of the component. This must extend from ``ComponentServiceBase``
 
    .. py:attribute:: create_rpc_client
-      :annotation: :Callable[[str, grpclib.client.Channel], Component]
+      :type: Callable[[str, grpclib.client.Channel], Component]
 
       A function that will create the RPC client for this component
 
    .. py:attribute:: create_status
-      :annotation: :Callable[[Component], Coroutine[Any, Any, viam.proto.robot.Status]]
+      :type: Callable[[Component], Coroutine[Any, Any, viam.proto.robot.Status]]
 
       A function to create a Status object for this component.
 
