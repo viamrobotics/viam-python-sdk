@@ -149,3 +149,8 @@ class Registry:
         """
         with cls._lock:
             return cls._SUBTYPES.copy()
+
+    @classmethod
+    def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentCreator]:
+        with cls._lock:
+            return cls._COMPONENTS.copy()

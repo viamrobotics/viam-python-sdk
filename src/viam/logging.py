@@ -59,3 +59,9 @@ def setLevel(level: int):
     LOG_LEVEL = level
     for logger in LOGGERS.values():
         logger.setLevel(LOG_LEVEL)
+
+
+def silence():
+    LOG_LEVEL = FATAL + 1
+    for logger in LOGGERS.values():
+        logger.setLevel(LOG_LEVEL)
