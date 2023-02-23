@@ -2,7 +2,8 @@ from grpclib.server import Stream
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -134,3 +135,6 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         accuracy = await sensor.get_accuracy(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetAccuracyResponse(accuracy_mm=accuracy)
         await stream.send_message(response)
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        raise MethodNotImplementedError("DoCommand")

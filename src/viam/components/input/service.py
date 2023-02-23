@@ -6,7 +6,8 @@ from h2.exceptions import StreamClosedError
 from grpclib.server import Stream
 import viam
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError, NotSupportedError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError, NotSupportedError
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -165,3 +166,6 @@ class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Co
 
         response = TriggerEventResponse()
         await stream.send_message(response)
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        raise MethodNotImplementedError("DoCommand")

@@ -2,7 +2,8 @@ from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.media.video import CameraMimeType, RawImage
 from viam.proto.component.camera import (
     CameraServiceBase,
@@ -99,3 +100,6 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
             distortion_parameters=properties.distortion_parameters,
         )
         await stream.send_message(response)
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        raise MethodNotImplementedError("DoCommand")

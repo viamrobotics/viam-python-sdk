@@ -1,21 +1,22 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
     ArmServiceBase,
     GetEndPositionRequest,
     GetEndPositionResponse,
     GetJointPositionsRequest,
     GetJointPositionsResponse,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveToJointPositionsRequest,
     MoveToJointPositionsResponse,
     MoveToPositionRequest,
     MoveToPositionResponse,
     StopRequest,
     StopResponse,
-    IsMovingRequest,
-    IsMovingResponse,
 )
 from viam.utils import struct_to_dict
 
@@ -107,3 +108,6 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
         is_moving = await arm.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        raise MethodNotImplementedError("DoCommand")

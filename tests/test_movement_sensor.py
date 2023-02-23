@@ -284,11 +284,11 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
             assert movement_sensor.extra is None
-            (coord, alt) = await client.get_position(extra=EXTRA_PARAMS, timeout=1.23)
+            (coord, alt) = await client.get_position(extra=EXTRA_PARAMS, timeout=1.45)
             assert coord == COORDINATE
             assert alt == ALTITUDE
             assert movement_sensor.extra == EXTRA_PARAMS
-            assert movement_sensor.timeout == loose_approx(1.23)
+            assert movement_sensor.timeout == loose_approx(1.45)
 
     @pytest.mark.asyncio
     async def test_get_linear_velocity(self, movement_sensor: MockMovementSensor, service: MovementSensorService):

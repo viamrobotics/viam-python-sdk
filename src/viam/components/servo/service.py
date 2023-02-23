@@ -1,7 +1,8 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
@@ -72,3 +73,6 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
             raise e.grpc_error
         is_moving = await servo.is_moving()
         await stream.send_message(IsMovingResponse(is_moving=is_moving))
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        raise MethodNotImplementedError("DoCommand")

@@ -1,6 +1,7 @@
 from grpclib.server import Stream
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.board import (
     BoardServiceBase,
     GetDigitalInterruptValueRequest,
@@ -158,3 +159,6 @@ class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
         value = await interrupt.value(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetDigitalInterruptValueResponse(value=value)
         await stream.send_message(response)
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        raise MethodNotImplementedError("DoCommand")
