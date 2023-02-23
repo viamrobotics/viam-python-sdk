@@ -4,6 +4,7 @@ import grpclib.const
 import grpclib.client
 if typing.TYPE_CHECKING:
     import grpclib.server
+from .... import common
 import google.api.annotations_pb2
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
@@ -27,8 +28,12 @@ class InputControllerServiceBase(abc.ABC):
     async def TriggerEvent(self, stream: 'grpclib.server.Stream[component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
-        return {'/viam.component.inputcontroller.v1.InputControllerService/GetControls': grpclib.const.Handler(self.GetControls, grpclib.const.Cardinality.UNARY_UNARY, component.inputcontroller.v1.input_controller_pb2.GetControlsRequest, component.inputcontroller.v1.input_controller_pb2.GetControlsResponse), '/viam.component.inputcontroller.v1.InputControllerService/GetEvents': grpclib.const.Handler(self.GetEvents, grpclib.const.Cardinality.UNARY_UNARY, component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, component.inputcontroller.v1.input_controller_pb2.GetEventsResponse), '/viam.component.inputcontroller.v1.InputControllerService/StreamEvents': grpclib.const.Handler(self.StreamEvents, grpclib.const.Cardinality.UNARY_STREAM, component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse), '/viam.component.inputcontroller.v1.InputControllerService/TriggerEvent': grpclib.const.Handler(self.TriggerEvent, grpclib.const.Cardinality.UNARY_UNARY, component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse)}
+        return {'/viam.component.inputcontroller.v1.InputControllerService/GetControls': grpclib.const.Handler(self.GetControls, grpclib.const.Cardinality.UNARY_UNARY, component.inputcontroller.v1.input_controller_pb2.GetControlsRequest, component.inputcontroller.v1.input_controller_pb2.GetControlsResponse), '/viam.component.inputcontroller.v1.InputControllerService/GetEvents': grpclib.const.Handler(self.GetEvents, grpclib.const.Cardinality.UNARY_UNARY, component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, component.inputcontroller.v1.input_controller_pb2.GetEventsResponse), '/viam.component.inputcontroller.v1.InputControllerService/StreamEvents': grpclib.const.Handler(self.StreamEvents, grpclib.const.Cardinality.UNARY_STREAM, component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse), '/viam.component.inputcontroller.v1.InputControllerService/TriggerEvent': grpclib.const.Handler(self.TriggerEvent, grpclib.const.Cardinality.UNARY_UNARY, component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse), '/viam.component.inputcontroller.v1.InputControllerService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)}
 
 class InputControllerServiceStub:
 
@@ -37,3 +42,4 @@ class InputControllerServiceStub:
         self.GetEvents = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.inputcontroller.v1.InputControllerService/GetEvents', component.inputcontroller.v1.input_controller_pb2.GetEventsRequest, component.inputcontroller.v1.input_controller_pb2.GetEventsResponse)
         self.StreamEvents = grpclib.client.UnaryStreamMethod(channel, '/viam.component.inputcontroller.v1.InputControllerService/StreamEvents', component.inputcontroller.v1.input_controller_pb2.StreamEventsRequest, component.inputcontroller.v1.input_controller_pb2.StreamEventsResponse)
         self.TriggerEvent = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.inputcontroller.v1.InputControllerService/TriggerEvent', component.inputcontroller.v1.input_controller_pb2.TriggerEventRequest, component.inputcontroller.v1.input_controller_pb2.TriggerEventResponse)
+        self.DoCommand = grpclib.client.UnaryUnaryMethod(channel, '/viam.component.inputcontroller.v1.InputControllerService/DoCommand', common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse)

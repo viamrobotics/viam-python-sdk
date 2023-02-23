@@ -976,14 +976,16 @@ class RoverRentalRobot(google.protobuf.message.Message):
     ROBOT_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
     ROBOT_NAME_FIELD_NUMBER: builtins.int
+    ROBOT_MAIN_PART_ID_FIELD_NUMBER: builtins.int
     robot_id: builtins.str
     location_id: builtins.str
     robot_name: builtins.str
+    robot_main_part_id: builtins.str
 
-    def __init__(self, *, robot_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=...) -> None:
+    def __init__(self, *, robot_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=..., robot_main_part_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'robot_id', b'robot_id', 'robot_name', b'robot_name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'robot_id', b'robot_id', 'robot_main_part_id', b'robot_main_part_id', 'robot_name', b'robot_name']) -> None:
         ...
 global___RoverRentalRobot = RoverRentalRobot
 
