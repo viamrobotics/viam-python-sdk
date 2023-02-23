@@ -1,7 +1,8 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
     GantryServiceBase,
     GetLengthsRequest,
@@ -92,3 +93,6 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         is_moving = await gantry.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        raise MethodNotImplementedError("DoCommand")

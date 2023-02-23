@@ -1,7 +1,8 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.posetracker import (
     GetPosesRequest,
     GetPosesResponse,
@@ -32,3 +33,6 @@ class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracke
             list(request.body_names), extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
         )
         await stream.send_message(GetPosesResponse(body_poses=poses))
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        raise MethodNotImplementedError("DoCommand")
