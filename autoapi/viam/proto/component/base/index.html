@@ -76,6 +76,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.SetVelocity"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.SetVelocity()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.IsMoving()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">BaseServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -138,6 +139,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.SetVelocity">SetVelocity</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.Stop">Stop</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.IsMoving">IsMoving</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.DoCommand">DoCommand</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.base.BaseServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -339,6 +341,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.base.BaseServiceBase.IsMoving">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IsMoving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/base/v1/base_pb2/index.html#viam.gen.component.base.v1.base_pb2.IsMovingRequest" title="viam.gen.component.base.v1.base_pb2.IsMovingRequest"><span class="pre">component.base.v1.base_pb2.IsMovingRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/base/v1/base_pb2/index.html#viam.gen.component.base.v1.base_pb2.IsMovingResponse" title="viam.gen.component.base.v1.base_pb2.IsMovingResponse"><span class="pre">component.base.v1.base_pb2.IsMovingResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/base/v1/base_grpc.html#BaseServiceBase.IsMoving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.base.BaseServiceBase.IsMoving" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.base.BaseServiceBase.DoCommand">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/base/v1/base_grpc.html#BaseServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.base.BaseServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

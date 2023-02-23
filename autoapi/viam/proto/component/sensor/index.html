@@ -81,6 +81,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase"><code class="docutils literal notranslate"><span class="pre">SensorServiceBase</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.GetReadings"><code class="docutils literal notranslate"><span class="pre">SensorServiceBase.GetReadings()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">SensorServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">SensorServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -108,6 +109,7 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase">SensorServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.GetReadings">GetReadings</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.DoCommand">DoCommand</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.sensor.SensorServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -204,6 +206,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.sensor.SensorServiceBase.GetReadings">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetReadings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/sensor/v1/sensor_pb2/index.html#viam.gen.component.sensor.v1.sensor_pb2.GetReadingsRequest" title="viam.gen.component.sensor.v1.sensor_pb2.GetReadingsRequest"><span class="pre">component.sensor.v1.sensor_pb2.GetReadingsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/sensor/v1/sensor_pb2/index.html#viam.gen.component.sensor.v1.sensor_pb2.GetReadingsResponse" title="viam.gen.component.sensor.v1.sensor_pb2.GetReadingsResponse"><span class="pre">component.sensor.v1.sensor_pb2.GetReadingsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/sensor/v1/sensor_grpc.html#SensorServiceBase.GetReadings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.sensor.SensorServiceBase.GetReadings" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.sensor.SensorServiceBase.DoCommand">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/sensor/v1/sensor_grpc.html#SensorServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.sensor.SensorServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

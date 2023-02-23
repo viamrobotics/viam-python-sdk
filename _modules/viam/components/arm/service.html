@@ -86,21 +86,22 @@
 <span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">MethodNotImplementedError</span><span class="p">,</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.arm</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">ArmServiceBase</span><span class="p">,</span>
     <span class="n">GetEndPositionRequest</span><span class="p">,</span>
     <span class="n">GetEndPositionResponse</span><span class="p">,</span>
     <span class="n">GetJointPositionsRequest</span><span class="p">,</span>
     <span class="n">GetJointPositionsResponse</span><span class="p">,</span>
+    <span class="n">IsMovingRequest</span><span class="p">,</span>
+    <span class="n">IsMovingResponse</span><span class="p">,</span>
     <span class="n">MoveToJointPositionsRequest</span><span class="p">,</span>
     <span class="n">MoveToJointPositionsResponse</span><span class="p">,</span>
     <span class="n">MoveToPositionRequest</span><span class="p">,</span>
     <span class="n">MoveToPositionResponse</span><span class="p">,</span>
     <span class="n">StopRequest</span><span class="p">,</span>
     <span class="n">StopResponse</span><span class="p">,</span>
-    <span class="n">IsMovingRequest</span><span class="p">,</span>
-    <span class="n">IsMovingResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">struct_to_dict</span>
 
@@ -191,7 +192,10 @@
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="n">is_moving</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">is_moving</span><span class="p">()</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">IsMovingResponse</span><span class="p">(</span><span class="n">is_moving</span><span class="o">=</span><span class="n">is_moving</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ArmService.DoCommand"><a class="viewcode-back" href="../../../../autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmService.DoCommand">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">DoCommand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">MethodNotImplementedError</span><span class="p">(</span><span class="s2">&quot;DoCommand&quot;</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
