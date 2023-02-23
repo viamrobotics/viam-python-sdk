@@ -1,6 +1,16 @@
 from dataclasses import dataclass
 from threading import Lock
-from typing import Any, Callable, Coroutine, Dict, Generic, Mapping, Type, TypeVar
+from typing import (
+    Any,
+    Callable,
+    ClassVar,
+    Coroutine,
+    Dict,
+    Generic,
+    Mapping,
+    Type,
+    TypeVar,
+)
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
@@ -61,9 +71,9 @@ class Registry:
     component using ``Registry.register(...)``.
     """
 
-    _SUBTYPES: Dict[Subtype, ComponentRegistration] = {}
-    _COMPONENTS: Dict[str, ComponentCreator]
-    _lock: Lock = Lock()
+    _SUBTYPES: ClassVar[Dict[Subtype, ComponentRegistration]] = {}
+    _COMPONENTS: ClassVar[Dict[str, ComponentCreator]] = {}
+    _lock: ClassVar[Lock] = Lock()
 
     @classmethod
     def register_subtype(cls, registration: ComponentRegistration[Component]):

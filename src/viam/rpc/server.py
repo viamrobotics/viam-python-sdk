@@ -1,6 +1,6 @@
 import asyncio
 import signal
-from typing import List, Optional
+from typing import TYPE_CHECKING, List, Optional
 
 from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
@@ -15,6 +15,9 @@ from viam.robot.service import RobotService
 
 from .signaling import SignalingService
 
+if TYPE_CHECKING:
+    from viam.module.service import ModuleService
+
 LOGGER = logging.getLogger(__name__)
 
 
@@ -23,7 +26,7 @@ class Server(ResourceManager):
     gRPC Server
     """
 
-    def __init__(self, components: List[ComponentBase]):
+    def __init__(self, components: List[ComponentBase], *, module_service: Optional["ModuleService"] = None):
         """
         Initialize the Server with a list of components
         to be managed.
@@ -38,6 +41,8 @@ class Server(ResourceManager):
             RobotService(manager=self),
             *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_RESOURCES().values()],
         ]
+        if module_service is not None:
+            services.append(module_service)
         services = ServerReflection.extend(services)
         self._server = GRPCServer(services)
 
