@@ -1,4 +1,5 @@
 import asyncio
+from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
 
@@ -120,7 +121,10 @@ class Module:
             resource.reconfigure(config, dependencies)
         else:
             if isinstance(resource, Stoppable):
-                resource.stop()
+                if iscoroutinefunction(resource.stop):
+                    await resource.stop()
+                else:
+                    resource.stop()
             add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
             self.server.remove_component(rn)
             await self.add_resource(add_request)
@@ -129,7 +133,10 @@ class Module:
         rn = resource_name_from_string(request.name.replace("/", ":"))
         resource = self.server.get_component(ComponentBase, rn)
         if isinstance(resource, Stoppable):
-            resource.stop()
+            if iscoroutinefunction(resource.stop):
+                await resource.stop()
+            else:
+                resource.stop()
         self.server.remove_component(rn)
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:

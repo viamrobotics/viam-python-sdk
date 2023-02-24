@@ -12,6 +12,12 @@ from ..gizmo.api import Gizmo
 
 
 class MyGizmo(Gizmo, Reconfigurable):
+    """This is the specific implementation of a ```Gizmo``` (defined in api.py).
+
+    It inherits from Gizmo, as well conforms to the ```Reconfigurable``` protocol, which signifies that this component can be reconfigured.
+    It also specifies a function ```MyGizmo.new```, which conforms to the ```resource.types.ComponentCreator``` type, which is required
+    for all models.
+    """
 
     MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "mygizmo")
     my_arg: str
