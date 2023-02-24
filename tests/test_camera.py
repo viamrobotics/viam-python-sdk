@@ -94,8 +94,8 @@ class TestCamera:
 
     @pytest.mark.asyncio
     async def test_do(self, camera: Camera):
-        with pytest.raises(NotImplementedError):
-            await camera.do_command({"command": "args"})
+        resp = await camera.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
 
     @pytest.mark.asyncio
     async def test_timeout(self, camera: MockCamera):
@@ -227,5 +227,5 @@ class TestClient:
     async def test_do(self, service: CameraService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
             client = CameraClient("camera", channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}

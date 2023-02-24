@@ -70,8 +70,8 @@ class TestGripper:
 
     @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper):
-        with pytest.raises(NotImplementedError):
-            await gripper.do_command({"command": "args"})
+        resp = await gripper.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
 
     @pytest.mark.asyncio
     async def test_status(self, gripper: MockGripper):
@@ -186,8 +186,8 @@ class TestClient:
     async def test_do(self, gripper: MockGripper, service: GripperService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
             client = GripperClient(gripper.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}
 
     @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper, service: GripperService):

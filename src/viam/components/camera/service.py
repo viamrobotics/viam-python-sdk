@@ -15,6 +15,7 @@ from viam.proto.component.camera import (
     GetPropertiesResponse,
     RenderFrameRequest,
 )
+from viam.utils import struct_to_dict
 
 from .camera import Camera
 
@@ -102,4 +103,13 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        try:
+            camera = self.get_component(request.name)
+        except ResourceNotFoundError as e:
+            raise e.grpc_error
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await camera.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        response = DoCommandResponse()
+        await stream.send_message(response)

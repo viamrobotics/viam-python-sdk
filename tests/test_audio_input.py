@@ -68,6 +68,11 @@ class TestAudioInput:
     async def test_get_properties(self, audio_input: AudioInput):
         assert await audio_input.get_properties() == PROPERTIES
 
+    @pytest.mark.asyncio
+    async def test_do(self, audio_input: AudioInput):
+        resp = await audio_input.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
+
 
 class TestService:
     @pytest.mark.asyncio
@@ -140,5 +145,5 @@ class TestClient:
     async def test_do(self, audio_input: AudioInput, service: AudioInputService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}

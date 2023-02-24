@@ -125,8 +125,8 @@ class TestMotor:
 
     @pytest.mark.asyncio
     async def test_do(self, motor: MockMotor):
-        with pytest.raises(NotImplementedError):
-            await motor.do_command({"command": "args"})
+        resp = await motor.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
 
     @pytest.mark.asyncio
     async def test_status(self, motor: MockMotor):
@@ -368,8 +368,8 @@ class TestClient:
     async def test_do(self, motor: MockMotor, service: MotorService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
             client = MotorClient(motor.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}
 
     @pytest.mark.asyncio
     async def test_extra(self, motor: MockMotor, service: MotorService):

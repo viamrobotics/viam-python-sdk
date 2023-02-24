@@ -122,4 +122,13 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        try:
+            base = self.get_component(request.name)
+        except ResourceNotFoundError as e:
+            raise e.grpc_error
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await base.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        response = DoCommandResponse()
+        await stream.send_message(response)

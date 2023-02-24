@@ -75,4 +75,13 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         await stream.send_message(IsMovingResponse(is_moving=is_moving))
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        try:
+            servo = self.get_component(request.name)
+        except ResourceNotFoundError as e:
+            raise e.grpc_error
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await servo.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        response = DoCommandResponse()
+        await stream.send_message(response)

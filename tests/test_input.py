@@ -105,8 +105,8 @@ class TestInputController:
 
     @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController):
-        with pytest.raises(NotImplementedError):
-            await controller.do_command({"command": "args"})
+        resp = await controller.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
 
 
 class TestService:
@@ -296,5 +296,5 @@ class TestClient:
     async def test_do(self, controller: MockInputController, service: InputControllerService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
             client = ControllerClient(controller.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}

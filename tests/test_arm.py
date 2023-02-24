@@ -19,7 +19,6 @@ from viam.proto.component.arm import (
     MoveToPositionRequest,
     StopRequest,
 )
-from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.utils import dict_to_struct, message_to_struct
 
 from . import loose_approx

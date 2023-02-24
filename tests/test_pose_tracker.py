@@ -37,8 +37,8 @@ class TestPoseTracker:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        with pytest.raises(NotImplementedError):
-            await self.mock_pose_tracker.do_command({"command": "args"})
+        resp = await self.mock_pose_tracker.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
 
 
 class TestService:
@@ -83,5 +83,5 @@ class TestClient:
     async def test_do(self):
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = PoseTrackerClient(self.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}

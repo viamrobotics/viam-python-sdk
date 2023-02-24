@@ -185,8 +185,8 @@ class TestMovementSensor:
 
     @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MovementSensor):
-        with pytest.raises(NotImplementedError):
-            await movement_sensor.do_command({"command": "args"})
+        resp = await movement_sensor.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
 
 
 class TestService:
@@ -382,5 +382,5 @@ class TestClient:
     async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorService, generic_service: GenericService):
         async with ChannelFor([service, generic_service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}

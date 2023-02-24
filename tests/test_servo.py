@@ -56,8 +56,8 @@ class TestServo:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        with pytest.raises(NotImplementedError):
-            await self.servo.do_command({"command": "args"})
+        resp = await self.servo.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
 
     @pytest.mark.asyncio
     async def test_status(self):
@@ -165,5 +165,5 @@ class TestClient:
     async def test_do(self):
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = ServoClient(self.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}
