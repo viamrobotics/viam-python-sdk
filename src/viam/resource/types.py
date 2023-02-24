@@ -63,7 +63,7 @@ class Subtype:
             string (str): The Subtype as a string
 
         Raises:
-            TypeError: Raised if the string does not represent a valid Subtype
+            ValueError: Raised if the string does not represent a valid Subtype
 
         Returns:
             Self: A new Subtype
@@ -71,7 +71,7 @@ class Subtype:
         regex = re.compile(r"^([\w-]+):([\w-]+):([\w-]+)$")
         match = regex.match(string)
         if not match:
-            raise TypeError(f"{string} is not a valid Subtype")
+            raise ValueError(f"{string} is not a valid Subtype")
         return cls(match.group(1), match.group(2), match.group(3))
 
 
@@ -167,7 +167,7 @@ class Model:
 def resource_name_from_string(string: str) -> ResourceName:
     parts = string.split(":")
     if len(parts) < 4:
-        raise TypeError(f"{string} is not a valid ResourceName")
+        raise ValueError(f"{string} is not a valid ResourceName")
     return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=":".join(parts[3:]))
 
 
