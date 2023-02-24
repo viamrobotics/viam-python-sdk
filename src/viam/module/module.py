@@ -112,11 +112,9 @@ class Module:
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
         dependencies = await self._get_dependencies(request.dependencies)
         config: ComponentConfig = request.config
-        namespace = config.namespace
-        type_of = config.type
-        subtype = config.api
+        subtype = Subtype.from_string(config.api)
         name = config.name
-        rn = ResourceName(namespace=namespace, type=type_of, subtype=subtype, name=name)
+        rn = ResourceName(namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=name)
         resource = self.server.get_component(ComponentBase, rn)
         if isinstance(resource, Reconfigurable):
             resource.reconfigure(config, dependencies)
@@ -128,7 +126,7 @@ class Module:
             await self.add_resource(add_request)
 
     async def remove_resource(self, request: RemoveResourceRequest):
-        rn = resource_name_from_string(request.name)
+        rn = resource_name_from_string(request.name.replace("/", ":"))
         resource = self.server.get_component(ComponentBase, rn)
         if isinstance(resource, Stoppable):
             resource.stop()

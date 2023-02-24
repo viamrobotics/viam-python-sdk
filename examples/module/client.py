@@ -17,10 +17,9 @@ async def main():
     robot = await connect()
 
     print("Resources:")
-    print(robot._manager.components)
+    print(robot.resource_names)
 
     gizmo = Gizmo.from_robot(robot, name="gizmo1")
-    print("gizmo: ", gizmo)
     resp = await gizmo.do_one("arg1")
     print(resp)
 

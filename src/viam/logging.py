@@ -1,8 +1,8 @@
-from copy import copy
 import logging
-from logging import DEBUG, INFO, WARN, WARNING, ERROR, FATAL  # noqa: F401
-from typing import Dict
 import sys
+from copy import copy
+from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
+from typing import Dict
 
 LOG_LEVEL = INFO
 LOGGERS: Dict[str, logging.Logger] = {}
@@ -37,31 +37,38 @@ def getLogger(name: str) -> logging.Logger:
 
     logger = logging.getLogger(name)
     logger.setLevel(LOG_LEVEL)
+
+    addHandlers(logger)
+
+    LOGGERS[name] = logger
+    return logger
+
+
+def addHandlers(logger: logging.Logger):
     format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
 
     handler = logging.StreamHandler(stream=sys.stdout)
     handler.setFormatter(format)
     # filter out logs at error level or above
+    handler.setLevel(LOG_LEVEL)
     handler.addFilter(filter=lambda record: (record.levelno < ERROR))
     logger.addHandler(handler)
 
     err_handler = logging.StreamHandler(stream=sys.stderr)
     err_handler.setFormatter(format)
     # filter out logs below error level
-    handler.addFilter(filter=lambda record: (record.levelno >= ERROR))
+    err_handler.setLevel(max(ERROR, LOG_LEVEL))
     logger.addHandler(err_handler)
-
-    LOGGERS[name] = logger
-    return logger
 
 
 def setLevel(level: int):
     LOG_LEVEL = level
     for logger in LOGGERS.values():
         logger.setLevel(LOG_LEVEL)
+        for handler in logger.handlers:
+            logger.removeHandler(handler)
+        addHandlers(logger)
 
 
 def silence():
-    LOG_LEVEL = FATAL + 1
-    for logger in LOGGERS.values():
-        logger.setLevel(LOG_LEVEL)
+    setLevel(FATAL + 1)
