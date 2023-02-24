@@ -1,7 +1,9 @@
 import asyncio
 import time
+from typing import Mapping
 
 import pytest
+from grpclib import const
 
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
@@ -36,6 +38,9 @@ async def test_cancellation_propagation():
         async def long_running(self) -> bool:
             component = self.get_component("test")
             return await component.long_running()
+
+        def __mapping__(self) -> Mapping[str, const.Handler]:
+            return {}
 
     component = TestComponent("test")
     service = TestService(ResourceManager([component]))

@@ -86,9 +86,14 @@ class Module:
         """Start the module service and gRPC server"""
         await self.server.serve(path=self._address)
 
-    def stop(self):
+    async def stop(self):
         """Stop the module service and gRPC server"""
-        self.server.close()
+        try:
+            if self.parent is not None:
+                await self.parent.close()
+            self.server.close()
+        except Exception as e:
+            LOGGER.error("Encountered error while shutting down module", exc_info=e)
 
     def set_ready(self, ready: bool):
         """Set the module's ready state. The module automatically sets to READY on load. Setting to False can be useful

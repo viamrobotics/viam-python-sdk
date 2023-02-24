@@ -1,5 +1,5 @@
 from typing import Dict, List, Type, TypeVar
-from threading import Lock
+from threading import RLock
 
 from viam.proto.common import ResourceName
 
@@ -16,10 +16,10 @@ class ResourceManager:
 
     components: Dict[ResourceName, ComponentBase]
     _short_to_long_name: Dict[str, List[ResourceName]]
-    _lock: Lock
+    _lock: RLock
 
     def __init__(self, components: List[ComponentBase] = []) -> None:
-        self._lock = Lock()
+        self._lock = RLock()
         self.components = {}
         self._short_to_long_name = {}
         for component in components:

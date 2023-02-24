@@ -57,7 +57,7 @@ class Subtype:
 
     @classmethod
     def from_string(cls, string: str) -> Self:
-        """Create a ```Subtype``` from its string representation
+        """Create a ```Subtype``` from its string representation (namespace:resource_type:resource_subtype)
 
         Args:
             string (str): The Subtype as a string
@@ -135,6 +135,19 @@ class Model:
 
     @classmethod
     def from_string(cls, model: str, *, ignore_errors=False) -> Self:
+        """Create a ```Model``` from its string representation (namespace:family:name).
+
+        Args:
+            model (str): The Model as a string
+            ignore_errors (bool, optional): If namespace or family are not found in the string, default to empty string
+                                            rather than raise an exception. Defaults to False.
+
+        Raises:
+            ValueError: Raised if the provided string is not a valid Model
+
+        Returns:
+            Self: The Model
+        """
         regex = re.compile(r"^([\w-]+):([\w-]+):([\w-]+)$")
         match = regex.match(model)
         if match:
@@ -146,7 +159,7 @@ class Model:
             model_family = ModelFamily("", "")
             name = model
         else:
-            raise TypeError(f"{model} is not a valid Model")
+            raise ValueError(f"{model} is not a valid Model")
 
         return cls(model_family, name)
 
