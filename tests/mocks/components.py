@@ -104,6 +104,9 @@ class MockArm(Arm):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"hello": "world"}
+
 
 class MockAudioInput(AudioInput):
     def __init__(self, name: str, properties: AudioInput.Properties):

@@ -19,6 +19,7 @@ from viam.proto.component.arm import (
     MoveToPositionRequest,
     StopRequest,
 )
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.utils import dict_to_struct, message_to_struct
 
 from . import loose_approx
@@ -66,8 +67,8 @@ class TestArm:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        with pytest.raises(NotImplementedError):
-            await self.arm.do_command({"command": "args"})
+        resp = await self.arm.do_command({"command": "args"})
+        assert resp == {"hello": "world"}
 
     @pytest.mark.asyncio
     async def test_status(self):
@@ -210,11 +211,11 @@ class TestClient:
             assert await client.is_moving() is True
 
     @pytest.mark.asyncio
-    async def test_do(self):
+    async def test_do_command(self):
         async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
             client = ArmClient(self.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}
 
     @pytest.mark.asyncio
     async def test_extra(self):
