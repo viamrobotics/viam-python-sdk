@@ -1,10 +1,10 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.components.servo import ServoClient, ServoStatus, create_status
 from viam.components.servo.service import ServoService
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
@@ -14,7 +14,7 @@ from viam.proto.component.servo import (
     ServoServiceStub,
     StopRequest,
 )
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
 
 from . import loose_approx
 from .mocks.components import MockServo
@@ -163,7 +163,7 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+        async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.name, channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

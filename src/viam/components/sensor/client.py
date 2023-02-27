@@ -2,13 +2,13 @@ from typing import Any, Dict, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.components.generic.client import do_command
+from viam.proto.common import DoCommandResponse, DoCommandRequest
 from viam.proto.component.sensor import (
     GetReadingsRequest,
     GetReadingsResponse,
     SensorServiceStub,
 )
-from viam.utils import dict_to_struct, sensor_readings_value_to_native
+from viam.utils import dict_to_struct, struct_to_dict, sensor_readings_value_to_native
 
 from .sensor import Sensor
 
@@ -31,4 +31,6 @@ class SensorClient(Sensor):
         return sensor_readings_value_to_native(response.readings)
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command, timeout=timeout)
+        request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        return struct_to_dict(response.result)

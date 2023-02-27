@@ -1,16 +1,16 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.components.sensor import SensorClient
 from viam.components.sensor.service import SensorService
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.sensor import (
     GetReadingsRequest,
     GetReadingsResponse,
     SensorServiceStub,
 )
-from viam.utils import dict_to_struct, primitive_to_value
+from viam.utils import dict_to_struct, struct_to_dict, primitive_to_value
 
 from . import loose_approx
 from .mocks.components import MockSensor
@@ -75,7 +75,7 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do(self, sensor, manager, service):
-        async with ChannelFor([service, GenericService(manager)]) as channel:
+        async with ChannelFor([service]) as channel:
             client = SensorClient(sensor.name, channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

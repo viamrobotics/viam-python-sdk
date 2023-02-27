@@ -11,6 +11,7 @@ from viam.components.camera.service import CameraService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.media.video import CameraMimeType, RawImage, LIBRARY_SUPPORTED_FORMATS
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.camera import (
     CameraServiceStub,
     DistortionParameters,
@@ -23,6 +24,7 @@ from viam.proto.component.camera import (
     IntrinsicParameters,
     RenderFrameRequest,
 )
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockCamera
@@ -224,8 +226,8 @@ class TestClient:
             assert camera.timeout == loose_approx(7.86)
 
     @pytest.mark.asyncio
-    async def test_do(self, service: CameraService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, service: CameraService):
+        async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

@@ -9,7 +9,7 @@ from viam.components.board.service import BoardService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus
+from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
@@ -28,7 +28,7 @@ from viam.proto.component.board import (
     StatusRequest,
     StatusResponse,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import (
@@ -344,6 +344,13 @@ class TestClient:
             attrs = await client.model_attributes()
             assert attrs == Board.Attributes(remote=True)
 
+    @pytest.mark.asyncio
+    async def test_do(self, board: MockBoard, service: BoardService):
+        async with ChannelFor([service]) as channel:
+            client = BoardClient(board.name, channel)
+            resp = await client.do_command({"command": "args"})
+            assert resp == {"hello": "world"}
+
 
 class TestGPIOPinClient:
     @pytest.mark.asyncio
@@ -418,10 +425,3 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.extra == extra
             assert mock_pin.timeout is None
-
-    @pytest.mark.asyncio
-    async def test_do(self, board: MockBoard, service: BoardService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
-            client = BoardClient(board.name, channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}

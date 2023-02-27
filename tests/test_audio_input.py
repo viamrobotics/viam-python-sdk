@@ -9,6 +9,7 @@ from grpclib.testing import ChannelFor
 from viam.components.audio_input import AudioInput, AudioInputClient, AudioInputService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.audioinput import (
     AudioInputServiceStub,
     ChunksRequest,
@@ -18,6 +19,7 @@ from viam.proto.component.audioinput import (
     RecordRequest,
     SampleFormat,
 )
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockAudioInput
@@ -142,8 +144,8 @@ class TestClient:
             assert audio_input.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
-    async def test_do(self, audio_input: AudioInput, service: AudioInputService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, audio_input: AudioInput, service: AudioInputService):
+        async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

@@ -8,7 +8,7 @@ from viam.components.movement_sensor import (
     MovementSensorService,
 )
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import GeoPoint, Orientation, Vector3
+from viam.proto.common import GeoPoint, Orientation, Vector3, DoCommandRequest, DoCommandResponse
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -28,7 +28,7 @@ from viam.proto.component.movementsensor import (
     GetPropertiesResponse,
     MovementSensorServiceStub,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockMovementSensor
@@ -379,8 +379,8 @@ class TestClient:
             assert movement_sensor.timeout == loose_approx(8.90)
 
     @pytest.mark.asyncio
-    async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorService):
+        async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

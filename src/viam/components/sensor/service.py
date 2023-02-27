@@ -1,14 +1,14 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.sensor import (
     GetReadingsRequest,
     GetReadingsResponse,
     SensorServiceBase,
 )
-from viam.utils import sensor_readings_native_to_value, struct_to_dict
+from viam.utils import sensor_readings_native_to_value, struct_to_dict, dict_to_struct
 
 from .sensor import Sensor
 
@@ -41,6 +41,6 @@ class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await sensor.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
-        response = DoCommandResponse()
+        result = await sensor.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)

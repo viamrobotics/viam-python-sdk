@@ -5,6 +5,7 @@ from viam.components.generic.service import GenericService
 from viam.components.motor import MotorClient, MotorStatus, create_status
 from viam.components.motor.service import MotorService
 from viam.components.resource_manager import ResourceManager
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.motor import (
     GetPositionRequest,
     GetPositionResponse,
@@ -21,7 +22,7 @@ from viam.proto.component.motor import (
     SetPowerRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
 
 from . import loose_approx
 from .mocks.components import MockMotor
@@ -365,8 +366,8 @@ class TestClient:
             assert await client.is_moving() is True
 
     @pytest.mark.asyncio
-    async def test_do(self, motor: MockMotor, service: MotorService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

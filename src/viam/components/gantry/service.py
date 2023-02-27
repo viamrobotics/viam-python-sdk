@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
     GantryServiceBase,
@@ -16,7 +16,7 @@ from viam.proto.component.gantry import (
     StopRequest,
     StopResponse,
 )
-from viam.utils import struct_to_dict
+from viam.utils import struct_to_dict, dict_to_struct
 
 from .gantry import Gantry
 
@@ -102,6 +102,6 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gantry.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
-        response = DoCommandResponse()
+        result = await gantry.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)

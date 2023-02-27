@@ -10,6 +10,7 @@ from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerService
 from viam.components.resource_manager import ResourceManager
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -20,7 +21,7 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockInputController
@@ -293,8 +294,8 @@ class TestClient:
             assert controller.reg_extra == extra
 
     @pytest.mark.asyncio
-    async def test_do(self, controller: MockInputController, service: InputControllerService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, controller: MockInputController, service: InputControllerService):
+        async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

@@ -1,17 +1,16 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import Pose, PoseInFrame
+from viam.proto.common import Pose, PoseInFrame, DoCommandRequest, DoCommandResponse
 from viam.proto.component.posetracker import (
     GetPosesRequest,
     GetPosesResponse,
     PoseTrackerServiceStub,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockPose, MockPoseTracker
@@ -81,7 +80,7 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+        async with ChannelFor([self.service]) as channel:
             client = PoseTrackerClient(self.name, channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

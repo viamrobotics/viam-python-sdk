@@ -7,7 +7,7 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import MethodNotImplementedError, ResourceNotFoundError, NotSupportedError
+from viam.errors import ResourceNotFoundError, NotSupportedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.gen.component.audioinput.v1.audioinput_pb2 import SampleFormat
 from viam.proto.component.audioinput import (
@@ -18,7 +18,7 @@ from viam.proto.component.audioinput import (
     PropertiesResponse,
     RecordRequest,
 )
-from viam.utils import struct_to_dict
+from viam.utils import struct_to_dict, dict_to_struct
 
 from .audio_input import AudioInput
 
@@ -113,6 +113,6 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await audio_input.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
-        response = DoCommandResponse()
+        result = await audio_input.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)

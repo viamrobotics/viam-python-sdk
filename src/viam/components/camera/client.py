@@ -4,8 +4,8 @@ from typing import Any, Dict, Optional, Tuple, Union
 from grpclib.client import Channel
 from PIL import Image
 
-from viam.components.generic.client import do_command
 from viam.media.video import CameraMimeType, RawImage, LIBRARY_SUPPORTED_FORMATS
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.camera import (
     CameraServiceStub,
     GetImageRequest,
@@ -15,6 +15,7 @@ from viam.proto.component.camera import (
     GetPropertiesRequest,
     GetPropertiesResponse,
 )
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .camera import Camera
 
@@ -48,4 +49,6 @@ class CameraClient(Camera):
         return Camera.Properties(response.supports_pcd, response.intrinsic_parameters, response.distortion_parameters)
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command, timeout=timeout)
+        request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        return struct_to_dict(response.result)
