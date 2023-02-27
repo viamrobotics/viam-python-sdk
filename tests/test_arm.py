@@ -3,9 +3,8 @@ from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
-from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import Pose
+from viam.proto.common import Pose, DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -19,7 +18,7 @@ from viam.proto.component.arm import (
     MoveToPositionRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockArm
@@ -145,6 +144,15 @@ class TestService:
             assert response.is_moving is True
 
     @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = DoCommandRequest(name=self.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
+    @pytest.mark.asyncio
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -210,8 +218,8 @@ class TestClient:
             assert await client.is_moving() is True
 
     @pytest.mark.asyncio
-    async def test_do_command(self):
-        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
             resp = await client.do_command({"command": "args"})
             assert resp == {"hello": "world"}

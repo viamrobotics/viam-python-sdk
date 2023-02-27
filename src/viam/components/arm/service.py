@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
     ArmServiceBase,
@@ -18,7 +18,7 @@ from viam.proto.component.arm import (
     StopRequest,
     StopResponse,
 )
-from viam.utils import struct_to_dict
+from viam.utils import struct_to_dict, dict_to_struct
 
 from .arm import Arm
 
@@ -112,12 +112,11 @@ class ArmService(ArmServiceBase, ComponentServiceBase[Arm]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        name = request.name
         try:
-            arm = self.get_component(name)
+            arm = self.get_component(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await arm.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
-        response = DoCommandResponse()
+        result = await arm.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
