@@ -1,7 +1,7 @@
 import abc
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import Final, Optional
+from typing import Any, Dict, Final, Optional
 
 from google.protobuf.duration_pb2 import Duration
 from typing_extensions import Self
@@ -69,5 +69,15 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
 
         Returns:
             Properties: The audio input properties
+        """
+        ...
+
+    @abc.abstractmethod
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        """
+        Receive arbitrary commands
+
+        Returns:
+            Dict[str, Any]: Arbitrary response
         """
         ...
