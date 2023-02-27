@@ -268,6 +268,15 @@ class TestService:
             await client.IsPowered(request)
             assert motor.extra == extra
 
+    @pytest.mark.asyncio
+    async def test_do(self, motor: MockMotor, service: MotorService):
+        async with ChannelFor([service]) as channel:
+            client = MotorServiceStub(channel)
+            request = DoCommandRequest(name=motor.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio

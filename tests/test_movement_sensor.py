@@ -277,6 +277,15 @@ class TestService:
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(7.89)
 
+    @pytest.mark.asyncio
+    async def test_do(self, movement_sensor: MockMovementSensor, service: MovementSensorService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorServiceStub(channel)
+            request = DoCommandRequest(name=movement_sensor.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio

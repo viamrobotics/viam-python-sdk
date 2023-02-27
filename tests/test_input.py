@@ -205,6 +205,15 @@ class TestService:
             assert controller.callbacks[Control.BUTTON_START][EventType.BUTTON_RELEASE] is None
             assert controller.reg_extra == extra
 
+    @pytest.mark.asyncio
+    async def test_do(self, controller: MockInputController, service: InputControllerService):
+        async with ChannelFor([service]) as channel:
+            client = InputControllerServiceStub(channel)
+            request = DoCommandRequest(name=controller.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio

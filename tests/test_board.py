@@ -265,6 +265,15 @@ class TestService:
             assert board.extra == extra
             assert board.timeout == loose_approx(5.55)
 
+    @pytest.mark.asyncio
+    async def test_do(self, board: MockBoard, service: BoardService):
+        async with ChannelFor([service]) as channel:
+            client = BoardServiceStub(channel)
+            request = DoCommandRequest(name=board.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio

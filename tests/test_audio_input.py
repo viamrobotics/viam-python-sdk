@@ -117,6 +117,15 @@ class TestService:
             with pytest.raises(GRPCError, match=r".*Status.UNIMPLEMENTED.*"):
                 await client.Record(RecordRequest())
 
+    @pytest.mark.asyncio
+    async def test_do(self, audio_input: MockAudioInput, service: AudioInputService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInputServiceStub(channel)
+            request = DoCommandRequest(name=audio_input.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio

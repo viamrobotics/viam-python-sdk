@@ -260,6 +260,15 @@ class TestService:
             await client.MoveStraight(request)
             assert base.extra == extra
 
+    @pytest.mark.asyncio
+    async def test_do(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseServiceStub(channel)
+            request = DoCommandRequest(name=base.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio

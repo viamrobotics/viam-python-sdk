@@ -61,6 +61,15 @@ class TestService:
             assert sensor.extra == EXTRA_PARAMS
             assert sensor.timeout == loose_approx(2.34)
 
+    @pytest.mark.asyncio
+    async def test_do(self, sensor: MockSensor, service: SensorService):
+        async with ChannelFor([service]) as channel:
+            client = SensorServiceStub(channel)
+            request = DoCommandRequest(name=sensor.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio

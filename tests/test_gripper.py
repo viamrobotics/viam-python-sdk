@@ -143,6 +143,15 @@ class TestService:
             await client.Open(request)
             assert gripper.extra == extra
 
+    @pytest.mark.asyncio
+    async def test_do(self, gripper: MockGripper, service: GripperService):
+        async with ChannelFor([service]) as channel:
+            client = GripperServiceStub(channel)
+            request = DoCommandRequest(name=gripper.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio

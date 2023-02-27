@@ -116,6 +116,15 @@ class TestService:
             response: IsMovingResponse = await client.IsMoving(request)
             assert response.is_moving is True
 
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ServoServiceStub(channel)
+            request = DoCommandRequest(name=self.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
 

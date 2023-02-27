@@ -59,6 +59,15 @@ class TestService:
             assert self.pose_tracker.timeout == loose_approx(2.34)
             assert self.pose_tracker.extra == {"foo": "get_poses"}
 
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
+            client = PoseTrackerServiceStub(channel)
+            request = DoCommandRequest(name=self.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
 

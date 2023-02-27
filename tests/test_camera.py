@@ -175,6 +175,15 @@ class TestService:
             assert response.intrinsic_parameters == properties.intrinsic_parameters
             assert camera.timeout == loose_approx(5.43)
 
+    @pytest.mark.asyncio
+    async def test_do(self, camera: MockCamera, service: CameraService):
+        async with ChannelFor([service]) as channel:
+            client = CameraServiceStub(channel)
+            request = DoCommandRequest(name=camera.name, command=dict_to_struct({"command": "args"}))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"hello": "world"}
+
 
 class TestClient:
     @pytest.mark.asyncio
