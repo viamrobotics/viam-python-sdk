@@ -1,5 +1,5 @@
 import abc
-from typing import Final, NamedTuple, Optional, Tuple, Union
+from typing import Any, Dict, Final, NamedTuple, Optional, Tuple, Union
 
 from PIL.Image import Image
 
@@ -82,5 +82,15 @@ class Camera(ComponentBase):
 
         Returns:
             Properties: The properties of the camera
+        """
+        ...
+
+    @abc.abstractmethod
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        """
+        Receive arbitrary commands
+
+        Returns:
+            Dict[str, Any]: Arbitrary response
         """
         ...
