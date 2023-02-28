@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Dict, Mapping, Optional
+from typing import Any, Mapping, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
@@ -26,15 +26,5 @@ class Sensor(ComponentBase):
 
         Returns:
             Mapping[str, Any]: The measurements. Can be of any type.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        """
-        Receive arbitrary commands
-
-        Returns:
-            Dict[str, Any]: Arbitrary response
         """
         ...

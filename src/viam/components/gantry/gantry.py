@@ -75,13 +75,3 @@ class Gantry(ComponentBase):
             bool: Whether the gantry is moving.
         """
         ...
-
-    @abc.abstractmethod
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        """
-        Receive arbitrary commands
-
-        Returns:
-            Dict[str, Any]: Arbitrary response
-        """
-        ...

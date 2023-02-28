@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Dict, Final, Mapping, Optional
+from typing import Any, Final, Mapping, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
@@ -51,15 +51,5 @@ class Servo(ComponentBase):
 
         Returns:
             bool: Whether the servo is moving.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        """
-        Receive arbitrary commands
-
-        Returns:
-            Dict[str, Any]: Arbitrary response
         """
         ...
