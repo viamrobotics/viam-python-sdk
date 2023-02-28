@@ -114,6 +114,39 @@ class TestModule:
         with pytest.raises(ValueError):
             mod.add_model_from_registry(Subtype.from_string("fake:fake:fake"), Model.from_string("faker:faker:faker"))
 
+    @pytest.mark.asyncio
+    async def test_multiple_resources_same_model(self):
+        req = AddResourceRequest(
+            config=ComponentConfig(
+                name="gizmo1",
+                namespace="acme",
+                type="gizmo",
+                model="acme:demo:mygizmo",
+                attributes=dict_to_struct({"arg1": "arg1"}),
+                api="acme:component:gizmo",
+            )
+        )
+        await self.module.add_resource(req)
+        req = AddResourceRequest(
+            config=ComponentConfig(
+                name="gizmo2",
+                namespace="acme",
+                type="gizmo",
+                model="acme:demo:mygizmo",
+                attributes=dict_to_struct({"arg1": "arg2"}),
+                api="acme:component:gizmo",
+            )
+        )
+        await self.module.add_resource(req)
+
+        g1 = self.module.server.get_component(Gizmo, Gizmo.get_resource_name("gizmo1"))
+        g2 = self.module.server.get_component(Gizmo, Gizmo.get_resource_name("gizmo2"))
+
+        assert await g1.do_one("arg1") is True
+        assert await g2.do_one("arg1") is False
+        assert await g1.do_one("arg2") is False
+        assert await g2.do_one("arg2") is True
+
 
 class TestService:
     @pytest.mark.asyncio
