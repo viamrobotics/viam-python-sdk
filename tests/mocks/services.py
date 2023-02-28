@@ -4,7 +4,6 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 from grpclib.server import Stream
 
 from viam.media.video import CameraMimeType
-from viam.errors import MethodNotImplementedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
     GetPoseRequest,
