@@ -56,8 +56,9 @@ class TestServo:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        resp = await self.servo.do_command({"command": "args"})
-        assert resp == {"hello": "world"}
+        command = {"command": "args"}
+        resp = await self.servo.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_status(self):
@@ -120,10 +121,11 @@ class TestService:
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
-            request = DoCommandRequest(name=self.name, command=dict_to_struct({"command": "args"}))
+            command = {"command": "args"}
+            request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
-            assert result == {"hello": "world"}
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -174,5 +176,6 @@ class TestClient:
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.name, channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

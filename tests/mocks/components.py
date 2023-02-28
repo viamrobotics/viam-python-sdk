@@ -105,7 +105,7 @@ class MockArm(Arm):
         return not self.is_stopped
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockAudioInput(AudioInput):
@@ -134,7 +134,7 @@ class MockAudioInput(AudioInput):
         return self.properties
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockBase(Base):
@@ -231,7 +231,7 @@ class MockBase(Base):
         return not self.stopped
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockAnalogReader(Board.AnalogReader):
@@ -362,7 +362,7 @@ class MockBoard(Board):
         return Board.Attributes(remote=True)
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockCamera(Camera):
@@ -396,7 +396,7 @@ class MockCamera(Camera):
         return self.props
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockGantry(Gantry):
@@ -441,7 +441,7 @@ class MockGantry(Gantry):
         return not self.is_stopped
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockGeneric(GenericComponent):
@@ -483,7 +483,7 @@ class MockGripper(Gripper):
         return not self.is_stopped
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockInputController(Controller):
@@ -549,7 +549,7 @@ class MockInputController(Controller):
             callback(event)
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockMotor(Motor):
@@ -667,7 +667,7 @@ class MockMotor(Motor):
         return self.powered
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockMovementSensor(MovementSensor):
@@ -746,7 +746,7 @@ class MockMovementSensor(MovementSensor):
         return self.accuracy
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 @dataclass
@@ -790,7 +790,7 @@ class MockPoseTracker(PoseTracker):
         return result
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockSensor(Sensor):
@@ -808,7 +808,7 @@ class MockSensor(Sensor):
         return self.readings
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}
 
 
 class MockServo(Servo):
@@ -839,4 +839,4 @@ class MockServo(Servo):
         return not self.is_stopped
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
-        return {"hello": "world"}
+        return {"command": command}

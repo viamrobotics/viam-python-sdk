@@ -106,8 +106,9 @@ class TestInputController:
 
     @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController):
-        resp = await controller.do_command({"command": "args"})
-        assert resp == {"hello": "world"}
+        command = {"command": "args"}
+        resp = await controller.do_command(command)
+        assert resp == {"command": command}
 
 
 class TestService:
@@ -209,10 +210,11 @@ class TestService:
     async def test_do(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
-            request = DoCommandRequest(name=controller.name, command=dict_to_struct({"command": "args"}))
+            command = {"command": "args"}
+            request = DoCommandRequest(name=controller.name, command=dict_to_struct(command))
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
-            assert result == {"hello": "world"}
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -306,5 +308,6 @@ class TestClient:
     async def test_do(self, controller: MockInputController, service: InputControllerService):
         async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

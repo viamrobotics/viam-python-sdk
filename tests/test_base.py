@@ -114,8 +114,9 @@ class TestBase:
 
     @pytest.mark.asyncio
     async def test_do(self, base: MockBase):
-        resp = await base.do_command({"command": "args"})
-        assert resp == {"hello": "world"}
+        command = {"command": "args"}
+        resp = await base.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_status(self, base: MockBase):
@@ -264,10 +265,11 @@ class TestService:
     async def test_do(self, base: MockBase, service: BaseService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
-            request = DoCommandRequest(name=base.name, command=dict_to_struct({"command": "args"}))
+            command = {"command": "args"}
+            request = DoCommandRequest(name=base.name, command=dict_to_struct(command))
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
-            assert result == {"hello": "world"}
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -353,8 +355,9 @@ class TestClient:
     async def test_do(self, base: MockBase, service: BaseService):
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_extra(self, base: MockBase, service: BaseService):

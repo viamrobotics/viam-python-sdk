@@ -118,8 +118,9 @@ class TestBoard:
 
     @pytest.mark.asyncio
     async def test_do(self, board: MockBoard):
-        resp = await board.do_command({"command": "args"})
-        assert resp == {"hello": "world"}
+        command = {"command": "args"}
+        resp = await board.do_command(command)
+        assert resp == {"command": command}
 
 
 class TestService:
@@ -269,10 +270,11 @@ class TestService:
     async def test_do(self, board: MockBoard, service: BoardService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
-            request = DoCommandRequest(name=board.name, command=dict_to_struct({"command": "args"}))
+            command = {"command": "args"}
+            request = DoCommandRequest(name=board.name, command=dict_to_struct(command))
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
-            assert result == {"hello": "world"}
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -357,8 +359,9 @@ class TestClient:
     async def test_do(self, board: MockBoard, service: BoardService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(board.name, channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
 
 
 class TestGPIOPinClient:

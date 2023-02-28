@@ -35,8 +35,9 @@ class TestSensor:
 
     @pytest.mark.asyncio
     async def test_do(self, sensor):
-        resp = await sensor.do_command({"command": "args"})
-        assert resp == {"hello": "world"}
+        command = {"command": "args"}
+        resp = await sensor.do_command(command)
+        assert resp == {"command": command}
 
 
 @pytest.fixture(scope="function")
@@ -65,10 +66,11 @@ class TestService:
     async def test_do(self, sensor: MockSensor, service: SensorService):
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
-            request = DoCommandRequest(name=sensor.name, command=dict_to_struct({"command": "args"}))
+            command = {"command": "args"}
+            request = DoCommandRequest(name=sensor.name, command=dict_to_struct(command))
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
-            assert result == {"hello": "world"}
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -86,5 +88,6 @@ class TestClient:
     async def test_do(self, sensor, manager, service):
         async with ChannelFor([service]) as channel:
             client = SensorClient(sensor.name, channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

@@ -96,8 +96,9 @@ class TestCamera:
 
     @pytest.mark.asyncio
     async def test_do(self, camera: Camera):
-        resp = await camera.do_command({"command": "args"})
-        assert resp == {"hello": "world"}
+        command = {"command": "args"}
+        resp = await camera.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_timeout(self, camera: MockCamera):
@@ -179,10 +180,11 @@ class TestService:
     async def test_do(self, camera: MockCamera, service: CameraService):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = DoCommandRequest(name=camera.name, command=dict_to_struct({"command": "args"}))
+            command = {"command": "args"}
+            request = DoCommandRequest(name=camera.name, command=dict_to_struct(command))
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
-            assert result == {"hello": "world"}
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -238,5 +240,6 @@ class TestClient:
     async def test_do(self, service: CameraService):
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

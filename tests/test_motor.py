@@ -126,8 +126,9 @@ class TestMotor:
 
     @pytest.mark.asyncio
     async def test_do(self, motor: MockMotor):
-        resp = await motor.do_command({"command": "args"})
-        assert resp == {"hello": "world"}
+        command = {"command": "args"}
+        resp = await motor.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_status(self, motor: MockMotor):
@@ -272,10 +273,11 @@ class TestService:
     async def test_do(self, motor: MockMotor, service: MotorService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
-            request = DoCommandRequest(name=motor.name, command=dict_to_struct({"command": "args"}))
+            command = {"command": "args"}
+            request = DoCommandRequest(name=motor.name, command=dict_to_struct(command))
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
-            assert result == {"hello": "world"}
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -378,8 +380,9 @@ class TestClient:
     async def test_do(self, motor: MockMotor, service: MotorService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_extra(self, motor: MockMotor, service: MotorService):

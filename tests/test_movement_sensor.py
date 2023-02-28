@@ -185,8 +185,9 @@ class TestMovementSensor:
 
     @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MovementSensor):
-        resp = await movement_sensor.do_command({"command": "args"})
-        assert resp == {"hello": "world"}
+        command = {"command": "args"}
+        resp = await movement_sensor.do_command(command)
+        assert resp == {"command": command}
 
 
 class TestService:
@@ -281,10 +282,11 @@ class TestService:
     async def test_do(self, movement_sensor: MockMovementSensor, service: MovementSensorService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
-            request = DoCommandRequest(name=movement_sensor.name, command=dict_to_struct({"command": "args"}))
+            command = {"command": "args"}
+            request = DoCommandRequest(name=movement_sensor.name, command=dict_to_struct(command))
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
-            assert result == {"hello": "world"}
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -391,5 +393,6 @@ class TestClient:
     async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
-            resp = await client.do_command({"command": "args"})
-            assert resp == {"hello": "world"}
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
