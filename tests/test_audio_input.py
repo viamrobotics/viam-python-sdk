@@ -9,6 +9,7 @@ from grpclib.testing import ChannelFor
 from viam.components.audio_input import AudioInput, AudioInputClient, AudioInputService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.audioinput import (
     AudioInputServiceStub,
     ChunksRequest,
@@ -18,6 +19,7 @@ from viam.proto.component.audioinput import (
     RecordRequest,
     SampleFormat,
 )
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockAudioInput
@@ -68,6 +70,12 @@ class TestAudioInput:
     async def test_get_properties(self, audio_input: AudioInput):
         assert await audio_input.get_properties() == PROPERTIES
 
+    @pytest.mark.asyncio
+    async def test_do(self, audio_input: AudioInput):
+        command = {"command": "args"}
+        resp = await audio_input.do_command(command)
+        assert resp == {"command": command}
+
 
 class TestService:
     @pytest.mark.asyncio
@@ -110,6 +118,16 @@ class TestService:
             with pytest.raises(GRPCError, match=r".*Status.UNIMPLEMENTED.*"):
                 await client.Record(RecordRequest())
 
+    @pytest.mark.asyncio
+    async def test_do(self, audio_input: MockAudioInput, service: AudioInputService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInputServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=audio_input.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
+
 
 class TestClient:
     @pytest.mark.asyncio
@@ -137,8 +155,9 @@ class TestClient:
             assert audio_input.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
-    async def test_do(self, audio_input: AudioInput, service: AudioInputService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, audio_input: AudioInput, service: AudioInputService):
+        async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

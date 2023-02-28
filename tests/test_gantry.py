@@ -3,8 +3,8 @@ from grpclib.testing import ChannelFor
 
 from viam.components.gantry import GantryClient, GantryStatus, create_status
 from viam.components.gantry.service import GantryService
-from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
@@ -16,7 +16,7 @@ from viam.proto.component.gantry import (
     MoveToPositionRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
 
 from . import loose_approx
 from .mocks.components import MockGantry
@@ -43,8 +43,9 @@ class TestGantry:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        with pytest.raises(NotImplementedError):
-            await self.gantry.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await self.gantry.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_stop(self):
@@ -153,6 +154,16 @@ class TestService:
             await client.Stop(request)
             assert self.gantry.extra == extra
 
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=self.gantry.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
+
 
 class TestClient:
 
@@ -186,10 +197,11 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+        async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_stop(self):

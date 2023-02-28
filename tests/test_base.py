@@ -7,7 +7,7 @@ from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseService
 from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import ActuatorStatus
+from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.base import (
     BaseServiceStub,
     IsMovingRequest,
@@ -18,7 +18,7 @@ from viam.proto.component.base import (
     SpinRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
 
 from . import loose_approx
 from .mocks.components import MockBase
@@ -114,8 +114,9 @@ class TestBase:
 
     @pytest.mark.asyncio
     async def test_do(self, base: MockBase):
-        with pytest.raises(NotImplementedError):
-            await base.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await base.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_status(self, base: MockBase):
@@ -260,6 +261,16 @@ class TestService:
             await client.MoveStraight(request)
             assert base.extra == extra
 
+    @pytest.mark.asyncio
+    async def test_do(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
+            client = BaseServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=base.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
+
 
 class TestClient:
     @pytest.mark.asyncio
@@ -341,11 +352,12 @@ class TestClient:
             assert await client.is_moving() is True
 
     @pytest.mark.asyncio
-    async def test_do(self, base: MockBase, service: BaseService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, base: MockBase, service: BaseService):
+        async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_extra(self, base: MockBase, service: BaseService):

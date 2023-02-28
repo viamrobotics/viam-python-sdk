@@ -7,9 +7,9 @@ from google.protobuf.struct_pb2 import Struct
 
 from grpclib.client import Channel
 import viam
-from viam.components.generic.client import do_command
 from viam.errors import NotSupportedError
 from viam.logging import getLogger
+from viam.proto.common import DoCommandResponse, DoCommandRequest
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -20,7 +20,7 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .input import Control, ControlFunction, Controller, Event, EventType
 
@@ -147,4 +147,6 @@ class ControllerClient(Controller):
             all_callback(event)
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command, timeout=timeout)
+        request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        return struct_to_dict(response.result)

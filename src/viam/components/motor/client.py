@@ -2,7 +2,7 @@ from typing import Any, Dict, Optional, Tuple
 
 from grpclib.client import Channel
 
-from viam.components.generic.client import do_command
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.motor import (
     GetPositionRequest,
     GetPositionResponse,
@@ -19,7 +19,7 @@ from viam.proto.component.motor import (
     SetPowerRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .motor import Motor
 
@@ -139,4 +139,6 @@ class MotorClient(Motor):
         return response.is_moving
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command, timeout=timeout)
+        request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        return struct_to_dict(response.result)

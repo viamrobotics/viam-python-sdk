@@ -104,6 +104,9 @@ class MockArm(Arm):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
+
 
 class MockAudioInput(AudioInput):
     def __init__(self, name: str, properties: AudioInput.Properties):
@@ -129,6 +132,9 @@ class MockAudioInput(AudioInput):
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> AudioInput.Properties:
         self.timeout = timeout
         return self.properties
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
 
 
 class MockBase(Base):
@@ -223,6 +229,9 @@ class MockBase(Base):
 
     async def is_moving(self) -> bool:
         return not self.stopped
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
 
 
 class MockAnalogReader(Board.AnalogReader):
@@ -352,6 +361,9 @@ class MockBoard(Board):
     async def model_attributes(self) -> Board.Attributes:
         return Board.Attributes(remote=True)
 
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
+
 
 class MockCamera(Camera):
     def __init__(self, name: str):
@@ -382,6 +394,9 @@ class MockCamera(Camera):
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Camera.Properties:
         self.timeout = timeout
         return self.props
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
 
 
 class MockGantry(Gantry):
@@ -425,6 +440,9 @@ class MockGantry(Gantry):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
+
 
 class MockGeneric(GenericComponent):
 
@@ -463,6 +481,9 @@ class MockGripper(Gripper):
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
 
 
 class MockInputController(Controller):
@@ -526,6 +547,9 @@ class MockInputController(Controller):
         callback = self.callbacks.get(event.control, {}).get(event.event)
         if callback:
             callback(event)
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
 
 
 class MockMotor(Motor):
@@ -642,6 +666,9 @@ class MockMotor(Motor):
     async def is_moving(self) -> bool:
         return self.powered
 
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
+
 
 class MockMovementSensor(MovementSensor):
     def __init__(
@@ -718,6 +745,9 @@ class MockMovementSensor(MovementSensor):
         self.timeout = timeout
         return self.accuracy
 
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
+
 
 @dataclass
 class MockPose:
@@ -759,6 +789,9 @@ class MockPoseTracker(PoseTracker):
         self.extra = extra
         return result
 
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
+
 
 class MockSensor(Sensor):
     def __init__(self, name: str, result: Mapping[str, Any] = {"a": 0, "b": {"foo": "bar"}, "c": [1, 8, 2], "d": "Hello world!"}):
@@ -773,6 +806,9 @@ class MockSensor(Sensor):
         self.extra = extra
         self.timeout = timeout
         return self.readings
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}
 
 
 class MockServo(Servo):
@@ -801,3 +837,6 @@ class MockServo(Servo):
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        return {"command": command}

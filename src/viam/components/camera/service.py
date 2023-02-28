@@ -2,7 +2,7 @@ from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
 from viam.components.service_base import ComponentServiceBase
-from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.media.video import CameraMimeType, RawImage
 from viam.proto.component.camera import (
@@ -15,6 +15,7 @@ from viam.proto.component.camera import (
     GetPropertiesResponse,
     RenderFrameRequest,
 )
+from viam.utils import struct_to_dict, dict_to_struct
 
 from .camera import Camera
 
@@ -102,4 +103,13 @@ class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        try:
+            camera = self.get_component(request.name)
+        except ResourceNotFoundError as e:
+            raise e.grpc_error
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await camera.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        response = DoCommandResponse(result=dict_to_struct(result))
+        await stream.send_message(response)

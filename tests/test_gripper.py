@@ -5,7 +5,7 @@ from viam.components.generic.service import GenericService
 from viam.components.gripper import Gripper, GripperClient, create_status
 from viam.components.gripper.service import GripperService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import ActuatorStatus
+from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
@@ -15,7 +15,7 @@ from viam.proto.component.gripper import (
     OpenRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
 
 from . import loose_approx
 from .mocks.components import MockGripper
@@ -70,8 +70,9 @@ class TestGripper:
 
     @pytest.mark.asyncio
     async def test_do(self, gripper: MockGripper):
-        with pytest.raises(NotImplementedError):
-            await gripper.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await gripper.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_status(self, gripper: MockGripper):
@@ -143,6 +144,16 @@ class TestService:
             await client.Open(request)
             assert gripper.extra == extra
 
+    @pytest.mark.asyncio
+    async def test_do(self, gripper: MockGripper, service: GripperService):
+        async with ChannelFor([service]) as channel:
+            client = GripperServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=gripper.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
+
 
 class TestClient:
     @pytest.mark.asyncio
@@ -183,11 +194,12 @@ class TestClient:
             assert await client.is_moving() is True
 
     @pytest.mark.asyncio
-    async def test_do(self, gripper: MockGripper, service: GripperService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, gripper: MockGripper, service: GripperService):
+        async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_extra(self, gripper: MockGripper, service: GripperService):

@@ -3,9 +3,8 @@ from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
-from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import Pose
+from viam.proto.common import Pose, DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -19,7 +18,7 @@ from viam.proto.component.arm import (
     MoveToPositionRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockArm
@@ -66,8 +65,9 @@ class TestArm:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        with pytest.raises(NotImplementedError):
-            await self.arm.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await self.arm.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_status(self):
@@ -145,6 +145,16 @@ class TestService:
             assert response.is_moving is True
 
     @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
+
+    @pytest.mark.asyncio
     async def test_extra(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
@@ -211,10 +221,11 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+        async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_extra(self):

@@ -2,9 +2,8 @@ from typing import Any, Dict, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
-from viam.components.generic.client import do_command
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.proto.common import GeoPoint, Orientation, Vector3
+from viam.proto.common import GeoPoint, Orientation, Vector3, DoCommandResponse, DoCommandRequest
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -24,7 +23,7 @@ from viam.proto.component.movementsensor import (
     GetPropertiesResponse,
     MovementSensorServiceStub,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 
 class MovementSensorClient(MovementSensor):
@@ -97,4 +96,6 @@ class MovementSensorClient(MovementSensor):
         return await super().get_readings(extra=extra, timeout=timeout)
 
     async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
-        return await do_command(self.channel, self.name, command, timeout=timeout)
+        request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        return struct_to_dict(response.result)

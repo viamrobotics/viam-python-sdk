@@ -1,16 +1,16 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.components.sensor import SensorClient
 from viam.components.sensor.service import SensorService
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.sensor import (
     GetReadingsRequest,
     GetReadingsResponse,
     SensorServiceStub,
 )
-from viam.utils import dict_to_struct, primitive_to_value
+from viam.utils import dict_to_struct, struct_to_dict, primitive_to_value
 
 from . import loose_approx
 from .mocks.components import MockSensor
@@ -35,8 +35,9 @@ class TestSensor:
 
     @pytest.mark.asyncio
     async def test_do(self, sensor):
-        with pytest.raises(NotImplementedError):
-            await sensor.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await sensor.do_command(command)
+        assert resp == {"command": command}
 
 
 @pytest.fixture(scope="function")
@@ -61,6 +62,16 @@ class TestService:
             assert sensor.extra == EXTRA_PARAMS
             assert sensor.timeout == loose_approx(2.34)
 
+    @pytest.mark.asyncio
+    async def test_do(self, sensor: MockSensor, service: SensorService):
+        async with ChannelFor([service]) as channel:
+            client = SensorServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=sensor.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
+
 
 class TestClient:
     @pytest.mark.asyncio
@@ -75,7 +86,8 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do(self, sensor, manager, service):
-        async with ChannelFor([service, GenericService(manager)]) as channel:
+        async with ChannelFor([service]) as channel:
             client = SensorClient(sensor.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

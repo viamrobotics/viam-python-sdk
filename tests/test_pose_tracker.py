@@ -1,17 +1,16 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import Pose, PoseInFrame
+from viam.proto.common import Pose, PoseInFrame, DoCommandRequest, DoCommandResponse
 from viam.proto.component.posetracker import (
     GetPosesRequest,
     GetPosesResponse,
     PoseTrackerServiceStub,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockPose, MockPoseTracker
@@ -37,8 +36,9 @@ class TestPoseTracker:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        with pytest.raises(NotImplementedError):
-            await self.mock_pose_tracker.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await self.mock_pose_tracker.do_command(command)
+        assert resp == {"command": command}
 
 
 class TestService:
@@ -59,6 +59,16 @@ class TestService:
             assert received_poses["1"] == PoseInFrame(reference_frame="1", pose=Pose(x=5, y=5, z=5, o_x=5, o_y=3, o_z=4, theta=30))
             assert self.pose_tracker.timeout == loose_approx(2.34)
             assert self.pose_tracker.extra == {"foo": "get_poses"}
+
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
+            client = PoseTrackerServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -81,7 +91,8 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+        async with ChannelFor([self.service]) as channel:
             client = PoseTrackerClient(self.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

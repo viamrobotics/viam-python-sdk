@@ -8,7 +8,7 @@ from viam.components.movement_sensor import (
     MovementSensorService,
 )
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import GeoPoint, Orientation, Vector3
+from viam.proto.common import GeoPoint, Orientation, Vector3, DoCommandRequest, DoCommandResponse
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -28,7 +28,7 @@ from viam.proto.component.movementsensor import (
     GetPropertiesResponse,
     MovementSensorServiceStub,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockMovementSensor
@@ -185,8 +185,9 @@ class TestMovementSensor:
 
     @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MovementSensor):
-        with pytest.raises(NotImplementedError):
-            await movement_sensor.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await movement_sensor.do_command(command)
+        assert resp == {"command": command}
 
 
 class TestService:
@@ -276,6 +277,16 @@ class TestService:
             assert response.accuracy_mm == pytest.approx(ACCURACY)
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(7.89)
+
+    @pytest.mark.asyncio
+    async def test_do(self, movement_sensor: MockMovementSensor, service: MovementSensorService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=movement_sensor.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
 
 
 class TestClient:
@@ -379,8 +390,9 @@ class TestClient:
             assert movement_sensor.timeout == loose_approx(8.90)
 
     @pytest.mark.asyncio
-    async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, movement_sensor: MovementSensor, service: MovementSensorService):
+        async with ChannelFor([service]) as channel:
             client = MovementSensorClient(movement_sensor.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

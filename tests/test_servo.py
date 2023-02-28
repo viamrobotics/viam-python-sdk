@@ -1,10 +1,10 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
 from viam.components.resource_manager import ResourceManager
 from viam.components.servo import ServoClient, ServoStatus, create_status
 from viam.components.servo.service import ServoService
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
@@ -14,7 +14,7 @@ from viam.proto.component.servo import (
     ServoServiceStub,
     StopRequest,
 )
-from viam.utils import dict_to_struct, message_to_struct
+from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
 
 from . import loose_approx
 from .mocks.components import MockServo
@@ -56,8 +56,9 @@ class TestServo:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        with pytest.raises(NotImplementedError):
-            await self.servo.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await self.servo.do_command(command)
+        assert resp == {"command": command}
 
     @pytest.mark.asyncio
     async def test_status(self):
@@ -116,6 +117,16 @@ class TestService:
             response: IsMovingResponse = await client.IsMoving(request)
             assert response.is_moving is True
 
+    @pytest.mark.asyncio
+    async def test_do(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ServoServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
+
 
 class TestClient:
 
@@ -163,7 +174,8 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_do(self):
-        async with ChannelFor([self.service, GenericService(self.manager)]) as channel:
+        async with ChannelFor([self.service]) as channel:
             client = ServoClient(self.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}

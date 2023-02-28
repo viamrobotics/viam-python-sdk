@@ -10,6 +10,7 @@ from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerService
 from viam.components.resource_manager import ResourceManager
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -20,7 +21,7 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockInputController
@@ -105,8 +106,9 @@ class TestInputController:
 
     @pytest.mark.asyncio
     async def test_do(self, controller: MockInputController):
-        with pytest.raises(NotImplementedError):
-            await controller.do_command({"command": "args"})
+        command = {"command": "args"}
+        resp = await controller.do_command(command)
+        assert resp == {"command": command}
 
 
 class TestService:
@@ -204,6 +206,16 @@ class TestService:
             assert controller.callbacks[Control.BUTTON_START][EventType.BUTTON_RELEASE] is None
             assert controller.reg_extra == extra
 
+    @pytest.mark.asyncio
+    async def test_do(self, controller: MockInputController, service: InputControllerService):
+        async with ChannelFor([service]) as channel:
+            client = InputControllerServiceStub(channel)
+            command = {"command": "args"}
+            request = DoCommandRequest(name=controller.name, command=dict_to_struct(command))
+            response: DoCommandResponse = await client.DoCommand(request)
+            result = struct_to_dict(response.result)
+            assert result == {"command": command}
+
 
 class TestClient:
     @pytest.mark.asyncio
@@ -293,8 +305,9 @@ class TestClient:
             assert controller.reg_extra == extra
 
     @pytest.mark.asyncio
-    async def test_do(self, controller: MockInputController, service: InputControllerService, generic_service: GenericService):
-        async with ChannelFor([service, generic_service]) as channel:
+    async def test_do(self, controller: MockInputController, service: InputControllerService):
+        async with ChannelFor([service]) as channel:
             client = ControllerClient(controller.name, channel)
-            with pytest.raises(NotImplementedError):
-                await client.do_command({"command": "args"})
+            command = {"command": "args"}
+            resp = await client.do_command(command)
+            assert resp == {"command": command}
