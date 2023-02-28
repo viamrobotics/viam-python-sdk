@@ -91,7 +91,7 @@ class Registry:
             cls._SUBTYPES[registration.component_type.SUBTYPE] = registration
 
     @classmethod
-    def register_component(cls, subtype: Subtype, model: Model, component: ComponentCreator):
+    def register_component_model(cls, subtype: Subtype, model: Model, component: ComponentCreator):
         """Register a specific ```Model``` for the specific ```Subtype``` with the Registry
 
         Args:

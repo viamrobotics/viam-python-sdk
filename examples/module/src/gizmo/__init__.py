@@ -9,4 +9,4 @@ from .my_gizmo import MyGizmo
 
 Registry.register_subtype(ComponentRegistration(Gizmo, GizmoService, lambda name, channel: GizmoClient(name, channel)))
 
-Registry.register_component(Gizmo.SUBTYPE, MyGizmo.MODEL, MyGizmo.new)
+Registry.register_component_model(Gizmo.SUBTYPE, MyGizmo.MODEL, MyGizmo.new)
