@@ -1,8 +1,8 @@
-from typing import Any, List, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import ResourceName
+from viam.proto.common import ResourceName, DoCommandRequest, DoCommandResponse
 from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -10,7 +10,7 @@ from viam.proto.service.sensors import (
     GetSensorsResponse,
     SensorsServiceStub,
 )
-from viam.utils import dict_to_struct, sensor_readings_value_to_native
+from viam.utils import dict_to_struct, struct_to_dict, sensor_readings_value_to_native
 from viam.services.service_client_base import ServiceClientBase
 
 
@@ -51,3 +51,16 @@ class SensorsServiceClient(ServiceClientBase):
         request = GetReadingsRequest(name=self.name, sensor_names=sensors, extra=dict_to_struct(extra))
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
         return {reading.name: sensor_readings_value_to_native(reading.readings) for reading in response.readings}
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None):
+        """Send/receive arbitrary commands
+
+        Args:
+            command (Dict[str, Any]): The command to execute
+
+        Returns:
+            Dict[str, Any]: Result of the executed command
+        """
+        request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        return struct_to_dict(response.result)
