@@ -1,3 +1,7 @@
+import asyncio
+import contextvars
+import functools
+import sys
 import threading
 from asyncio import Event
 from typing import Any, Dict, List, Mapping, SupportsFloat, Type, TypeVar
@@ -184,3 +188,12 @@ class PointerCounter:
     def count(self) -> int:
         with self._lock:
             return self._count
+
+
+async def to_thread(func, /, *args, **kwargs):
+    if sys.version_info >= (3, 9):
+        return await asyncio.to_thread(func, *args, **kwargs)
+    loop = asyncio.events.get_running_loop()
+    ctx = contextvars.copy_context()
+    func_call = functools.partial(ctx.run, func, *args, **kwargs)
+    return await loop.run_in_executor(None, func_call)
