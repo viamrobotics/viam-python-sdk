@@ -66,6 +66,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.move"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.move()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.move_single_component"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.move_single_component()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.get_pose"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.get_pose()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.do_command"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.do_command()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.motion.MotionServiceClient">MotionServiceClient</a><ul>
@@ -74,6 +75,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.move">move</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.move_single_component">move_single_component</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.get_pose">get_pose</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.motion.MotionServiceClient.do_command">do_command</a></li>
 </ul>
 </li>
 </ul>
@@ -224,6 +226,23 @@ WorldState message.</p></li>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Pose</span></code> (PoseInFrame)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.MotionServiceClient.do_command">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/motion.html#MotionServiceClient.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.MotionServiceClient.do_command" title="Permalink to this definition"></a></dt>
+<dd><p>Send/receive arbitrary commands</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the executed command</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Any]</p>
 </dd>
 </dl>
 </dd></dl>
