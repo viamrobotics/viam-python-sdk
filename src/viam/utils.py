@@ -3,7 +3,6 @@ import contextvars
 import functools
 import sys
 import threading
-from asyncio import Event
 from typing import Any, Dict, List, Mapping, SupportsFloat, Type, TypeVar
 
 from google.protobuf.json_format import MessageToDict, ParseDict
@@ -13,6 +12,16 @@ from google.protobuf.struct_pb2 import ListValue, Struct, Value
 from viam.components.component_base import ComponentBase
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.resource.registry import Registry, Subtype
+
+if sys.version_info >= (3, 9):
+    from collections.abc import Callable
+else:
+    from typing import Callable
+
+if sys.version_info >= (3, 10):
+    from typing import ParamSpec
+else:
+    from typing_extensions import ParamSpec
 
 
 def primitive_to_value(v: Any) -> Value:
@@ -160,7 +169,7 @@ def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[st
 
 class PointerCounter:
     def __init__(self) -> None:
-        self._event = Event()
+        self._event = asyncio.Event()
         self._lock = threading.Lock()
         self._count = 0
         self._event.set()
@@ -190,10 +199,21 @@ class PointerCounter:
             return self._count
 
 
-async def to_thread(func, /, *args, **kwargs):
+_P = ParamSpec("_P")
+_R = TypeVar("_R")
+
+
+async def to_thread(func: Callable[_P, _R], *args: _P.args, **kwargs: _P.kwargs) -> _R:
+    """Asynchronously run a function in a separate thread.
+
+    This is a copy of the function defined in the python source,
+    which is only available in python >= 3.9.
+
+    See: https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py
+    """
     if sys.version_info >= (3, 9):
         return await asyncio.to_thread(func, *args, **kwargs)
     loop = asyncio.events.get_running_loop()
     ctx = contextvars.copy_context()
     func_call = functools.partial(ctx.run, func, *args, **kwargs)
-    return await loop.run_in_executor(None, func_call)
+    return await loop.run_in_executor(None, func_call)  # type: ignore
