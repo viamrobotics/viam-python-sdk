@@ -81,6 +81,25 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub"><code class="docutils literal notranslate"><span class="pre">MotionServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification"><code class="docutils literal notranslate"><span class="pre">CollisionSpecification</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions"><code class="docutils literal notranslate"><span class="pre">CollisionSpecification.AllowedFrameCollisions</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions.frame1"><code class="docutils literal notranslate"><span class="pre">CollisionSpecification.AllowedFrameCollisions.frame1</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions.frame2"><code class="docutils literal notranslate"><span class="pre">CollisionSpecification.AllowedFrameCollisions.frame2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.allows"><code class="docutils literal notranslate"><span class="pre">CollisionSpecification.allows</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions.frame1">frame1</a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions.frame2">frame2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.Constraints"><code class="docutils literal notranslate"><span class="pre">Constraints</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.linear_constraint"><code class="docutils literal notranslate"><span class="pre">Constraints.linear_constraint</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.orientation_constraint"><code class="docutils literal notranslate"><span class="pre">Constraints.orientation_constraint</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.collision_specification"><code class="docutils literal notranslate"><span class="pre">Constraints.collision_specification</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.component_name"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.component_name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.supplemental_transforms"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest.supplemental_transforms</span></code></a></li>
@@ -95,10 +114,18 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPoseResponse.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint"><code class="docutils literal notranslate"><span class="pre">LinearConstraint</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.line_tolerance_mm"><code class="docutils literal notranslate"><span class="pre">LinearConstraint.line_tolerance_mm</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.orientation_tolerance_degs"><code class="docutils literal notranslate"><span class="pre">LinearConstraint.orientation_tolerance_degs</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.HasField"><code class="docutils literal notranslate"><span class="pre">LinearConstraint.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.WhichOneof"><code class="docutils literal notranslate"><span class="pre">LinearConstraint.WhichOneof()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest"><code class="docutils literal notranslate"><span class="pre">MoveRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.destination"><code class="docutils literal notranslate"><span class="pre">MoveRequest.destination</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.component_name"><code class="docutils literal notranslate"><span class="pre">MoveRequest.component_name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveRequest.world_state</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.constraints"><code class="docutils literal notranslate"><span class="pre">MoveRequest.constraints</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveRequest.HasField()</span></code></a></li>
@@ -123,6 +150,12 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentResponse.success"><code class="docutils literal notranslate"><span class="pre">MoveSingleComponentResponse.success</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint"><code class="docutils literal notranslate"><span class="pre">OrientationConstraint</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint.orientation_tolerance_degs"><code class="docutils literal notranslate"><span class="pre">OrientationConstraint.orientation_tolerance_degs</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint.HasField"><code class="docutils literal notranslate"><span class="pre">OrientationConstraint.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint.WhichOneof"><code class="docutils literal notranslate"><span class="pre">OrientationConstraint.WhichOneof()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase">MotionServiceBase</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.Move">Move</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.MoveSingleComponent">MoveSingleComponent</a></li>
@@ -132,6 +165,17 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub">MotionServiceStub</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification">CollisionSpecification</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions">AllowedFrameCollisions</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.allows">allows</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.Constraints">Constraints</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.linear_constraint">linear_constraint</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.orientation_constraint">orientation_constraint</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.collision_specification">collision_specification</a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest">GetPoseRequest</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.component_name">component_name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest.supplemental_transforms">supplemental_transforms</a></li>
@@ -146,10 +190,18 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse.HasField">HasField</a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint">LinearConstraint</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.line_tolerance_mm">line_tolerance_mm</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.orientation_tolerance_degs">orientation_tolerance_degs</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.HasField">HasField</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.WhichOneof">WhichOneof</a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest">MoveRequest</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.destination">destination</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.component_name">component_name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.world_state">world_state</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.constraints">constraints</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveRequest.HasField">HasField</a></li>
@@ -172,6 +224,12 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentResponse">MoveSingleComponentResponse</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentResponse.success">success</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint">OrientationConstraint</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint.orientation_tolerance_degs">orientation_tolerance_degs</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint.HasField">HasField</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint.WhichOneof">WhichOneof</a></li>
 </ul>
 </li>
 </ul>
@@ -238,23 +296,35 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MotionServiceStub" title="viam.proto.service.motion.MotionServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MotionServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification" title="viam.proto.service.motion.CollisionSpecification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollisionSpecification</span></code></a></p></td>
+<td><p>CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.Constraints" title="viam.proto.service.motion.Constraints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constraints</span></code></a></p></td>
+<td><p>Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest" title="viam.proto.service.motion.GetPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPoseRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse" title="viam.proto.service.motion.GetPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPoseResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveRequest" title="viam.proto.service.motion.MoveRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint" title="viam.proto.service.motion.LinearConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearConstraint</span></code></a></p></td>
+<td><p>LinearConstraint specifies that the component being moved should move linearly relative to its goal. It does not constrain the motion of components other than the <cite>component_name</cite> specified in motion.Move</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveRequest" title="viam.proto.service.motion.MoveRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveResponse" title="viam.proto.service.motion.MoveResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveResponse" title="viam.proto.service.motion.MoveResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest" title="viam.proto.service.motion.MoveSingleComponentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveSingleComponentRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentRequest" title="viam.proto.service.motion.MoveSingleComponentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveSingleComponentRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentResponse" title="viam.proto.service.motion.MoveSingleComponentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveSingleComponentResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveSingleComponentResponse" title="viam.proto.service.motion.MoveSingleComponentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveSingleComponentResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint" title="viam.proto.service.motion.OrientationConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientationConstraint</span></code></a></p></td>
+<td><p>OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative to the goal. It does not constrain the motion of components other than the <cite>component_name</cite> specified in motion.Move</p></td>
 </tr>
 </tbody>
 </table>
@@ -294,6 +364,60 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">MotionServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.CollisionSpecification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">CollisionSpecification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___CollisionSpecification.AllowedFrameCollisions</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.CollisionSpecification" title="Permalink to this definition"></a></dt>
+<dd><p>CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AllowedFrameCollisions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions.frame1">
+<span class="sig-name descname"><span class="pre">frame1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions.frame1" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions.frame2">
+<span class="sig-name descname"><span class="pre">frame2</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.CollisionSpecification.AllowedFrameCollisions.frame2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.CollisionSpecification.allows">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___CollisionSpecification</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.CollisionSpecification.allows" title="Permalink to this definition"></a></dt>
+<dd><p>Pairs of frame which should be allowed to collide with one another</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Constraints">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">Constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_constraint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___LinearConstraint</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_constraint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___OrientationConstraint</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_specification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___CollisionSpecification</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.Constraints" title="Permalink to this definition"></a></dt>
+<dd><p>Constraints specifies all enumerated constraints to be passed to Viam’s motion planning, along with any optional parameters</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Constraints.linear_constraint">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">linear_constraint</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___LinearConstraint</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.Constraints.linear_constraint" title="Permalink to this definition"></a></dt>
+<dd><p>Typed message for a specific constraint</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Constraints.orientation_constraint">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orientation_constraint</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___OrientationConstraint</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.Constraints.orientation_constraint" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Constraints.collision_specification">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">collision_specification</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___CollisionSpecification</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.Constraints.collision_specification" title="Permalink to this definition"></a></dt>
+<dd><p>Arc constraint, Time constraint, and others will be added here when they are supported</p>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.motion.GetPoseRequest">
@@ -397,8 +521,72 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.LinearConstraint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">LinearConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_tolerance_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_tolerance_degs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.LinearConstraint" title="Permalink to this definition"></a></dt>
+<dd><p>LinearConstraint specifies that the component being moved should move linearly relative to its goal. It does not constrain the motion of components other than the <cite>component_name</cite> specified in motion.Move</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.LinearConstraint.line_tolerance_mm">
+<span class="sig-name descname"><span class="pre">line_tolerance_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.service.motion.LinearConstraint.line_tolerance_mm" title="Permalink to this definition"></a></dt>
+<dd><p>Max linear deviation from straight-line between start and goal, in mm.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.LinearConstraint.orientation_tolerance_degs">
+<span class="sig-name descname"><span class="pre">orientation_tolerance_degs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.service.motion.LinearConstraint.orientation_tolerance_degs" title="Permalink to this definition"></a></dt>
+<dd><p>Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.LinearConstraint.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_line_tolerance_mm</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_line_tolerance_mm'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_orientation_tolerance_degs</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_orientation_tolerance_degs'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">line_tolerance_mm</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'line_tolerance_mm'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">orientation_tolerance_degs</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'orientation_tolerance_degs'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.LinearConstraint.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.LinearConstraint.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_line_tolerance_mm</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_line_tolerance_mm'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'line_tolerance_mm'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.motion.LinearConstraint.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_orientation_tolerance_degs</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_orientation_tolerance_degs'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'orientation_tolerance_degs'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">MoveRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">common.v1.common_pb2.PoseInFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">common.v1.common_pb2.WorldState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">MoveRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PoseInFrame" title="viam.gen.common.v1.common_pb2.PoseInFrame"><span class="pre">common.v1.common_pb2.PoseInFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">common.v1.common_pb2.WorldState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Constraints</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -419,6 +607,11 @@ shown below.</p>
 <dd></dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.constraints">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">constraints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Constraints</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.constraints" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.extra">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.extra" title="Permalink to this definition"></a></dt>
 <dd><p>Additional arguments to the method</p>
@@ -431,7 +624,7 @@ shown below.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">destination</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'destination'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_constraints</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_constraints'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">constraints</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'constraints'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">destination</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'destination'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -454,7 +647,9 @@ be raised.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveRequest.WhichOneof">
-<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'world_state'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_constraints</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_constraints'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'constraints'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'world_state'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
 <dd><p>Returns the name of the field that is set inside a oneof group.</p>
 <p>If no field is set, returns None.</p>
 <dl class="field-list simple">
@@ -579,6 +774,62 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.service.motion.MoveSingleComponentResponse.success">
 <span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveSingleComponentResponse.success" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.OrientationConstraint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">OrientationConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_tolerance_degs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.OrientationConstraint" title="Permalink to this definition"></a></dt>
+<dd><p>OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative to the goal. It does not constrain the motion of components other than the <cite>component_name</cite> specified in motion.Move</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.OrientationConstraint.orientation_tolerance_degs">
+<span class="sig-name descname"><span class="pre">orientation_tolerance_degs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.service.motion.OrientationConstraint.orientation_tolerance_degs" title="Permalink to this definition"></a></dt>
+<dd><p>Max allowable orientation deviation, in degrees, while on the shortest path between start / goal states</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.OrientationConstraint.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_orientation_tolerance_degs</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_orientation_tolerance_degs'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">orientation_tolerance_degs</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'orientation_tolerance_degs'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.OrientationConstraint.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.OrientationConstraint.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_orientation_tolerance_degs</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_orientation_tolerance_degs'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'orientation_tolerance_degs'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.motion.OrientationConstraint.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
