@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, SupportsBytes, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Union
 
 from grpclib.client import Channel
 
@@ -15,6 +15,9 @@ from viam.proto.component.gripper import (
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .gripper import Gripper
+
+
+DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
 
 
 class GripperClient(Gripper):

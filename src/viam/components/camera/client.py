@@ -1,5 +1,5 @@
 from io import BytesIO
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import SupportsBytes, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Tuple, Union
 
 from grpclib.client import Channel
 from PIL import Image
@@ -18,6 +18,9 @@ from viam.proto.component.camera import (
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .camera import Camera
+
+
+DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
 
 
 class CameraClient(Camera):
@@ -48,7 +51,7 @@ class CameraClient(Camera):
         response: GetPropertiesResponse = await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout)
         return Camera.Properties(response.supports_pcd, response.intrinsic_parameters, response.distortion_parameters)
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+    async def do_command(self, command: Dict[str, DoCommandTypes], *, timeout: Optional[float] = None) -> Dict[str, DoCommandTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

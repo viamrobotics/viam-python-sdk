@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, SupportsBytes, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Union
 
 from grpclib.client import Channel
 
@@ -19,6 +19,9 @@ from viam.proto.component.arm import (
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .arm import Arm
+
+
+DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
 
 
 class ArmClient(Arm):
@@ -102,10 +105,10 @@ class ArmClient(Arm):
 
     async def do_command(
         self,
-        command: Dict[str, Any],
+        command: Dict[str, DoCommandTypes],
         *,
         timeout: Optional[float] = None,
-    ) -> Dict[str, Any]:
+    ) -> Dict[str, DoCommandTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

@@ -1,5 +1,5 @@
 import abc
-from typing import TYPE_CHECKING, Any, ClassVar, Dict, Mapping, Optional, cast
+from typing import TYPE_CHECKING, Any, SupportsBytes, ClassVar, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Union, cast
 
 from typing_extensions import Self
 
@@ -9,6 +9,8 @@ from viam.resource.types import Subtype
 
 if TYPE_CHECKING:
     from viam.robot.client import RobotClient
+
+DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
 
 
 class ComponentBase(abc.ABC):
@@ -68,7 +70,9 @@ class ComponentBase(abc.ABC):
         """
         return kwargs.get(Operation.ARG_NAME, Operation._noop())
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(
+        self, command: Dict[str, DoCommandTypes], *, timeout: Optional[float] = None, **kwargs
+    ) -> Dict[str, DoCommandTypes]:
         """Send/Receive arbitrary commands
 
         Args:

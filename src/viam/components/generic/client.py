@@ -1,10 +1,13 @@
-from typing import Any, Dict, Optional
+from typing import Any, SupportsBytes, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Union
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
 from viam.proto.component.generic import GenericServiceStub, DoCommandRequest, DoCommandResponse
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .generic import Generic
+
+
+DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
 
 
 class GenericClient(Generic):
@@ -28,7 +31,9 @@ class GenericClient(Generic):
         return struct_to_dict(response.result)
 
 
-async def do_command(channel: Channel, name: str, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+async def do_command(
+    channel: Channel, name: str, command: Dict[str, DoCommandTypes], *, timeout: Optional[float] = None
+) -> Dict[str, DoCommandTypes]:
     """Convenience method to allow component clients to execute ``do_command`` functions
 
     Args:
