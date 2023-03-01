@@ -2,7 +2,14 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import PoseInFrame, ResourceName, WorldState, Transform, DoCommandResponse, DoCommandRequest
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    PoseInFrame,
+    ResourceName,
+    Transform,
+    WorldState,
+)
 from viam.proto.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
@@ -156,6 +163,3 @@ class MotionServiceClient(ServiceClientBase):
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
-
-    class Pose:
-        pass

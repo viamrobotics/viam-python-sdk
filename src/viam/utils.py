@@ -115,10 +115,10 @@ def message_to_struct(message: Message) -> Struct:
     return struct
 
 
-T = TypeVar("T", bound=Message)
+_T = TypeVar("_T", bound=Message)
 
 
-def struct_to_message(struct: Struct, message_type: Type[T]) -> T:
+def struct_to_message(struct: Struct, message_type: Type[_T]) -> _T:
     dct = struct_to_dict(struct)
     return ParseDict(dct, message_type())
 
