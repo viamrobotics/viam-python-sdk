@@ -275,3 +275,11 @@ class TestClient:
             response = await client.get_object_point_clouds("camera", "segmenter", extra=extra)
             assert response == POINT_CLOUDS
             assert service.extra == extra
+
+    @pytest.mark.asyncio
+    async def test_do(self, service: MockVisionService):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            command = {"command": "args"}
+            response = await client.do_command(command)
+            assert response == command
