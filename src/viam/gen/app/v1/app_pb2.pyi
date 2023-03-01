@@ -965,8 +965,13 @@ global___GetRobotRequest = GetRobotRequest
 @typing_extensions.final
 class GetRoverRentalRobotsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
 
-    def __init__(self) -> None:
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
         ...
 global___GetRoverRentalRobotsRequest = GetRoverRentalRobotsRequest
 
