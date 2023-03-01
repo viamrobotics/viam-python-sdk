@@ -94,3 +94,11 @@ class TestClient:
             }
             assert service.sensors_for_readings == sensors
             assert service.extra == extra
+
+    @pytest.mark.asyncio
+    async def test_do(self, service: MockSensorsService):
+        async with ChannelFor([service]) as channel:
+            client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
+            command = {"command": "args"}
+            response = await client.do_command(command)
+            assert response == command
