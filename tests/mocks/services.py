@@ -105,7 +105,10 @@ class MockMotionService(MotionServiceBase):
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(DoCommandResponse(result=request.command))
 
 
 class MockSensorsService(SensorsServiceBase):
@@ -133,7 +136,10 @@ class MockSensorsService(SensorsServiceBase):
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(DoCommandResponse(result=request.command))
 
 
 class MockVisionService(VisionServiceBase):
@@ -281,4 +287,7 @@ class MockVisionService(VisionServiceBase):
         await stream.send_message(RemoveSegmenterResponse())
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(DoCommandResponse(result=request.command))
