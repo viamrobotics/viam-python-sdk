@@ -1,4 +1,3 @@
-import asyncio
 import ctypes
 import pathlib
 import re
@@ -18,6 +17,7 @@ from viam import logging
 from viam.errors import InsecureConnectionError, ViamError
 from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
 from viam.proto.rpc.auth import Credentials as PBCredentials
+from viam.utils import to_thread
 
 LOGGER = logging.getLogger(__name__)
 
@@ -180,7 +180,7 @@ class _Runtime:
         insecure = options.insecure or options.allow_insecure_with_creds_downgrade or (not creds and options.allow_insecure_downgrade)
 
         LOGGER.debug(f"Dialing {address} using viam-rust-utils library")
-        path_ptr = await asyncio.to_thread(
+        path_ptr = await to_thread(
             self._lib.dial,
             address.encode("utf-8"),
             creds.encode("utf-8") if creds else None,
