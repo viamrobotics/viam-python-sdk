@@ -1,5 +1,5 @@
 import abc
-from typing import ClassVar, TYPE_CHECKING
+from typing import Any, ClassVar, Dict, Optional, TYPE_CHECKING
 from typing_extensions import Self
 from grpclib.client import Channel
 from viam.errors import ServiceNotImplementedError
@@ -37,3 +37,17 @@ class ServiceClientBase(abc.ABC):
         if resource_name not in robot.resource_names:
             raise ServiceNotImplementedError(resource_name.subtype, resource_name.name)
         return cls(name, robot._channel)
+
+    def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+        """Send/Receive arbitrary commands
+
+        Args:
+            command (Dict[str, Any]): The command to execute
+
+        Raises:
+            NotImplementedError: Raised if the component does not support arbitrary commands
+
+        Returns:
+            Dict[str, Any]: Result of the executed command
+        """
+        raise NotImplementedError()
