@@ -83,8 +83,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.rpc.dial</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">ctypes</span>
+<span></span><span class="kn">import</span> <span class="nn">ctypes</span>
 <span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">socket</span>
@@ -103,6 +102,7 @@
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">InsecureConnectionError</span><span class="p">,</span> <span class="n">ViamError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.rpc.auth</span> <span class="kn">import</span> <span class="n">AuthenticateRequest</span><span class="p">,</span> <span class="n">AuthServiceStub</span>
 <span class="kn">from</span> <span class="nn">viam.proto.rpc.auth</span> <span class="kn">import</span> <span class="n">Credentials</span> <span class="k">as</span> <span class="n">PBCredentials</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">to_thread</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -265,7 +265,7 @@
         <span class="n">insecure</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">insecure</span> <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">allow_insecure_with_creds_downgrade</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">creds</span> <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">allow_insecure_downgrade</span><span class="p">)</span>
 
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dialing </span><span class="si">{</span><span class="n">address</span><span class="si">}</span><span class="s2"> using viam-rust-utils library&quot;</span><span class="p">)</span>
-        <span class="n">path_ptr</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span>
+        <span class="n">path_ptr</span> <span class="o">=</span> <span class="k">await</span> <span class="n">to_thread</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_lib</span><span class="o">.</span><span class="n">dial</span><span class="p">,</span>
             <span class="n">address</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span>
             <span class="n">creds</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">creds</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>

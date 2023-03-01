@@ -83,8 +83,11 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">threading</span>
-<span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">Event</span>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">contextvars</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">SupportsFloat</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
 
 <span class="kn">from</span> <span class="nn">google.protobuf.json_format</span> <span class="kn">import</span> <span class="n">MessageToDict</span><span class="p">,</span> <span class="n">ParseDict</span>
@@ -94,6 +97,16 @@
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">Orientation</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Vector3</span>
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">Subtype</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">ParamSpec</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">ParamSpec</span>
 
 
 <div class="viewcode-block" id="primitive_to_value"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.primitive_to_value">[docs]</a><span class="k">def</span> <span class="nf">primitive_to_value</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Value</span><span class="p">:</span>
@@ -241,7 +254,7 @@
 
 <div class="viewcode-block" id="PointerCounter"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.PointerCounter">[docs]</a><span class="k">class</span> <span class="nc">PointerCounter</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_event</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
@@ -269,6 +282,26 @@
     <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_count</span></div>
+
+
+<span class="n">_P</span> <span class="o">=</span> <span class="n">ParamSpec</span><span class="p">(</span><span class="s2">&quot;_P&quot;</span><span class="p">)</span>
+<span class="n">_R</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;_R&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="to_thread"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.to_thread">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">to_thread</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="n">_P</span><span class="p">,</span> <span class="n">_R</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">_P</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_R</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Asynchronously run a function in a separate thread.</span>
+
+<span class="sd">    This is a copy of the function defined in the python source,</span>
+<span class="sd">    which is only available in python &gt;= 3.9.</span>
+
+<span class="sd">    See: https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">to_thread</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span>
+    <span class="n">ctx</span> <span class="o">=</span> <span class="n">contextvars</span><span class="o">.</span><span class="n">copy_context</span><span class="p">()</span>
+    <span class="n">func_call</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">func_call</span><span class="p">)</span>  <span class="c1"># type: ignore</span></div>
 </pre></div>
 
            </div>

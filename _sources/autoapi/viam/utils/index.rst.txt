@@ -30,6 +30,7 @@ Functions
    viam.utils.struct_to_dict
    viam.utils.sensor_readings_native_to_value
    viam.utils.sensor_readings_value_to_native
+   viam.utils.to_thread
 
 
 
@@ -105,5 +106,16 @@ Attributes
    .. py:method:: wait() -> None
       :async:
 
+
+
+.. py:function:: to_thread(func: collections.abc.Callable[_P, _R], *args: _P, **kwargs: _P) -> _R
+   :async:
+
+   Asynchronously run a function in a separate thread.
+
+   This is a copy of the function defined in the python source,
+   which is only available in python >= 3.9.
+
+   See: https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py
 
 

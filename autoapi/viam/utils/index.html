@@ -128,6 +128,9 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.sensor_readings_value_to_native" title="viam.utils.sensor_readings_value_to_native"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sensor_readings_value_to_native</span></code></a>(→ Mapping[str, Any])</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.to_thread" title="viam.utils.to_thread"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_thread</span></code></a>(→ _R)</p></td>
+<td><p>Asynchronously run a function in a separate thread.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -236,6 +239,15 @@ Supports primitive types of
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wait</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#PointerCounter.wait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.PointerCounter.wait" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.utils.to_thread">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">to_thread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Callable</span><span class="p"><span class="pre">[</span></span><span class="pre">_P</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_R</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_P</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">_P</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">_R</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#to_thread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.to_thread" title="Permalink to this definition"></a></dt>
+<dd><p>Asynchronously run a function in a separate thread.</p>
+<p>This is a copy of the function defined in the python source,
+which is only available in python &gt;= 3.9.</p>
+<p>See: <a class="reference external" href="https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py">https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py</a></p>
 </dd></dl>
 
 </section>
