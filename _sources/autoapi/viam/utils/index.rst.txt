@@ -34,14 +34,6 @@ Functions
 
 
 
-Attributes
-~~~~~~~~~~
-
-.. autoapisummary::
-
-   viam.utils.T
-
-
 .. py:function:: primitive_to_value(v: Any) -> google.protobuf.struct_pb2.Value
 
    Create a new google.protobuf.struct_pb2.Value
@@ -72,11 +64,7 @@ Attributes
 .. py:function:: message_to_struct(message: google.protobuf.message.Message) -> google.protobuf.struct_pb2.Struct
 
 
-.. py:data:: T
-
-   
-
-.. py:function:: struct_to_message(struct: google.protobuf.struct_pb2.Struct, message_type: Type[T]) -> T
+.. py:function:: struct_to_message(struct: google.protobuf.struct_pb2.Struct, message_type: Type[_T]) -> _T
 
 
 .. py:function:: dict_to_struct(obj: Mapping[str, Any]) -> google.protobuf.struct_pb2.Struct

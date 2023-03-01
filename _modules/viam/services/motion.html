@@ -87,7 +87,14 @@
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">WorldState</span><span class="p">,</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">DoCommandRequest</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DoCommandRequest</span><span class="p">,</span>
+    <span class="n">DoCommandResponse</span><span class="p">,</span>
+    <span class="n">PoseInFrame</span><span class="p">,</span>
+    <span class="n">ResourceName</span><span class="p">,</span>
+    <span class="n">Transform</span><span class="p">,</span>
+    <span class="n">WorldState</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.motion</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetPoseRequest</span><span class="p">,</span>
     <span class="n">GetPoseResponse</span><span class="p">,</span>
@@ -240,10 +247,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DoCommandResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">DoCommand</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="MotionServiceClient.Pose"><a class="viewcode-back" href="../../../autoapi/viam/services/motion/index.html#viam.services.motion.MotionServiceClient.Pose">[docs]</a>    <span class="k">class</span> <span class="nc">Pose</span><span class="p">:</span>
-        <span class="k">pass</span></div></div>
+        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
