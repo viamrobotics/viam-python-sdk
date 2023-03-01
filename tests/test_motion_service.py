@@ -65,3 +65,11 @@ class TestClient:
             pose = await client.get_pose(Gantry.get_resource_name("gantry"), "y")
             assert pose == GET_POSE_RESPONSES["gantry"]
             assert service.extra == {}
+
+    @pytest.mark.asyncio
+    async def test_do(self, service: MockMotionService):
+        async with ChannelFor([service]) as channel:
+            client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
+            command = {"command": "args"}
+            response = await client.do_command(command)
+            assert response == command

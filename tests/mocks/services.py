@@ -4,7 +4,6 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 from grpclib.server import Stream
 
 from viam.media.video import CameraMimeType
-from viam.errors import MethodNotImplementedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
     GetPoseRequest,
@@ -105,7 +104,10 @@ class MockMotionService(MotionServiceBase):
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(DoCommandResponse(result=request.command))
 
 
 class MockSensorsService(SensorsServiceBase):
@@ -133,7 +135,10 @@ class MockSensorsService(SensorsServiceBase):
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(DoCommandResponse(result=request.command))
 
 
 class MockVisionService(VisionServiceBase):
@@ -281,4 +286,7 @@ class MockVisionService(VisionServiceBase):
         await stream.send_message(RemoveSegmenterResponse())
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        raise MethodNotImplementedError("DoCommand")
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(DoCommandResponse(result=request.command))
