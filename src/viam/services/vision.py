@@ -2,13 +2,13 @@ import json
 from dataclasses import dataclass
 from enum import Enum
 from io import BytesIO
-from typing import Any, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 
 from grpclib.client import Channel
 from viam.media.viam_rgba_plugin import Image
 
 from viam.media.video import CameraMimeType, RawImage
-from viam.proto.common import PointCloudObject
+from viam.proto.common import PointCloudObject, DoCommandRequest, DoCommandResponse
 from viam.proto.service.vision import (
     AddClassifierRequest,
     AddDetectorRequest,
@@ -39,7 +39,7 @@ from viam.proto.service.vision import (
     VisionServiceStub,
 )
 from viam.services.service_client_base import ServiceClientBase
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 
 class VisModelType(str, Enum):
@@ -373,3 +373,16 @@ class VisionServiceClient(ServiceClientBase):
         )
         response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout)
         return list(response.objects)
+
+    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None):
+        """Send/receive arbitrary commands
+
+        Args:
+            command (Dict[str, Any]): The command to execute
+
+        Returns:
+            Dict[str, Any]: Result of the executed command
+        """
+        request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
+        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        return struct_to_dict(response.result)
