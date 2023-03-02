@@ -23,6 +23,6 @@ async def create_status(component: Controller) -> Status:
     )
 
 
-Registry.register(
+Registry.register_subtype(
     ComponentRegistration(Controller, InputControllerService, lambda name, channel: ControllerClient(name, channel), create_status)
 )

@@ -8,7 +8,7 @@ __all__ = [
     "Sensor",
 ]
 
-Registry.register(
+Registry.register_subtype(
     ComponentRegistration(
         Sensor,
         SensorService,

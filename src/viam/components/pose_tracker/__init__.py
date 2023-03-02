@@ -8,7 +8,7 @@ __all__ = [
     "PoseTracker",
 ]
 
-Registry.register(
+Registry.register_subtype(
     ComponentRegistration(
         PoseTracker,
         PoseTrackerService,
