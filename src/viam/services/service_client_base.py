@@ -1,5 +1,5 @@
 import abc
-from typing import ClassVar, Dict, Optional, TYPE_CHECKING
+from typing import ClassVar, Mapping, Optional, TYPE_CHECKING
 from typing_extensions import Self
 from grpclib.client import Channel
 from viam.errors import ServiceNotImplementedError
@@ -39,7 +39,7 @@ class ServiceClientBase(abc.ABC):
             raise ServiceNotImplementedError(resource_name.subtype, resource_name.name)
         return cls(name, robot._channel)
 
-    def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, ValueTypes]:
+    def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         """Send/Receive arbitrary commands
 
         Args:

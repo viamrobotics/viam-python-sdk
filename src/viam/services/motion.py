@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -144,7 +144,7 @@ class MotionServiceClient(ServiceClientBase):
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
         return response.pose
 
-    async def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:

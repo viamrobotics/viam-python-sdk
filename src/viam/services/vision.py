@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from enum import Enum
 from io import BytesIO
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, List, Mapping, Optional, Sequence, Union
 
 from grpclib.client import Channel
 from viam.media.viam_rgba_plugin import Image
@@ -374,7 +374,7 @@ class VisionServiceClient(ServiceClientBase):
         response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout)
         return list(response.objects)
 
-    async def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:

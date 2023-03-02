@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -52,7 +52,7 @@ class SensorsServiceClient(ServiceClientBase):
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
         return {reading.name: sensor_readings_value_to_native(reading.readings) for reading in response.readings}
 
-    async def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> ValueTypes:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:

@@ -1,5 +1,5 @@
 from io import BytesIO
-from typing import Dict, Optional, Tuple, Union
+from typing import Mapping, Optional, Tuple, Union
 
 from grpclib.client import Channel
 from PIL import Image
@@ -48,7 +48,7 @@ class CameraClient(Camera):
         response: GetPropertiesResponse = await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout)
         return Camera.Properties(response.supports_pcd, response.intrinsic_parameters, response.distortion_parameters)
 
-    async def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
