@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.module.module &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">viam.module.module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.module.module</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">iscoroutinefunction</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Lock</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">grpclib.utils</span> <span class="kn">import</span> <span class="n">_service_name</span>
+
+<span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
+<span class="kn">from</span> <span class="nn">viam.proto.module</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AddResourceRequest</span><span class="p">,</span>
+    <span class="n">HandlerDefinition</span><span class="p">,</span>
+    <span class="n">HandlerMap</span><span class="p">,</span>
+    <span class="n">ReadyRequest</span><span class="p">,</span>
+    <span class="n">ReadyResponse</span><span class="p">,</span>
+    <span class="n">ReconfigureResourceRequest</span><span class="p">,</span>
+    <span class="n">RemoveResourceRequest</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">ResourceRPCSubtype</span>
+<span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span>
+    <span class="n">Model</span><span class="p">,</span>
+    <span class="n">Subtype</span><span class="p">,</span>
+    <span class="n">resource_name_from_string</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.server</span> <span class="kn">import</span> <span class="n">Server</span>
+
+<span class="kn">from</span> <span class="nn">.service</span> <span class="kn">import</span> <span class="n">ModuleService</span>
+<span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Reconfigurable</span><span class="p">,</span> <span class="n">Stoppable</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Module"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module">[docs]</a><span class="k">class</span> <span class="nc">Module</span><span class="p">:</span>
+
+    <span class="n">_address</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_parent_address</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_ready</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">_log_level</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">_lock</span><span class="p">:</span> <span class="n">Lock</span>
+    <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RobotClient</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">server</span><span class="p">:</span> <span class="n">Server</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">log_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="n">address</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">(</span><span class="n">components</span><span class="o">=</span><span class="p">[],</span> <span class="n">module_service</span><span class="o">=</span><span class="n">ModuleService</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_level</span> <span class="o">=</span> <span class="n">log_level</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_connect_to_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_address</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Parent address not found&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+                <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent_address</span><span class="p">,</span>
+                    <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span>
+                        <span class="n">dial_options</span><span class="o">=</span><span class="n">DialOptions</span><span class="p">(</span><span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_insecure_with_creds_downgrade</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                        <span class="n">log_level</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_level</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connect_to_parent</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]:</span>
+        <span class="n">deps</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">dependencies</span><span class="p">:</span>
+            <span class="n">rn</span> <span class="o">=</span> <span class="n">resource_name_from_string</span><span class="p">(</span><span class="n">dep</span><span class="p">)</span>
+            <span class="n">component</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_component</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
+            <span class="n">deps</span><span class="p">[</span><span class="n">rn</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span>
+        <span class="k">return</span> <span class="n">deps</span>
+
+<div class="viewcode-block" id="Module.start"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.start">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the module service and gRPC server&quot;&quot;&quot;</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">serve</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Module.stop"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.stop">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop the module service and gRPC server&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Encountered error while shutting down module&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Module.set_ready"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.set_ready">[docs]</a>    <span class="k">def</span> <span class="nf">set_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ready</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the module&#39;s ready state. The module automatically sets to READY on load. Setting to False can be useful</span>
+<span class="sd">        in instances where the module is not instantly ready (e.g. waiting on hardware)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ready (bool): Whether the module is ready</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span> <span class="o">=</span> <span class="n">ready</span></div>
+
+<div class="viewcode-block" id="Module.add_resource"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.add_resource">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">AddResourceRequest</span><span class="p">):</span>
+        <span class="n">dependencies</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_dependencies</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">config</span>
+        <span class="n">subtype</span> <span class="o">=</span> <span class="n">Subtype</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">api</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span> <span class="o">==</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">:</span>
+            <span class="n">creator</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_component</span><span class="p">(</span><span class="n">subtype</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+            <span class="n">component</span> <span class="o">=</span> <span class="n">creator</span><span class="p">(</span><span class="n">dependencies</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">component</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Module.reconfigure_resource"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.reconfigure_resource">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">reconfigure_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">ReconfigureResourceRequest</span><span class="p">):</span>
+        <span class="n">dependencies</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_dependencies</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">config</span>
+        <span class="n">subtype</span> <span class="o">=</span> <span class="n">Subtype</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">api</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">rn</span> <span class="o">=</span> <span class="n">ResourceName</span><span class="p">(</span><span class="n">namespace</span><span class="o">=</span><span class="n">subtype</span><span class="o">.</span><span class="n">namespace</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">rn</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">Reconfigurable</span><span class="p">):</span>
+            <span class="n">resource</span><span class="o">.</span><span class="n">reconfigure</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">Stoppable</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
+                    <span class="k">await</span> <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="n">add_request</span> <span class="o">=</span> <span class="n">AddResourceRequest</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_component</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">add_request</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Module.remove_resource"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.remove_resource">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">RemoveResourceRequest</span><span class="p">):</span>
+        <span class="n">rn</span> <span class="o">=</span> <span class="n">resource_name_from_string</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">))</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">rn</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">Stoppable</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">iscoroutinefunction</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">):</span>
+                <span class="k">await</span> <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_component</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Module.ready"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.ready">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">ReadyRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReadyResponse</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent_address</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">parent_address</span>
+
+        <span class="n">svcname_to_models</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Subtype</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Model</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">subtype_model_str</span> <span class="ow">in</span> <span class="n">Registry</span><span class="o">.</span><span class="n">REGISTERED_COMPONENTS</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">subtype_str</span><span class="p">,</span> <span class="n">model_str</span> <span class="o">=</span> <span class="n">subtype_model_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+            <span class="n">subtype</span> <span class="o">=</span> <span class="n">Subtype</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">subtype_str</span><span class="p">)</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">model_str</span><span class="p">)</span>
+
+            <span class="n">registration</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_subtype</span><span class="p">(</span><span class="n">subtype</span><span class="p">)</span>
+            <span class="n">service</span> <span class="o">=</span> <span class="n">registration</span><span class="o">.</span><span class="n">rpc_service</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="p">)</span>
+            <span class="n">service_name</span> <span class="o">=</span> <span class="n">_service_name</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+
+            <span class="n">models</span> <span class="o">=</span> <span class="n">svcname_to_models</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">service_name</span><span class="p">,</span> <span class="n">subtype</span><span class="p">),</span> <span class="p">[])</span>
+            <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+            <span class="n">svcname_to_models</span><span class="p">[(</span><span class="n">service_name</span><span class="p">,</span> <span class="n">subtype</span><span class="p">)]</span> <span class="o">=</span> <span class="n">models</span>
+
+        <span class="n">handlers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">HandlerDefinition</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">svcname_to_models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">svc_name</span><span class="p">,</span> <span class="n">subtype</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="n">rpc_subtype</span> <span class="o">=</span> <span class="n">ResourceRPCSubtype</span><span class="p">(</span>
+                <span class="n">subtype</span><span class="o">=</span><span class="n">ResourceName</span><span class="p">(</span>
+                    <span class="n">namespace</span><span class="o">=</span><span class="n">subtype</span><span class="o">.</span><span class="n">namespace</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span>
+                    <span class="n">subtype</span><span class="o">=</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">proto_service</span><span class="o">=</span><span class="n">svc_name</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">handler_def</span> <span class="o">=</span> <span class="n">HandlerDefinition</span><span class="p">(</span><span class="n">subtype</span><span class="o">=</span><span class="n">rpc_subtype</span><span class="p">,</span> <span class="n">models</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">value</span><span class="p">])</span>
+            <span class="n">handlers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">handler_def</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ReadyResponse</span><span class="p">(</span><span class="n">ready</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="p">,</span> <span class="n">handlermap</span><span class="o">=</span><span class="n">HandlerMap</span><span class="p">(</span><span class="n">handlers</span><span class="o">=</span><span class="n">handlers</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Module.add_model_from_registry"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.add_model_from_registry">[docs]</a>    <span class="k">def</span> <span class="nf">add_model_from_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="n">Subtype</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a pre-registered model to this Module&quot;&quot;&quot;</span>
+
+        <span class="c1"># All we need to do is double check that the model has already been registered</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_component</span><span class="p">(</span><span class="n">subtype</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">ResourceNotFoundError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot add model because it has not been registered. Subtype: </span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s2">. Model: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -22,7 +22,9 @@ Functions
 .. autoapisummary::
 
    viam.logging.getLogger
+   viam.logging.addHandlers
    viam.logging.setLevel
+   viam.logging.silence
 
 
 
@@ -110,6 +112,12 @@ Attributes
 .. py:function:: getLogger(name: str) -> logging.Logger
 
 
+.. py:function:: addHandlers(logger: logging.Logger)
+
+
 .. py:function:: setLevel(level: int)
+
+
+.. py:function:: silence()
 
 

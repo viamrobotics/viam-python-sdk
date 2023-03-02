@@ -11,5 +11,75 @@ Submodules
    :maxdepth: 1
 
    module/index.rst
+   service/index.rst
+   types/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.module.Module
+
+
+
+
+.. py:class:: Module(address: str, *, log_level: int = logging.DEBUG)
+
+   .. py:attribute:: parent
+      :type: Optional[viam.robot.client.RobotClient]
+
+      
+
+   .. py:attribute:: server
+      :type: viam.rpc.server.Server
+
+      
+
+   .. py:method:: start()
+      :async:
+
+      Start the module service and gRPC server
+
+
+   .. py:method:: stop()
+      :async:
+
+      Stop the module service and gRPC server
+
+
+   .. py:method:: set_ready(ready: bool)
+
+      Set the module's ready state. The module automatically sets to READY on load. Setting to False can be useful
+      in instances where the module is not instantly ready (e.g. waiting on hardware)
+
+      :param ready: Whether the module is ready
+      :type ready: bool
+
+
+   .. py:method:: add_resource(request: viam.proto.module.AddResourceRequest)
+      :async:
+
+
+   .. py:method:: reconfigure_resource(request: viam.proto.module.ReconfigureResourceRequest)
+      :async:
+
+
+   .. py:method:: remove_resource(request: viam.proto.module.RemoveResourceRequest)
+      :async:
+
+
+   .. py:method:: ready(request: viam.proto.module.ReadyRequest) -> viam.proto.module.ReadyResponse
+      :async:
+
+
+   .. py:method:: add_model_from_registry(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model)
+
+      Add a pre-registered model to this Module
+
 
 

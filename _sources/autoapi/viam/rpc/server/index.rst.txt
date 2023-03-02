@@ -29,33 +29,31 @@ Attributes
 
    
 
-.. py:class:: Server(components: List[viam.components.component_base.ComponentBase])
+.. py:class:: Server(components: List[viam.components.component_base.ComponentBase], *, module_service: Optional[viam.module.service.ModuleService] = None)
 
 
 
    gRPC Server
 
-   .. py:method:: serve(host: str = 'localhost', port: int = 9090, log_level: int = logging.INFO)
+   .. py:method:: serve(host: Optional[str] = 'localhost', port: Optional[int] = 9090, log_level: Optional[int] = logging.INFO, *, path: Optional[str] = None)
       :async:
 
       Server the gRPC server on the provided host and port
 
-      :param host: Desired hostname of the server.
-                   Defaults to 'localhost'.
-      :type host: str, optional
-      :param port: Desired port of the server.
-                   Defaults to 9090.
-      :type port: int, optional
-      :param log_level: The minimum log level.
-                        To not receive any logs, set to None
-                        Defaults to logging.INFO
-      :type log_level: int, optional
+      :param host: Desired hostname of the server. Defaults to "localhost".
+      :type host: Optional[str], optional
+      :param port: Desired port of the server. Defaults to 9090.
+      :type port: Optional[int], optional
+      :param log_level: The minimum log level. To not receive any logs, set to None. Defaults to logging.INFO.
+      :type log_level: Optional[int], optional
+      :param path: UNIX socket path. Takes precedence over `host` and `port` if set. Defaults to None.
+      :type path: Optional[str], optional
 
 
    .. py:method:: close()
 
 
-   .. py:method:: create_and_serve(components: List[viam.components.component_base.ComponentBase], host: str = 'localhost', port: int = 9090, log_level: int = logging.INFO)
+   .. py:method:: create_and_serve(components: List[viam.components.component_base.ComponentBase], host: Optional[str] = 'localhost', port: Optional[int] = 9090, log_level: int = logging.INFO, *, path: Optional[str] = None)
       :classmethod:
       :async:
 
@@ -71,6 +69,8 @@ Attributes
                         To not receive any logs, set to None.
                         Defaults to logging.INFO
       :type log_level: int, optional
+      :param path: UNIX socket path. Takes precedence over `host` and `port` if set. Defaults to None.
+      :type path: Optional[str], optional
 
 
 

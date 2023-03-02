@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>viam.components.service_base &mdash; Viam Python SDK  documentation</title>
+  <title>viam.module.types &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -73,7 +73,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">viam.components.service_base</li>
+      <li class="breadcrumb-item active">viam.module.types</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -82,49 +82,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for viam.components.service_base</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Type</span>
-
-<span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">const</span>
-<span class="kn">from</span> <span class="nn">grpclib._typing</span> <span class="kn">import</span> <span class="n">IServable</span>
+  <h1>Source code for viam.module.types</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">runtime_checkable</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span> <span class="nn">viam.components.resource_manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span><span class="p">,</span> <span class="n">ResourceType</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 
 
-<div class="viewcode-block" id="ComponentServiceBase"><a class="viewcode-back" href="../../../autoapi/viam/components/service_base/index.html#viam.components.service_base.ComponentServiceBase">[docs]</a><span class="k">class</span> <span class="nc">ComponentServiceBase</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">IServable</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Base component service.</span>
-<span class="sd">    All component services must inherit from this class.</span>
+<div class="viewcode-block" id="Reconfigurable"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Reconfigurable">[docs]</a><span class="nd">@runtime_checkable</span>
+<span class="k">class</span> <span class="nc">Reconfigurable</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Reconfigurable protocol defines the requirements for making a resource Reconfigurable&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Reconfigurable.reconfigure"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Reconfigurable.reconfigure">[docs]</a>    <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]):</span>
+        <span class="o">...</span></div></div>
+
+
+<div class="viewcode-block" id="Stoppable"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Stoppable">[docs]</a><span class="nd">@runtime_checkable</span>
+<span class="k">class</span> <span class="nc">Stoppable</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Stoppable protocol defines the requirements for making a resource Stoppable.</span>
+
+<span class="sd">    All resources that physically move should be Stoppable.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Type</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="n">ResourceManager</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">manager</span> <span class="o">=</span> <span class="n">manager</span>
-
-<div class="viewcode-block" id="ComponentServiceBase.get_component"><a class="viewcode-back" href="../../../autoapi/viam/components/service_base/index.html#viam.components.service_base.ComponentServiceBase.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceType</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return the component with the given name if it exists in the registry.</span>
-<span class="sd">        If the component does not exist in the registry,</span>
-<span class="sd">        this function will raise an error</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            name (str): Name of the component</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ComponentNotFoundError</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            ResourceType: The component</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">RESOURCE_TYPE</span> <span class="o">==</span> <span class="n">ComponentBase</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">_component_by_name_only</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RESOURCE_TYPE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">RESOURCE_TYPE</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>  <span class="c1"># type: ignore</span></div>
-
-<div class="viewcode-block" id="ComponentServiceBase.__mapping__"><a class="viewcode-back" href="../../../autoapi/viam/components/service_base/index.html#viam.components.service_base.ComponentServiceBase.__mapping__">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">def</span> <span class="nf">__mapping__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">const</span><span class="o">.</span><span class="n">Handler</span><span class="p">]:</span>
+<div class="viewcode-block" id="Stoppable.stop"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Stoppable.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="o">...</span></div></div>
 </pre></div>
 

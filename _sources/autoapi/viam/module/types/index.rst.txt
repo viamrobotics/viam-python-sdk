@@ -1,0 +1,42 @@
+:py:mod:`viam.module.types`
+===========================
+
+.. py:module:: viam.module.types
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.module.types.Reconfigurable
+   viam.module.types.Stoppable
+
+
+
+
+.. py:class:: Reconfigurable
+
+
+
+   The Reconfigurable protocol defines the requirements for making a resource Reconfigurable
+
+   .. py:method:: reconfigure(config: viam.proto.app.robot.ComponentConfig, dependencies: Mapping[viam.proto.common.ResourceName, viam.components.component_base.ComponentBase])
+
+
+
+.. py:class:: Stoppable
+
+
+
+   The Stoppable protocol defines the requirements for making a resource Stoppable.
+
+   All resources that physically move should be Stoppable.
+
+   .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+
+
+

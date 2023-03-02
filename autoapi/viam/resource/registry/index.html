@@ -174,29 +174,48 @@ pre-registered (e.g. Arm, Motor).</p>
 <p>If you create a new component type that is not an extension of any of the existing base component types, then you must register said
 component using <code class="docutils literal notranslate"><span class="pre">Registry.register(...)</span></code>.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.registry.Registry.register">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.register" title="Permalink to this definition"></a></dt>
-<dd><p>Register a Component with the Registry</p>
+<dt class="sig sig-object py" id="viam.resource.registry.Registry.register_subtype">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.register_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Register a Subtype with the Registry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>registration</strong> (<a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><em>ComponentRegistration</em></a>) – Object containing registration data for the component</p>
+<dd class="field-odd"><p><strong>registration</strong> (<a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><em>ComponentRegistration</em></a>) – Object containing registration data for the subtype</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>DuplicateComponentError</strong> – Raised if the Component to register is already in the registry</p>
+<dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype to register is already in the registry</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.registry.Registry.lookup">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.lookup" title="Permalink to this definition"></a></dt>
-<dd><p>Lookup and retrieve a registered component by its name</p>
+<dt class="sig sig-object py" id="viam.resource.registry.Registry.register_component_model">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_component_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.resource.types.ComponentCreator</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_component_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.register_component_model" title="Permalink to this definition"></a></dt>
+<dd><p>Register a specific <code class="docutils literal notranslate"><span class="pre">`Model`</span></code> for the specific <code class="docutils literal notranslate"><span class="pre">`Subtype`</span></code> with the Registry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>component_name</strong> (<em>str</em>) – The name of the component</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subtype</strong> (<a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><em>Subtype</em></a>) – The Subtype of the component</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><em>Model</em></a>) – The Model of the component</p></li>
+<li><p><strong>component</strong> (<em>ComponentCreator</em>) – A function that can create a component given a mapping of dependencies (<code class="docutils literal notranslate"><span class="pre">`ResourceName`</span></code> to
+<code class="docutils literal notranslate"><span class="pre">`ComponentBase`</span></code>)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ComponentNotFoundError</strong> – Raised if the component type is not registered</p>
+<dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype and Model pairing is already registered</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.registry.Registry.lookup_subtype">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.lookup_subtype" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup and retrieve a registered Subtype by its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subtype</strong> (<em>str</em>) – The subtype of the resource</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.ResourceNotFoundError" title="viam.errors.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype is not registered</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The registration object of the component</p>
@@ -208,20 +227,48 @@ component using <code class="docutils literal notranslate"><span class="pre">Reg
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.registry.Registry.REGISTERED_COMPONENTS">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_COMPONENTS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_COMPONENTS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.REGISTERED_COMPONENTS" title="Permalink to this definition"></a></dt>
-<dd><p>The dictionary of all registered components
-- Key: Name of the component type
-- Value: The registration object for the component type</p>
+<dt class="sig sig-object py" id="viam.resource.registry.Registry.lookup_component">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.types.ComponentCreator</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.lookup_component" title="Permalink to this definition"></a></dt>
+<dd><p>Lookup and retrieve a registered component by its name</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subtype</strong> (<a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><em>Subtype</em></a>) – The Subtype of the component</p></li>
+<li><p><strong>model</strong> (<a class="reference internal" href="../types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><em>Model</em></a>) – The Model of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.ResourceNotFoundError" title="viam.errors.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype Model pairing is not registered</p>
+</dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>All registered components</p>
+<dd class="field-odd"><p>The function to create the component</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Mapping[str, <a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration">ComponentRegistration</a>]</p>
+<dd class="field-even"><p>ComponentCreator</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.registry.Registry.REGISTERED_RESOURCES">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_RESOURCES</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_RESOURCES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.REGISTERED_RESOURCES" title="Permalink to this definition"></a></dt>
+<dd><p>The dictionary of all registered resources
+- Key: Subtype of the resource
+- Value: The registration object for the resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All registered resources</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[<a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype">Subtype</a>, <a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration">ComponentRegistration</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.resource.registry.Registry.REGISTERED_COMPONENTS">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_COMPONENTS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.resource.types.ComponentCreator</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_COMPONENTS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.REGISTERED_COMPONENTS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

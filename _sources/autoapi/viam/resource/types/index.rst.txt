@@ -13,7 +13,17 @@ Classes
 .. autoapisummary::
 
    viam.resource.types.Subtype
+   viam.resource.types.ModelFamily
+   viam.resource.types.Model
 
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.resource.types.resource_name_from_string
 
 
 
@@ -25,6 +35,7 @@ Attributes
    viam.resource.types.RESOURCE_NAMESPACE_RDK
    viam.resource.types.RESOURCE_TYPE_COMPONENT
    viam.resource.types.RESOURCE_TYPE_SERVICE
+   viam.resource.types.ComponentCreator
 
 
 .. py:data:: RESOURCE_NAMESPACE_RDK
@@ -84,5 +95,133 @@ Attributes
    .. py:method:: from_resource_name(resource_name: viam.proto.common.ResourceName) -> typing_extensions.Self
       :classmethod:
 
+      Convert a ```ResourceName``` into a ```Subtype```
 
+      :param resource_name: The ResourceName to convert
+      :type resource_name: ResourceName
+
+      :returns: A new Subtype
+      :rtype: Self
+
+
+   .. py:method:: from_string(string: str) -> typing_extensions.Self
+      :classmethod:
+
+      Create a ```Subtype``` from its string representation (namespace:resource_type:resource_subtype)
+
+      :param string: The Subtype as a string
+      :type string: str
+
+      :raises ValueError: Raised if the string does not represent a valid Subtype
+
+      :returns: A new Subtype
+      :rtype: Self
+
+
+
+.. py:class:: ModelFamily(namespace: str, family: str)
+
+   Represents a family of related models
+
+   .. py:attribute:: namespace
+      :type: str
+
+      The namespace of the model family
+
+   .. py:attribute:: family
+      :type: str
+
+      The family name
+
+   .. py:attribute:: DEFAULT_FAMILY_NAME
+      :type: ClassVar[str]
+      :value: 'builtin'
+
+      
+
+   .. py:attribute:: DEFAULT
+      :type: ClassVar[ModelFamily]
+
+      
+
+   .. py:method:: __str__() -> str
+
+      Return str(self).
+
+
+   .. py:method:: __repr__() -> str
+
+      Return repr(self).
+
+
+   .. py:method:: __hash__() -> int
+
+      Return hash(self).
+
+
+   .. py:method:: __eq__(other: ModelFamily) -> bool
+
+      Return self==value.
+
+
+
+.. py:class:: Model(model_family: ModelFamily, name: str)
+
+   Represents a specific model within a family of models
+
+   .. py:attribute:: model_family
+      :type: ModelFamily
+
+      The family to which this model belongs
+
+   .. py:attribute:: name
+      :type: str
+
+      The name of the model
+
+   .. py:method:: __str__() -> str
+
+      Return str(self).
+
+
+   .. py:method:: __repr__() -> str
+
+      Return repr(self).
+
+
+   .. py:method:: __hash__() -> int
+
+      Return hash(self).
+
+
+   .. py:method:: __eq__(other: Model) -> bool
+
+      Return self==value.
+
+
+   .. py:method:: from_string(model: str, *, ignore_errors=False) -> typing_extensions.Self
+      :classmethod:
+
+      Create a ```Model``` from its string representation (namespace:family:name).
+
+      :param model: The Model as a string
+      :type model: str
+      :param ignore_errors: If namespace or family are not found in the string, default to empty string
+                            rather than raise an exception. Defaults to False.
+      :type ignore_errors: bool, optional
+
+      :raises ValueError: Raised if the provided string is not a valid Model
+
+      :returns: The Model
+      :rtype: Self
+
+
+
+.. py:function:: resource_name_from_string(string: str) -> viam.proto.common.ResourceName
+
+
+.. py:data:: ComponentCreator
+   :type: TypeAlias
+
+   
 

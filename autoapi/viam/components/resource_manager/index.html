@@ -67,6 +67,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.resource_manager.ResourceManager.components"><code class="docutils literal notranslate"><span class="pre">ResourceManager.components</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.resource_manager.ResourceManager.register"><code class="docutils literal notranslate"><span class="pre">ResourceManager.register()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.resource_manager.ResourceManager.get_component"><code class="docutils literal notranslate"><span class="pre">ResourceManager.get_component()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.resource_manager.ResourceManager.remove_component"><code class="docutils literal notranslate"><span class="pre">ResourceManager.remove_component()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.resource_manager.ResourceType">ResourceType</a></li>
@@ -74,6 +75,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.resource_manager.ResourceManager.components">components</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.resource_manager.ResourceManager.register">register</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.resource_manager.ResourceManager.get_component">get_component</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.resource_manager.ResourceManager.remove_component">remove_component</a></li>
 </ul>
 </li>
 </ul>
@@ -194,6 +196,17 @@ and name does not exist in the registry</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>ResourceType</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.resource_manager.ResourceManager.remove_component">
+<span class="sig-name descname"><span class="pre">remove_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/resource_manager.html#ResourceManager.remove_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.resource_manager.ResourceManager.remove_component" title="Permalink to this definition"></a></dt>
+<dd><p>Remove the component with the specified <code class="docutils literal notranslate"><span class="pre">`ResourceName`</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the component</p>
 </dd>
 </dl>
 </dd></dl>

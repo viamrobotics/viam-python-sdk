@@ -89,40 +89,76 @@ Attributes
    If you create a new component type that is not an extension of any of the existing base component types, then you must register said
    component using ``Registry.register(...)``.
 
-   .. py:method:: register(registration: ComponentRegistration[Component])
+   .. py:method:: register_subtype(registration: ComponentRegistration[Component])
       :classmethod:
 
-      Register a Component with the Registry
+      Register a Subtype with the Registry
 
-      :param registration: Object containing registration data for the component
+      :param registration: Object containing registration data for the subtype
       :type registration: ComponentRegistration
 
-      :raises DuplicateComponentError: Raised if the Component to register is already in the registry
+      :raises DuplicateResourceError: Raised if the Subtype to register is already in the registry
 
 
-   .. py:method:: lookup(subtype: viam.resource.types.Subtype) -> ComponentRegistration
+   .. py:method:: register_component_model(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model, component: viam.resource.types.ComponentCreator)
       :classmethod:
 
-      Lookup and retrieve a registered component by its name
+      Register a specific ```Model``` for the specific ```Subtype``` with the Registry
 
-      :param component_name: The name of the component
-      :type component_name: str
+      :param subtype: The Subtype of the component
+      :type subtype: Subtype
+      :param model: The Model of the component
+      :type model: Model
+      :param component: A function that can create a component given a mapping of dependencies (```ResourceName``` to
+                        ```ComponentBase```)
+      :type component: ComponentCreator
 
-      :raises ComponentNotFoundError: Raised if the component type is not registered
+      :raises DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+
+
+   .. py:method:: lookup_subtype(subtype: viam.resource.types.Subtype) -> ComponentRegistration
+      :classmethod:
+
+      Lookup and retrieve a registered Subtype by its name
+
+      :param subtype: The subtype of the resource
+      :type subtype: str
+
+      :raises ResourceNotFoundError: Raised if the Subtype is not registered
 
       :returns: The registration object of the component
       :rtype: ComponentRegistration
 
 
-   .. py:method:: REGISTERED_COMPONENTS() -> Mapping[viam.resource.types.Subtype, ComponentRegistration]
+   .. py:method:: lookup_component(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.ComponentCreator
       :classmethod:
 
-      The dictionary of all registered components
-      - Key: Name of the component type
-      - Value: The registration object for the component type
+      Lookup and retrieve a registered component by its name
 
-      :returns: All registered components
-      :rtype: Mapping[str, ComponentRegistration]
+      :param subtype: The Subtype of the component
+      :type subtype: Subtype
+      :param model: The Model of the component
+      :type model: Model
+
+      :raises ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
+
+      :returns: The function to create the component
+      :rtype: ComponentCreator
+
+
+   .. py:method:: REGISTERED_RESOURCES() -> Mapping[viam.resource.types.Subtype, ComponentRegistration]
+      :classmethod:
+
+      The dictionary of all registered resources
+      - Key: Subtype of the resource
+      - Value: The registration object for the resource
+
+      :returns: All registered resources
+      :rtype: Mapping[Subtype, ComponentRegistration]
+
+
+   .. py:method:: REGISTERED_COMPONENTS() -> Mapping[str, viam.resource.types.ComponentCreator]
+      :classmethod:
 
 
 
