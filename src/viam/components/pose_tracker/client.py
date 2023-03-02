@@ -1,4 +1,4 @@
-from typing import Any, SupportsBytes, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Union
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -8,12 +8,9 @@ from viam.proto.component.posetracker import (
     GetPosesResponse,
     PoseTrackerServiceStub,
 )
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from .pose_tracker import PoseTracker
-
-
-DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
 
 
 class PoseTrackerClient(PoseTracker):
@@ -39,7 +36,7 @@ class PoseTrackerClient(PoseTracker):
         response: GetPosesResponse = await self.client.GetPoses(request, timeout=timeout)
         return {key: response.body_poses[key] for key in response.body_poses.keys()}
 
-    async def do_command(self, command: Dict[str, DoCommandTypes], *, timeout: Optional[float] = None) -> Dict[str, DoCommandTypes]:
+    async def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

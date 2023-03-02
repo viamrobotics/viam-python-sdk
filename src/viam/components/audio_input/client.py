@@ -1,4 +1,4 @@
-from typing import AsyncIterator, SupportsBytes, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Union
+from typing import AsyncIterator, Dict, Optional, Union
 
 from grpclib.client import Channel
 
@@ -13,12 +13,9 @@ from viam.proto.component.audioinput import (
     PropertiesResponse,
     SampleFormat,
 )
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from .audio_input import AudioInput
-
-
-DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
 
 
 class AudioInputClient(AudioInput):
@@ -56,7 +53,7 @@ class AudioInputClient(AudioInput):
         response: PropertiesResponse = await self.client.Properties(request, timeout=timeout)
         return AudioInput.Properties.from_proto(response)
 
-    async def do_command(self, command: Dict[str, DoCommandTypes], *, timeout: Optional[float] = None) -> Dict[str, DoCommandTypes]:
+    async def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from enum import Enum
 from io import BytesIO
-from typing import Any, SupportsBytes, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 
 from grpclib.client import Channel
 from viam.media.viam_rgba_plugin import Image
@@ -39,10 +39,7 @@ from viam.proto.service.vision import (
     VisionServiceStub,
 )
 from viam.services.service_client_base import ServiceClientBase
-from viam.utils import dict_to_struct, struct_to_dict
-
-
-DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 
 class VisModelType(str, Enum):
@@ -377,14 +374,14 @@ class VisionServiceClient(ServiceClientBase):
         response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout)
         return list(response.objects)
 
-    async def do_command(self, command: Dict[str, DoCommandTypes], *, timeout: Optional[float] = None) -> Dict[str, DoCommandTypes]:
+    async def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:
-            command (Dict[str, DoCommandTypes]): The command to execute
+            command (Dict[str, ValueTypes]): The command to execute
 
         Returns:
-            Dict[str, DoCommandTypes]: Result of the executed command
+            Dict[str, ValueTypes]: Result of the executed command
         """
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)

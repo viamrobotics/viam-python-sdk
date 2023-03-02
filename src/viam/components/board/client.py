@@ -1,5 +1,5 @@
 from multiprocessing import Queue
-from typing import Any, SupportsBytes, Dict, SupportsFloat, SupportsInt, List, Mapping, Optional, Union
+from typing import Any, Dict, List, Optional
 
 from grpclib.client import Channel
 
@@ -22,12 +22,9 @@ from viam.proto.component.board import (
     StatusRequest,
     StatusResponse,
 )
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from .board import Board, PostProcessor
-
-
-DoCommandTypes = Union[bool, SupportsBytes, SupportsFloat, SupportsInt, List, Mapping, str, None]
 
 
 class AnalogReaderClient(Board.AnalogReader):
@@ -155,7 +152,7 @@ class BoardClient(Board):
     async def model_attributes(self) -> Board.Attributes:
         return Board.Attributes(remote=True)
 
-    async def do_command(self, command: Dict[str, DoCommandTypes], *, timeout: Optional[float] = None) -> Dict[str, DoCommandTypes]:
+    async def do_command(self, command: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
