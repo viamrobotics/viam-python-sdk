@@ -43,12 +43,12 @@ class ServiceClientBase(abc.ABC):
         """Send/Receive arbitrary commands
 
         Args:
-            command (Dict[str, ValueTypes]): The command to execute
+            command (Mapping[str, ValueTypes]): The command to execute
 
         Raises:
             NotImplementedError: Raised if the component does not support arbitrary commands
 
         Returns:
-            Dict[str, ValueTypes]: Result of the executed command
+            Mapping[str, ValueTypes]: Result of the executed command
         """
         raise NotImplementedError()

@@ -75,12 +75,12 @@ class ComponentBase(abc.ABC):
         """Send/Receive arbitrary commands
 
         Args:
-            command (Dict[str, Any]): The command to execute
+            command (Mapping[str, ValueTypes]): The command to execute
 
         Raises:
             NotImplementedError: Raised if the component does not support arbitrary commands
 
         Returns:
-            Dict[str, Any]: Result of the executed command
+            Mapping[str, ValueTypes]: Result of the executed command
         """
         raise NotImplementedError()
