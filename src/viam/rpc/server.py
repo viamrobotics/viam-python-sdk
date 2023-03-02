@@ -1,6 +1,6 @@
 import asyncio
 import signal
-from typing import List
+from typing import TYPE_CHECKING, List, Optional
 
 from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
@@ -15,6 +15,9 @@ from viam.robot.service import RobotService
 
 from .signaling import SignalingService
 
+if TYPE_CHECKING:
+    from viam.module.service import ModuleService
+
 LOGGER = logging.getLogger(__name__)
 
 
@@ -23,7 +26,7 @@ class Server(ResourceManager):
     gRPC Server
     """
 
-    def __init__(self, components: List[ComponentBase]):
+    def __init__(self, components: List[ComponentBase], *, module_service: Optional["ModuleService"] = None):
         """
         Initialize the Server with a list of components
         to be managed.
@@ -36,8 +39,10 @@ class Server(ResourceManager):
         services = [
             SignalingService(),
             RobotService(manager=self),
-            *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_COMPONENTS().values()],
+            *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_RESOURCES().values()],
         ]
+        if module_service is not None:
+            services.append(module_service)
         services = ServerReflection.extend(services)
         self._server = GRPCServer(services)
 
@@ -53,23 +58,25 @@ class Server(ResourceManager):
 
     async def serve(
         self,
-        host: str = "localhost",
-        port: int = 9090,
-        log_level: int = logging.INFO,
+        host: Optional[str] = "localhost",
+        port: Optional[int] = 9090,
+        log_level: Optional[int] = logging.INFO,
+        *,
+        path: Optional[str] = None,
     ):
         """
         Server the gRPC server on the provided host and port
 
         Args:
-            host (str, optional): Desired hostname of the server.
-                Defaults to 'localhost'.
-            port (int, optional): Desired port of the server.
-                Defaults to 9090.
-            log_level(int, optional): The minimum log level.
-                To not receive any logs, set to None
-                Defaults to logging.INFO
+            host (Optional[str], optional): Desired hostname of the server. Defaults to "localhost".
+            port (Optional[int], optional): Desired port of the server. Defaults to 9090.
+            log_level (Optional[int], optional): The minimum log level. To not receive any logs, set to None. Defaults to logging.INFO.
+            path (Optional[str], optional): UNIX socket path. Takes precedence over `host` and `port` if set. Defaults to None.
         """
-        logging.setLevel(log_level)
+        if log_level is None:
+            logging.silence()
+        else:
+            logging.setLevel(log_level)
         listen(self._server, RecvRequest, self._grpc_event_handler)
 
         loop = asyncio.get_running_loop()
@@ -77,8 +84,12 @@ class Server(ResourceManager):
             loop.add_signal_handler(getattr(signal, signame), self.close)
 
         with graceful_exit([self._server]):
-            await self._server.start(host, port)
-            LOGGER.info(f"Serving on {host}:{port}")
+            if path:
+                await self._server.start(path=path)
+                LOGGER.info(f"Serving on {path}")
+            else:
+                await self._server.start(host, port)
+                LOGGER.info(f"Serving on {host}:{port}")
             await self._server.wait_closed()
 
     def close(self):
@@ -88,9 +99,11 @@ class Server(ResourceManager):
     async def create_and_serve(
         cls,
         components: List[ComponentBase],
-        host: str = "localhost",
-        port: int = 9090,
+        host: Optional[str] = "localhost",
+        port: Optional[int] = 9090,
         log_level: int = logging.INFO,
+        *,
+        path: Optional[str] = None,
     ):
         """
         Convenience method to create and start the server.
@@ -102,6 +115,7 @@ class Server(ResourceManager):
             log_level(int, optional): The minimum log level.
                 To not receive any logs, set to None.
                 Defaults to logging.INFO
+            path (Optional[str], optional): UNIX socket path. Takes precedence over `host` and `port` if set. Defaults to None.
         """
         server = cls(components)
-        await server.serve(host, port, log_level)
+        await server.serve(host, port, log_level, path=path)

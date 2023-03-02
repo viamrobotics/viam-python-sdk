@@ -20,4 +20,4 @@ async def create_status(component: Servo) -> Status:
     return Status(name=Servo.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register(ComponentRegistration(Servo, ServoService, lambda name, channel: ServoClient(name, channel), create_status))
+Registry.register_subtype(ComponentRegistration(Servo, ServoService, lambda name, channel: ServoClient(name, channel), create_status))

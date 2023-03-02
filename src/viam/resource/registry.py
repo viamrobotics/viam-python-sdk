@@ -1,5 +1,16 @@
 from dataclasses import dataclass
-from typing import Any, Callable, Coroutine, Dict, Generic, Mapping, Type, TypeVar
+from threading import Lock
+from typing import (
+    Any,
+    Callable,
+    ClassVar,
+    Coroutine,
+    Dict,
+    Generic,
+    Mapping,
+    Type,
+    TypeVar,
+)
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
@@ -9,7 +20,7 @@ from viam.components.service_base import ComponentServiceBase
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.proto.robot import Status
 
-from .types import Subtype
+from .types import ComponentCreator, Model, Subtype
 
 Component = TypeVar("Component", bound=ComponentBase)
 
@@ -60,47 +71,96 @@ class Registry:
     component using ``Registry.register(...)``.
     """
 
-    _COMPONENTS: Dict[Subtype, ComponentRegistration] = {}
+    _SUBTYPES: ClassVar[Dict[Subtype, ComponentRegistration]] = {}
+    _COMPONENTS: ClassVar[Dict[str, ComponentCreator]] = {}
+    _lock: ClassVar[Lock] = Lock()
 
     @classmethod
-    def register(cls, registration: ComponentRegistration[Component]):
-        """Register a Component with the Registry
+    def register_subtype(cls, registration: ComponentRegistration[Component]):
+        """Register a Subtype with the Registry
 
         Args:
-            registration (ComponentRegistration): Object containing registration data for the component
+            registration (ComponentRegistration): Object containing registration data for the subtype
 
         Raises:
-            DuplicateComponentError: Raised if the Component to register is already in the registry
+            DuplicateResourceError: Raised if the Subtype to register is already in the registry
         """
-        if registration.component_type.SUBTYPE in cls._COMPONENTS:
-            raise DuplicateResourceError(str(registration.component_type.SUBTYPE))
-        cls._COMPONENTS[registration.component_type.SUBTYPE] = registration
+        with cls._lock:
+            if registration.component_type.SUBTYPE in cls._SUBTYPES:
+                raise DuplicateResourceError(str(registration.component_type.SUBTYPE))
+            cls._SUBTYPES[registration.component_type.SUBTYPE] = registration
 
     @classmethod
-    def lookup(cls, subtype: Subtype) -> ComponentRegistration:
-        """Lookup and retrieve a registered component by its name
+    def register_component_model(cls, subtype: Subtype, model: Model, component: ComponentCreator):
+        """Register a specific ```Model``` for the specific ```Subtype``` with the Registry
 
         Args:
-            component_name (str): The name of the component
+            subtype (Subtype): The Subtype of the component
+            model (Model): The Model of the component
+            component (ComponentCreator): A function that can create a component given a mapping of dependencies (```ResourceName``` to
+                                          ```ComponentBase```)
 
         Raises:
-            ComponentNotFoundError: Raised if the component type is not registered
+            DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+        """
+        key = f"{subtype}/{model}"
+        with cls._lock:
+            if key in cls._COMPONENTS:
+                raise DuplicateResourceError(key)
+            cls._COMPONENTS[key] = component
+
+    @classmethod
+    def lookup_subtype(cls, subtype: Subtype) -> ComponentRegistration:
+        """Lookup and retrieve a registered Subtype by its name
+
+        Args:
+            subtype (str): The subtype of the resource
+
+        Raises:
+            ResourceNotFoundError: Raised if the Subtype is not registered
 
         Returns:
             ComponentRegistration: The registration object of the component
         """
-        try:
-            return cls._COMPONENTS[subtype]
-        except KeyError:
-            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+        with cls._lock:
+            try:
+                return cls._SUBTYPES[subtype]
+            except KeyError:
+                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def REGISTERED_COMPONENTS(cls) -> Mapping[Subtype, ComponentRegistration]:
-        """The dictionary of all registered components
-        - Key: Name of the component type
-        - Value: The registration object for the component type
+    def lookup_component(cls, subtype: Subtype, model: Model) -> ComponentCreator:
+        """Lookup and retrieve a registered component by its name
+
+        Args:
+            subtype (Subtype): The Subtype of the component
+            model (Model): The Model of the component
+
+        Raises:
+            ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
 
         Returns:
-            Mapping[str, ComponentRegistration]: All registered components
+            ComponentCreator: The function to create the component
         """
-        return cls._COMPONENTS.copy()
+        with cls._lock:
+            try:
+                return cls._COMPONENTS[f"{subtype}/{model}"]
+            except KeyError:
+                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+
+    @classmethod
+    def REGISTERED_RESOURCES(cls) -> Mapping[Subtype, ComponentRegistration]:
+        """The dictionary of all registered resources
+        - Key: Subtype of the resource
+        - Value: The registration object for the resource
+
+        Returns:
+            Mapping[Subtype, ComponentRegistration]: All registered resources
+        """
+        with cls._lock:
+            return cls._SUBTYPES.copy()
+
+    @classmethod
+    def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentCreator]:
+        with cls._lock:
+            return cls._COMPONENTS.copy()

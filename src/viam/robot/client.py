@@ -181,7 +181,7 @@ class RobotClient:
             if rname.subtype == "remote":
                 continue
             try:
-                manager.register(Registry.lookup(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel))
+                manager.register(Registry.lookup_subtype(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel))
             except ResourceNotFoundError:
                 pass
         with self._lock:
