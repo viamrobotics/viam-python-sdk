@@ -24,8 +24,8 @@ else:
     from typing_extensions import ParamSpec
 
 
-# Types that can be encoded into a protobuf `Value`
 ValueTypes = Union[bool, SupportsBytes, SupportsFloat, List, Mapping, str, None]
+"""Types that can be encoded into a protobuf `Value`"""
 
 
 def primitive_to_value(v: ValueTypes) -> Value:
