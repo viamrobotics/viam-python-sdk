@@ -1,7 +1,7 @@
 import asyncio
 from threading import Lock
 from time import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Mapping, List, Optional
 from grpclib import GRPCError, Status
 from google.protobuf.struct_pb2 import Struct
 
@@ -20,7 +20,7 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from .input import Control, ControlFunction, Controller, Event, EventType
 
@@ -147,7 +147,7 @@ class ControllerClient(Controller):
         if all_callback is not None:
             all_callback(event)
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -13,7 +13,7 @@ from viam.proto.component.base import (
     SpinRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from .base import Base
 
@@ -115,10 +115,10 @@ class BaseClient(Base):
 
     async def do_command(
         self,
-        command: Dict[str, Any],
+        command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
-    ) -> Dict[str, Any]:
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

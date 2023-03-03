@@ -12,7 +12,7 @@ from viam.proto.component.servo import (
     ServoServiceStub,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from .servo import Servo
 
@@ -53,7 +53,7 @@ class ServoClient(Servo):
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
         return response.is_moving
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

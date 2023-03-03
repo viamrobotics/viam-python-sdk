@@ -44,6 +44,8 @@ from viam.proto.common import (
 )
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 
+from viam.utils import ValueTypes
+
 
 class MockArm(Arm):
     def __init__(self, name: str):
@@ -104,7 +106,7 @@ class MockArm(Arm):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -133,7 +135,7 @@ class MockAudioInput(AudioInput):
         self.timeout = timeout
         return self.properties
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -230,7 +232,7 @@ class MockBase(Base):
     async def is_moving(self) -> bool:
         return not self.stopped
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -361,7 +363,7 @@ class MockBoard(Board):
     async def model_attributes(self) -> Board.Attributes:
         return Board.Attributes(remote=True)
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -395,7 +397,7 @@ class MockCamera(Camera):
         self.timeout = timeout
         return self.props
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -440,7 +442,7 @@ class MockGantry(Gantry):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -448,7 +450,7 @@ class MockGeneric(GenericComponent):
 
     timeout: Optional[float] = None
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
         return {key: True for key in command.keys()}
 
@@ -482,7 +484,7 @@ class MockGripper(Gripper):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -548,7 +550,7 @@ class MockInputController(Controller):
         if callback:
             callback(event)
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -666,7 +668,7 @@ class MockMotor(Motor):
     async def is_moving(self) -> bool:
         return self.powered
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -745,7 +747,7 @@ class MockMovementSensor(MovementSensor):
         self.timeout = timeout
         return self.accuracy
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -789,7 +791,7 @@ class MockPoseTracker(PoseTracker):
         self.extra = extra
         return result
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -807,7 +809,7 @@ class MockSensor(Sensor):
         self.timeout = timeout
         return self.readings
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
@@ -838,5 +840,5 @@ class MockServo(Servo):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

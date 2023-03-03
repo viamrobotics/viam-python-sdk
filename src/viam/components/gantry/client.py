@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -14,7 +14,7 @@ from viam.proto.component.gantry import (
     MoveToPositionRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from .gantry import Gantry
 
@@ -69,7 +69,7 @@ class GantryClient(Gantry):
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
         return response.is_moving
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

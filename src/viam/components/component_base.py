@@ -1,5 +1,5 @@
 import abc
-from typing import TYPE_CHECKING, Any, ClassVar, Dict, Mapping, Optional, cast
+from typing import TYPE_CHECKING, Any, SupportsBytes, ClassVar, SupportsFloat, List, Mapping, Optional, cast, Union
 
 from typing_extensions import Self
 
@@ -9,6 +9,9 @@ from viam.proto.common import ResourceName
 if TYPE_CHECKING:
     from viam.resource.types import Subtype
     from viam.robot.client import RobotClient
+
+
+ValueTypes = Union[bool, SupportsBytes, SupportsFloat, List, Mapping, str, None]
 
 
 class ComponentBase(abc.ABC):
@@ -68,16 +71,16 @@ class ComponentBase(abc.ABC):
         """
         return kwargs.get(Operation.ARG_NAME, Operation._noop())
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         """Send/Receive arbitrary commands
 
         Args:
-            command (Dict[str, Any]): The command to execute
+            command (Mapping[str, ValueTypes]): The command to execute
 
         Raises:
             NotImplementedError: Raised if the component does not support arbitrary commands
 
         Returns:
-            Dict[str, Any]: Result of the executed command
+            Mapping[str, ValueTypes]: Result of the executed command
         """
         raise NotImplementedError()

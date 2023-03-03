@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -20,7 +20,7 @@ from viam.proto.service.motion import (
     MoveSingleComponentResponse,
 )
 from viam.services.service_client_base import ServiceClientBase
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 
 class MotionServiceClient(ServiceClientBase):
@@ -151,14 +151,14 @@ class MotionServiceClient(ServiceClientBase):
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
         return response.pose
 
-    async def do_command(self, command: Dict[str, Any], *, timeout: Optional[float] = None):
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:
-            command (Dict[str, Any]): The command to execute
+            command (Dict[str, ValueTypes]): The command to execute
 
         Returns:
-            Dict[str, Any]: Result of the executed command
+            Dict[str, ValueTypes]: Result of the executed command
         """
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)

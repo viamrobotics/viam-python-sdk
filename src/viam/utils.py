@@ -3,7 +3,7 @@ import contextvars
 import functools
 import sys
 import threading
-from typing import Any, Dict, List, Mapping, SupportsFloat, Type, TypeVar
+from typing import Any, SupportsBytes, Dict, SupportsFloat, List, Mapping, Type, TypeVar, Union
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
@@ -24,7 +24,11 @@ else:
     from typing_extensions import ParamSpec
 
 
-def primitive_to_value(v: Any) -> Value:
+ValueTypes = Union[bool, SupportsBytes, SupportsFloat, List, Mapping, str, None]
+"""Types that can be encoded into a protobuf `Value`"""
+
+
+def primitive_to_value(v: ValueTypes) -> Value:
     """
     Create a new google.protobuf.struct_pb2.Value
     Supports primitive types of
@@ -37,7 +41,7 @@ def primitive_to_value(v: Any) -> Value:
     - Bytes
 
     Args:
-        v (Any): object to convert to a Value
+        v (ValueTypes): object to convert to a Value
 
     Raises:
         TypeError: If the object cannot be converted
@@ -72,7 +76,7 @@ def primitive_to_value(v: Any) -> Value:
     raise TypeError(f"Invalid type {type(v)}")
 
 
-def value_to_primitive(value: Value) -> Any:
+def value_to_primitive(value: Value) -> ValueTypes:
     if value.HasField("list_value"):
         return [value_to_primitive(v) for v in value.list_value.values]
     if value.HasField("struct_value"):
@@ -123,13 +127,24 @@ def struct_to_message(struct: Struct, message_type: Type[_T]) -> _T:
     return ParseDict(dct, message_type())
 
 
-def dict_to_struct(obj: Mapping[str, Any]) -> Struct:
+def dict_to_struct(obj: Mapping[str, ValueTypes]) -> Struct:
+    def _convert(v: ValueTypes) -> Any:
+        if isinstance(v, SupportsFloat):
+            return float(v)
+        if isinstance(v, SupportsBytes):
+            return bytes(v)
+        if isinstance(v, List):
+            return [_convert(vv) for vv in v]
+        if isinstance(v, Mapping):
+            return {k: _convert(vv) for (k, vv) in v.items()}
+        return v
+
     struct = Struct()
-    struct.update(obj)
+    struct.update({k: _convert(v) for (k, v) in obj.items()})
     return struct
 
 
-def struct_to_dict(struct: Struct) -> Dict[str, Any]:
+def struct_to_dict(struct: Struct) -> Dict[str, ValueTypes]:
     return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
 
 
