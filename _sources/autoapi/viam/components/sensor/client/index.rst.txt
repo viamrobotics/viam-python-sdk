@@ -32,18 +32,18 @@ Classes
       :rtype: Mapping[str, Any]
 
 
-   .. py:method:: do_command(command: Dict[str, Any], *, timeout: Optional[float] = None) -> Dict[str, Any]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands
 
       :param command: The command to execute
-      :type command: Dict[str, Any]
+      :type command: Mapping[str, ValueTypes]
 
       :raises NotImplementedError: Raised if the component does not support arbitrary commands
 
       :returns: Result of the executed command
-      :rtype: Dict[str, Any]
+      :rtype: Mapping[str, ValueTypes]
 
 
 

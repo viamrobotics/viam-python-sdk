@@ -17,6 +17,18 @@ Classes
 
 
 
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.component_base.ValueTypes
+
+
+.. py:data:: ValueTypes
+
+   
+
 .. py:class:: ComponentBase(name: str)
 
 
@@ -72,19 +84,19 @@ Classes
       :rtype: Operation
 
 
-   .. py:method:: do_command(command: Dict[str, Any], *, timeout: Optional[float] = None, **kwargs) -> Dict[str, Any]
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
       :abstractmethod:
       :async:
 
       Send/Receive arbitrary commands
 
       :param command: The command to execute
-      :type command: Dict[str, Any]
+      :type command: Mapping[str, ValueTypes]
 
       :raises NotImplementedError: Raised if the component does not support arbitrary commands
 
       :returns: Result of the executed command
-      :rtype: Dict[str, Any]
+      :rtype: Mapping[str, ValueTypes]
 
 
 

@@ -49,16 +49,16 @@ Classes
       :rtype: Mapping[ResourceName, Mapping[str, Any]]
 
 
-   .. py:method:: do_command(command: Dict[str, Any], *, timeout: Optional[float] = None)
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/receive arbitrary commands
 
       :param command: The command to execute
-      :type command: Dict[str, Any]
+      :type command: Dict[str, ValueTypes]
 
       :returns: Result of the executed command
-      :rtype: Dict[str, Any]
+      :rtype: Dict[str, ValueTypes]
 
 
 

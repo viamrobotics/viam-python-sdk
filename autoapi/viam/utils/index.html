@@ -104,7 +104,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.primitive_to_value" title="viam.utils.primitive_to_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">primitive_to_value</span></code></a>(→ google.protobuf.struct_pb2.Value)</p></td>
 <td><p>Create a new google.protobuf.struct_pb2.Value</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.value_to_primitive" title="viam.utils.value_to_primitive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_to_primitive</span></code></a>(→ Any)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.value_to_primitive" title="viam.utils.value_to_primitive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">value_to_primitive</span></code></a>(→ ValueTypes)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.resource_names_for_component" title="viam.utils.resource_names_for_component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resource_names_for_component</span></code></a>(...)</p></td>
@@ -119,7 +119,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.dict_to_struct" title="viam.utils.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(→ google.protobuf.struct_pb2.Struct)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_dict" title="viam.utils.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, Any])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_dict" title="viam.utils.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, ValueTypes])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.sensor_readings_native_to_value" title="viam.utils.sensor_readings_native_to_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sensor_readings_native_to_value</span></code></a>(→ Mapping[str, Any])</p></td>
@@ -133,9 +133,25 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.ValueTypes" title="viam.utils.ValueTypes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValueTypes</span></code></a></p></td>
+<td><p>Types that can be encoded into a protobuf <cite>Value</cite></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.utils.ValueTypes">
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">ValueTypes</span></span><a class="headerlink" href="#viam.utils.ValueTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Types that can be encoded into a protobuf <cite>Value</cite></p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.utils.primitive_to_value">
-<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">primitive_to_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Value</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#primitive_to_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.primitive_to_value" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">primitive_to_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ValueTypes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Value</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#primitive_to_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.primitive_to_value" title="Permalink to this definition"></a></dt>
 <dd><p>Create a new google.protobuf.struct_pb2.Value
 Supports primitive types of
 - None
@@ -147,7 +163,7 @@ Supports primitive types of
 - Bytes</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>v</strong> (<em>Any</em>) – object to convert to a Value</p>
+<dd class="field-odd"><p><strong>v</strong> (<em>ValueTypes</em>) – object to convert to a Value</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>TypeError</strong> – If the object cannot be converted</p>
@@ -163,7 +179,7 @@ Supports primitive types of
 
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.utils.value_to_primitive">
-<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">value_to_primitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Value</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#value_to_primitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.value_to_primitive" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">value_to_primitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Value</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ValueTypes</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#value_to_primitive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.value_to_primitive" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -183,12 +199,12 @@ Supports primitive types of
 
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.utils.dict_to_struct">
-<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">dict_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#dict_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.dict_to_struct" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">dict_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#dict_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.dict_to_struct" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.utils.struct_to_dict">
-<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">struct_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#struct_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.struct_to_dict" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">struct_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#struct_to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.struct_to_dict" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

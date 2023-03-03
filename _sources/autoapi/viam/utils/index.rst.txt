@@ -34,7 +34,19 @@ Functions
 
 
 
-.. py:function:: primitive_to_value(v: Any) -> google.protobuf.struct_pb2.Value
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.utils.ValueTypes
+
+
+.. py:data:: ValueTypes
+
+   Types that can be encoded into a protobuf `Value`
+
+.. py:function:: primitive_to_value(v: ValueTypes) -> google.protobuf.struct_pb2.Value
 
    Create a new google.protobuf.struct_pb2.Value
    Supports primitive types of
@@ -47,7 +59,7 @@ Functions
    - Bytes
 
    :param v: object to convert to a Value
-   :type v: Any
+   :type v: ValueTypes
 
    :raises TypeError: If the object cannot be converted
 
@@ -55,7 +67,7 @@ Functions
    :rtype: Value
 
 
-.. py:function:: value_to_primitive(value: google.protobuf.struct_pb2.Value) -> Any
+.. py:function:: value_to_primitive(value: google.protobuf.struct_pb2.Value) -> ValueTypes
 
 
 .. py:function:: resource_names_for_component(component: viam.components.component_base.ComponentBase) -> List[viam.proto.common.ResourceName]
@@ -67,10 +79,10 @@ Functions
 .. py:function:: struct_to_message(struct: google.protobuf.struct_pb2.Struct, message_type: Type[_T]) -> _T
 
 
-.. py:function:: dict_to_struct(obj: Mapping[str, Any]) -> google.protobuf.struct_pb2.Struct
+.. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
 
 
-.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, Any]
+.. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
 
 
 .. py:function:: sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]
