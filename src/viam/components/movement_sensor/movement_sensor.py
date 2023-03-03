@@ -1,7 +1,7 @@
 import abc
-import asyncio
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
+from grpclib import GRPCError
 from viam.proto.common import GeoPoint, Orientation, Vector3
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
@@ -112,20 +112,21 @@ class MovementSensor(Sensor):
                 orientation: Orientation
             }
         """
-        ((pos, alt), lv, av, la, comp, orient) = await asyncio.gather(
-            self.get_position(extra=extra, timeout=timeout),
-            self.get_linear_velocity(extra=extra, timeout=timeout),
-            self.get_angular_velocity(extra=extra, timeout=timeout),
-            self.get_linear_acceleration(extra=extra, timeout=timeout),
-            self.get_compass_heading(extra=extra, timeout=timeout),
-            self.get_orientation(extra=extra, timeout=timeout),
-        )
-        return {
-            "position": pos,
-            "altitude": alt,
-            "linear_velocity": lv,
-            "angular_velocity": av,
-            "linear_acceleration": la,
-            "compass": comp,
-            "orientation": orient,
+        functions = {
+            "position": self.get_position,
+            "linear_velocity": self.get_linear_velocity,
+            "angular_velocity": self.get_angular_velocity,
+            "linear_acceleration": self.get_linear_acceleration,
+            "compass": self.get_compass_heading,
+            "orientation": self.get_orientation,
         }
+        readings = {}
+        for property, function in functions.items():
+            try:
+                if property == "position":
+                    readings["position"], readings["altitude"] = await function(extra=extra, timeout=timeout)
+                else:
+                    readings[property] = await function(extra=extra, timeout=timeout)
+            except GRPCError:
+                pass
+        return readings
