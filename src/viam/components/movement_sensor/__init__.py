@@ -11,7 +11,7 @@ __all__ = [
     "Vector3",
 ]
 
-Registry.register(
+Registry.register_subtype(
     ComponentRegistration(
         MovementSensor,
         MovementSensorService,

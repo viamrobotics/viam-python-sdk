@@ -15,4 +15,4 @@ async def create_status(component: Base) -> Status:
     return Status(name=Base.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register(ComponentRegistration(Base, BaseService, lambda name, channel: BaseClient(name, channel), create_status))
+Registry.register_subtype(ComponentRegistration(Base, BaseService, lambda name, channel: BaseClient(name, channel), create_status))

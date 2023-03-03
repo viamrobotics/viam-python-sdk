@@ -1,3 +1,7 @@
+import asyncio
+import contextvars
+import functools
+import sys
 import threading
 from asyncio import Event
 from typing import Any, SupportsBytes, Dict, SupportsFloat, List, Mapping, Type, TypeVar, Union
@@ -9,6 +13,16 @@ from google.protobuf.struct_pb2 import ListValue, Struct, Value
 from viam.components.component_base import ComponentBase
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.resource.registry import Registry, Subtype
+
+if sys.version_info >= (3, 9):
+    from collections.abc import Callable
+else:
+    from typing import Callable
+
+if sys.version_info >= (3, 10):
+    from typing import ParamSpec
+else:
+    from typing_extensions import ParamSpec
 
 
 # Types that can be encoded into a protobuf `Value`
@@ -83,7 +97,7 @@ def resource_names_for_component(component: ComponentBase) -> List[ResourceName]
     rns: List[ResourceName] = []
 
     for klass in component.__class__.mro():
-        for registration in Registry.REGISTERED_COMPONENTS().values():
+        for registration in Registry.REGISTERED_RESOURCES().values():
             if klass is registration.component_type:
                 subtype: Subtype = registration.component_type.SUBTYPE
                 rns.append(
@@ -106,10 +120,10 @@ def message_to_struct(message: Message) -> Struct:
     return struct
 
 
-T = TypeVar("T", bound=Message)
+_T = TypeVar("_T", bound=Message)
 
 
-def struct_to_message(struct: Struct, message_type: Type[T]) -> T:
+def struct_to_message(struct: Struct, message_type: Type[_T]) -> _T:
     dct = struct_to_dict(struct)
     return ParseDict(dct, message_type())
 
@@ -171,7 +185,7 @@ def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[st
 
 class PointerCounter:
     def __init__(self) -> None:
-        self._event = Event()
+        self._event = asyncio.Event()
         self._lock = threading.Lock()
         self._count = 0
         self._event.set()
@@ -199,3 +213,23 @@ class PointerCounter:
     def count(self) -> int:
         with self._lock:
             return self._count
+
+
+_P = ParamSpec("_P")
+_R = TypeVar("_R")
+
+
+async def to_thread(func: Callable[_P, _R], *args: _P.args, **kwargs: _P.kwargs) -> _R:
+    """Asynchronously run a function in a separate thread.
+
+    This is a copy of the function defined in the python source,
+    which is only available in python >= 3.9.
+
+    See: https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py
+    """
+    if sys.version_info >= (3, 9):
+        return await asyncio.to_thread(func, *args, **kwargs)
+    loop = asyncio.events.get_running_loop()
+    ctx = contextvars.copy_context()
+    func_call = functools.partial(ctx.run, func, *args, **kwargs)
+    return await loop.run_in_executor(None, func_call)  # type: ignore

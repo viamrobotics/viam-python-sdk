@@ -249,6 +249,7 @@ class TestRobotClient:
             service.manager.register(MockSensor("sensor1"))
             await client.refresh()
             assert client._resource_names == RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")]
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_refresh_task(self, service: RobotService):
@@ -282,6 +283,7 @@ class TestRobotClient:
             service.manager.register(MockSensor("sensor1"))
             await client.refresh()
             assert client._resource_names == RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")]
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_get_component(self, service: RobotService):
@@ -309,6 +311,8 @@ class TestRobotClient:
             with pytest.raises(ResourceNotFoundError):
                 MockArm.from_robot(client, "arm2")
 
+            await client.close()
+
     @pytest.mark.asyncio
     async def test_get_status(self, service: RobotService):
         async with ChannelFor([service]) as channel:
@@ -321,6 +325,7 @@ class TestRobotClient:
 
             arm_status = statuses[0].status
             assert struct_to_message(arm_status, ArmStatus) == ARM_STATUS
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_get_service(self, service: RobotService):
@@ -330,6 +335,7 @@ class TestRobotClient:
             with pytest.raises(ServiceNotImplementedError):
                 VisionServiceClient.from_robot(client)
             VisionServiceClient.from_robot(client, "vision1")
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_get_frame_system_config(self, service: RobotService):
@@ -337,6 +343,7 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             configs = await client.get_frame_system_config()
             assert configs == CONFIG_RESPONSE
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_transform_pose(self, service: RobotService):
@@ -344,6 +351,7 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             pose = await client.transform_pose(PoseInFrame(), "some dest")
             assert pose == TRANSFORM_RESPONSE
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_discover_components(self, service: RobotService):
@@ -351,6 +359,7 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             discoveries = await client.discover_components([DISCOVERY_QUERY])
             assert discoveries == DISCOVERY_RESPONSE
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_get_operations(self, service: RobotService):
@@ -358,6 +367,7 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             ops = await client.get_operations()
             assert ops == OPERATIONS_RESPONSE
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_cancel_operation(self, service: RobotService):
@@ -375,6 +385,7 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             await client.cancel_operation(id=OPERATION_ID)
             assert cancelled == OPERATION_ID
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_block_for_operation(self, service: RobotService):
@@ -392,6 +403,7 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             await client.block_for_operation(id=OPERATION_ID)
             assert blocked == OPERATION_ID
+            await client.close()
 
     @pytest.mark.asyncio
     async def test_stop_all(self, service: RobotService):
@@ -415,3 +427,4 @@ class TestRobotClient:
             assert arm.extra == extra
 
             assert await motor.is_moving() is False
+            await client.close()

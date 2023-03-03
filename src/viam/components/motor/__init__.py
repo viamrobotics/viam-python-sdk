@@ -27,4 +27,4 @@ async def create_status(component: Motor) -> Status:
     return Status(name=Motor.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register(ComponentRegistration(Motor, MotorService, lambda name, channel: MotorClient(name, channel), create_status))
+Registry.register_subtype(ComponentRegistration(Motor, MotorService, lambda name, channel: MotorClient(name, channel), create_status))
