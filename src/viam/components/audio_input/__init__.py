@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 
-Registry.register(
+Registry.register_subtype(
     ComponentRegistration(
         AudioInput,
         AudioInputService,

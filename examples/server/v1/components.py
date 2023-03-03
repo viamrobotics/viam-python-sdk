@@ -4,7 +4,7 @@ import random
 import struct
 import sys
 
-if sys.version_info.minor >= 9:
+if sys.version_info >= (3, 9):
     from collections.abc import AsyncIterator
 else:
     from typing import AsyncIterator

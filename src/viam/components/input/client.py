@@ -92,6 +92,7 @@ class ControllerClient(Controller):
         except GRPCError as e:
             if e.status == Status.UNIMPLEMENTED and ("does not support triggering events" in e.message if e.message else False):
                 raise NotSupportedError(f"Input controller named {self.name} does not support triggering events")
+            raise e
 
     async def _stream_events(self):
         with self._stream_lock:
@@ -104,7 +105,7 @@ class ControllerClient(Controller):
 
         request = StreamEventsRequest(controller=self.name, events=[], extra=self._callback_extra)
         with self._lock:
-            for (control, callbacks) in self.callbacks.items():
+            for control, callbacks in self.callbacks.items():
                 event = StreamEventsRequest.Events(
                     control=control,
                     events=[et for (et, func) in callbacks.items() if func is not None],

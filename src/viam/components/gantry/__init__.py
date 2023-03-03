@@ -19,4 +19,4 @@ async def create_status(component: Gantry) -> Status:
     return Status(name=Gantry.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register(ComponentRegistration(Gantry, GantryService, lambda name, channel: GantryClient(name, channel), create_status))
+Registry.register_subtype(ComponentRegistration(Gantry, GantryService, lambda name, channel: GantryClient(name, channel), create_status))

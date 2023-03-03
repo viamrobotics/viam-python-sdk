@@ -5,9 +5,9 @@ from typing_extensions import Self
 
 from viam.operations import Operation
 from viam.proto.common import ResourceName
-from viam.resource.types import Subtype
 
 if TYPE_CHECKING:
+    from viam.resource.types import Subtype
     from viam.robot.client import RobotClient
 
 
@@ -17,7 +17,7 @@ class ComponentBase(abc.ABC):
     All components must inherit from this class.
     """
 
-    SUBTYPE: ClassVar[Subtype]
+    SUBTYPE: ClassVar["Subtype"]
 
     name: str
 
