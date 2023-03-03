@@ -242,6 +242,7 @@
     "\n",
     "The steps required in creating a custom component and connecting it to the RDK are\n",
     "1. **Subclass a component and implement desired functions**. This will be your custom component.\n",
+    "    - For functions you do not wish to implement, you must at least define them by putting `pass` or `raiseNotImplementedError()` in the function.\n",
     "1. **Create an `rpc.server.Server` instance and register the custom component**. This is the `RPC` server that enables communication with your custom component.\n",
     "1. **Start the `Server` and register the running server as a remote**. Registering this `RPC` server as a remote allows the RDK to communicate with the server.\n",
     "\n",

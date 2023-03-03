@@ -268,7 +268,11 @@ name: &quot;servo0&quot;
 <p>While the main RDK is written in golang, you can create custom components in python and connect them to a robot as a <code class="docutils literal notranslate"><span class="pre">remote</span></code> component. This allows you to extend the functionality of a robot, or even create an entire robot exclusively in python.</p>
 <p>The steps required in creating a custom component and connecting it to the RDK are</p>
 <ol class="arabic simple">
-<li><p><strong>Subclass a component and implement desired functions</strong>. This will be your custom component.</p></li>
+<li><p><strong>Subclass a component and implement desired functions</strong>. This will be your custom component.</p>
+<ul class="simple">
+<li><p>For functions you do not wish to implement, you must at least define them by putting <code class="docutils literal notranslate"><span class="pre">pass</span></code> or <code class="docutils literal notranslate"><span class="pre">raiseNotImplementedError()</span></code> in the function.</p></li>
+</ul>
+</li>
 <li><p><strong>Create an <code class="docutils literal notranslate"><span class="pre">rpc.server.Server</span></code> instance and register the custom component</strong>. This is the <code class="docutils literal notranslate"><span class="pre">RPC</span></code> server that enables communication with your custom component.</p></li>
 <li><p><strong>Start the <code class="docutils literal notranslate"><span class="pre">Server</span></code> and register the running server as a remote</strong>. Registering this <code class="docutils literal notranslate"><span class="pre">RPC</span></code> server as a remote allows the RDK to communicate with the server.</p></li>
 </ol>
