@@ -3,7 +3,6 @@ import contextvars
 import functools
 import sys
 import threading
-from asyncio import Event
 from typing import Any, SupportsBytes, Dict, SupportsFloat, List, Mapping, Type, TypeVar, Union
 
 from google.protobuf.json_format import MessageToDict, ParseDict
