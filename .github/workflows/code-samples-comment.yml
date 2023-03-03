@@ -1,16 +1,30 @@
-name: "Comment on PR"
+name: Code Samples Pull Request Update
 
 on:
-  workflow_run:
-    workflows: ["Pull Request Update"]
-    types:
-      - completed
+  pull_request_target:
+    branches: ["main"]
+    types: [opened]
+    paths:
+      - "components/base/base.py"
+      - "components/board/board.py"
+      - "components/camera/camera.py"
+      - "components/motor/motor.py"
+      - "components/sensor/sensor.py"
+      - "components/servo/servo.py"
+      - "components/arm/arm.py"
+      - "components/audio_input/audio_input.py"
+      - "components/gantry/gantry.py"
+      - "components/gripper/gripper.py"
+      - "components/input/input.py"
+      - "components/movement_sensor/movement_sensor.py"
+      - "components/pose_tracker/pose_tracker.py"
+      - "services/motion/motion.py"
+      - "services/vision/vision.py"
 
 jobs:
   comment:
     name: "Post Comment on PR"
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.event == 'pull_request_target' && github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
