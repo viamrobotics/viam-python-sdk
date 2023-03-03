@@ -11,6 +11,7 @@ from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.resource.registry import Registry, Subtype
 
 
+# Types that can be encoded into a protobuf `Value`
 ValueTypes = Union[bool, SupportsBytes, SupportsFloat, List, Mapping, str, None]
 
 
