@@ -1,7 +1,7 @@
 import abc
+import asyncio
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
-from grpclib import GRPCError
 from viam.proto.common import GeoPoint, Orientation, Vector3
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
@@ -100,8 +100,8 @@ class MovementSensor(Sensor):
 
     async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
         """Obtain the measurements/data specific to this sensor.
-        If a sensor is not configured to have a measurement or fails to read a piece of data, it will be missing from the return dictionary.
-        An ERROR log will still appear stating that the measurement/data was Unimplemented.
+        If a sensor is not configured to have a measurement or fails to read a piece of data, return empty objects or 0.
+        An ERROR log will still appear stating that the measurement/data was unimplemented.
 
         Returns:
             Mapping[str, Any]: The readings for the MovementSensor:
@@ -115,21 +115,22 @@ class MovementSensor(Sensor):
                 orientation: Orientation
             }
         """
-        functions = {
-            "position": self.get_position,
-            "linear_velocity": self.get_linear_velocity,
-            "angular_velocity": self.get_angular_velocity,
-            "linear_acceleration": self.get_linear_acceleration,
-            "compass": self.get_compass_heading,
-            "orientation": self.get_orientation,
+        (pos, lv, av, la, comp, orient) = await asyncio.gather(
+            self.get_position(extra=extra, timeout=timeout),
+            self.get_linear_velocity(extra=extra, timeout=timeout),
+            self.get_angular_velocity(extra=extra, timeout=timeout),
+            self.get_linear_acceleration(extra=extra, timeout=timeout),
+            self.get_compass_heading(extra=extra, timeout=timeout),
+            self.get_orientation(extra=extra, timeout=timeout),
+            return_exceptions=True,
+        )
+
+        return {
+            "position": pos[0] if not isinstance(pos, Exception) else GeoPoint(),
+            "altitude": pos[1] if not isinstance(pos, Exception) else 0,
+            "linear_velocity": lv if not isinstance(lv, Exception) else Vector3(),
+            "angular_velocity": av if not isinstance(av, Exception) else Vector3(),
+            "linear_acceleration": la if not isinstance(la, Exception) else Vector3(),
+            "compass": comp if not isinstance(comp, Exception) else 0,
+            "orientation": orient if not isinstance(orient, Exception) else Orientation(),
         }
-        readings = {}
-        for property, function in functions.items():
-            try:
-                if property == "position":
-                    readings["position"], readings["altitude"] = await function(extra=extra, timeout=timeout)
-                else:
-                    readings[property] = await function(extra=extra, timeout=timeout)
-            except GRPCError:
-                pass
-        return readings

@@ -2,7 +2,7 @@ import pytest
 from grpclib.testing import ChannelFor
 from grpclib import GRPCError
 from grpclib import Status
-from typing import Any, Coroutine, Dict, Optional
+from typing import Any, Dict, Optional
 
 from viam.components.generic.service import GenericService
 from viam.components.movement_sensor import (
@@ -156,21 +156,25 @@ class TestMovementSensor:
         assert movement_sensor.extra == EXTRA_PARAMS
 
         # A mock method to replace some get functions just for testing
-        def get_reading(
-            *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-        ) -> Coroutine[Any, Any, Vector3]:
-            raise GRPCError(Status(1))
+        async def get_reading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
+            raise GRPCError(Status(12))
+
+        async def get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+            raise GRPCError(Status(12))
 
         movement_sensor.get_linear_velocity = get_reading
         movement_sensor.get_linear_acceleration = get_reading
         movement_sensor.get_angular_velocity = get_reading
+        movement_sensor.get_compass_heading = get_compass_heading
 
-        # When get functions return a GRPCError, do not include it into the readings dictionary
         value = await movement_sensor.get_readings(extra=EXTRA_PARAMS)
         assert value == {
             "position": COORDINATE,
             "altitude": ALTITUDE,
-            "compass": HEADING,
+            "linear_velocity": Vector3(),
+            "angular_velocity": Vector3(),
+            "linear_acceleration": Vector3(),
+            "compass": 0,
             "orientation": ORIENTATION,
         }
 
