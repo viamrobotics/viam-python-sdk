@@ -132,3 +132,5 @@ class Base(ComponentBase):
             bool: Whether the base is moving.
         """
         ...
+
+        
