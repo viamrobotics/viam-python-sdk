@@ -1,5 +1,8 @@
 import pytest
 from grpclib.testing import ChannelFor
+from grpclib import GRPCError
+from grpclib import Status
+from typing import Any, Coroutine, Dict, Optional
 
 from viam.components.generic.service import GenericService
 from viam.components.movement_sensor import (
@@ -151,6 +154,25 @@ class TestMovementSensor:
             "orientation": ORIENTATION,
         }
         assert movement_sensor.extra == EXTRA_PARAMS
+
+        # A mock method to replace some get functions just for testing
+        def get_reading(
+            *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        ) -> Coroutine[Any, Any, Vector3]:
+            raise GRPCError(Status(1))
+
+        movement_sensor.get_linear_velocity = get_reading
+        movement_sensor.get_linear_acceleration = get_reading
+        movement_sensor.get_angular_velocity = get_reading
+
+        # When get functions return a GRPCError, do not include it into the readings dictionary
+        value = await movement_sensor.get_readings(extra=EXTRA_PARAMS)
+        assert value == {
+            "position": COORDINATE,
+            "altitude": ALTITUDE,
+            "compass": HEADING,
+            "orientation": ORIENTATION,
+        }
 
     @pytest.mark.asyncio
     async def test_timeout(self, movement_sensor: MockMovementSensor):
