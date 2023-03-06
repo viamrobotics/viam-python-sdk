@@ -35,7 +35,6 @@ class MediaSource(Protocol[MediaType]):
 
 
 class MediaStreamWithIterator(MediaStream[MediaType]):
-
     _stream: AsyncIterator[MediaType]
 
     def __init__(self, stream: AsyncIterator[MediaType]):

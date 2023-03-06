@@ -15,7 +15,6 @@ from ..component_base import ComponentBase
 
 
 class AudioInput(ComponentBase, MediaSource[Audio]):
-
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_input")
 
     @dataclass

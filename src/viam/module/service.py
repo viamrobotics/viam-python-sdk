@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 
 
 class ModuleService(ModuleServiceBase):
-
     _module: "Module"
 
     def __init__(self, module: "Module") -> None:

@@ -39,7 +39,6 @@ class Credentials:
 
 
 class DialOptions:
-
     disable_webrtc: bool
     """Bypass Web RTC and connect directly to the robot.
     """
@@ -131,7 +130,6 @@ class AuthenticatedChannel(Channel):
 
 @dataclass
 class ViamChannel:
-
     channel: Channel
     release: Callable[[], None]
     _closed: bool = False
@@ -153,7 +151,6 @@ class ViamChannel:
 
 
 class _Runtime:
-
     _lib: ctypes.CDLL
     _ptr: ctypes.c_void_p
 

@@ -59,7 +59,7 @@ def primitive_to_value(v: ValueTypes) -> Value:
         return Value(string_value=v)
     if isinstance(v, Dict):
         sv: Dict[str, Value] = {}
-        for (key, value) in v.items():
+        for key, value in v.items():
             if not isinstance(key, str):
                 raise TypeError(f"Invalid UTF-8 in string: {key}")
             sv[key] = primitive_to_value(value)
@@ -150,7 +150,7 @@ def struct_to_dict(struct: Struct) -> Dict[str, ValueTypes]:
 
 def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]:
     prim_readings = dict(readings)
-    for (key, reading) in readings.items():
+    for key, reading in readings.items():
         if isinstance(reading, Vector3):
             prim_readings[key] = {"x": reading.x, "y": reading.y, "z": reading.z, "_type": "vector3"}
         elif isinstance(reading, GeoPoint):
@@ -168,7 +168,7 @@ def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str,
 
 def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[str, Any]:
     prim_readings = {key: value_to_primitive(value) for (key, value) in readings.items()}
-    for (key, reading) in prim_readings.items():
+    for key, reading in prim_readings.items():
         if isinstance(reading, Mapping):
             kind = reading.get("_type", "")
             if kind == "angular_velocity":

@@ -38,7 +38,6 @@ LOGGER = logging.getLogger(__name__)
 
 
 class Module:
-
     _address: str
     _parent_address: Optional[str] = None
     _ready: bool

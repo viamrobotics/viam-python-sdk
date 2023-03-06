@@ -44,7 +44,6 @@ def _save_rgba(img, fp, filename):
 
 
 class RGBAImage(ImageFile):
-
     format: str = RGBA_FORMAT_LABEL
     format_description = "Viam's Raw RGBA Format"
 
