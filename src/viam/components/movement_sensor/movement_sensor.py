@@ -100,7 +100,7 @@ class MovementSensor(Sensor):
 
     async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
         """Obtain the measurements/data specific to this sensor.
-        If a sensor is not configured to have a measurement or piece of data, it will be missing from the return dictionary.
+        If a sensor is not configured to have a measurement or fails to read a piece of data, it will be missing from the return dictionary.
         An ERROR log will still appear stating that the measurement/data was Unimplemented.
 
         Returns:
