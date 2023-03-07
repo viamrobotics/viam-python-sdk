@@ -1,7 +1,6 @@
 import pytest
 from grpclib.testing import ChannelFor
-from grpclib import GRPCError
-from grpclib import Status
+from grpclib import GRPCError, Status
 from typing import Any, Dict, Optional
 
 from viam.components.generic.service import GenericService
