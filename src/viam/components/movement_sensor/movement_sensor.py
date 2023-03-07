@@ -1,6 +1,6 @@
 import abc
 import asyncio
-from typing import Any, Dict, Final, Mapping, Optional, Tuple
+from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
 from grpclib import GRPCError
 
 from viam.proto.common import GeoPoint, Orientation, Vector3
@@ -102,7 +102,6 @@ class MovementSensor(Sensor):
     async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
         """Obtain the measurements/data specific to this sensor.
         If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
-        An ERROR log will still appear stating that the measurement/data was unimplemented.
 
         Returns:
             Mapping[str, Any]: The readings for the MovementSensor:
@@ -127,18 +126,25 @@ class MovementSensor(Sensor):
         )
 
         readings = {}
-        if not isinstance(pos, GRPCError):
-            readings["position"] = pos[0]
-            readings["altitude"] = pos[1]
-        if not isinstance(lv, GRPCError):
-            readings["linear_velocity"] = lv
-        if not isinstance(av, GRPCError):
-            readings["angular_velocity"] = av
-        if not isinstance(la, GRPCError):
-            readings["linear_acceleration"] = la
-        if not isinstance(comp, GRPCError):
-            readings["compass"] = comp
-        if not isinstance(orient, GRPCError):
-            readings["orientation"] = orient
+
+        # Add returned value to the readings dictionary if value is of expected type; omit if unimplemented.
+        def add_reading(name: str, reading, returntype: List) -> None:
+            if type(reading) in returntype:
+                if name == "position":
+                    readings["position"] = reading[0]
+                    readings["altitude"] = reading[1]
+                else:
+                    readings[name] = reading
+                return
+            elif isinstance(reading, GRPCError) and "Unimplemented" in str(reading.message):
+                return
+            raise reading
+
+        add_reading("position", pos, [tuple])
+        add_reading("linear_velocity", lv, [Vector3])
+        add_reading("angular_velocity", av, [Vector3])
+        add_reading("linear_acceleration", la, [Vector3])
+        add_reading("compass", comp, [float, int])
+        add_reading("orientation", orient, [Orientation])
 
         return readings
