@@ -157,10 +157,10 @@ class TestMovementSensor:
 
         # A mock method to replace some get functions just for testing
         async def get_reading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
-            raise GRPCError(Status(12))
+            raise GRPCError(Status(2))
 
         async def get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
-            raise GRPCError(Status(12))
+            raise GRPCError(Status(2))
 
         movement_sensor.get_linear_velocity = get_reading
         movement_sensor.get_linear_acceleration = get_reading
