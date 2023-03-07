@@ -65,18 +65,6 @@ class ResourceNotFoundError(ViamGRPCError):
         self.grpc_code = Status.NOT_FOUND
 
 
-class ServiceNotImplementedError(ViamGRPCError):
-    """
-    Exception raised when a service is not implemented on the Robot
-    """
-
-    def __init__(self, service: str, name: str):
-        self.service = service
-        self.name = name
-        self.message = f"{service} service named {name} is not implemented on the Robot"
-        self.grpc_code = Status.UNIMPLEMENTED
-
-
 class MethodNotImplementedError(ViamGRPCError):
     """
     Exception raised when specific methods are unimplemented.

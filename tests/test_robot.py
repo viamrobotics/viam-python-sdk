@@ -10,7 +10,7 @@ from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
 from viam.components.motor import Motor
 from viam.components.resource_manager import ResourceManager
-from viam.errors import ResourceNotFoundError, ServiceNotImplementedError, ViamError
+from viam.errors import ResourceNotFoundError, ViamError
 from viam.proto.common import Pose, PoseInFrame, ResourceName, Transform
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
@@ -332,7 +332,7 @@ class TestRobotClient:
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             client._resource_names.append(ResourceName(namespace="rdk", type="service", subtype="vision", name="vision1"))
-            with pytest.raises(ServiceNotImplementedError):
+            with pytest.raises(ResourceNotFoundError):
                 VisionServiceClient.from_robot(client)
             VisionServiceClient.from_robot(client, "vision1")
             await client.close()

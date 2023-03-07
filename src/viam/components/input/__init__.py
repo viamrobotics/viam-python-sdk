@@ -1,6 +1,6 @@
 from viam.proto.component.inputcontroller import Status as InputStatus
 from viam.proto.robot import Status
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 from viam.utils import message_to_struct
 
 from .client import ControllerClient
@@ -24,5 +24,5 @@ async def create_status(component: Controller) -> Status:
 
 
 Registry.register_subtype(
-    ComponentRegistration(Controller, InputControllerService, lambda name, channel: ControllerClient(name, channel), create_status)
+    ResourceRegistration(Controller, InputControllerService, lambda name, channel: ControllerClient(name, channel), create_status)
 )

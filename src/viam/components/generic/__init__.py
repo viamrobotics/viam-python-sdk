@@ -1,4 +1,4 @@
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 
 from .client import GenericClient
 from .generic import Generic
@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 Registry.register_subtype(
-    ComponentRegistration(
+    ResourceRegistration(
         Generic,
         GenericService,
         lambda name, channel: GenericClient(name, channel),

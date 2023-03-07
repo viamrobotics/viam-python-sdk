@@ -1,7 +1,7 @@
 import asyncio
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.robot import Status
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 from viam.utils import message_to_struct
 
 from .arm import Arm, JointPositions, Pose, WorldState
@@ -34,4 +34,4 @@ async def create_status(component: Arm) -> Status:
     return Status(name=Arm.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register_subtype(ComponentRegistration(Arm, ArmService, lambda name, channel: ArmClient(name, channel), create_status))
+Registry.register_subtype(ResourceRegistration(Arm, ArmService, lambda name, channel: ArmClient(name, channel), create_status))

@@ -1,4 +1,4 @@
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 
 from .client import MovementSensorClient
 from .movement_sensor import GeoPoint, MovementSensor, Orientation, Vector3
@@ -12,7 +12,7 @@ __all__ = [
 ]
 
 Registry.register_subtype(
-    ComponentRegistration(
+    ResourceRegistration(
         MovementSensor,
         MovementSensorService,
         lambda name, channel: MovementSensorClient(name, channel),

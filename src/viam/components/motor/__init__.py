@@ -1,7 +1,7 @@
 import asyncio
 from viam.proto.component.motor import Status as MotorStatus
 from viam.proto.robot import Status
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 from viam.utils import message_to_struct
 
 from .client import MotorClient
@@ -27,4 +27,4 @@ async def create_status(component: Motor) -> Status:
     return Status(name=Motor.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register_subtype(ComponentRegistration(Motor, MotorService, lambda name, channel: MotorClient(name, channel), create_status))
+Registry.register_subtype(ResourceRegistration(Motor, MotorService, lambda name, channel: MotorClient(name, channel), create_status))

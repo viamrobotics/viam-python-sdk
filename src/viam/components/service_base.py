@@ -1,14 +1,12 @@
 import abc
-from typing import Generic, Mapping, Type
-
-from grpclib import const
-from grpclib._typing import IServable
+from typing import Generic, Type
 
 from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager, ResourceType
+from viam.rpc.types import RPCServiceBase
 
 
-class ComponentServiceBase(abc.ABC, IServable, Generic[ResourceType]):
+class ComponentServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
     """
     Base component service.
     All component services must inherit from this class.
@@ -37,7 +35,3 @@ class ComponentServiceBase(abc.ABC, IServable, Generic[ResourceType]):
         if self.RESOURCE_TYPE == ComponentBase:
             return self.manager._component_by_name_only(name)  # type: ignore
         return self.manager.get_component(self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name))  # type: ignore
-
-    @abc.abstractmethod
-    def __mapping__(self) -> Mapping[str, const.Handler]:
-        ...

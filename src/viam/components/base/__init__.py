@@ -1,4 +1,4 @@
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 from viam.proto.common import ActuatorStatus
 from viam.proto.robot import Status
 from viam.utils import message_to_struct
@@ -15,4 +15,4 @@ async def create_status(component: Base) -> Status:
     return Status(name=Base.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register_subtype(ComponentRegistration(Base, BaseService, lambda name, channel: BaseClient(name, channel), create_status))
+Registry.register_subtype(ResourceRegistration(Base, BaseService, lambda name, channel: BaseClient(name, channel), create_status))

@@ -1,4 +1,4 @@
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 
 from .camera import Camera, DistortionParameters, IntrinsicParameters, RawImage
 from .client import CameraClient
@@ -12,7 +12,7 @@ __all__ = [
 ]
 
 Registry.register_subtype(
-    ComponentRegistration(
+    ResourceRegistration(
         Camera,
         CameraService,
         lambda name, channel: CameraClient(name, channel),

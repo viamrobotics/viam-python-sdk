@@ -1,10 +1,21 @@
 import abc
-from typing import TYPE_CHECKING, Any, SupportsBytes, ClassVar, SupportsFloat, List, Mapping, Optional, cast, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    List,
+    Mapping,
+    Optional,
+    SupportsBytes,
+    SupportsFloat,
+    Union,
+    cast,
+)
 
 from typing_extensions import Self
 
 from viam.operations import Operation
-from viam.proto.common import ResourceName
+from viam.resource.types import ResourceBase
 
 if TYPE_CHECKING:
     from viam.resource.types import Subtype
@@ -14,7 +25,7 @@ if TYPE_CHECKING:
 ValueTypes = Union[bool, SupportsBytes, SupportsFloat, List, Mapping, str, None]
 
 
-class ComponentBase(abc.ABC):
+class ComponentBase(abc.ABC, ResourceBase):
     """
     Base component.
     All components must inherit from this class.
@@ -22,25 +33,8 @@ class ComponentBase(abc.ABC):
 
     SUBTYPE: ClassVar["Subtype"]
 
-    name: str
-
     def __init__(self, name: str):
         self.name = name
-
-    @classmethod
-    def get_resource_name(cls, name: str) -> ResourceName:
-        """
-        Get the ResourceName for this component type with the given name
-
-        Args:
-            name (str): The name of the Component
-        """
-        return ResourceName(
-            namespace=cls.SUBTYPE.namespace,
-            type=cls.SUBTYPE.resource_type,
-            subtype=cls.SUBTYPE.resource_subtype,
-            name=name,
-        )
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:
@@ -72,15 +66,4 @@ class ComponentBase(abc.ABC):
         return kwargs.get(Operation.ARG_NAME, Operation._noop())
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
-        """Send/Receive arbitrary commands
-
-        Args:
-            command (Mapping[str, ValueTypes]): The command to execute
-
-        Raises:
-            NotImplementedError: Raised if the component does not support arbitrary commands
-
-        Returns:
-            Mapping[str, ValueTypes]: Result of the executed command
-        """
         raise NotImplementedError()
