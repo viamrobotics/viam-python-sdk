@@ -3,6 +3,7 @@ import asyncio
 from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
 from grpclib import GRPCError
 
+from viam.errors import MethodNotImplementedError, NotSupportedError
 from viam.proto.common import GeoPoint, Orientation, Vector3
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
@@ -129,6 +130,7 @@ class MovementSensor(Sensor):
 
         # Add returned value to the readings dictionary if value is of expected type; omit if unimplemented.
         def add_reading(name: str, reading, returntype: List) -> None:
+            possible_error_types = (NotImplementedError, MethodNotImplementedError, NotSupportedError)
             if type(reading) in returntype:
                 if name == "position":
                     readings["position"] = reading[0]
@@ -136,7 +138,7 @@ class MovementSensor(Sensor):
                 else:
                     readings[name] = reading
                 return
-            elif isinstance(reading, GRPCError) and "Unimplemented" in str(reading.message):
+            elif isinstance(reading, possible_error_types) or (isinstance(reading, GRPCError) and "Unimplemented" in str(reading.message)):
                 return
             raise reading
 
