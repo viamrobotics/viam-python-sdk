@@ -171,10 +171,6 @@ class TestMovementSensor:
         assert value == {
             "position": COORDINATE,
             "altitude": ALTITUDE,
-            "linear_velocity": Vector3(),
-            "angular_velocity": Vector3(),
-            "linear_acceleration": Vector3(),
-            "compass": 0,
             "orientation": ORIENTATION,
         }
 

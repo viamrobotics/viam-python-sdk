@@ -1,6 +1,7 @@
 import abc
 import asyncio
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
+from grpclib import GRPCError
 
 from viam.proto.common import GeoPoint, Orientation, Vector3
 from viam.proto.component.movementsensor import GetPropertiesResponse
@@ -100,7 +101,7 @@ class MovementSensor(Sensor):
 
     async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
         """Obtain the measurements/data specific to this sensor.
-        If a sensor is not configured to have a measurement or fails to read a piece of data, return empty objects or 0.
+        If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
         An ERROR log will still appear stating that the measurement/data was unimplemented.
 
         Returns:
@@ -125,12 +126,19 @@ class MovementSensor(Sensor):
             return_exceptions=True,
         )
 
-        return {
-            "position": pos[0] if not isinstance(pos, Exception) else GeoPoint(),
-            "altitude": pos[1] if not isinstance(pos, Exception) else 0,
-            "linear_velocity": lv if not isinstance(lv, Exception) else Vector3(),
-            "angular_velocity": av if not isinstance(av, Exception) else Vector3(),
-            "linear_acceleration": la if not isinstance(la, Exception) else Vector3(),
-            "compass": comp if not isinstance(comp, Exception) else 0,
-            "orientation": orient if not isinstance(orient, Exception) else Orientation(),
-        }
+        readings = {}
+        if not isinstance(pos, GRPCError):
+            readings["position"] = pos[0]
+            readings["altitude"] = pos[1]
+        if not isinstance(lv, GRPCError):
+            readings["linear_velocity"] = lv
+        if not isinstance(av, GRPCError):
+            readings["angular_velocity"] = av
+        if not isinstance(la, GRPCError):
+            readings["linear_acceleration"] = la
+        if not isinstance(comp, GRPCError):
+            readings["compass"] = comp
+        if not isinstance(orient, GRPCError):
+            readings["orientation"] = orient
+
+        return readings
