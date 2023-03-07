@@ -3,15 +3,25 @@ import contextvars
 import functools
 import sys
 import threading
-from typing import Any, SupportsBytes, Dict, SupportsFloat, List, Mapping, Type, TypeVar, Union
+from typing import (
+    Any,
+    Dict,
+    List,
+    Mapping,
+    SupportsBytes,
+    SupportsFloat,
+    Type,
+    TypeVar,
+    Union,
+)
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
-from viam.components.component_base import ComponentBase
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.resource.registry import Registry, Subtype
+from viam.resource.types import ResourceBase
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable
@@ -92,16 +102,16 @@ def value_to_primitive(value: Value) -> ValueTypes:
     return None
 
 
-def resource_names_for_component(component: ComponentBase) -> List[ResourceName]:
+def resource_names_for_resource(resource: ResourceBase) -> List[ResourceName]:
     rns: List[ResourceName] = []
 
-    for klass in component.__class__.mro():
+    for klass in resource.__class__.mro():
         for registration in Registry.REGISTERED_RESOURCES().values():
-            if klass is registration.component_type:
-                subtype: Subtype = registration.component_type.SUBTYPE
+            if klass is registration.resource_type:
+                subtype: Subtype = registration.resource_type.SUBTYPE
                 rns.append(
                     ResourceName(
-                        namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=component.name
+                        namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=resource.name
                     )
                 )
     return rns
@@ -167,7 +177,7 @@ def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str,
 
 
 def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[str, Any]:
-    prim_readings = {key: value_to_primitive(value) for (key, value) in readings.items()}
+    prim_readings: Dict[str, Any] = {key: value_to_primitive(value) for (key, value) in readings.items()}
     for key, reading in prim_readings.items():
         if isinstance(reading, Mapping):
             kind = reading.get("_type", "")

@@ -16,14 +16,13 @@ from viam.proto.component.gantry import (
     MoveToPositionRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
+from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockGantry
 
 
 class TestGantry:
-
     gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
 
     @pytest.mark.asyncio
@@ -92,10 +91,11 @@ class TestGantry:
 
 
 class TestService:
-
-    gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
-    manager = ResourceManager([gantry])
-    service = GantryService(manager)
+    @classmethod
+    def setup_class(cls):
+        cls.gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
+        cls.manager = ResourceManager([cls.gantry])
+        cls.service = GantryService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_position(self):
@@ -166,10 +166,11 @@ class TestService:
 
 
 class TestClient:
-
-    gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
-    manager = ResourceManager([gantry])
-    service = GantryService(manager)
+    @classmethod
+    def setup_class(cls):
+        cls.gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
+        cls.manager = ResourceManager([cls.gantry])
+        cls.service = GantryService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_position(self):

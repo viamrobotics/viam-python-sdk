@@ -13,6 +13,7 @@ class ComponentServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
     """
 
     RESOURCE_TYPE = Type
+    manager: ResourceManager
 
     def __init__(self, manager: ResourceManager):
         self.manager = manager

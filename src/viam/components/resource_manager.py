@@ -1,12 +1,13 @@
-from typing import Dict, List, Type, TypeVar
 from threading import RLock
+from typing import Dict, List, Type, TypeVar
 
 from viam.proto.common import ResourceName
+from viam.resource.types import ResourceBase
 
 from ..errors import DuplicateResourceError, ResourceNotFoundError
 from .component_base import ComponentBase
 
-ResourceType = TypeVar("ResourceType", bound=ComponentBase)
+ResourceType = TypeVar("ResourceType", bound=ResourceBase)
 
 
 class ResourceManager:
@@ -14,18 +15,18 @@ class ResourceManager:
     Registry containing all components registered to this server.
     """
 
-    components: Dict[ResourceName, ComponentBase]
+    resources: Dict[ResourceName, ResourceBase]
     _short_to_long_name: Dict[str, List[ResourceName]]
     _lock: RLock
 
-    def __init__(self, components: List[ComponentBase] = []) -> None:
+    def __init__(self, components: List[ResourceBase] = []) -> None:
         self._lock = RLock()
-        self.components = {}
+        self.resources = {}
         self._short_to_long_name = {}
         for component in components:
             self.register(component)
 
-    def register(self, component: ComponentBase):
+    def register(self, component: ResourceBase):
         """
         Register a new component with the registry.
         Components may not have the same name.
@@ -38,9 +39,10 @@ class ResourceManager:
         Args:
             component (ComponentBase): The component to register
         """
-        rnames: Dict[ResourceName, ComponentBase] = {}
+        _BaseClasses = (ResourceBase, ComponentBase)
+        rnames: Dict[ResourceName, ResourceBase] = {}
         for subtype in component.__class__.mro():
-            if subtype is ComponentBase:
+            if subtype in _BaseClasses:
                 continue
             if hasattr(subtype, "get_resource_name"):
                 rn = subtype.get_resource_name(component.name)  # type: ignore
@@ -53,11 +55,11 @@ class ResourceManager:
                 elif short_name not in self._short_to_long_name:
                     self._short_to_long_name[short_name] = [rn]
 
-        if rnames.keys() & self.components.keys():
+        if rnames.keys() & self.resources.keys():
             raise DuplicateResourceError(component.name)
 
         with self._lock:
-            self.components.update(rnames)
+            self.resources.update(rnames)
 
     def get_component(self, of_type: Type[ResourceType], name: ResourceName) -> ResourceType:
         """
@@ -76,7 +78,7 @@ class ResourceManager:
             ResourceType: The component
         """
         with self._lock:
-            component = self.components.get(name, None)
+            component = self.resources.get(name, None)
             if component and isinstance(component, of_type):
                 return component
 
@@ -91,10 +93,10 @@ class ResourceManager:
             name (ResourceName): The ResourceName of the component
         """
         with self._lock:
-            del self.components[name]
+            del self.resources[name]
 
-    def _component_by_name_only(self, name: str) -> ComponentBase:
-        for rname, component in self.components.items():
+    def _component_by_name_only(self, name: str) -> ResourceBase:
+        for rname, component in self.resources.items():
             if rname.name == name:
                 return component
         raise ResourceNotFoundError("component", name)

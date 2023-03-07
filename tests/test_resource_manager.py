@@ -11,9 +11,9 @@ class TestRegistration:
         servo1 = MockServo(name="servo1")
         servo2 = MockServo(name="servo2")
         manager = ResourceManager([servo1, servo2])
-        assert len(manager.components) == 2
-        assert manager.components[MockServo.get_resource_name("servo1")] == servo1
-        assert manager.components[MockServo.get_resource_name("servo2")] == servo2
+        assert len(manager.resources) == 2
+        assert manager.resources[MockServo.get_resource_name("servo1")] == servo1
+        assert manager.resources[MockServo.get_resource_name("servo2")] == servo2
 
     def test_registers_correctly(self):
         servo1 = MockServo(name="servo1")
@@ -21,9 +21,9 @@ class TestRegistration:
         manager = ResourceManager([])
 
         manager.register(servo1)
-        assert len(manager.components) == 1
+        assert len(manager.resources) == 1
         manager.register(servo2)
-        assert len(manager.components) == 2
+        assert len(manager.resources) == 2
 
     def test_raises_error_on_duplicate_name(self):
         servo1 = MockServo(name="servo1")

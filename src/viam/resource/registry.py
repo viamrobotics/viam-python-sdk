@@ -39,7 +39,7 @@ class ResourceRegistration(Generic[Resource]):
     to the ``Registry``.
     """
 
-    component_type: Type[Resource]
+    resource_type: Type[Resource]
     """The type of the Resource to be registered
     """
 
@@ -85,9 +85,9 @@ class Registry:
             DuplicateResourceError: Raised if the Subtype to register is already in the registry
         """
         with cls._lock:
-            if registration.component_type.SUBTYPE in cls._SUBTYPES:
-                raise DuplicateResourceError(str(registration.component_type.SUBTYPE))
-            cls._SUBTYPES[registration.component_type.SUBTYPE] = registration
+            if registration.resource_type.SUBTYPE in cls._SUBTYPES:
+                raise DuplicateResourceError(str(registration.resource_type.SUBTYPE))
+            cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
 
     @classmethod
     def register_component_model(cls, subtype: Subtype, model: Model, component: ComponentCreator):

@@ -186,7 +186,7 @@ class RobotClient:
                 pass
         with self._lock:
             self._resource_names = resource_names
-            if manager.components != self._manager.components:
+            if manager.resources != self._manager.resources:
                 self._manager = manager
 
     async def _refresh_every(self, interval: int):

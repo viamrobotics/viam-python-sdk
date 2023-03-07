@@ -15,6 +15,13 @@ from ..component_base import ComponentBase
 
 
 class AudioInput(ComponentBase, MediaSource[Audio]):
+    """AudioInput represents a component that can capture audio.
+
+    This acts as an abstract base class for any drivers representing specific
+    audio input implementations. This cannot be used on its own. If the ``__init__()`` function is
+    overridden, it must call the ``super().__init__()`` function.
+    """
+
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_input")
 
     @dataclass
@@ -69,4 +76,5 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
         Returns:
             Properties: The audio input properties
         """
+        ...
         ...

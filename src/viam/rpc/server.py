@@ -8,9 +8,10 @@ from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
 
 from viam import logging
-from viam.components.component_base import ComponentBase
 from viam.components.resource_manager import ResourceManager
+from viam.components.service_base import ComponentServiceBase
 from viam.resource.registry import Registry
+from viam.resource.types import ResourceBase
 from viam.robot.service import RobotService
 
 from .signaling import SignalingService
@@ -26,7 +27,7 @@ class Server(ResourceManager):
     gRPC Server
     """
 
-    def __init__(self, components: List[ComponentBase], *, module_service: Optional["ModuleService"] = None):
+    def __init__(self, components: List[ResourceBase], *, module_service: Optional["ModuleService"] = None):
         """
         Initialize the Server with a list of components
         to be managed.
@@ -36,11 +37,13 @@ class Server(ResourceManager):
         """
         super().__init__(components)
 
-        services = [
-            SignalingService(),
-            RobotService(manager=self),
-            *[registration.rpc_service(manager=self) for registration in Registry.REGISTERED_RESOURCES().values()],
-        ]
+        services = [SignalingService(), RobotService(manager=self)]
+        for registration in Registry.REGISTERED_RESOURCES().values():
+            if issubclass(registration.rpc_service, ComponentServiceBase):
+                services.append(registration.rpc_service(manager=self))
+            else:
+                services.append(registration.rpc_service())
+
         if module_service is not None:
             services.append(module_service)
         services = ServerReflection.extend(services)
@@ -98,7 +101,7 @@ class Server(ResourceManager):
     @classmethod
     async def create_and_serve(
         cls,
-        components: List[ComponentBase],
+        components: List[ResourceBase],
         host: Optional[str] = "localhost",
         port: Optional[int] = 9090,
         log_level: int = logging.INFO,

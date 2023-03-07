@@ -4,7 +4,7 @@ from grpclib.testing import ChannelFor
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerService
 from viam.components.resource_manager import ResourceManager
-from viam.proto.common import Pose, PoseInFrame, DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose, PoseInFrame
 from viam.proto.component.posetracker import (
     GetPosesRequest,
     GetPosesResponse,
@@ -22,7 +22,6 @@ POSES = [
 
 
 class TestPoseTracker:
-
     mock_pose_tracker = MockPoseTracker(name="pt", poses=POSES)
 
     @pytest.mark.asyncio
@@ -42,10 +41,12 @@ class TestPoseTracker:
 
 
 class TestService:
-    name = "pose_tracker"
-    pose_tracker = MockPoseTracker(name=name, poses=POSES)
-    manager = ResourceManager([pose_tracker])
-    service = PoseTrackerService(manager)
+    @classmethod
+    def setup_class(cls):
+        cls.name = "pose_tracker"
+        cls.pose_tracker = MockPoseTracker(name=cls.name, poses=POSES)
+        cls.manager = ResourceManager([cls.pose_tracker])
+        cls.service = PoseTrackerService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_poses(self):
@@ -72,11 +73,12 @@ class TestService:
 
 
 class TestClient:
-
-    name = "pose_tracker"
-    pose_tracker = MockPoseTracker(name=name, poses=POSES)
-    manager = ResourceManager([pose_tracker])
-    service = PoseTrackerService(manager)
+    @classmethod
+    def setup_class(cls):
+        cls.name = "pose_tracker"
+        cls.pose_tracker = MockPoseTracker(name=cls.name, poses=POSES)
+        cls.manager = ResourceManager([cls.pose_tracker])
+        cls.service = PoseTrackerService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_poses(self):
