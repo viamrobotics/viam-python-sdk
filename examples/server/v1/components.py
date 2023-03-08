@@ -307,6 +307,9 @@ class ExampleBoard(Board):
     async def model_attributes(self) -> Board.Attributes:
         return Board.Attributes(remote=True)
 
+    async def set_power_mode(self, **kwargs):
+        raise NotImplementedError()
+
 
 class ExampleCamera(Camera):
     def __init__(self, name: str):

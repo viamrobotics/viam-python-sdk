@@ -1,9 +1,11 @@
 import abc
 from dataclasses import dataclass
+from datetime import timedelta
 from multiprocessing import Queue
 from typing import Any, Callable, Dict, Final, List, Optional
 
 from viam.proto.common import BoardStatus
+from viam.proto.component.board import PowerMode
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
@@ -249,3 +251,19 @@ class Board(ComponentBase):
             Attributes: The attributes.
         """
         ...
+
+    @abc.abstractmethod
+    async def set_power_mode(
+            self,
+            mode: PowerMode,
+            duration: Optional[timedelta] = None,
+            *,
+            timeout: Optional[float] = None,
+            **kwargs
+    ):
+        """
+        Set the board to the indicated power mode.
+
+        Args:
+            mode: the desired power mode
+        """

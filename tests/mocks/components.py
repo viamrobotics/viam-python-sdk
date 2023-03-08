@@ -6,6 +6,7 @@ else:
     from typing import AsyncIterator
 
 from dataclasses import dataclass
+from datetime import timedelta
 from multiprocessing import Queue
 from secrets import choice
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
@@ -43,6 +44,7 @@ from viam.proto.common import (
     WorldState,
 )
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
+from viam.proto.component.board import PowerMode
 
 from viam.utils import ValueTypes
 
@@ -365,6 +367,18 @@ class MockBoard(Board):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+    async def set_power_mode(
+            self,
+            mode: PowerMode,
+            duration: Optional[timedelta] = None,
+            *,
+            timeout: Optional[float] = None,
+            **kwargs
+    ):
+        self.timeout = timeout
+        self.power_mode = mode
+        self.power_mode_duration = duration
 
 
 class MockCamera(Camera):

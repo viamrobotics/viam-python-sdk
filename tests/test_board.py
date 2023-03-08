@@ -1,8 +1,11 @@
+from datetime import timedelta
 from typing import cast
 
 import pytest
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
+
+from google.protobuf.duration_pb2 import Duration
 
 from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardService
@@ -20,11 +23,14 @@ from viam.proto.component.board import (
     PWMFrequencyResponse,
     PWMRequest,
     PWMResponse,
+    PowerMode,
     ReadAnalogReaderRequest,
     ReadAnalogReaderResponse,
     SetGPIORequest,
     SetPWMFrequencyRequest,
     SetPWMRequest,
+    SetPowerModeRequest,
+    SetPowerModeResponse,
     StatusRequest,
     StatusResponse,
 )
@@ -121,6 +127,15 @@ class TestBoard:
         command = {"command": "args"}
         resp = await board.do_command(command)
         assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_set_power_mode(self, board: MockBoard):
+        pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
+        pm_duration = timedelta(minutes=1)
+        await board.set_power_mode(mode=pm_mode, duration=pm_duration, timeout=1.11)
+        assert board.timeout == loose_approx(1.11)
+        assert board.power_mode == pm_mode
+        assert board.power_mode_duration == pm_duration
 
 
 class TestService:
@@ -276,6 +291,20 @@ class TestService:
             result = struct_to_dict(response.result)
             assert result == {"command": command}
 
+    @pytest.mark.asyncio
+    async def test_set_power_mode(self, board: MockBoard, service: BoardService):
+        async with ChannelFor([service]) as channel:
+            client = BoardServiceStub(channel)
+            pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
+            pm_duration = Duration()
+            pm_duration.FromTimedelta(timedelta(minutes=1))
+            request = SetPowerModeRequest(name=board.name, power_mode=pm_mode, duration=pm_duration)
+            response: SetPowerModeResponse = await client.SetPowerMode(request, timeout=6.66)
+            assert response == SetPowerModeResponse()
+            assert board.timeout == loose_approx(6.66)
+            assert board.power_mode == PowerMode.POWER_MODE_OFFLINE_DEEP
+            assert board.power_mode_duration == pm_duration
+
 
 class TestClient:
     @pytest.mark.asyncio
@@ -362,6 +391,19 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_set_power_mode(self, board: MockBoard, service: BoardService):
+        async with ChannelFor([service]) as channel:
+            client = BoardClient(name=board.name, channel=channel)
+            pm_mode = PowerMode.POWER_MODE_OFFLINE_DEEP
+            pm_timedelta = timedelta(minutes=1)
+            await client.set_power_mode(mode=pm_mode, duration=pm_timedelta, timeout=1.1)
+            assert board.timeout == loose_approx(1.1)
+            assert board.power_mode == pm_mode
+            pm_duration = Duration()
+            pm_duration.FromTimedelta(pm_timedelta)
+            assert board.power_mode_duration == pm_duration
 
 
 class TestGPIOPinClient:
