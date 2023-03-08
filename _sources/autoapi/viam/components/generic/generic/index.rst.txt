@@ -33,7 +33,13 @@ Classes
 
        class ComplexComponent(Generic):
 
-           async def do_command(self, command: Dict[str, Any]) -> Dict[str, Any]:
+           async def do_command(
+               self,
+               command: Mapping[str, ValueTypes],
+               *,
+               timeout: Optional[float] = None,
+               **kwargs
+           ) -> Mapping[str, ValueTypes]:
                result = {key: False for key in command.keys()}
                for (name, args) in command.items():
                    if name == 'on':
