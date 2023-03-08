@@ -85,8 +85,10 @@
   <h1>Source code for viam.components.movement_sensor.movement_sensor</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span>
 
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">MethodNotImplementedError</span><span class="p">,</span> <span class="n">NotSupportedError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">Orientation</span><span class="p">,</span> <span class="n">Vector3</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.movementsensor</span> <span class="kn">import</span> <span class="n">GetPropertiesResponse</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">Subtype</span>
@@ -185,6 +187,7 @@
 
 <div class="viewcode-block" id="MovementSensor.get_readings"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.MovementSensor.get_readings">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain the measurements/data specific to this sensor.</span>
+<span class="sd">        If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The readings for the MovementSensor:</span>
@@ -193,27 +196,45 @@
 <span class="sd">                altitude: float,</span>
 <span class="sd">                linear_velocity: Vector3,</span>
 <span class="sd">                angular_velocity: Vector3,</span>
+<span class="sd">                linear_acceleration: Vector3</span>
 <span class="sd">                compass: float,</span>
 <span class="sd">                orientation: Orientation</span>
 <span class="sd">            }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="p">((</span><span class="n">pos</span><span class="p">,</span> <span class="n">alt</span><span class="p">),</span> <span class="n">lv</span><span class="p">,</span> <span class="n">av</span><span class="p">,</span> <span class="n">la</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">orient</span><span class="p">)</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">lv</span><span class="p">,</span> <span class="n">av</span><span class="p">,</span> <span class="n">la</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">orient</span><span class="p">)</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_position</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_linear_velocity</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_angular_velocity</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_linear_acceleration</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_compass_heading</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">get_orientation</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">),</span>
+            <span class="n">return_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="n">pos</span><span class="p">,</span>
-            <span class="s2">&quot;altitude&quot;</span><span class="p">:</span> <span class="n">alt</span><span class="p">,</span>
-            <span class="s2">&quot;linear_velocity&quot;</span><span class="p">:</span> <span class="n">lv</span><span class="p">,</span>
-            <span class="s2">&quot;angular_velocity&quot;</span><span class="p">:</span> <span class="n">av</span><span class="p">,</span>
-            <span class="s2">&quot;linear_acceleration&quot;</span><span class="p">:</span> <span class="n">la</span><span class="p">,</span>
-            <span class="s2">&quot;compass&quot;</span><span class="p">:</span> <span class="n">comp</span><span class="p">,</span>
-            <span class="s2">&quot;orientation&quot;</span><span class="p">:</span> <span class="n">orient</span><span class="p">,</span>
-        <span class="p">}</span></div></div>
+
+        <span class="n">readings</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># Add returned value to the readings dictionary if value is of expected type; omit if unimplemented.</span>
+        <span class="k">def</span> <span class="nf">add_reading</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">reading</span><span class="p">,</span> <span class="n">returntype</span><span class="p">:</span> <span class="n">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">possible_error_types</span> <span class="o">=</span> <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">,</span> <span class="n">MethodNotImplementedError</span><span class="p">,</span> <span class="n">NotSupportedError</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">reading</span><span class="p">)</span> <span class="ow">in</span> <span class="n">returntype</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;position&quot;</span><span class="p">:</span>
+                    <span class="n">readings</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reading</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">readings</span><span class="p">[</span><span class="s2">&quot;altitude&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">reading</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">readings</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">reading</span>
+                <span class="k">return</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">reading</span><span class="p">,</span> <span class="n">possible_error_types</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">reading</span><span class="p">,</span> <span class="n">GRPCError</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;Unimplemented&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">reading</span><span class="o">.</span><span class="n">message</span><span class="p">)):</span>
+                <span class="k">return</span>
+            <span class="k">raise</span> <span class="n">reading</span>
+
+        <span class="n">add_reading</span><span class="p">(</span><span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">])</span>
+        <span class="n">add_reading</span><span class="p">(</span><span class="s2">&quot;linear_velocity&quot;</span><span class="p">,</span> <span class="n">lv</span><span class="p">,</span> <span class="p">[</span><span class="n">Vector3</span><span class="p">])</span>
+        <span class="n">add_reading</span><span class="p">(</span><span class="s2">&quot;angular_velocity&quot;</span><span class="p">,</span> <span class="n">av</span><span class="p">,</span> <span class="p">[</span><span class="n">Vector3</span><span class="p">])</span>
+        <span class="n">add_reading</span><span class="p">(</span><span class="s2">&quot;linear_acceleration&quot;</span><span class="p">,</span> <span class="n">la</span><span class="p">,</span> <span class="p">[</span><span class="n">Vector3</span><span class="p">])</span>
+        <span class="n">add_reading</span><span class="p">(</span><span class="s2">&quot;compass&quot;</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span>
+        <span class="n">add_reading</span><span class="p">(</span><span class="s2">&quot;orientation&quot;</span><span class="p">,</span> <span class="n">orient</span><span class="p">,</span> <span class="p">[</span><span class="n">Orientation</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">readings</span></div></div>
 </pre></div>
 
            </div>

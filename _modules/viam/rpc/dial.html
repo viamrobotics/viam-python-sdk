@@ -124,7 +124,6 @@
 
 
 <div class="viewcode-block" id="DialOptions"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.DialOptions">[docs]</a><span class="k">class</span> <span class="nc">DialOptions</span><span class="p">:</span>
-
     <span class="n">disable_webrtc</span><span class="p">:</span> <span class="nb">bool</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Bypass Web RTC and connect directly to the robot.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -216,7 +215,6 @@
 
 <div class="viewcode-block" id="ViamChannel"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.ViamChannel">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">ViamChannel</span><span class="p">:</span>
-
     <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">release</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="kc">None</span><span class="p">]</span>
     <span class="n">_closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
@@ -238,7 +236,6 @@
 
 
 <span class="k">class</span> <span class="nc">_Runtime</span><span class="p">:</span>
-
     <span class="n">_lib</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span>
     <span class="n">_ptr</span><span class="p">:</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
 
