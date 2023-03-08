@@ -48,7 +48,7 @@ class CameraMimeType(str, Enum):
             mime_type = value[: (len(value) - len(LAZY_SUFFIX))]
             is_lazy = True
         if not cls.is_supported(value) and not is_lazy:
-            mime_type = CameraMimeType(CameraMimeType.UNSUPPORTED)
+            mime_type = CameraMimeType.UNSUPPORTED
         return (cls(mime_type), is_lazy)
 
     @property

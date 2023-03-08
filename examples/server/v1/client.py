@@ -6,6 +6,7 @@ from viam.components.arm import Arm, Pose
 from viam.components.base import Base, Vector3
 from viam.components.camera import Camera
 from viam.components.motor import Motor
+from viam.media.video import CameraMimeType
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 
@@ -13,7 +14,6 @@ from viam.rpc.dial import DialOptions
 async def client():
     opts = RobotClient.Options(dial_options=DialOptions(insecure=True))
     async with await RobotClient.at_address("localhost:9090", opts) as robot:
-
         print("\n#### RESOURCES ####")
         print(f"Resources: {robot.resource_names}")
 
@@ -33,7 +33,7 @@ async def client():
 
         print("\n#### CAMERA ####")
         camera = Camera.from_robot(robot, "camera0")
-        img = await camera.get_image()
+        img = await camera.get_image(mime_type=CameraMimeType.PNG)
         assert isinstance(img, Image)
         img.show()
         await asyncio.sleep(1)
