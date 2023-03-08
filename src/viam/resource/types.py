@@ -174,6 +174,17 @@ class Model:
 
 
 def resource_name_from_string(string: str) -> ResourceName:
+    """Create a ResourceName from its string representation (namespace:resource_type:resource_subtype:name)
+
+    Args:
+        string (str): The ResourceName as a string
+
+    Raises:
+        ValueError: Raised if the provided string is not a valid ResourceName
+
+    Returns:
+        ResourceName: The new ResourceName
+    """
     parts = string.split(":")
     if len(parts) < 4:
         raise ValueError(f"{string} is not a valid ResourceName")

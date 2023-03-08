@@ -63,11 +63,11 @@ class Registry:
 
     **NB** The Registry should almost never be used directly
 
-    The Registry keeps track of the types of Components that are available on robots using this SDK. All the base component types are
+    The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
     pre-registered (e.g. Arm, Motor).
 
-    If you create a new component type that is not an extension of any of the existing base component types, then you must register said
-    component using ``Registry.register(...)``.
+    If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
+    resource using ``Registry.register(...)``.
     """
 
     _SUBTYPES: ClassVar[Dict[Subtype, ResourceRegistration]] = {}
@@ -119,7 +119,7 @@ class Registry:
             ResourceNotFoundError: Raised if the Subtype is not registered
 
         Returns:
-            ComponentRegistration: The registration object of the component
+            ResourceRegistration: The registration object of the resource
         """
         with cls._lock:
             try:
@@ -154,7 +154,7 @@ class Registry:
         - Value: The registration object for the resource
 
         Returns:
-            Mapping[Subtype, ComponentRegistration]: All registered resources
+            Mapping[Subtype, ResourceRegistration]: All registered resources
         """
         with cls._lock:
             return cls._SUBTYPES.copy()
