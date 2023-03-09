@@ -6,6 +6,7 @@ from grpclib.utils import _service_name
 
 from viam import logging
 from viam.components.component_base import ComponentBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
@@ -22,7 +23,9 @@ from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.registry import Registry
 from viam.resource.types import (
     RESOURCE_TYPE_COMPONENT,
+    RESOURCE_TYPE_SERVICE,
     Model,
+    ResourceBase,
     Subtype,
     resource_name_from_string,
 )
@@ -110,6 +113,10 @@ class Module:
             creator = Registry.lookup_component(subtype, model)
             component = creator(dependencies, config)
             self.server.register(component)
+        elif subtype.resource_subtype == RESOURCE_TYPE_SERVICE:
+            creator = Registry.lookup_service(subtype, model)
+            service = creator(dependencies, config)
+            self.server.register(service)
 
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
         dependencies = await self._get_dependencies(request.dependencies)
@@ -117,7 +124,7 @@ class Module:
         subtype = Subtype.from_string(config.api)
         name = config.name
         rn = ResourceName(namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=name)
-        resource = self.server.get_component(ComponentBase, rn)
+        resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Reconfigurable):
             resource.reconfigure(config, dependencies)
         else:
@@ -127,18 +134,18 @@ class Module:
                 else:
                     resource.stop()
             add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
-            self.server.remove_component(rn)
+            self.server.remove_resource(rn)
             await self.add_resource(add_request)
 
     async def remove_resource(self, request: RemoveResourceRequest):
         rn = resource_name_from_string(request.name)
-        resource = self.server.get_component(ComponentBase, rn)
+        resource = self.server.get_resource(ComponentBase, rn)
         if isinstance(resource, Stoppable):
             if iscoroutinefunction(resource.stop):
                 await resource.stop()
             else:
                 resource.stop()
-        self.server.remove_component(rn)
+        self.server.remove_resource(rn)
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
         self._parent_address = request.parent_address
@@ -150,6 +157,7 @@ class Module:
             model = Model.from_string(model_str)
 
             registration = Registry.lookup_subtype(subtype)
+            assert issubclass(registration.rpc_service, ComponentRPCServiceBase)
             service = registration.rpc_service(self.server)
             service_name = _service_name(service)
 

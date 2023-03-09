@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
@@ -21,7 +21,7 @@ from viam.utils import struct_to_dict, dict_to_struct
 from .gantry import Gantry
 
 
-class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
+class GantryService(GantryServiceBase, ComponentRPCServiceBase[Gantry]):
     """
     gRPC Service for an Gantry
     """

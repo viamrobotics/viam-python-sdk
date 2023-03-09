@@ -71,7 +71,7 @@ class TestModule:
 
     @pytest.mark.asyncio
     async def test_reconfigure_resource(self):
-        gizmo = self.module.server.get_component(MyGizmo, Gizmo.get_resource_name("gizmo1"))
+        gizmo = self.module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo1"))
         assert gizmo.my_arg == "arg1"
         req = ReconfigureResourceRequest(
             config=ComponentConfig(
@@ -140,8 +140,8 @@ class TestModule:
         )
         await self.module.add_resource(req)
 
-        g1 = self.module.server.get_component(Gizmo, Gizmo.get_resource_name("gizmo1"))
-        g2 = self.module.server.get_component(Gizmo, Gizmo.get_resource_name("gizmo2"))
+        g1 = self.module.server.get_resource(Gizmo, Gizmo.get_resource_name("gizmo1"))
+        g2 = self.module.server.get_resource(Gizmo, Gizmo.get_resource_name("gizmo2"))
 
         assert await g1.do_one("arg1") is True
         assert await g2.do_one("arg1") is False

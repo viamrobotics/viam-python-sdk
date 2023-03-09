@@ -1,5 +1,5 @@
 from grpclib.server import Stream
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.base import (
@@ -22,7 +22,7 @@ from viam.utils import struct_to_dict, dict_to_struct
 from .base import Base
 
 
-class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
+class BaseService(BaseServiceBase, ComponentRPCServiceBase[Base]):
     """
     gRPC service for a robotic Base
     """

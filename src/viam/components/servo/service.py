@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.servo import (
@@ -19,7 +19,7 @@ from viam.utils import struct_to_dict, dict_to_struct
 from .servo import Servo
 
 
-class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
+class ServoService(ServoServiceBase, ComponentRPCServiceBase[Servo]):
     """
     gRPC Service for a Servo
     """

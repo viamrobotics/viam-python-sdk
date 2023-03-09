@@ -1,14 +1,15 @@
 import abc
-from typing import Any, Dict, Final, List, Optional, Sequence
+from typing import Final, List, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
 from viam.components.generic.client import do_command
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, Subtype
+from viam.utils import ValueTypes
 
 from ..proto.gizmo_grpc import GizmoServiceBase, GizmoServiceStub
 from ..proto.gizmo_pb2 import (
@@ -51,7 +52,7 @@ class Gizmo(ComponentBase):
         ...
 
 
-class GizmoService(GizmoServiceBase, ComponentServiceBase[Gizmo]):
+class GizmoService(GizmoServiceBase, ComponentRPCServiceBase[Gizmo]):
     """Example gRPC service for the Gizmo component"""
 
     RESOURCE_TYPE = Gizmo
@@ -170,8 +171,8 @@ class GizmoClient(Gizmo):
 
     async def do_command(
         self,
-        command: Dict[str, Any],
+        command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
-    ) -> Dict[str, Any]:
+    ) -> Mapping[str, ValueTypes]:
         return await do_command(self.channel, self.name, command, timeout=timeout)

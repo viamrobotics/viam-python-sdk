@@ -5,7 +5,7 @@ from viam.proto.common import ResourceName
 from viam.resource.types import ResourceBase
 
 from ..errors import DuplicateResourceError, ResourceNotFoundError
-from .component_base import ComponentBase
+from ..components.component_base import ComponentBase
 
 ResourceType = TypeVar("ResourceType", bound=ResourceBase)
 
@@ -61,42 +61,42 @@ class ResourceManager:
         with self._lock:
             self.resources.update(rnames)
 
-    def get_component(self, of_type: Type[ResourceType], name: ResourceName) -> ResourceType:
+    def get_resource(self, of_type: Type[ResourceType], name: ResourceName) -> ResourceType:
         """
-        Return a component from the registry.
-        If a unique short name version is given, return a remote component with the name.
+        Return a resource from the registry.
+        If a unique short name version is given, return a remote resource with the name.
 
         Args:
-            of_type (Type[ResourceType]): The type of the component
-            name (str): The name of the component
+            of_type (Type[ResourceType]): The type of the resource
+            name (str): The name of the resource
 
         Raises:
-            ComponentNotFoundError: Error if component with the given type
+            ResourceNotFoundError: Error if resource with the given type
                                     and name does not exist in the registry
 
         Returns:
-            ResourceType: The component
+            ResourceType: The resource
         """
         with self._lock:
-            component = self.resources.get(name, None)
-            if component and isinstance(component, of_type):
-                return component
+            resource = self.resources.get(name, None)
+            if resource and isinstance(resource, of_type):
+                return resource
 
             if name.name in self._short_to_long_name and len(self._short_to_long_name[name.name]) == 1:
-                return self.get_component(of_type, self._short_to_long_name[name.name][0])
+                return self.get_resource(of_type, self._short_to_long_name[name.name][0])
             raise ResourceNotFoundError(name.subtype, name.name)
 
-    def remove_component(self, name: ResourceName):
-        """Remove the component with the specified ```ResourceName```.
+    def remove_resource(self, name: ResourceName):
+        """Remove the resource with the specified ```ResourceName```.
 
         Args:
-            name (ResourceName): The ResourceName of the component
+            name (ResourceName): The ResourceName of the resource
         """
         with self._lock:
             del self.resources[name]
 
-    def _component_by_name_only(self, name: str) -> ResourceBase:
-        for rname, component in self.resources.items():
+    def _resource_by_name_only(self, name: str) -> ResourceBase:
+        for rname, resource in self.resources.items():
             if rname.name == name:
-                return component
-        raise ResourceNotFoundError("component", name)
+                return resource
+        raise ResourceNotFoundError("resource", name)

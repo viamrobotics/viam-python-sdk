@@ -1,7 +1,7 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.components.sensor import SensorClient
 from viam.components.sensor.service import SensorService
 from viam.proto.common import DoCommandRequest, DoCommandResponse

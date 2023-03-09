@@ -9,7 +9,7 @@ from PIL import Image
 from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraService
 from viam.components.generic.service import GenericService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.media.video import CameraMimeType, RawImage, LIBRARY_SUPPORTED_FORMATS
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.camera import (

@@ -10,7 +10,7 @@ from viam.components.movement_sensor import (
     MovementSensorClient,
     MovementSensorService,
 )
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.proto.common import GeoPoint, Orientation, Vector3, DoCommandRequest, DoCommandResponse
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,

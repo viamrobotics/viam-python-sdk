@@ -2,11 +2,11 @@ import abc
 from typing import Generic, Type
 
 from viam.components.component_base import ComponentBase
-from viam.components.resource_manager import ResourceManager, ResourceType
+from viam.resource.manager import ResourceManager, ResourceType
 from viam.rpc.types import RPCServiceBase
 
 
-class ComponentServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
+class ComponentRPCServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
     """
     Base component service.
     All component services must inherit from this class.
@@ -34,5 +34,5 @@ class ComponentServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
             ResourceType: The component
         """
         if self.RESOURCE_TYPE == ComponentBase:
-            return self.manager._component_by_name_only(name)  # type: ignore
-        return self.manager.get_component(self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name))  # type: ignore
+            return self.manager._resource_by_name_only(name)  # type: ignore
+        return self.manager.get_resource(self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name))  # type: ignore

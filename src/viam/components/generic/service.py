@@ -2,7 +2,7 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.component.generic import GenericServiceBase
 from viam.proto.common import DoCommandRequest, DoCommandResponse
@@ -11,7 +11,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 # from .generic import Generic
 
 
-class GenericService(GenericServiceBase, ComponentServiceBase[ComponentBase]):
+class GenericService(GenericServiceBase, ComponentRPCServiceBase[ComponentBase]):
     """
     gRPC Service for a Generic component
     """

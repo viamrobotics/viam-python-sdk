@@ -3,7 +3,7 @@ from grpclib.client import Channel
 
 from viam.components.arm import Arm
 from viam.components.component_base import ComponentBase
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.resource.registry import ResourceRegistration, Registry
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Model, ModelFamily, Subtype, resource_name_from_string
@@ -13,7 +13,7 @@ class FakeComponent(ComponentBase):
     SUBTYPE = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "fake")
 
 
-class FakeComponentService(ComponentServiceBase[FakeComponent]):
+class FakeComponentService(ComponentRPCServiceBase[FakeComponent]):
     pass
 
 

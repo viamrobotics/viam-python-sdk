@@ -5,14 +5,14 @@ It defines the abstract class definition that all concrete implementations must 
 the gRPC service that will handle calls to the component,
 and the gRPC client that will be able to make calls to this component.
 
-In this example, the ```Gizmo``` abstract class defines what functionality is required for all Gizmos. It extends ```BaseComponent```,
-as all component types must. It also defines its specific ```SUBTYPE```, which is used internally to keep track of supported types.
+In this example, the ``Gizmo`` abstract class defines what functionality is required for all Gizmos. It extends ``ComponentBase``,
+as all component types must. It also defines its specific ``SUBTYPE``, which is used internally to keep track of supported types.
 
-The ```GizmoService``` implements the gRPC service for the Gizmo. This will allow other robots and clients to make requests of the Gizmo.
-It extends both from ```GizmoServiceBase``` and ```ComponentServiceBase[Gizmo]```. The former is the gRPC service as defined by the proto,
+The ``GizmoService`` implements the gRPC service for the Gizmo. This will allow other robots and clients to make requests of the Gizmo.
+It extends both from ``GizmoServiceBase`` and ``ComponentRPCServiceBase[Gizmo]``. The former is the gRPC service as defined by the proto,
 and the latter is the class that all gRPC services for components must inherit from.
 
-Finally, the ```GizmoClient``` is the gRPC client for a Gizmo. It inherits from Gizmo since it implements all the same functions. The
+Finally, the ``GizmoClient`` is the gRPC client for a Gizmo. It inherits from Gizmo since it implements all the same functions. The
 implementations are simply gRPC calls to some remote Gizmo.
 
 To see how this custom modular component is registered, see the __init__.py file.
@@ -20,16 +20,17 @@ To see the custom implementation of this component, see the my_gizmo.py file.
 """
 
 import abc
-from typing import Any, Dict, Final, List, Optional, Sequence
+from typing import Final, List, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
 from viam.components.generic.client import do_command
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, Subtype
+from viam.utils import ValueTypes
 
 from ..proto.gizmo_grpc import GizmoServiceBase, GizmoServiceStub
 from ..proto.gizmo_pb2 import (
@@ -72,7 +73,7 @@ class Gizmo(ComponentBase):
         ...
 
 
-class GizmoService(GizmoServiceBase, ComponentServiceBase[Gizmo]):
+class GizmoService(GizmoServiceBase, ComponentRPCServiceBase[Gizmo]):
     """Example gRPC service for the Gizmo component"""
 
     RESOURCE_TYPE = Gizmo
@@ -191,8 +192,8 @@ class GizmoClient(Gizmo):
 
     async def do_command(
         self,
-        command: Dict[str, Any],
+        command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
-    ) -> Dict[str, Any]:
+    ) -> Mapping[str, ValueTypes]:
         return await do_command(self.channel, self.name, command, timeout=timeout)

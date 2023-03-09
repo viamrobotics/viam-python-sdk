@@ -4,7 +4,7 @@ from grpclib.testing import ChannelFor
 from viam.components.generic.service import GenericService
 from viam.components.gripper import Gripper, GripperClient, create_status
 from viam.components.gripper.service import GripperService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.gripper import (
     GrabRequest,

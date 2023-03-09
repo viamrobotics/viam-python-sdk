@@ -6,8 +6,8 @@ import pytest
 from grpclib import const
 
 from viam.components.component_base import ComponentBase
-from viam.components.resource_manager import ResourceManager
-from viam.components.service_base import ComponentServiceBase
+from viam.resource.manager import ResourceManager
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.operations import run_with_operation
 from viam.resource.types import Subtype
 
@@ -15,7 +15,6 @@ from viam.resource.types import Subtype
 @pytest.mark.asyncio
 async def test_cancellation_propagation():
     class TestComponent(ComponentBase):
-
         SUBTYPE = Subtype("test", "test", "test")
 
         long_running_task_cancelled = False
@@ -31,8 +30,7 @@ async def test_cancellation_propagation():
             self.long_running_task_cancelled = False
             return self.long_running_task_cancelled
 
-    class TestService(ComponentServiceBase[TestComponent]):
-
+    class TestService(ComponentRPCServiceBase[TestComponent]):
         RESOURCE_TYPE = TestComponent
 
         async def long_running(self) -> bool:

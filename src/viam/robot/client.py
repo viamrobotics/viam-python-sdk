@@ -9,8 +9,8 @@ from typing_extensions import Self
 import viam
 from viam import logging
 from viam.components.component_base import ComponentBase
-from viam.components.resource_manager import ResourceManager
-from viam.errors import ResourceNotFoundError, ViamError
+from viam.resource.manager import ResourceManager
+from viam.errors import ResourceNotFoundError
 from viam.proto.common import PoseInFrame, ResourceName, Transform
 from viam.proto.robot import (
     BlockForOperationRequest,
@@ -36,7 +36,9 @@ from viam.proto.robot import (
     TransformPoseResponse,
 )
 from viam.resource.registry import Registry, Subtype
+from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
 from viam.rpc.dial import DialOptions, ViamChannel, dial
+from viam.services.service_base import ServiceBase
 from viam.utils import dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
@@ -284,10 +286,16 @@ class RobotClient:
         Returns:
             ComponentBase: The component
         """
-        if name.type != "component":
-            raise ViamError(f"ResourceName does not describe a component: {name}")
+        if name.type != RESOURCE_TYPE_COMPONENT:
+            raise ValueError(f"ResourceName does not describe a component: {name}")
         with self._lock:
-            return self._manager.get_component(ComponentBase, name)
+            return self._manager.get_resource(ComponentBase, name)
+
+    def get_service(self, name: ResourceName) -> ServiceBase:
+        if name.type != RESOURCE_TYPE_SERVICE:
+            raise ValueError(f"ResourceName does not describe a service: {name}")
+        with self._lock:
+            return self._manager.get_resource(ServiceBase, name)
 
     @property
     def resource_names(self) -> List[ResourceName]:

@@ -9,7 +9,7 @@ from viam.components.generic.service import GenericService
 from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,

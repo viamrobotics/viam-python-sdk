@@ -12,10 +12,10 @@ from ..gizmo.api import Gizmo
 
 
 class MyGizmo(Gizmo, Reconfigurable):
-    """This is the specific implementation of a ```Gizmo``` (defined in api.py).
+    """This is the specific implementation of a ``Gizmo`` (defined in api.py).
 
-    It inherits from Gizmo, as well conforms to the ```Reconfigurable``` protocol, which signifies that this component can be reconfigured.
-    It also specifies a function ```MyGizmo.new```, which conforms to the ```resource.types.ComponentCreator``` type, which is required
+    It inherits from Gizmo, as well conforms to the ``Reconfigurable`` protocol, which signifies that this component can be reconfigured.
+    It also specifies a function ``MyGizmo.new``, which conforms to the ``resource.types.ComponentCreator`` type, which is required
     for all models.
     """
 
@@ -23,7 +23,7 @@ class MyGizmo(Gizmo, Reconfigurable):
     my_arg: str
 
     @classmethod
-    def new(cls, dependencies: Mapping[ResourceName, ComponentBase], config: ComponentConfig) -> Self:
+    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]) -> Self:
         gizmo = cls(config.name)
         gizmo.my_arg = config.attributes.fields["arg1"].string_value
         return gizmo

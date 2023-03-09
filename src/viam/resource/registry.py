@@ -19,7 +19,7 @@ from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.proto.robot import Status
 from viam.rpc.types import RPCServiceBase
 
-from .types import ComponentCreator, Model, ResourceBase, Subtype
+from .types import ComponentCreator, Model, ResourceBase, ServiceCreator, Subtype
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
@@ -72,6 +72,7 @@ class Registry:
 
     _SUBTYPES: ClassVar[Dict[Subtype, ResourceRegistration]] = {}
     _COMPONENTS: ClassVar[Dict[str, ComponentCreator]] = {}
+    _SERVICES: ClassVar[Dict[str, ServiceCreator]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
@@ -91,13 +92,13 @@ class Registry:
 
     @classmethod
     def register_component_model(cls, subtype: Subtype, model: Model, component: ComponentCreator):
-        """Register a specific ```Model``` for the specific ```Subtype``` with the Registry
+        """Register a specific ``Model`` for the specific component ``Subtype`` with the Registry
 
         Args:
             subtype (Subtype): The Subtype of the component
             model (Model): The Model of the component
-            component (ComponentCreator): A function that can create a component given a mapping of dependencies (```ResourceName``` to
-                                          ```ComponentBase```)
+            component (ComponentCreator): A function that can create a component given a mapping of dependencies (``ResourceName`` to
+                                          ``ComponentBase``)
 
         Raises:
             DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
@@ -107,6 +108,25 @@ class Registry:
             if key in cls._COMPONENTS:
                 raise DuplicateResourceError(key)
             cls._COMPONENTS[key] = component
+
+    @classmethod
+    def register_service_model(cls, subtype: Subtype, model: Model, service: ServiceCreator):
+        """Register a specific ``Model`` for the specific service ``Subtype`` with the Registry
+
+        Args:
+            subtype (Subtype): The Subtype of the service
+            model (Model): The Model of the service
+            service (ServiceCreator): A function that can create a service given a mapping of dependencies (``ResourceName`` to
+                                          ``ServiceBase``)
+
+        Raises:
+            DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+        """
+        key = f"{subtype}/{model}"
+        with cls._lock:
+            if key in cls._SERVICES:
+                raise DuplicateResourceError(key)
+            cls._SERVICES[key] = service
 
     @classmethod
     def lookup_subtype(cls, subtype: Subtype) -> ResourceRegistration:
@@ -148,6 +168,26 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
+    def lookup_service(cls, subtype: Subtype, model: Model) -> ServiceCreator:
+        """Lookup and retrieve a registered service by its name
+
+        Args:
+            subtype (Subtype): The Subtype of the service
+            model (Model): The Model of the service
+
+        Raises:
+            ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
+
+        Returns:
+            ServiceCreator: The function to create the service
+        """
+        with cls._lock:
+            try:
+                return cls._SERVICES[f"{subtype}/{model}"]
+            except KeyError:
+                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+
+    @classmethod
     def REGISTERED_RESOURCES(cls) -> Mapping[Subtype, ResourceRegistration]:
         """The dictionary of all registered resources
         - Key: Subtype of the resource
@@ -163,3 +203,8 @@ class Registry:
     def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentCreator]:
         with cls._lock:
             return cls._COMPONENTS.copy()
+
+    @classmethod
+    def REGISTERED_SERVICES(cls) -> Mapping[str, ServiceCreator]:
+        with cls._lock:
+            return cls._SERVICES.copy()

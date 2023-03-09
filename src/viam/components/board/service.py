@@ -1,5 +1,5 @@
 from grpclib.server import Stream
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.board import (
@@ -28,7 +28,7 @@ from viam.utils import struct_to_dict, dict_to_struct
 from .board import Board
 
 
-class BoardService(BoardServiceBase, ComponentServiceBase[Board]):
+class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
     """
     gRPC Service for a Board
     """

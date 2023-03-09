@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gripper import (
@@ -19,7 +19,7 @@ from viam.utils import struct_to_dict, dict_to_struct
 from .gripper import Gripper
 
 
-class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
+class GripperService(GripperServiceBase, ComponentRPCServiceBase[Gripper]):
     """
     gRPC Service for a Gripper
     """

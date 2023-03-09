@@ -5,7 +5,7 @@ from h2.exceptions import StreamClosedError
 
 from grpclib.server import Stream
 import viam
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError, NotSupportedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
@@ -27,7 +27,7 @@ from .input import Control, Controller, Event, EventType
 LOGGER = viam.logging.getLogger(__name__)
 
 
-class InputControllerService(InputControllerServiceBase, ComponentServiceBase[Controller]):
+class InputControllerService(InputControllerServiceBase, ComponentRPCServiceBase[Controller]):
     """
     gRPC Service for an input controller
     """

@@ -1,7 +1,9 @@
 import re
 import sys
 from abc import abstractclassmethod, abstractmethod
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol
+from typing import TYPE_CHECKING, Any, Callable, ClassVar, Mapping, Optional, Protocol
+
+from viam.operations import Operation
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -16,6 +18,7 @@ from viam.proto.common import ResourceName
 if TYPE_CHECKING:
     from viam.components.component_base import ComponentBase
     from viam.robot.client import RobotClient
+    from viam.services.service_base import ServiceBase
     from viam.utils import ValueTypes
 
 RESOURCE_NAMESPACE_RDK = "rdk"
@@ -255,5 +258,22 @@ class ResourceBase(Protocol):
         """
         ...
 
+    def get_operation(self, kwargs: Mapping[str, Any]) -> Operation:
+        """Get the ``Operation`` associated with the currently running function.
 
-ComponentCreator: TypeAlias = Callable[[Mapping[ResourceName, "ComponentBase"], ComponentConfig], "ComponentBase"]
+        When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+        If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+        ).
+
+        Args:
+            kwargs (Mapping[str, Any]): The kwargs object containing the operation
+
+        Returns:
+            Operation: The operation associated with this function
+        """
+        return kwargs.get(Operation.ARG_NAME, Operation._noop())
+
+
+ComponentCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ComponentBase"]], "ComponentBase"]
+
+ServiceCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ServiceBase"]], "ServiceBase"]

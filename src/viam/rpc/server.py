@@ -8,8 +8,8 @@ from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
 
 from viam import logging
-from viam.components.resource_manager import ResourceManager
-from viam.components.service_base import ComponentServiceBase
+from viam.resource.manager import ResourceManager
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.resource.registry import Registry
 from viam.resource.types import ResourceBase
 from viam.robot.service import RobotService
@@ -39,7 +39,7 @@ class Server(ResourceManager):
 
         services = [SignalingService(), RobotService(manager=self)]
         for registration in Registry.REGISTERED_RESOURCES().values():
-            if issubclass(registration.rpc_service, ComponentServiceBase):
+            if issubclass(registration.rpc_service, ComponentRPCServiceBase):
                 services.append(registration.rpc_service(manager=self))
             else:
                 services.append(registration.rpc_service())

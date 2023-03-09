@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose, PoseInFrame
 from viam.proto.component.posetracker import (
     GetPosesRequest,

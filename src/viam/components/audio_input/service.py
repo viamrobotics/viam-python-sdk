@@ -6,7 +6,7 @@ from google.api.httpbody_pb2 import HttpBody
 from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError, NotSupportedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.gen.component.audioinput.v1.audioinput_pb2 import SampleFormat
@@ -23,7 +23,7 @@ from viam.utils import struct_to_dict, dict_to_struct
 from .audio_input import AudioInput
 
 
-class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput]):
+class AudioInputService(AudioInputServiceBase, ComponentRPCServiceBase[AudioInput]):
     """
     gRPC Service for a generic AudioInput
     """

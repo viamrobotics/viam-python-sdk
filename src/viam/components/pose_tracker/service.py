@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.posetracker import (
@@ -13,7 +13,7 @@ from viam.utils import struct_to_dict, dict_to_struct
 from .pose_tracker import PoseTracker
 
 
-class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracker]):
+class PoseTrackerService(PoseTrackerServiceBase, ComponentRPCServiceBase[PoseTracker]):
     """
     gRPC service for a pose tracker
     """

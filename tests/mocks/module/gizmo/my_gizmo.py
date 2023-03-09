@@ -12,12 +12,11 @@ from ..gizmo.api import Gizmo
 
 
 class MyGizmo(Gizmo, Reconfigurable):
-
     MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "mygizmo")
     my_arg: str
 
     @classmethod
-    def new(cls, dependencies: Mapping[ResourceName, ComponentBase], config: ComponentConfig) -> Self:
+    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]) -> Self:
         gizmo = cls(config.name)
         gizmo.my_arg = config.attributes.fields["arg1"].string_value
         return gizmo

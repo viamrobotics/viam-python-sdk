@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.movementsensor import (
@@ -26,7 +26,7 @@ from viam.proto.component.movementsensor import (
 from viam.utils import struct_to_dict, dict_to_struct
 
 
-class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[MovementSensor]):
+class MovementSensorService(MovementSensorServiceBase, ComponentRPCServiceBase[MovementSensor]):
     """
     gRPC Service for a MovementSensor
     """

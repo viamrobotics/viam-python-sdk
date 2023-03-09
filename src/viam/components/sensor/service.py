@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.sensor import (
@@ -13,7 +13,7 @@ from viam.utils import sensor_readings_native_to_value, struct_to_dict, dict_to_
 from .sensor import Sensor
 
 
-class SensorService(SensorServiceBase, ComponentServiceBase[Sensor]):
+class SensorService(SensorServiceBase, ComponentRPCServiceBase[Sensor]):
     """
     gRPC Service for a generic Sensor
     """

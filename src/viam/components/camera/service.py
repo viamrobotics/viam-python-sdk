@@ -1,7 +1,7 @@
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
+from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.media.video import CameraMimeType, RawImage
@@ -20,7 +20,7 @@ from viam.utils import struct_to_dict, dict_to_struct
 from .camera import Camera
 
 
-class CameraService(CameraServiceBase, ComponentServiceBase[Camera]):
+class CameraService(CameraServiceBase, ComponentRPCServiceBase[Camera]):
     """
     gRPC Service for a generic Camera
     """
