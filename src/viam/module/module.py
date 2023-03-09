@@ -111,11 +111,11 @@ class Module:
         model = Model.from_string(config.model, ignore_errors=True)
         if subtype.resource_type == RESOURCE_TYPE_COMPONENT:
             creator = Registry.lookup_component(subtype, model)
-            component = creator(dependencies, config)
+            component = creator(config, dependencies)
             self.server.register(component)
         elif subtype.resource_subtype == RESOURCE_TYPE_SERVICE:
             creator = Registry.lookup_service(subtype, model)
-            service = creator(dependencies, config)
+            service = creator(config, dependencies)
             self.server.register(service)
 
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
@@ -139,7 +139,7 @@ class Module:
 
     async def remove_resource(self, request: RemoveResourceRequest):
         rn = resource_name_from_string(request.name)
-        resource = self.server.get_resource(ComponentBase, rn)
+        resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Stoppable):
             if iscoroutinefunction(resource.stop):
                 await resource.stop()
@@ -159,6 +159,19 @@ class Module:
             registration = Registry.lookup_subtype(subtype)
             assert issubclass(registration.rpc_service, ComponentRPCServiceBase)
             service = registration.rpc_service(self.server)
+            service_name = _service_name(service)
+
+            models = svcname_to_models.get((service_name, subtype), [])
+            models.append(model)
+            svcname_to_models[(service_name, subtype)] = models
+
+        for subtype_model_str in Registry.REGISTERED_SERVICES().keys():
+            subtype_str, model_str = subtype_model_str.split("/")
+            subtype = Subtype.from_string(subtype_str)
+            model = Model.from_string(model_str)
+
+            registration = Registry.lookup_subtype(subtype)
+            service = registration.rpc_service()
             service_name = _service_name(service)
 
             models = svcname_to_models.get((service_name, subtype), [])

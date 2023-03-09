@@ -201,10 +201,24 @@ class Registry:
 
     @classmethod
     def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentCreator]:
+        """The dictionary of all registered components
+        - Key: subtype/model
+        - Value: The ComponentCreator for the component
+
+        Returns:
+            Mapping[str, ComponentCreator]: All registered components
+        """
         with cls._lock:
             return cls._COMPONENTS.copy()
 
     @classmethod
     def REGISTERED_SERVICES(cls) -> Mapping[str, ServiceCreator]:
+        """The dictionary of all registered services
+        - Key: subtype/model
+        - Value: The ServiceCreator for the service
+
+        Returns:
+            Mapping[str, ServiceCreator]: All registered services
+        """
         with cls._lock:
             return cls._SERVICES.copy()
