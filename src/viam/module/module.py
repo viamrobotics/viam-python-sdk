@@ -134,7 +134,7 @@ class Module:
             await self.add_resource(add_request)
 
     async def remove_resource(self, request: RemoveResourceRequest):
-        rn = resource_name_from_string(request.name.replace("/", ":"))
+        rn = resource_name_from_string(request.name)
         resource = self.server.get_component(ComponentBase, rn)
         if isinstance(resource, Stoppable):
             if iscoroutinefunction(resource.stop):

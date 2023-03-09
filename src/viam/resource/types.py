@@ -174,7 +174,7 @@ class Model:
 
 
 def resource_name_from_string(string: str) -> ResourceName:
-    """Create a ResourceName from its string representation (namespace:resource_type:resource_subtype:name)
+    """Create a ResourceName from its string representation (namespace:resource_type:resource_subtype/<optional_remote:>name)
 
     Args:
         string (str): The ResourceName as a string
@@ -185,10 +185,18 @@ def resource_name_from_string(string: str) -> ResourceName:
     Returns:
         ResourceName: The new ResourceName
     """
-    parts = string.split(":")
-    if len(parts) < 4:
+    regex = re.compile(r"^([\w-]+:[\w-]+:(?:[\w-]+))\/?([\w-]+:(?:[\w-]+:)*)?(.+)?$")
+    match = regex.match(string)
+    if not match:
         raise ValueError(f"{string} is not a valid ResourceName")
-    return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=":".join(parts[3:]))
+    parts = match[1].split(":")
+    if len(parts) != 3:
+        raise ValueError(f"{string} is not a valid ResourceName")
+    if match[2]:
+        name = f"{match[2]}{match[3]}"
+    else:
+        name = match[3]
+    return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=name)
 
 
 class ResourceBase(Protocol):
