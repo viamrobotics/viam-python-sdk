@@ -64,14 +64,14 @@
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase"><code class="docutils literal notranslate"><span class="pre">ComponentServiceBase</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase.RESOURCE_TYPE"><code class="docutils literal notranslate"><span class="pre">ComponentServiceBase.RESOURCE_TYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase.manager"><code class="docutils literal notranslate"><span class="pre">ComponentServiceBase.manager</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase.get_component"><code class="docutils literal notranslate"><span class="pre">ComponentServiceBase.get_component()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">ComponentServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase">ComponentServiceBase</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase.RESOURCE_TYPE">RESOURCE_TYPE</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase.manager">manager</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase.get_component">get_component</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.service_base.ComponentServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
 </ul>
@@ -139,6 +139,11 @@ All component services must inherit from this class.</p>
 <span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.service_base.ComponentServiceBase.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.service_base.ComponentServiceBase.manager">
+<span class="sig-name descname"><span class="pre">manager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../resource_manager/index.html#viam.components.resource_manager.ResourceManager" title="viam.components.resource_manager.ResourceManager"><span class="pre">viam.components.resource_manager.ResourceManager</span></a></em><a class="headerlink" href="#viam.components.service_base.ComponentServiceBase.manager" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.service_base.ComponentServiceBase.get_component">
 <span class="sig-name descname"><span class="pre">get_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.components.resource_manager.ResourceType</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/service_base.html#ComponentServiceBase.get_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.service_base.ComponentServiceBase.get_component" title="Permalink to this definition"></a></dt>
@@ -160,11 +165,6 @@ this function will raise an error</p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.service_base.ComponentServiceBase.__mapping__">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/service_base.html#ComponentServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.service_base.ComponentServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 

@@ -271,7 +271,7 @@
                 <span class="k">pass</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="o">=</span> <span class="n">resource_names</span>
-            <span class="k">if</span> <span class="n">manager</span><span class="o">.</span><span class="n">components</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">components</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">manager</span><span class="o">.</span><span class="n">resources</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span> <span class="o">=</span> <span class="n">manager</span></div>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_refresh_every</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>

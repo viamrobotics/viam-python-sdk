@@ -15,6 +15,7 @@ Classes
    viam.resource.types.Subtype
    viam.resource.types.ModelFamily
    viam.resource.types.Model
+   viam.resource.types.ResourceBase
 
 
 
@@ -218,6 +219,71 @@ Attributes
 
 
 .. py:function:: resource_name_from_string(string: str) -> viam.proto.common.ResourceName
+
+   Create a ResourceName from its string representation (namespace:resource_type:resource_subtype:name)
+
+   :param string: The ResourceName as a string
+   :type string: str
+
+   :raises ValueError: Raised if the provided string is not a valid ResourceName
+
+   :returns: The new ResourceName
+   :rtype: ResourceName
+
+
+.. py:class:: ResourceBase
+
+
+
+   The base requirements for a Resource.
+
+   .. py:attribute:: SUBTYPE
+      :type: ClassVar[Subtype]
+
+      The Subtype of the Resource
+
+   .. py:attribute:: name
+      :type: str
+
+      The name of the Resource
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the Resource named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the Resource
+      :type name: str
+
+      :returns: The Resource, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
 
 
 .. py:data:: ComponentCreator

@@ -29,16 +29,16 @@ Attributes
 
    
 
-.. py:class:: ResourceManager(components: List[viam.components.component_base.ComponentBase] = [])
+.. py:class:: ResourceManager(components: List[viam.resource.types.ResourceBase] = [])
 
    Registry containing all components registered to this server.
 
-   .. py:attribute:: components
-      :type: Dict[viam.proto.common.ResourceName, viam.components.component_base.ComponentBase]
+   .. py:attribute:: resources
+      :type: Dict[viam.proto.common.ResourceName, viam.resource.types.ResourceBase]
 
       
 
-   .. py:method:: register(component: viam.components.component_base.ComponentBase)
+   .. py:method:: register(component: viam.resource.types.ResourceBase)
 
       Register a new component with the registry.
       Components may not have the same name.

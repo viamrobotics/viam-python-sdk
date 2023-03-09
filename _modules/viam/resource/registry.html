@@ -100,47 +100,46 @@
 <span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">DuplicateResourceError</span><span class="p">,</span> <span class="n">ResourceNotFoundError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">Status</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.types</span> <span class="kn">import</span> <span class="n">RPCServiceBase</span>
 
-<span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">ComponentCreator</span><span class="p">,</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Subtype</span>
+<span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">ComponentCreator</span><span class="p">,</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">,</span> <span class="n">Subtype</span>
 
-<span class="n">Component</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Component&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ComponentBase</span><span class="p">)</span>
-
-
-<div class="viewcode-block" id="default_create_status"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.default_create_status">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">default_create_status</span><span class="p">(</span><span class="n">component</span><span class="p">:</span> <span class="n">ComponentBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">component</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">())</span></div>
+<span class="n">Resource</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Resource&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ResourceBase</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ComponentRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.ComponentRegistration">[docs]</a><span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">ComponentRegistration</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">Component</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;An object representing a component to be registered.</span>
+<div class="viewcode-block" id="default_create_status"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.default_create_status">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">default_create_status</span><span class="p">(</span><span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">resource</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">())</span></div>
 
-<span class="sd">    This object is generic over the component, and it includes various functionality for the component, such as creating its RPC client</span>
-<span class="sd">    or status.</span>
 
-<span class="sd">    If creating a custom Component type, you should register the component by creating a ``ComponentRegistration`` object and registering it</span>
+<div class="viewcode-block" id="ResourceRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.ResourceRegistration">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ResourceRegistration</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">Resource</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An object representing a resource to be registered.</span>
+
+<span class="sd">    This object is generic over the ``ResourceBase``, and it includes various functionality for the resource,</span>
+<span class="sd">    such as creating its RPC client or status.</span>
+
+<span class="sd">    If creating a custom Resource type, you should register the resource by creating a ``ResourceRegistration`` object and registering it</span>
 <span class="sd">    to the ``Registry``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">component_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Component</span><span class="p">]</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The type of the Component to be registered</span>
+    <span class="n">resource_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">Resource</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The type of the Resource to be registered</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">rpc_service</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">ComponentServiceBase</span><span class="p">]</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The RPC service of the component. This must extend from ``ComponentServiceBase``</span>
+    <span class="n">rpc_service</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">RPCServiceBase</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The type of the RPC service of the resource. This must extend from ``RPCServiceBase``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">create_rpc_client</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Channel</span><span class="p">],</span> <span class="n">Component</span><span class="p">]</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function that will create the RPC client for this component</span>
+    <span class="n">create_rpc_client</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Channel</span><span class="p">],</span> <span class="n">Resource</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function that will create the RPC client for this resource</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">create_status</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Component</span><span class="p">],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Status</span><span class="p">]]</span> <span class="o">=</span> <span class="n">default_create_status</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function to create a Status object for this component.</span>
+    <span class="n">create_status</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Resource</span><span class="p">],</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Status</span><span class="p">]]</span> <span class="o">=</span> <span class="n">default_create_status</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function to create a Status object for this resource.</span>
 
-<span class="sd">    If the Component does not provide a custom status type, the default implementation can be used.</span>
+<span class="sd">    If the resource does not provide a custom status type, the default implementation can be used.</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
@@ -149,31 +148,31 @@
 
 <span class="sd">    **NB** The Registry should almost never be used directly</span>
 
-<span class="sd">    The Registry keeps track of the types of Components that are available on robots using this SDK. All the base component types are</span>
+<span class="sd">    The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are</span>
 <span class="sd">    pre-registered (e.g. Arm, Motor).</span>
 
-<span class="sd">    If you create a new component type that is not an extension of any of the existing base component types, then you must register said</span>
-<span class="sd">    component using ``Registry.register(...)``.</span>
+<span class="sd">    If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said</span>
+<span class="sd">    resource using ``Registry.register(...)``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">_SUBTYPES</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Subtype</span><span class="p">,</span> <span class="n">ComponentRegistration</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_SUBTYPES</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Subtype</span><span class="p">,</span> <span class="n">ResourceRegistration</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">_COMPONENTS</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ComponentCreator</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">_lock</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Lock</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Registry.register_subtype"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register_subtype">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">register_subtype</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">registration</span><span class="p">:</span> <span class="n">ComponentRegistration</span><span class="p">[</span><span class="n">Component</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="nf">register_subtype</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">registration</span><span class="p">:</span> <span class="n">ResourceRegistration</span><span class="p">[</span><span class="n">Resource</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a Subtype with the Registry</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            registration (ComponentRegistration): Object containing registration data for the subtype</span>
+<span class="sd">            registration (ResourceRegistration): Object containing registration data for the subtype</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            DuplicateResourceError: Raised if the Subtype to register is already in the registry</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">registration</span><span class="o">.</span><span class="n">component_type</span><span class="o">.</span><span class="n">SUBTYPE</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">DuplicateResourceError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">registration</span><span class="o">.</span><span class="n">component_type</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">))</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="p">[</span><span class="n">registration</span><span class="o">.</span><span class="n">component_type</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">]</span> <span class="o">=</span> <span class="n">registration</span></div>
+            <span class="k">if</span> <span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="o">.</span><span class="n">SUBTYPE</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">DuplicateResourceError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">))</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="p">[</span><span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">]</span> <span class="o">=</span> <span class="n">registration</span></div>
 
 <div class="viewcode-block" id="Registry.register_component_model"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register_component_model">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">register_component_model</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="n">Subtype</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">Model</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">ComponentCreator</span><span class="p">):</span>
@@ -195,7 +194,7 @@
             <span class="bp">cls</span><span class="o">.</span><span class="n">_COMPONENTS</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span></div>
 
 <div class="viewcode-block" id="Registry.lookup_subtype"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.lookup_subtype">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">lookup_subtype</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="n">Subtype</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentRegistration</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">lookup_subtype</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="n">Subtype</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceRegistration</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Lookup and retrieve a registered Subtype by its name</span>
 
 <span class="sd">        Args:</span>
@@ -205,7 +204,7 @@
 <span class="sd">            ResourceNotFoundError: Raised if the Subtype is not registered</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            ComponentRegistration: The registration object of the component</span>
+<span class="sd">            ResourceRegistration: The registration object of the resource</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
@@ -234,13 +233,13 @@
                 <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span> <span class="n">subtype</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Registry.REGISTERED_RESOURCES"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.REGISTERED_RESOURCES">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">REGISTERED_RESOURCES</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Subtype</span><span class="p">,</span> <span class="n">ComponentRegistration</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">REGISTERED_RESOURCES</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Subtype</span><span class="p">,</span> <span class="n">ResourceRegistration</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The dictionary of all registered resources</span>
 <span class="sd">        - Key: Subtype of the resource</span>
 <span class="sd">        - Value: The registration object for the resource</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Mapping[Subtype, ComponentRegistration]: All registered resources</span>
+<span class="sd">            Mapping[Subtype, ResourceRegistration]: All registered resources</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>

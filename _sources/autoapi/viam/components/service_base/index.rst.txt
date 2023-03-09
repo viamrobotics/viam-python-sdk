@@ -28,6 +28,11 @@ Classes
 
       
 
+   .. py:attribute:: manager
+      :type: viam.components.resource_manager.ResourceManager
+
+      
+
    .. py:method:: get_component(name: str) -> viam.components.resource_manager.ResourceType
 
       Return the component with the given name if it exists in the registry.
@@ -41,10 +46,6 @@ Classes
 
       :returns: The component
       :rtype: ResourceType
-
-
-   .. py:method:: __mapping__() -> Mapping[str, grpclib.const.Handler]
-      :abstractmethod:
 
 
 

@@ -100,6 +100,13 @@
 
 
 <div class="viewcode-block" id="AudioInput"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput">[docs]</a><span class="k">class</span> <span class="nc">AudioInput</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">MediaSource</span><span class="p">[</span><span class="n">Audio</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;AudioInput represents a component that can capture audio.</span>
+
+<span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
+<span class="sd">    audio input implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
+<span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;audio_input&quot;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="AudioInput.Properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.Properties">[docs]</a>    <span class="nd">@dataclass</span>

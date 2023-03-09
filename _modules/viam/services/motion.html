@@ -83,7 +83,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.services.motion</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
@@ -104,8 +104,9 @@
     <span class="n">MoveSingleComponentRequest</span><span class="p">,</span>
     <span class="n">MoveSingleComponentResponse</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 <span class="kn">from</span> <span class="nn">viam.services.service_client_base</span> <span class="kn">import</span> <span class="n">ServiceClientBase</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span><span class="p">,</span> <span class="n">ValueTypes</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 
 <div class="viewcode-block" id="MotionServiceClient"><a class="viewcode-back" href="../../../autoapi/viam/services/motion/index.html#viam.services.motion.MotionServiceClient">[docs]</a><span class="k">class</span> <span class="nc">MotionServiceClient</span><span class="p">(</span><span class="n">ServiceClientBase</span><span class="p">):</span>
@@ -115,7 +116,7 @@
 <span class="sd">    ``world_state`` message, the motion planning service will also account for those.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">SERVICE_TYPE</span> <span class="o">=</span> <span class="s2">&quot;motion&quot;</span>
+    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;motion&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">MotionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>

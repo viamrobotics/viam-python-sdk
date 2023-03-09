@@ -93,9 +93,10 @@
 <span class="kn">from</span> <span class="nn">grpclib.utils</span> <span class="kn">import</span> <span class="n">graceful_exit</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.components.resource_manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
+<span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 <span class="kn">from</span> <span class="nn">viam.robot.service</span> <span class="kn">import</span> <span class="n">RobotService</span>
 
 <span class="kn">from</span> <span class="nn">.signaling</span> <span class="kn">import</span> <span class="n">SignalingService</span>
@@ -111,7 +112,7 @@
 <span class="sd">    gRPC Server</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ComponentBase</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">module_service</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;ModuleService&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">components</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceBase</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">module_service</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;ModuleService&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the Server with a list of components</span>
 <span class="sd">        to be managed.</span>
@@ -121,11 +122,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
 
-        <span class="n">services</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">SignalingService</span><span class="p">(),</span>
-            <span class="n">RobotService</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="bp">self</span><span class="p">),</span>
-            <span class="o">*</span><span class="p">[</span><span class="n">registration</span><span class="o">.</span><span class="n">rpc_service</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span> <span class="k">for</span> <span class="n">registration</span> <span class="ow">in</span> <span class="n">Registry</span><span class="o">.</span><span class="n">REGISTERED_RESOURCES</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()],</span>
-        <span class="p">]</span>
+        <span class="n">services</span> <span class="o">=</span> <span class="p">[</span><span class="n">SignalingService</span><span class="p">(),</span> <span class="n">RobotService</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="bp">self</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">registration</span> <span class="ow">in</span> <span class="n">Registry</span><span class="o">.</span><span class="n">REGISTERED_RESOURCES</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">registration</span><span class="o">.</span><span class="n">rpc_service</span><span class="p">,</span> <span class="n">ComponentServiceBase</span><span class="p">):</span>
+                <span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">registration</span><span class="o">.</span><span class="n">rpc_service</span><span class="p">(</span><span class="n">manager</span><span class="o">=</span><span class="bp">self</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">registration</span><span class="o">.</span><span class="n">rpc_service</span><span class="p">())</span>
+
         <span class="k">if</span> <span class="n">module_service</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">services</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">module_service</span><span class="p">)</span>
         <span class="n">services</span> <span class="o">=</span> <span class="n">ServerReflection</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">services</span><span class="p">)</span>
@@ -183,7 +186,7 @@
 <div class="viewcode-block" id="Server.create_and_serve"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.rpc.server.Server.create_and_serve">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">create_and_serve</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">components</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ComponentBase</span><span class="p">],</span>
+        <span class="n">components</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceBase</span><span class="p">],</span>
         <span class="n">host</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
         <span class="n">port</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">9090</span><span class="p">,</span>
         <span class="n">log_level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>

@@ -63,13 +63,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.SERVICE_TYPE"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.SERVICE_TYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.SUBTYPE</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.from_robot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.do_command"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.do_command()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase">ServiceClientBase</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.SERVICE_TYPE">SERVICE_TYPE</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.SUBTYPE">SUBTYPE</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.from_robot">from_robot</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.do_command">do_command</a></li>
 </ul>
@@ -134,8 +134,8 @@
 <dd><p>Base service client.
 All service clients must inherit from this class.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.service_client_base.ServiceClientBase.SERVICE_TYPE">
-<span class="sig-name descname"><span class="pre">SERVICE_TYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.service_client_base.ServiceClientBase.SERVICE_TYPE" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.services.service_client_base.ServiceClientBase.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.service_client_base.ServiceClientBase.SUBTYPE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -161,13 +161,13 @@ All service clients must inherit from this class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.service_client_base.ServiceClientBase.do_command">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/service_client_base.html#ServiceClientBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.service_client_base.ServiceClientBase.do_command" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands</p>
+<dd><p>Send/Receive arbitrary commands to the Resource</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>command</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the component does not support arbitrary commands</p>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the Resource does not support arbitrary commands</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Result of the executed command</p>

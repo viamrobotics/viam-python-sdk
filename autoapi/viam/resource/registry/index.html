@@ -91,8 +91,8 @@
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentRegistration</span></code></a></p></td>
-<td><p>An object representing a component to be registered.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRegistration</span></code></a></p></td>
+<td><p>An object representing a resource to be registered.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.registry.Registry" title="viam.resource.registry.Registry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Registry</span></code></a></p></td>
 <td><p>The global registry of robotic parts.</p></td>
@@ -114,52 +114,52 @@
 <h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.registry.Component" title="viam.resource.registry.Component"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Component</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.registry.Resource" title="viam.resource.registry.Resource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resource</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py data">
-<dt class="sig sig-object py" id="viam.resource.registry.Component">
-<span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">Component</span></span><a class="headerlink" href="#viam.resource.registry.Component" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.resource.registry.Resource">
+<span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">Resource</span></span><a class="headerlink" href="#viam.resource.registry.Resource" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.resource.registry.default_create_status">
-<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">default_create_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Status" title="viam.proto.robot.Status"><span class="pre">viam.proto.robot.Status</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#default_create_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.default_create_status" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">default_create_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.ResourceBase" title="viam.resource.types.ResourceBase"><span class="pre">viam.resource.types.ResourceBase</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Status" title="viam.proto.robot.Status"><span class="pre">viam.proto.robot.Status</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#default_create_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.default_create_status" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">ComponentRegistration</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#ComponentRegistration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.ComponentRegistration" title="Permalink to this definition"></a></dt>
-<dd><p>An object representing a component to be registered.</p>
-<p>This object is generic over the component, and it includes various functionality for the component, such as creating its RPC client
-or status.</p>
-<p>If creating a custom Component type, you should register the component by creating a <code class="docutils literal notranslate"><span class="pre">ComponentRegistration</span></code> object and registering it
+<dt class="sig sig-object py" id="viam.resource.registry.ResourceRegistration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">ResourceRegistration</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#ResourceRegistration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.ResourceRegistration" title="Permalink to this definition"></a></dt>
+<dd><p>An object representing a resource to be registered.</p>
+<p>This object is generic over the <code class="docutils literal notranslate"><span class="pre">ResourceBase</span></code>, and it includes various functionality for the resource,
+such as creating its RPC client or status.</p>
+<p>If creating a custom Resource type, you should register the resource by creating a <code class="docutils literal notranslate"><span class="pre">ResourceRegistration</span></code> object and registering it
 to the <code class="docutils literal notranslate"><span class="pre">Registry</span></code>.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration.component_type">
-<span class="sig-name descname"><span class="pre">component_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.component_type" title="Permalink to this definition"></a></dt>
-<dd><p>The type of the Component to be registered</p>
+<dt class="sig sig-object py" id="viam.resource.registry.ResourceRegistration.resource_type">
+<span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ResourceRegistration.resource_type" title="Permalink to this definition"></a></dt>
+<dd><p>The type of the Resource to be registered</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration.rpc_service">
-<span class="sig-name descname"><span class="pre">rpc_service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../components/service_base/index.html#viam.components.service_base.ComponentServiceBase" title="viam.components.service_base.ComponentServiceBase"><span class="pre">viam.components.service_base.ComponentServiceBase</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.rpc_service" title="Permalink to this definition"></a></dt>
-<dd><p>The RPC service of the component. This must extend from <code class="docutils literal notranslate"><span class="pre">ComponentServiceBase</span></code></p>
+<dt class="sig sig-object py" id="viam.resource.registry.ResourceRegistration.rpc_service">
+<span class="sig-name descname"><span class="pre">rpc_service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../rpc/types/index.html#viam.rpc.types.RPCServiceBase" title="viam.rpc.types.RPCServiceBase"><span class="pre">viam.rpc.types.RPCServiceBase</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ResourceRegistration.rpc_service" title="Permalink to this definition"></a></dt>
+<dd><p>The type of the RPC service of the resource. This must extend from <code class="docutils literal notranslate"><span class="pre">RPCServiceBase</span></code></p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration.create_rpc_client">
-<span class="sig-name descname"><span class="pre">create_rpc_client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.client.Channel</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.create_rpc_client" title="Permalink to this definition"></a></dt>
-<dd><p>A function that will create the RPC client for this component</p>
+<dt class="sig sig-object py" id="viam.resource.registry.ResourceRegistration.create_rpc_client">
+<span class="sig-name descname"><span class="pre">create_rpc_client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.client.Channel</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ResourceRegistration.create_rpc_client" title="Permalink to this definition"></a></dt>
+<dd><p>A function that will create the RPC client for this resource</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.registry.ComponentRegistration.create_status">
-<span class="sig-name descname"><span class="pre">create_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Coroutine</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Status" title="viam.proto.robot.Status"><span class="pre">viam.proto.robot.Status</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ComponentRegistration.create_status" title="Permalink to this definition"></a></dt>
-<dd><p>A function to create a Status object for this component.</p>
-<p>If the Component does not provide a custom status type, the default implementation can be used.</p>
+<dt class="sig sig-object py" id="viam.resource.registry.ResourceRegistration.create_status">
+<span class="sig-name descname"><span class="pre">create_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Coroutine</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Status" title="viam.proto.robot.Status"><span class="pre">viam.proto.robot.Status</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.registry.ResourceRegistration.create_status" title="Permalink to this definition"></a></dt>
+<dd><p>A function to create a Status object for this resource.</p>
+<p>If the resource does not provide a custom status type, the default implementation can be used.</p>
 </dd></dl>
 
 </dd></dl>
@@ -169,17 +169,17 @@ to the <code class="docutils literal notranslate"><span class="pre">Registry</sp
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">Registry</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry" title="Permalink to this definition"></a></dt>
 <dd><p>The global registry of robotic parts.</p>
 <p><strong>NB</strong> The Registry should almost never be used directly</p>
-<p>The Registry keeps track of the types of Components that are available on robots using this SDK. All the base component types are
+<p>The Registry keeps track of the types of Resources that are available on robots using this SDK. All the base resource types are
 pre-registered (e.g. Arm, Motor).</p>
-<p>If you create a new component type that is not an extension of any of the existing base component types, then you must register said
-component using <code class="docutils literal notranslate"><span class="pre">Registry.register(...)</span></code>.</p>
+<p>If you create a new resource type that is not an extension of any of the existing base resource types, then you must register said
+resource using <code class="docutils literal notranslate"><span class="pre">Registry.register(...)</span></code>.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.resource.registry.Registry.register_subtype">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Component</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.register_subtype" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Resource</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.register_subtype" title="Permalink to this definition"></a></dt>
 <dd><p>Register a Subtype with the Registry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>registration</strong> (<a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><em>ComponentRegistration</em></a>) – Object containing registration data for the subtype</p>
+<dd class="field-odd"><p><strong>registration</strong> (<a class="reference internal" href="#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><em>ResourceRegistration</em></a>) – Object containing registration data for the subtype</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Raised if the Subtype to register is already in the registry</p>
@@ -208,7 +208,7 @@ component using <code class="docutils literal notranslate"><span class="pre">Reg
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.resource.registry.Registry.lookup_subtype">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.lookup_subtype" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lookup_subtype</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.lookup_subtype"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.lookup_subtype" title="Permalink to this definition"></a></dt>
 <dd><p>Lookup and retrieve a registered Subtype by its name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -218,10 +218,10 @@ component using <code class="docutils literal notranslate"><span class="pre">Reg
 <dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.ResourceNotFoundError" title="viam.errors.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the Subtype is not registered</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The registration object of the component</p>
+<dd class="field-odd"><p>The registration object of the resource</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration">ComponentRegistration</a></p>
+<dd class="field-even"><p><a class="reference internal" href="#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration">ResourceRegistration</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -251,7 +251,7 @@ component using <code class="docutils literal notranslate"><span class="pre">Reg
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.resource.registry.Registry.REGISTERED_RESOURCES">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_RESOURCES</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration"><span class="pre">ComponentRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_RESOURCES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.REGISTERED_RESOURCES" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_RESOURCES</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration"><span class="pre">ResourceRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_RESOURCES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.Registry.REGISTERED_RESOURCES" title="Permalink to this definition"></a></dt>
 <dd><p>The dictionary of all registered resources
 - Key: Subtype of the resource
 - Value: The registration object for the resource</p>
@@ -260,7 +260,7 @@ component using <code class="docutils literal notranslate"><span class="pre">Reg
 <dd class="field-odd"><p>All registered resources</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Mapping[<a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype">Subtype</a>, <a class="reference internal" href="#viam.resource.registry.ComponentRegistration" title="viam.resource.registry.ComponentRegistration">ComponentRegistration</a>]</p>
+<dd class="field-even"><p>Mapping[<a class="reference internal" href="../types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype">Subtype</a>, <a class="reference internal" href="#viam.resource.registry.ResourceRegistration" title="viam.resource.registry.ResourceRegistration">ResourceRegistration</a>]</p>
 </dd>
 </dl>
 </dd></dl>

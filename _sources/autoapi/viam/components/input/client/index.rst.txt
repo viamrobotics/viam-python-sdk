@@ -81,12 +81,12 @@ Attributes
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
-      Send/Receive arbitrary commands
+      Send/Receive arbitrary commands to the Resource
 
       :param command: The command to execute
       :type command: Mapping[str, ValueTypes]
 
-      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
 
       :returns: Result of the executed command
       :rtype: Mapping[str, ValueTypes]

@@ -21,8 +21,11 @@ Classes
 
 
 
-   Base component.
-   All components must inherit from this class.
+   AudioInput represents a component that can capture audio.
+
+   This acts as an abstract base class for any drivers representing specific
+   audio input implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
 
    .. py:class:: Properties
 

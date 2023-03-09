@@ -41,20 +41,6 @@ Attributes
 
       
 
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
-      :classmethod:
-
-      Get the ResourceName for this component type with the given name
-
-      :param name: The name of the Component
-      :type name: str
-
-
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 
@@ -88,12 +74,12 @@ Attributes
       :abstractmethod:
       :async:
 
-      Send/Receive arbitrary commands
+      Send/Receive arbitrary commands to the Resource
 
       :param command: The command to execute
       :type command: Mapping[str, ValueTypes]
 
-      :raises NotImplementedError: Raised if the component does not support arbitrary commands
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
 
       :returns: Result of the executed command
       :rtype: Mapping[str, ValueTypes]

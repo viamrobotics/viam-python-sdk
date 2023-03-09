@@ -175,15 +175,17 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.audio_input.AudioInput" title="viam.components.audio_input.AudioInput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AudioInput</span></code></a></p></td>
-<td><p>Base component.</p></td>
+<td><p>AudioInput represents a component that can capture audio.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.audio_input.AudioInput">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.audio_input.</span></span><span class="sig-name descname"><span class="pre">AudioInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.AudioInput" title="Permalink to this definition"></a></dt>
-<dd><p>Base component.
-All components must inherit from this class.</p>
+<dd><p>AudioInput represents a component that can capture audio.</p>
+<p>This acts as an abstract base class for any drivers representing specific
+audio input implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
+overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.audio_input.AudioInput.Properties">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Properties</span></span><a class="reference internal" href="../../../../_modules/viam/components/audio_input/audio_input.html#AudioInput.Properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.audio_input.AudioInput.Properties" title="Permalink to this definition"></a></dt>
