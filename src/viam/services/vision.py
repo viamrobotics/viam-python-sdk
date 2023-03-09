@@ -2,7 +2,7 @@ import json
 from dataclasses import dataclass
 from enum import Enum
 from io import BytesIO
-from typing import Any, List, Mapping, Optional, Sequence, Union
+from typing import Any, Final, List, Mapping, Optional, Sequence, Union
 
 from grpclib.client import Channel
 from viam.media.viam_rgba_plugin import Image
@@ -38,6 +38,7 @@ from viam.proto.service.vision import (
     RemoveSegmenterRequest,
     VisionServiceStub,
 )
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
@@ -65,7 +66,7 @@ class VisionServiceClient(ServiceClientBase):
     (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
     """
 
-    SERVICE_TYPE = "vision"
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision")
 
     def __init__(self, name: str, channel: Channel):
         self.client = VisionServiceStub(channel)

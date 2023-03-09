@@ -1,7 +1,7 @@
 import asyncio
 from viam.proto.component.gantry import Status as GantryStatus
 from viam.proto.robot import Status
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 from viam.utils import message_to_struct
 
 from .client import GantryClient
@@ -19,4 +19,4 @@ async def create_status(component: Gantry) -> Status:
     return Status(name=Gantry.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register_subtype(ComponentRegistration(Gantry, GantryService, lambda name, channel: GantryClient(name, channel), create_status))
+Registry.register_subtype(ResourceRegistration(Gantry, GantryService, lambda name, channel: GantryClient(name, channel), create_status))

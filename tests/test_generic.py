@@ -15,7 +15,6 @@ from .mocks.components import MockGeneric
 
 
 class TestGeneric:
-
     generic = MockGeneric(name="generic")
 
     @pytest.mark.asyncio
@@ -26,11 +25,12 @@ class TestGeneric:
 
 
 class TestService:
-
-    name = "generic"
-    generic = MockGeneric(name=name)
-    manager = ResourceManager([generic])
-    service = GenericService(manager)
+    @classmethod
+    def setup_class(cls):
+        cls.name = "generic"
+        cls.generic = MockGeneric(name=cls.name)
+        cls.manager = ResourceManager([cls.generic])
+        cls.service = GenericService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -44,11 +44,12 @@ class TestService:
 
 
 class TestClient:
-
-    name = "generic"
-    generic = MockGeneric(name=name)
-    manager = ResourceManager([generic])
-    service = GenericService(manager)
+    @classmethod
+    def setup_class(cls):
+        cls.name = "generic"
+        cls.generic = MockGeneric(name=cls.name)
+        cls.manager = ResourceManager([cls.generic])
+        cls.service = GenericService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_do(self):

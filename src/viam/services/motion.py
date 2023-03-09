@@ -1,4 +1,4 @@
-from typing import Any, List, Mapping, Optional
+from typing import Any, Final, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -19,8 +19,9 @@ from viam.proto.service.motion import (
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
 )
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 
 class MotionServiceClient(ServiceClientBase):
@@ -30,7 +31,7 @@ class MotionServiceClient(ServiceClientBase):
     ``world_state`` message, the motion planning service will also account for those.
     """
 
-    SERVICE_TYPE = "motion"
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion")
 
     def __init__(self, name: str, channel: Channel):
         self.client = MotionServiceStub(channel)

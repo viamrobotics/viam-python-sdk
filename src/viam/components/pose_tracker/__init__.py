@@ -1,4 +1,4 @@
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 
 from .client import PoseTrackerClient
 from .pose_tracker import PoseTracker
@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 Registry.register_subtype(
-    ComponentRegistration(
+    ResourceRegistration(
         PoseTracker,
         PoseTrackerService,
         lambda name, channel: PoseTrackerClient(name, channel),

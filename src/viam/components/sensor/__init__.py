@@ -1,4 +1,4 @@
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 
 from .client import SensorClient
 from .sensor import Sensor
@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 Registry.register_subtype(
-    ComponentRegistration(
+    ResourceRegistration(
         Sensor,
         SensorService,
         lambda name, channel: SensorClient(name, channel),

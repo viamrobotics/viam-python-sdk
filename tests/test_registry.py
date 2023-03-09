@@ -5,7 +5,7 @@ from viam.components.arm import Arm
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
-from viam.resource.registry import ComponentRegistration, Registry
+from viam.resource.registry import ResourceRegistration, Registry
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Model, ModelFamily, Subtype, resource_name_from_string
 
 
@@ -42,14 +42,14 @@ def test_lookup():
         Registry.lookup_subtype(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "fake"))
 
     component = Registry.lookup_subtype(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm"))
-    assert component.component_type.SUBTYPE == Arm.SUBTYPE
+    assert component.resource_type.SUBTYPE == Arm.SUBTYPE
 
 
 def test_registration():
     assert FakeComponent.SUBTYPE not in Registry.REGISTERED_RESOURCES()
 
     Registry.register_subtype(
-        ComponentRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
+        ResourceRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
     )
     assert FakeComponent.SUBTYPE in Registry.REGISTERED_RESOURCES()
     component = Registry.lookup_subtype(FakeComponent.SUBTYPE)
@@ -57,7 +57,7 @@ def test_registration():
 
     with pytest.raises(DuplicateResourceError):
         Registry.register_subtype(
-            ComponentRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
+            ResourceRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
         )
 
 

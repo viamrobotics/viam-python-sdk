@@ -1,8 +1,8 @@
-from typing import Any, List, Mapping, Optional
+from typing import Any, Final, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import ResourceName, DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, ResourceName
 from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -10,14 +10,20 @@ from viam.proto.service.sensors import (
     GetSensorsResponse,
     SensorsServiceStub,
 )
-from viam.utils import dict_to_struct, struct_to_dict, sensor_readings_value_to_native, ValueTypes
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
+from viam.utils import (
+    ValueTypes,
+    dict_to_struct,
+    sensor_readings_value_to_native,
+    struct_to_dict,
+)
 
 
 class SensorsServiceClient(ServiceClientBase):
     """Connect to the SensorService, which centralizes all Sensors in a single place"""
 
-    SERVICE_TYPE = "sensors"
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "sensors")
 
     def __init__(self, name: str, channel: Channel):
         self.client = SensorsServiceStub(channel)

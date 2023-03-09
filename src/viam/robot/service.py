@@ -42,7 +42,7 @@ from viam.proto.robot import (
     TransformPoseResponse,
 )
 from viam.resource.registry import Registry
-from viam.utils import resource_names_for_component, struct_to_dict
+from viam.utils import resource_names_for_resource, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -51,17 +51,17 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
     def _generate_metadata(self) -> List[ResourceName]:
         md: List[ResourceName] = []
 
-        for component in self.manager.components.values():
-            md.extend(resource_names_for_component(component))
+        for component in self.manager.resources.values():
+            md.extend(resource_names_for_resource(component))
 
         return md
 
     async def _generate_status(self, resource_names: Iterable[ResourceName]) -> List[Status]:
         statuses: List[Status] = []
 
-        for component in self.manager.components.values():
+        for component in self.manager.resources.values():
             for registration in Registry.REGISTERED_RESOURCES().values():
-                if isinstance(component, registration.component_type):
+                if isinstance(component, registration.resource_type):
                     if resource_names and component.get_resource_name(component.name) not in resource_names:
                         continue
                     try:
@@ -131,7 +131,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
             extra[ex.name] = struct_to_dict(ex.params)
 
         errors: List[str] = []
-        for component in self.manager.components.values():
+        for component in self.manager.resources.values():
             if callable(getattr(component, "stop", None)):
                 try:
                     rn = component.get_resource_name(component.name)

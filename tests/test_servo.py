@@ -14,14 +14,13 @@ from viam.proto.component.servo import (
     ServoServiceStub,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
+from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockServo
 
 
 class TestServo:
-
     servo = MockServo(name="servo")
     pos = 42
 
@@ -69,12 +68,13 @@ class TestServo:
 
 
 class TestService:
-
-    name = "servo"
-    servo = MockServo(name=name)
-    manager = ResourceManager([servo])
-    service = ServoService(manager)
-    pos = 42
+    @classmethod
+    def setup_class(cls):
+        cls.name = "servo"
+        cls.servo = MockServo(name=cls.name)
+        cls.manager = ResourceManager([cls.servo])
+        cls.service = ServoService(cls.manager)
+        cls.pos = 42
 
     @pytest.mark.asyncio
     async def test_move(self):
@@ -129,12 +129,13 @@ class TestService:
 
 
 class TestClient:
-
-    name = "servo"
-    servo = MockServo(name=name)
-    manager = ResourceManager([servo])
-    service = ServoService(manager)
-    pos = 42
+    @classmethod
+    def setup_class(cls):
+        cls.name = "servo"
+        cls.servo = MockServo(name=cls.name)
+        cls.manager = ResourceManager([cls.servo])
+        cls.service = ServoService(cls.manager)
+        cls.pos = 42
 
     @pytest.mark.asyncio
     async def test_move(self):

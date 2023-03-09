@@ -49,7 +49,6 @@ def service(module: Module) -> ModuleService:
 
 @pytest.mark.usefixtures("module")
 class TestModule:
-
     module: Module
 
     @pytest.mark.asyncio
@@ -64,9 +63,9 @@ class TestModule:
                 api="acme:component:gizmo",
             )
         )
-        assert Gizmo.get_resource_name("gizmo1") not in self.module.server.components
+        assert Gizmo.get_resource_name("gizmo1") not in self.module.server.resources
         await self.module.add_resource(req)
-        assert Gizmo.get_resource_name("gizmo1") in self.module.server.components
+        assert Gizmo.get_resource_name("gizmo1") in self.module.server.resources
 
     @pytest.mark.asyncio
     async def test_reconfigure_resource(self):
@@ -87,10 +86,10 @@ class TestModule:
 
     @pytest.mark.asyncio
     async def test_remove_resource(self):
-        assert Gizmo.get_resource_name("gizmo1") in self.module.server.components
+        assert Gizmo.get_resource_name("gizmo1") in self.module.server.resources
         req = RemoveResourceRequest(name="acme:component:gizmo/gizmo1")
         await self.module.remove_resource(req)
-        assert Gizmo.get_resource_name("gizmo1") not in self.module.server.components
+        assert Gizmo.get_resource_name("gizmo1") not in self.module.server.resources
 
     @pytest.mark.asyncio
     async def test_ready(self):
