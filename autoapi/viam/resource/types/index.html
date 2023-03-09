@@ -111,7 +111,7 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.types.resource_name_from_string" title="viam.resource.types.resource_name_from_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resource_name_from_string</span></code></a>(→ viam.proto.common.ResourceName)</p></td>
-<td><p>Create a ResourceName from its string representation (namespace:resource_type:resource_subtype:name)</p></td>
+<td><p>Create a ResourceName from its string representation (namespace:resource_type:resource_subtype/&lt;optional_remote:&gt;name)</p></td>
 </tr>
 </tbody>
 </table>
@@ -355,7 +355,7 @@ rather than raise an exception. Defaults to False.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.resource.types.resource_name_from_string">
 <span class="sig-prename descclassname"><span class="pre">viam.resource.types.</span></span><span class="sig-name descname"><span class="pre">resource_name_from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/types.html#resource_name_from_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.types.resource_name_from_string" title="Permalink to this definition"></a></dt>
-<dd><p>Create a ResourceName from its string representation (namespace:resource_type:resource_subtype:name)</p>
+<dd><p>Create a ResourceName from its string representation (namespace:resource_type:resource_subtype/&lt;optional_remote:&gt;name)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – The ResourceName as a string</p>
