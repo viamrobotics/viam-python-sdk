@@ -125,14 +125,14 @@ def test_model():
 
 def test_resource_name_from_string():
     # normal
-    rn = resource_name_from_string("namespace:type:subtype:name")
+    rn = resource_name_from_string("namespace:type:subtype/name")
     assert rn.namespace == "namespace"
     assert rn.type == "type"
     assert rn.subtype == "subtype"
     assert rn.name == "name"
 
     # remote
-    rn = resource_name_from_string("ns:tp:st:remote:nm")
+    rn = resource_name_from_string("ns:tp:st/remote:nm")
     assert rn.namespace == "ns"
     assert rn.type == "tp"
     assert rn.subtype == "st"

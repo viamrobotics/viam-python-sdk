@@ -41,4 +41,4 @@ sys.excepthook = _log_exceptions
 ##################
 # MONKEY PATCHES #
 ##################
-_ResourceName.__hash__ = lambda self: hash(f"{self.namespace}/{self.type}/{self.subtype}/{self.name}")
+_ResourceName.__hash__ = lambda self: hash(f"{self.namespace}:{self.type}:{self.subtype}/{self.name}")
