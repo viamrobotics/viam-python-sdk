@@ -224,6 +224,9 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
     opts = options if options else DialOptions()
     insecure = opts.insecure
 
+    if pathlib.Path(address).is_socket():
+        return Channel(path=address)
+
     host, port = _host_port_from_url(address)
     if not port:
         port = 80 if insecure else 443
