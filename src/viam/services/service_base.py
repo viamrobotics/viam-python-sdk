@@ -1,5 +1,7 @@
 import abc
-from typing import TYPE_CHECKING, ClassVar, Mapping, Optional, Self, cast
+from typing import TYPE_CHECKING, ClassVar, Mapping, Optional, cast
+
+from typing_extensions import Self
 
 from viam.resource.base import ResourceBase
 from viam.utils import ValueTypes

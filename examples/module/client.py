@@ -9,9 +9,9 @@ from viam.rpc.dial import Credentials, DialOptions
 
 
 async def connect():
-    creds = Credentials(type="robot-location-secret", payload="pem1epjv07fq2cz2z5723gq6ntuyhue5t30boohkiz3iqht4")
+    creds = Credentials(type="robot-location-secret", payload="<ROBOT_LOCATION_SECRET>")
     opts = RobotClient.Options(refresh_interval=0, dial_options=DialOptions(credentials=creds), log_level=logging.DEBUG)
-    return await RobotClient.at_address("naveed-pi-main.60758fe0f6.viam.cloud", opts)
+    return await RobotClient.at_address("<ROBOT_ADDRESS>", opts)
 
 
 async def main():
