@@ -1,4 +1,3 @@
-import asyncio
 from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
@@ -53,22 +52,20 @@ class Module:
         self._ready = True
         self._lock = Lock()
 
-    def _connect_to_parent(self):
+    async def _connect_to_parent(self):
         if self.parent is None:
             if self._parent_address is None:
                 raise ValueError("Parent address not found")
-            self.parent = asyncio.run(
-                RobotClient.at_address(
-                    self._parent_address,
-                    RobotClient.Options(
-                        dial_options=DialOptions(disable_webrtc=True, allow_insecure_with_creds_downgrade=True),
-                        log_level=self._log_level,
-                    ),
-                )
+            self.parent = await RobotClient.at_address(
+                self._parent_address,
+                RobotClient.Options(
+                    dial_options=DialOptions(disable_webrtc=True, insecure=True),
+                    log_level=self._log_level,
+                ),
             )
 
     async def _get_component(self, name: ResourceName) -> ComponentBase:
-        self._connect_to_parent()
+        await self._connect_to_parent()
         assert self.parent is not None
         await self.parent.refresh()
         return self.parent.get_component(name)
