@@ -309,6 +309,9 @@
     <span class="n">opts</span> <span class="o">=</span> <span class="n">options</span> <span class="k">if</span> <span class="n">options</span> <span class="k">else</span> <span class="n">DialOptions</span><span class="p">()</span>
     <span class="n">insecure</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">insecure</span>
 
+    <span class="k">if</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="o">.</span><span class="n">is_socket</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">Channel</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">address</span><span class="p">)</span>
+
     <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="n">_host_port_from_url</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">port</span><span class="p">:</span>
         <span class="n">port</span> <span class="o">=</span> <span class="mi">80</span> <span class="k">if</span> <span class="n">insecure</span> <span class="k">else</span> <span class="mi">443</span>
