@@ -140,6 +140,8 @@ def struct_to_message(struct: Struct, message_type: Type[_T]) -> _T:
 
 def dict_to_struct(obj: Mapping[str, ValueTypes]) -> Struct:
     def _convert(v: ValueTypes) -> Any:
+        if isinstance(v, bool):
+            return v
         if isinstance(v, SupportsFloat):
             return float(v)
         if isinstance(v, SupportsBytes):
