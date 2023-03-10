@@ -20,8 +20,9 @@ from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
-from viam.resource.registry import Registry, Subtype
-from viam.resource.types import ResourceBase
+from viam.resource.base import ResourceBase
+from viam.resource.registry import Registry
+from viam.resource.types import Subtype
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable

@@ -2,16 +2,16 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
-from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
-from viam.proto.component.generic import GenericServiceBase
 from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.component.generic import GenericServiceBase
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
 # from .generic import Generic
 
 
-class GenericService(GenericServiceBase, ComponentRPCServiceBase[ComponentBase]):
+class GenericService(GenericServiceBase, ResourceRPCServiceBase[ComponentBase]):
     """
     gRPC Service for a Generic component
     """
@@ -23,7 +23,7 @@ class GenericService(GenericServiceBase, ComponentRPCServiceBase[ComponentBase])
         assert request is not None
         name = request.name
         try:
-            component = self.get_component(name)
+            component = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         try:

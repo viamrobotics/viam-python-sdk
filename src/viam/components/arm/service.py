@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
@@ -18,12 +17,13 @@ from viam.proto.component.arm import (
     StopRequest,
     StopResponse,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .arm import Arm
 
 
-class ArmService(ArmServiceBase, ComponentRPCServiceBase[Arm]):
+class ArmService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
     """
     gRPC Service for an Arm
     """
@@ -35,7 +35,7 @@ class ArmService(ArmServiceBase, ComponentRPCServiceBase[Arm]):
         assert request is not None
         name = request.name
         try:
-            arm = self.get_component(name)
+            arm = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -48,7 +48,7 @@ class ArmService(ArmServiceBase, ComponentRPCServiceBase[Arm]):
         assert request is not None
         name = request.name
         try:
-            arm = self.get_component(name)
+            arm = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -63,7 +63,7 @@ class ArmService(ArmServiceBase, ComponentRPCServiceBase[Arm]):
         assert request is not None
         name = request.name
         try:
-            arm = self.get_component(name)
+            arm = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -76,7 +76,7 @@ class ArmService(ArmServiceBase, ComponentRPCServiceBase[Arm]):
         assert request is not None
         name = request.name
         try:
-            arm = self.get_component(name)
+            arm = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -89,7 +89,7 @@ class ArmService(ArmServiceBase, ComponentRPCServiceBase[Arm]):
         assert request is not None
         name = request.name
         try:
-            arm = self.get_component(name)
+            arm = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -102,7 +102,7 @@ class ArmService(ArmServiceBase, ComponentRPCServiceBase[Arm]):
         assert request is not None
         name = request.name
         try:
-            arm = self.get_component(name)
+            arm = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await arm.is_moving()
@@ -113,7 +113,7 @@ class ArmService(ArmServiceBase, ComponentRPCServiceBase[Arm]):
         request = await stream.recv_message()
         assert request is not None
         try:
-            arm = self.get_component(request.name)
+            arm = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

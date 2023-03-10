@@ -4,6 +4,7 @@ import sys
 from viam.module.module import Module
 
 from .gizmo import Gizmo, MyGizmo
+from .summation import MySummationService, SummationService
 
 
 async def main(address: str):
@@ -16,6 +17,7 @@ async def main(address: str):
 
     module = Module(address)
     module.add_model_from_registry(Gizmo.SUBTYPE, MyGizmo.MODEL)
+    module.add_model_from_registry(SummationService.SUBTYPE, MySummationService.MODEL)
     await module.start()
 
 

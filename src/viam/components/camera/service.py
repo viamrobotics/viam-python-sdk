@@ -1,10 +1,9 @@
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
-from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.media.video import CameraMimeType, RawImage
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
     GetImageRequest,
@@ -15,12 +14,13 @@ from viam.proto.component.camera import (
     GetPropertiesResponse,
     RenderFrameRequest,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .camera import Camera
 
 
-class CameraService(CameraServiceBase, ComponentRPCServiceBase[Camera]):
+class CameraService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
     """
     gRPC Service for a generic Camera
     """
@@ -32,7 +32,7 @@ class CameraService(CameraServiceBase, ComponentRPCServiceBase[Camera]):
         assert request is not None
         name = request.name
         try:
-            camera = self.get_component(name)
+            camera = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
 
@@ -56,7 +56,7 @@ class CameraService(CameraServiceBase, ComponentRPCServiceBase[Camera]):
         assert request is not None
         name = request.name
         try:
-            camera = self.get_component(name)
+            camera = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         try:
@@ -77,7 +77,7 @@ class CameraService(CameraServiceBase, ComponentRPCServiceBase[Camera]):
         assert request is not None
         name = request.name
         try:
-            camera = self.get_component(name)
+            camera = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -90,7 +90,7 @@ class CameraService(CameraServiceBase, ComponentRPCServiceBase[Camera]):
         assert request is not None
         name = request.name
         try:
-            camera = self.get_component(name)
+            camera = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -106,7 +106,7 @@ class CameraService(CameraServiceBase, ComponentRPCServiceBase[Camera]):
         request = await stream.recv_message()
         assert request is not None
         try:
-            camera = self.get_component(request.name)
+            camera = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

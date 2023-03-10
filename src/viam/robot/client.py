@@ -9,7 +9,6 @@ from typing_extensions import Self
 import viam
 from viam import logging
 from viam.components.component_base import ComponentBase
-from viam.resource.manager import ResourceManager
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import PoseInFrame, ResourceName, Transform
 from viam.proto.robot import (
@@ -35,8 +34,9 @@ from viam.proto.robot import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
-from viam.resource.registry import Registry, Subtype
-from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
+from viam.resource.manager import ResourceManager
+from viam.resource.registry import Registry
+from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.utils import dict_to_struct
@@ -178,7 +178,7 @@ class RobotClient:
             return
         manager = ResourceManager()
         for rname in resource_names:
-            if rname.type != "component":
+            if rname.type not in [RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE]:
                 continue
             if rname.subtype == "remote":
                 continue

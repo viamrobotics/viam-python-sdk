@@ -1,16 +1,23 @@
-from typing import TYPE_CHECKING, Mapping, Optional, Protocol, Self, cast
+import abc
+from typing import TYPE_CHECKING, ClassVar, Mapping, Optional, Self, cast
 
-from viam.resource.types import ResourceBase
+from viam.resource.base import ResourceBase
 from viam.utils import ValueTypes
 
 if TYPE_CHECKING:
+    from viam.resource.types import Subtype
     from viam.robot.client import RobotClient
 
 
-class ServiceBase(ResourceBase, Protocol):
+class ServiceBase(abc.ABC, ResourceBase):
     """This class describes the base functionality required for a Viam Service.
     All services must inherit from this class.
     """
+
+    SUBTYPE: ClassVar["Subtype"]
+
+    def __init__(self, name: str) -> None:
+        self.name = name
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:

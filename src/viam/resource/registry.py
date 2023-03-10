@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from threading import Lock
 from typing import (
+    TYPE_CHECKING,
     Any,
     Callable,
     ClassVar,
@@ -17,9 +18,12 @@ from grpclib.client import Channel
 
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.proto.robot import Status
-from viam.rpc.types import RPCServiceBase
 
-from .types import ComponentCreator, Model, ResourceBase, ServiceCreator, Subtype
+from .base import ResourceBase
+
+if TYPE_CHECKING:
+    from .rpc_service_base import ResourceRPCServiceBase
+    from .types import ComponentCreator, Model, ServiceCreator, Subtype
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
@@ -43,7 +47,7 @@ class ResourceRegistration(Generic[Resource]):
     """The type of the Resource to be registered
     """
 
-    rpc_service: Type[RPCServiceBase]
+    rpc_service: Type["ResourceRPCServiceBase"]
     """The type of the RPC service of the resource. This must extend from ``RPCServiceBase``
     """
 
@@ -70,9 +74,9 @@ class Registry:
     resource using ``Registry.register(...)``.
     """
 
-    _SUBTYPES: ClassVar[Dict[Subtype, ResourceRegistration]] = {}
-    _COMPONENTS: ClassVar[Dict[str, ComponentCreator]] = {}
-    _SERVICES: ClassVar[Dict[str, ServiceCreator]] = {}
+    _SUBTYPES: ClassVar[Dict["Subtype", ResourceRegistration]] = {}
+    _COMPONENTS: ClassVar[Dict[str, "ComponentCreator"]] = {}
+    _SERVICES: ClassVar[Dict[str, "ServiceCreator"]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
@@ -91,7 +95,7 @@ class Registry:
             cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
 
     @classmethod
-    def register_component_model(cls, subtype: Subtype, model: Model, component: ComponentCreator):
+    def register_component_model(cls, subtype: "Subtype", model: "Model", component: "ComponentCreator"):
         """Register a specific ``Model`` for the specific component ``Subtype`` with the Registry
 
         Args:
@@ -110,7 +114,7 @@ class Registry:
             cls._COMPONENTS[key] = component
 
     @classmethod
-    def register_service_model(cls, subtype: Subtype, model: Model, service: ServiceCreator):
+    def register_service_model(cls, subtype: "Subtype", model: "Model", service: "ServiceCreator"):
         """Register a specific ``Model`` for the specific service ``Subtype`` with the Registry
 
         Args:
@@ -129,7 +133,7 @@ class Registry:
             cls._SERVICES[key] = service
 
     @classmethod
-    def lookup_subtype(cls, subtype: Subtype) -> ResourceRegistration:
+    def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
         """Lookup and retrieve a registered Subtype by its name
 
         Args:
@@ -148,7 +152,7 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def lookup_component(cls, subtype: Subtype, model: Model) -> ComponentCreator:
+    def lookup_component(cls, subtype: "Subtype", model: "Model") -> "ComponentCreator":
         """Lookup and retrieve a registered component by its name
 
         Args:
@@ -168,7 +172,7 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def lookup_service(cls, subtype: Subtype, model: Model) -> ServiceCreator:
+    def lookup_service(cls, subtype: "Subtype", model: "Model") -> "ServiceCreator":
         """Lookup and retrieve a registered service by its name
 
         Args:
@@ -188,7 +192,7 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def REGISTERED_RESOURCES(cls) -> Mapping[Subtype, ResourceRegistration]:
+    def REGISTERED_RESOURCES(cls) -> Mapping["Subtype", ResourceRegistration]:
         """The dictionary of all registered resources
         - Key: Subtype of the resource
         - Value: The registration object for the resource
@@ -200,7 +204,7 @@ class Registry:
             return cls._SUBTYPES.copy()
 
     @classmethod
-    def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentCreator]:
+    def REGISTERED_COMPONENTS(cls) -> Mapping[str, "ComponentCreator"]:
         """The dictionary of all registered components
         - Key: subtype/model
         - Value: The ComponentCreator for the component
@@ -212,7 +216,7 @@ class Registry:
             return cls._COMPONENTS.copy()
 
     @classmethod
-    def REGISTERED_SERVICES(cls) -> Mapping[str, ServiceCreator]:
+    def REGISTERED_SERVICES(cls) -> Mapping[str, "ServiceCreator"]:
         """The dictionary of all registered services
         - Key: subtype/model
         - Value: The ServiceCreator for the service

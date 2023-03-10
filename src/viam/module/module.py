@@ -6,10 +6,8 @@ from grpclib.utils import _service_name
 
 from viam import logging
 from viam.components.component_base import ComponentBase
-from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.app.robot import ComponentConfig
-from viam.proto.common import ResourceName
 from viam.proto.module import (
     AddResourceRequest,
     HandlerDefinition,
@@ -20,12 +18,13 @@ from viam.proto.module import (
     RemoveResourceRequest,
 )
 from viam.proto.robot import ResourceRPCSubtype
+from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.types import (
     RESOURCE_TYPE_COMPONENT,
     RESOURCE_TYPE_SERVICE,
     Model,
-    ResourceBase,
+    ResourceName,
     Subtype,
     resource_name_from_string,
 )
@@ -113,7 +112,7 @@ class Module:
             creator = Registry.lookup_component(subtype, model)
             component = creator(config, dependencies)
             self.server.register(component)
-        elif subtype.resource_subtype == RESOURCE_TYPE_SERVICE:
+        elif subtype.resource_type == RESOURCE_TYPE_SERVICE:
             creator = Registry.lookup_service(subtype, model)
             service = creator(config, dependencies)
             self.server.register(service)
@@ -157,7 +156,6 @@ class Module:
             model = Model.from_string(model_str)
 
             registration = Registry.lookup_subtype(subtype)
-            assert issubclass(registration.rpc_service, ComponentRPCServiceBase)
             service = registration.rpc_service(self.server)
             service_name = _service_name(service)
 
@@ -171,7 +169,7 @@ class Module:
             model = Model.from_string(model_str)
 
             registration = Registry.lookup_subtype(subtype)
-            service = registration.rpc_service()
+            service = registration.rpc_service(self.server)
             service_name = _service_name(service)
 
             models = svcname_to_models.get((service_name, subtype), [])
@@ -200,6 +198,11 @@ class Module:
 
         # All we need to do is double check that the model has already been registered
         try:
-            Registry.lookup_component(subtype, model)
+            if subtype.resource_type == RESOURCE_TYPE_COMPONENT:
+                Registry.lookup_component(subtype, model)
+            elif subtype.resource_type == RESOURCE_TYPE_SERVICE:
+                Registry.lookup_service(subtype, model)
+            else:
+                raise ValueError(f"Invalid Subtype: neither service nor component. Subtype: {subtype}")
         except ResourceNotFoundError:
             raise ValueError(f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}")

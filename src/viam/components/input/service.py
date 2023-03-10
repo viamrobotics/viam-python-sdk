@@ -1,12 +1,12 @@
 import asyncio
 from multiprocessing import Pipe
 from typing import Optional
-from h2.exceptions import StreamClosedError
 
 from grpclib.server import Stream
+from h2.exceptions import StreamClosedError
+
 import viam
-from viam.components.rpc_service_base import ComponentRPCServiceBase
-from viam.errors import ResourceNotFoundError, NotSupportedError
+from viam.errors import NotSupportedError, ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
@@ -19,15 +19,15 @@ from viam.proto.component.inputcontroller import (
     TriggerEventRequest,
     TriggerEventResponse,
 )
-from viam.utils import struct_to_dict, dict_to_struct
-
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .input import Control, Controller, Event, EventType
 
 LOGGER = viam.logging.getLogger(__name__)
 
 
-class InputControllerService(InputControllerServiceBase, ComponentRPCServiceBase[Controller]):
+class InputControllerService(InputControllerServiceBase, ResourceRPCServiceBase[Controller]):
     """
     gRPC Service for an input controller
     """
@@ -39,7 +39,7 @@ class InputControllerService(InputControllerServiceBase, ComponentRPCServiceBase
         assert request is not None
         name = request.controller
         try:
-            controller = self.get_component(name)
+            controller = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -52,7 +52,7 @@ class InputControllerService(InputControllerServiceBase, ComponentRPCServiceBase
         assert request is not None
         name = request.controller
         try:
-            controller = self.get_component(name)
+            controller = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -66,7 +66,7 @@ class InputControllerService(InputControllerServiceBase, ComponentRPCServiceBase
         assert request is not None
         name = request.controller
         try:
-            controller = self.get_component(name)
+            controller = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
 
@@ -155,7 +155,7 @@ class InputControllerService(InputControllerServiceBase, ComponentRPCServiceBase
         name = request.controller
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         try:
-            controller = self.get_component(name)
+            controller = self.get_resource(name)
             pb_event = request.event
             event = Event.from_proto(pb_event)
             await controller.trigger_event(event, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
@@ -171,7 +171,7 @@ class InputControllerService(InputControllerServiceBase, ComponentRPCServiceBase
         request = await stream.recv_message()
         assert request is not None
         try:
-            controller = self.get_component(request.name)
+            controller = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

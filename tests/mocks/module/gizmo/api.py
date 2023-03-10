@@ -6,8 +6,8 @@ from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
 from viam.components.generic.client import do_command
-from viam.components.rpc_service_base import ComponentRPCServiceBase
 from viam.errors import ResourceNotFoundError
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, Subtype
 from viam.utils import ValueTypes
 
@@ -52,7 +52,7 @@ class Gizmo(ComponentBase):
         ...
 
 
-class GizmoService(GizmoServiceBase, ComponentRPCServiceBase[Gizmo]):
+class GizmoService(GizmoServiceBase, ResourceRPCServiceBase[Gizmo]):
     """Example gRPC service for the Gizmo component"""
 
     RESOURCE_TYPE = Gizmo
@@ -62,7 +62,7 @@ class GizmoService(GizmoServiceBase, ComponentRPCServiceBase[Gizmo]):
         assert request is not None
         name = request.name
         try:
-            gizmo = self.get_component(name)
+            gizmo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         resp = await gizmo.do_one(request.arg1)
@@ -77,7 +77,7 @@ class GizmoService(GizmoServiceBase, ComponentRPCServiceBase[Gizmo]):
             raise Exception("Unexpectedly received requests for multiple Gizmos")
         name = names[0]
         try:
-            gizmo = self.get_component(name)
+            gizmo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         resp = await gizmo.do_one_client_stream(args)
@@ -89,7 +89,7 @@ class GizmoService(GizmoServiceBase, ComponentRPCServiceBase[Gizmo]):
         assert request is not None
         name = request.name
         try:
-            gizmo = self.get_component(name)
+            gizmo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         resps = await gizmo.do_one_server_stream(request.arg1)
@@ -107,7 +107,7 @@ class GizmoService(GizmoServiceBase, ComponentRPCServiceBase[Gizmo]):
             if name != request.name:
                 raise Exception("Unexpectedly received requests for multiple Gizmos")
         try:
-            gizmo = self.get_component(name)
+            gizmo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
 
@@ -120,7 +120,7 @@ class GizmoService(GizmoServiceBase, ComponentRPCServiceBase[Gizmo]):
         assert request is not None
         name = request.name
         try:
-            gizmo = self.get_component(name)
+            gizmo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         resp = await gizmo.do_two(request.arg1)

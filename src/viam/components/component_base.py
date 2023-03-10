@@ -13,7 +13,7 @@ from typing import (
 
 from typing_extensions import Self
 
-from viam.resource.types import ResourceBase
+from viam.resource.base import ResourceBase
 
 if TYPE_CHECKING:
     from viam.resource.types import Subtype

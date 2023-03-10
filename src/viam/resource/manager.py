@@ -2,10 +2,11 @@ from threading import RLock
 from typing import Dict, List, Type, TypeVar
 
 from viam.proto.common import ResourceName
-from viam.resource.types import ResourceBase
+from viam.resource.base import ResourceBase
+from viam.services.service_base import ServiceBase
 
-from ..errors import DuplicateResourceError, ResourceNotFoundError
 from ..components.component_base import ComponentBase
+from ..errors import DuplicateResourceError, ResourceNotFoundError
 
 ResourceType = TypeVar("ResourceType", bound=ResourceBase)
 
@@ -39,7 +40,7 @@ class ResourceManager:
         Args:
             component (ComponentBase): The component to register
         """
-        _BaseClasses = (ResourceBase, ComponentBase)
+        _BaseClasses = (ResourceBase, ComponentBase, ServiceBase)
         rnames: Dict[ResourceName, ResourceBase] = {}
         for subtype in component.__class__.mro():
             if subtype in _BaseClasses:

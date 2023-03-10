@@ -1,5 +1,5 @@
 from grpclib.server import Stream
-from viam.components.rpc_service_base import ComponentRPCServiceBase
+
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.board import (
@@ -23,12 +23,13 @@ from viam.proto.component.board import (
     StatusRequest,
     StatusResponse,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .board import Board
 
 
-class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
+class BoardService(BoardServiceBase, ResourceRPCServiceBase[Board]):
     """
     gRPC Service for a Board
     """
@@ -40,7 +41,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -53,7 +54,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -67,7 +68,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -81,7 +82,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -95,7 +96,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -109,7 +110,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -123,7 +124,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -137,7 +138,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.board_name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
             analog_reader = await board.analog_reader_by_name(request.analog_reader_name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -151,7 +152,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         assert request is not None
         name = request.board_name
         try:
-            board = self.get_component(name)
+            board = self.get_resource(name)
             interrupt = await board.digital_interrupt_by_name(request.digital_interrupt_name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -164,7 +165,7 @@ class BoardService(BoardServiceBase, ComponentRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         try:
-            board = self.get_component(request.name)
+            board = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
