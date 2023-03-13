@@ -4,6 +4,7 @@ from unittest import mock
 import pytest
 import pytest_asyncio
 from grpclib.testing import ChannelFor
+from grpclib.exceptions import GRPCError
 
 from viam.module import Module
 from viam.module.service import ModuleService
@@ -15,6 +16,7 @@ from viam.proto.module import (
     ReadyResponse,
     ReconfigureResourceRequest,
     RemoveResourceRequest,
+    ValidateConfigRequest
 )
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.types import Model, Subtype
@@ -179,3 +181,11 @@ class TestService:
             with mock.patch("viam.module.module.Module.ready", return_value=ReadyResponse()) as mocked:
                 await client.Ready(ReadyRequest())
                 mocked.assert_called_once()
+
+    @pytest.mark.asyncio
+    async def test_validate_config(self, service: ModuleService):
+        async with ChannelFor([service]) as channel:
+            client = ModuleServiceStub(channel)
+            request = ValidateConfigRequest()
+            with pytest.raises(GRPCError, match=r".*Status.UNIMPLEMENTED.*"):
+                await client.ValidateConfig(request)

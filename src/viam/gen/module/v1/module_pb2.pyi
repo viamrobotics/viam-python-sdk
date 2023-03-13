@@ -174,3 +174,38 @@ class ReadyResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['handlermap', b'handlermap', 'ready', b'ready']) -> None:
         ...
 global___ReadyResponse = ReadyResponse
+
+@typing_extensions.final
+class ValidateConfigRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CONFIG_FIELD_NUMBER: builtins.int
+
+    @property
+    def config(self) -> app.v1.robot_pb2.ComponentConfig:
+        ...
+
+    def __init__(self, *, config: app.v1.robot_pb2.ComponentConfig | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['config', b'config']) -> None:
+        ...
+global___ValidateConfigRequest = ValidateConfigRequest
+
+@typing_extensions.final
+class ValidateConfigResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DEPENDENCIES_FIELD_NUMBER: builtins.int
+
+    @property
+    def dependencies(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, dependencies: collections.abc.Iterable[builtins.str] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['dependencies', b'dependencies']) -> None:
+        ...
+global___ValidateConfigResponse = ValidateConfigResponse

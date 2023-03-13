@@ -4,11 +4,8 @@ from grpclib.server import Stream
 from viam.components.component_base import ComponentBase
 from viam.components.service_base import ComponentServiceBase
 from viam.errors import ResourceNotFoundError
-from viam.proto.component.generic import (
-    DoCommandRequest,
-    DoCommandResponse,
-    GenericServiceBase,
-)
+from viam.proto.component.generic import GenericServiceBase
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.utils import dict_to_struct, struct_to_dict
 
 # from .generic import Generic
