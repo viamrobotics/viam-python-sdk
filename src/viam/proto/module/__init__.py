@@ -14,6 +14,8 @@ from ...gen.module.v1.module_pb2 import (
     ReconfigureResourceResponse,
     RemoveResourceRequest,
     RemoveResourceResponse,
+    ValidateConfigRequest,
+    ValidateConfigResponse,
 )
 
 __all__ = [
@@ -29,4 +31,6 @@ __all__ = [
     "ReconfigureResourceResponse",
     "RemoveResourceRequest",
     "RemoveResourceResponse",
+    "ValidateConfigRequest",
+    "ValidateConfigResponse",
 ]
