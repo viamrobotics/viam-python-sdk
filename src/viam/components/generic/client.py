@@ -1,7 +1,8 @@
 from typing import Any, Mapping, Optional
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
-from viam.proto.component.generic import GenericServiceStub, DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.component.generic import GenericServiceStub
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from .generic import Generic
