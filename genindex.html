@@ -1480,11 +1480,7 @@
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest.command">command (viam.gen.common.v1.common_pb2.DoCommandRequest property)</a>
 
       <ul>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.DoCommandRequest.command">(viam.gen.component.generic.v1.generic_pb2.DoCommandRequest property)</a>
-</li>
         <li><a href="autoapi/viam/proto/common/index.html#viam.proto.common.DoCommandRequest.command">(viam.proto.common.DoCommandRequest property)</a>
-</li>
-        <li><a href="autoapi/viam/proto/component/generic/index.html#viam.proto.component.generic.DoCommandRequest.command">(viam.proto.component.generic.DoCommandRequest property)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/gen/component/movementsensor/v1/movementsensor_pb2/index.html#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse.compass_heading_supported">compass_heading_supported (viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse attribute)</a>
@@ -1556,6 +1552,8 @@
 </li>
         <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ReconfigureResourceRequest.config">(viam.gen.module.v1.module_pb2.ReconfigureResourceRequest property)</a>
 </li>
+        <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ValidateConfigRequest.config">(viam.gen.module.v1.module_pb2.ValidateConfigRequest property)</a>
+</li>
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.CreateFragmentRequest.config">(viam.proto.app.CreateFragmentRequest property)</a>
 </li>
         <li><a href="autoapi/viam/proto/app/robot/index.html#viam.proto.app.robot.AuthHandlerConfig.config">(viam.proto.app.robot.AuthHandlerConfig property)</a>
@@ -1567,6 +1565,8 @@
         <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.AddResourceRequest.config">(viam.proto.module.AddResourceRequest property)</a>
 </li>
         <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ReconfigureResourceRequest.config">(viam.proto.module.ReconfigureResourceRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ValidateConfigRequest.config">(viam.proto.module.ValidateConfigRequest property)</a>
 </li>
         <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse.config">(viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse property)</a>
 </li>
@@ -2116,9 +2116,13 @@
       <ul>
         <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ReconfigureResourceRequest.dependencies">(viam.gen.module.v1.module_pb2.ReconfigureResourceRequest property)</a>
 </li>
+        <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ValidateConfigResponse.dependencies">(viam.gen.module.v1.module_pb2.ValidateConfigResponse property)</a>
+</li>
         <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.AddResourceRequest.dependencies">(viam.proto.module.AddResourceRequest property)</a>
 </li>
         <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ReconfigureResourceRequest.dependencies">(viam.proto.module.ReconfigureResourceRequest property)</a>
+</li>
+        <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ValidateConfigResponse.dependencies">(viam.proto.module.ValidateConfigResponse property)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.ComponentConfig.depends_on">depends_on (viam.gen.app.v1.robot_pb2.ComponentConfig property)</a>
@@ -2261,6 +2265,8 @@
         <li><a href="autoapi/viam/proto/service/vision/index.html#viam.proto.service.vision.GetDetectorNamesResponse.detector_names">(viam.proto.service.vision.GetDetectorNamesResponse property)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/gen/service/vision/v1/vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.AddDetectorRequest.detector_parameters">detector_parameters (viam.gen.service.vision.v1.vision_pb2.AddDetectorRequest property)</a>
 
       <ul>
@@ -2269,8 +2275,6 @@
       </ul></li>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType.DETECTOR_SEGMENTER">DETECTOR_SEGMENTER (viam.services.vision.VisModelType attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType.DETECTOR_TENSORFLOW">DETECTOR_TENSORFLOW (viam.services.vision.VisModelType attribute)</a>
 </li>
       <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisModelType.DETECTOR_TF_LITE">DETECTOR_TF_LITE (viam.services.vision.VisModelType attribute)</a>
@@ -2578,21 +2582,13 @@
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest">DoCommandRequest (class in viam.gen.common.v1.common_pb2)</a>
 
       <ul>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.DoCommandRequest">(class in viam.gen.component.generic.v1.generic_pb2)</a>
-</li>
         <li><a href="autoapi/viam/proto/common/index.html#viam.proto.common.DoCommandRequest">(class in viam.proto.common)</a>
-</li>
-        <li><a href="autoapi/viam/proto/component/generic/index.html#viam.proto.component.generic.DoCommandRequest">(class in viam.proto.component.generic)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse">DoCommandResponse (class in viam.gen.common.v1.common_pb2)</a>
 
       <ul>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.DoCommandResponse">(class in viam.gen.component.generic.v1.generic_pb2)</a>
-</li>
         <li><a href="autoapi/viam/proto/common/index.html#viam.proto.common.DoCommandResponse">(class in viam.proto.common)</a>
-</li>
-        <li><a href="autoapi/viam/proto/component/generic/index.html#viam.proto.component.generic.DoCommandResponse">(class in viam.proto.component.generic)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.AnswerRequest.done">done (viam.proto.rpc.webrtc.signaling.AnswerRequest property)</a>
@@ -4968,17 +4964,9 @@
       <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters">global___DistortionParameters (in module viam.gen.component.camera.v1.camera_pb2)</a>
 </li>
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.global___DoCommandRequest">global___DoCommandRequest (in module viam.gen.common.v1.common_pb2)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.global___DoCommandRequest">(in module viam.gen.component.generic.v1.generic_pb2)</a>
 </li>
-      </ul></li>
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.global___DoCommandResponse">global___DoCommandResponse (in module viam.gen.common.v1.common_pb2)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.global___DoCommandResponse">(in module viam.gen.component.generic.v1.generic_pb2)</a>
 </li>
-      </ul></li>
       <li><a href="autoapi/viam/gen/component/testecho/v1/testecho_pb2/index.html#viam.gen.component.testecho.v1.testecho_pb2.global___EchoBiDiRequest">global___EchoBiDiRequest (in module viam.gen.component.testecho.v1.testecho_pb2)</a>
 </li>
       <li><a href="autoapi/viam/gen/component/testecho/v1/testecho_pb2/index.html#viam.gen.component.testecho.v1.testecho_pb2.global___EchoBiDiResponse">global___EchoBiDiResponse (in module viam.gen.component.testecho.v1.testecho_pb2)</a>
@@ -5711,6 +5699,10 @@
 </li>
       <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.global___UpdateRobotResponse">global___UpdateRobotResponse (in module viam.gen.app.v1.app_pb2)</a>
 </li>
+      <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.global___ValidateConfigRequest">global___ValidateConfigRequest (in module viam.gen.module.v1.module_pb2)</a>
+</li>
+      <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.global___ValidateConfigResponse">global___ValidateConfigResponse (in module viam.gen.module.v1.module_pb2)</a>
+</li>
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.global___Vector3">global___Vector3 (in module viam.gen.common.v1.common_pb2)</a>
 </li>
       <li><a href="autoapi/viam/gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.global___Waypoint">global___Waypoint (in module viam.gen.service.navigation.v1.navigation_pb2)</a>
@@ -6056,10 +6048,6 @@
 </li>
         <li><a href="autoapi/viam/gen/component/gantry/v1/gantry_pb2/index.html#viam.gen.component.gantry.v1.gantry_pb2.StopRequest.HasField">(viam.gen.component.gantry.v1.gantry_pb2.StopRequest method)</a>
 </li>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.DoCommandRequest.HasField">(viam.gen.component.generic.v1.generic_pb2.DoCommandRequest method)</a>
-</li>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.DoCommandResponse.HasField">(viam.gen.component.generic.v1.generic_pb2.DoCommandResponse method)</a>
-</li>
         <li><a href="autoapi/viam/gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.GrabRequest.HasField">(viam.gen.component.gripper.v1.gripper_pb2.GrabRequest method)</a>
 </li>
         <li><a href="autoapi/viam/gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.GrabResponse.HasField">(viam.gen.component.gripper.v1.gripper_pb2.GrabResponse method)</a>
@@ -6143,6 +6131,8 @@
         <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ReadyResponse.HasField">(viam.gen.module.v1.module_pb2.ReadyResponse method)</a>
 </li>
         <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ReconfigureResourceRequest.HasField">(viam.gen.module.v1.module_pb2.ReconfigureResourceRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ValidateConfigRequest.HasField">(viam.gen.module.v1.module_pb2.ValidateConfigRequest method)</a>
 </li>
         <li><a href="autoapi/viam/gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.Discovery.HasField">(viam.gen.robot.v1.robot_pb2.Discovery method)</a>
 </li>
@@ -6430,10 +6420,6 @@
 </li>
         <li><a href="autoapi/viam/proto/component/gantry/index.html#viam.proto.component.gantry.StopRequest.HasField">(viam.proto.component.gantry.StopRequest method)</a>
 </li>
-        <li><a href="autoapi/viam/proto/component/generic/index.html#viam.proto.component.generic.DoCommandRequest.HasField">(viam.proto.component.generic.DoCommandRequest method)</a>
-</li>
-        <li><a href="autoapi/viam/proto/component/generic/index.html#viam.proto.component.generic.DoCommandResponse.HasField">(viam.proto.component.generic.DoCommandResponse method)</a>
-</li>
         <li><a href="autoapi/viam/proto/component/gripper/index.html#viam.proto.component.gripper.GrabRequest.HasField">(viam.proto.component.gripper.GrabRequest method)</a>
 </li>
         <li><a href="autoapi/viam/proto/component/gripper/index.html#viam.proto.component.gripper.GrabResponse.HasField">(viam.proto.component.gripper.GrabResponse method)</a>
@@ -6517,6 +6503,8 @@
         <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ReadyResponse.HasField">(viam.proto.module.ReadyResponse method)</a>
 </li>
         <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ReconfigureResourceRequest.HasField">(viam.proto.module.ReconfigureResourceRequest method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ValidateConfigRequest.HasField">(viam.proto.module.ValidateConfigRequest method)</a>
 </li>
         <li><a href="autoapi/viam/proto/robot/index.html#viam.proto.robot.Discovery.HasField">(viam.proto.robot.Discovery method)</a>
 </li>
@@ -9059,8 +9047,6 @@
 </li>
         <li><a href="autoapi/viam/gen/component/gantry/v1/gantry_pb2/index.html#viam.gen.component.gantry.v1.gantry_pb2.StopRequest.name">(viam.gen.component.gantry.v1.gantry_pb2.StopRequest attribute)</a>
 </li>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.DoCommandRequest.name">(viam.gen.component.generic.v1.generic_pb2.DoCommandRequest attribute)</a>
-</li>
         <li><a href="autoapi/viam/gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.GrabRequest.name">(viam.gen.component.gripper.v1.gripper_pb2.GrabRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/gen/component/gripper/v1/gripper_pb2/index.html#viam.gen.component.gripper.v1.gripper_pb2.IsMovingRequest.name">(viam.gen.component.gripper.v1.gripper_pb2.IsMovingRequest attribute)</a>
@@ -9306,8 +9292,6 @@
         <li><a href="autoapi/viam/proto/component/gantry/index.html#viam.proto.component.gantry.MoveToPositionRequest.name">(viam.proto.component.gantry.MoveToPositionRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/component/gantry/index.html#viam.proto.component.gantry.StopRequest.name">(viam.proto.component.gantry.StopRequest attribute)</a>
-</li>
-        <li><a href="autoapi/viam/proto/component/generic/index.html#viam.proto.component.generic.DoCommandRequest.name">(viam.proto.component.generic.DoCommandRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/component/gripper/index.html#viam.proto.component.gripper.GrabRequest.name">(viam.proto.component.gripper.GrabRequest attribute)</a>
 </li>
@@ -11129,11 +11113,7 @@
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse.result">result (viam.gen.common.v1.common_pb2.DoCommandResponse property)</a>
 
       <ul>
-        <li><a href="autoapi/viam/gen/component/generic/v1/generic_pb2/index.html#viam.gen.component.generic.v1.generic_pb2.DoCommandResponse.result">(viam.gen.component.generic.v1.generic_pb2.DoCommandResponse property)</a>
-</li>
         <li><a href="autoapi/viam/proto/common/index.html#viam.proto.common.DoCommandResponse.result">(viam.proto.common.DoCommandResponse property)</a>
-</li>
-        <li><a href="autoapi/viam/proto/component/generic/index.html#viam.proto.component.generic.DoCommandResponse.result">(viam.proto.component.generic.DoCommandResponse property)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.Discovery.results">results (viam.gen.robot.v1.robot_pb2.Discovery property)</a>
@@ -12972,6 +12952,26 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="autoapi/viam/gen/module/v1/module_grpc/index.html#viam.gen.module.v1.module_grpc.ModuleServiceBase.ValidateConfig">ValidateConfig() (viam.gen.module.v1.module_grpc.ModuleServiceBase method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/module/service/index.html#viam.module.service.ModuleService.ValidateConfig">(viam.module.service.ModuleService method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ModuleServiceBase.ValidateConfig">(viam.proto.module.ModuleServiceBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ValidateConfigRequest">ValidateConfigRequest (class in viam.gen.module.v1.module_pb2)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ValidateConfigRequest">(class in viam.proto.module)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ValidateConfigResponse">ValidateConfigResponse (class in viam.gen.module.v1.module_pb2)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/module/index.html#viam.proto.module.ValidateConfigResponse">(class in viam.proto.module)</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/viam/components/input/index.html#viam.components.input.Event.value">value (viam.components.input.Event attribute)</a>
 
       <ul>
@@ -13947,6 +13947,8 @@
         <li><a href="autoapi/viam/gen/component/posetracker/v1/pose_tracker_pb2/index.html#module-viam.gen.component.posetracker.v1.pose_tracker_pb2">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.gen.component.sensor
 
@@ -13961,8 +13963,6 @@
         <li><a href="autoapi/viam/gen/component/sensor/v1/index.html#module-viam.gen.component.sensor.v1">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.gen.component.sensor.v1.sensor_grpc
 

@@ -87,6 +87,7 @@
 
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">MethodNotImplementedError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.module</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AddResourceRequest</span><span class="p">,</span>
     <span class="n">AddResourceResponse</span><span class="p">,</span>
@@ -97,6 +98,8 @@
     <span class="n">ReconfigureResourceResponse</span><span class="p">,</span>
     <span class="n">RemoveResourceRequest</span><span class="p">,</span>
     <span class="n">RemoveResourceResponse</span><span class="p">,</span>
+    <span class="n">ValidateConfigRequest</span><span class="p">,</span>
+    <span class="n">ValidateConfigResponse</span>
 <span class="p">)</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
@@ -131,7 +134,10 @@
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="o">.</span><span class="n">ready</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ModuleService.ValidateConfig"><a class="viewcode-back" href="../../../autoapi/viam/module/service/index.html#viam.module.service.ModuleService.ValidateConfig">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ValidateConfig</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">ValidateConfigRequest</span><span class="p">,</span> <span class="n">ValidateConfigResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">MethodNotImplementedError</span><span class="p">(</span><span class="s2">&quot;ValidateConfig&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grpc_error</span></div></div>
 </pre></div>
 
            </div>

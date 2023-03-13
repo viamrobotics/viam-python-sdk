@@ -71,6 +71,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.ReconfigureResource"><code class="docutils literal notranslate"><span class="pre">ModuleServiceBase.ReconfigureResource()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.RemoveResource"><code class="docutils literal notranslate"><span class="pre">ModuleServiceBase.RemoveResource()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.Ready"><code class="docutils literal notranslate"><span class="pre">ModuleServiceBase.Ready()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.ValidateConfig"><code class="docutils literal notranslate"><span class="pre">ModuleServiceBase.ValidateConfig()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">ModuleServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -114,11 +115,21 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.module.RemoveResourceResponse"><code class="docutils literal notranslate"><span class="pre">RemoveResourceResponse</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.module.ValidateConfigRequest"><code class="docutils literal notranslate"><span class="pre">ValidateConfigRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ValidateConfigRequest.config"><code class="docutils literal notranslate"><span class="pre">ValidateConfigRequest.config</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ValidateConfigRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ValidateConfigRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.module.ValidateConfigResponse"><code class="docutils literal notranslate"><span class="pre">ValidateConfigResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ValidateConfigResponse.dependencies"><code class="docutils literal notranslate"><span class="pre">ValidateConfigResponse.dependencies</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase">ModuleServiceBase</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.AddResource">AddResource</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.ReconfigureResource">ReconfigureResource</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.RemoveResource">RemoveResource</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.Ready">Ready</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.ValidateConfig">ValidateConfig</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ModuleServiceBase.__mapping__">__mapping__</a></li>
 </ul>
 </li>
@@ -162,6 +173,15 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.module.RemoveResourceResponse">RemoveResourceResponse</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.module.ValidateConfigRequest">ValidateConfigRequest</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ValidateConfigRequest.config">config</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ValidateConfigRequest.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.module.ValidateConfigResponse">ValidateConfigResponse</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.module.ValidateConfigResponse.dependencies">dependencies</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -249,6 +269,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.module.RemoveResourceResponse" title="viam.proto.module.RemoveResourceResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveResourceResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.module.ValidateConfigRequest" title="viam.proto.module.ValidateConfigRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValidateConfigRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.module.ValidateConfigResponse" title="viam.proto.module.ValidateConfigResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValidateConfigResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -274,6 +300,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.module.ModuleServiceBase.Ready">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Ready</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ReadyRequest" title="viam.gen.module.v1.module_pb2.ReadyRequest"><span class="pre">module.v1.module_pb2.ReadyRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ReadyResponse" title="viam.gen.module.v1.module_pb2.ReadyResponse"><span class="pre">module.v1.module_pb2.ReadyResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/module/v1/module_grpc.html#ModuleServiceBase.Ready"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.module.ModuleServiceBase.Ready" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.module.ModuleServiceBase.ValidateConfig">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ValidateConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ValidateConfigRequest" title="viam.gen.module.v1.module_pb2.ValidateConfigRequest"><span class="pre">module.v1.module_pb2.ValidateConfigRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/module/v1/module_pb2/index.html#viam.gen.module.v1.module_pb2.ValidateConfigResponse" title="viam.gen.module.v1.module_pb2.ValidateConfigResponse"><span class="pre">module.v1.module_pb2.ValidateConfigResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/module/v1/module_grpc.html#ModuleServiceBase.ValidateConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.module.ModuleServiceBase.ValidateConfig" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -523,6 +554,57 @@ shown below.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.module.ValidateConfigRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.module.</span></span><span class="sig-name descname"><span class="pre">ValidateConfigRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.ComponentConfig" title="viam.gen.app.v1.robot_pb2.ComponentConfig"><span class="pre">app.v1.robot_pb2.ComponentConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.module.ValidateConfigRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.module.ValidateConfigRequest.config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.ComponentConfig" title="viam.gen.app.v1.robot_pb2.ComponentConfig"><span class="pre">viam.gen.app.v1.robot_pb2.ComponentConfig</span></a></em><a class="headerlink" href="#viam.proto.module.ValidateConfigRequest.config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.module.ValidateConfigRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'config'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.module.ValidateConfigRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.module.ValidateConfigResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.module.</span></span><span class="sig-name descname"><span class="pre">ValidateConfigResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dependencies</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.module.ValidateConfigResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.module.ValidateConfigResponse.dependencies">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dependencies</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.module.ValidateConfigResponse.dependencies" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
