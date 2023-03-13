@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING
 
 from grpclib.server import Stream
 
+from viam.errors import MethodNotImplementedError
 from viam.proto.module import (
     AddResourceRequest,
     AddResourceResponse,
@@ -12,6 +13,8 @@ from viam.proto.module import (
     ReconfigureResourceResponse,
     RemoveResourceRequest,
     RemoveResourceResponse,
+    ValidateConfigRequest,
+    ValidateConfigResponse
 )
 
 if TYPE_CHECKING:
@@ -47,3 +50,6 @@ class ModuleService(ModuleServiceBase):
         assert request is not None
         response = await self._module.ready(request)
         await stream.send_message(response)
+
+    async def ValidateConfig(self, stream: Stream[ValidateConfigRequest, ValidateConfigResponse]) -> None:
+        raise MethodNotImplementedError("ValidateConfig").grpc_error
