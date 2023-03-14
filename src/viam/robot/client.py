@@ -245,11 +245,11 @@ class RobotClient:
     def get_component(self, name: ResourceName) -> ComponentBase:
         """Get a component using its ResourceName.
 
-        This function should not be used except in specific cases. The method ``Component.from_robot(...)`` is the preferred method
-        for obtaining components.
+        This function should not be called directly except in specific cases. The method ``Component.from_robot(...)`` is the preferred
+        method for obtaining components.
         ::
 
-            arm = Arm.from_robot(robot=robot, name='my_arm')
+            arm = Arm.from_robot(robot=robot, name="my_arm")
 
         Because this function returns a generic ``ComponentBase`` rather than the specific
         component type, it will be necessary to cast the returned component to the desired component. This can be done using a few
@@ -257,14 +257,14 @@ class RobotClient:
 
         - Assertion::
 
-            arm = robot.get_component(Arm.get_resource_name('my_arm'))
+            arm = robot.get_component(Arm.get_resource_name("my_arm"))
             assert isinstance(arm, Arm)
             end_pos = await arm.get_end_position()
 
         - Explicit cast::
 
             from typing import cast
-            arm = robot.get_component(Arm.get_resource_name('my_arm'))
+            arm = robot.get_component(Arm.get_resource_name("my_arm"))
             arm = cast(Arm, arm)
             end_pos = await arm.get_end_position()
 
@@ -273,14 +273,14 @@ class RobotClient:
             - Note: If using an IDE, a type error may be shown which can be ignored.
             ::
 
-                arm: Arm = robot.get_component(Arm.get_resource_name('my_arm'))  # type: ignore
+                arm: Arm = robot.get_component(Arm.get_resource_name("my_arm"))  # type: ignore
                 end_pos = await arm.get_end_position()
 
         Args:
-            name (ResourceName): The component's name
+            name (ResourceName): The component's ResourceName
 
         Raises:
-            ViamError: Raised if the requested resource is not a component
+            ValueError: Raised if the requested resource is not a component
             ComponentNotFoundError: Error if component with the given type and name does not exist in the registry
 
         Returns:
@@ -292,6 +292,45 @@ class RobotClient:
             return self._manager.get_resource(ComponentBase, name)
 
     def get_service(self, name: ResourceName) -> ServiceBase:
+        """Get a service using its ResourceName
+
+        This function should not be called directly except in specific cases. The method ``Service.from_robot(...)`` is the preferred
+        method for obtaining services.
+        ::
+
+            service = MyService.from_robot(robot=robot, name="my_service")
+
+        Because this function returns a generic ``ServiceBase`` rather than a specific service type, it will be necessary to cast the
+        returned service to the desired service. This can be done using a few methods:
+
+        - Assertion::
+
+            service = robot.get_service(MyService.get_resource_name("my_service"))
+            assert isinstance(service, MyService)
+
+        - Explicit cast::
+
+            from typing import cast
+            service = robot.get_service(MyService.get_resource_name("my_service"))
+            service = cast(MyService, my_service)
+
+        - Declare type on variable assignment
+
+            - Note: If using an IDE, a type error may be shown which can be ignored.
+            ::
+
+                service: MyService = robot.get_service(MyService.get_resource_name("my_service"))  # type: ignore
+
+        Args:
+            name (ResourceName): The service's ResourceName
+
+        Raises:
+            ValueError: Raised if the requested resource is not a component
+            ComponentNotFoundError: Error if component with the given type and name does not exist in the registry
+
+        Returns:
+            ServiceBase: The service
+        """
         if name.type != RESOURCE_TYPE_SERVICE:
             raise ValueError(f"ResourceName does not describe a service: {name}")
         with self._lock:
