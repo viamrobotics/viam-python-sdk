@@ -14,7 +14,7 @@ from viam.proto.module import (
     RemoveResourceRequest,
     RemoveResourceResponse,
     ValidateConfigRequest,
-    ValidateConfigResponse
+    ValidateConfigResponse,
 )
 
 if TYPE_CHECKING:
