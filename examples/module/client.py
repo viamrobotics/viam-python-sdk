@@ -43,7 +43,7 @@ async def main():
     # ####### SUMMATION ####### #
     summer = SummationService.from_robot(robot, name="mysum1")
     sum = await summer.sum([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    print(f"The sum of the numbers [0, 10] is {sum}")
+    print(f"The sum of the numbers [0, 10) is {sum}")
 
     await robot.close()
 
