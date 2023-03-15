@@ -101,7 +101,7 @@ class Module:
         config: ComponentConfig = request.config
         subtype = Subtype.from_string(config.api)
         model = Model.from_string(config.model, ignore_errors=True)
-        creator = Registry.lookup_resource(subtype, model)
+        creator = Registry.lookup_resource_creator(subtype, model)
         resource = creator(config, dependencies)
         self.server.register(resource)
 
@@ -138,7 +138,7 @@ class Module:
         self._parent_address = request.parent_address
 
         svcname_to_models: Mapping[Tuple[str, Subtype], List[Model]] = {}
-        for subtype_model_str in Registry.REGISTERED_RESOURCES().keys():
+        for subtype_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():
             subtype_str, model_str = subtype_model_str.split("/")
             subtype = Subtype.from_string(subtype_str)
             model = Model.from_string(model_str)
@@ -173,6 +173,6 @@ class Module:
 
         # All we need to do is double check that the model has already been registered
         try:
-            Registry.lookup_resource(subtype, model)
+            Registry.lookup_resource_creator(subtype, model)
         except ResourceNotFoundError:
             raise ValueError(f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}")

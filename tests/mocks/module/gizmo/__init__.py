@@ -5,4 +5,4 @@ from .my_gizmo import MyGizmo
 
 Registry.register_subtype(ResourceRegistration(Gizmo, GizmoService, lambda name, channel: GizmoClient(name, channel)))
 
-Registry.register_resource_model(Gizmo.SUBTYPE, MyGizmo.MODEL, MyGizmo.new)
+Registry.register_resource_creator(Gizmo.SUBTYPE, MyGizmo.MODEL, MyGizmo.new)

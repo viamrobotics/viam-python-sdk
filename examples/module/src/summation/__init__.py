@@ -9,4 +9,4 @@ from .my_summation import MySummationService
 
 Registry.register_subtype(ResourceRegistration(SummationService, SummationRPCService, lambda name, channel: SummationClient(name, channel)))
 
-Registry.register_resource_model(SummationService.SUBTYPE, MySummationService.MODEL, MySummationService.new)
+Registry.register_resource_creator(SummationService.SUBTYPE, MySummationService.MODEL, MySummationService.new)

@@ -94,7 +94,7 @@ class Registry:
             cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
 
     @classmethod
-    def register_resource_model(cls, subtype: "Subtype", model: "Model", creator: "ResourceCreator"):
+    def register_resource_creator(cls, subtype: "Subtype", model: "Model", creator: "ResourceCreator"):
         """Register a specific ``Model`` for the specific resource ``Subtype`` with the Registry
 
         Args:
@@ -132,7 +132,7 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def lookup_resource(cls, subtype: "Subtype", model: "Model") -> "ResourceCreator":
+    def lookup_resource_creator(cls, subtype: "Subtype", model: "Model") -> "ResourceCreator":
         """Lookup and retrieve a registered resource by its subtype and model
 
         Args:
@@ -164,7 +164,7 @@ class Registry:
             return cls._SUBTYPES.copy()
 
     @classmethod
-    def REGISTERED_RESOURCES(cls) -> Mapping[str, "ResourceCreator"]:
+    def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreator"]:
         """The dictionary of all registered resources
         - Key: subtype/model
         - Value: The ResourceCreator for the resource
