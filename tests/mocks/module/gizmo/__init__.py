@@ -1,8 +1,8 @@
-from viam.resource.registry import ResourceRegistration, Registry
+from viam.resource.registry import Registry, ResourceRegistration
 
 from .api import Gizmo, GizmoClient, GizmoService
 from .my_gizmo import MyGizmo
 
 Registry.register_subtype(ResourceRegistration(Gizmo, GizmoService, lambda name, channel: GizmoClient(name, channel)))
 
-Registry.register_component_model(Gizmo.SUBTYPE, MyGizmo.MODEL, MyGizmo.new)
+Registry.register_resource_model(Gizmo.SUBTYPE, MyGizmo.MODEL, MyGizmo.new)

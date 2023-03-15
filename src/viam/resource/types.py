@@ -13,9 +13,6 @@ from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 
 if TYPE_CHECKING:
-    from viam.components.component_base import ComponentBase
-    from viam.services.service_base import ServiceBase
-
     from .base import ResourceBase
 
 RESOURCE_NAMESPACE_RDK = "rdk"
@@ -199,6 +196,4 @@ def resource_name_from_string(string: str) -> ResourceName:
     return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=name)
 
 
-ComponentCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ComponentBase"]
-
-ServiceCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ServiceBase"]
+ResourceCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ResourceBase"]

@@ -107,7 +107,7 @@ def resource_names_for_resource(resource: ResourceBase) -> List[ResourceName]:
     rns: List[ResourceName] = []
 
     for klass in resource.__class__.mro():
-        for registration in Registry.REGISTERED_RESOURCES().values():
+        for registration in Registry.REGISTERED_SUBTYPES().values():
             if klass is registration.resource_type:
                 subtype: Subtype = registration.resource_type.SUBTYPE
                 rns.append(

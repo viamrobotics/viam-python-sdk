@@ -60,7 +60,7 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
         statuses: List[Status] = []
 
         for component in self.manager.resources.values():
-            for registration in Registry.REGISTERED_RESOURCES().values():
+            for registration in Registry.REGISTERED_SUBTYPES().values():
                 if isinstance(component, registration.resource_type):
                     if resource_names and component.get_resource_name(component.name) not in resource_names:
                         continue

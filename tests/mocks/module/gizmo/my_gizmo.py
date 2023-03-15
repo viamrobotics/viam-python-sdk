@@ -6,6 +6,7 @@ from viam.components.component_base import ComponentBase
 from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
+from viam.resource.base import ResourceBase
 from viam.resource.types import Model, ModelFamily
 
 from ..gizmo.api import Gizmo
@@ -16,7 +17,7 @@ class MyGizmo(Gizmo, Reconfigurable):
     my_arg: str
 
     @classmethod
-    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]) -> Self:
+    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
         gizmo = cls(config.name)
         gizmo.my_arg = config.attributes.fields["arg1"].string_value
         return gizmo

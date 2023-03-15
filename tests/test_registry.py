@@ -30,18 +30,18 @@ class FakeComponentClient(FakeComponent):
 
 
 def test_components_register_themselves_correctly():
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_input") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gantry") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "pose_tracker") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor") in Registry.REGISTERED_RESOURCES()
-    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "servo") in Registry.REGISTERED_RESOURCES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "audio_input") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gantry") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "pose_tracker") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor") in Registry.REGISTERED_SUBTYPES()
+    assert Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "servo") in Registry.REGISTERED_SUBTYPES()
 
 
 def test_lookup():
@@ -53,12 +53,12 @@ def test_lookup():
 
 
 def test_registration():
-    assert FakeComponent.SUBTYPE not in Registry.REGISTERED_RESOURCES()
+    assert FakeComponent.SUBTYPE not in Registry.REGISTERED_SUBTYPES()
 
     Registry.register_subtype(
         ResourceRegistration(FakeComponent, FakeComponentService, lambda name, channel: FakeComponentClient(name, channel))
     )
-    assert FakeComponent.SUBTYPE in Registry.REGISTERED_RESOURCES()
+    assert FakeComponent.SUBTYPE in Registry.REGISTERED_SUBTYPES()
     component = Registry.lookup_subtype(FakeComponent.SUBTYPE)
     assert component is not None
 

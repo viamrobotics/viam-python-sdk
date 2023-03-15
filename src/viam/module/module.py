@@ -20,14 +20,7 @@ from viam.proto.module import (
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
-from viam.resource.types import (
-    RESOURCE_TYPE_COMPONENT,
-    RESOURCE_TYPE_SERVICE,
-    Model,
-    ResourceName,
-    Subtype,
-    resource_name_from_string,
-)
+from viam.resource.types import Model, ResourceName, Subtype, resource_name_from_string
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 from viam.rpc.server import Server
@@ -108,14 +101,9 @@ class Module:
         config: ComponentConfig = request.config
         subtype = Subtype.from_string(config.api)
         model = Model.from_string(config.model, ignore_errors=True)
-        if subtype.resource_type == RESOURCE_TYPE_COMPONENT:
-            creator = Registry.lookup_component(subtype, model)
-            component = creator(config, dependencies)
-            self.server.register(component)
-        elif subtype.resource_type == RESOURCE_TYPE_SERVICE:
-            creator = Registry.lookup_service(subtype, model)
-            service = creator(config, dependencies)
-            self.server.register(service)
+        creator = Registry.lookup_resource(subtype, model)
+        resource = creator(config, dependencies)
+        self.server.register(resource)
 
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
         dependencies = await self._get_dependencies(request.dependencies)
@@ -150,20 +138,7 @@ class Module:
         self._parent_address = request.parent_address
 
         svcname_to_models: Mapping[Tuple[str, Subtype], List[Model]] = {}
-        for subtype_model_str in Registry.REGISTERED_COMPONENTS().keys():
-            subtype_str, model_str = subtype_model_str.split("/")
-            subtype = Subtype.from_string(subtype_str)
-            model = Model.from_string(model_str)
-
-            registration = Registry.lookup_subtype(subtype)
-            service = registration.rpc_service(self.server)
-            service_name = _service_name(service)
-
-            models = svcname_to_models.get((service_name, subtype), [])
-            models.append(model)
-            svcname_to_models[(service_name, subtype)] = models
-
-        for subtype_model_str in Registry.REGISTERED_SERVICES().keys():
+        for subtype_model_str in Registry.REGISTERED_RESOURCES().keys():
             subtype_str, model_str = subtype_model_str.split("/")
             subtype = Subtype.from_string(subtype_str)
             model = Model.from_string(model_str)
@@ -198,11 +173,6 @@ class Module:
 
         # All we need to do is double check that the model has already been registered
         try:
-            if subtype.resource_type == RESOURCE_TYPE_COMPONENT:
-                Registry.lookup_component(subtype, model)
-            elif subtype.resource_type == RESOURCE_TYPE_SERVICE:
-                Registry.lookup_service(subtype, model)
-            else:
-                raise ValueError(f"Invalid Subtype: neither service nor component. Subtype: {subtype}")
+            Registry.lookup_resource(subtype, model)
         except ResourceNotFoundError:
             raise ValueError(f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}")

@@ -23,7 +23,7 @@ from .base import ResourceBase
 
 if TYPE_CHECKING:
     from .rpc_service_base import ResourceRPCServiceBase
-    from .types import ComponentCreator, Model, ServiceCreator, Subtype
+    from .types import Model, ResourceCreator, Subtype
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
@@ -75,8 +75,7 @@ class Registry:
     """
 
     _SUBTYPES: ClassVar[Dict["Subtype", ResourceRegistration]] = {}
-    _COMPONENTS: ClassVar[Dict[str, "ComponentCreator"]] = {}
-    _SERVICES: ClassVar[Dict[str, "ServiceCreator"]] = {}
+    _RESOURCES: ClassVar[Dict[str, "ResourceCreator"]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
@@ -95,42 +94,23 @@ class Registry:
             cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
 
     @classmethod
-    def register_component_model(cls, subtype: "Subtype", model: "Model", component: "ComponentCreator"):
-        """Register a specific ``Model`` for the specific component ``Subtype`` with the Registry
+    def register_resource_model(cls, subtype: "Subtype", model: "Model", creator: "ResourceCreator"):
+        """Register a specific ``Model`` for the specific resource ``Subtype`` with the Registry
 
         Args:
-            subtype (Subtype): The Subtype of the component
-            model (Model): The Model of the component
-            component (ComponentCreator): A function that can create a component given a mapping of dependencies (``ResourceName`` to
-                                          ``ComponentBase``)
+            subtype (Subtype): The Subtype of the resource
+            model (Model): The Model of the resource
+            creator (ResourceCreator): A function that can create a resource given a mapping of dependencies (``ResourceName`` to
+                                       ``ResourceBase``).
 
         Raises:
             DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
         """
         key = f"{subtype}/{model}"
         with cls._lock:
-            if key in cls._COMPONENTS:
+            if key in cls._RESOURCES:
                 raise DuplicateResourceError(key)
-            cls._COMPONENTS[key] = component
-
-    @classmethod
-    def register_service_model(cls, subtype: "Subtype", model: "Model", service: "ServiceCreator"):
-        """Register a specific ``Model`` for the specific service ``Subtype`` with the Registry
-
-        Args:
-            subtype (Subtype): The Subtype of the service
-            model (Model): The Model of the service
-            service (ServiceCreator): A function that can create a service given a mapping of dependencies (``ResourceName`` to
-                                          ``ServiceBase``)
-
-        Raises:
-            DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
-        """
-        key = f"{subtype}/{model}"
-        with cls._lock:
-            if key in cls._SERVICES:
-                raise DuplicateResourceError(key)
-            cls._SERVICES[key] = service
+            cls._RESOURCES[key] = creator
 
     @classmethod
     def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
@@ -152,28 +132,8 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def lookup_component(cls, subtype: "Subtype", model: "Model") -> "ComponentCreator":
-        """Lookup and retrieve a registered component by its name
-
-        Args:
-            subtype (Subtype): The Subtype of the component
-            model (Model): The Model of the component
-
-        Raises:
-            ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
-
-        Returns:
-            ComponentCreator: The function to create the component
-        """
-        with cls._lock:
-            try:
-                return cls._COMPONENTS[f"{subtype}/{model}"]
-            except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
-
-    @classmethod
-    def lookup_service(cls, subtype: "Subtype", model: "Model") -> "ServiceCreator":
-        """Lookup and retrieve a registered service by its name
+    def lookup_resource(cls, subtype: "Subtype", model: "Model") -> "ResourceCreator":
+        """Lookup and retrieve a registered resource by its subtype and model
 
         Args:
             subtype (Subtype): The Subtype of the service
@@ -183,16 +143,16 @@ class Registry:
             ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
 
         Returns:
-            ServiceCreator: The function to create the service
+            ResourceCreator: The function to create the resource
         """
         with cls._lock:
             try:
-                return cls._SERVICES[f"{subtype}/{model}"]
+                return cls._RESOURCES[f"{subtype}/{model}"]
             except KeyError:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def REGISTERED_RESOURCES(cls) -> Mapping["Subtype", ResourceRegistration]:
+    def REGISTERED_SUBTYPES(cls) -> Mapping["Subtype", ResourceRegistration]:
         """The dictionary of all registered resources
         - Key: Subtype of the resource
         - Value: The registration object for the resource
@@ -204,25 +164,13 @@ class Registry:
             return cls._SUBTYPES.copy()
 
     @classmethod
-    def REGISTERED_COMPONENTS(cls) -> Mapping[str, "ComponentCreator"]:
-        """The dictionary of all registered components
+    def REGISTERED_RESOURCES(cls) -> Mapping[str, "ResourceCreator"]:
+        """The dictionary of all registered resources
         - Key: subtype/model
-        - Value: The ComponentCreator for the component
+        - Value: The ResourceCreator for the resource
 
         Returns:
-            Mapping[str, ComponentCreator]: All registered components
+            Mapping[str, ResourceCreator]: All registered resources
         """
         with cls._lock:
-            return cls._COMPONENTS.copy()
-
-    @classmethod
-    def REGISTERED_SERVICES(cls) -> Mapping[str, "ServiceCreator"]:
-        """The dictionary of all registered services
-        - Key: subtype/model
-        - Value: The ServiceCreator for the service
-
-        Returns:
-            Mapping[str, ServiceCreator]: All registered services
-        """
-        with cls._lock:
-            return cls._SERVICES.copy()
+            return cls._RESOURCES.copy()
