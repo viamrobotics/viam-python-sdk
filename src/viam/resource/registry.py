@@ -133,7 +133,7 @@ class Registry:
 
     @classmethod
     def lookup_resource_creator(cls, subtype: "Subtype", model: "Model") -> "ResourceCreator":
-        """Lookup and retrieve a registered resource by its subtype and model
+        """Lookup and retrieve a registered resource creator by its subtype and model
 
         Args:
             subtype (Subtype): The Subtype of the service
