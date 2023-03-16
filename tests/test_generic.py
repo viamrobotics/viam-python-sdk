@@ -2,9 +2,9 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.generic import GenericClient, GenericService
-from viam.components.resource_manager import ResourceManager
-from viam.proto.component.generic import GenericServiceStub
 from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.component.generic import GenericServiceStub
+from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx

@@ -4,7 +4,7 @@ from grpclib.testing import ChannelFor
 from viam.components.generic.service import GenericService
 from viam.components.motor import MotorClient, MotorStatus, create_status
 from viam.components.motor.service import MotorService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.motor import (
     GetPositionRequest,

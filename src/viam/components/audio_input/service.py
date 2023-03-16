@@ -6,10 +6,9 @@ from google.api.httpbody_pb2 import HttpBody
 from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
-from viam.errors import ResourceNotFoundError, NotSupportedError
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.errors import NotSupportedError, ResourceNotFoundError
 from viam.gen.component.audioinput.v1.audioinput_pb2 import SampleFormat
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.audioinput import (
     AudioInputServiceBase,
     ChunksRequest,
@@ -18,12 +17,13 @@ from viam.proto.component.audioinput import (
     PropertiesResponse,
     RecordRequest,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .audio_input import AudioInput
 
 
-class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput]):
+class AudioInputService(AudioInputServiceBase, ResourceRPCServiceBase[AudioInput]):
     """
     gRPC Service for a generic AudioInput
     """
@@ -34,7 +34,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         request = await stream.recv_message()
         assert request is not None
         try:
-            audio_input = self.get_component(request.name)
+            audio_input = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
 
@@ -51,7 +51,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         request = await stream.recv_message()
         assert request is not None
         try:
-            audio_input = self.get_component(request.name)
+            audio_input = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -71,7 +71,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
             raise GRPCError(Status.INVALID_ARGUMENT, "Can only record up to 5 seconds")
 
         try:
-            audio_input = self.get_component(request.name)
+            audio_input = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         audio_stream = await audio_input.stream()
@@ -109,7 +109,7 @@ class AudioInputService(AudioInputServiceBase, ComponentServiceBase[AudioInput])
         request = await stream.recv_message()
         assert request is not None
         try:
-            audio_input = self.get_component(request.name)
+            audio_input = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

@@ -1,9 +1,11 @@
 from grpclib.server import Stream
-from viam.components.service_base import ComponentServiceBase
+
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.base import (
     BaseServiceBase,
+    IsMovingRequest,
+    IsMovingResponse,
     MoveStraightRequest,
     MoveStraightResponse,
     SetPowerRequest,
@@ -14,15 +16,14 @@ from viam.proto.component.base import (
     SpinResponse,
     StopRequest,
     StopResponse,
-    IsMovingRequest,
-    IsMovingResponse,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .base import Base
 
 
-class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
+class BaseService(BaseServiceBase, ResourceRPCServiceBase[Base]):
     """
     gRPC service for a robotic Base
     """
@@ -34,7 +35,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         assert request is not None
         name = request.name
         try:
-            base = self.get_component(name)
+            base = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -53,7 +54,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         assert request is not None
         name = request.name
         try:
-            base = self.get_component(name)
+            base = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -72,7 +73,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         assert request is not None
         name = request.name
         try:
-            base = self.get_component(name)
+            base = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -87,7 +88,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         assert request is not None
         name = request.name
         try:
-            base = self.get_component(name)
+            base = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -101,7 +102,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         assert request is not None
         name = request.name
         try:
-            base = self.get_component(name)
+            base = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -114,7 +115,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         assert request is not None
         name = request.name
         try:
-            base = self.get_component(name)
+            base = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await base.is_moving()
@@ -125,7 +126,7 @@ class BaseService(BaseServiceBase, ComponentServiceBase[Base]):
         request = await stream.recv_message()
         assert request is not None
         try:
-            base = self.get_component(request.name)
+            base = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

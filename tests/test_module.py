@@ -20,10 +20,15 @@ from viam.proto.module import (
 )
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.types import Model, Subtype
+from viam.robot.client import RobotClient
+from viam.robot.service import RobotService
 from viam.utils import dict_to_struct
 
 from .mocks.module.gizmo.api import Gizmo
 from .mocks.module.gizmo.my_gizmo import MyGizmo
+from .mocks.module.summation.api import SummationService
+from .mocks.module.summation.my_summation import MySummationService
+from .test_robot import service as robot_service  # noqa: F401
 
 
 @pytest.fixture(scope="class")
@@ -69,9 +74,23 @@ class TestModule:
         await self.module.add_resource(req)
         assert Gizmo.get_resource_name("gizmo1") in self.module.server.resources
 
+        req = AddResourceRequest(
+            config=ComponentConfig(
+                name="mysum1",
+                namespace="acme",
+                type="summation",
+                model="acme:demo:mysum",
+                attributes=dict_to_struct({"subtract": False}),
+                api="acme:service:summation",
+            )
+        )
+        assert SummationService.get_resource_name("mysum1") not in self.module.server.resources
+        await self.module.add_resource(req)
+        assert SummationService.get_resource_name("mysum1") in self.module.server.resources
+
     @pytest.mark.asyncio
     async def test_reconfigure_resource(self):
-        gizmo = self.module.server.get_component(MyGizmo, Gizmo.get_resource_name("gizmo1"))
+        gizmo = self.module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo1"))
         assert gizmo.my_arg == "arg1"
         req = ReconfigureResourceRequest(
             config=ComponentConfig(
@@ -86,12 +105,55 @@ class TestModule:
         await self.module.reconfigure_resource(req)
         assert gizmo.my_arg == "arg2"
 
+        summer = self.module.server.get_resource(MySummationService, SummationService.get_resource_name("mysum1"))
+        assert summer.subtract is False
+        req = ReconfigureResourceRequest(
+            config=ComponentConfig(
+                name="mysum1",
+                namespace="acme",
+                type="summation",
+                model="acme:demo:mysum",
+                attributes=dict_to_struct({"subtract": True}),
+                api="acme:service:summation",
+            )
+        )
+        await self.module.reconfigure_resource(req)
+        assert summer.subtract is True
+
+    @pytest.mark.asyncio
+    async def test_add_resource_with_deps(self, robot_service: RobotService):  # noqa: F811
+        async with ChannelFor([robot_service]) as channel:
+            _ = mock.patch("viam.module.module.Module._connect_to_parent")
+            self.module.parent = await RobotClient.with_channel(channel, RobotClient.Options())
+            req = AddResourceRequest(
+                config=ComponentConfig(
+                    name="gizmo2",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"arg1": "arg2"}),
+                    api="acme:component:gizmo",
+                ),
+                dependencies=["rdk:component:arm/arm1"],
+            )
+            await self.module.add_resource(req)
+            assert Gizmo.get_resource_name("gizmo2") in self.module.server.resources
+
+            req = RemoveResourceRequest(name="acme:component:gizmo/gizmo2")
+            await self.module.remove_resource(req)
+            assert Gizmo.get_resource_name("gizmo2") not in self.module.server.resources
+
     @pytest.mark.asyncio
     async def test_remove_resource(self):
         assert Gizmo.get_resource_name("gizmo1") in self.module.server.resources
         req = RemoveResourceRequest(name="acme:component:gizmo/gizmo1")
         await self.module.remove_resource(req)
         assert Gizmo.get_resource_name("gizmo1") not in self.module.server.resources
+
+        assert SummationService.get_resource_name("mysum1") in self.module.server.resources
+        req = RemoveResourceRequest(name="acme:service:summation/mysum1")
+        await self.module.remove_resource(req)
+        assert SummationService.get_resource_name("mysum1") not in self.module.server.resources
 
     @pytest.mark.asyncio
     async def test_ready(self):
@@ -100,13 +162,21 @@ class TestModule:
         req = ReadyRequest(parent_address=p_addr)
         resp = await self.module.ready(req)
         assert self.module._parent_address == p_addr
-        assert len(resp.handlermap.handlers) == 1
+        assert len(resp.handlermap.handlers) == 2
+
         handler = resp.handlermap.handlers[0]
         rn = Gizmo.get_resource_name("")
         assert handler.subtype == ResourceRPCSubtype(subtype=rn, proto_service="acme.component.gizmo.v1.GizmoService")
         assert len(handler.models) == 1
         model = handler.models[0]
         assert model == "acme:demo:mygizmo"
+
+        handler = resp.handlermap.handlers[1]
+        rn = SummationService.get_resource_name("")
+        assert handler.subtype == ResourceRPCSubtype(subtype=rn, proto_service="acme.service.summation.v1.SummationService")
+        assert len(handler.models) == 1
+        model = handler.models[0]
+        assert model == "acme:demo:mysum"
 
     def test_add_model_from_registry(self):
         mod = Module("fake")
@@ -140,8 +210,8 @@ class TestModule:
         )
         await self.module.add_resource(req)
 
-        g1 = self.module.server.get_component(Gizmo, Gizmo.get_resource_name("gizmo1"))
-        g2 = self.module.server.get_component(Gizmo, Gizmo.get_resource_name("gizmo2"))
+        g1 = self.module.server.get_resource(Gizmo, Gizmo.get_resource_name("gizmo1"))
+        g2 = self.module.server.get_resource(Gizmo, Gizmo.get_resource_name("gizmo2"))
 
         assert await g1.do_one("arg1") is True
         assert await g2.do_one("arg1") is False

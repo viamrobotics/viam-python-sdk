@@ -1,0 +1,94 @@
+from abc import abstractclassmethod, abstractmethod
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Mapping,
+    Optional,
+    Protocol,
+    runtime_checkable,
+)
+
+from typing_extensions import Self
+
+from viam.operations import Operation
+from viam.proto.common import ResourceName
+
+from .types import Subtype
+
+if TYPE_CHECKING:
+    from viam.robot.client import RobotClient
+    from viam.utils import ValueTypes
+
+
+@runtime_checkable
+class ResourceBase(Protocol):
+    """
+    The base requirements for a Resource.
+    """
+
+    SUBTYPE: ClassVar["Subtype"]
+    """The Subtype of the Resource"""
+
+    name: str
+    """The name of the Resource"""
+
+    @classmethod
+    def get_resource_name(cls, name: str) -> ResourceName:
+        """
+        Get the ResourceName for this Resource with the given name
+
+        Args:
+            name (str): The name of the Resource
+        """
+        return ResourceName(
+            namespace=cls.SUBTYPE.namespace,
+            type=cls.SUBTYPE.resource_type,
+            subtype=cls.SUBTYPE.resource_subtype,
+            name=name,
+        )
+
+    @abstractclassmethod
+    def from_robot(cls, robot: "RobotClient", name: str) -> Self:
+        """Get the Resource named ``name`` from the provided robot.
+
+        Args:
+            robot (RobotClient): The robot
+            name (str): The name of the Resource
+
+        Returns:
+            Self: The Resource, if it exists on the robot
+        """
+        ...
+
+    @abstractmethod
+    async def do_command(
+        self, command: Mapping[str, "ValueTypes"], *, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, "ValueTypes"]:
+        """Send/Receive arbitrary commands to the Resource
+
+        Args:
+            command (Mapping[str, ValueTypes]): The command to execute
+
+        Raises:
+            NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+        Returns:
+            Mapping[str, ValueTypes]: Result of the executed command
+        """
+        ...
+
+    def get_operation(self, kwargs: Mapping[str, Any]) -> Operation:
+        """Get the ``Operation`` associated with the currently running function.
+
+        When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+        If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+        ).
+
+        Args:
+            kwargs (Mapping[str, Any]): The kwargs object containing the operation
+
+        Returns:
+            Operation: The operation associated with this function
+        """
+        return kwargs.get(Operation.ARG_NAME, Operation._noop())

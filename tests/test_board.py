@@ -7,7 +7,7 @@ from grpclib.testing import ChannelFor
 from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardService
 from viam.components.generic.service import GenericService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.board import (

@@ -4,7 +4,6 @@ from typing import Any, Dict, Iterable, List
 from grpclib.server import Stream
 
 from viam import logging
-from viam.components.service_base import ComponentServiceBase
 from viam.errors import MethodNotImplementedError, ViamGRPCError
 from viam.proto.common import ResourceName
 from viam.proto.robot import (
@@ -42,12 +41,13 @@ from viam.proto.robot import (
     TransformPoseResponse,
 )
 from viam.resource.registry import Registry
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import resource_names_for_resource, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
 
-class RobotService(RobotServiceBase, ComponentServiceBase):
+class RobotService(RobotServiceBase, ResourceRPCServiceBase):
     def _generate_metadata(self) -> List[ResourceName]:
         md: List[ResourceName] = []
 
@@ -60,7 +60,7 @@ class RobotService(RobotServiceBase, ComponentServiceBase):
         statuses: List[Status] = []
 
         for component in self.manager.resources.values():
-            for registration in Registry.REGISTERED_RESOURCES().values():
+            for registration in Registry.REGISTERED_SUBTYPES().values():
                 if isinstance(component, registration.resource_type):
                     if resource_names and component.get_resource_name(component.name) not in resource_names:
                         continue

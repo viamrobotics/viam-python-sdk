@@ -1,15 +1,15 @@
 from typing import Any, Mapping, Optional, Protocol, runtime_checkable
 
-from viam.components.component_base import ComponentBase
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
+from viam.resource.base import ResourceBase
 
 
 @runtime_checkable
 class Reconfigurable(Protocol):
     """The Reconfigurable protocol defines the requirements for making a resource Reconfigurable"""
 
-    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]):
+    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         ...
 
 

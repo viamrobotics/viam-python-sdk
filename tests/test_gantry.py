@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.gantry import GantryClient, GantryStatus, create_status
 from viam.components.gantry.service import GantryService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
     GantryServiceStub,

@@ -1,6 +1,7 @@
 import asyncio
 
 from src.gizmo import Gizmo
+from src.summation import SummationService
 
 from viam import logging
 from viam.robot.client import RobotClient
@@ -19,6 +20,7 @@ async def main():
     print("Resources:")
     print(robot.resource_names)
 
+    # ####### GIZMO ####### #
     gizmo = Gizmo.from_robot(robot, name="gizmo1")
     resp = await gizmo.do_one("arg1")
     print("do_one result:", resp)
@@ -37,6 +39,11 @@ async def main():
 
     # resp = await gizmo.do_one_bidi_stream(["arg1", "arg2", "arg3"])
     # print("do_one_bidi_stream result:", resp)
+
+    # ####### SUMMATION ####### #
+    summer = SummationService.from_robot(robot, name="mysum1")
+    sum = await summer.sum([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    print(f"The sum of the numbers [0, 10) is {sum}")
 
     await robot.close()
 

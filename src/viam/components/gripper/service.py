@@ -1,25 +1,25 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
     GripperServiceBase,
+    IsMovingRequest,
+    IsMovingResponse,
     OpenRequest,
     OpenResponse,
     StopRequest,
     StopResponse,
-    IsMovingRequest,
-    IsMovingResponse,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .gripper import Gripper
 
 
-class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
+class GripperService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
     """
     gRPC Service for a Gripper
     """
@@ -31,7 +31,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         assert request is not None
         name = request.name
         try:
-            gripper = self.get_component(name)
+            gripper = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -44,7 +44,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         assert request is not None
         name = request.name
         try:
-            gripper = self.get_component(name)
+            gripper = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -56,7 +56,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         request = await stream.recv_message()
         assert request is not None
         try:
-            gripper = self.get_component(request.name)
+            gripper = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -68,7 +68,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         assert request is not None
         name = request.name
         try:
-            gripper = self.get_component(name)
+            gripper = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await gripper.is_moving()
@@ -79,7 +79,7 @@ class GripperService(GripperServiceBase, ComponentServiceBase[Gripper]):
         request = await stream.recv_message()
         assert request is not None
         try:
-            gripper = self.get_component(request.name)
+            gripper = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

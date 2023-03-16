@@ -1,7 +1,6 @@
 import re
 import sys
-from abc import abstractclassmethod, abstractmethod
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol
+from typing import TYPE_CHECKING, Callable, ClassVar, Mapping
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -14,9 +13,7 @@ from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 
 if TYPE_CHECKING:
-    from viam.components.component_base import ComponentBase
-    from viam.robot.client import RobotClient
-    from viam.utils import ValueTypes
+    from .base import ResourceBase
 
 RESOURCE_NAMESPACE_RDK = "rdk"
 RESOURCE_TYPE_COMPONENT = "component"
@@ -199,61 +196,4 @@ def resource_name_from_string(string: str) -> ResourceName:
     return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=name)
 
 
-class ResourceBase(Protocol):
-    """
-    The base requirements for a Resource.
-    """
-
-    SUBTYPE: ClassVar["Subtype"]
-    """The Subtype of the Resource"""
-
-    name: str
-    """The name of the Resource"""
-
-    @classmethod
-    def get_resource_name(cls, name: str) -> ResourceName:
-        """
-        Get the ResourceName for this Resource with the given name
-
-        Args:
-            name (str): The name of the Resource
-        """
-        return ResourceName(
-            namespace=cls.SUBTYPE.namespace,
-            type=cls.SUBTYPE.resource_type,
-            subtype=cls.SUBTYPE.resource_subtype,
-            name=name,
-        )
-
-    @abstractclassmethod
-    def from_robot(cls, robot: "RobotClient", name: str) -> Self:
-        """Get the Resource named ``name`` from the provided robot.
-
-        Args:
-            robot (RobotClient): The robot
-            name (str): The name of the Resource
-
-        Returns:
-            Self: The Resource, if it exists on the robot
-        """
-        ...
-
-    @abstractmethod
-    async def do_command(
-        self, command: Mapping[str, "ValueTypes"], *, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, "ValueTypes"]:
-        """Send/Receive arbitrary commands to the Resource
-
-        Args:
-            command (Mapping[str, ValueTypes]): The command to execute
-
-        Raises:
-            NotImplementedError: Raised if the Resource does not support arbitrary commands
-
-        Returns:
-            Mapping[str, ValueTypes]: Result of the executed command
-        """
-        ...
-
-
-ComponentCreator: TypeAlias = Callable[[Mapping[ResourceName, "ComponentBase"], ComponentConfig], "ComponentBase"]
+ResourceCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ResourceBase"]

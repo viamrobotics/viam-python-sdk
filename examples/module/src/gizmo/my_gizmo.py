@@ -2,20 +2,20 @@ from typing import ClassVar, Mapping, Sequence
 
 from typing_extensions import Self
 
-from viam.components.component_base import ComponentBase
 from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
+from viam.resource.base import ResourceBase
 from viam.resource.types import Model, ModelFamily
 
 from ..gizmo.api import Gizmo
 
 
 class MyGizmo(Gizmo, Reconfigurable):
-    """This is the specific implementation of a ```Gizmo``` (defined in api.py).
+    """This is the specific implementation of a ``Gizmo`` (defined in api.py).
 
-    It inherits from Gizmo, as well conforms to the ```Reconfigurable``` protocol, which signifies that this component can be reconfigured.
-    It also specifies a function ```MyGizmo.new```, which conforms to the ```resource.types.ComponentCreator``` type, which is required
+    It inherits from Gizmo, as well conforms to the ``Reconfigurable`` protocol, which signifies that this component can be reconfigured.
+    It also specifies a function ``MyGizmo.new``, which conforms to the ``resource.ComponentCreator`` type, which is required
     for all models.
     """
 
@@ -23,7 +23,7 @@ class MyGizmo(Gizmo, Reconfigurable):
     my_arg: str
 
     @classmethod
-    def new(cls, dependencies: Mapping[ResourceName, ComponentBase], config: ComponentConfig) -> Self:
+    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
         gizmo = cls(config.name)
         gizmo.my_arg = config.attributes.fields["arg1"].string_value
         return gizmo
@@ -51,5 +51,5 @@ class MyGizmo(Gizmo, Reconfigurable):
     async def do_two(self, arg1: bool, **kwargs) -> str:
         return f"arg1={arg1}"
 
-    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]):
+    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         self.my_arg = config.attributes.fields["arg1"].string_value

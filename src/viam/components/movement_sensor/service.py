@@ -1,7 +1,6 @@
 from grpclib.server import Stream
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.components.service_base import ComponentServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.movementsensor import (
@@ -23,10 +22,11 @@ from viam.proto.component.movementsensor import (
     GetPropertiesResponse,
     MovementSensorServiceBase,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 
-class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[MovementSensor]):
+class MovementSensorService(MovementSensorServiceBase, ResourceRPCServiceBase[MovementSensor]):
     """
     gRPC Service for a MovementSensor
     """
@@ -38,7 +38,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         assert request is not None
         name = request.name
         try:
-            sensor = self.get_component(name)
+            sensor = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -51,7 +51,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         assert request is not None
         name = request.name
         try:
-            sensor = self.get_component(name)
+            sensor = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -64,7 +64,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         assert request is not None
         name = request.name
         try:
-            sensor = self.get_component(name)
+            sensor = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -77,7 +77,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         assert request is not None
         name = request.name
         try:
-            sensor = self.get_component(name)
+            sensor = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -90,7 +90,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         assert request is not None
         name = request.name
         try:
-            sensor = self.get_component(name)
+            sensor = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -103,7 +103,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         assert request is not None
         name = request.name
         try:
-            sensor = self.get_component(name)
+            sensor = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -116,7 +116,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         assert request is not None
         name = request.name
         try:
-            sensor = self.get_component(name)
+            sensor = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -128,7 +128,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         assert request is not None
         name = request.name
         try:
-            sensor = self.get_component(name)
+            sensor = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -140,7 +140,7 @@ class MovementSensorService(MovementSensorServiceBase, ComponentServiceBase[Move
         request = await stream.recv_message()
         assert request is not None
         try:
-            sensor = self.get_component(request.name)
+            sensor = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

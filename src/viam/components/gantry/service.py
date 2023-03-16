@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
@@ -16,12 +15,13 @@ from viam.proto.component.gantry import (
     StopRequest,
     StopResponse,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .gantry import Gantry
 
 
-class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
+class GantryService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
     """
     gRPC Service for an Gantry
     """
@@ -33,7 +33,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         assert request is not None
         name = request.name
         try:
-            gantry = self.get_component(name)
+            gantry = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -46,7 +46,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         assert request is not None
         name = request.name
         try:
-            gantry = self.get_component(name)
+            gantry = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -61,7 +61,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         assert request is not None
         name = request.name
         try:
-            gantry = self.get_component(name)
+            gantry = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -74,7 +74,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         assert request is not None
         name = request.name
         try:
-            gantry = self.get_component(name)
+            gantry = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -87,7 +87,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         assert request is not None
         name = request.name
         try:
-            gantry = self.get_component(name)
+            gantry = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await gantry.is_moving()
@@ -98,7 +98,7 @@ class GantryService(GantryServiceBase, ComponentServiceBase[Gantry]):
         request = await stream.recv_message()
         assert request is not None
         try:
-            gantry = self.get_component(request.name)
+            gantry = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

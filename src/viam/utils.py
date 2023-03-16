@@ -20,8 +20,9 @@ from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
-from viam.resource.registry import Registry, Subtype
-from viam.resource.types import ResourceBase
+from viam.resource.base import ResourceBase
+from viam.resource.registry import Registry
+from viam.resource.types import Subtype
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable
@@ -106,7 +107,7 @@ def resource_names_for_resource(resource: ResourceBase) -> List[ResourceName]:
     rns: List[ResourceName] = []
 
     for klass in resource.__class__.mro():
-        for registration in Registry.REGISTERED_RESOURCES().values():
+        for registration in Registry.REGISTERED_SUBTYPES().values():
             if klass is registration.resource_type:
                 subtype: Subtype = registration.resource_type.SUBTYPE
                 rns.append(
@@ -139,6 +140,8 @@ def struct_to_message(struct: Struct, message_type: Type[_T]) -> _T:
 
 def dict_to_struct(obj: Mapping[str, ValueTypes]) -> Struct:
     def _convert(v: ValueTypes) -> Any:
+        if isinstance(v, bool):
+            return v
         if isinstance(v, SupportsFloat):
             return float(v)
         if isinstance(v, SupportsBytes):

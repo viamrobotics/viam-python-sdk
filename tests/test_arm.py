@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose
 from viam.proto.component.arm import (
     ArmServiceStub,

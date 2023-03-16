@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.servo import (
@@ -14,12 +13,13 @@ from viam.proto.component.servo import (
     StopRequest,
     StopResponse,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .servo import Servo
 
 
-class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
+class ServoService(ServoServiceBase, ResourceRPCServiceBase[Servo]):
     """
     gRPC Service for a Servo
     """
@@ -31,7 +31,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         assert request is not None
         name = request.name
         try:
-            servo = self.get_component(name)
+            servo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -43,7 +43,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         assert request is not None
         name = request.name
         try:
-            servo = self.get_component(name)
+            servo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -56,7 +56,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         assert request is not None
         name = request.name
         try:
-            servo = self.get_component(name)
+            servo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -68,7 +68,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         assert request is not None
         name = request.name
         try:
-            servo = self.get_component(name)
+            servo = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         is_moving = await servo.is_moving()
@@ -78,7 +78,7 @@ class ServoService(ServoServiceBase, ComponentServiceBase[Servo]):
         request = await stream.recv_message()
         assert request is not None
         try:
-            servo = self.get_component(request.name)
+            servo = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

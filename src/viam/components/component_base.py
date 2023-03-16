@@ -1,7 +1,6 @@
 import abc
 from typing import (
     TYPE_CHECKING,
-    Any,
     ClassVar,
     List,
     Mapping,
@@ -14,8 +13,7 @@ from typing import (
 
 from typing_extensions import Self
 
-from viam.operations import Operation
-from viam.resource.types import ResourceBase
+from viam.resource.base import ResourceBase
 
 if TYPE_CHECKING:
     from viam.resource.types import Subtype
@@ -49,21 +47,6 @@ class ComponentBase(abc.ABC, ResourceBase):
         """
         component = robot.get_component(cls.get_resource_name(name))
         return cast(cls, component)
-
-    def get_operation(self, kwargs: Mapping[str, Any]) -> Operation:
-        """Get the ``Operation`` associated with the currently running function.
-
-        When writing custom components, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
-        If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
-        ).
-
-        Args:
-            kwargs (Mapping[str, Any]): The kwargs object containing the operation
-
-        Returns:
-            Operation: The operation associated with this function
-        """
-        return kwargs.get(Operation.ARG_NAME, Operation._noop())
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         raise NotImplementedError()

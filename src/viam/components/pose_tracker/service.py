@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.components.service_base import ComponentServiceBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.posetracker import (
@@ -8,12 +7,13 @@ from viam.proto.component.posetracker import (
     GetPosesResponse,
     PoseTrackerServiceBase,
 )
-from viam.utils import struct_to_dict, dict_to_struct
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .pose_tracker import PoseTracker
 
 
-class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracker]):
+class PoseTrackerService(PoseTrackerServiceBase, ResourceRPCServiceBase[PoseTracker]):
     """
     gRPC service for a pose tracker
     """
@@ -25,7 +25,7 @@ class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracke
         assert request is not None
         name = request.name
         try:
-            pose_tracker = self.get_component(name)
+            pose_tracker = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -38,7 +38,7 @@ class PoseTrackerService(PoseTrackerServiceBase, ComponentServiceBase[PoseTracke
         request = await stream.recv_message()
         assert request is not None
         try:
-            pose_tracker = self.get_component(request.name)
+            pose_tracker = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None

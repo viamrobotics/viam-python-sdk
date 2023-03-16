@@ -6,7 +6,7 @@ from grpclib.testing import ChannelFor
 from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseService
 from viam.components.generic.service import GenericService
-from viam.components.resource_manager import ResourceManager
+from viam.resource.manager import ResourceManager
 from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.base import (
     BaseServiceStub,
@@ -47,7 +47,7 @@ class TestBase:
         distances = [randint(-50, 50) for _ in range(4)]
         velocities = [random() + 1 for _ in range(4)]
 
-        for (i, (d, v)) in enumerate(zip(distances, velocities)):
+        for i, (d, v) in enumerate(zip(distances, velocities)):
             await base.move_straight(d, v)
             assert base.position == sum(distances[: i + 1])
 
@@ -56,7 +56,7 @@ class TestBase:
         angles = [randint(-180, 180) for _ in range(4)]
         velocities = [random() + 1 for _ in range(4)]
 
-        for (i, (a, v)) in enumerate(zip(angles, velocities)):
+        for i, (a, v) in enumerate(zip(angles, velocities)):
             await base.spin(a, v)
             assert base.angle == sum(angles[: i + 1])
 
@@ -141,7 +141,7 @@ class TestService:
 
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
-            for (i, (d, v)) in enumerate(zip(distances, velocities)):
+            for i, (d, v) in enumerate(zip(distances, velocities)):
                 request = MoveStraightRequest(
                     name=base.name,
                     distance_mm=d,
@@ -157,7 +157,7 @@ class TestService:
 
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
-            for (i, (a, v)) in enumerate(zip(angles, velocities)):
+            for i, (a, v) in enumerate(zip(angles, velocities)):
                 request = SpinRequest(
                     name=base.name,
                     angle_deg=a,
@@ -280,7 +280,7 @@ class TestClient:
 
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
-            for (i, (d, v)) in enumerate(zip(distances, velocities)):
+            for i, (d, v) in enumerate(zip(distances, velocities)):
                 await client.move_straight(d, v)
                 assert base.position == sum(distances[: i + 1])
 
@@ -291,7 +291,7 @@ class TestClient:
 
         async with ChannelFor([service]) as channel:
             client = BaseClient(base.name, channel)
-            for (i, (a, v)) in enumerate(zip(angles, velocities)):
+            for i, (a, v) in enumerate(zip(angles, velocities)):
                 await client.spin(a, v)
                 assert base.angle == sum(angles[: i + 1])
 

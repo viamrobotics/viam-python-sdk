@@ -8,7 +8,6 @@ from viam import logging
 from viam.components.component_base import ComponentBase
 from viam.errors import ResourceNotFoundError
 from viam.proto.app.robot import ComponentConfig
-from viam.proto.common import ResourceName
 from viam.proto.module import (
     AddResourceRequest,
     HandlerDefinition,
@@ -19,13 +18,9 @@ from viam.proto.module import (
     RemoveResourceRequest,
 )
 from viam.proto.robot import ResourceRPCSubtype
+from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
-from viam.resource.types import (
-    RESOURCE_TYPE_COMPONENT,
-    Model,
-    Subtype,
-    resource_name_from_string,
-)
+from viam.resource.types import Model, ResourceName, Subtype, resource_name_from_string
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 from viam.rpc.server import Server
@@ -106,10 +101,9 @@ class Module:
         config: ComponentConfig = request.config
         subtype = Subtype.from_string(config.api)
         model = Model.from_string(config.model, ignore_errors=True)
-        if subtype.resource_type == RESOURCE_TYPE_COMPONENT:
-            creator = Registry.lookup_component(subtype, model)
-            component = creator(dependencies, config)
-            self.server.register(component)
+        creator = Registry.lookup_resource_creator(subtype, model)
+        resource = creator(config, dependencies)
+        self.server.register(resource)
 
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
         dependencies = await self._get_dependencies(request.dependencies)
@@ -117,7 +111,7 @@ class Module:
         subtype = Subtype.from_string(config.api)
         name = config.name
         rn = ResourceName(namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=name)
-        resource = self.server.get_component(ComponentBase, rn)
+        resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Reconfigurable):
             resource.reconfigure(config, dependencies)
         else:
@@ -127,24 +121,24 @@ class Module:
                 else:
                     resource.stop()
             add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
-            self.server.remove_component(rn)
+            self.server.remove_resource(rn)
             await self.add_resource(add_request)
 
     async def remove_resource(self, request: RemoveResourceRequest):
         rn = resource_name_from_string(request.name)
-        resource = self.server.get_component(ComponentBase, rn)
+        resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Stoppable):
             if iscoroutinefunction(resource.stop):
                 await resource.stop()
             else:
                 resource.stop()
-        self.server.remove_component(rn)
+        self.server.remove_resource(rn)
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
         self._parent_address = request.parent_address
 
         svcname_to_models: Mapping[Tuple[str, Subtype], List[Model]] = {}
-        for subtype_model_str in Registry.REGISTERED_COMPONENTS().keys():
+        for subtype_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():
             subtype_str, model_str = subtype_model_str.split("/")
             subtype = Subtype.from_string(subtype_str)
             model = Model.from_string(model_str)
@@ -179,6 +173,6 @@ class Module:
 
         # All we need to do is double check that the model has already been registered
         try:
-            Registry.lookup_component(subtype, model)
+            Registry.lookup_resource_creator(subtype, model)
         except ResourceNotFoundError:
             raise ValueError(f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}")

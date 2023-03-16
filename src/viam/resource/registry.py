@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from threading import Lock
 from typing import (
+    TYPE_CHECKING,
     Any,
     Callable,
     ClassVar,
@@ -17,9 +18,12 @@ from grpclib.client import Channel
 
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.proto.robot import Status
-from viam.rpc.types import RPCServiceBase
 
-from .types import ComponentCreator, Model, ResourceBase, Subtype
+from .base import ResourceBase
+
+if TYPE_CHECKING:
+    from .rpc_service_base import ResourceRPCServiceBase
+    from .types import Model, ResourceCreator, Subtype
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
@@ -43,7 +47,7 @@ class ResourceRegistration(Generic[Resource]):
     """The type of the Resource to be registered
     """
 
-    rpc_service: Type[RPCServiceBase]
+    rpc_service: Type["ResourceRPCServiceBase"]
     """The type of the RPC service of the resource. This must extend from ``RPCServiceBase``
     """
 
@@ -70,8 +74,8 @@ class Registry:
     resource using ``Registry.register(...)``.
     """
 
-    _SUBTYPES: ClassVar[Dict[Subtype, ResourceRegistration]] = {}
-    _COMPONENTS: ClassVar[Dict[str, ComponentCreator]] = {}
+    _SUBTYPES: ClassVar[Dict["Subtype", ResourceRegistration]] = {}
+    _RESOURCES: ClassVar[Dict[str, "ResourceCreator"]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
@@ -90,26 +94,26 @@ class Registry:
             cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
 
     @classmethod
-    def register_component_model(cls, subtype: Subtype, model: Model, component: ComponentCreator):
-        """Register a specific ```Model``` for the specific ```Subtype``` with the Registry
+    def register_resource_creator(cls, subtype: "Subtype", model: "Model", creator: "ResourceCreator"):
+        """Register a specific ``Model`` for the specific resource ``Subtype`` with the Registry
 
         Args:
-            subtype (Subtype): The Subtype of the component
-            model (Model): The Model of the component
-            component (ComponentCreator): A function that can create a component given a mapping of dependencies (```ResourceName``` to
-                                          ```ComponentBase```)
+            subtype (Subtype): The Subtype of the resource
+            model (Model): The Model of the resource
+            creator (ResourceCreator): A function that can create a resource given a mapping of dependencies (``ResourceName`` to
+                                       ``ResourceBase``).
 
         Raises:
             DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
         """
         key = f"{subtype}/{model}"
         with cls._lock:
-            if key in cls._COMPONENTS:
+            if key in cls._RESOURCES:
                 raise DuplicateResourceError(key)
-            cls._COMPONENTS[key] = component
+            cls._RESOURCES[key] = creator
 
     @classmethod
-    def lookup_subtype(cls, subtype: Subtype) -> ResourceRegistration:
+    def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
         """Lookup and retrieve a registered Subtype by its name
 
         Args:
@@ -128,27 +132,27 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def lookup_component(cls, subtype: Subtype, model: Model) -> ComponentCreator:
-        """Lookup and retrieve a registered component by its name
+    def lookup_resource_creator(cls, subtype: "Subtype", model: "Model") -> "ResourceCreator":
+        """Lookup and retrieve a registered resource creator by its subtype and model
 
         Args:
-            subtype (Subtype): The Subtype of the component
-            model (Model): The Model of the component
+            subtype (Subtype): The Subtype of the service
+            model (Model): The Model of the service
 
         Raises:
             ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
 
         Returns:
-            ComponentCreator: The function to create the component
+            ResourceCreator: The function to create the resource
         """
         with cls._lock:
             try:
-                return cls._COMPONENTS[f"{subtype}/{model}"]
+                return cls._RESOURCES[f"{subtype}/{model}"]
             except KeyError:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def REGISTERED_RESOURCES(cls) -> Mapping[Subtype, ResourceRegistration]:
+    def REGISTERED_SUBTYPES(cls) -> Mapping["Subtype", ResourceRegistration]:
         """The dictionary of all registered resources
         - Key: Subtype of the resource
         - Value: The registration object for the resource
@@ -160,6 +164,13 @@ class Registry:
             return cls._SUBTYPES.copy()
 
     @classmethod
-    def REGISTERED_COMPONENTS(cls) -> Mapping[str, ComponentCreator]:
+    def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreator"]:
+        """The dictionary of all registered resources
+        - Key: subtype/model
+        - Value: The ResourceCreator for the resource
+
+        Returns:
+            Mapping[str, ResourceCreator]: All registered resources
+        """
         with cls._lock:
-            return cls._COMPONENTS.copy()
+            return cls._RESOURCES.copy()
