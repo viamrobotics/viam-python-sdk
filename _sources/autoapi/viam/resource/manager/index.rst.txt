@@ -1,0 +1,79 @@
+:py:mod:`viam.resource.manager`
+===============================
+
+.. py:module:: viam.resource.manager
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.resource.manager.ResourceManager
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.resource.manager.ResourceType
+
+
+.. py:data:: ResourceType
+
+   
+
+.. py:class:: ResourceManager(components: List[viam.resource.base.ResourceBase] = [])
+
+   Registry containing all components registered to this server.
+
+   .. py:attribute:: resources
+      :type: Dict[viam.proto.common.ResourceName, viam.resource.base.ResourceBase]
+
+      
+
+   .. py:method:: register(component: viam.resource.base.ResourceBase)
+
+      Register a new component with the registry.
+      Components may not have the same name.
+      If a component is remote and the short name is unique, save a short name version.
+
+      :raises DuplicateComponentError: Error if attempting to register component
+          with the name of an existing component
+
+      :param component: The component to register
+      :type component: ComponentBase
+
+
+   .. py:method:: get_resource(of_type: Type[ResourceType], name: viam.proto.common.ResourceName) -> ResourceType
+
+      Return a resource from the registry.
+      If a unique short name version is given, return a remote resource with the name.
+
+      :param of_type: The type of the resource
+      :type of_type: Type[ResourceType]
+      :param name: The name of the resource
+      :type name: str
+
+      :raises ResourceNotFoundError: Error if resource with the given type
+          and name does not exist in the registry
+
+      :returns: The resource
+      :rtype: ResourceType
+
+
+   .. py:method:: remove_resource(name: viam.proto.common.ResourceName)
+
+      Remove the resource with the specified ```ResourceName```.
+
+      :param name: The ResourceName of the resource
+      :type name: ResourceName
+
+
+

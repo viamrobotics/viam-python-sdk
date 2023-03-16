@@ -1,0 +1,61 @@
+:py:mod:`viam.services.service_base`
+====================================
+
+.. py:module:: viam.services.service_base
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.service_base.ServiceBase
+
+
+
+
+.. py:class:: ServiceBase(name: str)
+
+
+
+   This class describes the base functionality required for a Viam Service.
+   All services must inherit from this class.
+
+   .. py:attribute:: SUBTYPE
+      :type: ClassVar[viam.resource.types.Subtype]
+
+      
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the service named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service
+      :type name: str
+
+      :returns: The service, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+

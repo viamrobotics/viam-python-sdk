@@ -77,6 +77,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.with_channel"><code class="docutils literal notranslate"><span class="pre">RobotClient.with_channel()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.refresh"><code class="docutils literal notranslate"><span class="pre">RobotClient.refresh()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_component"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_component()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_service"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_service()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.close"><code class="docutils literal notranslate"><span class="pre">RobotClient.close()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__"><code class="docutils literal notranslate"><span class="pre">RobotClient.__aenter__()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aexit__"><code class="docutils literal notranslate"><span class="pre">RobotClient.__aexit__()</span></code></a></li>
@@ -106,6 +107,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.with_channel">with_channel</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.refresh">refresh</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_component">get_component</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_service">get_service</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.close">close</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aenter__">__aenter__</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.__aexit__">__aexit__</a></li>
@@ -306,9 +308,9 @@ If not set, the robot will not be refreshed automatically</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_component">
 <span class="sig-name descname"><span class="pre">get_component</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><span class="pre">viam.components.component_base.ComponentBase</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_component"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_component" title="Permalink to this definition"></a></dt>
 <dd><p>Get a component using its ResourceName.</p>
-<p>This function should not be used except in specific cases. The method <code class="docutils literal notranslate"><span class="pre">Component.from_robot(...)</span></code> is the preferred method
-for obtaining components.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_arm&#39;</span><span class="p">)</span>
+<p>This function should not be called directly except in specific cases. The method <code class="docutils literal notranslate"><span class="pre">Component.from_robot(...)</span></code> is the preferred
+method for obtaining components.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">Arm</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_arm&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Because this function returns a generic <code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code> rather than the specific
@@ -316,7 +318,7 @@ component type, it will be necessary to cast the returned component to the desir
 different methods:</p>
 <ul>
 <li><p>Assertion:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s1">&#39;my_arm&#39;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>
 <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arm</span><span class="p">,</span> <span class="n">Arm</span><span class="p">)</span>
 <span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
 </pre></div>
@@ -324,7 +326,7 @@ different methods:</p>
 </li>
 <li><p>Explicit cast:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
-<span class="n">arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s1">&#39;my_arm&#39;</span><span class="p">))</span>
+<span class="n">arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>
 <span class="n">arm</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Arm</span><span class="p">,</span> <span class="n">arm</span><span class="p">)</span>
 <span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
 </pre></div>
@@ -335,7 +337,7 @@ different methods:</p>
 <div><ul class="simple">
 <li><p>Note: If using an IDE, a type error may be shown which can be ignored.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span><span class="p">:</span> <span class="n">Arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s1">&#39;my_arm&#39;</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arm</span><span class="p">:</span> <span class="n">Arm</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_arm&quot;</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
 <span class="n">end_pos</span> <span class="o">=</span> <span class="k">await</span> <span class="n">arm</span><span class="o">.</span><span class="n">get_end_position</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -344,11 +346,11 @@ different methods:</p>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The component’s name</p>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The component’s ResourceName</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ViamError" title="viam.errors.ViamError"><strong>ViamError</strong></a> – Raised if the requested resource is not a component</p></li>
+<li><p><strong>ValueError</strong> – Raised if the requested resource is not a component</p></li>
 <li><p><strong>ComponentNotFoundError</strong> – Error if component with the given type and name does not exist in the registry</p></li>
 </ul>
 </dd>
@@ -357,6 +359,61 @@ different methods:</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../components/component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase">ComponentBase</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_service">
+<span class="sig-name descname"><span class="pre">get_service</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../services/service_base/index.html#viam.services.service_base.ServiceBase" title="viam.services.service_base.ServiceBase"><span class="pre">viam.services.service_base.ServiceBase</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_service" title="Permalink to this definition"></a></dt>
+<dd><p>Get a service using its ResourceName</p>
+<p>This function should not be called directly except in specific cases. The method <code class="docutils literal notranslate"><span class="pre">Service.from_robot(...)</span></code> is the preferred
+method for obtaining services.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">MyService</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_service&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Because this function returns a generic <code class="docutils literal notranslate"><span class="pre">ServiceBase</span></code> rather than a specific service type, it will be necessary to cast the
+returned service to the desired service. This can be done using a few methods:</p>
+<ul>
+<li><p>Assertion:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="n">MyService</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Explicit cast:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">cast</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">MyService</span><span class="p">,</span> <span class="n">my_service</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Declare type on variable assignment</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Note: If using an IDE, a type error may be shown which can be ignored.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">service</span><span class="p">:</span> <span class="n">MyService</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">MyService</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_service&quot;</span><span class="p">))</span>  <span class="c1"># type: ignore</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The service’s ResourceName</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – Raised if the requested resource is not a component</p></li>
+<li><p><strong>ComponentNotFoundError</strong> – Error if component with the given type and name does not exist in the registry</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The service</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../services/service_base/index.html#viam.services.service_base.ServiceBase" title="viam.services.service_base.ServiceBase">ServiceBase</a></p>
 </dd>
 </dl>
 </dd></dl>

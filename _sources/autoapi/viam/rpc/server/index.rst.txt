@@ -29,7 +29,7 @@ Attributes
 
    
 
-.. py:class:: Server(components: List[viam.resource.types.ResourceBase], *, module_service: Optional[viam.module.service.ModuleService] = None)
+.. py:class:: Server(components: List[viam.resource.base.ResourceBase], *, module_service: Optional[viam.module.service.ModuleService] = None)
 
 
 
@@ -53,7 +53,7 @@ Attributes
    .. py:method:: close()
 
 
-   .. py:method:: create_and_serve(components: List[viam.resource.types.ResourceBase], host: Optional[str] = 'localhost', port: Optional[int] = 9090, log_level: int = logging.INFO, *, path: Optional[str] = None)
+   .. py:method:: create_and_serve(components: List[viam.resource.base.ResourceBase], host: Optional[str] = 'localhost', port: Optional[int] = 9090, log_level: int = logging.INFO, *, path: Optional[str] = None)
       :classmethod:
       :async:
 

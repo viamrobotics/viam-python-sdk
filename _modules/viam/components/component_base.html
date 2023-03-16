@@ -86,7 +86,6 @@
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">TYPE_CHECKING</span><span class="p">,</span>
-    <span class="n">Any</span><span class="p">,</span>
     <span class="n">ClassVar</span><span class="p">,</span>
     <span class="n">List</span><span class="p">,</span>
     <span class="n">Mapping</span><span class="p">,</span>
@@ -99,8 +98,7 @@
 
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
-<span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">Operation</span>
-<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
+<span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">Subtype</span>
@@ -134,21 +132,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">component</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">component</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="ComponentBase.get_operation"><a class="viewcode-back" href="../../../autoapi/viam/components/component_base/index.html#viam.components.component_base.ComponentBase.get_operation">[docs]</a>    <span class="k">def</span> <span class="nf">get_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Operation</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the ``Operation`` associated with the currently running function.</span>
-
-<span class="sd">        When writing custom components, you should get the ``Operation`` by calling this function and check to see if it&#39;s cancelled.</span>
-<span class="sd">        If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.</span>
-<span class="sd">        ).</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            kwargs (Mapping[str, Any]): The kwargs object containing the operation</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Operation: The operation associated with this function</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">Operation</span><span class="o">.</span><span class="n">ARG_NAME</span><span class="p">,</span> <span class="n">Operation</span><span class="o">.</span><span class="n">_noop</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="ComponentBase.do_command"><a class="viewcode-back" href="../../../autoapi/viam/components/component_base/index.html#viam.components.component_base.ComponentBase.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>

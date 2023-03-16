@@ -22,7 +22,7 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="viam.components.resource_manager" href="../resource_manager/index.html" />
+    <link rel="next" title="viam.components.types" href="../types/index.html" />
     <link rel="prev" title="viam.components.servo.servo" href="../servo/servo/index.html" /> 
 </head>
 
@@ -65,7 +65,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.component_base.ComponentBase"><code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ComponentBase.SUBTYPE</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ComponentBase.from_robot()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_operation"><code class="docutils literal notranslate"><span class="pre">ComponentBase.get_operation()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.do_command"><code class="docutils literal notranslate"><span class="pre">ComponentBase.do_command()</span></code></a></li>
 </ul>
 </li>
@@ -73,7 +72,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.component_base.ComponentBase">ComponentBase</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.SUBTYPE">SUBTYPE</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.from_robot">from_robot</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.get_operation">get_operation</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.component_base.ComponentBase.do_command">do_command</a></li>
 </ul>
 </li>
@@ -83,8 +81,6 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../resource_manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.resource_manager</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../service_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.service_base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.types</span></code></a></li>
 </ul>
 </li>
@@ -180,26 +176,6 @@ All components must inherit from this class.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.get_operation">
-<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/components/component_base.html#ComponentBase.get_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.component_base.ComponentBase.get_operation" title="Permalink to this definition"></a></dt>
-<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
-<p>When writing custom components, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
-If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
-).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The operation associated with this function</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.Operation" title="viam.gen.robot.v1.robot_pb2.Operation">Operation</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="viam.components.component_base.ComponentBase.do_command">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/component_base.html#ComponentBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.component_base.ComponentBase.do_command" title="Permalink to this definition"></a></dt>
 <dd><p>Send/Receive arbitrary commands to the Resource</p>
@@ -230,7 +206,7 @@ If the <code class="docutils literal notranslate"><span class="pre">Operation</s
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../servo/servo/index.html" class="btn btn-neutral float-left" title="viam.components.servo.servo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../resource_manager/index.html" class="btn btn-neutral float-right" title="viam.components.resource_manager" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../types/index.html" class="btn btn-neutral float-right" title="viam.components.types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -38,7 +38,7 @@ Attributes
 
    
 
-.. py:function:: default_create_status(resource: viam.resource.types.ResourceBase) -> viam.proto.robot.Status
+.. py:function:: default_create_status(resource: viam.resource.base.ResourceBase) -> viam.proto.robot.Status
    :async:
 
 
@@ -60,7 +60,7 @@ Attributes
       The type of the Resource to be registered
 
    .. py:attribute:: rpc_service
-      :type: Type[viam.rpc.types.RPCServiceBase]
+      :type: Type[viam.resource.rpc_service_base.ResourceRPCServiceBase]
 
       The type of the RPC service of the resource. This must extend from ``RPCServiceBase``
 
@@ -100,18 +100,18 @@ Attributes
       :raises DuplicateResourceError: Raised if the Subtype to register is already in the registry
 
 
-   .. py:method:: register_component_model(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model, component: viam.resource.types.ComponentCreator)
+   .. py:method:: register_resource_creator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model, creator: viam.resource.types.ResourceCreator)
       :classmethod:
 
-      Register a specific ```Model``` for the specific ```Subtype``` with the Registry
+      Register a specific ``Model`` for the specific resource ``Subtype`` with the Registry
 
-      :param subtype: The Subtype of the component
+      :param subtype: The Subtype of the resource
       :type subtype: Subtype
-      :param model: The Model of the component
+      :param model: The Model of the resource
       :type model: Model
-      :param component: A function that can create a component given a mapping of dependencies (```ResourceName``` to
-                        ```ComponentBase```)
-      :type component: ComponentCreator
+      :param creator: A function that can create a resource given a mapping of dependencies (``ResourceName`` to
+                      ``ResourceBase``).
+      :type creator: ResourceCreator
 
       :raises DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
 
@@ -130,23 +130,23 @@ Attributes
       :rtype: ResourceRegistration
 
 
-   .. py:method:: lookup_component(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.ComponentCreator
+   .. py:method:: lookup_resource_creator(subtype: viam.resource.types.Subtype, model: viam.resource.types.Model) -> viam.resource.types.ResourceCreator
       :classmethod:
 
-      Lookup and retrieve a registered component by its name
+      Lookup and retrieve a registered resource creator by its subtype and model
 
-      :param subtype: The Subtype of the component
+      :param subtype: The Subtype of the service
       :type subtype: Subtype
-      :param model: The Model of the component
+      :param model: The Model of the service
       :type model: Model
 
       :raises ResourceNotFoundError: Raised if the Subtype Model pairing is not registered
 
-      :returns: The function to create the component
-      :rtype: ComponentCreator
+      :returns: The function to create the resource
+      :rtype: ResourceCreator
 
 
-   .. py:method:: REGISTERED_RESOURCES() -> Mapping[viam.resource.types.Subtype, ResourceRegistration]
+   .. py:method:: REGISTERED_SUBTYPES() -> Mapping[viam.resource.types.Subtype, ResourceRegistration]
       :classmethod:
 
       The dictionary of all registered resources
@@ -157,8 +157,15 @@ Attributes
       :rtype: Mapping[Subtype, ResourceRegistration]
 
 
-   .. py:method:: REGISTERED_COMPONENTS() -> Mapping[str, viam.resource.types.ComponentCreator]
+   .. py:method:: REGISTERED_RESOURCE_CREATORS() -> Mapping[str, viam.resource.types.ResourceCreator]
       :classmethod:
+
+      The dictionary of all registered resources
+      - Key: subtype/model
+      - Value: The ResourceCreator for the resource
+
+      :returns: All registered resources
+      :rtype: Mapping[str, ResourceCreator]
 
 
 

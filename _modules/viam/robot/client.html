@@ -94,8 +94,7 @@
 <span class="kn">import</span> <span class="nn">viam</span>
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span> <span class="nn">viam.components.resource_manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span><span class="p">,</span> <span class="n">ViamError</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Transform</span>
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BlockForOperationRequest</span><span class="p">,</span>
@@ -120,8 +119,11 @@
     <span class="n">TransformPoseRequest</span><span class="p">,</span>
     <span class="n">TransformPoseResponse</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">Subtype</span>
+<span class="kn">from</span> <span class="nn">viam.resource.manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
+<span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">,</span> <span class="n">dial</span>
+<span class="kn">from</span> <span class="nn">viam.services.service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -261,7 +263,7 @@
             <span class="k">return</span>
         <span class="n">manager</span> <span class="o">=</span> <span class="n">ResourceManager</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">rname</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;component&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">]:</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">subtype</span> <span class="o">==</span> <span class="s2">&quot;remote&quot;</span><span class="p">:</span>
                 <span class="k">continue</span>
@@ -328,11 +330,11 @@
 <div class="viewcode-block" id="RobotClient.get_component"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a component using its ResourceName.</span>
 
-<span class="sd">        This function should not be used except in specific cases. The method ``Component.from_robot(...)`` is the preferred method</span>
-<span class="sd">        for obtaining components.</span>
+<span class="sd">        This function should not be called directly except in specific cases. The method ``Component.from_robot(...)`` is the preferred</span>
+<span class="sd">        method for obtaining components.</span>
 <span class="sd">        ::</span>
 
-<span class="sd">            arm = Arm.from_robot(robot=robot, name=&#39;my_arm&#39;)</span>
+<span class="sd">            arm = Arm.from_robot(robot=robot, name=&quot;my_arm&quot;)</span>
 
 <span class="sd">        Because this function returns a generic ``ComponentBase`` rather than the specific</span>
 <span class="sd">        component type, it will be necessary to cast the returned component to the desired component. This can be done using a few</span>
@@ -340,14 +342,14 @@
 
 <span class="sd">        - Assertion::</span>
 
-<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))</span>
+<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&quot;my_arm&quot;))</span>
 <span class="sd">            assert isinstance(arm, Arm)</span>
 <span class="sd">            end_pos = await arm.get_end_position()</span>
 
 <span class="sd">        - Explicit cast::</span>
 
 <span class="sd">            from typing import cast</span>
-<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))</span>
+<span class="sd">            arm = robot.get_component(Arm.get_resource_name(&quot;my_arm&quot;))</span>
 <span class="sd">            arm = cast(Arm, arm)</span>
 <span class="sd">            end_pos = await arm.get_end_position()</span>
 
@@ -356,23 +358,68 @@
 <span class="sd">            - Note: If using an IDE, a type error may be shown which can be ignored.</span>
 <span class="sd">            ::</span>
 
-<span class="sd">                arm: Arm = robot.get_component(Arm.get_resource_name(&#39;my_arm&#39;))  # type: ignore</span>
+<span class="sd">                arm: Arm = robot.get_component(Arm.get_resource_name(&quot;my_arm&quot;))  # type: ignore</span>
 <span class="sd">                end_pos = await arm.get_end_position()</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (ResourceName): The component&#39;s name</span>
+<span class="sd">            name (ResourceName): The component&#39;s ResourceName</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            ViamError: Raised if the requested resource is not a component</span>
+<span class="sd">            ValueError: Raised if the requested resource is not a component</span>
 <span class="sd">            ComponentNotFoundError: Error if component with the given type and name does not exist in the registry</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            ComponentBase: The component</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;component&quot;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ViamError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ResourceName does not describe a component: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ResourceName does not describe a component: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="RobotClient.get_service"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_service">[docs]</a>    <span class="k">def</span> <span class="nf">get_service</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ServiceBase</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a service using its ResourceName</span>
+
+<span class="sd">        This function should not be called directly except in specific cases. The method ``Service.from_robot(...)`` is the preferred</span>
+<span class="sd">        method for obtaining services.</span>
+<span class="sd">        ::</span>
+
+<span class="sd">            service = MyService.from_robot(robot=robot, name=&quot;my_service&quot;)</span>
+
+<span class="sd">        Because this function returns a generic ``ServiceBase`` rather than a specific service type, it will be necessary to cast the</span>
+<span class="sd">        returned service to the desired service. This can be done using a few methods:</span>
+
+<span class="sd">        - Assertion::</span>
+
+<span class="sd">            service = robot.get_service(MyService.get_resource_name(&quot;my_service&quot;))</span>
+<span class="sd">            assert isinstance(service, MyService)</span>
+
+<span class="sd">        - Explicit cast::</span>
+
+<span class="sd">            from typing import cast</span>
+<span class="sd">            service = robot.get_service(MyService.get_resource_name(&quot;my_service&quot;))</span>
+<span class="sd">            service = cast(MyService, my_service)</span>
+
+<span class="sd">        - Declare type on variable assignment</span>
+
+<span class="sd">            - Note: If using an IDE, a type error may be shown which can be ignored.</span>
+<span class="sd">            ::</span>
+
+<span class="sd">                service: MyService = robot.get_service(MyService.get_resource_name(&quot;my_service&quot;))  # type: ignore</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (ResourceName): The service&#39;s ResourceName</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: Raised if the requested resource is not a component</span>
+<span class="sd">            ComponentNotFoundError: Error if component with the given type and name does not exist in the registry</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ServiceBase: The service</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ResourceName does not describe a service: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">ServiceBase</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">resource_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]:</span>

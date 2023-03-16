@@ -87,16 +87,16 @@
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span> <span class="nn">viam.components.service_base</span> <span class="kn">import</span> <span class="n">ComponentServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.proto.component.generic</span> <span class="kn">import</span> <span class="n">GenericServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span>
+<span class="kn">from</span> <span class="nn">viam.proto.component.generic</span> <span class="kn">import</span> <span class="n">GenericServiceBase</span>
+<span class="kn">from</span> <span class="nn">viam.resource.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="c1"># from .generic import Generic</span>
 
 
-<div class="viewcode-block" id="GenericService"><a class="viewcode-back" href="../../../../autoapi/viam/components/generic/service/index.html#viam.components.generic.service.GenericService">[docs]</a><span class="k">class</span> <span class="nc">GenericService</span><span class="p">(</span><span class="n">GenericServiceBase</span><span class="p">,</span> <span class="n">ComponentServiceBase</span><span class="p">[</span><span class="n">ComponentBase</span><span class="p">]):</span>
+<div class="viewcode-block" id="GenericService"><a class="viewcode-back" href="../../../../autoapi/viam/components/generic/service/index.html#viam.components.generic.service.GenericService">[docs]</a><span class="k">class</span> <span class="nc">GenericService</span><span class="p">(</span><span class="n">GenericServiceBase</span><span class="p">,</span> <span class="n">ResourceRPCServiceBase</span><span class="p">[</span><span class="n">ComponentBase</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gRPC Service for a Generic component</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -108,7 +108,7 @@
         <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">component</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">component</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ResourceNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="k">try</span><span class="p">:</span>

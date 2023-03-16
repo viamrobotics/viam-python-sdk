@@ -100,9 +100,6 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.types.Model" title="viam.resource.types.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a></p></td>
 <td><p>Represents a specific model within a family of models</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.types.ResourceBase" title="viam.resource.types.ResourceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceBase</span></code></a></p></td>
-<td><p>The base requirements for a Resource.</p></td>
-</tr>
 </tbody>
 </table>
 </section>
@@ -129,7 +126,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.types.RESOURCE_TYPE_SERVICE" title="viam.resource.types.RESOURCE_TYPE_SERVICE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RESOURCE_TYPE_SERVICE</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.types.ComponentCreator" title="viam.resource.types.ComponentCreator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentCreator</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.types.ResourceCreator" title="viam.resource.types.ResourceCreator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceCreator</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -372,78 +369,9 @@ rather than raise an exception. Defaults to False.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.resource.types.ResourceBase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.types.</span></span><span class="sig-name descname"><span class="pre">ResourceBase</span></span><a class="reference internal" href="../../../../_modules/viam/resource/types.html#ResourceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.types.ResourceBase" title="Permalink to this definition"></a></dt>
-<dd><p>The base requirements for a Resource.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.types.ResourceBase.SUBTYPE">
-<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">Subtype</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.resource.types.ResourceBase.SUBTYPE" title="Permalink to this definition"></a></dt>
-<dd><p>The Subtype of the Resource</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.types.ResourceBase.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.resource.types.ResourceBase.name" title="Permalink to this definition"></a></dt>
-<dd><p>The name of the Resource</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.types.ResourceBase.get_resource_name">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/resource/types.html#ResourceBase.get_resource_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.types.ResourceBase.get_resource_name" title="Permalink to this definition"></a></dt>
-<dd><p>Get the ResourceName for this Resource with the given name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.types.ResourceBase.from_robot">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/types.html#ResourceBase.from_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.types.ResourceBase.from_robot" title="Permalink to this definition"></a></dt>
-<dd><p>Get the Resource named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>robot</strong> (<a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
-<li><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The Resource, if it exists on the robot</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Self</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.types.ResourceBase.do_command">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/types.html#ResourceBase.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.types.ResourceBase.do_command" title="Permalink to this definition"></a></dt>
-<dd><p>Send/Receive arbitrary commands to the Resource</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>command</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the Resource does not support arbitrary commands</p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Result of the executed command</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Mapping[str, ValueTypes]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py data">
-<dt class="sig sig-object py" id="viam.resource.types.ComponentCreator">
-<span class="sig-prename descclassname"><span class="pre">viam.resource.types.</span></span><span class="sig-name descname"><span class="pre">ComponentCreator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TypeAlias</span></em><a class="headerlink" href="#viam.resource.types.ComponentCreator" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.resource.types.ResourceCreator">
+<span class="sig-prename descclassname"><span class="pre">viam.resource.types.</span></span><span class="sig-name descname"><span class="pre">ResourceCreator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TypeAlias</span></em><a class="headerlink" href="#viam.resource.types.ResourceCreator" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

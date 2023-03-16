@@ -1,0 +1,51 @@
+:py:mod:`viam.resource.rpc_service_base`
+========================================
+
+.. py:module:: viam.resource.rpc_service_base
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.resource.rpc_service_base.ResourceRPCServiceBase
+
+
+
+
+.. py:class:: ResourceRPCServiceBase(manager: viam.resource.manager.ResourceManager)
+
+
+
+   Base RPC service for a resource.
+   All resource RPC services must inherit from this class.
+
+   .. py:attribute:: RESOURCE_TYPE
+
+      
+
+   .. py:attribute:: manager
+      :type: viam.resource.manager.ResourceManager
+
+      
+
+   .. py:method:: get_resource(name: str) -> viam.resource.manager.ResourceType
+
+      Return the resource with the given name if it exists in the registry.
+      If the resource does not exist in the registry,
+      this function will raise an error
+
+      :param name: Name of the resource
+      :type name: str
+
+      :raises ResourceNotFoundError:
+
+      :returns: The resource
+      :rtype: ResourceType
+
+
+

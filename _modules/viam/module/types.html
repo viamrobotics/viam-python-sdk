@@ -85,16 +85,16 @@
   <h1>Source code for viam.module.types</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">runtime_checkable</span>
 
-<span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
+<span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 
 
 <div class="viewcode-block" id="Reconfigurable"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Reconfigurable">[docs]</a><span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">Reconfigurable</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The Reconfigurable protocol defines the requirements for making a resource Reconfigurable&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Reconfigurable.reconfigure"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Reconfigurable.reconfigure">[docs]</a>    <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]):</span>
+<div class="viewcode-block" id="Reconfigurable.reconfigure"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Reconfigurable.reconfigure">[docs]</a>    <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
         <span class="o">...</span></div></div>
 
 
