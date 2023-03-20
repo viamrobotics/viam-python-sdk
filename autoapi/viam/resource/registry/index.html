@@ -21,7 +21,9 @@
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="viam.resource.rpc_service_base" href="../rpc_service_base/index.html" />
+    <link rel="prev" title="viam.resource.manager" href="../manager/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,10 +53,69 @@
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.manager</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.registry</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.Resource"><code class="docutils literal notranslate"><span class="pre">Resource</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.default_create_status"><code class="docutils literal notranslate"><span class="pre">default_create_status()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.resource_type"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration.resource_type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.rpc_service"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration.rpc_service</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.create_rpc_client"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration.create_rpc_client</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.create_status"><code class="docutils literal notranslate"><span class="pre">ResourceRegistration.create_status</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.Registry"><code class="docutils literal notranslate"><span class="pre">Registry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.register_subtype"><code class="docutils literal notranslate"><span class="pre">Registry.register_subtype()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.register_resource_creator"><code class="docutils literal notranslate"><span class="pre">Registry.register_resource_creator()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.lookup_subtype"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_subtype()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.lookup_resource_creator"><code class="docutils literal notranslate"><span class="pre">Registry.lookup_resource_creator()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.REGISTERED_SUBTYPES"><code class="docutils literal notranslate"><span class="pre">Registry.REGISTERED_SUBTYPES()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.REGISTERED_RESOURCE_CREATORS"><code class="docutils literal notranslate"><span class="pre">Registry.REGISTERED_RESOURCE_CREATORS()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.Resource">Resource</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.default_create_status">default_create_status</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration">ResourceRegistration</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.resource_type">resource_type</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.rpc_service">rpc_service</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.create_rpc_client">create_rpc_client</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.ResourceRegistration.create_status">create_status</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.registry.Registry">Registry</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.register_subtype">register_subtype</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.register_resource_creator">register_resource_creator</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.lookup_subtype">lookup_subtype</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.lookup_resource_creator">lookup_resource_creator</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.REGISTERED_SUBTYPES">REGISTERED_SUBTYPES</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.registry.Registry.REGISTERED_RESOURCE_CREATORS">REGISTERED_RESOURCE_CREATORS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../rpc_service_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.types</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
 </ul>
@@ -73,6 +134,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
       <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.registry</span></code></li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/autoapi/viam/resource/registry/index.rst.txt" rel="nofollow"> View page source</a>
@@ -290,7 +352,10 @@ resource using <code class="docutils literal notranslate"><span class="pre">Regi
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../manager/index.html" class="btn btn-neutral float-left" title="viam.resource.manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../rpc_service_base/index.html" class="btn btn-neutral float-right" title="viam.resource.rpc_service_base" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

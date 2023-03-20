@@ -21,7 +21,9 @@
         <script src="../../../../_static/sphinx_highlight.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="viam.media.media" href="../media/index.html" />
+    <link rel="prev" title="viam.media" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,10 +53,46 @@
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.audio</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Audio"><code class="docutils literal notranslate"><span class="pre">Audio</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.audio.Audio.info"><code class="docutils literal notranslate"><span class="pre">Audio.info</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.audio.Audio.chunk"><code class="docutils literal notranslate"><span class="pre">Audio.chunk</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioReader"><code class="docutils literal notranslate"><span class="pre">AudioReader</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioStream"><code class="docutils literal notranslate"><span class="pre">AudioStream</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.Audio">Audio</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.audio.Audio.info">info</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.audio.Audio.chunk">chunk</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioReader">AudioReader</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.audio.AudioStream">AudioStream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.media</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../viam_rgba_plugin/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.viam_rgba_plugin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../video/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.video</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
 </ul>
@@ -73,6 +111,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
       <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.audio</span></code></li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/autoapi/viam/media/audio/index.rst.txt" rel="nofollow"> View page source</a>
@@ -142,7 +181,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="viam.media" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../media/index.html" class="btn btn-neutral float-right" title="viam.media.media" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

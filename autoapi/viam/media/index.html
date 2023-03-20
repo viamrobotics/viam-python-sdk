@@ -21,7 +21,9 @@
         <script src="../../../_static/sphinx_highlight.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="viam.media.audio" href="audio/index.html" />
+    <link rel="prev" title="viam.module.types" href="../module/types/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,10 +53,75 @@
 <li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="audio/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.audio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.media</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="viam_rgba_plugin/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.viam_rgba_plugin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="video/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media.video</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attributes">Attributes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaReader"><code class="docutils literal notranslate"><span class="pre">MediaReader</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaReader.read"><code class="docutils literal notranslate"><span class="pre">MediaReader.read()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaSource"><code class="docutils literal notranslate"><span class="pre">MediaSource</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaSource.stream"><code class="docutils literal notranslate"><span class="pre">MediaSource.stream()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaStream"><code class="docutils literal notranslate"><span class="pre">MediaStream</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStream.next"><code class="docutils literal notranslate"><span class="pre">MediaStream.next()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStream.close"><code class="docutils literal notranslate"><span class="pre">MediaStream.close()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStream.__aiter__"><code class="docutils literal notranslate"><span class="pre">MediaStream.__aiter__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStream.__anext__"><code class="docutils literal notranslate"><span class="pre">MediaStream.__anext__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaStreamWithIterator"><code class="docutils literal notranslate"><span class="pre">MediaStreamWithIterator</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStreamWithIterator.next"><code class="docutils literal notranslate"><span class="pre">MediaStreamWithIterator.next()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStreamWithIterator.__aiter__"><code class="docutils literal notranslate"><span class="pre">MediaStreamWithIterator.__aiter__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStreamWithIterator.__anext__"><code class="docutils literal notranslate"><span class="pre">MediaStreamWithIterator.__anext__()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStreamWithIterator.close"><code class="docutils literal notranslate"><span class="pre">MediaStreamWithIterator.close()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaType"><code class="docutils literal notranslate"><span class="pre">MediaType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaReader">MediaReader</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaReader.read">read</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaSource">MediaSource</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaSource.stream">stream</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaStream">MediaStream</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStream.next">next</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStream.close">close</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStream.__aiter__">__aiter__</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStream.__anext__">__anext__</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaStreamWithIterator">MediaStreamWithIterator</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStreamWithIterator.next">next</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStreamWithIterator.__aiter__">__aiter__</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStreamWithIterator.__anext__">__anext__</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#viam.media.MediaStreamWithIterator.close">close</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#viam.media.MediaType">MediaType</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
 </ul>
@@ -208,7 +275,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../module/types/index.html" class="btn btn-neutral float-left" title="viam.module.types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="audio/index.html" class="btn btn-neutral float-right" title="viam.media.audio" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
