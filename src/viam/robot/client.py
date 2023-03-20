@@ -147,7 +147,7 @@ class RobotClient:
                 self._refresh_every(options.refresh_interval), name=f"{viam._TASK_PREFIX}-robot_refresh_metadata"
             )
 
-        if options.check_connection_interval > 0:
+        if options.check_connection_interval > 0 or options.attempt_reconnect_interval > 0:
             self._check_connection_task = asyncio.create_task(
                 self._check_connection(options.check_connection_interval, options.attempt_reconnect_interval),
                 name=f"{viam._TASK_PREFIX}-robot_check_connection",
@@ -200,6 +200,11 @@ class RobotClient:
                 LOGGER.error("Failed to refresh status", exc_info=e)
 
     async def _check_connection(self, check_every: int, reconnect_every: int):
+        if check_every <= 0:
+            check_every = reconnect_every
+        if check_every <= 0 and reconnect_every <= 0:
+            return
+
         while True:
             await asyncio.sleep(check_every)
 
@@ -214,11 +219,12 @@ class RobotClient:
                     connection_error = e
                     await asyncio.sleep(0.1)
             if connection_error:
-                LOGGER.error(
-                    f"Lost connection to robot, attempting to reconnect to {self._address} every {reconnect_every} "
-                    + f"second{'s' if reconnect_every != 0 else ''})",
-                    exc_info=connection_error,
-                )
+                msg = "Lost connection to robot."
+                if reconnect_every > 0:
+                    msg += (
+                        f" Attempting to reconnect to {self._address} every {reconnect_every} second{'s' if reconnect_every != 1 else ''}"
+                    )
+                LOGGER.error(msg, exc_info=connection_error)
                 self._connected = False
 
             if reconnect_every <= 0:
@@ -239,7 +245,7 @@ class RobotClient:
                     self._connected = True
                     LOGGER.debug("Successfully reconnected robot")
                 except Exception as e:
-                    LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}", exc_info=e)
+                    LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}sec", exc_info=e)
                     await asyncio.sleep(reconnect_every)
 
     def get_component(self, name: ResourceName) -> ComponentBase:
