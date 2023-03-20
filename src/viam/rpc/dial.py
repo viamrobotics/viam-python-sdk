@@ -44,7 +44,7 @@ class DialOptions:
     """
 
     auth_entity: Optional[str]
-    """The URL to authenticate against
+    """The URL to authenticate against. Should be used if the address passed in and FQDN of the server do not match.
     """
 
     credentials: Optional[Credentials]
@@ -238,6 +238,9 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
         ctx.minimum_version = ssl.TLSVersion.TLSv1_2
         ctx.set_ciphers("ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20")
         ctx.set_alpn_protocols(["h2"])
+
+        if options is not None and host != options.auth_entity:
+            ctx.check_hostname = False
 
         # Test if downgrade is required.
         downgrade = False
