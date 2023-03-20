@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.board import (
     BoardServiceBase,
@@ -16,6 +16,8 @@ from viam.proto.component.board import (
     ReadAnalogReaderResponse,
     SetGPIORequest,
     SetGPIOResponse,
+    SetPowerModeRequest,
+    SetPowerModeResponse,
     SetPWMFrequencyRequest,
     SetPWMFrequencyResponse,
     SetPWMRequest,
@@ -160,6 +162,9 @@ class BoardService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         value = await interrupt.value(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetDigitalInterruptValueResponse(value=value)
         await stream.send_message(response)
+
+    async def SetPowerMode(self, stream: Stream[SetPowerModeRequest, SetPowerModeResponse]) -> None:
+        raise MethodNotImplementedError("SetPowerMode").grpc_error
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
