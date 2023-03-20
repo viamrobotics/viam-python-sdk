@@ -85,6 +85,9 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig"><code class="docutils literal notranslate"><span class="pre">AuthConfig</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.handlers"><code class="docutils literal notranslate"><span class="pre">AuthConfig.handlers</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.tls_auth_entities"><code class="docutils literal notranslate"><span class="pre">AuthConfig.tls_auth_entities</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.external_auth_config"><code class="docutils literal notranslate"><span class="pre">AuthConfig.external_auth_config</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.HasField"><code class="docutils literal notranslate"><span class="pre">AuthConfig.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.WhichOneof"><code class="docutils literal notranslate"><span class="pre">AuthConfig.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthHandlerConfig"><code class="docutils literal notranslate"><span class="pre">AuthHandlerConfig</span></code></a><ul>
@@ -149,6 +152,11 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.CredentialsType"><code class="docutils literal notranslate"><span class="pre">CredentialsType</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ExternalAuthConfig"><code class="docutils literal notranslate"><span class="pre">ExternalAuthConfig</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ExternalAuthConfig.jwks"><code class="docutils literal notranslate"><span class="pre">ExternalAuthConfig.jwks</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ExternalAuthConfig.HasField"><code class="docutils literal notranslate"><span class="pre">ExternalAuthConfig.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Frame"><code class="docutils literal notranslate"><span class="pre">Frame</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Frame.translation"><code class="docutils literal notranslate"><span class="pre">Frame.translation</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Frame.orientation"><code class="docutils literal notranslate"><span class="pre">Frame.orientation</span></code></a></li>
@@ -368,6 +376,9 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig">AuthConfig</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.handlers">handlers</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.tls_auth_entities">tls_auth_entities</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.external_auth_config">external_auth_config</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.HasField">HasField</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.AuthConfig.WhichOneof">WhichOneof</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.AuthHandlerConfig">AuthHandlerConfig</a><ul>
@@ -432,6 +443,11 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.CredentialsType">CredentialsType</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.ExternalAuthConfig">ExternalAuthConfig</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ExternalAuthConfig.jwks">jwks</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.ExternalAuthConfig.HasField">HasField</a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.robot.Frame">Frame</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Frame.translation">translation</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.robot.Frame.orientation">orientation</a></li>
@@ -672,58 +688,61 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.CredentialsType" title="viam.proto.app.robot.CredentialsType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CredentialsType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.Frame" title="viam.proto.app.robot.Frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frame</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.ExternalAuthConfig" title="viam.proto.app.robot.ExternalAuthConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExternalAuthConfig</span></code></a></p></td>
+<td><p>ExternalAuthConfig describes how a viam managed robot can accept</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.Frame" title="viam.proto.app.robot.Frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frame</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.JWKSFile" title="viam.proto.app.robot.JWKSFile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JWKSFile</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.JWKSFile" title="viam.proto.app.robot.JWKSFile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JWKSFile</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.LocationSecret" title="viam.proto.app.robot.LocationSecret"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationSecret</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.LocationSecret" title="viam.proto.app.robot.LocationSecret"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationSecret</span></code></a></p></td>
 <td><p>Valid location secret that can be used for authentication to the robot.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.LogRequest" title="viam.proto.app.robot.LogRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.LogRequest" title="viam.proto.app.robot.LogRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.LogResponse" title="viam.proto.app.robot.LogResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.LogResponse" title="viam.proto.app.robot.LogResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.ModuleConfig" title="viam.proto.app.robot.ModuleConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.ModuleConfig" title="viam.proto.app.robot.ModuleConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleConfig</span></code></a></p></td>
 <td><p>ModuleConfig is the configuration for a module.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartRequest" title="viam.proto.app.robot.NeedsRestartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NeedsRestartRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartRequest" title="viam.proto.app.robot.NeedsRestartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NeedsRestartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartResponse" title="viam.proto.app.robot.NeedsRestartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NeedsRestartResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.NeedsRestartResponse" title="viam.proto.app.robot.NeedsRestartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NeedsRestartResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.NetworkConfig" title="viam.proto.app.robot.NetworkConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NetworkConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.NetworkConfig" title="viam.proto.app.robot.NetworkConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NetworkConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.Orientation" title="viam.proto.app.robot.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.Orientation" title="viam.proto.app.robot.Orientation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Orientation</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.PackageConfig" title="viam.proto.app.robot.PackageConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.PackageConfig" title="viam.proto.app.robot.PackageConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageConfig</span></code></a></p></td>
 <td><p>PackageConfig is the configration for deployed Packages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig" title="viam.proto.app.robot.ProcessConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.ProcessConfig" title="viam.proto.app.robot.ProcessConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProcessConfig</span></code></a></p></td>
 <td><p>A ProcessConfig describes how to manage a system process.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth" title="viam.proto.app.robot.RemoteAuth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoteAuth</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.RemoteAuth" title="viam.proto.app.robot.RemoteAuth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoteAuth</span></code></a></p></td>
 <td><p>RemoteAuth specifies how to authenticate against a remote. If no credentials are</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig" title="viam.proto.app.robot.RemoteConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoteConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.RemoteConfig" title="viam.proto.app.robot.RemoteConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoteConfig</span></code></a></p></td>
 <td><p>A RemoteConfig describes a remote robot that should be integrated.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.ResourceLevelServiceConfig" title="viam.proto.app.robot.ResourceLevelServiceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceLevelServiceConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.ResourceLevelServiceConfig" title="viam.proto.app.robot.ResourceLevelServiceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceLevelServiceConfig</span></code></a></p></td>
 <td><p>A ResourceLevelServiceConfig describes component or remote configuration for a service.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.RobotConfig" title="viam.proto.app.robot.RobotConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.RobotConfig" title="viam.proto.app.robot.RobotConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig" title="viam.proto.app.robot.ServiceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.ServiceConfig" title="viam.proto.app.robot.ServiceConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.robot.Translation" title="viam.proto.app.robot.Translation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Translation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.robot.Translation" title="viam.proto.app.robot.Translation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Translation</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -803,7 +822,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">AuthConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handlers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AuthHandlerConfig</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tls_auth_entities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.AuthConfig" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">AuthConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handlers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AuthHandlerConfig</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tls_auth_entities</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">external_auth_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ExternalAuthConfig</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.AuthConfig" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -817,6 +836,55 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig.tls_auth_entities">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tls_auth_entities</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.robot.AuthConfig.tls_auth_entities" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig.external_auth_config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">external_auth_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___ExternalAuthConfig</span></em><a class="headerlink" href="#viam.proto.app.robot.AuthConfig.external_auth_config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_external_auth_config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_external_auth_config'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">external_auth_config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'external_auth_config'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.robot.AuthConfig.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.AuthConfig.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_external_auth_config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_external_auth_config'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'external_auth_config'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.app.robot.AuthConfig.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -893,7 +961,8 @@ be raised.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.robot.AuthHandlerWebOauthConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">AuthHandlerWebOauthConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_audiences</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jwks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___JWKSFile</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.AuthHandlerWebOauthConfig" title="Permalink to this definition"></a></dt>
-<dd><p>Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH</p>
+<dd><p>Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
+TODO(APP-1412): remove after a week from being deployed</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.robot.AuthHandlerWebOauthConfig.allowed_audiences">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allowed_audiences</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.robot.AuthHandlerWebOauthConfig.allowed_audiences" title="Permalink to this definition"></a></dt>
@@ -1211,6 +1280,41 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.robot.CredentialsType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">CredentialsType</span></span><a class="headerlink" href="#viam.proto.app.robot.CredentialsType" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.robot.ExternalAuthConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.robot.</span></span><span class="sig-name descname"><span class="pre">ExternalAuthConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jwks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___JWKSFile</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.robot.ExternalAuthConfig" title="Permalink to this definition"></a></dt>
+<dd><p>ExternalAuthConfig describes how a viam managed robot can accept
+credentials signed by the cloud app.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.robot.ExternalAuthConfig.jwks">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">jwks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___JWKSFile</span></em><a class="headerlink" href="#viam.proto.app.robot.ExternalAuthConfig.jwks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.robot.ExternalAuthConfig.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">jwks</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'jwks'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.robot.ExternalAuthConfig.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.robot.Frame">

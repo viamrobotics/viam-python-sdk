@@ -260,7 +260,7 @@ Classes
 
 
 
-.. py:class:: MoveRequest(*, name: str = ..., destination: common.v1.common_pb2.PoseInFrame | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., world_state: common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveRequest(*, name: str = ..., destination: common.v1.common_pb2.PoseInFrame | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., world_state: common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., slam_service_name: common.v1.common_pb2.ResourceName | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -286,6 +286,10 @@ Classes
       :type: global___Constraints
 
 
+   .. py:property:: slam_service_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
@@ -296,7 +300,7 @@ Classes
 
       
 
-   .. py:method:: HasField(field_name: Literal[_constraints, b'_constraints', _world_state, b'_world_state', component_name, b'component_name', constraints, b'constraints', destination, b'destination', extra, b'extra', world_state, b'world_state']) -> bool
+   .. py:method:: HasField(field_name: Literal[_constraints, b'_constraints', _slam_service_name, b'_slam_service_name', _world_state, b'_world_state', component_name, b'component_name', constraints, b'constraints', destination, b'destination', extra, b'extra', slam_service_name, b'slam_service_name', world_state, b'world_state']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -314,6 +318,7 @@ Classes
 
 
    .. py:method:: WhichOneof(oneof_group: Literal[_constraints, b'_constraints']) -> typing_extensions.Literal['constraints'] | None
+               WhichOneof(oneof_group: Literal[_slam_service_name, b'_slam_service_name']) -> typing_extensions.Literal['slam_service_name'] | None
                WhichOneof(oneof_group: Literal[_world_state, b'_world_state']) -> typing_extensions.Literal['world_state'] | None
 
       Returns the name of the field that is set inside a oneof group.

@@ -30,6 +30,7 @@ Classes
    viam.gen.app.v1.robot_pb2.AuthConfig
    viam.gen.app.v1.robot_pb2.JWKSFile
    viam.gen.app.v1.robot_pb2.AuthHandlerWebOauthConfig
+   viam.gen.app.v1.robot_pb2.ExternalAuthConfig
    viam.gen.app.v1.robot_pb2.AuthHandlerConfig
    viam.gen.app.v1.robot_pb2.Frame
    viam.gen.app.v1.robot_pb2.Translation
@@ -75,6 +76,7 @@ Attributes
    viam.gen.app.v1.robot_pb2.global___AuthConfig
    viam.gen.app.v1.robot_pb2.global___JWKSFile
    viam.gen.app.v1.robot_pb2.global___AuthHandlerWebOauthConfig
+   viam.gen.app.v1.robot_pb2.global___ExternalAuthConfig
    viam.gen.app.v1.robot_pb2.global___AuthHandlerConfig
    viam.gen.app.v1.robot_pb2.global___Frame
    viam.gen.app.v1.robot_pb2.global___Translation
@@ -132,7 +134,9 @@ Attributes
 .. py:data:: CREDENTIALS_TYPE_WEB_OAUTH
    :type: CredentialsType
 
-   
+   remove after a week from being deployed
+
+   :type: TODO(APP-1412)
 
 .. py:data:: global___CredentialsType
 
@@ -589,7 +593,7 @@ Attributes
 
    
 
-.. py:class:: AuthConfig(*, handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None = ..., tls_auth_entities: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: AuthConfig(*, handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None = ..., tls_auth_entities: collections.abc.Iterable[builtins.str] | None = ..., external_auth_config: global___ExternalAuthConfig | None = ...)
 
 
 
@@ -605,6 +609,42 @@ Attributes
 
    .. py:property:: tls_auth_entities
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+   .. py:property:: external_auth_config
+      :type: global___ExternalAuthConfig
+
+
+   .. py:method:: HasField(field_name: Literal[_external_auth_config, b'_external_auth_config', external_auth_config, b'external_auth_config']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_external_auth_config, b'_external_auth_config']) -> typing_extensions.Literal['external_auth_config'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -655,6 +695,7 @@ Attributes
 
 
    Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
+   TODO(APP-1412): remove after a week from being deployed
 
    .. py:property:: allowed_audiences
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
@@ -684,6 +725,39 @@ Attributes
 
 
 .. py:data:: global___AuthHandlerWebOauthConfig
+
+   
+
+.. py:class:: ExternalAuthConfig(*, jwks: global___JWKSFile | None = ...)
+
+
+
+   ExternalAuthConfig describes how a viam managed robot can accept
+   credentials signed by the cloud app.
+
+   .. py:property:: jwks
+      :type: global___JWKSFile
+
+
+   .. py:method:: HasField(field_name: Literal[jwks, b'jwks']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___ExternalAuthConfig
 
    
 
