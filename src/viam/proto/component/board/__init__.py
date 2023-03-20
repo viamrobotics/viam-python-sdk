@@ -12,6 +12,7 @@ from ....gen.component.board.v1.board_pb2 import (
     PWMFrequencyResponse,
     PWMRequest,
     PWMResponse,
+    PowerMode,
     ReadAnalogReaderRequest,
     ReadAnalogReaderResponse,
     SetGPIORequest,
@@ -20,6 +21,8 @@ from ....gen.component.board.v1.board_pb2 import (
     SetPWMFrequencyResponse,
     SetPWMRequest,
     SetPWMResponse,
+    SetPowerModeRequest,
+    SetPowerModeResponse,
     StatusRequest,
     StatusResponse,
 )
@@ -35,6 +38,7 @@ __all__ = [
     "PWMFrequencyResponse",
     "PWMRequest",
     "PWMResponse",
+    "PowerMode",
     "ReadAnalogReaderRequest",
     "ReadAnalogReaderResponse",
     "SetGPIORequest",
@@ -43,6 +47,8 @@ __all__ = [
     "SetPWMFrequencyResponse",
     "SetPWMRequest",
     "SetPWMResponse",
+    "SetPowerModeRequest",
+    "SetPowerModeResponse",
     "StatusRequest",
     "StatusResponse",
 ]
