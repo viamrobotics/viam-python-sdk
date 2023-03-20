@@ -5,14 +5,34 @@ isort:skip_file
 import builtins
 from .... import common
 import google.protobuf.descriptor
+import google.protobuf.duration_pb2
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import sys
-if sys.version_info >= (3, 8):
+import typing
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _PowerMode:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _PowerModeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_PowerMode.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    POWER_MODE_UNSPECIFIED: _PowerMode.ValueType
+    POWER_MODE_NORMAL: _PowerMode.ValueType
+    POWER_MODE_OFFLINE_DEEP: _PowerMode.ValueType
+
+class PowerMode(_PowerMode, metaclass=_PowerModeEnumTypeWrapper):
+    """Power Management API"""
+POWER_MODE_UNSPECIFIED: PowerMode.ValueType
+POWER_MODE_NORMAL: PowerMode.ValueType
+POWER_MODE_OFFLINE_DEEP: PowerMode.ValueType
+global___PowerMode = PowerMode
 
 @typing_extensions.final
 class StatusRequest(google.protobuf.message.Message):
@@ -336,3 +356,44 @@ class GetDigitalInterruptValueResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['value', b'value']) -> None:
         ...
 global___GetDigitalInterruptValueResponse = GetDigitalInterruptValueResponse
+
+@typing_extensions.final
+class SetPowerModeRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    POWER_MODE_FIELD_NUMBER: builtins.int
+    DURATION_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of board'
+    power_mode: global___PowerMode.ValueType
+    'Requested power mode'
+
+    @property
+    def duration(self) -> google.protobuf.duration_pb2.Duration:
+        """Requested duration to stay in `power_mode`"""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., power_mode: global___PowerMode.ValueType=..., duration: google.protobuf.duration_pb2.Duration | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_duration', b'_duration', 'duration', b'duration', 'extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_duration', b'_duration', 'duration', b'duration', 'extra', b'extra', 'name', b'name', 'power_mode', b'power_mode']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_duration', b'_duration']) -> typing_extensions.Literal['duration'] | None:
+        ...
+global___SetPowerModeRequest = SetPowerModeRequest
+
+@typing_extensions.final
+class SetPowerModeResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___SetPowerModeResponse = SetPowerModeResponse

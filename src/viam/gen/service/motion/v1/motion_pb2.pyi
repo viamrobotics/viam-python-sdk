@@ -25,6 +25,7 @@ class MoveRequest(google.protobuf.message.Message):
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
     CONSTRAINTS_FIELD_NUMBER: builtins.int
+    SLAM_SERVICE_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
@@ -45,20 +46,28 @@ class MoveRequest(google.protobuf.message.Message):
         ...
 
     @property
+    def slam_service_name(self) -> common.v1.common_pb2.ResourceName:
+        ...
+
+    @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.PoseInFrame | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., world_state: common.v1.common_pb2.WorldState | None=..., constraints: global___Constraints | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.PoseInFrame | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., world_state: common.v1.common_pb2.WorldState | None=..., constraints: global___Constraints | None=..., slam_service_name: common.v1.common_pb2.ResourceName | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_slam_service_name', b'_slam_service_name', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'slam_service_name', b'slam_service_name', 'world_state', b'world_state']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'world_state', b'world_state']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_slam_service_name', b'_slam_service_name', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'slam_service_name', b'slam_service_name', 'world_state', b'world_state']) -> None:
         ...
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_constraints', b'_constraints']) -> typing_extensions.Literal['constraints'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_slam_service_name', b'_slam_service_name']) -> typing_extensions.Literal['slam_service_name'] | None:
         ...
 
     @typing.overload

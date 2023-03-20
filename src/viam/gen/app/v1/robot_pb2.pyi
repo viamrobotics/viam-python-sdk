@@ -32,6 +32,7 @@ class _CredentialsTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper
     CREDENTIALS_TYPE_ROBOT_SECRET: _CredentialsType.ValueType
     CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: _CredentialsType.ValueType
     CREDENTIALS_TYPE_WEB_OAUTH: _CredentialsType.ValueType
+    'TODO(APP-1412): remove after a week from being deployed'
 
 class CredentialsType(_CredentialsType, metaclass=_CredentialsTypeEnumTypeWrapper):
     ...
@@ -41,6 +42,7 @@ CREDENTIALS_TYPE_API_KEY: CredentialsType.ValueType
 CREDENTIALS_TYPE_ROBOT_SECRET: CredentialsType.ValueType
 CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: CredentialsType.ValueType
 CREDENTIALS_TYPE_WEB_OAUTH: CredentialsType.ValueType
+'TODO(APP-1412): remove after a week from being deployed'
 global___CredentialsType = CredentialsType
 
 @typing_extensions.final
@@ -334,6 +336,7 @@ class AuthConfig(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     HANDLERS_FIELD_NUMBER: builtins.int
     TLS_AUTH_ENTITIES_FIELD_NUMBER: builtins.int
+    EXTERNAL_AUTH_CONFIG_FIELD_NUMBER: builtins.int
 
     @property
     def handlers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthHandlerConfig]:
@@ -343,10 +346,20 @@ class AuthConfig(google.protobuf.message.Message):
     def tls_auth_entities(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None=..., tls_auth_entities: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    @property
+    def external_auth_config(self) -> global___ExternalAuthConfig:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['handlers', b'handlers', 'tls_auth_entities', b'tls_auth_entities']) -> None:
+    def __init__(self, *, handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None=..., tls_auth_entities: collections.abc.Iterable[builtins.str] | None=..., external_auth_config: global___ExternalAuthConfig | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config', 'handlers', b'handlers', 'tls_auth_entities', b'tls_auth_entities']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_external_auth_config', b'_external_auth_config']) -> typing_extensions.Literal['external_auth_config'] | None:
         ...
 global___AuthConfig = AuthConfig
 
@@ -373,7 +386,9 @@ global___JWKSFile = JWKSFile
 
 @typing_extensions.final
 class AuthHandlerWebOauthConfig(google.protobuf.message.Message):
-    """Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH"""
+    """Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
+    TODO(APP-1412): remove after a week from being deployed
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ALLOWED_AUDIENCES_FIELD_NUMBER: builtins.int
     JWKS_FIELD_NUMBER: builtins.int
@@ -395,6 +410,28 @@ class AuthHandlerWebOauthConfig(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['allowed_audiences', b'allowed_audiences', 'jwks', b'jwks']) -> None:
         ...
 global___AuthHandlerWebOauthConfig = AuthHandlerWebOauthConfig
+
+@typing_extensions.final
+class ExternalAuthConfig(google.protobuf.message.Message):
+    """ExternalAuthConfig describes how a viam managed robot can accept
+    credentials signed by the cloud app.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    JWKS_FIELD_NUMBER: builtins.int
+
+    @property
+    def jwks(self) -> global___JWKSFile:
+        ...
+
+    def __init__(self, *, jwks: global___JWKSFile | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['jwks', b'jwks']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['jwks', b'jwks']) -> None:
+        ...
+global___ExternalAuthConfig = ExternalAuthConfig
 
 @typing_extensions.final
 class AuthHandlerConfig(google.protobuf.message.Message):
