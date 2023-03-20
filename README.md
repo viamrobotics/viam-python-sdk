@@ -51,7 +51,7 @@ If you do **NOT** need communication over WebRTC (and thus, do not need the nati
 
 ## Configure a client application at [app.viam.com](https://app.viam.com)
 
-Your client application does not directly interact with your hardware. Instead, your client application makes calls to the viam-server which can then issues commands to your hardware or read from sensors.
+Your client application does not directly interact with your hardware. Instead, your client application makes calls to the `viam-server` which can then issue commands to your hardware or read from sensors.
 
 To create a client application, to navigate to [app.viam.com](https://app.viam.com). After you log in, perform these steps:
 
@@ -105,6 +105,6 @@ The SDK provides a number of abstract base components. To add more abstract base
 6. Add the component to `examples.server.v1.components` and its corresponding concrete type in `examples.server.v1.server`
 
 ## License
-Copyright 2021-2022 Viam Inc.
+Copyright 2021-2023 Viam Inc.
 
 Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE) file
