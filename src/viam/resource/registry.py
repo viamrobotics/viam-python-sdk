@@ -136,8 +136,8 @@ class Registry:
         """Lookup and retrieve a registered resource creator by its subtype and model
 
         Args:
-            subtype (Subtype): The Subtype of the service
-            model (Model): The Model of the service
+            subtype (Subtype): The Subtype of the resource
+            model (Model): The Model of the resource
 
         Raises:
             ResourceNotFoundError: Raised if the Subtype Model pairing is not registered

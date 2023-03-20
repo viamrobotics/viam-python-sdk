@@ -15,8 +15,8 @@ class MySummationService(SummationService, Reconfigurable):
     """This is the specific implementation of a ``SummationService`` (defined in api.py)
 
     It inherits from SummationService, as well as conforms to the ``Reconfigurable`` protocol, which signifies that this component can be
-    reconfigured. It also specifies a function ``MySummationService.new``, which conforms to the ``resource.ServiceCreator`` type, which is
-    required for all models.
+    reconfigured. It also specifies a function ``MySummationService.new``, which conforms to the ``resource.types.ResourceCreator`` type,
+    which is required for all models.
     """
 
     MODEL: ClassVar[Model] = Model.from_string("acme:demo:mysum")

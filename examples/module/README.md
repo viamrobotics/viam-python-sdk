@@ -63,4 +63,4 @@ An example configuration for a Gizmo component and a Summation service could loo
 }
 ```
 
-After the robot has started and connected to the module, you can use the provided `client.py` to connect to your robot and make calls to your custom, modular resources.Ø
+After the robot has started and connected to the module, you can use the provided `client.py` to connect to your robot and make calls to your custom, modular resources.
