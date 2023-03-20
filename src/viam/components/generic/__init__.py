@@ -1,3 +1,5 @@
+# needs this import for Generic service description
+import viam.gen.component.generic.v1.generic_pb2
 from viam.resource.registry import ResourceRegistration, Registry
 
 from .client import GenericClient
