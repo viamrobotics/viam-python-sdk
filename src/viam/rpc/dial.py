@@ -230,6 +230,7 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
     host, port = _host_port_from_url(address)
     if not port:
         port = 80 if insecure else 443
+    server_hostname = host
 
     if insecure:
         ctx = None
@@ -239,7 +240,6 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
         ctx.set_ciphers("ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20")
         ctx.set_alpn_protocols(["h2"])
 
-        server_hostname = host
         if options is not None and options.auth_entity and host != options.auth_entity:
             server_hostname = options.auth_entity
 
@@ -263,7 +263,7 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
             ctx = None
 
     if opts.credentials:
-        channel = AuthenticatedChannel(host, port, ssl=ctx)
+        channel = AuthenticatedChannel(server_hostname, port, ssl=ctx)
         access_token = await _get_access_token(channel, address, opts)
         metadata = {"authorization": f"Bearer {access_token}"}
         channel._metadata = metadata
