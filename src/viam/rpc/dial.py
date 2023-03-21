@@ -239,14 +239,15 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
         ctx.set_ciphers("ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20")
         ctx.set_alpn_protocols(["h2"])
 
-        if options is not None and host != options.auth_entity:
-            ctx.check_hostname = False
+        server_hostname = host
+        if options is not None and options.auth_entity and host != options.auth_entity:
+            server_hostname = options.auth_entity
 
         # Test if downgrade is required.
         downgrade = False
         with socket.create_connection((host, port)) as sock:
             try:
-                with ctx.wrap_socket(sock, server_hostname=host) as ssock:
+                with ctx.wrap_socket(sock, server_hostname=server_hostname) as ssock:
                     _ = ssock.version()
             except ssl.SSLError as e:
                 if e.reason != "WRONG_VERSION_NUMBER":
