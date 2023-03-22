@@ -104,8 +104,7 @@ class RobotClient:
         """
         logging.setLevel(options.log_level)
         channel = await dial(address, options.dial_options)
-        robot = await RobotClient.with_channel(channel, options)
-        robot._should_close_channel = True
+        robot = await cls._with_channel(channel, options, True)
         robot._address = address
         return robot
 
@@ -123,6 +122,11 @@ class RobotClient:
             Self: the RobotClient
         """
         logging.setLevel(options.log_level)
+        return await cls._with_channel(channel, options, False)
+
+    @classmethod
+    async def _with_channel(cls, channel: Union[Channel, ViamChannel], options: Options, close_channel: bool):
+        """INTERNAL USE ONLY"""
 
         self = cls()
 
@@ -137,10 +141,16 @@ class RobotClient:
         self._manager = ResourceManager()
         self._lock = Lock()
         self._resource_names = []
-        self._should_close_channel = False
+        self._should_close_channel = close_channel
         self._options = options
         self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
-        await self.refresh()
+
+        try:
+            await self.refresh()
+        except Exception:
+            LOGGER.error("Unable to establish a connection to the robot. Ensure the robot is online and reachable and try again.")
+            await self.close()
+            raise ConnectionError("Unable to establish a connection to the robot.")
 
         if options.refresh_interval > 0:
             self._refresh_task = asyncio.create_task(
@@ -167,6 +177,7 @@ class RobotClient:
     _check_connection_task: Optional[asyncio.Task] = None
     _resource_names: List[ResourceName]
     _should_close_channel: bool
+    _closed: bool = False
 
     async def refresh(self):
         """
@@ -358,6 +369,10 @@ class RobotClient:
         Cleanly close the underlying connections and stop any periodic tasks
         """
         LOGGER.debug("Closing RobotClient")
+        if self._closed:
+            LOGGER.debug("RobotClient is already closed")
+            return
+
         try:
             self._lock.release()
         except RuntimeError:
@@ -374,9 +389,13 @@ class RobotClient:
         if self._should_close_channel:
             LOGGER.debug("Closing gRPC channel to remote robot")
             if self._viam_channel is not None:
+                LOGGER.debug("\tClosing ViamChannel instance")
                 self._viam_channel.close()
             else:
+                LOGGER.debug("\tClosing grpc-lib Channel instance")
                 self._channel.close()
+
+        self._closed = True
 
     async def __aenter__(self):
         return self
