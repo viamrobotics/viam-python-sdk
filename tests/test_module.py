@@ -218,6 +218,22 @@ class TestModule:
         assert await g1.do_one("arg2") is False
         assert await g2.do_one("arg2") is True
 
+    async def test_validate_config(self):
+        req = ValidateConfigRequest(
+            config=(
+                ComponentConfig(
+                    name="gizmo1",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"arg1": "arg2"}),
+                    api="acme:component:gizmo",
+                )
+            )
+        )
+        response = await self.module.validate_config(req)
+        assert response.dependencies == ["arg2"]
+
 
 class TestService:
     @pytest.mark.asyncio

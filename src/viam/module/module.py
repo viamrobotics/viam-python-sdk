@@ -182,7 +182,7 @@ class Module:
     async def validate_config(self, request: ValidateConfigRequest) -> ValidateConfigResponse:
         config: ComponentConfig = request.config
         subtype = Subtype.from_string(config.api)
-        model = Model.from_string(config.api)
+        model = Model.from_string(config.model)
         validator = Registry.lookup_validator(subtype, model)
         if validator is not None:
             dependencies = validator(config)

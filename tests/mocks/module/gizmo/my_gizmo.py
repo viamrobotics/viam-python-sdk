@@ -1,4 +1,4 @@
-from typing import ClassVar, Mapping, Sequence
+from typing import ClassVar, List, Mapping, Sequence
 
 from typing_extensions import Self
 
@@ -21,6 +21,10 @@ class MyGizmo(Gizmo, Reconfigurable):
         gizmo = cls(config.name)
         gizmo.my_arg = config.attributes.fields["arg1"].string_value
         return gizmo
+
+    @classmethod
+    def validate_config(cls, config: ComponentConfig) -> List[str]:
+        return [config.attributes.fields["arg1"].string_value]
 
     async def do_one(self, arg1: str, **kwargs) -> bool:
         return arg1 == self.my_arg
