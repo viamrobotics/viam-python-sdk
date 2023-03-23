@@ -11,6 +11,7 @@ from typing import (
     Mapping,
     Type,
     TypeVar,
+    Union,
 )
 
 from google.protobuf.struct_pb2 import Struct
@@ -23,7 +24,7 @@ from .base import ResourceBase
 
 if TYPE_CHECKING:
     from .rpc_service_base import ResourceRPCServiceBase
-    from .types import Model, ResourceCreator, Subtype
+    from .types import Model, ResourceCreator, Subtype, Validator
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
@@ -76,6 +77,7 @@ class Registry:
 
     _SUBTYPES: ClassVar[Dict["Subtype", ResourceRegistration]] = {}
     _RESOURCES: ClassVar[Dict[str, "ResourceCreator"]] = {}
+    _VALIDATORS: ClassVar[Dict[str, "Validator"]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
@@ -111,6 +113,28 @@ class Registry:
             if key in cls._RESOURCES:
                 raise DuplicateResourceError(key)
             cls._RESOURCES[key] = creator
+
+    @classmethod
+    def register_resource_validator(cls, subtype: "Subtype", model: "Model", validator: "Validator"):
+        """Register a specific validator function
+
+        Args:
+            subtype (Subtype): The Subtype of the resource
+            model (Model): The Model of the resource
+            creator (ResourceCreator): A function that can validate a resource and return implicit dependencies
+
+        Raises:
+            ResourceNotFoundError: _description_
+            ResourceNotFoundError: _description_
+
+        Returns:
+            _type_: _description_
+        """
+        key = f"{subtype}/{model}"
+        with cls._lock:
+            if key in cls._VALIDATORS:
+                raise DuplicateResourceError(key)
+            cls._VALIDATORS[key] = validator
 
     @classmethod
     def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
@@ -150,6 +174,18 @@ class Registry:
                 return cls._RESOURCES[f"{subtype}/{model}"]
             except KeyError:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+
+    @classmethod
+    def lookup_validator(cls, subtype: "Subtype", model: "Model") -> Union["Validator", None]:
+        """Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
+
+        Args:
+            subtype (Subtype): The Subtype of the resource
+            model (Model): The Model of the resource
+        """
+        with cls._lock:
+            if f"{subtype}/{model}" in cls._VALIDATORS.keys():
+                return cls._VALIDATORS[f"{subtype}/{model}"]
 
     @classmethod
     def REGISTERED_SUBTYPES(cls) -> Mapping["Subtype", ResourceRegistration]:

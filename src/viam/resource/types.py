@@ -196,4 +196,5 @@ def resource_name_from_string(string: str) -> ResourceName:
     return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=name)
 
 
+Validator: TypeAlias = Callable
 ResourceCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ResourceBase"]

@@ -16,6 +16,8 @@ from viam.proto.module import (
     ReadyResponse,
     ReconfigureResourceRequest,
     RemoveResourceRequest,
+    ValidateConfigRequest,
+    ValidateConfigResponse,
 )
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.base import ResourceBase
@@ -176,3 +178,14 @@ class Module:
             Registry.lookup_resource_creator(subtype, model)
         except ResourceNotFoundError:
             raise ValueError(f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}")
+
+    async def validate_config(self, request: ValidateConfigRequest) -> ValidateConfigResponse:
+        config: ComponentConfig = request.config
+        subtype = Subtype.from_string(config.api)
+        model = Model.from_string(config.api)
+        validator = Registry.lookup_validator(subtype, model)
+        if validator is not None:
+            dependencies = validator(config)
+            return ValidateConfigResponse(dependencies=dependencies)
+
+        return ValidateConfigResponse()
