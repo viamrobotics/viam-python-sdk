@@ -67,7 +67,7 @@ class TestModule:
                 namespace="acme",
                 type="gizmo",
                 model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg1"}),
+                attributes=dict_to_struct({"arg1": "arg1", "motor": "motor1"}),
                 api="acme:component:gizmo",
             )
         )
@@ -99,7 +99,7 @@ class TestModule:
                 namespace="acme",
                 type="gizmo",
                 model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg2"}),
+                attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
                 api="acme:component:gizmo",
             )
         )
@@ -132,7 +132,7 @@ class TestModule:
                     namespace="acme",
                     type="gizmo",
                     model="acme:demo:mygizmo",
-                    attributes=dict_to_struct({"arg1": "arg2"}),
+                    attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
                     api="acme:component:gizmo",
                 ),
                 dependencies=["rdk:component:arm/arm1"],
@@ -194,7 +194,7 @@ class TestModule:
                 namespace="acme",
                 type="gizmo",
                 model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg1"}),
+                attributes=dict_to_struct({"arg1": "arg1", "motor": "motor1"}),
                 api="acme:component:gizmo",
             )
         )
@@ -205,7 +205,7 @@ class TestModule:
                 namespace="acme",
                 type="gizmo",
                 model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg2"}),
+                attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
                 api="acme:component:gizmo",
             )
         )
@@ -227,13 +227,13 @@ class TestModule:
                     namespace="acme",
                     type="gizmo",
                     model="acme:demo:mygizmo",
-                    attributes=dict_to_struct({"arg1": "arg2"}),
+                    attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
                     api="acme:component:gizmo",
                 )
             )
         )
         response = await self.module.validate_config(req)
-        assert response.dependencies == ["arg2"]
+        assert response.dependencies == ["motor1"]
 
         req = ValidateConfigRequest(
             config=(
@@ -242,7 +242,7 @@ class TestModule:
                     namespace="acme",
                     type="gizmo",
                     model="acme:demo:mygizmo",
-                    attributes=dict_to_struct({"arg1": "arg2", "invalid": "attribute"}),
+                    attributes=dict_to_struct({"arg1": "arg2", "invalid": "attribute", "motor": "motor1"}),
                     api="acme:component:gizmo",
                 )
             )
