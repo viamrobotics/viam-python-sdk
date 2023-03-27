@@ -32,7 +32,10 @@ class MyGizmo(Gizmo, Reconfigurable):
     def validate_config(cls, config: ComponentConfig) -> List[str]:
         if "invalid" in config.attributes.fields:
             raise Exception(f"'invalid' attribute not allowed for model {cls.SUBTYPE}:{cls.MODEL}")
-        return [config.attributes.fields["motor"].string_value]
+        motor = [config.attributes.fields["motor"].string_value]
+        if motor == []:
+            raise Exception("A motor is required for Gizmo module.")
+        return motor
 
     async def do_one(self, arg1: str, **kwargs) -> bool:
         return arg1 == self.my_arg

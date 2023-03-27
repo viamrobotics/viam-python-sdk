@@ -250,6 +250,21 @@ class TestModule:
         with pytest.raises(ValidationError):
             response = await self.module.validate_config(req)
 
+        req = ValidateConfigRequest(
+            config=(
+                ComponentConfig(
+                    name="gizmo3",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"arg1": "arg2"}),
+                    api="acme:component:gizmo",
+                )
+            )
+        )
+        with pytest.raises(ValidationError):
+            response = await self.module.validate_config(req)
+
 
 class TestService:
     @pytest.mark.asyncio
