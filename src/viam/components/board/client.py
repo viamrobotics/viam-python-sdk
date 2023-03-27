@@ -1,7 +1,10 @@
+from datetime import timedelta
 from multiprocessing import Queue
 from typing import Any, Dict, Mapping, List, Optional
 
 from grpclib.client import Channel
+
+from google.protobuf.duration_pb2 import Duration
 
 from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.board import (
@@ -10,6 +13,7 @@ from viam.proto.component.board import (
     GetDigitalInterruptValueResponse,
     GetGPIORequest,
     GetGPIOResponse,
+    PowerMode,
     PWMFrequencyRequest,
     PWMFrequencyResponse,
     PWMRequest,
@@ -19,6 +23,7 @@ from viam.proto.component.board import (
     SetGPIORequest,
     SetPWMFrequencyRequest,
     SetPWMRequest,
+    SetPowerModeRequest,
     StatusRequest,
     StatusResponse,
 )
@@ -156,3 +161,15 @@ class BoardClient(Board):
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
+
+    async def set_power_mode(
+        self,
+        mode: PowerMode,
+        duration: Optional[timedelta] = None,
+        *,
+        timeout: Optional[float] = None,
+    ):
+        if duration:
+            duration = [(d, d.FromTimedelta(duration)) for d in [Duration()]][0][0]
+        request = SetPowerModeRequest(name=self.name, power_mode=mode, duration=duration)
+        await self.client.SetPowerMode(request, timeout=timeout)
