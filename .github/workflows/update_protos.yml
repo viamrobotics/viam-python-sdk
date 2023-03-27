@@ -14,6 +14,9 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.REPO_READ_TOKEN }}
+
       - uses: bufbuild/buf-setup-action@v1.8.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
