@@ -23,7 +23,6 @@ Classes
    viam.proto.app.robot.AgentInfo
    viam.proto.app.robot.AuthConfig
    viam.proto.app.robot.AuthHandlerConfig
-   viam.proto.app.robot.AuthHandlerWebOauthConfig
    viam.proto.app.robot.CertificateRequest
    viam.proto.app.robot.CertificateResponse
    viam.proto.app.robot.CloudConfig
@@ -179,7 +178,7 @@ Classes
 
 
 
-.. py:class:: AuthHandlerConfig(*, type: global___CredentialsType = ..., config: google.protobuf.struct_pb2.Struct | None = ..., web_oauth_config: global___AuthHandlerWebOauthConfig | None = ...)
+.. py:class:: AuthHandlerConfig(*, type: global___CredentialsType = ..., config: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -193,67 +192,12 @@ Classes
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:property:: web_oauth_config
-      :type: global___AuthHandlerWebOauthConfig
-
-      Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
-      Note: When this is set the config field will be empty.
-
    .. py:attribute:: type
       :type: global___CredentialsType
 
       
 
-   .. py:method:: HasField(field_name: Literal[_web_oauth_config, b'_web_oauth_config', config, b'config', web_oauth_config, b'web_oauth_config']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-   .. py:method:: WhichOneof(oneof_group: Literal[_web_oauth_config, b'_web_oauth_config']) -> typing_extensions.Literal['web_oauth_config'] | None
-
-      Returns the name of the field that is set inside a oneof group.
-
-      If no field is set, returns None.
-
-      :param oneof_group: the name of the oneof group to check.
-      :type oneof_group: str
-
-      :returns: The name of the group that is set, or None.
-      :rtype: str or None
-
-      :raises ValueError: no group with the given name exists
-
-
-
-.. py:class:: AuthHandlerWebOauthConfig(*, allowed_audiences: collections.abc.Iterable[builtins.str] | None = ..., jwks: global___JWKSFile | None = ...)
-
-
-
-   Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
-   TODO(APP-1412): remove after a week from being deployed
-
-   .. py:property:: allowed_audiences
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
-      The allowed aud claims by the web oauth handler.
-
-   .. py:property:: jwks
-      :type: global___JWKSFile
-
-
-   .. py:method:: HasField(field_name: Literal[jwks, b'jwks']) -> bool
+   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
 
       Checks if a certain field is set for the message.
 

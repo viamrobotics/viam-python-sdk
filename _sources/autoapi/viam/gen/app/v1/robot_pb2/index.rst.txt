@@ -29,7 +29,6 @@ Classes
    viam.gen.app.v1.robot_pb2.NetworkConfig
    viam.gen.app.v1.robot_pb2.AuthConfig
    viam.gen.app.v1.robot_pb2.JWKSFile
-   viam.gen.app.v1.robot_pb2.AuthHandlerWebOauthConfig
    viam.gen.app.v1.robot_pb2.ExternalAuthConfig
    viam.gen.app.v1.robot_pb2.AuthHandlerConfig
    viam.gen.app.v1.robot_pb2.Frame
@@ -63,7 +62,6 @@ Attributes
    viam.gen.app.v1.robot_pb2.CREDENTIALS_TYPE_API_KEY
    viam.gen.app.v1.robot_pb2.CREDENTIALS_TYPE_ROBOT_SECRET
    viam.gen.app.v1.robot_pb2.CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET
-   viam.gen.app.v1.robot_pb2.CREDENTIALS_TYPE_WEB_OAUTH
    viam.gen.app.v1.robot_pb2.global___CredentialsType
    viam.gen.app.v1.robot_pb2.global___RobotConfig
    viam.gen.app.v1.robot_pb2.global___LocationSecret
@@ -75,7 +73,6 @@ Attributes
    viam.gen.app.v1.robot_pb2.global___NetworkConfig
    viam.gen.app.v1.robot_pb2.global___AuthConfig
    viam.gen.app.v1.robot_pb2.global___JWKSFile
-   viam.gen.app.v1.robot_pb2.global___AuthHandlerWebOauthConfig
    viam.gen.app.v1.robot_pb2.global___ExternalAuthConfig
    viam.gen.app.v1.robot_pb2.global___AuthHandlerConfig
    viam.gen.app.v1.robot_pb2.global___Frame
@@ -130,13 +127,6 @@ Attributes
    :type: CredentialsType
 
    
-
-.. py:data:: CREDENTIALS_TYPE_WEB_OAUTH
-   :type: CredentialsType
-
-   remove after a week from being deployed
-
-   :type: TODO(APP-1412)
 
 .. py:data:: global___CredentialsType
 
@@ -690,44 +680,6 @@ Attributes
 
    
 
-.. py:class:: AuthHandlerWebOauthConfig(*, allowed_audiences: collections.abc.Iterable[builtins.str] | None = ..., jwks: global___JWKSFile | None = ...)
-
-
-
-   Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
-   TODO(APP-1412): remove after a week from being deployed
-
-   .. py:property:: allowed_audiences
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
-      The allowed aud claims by the web oauth handler.
-
-   .. py:property:: jwks
-      :type: global___JWKSFile
-
-
-   .. py:method:: HasField(field_name: Literal[jwks, b'jwks']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:data:: global___AuthHandlerWebOauthConfig
-
-   
-
 .. py:class:: ExternalAuthConfig(*, jwks: global___JWKSFile | None = ...)
 
 
@@ -761,7 +713,7 @@ Attributes
 
    
 
-.. py:class:: AuthHandlerConfig(*, type: global___CredentialsType = ..., config: google.protobuf.struct_pb2.Struct | None = ..., web_oauth_config: global___AuthHandlerWebOauthConfig | None = ...)
+.. py:class:: AuthHandlerConfig(*, type: global___CredentialsType = ..., config: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -775,18 +727,12 @@ Attributes
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:property:: web_oauth_config
-      :type: global___AuthHandlerWebOauthConfig
-
-      Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
-      Note: When this is set the config field will be empty.
-
    .. py:attribute:: type
       :type: global___CredentialsType
 
       
 
-   .. py:method:: HasField(field_name: Literal[_web_oauth_config, b'_web_oauth_config', config, b'config', web_oauth_config, b'web_oauth_config']) -> bool
+   .. py:method:: HasField(field_name: Literal[config, b'config']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -801,21 +747,6 @@ Attributes
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
-
-
-   .. py:method:: WhichOneof(oneof_group: Literal[_web_oauth_config, b'_web_oauth_config']) -> typing_extensions.Literal['web_oauth_config'] | None
-
-      Returns the name of the field that is set inside a oneof group.
-
-      If no field is set, returns None.
-
-      :param oneof_group: the name of the oneof group to check.
-      :type oneof_group: str
-
-      :returns: The name of the group that is set, or None.
-      :rtype: str or None
-
-      :raises ValueError: no group with the given name exists
 
 
 
