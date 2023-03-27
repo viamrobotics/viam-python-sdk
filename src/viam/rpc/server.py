@@ -1,5 +1,3 @@
-import asyncio
-import signal
 from typing import TYPE_CHECKING, List, Optional
 
 from grpclib.events import RecvRequest, listen
@@ -82,10 +80,6 @@ class Server(ResourceManager):
             logging.setLevel(log_level)
         listen(self._server, RecvRequest, self._grpc_event_handler)
 
-        loop = asyncio.get_running_loop()
-        for signame in {"SIGINT", "SIGTERM"}:
-            loop.add_signal_handler(getattr(signal, signame), self.close)
-
         with graceful_exit([self._server]):
             if path:
                 await self._server.start(path=path)
@@ -94,9 +88,7 @@ class Server(ResourceManager):
                 await self._server.start(host, port)
                 LOGGER.info(f"Serving on {host}:{port}")
             await self._server.wait_closed()
-
-    def close(self):
-        self._server.close()
+            LOGGER.debug("gRPC server closed")
 
     @classmethod
     async def create_and_serve(

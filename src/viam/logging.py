@@ -61,6 +61,7 @@ def addHandlers(logger: logging.Logger):
 
 
 def setLevel(level: int):
+    global LOG_LEVEL
     LOG_LEVEL = level
     for logger in LOGGERS.values():
         logger.setLevel(LOG_LEVEL)
