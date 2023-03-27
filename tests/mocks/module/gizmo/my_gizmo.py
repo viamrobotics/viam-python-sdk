@@ -24,6 +24,8 @@ class MyGizmo(Gizmo, Reconfigurable):
 
     @classmethod
     def validate_config(cls, config: ComponentConfig) -> List[str]:
+        if "invalid" in config.attributes.fields:
+            raise Exception(f"'invalid' attribute not allowed for model {cls.SUBTYPE}:{cls.MODEL}")
         return [config.attributes.fields["arg1"].string_value]
 
     async def do_one(self, arg1: str, **kwargs) -> bool:

@@ -6,7 +6,7 @@ from grpclib.utils import _service_name
 
 from viam import logging
 from viam.components.component_base import ComponentBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import ResourceNotFoundError, ValidationError
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.module import (
     AddResourceRequest,
@@ -185,7 +185,9 @@ class Module:
         model = Model.from_string(config.model)
         validator = Registry.lookup_validator(subtype, model)
         if validator is not None:
-            dependencies = validator(config)
-            return ValidateConfigResponse(dependencies=dependencies)
-
+            try:
+                dependencies = validator(config)
+                return ValidateConfigResponse(dependencies=dependencies)
+            except Exception as e:
+                raise ValidationError(f"{type(Exception)}: {e}")
         return ValidateConfigResponse()

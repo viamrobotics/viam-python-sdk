@@ -5,6 +5,7 @@ import pytest
 import pytest_asyncio
 from grpclib.testing import ChannelFor
 
+from viam.errors import ValidationError
 from viam.module import Module
 from viam.module.service import ModuleService
 from viam.proto.app.robot import ComponentConfig
@@ -233,6 +234,21 @@ class TestModule:
         )
         response = await self.module.validate_config(req)
         assert response.dependencies == ["arg2"]
+
+        req = ValidateConfigRequest(
+            config=(
+                ComponentConfig(
+                    name="gizmo2",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"arg1": "arg2", "invalid": "attribute"}),
+                    api="acme:component:gizmo",
+                )
+            )
+        )
+        with pytest.raises(ValidationError):
+            response = await self.module.validate_config(req)
 
 
 class TestService:
