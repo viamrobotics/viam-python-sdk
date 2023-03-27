@@ -31,8 +31,6 @@ class _CredentialsTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper
     CREDENTIALS_TYPE_API_KEY: _CredentialsType.ValueType
     CREDENTIALS_TYPE_ROBOT_SECRET: _CredentialsType.ValueType
     CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: _CredentialsType.ValueType
-    CREDENTIALS_TYPE_WEB_OAUTH: _CredentialsType.ValueType
-    'TODO(APP-1412): remove after a week from being deployed'
 
 class CredentialsType(_CredentialsType, metaclass=_CredentialsTypeEnumTypeWrapper):
     ...
@@ -41,8 +39,6 @@ CREDENTIALS_TYPE_INTERNAL: CredentialsType.ValueType
 CREDENTIALS_TYPE_API_KEY: CredentialsType.ValueType
 CREDENTIALS_TYPE_ROBOT_SECRET: CredentialsType.ValueType
 CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: CredentialsType.ValueType
-CREDENTIALS_TYPE_WEB_OAUTH: CredentialsType.ValueType
-'TODO(APP-1412): remove after a week from being deployed'
 global___CredentialsType = CredentialsType
 
 @typing_extensions.final
@@ -385,33 +381,6 @@ class JWKSFile(google.protobuf.message.Message):
 global___JWKSFile = JWKSFile
 
 @typing_extensions.final
-class AuthHandlerWebOauthConfig(google.protobuf.message.Message):
-    """Structured config for the credential type CREDENTIALS_TYPE_WEB_OAUTH
-    TODO(APP-1412): remove after a week from being deployed
-    """
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ALLOWED_AUDIENCES_FIELD_NUMBER: builtins.int
-    JWKS_FIELD_NUMBER: builtins.int
-
-    @property
-    def allowed_audiences(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        """The allowed aud claims by the web oauth handler."""
-
-    @property
-    def jwks(self) -> global___JWKSFile:
-        ...
-
-    def __init__(self, *, allowed_audiences: collections.abc.Iterable[builtins.str] | None=..., jwks: global___JWKSFile | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['jwks', b'jwks']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['allowed_audiences', b'allowed_audiences', 'jwks', b'jwks']) -> None:
-        ...
-global___AuthHandlerWebOauthConfig = AuthHandlerWebOauthConfig
-
-@typing_extensions.final
 class ExternalAuthConfig(google.protobuf.message.Message):
     """ExternalAuthConfig describes how a viam managed robot can accept
     credentials signed by the cloud app.
@@ -438,29 +407,19 @@ class AuthHandlerConfig(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TYPE_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
-    WEB_OAUTH_CONFIG_FIELD_NUMBER: builtins.int
     type: global___CredentialsType.ValueType
 
     @property
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    @property
-    def web_oauth_config(self) -> global___AuthHandlerWebOauthConfig:
-        """Structured config for CREDENTIALS_TYPE_WEB_OAUTH type.
-        Note: When this is set the config field will be empty.
-        """
-
-    def __init__(self, *, type: global___CredentialsType.ValueType=..., config: google.protobuf.struct_pb2.Struct | None=..., web_oauth_config: global___AuthHandlerWebOauthConfig | None=...) -> None:
+    def __init__(self, *, type: global___CredentialsType.ValueType=..., config: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_web_oauth_config', b'_web_oauth_config', 'config', b'config', 'web_oauth_config', b'web_oauth_config']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_web_oauth_config', b'_web_oauth_config', 'config', b'config', 'type', b'type', 'web_oauth_config', b'web_oauth_config']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_web_oauth_config', b'_web_oauth_config']) -> typing_extensions.Literal['web_oauth_config'] | None:
+    def ClearField(self, field_name: typing_extensions.Literal['config', b'config', 'type', b'type']) -> None:
         ...
 global___AuthHandlerConfig = AuthHandlerConfig
 
