@@ -189,5 +189,5 @@ class Module:
                 dependencies = validator(config)
                 return ValidateConfigResponse(dependencies=dependencies)
             except Exception as e:
-                raise ValidationError(f"{type(Exception)}: {e}")
+                raise ValidationError(f"{type(Exception)}: {e}").grpc_error
         return ValidateConfigResponse()
