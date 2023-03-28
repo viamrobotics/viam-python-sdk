@@ -2,6 +2,7 @@
 This file registers the Gizmo subtype with the Viam Registry, as well as the specific MyGizmo model.
 """
 
+from viam.components.motor import *
 from viam.resource.registry import ResourceRegistration, Registry
 
 from .api import Gizmo, GizmoClient, GizmoService

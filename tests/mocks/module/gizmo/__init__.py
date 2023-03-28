@@ -1,3 +1,4 @@
+from viam.components.motor import *
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .api import Gizmo, GizmoClient, GizmoService
