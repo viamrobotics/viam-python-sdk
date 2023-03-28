@@ -149,6 +149,7 @@
 
 
 <div class="viewcode-block" id="setLevel"><a class="viewcode-back" href="../../autoapi/viam/logging/index.html#viam.logging.setLevel">[docs]</a><span class="k">def</span> <span class="nf">setLevel</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">LOG_LEVEL</span>
     <span class="n">LOG_LEVEL</span> <span class="o">=</span> <span class="n">level</span>
     <span class="k">for</span> <span class="n">logger</span> <span class="ow">in</span> <span class="n">LOGGERS</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">LOG_LEVEL</span><span class="p">)</span>
