@@ -111,9 +111,9 @@ class MovementSensor(Sensor):
                 altitude: float,
                 linear_velocity: Vector3,
                 angular_velocity: Vector3,
-                linear_acceleration: Vector3
+                linear_acceleration: Vector3,
                 compass: float,
-                orientation: Orientation
+                orientation: Orientation,
             }
         """
         (pos, lv, av, la, comp, orient) = await asyncio.gather(

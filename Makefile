@@ -5,13 +5,13 @@ _lint:
 	flake8 --exclude=**/gen/**,*_grpc.py,*_pb2.py,*_pb2.pyi,.tox
 
 lint:
-	poetry run make _lint
+	poetry run $(MAKE) _lint
 
 _format:
 	black --exclude ".*/gen/.*" ./src
 
 format:
-	poetry run make _format
+	poetry run $(MAKE) _format
 
 _buf: clean
 	rm -rf src/viam/gen
@@ -22,20 +22,20 @@ _buf: clean
 	find src/viam/gen -type d -exec touch {}/__init__.py \;
 
 buf:
-	poetry run make _buf
+	poetry run $(MAKE) _buf
 
 _better_imports:
 	python3 -m etc.generate_proto_import -v
 	@echo Add init files for specific documented protos
 
 better_imports:
-	poetry run make _better_imports
+	poetry run $(MAKE) _better_imports
 
 _test:
 	coverage run -m pytest && coverage html
 
 test:
-	poetry run make _test
+	poetry run $(MAKE) _test
 
 _test_docs:
 	pytest --nbmake "./docs"
@@ -44,7 +44,7 @@ test_docs:
 	kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $$2}'` || true
 	poetry run python3 -m examples.server.v1.server 0.0.0.0 9091 quiet &
 	sleep 3
-	poetry run make _test_docs
+	poetry run $(MAKE) _test_docs
 	kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $$2}'`
 
 tox:
@@ -54,7 +54,7 @@ _documentation:
 	cd docs && $(MAKE) clean html
 
 documentation:
-	poetry run make _documentation
+	poetry run $(MAKE) _documentation
 
 package: clean buf better_imports format test
 	@echo "TODO: Create pip-installable package"
