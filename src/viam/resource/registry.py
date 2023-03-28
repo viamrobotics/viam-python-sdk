@@ -11,7 +11,6 @@ from typing import (
     Mapping,
     Type,
     TypeVar,
-    Union,
 )
 
 from google.protobuf.struct_pb2 import Struct
@@ -172,16 +171,14 @@ class Registry:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
-    def lookup_validator(cls, subtype: "Subtype", model: "Model") -> Union["Validator", None]:
+    def lookup_validator(cls, subtype: "Subtype", model: "Model") -> "Validator":
         """Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
 
         Args:
             subtype (Subtype): The Subtype of the resource
             model (Model): The Model of the resource
         """
-        with cls._lock:
-            if f"{subtype}/{model}" in cls._VALIDATORS.keys():
-                return cls._VALIDATORS[f"{subtype}/{model}"]
+        return cls._VALIDATORS.get(f"{subtype}/{model}", lambda x: [])
 
     @classmethod
     def REGISTERED_SUBTYPES(cls) -> Mapping["Subtype", ResourceRegistration]:

@@ -184,10 +184,8 @@ class Module:
         subtype = Subtype.from_string(config.api)
         model = Model.from_string(config.model)
         validator = Registry.lookup_validator(subtype, model)
-        if validator is not None:
-            try:
-                dependencies = validator(config)
-                return ValidateConfigResponse(dependencies=dependencies)
-            except Exception as e:
-                raise ValidationError(f"{type(Exception)}: {e}").grpc_error
-        return ValidateConfigResponse()
+        try:
+            dependencies = validator(config)
+            return ValidateConfigResponse(dependencies=dependencies)
+        except Exception as e:
+            raise ValidationError(f"{type(Exception)}: {e}")
