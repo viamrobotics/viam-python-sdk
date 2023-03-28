@@ -2,7 +2,7 @@
 This file registers the Gizmo subtype with the Viam Registry, as well as the specific MyGizmo model.
 """
 
-from viam.components.motor import *  # Need to import motor to so the component registers itself
+from viam.components.motor import *  # noqa: F403 Need to import motor to so the component registers itself
 from viam.resource.registry import ResourceRegistration, Registry
 
 from .api import Gizmo, GizmoClient, GizmoService
