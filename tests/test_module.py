@@ -5,7 +5,7 @@ import pytest
 import pytest_asyncio
 from grpclib.testing import ChannelFor
 
-from viam.errors import ValidationError
+from viam.errors import GRPCError
 from viam.module import Module
 from viam.module.service import ModuleService
 from viam.proto.app.robot import ComponentConfig
@@ -247,7 +247,7 @@ class TestModule:
                 )
             )
         )
-        with pytest.raises(ValidationError):
+        with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
             response = await self.module.validate_config(req)
 
         req = ValidateConfigRequest(
@@ -262,7 +262,22 @@ class TestModule:
                 )
             )
         )
-        with pytest.raises(ValidationError):
+        with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
+            response = await self.module.validate_config(req)
+
+        req = ValidateConfigRequest(
+            config=(
+                ComponentConfig(
+                    name="gizmo3",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"motor": "motor1"}),
+                    api="acme:component:gizmo",
+                )
+            )
+        )
+        with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
             response = await self.module.validate_config(req)
 
 

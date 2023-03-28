@@ -27,7 +27,7 @@ class MyGizmo(Gizmo, Reconfigurable):
         if "invalid" in config.attributes.fields:
             raise Exception(f"'invalid' attribute not allowed for model {cls.SUBTYPE}:{cls.MODEL}")
         arg1 = config.attributes.fields["arg1"].string_value
-        if arg1 is None:
+        if arg1 == "":
             raise Exception("A arg1 attribute is required for Gizmo component.")
         motor = [config.attributes.fields["motor"].string_value]
         if motor == [""]:
