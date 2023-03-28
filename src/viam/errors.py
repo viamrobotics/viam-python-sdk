@@ -92,4 +92,4 @@ class ValidationError(ViamGRPCError):
 
     def __init__(self, message: str):
         self.message = message
-        self.grpc_code = Status.FAILED_PRECONDITION
+        self.grpc_code = Status.INVALID_ARGUMENT
