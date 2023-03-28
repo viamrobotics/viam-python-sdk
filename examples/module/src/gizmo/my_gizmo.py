@@ -29,15 +29,15 @@ class MyGizmo(Gizmo, Reconfigurable):
         return gizmo
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> List[str]:
+    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
         # Custom validation can be done by specifiying a validate function like this one. Validate functions
-        # can throw `throw` errors that will be returned to the parent through gRPC. Validate functions can
-        # also return a vector of strings representing the implicit dependencies of the resource.
+        # can raise errors that will be returned to the parent through gRPC. Validate functions can
+        # also return a sequence of strings representing the implicit dependencies of the resource.
         if "invalid" in config.attributes.fields:
             raise Exception(f"'invalid' attribute not allowed for model {cls.SUBTYPE}:{cls.MODEL}")
         motor = [config.attributes.fields["motor"].string_value]
         if motor == []:
-            raise Exception("A motor is required for Gizmo module.")
+            raise Exception("A motor is required for Gizmo component.")
         return motor
 
     async def do_one(self, arg1: str, **kwargs) -> bool:

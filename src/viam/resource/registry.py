@@ -121,14 +121,10 @@ class Registry:
         Args:
             subtype (Subtype): The Subtype of the resource
             model (Model): The Model of the resource
-            creator (ResourceCreator): A function that can validate a resource and return implicit dependencies
+            validator (Validator): A function that can validate a resource and return implicit dependencies
 
         Raises:
-            ResourceNotFoundError: _description_
-            ResourceNotFoundError: _description_
-
-        Returns:
-            _type_: _description_
+            DuplicateResourceError: Raised if the Subtype and Model pairing already has a registered validator
         """
         key = f"{subtype}/{model}"
         with cls._lock:
