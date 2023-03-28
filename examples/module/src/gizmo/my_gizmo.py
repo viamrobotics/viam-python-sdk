@@ -1,4 +1,4 @@
-from typing import ClassVar, List, Mapping, Sequence
+from typing import ClassVar, Mapping, Sequence
 
 from typing_extensions import Self
 
@@ -35,6 +35,9 @@ class MyGizmo(Gizmo, Reconfigurable):
         # also return a sequence of strings representing the implicit dependencies of the resource.
         if "invalid" in config.attributes.fields:
             raise Exception(f"'invalid' attribute not allowed for model {cls.SUBTYPE}:{cls.MODEL}")
+        arg1 = config.attributes.fields["arg1"].string_value
+        if arg1 is None:
+            raise Exception("arg1 attribute is required for Gizmo component.")
         motor = [config.attributes.fields["motor"].string_value]
         if motor == []:
             raise Exception("A motor is required for Gizmo component.")
