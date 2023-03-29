@@ -95,40 +95,27 @@ class Registry:
             cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
 
     @classmethod
-    def register_resource_creator(cls, subtype: "Subtype", model: "Model", creator: "ResourceCreator"):
-        """Register a specific ``Model`` for the specific resource ``Subtype`` with the Registry
+    def register_resource_creator(
+        cls, subtype: "Subtype", model: "Model", creator: "ResourceCreator", validator: "Validator" = lambda x: []
+    ):
+        """Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
 
         Args:
             subtype (Subtype): The Subtype of the resource
             model (Model): The Model of the resource
             creator (ResourceCreator): A function that can create a resource given a mapping of dependencies (``ResourceName`` to
                                        ``ResourceBase``).
+            validator (Validator): A function that can validate a resource and return implicit dependencies. If called without a
+                                    validator function, default to a function returning an empty Sequence
 
         Raises:
             DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
         """
         key = f"{subtype}/{model}"
         with cls._lock:
-            if key in cls._RESOURCES:
+            if key in cls._RESOURCES or key in cls._VALIDATORS:
                 raise DuplicateResourceError(key)
             cls._RESOURCES[key] = creator
-
-    @classmethod
-    def register_resource_validator(cls, subtype: "Subtype", model: "Model", validator: "Validator"):
-        """Register a specific validator function
-
-        Args:
-            subtype (Subtype): The Subtype of the resource
-            model (Model): The Model of the resource
-            validator (Validator): A function that can validate a resource and return implicit dependencies
-
-        Raises:
-            DuplicateResourceError: Raised if the Subtype and Model pairing already has a registered validator
-        """
-        key = f"{subtype}/{model}"
-        with cls._lock:
-            if key in cls._VALIDATORS:
-                raise DuplicateResourceError(key)
             cls._VALIDATORS[key] = validator
 
     @classmethod
@@ -177,6 +164,9 @@ class Registry:
         Args:
             subtype (Subtype): The Subtype of the resource
             model (Model): The Model of the resource
+
+        Returns:
+            Validator: The function to validate the resource
         """
         return cls._VALIDATORS.get(f"{subtype}/{model}", lambda x: [])
 
