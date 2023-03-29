@@ -75,14 +75,17 @@ class Module:
 
     async def start(self):
         """Start the module service and gRPC server"""
-        await self.server.serve(path=self._address)
+        try:
+            await self.server.serve(log_level=self._log_level, path=self._address)
+        finally:
+            await self.stop()
 
     async def stop(self):
         """Stop the module service and gRPC server"""
+        LOGGER.debug("Shutting down module")
         try:
             if self.parent is not None:
                 await self.parent.close()
-            self.server.close()
         except Exception as e:
             LOGGER.error("Encountered error while shutting down module", exc_info=e)
 
