@@ -119,10 +119,7 @@ class Registry:
         Args:
             subtype (Subtype): The Subtype of the resource
             model (Model): The Model of the resource
-            creator (ResourceCreator): A function that can create a resource given a mapping of dependencies (``ResourceName`` to
-                                       ``ResourceBase``).
-            validator (Validator): A function that can validate a resource and return implicit dependencies. If called without a
-                                    validator function, default to a function returning an empty Sequence
+            registration (ResourceCreatorRegistration): The registration functions of the model
 
         Raises:
             DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
