@@ -280,6 +280,19 @@ class TestModule:
         with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
             response = await self.module.validate_config(req)
 
+        req = ValidateConfigRequest(
+            config=ComponentConfig(
+                name="mysum1",
+                namespace="acme",
+                type="summation",
+                model="acme:demo:mysum",
+                attributes=dict_to_struct({"subtract": False}),
+                api="acme:service:summation",
+            )
+        )
+        response = await self.module.validate_config(req)
+        assert response.dependencies == []
+
 
 class TestService:
     @pytest.mark.asyncio
