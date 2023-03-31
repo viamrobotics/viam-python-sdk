@@ -41,7 +41,14 @@ class ResourceCreatorRegistration:
     """
 
     creator: "ResourceCreator"
+    """A function that can create a resource given a mapping of dependencies (``ResourceName`` to ``ResourceBase``
+    """
+
     validator: "Validator" = lambda x: []
+    """A function that can validate a resource and return implicit dependencies.
+
+    If called without a validator function, default to a function returning an empty Sequence
+    """
 
 
 @dataclass
