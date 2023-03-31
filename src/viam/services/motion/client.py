@@ -11,6 +11,7 @@ from viam.proto.common import (
     WorldState,
 )
 from viam.proto.service.motion import (
+    Constraints,
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceStub,
@@ -42,6 +43,7 @@ class MotionServiceClient(ServiceClientBase):
         component_name: ResourceName,
         destination: PoseInFrame,
         world_state: Optional[WorldState] = None,
+        constraints: Optional[Constraints] = None,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -60,6 +62,7 @@ class MotionServiceClient(ServiceClientBase):
             destination (PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.
             world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the
                 WorldState message.
+            constraints (Constraints): When supplied, the motion service will create a plan that obeys any specified constraints
 
         Returns:
             bool: Whether the move was successful
@@ -71,6 +74,7 @@ class MotionServiceClient(ServiceClientBase):
             destination=destination,
             component_name=component_name,
             world_state=world_state,
+            constraints=constraints,
             extra=dict_to_struct(extra),
         )
         response: MoveResponse = await self.client.Move(request, timeout=timeout)
