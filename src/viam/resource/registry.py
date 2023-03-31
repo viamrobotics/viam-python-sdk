@@ -33,6 +33,18 @@ async def default_create_status(resource: ResourceBase) -> Status:
 
 
 @dataclass
+class ResourceCreatorRegistration:
+    """An object representing a resource creator to be registered.
+
+    If creating a custom Resource creator, you should register the creator by creating a ``ResourceCreatorRegistration`` object and
+    registering it to the ``Registry``.
+    """
+
+    creator: "ResourceCreator"
+    validator: "Validator" = lambda x: []
+
+
+@dataclass
 class ResourceRegistration(Generic[Resource]):
     """An object representing a resource to be registered.
 
@@ -75,8 +87,7 @@ class Registry:
     """
 
     _SUBTYPES: ClassVar[Dict["Subtype", ResourceRegistration]] = {}
-    _RESOURCES: ClassVar[Dict[str, "ResourceCreator"]] = {}
-    _VALIDATORS: ClassVar[Dict[str, "Validator"]] = {}
+    _RESOURCES: ClassVar[Dict[str, ResourceCreatorRegistration]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
@@ -95,9 +106,7 @@ class Registry:
             cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
 
     @classmethod
-    def register_resource_creator(
-        cls, subtype: "Subtype", model: "Model", creator: "ResourceCreator", validator: "Validator" = lambda x: []
-    ):
+    def register_resource_creator(cls, subtype: "Subtype", model: "Model", registration: ResourceCreatorRegistration):
         """Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
 
         Args:
@@ -113,10 +122,9 @@ class Registry:
         """
         key = f"{subtype}/{model}"
         with cls._lock:
-            if key in cls._RESOURCES or key in cls._VALIDATORS:
+            if key in cls._RESOURCES:
                 raise DuplicateResourceError(key)
-            cls._RESOURCES[key] = creator
-            cls._VALIDATORS[key] = validator
+            cls._RESOURCES[key] = registration
 
     @classmethod
     def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
@@ -153,7 +161,7 @@ class Registry:
         """
         with cls._lock:
             try:
-                return cls._RESOURCES[f"{subtype}/{model}"]
+                return cls._RESOURCES[f"{subtype}/{model}"].creator
             except KeyError:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
@@ -168,7 +176,12 @@ class Registry:
         Returns:
             Validator: The function to validate the resource
         """
-        return cls._VALIDATORS.get(f"{subtype}/{model}", lambda x: [])
+        try:
+            return cls._RESOURCES[f"{subtype}/{model}"].validator
+        except AttributeError:
+            return lambda x: []
+        except KeyError:
+            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
     def REGISTERED_SUBTYPES(cls) -> Mapping["Subtype", ResourceRegistration]:
@@ -183,13 +196,13 @@ class Registry:
             return cls._SUBTYPES.copy()
 
     @classmethod
-    def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreator"]:
+    def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreatorRegistration"]:
         """The dictionary of all registered resources
         - Key: subtype/model
-        - Value: The ResourceCreator for the resource
+        - Value: The ResourceCreatorRegistration for the resource
 
         Returns:
-            Mapping[str, ResourceCreator]: All registered resources
+            Mapping[str, ResourceCreatorRegistration]: All registered resources
         """
         with cls._lock:
             return cls._RESOURCES.copy()
