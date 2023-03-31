@@ -16,7 +16,7 @@ from typing import (
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
 
-from viam.errors import DuplicateResourceError, ResourceNotFoundError
+from viam.errors import DuplicateResourceError, ResourceNotFoundError, ValidationError
 from viam.proto.robot import Status
 
 from .base import ResourceBase
@@ -106,11 +106,16 @@ class Registry:
 
         Raises:
             DuplicateResourceError: Raised if the Subtype to register is already in the registry
+            ValidationError: Raised if registration is missing any necessary parameters
         """
         with cls._lock:
             if registration.resource_type.SUBTYPE in cls._SUBTYPES:
                 raise DuplicateResourceError(str(registration.resource_type.SUBTYPE))
-            cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
+
+            if registration.resource_type and registration.rpc_service and registration.create_rpc_client:
+                cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
+            else:
+                raise ValidationError("Passed resource registration does not have correct parameters")
 
     @classmethod
     def register_resource_creator(cls, subtype: "Subtype", model: "Model", registration: ResourceCreatorRegistration):
@@ -123,12 +128,17 @@ class Registry:
 
         Raises:
             DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+            ValidationError: Raised if registration does not have creator
         """
         key = f"{subtype}/{model}"
         with cls._lock:
             if key in cls._RESOURCES:
                 raise DuplicateResourceError(key)
-            cls._RESOURCES[key] = registration
+
+            if registration.creator:
+                cls._RESOURCES[key] = registration
+            else:
+                raise ValidationError("A creator function was not provided")
 
     @classmethod
     def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
