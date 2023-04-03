@@ -94,7 +94,7 @@
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span><span class="p">,</span> <span class="n">ValidationError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
 <span class="kn">from</span> <span class="nn">viam.proto.module</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AddResourceRequest</span><span class="p">,</span>
@@ -104,6 +104,8 @@
     <span class="n">ReadyResponse</span><span class="p">,</span>
     <span class="n">ReconfigureResourceRequest</span><span class="p">,</span>
     <span class="n">RemoveResourceRequest</span><span class="p">,</span>
+    <span class="n">ValidateConfigRequest</span><span class="p">,</span>
+    <span class="n">ValidateConfigResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">ResourceRPCSubtype</span>
 <span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
@@ -266,7 +268,18 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_resource_creator</span><span class="p">(</span><span class="n">subtype</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ResourceNotFoundError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot add model because it has not been registered. Subtype: </span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s2">. Model: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div></div>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot add model because it has not been registered. Subtype: </span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s2">. Model: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Module.validate_config"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.validate_config">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">validate_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">ValidateConfigRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ValidateConfigResponse</span><span class="p">:</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">config</span>
+        <span class="n">subtype</span> <span class="o">=</span> <span class="n">Subtype</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">api</span><span class="p">)</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">validator</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_validator</span><span class="p">(</span><span class="n">subtype</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dependencies</span> <span class="o">=</span> <span class="n">validator</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ValidateConfigResponse</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="n">dependencies</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="ne">Exception</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grpc_error</span></div></div>
 </pre></div>
 
            </div>

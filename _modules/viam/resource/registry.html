@@ -104,20 +104,39 @@
 <span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">DuplicateResourceError</span><span class="p">,</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">DuplicateResourceError</span><span class="p">,</span> <span class="n">ResourceNotFoundError</span><span class="p">,</span> <span class="n">ValidationError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">Status</span>
 
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
-    <span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ResourceCreator</span><span class="p">,</span> <span class="n">Subtype</span>
+    <span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ResourceCreator</span><span class="p">,</span> <span class="n">Subtype</span><span class="p">,</span> <span class="n">Validator</span>
 
 <span class="n">Resource</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;Resource&quot;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">ResourceBase</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="default_create_status"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.default_create_status">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">default_create_status</span><span class="p">(</span><span class="n">resource</span><span class="p">:</span> <span class="n">ResourceBase</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">resource</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">name</span><span class="p">),</span> <span class="n">status</span><span class="o">=</span><span class="n">Struct</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="ResourceCreatorRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ResourceCreatorRegistration</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An object representing a resource creator to be registered.</span>
+
+<span class="sd">    If creating a custom Resource creator, you should register the creator by creating a ``ResourceCreatorRegistration`` object and</span>
+<span class="sd">    registering it to the ``Registry``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">creator</span><span class="p">:</span> <span class="s2">&quot;ResourceCreator&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function that can create a resource given a mapping of dependencies (``ResourceName`` to ``ResourceBase``</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">validator</span><span class="p">:</span> <span class="s2">&quot;Validator&quot;</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A function that can validate a resource and return implicit dependencies.</span>
+
+<span class="sd">    If called without a validator function, default to a function returning an empty Sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
 
 
 <div class="viewcode-block" id="ResourceRegistration"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.ResourceRegistration">[docs]</a><span class="nd">@dataclass</span>
@@ -163,7 +182,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_SUBTYPES</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">ResourceRegistration</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">_RESOURCES</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ResourceCreator&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">_RESOURCES</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">_lock</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Lock</span><span class="p">]</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Registry.register_subtype"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register_subtype">[docs]</a>    <span class="nd">@classmethod</span>
@@ -175,30 +194,39 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            DuplicateResourceError: Raised if the Subtype to register is already in the registry</span>
+<span class="sd">            ValidationError: Raised if registration is missing any necessary parameters</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="o">.</span><span class="n">SUBTYPE</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">DuplicateResourceError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">))</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="p">[</span><span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">]</span> <span class="o">=</span> <span class="n">registration</span></div>
+
+            <span class="k">if</span> <span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span> <span class="ow">and</span> <span class="n">registration</span><span class="o">.</span><span class="n">rpc_service</span> <span class="ow">and</span> <span class="n">registration</span><span class="o">.</span><span class="n">create_rpc_client</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="p">[</span><span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">]</span> <span class="o">=</span> <span class="n">registration</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Passed resource registration does not have correct parameters&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Registry.register_resource_creator"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register_resource_creator">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">register_resource_creator</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;Model&quot;</span><span class="p">,</span> <span class="n">creator</span><span class="p">:</span> <span class="s2">&quot;ResourceCreator&quot;</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a specific ``Model`` for the specific resource ``Subtype`` with the Registry</span>
+    <span class="k">def</span> <span class="nf">register_resource_creator</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;Model&quot;</span><span class="p">,</span> <span class="n">registration</span><span class="p">:</span> <span class="n">ResourceCreatorRegistration</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            subtype (Subtype): The Subtype of the resource</span>
 <span class="sd">            model (Model): The Model of the resource</span>
-<span class="sd">            creator (ResourceCreator): A function that can create a resource given a mapping of dependencies (``ResourceName`` to</span>
-<span class="sd">                                       ``ResourceBase``).</span>
+<span class="sd">            registration (ResourceCreatorRegistration): The registration functions of the model</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            DuplicateResourceError: Raised if the Subtype and Model pairing is already registered</span>
+<span class="sd">            ValidationError: Raised if registration does not have creator</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_RESOURCES</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">DuplicateResourceError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">_RESOURCES</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">creator</span></div>
+
+            <span class="k">if</span> <span class="n">registration</span><span class="o">.</span><span class="n">creator</span><span class="p">:</span>
+                <span class="bp">cls</span><span class="o">.</span><span class="n">_RESOURCES</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">registration</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;A creator function was not provided&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Registry.lookup_subtype"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.lookup_subtype">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">lookup_subtype</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceRegistration</span><span class="p">:</span>
@@ -235,9 +263,27 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_RESOURCES</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+                <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_RESOURCES</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">creator</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span> <span class="n">subtype</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Registry.lookup_validator"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.lookup_validator">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">lookup_validator</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">subtype</span><span class="p">:</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="s2">&quot;Model&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Validator&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            subtype (Subtype): The Subtype of the resource</span>
+<span class="sd">            model (Model): The Model of the resource</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Validator: The function to validate the resource</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_RESOURCES</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">subtype</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">validator</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ResourceNotFoundError</span><span class="p">(</span><span class="n">subtype</span><span class="o">.</span><span class="n">resource_type</span><span class="p">,</span> <span class="n">subtype</span><span class="o">.</span><span class="n">resource_subtype</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Registry.REGISTERED_SUBTYPES"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.REGISTERED_SUBTYPES">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">REGISTERED_SUBTYPES</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">ResourceRegistration</span><span class="p">]:</span>
@@ -252,13 +298,13 @@
             <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_SUBTYPES</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Registry.REGISTERED_RESOURCE_CREATORS"><a class="viewcode-back" href="../../../autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.REGISTERED_RESOURCE_CREATORS">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">REGISTERED_RESOURCE_CREATORS</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ResourceCreator&quot;</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">REGISTERED_RESOURCE_CREATORS</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ResourceCreatorRegistration&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The dictionary of all registered resources</span>
 <span class="sd">        - Key: subtype/model</span>
-<span class="sd">        - Value: The ResourceCreator for the resource</span>
+<span class="sd">        - Value: The ResourceCreatorRegistration for the resource</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Mapping[str, ResourceCreator]: All registered resources</span>
+<span class="sd">            Mapping[str, ResourceCreatorRegistration]: All registered resources</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_RESOURCES</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div></div>

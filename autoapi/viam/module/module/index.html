@@ -76,6 +76,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.module.module.Module.remove_resource"><code class="docutils literal notranslate"><span class="pre">Module.remove_resource()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.module.module.Module.ready"><code class="docutils literal notranslate"><span class="pre">Module.ready()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.module.module.Module.add_model_from_registry"><code class="docutils literal notranslate"><span class="pre">Module.add_model_from_registry()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.module.module.Module.validate_config"><code class="docutils literal notranslate"><span class="pre">Module.validate_config()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.module.module.LOGGER">LOGGER</a></li>
@@ -90,6 +91,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.module.module.Module.remove_resource">remove_resource</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.module.module.Module.ready">ready</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.module.module.Module.add_model_from_registry">add_model_from_registry</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.module.module.Module.validate_config">validate_config</a></li>
 </ul>
 </li>
 </ul>
@@ -225,6 +227,11 @@ in instances where the module is not instantly ready (e.g. waiting on hardware)<
 <span class="sig-name descname"><span class="pre">add_model_from_registry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/module/module.html#Module.add_model_from_registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Module.add_model_from_registry" title="Permalink to this definition"></a></dt>
 <dd><p>Add a pre-registered model to this Module</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.module.module.Module.validate_config">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/module/index.html#viam.proto.module.ValidateConfigRequest" title="viam.proto.module.ValidateConfigRequest"><span class="pre">viam.proto.module.ValidateConfigRequest</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/module/index.html#viam.proto.module.ValidateConfigResponse" title="viam.proto.module.ValidateConfigResponse"><span class="pre">viam.proto.module.ValidateConfigResponse</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/module/module.html#Module.validate_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Module.validate_config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
