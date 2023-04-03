@@ -83,3 +83,13 @@ class NotSupportedError(ViamGRPCError):
     def __init__(self, message: str):
         self.message = message
         self.grpc_code = Status.UNIMPLEMENTED
+
+
+class ValidationError(ViamGRPCError):
+    """
+    Exception raised when there is an error during module validation
+    """
+
+    def __init__(self, message: str):
+        self.message = message
+        self.grpc_code = Status.INVALID_ARGUMENT

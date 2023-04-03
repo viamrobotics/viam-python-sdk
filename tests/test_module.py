@@ -4,8 +4,8 @@ from unittest import mock
 import pytest
 import pytest_asyncio
 from grpclib.testing import ChannelFor
-from grpclib.exceptions import GRPCError
 
+from viam.errors import GRPCError
 from viam.module import Module
 from viam.module.service import ModuleService
 from viam.proto.app.robot import ComponentConfig
@@ -16,7 +16,8 @@ from viam.proto.module import (
     ReadyResponse,
     ReconfigureResourceRequest,
     RemoveResourceRequest,
-    ValidateConfigRequest
+    ValidateConfigRequest,
+    ValidateConfigResponse,
 )
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.types import Model, Subtype
@@ -66,7 +67,7 @@ class TestModule:
                 namespace="acme",
                 type="gizmo",
                 model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg1"}),
+                attributes=dict_to_struct({"arg1": "arg1", "motor": "motor1"}),
                 api="acme:component:gizmo",
             )
         )
@@ -98,7 +99,7 @@ class TestModule:
                 namespace="acme",
                 type="gizmo",
                 model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg2"}),
+                attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
                 api="acme:component:gizmo",
             )
         )
@@ -131,7 +132,7 @@ class TestModule:
                     namespace="acme",
                     type="gizmo",
                     model="acme:demo:mygizmo",
-                    attributes=dict_to_struct({"arg1": "arg2"}),
+                    attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
                     api="acme:component:gizmo",
                 ),
                 dependencies=["rdk:component:arm/arm1"],
@@ -193,7 +194,7 @@ class TestModule:
                 namespace="acme",
                 type="gizmo",
                 model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg1"}),
+                attributes=dict_to_struct({"arg1": "arg1", "motor": "motor1"}),
                 api="acme:component:gizmo",
             )
         )
@@ -204,7 +205,7 @@ class TestModule:
                 namespace="acme",
                 type="gizmo",
                 model="acme:demo:mygizmo",
-                attributes=dict_to_struct({"arg1": "arg2"}),
+                attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
                 api="acme:component:gizmo",
             )
         )
@@ -217,6 +218,80 @@ class TestModule:
         assert await g2.do_one("arg1") is False
         assert await g1.do_one("arg2") is False
         assert await g2.do_one("arg2") is True
+
+    async def test_validate_config(self):
+        req = ValidateConfigRequest(
+            config=(
+                ComponentConfig(
+                    name="gizmo1",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
+                    api="acme:component:gizmo",
+                )
+            )
+        )
+        response = await self.module.validate_config(req)
+        assert response.dependencies == ["motor1"]
+
+        req = ValidateConfigRequest(
+            config=(
+                ComponentConfig(
+                    name="gizmo2",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"arg1": "arg2", "invalid": "attribute", "motor": "motor1"}),
+                    api="acme:component:gizmo",
+                )
+            )
+        )
+        with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
+            response = await self.module.validate_config(req)
+
+        req = ValidateConfigRequest(
+            config=(
+                ComponentConfig(
+                    name="gizmo3",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"arg1": "arg2"}),
+                    api="acme:component:gizmo",
+                )
+            )
+        )
+        with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
+            response = await self.module.validate_config(req)
+
+        req = ValidateConfigRequest(
+            config=(
+                ComponentConfig(
+                    name="gizmo3",
+                    namespace="acme",
+                    type="gizmo",
+                    model="acme:demo:mygizmo",
+                    attributes=dict_to_struct({"motor": "motor1"}),
+                    api="acme:component:gizmo",
+                )
+            )
+        )
+        with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
+            response = await self.module.validate_config(req)
+
+        req = ValidateConfigRequest(
+            config=ComponentConfig(
+                name="mysum1",
+                namespace="acme",
+                type="summation",
+                model="acme:demo:mysum",
+                attributes=dict_to_struct({"subtract": False}),
+                api="acme:service:summation",
+            )
+        )
+        response = await self.module.validate_config(req)
+        assert response.dependencies == []
 
 
 class TestService:
@@ -256,6 +331,6 @@ class TestService:
     async def test_validate_config(self, service: ModuleService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
-            request = ValidateConfigRequest()
-            with pytest.raises(GRPCError, match=r".*Status.UNIMPLEMENTED.*"):
-                await client.ValidateConfig(request)
+            with mock.patch("viam.module.module.Module.validate_config", return_value=ValidateConfigResponse()) as mocked:
+                await client.ValidateConfig(ValidateConfigRequest())
+                mocked.assert_called_once()

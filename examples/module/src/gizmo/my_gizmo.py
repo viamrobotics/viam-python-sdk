@@ -28,6 +28,21 @@ class MyGizmo(Gizmo, Reconfigurable):
         gizmo.my_arg = config.attributes.fields["arg1"].string_value
         return gizmo
 
+    @classmethod
+    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
+        # Custom validation can be done by specifiying a validate function like this one. Validate functions
+        # can raise errors that will be returned to the parent through gRPC. Validate functions can
+        # also return a sequence of strings representing the implicit dependencies of the resource.
+        if "invalid" in config.attributes.fields:
+            raise Exception(f"'invalid' attribute not allowed for model {cls.SUBTYPE}:{cls.MODEL}")
+        arg1 = config.attributes.fields["arg1"].string_value
+        if arg1 == "":
+            raise Exception("A arg1 attribute is required for Gizmo component.")
+        motor = [config.attributes.fields["motor"].string_value]
+        if motor == [""]:
+            raise Exception("A motor is required for Gizmo component.")
+        return motor
+
     async def do_one(self, arg1: str, **kwargs) -> bool:
         return arg1 == self.my_arg
 

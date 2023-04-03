@@ -6,7 +6,7 @@ from grpclib.utils import _service_name
 
 from viam import logging
 from viam.components.component_base import ComponentBase
-from viam.errors import ResourceNotFoundError
+from viam.errors import ResourceNotFoundError, ValidationError
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.module import (
     AddResourceRequest,
@@ -16,6 +16,8 @@ from viam.proto.module import (
     ReadyResponse,
     ReconfigureResourceRequest,
     RemoveResourceRequest,
+    ValidateConfigRequest,
+    ValidateConfigResponse,
 )
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.base import ResourceBase
@@ -179,3 +181,14 @@ class Module:
             Registry.lookup_resource_creator(subtype, model)
         except ResourceNotFoundError:
             raise ValueError(f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}")
+
+    async def validate_config(self, request: ValidateConfigRequest) -> ValidateConfigResponse:
+        config: ComponentConfig = request.config
+        subtype = Subtype.from_string(config.api)
+        model = Model.from_string(config.model)
+        validator = Registry.lookup_validator(subtype, model)
+        try:
+            dependencies = validator(config)
+            return ValidateConfigResponse(dependencies=dependencies)
+        except Exception as e:
+            raise ValidationError(f"{type(Exception)}: {e}").grpc_error

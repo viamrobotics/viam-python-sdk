@@ -1,6 +1,6 @@
 import re
 import sys
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping
+from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Sequence
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -197,3 +197,4 @@ def resource_name_from_string(string: str) -> ResourceName:
 
 
 ResourceCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ResourceBase"]
+Validator: TypeAlias = Callable[[ComponentConfig], Sequence[str]]

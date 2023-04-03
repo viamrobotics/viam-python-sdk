@@ -16,20 +16,39 @@ from typing import (
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
 
-from viam.errors import DuplicateResourceError, ResourceNotFoundError
+from viam.errors import DuplicateResourceError, ResourceNotFoundError, ValidationError
 from viam.proto.robot import Status
 
 from .base import ResourceBase
 
 if TYPE_CHECKING:
     from .rpc_service_base import ResourceRPCServiceBase
-    from .types import Model, ResourceCreator, Subtype
+    from .types import Model, ResourceCreator, Subtype, Validator
 
 Resource = TypeVar("Resource", bound=ResourceBase)
 
 
 async def default_create_status(resource: ResourceBase) -> Status:
     return Status(name=resource.get_resource_name(resource.name), status=Struct())
+
+
+@dataclass
+class ResourceCreatorRegistration:
+    """An object representing a resource creator to be registered.
+
+    If creating a custom Resource creator, you should register the creator by creating a ``ResourceCreatorRegistration`` object and
+    registering it to the ``Registry``.
+    """
+
+    creator: "ResourceCreator"
+    """A function that can create a resource given a mapping of dependencies (``ResourceName`` to ``ResourceBase``
+    """
+
+    validator: "Validator" = lambda x: []
+    """A function that can validate a resource and return implicit dependencies.
+
+    If called without a validator function, default to a function returning an empty Sequence
+    """
 
 
 @dataclass
@@ -75,7 +94,7 @@ class Registry:
     """
 
     _SUBTYPES: ClassVar[Dict["Subtype", ResourceRegistration]] = {}
-    _RESOURCES: ClassVar[Dict[str, "ResourceCreator"]] = {}
+    _RESOURCES: ClassVar[Dict[str, ResourceCreatorRegistration]] = {}
     _lock: ClassVar[Lock] = Lock()
 
     @classmethod
@@ -87,30 +106,39 @@ class Registry:
 
         Raises:
             DuplicateResourceError: Raised if the Subtype to register is already in the registry
+            ValidationError: Raised if registration is missing any necessary parameters
         """
         with cls._lock:
             if registration.resource_type.SUBTYPE in cls._SUBTYPES:
                 raise DuplicateResourceError(str(registration.resource_type.SUBTYPE))
-            cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
+
+            if registration.resource_type and registration.rpc_service and registration.create_rpc_client:
+                cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
+            else:
+                raise ValidationError("Passed resource registration does not have correct parameters")
 
     @classmethod
-    def register_resource_creator(cls, subtype: "Subtype", model: "Model", creator: "ResourceCreator"):
-        """Register a specific ``Model`` for the specific resource ``Subtype`` with the Registry
+    def register_resource_creator(cls, subtype: "Subtype", model: "Model", registration: ResourceCreatorRegistration):
+        """Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
 
         Args:
             subtype (Subtype): The Subtype of the resource
             model (Model): The Model of the resource
-            creator (ResourceCreator): A function that can create a resource given a mapping of dependencies (``ResourceName`` to
-                                       ``ResourceBase``).
+            registration (ResourceCreatorRegistration): The registration functions of the model
 
         Raises:
             DuplicateResourceError: Raised if the Subtype and Model pairing is already registered
+            ValidationError: Raised if registration does not have creator
         """
         key = f"{subtype}/{model}"
         with cls._lock:
             if key in cls._RESOURCES:
                 raise DuplicateResourceError(key)
-            cls._RESOURCES[key] = creator
+
+            if registration.creator:
+                cls._RESOURCES[key] = registration
+            else:
+                raise ValidationError("A creator function was not provided")
 
     @classmethod
     def lookup_subtype(cls, subtype: "Subtype") -> ResourceRegistration:
@@ -147,9 +175,27 @@ class Registry:
         """
         with cls._lock:
             try:
-                return cls._RESOURCES[f"{subtype}/{model}"]
+                return cls._RESOURCES[f"{subtype}/{model}"].creator
             except KeyError:
                 raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+
+    @classmethod
+    def lookup_validator(cls, subtype: "Subtype", model: "Model") -> "Validator":
+        """Lookup and retrieve a registered validator function by its subtype and model. If there is none, return None
+
+        Args:
+            subtype (Subtype): The Subtype of the resource
+            model (Model): The Model of the resource
+
+        Returns:
+            Validator: The function to validate the resource
+        """
+        try:
+            return cls._RESOURCES[f"{subtype}/{model}"].validator
+        except AttributeError:
+            return lambda x: []
+        except KeyError:
+            raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
 
     @classmethod
     def REGISTERED_SUBTYPES(cls) -> Mapping["Subtype", ResourceRegistration]:
@@ -164,13 +210,13 @@ class Registry:
             return cls._SUBTYPES.copy()
 
     @classmethod
-    def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreator"]:
+    def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreatorRegistration"]:
         """The dictionary of all registered resources
         - Key: subtype/model
-        - Value: The ResourceCreator for the resource
+        - Value: The ResourceCreatorRegistration for the resource
 
         Returns:
-            Mapping[str, ResourceCreator]: All registered resources
+            Mapping[str, ResourceCreatorRegistration]: All registered resources
         """
         with cls._lock:
             return cls._RESOURCES.copy()
