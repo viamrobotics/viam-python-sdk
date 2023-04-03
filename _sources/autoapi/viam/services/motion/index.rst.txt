@@ -40,7 +40,7 @@ Classes
 
       
 
-   .. py:method:: move(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> bool
+   .. py:method:: move(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, constraints: Optional[viam.proto.service.motion.Constraints] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> bool
       :async:
 
       Plan and execute a movement to move the component specified to its goal destination.
@@ -59,6 +59,8 @@ Classes
       :param world_state: When supplied, the motion service will create a plan that obeys any contraints expressed in the
                           WorldState message.
       :type world_state: WorldState
+      :param constraints: When supplied, the motion service will create a plan that obeys any specified constraints
+      :type constraints: Constraints
 
       :returns: Whether the move was successful
       :rtype: bool

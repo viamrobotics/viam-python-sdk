@@ -99,6 +99,7 @@
     <span class="n">WorldState</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.motion</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Constraints</span><span class="p">,</span>
     <span class="n">GetPoseRequest</span><span class="p">,</span>
     <span class="n">GetPoseResponse</span><span class="p">,</span>
     <span class="n">MotionServiceStub</span><span class="p">,</span>
@@ -130,6 +131,7 @@
         <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
         <span class="n">destination</span><span class="p">:</span> <span class="n">PoseInFrame</span><span class="p">,</span>
         <span class="n">world_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">WorldState</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Constraints</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -148,6 +150,7 @@
 <span class="sd">            destination (PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.</span>
 <span class="sd">            world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the</span>
 <span class="sd">                WorldState message.</span>
+<span class="sd">            constraints (Constraints): When supplied, the motion service will create a plan that obeys any specified constraints</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the move was successful</span>
@@ -159,6 +162,7 @@
             <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
             <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
             <span class="n">world_state</span><span class="o">=</span><span class="n">world_state</span><span class="p">,</span>
+            <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
             <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">Move</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
