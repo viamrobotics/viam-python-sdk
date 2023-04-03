@@ -6,6 +6,7 @@ from grpclib.server import Stream
 from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
+    Constraints,
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceBase,
@@ -70,6 +71,7 @@ class MockMotionService(MotionServiceBase):
         self.move_responses = move_responses
         self.move_single_component_responses = move_single_component_responses
         self.get_pose_responses = get_pose_responses
+        self.constraints: Optional[Constraints] = None
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
 
@@ -77,6 +79,7 @@ class MockMotionService(MotionServiceBase):
         request = await stream.recv_message()
         assert request is not None
         name: ResourceName = request.component_name
+        self.constraints = request.constraints
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         success = self.move_responses[name.name]
