@@ -4,11 +4,13 @@ from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
 from viam.components.gantry import Gantry
 from viam.proto.common import Pose, PoseInFrame
+from viam.proto.service.motion import Constraints, LinearConstraint
 from viam.services.motion import MotionServiceClient
 
 from . import loose_approx
 from .mocks.services import MockMotionService
 
+MOVE_CONSTRAINTS = Constraints(linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)])
 MOVE_RESPONSES = {"arm": False, "gantry": True}
 MOVE_SINGLE_COMPONENT_RESPONSES = {"arm": True, "gantry": False}
 GET_POSE_RESPONSES = {
@@ -34,11 +36,16 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
             assert service.timeout is None
+            assert service.constraints is None
             timeout = 1.4
-            success = await client.move(Arm.get_resource_name("arm"), PoseInFrame(), extra={"foo": "bar"}, timeout=timeout)
+            success = await client.move(
+                Arm.get_resource_name("arm"), PoseInFrame(), constraints=MOVE_CONSTRAINTS, extra={"foo": "bar"}, timeout=timeout
+            )
             assert success == MOVE_RESPONSES["arm"]
             assert service.extra == {"foo": "bar"}
             assert service.timeout == loose_approx(timeout)
+            assert service.constraints is not None
+            assert service.constraints.linear_constraint == [LinearConstraint(), LinearConstraint(line_tolerance_mm=2)]
             success = await client.move(Gantry.get_resource_name("gantry"), PoseInFrame())
             assert success == MOVE_RESPONSES["gantry"]
             assert service.extra == {}
