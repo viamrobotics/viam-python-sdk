@@ -236,6 +236,7 @@ class RobotClient:
                         f" Attempting to reconnect to {self._address} every {reconnect_every} second{'s' if reconnect_every != 1 else ''}"
                     )
                 LOGGER.error(msg, exc_info=connection_error)
+                self._close_channel()
                 self._connected = False
 
             if reconnect_every <= 0:
@@ -257,6 +258,7 @@ class RobotClient:
                     LOGGER.debug("Successfully reconnected robot")
                 except Exception as e:
                     LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}sec", exc_info=e)
+                    self._close_channel()
                     await asyncio.sleep(reconnect_every)
 
     def get_component(self, name: ResourceName) -> ComponentBase:
@@ -364,6 +366,15 @@ class RobotClient:
         with self._lock:
             return [r for r in self._resource_names]
 
+    def _close_channel(self, *, tab_count=0):
+        tabs = "".join(["\t" for _ in range(tab_count)])
+        if self._viam_channel is not None:
+            LOGGER.debug(f"{tabs} Closing ViamChannel instance")
+            self._viam_channel.close()
+        else:
+            LOGGER.debug(f"{tabs} Closing grpc-lib Channel instance")
+            self._channel.close()
+
     async def close(self):
         """
         Cleanly close the underlying connections and stop any periodic tasks
@@ -388,12 +399,7 @@ class RobotClient:
 
         if self._should_close_channel:
             LOGGER.debug("Closing gRPC channel to remote robot")
-            if self._viam_channel is not None:
-                LOGGER.debug("\tClosing ViamChannel instance")
-                self._viam_channel.close()
-            else:
-                LOGGER.debug("\tClosing grpc-lib Channel instance")
-                self._channel.close()
+            self._close_channel(tab_count=1)
 
         self._closed = True
 
