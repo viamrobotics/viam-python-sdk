@@ -23,7 +23,7 @@ from .gantry import Gantry
 
 class GantryService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
     """
-    gRPC Service for an Gantry
+    gRPC Service for a Gantry
     """
 
     RESOURCE_TYPE = Gantry
@@ -51,7 +51,7 @@ class GantryService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gantry.move_to_position(
-            list(request.positions_mm), request.world_state, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+            list(request.positions_mm), extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
         )
         response = MoveToPositionResponse()
         await stream.send_message(response)

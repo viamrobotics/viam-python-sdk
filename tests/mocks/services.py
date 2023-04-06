@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 
 from grpclib.server import Stream
 
+from viam.errors import MethodNotImplementedError
 from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
@@ -10,6 +11,8 @@ from viam.proto.service.motion import (
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceBase,
+    MoveOnMapRequest,
+    MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
     MoveSingleComponentRequest,
@@ -85,6 +88,9 @@ class MockMotionService(MotionServiceBase):
         success = self.move_responses[name.name]
         response = MoveResponse(success=success)
         await stream.send_message(response)
+
+    async def MoveOnMap(self, stream: Stream[MoveOnMapRequest, MoveOnMapResponse]) -> None:
+        raise MethodNotImplementedError("MoveOnMap")
 
     async def MoveSingleComponent(self, stream: Stream[MoveSingleComponentRequest, MoveSingleComponentResponse]) -> None:
         request = await stream.recv_message()

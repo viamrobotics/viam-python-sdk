@@ -55,7 +55,7 @@ class ArmClient(Arm):
     ):
         if extra is None:
             extra = {}
-        request = MoveToPositionRequest(name=self.name, to=pose, world_state=world_state, extra=dict_to_struct(extra))
+        request = MoveToPositionRequest(name=self.name, to=pose, extra=dict_to_struct(extra))
         await self.client.MoveToPosition(request, timeout=timeout)
 
     async def get_joint_positions(

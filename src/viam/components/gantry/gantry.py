@@ -1,7 +1,6 @@
 import abc
 from typing import Any, Dict, List, Optional, Final
 
-from viam.proto.common import WorldState
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
@@ -32,7 +31,6 @@ class Gantry(ComponentBase):
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,

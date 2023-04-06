@@ -4,7 +4,7 @@ from viam.proto.robot import Status
 from viam.resource.registry import ResourceRegistration, Registry
 from viam.utils import message_to_struct
 
-from .arm import Arm, JointPositions, Pose, WorldState
+from .arm import Arm, JointPositions, Pose
 from .client import ArmClient
 from .service import ArmService
 
@@ -12,7 +12,6 @@ __all__ = [
     "Arm",
     "JointPositions",
     "Pose",
-    "WorldState",
 ]
 
 
