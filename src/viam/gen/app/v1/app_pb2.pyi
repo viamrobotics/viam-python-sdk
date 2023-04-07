@@ -393,13 +393,18 @@ class CreateOrganizationInviteRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     EMAIL_FIELD_NUMBER: builtins.int
+    AUTHORIZATIONS_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     email: builtins.str
 
-    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=...) -> None:
+    @property
+    def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['email', b'email', 'organization_id', b'organization_id']) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations', 'email', b'email', 'organization_id', b'organization_id']) -> None:
         ...
 global___CreateOrganizationInviteRequest = CreateOrganizationInviteRequest
 
@@ -1769,21 +1774,19 @@ global___DeleteRobotPartSecretResponse = DeleteRobotPartSecretResponse
 @typing_extensions.final
 class Authorization(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    IDENTITY_ID_FIELD_NUMBER: builtins.int
     AUTHORIZATION_TYPE_FIELD_NUMBER: builtins.int
     AUTHORIZATION_ID_FIELD_NUMBER: builtins.int
     RESOURCE_TYPE_FIELD_NUMBER: builtins.int
     RESOURCE_ID_FIELD_NUMBER: builtins.int
-    identity_id: builtins.str
     authorization_type: builtins.str
     authorization_id: builtins.str
     resource_type: builtins.str
     resource_id: builtins.str
 
-    def __init__(self, *, identity_id: builtins.str=..., authorization_type: builtins.str=..., authorization_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=...) -> None:
+    def __init__(self, *, authorization_type: builtins.str=..., authorization_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'identity_id', b'identity_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
         ...
 global___Authorization = Authorization
 
@@ -1834,15 +1837,17 @@ class RemoveRoleRequest(google.protobuf.message.Message):
     ROLE_ID_FIELD_NUMBER: builtins.int
     RESOURCE_TYPE_FIELD_NUMBER: builtins.int
     RESOURCE_ID_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     identity_id: builtins.str
     role_id: builtins.str
     resource_type: builtins.str
     resource_id: builtins.str
+    organization_id: builtins.str
 
-    def __init__(self, *, identity_id: builtins.str=..., role_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=...) -> None:
+    def __init__(self, *, identity_id: builtins.str=..., role_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=..., organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['identity_id', b'identity_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type', 'role_id', b'role_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['identity_id', b'identity_id', 'organization_id', b'organization_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type', 'role_id', b'role_id']) -> None:
         ...
 global___RemoveRoleRequest = RemoveRoleRequest
 
@@ -1859,15 +1864,35 @@ class ListAuthorizationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESOURCE_TYPE_FIELD_NUMBER: builtins.int
     RESOURCE_ID_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     resource_type: builtins.str
     resource_id: builtins.str
+    organization_id: builtins.str
 
-    def __init__(self, *, resource_type: builtins.str=..., resource_id: builtins.str=...) -> None:
+    def __init__(self, *, resource_type: builtins.str=..., resource_id: builtins.str=..., organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
         ...
 global___ListAuthorizationsRequest = ListAuthorizationsRequest
+
+@typing_extensions.final
+class Authorizations(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IDENTITY_ID_FIELD_NUMBER: builtins.int
+    AUTHORIZATIONS_FIELD_NUMBER: builtins.int
+    identity_id: builtins.str
+
+    @property
+    def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
+        ...
+
+    def __init__(self, *, identity_id: builtins.str=..., authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations', 'identity_id', b'identity_id']) -> None:
+        ...
+global___Authorizations = Authorizations
 
 @typing_extensions.final
 class ListAuthorizationsResponse(google.protobuf.message.Message):
@@ -1875,10 +1900,10 @@ class ListAuthorizationsResponse(google.protobuf.message.Message):
     AUTHORIZATIONS_FIELD_NUMBER: builtins.int
 
     @property
-    def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
+    def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorizations]:
         ...
 
-    def __init__(self, *, authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
+    def __init__(self, *, authorizations: collections.abc.Iterable[global___Authorizations] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations']) -> None:
@@ -1888,21 +1913,16 @@ global___ListAuthorizationsResponse = ListAuthorizationsResponse
 @typing_extensions.final
 class CheckPermissionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    RESOURCE_IDS_FIELD_NUMBER: builtins.int
-    PERMISSION_IDS_FIELD_NUMBER: builtins.int
+    PERMISSIONS_FIELD_NUMBER: builtins.int
 
     @property
-    def resource_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def permissions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthorizedPermissions]:
         ...
 
-    @property
-    def permission_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def __init__(self, *, permissions: collections.abc.Iterable[global___AuthorizedPermissions] | None=...) -> None:
         ...
 
-    def __init__(self, *, resource_ids: collections.abc.Iterable[builtins.str] | None=..., permission_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['permission_ids', b'permission_ids', 'resource_ids', b'resource_ids']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['permissions', b'permissions']) -> None:
         ...
 global___CheckPermissionsRequest = CheckPermissionsRequest
 

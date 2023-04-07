@@ -4,7 +4,6 @@ isort:skip_file
 """
 import builtins
 import collections.abc
-from .... import common
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
@@ -58,32 +57,24 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     POSITIONS_MM_FIELD_NUMBER: builtins.int
-    WORLD_STATE_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
     @property
     def positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
-        ...
-
-    @property
-    def world_state(self) -> common.v1.common_pb2.WorldState:
-        ...
+        """Number of millimeters to move the gantry by respective to each axis."""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., positions_mm: collections.abc.Iterable[builtins.float] | None=..., world_state: common.v1.common_pb2.WorldState | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., positions_mm: collections.abc.Iterable[builtins.float] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'name', b'name', 'positions_mm', b'positions_mm', 'world_state', b'world_state']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing_extensions.Literal['world_state'] | None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'positions_mm', b'positions_mm']) -> None:
         ...
 global___MoveToPositionRequest = MoveToPositionRequest
 
