@@ -118,7 +118,7 @@ Attributes
 
    
 
-.. py:class:: MoveToPositionRequest(*, name: str = ..., positions_mm: collections.abc.Iterable[builtins.float] | None = ..., world_state: common.v1.common_pb2.WorldState | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveToPositionRequest(*, name: str = ..., positions_mm: collections.abc.Iterable[builtins.float] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
 
@@ -131,10 +131,7 @@ Attributes
    .. py:property:: positions_mm
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
 
-
-   .. py:property:: world_state
-      :type: viam.gen.common.v1.common_pb2.WorldState
-
+      Number of millimeters to move the gantry by respective to each axis.
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
@@ -146,7 +143,7 @@ Attributes
 
       
 
-   .. py:method:: HasField(field_name: Literal[_world_state, b'_world_state', extra, b'extra', world_state, b'world_state']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -161,21 +158,6 @@ Attributes
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
-
-
-   .. py:method:: WhichOneof(oneof_group: Literal[_world_state, b'_world_state']) -> typing_extensions.Literal['world_state'] | None
-
-      Returns the name of the field that is set inside a oneof group.
-
-      If no field is set, returns None.
-
-      :param oneof_group: the name of the oneof group to check.
-      :type oneof_group: str
-
-      :returns: The name of the group that is set, or None.
-      :rtype: str or None
-
-      :raises ValueError: no group with the given name exists
 
 
 

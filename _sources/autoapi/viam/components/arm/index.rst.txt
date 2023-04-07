@@ -26,7 +26,6 @@ Classes
    viam.components.arm.Arm
    viam.components.arm.JointPositions
    viam.components.arm.Pose
-   viam.components.arm.WorldState
 
 
 
@@ -55,7 +54,7 @@ Classes
       Returns: The location and orientation of the arm described as a Pose.
 
 
-   .. py:method:: move_to_position(pose: viam.proto.common.Pose, world_state: Optional[viam.proto.common.WorldState] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+   .. py:method:: move_to_position(pose: viam.proto.common.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -171,24 +170,5 @@ Classes
       :type: float
 
       degrees
-
-
-.. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
-
-
-
-   WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
-   they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
-   given reference frame and a new target reference frame.
-
-   .. py:property:: obstacles
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___GeometriesInFrame]
-
-      a list of obstacles expressed as a geometry and the reference frame in which it was observed; this field is optional
-
-   .. py:property:: transforms
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
-
-      a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
 
 

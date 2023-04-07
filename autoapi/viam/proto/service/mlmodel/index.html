@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.proto.service.mlmodel &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="viam.proto.service.motion" href="../motion/index.html" />
+    <link rel="prev" title="viam.proto.service.datamanager" href="../datamanager/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.common</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.module</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.robot</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service</span></code></a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../datamanager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.datamanager</span></code></a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.mlmodel</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.Infer"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase.Infer()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.Metadata"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase.Metadata()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MLModelServiceBase.__mapping__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceStub"><code class="docutils literal notranslate"><span class="pre">MLModelServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.File"><code class="docutils literal notranslate"><span class="pre">File</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.File.name"><code class="docutils literal notranslate"><span class="pre">File.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.File.description"><code class="docutils literal notranslate"><span class="pre">File.description</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.File.label_type"><code class="docutils literal notranslate"><span class="pre">File.label_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest"><code class="docutils literal notranslate"><span class="pre">InferRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest.input_data"><code class="docutils literal notranslate"><span class="pre">InferRequest.input_data</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest.name"><code class="docutils literal notranslate"><span class="pre">InferRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest.HasField"><code class="docutils literal notranslate"><span class="pre">InferRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.InferResponse"><code class="docutils literal notranslate"><span class="pre">InferResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferResponse.output_data"><code class="docutils literal notranslate"><span class="pre">InferResponse.output_data</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferResponse.HasField"><code class="docutils literal notranslate"><span class="pre">InferResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.LabelType"><code class="docutils literal notranslate"><span class="pre">LabelType</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata"><code class="docutils literal notranslate"><span class="pre">Metadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.input_info"><code class="docutils literal notranslate"><span class="pre">Metadata.input_info</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.output_info"><code class="docutils literal notranslate"><span class="pre">Metadata.output_info</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.name"><code class="docutils literal notranslate"><span class="pre">Metadata.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.type"><code class="docutils literal notranslate"><span class="pre">Metadata.type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.description"><code class="docutils literal notranslate"><span class="pre">Metadata.description</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataRequest"><code class="docutils literal notranslate"><span class="pre">MetadataRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataRequest.name"><code class="docutils literal notranslate"><span class="pre">MetadataRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataResponse"><code class="docutils literal notranslate"><span class="pre">MetadataResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataResponse.metadata"><code class="docutils literal notranslate"><span class="pre">MetadataResponse.metadata</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataResponse.HasField"><code class="docutils literal notranslate"><span class="pre">MetadataResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo"><code class="docutils literal notranslate"><span class="pre">TensorInfo</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.associated_files"><code class="docutils literal notranslate"><span class="pre">TensorInfo.associated_files</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.extra"><code class="docutils literal notranslate"><span class="pre">TensorInfo.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.name"><code class="docutils literal notranslate"><span class="pre">TensorInfo.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.description"><code class="docutils literal notranslate"><span class="pre">TensorInfo.description</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.data_type"><code class="docutils literal notranslate"><span class="pre">TensorInfo.data_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.n_dim"><code class="docutils literal notranslate"><span class="pre">TensorInfo.n_dim</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.HasField"><code class="docutils literal notranslate"><span class="pre">TensorInfo.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase">MLModelServiceBase</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.Infer">Infer</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.Metadata">Metadata</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase.__mapping__">__mapping__</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceStub">MLModelServiceStub</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.File">File</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.File.name">name</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.File.description">description</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.File.label_type">label_type</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest">InferRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest.input_data">input_data</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest.name">name</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.InferResponse">InferResponse</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferResponse.output_data">output_data</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.InferResponse.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.LabelType">LabelType</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata">Metadata</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.input_info">input_info</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.output_info">output_info</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.name">name</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.type">type</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata.description">description</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataRequest">MetadataRequest</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataRequest.name">name</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataResponse">MetadataResponse</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataResponse.metadata">metadata</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataResponse.HasField">HasField</a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo">TensorInfo</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.associated_files">associated_files</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.extra">extra</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.name">name</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.description">description</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.data_type">data_type</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.n_dim">n_dim</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo.HasField">HasField</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.motion</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../navigation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.navigation</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../sensors/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.sensors</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../shell/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.shell</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../slam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.slam</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.vision</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tagger/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.tagger</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.mlmodel</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/viam/proto/service/mlmodel/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.proto.service.mlmodel">
+<span id="viam-proto-service-mlmodel"></span><h1><a class="reference internal" href="#module-viam.proto.service.mlmodel" title="viam.proto.service.mlmodel"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service.mlmodel</span></code></a><a class="headerlink" href="#module-viam.proto.service.mlmodel" title="Permalink to this heading"></a></h1>
+<p>&#64;generated by Viam.
+Do not edit manually!</p>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceBase" title="viam.proto.service.mlmodel.MLModelServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLModelServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.MLModelServiceStub" title="viam.proto.service.mlmodel.MLModelServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLModelServiceStub</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.File" title="viam.proto.service.mlmodel.File"><code class="xref py py-obj docutils literal notranslate"><span class="pre">File</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.InferRequest" title="viam.proto.service.mlmodel.InferRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InferRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.InferResponse" title="viam.proto.service.mlmodel.InferResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InferResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.LabelType" title="viam.proto.service.mlmodel.LabelType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LabelType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.Metadata" title="viam.proto.service.mlmodel.Metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Metadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataRequest" title="viam.proto.service.mlmodel.MetadataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MetadataRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.MetadataResponse" title="viam.proto.service.mlmodel.MetadataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MetadataResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.mlmodel.TensorInfo" title="viam.proto.service.mlmodel.TensorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TensorInfo</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MLModelServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">MLModelServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#MLModelServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MLModelServiceBase.Infer">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Infer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/mlmodel/v1/mlmodel_pb2/index.html#viam.gen.service.mlmodel.v1.mlmodel_pb2.InferRequest" title="viam.gen.service.mlmodel.v1.mlmodel_pb2.InferRequest"><span class="pre">service.mlmodel.v1.mlmodel_pb2.InferRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/mlmodel/v1/mlmodel_pb2/index.html#viam.gen.service.mlmodel.v1.mlmodel_pb2.InferResponse" title="viam.gen.service.mlmodel.v1.mlmodel_pb2.InferResponse"><span class="pre">service.mlmodel.v1.mlmodel_pb2.InferResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#MLModelServiceBase.Infer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceBase.Infer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MLModelServiceBase.Metadata">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/mlmodel/v1/mlmodel_pb2/index.html#viam.gen.service.mlmodel.v1.mlmodel_pb2.MetadataRequest" title="viam.gen.service.mlmodel.v1.mlmodel_pb2.MetadataRequest"><span class="pre">service.mlmodel.v1.mlmodel_pb2.MetadataRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/mlmodel/v1/mlmodel_pb2/index.html#viam.gen.service.mlmodel.v1.mlmodel_pb2.MetadataResponse" title="viam.gen.service.mlmodel.v1.mlmodel_pb2.MetadataResponse"><span class="pre">service.mlmodel.v1.mlmodel_pb2.MetadataResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#MLModelServiceBase.Metadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceBase.Metadata" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MLModelServiceBase.__mapping__">
+<span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#MLModelServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MLModelServiceStub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">MLModelServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/service/mlmodel/v1/mlmodel_grpc.html#MLModelServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.mlmodel.MLModelServiceStub" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.File">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">File</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___LabelType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.mlmodel.File" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.File.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.File.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the file, with file extension</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.File.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.File.description" title="Permalink to this definition"></a></dt>
+<dd><p>description of what the file contains</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.File.label_type">
+<span class="sig-name descname"><span class="pre">label_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___LabelType</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.File.label_type" title="Permalink to this definition"></a></dt>
+<dd><p>How to associate the arrays/tensors to the labels in the file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.InferRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">InferRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.mlmodel.InferRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.InferRequest.input_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.InferRequest.input_data" title="Permalink to this definition"></a></dt>
+<dd><p>this is a struct of input arrays/tensors as specified in the metadata</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.InferRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.InferRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the model service</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.InferRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">input_data</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'input_data'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.mlmodel.InferRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.InferResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">InferResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.mlmodel.InferResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.InferResponse.output_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.InferResponse.output_data" title="Permalink to this definition"></a></dt>
+<dd><p>this is a struct of output arrays/tensors as specified in the metadata</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.InferResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">output_data</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'output_data'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.mlmodel.InferResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.LabelType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">LabelType</span></span><a class="headerlink" href="#viam.proto.service.mlmodel.LabelType" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.Metadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">Metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___TensorInfo</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___TensorInfo</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.mlmodel.Metadata" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.Metadata.input_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___TensorInfo</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.mlmodel.Metadata.input_info" title="Permalink to this definition"></a></dt>
+<dd><p>the necessary input arrays/tensors for an inference, order matters</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.Metadata.output_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___TensorInfo</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.mlmodel.Metadata.output_info" title="Permalink to this definition"></a></dt>
+<dd><p>the output arrays/tensors of the model, order matters</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.Metadata.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.Metadata.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the model</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.Metadata.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.Metadata.type" title="Permalink to this definition"></a></dt>
+<dd><p>type of model e.g. object_detector, text_classifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.Metadata.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.Metadata.description" title="Permalink to this definition"></a></dt>
+<dd><p>description of the model</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MetadataRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">MetadataRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.mlmodel.MetadataRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MetadataRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.MetadataRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the model service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MetadataResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">MetadataResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Metadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.mlmodel.MetadataResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MetadataResponse.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Metadata</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.MetadataResponse.metadata" title="Permalink to this definition"></a></dt>
+<dd><p>this is the metadata associated with the ML model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.MetadataResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.mlmodel.MetadataResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.TensorInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.mlmodel.</span></span><span class="sig-name descname"><span class="pre">TensorInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">associated_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___File</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.mlmodel.TensorInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.TensorInfo.associated_files">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">associated_files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___File</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.mlmodel.TensorInfo.associated_files" title="Permalink to this definition"></a></dt>
+<dd><p>files associated with the array/tensor, like for category labels</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.TensorInfo.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.TensorInfo.extra" title="Permalink to this definition"></a></dt>
+<dd><p>anything else you want to say</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.TensorInfo.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.TensorInfo.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the data in the array/tensor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.TensorInfo.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.TensorInfo.description" title="Permalink to this definition"></a></dt>
+<dd><p>description of the data in the array/tensor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.TensorInfo.data_type">
+<span class="sig-name descname"><span class="pre">data_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.TensorInfo.data_type" title="Permalink to this definition"></a></dt>
+<dd><p>data type of the array/tensor, e.g. float32, float64, uint8</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.TensorInfo.n_dim">
+<span class="sig-name descname"><span class="pre">n_dim</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.mlmodel.TensorInfo.n_dim" title="Permalink to this definition"></a></dt>
+<dd><p>number of dimensions in the array/tensor</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.mlmodel.TensorInfo.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.mlmodel.TensorInfo.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../datamanager/index.html" class="btn btn-neutral float-left" title="viam.proto.service.datamanager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../motion/index.html" class="btn btn-neutral float-right" title="viam.proto.service.motion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

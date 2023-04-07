@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
     <link rel="next" title="viam.proto.component.generic" href="../generic/index.html" />
-    <link rel="prev" title="viam.proto.component.camera" href="../camera/index.html" /> 
+    <link rel="prev" title="viam.proto.component.encoder" href="../encoder/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -72,6 +72,7 @@
 <li class="toctree-l5"><a class="reference internal" href="../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.base</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="../board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.board</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="../camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.camera</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../encoder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.encoder</span></code></a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component.gantry</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
@@ -116,11 +117,9 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.positions_mm</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.world_state"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.world_state</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.HasField()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionResponse"><code class="docutils literal notranslate"><span class="pre">MoveToPositionResponse</span></code></a></li>
@@ -178,11 +177,9 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest">MoveToPositionRequest</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm">positions_mm</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.world_state">world_state</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.extra">extra</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.name">name</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.HasField">HasField</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.WhichOneof">WhichOneof</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionResponse">MoveToPositionResponse</a></li>
@@ -497,7 +494,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gantry.</span></span><span class="sig-name descname"><span class="pre">MoveToPositionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">common.v1.common_pb2.WorldState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gantry.</span></span><span class="sig-name descname"><span class="pre">MoveToPositionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -505,12 +502,8 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.positions_mm">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.world_state">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><span class="pre">viam.gen.common.v1.common_pb2.WorldState</span></a></em><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.world_state" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of millimeters to move the gantry by respective to each axis.</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.extra">
@@ -525,7 +518,7 @@ shown below.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.HasField" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -542,27 +535,6 @@ be raised.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.WhichOneof">
-<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_world_state</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_world_state'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'world_state'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.WhichOneof" title="Permalink to this definition"></a></dt>
-<dd><p>Returns the name of the field that is set inside a oneof group.</p>
-<p>If no field is set, returns None.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The name of the group that is set, or None.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str or None</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
 </dd></dl>
@@ -663,7 +635,7 @@ shown below.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../camera/index.html" class="btn btn-neutral float-left" title="viam.proto.component.camera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../encoder/index.html" class="btn btn-neutral float-left" title="viam.proto.component.encoder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../generic/index.html" class="btn btn-neutral float-right" title="viam.proto.component.generic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

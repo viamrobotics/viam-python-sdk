@@ -1,0 +1,59 @@
+:py:mod:`viam.gen.app.v1.billing_grpc`
+======================================
+
+.. py:module:: viam.gen.app.v1.billing_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.app.v1.billing_grpc.BillingServiceBase
+   viam.gen.app.v1.billing_grpc.BillingServiceStub
+
+
+
+
+.. py:class:: BillingServiceBase
+
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetCurrentMonthUsageSummary(stream: grpclib.server.Stream[app.v1.billing_pb2.GetCurrentMonthUsageSummaryRequest, app.v1.billing_pb2.GetCurrentMonthUsageSummaryResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetUnpaidBalance(stream: grpclib.server.Stream[app.v1.billing_pb2.GetUnpaidBalanceRequest, app.v1.billing_pb2.GetUnpaidBalanceResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetInvoiceHistory(stream: grpclib.server.Stream[app.v1.billing_pb2.GetInvoiceHistoryRequest, app.v1.billing_pb2.GetInvoiceHistoryResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetItemizedInvoice(stream: grpclib.server.Stream[app.v1.billing_pb2.GetItemizedInvoiceRequest, app.v1.billing_pb2.GetItemizedInvoiceResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetBillingSummary(stream: grpclib.server.Stream[app.v1.billing_pb2.GetBillingSummaryRequest, app.v1.billing_pb2.GetBillingSummaryResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: BillingServiceStub(channel: grpclib.client.Channel)
+
+
