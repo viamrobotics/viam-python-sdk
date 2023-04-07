@@ -2,7 +2,7 @@
 
 import asyncio
 from typing import Any, Dict, Optional
-from viam.components.arm import Arm, JointPositions, Pose, WorldState
+from viam.components.arm import Arm, JointPositions, Pose
 from viam.operations import run_with_operation
 
 
@@ -33,7 +33,6 @@ class MyCoolArm(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ):

@@ -19,55 +19,50 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing_extensions.final
 class MoveRequest(google.protobuf.message.Message):
+    """Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     DESTINATION_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     WORLD_STATE_FIELD_NUMBER: builtins.int
     CONSTRAINTS_FIELD_NUMBER: builtins.int
-    SLAM_SERVICE_NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
+    'Name of the motion service'
 
     @property
     def destination(self) -> common.v1.common_pb2.PoseInFrame:
-        ...
+        """Destination to move to, which can a pose in the reference frame of any frame in the robot's frame system"""
 
     @property
     def component_name(self) -> common.v1.common_pb2.ResourceName:
-        ...
+        """Component on the robot to move to the specified destination"""
 
     @property
     def world_state(self) -> common.v1.common_pb2.WorldState:
-        ...
+        """Avoid obstacles by specifying their geometries in the world state
+        Augment the frame system of the robot by specifying additional transforms to add to it for the duration of the Move
+        """
 
     @property
     def constraints(self) -> global___Constraints:
-        ...
-
-    @property
-    def slam_service_name(self) -> common.v1.common_pb2.ResourceName:
-        ...
+        """Constrain the way the robot will move"""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.PoseInFrame | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., world_state: common.v1.common_pb2.WorldState | None=..., constraints: global___Constraints | None=..., slam_service_name: common.v1.common_pb2.ResourceName | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.PoseInFrame | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., world_state: common.v1.common_pb2.WorldState | None=..., constraints: global___Constraints | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_slam_service_name', b'_slam_service_name', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'slam_service_name', b'slam_service_name', 'world_state', b'world_state']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_slam_service_name', b'_slam_service_name', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'slam_service_name', b'slam_service_name', 'world_state', b'world_state']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'world_state', b'world_state']) -> None:
         ...
 
     @typing.overload
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_constraints', b'_constraints']) -> typing_extensions.Literal['constraints'] | None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_slam_service_name', b'_slam_service_name']) -> typing_extensions.Literal['slam_service_name'] | None:
         ...
 
     @typing.overload
@@ -87,6 +82,56 @@ class MoveResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
         ...
 global___MoveResponse = MoveResponse
+
+@typing_extensions.final
+class MoveOnMapRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    DESTINATION_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    SLAM_SERVICE_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of the motion service'
+
+    @property
+    def destination(self) -> common.v1.common_pb2.Pose:
+        """Specify a destination to, which can be any pose with respect to the SLAM map's origin"""
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """Component on the robot to move to the specified destination"""
+
+    @property
+    def slam_service_name(self) -> common.v1.common_pb2.ResourceName:
+        """Name of the slam service from which the SLAM map is requested"""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.Pose | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., slam_service_name: common.v1.common_pb2.ResourceName | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'slam_service_name', b'slam_service_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'slam_service_name', b'slam_service_name']) -> None:
+        ...
+global___MoveOnMapRequest = MoveOnMapRequest
+
+@typing_extensions.final
+class MoveOnMapResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SUCCESS_FIELD_NUMBER: builtins.int
+    success: builtins.bool
+
+    def __init__(self, *, success: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
+        ...
+global___MoveOnMapResponse = MoveOnMapResponse
 
 @typing_extensions.final
 class MoveSingleComponentRequest(google.protobuf.message.Message):

@@ -1,7 +1,7 @@
 import abc
 from typing import Any, Dict, Final, Optional
 
-from viam.proto.common import Pose, WorldState
+from viam.proto.common import Pose
 from viam.proto.component.arm import JointPositions
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
@@ -38,7 +38,6 @@ class Arm(ComponentBase):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,

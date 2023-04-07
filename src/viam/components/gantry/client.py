@@ -46,7 +46,7 @@ class GantryClient(Gantry):
     ):
         if extra is None:
             extra = {}
-        request = MoveToPositionRequest(name=self.name, positions_mm=positions, world_state=world_state, extra=dict_to_struct(extra))
+        request = MoveToPositionRequest(name=self.name, positions_mm=positions, extra=dict_to_struct(extra))
         await self.client.MoveToPosition(request, timeout=timeout)
 
     async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]:

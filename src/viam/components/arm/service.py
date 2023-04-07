@@ -52,9 +52,7 @@ class ArmService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await arm.move_to_position(
-            request.to, request.world_state, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
-        )
+        await arm.move_to_position(request.to, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = MoveToPositionResponse()
         await stream.send_message(response)
 

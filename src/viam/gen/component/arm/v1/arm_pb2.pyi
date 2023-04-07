@@ -121,36 +121,32 @@ global___GetJointPositionsResponse = GetJointPositionsResponse
 
 @typing_extensions.final
 class MoveToPositionRequest(google.protobuf.message.Message):
+    """Moves an arm to the specified pose that is within the reference frame of the arm.
+    Move request in Motion API has the same behavior except that it performs obstacle avoidance when a world_state
+    message is specified.
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     TO_FIELD_NUMBER: builtins.int
-    WORLD_STATE_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of an arm'
 
     @property
     def to(self) -> common.v1.common_pb2.Pose:
-        ...
-
-    @property
-    def world_state(self) -> common.v1.common_pb2.WorldState:
-        ...
+        """The destination to move the arm to; this is from the reference frame of the arm."""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., to: common.v1.common_pb2.Pose | None=..., world_state: common.v1.common_pb2.WorldState | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., to: common.v1.common_pb2.Pose | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'to', b'to', 'world_state', b'world_state']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'to', b'to']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'extra', b'extra', 'name', b'name', 'to', b'to', 'world_state', b'world_state']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing_extensions.Literal['world_state'] | None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'to', b'to']) -> None:
         ...
 global___MoveToPositionRequest = MoveToPositionRequest
 
