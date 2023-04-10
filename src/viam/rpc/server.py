@@ -1,4 +1,6 @@
 from typing import TYPE_CHECKING, List, Optional
+from grpclib import GRPCError, Status
+from types import ModuleType
 
 from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
@@ -45,7 +47,7 @@ class Server(ResourceManager):
         if module_service is not None:
             services.append(module_service)
         services = ServerReflection.extend(services)
-        self._server = GRPCServer(services)
+        self._server = ViamServer(services)
 
     async def _grpc_event_handler(self, event: RecvRequest):
         host = None
@@ -55,6 +57,7 @@ class Server(ResourceManager):
             host = address[0]
             port = address[1]
         msg = f"[gRPC Request] {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}"
+        print(f"{event.method_func} {event.method_name} {event.__dir__}")
         LOGGER.info(msg)
 
     async def serve(
@@ -114,3 +117,29 @@ class Server(ResourceManager):
         """
         server = cls(components)
         await server.serve(host, port, log_level, path=path)
+
+
+def wrapper(func):
+    def function(*args, **kwargs):
+        try:
+            new_func = func(*args, **kwargs)
+            return new_func
+        except Exception as e:
+            raise GRPCError(Status.UNKNOWN, f"{e}")
+
+    return function
+
+
+class ViamServer(GRPCServer):
+    def __init__(self, handlers) -> None:
+        for handler in handlers:
+            attributes = dir(handler)
+            for attribute in attributes:
+                try:
+                    func = getattr(handler, attribute)
+                    if callable(func):
+                        new_func = wrapper(func)
+                        setattr(handler, attribute, new_func)
+                except TypeError:
+                    pass
+        super().__init__(handlers)
