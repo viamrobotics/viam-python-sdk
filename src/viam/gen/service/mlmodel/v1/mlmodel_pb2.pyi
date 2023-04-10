@@ -148,7 +148,7 @@ class TensorInfo(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     DATA_TYPE_FIELD_NUMBER: builtins.int
-    N_DIM_FIELD_NUMBER: builtins.int
+    SHAPE_FIELD_NUMBER: builtins.int
     ASSOCIATED_FILES_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
@@ -157,8 +157,10 @@ class TensorInfo(google.protobuf.message.Message):
     'description of the data in the array/tensor'
     data_type: builtins.str
     'data type of the array/tensor, e.g. float32, float64, uint8'
-    n_dim: builtins.int
-    'number of dimensions in the array/tensor'
+
+    @property
+    def shape(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+        """shape of the array/tensor (-1 for unknown)"""
 
     @property
     def associated_files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___File]:
@@ -168,13 +170,13 @@ class TensorInfo(google.protobuf.message.Message):
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """anything else you want to say"""
 
-    def __init__(self, *, name: builtins.str=..., description: builtins.str=..., data_type: builtins.str=..., n_dim: builtins.int=..., associated_files: collections.abc.Iterable[global___File] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., description: builtins.str=..., data_type: builtins.str=..., shape: collections.abc.Iterable[builtins.int] | None=..., associated_files: collections.abc.Iterable[global___File] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['associated_files', b'associated_files', 'data_type', b'data_type', 'description', b'description', 'extra', b'extra', 'n_dim', b'n_dim', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['associated_files', b'associated_files', 'data_type', b'data_type', 'description', b'description', 'extra', b'extra', 'name', b'name', 'shape', b'shape']) -> None:
         ...
 global___TensorInfo = TensorInfo
 
