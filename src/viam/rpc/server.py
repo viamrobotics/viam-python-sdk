@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Dict, List, Optional
+from typing import TYPE_CHECKING, Callable, Dict, List, Optional
 from grpclib import GRPCError, Status
 from grpclib.const import Handler
 from grpclib.events import RecvRequest, listen
@@ -12,7 +12,6 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.robot.service import RobotService
-from viam.rpc.types import RPCServiceBase
 
 from .signaling import SignalingService
 
@@ -47,7 +46,25 @@ class Server(ResourceManager):
         if module_service is not None:
             services.append(module_service)
         services = ServerReflection.extend(services)
-        self._server = ViamServer(services)
+
+        # Go into every service and replace the methods with a wrapped method that has error handling
+        for service in services:
+
+            def update_mapping():
+                dict = service.__mapping__()
+                new_mapping = {}
+                for method, handler in dict.items():
+                    new_method = wrapper(handler[0])
+                    new_mapping[method] = Handler(new_method, handler[1], handler[2], handler[3])
+
+                def mapping() -> Dict[str, Handler]:
+                    return new_mapping
+
+                return mapping
+
+            service.__mapping__ = update_mapping()
+
+        self._server = GRPCServer(services)
 
     async def _grpc_event_handler(self, event: RecvRequest):
         host = None
@@ -119,7 +136,14 @@ class Server(ResourceManager):
         await server.serve(host, port, log_level, path=path)
 
 
-def wrapper(func):
+def wrapper(func: Callable):
+    """
+    Wrap a function so that any exceptions get raised as GRPCErrors to the client.
+
+    Args:
+        func (Callable): The function that should be wrapped
+    """
+
     async def function(*args, **kwargs):
         try:
             new_func = await func(*args, **kwargs)
@@ -128,27 +152,3 @@ def wrapper(func):
             raise GRPCError(Status.UNKNOWN, f"{e}")
 
     return function
-
-
-class ViamServer(GRPCServer):
-    def __init__(self, handlers) -> None:
-        for handler in handlers:
-            dict = handler.__mapping__()
-            # if "arm" in str(handler) or "audio" in str(handler):
-            if isinstance(handler, RPCServiceBase):
-
-                def update_mapping():
-                    new_dict = {}
-                    for f in dict:
-                        func = dict[f][0]
-                        new_func = wrapper(func)
-                        new_dict[f] = Handler(new_func, dict[f][1], dict[f][2], dict[f][3])
-
-                    def mapping() -> Dict[str, Handler]:
-                        # print("MAPPING IS UPDATED", new_dict)
-                        return new_dict
-
-                    return mapping
-
-                handler.__mapping__ = update_mapping()
-        super().__init__(handlers)
