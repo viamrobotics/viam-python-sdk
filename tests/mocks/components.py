@@ -370,14 +370,7 @@ class MockBoard(Board):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
-    async def set_power_mode(
-            self,
-            mode: PowerMode,
-            duration: Optional[timedelta] = None,
-            *,
-            timeout: Optional[float] = None,
-            **kwargs
-    ):
+    async def set_power_mode(self, mode: PowerMode, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs):
         self.timeout = timeout
         self.power_mode = mode
         self.power_mode_duration = duration
@@ -416,10 +409,11 @@ class MockCamera(Camera):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
+
 class MockEncoder(Encoder):
     def __init__(self, name: str):
         self.position: float = 0
-        self.position_type: PositionType = PositionType.POSITION_TYPE_TICKS_COUNT
+        self.position_type = PositionType.POSITION_TYPE_TICKS_COUNT
         self.extra = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -508,7 +502,6 @@ class MockGantry(Gantry):
 
 
 class MockGeneric(GenericComponent):
-
     timeout: Optional[float] = None
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
