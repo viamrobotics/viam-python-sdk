@@ -1,7 +1,6 @@
-from typing import TYPE_CHECKING, List, Optional
+from typing import TYPE_CHECKING, Dict, List, Optional
 from grpclib import GRPCError, Status
-from types import ModuleType
-
+from grpclib.const import Handler
 from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
 from grpclib.server import Server as GRPCServer
@@ -13,6 +12,7 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.robot.service import RobotService
+from viam.rpc.types import RPCServiceBase
 
 from .signaling import SignalingService
 
@@ -120,9 +120,9 @@ class Server(ResourceManager):
 
 
 def wrapper(func):
-    def function(*args, **kwargs):
+    async def function(*args, **kwargs):
         try:
-            new_func = func(*args, **kwargs)
+            new_func = await func(*args, **kwargs)
             return new_func
         except Exception as e:
             raise GRPCError(Status.UNKNOWN, f"{e}")
@@ -133,13 +133,22 @@ def wrapper(func):
 class ViamServer(GRPCServer):
     def __init__(self, handlers) -> None:
         for handler in handlers:
-            attributes = dir(handler)
-            for attribute in attributes:
-                try:
-                    func = getattr(handler, attribute)
-                    if callable(func):
+            dict = handler.__mapping__()
+            # if "arm" in str(handler) or "audio" in str(handler):
+            if isinstance(handler, RPCServiceBase):
+
+                def update_mapping():
+                    new_dict = {}
+                    for f in dict:
+                        func = dict[f][0]
                         new_func = wrapper(func)
-                        setattr(handler, attribute, new_func)
-                except TypeError:
-                    pass
+                        new_dict[f] = Handler(new_func, dict[f][1], dict[f][2], dict[f][3])
+
+                    def mapping() -> Dict[str, Handler]:
+                        # print("MAPPING IS UPDATED", new_dict)
+                        return new_dict
+
+                    return mapping
+
+                handler.__mapping__ = update_mapping()
         super().__init__(handlers)
