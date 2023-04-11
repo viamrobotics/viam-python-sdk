@@ -22,6 +22,7 @@ from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
+from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
 from viam.components.gripper import Gripper
 from viam.components.input import Control, ControlFunction, Controller, Event, EventType
@@ -47,6 +48,7 @@ from viam.proto.common import (
 )
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
+from viam.proto.component.encoder import PositionType
 
 
 class ExampleArm(Arm):
@@ -331,7 +333,6 @@ class ExampleCamera(Camera):
 
 
 class ExampleController(Controller):
-
     CONTROL_MAP: Dict[int, Control] = {
         0: Control.ABSOLUTE_X,
         1: Control.ABSOLUTE_Y,
@@ -434,6 +435,26 @@ class ExampleController(Controller):
                 else:
                     callbacks[trigger] = function
             self.callbacks[control] = callbacks
+
+
+class ExampleEncoder(Encoder):
+    def __init__(self, name: str):
+        self.position: float = 0
+        self.position_type = PositionType.POSITION_TYPE_TICKS_COUNT
+        self.powered = False
+        self.task = None
+        super().__init__(name)
+
+    async def reset_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
+        self.position = 0
+
+    async def get_position(
+        self, position_type: Optional[PositionType], extra: Optional[Dict[str, Any]] = None, **kwargs
+    ) -> Tuple[float, PositionType]:
+        return self.position, self.position_type
+
+    async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Encoder.Properties:
+        return Encoder.Properties(ticks_count_supported=True, angle_degrees_supported=False)
 
 
 class ExampleGantry(Gantry):
