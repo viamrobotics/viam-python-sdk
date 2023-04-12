@@ -51,10 +51,10 @@ class Server(ResourceManager):
         for service in services:
 
             def update_mapping():
-                dict = service.__mapping__()
+                mapping = service.__mapping__()
                 new_mapping = {}
-                for method, handler in dict.items():
-                    new_method = wrapper(handler[0])
+                for method, handler in mapping.items():
+                    new_method = _grpc_error_wrapper(handler[0])
                     new_mapping[method] = Handler(new_method, handler[1], handler[2], handler[3])
 
                 return lambda: new_mapping
@@ -71,7 +71,6 @@ class Server(ResourceManager):
             host = address[0]
             port = address[1]
         msg = f"[gRPC Request] {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}"
-        print(f"{event.method_func} {event.method_name} {event.__dir__}")
         LOGGER.info(msg)
 
     async def serve(
@@ -133,7 +132,7 @@ class Server(ResourceManager):
         await server.serve(host, port, log_level, path=path)
 
 
-def wrapper(func: Callable):
+def _grpc_error_wrapper(func: Callable):
     """
     Wrap a function so that any exceptions get raised as GRPCErrors to the client.
 
@@ -145,6 +144,8 @@ def wrapper(func: Callable):
         try:
             new_func = await func(*args, **kwargs)
             return new_func
+        except GRPCError:
+            raise
         except Exception as e:
             raise GRPCError(Status.UNKNOWN, f"{e}")
 
