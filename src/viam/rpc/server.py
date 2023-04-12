@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Callable, Dict, List, Optional
+from typing import TYPE_CHECKING, Callable, List, Optional
 from grpclib import GRPCError, Status
 from grpclib.const import Handler
 from grpclib.events import RecvRequest, listen
@@ -57,10 +57,7 @@ class Server(ResourceManager):
                     new_method = wrapper(handler[0])
                     new_mapping[method] = Handler(new_method, handler[1], handler[2], handler[3])
 
-                def mapping() -> Dict[str, Handler]:
-                    return new_mapping
-
-                return mapping
+                return lambda: new_mapping
 
             service.__mapping__ = update_mapping()
 
