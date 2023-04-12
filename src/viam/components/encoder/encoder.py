@@ -48,12 +48,12 @@ class Encoder(ComponentBase):
     ) -> Tuple[float, PositionType]:
         """
         Report the position of the encoder.
-        The value returned is the current position in terms of ticks or degrees,
-        and whether it is a relative or absolute position.
+        The value returned is the current position either in relative units (ticks away from a zero position)
+        or absolute units (degrees along a circle).
 
         Returns:
             float: Position of the encoder which can either be ticks since last zeroing
-                   for an incremental encoder or degrees for an absolute encoder.
+                   for a relative encoder or degrees for an absolute encoder.
             PositionType: The type of position the encoder returns (ticks or degrees)
         """
         ...
