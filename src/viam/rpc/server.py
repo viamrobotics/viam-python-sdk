@@ -7,6 +7,7 @@ from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
 
 from viam import logging
+from viam.errors import ViamGRPCError
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
@@ -46,20 +47,7 @@ class Server(ResourceManager):
         if module_service is not None:
             services.append(module_service)
         services = ServerReflection.extend(services)
-
-        # Go into every service and replace the methods with a wrapped method that has error handling
-        for service in services:
-
-            def update_mapping():
-                mapping = service.__mapping__()
-                new_mapping = {}
-                for method, handler in mapping.items():
-                    new_method = _grpc_error_wrapper(handler[0])
-                    new_mapping[method] = Handler(new_method, handler[1], handler[2], handler[3])
-
-                return lambda: new_mapping
-
-            service.__mapping__ = update_mapping()
+        services = _patch_mappings(services)
 
         self._server = GRPCServer(services)
 
@@ -138,15 +126,44 @@ def _grpc_error_wrapper(func: Callable):
 
     Args:
         func (Callable): The function that should be wrapped
+
+    Returns:
+        The method that is now wrapped to raise GRPCErrors
     """
 
-    async def function(*args, **kwargs):
+    async def interceptor(*args, **kwargs):
         try:
             new_func = await func(*args, **kwargs)
             return new_func
         except GRPCError:
             raise
+        except ViamGRPCError as e:
+            raise e.grpc_error
         except Exception as e:
             raise GRPCError(Status.UNKNOWN, f"{e}")
 
-    return function
+    return interceptor
+
+
+def _patch_mappings(services: List):
+    """Replace the methods of all given services with a wrapped method that has error handling
+
+    Args:
+        services (List): The services that should be patched
+
+    Returns:
+        services (List): The patched services with new mapping functions
+    """
+    for service in services:
+
+        def patch_mapping():
+            mapping = service.__mapping__()
+            new_mapping = {}
+            for method, handler in mapping.items():
+                new_method = _grpc_error_wrapper(handler[0])
+                new_mapping[method] = Handler(new_method, handler[1], handler[2], handler[3])
+
+            return lambda: new_mapping
+
+        service.__mapping__ = patch_mapping()
+    return services
