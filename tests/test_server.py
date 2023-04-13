@@ -13,15 +13,15 @@ from viam.rpc.server import _grpc_error_wrapper, _patch_mappings
 from .test_registry import FakeComponent
 
 
-async def raise_exception() -> bool:
+async def raise_exception():
     raise Exception("this is a fake Exception")
 
 
-async def raise_viamgrpcerror(**kwargs) -> int:
+async def raise_viamgrpcerror():
     raise ViamGRPCError("this is a fake ViamGRPCError")
 
 
-async def raise_grpcerror(**kwargs):
+async def raise_grpcerror():
     raise GRPCError(Status.CANCELLED, "this is a fake GRPCError")
 
 
