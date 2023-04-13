@@ -10,6 +10,8 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.rpc.server import _grpc_error_wrapper, _patch_mappings
 
+from .test_registry import FakeComponent
+
 
 async def raise_exception() -> bool:
     raise Exception("this is a fake Exception")
@@ -56,6 +58,8 @@ class TestServer:
     async def test_patch_mappings(self):
         services = []
         for registration in Registry.REGISTERED_SUBTYPES().values():
+            if registration.resource_type == FakeComponent:
+                continue
             services.append(registration.rpc_service(manager=ResourceManager([ExampleArm("arm0")])))
         services = ServerReflection.extend(services)
         is_moving_handler = services[0].__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
