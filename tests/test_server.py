@@ -1,16 +1,15 @@
 import pytest
 
-from examples.server.v1.components import ExampleArm
-
 from grpclib import Status
-from grpclib.reflection.service import ServerReflection
+from grpclib.testing import ChannelFor
+from tests.mocks.components import MockArm
+from viam.components.arm.service import ArmService
 
 from viam.errors import GRPCError, ViamGRPCError
+from viam.gen.component.arm.v1.arm_grpc import ArmServiceStub
+from viam.gen.component.arm.v1.arm_pb2 import IsMovingRequest, IsMovingResponse
 from viam.resource.manager import ResourceManager
-from viam.resource.registry import Registry
 from viam.rpc.server import _grpc_error_wrapper, _patch_mappings
-
-from .test_registry import FakeComponent
 
 
 async def raise_exception():
@@ -21,7 +20,7 @@ async def raise_viamgrpcerror():
     raise ViamGRPCError("this is a fake ViamGRPCError")
 
 
-async def raise_grpcerror():
+async def raise_grpcerror() -> bool:
     raise GRPCError(Status.CANCELLED, "this is a fake GRPCError")
 
 
@@ -56,15 +55,27 @@ class TestServer:
         assert e_info.value.args[1] == "this is a fake GRPCError"
 
     async def test_patch_mappings(self):
-        services = []
-        for registration in Registry.REGISTERED_SUBTYPES().values():
-            if registration.resource_type == FakeComponent:
-                continue
-            services.append(registration.rpc_service(manager=ResourceManager([ExampleArm("arm0")])))
-        services = ServerReflection.extend(services)
-        is_moving_handler = services[0].__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
-        services = _patch_mappings(services)
-        patched_is_moving_handler = services[0].__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
+        arm = MockArm("arm0")
+        manager = ResourceManager([arm])
+        service = ArmService(manager)
+        is_moving_handler = service.__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
+
+        async with ChannelFor([service]) as channel:
+            client = ArmServiceStub(channel)
+            request = IsMovingRequest(name=arm.name)
+            response: IsMovingResponse = await client.IsMoving(request)
+            assert response.is_moving is False
+
+        arm.is_moving = raise_viamgrpcerror
+        patched_service = _patch_mappings([service])[0]
+        patched_is_moving_handler = patched_service.__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
         assert is_moving_handler[0] != patched_is_moving_handler[0]
         assert is_moving_handler[1:3] == patched_is_moving_handler[1:3]
-        assert "_grpc_error_wrapper" in str(patched_is_moving_handler[0])
+
+        async with ChannelFor([patched_service]) as channel:
+            client = ArmServiceStub(channel)
+            request = IsMovingRequest(name=arm.name)
+            with pytest.raises(GRPCError) as e_info:
+                await client.IsMoving(request)
+        assert e_info.value.args[0] == Status.INTERNAL
+        assert e_info.value.args[1] == "this is a fake ViamGRPCError"
