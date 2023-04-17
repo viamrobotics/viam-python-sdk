@@ -81,7 +81,7 @@ class MovementSensorClient(MovementSensor):
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
-        return response
+        return MovementSensor.Properties.from_proto(response)
 
     async def get_accuracy(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, float]:
         if extra is None:

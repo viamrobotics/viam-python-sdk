@@ -44,6 +44,7 @@ LINEAR_ACCELERATION = Vector3(x=1, y=2, z=3)
 HEADING = 182
 ORIENTATION = Orientation(o_x=1, o_y=2, o_z=3, theta=5)
 PROPERTIES = MovementSensor.Properties(
+    linear_acceleration_supported=False,
     linear_velocity_supported=False,
     angular_velocity_supported=True,
     orientation_supported=False,
@@ -294,7 +295,7 @@ class TestService:
             client = MovementSensorServiceStub(channel)
             request = GetPropertiesRequest(name=movement_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
             response: GetPropertiesResponse = await client.GetProperties(request, timeout=6.78)
-            assert response == PROPERTIES
+            assert MovementSensor.Properties.from_proto(response) == PROPERTIES
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(6.78)
 
