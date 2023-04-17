@@ -1,3 +1,4 @@
+import signal
 from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
@@ -79,6 +80,12 @@ class Module:
         """Start the module service and gRPC server"""
         try:
             await self.server.serve(log_level=self._log_level, path=self._address)
+        except SystemExit as e:
+            if e.code is not None and isinstance(e.code, int):
+                code = e.code - 128
+                if code in [signal.SIGINT, signal.SIGTERM]:
+                    raise SystemExit(None)
+            raise e
         finally:
             await self.stop()
 

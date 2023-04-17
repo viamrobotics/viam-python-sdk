@@ -45,7 +45,6 @@ class Arm(ComponentBase):
     ):
         """
         Move the end of the arm to the Pose specified in ``pose``.
-        When obstacles are specified in ``world_state``, the motion plan of the arm will avoid them.
 
         Args:
 
