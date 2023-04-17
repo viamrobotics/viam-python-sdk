@@ -1,6 +1,6 @@
 import asyncio
 from dataclasses import dataclass
-from threading import Lock
+from threading import RLock
 from typing import Any, Dict, List, Optional, Union
 
 from grpclib.client import Channel
@@ -34,8 +34,10 @@ from viam.proto.robot import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
+from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
@@ -139,7 +141,7 @@ class RobotClient:
         self._connected = True
         self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
-        self._lock = Lock()
+        self._lock = RLock()
         self._resource_names = []
         self._should_close_channel = close_channel
         self._options = options
@@ -167,7 +169,7 @@ class RobotClient:
 
     _channel: Channel
     _viam_channel: Optional[ViamChannel]
-    _lock: Lock
+    _lock: RLock
     _manager: ResourceManager
     _client: RobotServiceStub
     _connected: bool
@@ -185,22 +187,36 @@ class RobotClient:
         """
         response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
         resource_names: List[ResourceName] = list(response.resources)
-        if resource_names == self._resource_names:
-            return
-        manager = ResourceManager()
-        for rname in resource_names:
-            if rname.type not in [RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE]:
-                continue
-            if rname.subtype == "remote":
-                continue
-            try:
-                manager.register(Registry.lookup_subtype(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel))
-            except ResourceNotFoundError:
-                pass
         with self._lock:
+            if resource_names == self._resource_names:
+                return
+            for rname in resource_names:
+                if rname.type not in [RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE]:
+                    continue
+                if rname.subtype == "remote":
+                    continue
+
+                if rname in self.resource_names:
+                    try:
+                        res = self._manager.get_resource(ResourceBase, rname)
+                        if isinstance(res, ReconfigurableResourceRPCClientBase):
+                            print(f"Reconfiguring {rname}")
+                            res.reset_channel(self._channel)
+                    except ResourceNotFoundError:
+                        continue
+                else:
+                    try:
+                        self._manager.register(
+                            Registry.lookup_subtype(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel)
+                        )
+                    except ResourceNotFoundError:
+                        pass
+
+            for rname in self.resource_names:
+                if rname not in resource_names:
+                    self._manager.remove_resource(rname)
+
             self._resource_names = resource_names
-            if manager.resources != self._manager.resources:
-                self._manager = manager
 
     async def _refresh_every(self, interval: int):
         while True:
@@ -245,6 +261,14 @@ class RobotClient:
             while not self._connected:
                 try:
                     channel = await dial(self._address, self._options.dial_options)
+
+                    client: RobotServiceStub
+                    if isinstance(channel, Channel):
+                        client = RobotServiceStub(channel)
+                    else:
+                        client = RobotServiceStub(channel.channel)
+                    _: ResourceNamesResponse = await client.ResourceNames(ResourceNamesRequest())
+
                     if isinstance(channel, Channel):
                         self._channel = channel
                         self._viam_channel = None

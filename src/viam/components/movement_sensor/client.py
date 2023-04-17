@@ -3,7 +3,13 @@ from typing import Any, Dict, Mapping, Optional, Tuple
 from grpclib.client import Channel
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.proto.common import GeoPoint, Orientation, Vector3, DoCommandResponse, DoCommandRequest
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GeoPoint,
+    Orientation,
+    Vector3,
+)
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -23,10 +29,11 @@ from viam.proto.component.movementsensor import (
     GetPropertiesResponse,
     MovementSensorServiceStub,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 
-class MovementSensorClient(MovementSensor):
+class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
     """gRPC client for the MovementSensor component."""
 
     def __init__(self, name: str, channel: Channel):
