@@ -144,6 +144,8 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.properties"><code class="docutils literal notranslate"><span class="pre">Webcam.properties</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.label"><code class="docutils literal notranslate"><span class="pre">Webcam.label</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.status"><code class="docutils literal notranslate"><span class="pre">Webcam.status</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.name"><code class="docutils literal notranslate"><span class="pre">Webcam.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.id"><code class="docutils literal notranslate"><span class="pre">Webcam.id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.Webcams"><code class="docutils literal notranslate"><span class="pre">Webcams</span></code></a><ul>
@@ -220,6 +222,8 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.properties">properties</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.label">label</a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.status">status</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.name">name</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.camera.Webcam.id">id</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.camera.Webcams">Webcams</a><ul>
@@ -637,7 +641,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.camera.Webcam">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.camera.</span></span><span class="sig-name descname"><span class="pre">Webcam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Property</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.camera.Webcam" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.camera.</span></span><span class="sig-name descname"><span class="pre">Webcam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Property</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.camera.Webcam" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -651,13 +655,25 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.camera.Webcam.label">
 <span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.camera.Webcam.label" title="Permalink to this definition"></a></dt>
-<dd><p>Camera driver label</p>
+<dd><p>Camera driver label (for internal use only)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.component.camera.Webcam.status">
 <span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.camera.Webcam.status" title="Permalink to this definition"></a></dt>
 <dd><p>Camera driver status</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.camera.Webcam.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.camera.Webcam.name" title="Permalink to this definition"></a></dt>
+<dd><p>Camera human-readable driver name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.camera.Webcam.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.camera.Webcam.id" title="Permalink to this definition"></a></dt>
+<dd><p>Camera unique identifier</p>
 </dd></dl>
 
 </dd></dl>

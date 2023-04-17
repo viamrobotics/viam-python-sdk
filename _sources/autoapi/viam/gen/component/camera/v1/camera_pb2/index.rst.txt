@@ -270,7 +270,7 @@ Attributes
 
    
 
-.. py:class:: Webcam(*, label: str = ..., status: str = ..., properties: collections.abc.Iterable[global___Property] | None = ...)
+.. py:class:: Webcam(*, label: str = ..., status: str = ..., properties: collections.abc.Iterable[global___Property] | None = ..., name: str = ..., id: str = ...)
 
 
 
@@ -288,12 +288,22 @@ Attributes
    .. py:attribute:: label
       :type: str
 
-      Camera driver label
+      Camera driver label (for internal use only)
 
    .. py:attribute:: status
       :type: str
 
       Camera driver status
+
+   .. py:attribute:: name
+      :type: str
+
+      Camera human-readable driver name
+
+   .. py:attribute:: id
+      :type: str
+
+      Camera unique identifier
 
 
 .. py:data:: global___Webcam
