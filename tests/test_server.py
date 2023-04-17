@@ -58,9 +58,10 @@ class TestServer:
         arm = MockArm("arm0")
         manager = ResourceManager([arm])
         service = ArmService(manager)
-        is_moving_handler = service.__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
+        patched_service = _patch_mappings([service])[0]
+        patched_is_moving_handler = patched_service.__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
 
-        async with ChannelFor([service]) as channel:
+        async with ChannelFor([patched_service]) as channel:
             client = ArmServiceStub(channel)
             request = IsMovingRequest(name=arm.name)
             response: IsMovingResponse = await client.IsMoving(request)
@@ -68,9 +69,9 @@ class TestServer:
 
         arm.is_moving = raise_viamgrpcerror
         patched_service = _patch_mappings([service])[0]
-        patched_is_moving_handler = patched_service.__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
-        assert is_moving_handler[0] != patched_is_moving_handler[0]
-        assert is_moving_handler[1:3] == patched_is_moving_handler[1:3]
+        patched_is_moving_error_handler = patched_service.__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
+        assert patched_is_moving_handler[0] != patched_is_moving_error_handler[0]
+        assert patched_is_moving_handler[1:3] == patched_is_moving_error_handler[1:3]
 
         async with ChannelFor([patched_service]) as channel:
             client = ArmServiceStub(channel)
