@@ -199,7 +199,6 @@ class RobotClient:
                 if rname in self._manager.resources:
                     res = self._manager.get_resource(ResourceBase, rname)
                     if isinstance(res, ReconfigurableResourceRPCClientBase):
-                        print(f"Reconfiguring {rname}")
                         res.reset_channel(self._channel)
                     else:
                         self._manager.remove_resource(rname)
