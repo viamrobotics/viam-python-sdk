@@ -2,7 +2,7 @@ from typing import Any, Dict, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import Pose, WorldState, DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose, WorldState
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -16,12 +16,13 @@ from viam.proto.component.arm import (
     MoveToPositionRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .arm import Arm
 
 
-class ArmClient(Arm):
+class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for an Arm component.
 

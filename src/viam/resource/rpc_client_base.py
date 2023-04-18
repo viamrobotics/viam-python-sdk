@@ -1,12 +1,8 @@
-from typing import Any, Protocol, runtime_checkable
+from typing import Any, Protocol
 
 from grpclib.client import Channel
 
-
-@runtime_checkable
-class RPCServiceStubBase(Protocol):
-    def __init__(self, channel: Channel) -> None:
-        ...
+from viam.rpc.types import RPCServiceStubBase
 
 
 class ResourceRPCClientBase(Protocol):
@@ -32,5 +28,5 @@ class ReconfigurableResourceRPCClientBase(ResourceRPCClientBase):
             channel (Channel): The new RPC Channel
         """
         self.channel = channel
-        if (isinstance(self.client, RPCServiceStubBase)):
+        if isinstance(self.client, RPCServiceStubBase):
             self.client = self.client.__class__(channel)

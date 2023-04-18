@@ -2,18 +2,19 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import PoseInFrame, DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, PoseInFrame
 from viam.proto.component.posetracker import (
     GetPosesRequest,
     GetPosesResponse,
     PoseTrackerServiceStub,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .pose_tracker import PoseTracker
 
 
-class PoseTrackerClient(PoseTracker):
+class PoseTrackerClient(PoseTracker, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the PoseTracker component.
     """

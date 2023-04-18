@@ -1,15 +1,16 @@
 import asyncio
-from threading import Lock
+from threading import Lock, RLock
 from time import time
-from typing import Any, Dict, Mapping, List, Optional
-from grpclib import GRPCError, Status
-from google.protobuf.struct_pb2 import Struct
+from typing import Any, Dict, List, Mapping, Optional
 
+from google.protobuf.struct_pb2 import Struct
+from grpclib import GRPCError, Status
 from grpclib.client import Channel
+
 import viam
 from viam.errors import NotSupportedError
 from viam.logging import getLogger
-from viam.proto.common import DoCommandResponse, DoCommandRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -20,21 +21,22 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .input import Control, ControlFunction, Controller, Event, EventType
 
 LOGGER = getLogger(__name__)
 
 
-class ControllerClient(Controller):
+class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
     """gRPC client for an Input Controller"""
 
     def __init__(self, name: str, channel: Channel):
         self.channel = channel
         self.client = InputControllerServiceStub(channel)
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
-        self._lock = Lock()
+        self._lock = RLock()
         self._stream_lock = Lock()
         self._is_streaming = False
         self._is_stream_ready = False
@@ -82,6 +84,13 @@ class ControllerClient(Controller):
 
         task = asyncio.create_task(self._stream_events(), name=f"{viam._TASK_PREFIX}-input_stream_events")
         task.add_done_callback(handle_task_result)
+
+    def reset_channel(self, channel: Channel):
+        super().reset_channel(channel)
+        with self._lock:
+            for control, callback in self.callbacks.items():
+                for event_type, func in callback.items():
+                    self.register_control_callback(control, [event_type], func)
 
     async def trigger_event(self, event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
         if extra is None:

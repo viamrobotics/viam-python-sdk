@@ -13,12 +13,13 @@ from viam.proto.component.audioinput import (
     PropertiesResponse,
     SampleFormat,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .audio_input import AudioInput
 
 
-class AudioInputClient(AudioInput):
+class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the AudioInput component.
     """

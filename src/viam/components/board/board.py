@@ -253,7 +253,9 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def set_power_mode(self, mode: PowerMode, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs):
+    async def set_power_mode(
+        self, mode: PowerMode.ValueType, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs
+    ):
         """
         Set the board to the indicated power mode.
 

@@ -196,14 +196,16 @@ class RobotClient:
                 if rname.subtype == "remote":
                     continue
 
-                if rname in self.resource_names:
-                    try:
-                        res = self._manager.get_resource(ResourceBase, rname)
-                        if isinstance(res, ReconfigurableResourceRPCClientBase):
-                            print(f"Reconfiguring {rname}")
-                            res.reset_channel(self._channel)
-                    except ResourceNotFoundError:
-                        continue
+                if rname in self._manager.resources:
+                    res = self._manager.get_resource(ResourceBase, rname)
+                    if isinstance(res, ReconfigurableResourceRPCClientBase):
+                        print(f"Reconfiguring {rname}")
+                        res.reset_channel(self._channel)
+                    else:
+                        self._manager.remove_resource(rname)
+                        self._manager.register(
+                            Registry.lookup_subtype(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel)
+                        )
                 else:
                     try:
                         self._manager.register(

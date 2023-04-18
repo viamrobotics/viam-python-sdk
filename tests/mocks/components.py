@@ -369,7 +369,9 @@ class MockBoard(Board):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
-    async def set_power_mode(self, mode: PowerMode, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs):
+    async def set_power_mode(
+        self, mode: PowerMode.ValueType, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs
+    ):
         self.timeout = timeout
         self.power_mode = mode
         self.power_mode_duration = duration

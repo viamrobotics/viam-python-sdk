@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import WorldState, DoCommandResponse, DoCommandRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, WorldState
 from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
@@ -14,12 +14,13 @@ from viam.proto.component.gantry import (
     MoveToPositionRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .gantry import Gantry
 
 
-class GantryClient(Gantry):
+class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Gantry component.
     """
