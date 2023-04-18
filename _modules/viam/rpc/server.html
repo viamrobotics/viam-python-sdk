@@ -87,7 +87,9 @@
              
   <h1>Source code for viam.rpc.server</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
 <span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
+<span class="kn">from</span> <span class="nn">grpclib._typing</span> <span class="kn">import</span> <span class="n">IServable</span>
 <span class="kn">from</span> <span class="nn">grpclib.const</span> <span class="kn">import</span> <span class="n">Handler</span>
 <span class="kn">from</span> <span class="nn">grpclib.events</span> <span class="kn">import</span> <span class="n">RecvRequest</span><span class="p">,</span> <span class="n">listen</span>
 <span class="kn">from</span> <span class="nn">grpclib.reflection.service</span> <span class="kn">import</span> <span class="n">ServerReflection</span>
@@ -228,19 +230,19 @@
         <span class="k">except</span> <span class="n">ViamGRPCError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">grpc_error</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">interceptor</span>
 
 
-<span class="k">def</span> <span class="nf">_patch_mappings</span><span class="p">(</span><span class="n">services</span><span class="p">:</span> <span class="n">List</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_patch_mappings</span><span class="p">(</span><span class="n">services</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">IServable</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">IServable</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Replace the methods of all given services with a wrapped method that has error handling</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        services (List): The services that should be patched</span>
+<span class="sd">        services (List[IServable]): The services that should be patched</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        services (List): The patched services with new mapping functions</span>
+<span class="sd">        services (List[IServable]): The patched services with new mapping functions</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">services</span><span class="p">:</span>
 
@@ -249,7 +251,7 @@
             <span class="n">new_mapping</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">mapping</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">new_method</span> <span class="o">=</span> <span class="n">_grpc_error_wrapper</span><span class="p">(</span><span class="n">handler</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-                <span class="n">new_mapping</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">Handler</span><span class="p">(</span><span class="n">new_method</span><span class="p">,</span> <span class="n">handler</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">handler</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">handler</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">new_mapping</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="n">Handler</span><span class="p">(</span><span class="n">new_method</span><span class="p">,</span> <span class="o">*</span><span class="n">handler</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 
             <span class="k">return</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">new_mapping</span>
 
