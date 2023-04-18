@@ -17,7 +17,7 @@ from viam.resource.types import (
 
 
 class FakeComponent(ComponentBase):
-    SUBTYPE = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "fake")
+    SUBTYPE = Subtype("fake", "fake", "fake")
 
 
 class FakeComponentService(ResourceRPCServiceBase[FakeComponent]):
@@ -46,7 +46,7 @@ def test_components_register_themselves_correctly():
 
 def test_lookup():
     with pytest.raises(ResourceNotFoundError):
-        Registry.lookup_subtype(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "fake"))
+        Registry.lookup_subtype(Subtype("fake", "fake", "fake"))
 
     component = Registry.lookup_subtype(Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm"))
     assert component.resource_type.SUBTYPE == Arm.SUBTYPE
