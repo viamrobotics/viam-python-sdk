@@ -1929,18 +1929,20 @@ global___CheckPermissionsRequest = CheckPermissionsRequest
 @typing_extensions.final
 class AuthorizedPermissions(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    RESOURCE_TYPE_FIELD_NUMBER: builtins.int
     RESOURCE_ID_FIELD_NUMBER: builtins.int
     PERMISSIONS_FIELD_NUMBER: builtins.int
+    resource_type: builtins.str
     resource_id: builtins.str
 
     @property
     def permissions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, resource_id: builtins.str=..., permissions: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, resource_type: builtins.str=..., resource_id: builtins.str=..., permissions: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['permissions', b'permissions', 'resource_id', b'resource_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['permissions', b'permissions', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
         ...
 global___AuthorizedPermissions = AuthorizedPermissions
 
