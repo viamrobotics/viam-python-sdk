@@ -33,7 +33,7 @@ class TestServer:
         with pytest.raises(GRPCError) as e_info:
             await wrapped_raise_exception()
         assert e_info.value.args[0] == Status.UNKNOWN
-        assert e_info.value.args[1] == "this is a fake Exception"
+        assert e_info.value.args[1] == "Exception - this is a fake Exception"
 
         with pytest.raises(ViamGRPCError) as e_info:
             await raise_viamgrpcerror()
