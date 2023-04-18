@@ -2,14 +2,7 @@ from typing import Any, Final, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import (
-    DoCommandRequest,
-    DoCommandResponse,
-    PoseInFrame,
-    ResourceName,
-    Transform,
-    WorldState,
-)
+from viam.proto.common import DoCommandRequest, DoCommandResponse, PoseInFrame, ResourceName, Transform, WorldState
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,

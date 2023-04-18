@@ -3,21 +3,10 @@ from typing import Any, Final, List, Mapping, Optional
 from grpclib.client import Channel
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse, ResourceName
-from viam.proto.service.sensors import (
-    GetReadingsRequest,
-    GetReadingsResponse,
-    GetSensorsRequest,
-    GetSensorsResponse,
-    SensorsServiceStub,
-)
+from viam.proto.service.sensors import GetReadingsRequest, GetReadingsResponse, GetSensorsRequest, GetSensorsResponse, SensorsServiceStub
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
-from viam.utils import (
-    ValueTypes,
-    dict_to_struct,
-    sensor_readings_value_to_native,
-    struct_to_dict,
-)
+from viam.utils import ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
 
 class SensorsServiceClient(ServiceClientBase):

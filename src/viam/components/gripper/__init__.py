@@ -1,7 +1,7 @@
 from viam.components.gantry.gantry import Gantry
-from viam.resource.registry import ResourceRegistration, Registry
 from viam.proto.common import ActuatorStatus
 from viam.proto.robot import Status
+from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
 
 from .client import GripperClient

@@ -9,6 +9,7 @@ lint:
 
 _format:
 	black --exclude ".*/gen/.*" ./src
+	isort ./src
 
 format:
 	poetry run $(MAKE) _format

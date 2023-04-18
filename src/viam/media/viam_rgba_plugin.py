@@ -1,6 +1,8 @@
 from typing import Tuple
+
 from PIL import Image
-from PIL.ImageFile import ImageFile, PyEncoder, PyDecoder, _save as image_save, _safe_read
+from PIL.ImageFile import ImageFile, PyDecoder, PyEncoder, _safe_read
+from PIL.ImageFile import _save as image_save
 
 # Viam uses a special header prepended to raw RGBA data. The header is composed of a
 # 4-byte magic number followed by a 4-byte line of the width as a uint32 number
