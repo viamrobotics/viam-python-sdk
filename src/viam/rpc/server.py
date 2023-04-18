@@ -1,5 +1,7 @@
 from typing import TYPE_CHECKING, Callable, List, Optional
+
 from grpclib import GRPCError, Status
+from grpclib._typing import IServable
 from grpclib.const import Handler
 from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
@@ -140,19 +142,19 @@ def _grpc_error_wrapper(func: Callable):
         except ViamGRPCError as e:
             raise e.grpc_error
         except Exception as e:
-            raise GRPCError(Status.UNKNOWN, f"{e}")
+            raise GRPCError(Status.UNKNOWN, f"{e.__class__.__name__} - {e}")
 
     return interceptor
 
 
-def _patch_mappings(services: List):
+def _patch_mappings(services: List[IServable]) -> List[IServable]:
     """Replace the methods of all given services with a wrapped method that has error handling
 
     Args:
-        services (List): The services that should be patched
+        services (List[IServable]): The services that should be patched
 
     Returns:
-        services (List): The patched services with new mapping functions
+        services (List[IServable]): The patched services with new mapping functions
     """
     for service in services:
 
@@ -161,7 +163,7 @@ def _patch_mappings(services: List):
             new_mapping = {}
             for method, handler in mapping.items():
                 new_method = _grpc_error_wrapper(handler[0])
-                new_mapping[method] = Handler(new_method, handler[1], handler[2], handler[3])
+                new_mapping[method] = Handler(new_method, *handler[1:])
 
             return lambda: new_mapping
 
