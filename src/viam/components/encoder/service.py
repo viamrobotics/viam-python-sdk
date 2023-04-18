@@ -3,11 +3,11 @@ from grpclib.server import Stream
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.encoder import (
+    EncoderServiceBase,
     GetPositionRequest,
     GetPositionResponse,
     GetPropertiesRequest,
     GetPropertiesResponse,
-    EncoderServiceBase,
     ResetPositionRequest,
     ResetPositionResponse,
 )

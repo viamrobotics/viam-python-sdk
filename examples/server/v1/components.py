@@ -449,8 +449,8 @@ class ExampleEncoder(Encoder):
         self.position = 0
 
     async def get_position(
-        self, position_type: Optional[PositionType], extra: Optional[Dict[str, Any]] = None, **kwargs
-    ) -> Tuple[float, PositionType]:
+        self, position_type: Optional[PositionType.ValueType], extra: Optional[Dict[str, Any]] = None, **kwargs
+    ) -> Tuple[float, PositionType.ValueType]:
         return self.position, self.position_type
 
     async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Encoder.Properties:

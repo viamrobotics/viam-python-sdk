@@ -47,7 +47,6 @@ from viam.proto.common import (
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
-
 from viam.utils import ValueTypes
 
 
@@ -431,12 +430,12 @@ class MockEncoder(Encoder):
 
     async def get_position(
         self,
-        position_type: Optional[PositionType] = None,
+        position_type: Optional[PositionType.ValueType] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[float, PositionType]:
+    ) -> Tuple[float, PositionType.ValueType]:
         self.extra = extra
         self.timeout = timeout
         return self.position, self.position_type

@@ -1,20 +1,20 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
 from viam.components.encoder import EncoderClient
 from viam.components.encoder.service import EncoderService
-from viam.resource.manager import ResourceManager
+from viam.components.generic.service import GenericService
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.encoder import (
+    EncoderServiceStub,
     GetPositionRequest,
     GetPositionResponse,
     GetPropertiesRequest,
     GetPropertiesResponse,
-    EncoderServiceStub,
     PositionType,
     ResetPositionRequest,
 )
+from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx

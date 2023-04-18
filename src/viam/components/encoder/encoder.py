@@ -1,8 +1,8 @@
 import abc
 from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional, Tuple
-from viam.proto.component.encoder import PositionType
 
+from viam.proto.component.encoder import PositionType
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
@@ -40,7 +40,7 @@ class Encoder(ComponentBase):
     @abc.abstractmethod
     async def get_position(
         self,
-        position_type: Optional[PositionType] = None,
+        position_type: Optional[PositionType.ValueType] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -48,8 +48,8 @@ class Encoder(ComponentBase):
     ) -> Tuple[float, PositionType]:
         """
         Report the position of the encoder.
-        The value returned is the current position either in relative units (ticks away from a zero position)
-        or absolute units (degrees along a circle).
+        The value returned is the current position in terms of it's ``position_type``. The position will be either in relative units
+        (ticks away from a zero position) for PositionTypeTICKS or absolute units (degrees along a circle) for PositionTypeDEGREES.
 
         Returns:
             float: Position of the encoder which can either be ticks since last zeroing
