@@ -162,19 +162,25 @@ class Webcam(google.protobuf.message.Message):
     LABEL_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
     PROPERTIES_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    ID_FIELD_NUMBER: builtins.int
     label: builtins.str
-    'Camera driver label'
+    'Camera driver label (for internal use only)'
     status: builtins.str
     'Camera driver status'
 
     @property
     def properties(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Property]:
         """Camera properties"""
+    name: builtins.str
+    'Camera human-readable driver name'
+    id: builtins.str
+    'Camera unique identifier'
 
-    def __init__(self, *, label: builtins.str=..., status: builtins.str=..., properties: collections.abc.Iterable[global___Property] | None=...) -> None:
+    def __init__(self, *, label: builtins.str=..., status: builtins.str=..., properties: collections.abc.Iterable[global___Property] | None=..., name: builtins.str=..., id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['label', b'label', 'properties', b'properties', 'status', b'status']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'label', b'label', 'name', b'name', 'properties', b'properties', 'status', b'status']) -> None:
         ...
 global___Webcam = Webcam
 

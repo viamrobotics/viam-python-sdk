@@ -1,11 +1,15 @@
-from typing import TYPE_CHECKING, List, Optional
+from typing import TYPE_CHECKING, Callable, List, Optional
 
+from grpclib import GRPCError, Status
+from grpclib._typing import IServable
+from grpclib.const import Handler
 from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
 from grpclib.server import Server as GRPCServer
 from grpclib.utils import graceful_exit
 
 from viam import logging
+from viam.errors import ViamGRPCError
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
@@ -45,6 +49,8 @@ class Server(ResourceManager):
         if module_service is not None:
             services.append(module_service)
         services = ServerReflection.extend(services)
+        services = _patch_mappings(services)
+
         self._server = GRPCServer(services)
 
     async def _grpc_event_handler(self, event: RecvRequest):
@@ -114,3 +120,52 @@ class Server(ResourceManager):
         """
         server = cls(components)
         await server.serve(host, port, log_level, path=path)
+
+
+def _grpc_error_wrapper(func: Callable):
+    """
+    Wrap a function so that any exceptions get raised as GRPCErrors to the client.
+
+    Args:
+        func (Callable): The function that should be wrapped
+
+    Returns:
+        The method that is now wrapped to raise GRPCErrors
+    """
+
+    async def interceptor(*args, **kwargs):
+        try:
+            new_func = await func(*args, **kwargs)
+            return new_func
+        except GRPCError:
+            raise
+        except ViamGRPCError as e:
+            raise e.grpc_error
+        except Exception as e:
+            raise GRPCError(Status.UNKNOWN, f"{e.__class__.__name__} - {e}")
+
+    return interceptor
+
+
+def _patch_mappings(services: List[IServable]) -> List[IServable]:
+    """Replace the methods of all given services with a wrapped method that has error handling
+
+    Args:
+        services (List[IServable]): The services that should be patched
+
+    Returns:
+        services (List[IServable]): The patched services with new mapping functions
+    """
+    for service in services:
+
+        def patch_mapping():
+            mapping = service.__mapping__()
+            new_mapping = {}
+            for method, handler in mapping.items():
+                new_method = _grpc_error_wrapper(handler[0])
+                new_mapping[method] = Handler(new_method, *handler[1:])
+
+            return lambda: new_mapping
+
+        service.__mapping__ = patch_mapping()
+    return services
