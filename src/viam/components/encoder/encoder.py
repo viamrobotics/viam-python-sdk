@@ -45,7 +45,7 @@ class Encoder(ComponentBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
-    ) -> Tuple[float, PositionType]:
+    ) -> Tuple[float, PositionType.ValueType]:
         """
         Report the position of the encoder.
         The value returned is the current position in terms of it's ``position_type``. The position will be either in relative units
