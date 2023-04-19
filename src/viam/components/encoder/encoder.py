@@ -49,7 +49,7 @@ class Encoder(ComponentBase):
         """
         Report the position of the encoder.
         The value returned is the current position in terms of it's ``position_type``. The position will be either in relative units
-        (ticks away from a zero position) for PositionTypeTICKS or absolute units (degrees along a circle) for PositionTypeDEGREES.
+        (ticks away from a zero position) for ``PositionType.TICKS`` or absolute units (degrees along a circle) for ``PositionType.DEGREES``.
 
         Returns:
             float: Position of the encoder which can either be ticks since last zeroing
