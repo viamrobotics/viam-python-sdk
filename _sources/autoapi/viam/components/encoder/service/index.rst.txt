@@ -1,0 +1,46 @@
+:py:mod:`viam.components.encoder.service`
+=========================================
+
+.. py:module:: viam.components.encoder.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.encoder.service.EncoderService
+
+
+
+
+.. py:class:: EncoderService(manager: viam.resource.manager.ResourceManager)
+
+
+
+   gRPC Service for an Encoder
+
+   .. py:attribute:: RESOURCE_TYPE
+
+      
+
+   .. py:method:: ResetPosition(stream: grpclib.server.Stream[viam.proto.component.encoder.ResetPositionRequest, viam.proto.component.encoder.ResetPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[viam.proto.component.encoder.GetPositionRequest, viam.proto.component.encoder.GetPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[viam.proto.component.encoder.GetPropertiesRequest, viam.proto.component.encoder.GetPropertiesResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+
