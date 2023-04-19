@@ -116,7 +116,7 @@ class MovementSensor(Sensor):
         """Get the supported properties of this sensor
 
         Returns:
-            Properties: The properties
+            MovementSensor.Properties: The properties
         """
         ...
 
