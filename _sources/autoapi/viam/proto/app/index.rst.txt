@@ -512,7 +512,7 @@ Classes
       
 
 
-.. py:class:: AuthorizedPermissions(*, resource_id: str = ..., permissions: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: AuthorizedPermissions(*, resource_type: str = ..., resource_id: str = ..., permissions: collections.abc.Iterable[builtins.str] | None = ...)
 
 
 
@@ -525,6 +525,11 @@ Classes
    .. py:property:: permissions
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
+
+   .. py:attribute:: resource_type
+      :type: str
+
+      
 
    .. py:attribute:: resource_id
       :type: str

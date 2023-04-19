@@ -150,6 +150,7 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions"><code class="docutils literal notranslate"><span class="pre">AuthorizedPermissions</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions.permissions"><code class="docutils literal notranslate"><span class="pre">AuthorizedPermissions.permissions</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions.resource_type"><code class="docutils literal notranslate"><span class="pre">AuthorizedPermissions.resource_type</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions.resource_id"><code class="docutils literal notranslate"><span class="pre">AuthorizedPermissions.resource_id</span></code></a></li>
 </ul>
 </li>
@@ -750,6 +751,7 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions">AuthorizedPermissions</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions.permissions">permissions</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions.resource_type">resource_type</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions.resource_id">resource_id</a></li>
 </ul>
 </li>
@@ -2045,7 +2047,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.AuthorizedPermissions">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">AuthorizedPermissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.AuthorizedPermissions" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">AuthorizedPermissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.AuthorizedPermissions" title="Permalink to this definition"></a></dt>
 <dd><p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
@@ -2053,6 +2055,11 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.AuthorizedPermissions.permissions">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">permissions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.AuthorizedPermissions.permissions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthorizedPermissions.resource_type">
+<span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.AuthorizedPermissions.resource_type" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
