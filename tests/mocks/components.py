@@ -19,6 +19,7 @@ from viam.components.base import Base
 from viam.components.board import Board
 from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
+from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
 from viam.components.generic import Generic as GenericComponent
 from viam.components.gripper import Gripper
@@ -45,7 +46,7 @@ from viam.proto.common import (
 )
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
-
+from viam.proto.component.encoder import PositionType
 from viam.utils import ValueTypes
 
 
@@ -368,14 +369,7 @@ class MockBoard(Board):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
-    async def set_power_mode(
-            self,
-            mode: PowerMode,
-            duration: Optional[timedelta] = None,
-            *,
-            timeout: Optional[float] = None,
-            **kwargs
-    ):
+    async def set_power_mode(self, mode: PowerMode, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs):
         self.timeout = timeout
         self.power_mode = mode
         self.power_mode_duration = duration
@@ -410,6 +404,52 @@ class MockCamera(Camera):
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Camera.Properties:
         self.timeout = timeout
         return self.props
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+
+class MockEncoder(Encoder):
+    def __init__(self, name: str):
+        self.position: float = 0
+        self.position_type = PositionType.POSITION_TYPE_TICKS_COUNT
+        self.extra = None
+        self.timeout: Optional[float] = None
+        super().__init__(name)
+
+    async def reset_position(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        self.position = 0
+        self.extra = extra
+        self.timeout = timeout
+
+    async def get_position(
+        self,
+        position_type: Optional[PositionType.ValueType] = None,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Tuple[float, PositionType.ValueType]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.position, self.position_type
+
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Encoder.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return Encoder.Properties(ticks_count_supported=True, angle_degrees_supported=False)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
@@ -461,7 +501,6 @@ class MockGantry(Gantry):
 
 
 class MockGeneric(GenericComponent):
-
     timeout: Optional[float] = None
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
