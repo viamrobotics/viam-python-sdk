@@ -51,6 +51,9 @@ class Encoder(ComponentBase):
         The value returned is the current position in terms of it's ``position_type``. The position will be either in relative units
         (ticks away from a zero position) for ``PositionType.TICKS`` or absolute units (degrees along a circle) for ``PositionType.DEGREES``.
 
+        Args:
+            position_type (PositionType.ValueType): The desired output type of the position
+            
         Returns:
             float: Position of the encoder which can either be ticks since last zeroing
                    for a relative encoder or degrees for an absolute encoder.
