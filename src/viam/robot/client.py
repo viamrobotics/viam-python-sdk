@@ -196,28 +196,31 @@ class RobotClient:
                 if rname.subtype == "remote":
                     continue
 
-                if rname in self._manager.resources:
-                    res = self._manager.get_resource(ResourceBase, rname)
-                    if isinstance(res, ReconfigurableResourceRPCClientBase):
-                        res.reset_channel(self._channel)
-                    else:
-                        self._manager.remove_resource(rname)
-                        self._manager.register(
-                            Registry.lookup_subtype(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel)
-                        )
-                else:
-                    try:
-                        self._manager.register(
-                            Registry.lookup_subtype(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel)
-                        )
-                    except ResourceNotFoundError:
-                        pass
+                self._create_or_reset_client(rname)
 
             for rname in self.resource_names:
                 if rname not in resource_names:
                     self._manager.remove_resource(rname)
 
             self._resource_names = resource_names
+
+    def _create_or_reset_client(self, resourceName: ResourceName):
+        if resourceName in self._manager.resources:
+            res = self._manager.get_resource(ResourceBase, resourceName)
+            if isinstance(res, ReconfigurableResourceRPCClientBase):
+                res.reset_channel(self._channel)
+            else:
+                self._manager.remove_resource(resourceName)
+                self._manager.register(
+                    Registry.lookup_subtype(Subtype.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
+                )
+        else:
+            try:
+                self._manager.register(
+                    Registry.lookup_subtype(Subtype.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
+                )
+            except ResourceNotFoundError:
+                pass
 
     async def _refresh_every(self, interval: int):
         while True:
