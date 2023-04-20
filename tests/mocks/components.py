@@ -41,7 +41,6 @@ from viam.proto.common import (
     Pose,
     PoseInFrame,
     Vector3,
-    WorldState,
 )
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
