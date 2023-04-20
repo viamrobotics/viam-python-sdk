@@ -127,7 +127,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_detections_from_camera"}
-            response = await client.get_detections_from_camera("fake-camera", "fake-detector", extra=extra)
+            response = await client.get_detections_from_camera("fake-camera", extra=extra)
             assert response == DETECTIONS
             assert service.extra == extra
 
@@ -137,7 +137,7 @@ class TestClient:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_detections"}
-            response = await client.get_detections(image, "fake-detector", extra=extra)
+            response = await client.get_detections(image, extra=extra)
             assert response == DETECTIONS
             assert service.extra == extra
 
@@ -146,7 +146,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_classifications_from_camera"}
-            response = await client.get_classifications_from_camera("fake-camera", "fake-classifier", 1, extra=extra)
+            response = await client.get_classifications_from_camera("fake-camera", 1, extra=extra)
             assert response == CLASSIFICATIONS
             assert service.extra == extra
 
@@ -156,7 +156,7 @@ class TestClient:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_classifications"}
-            response = await client.get_classifications(image, "fake-classifier", extra=extra)
+            response = await client.get_classifications(image, extra=extra)
             assert response == CLASSIFICATIONS
             assert service.extra == extra
 
@@ -165,7 +165,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_object_point_clouds"}
-            response = await client.get_object_point_clouds("camera", "segmenter", extra=extra)
+            response = await client.get_object_point_clouds("camera", extra=extra)
             assert response == POINT_CLOUDS
             assert service.extra == extra
 
