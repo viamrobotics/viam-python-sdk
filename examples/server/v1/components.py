@@ -43,7 +43,6 @@ from viam.proto.common import (
     Pose,
     PoseInFrame,
     Vector3,
-    WorldState,
 )
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat

@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import WorldState, DoCommandResponse, DoCommandRequest
+from viam.proto.common import DoCommandResponse, DoCommandRequest
 from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,

@@ -2,7 +2,7 @@ from typing import Any, Dict, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import Pose, WorldState, DoCommandRequest, DoCommandResponse
+from viam.proto.common import Pose, DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
