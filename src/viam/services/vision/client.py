@@ -125,7 +125,7 @@ class VisionServiceClient(ServiceClientBase):
             detector_name (str): The name of the detector to use for detection
 
         Returns:
-            List[Detection]: A list of 2D bounding boxes, their labels, and the
+            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
         """
@@ -152,7 +152,7 @@ class VisionServiceClient(ServiceClientBase):
             detector_name (str): The name of the detector to use for detection
 
         Returns:
-            List[Detection]: A list of 2D bounding boxes, their labels, and the
+            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
             confidence score of the labels, around the found objects in the next 2D image
             from the given camera, with the given detector applied to it.
         """
@@ -231,7 +231,7 @@ class VisionServiceClient(ServiceClientBase):
             count (int): The number of classifications desired
 
         returns:
-            List[Classification]: The list of Classifications
+            List[viam.proto.service.vision.Classification]: The list of Classifications
         """
         if extra is None:
             extra = {}
@@ -256,7 +256,7 @@ class VisionServiceClient(ServiceClientBase):
             classifier_name (str): The name of the detector to use for detection
 
         Returns:
-            List[Classification]: The list of Classifications
+            List[viam.proto.service.vision.Classification]: The list of Classifications
         """
         if extra is None:
             extra = {}
@@ -361,7 +361,7 @@ class VisionServiceClient(ServiceClientBase):
             segmenter_name (str): The name of the segmenter
 
         Returns:
-            List[PointCloudObject]: The pointcloud objects with metadata
+            List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata
         """
         if extra is None:
             extra = {}
