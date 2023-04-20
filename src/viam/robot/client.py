@@ -294,7 +294,7 @@ class RobotClient:
                 end_pos = await arm.get_end_position()
 
         Args:
-            name (ResourceName): The component's ResourceName
+            name (viam.proto.common.ResourceName): The component's ResourceName
 
         Raises:
             ValueError: Raised if the requested resource is not a component
@@ -339,7 +339,7 @@ class RobotClient:
                 service: MyService = robot.get_service(MyService.get_resource_name("my_service"))  # type: ignore
 
         Args:
-            name (ResourceName): The service's ResourceName
+            name (viam.proto.common.ResourceName): The service's ResourceName
 
         Raises:
             ValueError: Raised if the requested resource is not a component
@@ -359,7 +359,7 @@ class RobotClient:
         Get a list of all resource names
 
         Returns:
-            List[ResourceName]: The list of resource names
+            List[viam.proto.common.ResourceName]: The list of resource names
         """
         with self._lock:
             return [r for r in self._resource_names]
@@ -412,7 +412,7 @@ class RobotClient:
         provide a list of ``ResourceName`` for which you want statuses.
 
         Args:
-            components (Optional[List[ResourceName]]): Optional list of
+            components (Optional[List[viam.proto.common.ResourceName]]): Optional list of
                 ``ResourceName`` for components you want statuses.
         """
         names = components if components is not None else []
@@ -428,7 +428,8 @@ class RobotClient:
         """
         Get the list of operations currently running on the robot.
 
-        Returns (List[Operation]): The list of operations currently running on a given robot.
+        Returns:
+            List[viam.proto.robot.Operation]: The list of operations currently running on a given robot.
         """
         request = GetOperationsRequest()
         response: GetOperationsResponse = await self._client.GetOperations(request)
@@ -463,7 +464,8 @@ class RobotClient:
         """
         Get the configuration of the frame system of a given robot.
 
-        Returns (Config): The configuration of a given robot's frame system.
+        Returns:
+            List[viam.proto.robot.FrameSystemConfig]: The configuration of a given robot's frame system.
         """
         request = FrameSystemConfigRequest(supplemental_transforms=additional_transforms)
         response: FrameSystemConfigResponse = await self._client.FrameSystemConfig(request)
@@ -477,7 +479,7 @@ class RobotClient:
 
         Args:
 
-            query (Pose): The pose that should be transformed.
+            query (viam.proto.common.PoseInFrame): The pose that should be transformed.
             destination (str) : The name of the reference frame to transform the given pose to.
 
         """
@@ -501,7 +503,7 @@ class RobotClient:
 
         Args:
 
-            queries (List[DiscoveryQuery]): The list of component models to lookup configurations for.
+            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.
 
         """
         request = DiscoverComponentsRequest(queries=queries)
@@ -517,7 +519,7 @@ class RobotClient:
         Cancel all current and outstanding operations for the robot and stop all actuators and movement
 
         Args:
-            extra (Dict[ResourceName, Dict[str, Any]]): Any extra parameters to pass to the components' ``stop`` methods, keyed on the
+            extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the components' ``stop`` methods, keyed on the
                                                         component's ``ResourceName``
 
         """

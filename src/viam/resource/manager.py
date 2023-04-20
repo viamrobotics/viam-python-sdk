@@ -91,7 +91,7 @@ class ResourceManager:
         """Remove the resource with the specified ```ResourceName```.
 
         Args:
-            name (ResourceName): The ResourceName of the resource
+            name (viam.proto.common.ResourceName): The ResourceName of the resource
         """
         with self._lock:
             del self.resources[name]
