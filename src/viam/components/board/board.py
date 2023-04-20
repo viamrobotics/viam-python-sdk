@@ -238,7 +238,7 @@ class Board(ComponentBase):
         Return the current status of the board.
 
         Returns:
-            BoardStatus: the status.
+            viam.proto.common.BoardStatus: the status.
         """
         ...
 

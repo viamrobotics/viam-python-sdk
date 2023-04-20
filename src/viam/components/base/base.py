@@ -84,9 +84,9 @@ class Base(ComponentBase):
         with a tighter radius if angular power is greater than linear power.
 
         Args:
-            linear (Vector3): The linear component. Only the Y component is used
+            linear (viam.proto.common.Vector3): The linear component. Only the Y component is used
                 for wheeled base. Negative implies backwards.
-            angular (Vector3): The angular component. Only the Z component is used
+            angular (viam.proto.common.Vector3): The angular component. Only the Z component is used
                 for wheeled base. Positive turns left; negative turns right.
         """
         ...
@@ -106,8 +106,8 @@ class Base(ComponentBase):
 
 
         Args:
-            linear (Vector3): Velocity in mm/sec
-            angular (Vector3): Velocity in deg/sec
+            linear (viam.proto.common.Vector3): Velocity in mm/sec
+            angular (viam.proto.common.Vector3): Velocity in deg/sec
         """
 
     @abc.abstractmethod

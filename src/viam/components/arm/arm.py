@@ -49,9 +49,9 @@ class Arm(ComponentBase):
 
         Args:
 
-            pose (Pose): The destination Pose for the arm.
+            pose (viam.proto.common.Pose): The destination Pose for the arm.
 
-            world_state (WorldState): The obstacles for the arm to avoid on its way to ``pose``.
+            world_state (viam.proto.common.WorldState): The obstacles for the arm to avoid on its way to ``pose``.
         """
         ...
 
@@ -69,7 +69,7 @@ class Arm(ComponentBase):
 
         Args:
 
-            positions (JointPositions): The destination ``JointPositions`` for the arm.
+            positions (viam.proto.component.arm.JointPositions): The destination ``JointPositions`` for the arm.
         """
         ...
 
@@ -85,7 +85,7 @@ class Arm(ComponentBase):
         Get the JointPositions representing the current position of the arm.
 
         Returns:
-            JointPositions: The current JointPositions for the arm.
+            viam.proto.component.arm.JointPositions: The current JointPositions for the arm.
         """
         ...
 
