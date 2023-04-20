@@ -1,10 +1,11 @@
-from typing import Any, Protocol
+from typing import Any, Protocol, runtime_checkable
 
 from grpclib.client import Channel
 
 from viam.rpc.types import RPCServiceStubBase
 
 
+@runtime_checkable
 class ResourceRPCClientBase(Protocol):
     """
     Base RPC client for a resource.

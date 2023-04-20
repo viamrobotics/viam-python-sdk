@@ -12,12 +12,13 @@ from viam.proto.component.encoder import (
     PositionType,
     ResetPositionRequest,
 )
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .encoder import Encoder
 
 
-class EncoderClient(Encoder):
+class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Ecoder component.
     """

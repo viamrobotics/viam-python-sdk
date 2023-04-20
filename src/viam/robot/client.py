@@ -37,7 +37,7 @@ from viam.proto.robot import (
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
-from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
@@ -207,6 +207,12 @@ class RobotClient:
     def _create_or_reset_client(self, resourceName: ResourceName):
         if resourceName in self._manager.resources:
             res = self._manager.get_resource(ResourceBase, resourceName)
+
+            # If the channel hasn't changed, we don't need to do anything for existing clients
+            if isinstance(res, ResourceRPCClientBase) or (hasattr(res, "channel") and isinstance(getattr(res, "channel"), Channel)):
+                if self._channel is res.channel:  # type: ignore
+                    return
+
             if isinstance(res, ReconfigurableResourceRPCClientBase):
                 res.reset_channel(self._channel)
             else:
