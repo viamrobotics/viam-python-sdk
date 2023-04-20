@@ -48,7 +48,6 @@ class ArmClient(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,

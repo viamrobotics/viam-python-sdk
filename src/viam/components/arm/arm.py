@@ -45,13 +45,10 @@ class Arm(ComponentBase):
     ):
         """
         Move the end of the arm to the Pose specified in ``pose``.
-        When obstacles are specified in ``world_state``, the motion plan of the arm will avoid them.
 
         Args:
 
             pose (viam.proto.common.Pose): The destination Pose for the arm.
-
-            world_state (viam.proto.common.WorldState): The obstacles for the arm to avoid on its way to ``pose``.
         """
         ...
 

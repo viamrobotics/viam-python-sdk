@@ -74,7 +74,6 @@ class MockArm(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -368,14 +367,7 @@ class MockBoard(Board):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
-    async def set_power_mode(
-            self,
-            mode: PowerMode,
-            duration: Optional[timedelta] = None,
-            *,
-            timeout: Optional[float] = None,
-            **kwargs
-    ):
+    async def set_power_mode(self, mode: PowerMode, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs):
         self.timeout = timeout
         self.power_mode = mode
         self.power_mode_duration = duration
@@ -432,7 +424,6 @@ class MockGantry(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,

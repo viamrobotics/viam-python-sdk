@@ -39,7 +39,6 @@ class GantryClient(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,

@@ -70,7 +70,6 @@ class ExampleArm(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ):
@@ -449,7 +448,6 @@ class ExampleGantry(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ):
