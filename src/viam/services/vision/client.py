@@ -58,13 +58,12 @@ class VisionServiceClient(ServiceClientBase):
         self.name = name
 
     async def get_detections_from_camera(
-        self, camera_name: str, detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> List[Detection]:
         """Get a list of detections in the next image given a camera and a detector
 
         Args:
             camera_name (str): The name of the camera to use for detection
-            detector_name (str): The name of the detector to use for detection
 
         Returns:
             List[Detection]: A list of 2D bounding boxes, their labels, and the
@@ -80,7 +79,6 @@ class VisionServiceClient(ServiceClientBase):
     async def get_detections(
         self,
         image: Union[Image.Image, RawImage],
-        detector_name: str,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -89,7 +87,6 @@ class VisionServiceClient(ServiceClientBase):
 
         Args:
             image (Image): The image to get detections from
-            detector_name (str): The name of the detector to use for detection
 
         Returns:
             List[Detection]: A list of 2D bounding boxes, their labels, and the
@@ -116,7 +113,6 @@ class VisionServiceClient(ServiceClientBase):
     async def get_classifications_from_camera(
         self,
         camera_name: str,
-        classifier_name: str,
         count: int,
         *,
         extra: Optional[Mapping[str, Any]] = None,
@@ -126,7 +122,6 @@ class VisionServiceClient(ServiceClientBase):
 
         Args:
             camera_name (str): The name of the camera to use for detection
-            classifier_name (str): The name of the classifier to use for classification
             count (int): The number of classifications desired
 
         returns:
@@ -141,7 +136,6 @@ class VisionServiceClient(ServiceClientBase):
     async def get_classifications(
         self,
         image: Union[Image.Image, RawImage],
-        classifier_name: str,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -150,7 +144,6 @@ class VisionServiceClient(ServiceClientBase):
 
         Args:
             image (Image): The image to get detections from
-            classifier_name (str): The name of the detector to use for detection
 
         Returns:
             List[Classification]: The list of Classifications
@@ -173,7 +166,7 @@ class VisionServiceClient(ServiceClientBase):
         return list(response.classifications)
 
     async def get_object_point_clouds(
-        self, camera_name: str, segmenter_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> List[PointCloudObject]:
         """
         Returns a list of the 3D point cloud objects and associated metadata in the latest
@@ -195,7 +188,6 @@ class VisionServiceClient(ServiceClientBase):
 
         Args:
             camera_name (str): The name of the camera
-            segmenter_name (str): The name of the segmenter
 
         Returns:
             List[PointCloudObject]: The pointcloud objects with metadata
