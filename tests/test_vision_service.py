@@ -1,5 +1,4 @@
 from random import random
-from typing import Dict, Mapping, Sequence, Union
 
 import pytest
 from grpclib.testing import ChannelFor
@@ -16,7 +15,6 @@ from viam.proto.common import (
 from viam.services.vision import (
     Detection,
     Classification,
-    VisModelType,
     VisionServiceClient,
 )
 
@@ -56,28 +54,7 @@ SEGMENTERS = [
     "segmenter-0",
     "segmenter-1",
 ]
-MODEL_SCHEMA: Dict[str, Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]] = {
-    VisModelType.CLASSIFIER_TENSORFLOW: {
-        "parameter-0": "float64",
-        "parameter-1": "string",
-    },
-    VisModelType.CLASSIFIER_TFLITE: {
-        "parameter-0": "int",
-        "parameter-1": "string",
-    },
-    VisModelType.DETECTOR_COLOR: {
-        "parameter-0": "int",
-        "parameter-1": "float64",
-    },
-    VisModelType.DETECTOR_TENSORFLOW: {
-        "parameter-0": "string",
-        "parameter-1": "string",
-    },
-    VisModelType.DETECTOR_TF_LITE: {
-        "parameter-0": "string",
-        "parameter-1": "float64",
-    },
-}
+
 POINT_CLOUDS = [
     PointCloudObject(
         point_cloud=b"THIS IS A POINT CLOUD",
@@ -117,7 +94,6 @@ def service() -> MockVisionService:
         classifications=CLASSIFICATIONS,
         segmenters=SEGMENTERS,
         point_clouds=POINT_CLOUDS,
-        model_schema=MODEL_SCHEMA,
     )
 
 

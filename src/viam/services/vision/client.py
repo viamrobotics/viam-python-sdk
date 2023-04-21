@@ -1,5 +1,3 @@
-from dataclasses import dataclass
-from enum import Enum
 from io import BytesIO
 from typing import Any, Final, List, Mapping, Optional, Union
 
@@ -26,23 +24,6 @@ from viam.proto.service.vision import (
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
-
-
-class VisModelType(str, Enum):
-    DETECTOR_TF_LITE = "tflite_detector"
-    DETECTOR_TENSORFLOW = "tf_detector"
-    DETECTOR_COLOR = "color_detector"
-    CLASSIFIER_TFLITE = "tflite_classifier"
-    CLASSIFIER_TENSORFLOW = "tf_classifier"
-    DETECTOR_SEGMENTER = "detector_segmenter"
-    RADIUS_CLUSTERING_SEGMENTER = "radius_clustering_segmenter"
-
-
-@dataclass
-class VisModelConfig:
-    name: str
-    type: VisModelType
-    parameters: Mapping[str, Any]
 
 
 class VisionServiceClient(ServiceClientBase):

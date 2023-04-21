@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.server import Stream
 
@@ -138,7 +138,6 @@ class MockVisionService(VisionServiceBase):
         classifications: List[Classification],
         segmenters: List[str],
         point_clouds: List[PointCloudObject],
-        model_schema: Mapping[str, Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]],
     ):
         self.detectors = detectors
         self.detections = detections
@@ -146,7 +145,6 @@ class MockVisionService(VisionServiceBase):
         self.classifications = classifications
         self.segmenters = segmenters
         self.point_clouds = point_clouds
-        self.model_schema = model_schema
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
 
