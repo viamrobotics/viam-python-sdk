@@ -13,8 +13,6 @@ from viam.proto.service.vision import (
     AddClassifierRequest,
     AddDetectorRequest,
     AddSegmenterRequest,
-    Classification,
-    Detection,
     GetClassificationsFromCameraRequest,
     GetClassificationsFromCameraResponse,
     GetClassificationsRequest,
@@ -41,6 +39,8 @@ from viam.proto.service.vision import (
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+
+from . import Classification, Detection
 
 
 class VisModelType(str, Enum):

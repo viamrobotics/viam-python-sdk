@@ -38,7 +38,7 @@ class ResourceManager:
                                      with the name of an existing component
 
         Args:
-            component (ComponentBase): The component to register
+            component (ResourceBase): The component to register
         """
         _BaseClasses = (ResourceBase, ComponentBase, ServiceBase)
         rnames: Dict[ResourceName, ResourceBase] = {}
@@ -69,7 +69,7 @@ class ResourceManager:
 
         Args:
             of_type (Type[ResourceType]): The type of the resource
-            name (str): The name of the resource
+            name (viam.proto.common.ResourceName): The name of the resource
 
         Raises:
             ResourceNotFoundError: Error if resource with the given type

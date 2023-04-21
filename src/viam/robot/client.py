@@ -519,7 +519,7 @@ class RobotClient:
         Cancel all current and outstanding operations for the robot and stop all actuators and movement
 
         Args:
-            extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resourcess' ``stop`` methods,
+            extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resources' ``stop`` methods,
                 keyed on the resource's ``ResourceName``
 
         """

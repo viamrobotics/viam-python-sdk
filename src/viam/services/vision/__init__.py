@@ -1,10 +1,6 @@
-from .client import (
-    Classification,
-    Detection,
-    VisionServiceClient,
-    VisModelConfig,
-    VisModelType,
-)
+from viam.proto.service.vision import Classification, Detection
+
+from .client import VisionServiceClient, VisModelConfig, VisModelType
 
 __all__ = [
     "Classification",
