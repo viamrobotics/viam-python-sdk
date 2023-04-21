@@ -41,7 +41,7 @@ class Camera(ComponentBase):
             mime_type (str): The desired mime type of the image. This does not guarantee output type
 
         Returns:
-            Image | viam.media.video.RawImage: The frame
+            Image | RawImage: The frame
         """
         ...
 

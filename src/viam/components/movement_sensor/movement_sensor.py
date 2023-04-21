@@ -61,7 +61,7 @@ class MovementSensor(Sensor):
         """Get the current GeoPoint (latitude, longitude) and altitude (mm)
 
         Returns:
-            Tuple[viam.proto.common.GeoPoint, float]: The current lat/long, along with the altitude in mm
+            Tuple[GeoPoint, float]: The current lat/long, along with the altitude in mm
         """
         ...
 
@@ -70,7 +70,7 @@ class MovementSensor(Sensor):
         """Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in mm/sec
 
         Returns:
-            viam.proto.common.Vector3: The linear velocity in mm/sec
+            Vector3: The linear velocity in mm/sec
         """
         ...
 
@@ -79,7 +79,7 @@ class MovementSensor(Sensor):
         """Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in radians/sec
 
         Returns:
-            viam.proto.common.Vector3: The angular velocity in rad/sec
+            Vector3: The angular velocity in rad/sec
         """
         ...
 
@@ -90,7 +90,7 @@ class MovementSensor(Sensor):
         """Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in mm/sec^2
 
         Returns:
-            viam.proto.common.Vector3: The linear acceleration in mm/sec^2
+            Vector3: The linear acceleration in mm/sec^2
         """
         ...
 
@@ -108,7 +108,7 @@ class MovementSensor(Sensor):
         """Get the current orientation
 
         Returns:
-            viam.proto.common.Orientation: The orientation
+            Orientation: The orientation
         """
         ...
 
