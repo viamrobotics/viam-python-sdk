@@ -8,17 +8,16 @@ from ..component_base import ComponentBase
 
 
 class Motor(ComponentBase):
-    @dataclass
-    class Properties:
-        position_reporting: bool
-
-    """
-    Motor represents a physical motor.
+    """Motor represents a physical motor.
 
     This acts as an abstract base class for any drivers representing specific
     motor implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
+    @dataclass
+    class Properties:
+        position_reporting: bool
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor")
 

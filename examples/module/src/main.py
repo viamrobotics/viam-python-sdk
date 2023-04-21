@@ -22,7 +22,7 @@ async def main(address: str):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         raise Exception("Need socket path as command line argument")
 
     asyncio.run(main(sys.argv[1]))

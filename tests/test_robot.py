@@ -1,3 +1,4 @@
+from grpclib.client import Channel
 import asyncio
 from typing import Any, Dict, Optional
 
@@ -8,6 +9,7 @@ from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import Arm
+from viam.components.arm.client import ArmClient
 from viam.components.motor import Motor
 from viam.resource.manager import ResourceManager
 from viam.errors import ResourceNotFoundError
@@ -41,6 +43,8 @@ from viam.proto.robot import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
+from viam.resource.registry import Registry
+from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services.vision import VisionServiceClient
@@ -428,3 +432,94 @@ class TestRobotClient:
 
             assert await motor.is_moving() is False
             await client.close()
+
+    @pytest.mark.asyncio
+    async def test_create_or_reset_client(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+
+            # No change in channel
+            arm_client = ArmClient.from_robot(client, "arm1")
+            assert arm_client.channel is client._channel
+            client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
+            assert arm_client is client.get_component(Arm.get_resource_name(arm_client.name))
+            assert arm_client.channel is client._channel
+
+            # Yes change in channel
+            async with ChannelFor([service]) as channel2:
+                arm_client.reset_channel(channel2)
+                assert arm_client.channel is not client._channel
+                client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
+                assert arm_client is client.get_component(Arm.get_resource_name(arm_client.name))
+                assert arm_client.channel is client._channel
+
+            await client.close()
+
+            # Change in client
+            class FakeArmClient(Arm, ResourceRPCClientBase):
+                actual_client: ArmClient
+
+                def __init__(self, name: str, channel: Channel):
+                    super().__init__(name)
+                    self.channel = channel
+                    self.actual_client = ArmClient(name, channel)
+                    self.client = self.actual_client.client
+
+                async def get_end_position(
+                    self,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ) -> Pose:
+                    return await self.actual_client.get_end_position(extra=extra, timeout=timeout)
+
+                async def move_to_position(
+                    self,
+                    pose: Pose,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ):
+                    return await self.actual_client.move_to_position(pose, extra=extra, timeout=timeout)
+
+                async def move_to_joint_positions(
+                    self,
+                    positions: JointPositions,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ):
+                    return await self.actual_client.move_to_joint_positions(positions, extra=extra, timeout=timeout)
+
+                async def get_joint_positions(
+                    self,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ) -> JointPositions:
+                    return await self.actual_client.get_joint_positions(extra=extra, timeout=timeout)
+
+                async def stop(
+                    self,
+                    *,
+                    extra: Optional[Dict[str, Any]] = None,
+                    timeout: Optional[float] = None,
+                ):
+                    return await self.actual_client.stop(extra=extra, timeout=timeout)
+
+                async def is_moving(self) -> bool:
+                    return await self.actual_client.is_moving()
+
+            old_create_client = Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client
+            Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client = lambda name, channel: FakeArmClient(name, channel)
+
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+
+            async with ChannelFor([service]) as channel2:
+                arm_client.channel = channel2
+                assert arm_client.channel is not client._channel
+                client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
+                assert arm_client is not client.get_component(Arm.get_resource_name(arm_client.name))  # Should be a new client now
+
+            await client.close()
+            Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client = old_create_client

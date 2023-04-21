@@ -8,7 +8,7 @@
 ## (In)stability Notice
 
 > **Warning**
-> This is an beta release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
+> This is a beta release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
 
 ## Installation
 Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86, aarch64, armv6l) that you can install via pip
@@ -28,7 +28,7 @@ To upgrade, simply run the `pip install` command with the `-U` option:
 ### Installing from Source
 The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [Rust utils repo](https://github.com/viamrobotics/rust-utils) that contains the necessary protocols. Therefore, to build from source, you will need both the Rust utils and the Rust compiler.
 
-1. Download/clone this repository
+1. Download/clone this [repository](https://github.com/viamrobotics/viam-python-sdk)
 1. Download/clone the [Rust utils](https://github.com/viamrobotics/rust-utils)
 1. [Install Rust](https://www.rust-lang.org/tools/install) if not already available
 1. From the `rust-utils` directory, run `cargo build`

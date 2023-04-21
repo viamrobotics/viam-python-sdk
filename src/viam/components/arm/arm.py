@@ -47,7 +47,6 @@ class Arm(ComponentBase):
         Move the end of the arm to the Pose specified in ``pose``.
 
         Args:
-
             pose (Pose): The destination Pose for the arm.
         """
         ...
@@ -65,7 +64,6 @@ class Arm(ComponentBase):
         Move each joint on the arm to the corresponding angle specified in ``positions``.
 
         Args:
-
             positions (JointPositions): The destination ``JointPositions`` for the arm.
         """
         ...

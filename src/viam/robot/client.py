@@ -1,6 +1,6 @@
 import asyncio
 from dataclasses import dataclass
-from threading import Lock
+from threading import RLock
 from typing import Any, Dict, List, Optional, Union
 
 from grpclib.client import Channel
@@ -34,8 +34,10 @@ from viam.proto.robot import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
+from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
@@ -139,7 +141,7 @@ class RobotClient:
         self._connected = True
         self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
-        self._lock = Lock()
+        self._lock = RLock()
         self._resource_names = []
         self._should_close_channel = close_channel
         self._options = options
@@ -167,7 +169,7 @@ class RobotClient:
 
     _channel: Channel
     _viam_channel: Optional[ViamChannel]
-    _lock: Lock
+    _lock: RLock
     _manager: ResourceManager
     _client: RobotServiceStub
     _connected: bool
@@ -185,22 +187,46 @@ class RobotClient:
         """
         response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
         resource_names: List[ResourceName] = list(response.resources)
-        if resource_names == self._resource_names:
-            return
-        manager = ResourceManager()
-        for rname in resource_names:
-            if rname.type not in [RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE]:
-                continue
-            if rname.subtype == "remote":
-                continue
+        with self._lock:
+            if resource_names == self._resource_names:
+                return
+            for rname in resource_names:
+                if rname.type not in [RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE]:
+                    continue
+                if rname.subtype == "remote":
+                    continue
+
+                self._create_or_reset_client(rname)
+
+            for rname in self.resource_names:
+                if rname not in resource_names:
+                    self._manager.remove_resource(rname)
+
+            self._resource_names = resource_names
+
+    def _create_or_reset_client(self, resourceName: ResourceName):
+        if resourceName in self._manager.resources:
+            res = self._manager.get_resource(ResourceBase, resourceName)
+
+            # If the channel hasn't changed, we don't need to do anything for existing clients
+            if isinstance(res, ResourceRPCClientBase) or (hasattr(res, "channel") and isinstance(getattr(res, "channel"), Channel)):
+                if self._channel is res.channel:  # type: ignore
+                    return
+
+            if isinstance(res, ReconfigurableResourceRPCClientBase):
+                res.reset_channel(self._channel)
+            else:
+                self._manager.remove_resource(resourceName)
+                self._manager.register(
+                    Registry.lookup_subtype(Subtype.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
+                )
+        else:
             try:
-                manager.register(Registry.lookup_subtype(Subtype.from_resource_name(rname)).create_rpc_client(rname.name, self._channel))
+                self._manager.register(
+                    Registry.lookup_subtype(Subtype.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
+                )
             except ResourceNotFoundError:
                 pass
-        with self._lock:
-            self._resource_names = resource_names
-            if manager.resources != self._manager.resources:
-                self._manager = manager
 
     async def _refresh_every(self, interval: int):
         while True:
@@ -236,6 +262,7 @@ class RobotClient:
                         f" Attempting to reconnect to {self._address} every {reconnect_every} second{'s' if reconnect_every != 1 else ''}"
                     )
                 LOGGER.error(msg, exc_info=connection_error)
+                self._close_channel()
                 self._connected = False
 
             if reconnect_every <= 0:
@@ -244,6 +271,14 @@ class RobotClient:
             while not self._connected:
                 try:
                     channel = await dial(self._address, self._options.dial_options)
+
+                    client: RobotServiceStub
+                    if isinstance(channel, Channel):
+                        client = RobotServiceStub(channel)
+                    else:
+                        client = RobotServiceStub(channel.channel)
+                    _: ResourceNamesResponse = await client.ResourceNames(ResourceNamesRequest())
+
                     if isinstance(channel, Channel):
                         self._channel = channel
                         self._viam_channel = None
@@ -257,6 +292,7 @@ class RobotClient:
                     LOGGER.debug("Successfully reconnected robot")
                 except Exception as e:
                     LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}sec", exc_info=e)
+                    self._close_channel()
                     await asyncio.sleep(reconnect_every)
 
     def get_component(self, name: ResourceName) -> ComponentBase:
@@ -364,6 +400,15 @@ class RobotClient:
         with self._lock:
             return [r for r in self._resource_names]
 
+    def _close_channel(self, *, tab_count=0):
+        tabs = "".join(["\t" for _ in range(tab_count)])
+        if self._viam_channel is not None:
+            LOGGER.debug(f"{tabs} Closing ViamChannel instance")
+            self._viam_channel.close()
+        else:
+            LOGGER.debug(f"{tabs} Closing grpc-lib Channel instance")
+            self._channel.close()
+
     async def close(self):
         """
         Cleanly close the underlying connections and stop any periodic tasks
@@ -388,12 +433,7 @@ class RobotClient:
 
         if self._should_close_channel:
             LOGGER.debug("Closing gRPC channel to remote robot")
-            if self._viam_channel is not None:
-                LOGGER.debug("\tClosing ViamChannel instance")
-                self._viam_channel.close()
-            else:
-                LOGGER.debug("\tClosing grpc-lib Channel instance")
-                self._channel.close()
+            self._close_channel(tab_count=1)
 
         self._closed = True
 

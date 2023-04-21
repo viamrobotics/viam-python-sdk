@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Dict, List, Optional, Final
+from typing import Any, Dict, Final, List, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 

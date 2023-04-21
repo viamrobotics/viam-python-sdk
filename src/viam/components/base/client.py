@@ -13,12 +13,13 @@ from viam.proto.component.base import (
     SpinRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from . import Base, Vector3
 
 
-class BaseClient(Base):
+class BaseClient(Base, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Base component.
     """

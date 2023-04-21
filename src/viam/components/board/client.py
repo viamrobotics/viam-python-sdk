@@ -1,10 +1,9 @@
 from datetime import timedelta
 from multiprocessing import Queue
-from typing import Any, Dict, Mapping, List, Optional
-
-from grpclib.client import Channel
+from typing import Any, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
+from grpclib.client import Channel
 
 from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.board import (
@@ -21,13 +20,14 @@ from viam.proto.component.board import (
     ReadAnalogReaderRequest,
     ReadAnalogReaderResponse,
     SetGPIORequest,
+    SetPowerModeRequest,
     SetPWMFrequencyRequest,
     SetPWMRequest,
-    SetPowerModeRequest,
     StatusRequest,
     StatusResponse,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .board import Board, PostProcessor
 
@@ -112,7 +112,7 @@ class GPIOPinClient(Board.GPIOPin):
         await self.board.client.SetPWMFrequency(request, timeout=timeout)
 
 
-class BoardClient(Board):
+class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Board component.
     """
@@ -164,12 +164,13 @@ class BoardClient(Board):
 
     async def set_power_mode(
         self,
-        mode: PowerMode,
+        mode: PowerMode.ValueType,
         duration: Optional[timedelta] = None,
         *,
         timeout: Optional[float] = None,
     ):
-        if duration:
-            duration = [(d, d.FromTimedelta(duration)) for d in [Duration()]][0][0]
-        request = SetPowerModeRequest(name=self.name, power_mode=mode, duration=duration)
+        duration_pb: Optional[Duration] = None
+        if duration is not None:
+            duration_pb = [(d, d.FromTimedelta(duration)) for d in [Duration()]][0][0]
+        request = SetPowerModeRequest(name=self.name, power_mode=mode, duration=duration_pb)
         await self.client.SetPowerMode(request, timeout=timeout)

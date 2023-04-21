@@ -172,7 +172,12 @@ class BoardService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await board.set_power_mode(mode=request.power_mode, duration=request.duration, timeout=timeout, metadata=stream.metadata)
+        await board.set_power_mode(
+            mode=request.power_mode,
+            duration=request.duration.ToTimedelta(),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = SetPowerModeResponse()
         await stream.send_message(response)
 

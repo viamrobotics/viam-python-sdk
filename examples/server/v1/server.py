@@ -13,6 +13,7 @@ from .components import (
     ExampleBoard,
     ExampleCamera,
     ExampleDigitalInterrupt,
+    ExampleEncoder,
     ExampleGantry,
     ExampleGPIOPin,
     ExampleGripper,
@@ -42,6 +43,7 @@ async def run(host: str, port: int, log_level: int):
         },
     )
     my_camera = ExampleCamera("camera0")
+    my_encoder = ExampleEncoder("encoder0")
     my_gantry = ExampleGantry("gantry0", [1, 2, 3], [4, 5, 6])
     my_gripper = ExampleGripper("gripper0")
     my_motor = ExampleMotor("motor0")
@@ -73,6 +75,7 @@ async def run(host: str, port: int, log_level: int):
             my_base,
             my_board,
             my_camera,
+            my_encoder,
             my_gantry,
             my_gripper,
             my_motor,

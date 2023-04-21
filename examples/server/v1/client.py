@@ -5,6 +5,7 @@ from PIL.Image import Image
 from viam.components.arm import Arm, Pose
 from viam.components.base import Base, Vector3
 from viam.components.camera import Camera
+from viam.components.encoder import Encoder
 from viam.components.motor import Motor
 from viam.media.video import CameraMimeType
 from viam.robot.client import RobotClient
@@ -38,6 +39,10 @@ async def client():
         img.show()
         await asyncio.sleep(1)
         img.close()
+
+        print("\n#### ENCODER ####")
+        encoder = Encoder.from_robot(robot, "encoder0")
+        await encoder.get_position()
 
         print("\n#### MOTOR ####")
         motor = Motor.from_robot(robot, "motor0")

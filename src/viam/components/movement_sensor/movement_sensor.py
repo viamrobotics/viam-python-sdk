@@ -3,6 +3,7 @@ import asyncio
 from dataclasses import dataclass
 from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
 from typing_extensions import Self
+
 from grpclib import GRPCError
 
 from viam.errors import MethodNotImplementedError, NotSupportedError

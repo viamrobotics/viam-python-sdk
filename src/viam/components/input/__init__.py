@@ -1,6 +1,6 @@
 from viam.proto.component.inputcontroller import Status as InputStatus
 from viam.proto.robot import Status
-from viam.resource.registry import ResourceRegistration, Registry
+from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
 
 from .client import ControllerClient
