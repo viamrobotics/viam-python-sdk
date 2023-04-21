@@ -100,12 +100,13 @@
     <span class="n">ServoServiceStub</span><span class="p">,</span>
     <span class="n">StopRequest</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span><span class="p">,</span> <span class="n">ValueTypes</span>
+<span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.servo</span> <span class="kn">import</span> <span class="n">Servo</span>
 
 
-<div class="viewcode-block" id="ServoClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/client/index.html#viam.components.servo.client.ServoClient">[docs]</a><span class="k">class</span> <span class="nc">ServoClient</span><span class="p">(</span><span class="n">Servo</span><span class="p">):</span>
+<div class="viewcode-block" id="ServoClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/client/index.html#viam.components.servo.client.ServoClient">[docs]</a><span class="k">class</span> <span class="nc">ServoClient</span><span class="p">(</span><span class="n">Servo</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gRPC client for the Servo component.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

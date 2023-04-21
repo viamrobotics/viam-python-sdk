@@ -88,7 +88,7 @@
   <h1>Source code for viam.robot.client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Lock</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">RLock</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
@@ -122,8 +122,10 @@
     <span class="n">TransformPoseRequest</span><span class="p">,</span>
     <span class="n">TransformPoseResponse</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
+<span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">,</span> <span class="n">ResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">,</span> <span class="n">dial</span>
 <span class="kn">from</span> <span class="nn">viam.services.service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
@@ -227,7 +229,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span> <span class="o">=</span> <span class="n">ResourceManager</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">RLock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_should_close_channel</span> <span class="o">=</span> <span class="n">close_channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span>
@@ -255,7 +257,7 @@
 
     <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">_viam_channel</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ViamChannel</span><span class="p">]</span>
-    <span class="n">_lock</span><span class="p">:</span> <span class="n">Lock</span>
+    <span class="n">_lock</span><span class="p">:</span> <span class="n">RLock</span>
     <span class="n">_manager</span><span class="p">:</span> <span class="n">ResourceManager</span>
     <span class="n">_client</span><span class="p">:</span> <span class="n">RobotServiceStub</span>
     <span class="n">_connected</span><span class="p">:</span> <span class="nb">bool</span>
@@ -273,22 +275,46 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ResourceNamesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">ResourceNames</span><span class="p">(</span><span class="n">ResourceNamesRequest</span><span class="p">())</span>
         <span class="n">resource_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">resources</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">resource_names</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="n">manager</span> <span class="o">=</span> <span class="n">ResourceManager</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">rname</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">]:</span>
-                <span class="k">continue</span>
-            <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">subtype</span> <span class="o">==</span> <span class="s2">&quot;remote&quot;</span><span class="p">:</span>
-                <span class="k">continue</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">resource_names</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">for</span> <span class="n">rname</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">]:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">subtype</span> <span class="o">==</span> <span class="s2">&quot;remote&quot;</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">_create_or_reset_client</span><span class="p">(</span><span class="n">rname</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">rname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_names</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">rname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rname</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="o">=</span> <span class="n">resource_names</span></div>
+
+    <span class="k">def</span> <span class="nf">_create_or_reset_client</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resourceName</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">resourceName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">ResourceBase</span><span class="p">,</span> <span class="n">resourceName</span><span class="p">)</span>
+
+            <span class="c1"># If the channel hasn&#39;t changed, we don&#39;t need to do anything for existing clients</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">ResourceRPCClientBase</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s2">&quot;channel&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s2">&quot;channel&quot;</span><span class="p">),</span> <span class="n">Channel</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="ow">is</span> <span class="n">res</span><span class="o">.</span><span class="n">channel</span><span class="p">:</span>  <span class="c1"># type: ignore</span>
+                    <span class="k">return</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">resourceName</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+                    <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_subtype</span><span class="p">(</span><span class="n">Subtype</span><span class="o">.</span><span class="n">from_resource_name</span><span class="p">(</span><span class="n">resourceName</span><span class="p">))</span><span class="o">.</span><span class="n">create_rpc_client</span><span class="p">(</span><span class="n">resourceName</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
+                <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">manager</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Registry</span><span class="o">.</span><span class="n">lookup_subtype</span><span class="p">(</span><span class="n">Subtype</span><span class="o">.</span><span class="n">from_resource_name</span><span class="p">(</span><span class="n">rname</span><span class="p">))</span><span class="o">.</span><span class="n">create_rpc_client</span><span class="p">(</span><span class="n">rname</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+                    <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_subtype</span><span class="p">(</span><span class="n">Subtype</span><span class="o">.</span><span class="n">from_resource_name</span><span class="p">(</span><span class="n">resourceName</span><span class="p">))</span><span class="o">.</span><span class="n">create_rpc_client</span><span class="p">(</span><span class="n">resourceName</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
+                <span class="p">)</span>
             <span class="k">except</span> <span class="n">ResourceNotFoundError</span><span class="p">:</span>
                 <span class="k">pass</span>
-        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="o">=</span> <span class="n">resource_names</span>
-            <span class="k">if</span> <span class="n">manager</span><span class="o">.</span><span class="n">resources</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span> <span class="o">=</span> <span class="n">manager</span></div>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_refresh_every</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interval</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -324,6 +350,7 @@
                         <span class="sa">f</span><span class="s2">&quot; Attempting to reconnect to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="si">}</span><span class="s2"> every </span><span class="si">{</span><span class="n">reconnect_every</span><span class="si">}</span><span class="s2"> second</span><span class="si">{</span><span class="s1">&#39;s&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">reconnect_every</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
                     <span class="p">)</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">connection_error</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_close_channel</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">False</span>
 
             <span class="k">if</span> <span class="n">reconnect_every</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
@@ -332,6 +359,14 @@
             <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">dial_options</span><span class="p">)</span>
+
+                    <span class="n">client</span><span class="p">:</span> <span class="n">RobotServiceStub</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">Channel</span><span class="p">):</span>
+                        <span class="n">client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">channel</span><span class="p">)</span>
+                    <span class="n">_</span><span class="p">:</span> <span class="n">ResourceNamesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">ResourceNames</span><span class="p">(</span><span class="n">ResourceNamesRequest</span><span class="p">())</span>
+
                     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">Channel</span><span class="p">):</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_viam_channel</span> <span class="o">=</span> <span class="kc">None</span>
@@ -345,6 +380,7 @@
                     <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Successfully reconnected robot&quot;</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                     <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to reconnect, trying again in </span><span class="si">{</span><span class="n">reconnect_every</span><span class="si">}</span><span class="s2">sec&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_close_channel</span><span class="p">()</span>
                     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">reconnect_every</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RobotClient.get_component"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_component">[docs]</a>    <span class="k">def</span> <span class="nf">get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>
@@ -452,6 +488,15 @@
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span><span class="p">]</span>
 
+    <span class="k">def</span> <span class="nf">_close_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">tab_count</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">tabs</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tab_count</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_viam_channel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tabs</span><span class="si">}</span><span class="s2"> Closing ViamChannel instance&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_viam_channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tabs</span><span class="si">}</span><span class="s2"> Closing grpc-lib Channel instance&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
 <div class="viewcode-block" id="RobotClient.close"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cleanly close the underlying connections and stop any periodic tasks</span>
@@ -476,12 +521,7 @@
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_should_close_channel</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing gRPC channel to remote robot&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_viam_channel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Closing ViamChannel instance&quot;</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_viam_channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Closing grpc-lib Channel instance&quot;</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_close_channel</span><span class="p">(</span><span class="n">tab_count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span> <span class="o">=</span> <span class="kc">True</span></div>
 

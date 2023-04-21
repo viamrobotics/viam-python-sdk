@@ -87,8 +87,10 @@
              
   <h1>Source code for viam.media.viam_rgba_plugin</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">PIL.ImageFile</span> <span class="kn">import</span> <span class="n">ImageFile</span><span class="p">,</span> <span class="n">PyEncoder</span><span class="p">,</span> <span class="n">PyDecoder</span><span class="p">,</span> <span class="n">_save</span> <span class="k">as</span> <span class="n">image_save</span><span class="p">,</span> <span class="n">_safe_read</span>
+<span class="kn">from</span> <span class="nn">PIL.ImageFile</span> <span class="kn">import</span> <span class="n">ImageFile</span><span class="p">,</span> <span class="n">PyDecoder</span><span class="p">,</span> <span class="n">PyEncoder</span><span class="p">,</span> <span class="n">_safe_read</span>
+<span class="kn">from</span> <span class="nn">PIL.ImageFile</span> <span class="kn">import</span> <span class="n">_save</span> <span class="k">as</span> <span class="n">image_save</span>
 
 <span class="c1"># Viam uses a special header prepended to raw RGBA data. The header is composed of a</span>
 <span class="c1"># 4-byte magic number followed by a 4-byte line of the width as a uint32 number</span>

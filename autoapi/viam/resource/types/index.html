@@ -62,6 +62,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.manager</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../registry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.registry</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rpc_client_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rpc_service_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base</span></code></a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.types</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
@@ -107,45 +108,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.resource_name_from_string"><code class="docutils literal notranslate"><span class="pre">resource_name_from_string()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.ResourceCreator"><code class="docutils literal notranslate"><span class="pre">ResourceCreator</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.Validator"><code class="docutils literal notranslate"><span class="pre">Validator</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.RESOURCE_NAMESPACE_RDK">RESOURCE_NAMESPACE_RDK</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.RESOURCE_TYPE_COMPONENT">RESOURCE_TYPE_COMPONENT</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.RESOURCE_TYPE_SERVICE">RESOURCE_TYPE_SERVICE</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.Subtype">Subtype</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.namespace">namespace</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.resource_type">resource_type</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.resource_subtype">resource_subtype</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.__str__">__str__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.__repr__">__repr__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.__hash__">__hash__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.__eq__">__eq__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.from_resource_name">from_resource_name</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Subtype.from_string">from_string</a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.ModelFamily">ModelFamily</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.ModelFamily.namespace">namespace</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.ModelFamily.family">family</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.ModelFamily.DEFAULT_FAMILY_NAME">DEFAULT_FAMILY_NAME</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.ModelFamily.DEFAULT">DEFAULT</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.ModelFamily.__str__">__str__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.ModelFamily.__repr__">__repr__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.ModelFamily.__hash__">__hash__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.ModelFamily.__eq__">__eq__</a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.Model">Model</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Model.model_family">model_family</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Model.name">name</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Model.__str__">__str__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Model.__repr__">__repr__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Model.__hash__">__hash__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Model.__eq__">__eq__</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.types.Model.from_string">from_string</a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.resource_name_from_string">resource_name_from_string</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.ResourceCreator">ResourceCreator</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.types.Validator">Validator</a></li>
 </ul>
 </li>
 </ul>

@@ -95,7 +95,6 @@
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">NotSupportedError</span><span class="p">,</span> <span class="n">ResourceNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.gen.component.audioinput.v1.audioinput_pb2</span> <span class="kn">import</span> <span class="n">SampleFormat</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.audioinput</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AudioInputServiceBase</span><span class="p">,</span>
@@ -104,6 +103,7 @@
     <span class="n">PropertiesRequest</span><span class="p">,</span>
     <span class="n">PropertiesResponse</span><span class="p">,</span>
     <span class="n">RecordRequest</span><span class="p">,</span>
+    <span class="n">SampleFormat</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>

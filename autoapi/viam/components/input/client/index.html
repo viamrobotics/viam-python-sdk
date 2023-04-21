@@ -76,17 +76,9 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.get_controls"><code class="docutils literal notranslate"><span class="pre">ControllerClient.get_controls()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.get_events"><code class="docutils literal notranslate"><span class="pre">ControllerClient.get_events()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.register_control_callback"><code class="docutils literal notranslate"><span class="pre">ControllerClient.register_control_callback()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.reset_channel"><code class="docutils literal notranslate"><span class="pre">ControllerClient.reset_channel()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.trigger_event"><code class="docutils literal notranslate"><span class="pre">ControllerClient.trigger_event()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.do_command"><code class="docutils literal notranslate"><span class="pre">ControllerClient.do_command()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.input.client.LOGGER">LOGGER</a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.input.client.ControllerClient">ControllerClient</a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.get_controls">get_controls</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.get_events">get_events</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.register_control_callback">register_control_callback</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.trigger_event">trigger_event</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.input.client.ControllerClient.do_command">do_command</a></li>
 </ul>
 </li>
 </ul>
@@ -222,6 +214,17 @@ trigger the function</p></li>
 <li><p><strong>function</strong> (<em>ControlFunction</em>) – The function to run on
 specific triggers</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.client.ControllerClient.reset_channel">
+<span class="sig-name descname"><span class="pre">reset_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/input/client.html#ControllerClient.reset_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.client.ControllerClient.reset_channel" title="Permalink to this definition"></a></dt>
+<dd><p>Called when the RPC channel was reset. Passes in the new channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel</strong> (<em>Channel</em>) – The new RPC Channel</p>
 </dd>
 </dl>
 </dd></dl>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>viam.resource.rpc_service_base &mdash; Viam Python SDK  documentation</title>
+  <title>viam.resource.rpc_client_base &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -22,8 +22,8 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="viam.resource.types" href="../types/index.html" />
-    <link rel="prev" title="viam.resource.rpc_client_base" href="../rpc_client_base/index.html" /> 
+    <link rel="next" title="viam.resource.rpc_service_base" href="../rpc_service_base/index.html" />
+    <link rel="prev" title="viam.resource.registry" href="../registry/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,14 +62,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../manager/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.manager</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../registry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.registry</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="../rpc_client_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base</span></code></a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base</span></code></a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase.RESOURCE_TYPE"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.RESOURCE_TYPE</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase.manager"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.manager</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase.get_resource"><code class="docutils literal notranslate"><span class="pre">ResourceRPCServiceBase.get_resource()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.channel"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.channel</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.client"><code class="docutils literal notranslate"><span class="pre">ResourceRPCClientBase.client</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase"><code class="docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel"><code class="docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase.reset_channel()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -78,6 +80,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../rpc_service_base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../types/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.types</span></code></a></li>
 </ul>
 </li>
@@ -104,9 +107,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
-      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base</span></code></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base</span></code></li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../../_sources/autoapi/viam/resource/rpc_service_base/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../_sources/autoapi/viam/resource/rpc_client_base/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -114,52 +117,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-viam.resource.rpc_service_base">
-<span id="viam-resource-rpc-service-base"></span><h1><a class="reference internal" href="#module-viam.resource.rpc_service_base" title="viam.resource.rpc_service_base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base</span></code></a><a class="headerlink" href="#module-viam.resource.rpc_service_base" title="Permalink to this heading"></a></h1>
+  <section id="module-viam.resource.rpc_client_base">
+<span id="viam-resource-rpc-client-base"></span><h1><a class="reference internal" href="#module-viam.resource.rpc_client_base" title="viam.resource.rpc_client_base"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base</span></code></a><a class="headerlink" href="#module-viam.resource.rpc_client_base" title="Permalink to this heading"></a></h1>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
 <section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase" title="viam.resource.rpc_service_base.ResourceRPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCServiceBase</span></code></a></p></td>
-<td><p>Base RPC service for a resource.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase" title="viam.resource.rpc_client_base.ResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCClientBase</span></code></a></p></td>
+<td><p>Base RPC client for a resource.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase" title="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ReconfigurableResourceRPCClientBase</span></code></a></p></td>
+<td><p>A base RPC client that can reset its channel.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.resource.rpc_service_base.ResourceRPCServiceBase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.rpc_service_base.</span></span><span class="sig-name descname"><span class="pre">ResourceRPCServiceBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_service_base.html#ResourceRPCServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase" title="Permalink to this definition"></a></dt>
-<dd><p>Base RPC service for a resource.
-All resource RPC services must inherit from this class.</p>
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.rpc_client_base.</span></span><span class="sig-name descname"><span class="pre">ResourceRPCClientBase</span></span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ResourceRPCClientBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase" title="Permalink to this definition"></a></dt>
+<dd><p>Base RPC client for a resource.
+Resource RPC clients must inherit from this class</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.rpc_service_base.ResourceRPCServiceBase.RESOURCE_TYPE">
-<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">grpclib.client.Channel</span></em><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.channel" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.resource.rpc_service_base.ResourceRPCServiceBase.manager">
-<span class="sig-name descname"><span class="pre">manager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></em><a class="headerlink" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase.manager" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.client">
+<span class="sig-name descname"><span class="pre">client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase.client" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.rpc_client_base.</span></span><span class="sig-name descname"><span class="pre">ReconfigurableResourceRPCClientBase</span></span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase" title="Permalink to this definition"></a></dt>
+<dd><p>A base RPC client that can reset its channel.</p>
+<p>Useful if connection is lost and then regained.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.resource.rpc_service_base.ResourceRPCServiceBase.get_resource">
-<span class="sig-name descname"><span class="pre">get_resource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.resource.manager.ResourceType</span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_service_base.html#ResourceRPCServiceBase.get_resource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_service_base.ResourceRPCServiceBase.get_resource" title="Permalink to this definition"></a></dt>
-<dd><p>Return the resource with the given name if it exists in the registry.
-If the resource does not exist in the registry,
-this function will raise an error</p>
+<dt class="sig sig-object py" id="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel">
+<span class="sig-name descname"><span class="pre">reset_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase.reset_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel" title="Permalink to this definition"></a></dt>
+<dd><p>Called when the RPC channel was reset. Passes in the new channel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the resource</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="../../errors/index.html#viam.errors.ResourceNotFoundError" title="viam.errors.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – </p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resource</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>ResourceType</p>
+<dd class="field-odd"><p><strong>channel</strong> (<em>Channel</em>) – The new RPC Channel</p>
 </dd>
 </dl>
 </dd></dl>
@@ -174,8 +176,8 @@ this function will raise an error</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../rpc_client_base/index.html" class="btn btn-neutral float-left" title="viam.resource.rpc_client_base" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../types/index.html" class="btn btn-neutral float-right" title="viam.resource.types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../registry/index.html" class="btn btn-neutral float-left" title="viam.resource.registry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../rpc_service_base/index.html" class="btn btn-neutral float-right" title="viam.resource.rpc_service_base" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

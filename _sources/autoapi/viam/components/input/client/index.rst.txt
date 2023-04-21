@@ -69,6 +69,14 @@ Attributes
       :type function: ControlFunction
 
 
+   .. py:method:: reset_channel(channel: grpclib.client.Channel)
+
+      Called when the RPC channel was reset. Passes in the new channel.
+
+      :param channel: The new RPC Channel
+      :type channel: Channel
+
+
    .. py:method:: trigger_event(event: viam.components.input.input.Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 

@@ -91,7 +91,7 @@
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.movement_sensor.movement_sensor</span> <span class="kn">import</span> <span class="n">MovementSensor</span>
-<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">Orientation</span><span class="p">,</span> <span class="n">Vector3</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">DoCommandRequest</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">Orientation</span><span class="p">,</span> <span class="n">Vector3</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.movementsensor</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetAccuracyRequest</span><span class="p">,</span>
     <span class="n">GetAccuracyResponse</span><span class="p">,</span>
@@ -111,10 +111,11 @@
     <span class="n">GetPropertiesResponse</span><span class="p">,</span>
     <span class="n">MovementSensorServiceStub</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span><span class="p">,</span> <span class="n">ValueTypes</span>
+<span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 
-<div class="viewcode-block" id="MovementSensorClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient">[docs]</a><span class="k">class</span> <span class="nc">MovementSensorClient</span><span class="p">(</span><span class="n">MovementSensor</span><span class="p">):</span>
+<div class="viewcode-block" id="MovementSensorClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/client/index.html#viam.components.movement_sensor.client.MovementSensorClient">[docs]</a><span class="k">class</span> <span class="nc">MovementSensorClient</span><span class="p">(</span><span class="n">MovementSensor</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for the MovementSensor component.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>

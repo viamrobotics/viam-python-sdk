@@ -96,17 +96,16 @@
 
 
 <div class="viewcode-block" id="Motor"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor">[docs]</a><span class="k">class</span> <span class="nc">Motor</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
-<div class="viewcode-block" id="Motor.Properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor.Properties">[docs]</a>    <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">Properties</span><span class="p">:</span>
-        <span class="n">position_reporting</span><span class="p">:</span> <span class="nb">bool</span></div>
-
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Motor represents a physical motor.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Motor represents a physical motor.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    motor implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
 <span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Motor.Properties"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/motor/index.html#viam.components.motor.Motor.Properties">[docs]</a>    <span class="nd">@dataclass</span>
+    <span class="k">class</span> <span class="nc">Properties</span><span class="p">:</span>
+        <span class="n">position_reporting</span><span class="p">:</span> <span class="nb">bool</span></div>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;motor&quot;</span><span class="p">)</span>
 

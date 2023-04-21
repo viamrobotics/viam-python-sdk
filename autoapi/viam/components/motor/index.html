@@ -89,24 +89,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.get_properties"><code class="docutils literal notranslate"><span class="pre">Motor.get_properties()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.stop"><code class="docutils literal notranslate"><span class="pre">Motor.stop()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.is_powered"><code class="docutils literal notranslate"><span class="pre">Motor.is_powered()</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.is_moving"><code class="docutils literal notranslate"><span class="pre">Motor.is_moving()</span></code></a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.motor.Motor.Properties.position_reporting">position_reporting</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.motor.Motor">Motor</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.Properties">Properties</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.SUBTYPE">SUBTYPE</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.set_power">set_power</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.go_for">go_for</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.go_to">go_to</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.reset_zero_position">reset_zero_position</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.get_position">get_position</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.get_properties">get_properties</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.stop">stop</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.is_powered">is_powered</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.is_moving">is_moving</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.motor.Motor.is_moving"><code class="docutils literal notranslate"><span class="pre">Motor.is_moving()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -177,15 +160,17 @@
 <table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.motor.Motor" title="viam.components.motor.Motor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Motor</span></code></a></p></td>
-<td><p>Base component.</p></td>
+<td><p>Motor represents a physical motor.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.motor.Motor">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.motor.</span></span><span class="sig-name descname"><span class="pre">Motor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/motor/motor.html#Motor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.Motor" title="Permalink to this definition"></a></dt>
-<dd><p>Base component.
-All components must inherit from this class.</p>
+<dd><p>Motor represents a physical motor.</p>
+<p>This acts as an abstract base class for any drivers representing specific
+motor implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
+overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.motor.Motor.Properties">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Properties</span></span><a class="reference internal" href="../../../../_modules/viam/components/motor/motor.html#Motor.Properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.Motor.Properties" title="Permalink to this definition"></a></dt>

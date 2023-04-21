@@ -93,10 +93,10 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
-<span class="kn">from</span> <span class="nn">viam.media.viam_rgba_plugin</span> <span class="kn">import</span> <span class="n">Image</span>
 
+<span class="kn">from</span> <span class="nn">viam.media.viam_rgba_plugin</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span><span class="p">,</span> <span class="n">RawImage</span>
-<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">PointCloudObject</span><span class="p">,</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">PointCloudObject</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.vision</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">AddClassifierRequest</span><span class="p">,</span>
     <span class="n">AddDetectorRequest</span><span class="p">,</span>
@@ -126,9 +126,10 @@
     <span class="n">RemoveSegmenterRequest</span><span class="p">,</span>
     <span class="n">VisionServiceStub</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 <span class="kn">from</span> <span class="nn">viam.services.service_client_base</span> <span class="kn">import</span> <span class="n">ServiceClientBase</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span><span class="p">,</span> <span class="n">ValueTypes</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 
 <div class="viewcode-block" id="VisModelType"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisModelType">[docs]</a><span class="k">class</span> <span class="nc">VisModelType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
@@ -148,7 +149,7 @@
     <span class="n">parameters</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="VisionServiceClient"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionServiceClient">[docs]</a><span class="k">class</span> <span class="nc">VisionServiceClient</span><span class="p">(</span><span class="n">ServiceClientBase</span><span class="p">):</span>
+<div class="viewcode-block" id="VisionServiceClient"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionServiceClient">[docs]</a><span class="k">class</span> <span class="nc">VisionServiceClient</span><span class="p">(</span><span class="n">ServiceClientBase</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Connect to the Vision service, which allows you to access various computer vision algorithms</span>
 <span class="sd">    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.</span>
@@ -157,8 +158,8 @@
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;vision&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">VisionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
 <div class="viewcode-block" id="VisionServiceClient.get_detector_names"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionServiceClient.get_detector_names">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detector_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the list of detectors currently registered in the service.</span>

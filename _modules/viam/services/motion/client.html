@@ -90,14 +90,7 @@
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">DoCommandRequest</span><span class="p">,</span>
-    <span class="n">DoCommandResponse</span><span class="p">,</span>
-    <span class="n">PoseInFrame</span><span class="p">,</span>
-    <span class="n">ResourceName</span><span class="p">,</span>
-    <span class="n">Transform</span><span class="p">,</span>
-    <span class="n">WorldState</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">WorldState</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.motion</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Constraints</span><span class="p">,</span>
     <span class="n">GetPoseRequest</span><span class="p">,</span>
@@ -108,12 +101,13 @@
     <span class="n">MoveSingleComponentRequest</span><span class="p">,</span>
     <span class="n">MoveSingleComponentResponse</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 <span class="kn">from</span> <span class="nn">viam.services.service_client_base</span> <span class="kn">import</span> <span class="n">ServiceClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 
-<div class="viewcode-block" id="MotionServiceClient"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionServiceClient">[docs]</a><span class="k">class</span> <span class="nc">MotionServiceClient</span><span class="p">(</span><span class="n">ServiceClientBase</span><span class="p">):</span>
+<div class="viewcode-block" id="MotionServiceClient"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionServiceClient">[docs]</a><span class="k">class</span> <span class="nc">MotionServiceClient</span><span class="p">(</span><span class="n">ServiceClientBase</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</span>
 
 <span class="sd">    The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the</span>
@@ -123,8 +117,8 @@
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;motion&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">MotionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
 <div class="viewcode-block" id="MotionServiceClient.move"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionServiceClient.move">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

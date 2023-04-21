@@ -64,14 +64,9 @@
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.SUBTYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.channel"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.channel</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.from_robot"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.from_robot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.do_command"><code class="docutils literal notranslate"><span class="pre">ServiceClientBase.do_command()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase">ServiceClientBase</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.SUBTYPE">SUBTYPE</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.from_robot">from_robot</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.service_client_base.ServiceClientBase.do_command">do_command</a></li>
 </ul>
 </li>
 </ul>
@@ -138,6 +133,11 @@ All service clients must inherit from this class.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.service_client_base.ServiceClientBase.SUBTYPE">
 <span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">viam.resource.base.Subtype</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.service_client_base.ServiceClientBase.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.service_client_base.ServiceClientBase.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">grpclib.client.Channel</span></em><a class="headerlink" href="#viam.services.service_client_base.ServiceClientBase.channel" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

@@ -90,18 +90,15 @@
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span>
-<span class="kn">from</span> <span class="nn">viam.proto.component.posetracker</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">GetPosesRequest</span><span class="p">,</span>
-    <span class="n">GetPosesResponse</span><span class="p">,</span>
-    <span class="n">PoseTrackerServiceStub</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span><span class="p">,</span> <span class="n">ValueTypes</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">PoseInFrame</span>
+<span class="kn">from</span> <span class="nn">viam.proto.component.posetracker</span> <span class="kn">import</span> <span class="n">GetPosesRequest</span><span class="p">,</span> <span class="n">GetPosesResponse</span><span class="p">,</span> <span class="n">PoseTrackerServiceStub</span>
+<span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.pose_tracker</span> <span class="kn">import</span> <span class="n">PoseTracker</span>
 
 
-<div class="viewcode-block" id="PoseTrackerClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/pose_tracker/client/index.html#viam.components.pose_tracker.client.PoseTrackerClient">[docs]</a><span class="k">class</span> <span class="nc">PoseTrackerClient</span><span class="p">(</span><span class="n">PoseTracker</span><span class="p">):</span>
+<div class="viewcode-block" id="PoseTrackerClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/pose_tracker/client/index.html#viam.components.pose_tracker.client.PoseTrackerClient">[docs]</a><span class="k">class</span> <span class="nc">PoseTrackerClient</span><span class="p">(</span><span class="n">PoseTracker</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gRPC client for the PoseTracker component.</span>
 <span class="sd">    &quot;&quot;&quot;</span>

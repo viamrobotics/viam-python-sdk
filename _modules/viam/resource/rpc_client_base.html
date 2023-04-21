@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>viam.rpc.signaling &mdash; Viam Python SDK  documentation</title>
+  <title>viam.resource.rpc_client_base &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -76,7 +76,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">viam.rpc.signaling</li>
+      <li class="breadcrumb-item active">viam.resource.rpc_client_base</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -85,36 +85,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for viam.rpc.signaling</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">grpclib.const</span> <span class="kn">import</span> <span class="n">Status</span>
-<span class="kn">from</span> <span class="nn">grpclib.exceptions</span> <span class="kn">import</span> <span class="n">GRPCError</span>
-<span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
+  <h1>Source code for viam.resource.rpc_client_base</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">runtime_checkable</span>
 
-<span class="kn">from</span> <span class="nn">viam.proto.rpc.webrtc.signaling</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">AnswerRequest</span><span class="p">,</span>
-    <span class="n">AnswerResponse</span><span class="p">,</span>
-    <span class="n">CallRequest</span><span class="p">,</span>
-    <span class="n">CallResponse</span><span class="p">,</span>
-    <span class="n">CallUpdateRequest</span><span class="p">,</span>
-    <span class="n">CallUpdateResponse</span><span class="p">,</span>
-    <span class="n">OptionalWebRTCConfigRequest</span><span class="p">,</span>
-    <span class="n">OptionalWebRTCConfigResponse</span><span class="p">,</span>
-    <span class="n">SignalingServiceBase</span><span class="p">,</span>
-<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+
+<span class="kn">from</span> <span class="nn">viam.rpc.types</span> <span class="kn">import</span> <span class="n">RPCServiceStubBase</span>
 
 
-<div class="viewcode-block" id="SignalingService"><a class="viewcode-back" href="../../../autoapi/viam/rpc/signaling/index.html#viam.rpc.signaling.SignalingService">[docs]</a><span class="k">class</span> <span class="nc">SignalingService</span><span class="p">(</span><span class="n">SignalingServiceBase</span><span class="p">):</span>
-<div class="viewcode-block" id="SignalingService.Call"><a class="viewcode-back" href="../../../autoapi/viam/rpc/signaling/index.html#viam.rpc.signaling.SignalingService.Call">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">CallRequest</span><span class="p">,</span> <span class="n">CallResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span> <span class="s2">&quot;SignalingService is unimplemented&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="ResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ResourceRPCClientBase">[docs]</a><span class="nd">@runtime_checkable</span>
+<span class="k">class</span> <span class="nc">ResourceRPCClientBase</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base RPC client for a resource.</span>
+<span class="sd">    Resource RPC clients must inherit from this class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SignalingService.CallUpdate"><a class="viewcode-back" href="../../../autoapi/viam/rpc/signaling/index.html#viam.rpc.signaling.SignalingService.CallUpdate">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">CallUpdate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">CallUpdateRequest</span><span class="p">,</span> <span class="n">CallUpdateResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span> <span class="s2">&quot;SignalingService is unimplemented&quot;</span><span class="p">)</span></div>
+    <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">Any</span></div>
 
-<div class="viewcode-block" id="SignalingService.Answer"><a class="viewcode-back" href="../../../autoapi/viam/rpc/signaling/index.html#viam.rpc.signaling.SignalingService.Answer">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">Answer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">AnswerResponse</span><span class="p">,</span> <span class="n">AnswerRequest</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span> <span class="s2">&quot;SignalingService is unimplemented&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SignalingService.OptionalWebRTCConfig"><a class="viewcode-back" href="../../../autoapi/viam/rpc/signaling/index.html#viam.rpc.signaling.SignalingService.OptionalWebRTCConfig">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">OptionalWebRTCConfig</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">OptionalWebRTCConfigRequest</span><span class="p">,</span> <span class="n">OptionalWebRTCConfigResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">GRPCError</span><span class="p">(</span><span class="n">Status</span><span class="o">.</span><span class="n">UNIMPLEMENTED</span><span class="p">,</span> <span class="s2">&quot;SignalingService is unimplemented&quot;</span><span class="p">)</span></div></div>
+<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase">[docs]</a><span class="k">class</span> <span class="nc">ReconfigurableResourceRPCClientBase</span><span class="p">(</span><span class="n">ResourceRPCClientBase</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A base RPC client that can reset its channel.</span>
+
+<span class="sd">    Useful if connection is lost and then regained.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ReconfigurableResourceRPCClientBase.reset_channel"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel">[docs]</a>    <span class="k">def</span> <span class="nf">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Called when the RPC channel was reset. Passes in the new channel.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel (Channel): The new RPC Channel</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">,</span> <span class="n">RPCServiceStubBase</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

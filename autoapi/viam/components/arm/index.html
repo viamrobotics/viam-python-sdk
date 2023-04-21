@@ -89,30 +89,6 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.theta"><code class="docutils literal notranslate"><span class="pre">Pose.theta</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Arm">Arm</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.SUBTYPE">SUBTYPE</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.get_end_position">get_end_position</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.move_to_position">move_to_position</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.move_to_joint_positions">move_to_joint_positions</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.get_joint_positions">get_joint_positions</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.stop">stop</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Arm.is_moving">is_moving</a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.JointPositions">JointPositions</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.JointPositions.values">values</a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.components.arm.Pose">Pose</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.x">x</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.y">y</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.z">z</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.o_x">o_x</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.o_y">o_y</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.o_z">o_z</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.components.arm.Pose.theta">theta</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -223,14 +199,10 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.arm.Arm.move_to_position">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">move_to_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.Pose" title="viam.proto.common.Pose"><span class="pre">viam.proto.common.Pose</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/arm/arm.html#Arm.move_to_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.arm.Arm.move_to_position" title="Permalink to this definition"></a></dt>
-<dd><p>Move the end of the arm to the Pose specified in <code class="docutils literal notranslate"><span class="pre">pose</span></code>.
-When obstacles are specified in <code class="docutils literal notranslate"><span class="pre">world_state</span></code>, the motion plan of the arm will avoid them.</p>
+<dd><p>Move the end of the arm to the Pose specified in <code class="docutils literal notranslate"><span class="pre">pose</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pose</strong> (<a class="reference internal" href="#viam.components.arm.Pose" title="viam.components.arm.Pose"><em>Pose</em></a>) – The destination Pose for the arm.</p></li>
-<li><p><strong>world_state</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.WorldState" title="viam.gen.common.v1.common_pb2.WorldState"><em>WorldState</em></a>) – The obstacles for the arm to avoid on its way to <code class="docutils literal notranslate"><span class="pre">pose</span></code>.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>pose</strong> (<a class="reference internal" href="#viam.components.arm.Pose" title="viam.components.arm.Pose"><em>Pose</em></a>) – The destination Pose for the arm.</p>
 </dd>
 </dl>
 </dd></dl>
