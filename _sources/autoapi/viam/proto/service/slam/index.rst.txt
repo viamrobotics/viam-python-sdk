@@ -131,7 +131,16 @@ Classes
       GetPointCloudMapResponse.point_cloud_pcd_chunk values in the
       order received result in the complete pointcloud in standard PCD
       format.
+
+      Read more about the pointcloud format here:
       https://pointclouds.org/documentation/tutorials/pcd_file_format.html
+
+      Viam expects pointcloud data with fields "x y z" or "x y z rgb", and for
+      this to be specified in the pointcloud header in the FIELDS entry. If color
+      data is included in the pointcloud, Viam's services assume that the color
+      value encodes a confidence score for that data point. Viam expects the
+      confidence score to be encoded in the blue parameter of the RGB value, on a
+      scale from 1-100.
 
 
 .. py:class:: GetPositionRequest(*, name: str = ...)
