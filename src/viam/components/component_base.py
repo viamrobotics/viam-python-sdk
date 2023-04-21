@@ -1,15 +1,5 @@
 import abc
-from typing import (
-    TYPE_CHECKING,
-    ClassVar,
-    List,
-    Mapping,
-    Optional,
-    SupportsBytes,
-    SupportsFloat,
-    Union,
-    cast,
-)
+from typing import TYPE_CHECKING, ClassVar, List, Mapping, Optional, SupportsBytes, SupportsFloat, Union, cast
 
 from typing_extensions import Self
 

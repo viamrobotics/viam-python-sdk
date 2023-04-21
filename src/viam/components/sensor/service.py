@@ -2,11 +2,7 @@ from grpclib.server import Stream
 
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
-from viam.proto.component.sensor import (
-    GetReadingsRequest,
-    GetReadingsResponse,
-    SensorServiceBase,
-)
+from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, sensor_readings_native_to_value, struct_to_dict
 

@@ -8,7 +8,7 @@
 ## (In)stability Notice
 
 > **Warning**
-> This is an beta release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
+> This is a beta release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
 
 ## Installation
 Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86, aarch64, armv6l) that you can install via pip

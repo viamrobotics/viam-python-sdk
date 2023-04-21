@@ -12,12 +12,13 @@ from viam.proto.component.servo import (
     ServoServiceStub,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .servo import Servo
 
 
-class ServoClient(Servo):
+class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Servo component.
     """

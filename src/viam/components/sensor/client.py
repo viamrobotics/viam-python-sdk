@@ -2,18 +2,15 @@ from typing import Any, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandResponse, DoCommandRequest
-from viam.proto.component.sensor import (
-    GetReadingsRequest,
-    GetReadingsResponse,
-    SensorServiceStub,
-)
-from viam.utils import dict_to_struct, struct_to_dict, sensor_readings_value_to_native, ValueTypes
+from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceStub
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
 from .sensor import Sensor
 
 
-class SensorClient(Sensor):
+class SensorClient(Sensor, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Sensor component.
     """

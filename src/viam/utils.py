@@ -3,17 +3,7 @@ import contextvars
 import functools
 import sys
 import threading
-from typing import (
-    Any,
-    Dict,
-    List,
-    Mapping,
-    SupportsBytes,
-    SupportsFloat,
-    Type,
-    TypeVar,
-    Union,
-)
+from typing import Any, Dict, List, Mapping, SupportsBytes, SupportsFloat, Type, TypeVar, Union
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message

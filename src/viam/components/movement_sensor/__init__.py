@@ -1,4 +1,4 @@
-from viam.resource.registry import ResourceRegistration, Registry
+from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import MovementSensorClient
 from .movement_sensor import GeoPoint, MovementSensor, Orientation, Vector3

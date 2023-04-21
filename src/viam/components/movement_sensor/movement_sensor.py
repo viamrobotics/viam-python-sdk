@@ -1,6 +1,7 @@
 import abc
 import asyncio
 from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
+
 from grpclib import GRPCError
 
 from viam.errors import MethodNotImplementedError, NotSupportedError

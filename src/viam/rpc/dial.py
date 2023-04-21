@@ -136,9 +136,11 @@ class ViamChannel:
 
     def close(self):
         if not self._closed:
-            self.channel.close()
-            self.release()
-            self._closed = True
+            try:
+                self.channel.close()
+            finally:
+                self.release()
+                self._closed = True
 
     def __del__(self):
         self.close()

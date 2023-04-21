@@ -12,12 +12,13 @@ from viam.proto.component.gripper import (
     OpenRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .gripper import Gripper
 
 
-class GripperClient(Gripper):
+class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Gripper component
     """

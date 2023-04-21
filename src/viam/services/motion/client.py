@@ -2,14 +2,7 @@ from typing import Any, Final, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import (
-    DoCommandRequest,
-    DoCommandResponse,
-    PoseInFrame,
-    ResourceName,
-    Transform,
-    WorldState,
-)
+from viam.proto.common import DoCommandRequest, DoCommandResponse, PoseInFrame, ResourceName, Transform, WorldState
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
@@ -20,12 +13,13 @@ from viam.proto.service.motion import (
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
 )
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 
-class MotionServiceClient(ServiceClientBase):
+class MotionServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """Motion is a Viam service that coordinates motion planning across all of the components in a given robot.
 
     The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
@@ -35,8 +29,8 @@ class MotionServiceClient(ServiceClientBase):
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion")
 
     def __init__(self, name: str, channel: Channel):
+        super().__init__(name, channel)
         self.client = MotionServiceStub(channel)
-        self.name = name
 
     async def move(
         self,

@@ -45,13 +45,9 @@ class Arm(ComponentBase):
     ):
         """
         Move the end of the arm to the Pose specified in ``pose``.
-        When obstacles are specified in ``world_state``, the motion plan of the arm will avoid them.
 
         Args:
-
             pose (Pose): The destination Pose for the arm.
-
-            world_state (WorldState): The obstacles for the arm to avoid on its way to ``pose``.
         """
         ...
 
@@ -68,7 +64,6 @@ class Arm(ComponentBase):
         Move each joint on the arm to the corresponding angle specified in ``positions``.
 
         Args:
-
             positions (JointPositions): The destination ``JointPositions`` for the arm.
         """
         ...

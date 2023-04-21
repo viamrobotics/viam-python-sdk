@@ -2,10 +2,10 @@ from io import BytesIO
 from typing import Any, Final, List, Mapping, Optional, Union
 
 from grpclib.client import Channel
-from viam.media.viam_rgba_plugin import Image
 
+from viam.media.viam_rgba_plugin import Image
 from viam.media.video import CameraMimeType, RawImage
-from viam.proto.common import PointCloudObject, DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject
 from viam.proto.service.vision import (
     Classification,
     Detection,
@@ -21,12 +21,13 @@ from viam.proto.service.vision import (
     GetObjectPointCloudsResponse,
     VisionServiceStub,
 )
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 
-class VisionServiceClient(ServiceClientBase):
+class VisionServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """
     Connect to the Vision service, which allows you to access various computer vision algorithms
     (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
@@ -35,8 +36,8 @@ class VisionServiceClient(ServiceClientBase):
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision")
 
     def __init__(self, name: str, channel: Channel):
+        super().__init__(name, channel)
         self.client = VisionServiceStub(channel)
-        self.name = name
 
     async def get_detections_from_camera(
         self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None

@@ -1,9 +1,11 @@
-from .viam_rgba_plugin import RGBA_FORMAT_LABEL
 from enum import Enum
 from io import BytesIO
-from typing import NamedTuple, Union, Tuple
-from typing_extensions import Self
+from typing import NamedTuple, Tuple, Union
+
 from PIL.Image import Image
+from typing_extensions import Self
+
+from .viam_rgba_plugin import RGBA_FORMAT_LABEL
 
 LAZY_SUFFIX = "+lazy"
 

@@ -1,4 +1,5 @@
 import asyncio
+
 import pytest
 from google.protobuf.json_format import ParseError
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
@@ -78,7 +79,7 @@ def test_primitive_to_value_errors():
 
     v = X()
     with pytest.raises(TypeError):
-        primitive_to_value(v)
+        primitive_to_value(v)  # type: ignore
 
 
 def test_value_to_primitive():
