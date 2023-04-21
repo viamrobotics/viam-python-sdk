@@ -57,6 +57,7 @@ async def run(host: str, port: int, log_level: int):
         182,
         Orientation(o_x=1, o_y=2, o_z=3, theta=5),
         MovementSensor.Properties(
+            linear_acceleration_supported=False,
             linear_velocity_supported=False,
             angular_velocity_supported=True,
             orientation_supported=False,
