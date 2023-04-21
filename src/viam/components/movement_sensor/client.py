@@ -2,8 +2,7 @@ from typing import Any, Dict, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
-from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.proto.common import GeoPoint, Orientation, Vector3, DoCommandResponse, DoCommandRequest
+from viam.proto.common import DoCommandResponse, DoCommandRequest
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -24,6 +23,8 @@ from viam.proto.component.movementsensor import (
     MovementSensorServiceStub,
 )
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+
+from . import GeoPoint, Orientation, MovementSensor, Vector3
 
 
 class MovementSensorClient(MovementSensor):

@@ -1,10 +1,11 @@
 import asyncio
-from viam.proto.component.arm import Status as ArmStatus
+from viam.proto.common import Pose
+from viam.proto.component.arm import Status as ArmStatus, JointPositions
 from viam.proto.robot import Status
 from viam.resource.registry import ResourceRegistration, Registry
 from viam.utils import message_to_struct
 
-from .arm import Arm, JointPositions, Pose
+from .arm import Arm
 from .client import ArmClient
 from .service import ArmService
 
@@ -16,11 +17,7 @@ __all__ = [
 
 
 async def create_status(component: Arm) -> Status:
-    (
-        end_position,
-        joint_positions,
-        is_moving,
-    ) = await asyncio.gather(
+    (end_position, joint_positions, is_moving,) = await asyncio.gather(
         component.get_end_position(),
         component.get_joint_positions(),
         component.is_moving(),

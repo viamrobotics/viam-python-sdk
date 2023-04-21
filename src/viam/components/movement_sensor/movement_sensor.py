@@ -6,12 +6,12 @@ from typing_extensions import Self
 from grpclib import GRPCError
 
 from viam.errors import MethodNotImplementedError, NotSupportedError
-from viam.proto.common import GeoPoint, Orientation, Vector3
 
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..sensor import Sensor
+from . import GeoPoint, Orientation, Vector3
 
 
 class MovementSensor(Sensor):
@@ -32,6 +32,7 @@ class MovementSensor(Sensor):
         compass_heading_supported: bool
         linear_velocity_supported: bool
 
+        @property
         def proto(self) -> GetPropertiesResponse:
             return GetPropertiesResponse(
                 linear_acceleration_supported=self.linear_velocity_supported,

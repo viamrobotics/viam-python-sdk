@@ -3,11 +3,10 @@ from typing import Final, NamedTuple, Optional, Tuple, Union
 
 from PIL.Image import Image
 
-from viam.media.video import RawImage
-from viam.proto.component.camera import DistortionParameters, IntrinsicParameters
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import DistortionParameters, IntrinsicParameters, RawImage
 
 
 class Camera(ComponentBase):

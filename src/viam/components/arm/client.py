@@ -2,7 +2,7 @@ from typing import Any, Dict, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import Pose, DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -18,7 +18,7 @@ from viam.proto.component.arm import (
 )
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
-from .arm import Arm
+from . import Arm, Pose
 
 
 class ArmClient(Arm):

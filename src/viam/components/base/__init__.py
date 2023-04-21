@@ -1,9 +1,9 @@
 from viam.resource.registry import ResourceRegistration, Registry
-from viam.proto.common import ActuatorStatus
+from viam.proto.common import ActuatorStatus, Vector3
 from viam.proto.robot import Status
 from viam.utils import message_to_struct
 
-from .base import Base, Vector3
+from .base import Base
 from .client import BaseClient
 from .service import BaseService
 

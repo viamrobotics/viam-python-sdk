@@ -4,7 +4,7 @@ from typing import Mapping, Optional, Tuple, Union
 from grpclib.client import Channel
 from PIL import Image
 
-from viam.media.video import CameraMimeType, RawImage, LIBRARY_SUPPORTED_FORMATS
+from viam.media.video import CameraMimeType, LIBRARY_SUPPORTED_FORMATS
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.camera import (
     CameraServiceStub,
@@ -17,7 +17,7 @@ from viam.proto.component.camera import (
 )
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
-from .camera import Camera
+from . import Camera, RawImage
 
 
 class CameraClient(Camera):

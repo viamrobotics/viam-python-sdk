@@ -1,10 +1,10 @@
 import abc
 from typing import Any, Dict, Final, Optional
 
-from viam.proto.common import Vector3
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import Vector3
 
 
 class Base(ComponentBase):
