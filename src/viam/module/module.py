@@ -80,15 +80,6 @@ class Module:
         """Start the module service and gRPC server"""
         try:
             await self.server.serve(log_level=self._log_level, path=self._address)
-        except SystemExit as e:
-            # grpclib will exit with error code {SIGINT|SIGTERM} + 128 if it receives either of those signals more than once.
-            # The module manager in RDK does not like anything that's not an exit code of 0.
-            # This catches any exits that are {SIGINT|SIGTERM} and raises an exit with code of 0.
-            if e.code is not None and isinstance(e.code, int):
-                code = e.code - 128
-                if code in [signal.SIGINT, signal.SIGTERM]:
-                    raise SystemExit(None)
-            raise e
         finally:
             await self.stop()
 
