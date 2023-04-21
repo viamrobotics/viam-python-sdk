@@ -117,6 +117,7 @@ class VisionServiceClient(ServiceClientBase):
     async def get_classifications(
         self,
         image: Union[Image.Image, RawImage],
+        count: int,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -141,6 +142,7 @@ class VisionServiceClient(ServiceClientBase):
             width=image.width,
             height=image.height,
             mime_type=mime_type,
+            n=count,
             extra=dict_to_struct(extra),
         )
         response: GetClassificationsResponse = await self.client.GetClassifications(request, timeout=timeout)

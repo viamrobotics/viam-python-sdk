@@ -132,7 +132,7 @@ class TestClient:
             client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_classifications"}
-            response = await client.get_classifications(image, extra=extra)
+            response = await client.get_classifications(image, 1, extra=extra)
             assert response == CLASSIFICATIONS
             assert service.extra == extra
 
