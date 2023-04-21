@@ -1,14 +1,17 @@
 from typing import Any, Mapping, Optional
+
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
+
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.generic import GenericServiceStub
-from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .generic import Generic
 
 
-class GenericClient(Generic):
+class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Generic component.
     """

@@ -42,6 +42,19 @@ An example configuration for a Gizmo component and a Summation service could loo
         "motor": "motor1"
       },
       "depends_on": []
+    },
+    {
+      "name": "motor1",
+      "type": "motor",
+      "model": "fake",
+      "attributes": {
+        "pins": {
+          "dir": "",
+          "pwm": ""
+        },
+        "board": ""
+      },
+      "depends_on": []
     }
   ],
   "services": [

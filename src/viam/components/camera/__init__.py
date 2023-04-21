@@ -1,4 +1,4 @@
-from viam.resource.registry import ResourceRegistration, Registry
+from viam.resource.registry import Registry, ResourceRegistration
 
 from .camera import Camera, DistortionParameters, IntrinsicParameters, RawImage
 from .client import CameraClient

@@ -1,4 +1,4 @@
-from viam.resource.registry import ResourceRegistration, Registry
+from viam.resource.registry import Registry, ResourceRegistration
 
 from .audio_input import AudioInput
 from .client import AudioInputClient

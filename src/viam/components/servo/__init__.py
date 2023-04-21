@@ -1,13 +1,13 @@
 import asyncio
+
 from viam.proto.component.servo import Status as ServoStatus
 from viam.proto.robot import Status
-from viam.resource.registry import ResourceRegistration, Registry
+from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
 
 from .client import ServoClient
-from .servo import Servo
-
 from .service import ServoService
+from .servo import Servo
 
 __all__ = [
     "Servo",

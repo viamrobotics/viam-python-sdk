@@ -20,11 +20,11 @@ class ServiceClientBase(abc.ABC, ResourceBase):
     """
 
     SUBTYPE: ClassVar[Subtype]
-    _channel: Channel
+    channel: Channel
 
     def __init__(self, name: str, channel: Channel):
         self.name = name
-        self._channel = channel
+        self.channel = channel
 
     @classmethod
     def from_robot(cls, robot: "RobotClient", name: str = "builtin") -> Self:

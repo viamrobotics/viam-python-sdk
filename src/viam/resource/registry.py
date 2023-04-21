@@ -1,17 +1,6 @@
 from dataclasses import dataclass
 from threading import Lock
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    Callable,
-    ClassVar,
-    Coroutine,
-    Dict,
-    Generic,
-    Mapping,
-    Type,
-    TypeVar,
-)
+from typing import TYPE_CHECKING, Any, Callable, ClassVar, Coroutine, Dict, Generic, Mapping, Type, TypeVar
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel

@@ -7,7 +7,6 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.errors import NotSupportedError, ResourceNotFoundError
-from viam.gen.component.audioinput.v1.audioinput_pb2 import SampleFormat
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.audioinput import (
     AudioInputServiceBase,
@@ -16,6 +15,7 @@ from viam.proto.component.audioinput import (
     PropertiesRequest,
     PropertiesResponse,
     RecordRequest,
+    SampleFormat,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict

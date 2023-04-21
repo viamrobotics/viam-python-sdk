@@ -1,16 +1,17 @@
 from grpclib.const import Status
 from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
+
 from viam.proto.rpc.webrtc.signaling import (
-    SignalingServiceBase,
+    AnswerRequest,
+    AnswerResponse,
     CallRequest,
     CallResponse,
     CallUpdateRequest,
     CallUpdateResponse,
-    AnswerRequest,
-    AnswerResponse,
     OptionalWebRTCConfigRequest,
     OptionalWebRTCConfigResponse,
+    SignalingServiceBase,
 )
 
 

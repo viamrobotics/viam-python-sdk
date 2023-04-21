@@ -9,7 +9,6 @@ from viam.components.generic.service import GenericService
 from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerService
-from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
@@ -21,6 +20,7 @@ from viam.proto.component.inputcontroller import (
     StreamEventsResponse,
     TriggerEventRequest,
 )
+from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
@@ -311,3 +311,22 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_channel_rest(self, controller: MockInputController, service: InputControllerService):
+        channel = await ChannelFor([service]).__aenter__()
+        client = ControllerClient(controller.name, channel)
+        assert client._is_streaming is False  # not streaming before callback registered
+
+        client.register_control_callback(Control.BUTTON_START, [EventType.BUTTON_RELEASE], lambda x: print(x))
+        await asyncio.sleep(0.1)
+        assert client._is_streaming is True  # registering callback should start streaming
+
+        await channel.__aexit__(None, None, None)
+        await asyncio.sleep(0.1)
+        assert client._is_streaming is False  # closing the channel should cancel the stream
+
+        async with ChannelFor([service]) as channel2:
+            client.reset_channel(channel2)
+            await asyncio.sleep(0.1)
+            assert client._is_streaming is True  # reset the channel should restart the callback stream

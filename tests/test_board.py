@@ -303,7 +303,7 @@ class TestService:
             assert response == SetPowerModeResponse()
             assert board.timeout == loose_approx(6.66)
             assert board.power_mode == PowerMode.POWER_MODE_OFFLINE_DEEP
-            assert board.power_mode_duration == pm_duration
+            assert board.power_mode_duration == pm_duration.ToTimedelta()
 
 
 class TestClient:
@@ -403,7 +403,7 @@ class TestClient:
             assert board.power_mode == pm_mode
             pm_duration = Duration()
             pm_duration.FromTimedelta(pm_timedelta)
-            assert board.power_mode_duration == pm_duration
+            assert board.power_mode_duration == pm_duration.ToTimedelta()
 
 
 class TestGPIOPinClient:
