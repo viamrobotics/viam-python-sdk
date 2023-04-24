@@ -137,7 +137,7 @@ Classes
 
 
 
-.. py:class:: GetAccuracyResponse(*, accuracy_mm: collections.abc.Mapping[builtins.str, builtins.float] | None = ...)
+.. py:class:: GetAccuracyResponse(*, accuracy: collections.abc.Mapping[builtins.str, builtins.float] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -147,7 +147,7 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:class:: AccuracyMmEntry(*, key: str = ..., value: float = ...)
+   .. py:class:: AccuracyEntry(*, key: str = ..., value: float = ...)
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -168,7 +168,7 @@ Classes
          
 
 
-   .. py:property:: accuracy_mm
+   .. py:property:: accuracy
       :type: google.protobuf.internal.containers.ScalarMap[str, float]
 
 
@@ -224,7 +224,7 @@ Classes
    .. py:property:: angular_velocity
       :type: viam.gen.common.v1.common_pb2.Vector3
 
-      angular velocity contains velocity in degrees/s across x/y/z axes
+      Angular velocity in degrees/s across x/y/z axes
 
    .. py:method:: HasField(field_name: Literal[angular_velocity, b'angular_velocity']) -> bool
 
@@ -350,6 +350,7 @@ Classes
    .. py:property:: linear_acceleration
       :type: viam.gen.common.v1.common_pb2.Vector3
 
+      Linear acceleration in m/s across x/y/z axes
 
    .. py:method:: HasField(field_name: Literal[linear_acceleration, b'linear_acceleration']) -> bool
 
@@ -420,7 +421,7 @@ Classes
    .. py:property:: linear_velocity
       :type: viam.gen.common.v1.common_pb2.Vector3
 
-      linear velocity contains velocity in mm/s across x/y/z axes
+      Linear velocity in m/s across x/y/z axes
 
    .. py:method:: HasField(field_name: Literal[linear_velocity, b'linear_velocity']) -> bool
 
@@ -548,7 +549,7 @@ Classes
 
 
 
-.. py:class:: GetPositionResponse(*, coordinate: common.v1.common_pb2.GeoPoint | None = ..., altitude_mm: float = ...)
+.. py:class:: GetPositionResponse(*, coordinate: common.v1.common_pb2.GeoPoint | None = ..., altitude_m: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -562,7 +563,7 @@ Classes
       :type: viam.gen.common.v1.common_pb2.GeoPoint
 
 
-   .. py:attribute:: altitude_mm
+   .. py:attribute:: altitude_m
       :type: float
 
       
