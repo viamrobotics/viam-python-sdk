@@ -343,12 +343,12 @@ Attributes
    .. py:attribute:: namespace
       :type: str
 
-      
+      deprecated; use api
 
    .. py:attribute:: type
       :type: str
 
-      
+      deprecated; use api
 
    .. py:attribute:: model
       :type: str
@@ -488,7 +488,7 @@ Attributes
 
    
 
-.. py:class:: ServiceConfig(*, name: str = ..., namespace: str = ..., type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., depends_on: collections.abc.Iterable[builtins.str] | None = ..., model: str = ...)
+.. py:class:: ServiceConfig(*, name: str = ..., namespace: str = ..., type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., depends_on: collections.abc.Iterable[builtins.str] | None = ..., model: str = ..., api: str = ...)
 
 
 
@@ -514,14 +514,19 @@ Attributes
    .. py:attribute:: namespace
       :type: str
 
-      
+      deprecated; use api
 
    .. py:attribute:: type
       :type: str
 
-      
+      deprecated; use api
 
    .. py:attribute:: model
+      :type: str
+
+      
+
+   .. py:attribute:: api
       :type: str
 
       
