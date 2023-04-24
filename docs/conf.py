@@ -7,7 +7,7 @@
 # -- Project information -----------------------------------------------------
 
 project = "Viam Python SDK"
-copyright = "2023, Viam Inc"
+copyright = "2022-2023, Viam Inc"
 author = "Viam Inc"
 
 # -- General configuration ---------------------------------------------------
