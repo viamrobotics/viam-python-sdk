@@ -230,7 +230,7 @@ class TestService:
             assert movement_sensor.extra is None
             response: GetPositionResponse = await client.GetPosition(request, timeout=1.23)
             assert response.coordinate == COORDINATE
-            assert response.altitude_mm == ALTITUDE
+            assert response.altitude_m == ALTITUDE
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(1.23)
 
@@ -305,7 +305,7 @@ class TestService:
             request = GetAccuracyRequest(name=movement_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
             assert movement_sensor.extra is None
             response: GetAccuracyResponse = await client.GetAccuracy(request, timeout=7.89)
-            assert response.accuracy_mm == pytest.approx(ACCURACY)
+            assert response.accuracy == pytest.approx(ACCURACY)
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(7.89)
 
