@@ -173,7 +173,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.MediaReader">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.</span></span><span class="sig-name descname"><span class="pre">MediaReader</span></span><a class="reference internal" href="../../../_modules/viam/media/media.html#MediaReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.MediaReader" title="Permalink to this definition"></a></dt>
-<dd><dl class="py method">
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code>[<a class="reference internal" href="#viam.media.MediaType" title="viam.media.MediaType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MediaType</span></code></a>]</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.media.MediaReader.read">
 <span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MediaType</span></span></span><a class="reference internal" href="../../../_modules/viam/media/media.html#MediaReader.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.MediaReader.read" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -183,7 +184,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.MediaSource">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.</span></span><span class="sig-name descname"><span class="pre">MediaSource</span></span><a class="reference internal" href="../../../_modules/viam/media/media.html#MediaSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.MediaSource" title="Permalink to this definition"></a></dt>
-<dd><dl class="py method">
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code>[<a class="reference internal" href="#viam.media.MediaType" title="viam.media.MediaType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MediaType</span></code></a>]</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.media.MediaSource.stream">
 <span class="sig-name descname"><span class="pre">stream</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.media.MediaStream" title="viam.media.MediaStream"><span class="pre">MediaStream</span></a><span class="p"><span class="pre">[</span></span><span class="pre">MediaType</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/media/media.html#MediaSource.stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.MediaSource.stream" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -193,7 +195,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.MediaStream">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.</span></span><span class="sig-name descname"><span class="pre">MediaStream</span></span><a class="reference internal" href="../../../_modules/viam/media/media.html#MediaStream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.MediaStream" title="Permalink to this definition"></a></dt>
-<dd><dl class="py method">
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code>[<a class="reference internal" href="#viam.media.MediaType" title="viam.media.MediaType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MediaType</span></code></a>]</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.media.MediaStream.next">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MediaType</span></span></span><a class="reference internal" href="../../../_modules/viam/media/media.html#MediaStream.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.MediaStream.next" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -218,7 +221,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.MediaStreamWithIterator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.</span></span><span class="sig-name descname"><span class="pre">MediaStreamWithIterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">MediaType</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/media/media.html#MediaStreamWithIterator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.MediaStreamWithIterator" title="Permalink to this definition"></a></dt>
-<dd><dl class="py method">
+<dd><p>Bases: <a class="reference internal" href="#viam.media.MediaStream" title="viam.media.MediaStream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MediaStream</span></code></a>[<a class="reference internal" href="#viam.media.MediaType" title="viam.media.MediaType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MediaType</span></code></a>]</p>
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.media.MediaStreamWithIterator.next">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">MediaType</span></span></span><a class="reference internal" href="../../../_modules/viam/media/media.html#MediaStreamWithIterator.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.MediaStreamWithIterator.next" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -260,7 +264,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

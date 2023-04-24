@@ -33,7 +33,7 @@ Classes
 
 .. py:class:: AuthServiceBase
 
-
+   Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
@@ -52,7 +52,7 @@ Classes
 
 .. py:class:: ExternalAuthServiceBase
 
-
+   Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
@@ -71,7 +71,7 @@ Classes
 
 .. py:class:: AuthenticateRequest(*, entity: str = ..., credentials: global___Credentials | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    An AuthenticateRequest contains the credentials used to authenticate.
 
@@ -104,7 +104,7 @@ Classes
 
 .. py:class:: AuthenticateResponse(*, access_token: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    An AuthenticateResponse is returned after successful authentication.
 
@@ -118,7 +118,7 @@ Classes
 
 .. py:class:: AuthenticateToRequest(*, entity: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    An AuthenticateToRequest contains the entity to authenticate to.
 
@@ -130,7 +130,7 @@ Classes
 
 .. py:class:: AuthenticateToResponse(*, access_token: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    An AuthenticateResponse is returned after successful authentication.
 
@@ -144,7 +144,7 @@ Classes
 
 .. py:class:: Credentials(*, type: str = ..., payload: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

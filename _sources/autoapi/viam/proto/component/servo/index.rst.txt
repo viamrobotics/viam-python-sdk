@@ -35,7 +35,7 @@ Classes
 
 .. py:class:: ServoServiceBase
 
-
+   Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
@@ -74,7 +74,7 @@ Classes
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -112,7 +112,7 @@ Classes
 
 .. py:class:: GetPositionResponse(*, position_deg: int = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -128,7 +128,7 @@ Classes
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -144,7 +144,7 @@ Classes
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -160,7 +160,7 @@ Classes
 
 .. py:class:: MoveRequest(*, name: str = ..., angle_deg: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -203,7 +203,7 @@ Classes
 
 .. py:class:: MoveResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -214,7 +214,7 @@ Classes
 
 .. py:class:: Status(*, position_deg: int = ..., is_moving: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -235,7 +235,7 @@ Classes
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -273,7 +273,7 @@ Classes
 
 .. py:class:: StopResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

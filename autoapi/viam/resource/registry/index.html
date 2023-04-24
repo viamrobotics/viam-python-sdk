@@ -207,7 +207,8 @@ registering it to the <code class="docutils literal notranslate"><span class="pr
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.resource.registry.ResourceRegistration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.registry.</span></span><span class="sig-name descname"><span class="pre">ResourceRegistration</span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#ResourceRegistration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.registry.ResourceRegistration" title="Permalink to this definition"></a></dt>
-<dd><p>An object representing a resource to be registered.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Generic</span></code>[<a class="reference internal" href="#viam.resource.registry.Resource" title="viam.resource.registry.Resource"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resource</span></code></a>]</p>
+<p>An object representing a resource to be registered.</p>
 <p>This object is generic over the <code class="docutils literal notranslate"><span class="pre">ResourceBase</span></code>, and it includes various functionality for the resource,
 such as creating its RPC client or status.</p>
 <p>If creating a custom Resource type, you should register the resource by creating a <code class="docutils literal notranslate"><span class="pre">ResourceRegistration</span></code> object and registering it
@@ -398,7 +399,7 @@ resource using <code class="docutils literal notranslate"><span class="pre">Regi
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

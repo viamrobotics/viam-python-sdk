@@ -68,6 +68,9 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.motion.client.MotionServiceClient.move_single_component"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.move_single_component()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.motion.client.MotionServiceClient.get_pose"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.get_pose()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.motion.client.MotionServiceClient.do_command"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.do_command()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.motion.client.MotionServiceClient.from_robot"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.from_robot()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.motion.client.MotionServiceClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.get_resource_name()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.motion.client.MotionServiceClient.get_operation"><code class="docutils literal notranslate"><span class="pre">MotionServiceClient.get_operation()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -138,7 +141,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.motion.client.MotionServiceClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.motion.client.</span></span><span class="sig-name descname"><span class="pre">MotionServiceClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/motion/client.html#MotionServiceClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.client.MotionServiceClient" title="Permalink to this definition"></a></dt>
-<dd><p>Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</p>
+<dd><p>Bases: <a class="reference internal" href="../../service_client_base/index.html#viam.services.service_client_base.ServiceClientBase" title="viam.services.service_client_base.ServiceClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.service_client_base.ServiceClientBase</span></code></a>, <a class="reference internal" href="../../../resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase" title="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase</span></code></a></p>
+<p>Motion is a Viam service that coordinates motion planning across all of the components in a given robot.</p>
 <p>The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
 <code class="docutils literal notranslate"><span class="pre">world_state</span></code> message, the motion planning service will also account for those.</p>
 <dl class="py attribute">
@@ -244,6 +248,57 @@ WorldState message.</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.client.MotionServiceClient.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'builtin'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.services.motion.client.MotionServiceClient.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the service client named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the service client</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The service client, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.client.MotionServiceClient.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.services.motion.client.MotionServiceClient.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.motion.client.MotionServiceClient.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.services.motion.client.MotionServiceClient.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.Operation" title="viam.gen.robot.v1.robot_pb2.Operation">Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -261,7 +316,7 @@ WorldState message.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

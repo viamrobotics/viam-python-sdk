@@ -136,7 +136,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.rpc_client_base.</span></span><span class="sig-name descname"><span class="pre">ResourceRPCClientBase</span></span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ResourceRPCClientBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ResourceRPCClientBase" title="Permalink to this definition"></a></dt>
-<dd><p>Base RPC client for a resource.
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code></p>
+<p>Base RPC client for a resource.
 Resource RPC clients must inherit from this class</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.resource.rpc_client_base.ResourceRPCClientBase.channel">
@@ -153,7 +154,8 @@ Resource RPC clients must inherit from this class</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.resource.rpc_client_base.</span></span><span class="sig-name descname"><span class="pre">ReconfigurableResourceRPCClientBase</span></span><a class="reference internal" href="../../../../_modules/viam/resource/rpc_client_base.html#ReconfigurableResourceRPCClientBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase" title="Permalink to this definition"></a></dt>
-<dd><p>A base RPC client that can reset its channel.</p>
+<dd><p>Bases: <a class="reference internal" href="#viam.resource.rpc_client_base.ResourceRPCClientBase" title="viam.resource.rpc_client_base.ResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResourceRPCClientBase</span></code></a></p>
+<p>A base RPC client that can reset its channel.</p>
 <p>Useful if connection is lost and then regained.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase.reset_channel">
@@ -183,7 +185,7 @@ Resource RPC clients must inherit from this class</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

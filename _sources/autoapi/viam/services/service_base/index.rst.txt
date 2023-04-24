@@ -19,7 +19,7 @@ Classes
 
 .. py:class:: ServiceBase(name: str)
 
-
+   Bases: :py:obj:`abc.ABC`, :py:obj:`viam.resource.base.ResourceBase`
 
    This class describes the base functionality required for a Viam Service.
    All services must inherit from this class.
@@ -56,6 +56,30 @@ Classes
 
       :returns: Result of the executed command
       :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: Operation
 
 
 

@@ -55,7 +55,7 @@ Classes
 
 .. py:class:: RobotServiceBase
 
-
+   Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
@@ -89,7 +89,7 @@ Classes
 
 .. py:class:: AgentInfo(*, host: str = ..., os: str = ..., ips: collections.abc.Iterable[builtins.str] | None = ..., version: str = ..., git_revision: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -125,7 +125,7 @@ Classes
 
 .. py:class:: AuthConfig(*, handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None = ..., tls_auth_entities: collections.abc.Iterable[builtins.str] | None = ..., external_auth_config: global___ExternalAuthConfig | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -180,7 +180,7 @@ Classes
 
 .. py:class:: AuthHandlerConfig(*, type: global___CredentialsType = ..., config: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -217,7 +217,7 @@ Classes
 
 .. py:class:: CertificateRequest(*, id: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -233,7 +233,7 @@ Classes
 
 .. py:class:: CertificateResponse(*, id: str = ..., tls_certificate: str = ..., tls_private_key: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -259,7 +259,7 @@ Classes
 
 .. py:class:: CloudConfig(*, id: str = ..., fqdn: str = ..., local_fqdn: str = ..., managed_by: str = ..., signaling_address: str = ..., signaling_insecure: bool = ..., location_secret: str = ..., secret: str = ..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -315,7 +315,7 @@ Classes
 
 .. py:class:: ComponentConfig(*, name: str = ..., namespace: str = ..., type: str = ..., model: str = ..., frame: global___Frame | None = ..., depends_on: collections.abc.Iterable[builtins.str] | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., api: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -384,7 +384,7 @@ Classes
 
 .. py:class:: ConfigRequest(*, id: str = ..., agent_info: global___AgentInfo | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -437,7 +437,7 @@ Classes
 
 .. py:class:: ConfigResponse(*, config: global___RobotConfig | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -469,12 +469,12 @@ Classes
 
 .. py:class:: CredentialsType
 
-
+   Bases: :py:obj:`_CredentialsType`
 
 
 .. py:class:: ExternalAuthConfig(*, jwks: global___JWKSFile | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    ExternalAuthConfig describes how a viam managed robot can accept
    credentials signed by the cloud app.
@@ -503,7 +503,7 @@ Classes
 
 .. py:class:: Frame(*, parent: str = ..., translation: global___Translation | None = ..., orientation: global___Orientation | None = ..., geometry: common.v1.common_pb2.Geometry | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -548,7 +548,7 @@ Classes
 
 .. py:class:: JWKSFile(*, json: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -582,7 +582,7 @@ Classes
 
 .. py:class:: LocationSecret(*, id: str = ..., secret: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Valid location secret that can be used for authentication to the robot.
 
@@ -599,7 +599,7 @@ Classes
 
 .. py:class:: LogRequest(*, id: str = ..., logs: collections.abc.Iterable[app.v1.app_pb2.LogEntry] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -619,7 +619,7 @@ Classes
 
 .. py:class:: LogResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -630,7 +630,7 @@ Classes
 
 .. py:class:: ModuleConfig(*, name: str = ..., path: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    ModuleConfig is the configuration for a module.
 
@@ -647,7 +647,7 @@ Classes
 
 .. py:class:: NeedsRestartRequest(*, id: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -663,7 +663,7 @@ Classes
 
 .. py:class:: NeedsRestartResponse(*, id: str = ..., must_restart: bool = ..., restart_check_interval: google.protobuf.duration_pb2.Duration | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -705,7 +705,7 @@ Classes
 
 .. py:class:: NetworkConfig(*, fqdn: str = ..., bind_address: str = ..., tls_cert_file: str = ..., tls_key_file: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -736,7 +736,7 @@ Classes
 
 .. py:class:: Orientation(*, no_orientation: global___Orientation.NoOrientation | None = ..., vector_radians: global___Orientation.OrientationVectorRadians | None = ..., vector_degrees: global___Orientation.OrientationVectorDegrees | None = ..., euler_angles: global___Orientation.EulerAngles | None = ..., axis_angles: global___Orientation.AxisAngles | None = ..., quaternion: global___Orientation.Quaternion | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -746,7 +746,7 @@ Classes
 
    .. py:class:: NoOrientation
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       Abstract base class for protocol messages.
 
@@ -757,7 +757,7 @@ Classes
 
    .. py:class:: OrientationVectorRadians(*, theta: float = ..., x: float = ..., y: float = ..., z: float = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       OrientationVector containing ox, oy, oz, theta represents an orientation vector
       Structured similarly to an angle axis, an orientation vector works differently. Rather than representing an orientation
@@ -792,7 +792,7 @@ Classes
 
    .. py:class:: OrientationVectorDegrees(*, theta: float = ..., x: float = ..., y: float = ..., z: float = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       OrientationVectorDegrees is the orientation vector between two objects, but expressed in degrees rather than radians.
       Because protobuf Pose is in degrees, this is necessary.
@@ -820,7 +820,7 @@ Classes
 
    .. py:class:: EulerAngles(*, roll: float = ..., pitch: float = ..., yaw: float = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       EulerAngles are three angles (in radians) used to represent the rotation of an object in 3D Euclidean space
       The Tait–Bryan angle formalism is used, with rotations around three distinct axes in the z-y′-x″ sequence.
@@ -843,7 +843,7 @@ Classes
 
    .. py:class:: AxisAngles(*, theta: float = ..., x: float = ..., y: float = ..., z: float = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       See here for a thorough explanation: https://en.wikipedia.org/wiki/Axis%E2%80%93angle_representation
       Basic explanation: Imagine a 3d cartesian grid centered at 0,0,0, and a sphere of radius 1 centered at
@@ -876,7 +876,7 @@ Classes
 
    .. py:class:: Quaternion(*, w: float = ..., x: float = ..., y: float = ..., z: float = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       Quaternion is a float64 precision quaternion.
 
@@ -960,7 +960,7 @@ Classes
 
 .. py:class:: PackageConfig(*, name: str = ..., package: str = ..., version: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    PackageConfig is the configration for deployed Packages.
 
@@ -982,7 +982,7 @@ Classes
 
 .. py:class:: ProcessConfig(*, id: str = ..., name: str = ..., args: collections.abc.Iterable[builtins.str] | None = ..., cwd: str = ..., one_shot: bool = ..., log: bool = ..., stop_signal: int = ..., stop_timeout: google.protobuf.duration_pb2.Duration | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    A ProcessConfig describes how to manage a system process.
 
@@ -1044,7 +1044,7 @@ Classes
 
 .. py:class:: RemoteAuth(*, credentials: global___RemoteAuth.Credentials | None = ..., entity: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    RemoteAuth specifies how to authenticate against a remote. If no credentials are
    specified, authentication does not happen. If an entity is specified, the
@@ -1052,7 +1052,7 @@ Classes
 
    .. py:class:: Credentials(*, type: global___CredentialsType = ..., payload: str = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       Credentials packages up both a type of credential along with its payload which
       is formatted specific to the type.
@@ -1097,7 +1097,7 @@ Classes
 
 .. py:class:: RemoteConfig(*, name: str = ..., address: str = ..., frame: global___Frame | None = ..., auth: global___RemoteAuth | None = ..., managed_by: str = ..., insecure: bool = ..., connection_check_interval: google.protobuf.duration_pb2.Duration | None = ..., reconnect_interval: google.protobuf.duration_pb2.Duration | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., secret: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    A RemoteConfig describes a remote robot that should be integrated.
    The Frame field defines how the "world" node of the remote robot should be reconciled with the "world" node of the
@@ -1169,7 +1169,7 @@ Classes
 
 .. py:class:: ResourceLevelServiceConfig(*, type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    A ResourceLevelServiceConfig describes component or remote configuration for a service.
 
@@ -1205,7 +1205,7 @@ Classes
 
 .. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: builtins.bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: builtins.bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1297,7 +1297,7 @@ Classes
 
 .. py:class:: ServiceConfig(*, name: str = ..., namespace: str = ..., type: str = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., depends_on: collections.abc.Iterable[builtins.str] | None = ..., model: str = ..., api: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1358,7 +1358,7 @@ Classes
 
 .. py:class:: Translation(*, x: float = ..., y: float = ..., z: float = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

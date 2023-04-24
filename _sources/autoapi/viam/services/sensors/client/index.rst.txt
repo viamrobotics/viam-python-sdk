@@ -19,7 +19,7 @@ Classes
 
 .. py:class:: SensorsServiceClient(name: str, channel: grpclib.client.Channel)
 
-
+   Bases: :py:obj:`viam.services.service_client_base.ServiceClientBase`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
 
    Connect to the SensorService, which centralizes all Sensors in a single place
 
@@ -59,6 +59,44 @@ Classes
 
       :returns: Result of the executed command
       :rtype: Dict[str, ValueTypes]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str = 'builtin') -> typing_extensions.Self
+      :classmethod:
+
+      Get the service client named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service client
+      :type name: str
+
+      :returns: The service client, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: Operation
 
 
 

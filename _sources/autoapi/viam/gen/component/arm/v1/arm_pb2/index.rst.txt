@@ -65,7 +65,7 @@ Attributes
 
 .. py:class:: GetEndPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -107,7 +107,7 @@ Attributes
 
 .. py:class:: GetEndPositionResponse(*, pose: common.v1.common_pb2.Pose | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -145,7 +145,7 @@ Attributes
 
 .. py:class:: JointPositions(*, values: collections.abc.Iterable[builtins.float] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -167,7 +167,7 @@ Attributes
 
 .. py:class:: GetJointPositionsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -209,7 +209,7 @@ Attributes
 
 .. py:class:: GetJointPositionsResponse(*, positions: global___JointPositions | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -246,7 +246,7 @@ Attributes
 
 .. py:class:: MoveToPositionRequest(*, name: str = ..., to: common.v1.common_pb2.Pose | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Moves an arm to the specified pose that is within the reference frame of the arm.
    Move request in Motion API has the same behavior except that it performs obstacle avoidance when a world_state
@@ -291,7 +291,7 @@ Attributes
 
 .. py:class:: MoveToPositionResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -306,7 +306,7 @@ Attributes
 
 .. py:class:: MoveToJointPositionsRequest(*, name: str = ..., positions: global___JointPositions | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -354,7 +354,7 @@ Attributes
 
 .. py:class:: MoveToJointPositionsResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -369,7 +369,7 @@ Attributes
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -411,7 +411,7 @@ Attributes
 
 .. py:class:: StopResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -426,7 +426,7 @@ Attributes
 
 .. py:class:: Status(*, end_position: common.v1.common_pb2.Pose | None = ..., joint_positions: global___JointPositions | None = ..., is_moving: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -471,7 +471,7 @@ Attributes
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -491,7 +491,7 @@ Attributes
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

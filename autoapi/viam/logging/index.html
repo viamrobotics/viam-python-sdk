@@ -144,7 +144,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.logging.ColorFormatter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">ColorFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patern</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#ColorFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.ColorFormatter" title="Permalink to this definition"></a></dt>
-<dd><p>Formatter instances are used to convert a LogRecord to text.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">logging.Formatter</span></code></p>
+<p>Formatter instances are used to convert a LogRecord to text.</p>
 <p>Formatters need to know how a LogRecord is constructed. They are
 responsible for converting a LogRecord to (usually) a string which can
 be interpreted by either a human or an external system. The base Formatter
@@ -245,7 +246,7 @@ it is formatted using formatException() and appended to the message.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

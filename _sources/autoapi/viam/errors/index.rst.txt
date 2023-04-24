@@ -9,14 +9,14 @@ Module Contents
 
 .. py:exception:: ViamError
 
-
+   Bases: :py:obj:`Exception`
 
    Base Viam Error
 
 
 .. py:exception:: InsecureConnectionError(address: str, authenticated: bool = False)
 
-
+   Bases: :py:obj:`ViamError`
 
    Exception raised when establishing an insecure connection
 
@@ -35,7 +35,7 @@ Module Contents
 
 .. py:exception:: DuplicateResourceError(name: str)
 
-
+   Bases: :py:obj:`ViamError`
 
    Exception raised when attempting to register a resource
    with the same name as an existing resource already in
@@ -44,7 +44,7 @@ Module Contents
 
 .. py:exception:: ViamGRPCError(message: str = '', grpc_code: grpclib.Status = Status.INTERNAL)
 
-
+   Bases: :py:obj:`ViamError`
 
    Exception raised if it could happen as a part of GRPC calls.
 
@@ -55,28 +55,28 @@ Module Contents
 
 .. py:exception:: ResourceNotFoundError(resource: str, name: str)
 
-
+   Bases: :py:obj:`ViamGRPCError`
 
    Exception raised when a resource is not found in the registry
 
 
 .. py:exception:: MethodNotImplementedError(method_name: str)
 
-
+   Bases: :py:obj:`ViamGRPCError`
 
    Exception raised when specific methods are unimplemented.
 
 
 .. py:exception:: NotSupportedError(message: str)
 
-
+   Bases: :py:obj:`ViamGRPCError`
 
    Exception raised when specific component functionality is not supported
 
 
 .. py:exception:: ValidationError(message: str)
 
-
+   Bases: :py:obj:`ViamGRPCError`
 
    Exception raised when there is an error during module validation
 

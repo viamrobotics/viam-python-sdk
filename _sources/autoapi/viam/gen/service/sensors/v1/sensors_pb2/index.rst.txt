@@ -47,7 +47,7 @@ Attributes
 
 .. py:class:: GetSensorsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -89,7 +89,7 @@ Attributes
 
 .. py:class:: GetSensorsResponse(*, sensor_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -108,7 +108,7 @@ Attributes
 
 .. py:class:: GetReadingsRequest(*, name: str = ..., sensor_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -154,7 +154,7 @@ Attributes
 
 .. py:class:: Readings(*, name: common.v1.common_pb2.ResourceName | None = ..., readings: collections.abc.Mapping[builtins.str, google.protobuf.struct_pb2.Value] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -164,7 +164,7 @@ Attributes
 
    .. py:class:: ReadingsEntry(*, key: str = ..., value: google.protobuf.struct_pb2.Value | None = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       Abstract base class for protocol messages.
 
@@ -231,7 +231,7 @@ Attributes
 
 .. py:class:: GetReadingsResponse(*, readings: collections.abc.Iterable[global___Readings] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

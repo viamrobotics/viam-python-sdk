@@ -170,7 +170,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.video.RawImage">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">RawImage</span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#RawImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.RawImage" title="Permalink to this definition"></a></dt>
-<dd><p>A raw bytes representation of an image.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<p>A raw bytes representation of an image.</p>
 <p>A RawImage should be returned instead of a PIL Image instance under one of
 the following conditions</p>
 <ol class="arabic simple">
@@ -201,7 +202,8 @@ Python SDK</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.video.CameraMimeType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">CameraMimeType</span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#CameraMimeType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.CameraMimeType" title="Permalink to this definition"></a></dt>
-<dd><p>str(object=’’) -&gt; str
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>str(object=’’) -&gt; str
 str(bytes_or_buffer[, encoding[, errors]]) -&gt; str</p>
 <p>Create a new string object from the given object. If encoding or
 errors is specified, then the object must expose a data buffer
@@ -284,7 +286,7 @@ errors defaults to ‘strict’.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

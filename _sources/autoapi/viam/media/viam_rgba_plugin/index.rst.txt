@@ -45,7 +45,7 @@ Attributes
 
 .. py:class:: RGBAEncoder(mode, *args)
 
-
+   Bases: :py:obj:`PIL.ImageFile.PyEncoder`
 
    Python implementation of a format encoder. Override this class and
    add the decoding logic in the :meth:`encode` method.
@@ -69,7 +69,7 @@ Attributes
 
 .. py:class:: RGBAImage(fp=None, filename=None)
 
-
+   Bases: :py:obj:`PIL.ImageFile.ImageFile`
 
    Base class for image file format handlers.
 
@@ -86,7 +86,7 @@ Attributes
 
 .. py:class:: RGBADecoder(mode, *args)
 
-
+   Bases: :py:obj:`PIL.ImageFile.PyDecoder`
 
    Python implementation of a format decoder. Override this class and
    add the decoding logic in the :meth:`decode` method.

@@ -61,7 +61,7 @@ Attributes
 
 .. py:class:: MoveRequest(*, name: str = ..., destination: common.v1.common_pb2.PoseInFrame | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., world_state: common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.
 
@@ -136,7 +136,7 @@ Attributes
 
 .. py:class:: MoveResponse(*, success: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -156,7 +156,7 @@ Attributes
 
 .. py:class:: MoveOnMapRequest(*, name: str = ..., destination: common.v1.common_pb2.Pose | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., slam_service_name: common.v1.common_pb2.ResourceName | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -213,7 +213,7 @@ Attributes
 
 .. py:class:: MoveOnMapResponse(*, success: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -233,7 +233,7 @@ Attributes
 
 .. py:class:: MoveSingleComponentRequest(*, name: str = ..., destination: common.v1.common_pb2.PoseInFrame | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., world_state: common.v1.common_pb2.WorldState | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -302,7 +302,7 @@ Attributes
 
 .. py:class:: MoveSingleComponentResponse(*, success: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -322,7 +322,7 @@ Attributes
 
 .. py:class:: GetPoseRequest(*, name: str = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -382,7 +382,7 @@ Attributes
 
 .. py:class:: GetPoseResponse(*, pose: common.v1.common_pb2.PoseInFrame | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -418,7 +418,7 @@ Attributes
 
 .. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
 
@@ -443,7 +443,7 @@ Attributes
 
 .. py:class:: LinearConstraint(*, line_tolerance_mm: builtins.float | None = ..., orientation_tolerance_degs: builtins.float | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    LinearConstraint specifies that the component being moved should move linearly relative to its goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
 
@@ -497,7 +497,7 @@ Attributes
 
 .. py:class:: OrientationConstraint(*, orientation_tolerance_degs: builtins.float | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
 
@@ -545,13 +545,13 @@ Attributes
 
 .. py:class:: CollisionSpecification(*, allows: collections.abc.Iterable[global___CollisionSpecification.AllowedFrameCollisions] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
 
    .. py:class:: AllowedFrameCollisions(*, frame1: str = ..., frame2: str = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       Abstract base class for protocol messages.
 

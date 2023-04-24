@@ -178,7 +178,8 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAEncoder">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBAEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/viam_rgba_plugin.html#RGBAEncoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAEncoder" title="Permalink to this definition"></a></dt>
-<dd><p>Python implementation of a format encoder. Override this class and
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">PIL.ImageFile.PyEncoder</span></code></p>
+<p>Python implementation of a format encoder. Override this class and
 add the decoding logic in the <a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBAEncoder.encode" title="viam.media.viam_rgba_plugin.RGBAEncoder.encode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">encode()</span></code></a> method.</p>
 <p>See <span class="xref std std-ref">Writing Your Own File Codec in Python</span></p>
 <dl class="py attribute">
@@ -207,7 +208,8 @@ Err codes are from <code class="xref py py-data docutils literal notranslate"><s
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAImage">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBAImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/viam_rgba_plugin.html#RGBAImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAImage" title="Permalink to this definition"></a></dt>
-<dd><p>Base class for image file format handlers.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">PIL.ImageFile.ImageFile</span></code></p>
+<p>Base class for image file format handlers.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAImage.format">
 <span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAImage.format" title="Permalink to this definition"></a></dt>
@@ -223,7 +225,8 @@ Err codes are from <code class="xref py py-data docutils literal notranslate"><s
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBADecoder">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.viam_rgba_plugin.</span></span><span class="sig-name descname"><span class="pre">RGBADecoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/viam_rgba_plugin.html#RGBADecoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBADecoder" title="Permalink to this definition"></a></dt>
-<dd><p>Python implementation of a format decoder. Override this class and
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">PIL.ImageFile.PyDecoder</span></code></p>
+<p>Python implementation of a format decoder. Override this class and
 add the decoding logic in the <a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBADecoder.decode" title="viam.media.viam_rgba_plugin.RGBADecoder.decode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">decode()</span></code></a> method.</p>
 <p>See <span class="xref std std-ref">Writing Your Own File Codec in Python</span></p>
 <dl class="py method">
@@ -259,7 +262,7 @@ Err codes are from <code class="xref py py-data docutils literal notranslate"><s
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

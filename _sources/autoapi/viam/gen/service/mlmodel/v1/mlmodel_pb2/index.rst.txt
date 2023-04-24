@@ -56,7 +56,7 @@ Attributes
 
 .. py:class:: LabelType
 
-
+   Bases: :py:obj:`_LabelType`
 
 
 .. py:data:: LABEL_TYPE_UNSPECIFIED
@@ -80,7 +80,7 @@ Attributes
 
 .. py:class:: InferRequest(*, name: str = ..., input_data: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -122,7 +122,7 @@ Attributes
 
 .. py:class:: InferResponse(*, output_data: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -159,7 +159,7 @@ Attributes
 
 .. py:class:: MetadataRequest(*, name: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -179,7 +179,7 @@ Attributes
 
 .. py:class:: MetadataResponse(*, metadata: global___Metadata | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -216,7 +216,7 @@ Attributes
 
 .. py:class:: Metadata(*, name: str = ..., type: str = ..., description: str = ..., input_info: collections.abc.Iterable[global___TensorInfo] | None = ..., output_info: collections.abc.Iterable[global___TensorInfo] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -256,7 +256,7 @@ Attributes
 
 .. py:class:: TensorInfo(*, name: str = ..., description: str = ..., data_type: str = ..., shape: collections.abc.Iterable[builtins.int] | None = ..., associated_files: collections.abc.Iterable[global___File] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -318,7 +318,7 @@ Attributes
 
 .. py:class:: File(*, name: str = ..., description: str = ..., label_type: global___LabelType = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

@@ -82,7 +82,7 @@ Attributes
 
 .. py:class:: PowerMode
 
-
+   Bases: :py:obj:`_PowerMode`
 
    Power Management API
 
@@ -108,7 +108,7 @@ Attributes
 
 .. py:class:: StatusRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -150,7 +150,7 @@ Attributes
 
 .. py:class:: StatusResponse(*, status: common.v1.common_pb2.BoardStatus | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -186,7 +186,7 @@ Attributes
 
 .. py:class:: SetGPIORequest(*, name: str = ..., pin: str = ..., high: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -238,7 +238,7 @@ Attributes
 
 .. py:class:: SetGPIOResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -253,7 +253,7 @@ Attributes
 
 .. py:class:: GetGPIORequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -300,7 +300,7 @@ Attributes
 
 .. py:class:: GetGPIOResponse(*, high: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -320,7 +320,7 @@ Attributes
 
 .. py:class:: PWMRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -367,7 +367,7 @@ Attributes
 
 .. py:class:: PWMResponse(*, duty_cycle_pct: float = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -387,7 +387,7 @@ Attributes
 
 .. py:class:: SetPWMRequest(*, name: str = ..., pin: str = ..., duty_cycle_pct: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -439,7 +439,7 @@ Attributes
 
 .. py:class:: SetPWMResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -454,7 +454,7 @@ Attributes
 
 .. py:class:: PWMFrequencyRequest(*, name: str = ..., pin: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -501,7 +501,7 @@ Attributes
 
 .. py:class:: PWMFrequencyResponse(*, frequency_hz: int = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -521,7 +521,7 @@ Attributes
 
 .. py:class:: SetPWMFrequencyRequest(*, name: str = ..., pin: str = ..., frequency_hz: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -573,7 +573,7 @@ Attributes
 
 .. py:class:: SetPWMFrequencyResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -588,7 +588,7 @@ Attributes
 
 .. py:class:: ReadAnalogReaderRequest(*, board_name: str = ..., analog_reader_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Analog Reader
 
@@ -631,7 +631,7 @@ Attributes
 
 .. py:class:: ReadAnalogReaderResponse(*, value: int = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -651,7 +651,7 @@ Attributes
 
 .. py:class:: GetDigitalInterruptValueRequest(*, board_name: str = ..., digital_interrupt_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Digital Interrupt
 
@@ -694,7 +694,7 @@ Attributes
 
 .. py:class:: GetDigitalInterruptValueResponse(*, value: int = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -714,7 +714,7 @@ Attributes
 
 .. py:class:: SetPowerModeRequest(*, name: str = ..., power_mode: global___PowerMode = ..., duration: google.protobuf.duration_pb2.Duration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -781,7 +781,7 @@ Attributes
 
 .. py:class:: SetPowerModeResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

@@ -42,7 +42,7 @@ Classes
 
 .. py:class:: MovementSensorServiceBase
 
-
+   Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
@@ -101,7 +101,7 @@ Classes
 
 .. py:class:: GetAccuracyRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -139,7 +139,7 @@ Classes
 
 .. py:class:: GetAccuracyResponse(*, accuracy_mm: collections.abc.Mapping[builtins.str, builtins.float] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -149,7 +149,7 @@ Classes
 
    .. py:class:: AccuracyMmEntry(*, key: str = ..., value: float = ...)
 
-
+      Bases: :py:obj:`google.protobuf.message.Message`
 
       Abstract base class for protocol messages.
 
@@ -175,7 +175,7 @@ Classes
 
 .. py:class:: GetAngularVelocityRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -213,7 +213,7 @@ Classes
 
 .. py:class:: GetAngularVelocityResponse(*, angular_velocity: common.v1.common_pb2.Vector3 | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -246,7 +246,7 @@ Classes
 
 .. py:class:: GetCompassHeadingRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -284,7 +284,7 @@ Classes
 
 .. py:class:: GetCompassHeadingResponse(*, value: float = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -301,7 +301,7 @@ Classes
 
 .. py:class:: GetLinearAccelerationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -339,7 +339,7 @@ Classes
 
 .. py:class:: GetLinearAccelerationResponse(*, linear_acceleration: common.v1.common_pb2.Vector3 | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -371,7 +371,7 @@ Classes
 
 .. py:class:: GetLinearVelocityRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -409,7 +409,7 @@ Classes
 
 .. py:class:: GetLinearVelocityResponse(*, linear_velocity: common.v1.common_pb2.Vector3 | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -442,7 +442,7 @@ Classes
 
 .. py:class:: GetOrientationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -480,7 +480,7 @@ Classes
 
 .. py:class:: GetOrientationResponse(*, orientation: common.v1.common_pb2.Orientation | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -512,7 +512,7 @@ Classes
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -550,7 +550,7 @@ Classes
 
 .. py:class:: GetPositionResponse(*, coordinate: common.v1.common_pb2.GeoPoint | None = ..., altitude_mm: float = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -587,7 +587,7 @@ Classes
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -625,7 +625,7 @@ Classes
 
 .. py:class:: GetPropertiesResponse(*, linear_velocity_supported: bool = ..., angular_velocity_supported: bool = ..., orientation_supported: bool = ..., position_supported: bool = ..., compass_heading_supported: bool = ..., linear_acceleration_supported: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

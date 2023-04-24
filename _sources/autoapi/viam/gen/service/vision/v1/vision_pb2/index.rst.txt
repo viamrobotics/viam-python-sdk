@@ -101,7 +101,7 @@ Attributes
 
 .. py:class:: GetModelParameterSchemaRequest(*, name: str = ..., model_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -148,7 +148,7 @@ Attributes
 
 .. py:class:: GetModelParameterSchemaResponse(*, model_parameter_schema: bytes = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -168,7 +168,7 @@ Attributes
 
 .. py:class:: GetDetectorNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -210,7 +210,7 @@ Attributes
 
 .. py:class:: GetDetectorNamesResponse(*, detector_names: collections.abc.Iterable[builtins.str] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -230,7 +230,7 @@ Attributes
 
 .. py:class:: AddDetectorRequest(*, name: str = ..., detector_name: str = ..., detector_model_type: str = ..., detector_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -286,7 +286,7 @@ Attributes
 
 .. py:class:: AddDetectorResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -301,7 +301,7 @@ Attributes
 
 .. py:class:: RemoveDetectorRequest(*, name: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -348,7 +348,7 @@ Attributes
 
 .. py:class:: RemoveDetectorResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -363,7 +363,7 @@ Attributes
 
 .. py:class:: GetDetectionsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -430,7 +430,7 @@ Attributes
 
 .. py:class:: GetDetectionsResponse(*, detections: collections.abc.Iterable[global___Detection] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -450,7 +450,7 @@ Attributes
 
 .. py:class:: GetDetectionsFromCameraRequest(*, name: str = ..., camera_name: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -502,7 +502,7 @@ Attributes
 
 .. py:class:: GetDetectionsFromCameraResponse(*, detections: collections.abc.Iterable[global___Detection] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -522,7 +522,7 @@ Attributes
 
 .. py:class:: Detection(*, x_min: builtins.int | None = ..., y_min: builtins.int | None = ..., x_max: builtins.int | None = ..., y_max: builtins.int | None = ..., confidence: float = ..., class_name: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -602,7 +602,7 @@ Attributes
 
 .. py:class:: GetClassifierNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -644,7 +644,7 @@ Attributes
 
 .. py:class:: GetClassifierNamesResponse(*, classifier_names: collections.abc.Iterable[builtins.str] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -663,7 +663,7 @@ Attributes
 
 .. py:class:: AddClassifierRequest(*, name: str = ..., classifier_name: str = ..., classifier_model_type: str = ..., classifier_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -720,7 +720,7 @@ Attributes
 
 .. py:class:: AddClassifierResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -735,7 +735,7 @@ Attributes
 
 .. py:class:: RemoveClassifierRequest(*, name: str = ..., classifier_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -782,7 +782,7 @@ Attributes
 
 .. py:class:: RemoveClassifierResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -797,7 +797,7 @@ Attributes
 
 .. py:class:: GetClassificationsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., classifier_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -869,7 +869,7 @@ Attributes
 
 .. py:class:: GetClassificationsResponse(*, classifications: collections.abc.Iterable[global___Classification] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -888,7 +888,7 @@ Attributes
 
 .. py:class:: GetClassificationsFromCameraRequest(*, name: str = ..., camera_name: str = ..., classifier_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -945,7 +945,7 @@ Attributes
 
 .. py:class:: GetClassificationsFromCameraResponse(*, classifications: collections.abc.Iterable[global___Classification] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -964,7 +964,7 @@ Attributes
 
 .. py:class:: Classification(*, class_name: str = ..., confidence: float = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    the general form of the output from a classifier
 
@@ -985,7 +985,7 @@ Attributes
 
 .. py:class:: GetSegmenterNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1027,7 +1027,7 @@ Attributes
 
 .. py:class:: GetSegmenterNamesResponse(*, segmenter_names: collections.abc.Iterable[builtins.str] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1047,7 +1047,7 @@ Attributes
 
 .. py:class:: AddSegmenterRequest(*, name: str = ..., segmenter_name: str = ..., segmenter_model_type: str = ..., segmenter_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1104,7 +1104,7 @@ Attributes
 
 .. py:class:: AddSegmenterResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1119,7 +1119,7 @@ Attributes
 
 .. py:class:: RemoveSegmenterRequest(*, name: str = ..., segmenter_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1166,7 +1166,7 @@ Attributes
 
 .. py:class:: RemoveSegmenterResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1181,7 +1181,7 @@ Attributes
 
 .. py:class:: GetObjectPointCloudsRequest(*, name: str = ..., camera_name: str = ..., segmenter_name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -1238,7 +1238,7 @@ Attributes
 
 .. py:class:: GetObjectPointCloudsResponse(*, mime_type: str = ..., objects: collections.abc.Iterable[common.v1.common_pb2.PointCloudObject] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

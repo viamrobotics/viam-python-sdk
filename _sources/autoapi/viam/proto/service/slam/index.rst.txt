@@ -32,7 +32,7 @@ Classes
 
 .. py:class:: SLAMServiceBase
 
-
+   Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
@@ -66,7 +66,7 @@ Classes
 
 .. py:class:: GetInternalStateRequest(*, name: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -82,7 +82,7 @@ Classes
 
 .. py:class:: GetInternalStateResponse(*, internal_state_chunk: bytes = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -99,7 +99,7 @@ Classes
 
 .. py:class:: GetPointCloudMapRequest(*, name: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -115,7 +115,7 @@ Classes
 
 .. py:class:: GetPointCloudMapResponse(*, point_cloud_pcd_chunk: bytes = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -145,7 +145,7 @@ Classes
 
 .. py:class:: GetPositionRequest(*, name: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -161,7 +161,7 @@ Classes
 
 .. py:class:: GetPositionResponse(*, pose: common.v1.common_pb2.Pose | None = ..., component_reference: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

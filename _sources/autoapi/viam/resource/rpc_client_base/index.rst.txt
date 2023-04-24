@@ -20,7 +20,7 @@ Classes
 
 .. py:class:: ResourceRPCClientBase
 
-
+   Bases: :py:obj:`Protocol`
 
    Base RPC client for a resource.
    Resource RPC clients must inherit from this class
@@ -38,7 +38,7 @@ Classes
 
 .. py:class:: ReconfigurableResourceRPCClientBase
 
-
+   Bases: :py:obj:`ResourceRPCClientBase`
 
    A base RPC client that can reset its channel.
 

@@ -195,7 +195,8 @@ Do not edit manually!</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthServiceBase">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">AuthServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/rpc/v1/auth_grpc.html#AuthServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.auth.AuthServiceBase" title="Permalink to this definition"></a></dt>
-<dd><p>Helper class that provides a standard way to create an ABC using
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Helper class that provides a standard way to create an ABC using
 inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthServiceBase.Authenticate">
@@ -217,7 +218,8 @@ inheritance.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.ExternalAuthServiceBase">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">ExternalAuthServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/rpc/v1/auth_grpc.html#ExternalAuthServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.auth.ExternalAuthServiceBase" title="Permalink to this definition"></a></dt>
-<dd><p>Helper class that provides a standard way to create an ABC using
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Helper class that provides a standard way to create an ABC using
 inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.ExternalAuthServiceBase.AuthenticateTo">
@@ -239,7 +241,8 @@ inheritance.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">AuthenticateRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Credentials</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.auth.AuthenticateRequest" title="Permalink to this definition"></a></dt>
-<dd><p>An AuthenticateRequest contains the credentials used to authenticate.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>An AuthenticateRequest contains the credentials used to authenticate.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateRequest.credentials">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">credentials</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Credentials</span></em><a class="headerlink" href="#viam.proto.rpc.auth.AuthenticateRequest.credentials" title="Permalink to this definition"></a></dt>
@@ -278,7 +281,8 @@ be raised.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">AuthenticateResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.auth.AuthenticateResponse" title="Permalink to this definition"></a></dt>
-<dd><p>An AuthenticateResponse is returned after successful authentication.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>An AuthenticateResponse is returned after successful authentication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateResponse.access_token">
 <span class="sig-name descname"><span class="pre">access_token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.rpc.auth.AuthenticateResponse.access_token" title="Permalink to this definition"></a></dt>
@@ -292,7 +296,8 @@ Future(erd): maybe a refresh_token</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateToRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">AuthenticateToRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.auth.AuthenticateToRequest" title="Permalink to this definition"></a></dt>
-<dd><p>An AuthenticateToRequest contains the entity to authenticate to.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>An AuthenticateToRequest contains the entity to authenticate to.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateToRequest.entity">
 <span class="sig-name descname"><span class="pre">entity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.rpc.auth.AuthenticateToRequest.entity" title="Permalink to this definition"></a></dt>
@@ -303,7 +308,8 @@ Future(erd): maybe a refresh_token</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateToResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">AuthenticateToResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">access_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.auth.AuthenticateToResponse" title="Permalink to this definition"></a></dt>
-<dd><p>An AuthenticateResponse is returned after successful authentication.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>An AuthenticateResponse is returned after successful authentication.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateToResponse.access_token">
 <span class="sig-name descname"><span class="pre">access_token</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.rpc.auth.AuthenticateToResponse.access_token" title="Permalink to this definition"></a></dt>
@@ -317,7 +323,8 @@ Future(erd): maybe a refresh_token</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.Credentials">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">Credentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.rpc.auth.Credentials" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract base class for protocol messages.</p>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
@@ -350,7 +357,7 @@ shown below.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Viam Inc.</p>
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

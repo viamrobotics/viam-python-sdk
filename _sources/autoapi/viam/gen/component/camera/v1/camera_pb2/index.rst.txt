@@ -61,7 +61,7 @@ Attributes
 
 .. py:class:: GetImageRequest(*, name: str = ..., mime_type: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -86,7 +86,7 @@ Attributes
 
 .. py:class:: GetImageResponse(*, mime_type: str = ..., image: bytes = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -111,7 +111,7 @@ Attributes
 
 .. py:class:: RenderFrameRequest(*, name: str = ..., mime_type: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -136,7 +136,7 @@ Attributes
 
 .. py:class:: GetPointCloudRequest(*, name: str = ..., mime_type: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -161,7 +161,7 @@ Attributes
 
 .. py:class:: GetPointCloudResponse(*, mime_type: str = ..., point_cloud: bytes = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -186,7 +186,7 @@ Attributes
 
 .. py:class:: GetPropertiesRequest(*, name: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -206,7 +206,7 @@ Attributes
 
 .. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -253,7 +253,7 @@ Attributes
 
 .. py:class:: Webcams(*, webcams: collections.abc.Iterable[global___Webcam] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -272,7 +272,7 @@ Attributes
 
 .. py:class:: Webcam(*, label: str = ..., status: str = ..., properties: collections.abc.Iterable[global___Property] | None = ..., name: str = ..., id: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -312,7 +312,7 @@ Attributes
 
 .. py:class:: Property(*, width_px: int = ..., height_px: int = ..., frame_format: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -342,7 +342,7 @@ Attributes
 
 .. py:class:: IntrinsicParameters(*, width_px: int = ..., height_px: int = ..., focal_x_px: float = ..., focal_y_px: float = ..., center_x_px: float = ..., center_y_px: float = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 
@@ -387,7 +387,7 @@ Attributes
 
 .. py:class:: DistortionParameters(*, model: str = ..., parameters: collections.abc.Iterable[builtins.float] | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
 

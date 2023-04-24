@@ -47,7 +47,7 @@ Classes
 
 .. py:class:: SignalingServiceBase
 
-
+   Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
@@ -81,7 +81,7 @@ Classes
 
 .. py:class:: AnswerRequest(*, uuid: str = ..., init: global___AnswerRequestInitStage | None = ..., update: global___AnswerRequestUpdateStage | None = ..., done: global___AnswerRequestDoneStage | None = ..., error: global___AnswerRequestErrorStage | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerRequest is the SDP offer that the controlling side is making via the answering
    stream.
@@ -144,14 +144,14 @@ Classes
 
 .. py:class:: AnswerRequestDoneStage
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerRequestDoneStage indicates the controller is done responding with candidates.
 
 
 .. py:class:: AnswerRequestErrorStage(*, status: google.rpc.status_pb2.Status | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerRequestErrorStage indicates the exchange has failed with an error.
 
@@ -179,7 +179,7 @@ Classes
 
 .. py:class:: AnswerRequestInitStage(*, sdp: str = ..., optional_config: global___WebRTCConfig | None = ..., deadline: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerRequestInitStage is the first and a one time stage that represents the
    callers initial SDP request to the controlled (answerer) side.
@@ -232,7 +232,7 @@ Classes
 
 .. py:class:: AnswerRequestUpdateStage(*, candidate: global___ICECandidate | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to
    the controlled (answerer) side.
@@ -261,7 +261,7 @@ Classes
 
 .. py:class:: AnswerResponse(*, uuid: str = ..., init: global___AnswerResponseInitStage | None = ..., update: global___AnswerResponseUpdateStage | None = ..., done: global___AnswerResponseDoneStage | None = ..., error: global___AnswerResponseErrorStage | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerResponse is the SDP answer that an answerer responds with.
 
@@ -323,14 +323,14 @@ Classes
 
 .. py:class:: AnswerResponseDoneStage
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerResponseDoneStage indicates the answerer is done responding with candidates.
 
 
 .. py:class:: AnswerResponseErrorStage(*, status: google.rpc.status_pb2.Status | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerResponseErrorStage indicates the exchange has failed with an error.
 
@@ -358,7 +358,7 @@ Classes
 
 .. py:class:: AnswerResponseInitStage(*, sdp: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerResponseInitStage is the first and a one time stage that represents the
    answerers initial SDP response to the controlling side.
@@ -371,7 +371,7 @@ Classes
 
 .. py:class:: AnswerResponseUpdateStage(*, candidate: global___ICECandidate | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to
    the controlling side.
@@ -400,7 +400,7 @@ Classes
 
 .. py:class:: CallRequest(*, sdp: str = ..., disable_trickle: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    CallRequest is the SDP offer that the controlling side is making.
 
@@ -419,7 +419,7 @@ Classes
 
 .. py:class:: CallResponse(*, uuid: str = ..., init: global___CallResponseInitStage | None = ..., update: global___CallResponseUpdateStage | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    CallResponse is the SDP answer that the controlled side responds with.
 
@@ -471,7 +471,7 @@ Classes
 
 .. py:class:: CallResponseInitStage(*, sdp: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    CallResponseInitStage is the first and a one time stage that represents
    the initial response to starting a call.
@@ -484,7 +484,7 @@ Classes
 
 .. py:class:: CallResponseUpdateStage(*, candidate: global___ICECandidate | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    CallResponseUpdateStage is multiply used to trickle in ICE candidates from
    the controlled (answering) side.
@@ -513,7 +513,7 @@ Classes
 
 .. py:class:: CallUpdateRequest(*, uuid: str = ..., candidate: global___ICECandidate | None = ..., done: bool = ..., error: google.rpc.status_pb2.Status | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    CallUpdateRequest updates the call with additional info to the controlled side.
 
@@ -570,14 +570,14 @@ Classes
 
 .. py:class:: CallUpdateResponse
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    CallUpdateResponse contains nothing in response to a call update.
 
 
 .. py:class:: ICECandidate(*, candidate: str = ..., sdp_mid: builtins.str | None = ..., sdpm_line_index: builtins.int | None = ..., username_fragment: builtins.str | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    ICECandidate represents an ICE candidate.
    From https://github.com/pion/webrtc/blob/5f6baf73255598a7b4a7c9400bb0381acc9aa3dc/icecandidateinit.go
@@ -639,7 +639,7 @@ Classes
 
 .. py:class:: ICEServer(*, urls: collections.abc.Iterable[builtins.str] | None = ..., username: str = ..., credential: str = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    ICEServer describes an ICE server.
 
@@ -660,7 +660,7 @@ Classes
 
 .. py:class:: OptionalWebRTCConfigRequest
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config
    to use for the peer connection.
@@ -668,7 +668,7 @@ Classes
 
 .. py:class:: OptionalWebRTCConfigResponse(*, config: global___WebRTCConfig | None = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    OptionalWebRTCConfigResponse contains the optional WebRTC config
    to use for the peer connection.
@@ -697,7 +697,7 @@ Classes
 
 .. py:class:: WebRTCConfig(*, additional_ice_servers: collections.abc.Iterable[global___ICEServer] | None = ..., disable_trickle: bool = ...)
 
-
+   Bases: :py:obj:`google.protobuf.message.Message`
 
    WebRTCConfig represents parts of a WebRTC config.
 
