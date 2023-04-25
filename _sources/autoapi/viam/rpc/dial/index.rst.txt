@@ -99,7 +99,7 @@ Attributes
       unsafe to use, but can be requested.
 
 
-.. py:class:: AuthenticatedChannel(host: Optional[str] = None, port: Optional[int] = None, *, loop: Optional[asyncio.AbstractEventLoop] = None, path: Optional[str] = None, codec: Optional[grpclib.encoding.base.CodecBase] = None, status_details_codec: Optional[grpclib.encoding.base.StatusDetailsCodecBase] = None, ssl: Union[None, bool, ssl.SSLContext] = None, config: Optional[grpclib.config.Configuration] = None)
+.. py:class:: AuthenticatedChannel(host: Optional[str] = None, port: Optional[int] = None, *, ssl: Union[None, bool, AuthenticatedChannel.__init__.ssl] = None, server_hostname: Optional[str] = None)
 
    Bases: :py:obj:`grpclib.client.Channel`
 
